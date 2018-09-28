@@ -27,364 +27,286 @@ export class LROSADs {
     this.client = client;
   }
 
-
   /**
    * Long running put request, service returns a 400 to the initial request
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPutNonRetry400Response>
    */
   putNonRetry400(options?: Models.LROSADsPutNonRetry400OptionalParams): Promise<Models.LROSADsPutNonRetry400Response> {
     return this.beginPutNonRetry400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutNonRetry400Response>;
   }
 
-
   /**
    * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
    * 201 response code
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPutNonRetry201Creating400Response>
    */
   putNonRetry201Creating400(options?: Models.LROSADsPutNonRetry201Creating400OptionalParams): Promise<Models.LROSADsPutNonRetry201Creating400Response> {
     return this.beginPutNonRetry201Creating400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutNonRetry201Creating400Response>;
   }
 
-
   /**
    * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
    * 201 response code
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPutNonRetry201Creating400InvalidJsonResponse>
    */
   putNonRetry201Creating400InvalidJson(options?: Models.LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<Models.LROSADsPutNonRetry201Creating400InvalidJsonResponse> {
     return this.beginPutNonRetry201Creating400InvalidJson(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutNonRetry201Creating400InvalidJsonResponse>;
   }
 
-
   /**
    * Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
    * endpoint indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPutAsyncRelativeRetry400Response>
    */
   putAsyncRelativeRetry400(options?: Models.LROSADsPutAsyncRelativeRetry400OptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetry400Response> {
     return this.beginPutAsyncRelativeRetry400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutAsyncRelativeRetry400Response>;
   }
 
-
   /**
    * Long running delete request, service returns a 400 with an error body
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsDeleteNonRetry400Response>
    */
   deleteNonRetry400(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteNonRetry400Response> {
     return this.beginDeleteNonRetry400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsDeleteNonRetry400Response>;
   }
 
-
   /**
    * Long running delete request, service returns a 202 with a location header
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsDelete202NonRetry400Response>
    */
   delete202NonRetry400(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDelete202NonRetry400Response> {
     return this.beginDelete202NonRetry400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsDelete202NonRetry400Response>;
   }
 
-
   /**
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsDeleteAsyncRelativeRetry400Response>
    */
   deleteAsyncRelativeRetry400(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetry400Response> {
     return this.beginDeleteAsyncRelativeRetry400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsDeleteAsyncRelativeRetry400Response>;
   }
 
-
   /**
    * Long running post request, service returns a 400 with no error body
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPostNonRetry400Response>
    */
   postNonRetry400(options?: Models.LROSADsPostNonRetry400OptionalParams): Promise<Models.LROSADsPostNonRetry400Response> {
     return this.beginPostNonRetry400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPostNonRetry400Response>;
   }
 
-
   /**
    * Long running post request, service returns a 202 with a location header
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPost202NonRetry400Response>
    */
   post202NonRetry400(options?: Models.LROSADsPost202NonRetry400OptionalParams): Promise<Models.LROSADsPost202NonRetry400Response> {
     return this.beginPost202NonRetry400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPost202NonRetry400Response>;
   }
 
-
   /**
    * Long running post request, service returns a 202 to the initial request Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPostAsyncRelativeRetry400Response>
    */
   postAsyncRelativeRetry400(options?: Models.LROSADsPostAsyncRelativeRetry400OptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetry400Response> {
     return this.beginPostAsyncRelativeRetry400(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPostAsyncRelativeRetry400Response>;
   }
 
-
   /**
    * Long running put request, service returns a 201 to the initial request with no payload
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPutError201NoProvisioningStatePayloadResponse>
    */
   putError201NoProvisioningStatePayload(options?: Models.LROSADsPutError201NoProvisioningStatePayloadOptionalParams): Promise<Models.LROSADsPutError201NoProvisioningStatePayloadResponse> {
     return this.beginPutError201NoProvisioningStatePayload(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutError201NoProvisioningStatePayloadResponse>;
   }
 
-
   /**
    * Long running put request, service returns a 200 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusResponse>
    */
   putAsyncRelativeRetryNoStatus(options?: Models.LROSADsPutAsyncRelativeRetryNoStatusOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusResponse> {
     return this.beginPutAsyncRelativeRetryNoStatus(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusResponse>;
   }
 
-
   /**
    * Long running put request, service returns a 200 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse>
    */
   putAsyncRelativeRetryNoStatusPayload(options?: Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse> {
     return this.beginPutAsyncRelativeRetryNoStatusPayload(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse>;
   }
 
-
   /**
    * Long running delete request, service returns a 204 to the initial request, indicating success.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
   delete204Succeeded(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDelete204Succeeded(options)
       .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
-
   /**
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsDeleteAsyncRelativeRetryNoStatusResponse>
    */
   deleteAsyncRelativeRetryNoStatus(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryNoStatusResponse> {
     return this.beginDeleteAsyncRelativeRetryNoStatus(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsDeleteAsyncRelativeRetryNoStatusResponse>;
   }
 
-
   /**
    * Long running post request, service returns a 202 to the initial request, without a location
    * header.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPost202NoLocationResponse>
    */
   post202NoLocation(options?: Models.LROSADsPost202NoLocationOptionalParams): Promise<Models.LROSADsPost202NoLocationResponse> {
     return this.beginPost202NoLocation(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPost202NoLocationResponse>;
   }
 
-
   /**
    * Long running post request, service returns a 202 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPostAsyncRelativeRetryNoPayloadResponse>
    */
   postAsyncRelativeRetryNoPayload(options?: Models.LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryNoPayloadResponse> {
     return this.beginPostAsyncRelativeRetryNoPayload(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPostAsyncRelativeRetryNoPayloadResponse>;
   }
 
-
   /**
    * Long running put request, service returns a 200 to the initial request, with an entity that is
    * not a valid json
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPut200InvalidJsonResponse>
    */
   put200InvalidJson(options?: Models.LROSADsPut200InvalidJsonOptionalParams): Promise<Models.LROSADsPut200InvalidJsonResponse> {
     return this.beginPut200InvalidJson(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPut200InvalidJsonResponse>;
   }
 
-
   /**
    * Long running put request, service returns a 200 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
    * is invalid.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPutAsyncRelativeRetryInvalidHeaderResponse>
    */
   putAsyncRelativeRetryInvalidHeader(options?: Models.LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryInvalidHeaderResponse> {
     return this.beginPutAsyncRelativeRetryInvalidHeader(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutAsyncRelativeRetryInvalidHeaderResponse>;
   }
 
-
   /**
    * Long running put request, service returns a 200 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse>
    */
   putAsyncRelativeRetryInvalidJsonPolling(options?: Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse> {
     return this.beginPutAsyncRelativeRetryInvalidJsonPolling(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse>;
   }
 
-
   /**
    * Long running delete request, service returns a 202 to the initial request receing a reponse with
    * an invalid 'Location' and 'Retry-After' headers
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsDelete202RetryInvalidHeaderResponse>
    */
   delete202RetryInvalidHeader(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDelete202RetryInvalidHeaderResponse> {
     return this.beginDelete202RetryInvalidHeader(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsDelete202RetryInvalidHeaderResponse>;
   }
 
-
   /**
    * Long running delete request, service returns a 202 to the initial request. The endpoint
    * indicated in the Azure-AsyncOperation header is invalid
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse>
    */
   deleteAsyncRelativeRetryInvalidHeader(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse> {
     return this.beginDeleteAsyncRelativeRetryInvalidHeader(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse>;
   }
 
-
   /**
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse>
    */
   deleteAsyncRelativeRetryInvalidJsonPolling(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse> {
     return this.beginDeleteAsyncRelativeRetryInvalidJsonPolling(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse>;
   }
 
-
   /**
    * Long running post request, service returns a 202 to the initial request, with invalid 'Location'
    * and 'Retry-After' headers.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPost202RetryInvalidHeaderResponse>
    */
   post202RetryInvalidHeader(options?: Models.LROSADsPost202RetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPost202RetryInvalidHeaderResponse> {
     return this.beginPost202RetryInvalidHeader(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPost202RetryInvalidHeaderResponse>;
   }
 
-
   /**
    * Long running post request, service returns a 202 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
    * is invalid.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPostAsyncRelativeRetryInvalidHeaderResponse>
    */
   postAsyncRelativeRetryInvalidHeader(options?: Models.LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryInvalidHeaderResponse> {
     return this.beginPostAsyncRelativeRetryInvalidHeader(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROSADsPostAsyncRelativeRetryInvalidHeaderResponse>;
   }
 
-
   /**
    * Long running post request, service returns a 202 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse>
    */
   postAsyncRelativeRetryInvalidJsonPolling(options?: Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse> {
     return this.beginPostAsyncRelativeRetryInvalidJsonPolling(options)
@@ -393,10 +315,8 @@ export class LROSADs {
 
   /**
    * Long running put request, service returns a 400 to the initial request
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPutNonRetry400(options?: Models.LROSADsBeginPutNonRetry400OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -410,10 +330,8 @@ export class LROSADs {
   /**
    * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
    * 201 response code
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPutNonRetry201Creating400(options?: Models.LROSADsBeginPutNonRetry201Creating400OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -427,10 +345,8 @@ export class LROSADs {
   /**
    * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
    * 201 response code
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPutNonRetry201Creating400InvalidJson(options?: Models.LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -444,10 +360,8 @@ export class LROSADs {
   /**
    * Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
    * endpoint indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPutAsyncRelativeRetry400(options?: Models.LROSADsBeginPutAsyncRelativeRetry400OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -460,10 +374,8 @@ export class LROSADs {
 
   /**
    * Long running delete request, service returns a 400 with an error body
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginDeleteNonRetry400(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -476,10 +388,8 @@ export class LROSADs {
 
   /**
    * Long running delete request, service returns a 202 with a location header
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginDelete202NonRetry400(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -493,10 +403,8 @@ export class LROSADs {
   /**
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginDeleteAsyncRelativeRetry400(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -509,10 +417,8 @@ export class LROSADs {
 
   /**
    * Long running post request, service returns a 400 with no error body
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPostNonRetry400(options?: Models.LROSADsBeginPostNonRetry400OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -525,10 +431,8 @@ export class LROSADs {
 
   /**
    * Long running post request, service returns a 202 with a location header
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPost202NonRetry400(options?: Models.LROSADsBeginPost202NonRetry400OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -542,10 +446,8 @@ export class LROSADs {
   /**
    * Long running post request, service returns a 202 to the initial request Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPostAsyncRelativeRetry400(options?: Models.LROSADsBeginPostAsyncRelativeRetry400OptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -558,10 +460,8 @@ export class LROSADs {
 
   /**
    * Long running put request, service returns a 201 to the initial request with no payload
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPutError201NoProvisioningStatePayload(options?: Models.LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -576,10 +476,8 @@ export class LROSADs {
    * Long running put request, service returns a 200 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPutAsyncRelativeRetryNoStatus(options?: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -594,10 +492,8 @@ export class LROSADs {
    * Long running put request, service returns a 200 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPutAsyncRelativeRetryNoStatusPayload(options?: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -610,10 +506,8 @@ export class LROSADs {
 
   /**
    * Long running delete request, service returns a 204 to the initial request, indicating success.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginDelete204Succeeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -627,10 +521,8 @@ export class LROSADs {
   /**
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginDeleteAsyncRelativeRetryNoStatus(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -644,10 +536,8 @@ export class LROSADs {
   /**
    * Long running post request, service returns a 202 to the initial request, without a location
    * header.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPost202NoLocation(options?: Models.LROSADsBeginPost202NoLocationOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -662,10 +552,8 @@ export class LROSADs {
    * Long running post request, service returns a 202 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPostAsyncRelativeRetryNoPayload(options?: Models.LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -679,10 +567,8 @@ export class LROSADs {
   /**
    * Long running put request, service returns a 200 to the initial request, with an entity that is
    * not a valid json
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPut200InvalidJson(options?: Models.LROSADsBeginPut200InvalidJsonOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -697,10 +583,8 @@ export class LROSADs {
    * Long running put request, service returns a 200 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
    * is invalid.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPutAsyncRelativeRetryInvalidHeader(options?: Models.LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -715,10 +599,8 @@ export class LROSADs {
    * Long running put request, service returns a 200 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPutAsyncRelativeRetryInvalidJsonPolling(options?: Models.LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -732,10 +614,8 @@ export class LROSADs {
   /**
    * Long running delete request, service returns a 202 to the initial request receing a reponse with
    * an invalid 'Location' and 'Retry-After' headers
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginDelete202RetryInvalidHeader(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -749,10 +629,8 @@ export class LROSADs {
   /**
    * Long running delete request, service returns a 202 to the initial request. The endpoint
    * indicated in the Azure-AsyncOperation header is invalid
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginDeleteAsyncRelativeRetryInvalidHeader(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -766,10 +644,8 @@ export class LROSADs {
   /**
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginDeleteAsyncRelativeRetryInvalidJsonPolling(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -783,10 +659,8 @@ export class LROSADs {
   /**
    * Long running post request, service returns a 202 to the initial request, with invalid 'Location'
    * and 'Retry-After' headers.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPost202RetryInvalidHeader(options?: Models.LROSADsBeginPost202RetryInvalidHeaderOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -801,10 +675,8 @@ export class LROSADs {
    * Long running post request, service returns a 202 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
    * is invalid.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPostAsyncRelativeRetryInvalidHeader(options?: Models.LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -819,10 +691,8 @@ export class LROSADs {
    * Long running post request, service returns a 202 to the initial request, with an entity that
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRestAzure.LROPoller>
    */
   beginPostAsyncRelativeRetryInvalidJsonPolling(options?: Models.LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
@@ -832,7 +702,6 @@ export class LROSADs {
       beginPostAsyncRelativeRetryInvalidJsonPollingOperationSpec,
       options);
   }
-
 }
 
 // Operation Specifications

@@ -18,7 +18,6 @@ export class AutoRestUrlMutliCollectionFormatTestServiceContext extends msRest.S
 
   /**
    * Initializes a new instance of the AutoRestUrlMutliCollectionFormatTestServiceContext class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestUrlMutliCollectionFormatTestServiceOptions) {

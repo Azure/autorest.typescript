@@ -25,9 +25,7 @@ export class AutoRestPagingTestServiceContext extends msRestAzure.AzureServiceCl
 
   /**
    * Initializes a new instance of the AutoRestPagingTestService class.
-   *
    * @param credentials Credentials needed for the client to connect to Azure.
-   *
    * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestPagingTestServiceOptions) {

@@ -25,9 +25,7 @@ export class AutoRestHeadTestServiceContext extends msRestAzure.AzureServiceClie
 
   /**
    * Initializes a new instance of the AutoRestHeadTestService class.
-   *
    * @param credentials Credentials needed for the client to connect to Azure.
-   *
    * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestHeadTestServiceOptions) {

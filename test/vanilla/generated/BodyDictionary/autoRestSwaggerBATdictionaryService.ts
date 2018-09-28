@@ -19,7 +19,6 @@ class AutoRestSwaggerBATdictionaryService extends AutoRestSwaggerBATdictionarySe
 
   /**
    * Initializes a new instance of the AutoRestSwaggerBATdictionaryService class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATdictionaryServiceOptions) {

@@ -28,14 +28,18 @@ export class HttpSuccess {
 
   /**
    * Return 200 status code if successful
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.HttpSuccessHead200Response>
    */
-  head200(): Promise<Models.HttpSuccessHead200Response>;
-  head200(options: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead200Response>;
+  head200(options?: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead200Response>;
+  /**
+   * @param callback The callback
+   */
   head200(callback: msRest.ServiceCallback<boolean>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   head200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
   head200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead200Response> {
     return this.client.sendOperationRequest(
@@ -48,14 +52,18 @@ export class HttpSuccess {
 
   /**
    * Return 204 status code if successful
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.HttpSuccessHead204Response>
    */
-  head204(): Promise<Models.HttpSuccessHead204Response>;
-  head204(options: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead204Response>;
+  head204(options?: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead204Response>;
+  /**
+   * @param callback The callback
+   */
   head204(callback: msRest.ServiceCallback<boolean>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   head204(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
   head204(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead204Response> {
     return this.client.sendOperationRequest(
@@ -68,14 +76,18 @@ export class HttpSuccess {
 
   /**
    * Return 404 status code if successful
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.HttpSuccessHead404Response>
    */
-  head404(): Promise<Models.HttpSuccessHead404Response>;
-  head404(options: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead404Response>;
+  head404(options?: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead404Response>;
+  /**
+   * @param callback The callback
+   */
   head404(callback: msRest.ServiceCallback<boolean>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   head404(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
   head404(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead404Response> {
     return this.client.sendOperationRequest(
@@ -85,7 +97,6 @@ export class HttpSuccess {
       head404OperationSpec,
       callback) as Promise<Models.HttpSuccessHead404Response>;
   }
-
 }
 
 // Operation Specifications

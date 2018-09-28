@@ -1,5 +1,4 @@
-﻿@using AutoRest.TypeScript.Model
-@using AutoRest.TypeScript.vanilla.Templates
+﻿@using AutoRest.TypeScript
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.MethodGroupTS>
 /*
 @Header(" * ")
@@ -18,12 +17,7 @@ export class @(Model.TypeName) {
   constructor(client: @(Model.CodeModelTS.ContextName)) {
     this.client = client;
   }
-@EmptyLine
-@foreach (MethodTS method in Model.MethodTemplateModels)
-{
-@:  @(method.Generate(EmptyLine))
-@EmptyLine
-}
+  @(CodeGeneratorTS.GenerateMethods(Model.MethodTemplateModels, EmptyLine))
 }
 @EmptyLine
 @(Model.GenerateOperationSpecDefinitions(EmptyLine))

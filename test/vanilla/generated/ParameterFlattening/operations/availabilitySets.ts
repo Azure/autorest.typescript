@@ -27,20 +27,27 @@ export class AvailabilitySets {
 
   /**
    * Updates the tags for an availability set.
-   *
    * @param resourceGroupName The name of the resource group.
-   *
    * @param avset The name of the storage availability set.
-   *
    * @param tags A set of tags. A description about the set of tags.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }): Promise<msRest.RestResponse>;
-  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param resourceGroupName The name of the resource group.
+   * @param avset The name of the storage availability set.
+   * @param tags A set of tags. A description about the set of tags.
+   * @param callback The callback
+   */
   update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param resourceGroupName The name of the resource group.
+   * @param avset The name of the storage availability set.
+   * @param tags A set of tags. A description about the set of tags.
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -53,7 +60,6 @@ export class AvailabilitySets {
       updateOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications

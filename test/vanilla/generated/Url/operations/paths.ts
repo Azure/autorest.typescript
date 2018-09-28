@@ -28,14 +28,18 @@ export class Paths {
 
   /**
    * Get true Boolean value on path
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getBooleanTrue(): Promise<msRest.RestResponse>;
-  getBooleanTrue(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getBooleanTrue(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getBooleanTrue(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getBooleanTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getBooleanTrue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -48,14 +52,18 @@ export class Paths {
 
   /**
    * Get false Boolean value on path
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getBooleanFalse(): Promise<msRest.RestResponse>;
-  getBooleanFalse(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getBooleanFalse(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getBooleanFalse(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getBooleanFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getBooleanFalse(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -68,14 +76,18 @@ export class Paths {
 
   /**
    * Get '1000000' integer value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getIntOneMillion(): Promise<msRest.RestResponse>;
-  getIntOneMillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getIntOneMillion(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getIntOneMillion(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getIntOneMillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getIntOneMillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -88,14 +100,18 @@ export class Paths {
 
   /**
    * Get '-1000000' integer value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getIntNegativeOneMillion(): Promise<msRest.RestResponse>;
-  getIntNegativeOneMillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getIntNegativeOneMillion(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getIntNegativeOneMillion(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getIntNegativeOneMillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getIntNegativeOneMillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -108,14 +124,18 @@ export class Paths {
 
   /**
    * Get '10000000000' 64 bit integer value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getTenBillion(): Promise<msRest.RestResponse>;
-  getTenBillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getTenBillion(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getTenBillion(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getTenBillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getTenBillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -128,14 +148,18 @@ export class Paths {
 
   /**
    * Get '-10000000000' 64 bit integer value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getNegativeTenBillion(): Promise<msRest.RestResponse>;
-  getNegativeTenBillion(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getNegativeTenBillion(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getNegativeTenBillion(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getNegativeTenBillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getNegativeTenBillion(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -148,14 +172,18 @@ export class Paths {
 
   /**
    * Get '1.034E+20' numeric value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  floatScientificPositive(): Promise<msRest.RestResponse>;
-  floatScientificPositive(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  floatScientificPositive(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   floatScientificPositive(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   floatScientificPositive(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   floatScientificPositive(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -168,14 +196,18 @@ export class Paths {
 
   /**
    * Get '-1.034E-20' numeric value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  floatScientificNegative(): Promise<msRest.RestResponse>;
-  floatScientificNegative(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  floatScientificNegative(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   floatScientificNegative(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   floatScientificNegative(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   floatScientificNegative(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -188,14 +220,18 @@ export class Paths {
 
   /**
    * Get '9999999.999' numeric value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  doubleDecimalPositive(): Promise<msRest.RestResponse>;
-  doubleDecimalPositive(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  doubleDecimalPositive(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   doubleDecimalPositive(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   doubleDecimalPositive(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   doubleDecimalPositive(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -208,14 +244,18 @@ export class Paths {
 
   /**
    * Get '-9999999.999' numeric value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  doubleDecimalNegative(): Promise<msRest.RestResponse>;
-  doubleDecimalNegative(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  doubleDecimalNegative(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   doubleDecimalNegative(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   doubleDecimalNegative(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   doubleDecimalNegative(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -228,14 +268,18 @@ export class Paths {
 
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  stringUnicode(): Promise<msRest.RestResponse>;
-  stringUnicode(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  stringUnicode(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   stringUnicode(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   stringUnicode(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   stringUnicode(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -248,14 +292,18 @@ export class Paths {
 
   /**
    * Get 'begin!*'();:@ &=+$,/?#[]end
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  stringUrlEncoded(): Promise<msRest.RestResponse>;
-  stringUrlEncoded(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  stringUrlEncoded(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   stringUrlEncoded(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   stringUrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   stringUrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -268,14 +316,18 @@ export class Paths {
 
   /**
    * Get ''
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  stringEmpty(): Promise<msRest.RestResponse>;
-  stringEmpty(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  stringEmpty(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   stringEmpty(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   stringEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   stringEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -288,16 +340,21 @@ export class Paths {
 
   /**
    * Get null (should throw)
-   *
    * @param stringPath null string value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  stringNull(stringPath: string): Promise<msRest.RestResponse>;
-  stringNull(stringPath: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  stringNull(stringPath: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param stringPath null string value
+   * @param callback The callback
+   */
   stringNull(stringPath: string, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param stringPath null string value
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   stringNull(stringPath: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   stringNull(stringPath: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -311,17 +368,24 @@ export class Paths {
 
   /**
    * Get using uri with 'green color' in path parameter
-   *
    * @param enumPath send the value green. Possible values include: 'red color', 'green color', 'blue
    * color'
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  enumValid(enumPath: Models.UriColor): Promise<msRest.RestResponse>;
-  enumValid(enumPath: Models.UriColor, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  enumValid(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param enumPath send the value green. Possible values include: 'red color', 'green color', 'blue
+   * color'
+   * @param callback The callback
+   */
   enumValid(enumPath: Models.UriColor, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param enumPath send the value green. Possible values include: 'red color', 'green color', 'blue
+   * color'
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   enumValid(enumPath: Models.UriColor, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   enumValid(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -335,17 +399,24 @@ export class Paths {
 
   /**
    * Get null (should throw on the client before the request is sent on wire)
-   *
    * @param enumPath send null should throw. Possible values include: 'red color', 'green color',
    * 'blue color'
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  enumNull(enumPath: Models.UriColor): Promise<msRest.RestResponse>;
-  enumNull(enumPath: Models.UriColor, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  enumNull(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param enumPath send null should throw. Possible values include: 'red color', 'green color',
+   * 'blue color'
+   * @param callback The callback
+   */
   enumNull(enumPath: Models.UriColor, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param enumPath send null should throw. Possible values include: 'red color', 'green color',
+   * 'blue color'
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   enumNull(enumPath: Models.UriColor, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   enumNull(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -359,16 +430,21 @@ export class Paths {
 
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
-   *
    * @param bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  byteMultiByte(bytePath: Uint8Array): Promise<msRest.RestResponse>;
-  byteMultiByte(bytePath: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  byteMultiByte(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
+   * @param callback The callback
+   */
   byteMultiByte(bytePath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   byteMultiByte(bytePath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   byteMultiByte(bytePath: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -382,14 +458,18 @@ export class Paths {
 
   /**
    * Get '' as byte array
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  byteEmpty(): Promise<msRest.RestResponse>;
-  byteEmpty(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  byteEmpty(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   byteEmpty(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   byteEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   byteEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -402,16 +482,21 @@ export class Paths {
 
   /**
    * Get null as byte array (should throw)
-   *
    * @param bytePath null as byte array (should throw)
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  byteNull(bytePath: Uint8Array): Promise<msRest.RestResponse>;
-  byteNull(bytePath: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  byteNull(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param bytePath null as byte array (should throw)
+   * @param callback The callback
+   */
   byteNull(bytePath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param bytePath null as byte array (should throw)
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   byteNull(bytePath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   byteNull(bytePath: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -425,14 +510,18 @@ export class Paths {
 
   /**
    * Get '2012-01-01' as date
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  dateValid(): Promise<msRest.RestResponse>;
-  dateValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  dateValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   dateValid(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   dateValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   dateValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -446,16 +535,21 @@ export class Paths {
   /**
    * Get null as date - this should throw or be unusable on the client side, depending on date
    * representation
-   *
    * @param datePath null as date (should throw)
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  dateNull(datePath: Date | string): Promise<msRest.RestResponse>;
-  dateNull(datePath: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  dateNull(datePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param datePath null as date (should throw)
+   * @param callback The callback
+   */
   dateNull(datePath: Date | string, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param datePath null as date (should throw)
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   dateNull(datePath: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   dateNull(datePath: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -469,14 +563,18 @@ export class Paths {
 
   /**
    * Get '2012-01-01T01:01:01Z' as date-time
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  dateTimeValid(): Promise<msRest.RestResponse>;
-  dateTimeValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  dateTimeValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   dateTimeValid(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   dateTimeValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   dateTimeValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -489,16 +587,21 @@ export class Paths {
 
   /**
    * Get null as date-time, should be disallowed or throw depending on representation of date-time
-   *
    * @param dateTimePath null as date-time
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  dateTimeNull(dateTimePath: Date | string): Promise<msRest.RestResponse>;
-  dateTimeNull(dateTimePath: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  dateTimeNull(dateTimePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param dateTimePath null as date-time
+   * @param callback The callback
+   */
   dateTimeNull(dateTimePath: Date | string, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param dateTimePath null as date-time
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   dateTimeNull(dateTimePath: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   dateTimeNull(dateTimePath: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -512,16 +615,21 @@ export class Paths {
 
   /**
    * Get 'lorem' encoded value as 'bG9yZW0' (base64url)
-   *
    * @param base64UrlPath base64url encoded value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  base64Url(base64UrlPath: Uint8Array): Promise<msRest.RestResponse>;
-  base64Url(base64UrlPath: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  base64Url(base64UrlPath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param base64UrlPath base64url encoded value
+   * @param callback The callback
+   */
   base64Url(base64UrlPath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param base64UrlPath base64url encoded value
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   base64Url(base64UrlPath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   base64Url(base64UrlPath: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -536,17 +644,24 @@ export class Paths {
   /**
    * Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
    * csv-array format
-   *
    * @param arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
    * using the csv-array format
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  arrayCsvInPath(arrayPath: string[]): Promise<msRest.RestResponse>;
-  arrayCsvInPath(arrayPath: string[], options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  arrayCsvInPath(arrayPath: string[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
+   * using the csv-array format
+   * @param callback The callback
+   */
   arrayCsvInPath(arrayPath: string[], callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
+   * using the csv-array format
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   arrayCsvInPath(arrayPath: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   arrayCsvInPath(arrayPath: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -560,16 +675,21 @@ export class Paths {
 
   /**
    * Get the date 2016-04-13 encoded value as '1460505600' (Unix time)
-   *
    * @param unixTimeUrlPath Unix time encoded value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  unixTimeUrl(unixTimeUrlPath: Date | string): Promise<msRest.RestResponse>;
-  unixTimeUrl(unixTimeUrlPath: Date | string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  unixTimeUrl(unixTimeUrlPath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param unixTimeUrlPath Unix time encoded value
+   * @param callback The callback
+   */
   unixTimeUrl(unixTimeUrlPath: Date | string, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param unixTimeUrlPath Unix time encoded value
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   unixTimeUrl(unixTimeUrlPath: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   unixTimeUrl(unixTimeUrlPath: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -580,7 +700,6 @@ export class Paths {
       unixTimeUrlOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications

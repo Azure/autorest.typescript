@@ -7,6 +7,7 @@ using AutoRest.Extensions.Azure;
 using AutoRest.TypeScript.DSL;
 using AutoRest.TypeScript.Model;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AutoRest.TypeScript.Azure.Model
@@ -41,32 +42,30 @@ namespace AutoRest.TypeScript.Azure.Model
             return $"begin{method.Name.ToPascalCase()}";
         }
 
-        public override string Generate(string emptyLine)
+        public override void Generate(TSClass tsClass)
         {
-            string result;
             if (IsLongRunningOperation)
             {
-                result = GenerateLongRunningOperationMethod(emptyLine);
+                GenerateLongRunningOperationMethod(tsClass);
             }
             else if (IsLongRunningOperationPoller())
             {
-                result = GenerateLongRunningOperationPollerMethod(emptyLine);
+                GenerateLongRunningOperationPollerMethod(tsClass);
             }
             else
             {
-                result = base.Generate(emptyLine);
+                base.Generate(tsClass);
             }
-            return result;
         }
 
-        private string GenerateLongRunningOperationMethod(string emptyLine)
+        private void GenerateLongRunningOperationMethod(TSClass tsClass)
         {
-            TSBuilder builder = new TSBuilder();
+            string methodName = Name.ToCamelCase();
+            IEnumerable<TSParameter> parameters = GetRequiredParameters().Concat(new[] { GetOptionsParameter(false) });
+            string returnType = $"Promise<{HttpResponseReferenceName}>";
 
-            builder.Line(emptyLine);
-            builder.Line(GenerateWithHttpOperationResponseMethodComment());
-
-            builder.Method(Name.ToCamelCase(), $"Promise<{HttpResponseReferenceName}>", MethodParameterDeclarationTS(true, true), methodBody =>
+            GenerateDocumentationComment(tsClass, returnType, parameters);
+            tsClass.Method(methodName, returnType, parameters, methodBody =>
             {
                 methodBody.Line($"return this.{GetPollerMethodName(this)}({MethodParameterDeclaration})");
                 methodBody.Indent(() =>
@@ -74,22 +73,21 @@ namespace AutoRest.TypeScript.Azure.Model
                     methodBody.Text($".then(lroPoller => lroPoller.pollUntilFinished())");
                     if (HasCustomHttpResponseType)
                     {
-                        methodBody.Text($" as Promise<{HttpResponseReferenceName}>");
+                        methodBody.Text($" as {returnType}");
                     }
                     methodBody.Line(";");
                 });
             });
-
-            return builder.ToString();
         }
 
-        private string GenerateLongRunningOperationPollerMethod(string emptyLine)
+        private void GenerateLongRunningOperationPollerMethod(TSClass tsClass)
         {
-            TSBuilder builder = new TSBuilder();
+            string methodName = Name.ToCamelCase();
+            IEnumerable<TSParameter> parameters = GetRequiredParameters().Concat(new[] { GetOptionsParameter(false) });
+            const string returnType = "Promise<msRestAzure.LROPoller>";
 
-            string responseName = HttpResponseReferenceName;
-            builder.Line(GenerateWithHttpOperationResponseMethodComment());
-            builder.Method(Name.ToString(), "Promise<msRestAzure.LROPoller>", MethodParameterDeclarationTS(true, true), methodBody =>
+            GenerateDocumentationComment(tsClass, returnType, parameters);
+            tsClass.Method(Name.ToString(), returnType, parameters, methodBody =>
             {
                 methodBody.Return(returnValue =>
                 {
@@ -101,8 +99,6 @@ namespace AutoRest.TypeScript.Azure.Model
                     });
                 });
             });
-
-            return builder.ToString();
         }
 
         public override bool IsWrappable()

@@ -27,14 +27,18 @@ export class ArrayModel {
 
   /**
    * Get complex types with array property
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.ArrayModelGetValidResponse>
    */
-  getValid(): Promise<Models.ArrayModelGetValidResponse>;
-  getValid(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetValidResponse>;
+  getValid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getValid(callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
   getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ArrayWrapper>): Promise<Models.ArrayModelGetValidResponse> {
     return this.client.sendOperationRequest(
@@ -47,14 +51,18 @@ export class ArrayModel {
 
   /**
    * Put complex types with array property
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putValid(): Promise<msRest.RestResponse>;
-  putValid(options: Models.ArrayModelPutValidOptionalParams): Promise<msRest.RestResponse>;
+  putValid(options?: Models.ArrayModelPutValidOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   putValid(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putValid(options: Models.ArrayModelPutValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
   putValid(options?: Models.ArrayModelPutValidOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -67,14 +75,18 @@ export class ArrayModel {
 
   /**
    * Get complex types with array property which is empty
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.ArrayModelGetEmptyResponse>
    */
-  getEmpty(): Promise<Models.ArrayModelGetEmptyResponse>;
-  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetEmptyResponse>;
+  getEmpty(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetEmptyResponse>;
+  /**
+   * @param callback The callback
+   */
   getEmpty(callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
   getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ArrayWrapper>): Promise<Models.ArrayModelGetEmptyResponse> {
     return this.client.sendOperationRequest(
@@ -87,14 +99,18 @@ export class ArrayModel {
 
   /**
    * Put complex types with array property which is empty
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putEmpty(): Promise<msRest.RestResponse>;
-  putEmpty(options: Models.ArrayModelPutEmptyOptionalParams): Promise<msRest.RestResponse>;
+  putEmpty(options?: Models.ArrayModelPutEmptyOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   putEmpty(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putEmpty(options: Models.ArrayModelPutEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
   putEmpty(options?: Models.ArrayModelPutEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -107,14 +123,18 @@ export class ArrayModel {
 
   /**
    * Get complex types with array property while server doesn't provide a response payload
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.ArrayModelGetNotProvidedResponse>
    */
-  getNotProvided(): Promise<Models.ArrayModelGetNotProvidedResponse>;
-  getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetNotProvidedResponse>;
+  getNotProvided(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetNotProvidedResponse>;
+  /**
+   * @param callback The callback
+   */
   getNotProvided(callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
   getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ArrayWrapper>): Promise<Models.ArrayModelGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
@@ -124,7 +144,6 @@ export class ArrayModel {
       getNotProvidedOperationSpec,
       callback) as Promise<Models.ArrayModelGetNotProvidedResponse>;
   }
-
 }
 
 // Operation Specifications

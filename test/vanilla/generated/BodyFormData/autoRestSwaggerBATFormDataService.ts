@@ -19,7 +19,6 @@ class AutoRestSwaggerBATFormDataService extends AutoRestSwaggerBATFormDataServic
 
   /**
    * Initializes a new instance of the AutoRestSwaggerBATFormDataService class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATFormDataServiceOptions) {

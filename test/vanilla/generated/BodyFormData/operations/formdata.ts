@@ -28,18 +28,24 @@ export class Formdata {
 
   /**
    * Upload file
-   *
    * @param fileContent File to upload.
-   *
    * @param fileName File name to upload. Name has to be spelled exactly as written here.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.FormdataUploadFileResponse>
    */
-  uploadFile(fileContent: msRest.HttpRequestBody, fileName: string): Promise<Models.FormdataUploadFileResponse>;
-  uploadFile(fileContent: msRest.HttpRequestBody, fileName: string, options: msRest.RequestOptionsBase): Promise<Models.FormdataUploadFileResponse>;
+  uploadFile(fileContent: msRest.HttpRequestBody, fileName: string, options?: msRest.RequestOptionsBase): Promise<Models.FormdataUploadFileResponse>;
+  /**
+   * @param fileContent File to upload.
+   * @param fileName File name to upload. Name has to be spelled exactly as written here.
+   * @param callback The callback
+   */
   uploadFile(fileContent: msRest.HttpRequestBody, fileName: string, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param fileContent File to upload.
+   * @param fileName File name to upload. Name has to be spelled exactly as written here.
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   uploadFile(fileContent: msRest.HttpRequestBody, fileName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   uploadFile(fileContent: msRest.HttpRequestBody, fileName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.FormdataUploadFileResponse> {
     return this.client.sendOperationRequest(
@@ -54,16 +60,21 @@ export class Formdata {
 
   /**
    * Upload file
-   *
    * @param fileContent File to upload.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.FormdataUploadFileViaBodyResponse>
    */
-  uploadFileViaBody(fileContent: msRest.HttpRequestBody): Promise<Models.FormdataUploadFileViaBodyResponse>;
-  uploadFileViaBody(fileContent: msRest.HttpRequestBody, options: msRest.RequestOptionsBase): Promise<Models.FormdataUploadFileViaBodyResponse>;
+  uploadFileViaBody(fileContent: msRest.HttpRequestBody, options?: msRest.RequestOptionsBase): Promise<Models.FormdataUploadFileViaBodyResponse>;
+  /**
+   * @param fileContent File to upload.
+   * @param callback The callback
+   */
   uploadFileViaBody(fileContent: msRest.HttpRequestBody, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param fileContent File to upload.
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   uploadFileViaBody(fileContent: msRest.HttpRequestBody, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   uploadFileViaBody(fileContent: msRest.HttpRequestBody, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.FormdataUploadFileViaBodyResponse> {
     return this.client.sendOperationRequest(
@@ -74,7 +85,6 @@ export class Formdata {
       uploadFileViaBodyOperationSpec,
       callback) as Promise<Models.FormdataUploadFileViaBodyResponse>;
   }
-
 }
 
 // Operation Specifications

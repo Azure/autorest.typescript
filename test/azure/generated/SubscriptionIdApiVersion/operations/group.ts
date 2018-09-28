@@ -28,16 +28,21 @@ export class Group {
 
   /**
    * Provides a resouce group with name 'testgroup101' and location 'West US'.
-   *
    * @param resourceGroupName Resource Group name 'testgroup101'.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GroupGetSampleResourceGroupResponse>
    */
-  getSampleResourceGroup(resourceGroupName: string): Promise<Models.GroupGetSampleResourceGroupResponse>;
-  getSampleResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.GroupGetSampleResourceGroupResponse>;
+  getSampleResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.GroupGetSampleResourceGroupResponse>;
+  /**
+   * @param resourceGroupName Resource Group name 'testgroup101'.
+   * @param callback The callback
+   */
   getSampleResourceGroup(resourceGroupName: string, callback: msRest.ServiceCallback<Models.SampleResourceGroup>): void;
+  /**
+   * @param resourceGroupName Resource Group name 'testgroup101'.
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getSampleResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SampleResourceGroup>): void;
   getSampleResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SampleResourceGroup>): Promise<Models.GroupGetSampleResourceGroupResponse> {
     return this.client.sendOperationRequest(
@@ -48,7 +53,6 @@ export class Group {
       getSampleResourceGroupOperationSpec,
       callback) as Promise<Models.GroupGetSampleResourceGroupResponse>;
   }
-
 }
 
 // Operation Specifications

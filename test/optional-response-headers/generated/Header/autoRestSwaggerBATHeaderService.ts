@@ -19,7 +19,6 @@ class AutoRestSwaggerBATHeaderService extends AutoRestSwaggerBATHeaderServiceCon
 
   /**
    * Initializes a new instance of the AutoRestSwaggerBATHeaderService class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATHeaderServiceOptions) {

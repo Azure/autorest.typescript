@@ -17,8 +17,6 @@ namespace AutoRest.TypeScript
 
         public abstract Template<TCodeModel> CreateServiceClientTemplate(TCodeModel codeModel);
 
-        public abstract Template<MethodGroupTS> CreateMethodGroupTemplate(MethodGroupTS methodGroup);
-
         public abstract Template<TCodeModel> CreateReadmeTemplate(TCodeModel codeModel);
     }
 }

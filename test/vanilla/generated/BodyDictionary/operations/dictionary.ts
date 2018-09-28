@@ -27,14 +27,18 @@ export class Dictionary {
 
   /**
    * Get null dictionary value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetNullResponse>
    */
-  getNull(): Promise<Models.DictionaryGetNullResponse>;
-  getNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullResponse>;
+  getNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getNull(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetNullResponse> {
     return this.client.sendOperationRequest(
@@ -47,14 +51,18 @@ export class Dictionary {
 
   /**
    * Get empty dictionary value {}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetEmptyResponse>
    */
-  getEmpty(): Promise<Models.DictionaryGetEmptyResponse>;
-  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyResponse>;
+  getEmpty(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyResponse>;
+  /**
+   * @param callback The callback
+   */
   getEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetEmptyResponse> {
     return this.client.sendOperationRequest(
@@ -67,16 +75,21 @@ export class Dictionary {
 
   /**
    * Set dictionary value empty {}
-   *
    * @param arrayBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putEmpty(arrayBody: { [propertyName: string]: string }): Promise<msRest.RestResponse>;
-  putEmpty(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putEmpty(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param arrayBody
+   * @param callback The callback
+   */
   putEmpty(arrayBody: { [propertyName: string]: string }, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param arrayBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putEmpty(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putEmpty(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -90,14 +103,18 @@ export class Dictionary {
 
   /**
    * Get Dictionary with null value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetNullValueResponse>
    */
-  getNullValue(): Promise<Models.DictionaryGetNullValueResponse>;
-  getNullValue(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullValueResponse>;
+  getNullValue(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullValueResponse>;
+  /**
+   * @param callback The callback
+   */
   getNullValue(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getNullValue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getNullValue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): Promise<Models.DictionaryGetNullValueResponse> {
     return this.client.sendOperationRequest(
@@ -110,14 +127,18 @@ export class Dictionary {
 
   /**
    * Get Dictionary with null key
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetNullKeyResponse>
    */
-  getNullKey(): Promise<Models.DictionaryGetNullKeyResponse>;
-  getNullKey(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullKeyResponse>;
+  getNullKey(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullKeyResponse>;
+  /**
+   * @param callback The callback
+   */
   getNullKey(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getNullKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getNullKey(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): Promise<Models.DictionaryGetNullKeyResponse> {
     return this.client.sendOperationRequest(
@@ -130,14 +151,18 @@ export class Dictionary {
 
   /**
    * Get Dictionary with key as empty string
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetEmptyStringKeyResponse>
    */
-  getEmptyStringKey(): Promise<Models.DictionaryGetEmptyStringKeyResponse>;
-  getEmptyStringKey(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyStringKeyResponse>;
+  getEmptyStringKey(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyStringKeyResponse>;
+  /**
+   * @param callback The callback
+   */
   getEmptyStringKey(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getEmptyStringKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getEmptyStringKey(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): Promise<Models.DictionaryGetEmptyStringKeyResponse> {
     return this.client.sendOperationRequest(
@@ -150,14 +175,18 @@ export class Dictionary {
 
   /**
    * Get invalid Dictionary value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetInvalidResponse>
    */
-  getInvalid(): Promise<Models.DictionaryGetInvalidResponse>;
-  getInvalid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetInvalidResponse>;
+  getInvalid(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetInvalidResponse>;
+  /**
+   * @param callback The callback
+   */
   getInvalid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): Promise<Models.DictionaryGetInvalidResponse> {
     return this.client.sendOperationRequest(
@@ -170,14 +199,18 @@ export class Dictionary {
 
   /**
    * Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetBooleanTfftResponse>
    */
-  getBooleanTfft(): Promise<Models.DictionaryGetBooleanTfftResponse>;
-  getBooleanTfft(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBooleanTfftResponse>;
+  getBooleanTfft(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBooleanTfftResponse>;
+  /**
+   * @param callback The callback
+   */
   getBooleanTfft(callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getBooleanTfft(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
   getBooleanTfft(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): Promise<Models.DictionaryGetBooleanTfftResponse> {
     return this.client.sendOperationRequest(
@@ -190,16 +223,21 @@ export class Dictionary {
 
   /**
    * Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }
-   *
    * @param arrayBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putBooleanTfft(arrayBody: { [propertyName: string]: boolean }): Promise<msRest.RestResponse>;
-  putBooleanTfft(arrayBody: { [propertyName: string]: boolean }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putBooleanTfft(arrayBody: { [propertyName: string]: boolean }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param arrayBody
+   * @param callback The callback
+   */
   putBooleanTfft(arrayBody: { [propertyName: string]: boolean }, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param arrayBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putBooleanTfft(arrayBody: { [propertyName: string]: boolean }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBooleanTfft(arrayBody: { [propertyName: string]: boolean }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -213,14 +251,18 @@ export class Dictionary {
 
   /**
    * Get boolean dictionary value {"0": true, "1": null, "2": false }
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetBooleanInvalidNullResponse>
    */
-  getBooleanInvalidNull(): Promise<Models.DictionaryGetBooleanInvalidNullResponse>;
-  getBooleanInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBooleanInvalidNullResponse>;
+  getBooleanInvalidNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBooleanInvalidNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getBooleanInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getBooleanInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
   getBooleanInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): Promise<Models.DictionaryGetBooleanInvalidNullResponse> {
     return this.client.sendOperationRequest(
@@ -233,14 +275,18 @@ export class Dictionary {
 
   /**
    * Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetBooleanInvalidStringResponse>
    */
-  getBooleanInvalidString(): Promise<Models.DictionaryGetBooleanInvalidStringResponse>;
-  getBooleanInvalidString(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBooleanInvalidStringResponse>;
+  getBooleanInvalidString(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBooleanInvalidStringResponse>;
+  /**
+   * @param callback The callback
+   */
   getBooleanInvalidString(callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getBooleanInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): void;
   getBooleanInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: boolean }>): Promise<Models.DictionaryGetBooleanInvalidStringResponse> {
     return this.client.sendOperationRequest(
@@ -253,14 +299,18 @@ export class Dictionary {
 
   /**
    * Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetIntegerValidResponse>
    */
-  getIntegerValid(): Promise<Models.DictionaryGetIntegerValidResponse>;
-  getIntegerValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetIntegerValidResponse>;
+  getIntegerValid(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetIntegerValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getIntegerValid(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getIntegerValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getIntegerValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetIntegerValidResponse> {
     return this.client.sendOperationRequest(
@@ -273,16 +323,21 @@ export class Dictionary {
 
   /**
    * Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}
-   *
    * @param arrayBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putIntegerValid(arrayBody: { [propertyName: string]: number }): Promise<msRest.RestResponse>;
-  putIntegerValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putIntegerValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param arrayBody
+   * @param callback The callback
+   */
   putIntegerValid(arrayBody: { [propertyName: string]: number }, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param arrayBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putIntegerValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putIntegerValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -296,14 +351,18 @@ export class Dictionary {
 
   /**
    * Get integer dictionary value {"0": 1, "1": null, "2": 0}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetIntInvalidNullResponse>
    */
-  getIntInvalidNull(): Promise<Models.DictionaryGetIntInvalidNullResponse>;
-  getIntInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetIntInvalidNullResponse>;
+  getIntInvalidNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetIntInvalidNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getIntInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getIntInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getIntInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetIntInvalidNullResponse> {
     return this.client.sendOperationRequest(
@@ -316,14 +375,18 @@ export class Dictionary {
 
   /**
    * Get integer dictionary value {"0": 1, "1": "integer", "2": 0}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetIntInvalidStringResponse>
    */
-  getIntInvalidString(): Promise<Models.DictionaryGetIntInvalidStringResponse>;
-  getIntInvalidString(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetIntInvalidStringResponse>;
+  getIntInvalidString(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetIntInvalidStringResponse>;
+  /**
+   * @param callback The callback
+   */
   getIntInvalidString(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getIntInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getIntInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetIntInvalidStringResponse> {
     return this.client.sendOperationRequest(
@@ -336,14 +399,18 @@ export class Dictionary {
 
   /**
    * Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetLongValidResponse>
    */
-  getLongValid(): Promise<Models.DictionaryGetLongValidResponse>;
-  getLongValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetLongValidResponse>;
+  getLongValid(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetLongValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getLongValid(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getLongValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getLongValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetLongValidResponse> {
     return this.client.sendOperationRequest(
@@ -356,16 +423,21 @@ export class Dictionary {
 
   /**
    * Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}
-   *
    * @param arrayBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putLongValid(arrayBody: { [propertyName: string]: number }): Promise<msRest.RestResponse>;
-  putLongValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putLongValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param arrayBody
+   * @param callback The callback
+   */
   putLongValid(arrayBody: { [propertyName: string]: number }, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param arrayBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putLongValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putLongValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -379,14 +451,18 @@ export class Dictionary {
 
   /**
    * Get long dictionary value {"0": 1, "1": null, "2": 0}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetLongInvalidNullResponse>
    */
-  getLongInvalidNull(): Promise<Models.DictionaryGetLongInvalidNullResponse>;
-  getLongInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetLongInvalidNullResponse>;
+  getLongInvalidNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetLongInvalidNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getLongInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getLongInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getLongInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetLongInvalidNullResponse> {
     return this.client.sendOperationRequest(
@@ -399,14 +475,18 @@ export class Dictionary {
 
   /**
    * Get long dictionary value {"0": 1, "1": "integer", "2": 0}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetLongInvalidStringResponse>
    */
-  getLongInvalidString(): Promise<Models.DictionaryGetLongInvalidStringResponse>;
-  getLongInvalidString(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetLongInvalidStringResponse>;
+  getLongInvalidString(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetLongInvalidStringResponse>;
+  /**
+   * @param callback The callback
+   */
   getLongInvalidString(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getLongInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getLongInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetLongInvalidStringResponse> {
     return this.client.sendOperationRequest(
@@ -419,14 +499,18 @@ export class Dictionary {
 
   /**
    * Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetFloatValidResponse>
    */
-  getFloatValid(): Promise<Models.DictionaryGetFloatValidResponse>;
-  getFloatValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetFloatValidResponse>;
+  getFloatValid(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetFloatValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getFloatValid(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getFloatValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getFloatValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetFloatValidResponse> {
     return this.client.sendOperationRequest(
@@ -439,16 +523,21 @@ export class Dictionary {
 
   /**
    * Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
-   *
    * @param arrayBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putFloatValid(arrayBody: { [propertyName: string]: number }): Promise<msRest.RestResponse>;
-  putFloatValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putFloatValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param arrayBody
+   * @param callback The callback
+   */
   putFloatValid(arrayBody: { [propertyName: string]: number }, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param arrayBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putFloatValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putFloatValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -462,14 +551,18 @@ export class Dictionary {
 
   /**
    * Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetFloatInvalidNullResponse>
    */
-  getFloatInvalidNull(): Promise<Models.DictionaryGetFloatInvalidNullResponse>;
-  getFloatInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetFloatInvalidNullResponse>;
+  getFloatInvalidNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetFloatInvalidNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getFloatInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getFloatInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getFloatInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetFloatInvalidNullResponse> {
     return this.client.sendOperationRequest(
@@ -482,14 +575,18 @@ export class Dictionary {
 
   /**
    * Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetFloatInvalidStringResponse>
    */
-  getFloatInvalidString(): Promise<Models.DictionaryGetFloatInvalidStringResponse>;
-  getFloatInvalidString(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetFloatInvalidStringResponse>;
+  getFloatInvalidString(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetFloatInvalidStringResponse>;
+  /**
+   * @param callback The callback
+   */
   getFloatInvalidString(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getFloatInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getFloatInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetFloatInvalidStringResponse> {
     return this.client.sendOperationRequest(
@@ -502,14 +599,18 @@ export class Dictionary {
 
   /**
    * Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetDoubleValidResponse>
    */
-  getDoubleValid(): Promise<Models.DictionaryGetDoubleValidResponse>;
-  getDoubleValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDoubleValidResponse>;
+  getDoubleValid(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDoubleValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getDoubleValid(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDoubleValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getDoubleValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetDoubleValidResponse> {
     return this.client.sendOperationRequest(
@@ -522,16 +623,21 @@ export class Dictionary {
 
   /**
    * Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
-   *
    * @param arrayBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putDoubleValid(arrayBody: { [propertyName: string]: number }): Promise<msRest.RestResponse>;
-  putDoubleValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putDoubleValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param arrayBody
+   * @param callback The callback
+   */
   putDoubleValid(arrayBody: { [propertyName: string]: number }, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param arrayBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putDoubleValid(arrayBody: { [propertyName: string]: number }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putDoubleValid(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -545,14 +651,18 @@ export class Dictionary {
 
   /**
    * Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetDoubleInvalidNullResponse>
    */
-  getDoubleInvalidNull(): Promise<Models.DictionaryGetDoubleInvalidNullResponse>;
-  getDoubleInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDoubleInvalidNullResponse>;
+  getDoubleInvalidNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDoubleInvalidNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getDoubleInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDoubleInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getDoubleInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetDoubleInvalidNullResponse> {
     return this.client.sendOperationRequest(
@@ -565,14 +675,18 @@ export class Dictionary {
 
   /**
    * Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetDoubleInvalidStringResponse>
    */
-  getDoubleInvalidString(): Promise<Models.DictionaryGetDoubleInvalidStringResponse>;
-  getDoubleInvalidString(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDoubleInvalidStringResponse>;
+  getDoubleInvalidString(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDoubleInvalidStringResponse>;
+  /**
+   * @param callback The callback
+   */
   getDoubleInvalidString(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDoubleInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getDoubleInvalidString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.DictionaryGetDoubleInvalidStringResponse> {
     return this.client.sendOperationRequest(
@@ -585,14 +699,18 @@ export class Dictionary {
 
   /**
    * Get string dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetStringValidResponse>
    */
-  getStringValid(): Promise<Models.DictionaryGetStringValidResponse>;
-  getStringValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetStringValidResponse>;
+  getStringValid(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetStringValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getStringValid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getStringValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getStringValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): Promise<Models.DictionaryGetStringValidResponse> {
     return this.client.sendOperationRequest(
@@ -605,16 +723,21 @@ export class Dictionary {
 
   /**
    * Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}
-   *
    * @param arrayBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putStringValid(arrayBody: { [propertyName: string]: string }): Promise<msRest.RestResponse>;
-  putStringValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putStringValid(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param arrayBody
+   * @param callback The callback
+   */
   putStringValid(arrayBody: { [propertyName: string]: string }, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param arrayBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putStringValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putStringValid(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -628,14 +751,18 @@ export class Dictionary {
 
   /**
    * Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetStringWithNullResponse>
    */
-  getStringWithNull(): Promise<Models.DictionaryGetStringWithNullResponse>;
-  getStringWithNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetStringWithNullResponse>;
+  getStringWithNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetStringWithNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getStringWithNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getStringWithNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getStringWithNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): Promise<Models.DictionaryGetStringWithNullResponse> {
     return this.client.sendOperationRequest(
@@ -648,14 +775,18 @@ export class Dictionary {
 
   /**
    * Get string dictionary value {"0": "foo", "1": 123, "2": "foo2"}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetStringWithInvalidResponse>
    */
-  getStringWithInvalid(): Promise<Models.DictionaryGetStringWithInvalidResponse>;
-  getStringWithInvalid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetStringWithInvalidResponse>;
+  getStringWithInvalid(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetStringWithInvalidResponse>;
+  /**
+   * @param callback The callback
+   */
   getStringWithInvalid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getStringWithInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getStringWithInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): Promise<Models.DictionaryGetStringWithInvalidResponse> {
     return this.client.sendOperationRequest(
@@ -668,14 +799,18 @@ export class Dictionary {
 
   /**
    * Get integer dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetDateValidResponse>
    */
-  getDateValid(): Promise<Models.DictionaryGetDateValidResponse>;
-  getDateValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateValidResponse>;
+  getDateValid(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getDateValid(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDateValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): Promise<Models.DictionaryGetDateValidResponse> {
     return this.client.sendOperationRequest(
@@ -688,16 +823,21 @@ export class Dictionary {
 
   /**
    * Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}
-   *
    * @param arrayBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }): Promise<msRest.RestResponse>;
-  putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param arrayBody
+   * @param callback The callback
+   */
   putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param arrayBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putDateValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -711,14 +851,18 @@ export class Dictionary {
 
   /**
    * Get date dictionary value {"0": "2012-01-01", "1": null, "2": "1776-07-04"}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetDateInvalidNullResponse>
    */
-  getDateInvalidNull(): Promise<Models.DictionaryGetDateInvalidNullResponse>;
-  getDateInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateInvalidNullResponse>;
+  getDateInvalidNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateInvalidNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getDateInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDateInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): Promise<Models.DictionaryGetDateInvalidNullResponse> {
     return this.client.sendOperationRequest(
@@ -731,14 +875,18 @@ export class Dictionary {
 
   /**
    * Get date dictionary value {"0": "2011-03-22", "1": "date"}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetDateInvalidCharsResponse>
    */
-  getDateInvalidChars(): Promise<Models.DictionaryGetDateInvalidCharsResponse>;
-  getDateInvalidChars(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateInvalidCharsResponse>;
+  getDateInvalidChars(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateInvalidCharsResponse>;
+  /**
+   * @param callback The callback
+   */
   getDateInvalidChars(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDateInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): Promise<Models.DictionaryGetDateInvalidCharsResponse> {
     return this.client.sendOperationRequest(
@@ -752,14 +900,18 @@ export class Dictionary {
   /**
    * Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00",
    * "2": "1492-10-12T10:15:01-08:00"}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetDateTimeValidResponse>
    */
-  getDateTimeValid(): Promise<Models.DictionaryGetDateTimeValidResponse>;
-  getDateTimeValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeValidResponse>;
+  getDateTimeValid(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getDateTimeValid(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDateTimeValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateTimeValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): Promise<Models.DictionaryGetDateTimeValidResponse> {
     return this.client.sendOperationRequest(
@@ -773,16 +925,21 @@ export class Dictionary {
   /**
    * Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
    * "1492-10-12T10:15:01-08:00"}
-   *
    * @param arrayBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }): Promise<msRest.RestResponse>;
-  putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param arrayBody
+   * @param callback The callback
+   */
   putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param arrayBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putDateTimeValid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -796,14 +953,18 @@ export class Dictionary {
 
   /**
    * Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetDateTimeInvalidNullResponse>
    */
-  getDateTimeInvalidNull(): Promise<Models.DictionaryGetDateTimeInvalidNullResponse>;
-  getDateTimeInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeInvalidNullResponse>;
+  getDateTimeInvalidNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeInvalidNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getDateTimeInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDateTimeInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateTimeInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): Promise<Models.DictionaryGetDateTimeInvalidNullResponse> {
     return this.client.sendOperationRequest(
@@ -816,14 +977,18 @@ export class Dictionary {
 
   /**
    * Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": "date-time"}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetDateTimeInvalidCharsResponse>
    */
-  getDateTimeInvalidChars(): Promise<Models.DictionaryGetDateTimeInvalidCharsResponse>;
-  getDateTimeInvalidChars(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeInvalidCharsResponse>;
+  getDateTimeInvalidChars(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeInvalidCharsResponse>;
+  /**
+   * @param callback The callback
+   */
   getDateTimeInvalidChars(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDateTimeInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateTimeInvalidChars(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): Promise<Models.DictionaryGetDateTimeInvalidCharsResponse> {
     return this.client.sendOperationRequest(
@@ -837,14 +1002,18 @@ export class Dictionary {
   /**
    * Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan
    * 1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetDateTimeRfc1123ValidResponse>
    */
-  getDateTimeRfc1123Valid(): Promise<Models.DictionaryGetDateTimeRfc1123ValidResponse>;
-  getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeRfc1123ValidResponse>;
+  getDateTimeRfc1123Valid(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDateTimeRfc1123ValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getDateTimeRfc1123Valid(callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): void;
   getDateTimeRfc1123Valid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>): Promise<Models.DictionaryGetDateTimeRfc1123ValidResponse> {
     return this.client.sendOperationRequest(
@@ -858,16 +1027,21 @@ export class Dictionary {
   /**
    * Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
    * 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}
-   *
    * @param arrayBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }): Promise<msRest.RestResponse>;
-  putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param arrayBody
+   * @param callback The callback
+   */
   putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param arrayBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putDateTimeRfc1123Valid(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -881,14 +1055,18 @@ export class Dictionary {
 
   /**
    * Get duration dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetDurationValidResponse>
    */
-  getDurationValid(): Promise<Models.DictionaryGetDurationValidResponse>;
-  getDurationValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDurationValidResponse>;
+  getDurationValid(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDurationValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getDurationValid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDurationValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
   getDurationValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): Promise<Models.DictionaryGetDurationValidResponse> {
     return this.client.sendOperationRequest(
@@ -901,16 +1079,21 @@ export class Dictionary {
 
   /**
    * Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}
-   *
    * @param arrayBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putDurationValid(arrayBody: { [propertyName: string]: string }): Promise<msRest.RestResponse>;
-  putDurationValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putDurationValid(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param arrayBody
+   * @param callback The callback
+   */
   putDurationValid(arrayBody: { [propertyName: string]: string }, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param arrayBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putDurationValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putDurationValid(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -925,14 +1108,18 @@ export class Dictionary {
   /**
    * Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
    * with each item encoded in base64
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetByteValidResponse>
    */
-  getByteValid(): Promise<Models.DictionaryGetByteValidResponse>;
-  getByteValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetByteValidResponse>;
+  getByteValid(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetByteValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getByteValid(callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getByteValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
   getByteValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): Promise<Models.DictionaryGetByteValidResponse> {
     return this.client.sendOperationRequest(
@@ -946,16 +1133,21 @@ export class Dictionary {
   /**
    * Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with
    * each elementencoded in base 64
-   *
    * @param arrayBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putByteValid(arrayBody: { [propertyName: string]: Uint8Array }): Promise<msRest.RestResponse>;
-  putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param arrayBody
+   * @param callback The callback
+   */
   putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param arrayBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -969,14 +1161,18 @@ export class Dictionary {
 
   /**
    * Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64 encoded
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetByteInvalidNullResponse>
    */
-  getByteInvalidNull(): Promise<Models.DictionaryGetByteInvalidNullResponse>;
-  getByteInvalidNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetByteInvalidNullResponse>;
+  getByteInvalidNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetByteInvalidNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getByteInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getByteInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
   getByteInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): Promise<Models.DictionaryGetByteInvalidNullResponse> {
     return this.client.sendOperationRequest(
@@ -990,14 +1186,18 @@ export class Dictionary {
   /**
    * Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test
    * string", "2": "Lorem ipsum"}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetBase64UrlResponse>
    */
-  getBase64Url(): Promise<Models.DictionaryGetBase64UrlResponse>;
-  getBase64Url(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBase64UrlResponse>;
+  getBase64Url(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetBase64UrlResponse>;
+  /**
+   * @param callback The callback
+   */
   getBase64Url(callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getBase64Url(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
   getBase64Url(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): Promise<Models.DictionaryGetBase64UrlResponse> {
     return this.client.sendOperationRequest(
@@ -1010,14 +1210,18 @@ export class Dictionary {
 
   /**
    * Get dictionary of complex type null value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetComplexNullResponse>
    */
-  getComplexNull(): Promise<Models.DictionaryGetComplexNullResponse>;
-  getComplexNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexNullResponse>;
+  getComplexNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getComplexNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getComplexNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
   getComplexNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): Promise<Models.DictionaryGetComplexNullResponse> {
     return this.client.sendOperationRequest(
@@ -1030,14 +1234,18 @@ export class Dictionary {
 
   /**
    * Get empty dictionary of complex type {}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetComplexEmptyResponse>
    */
-  getComplexEmpty(): Promise<Models.DictionaryGetComplexEmptyResponse>;
-  getComplexEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexEmptyResponse>;
+  getComplexEmpty(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexEmptyResponse>;
+  /**
+   * @param callback The callback
+   */
   getComplexEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getComplexEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
   getComplexEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): Promise<Models.DictionaryGetComplexEmptyResponse> {
     return this.client.sendOperationRequest(
@@ -1051,14 +1259,18 @@ export class Dictionary {
   /**
    * Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null,
    * "2": {"integer": 5, "string": "6"}}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetComplexItemNullResponse>
    */
-  getComplexItemNull(): Promise<Models.DictionaryGetComplexItemNullResponse>;
-  getComplexItemNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexItemNullResponse>;
+  getComplexItemNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexItemNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getComplexItemNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getComplexItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
   getComplexItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): Promise<Models.DictionaryGetComplexItemNullResponse> {
     return this.client.sendOperationRequest(
@@ -1072,14 +1284,18 @@ export class Dictionary {
   /**
    * Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {},
    * "2": {"integer": 5, "string": "6"}}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetComplexItemEmptyResponse>
    */
-  getComplexItemEmpty(): Promise<Models.DictionaryGetComplexItemEmptyResponse>;
-  getComplexItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexItemEmptyResponse>;
+  getComplexItemEmpty(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexItemEmptyResponse>;
+  /**
+   * @param callback The callback
+   */
   getComplexItemEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getComplexItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
   getComplexItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): Promise<Models.DictionaryGetComplexItemEmptyResponse> {
     return this.client.sendOperationRequest(
@@ -1093,14 +1309,18 @@ export class Dictionary {
   /**
    * Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
    * "string": "4"}, "2": {"integer": 5, "string": "6"}}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetComplexValidResponse>
    */
-  getComplexValid(): Promise<Models.DictionaryGetComplexValidResponse>;
-  getComplexValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexValidResponse>;
+  getComplexValid(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetComplexValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getComplexValid(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getComplexValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): void;
   getComplexValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>): Promise<Models.DictionaryGetComplexValidResponse> {
     return this.client.sendOperationRequest(
@@ -1114,16 +1334,21 @@ export class Dictionary {
   /**
    * Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
    * {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}
-   *
    * @param arrayBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }): Promise<msRest.RestResponse>;
-  putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param arrayBody
+   * @param callback The callback
+   */
   putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param arrayBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putComplexValid(arrayBody: { [propertyName: string]: Models.Widget }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -1137,14 +1362,18 @@ export class Dictionary {
 
   /**
    * Get a null array
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetArrayNullResponse>
    */
-  getArrayNull(): Promise<Models.DictionaryGetArrayNullResponse>;
-  getArrayNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayNullResponse>;
+  getArrayNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getArrayNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getArrayNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
   getArrayNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): Promise<Models.DictionaryGetArrayNullResponse> {
     return this.client.sendOperationRequest(
@@ -1157,14 +1386,18 @@ export class Dictionary {
 
   /**
    * Get an empty dictionary {}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetArrayEmptyResponse>
    */
-  getArrayEmpty(): Promise<Models.DictionaryGetArrayEmptyResponse>;
-  getArrayEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayEmptyResponse>;
+  getArrayEmpty(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayEmptyResponse>;
+  /**
+   * @param callback The callback
+   */
   getArrayEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getArrayEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
   getArrayEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): Promise<Models.DictionaryGetArrayEmptyResponse> {
     return this.client.sendOperationRequest(
@@ -1177,14 +1410,18 @@ export class Dictionary {
 
   /**
    * Get an dictionary of array of strings {"0": ["1", "2", "3"], "1": null, "2": ["7", "8", "9"]}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetArrayItemNullResponse>
    */
-  getArrayItemNull(): Promise<Models.DictionaryGetArrayItemNullResponse>;
-  getArrayItemNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayItemNullResponse>;
+  getArrayItemNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayItemNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getArrayItemNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getArrayItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
   getArrayItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): Promise<Models.DictionaryGetArrayItemNullResponse> {
     return this.client.sendOperationRequest(
@@ -1197,14 +1434,18 @@ export class Dictionary {
 
   /**
    * Get an array of array of strings [{"0": ["1", "2", "3"], "1": [], "2": ["7", "8", "9"]}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetArrayItemEmptyResponse>
    */
-  getArrayItemEmpty(): Promise<Models.DictionaryGetArrayItemEmptyResponse>;
-  getArrayItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayItemEmptyResponse>;
+  getArrayItemEmpty(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayItemEmptyResponse>;
+  /**
+   * @param callback The callback
+   */
   getArrayItemEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getArrayItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
   getArrayItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): Promise<Models.DictionaryGetArrayItemEmptyResponse> {
     return this.client.sendOperationRequest(
@@ -1218,14 +1459,18 @@ export class Dictionary {
   /**
    * Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
    * "9"]}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetArrayValidResponse>
    */
-  getArrayValid(): Promise<Models.DictionaryGetArrayValidResponse>;
-  getArrayValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayValidResponse>;
+  getArrayValid(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetArrayValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getArrayValid(callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getArrayValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): void;
   getArrayValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string[] }>): Promise<Models.DictionaryGetArrayValidResponse> {
     return this.client.sendOperationRequest(
@@ -1239,16 +1484,21 @@ export class Dictionary {
   /**
    * Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
    * "9"]}
-   *
    * @param arrayBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putArrayValid(arrayBody: { [propertyName: string]: string[] }): Promise<msRest.RestResponse>;
-  putArrayValid(arrayBody: { [propertyName: string]: string[] }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putArrayValid(arrayBody: { [propertyName: string]: string[] }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param arrayBody
+   * @param callback The callback
+   */
   putArrayValid(arrayBody: { [propertyName: string]: string[] }, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param arrayBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putArrayValid(arrayBody: { [propertyName: string]: string[] }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putArrayValid(arrayBody: { [propertyName: string]: string[] }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -1262,14 +1512,18 @@ export class Dictionary {
 
   /**
    * Get an dictionaries of dictionaries with value null
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetDictionaryNullResponse>
    */
-  getDictionaryNull(): Promise<Models.DictionaryGetDictionaryNullResponse>;
-  getDictionaryNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryNullResponse>;
+  getDictionaryNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getDictionaryNull(callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDictionaryNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
   getDictionaryNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): Promise<Models.DictionaryGetDictionaryNullResponse> {
     return this.client.sendOperationRequest(
@@ -1282,14 +1536,18 @@ export class Dictionary {
 
   /**
    * Get an dictionaries of dictionaries of type <string, string> with value {}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetDictionaryEmptyResponse>
    */
-  getDictionaryEmpty(): Promise<Models.DictionaryGetDictionaryEmptyResponse>;
-  getDictionaryEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryEmptyResponse>;
+  getDictionaryEmpty(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryEmptyResponse>;
+  /**
+   * @param callback The callback
+   */
   getDictionaryEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDictionaryEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
   getDictionaryEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): Promise<Models.DictionaryGetDictionaryEmptyResponse> {
     return this.client.sendOperationRequest(
@@ -1303,14 +1561,18 @@ export class Dictionary {
   /**
    * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
    * "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetDictionaryItemNullResponse>
    */
-  getDictionaryItemNull(): Promise<Models.DictionaryGetDictionaryItemNullResponse>;
-  getDictionaryItemNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryItemNullResponse>;
+  getDictionaryItemNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryItemNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getDictionaryItemNull(callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDictionaryItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
   getDictionaryItemNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): Promise<Models.DictionaryGetDictionaryItemNullResponse> {
     return this.client.sendOperationRequest(
@@ -1324,14 +1586,18 @@ export class Dictionary {
   /**
    * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
    * "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetDictionaryItemEmptyResponse>
    */
-  getDictionaryItemEmpty(): Promise<Models.DictionaryGetDictionaryItemEmptyResponse>;
-  getDictionaryItemEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryItemEmptyResponse>;
+  getDictionaryItemEmpty(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryItemEmptyResponse>;
+  /**
+   * @param callback The callback
+   */
   getDictionaryItemEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDictionaryItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
   getDictionaryItemEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): Promise<Models.DictionaryGetDictionaryItemEmptyResponse> {
     return this.client.sendOperationRequest(
@@ -1346,14 +1612,18 @@ export class Dictionary {
    * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
    * "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
    * "eight", "9": "nine"}}
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetDictionaryValidResponse>
    */
-  getDictionaryValid(): Promise<Models.DictionaryGetDictionaryValidResponse>;
-  getDictionaryValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryValidResponse>;
+  getDictionaryValid(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetDictionaryValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getDictionaryValid(callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDictionaryValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): void;
   getDictionaryValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>): Promise<Models.DictionaryGetDictionaryValidResponse> {
     return this.client.sendOperationRequest(
@@ -1368,16 +1638,21 @@ export class Dictionary {
    * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
    * "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
    * "eight", "9": "nine"}}
-   *
    * @param arrayBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }): Promise<msRest.RestResponse>;
-  putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param arrayBody
+   * @param callback The callback
+   */
   putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param arrayBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putDictionaryValid(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -1388,7 +1663,6 @@ export class Dictionary {
       putDictionaryValidOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications

@@ -17,24 +17,26 @@ import { AutoRestReportServiceContext } from "./autoRestReportServiceContext";
 class AutoRestReportService extends AutoRestReportServiceContext {
   /**
    * Initializes a new instance of the AutoRestReportService class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestReportServiceOptions) {
     super(options);
   }
-  // methods on the client.
 
   /**
    * Get test coverage report
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetReportResponse>
    */
-  getReport(): Promise<Models.GetReportResponse>;
-  getReport(options: Models.AutoRestReportServiceGetReportOptionalParams): Promise<Models.GetReportResponse>;
+  getReport(options?: Models.AutoRestReportServiceGetReportOptionalParams): Promise<Models.GetReportResponse>;
+  /**
+   * @param callback The callback
+   */
   getReport(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getReport(options: Models.AutoRestReportServiceGetReportOptionalParams, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getReport(options?: Models.AutoRestReportServiceGetReportOptionalParams, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.GetReportResponse> {
     return this.sendOperationRequest(

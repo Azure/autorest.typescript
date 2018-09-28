@@ -6,6 +6,7 @@ using AutoRest.Core;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.TypeScript.Azure.Model;
+using AutoRest.TypeScript.DSL;
 using AutoRest.TypeScript.Model;
 using AutoRest.TypeScript.vanilla.Templates;
 using System.Collections.Generic;
@@ -75,7 +76,7 @@ namespace AutoRest.TypeScript
                         {
                             await WriteMethodGroupMappersFile(methodGroup);
                         }
-                        await WriteMethodGroupFile(templateFactory.CreateMethodGroupTemplate(methodGroup));
+                        await WriteMethodGroupFile(methodGroup);
                     }
                 }
             }
@@ -231,12 +232,11 @@ namespace AutoRest.TypeScript
             return Write(new MethodGroupMappersTemplate { Model = methodGroup }, filePath);
         }
 
-        protected Task WriteMethodGroupFile<T>(Template<T> methodGroupTemplate) where T : MethodGroupTS
+        protected Task WriteMethodGroupFile(MethodGroupTS methodGroup)
         {
-            MethodGroupTS methodGroup = methodGroupTemplate.Model;
             CodeModelTS codeModel = methodGroup.CodeModelTS;
             string filePath = GetSourceCodeFilePath(codeModel, "operations", methodGroup.TypeName.ToCamelCase() + ".ts");
-            return Write(methodGroupTemplate, filePath);
+            return Write(new MethodGroupTemplate { Model = methodGroup }, filePath);
         }
 
         protected Task WritePackageJsonFile(CodeModelTS codeModel)
@@ -303,6 +303,18 @@ namespace AutoRest.TypeScript
                 totalPathSegments[1 + i] = pathSegments[i];
             }
             return Path.Combine(totalPathSegments).Replace('\\', '/');
+        }
+
+        public static string GenerateMethods(IEnumerable<MethodTS> methods, string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+            TSClass tsClass = new TSClass(builder);
+            foreach (MethodTS method in methods)
+            {
+                tsClass.Line(emptyLine);
+                method.Generate(tsClass);
+            }
+            return builder.ToString();
         }
     }
 }

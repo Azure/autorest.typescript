@@ -18,7 +18,6 @@ export class AutoRestSwaggerBATFileServiceContext extends msRest.ServiceClient {
 
   /**
    * Initializes a new instance of the AutoRestSwaggerBATFileServiceContext class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATFileServiceOptions) {

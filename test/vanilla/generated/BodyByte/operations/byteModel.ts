@@ -27,14 +27,18 @@ export class ByteModel {
 
   /**
    * Get null byte value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.ByteModelGetNullResponse>
    */
-  getNull(): Promise<Models.ByteModelGetNullResponse>;
-  getNull(options: msRest.RequestOptionsBase): Promise<Models.ByteModelGetNullResponse>;
+  getNull(options?: msRest.RequestOptionsBase): Promise<Models.ByteModelGetNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getNull(callback: msRest.ServiceCallback<Uint8Array>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
   getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.ByteModelGetNullResponse> {
     return this.client.sendOperationRequest(
@@ -47,14 +51,18 @@ export class ByteModel {
 
   /**
    * Get empty byte value ''
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.ByteModelGetEmptyResponse>
    */
-  getEmpty(): Promise<Models.ByteModelGetEmptyResponse>;
-  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.ByteModelGetEmptyResponse>;
+  getEmpty(options?: msRest.RequestOptionsBase): Promise<Models.ByteModelGetEmptyResponse>;
+  /**
+   * @param callback The callback
+   */
   getEmpty(callback: msRest.ServiceCallback<Uint8Array>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
   getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.ByteModelGetEmptyResponse> {
     return this.client.sendOperationRequest(
@@ -67,14 +75,18 @@ export class ByteModel {
 
   /**
    * Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.ByteModelGetNonAsciiResponse>
    */
-  getNonAscii(): Promise<Models.ByteModelGetNonAsciiResponse>;
-  getNonAscii(options: msRest.RequestOptionsBase): Promise<Models.ByteModelGetNonAsciiResponse>;
+  getNonAscii(options?: msRest.RequestOptionsBase): Promise<Models.ByteModelGetNonAsciiResponse>;
+  /**
+   * @param callback The callback
+   */
   getNonAscii(callback: msRest.ServiceCallback<Uint8Array>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getNonAscii(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
   getNonAscii(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.ByteModelGetNonAsciiResponse> {
     return this.client.sendOperationRequest(
@@ -87,16 +99,21 @@ export class ByteModel {
 
   /**
    * Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
-   *
    * @param byteBody Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putNonAscii(byteBody: Uint8Array): Promise<msRest.RestResponse>;
-  putNonAscii(byteBody: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putNonAscii(byteBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param byteBody Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
+   * @param callback The callback
+   */
   putNonAscii(byteBody: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param byteBody Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putNonAscii(byteBody: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putNonAscii(byteBody: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -110,14 +127,18 @@ export class ByteModel {
 
   /**
    * Get invalid byte value ':::SWAGGER::::'
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.ByteModelGetInvalidResponse>
    */
-  getInvalid(): Promise<Models.ByteModelGetInvalidResponse>;
-  getInvalid(options: msRest.RequestOptionsBase): Promise<Models.ByteModelGetInvalidResponse>;
+  getInvalid(options?: msRest.RequestOptionsBase): Promise<Models.ByteModelGetInvalidResponse>;
+  /**
+   * @param callback The callback
+   */
   getInvalid(callback: msRest.ServiceCallback<Uint8Array>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
   getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.ByteModelGetInvalidResponse> {
     return this.client.sendOperationRequest(
@@ -127,7 +148,6 @@ export class ByteModel {
       getInvalidOperationSpec,
       callback) as Promise<Models.ByteModelGetInvalidResponse>;
   }
-
 }
 
 // Operation Specifications

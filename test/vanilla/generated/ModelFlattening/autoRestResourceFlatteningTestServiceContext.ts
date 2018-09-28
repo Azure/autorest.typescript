@@ -18,7 +18,6 @@ export class AutoRestResourceFlatteningTestServiceContext extends msRest.Service
 
   /**
    * Initializes a new instance of the AutoRestResourceFlatteningTestServiceContext class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestResourceFlatteningTestServiceOptions) {

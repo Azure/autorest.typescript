@@ -18,7 +18,6 @@ export class AutoRestDurationTestServiceContext extends msRest.ServiceClient {
 
   /**
    * Initializes a new instance of the AutoRestDurationTestServiceContext class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestDurationTestServiceOptions) {
