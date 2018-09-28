@@ -24,9 +24,9 @@ namespace AutoRest.TypeScript.DSL
         private readonly StringBuilder linePrefix = new StringBuilder();
         private readonly List<TSPosition> positions = new List<TSPosition>();
 
-        public TSBuilder(int? commentWordWrapWidth = defaultCommentWordWrapWidth)
+        public TSBuilder(int commentWordWrapWidth = defaultCommentWordWrapWidth)
         {
-            this.commentWordWrapWidth = commentWordWrapWidth ?? defaultCommentWordWrapWidth;
+            this.commentWordWrapWidth = commentWordWrapWidth;
         }
 
         public enum State
