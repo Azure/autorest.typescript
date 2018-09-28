@@ -48,22 +48,38 @@ namespace AutoRest.TypeScript.Model
         private const string baseResponseName = "msRest.RestResponse";
         private const string baseRawResponseName = "msRest.HttpResponse";
 
+        private string httpResponseName;
         public string HttpResponseName
         {
             get
             {
-                if (ReturnType.Headers != null)
+                if (httpResponseName == null)
                 {
-                    return Regex.Replace(ReturnType.Headers.Name, "Headers$", "Response");
+                    if (ReturnType.Headers != null)
+                    {
+                        httpResponseName = Regex.Replace(ReturnType.Headers.Name, "Headers$", "Response");
+                    }
+                    else if (ReturnType.Body != null)
+                    {
+                        httpResponseName = MethodGroup.Name.Value.ToPascalCase() + Name.Value.ToPascalCase() + "Response";
+                    }
+                    else
+                    {
+                        httpResponseName = baseResponseName;
+                    }
+
+                    IEnumerable<string> allModelTypeNames = CodeModelTS.AllModelTypeNames;
+                    if (allModelTypeNames.Contains(httpResponseName))
+                    {
+                        int counter = 2;
+                        while (allModelTypeNames.Contains(httpResponseName + counter))
+                        {
+                            ++counter;
+                        }
+                        httpResponseName += counter;
+                    }
                 }
-                else if (ReturnType.Body != null)
-                {
-                    return MethodGroup.Name.Value.ToPascalCase() + Name.Value.ToPascalCase() + "Response";
-                }
-                else
-                {
-                    return baseResponseName;
-                }
+                return httpResponseName;
             }
         }
 
@@ -615,9 +631,9 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        public string GenerateResponseType(string emptyLine)
+        public void GenerateResponseType(TSBuilder builder)
         {
-            TSBuilder builder = new TSBuilder();
+            builder.DocumentationComment($"Contains response data for the {Name} operation.");
             builder.ExportIntersectionType(HttpResponseName, type =>
             {
                 if (ReturnType.Body is DictionaryTypeTS dictionaryBody)
@@ -672,7 +688,6 @@ namespace AutoRest.TypeScript.Model
                     iface.Property(rawHttpResponsePropertyName, GenerateHttpOperationResponseType);
                 });
             });
-            return builder.ToString();
         }
 
         public bool HasStreamResponseType()
