@@ -17,26 +17,27 @@ import { AutoRestRenameParameterTestServiceContext } from "./autoRestRenameParam
 class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServiceContext {
   /**
    * Initializes a new instance of the AutoRestRenameParameterTestService class.
-   *
    * @param noRetryPolicy A query parameter.
-   *
    * @param [options] The parameter options
    */
   constructor(noRetryPolicy: string, options?: Models.AutoRestRenameParameterTestServiceOptions) {
     super(noRetryPolicy, options);
   }
-  // methods on the client.
 
   /**
    * GET with an optional query parameter
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getUsingOptional(): Promise<msRest.RestResponse>;
-  getUsingOptional(options: Models.AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams): Promise<msRest.RestResponse>;
+  getUsingOptional(options?: Models.AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getUsingOptional(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getUsingOptional(options: Models.AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams, callback: msRest.ServiceCallback<void>): void;
   getUsingOptional(options?: Models.AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
@@ -46,20 +47,24 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
       getUsingOptionalOperationSpec,
       callback);
   }
-  // methods on the client.
 
   /**
    * GET with a required query parameter
-   *
    * @param timeout A query parameter.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getUsingRequired(timeout: string): Promise<msRest.RestResponse>;
-  getUsingRequired(timeout: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getUsingRequired(timeout: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param timeout A query parameter.
+   * @param callback The callback
+   */
   getUsingRequired(timeout: string, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param timeout A query parameter.
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getUsingRequired(timeout: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getUsingRequired(timeout: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
@@ -70,18 +75,21 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
       getUsingRequiredOperationSpec,
       callback);
   }
-  // methods on the client.
 
   /**
    * GET with an optional client query parameter
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getUsingClientOptional(): Promise<msRest.RestResponse>;
-  getUsingClientOptional(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getUsingClientOptional(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getUsingClientOptional(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getUsingClientOptional(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getUsingClientOptional(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
@@ -91,18 +99,21 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
       getUsingClientOptionalOperationSpec,
       callback);
   }
-  // methods on the client.
 
   /**
    * GET with a required client query parameter
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getUsingClientRequired(): Promise<msRest.RestResponse>;
-  getUsingClientRequired(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getUsingClientRequired(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getUsingClientRequired(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getUsingClientRequired(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getUsingClientRequired(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(

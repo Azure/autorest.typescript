@@ -27,14 +27,18 @@ export class String {
 
   /**
    * Get null string value value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.StringGetNullResponse>
    */
-  getNull(): Promise<Models.StringGetNullResponse>;
-  getNull(options: msRest.RequestOptionsBase): Promise<Models.StringGetNullResponse>;
+  getNull(options?: msRest.RequestOptionsBase): Promise<Models.StringGetNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getNull(callback: msRest.ServiceCallback<Models.GetNullOKResponse>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetNullOKResponse>): void;
   getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetNullOKResponse>): Promise<Models.StringGetNullResponse> {
     return this.client.sendOperationRequest(
@@ -47,14 +51,18 @@ export class String {
 
   /**
    * Set string value null
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putNull(): Promise<msRest.RestResponse>;
-  putNull(options: Models.StringPutNullOptionalParams): Promise<msRest.RestResponse>;
+  putNull(options?: Models.StringPutNullOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   putNull(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putNull(options: Models.StringPutNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   putNull(options?: Models.StringPutNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -67,14 +75,18 @@ export class String {
 
   /**
    * Get empty string value value ''
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.StringGetEmptyResponse>
    */
-  getEmpty(): Promise<Models.StringGetEmptyResponse>;
-  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.StringGetEmptyResponse>;
+  getEmpty(options?: msRest.RequestOptionsBase): Promise<Models.StringGetEmptyResponse>;
+  /**
+   * @param callback The callback
+   */
   getEmpty(callback: msRest.ServiceCallback<Models.GetEmptyOKResponse>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetEmptyOKResponse>): void;
   getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetEmptyOKResponse>): Promise<Models.StringGetEmptyResponse> {
     return this.client.sendOperationRequest(
@@ -87,14 +99,18 @@ export class String {
 
   /**
    * Set string value empty ''
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putEmpty(): Promise<msRest.RestResponse>;
-  putEmpty(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putEmpty(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   putEmpty(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -107,14 +123,18 @@ export class String {
 
   /**
    * Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.StringGetMbcsResponse>
    */
-  getMbcs(): Promise<Models.StringGetMbcsResponse>;
-  getMbcs(options: msRest.RequestOptionsBase): Promise<Models.StringGetMbcsResponse>;
+  getMbcs(options?: msRest.RequestOptionsBase): Promise<Models.StringGetMbcsResponse>;
+  /**
+   * @param callback The callback
+   */
   getMbcs(callback: msRest.ServiceCallback<Models.GetMbcsOKResponse>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getMbcs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetMbcsOKResponse>): void;
   getMbcs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetMbcsOKResponse>): Promise<Models.StringGetMbcsResponse> {
     return this.client.sendOperationRequest(
@@ -127,14 +147,18 @@ export class String {
 
   /**
    * Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putMbcs(): Promise<msRest.RestResponse>;
-  putMbcs(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putMbcs(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   putMbcs(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putMbcs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putMbcs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -148,14 +172,18 @@ export class String {
   /**
    * Get string value with leading and trailing whitespace '<tab><space><space>Now is the time for
    * all good men to come to the aid of their country<tab><space><space>'
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.StringGetWhitespaceResponse>
    */
-  getWhitespace(): Promise<Models.StringGetWhitespaceResponse>;
-  getWhitespace(options: msRest.RequestOptionsBase): Promise<Models.StringGetWhitespaceResponse>;
+  getWhitespace(options?: msRest.RequestOptionsBase): Promise<Models.StringGetWhitespaceResponse>;
+  /**
+   * @param callback The callback
+   */
   getWhitespace(callback: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getWhitespace(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): void;
   getWhitespace(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): Promise<Models.StringGetWhitespaceResponse> {
     return this.client.sendOperationRequest(
@@ -169,14 +197,18 @@ export class String {
   /**
    * Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for
    * all good men to come to the aid of their country<tab><space><space>'
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putWhitespace(): Promise<msRest.RestResponse>;
-  putWhitespace(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putWhitespace(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   putWhitespace(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putWhitespace(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putWhitespace(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -189,14 +221,18 @@ export class String {
 
   /**
    * Get String value when no string value is sent in response payload
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.StringGetNotProvidedResponse>
    */
-  getNotProvided(): Promise<Models.StringGetNotProvidedResponse>;
-  getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.StringGetNotProvidedResponse>;
+  getNotProvided(options?: msRest.RequestOptionsBase): Promise<Models.StringGetNotProvidedResponse>;
+  /**
+   * @param callback The callback
+   */
   getNotProvided(callback: msRest.ServiceCallback<string>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
   getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.StringGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
@@ -209,14 +245,18 @@ export class String {
 
   /**
    * Get value that is base64 encoded
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.StringGetBase64EncodedResponse>
    */
-  getBase64Encoded(): Promise<Models.StringGetBase64EncodedResponse>;
-  getBase64Encoded(options: msRest.RequestOptionsBase): Promise<Models.StringGetBase64EncodedResponse>;
+  getBase64Encoded(options?: msRest.RequestOptionsBase): Promise<Models.StringGetBase64EncodedResponse>;
+  /**
+   * @param callback The callback
+   */
   getBase64Encoded(callback: msRest.ServiceCallback<Uint8Array>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getBase64Encoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
   getBase64Encoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.StringGetBase64EncodedResponse> {
     return this.client.sendOperationRequest(
@@ -229,14 +269,18 @@ export class String {
 
   /**
    * Get value that is base64url encoded
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.StringGetBase64UrlEncodedResponse>
    */
-  getBase64UrlEncoded(): Promise<Models.StringGetBase64UrlEncodedResponse>;
-  getBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Models.StringGetBase64UrlEncodedResponse>;
+  getBase64UrlEncoded(options?: msRest.RequestOptionsBase): Promise<Models.StringGetBase64UrlEncodedResponse>;
+  /**
+   * @param callback The callback
+   */
   getBase64UrlEncoded(callback: msRest.ServiceCallback<Uint8Array>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getBase64UrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
   getBase64UrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.StringGetBase64UrlEncodedResponse> {
     return this.client.sendOperationRequest(
@@ -249,16 +293,21 @@ export class String {
 
   /**
    * Put value that is base64url encoded
-   *
    * @param stringBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putBase64UrlEncoded(stringBody: Uint8Array): Promise<msRest.RestResponse>;
-  putBase64UrlEncoded(stringBody: Uint8Array, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putBase64UrlEncoded(stringBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param stringBody
+   * @param callback The callback
+   */
   putBase64UrlEncoded(stringBody: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param stringBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putBase64UrlEncoded(stringBody: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBase64UrlEncoded(stringBody: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -272,14 +321,18 @@ export class String {
 
   /**
    * Get null value that is expected to be base64url encoded
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.StringGetNullBase64UrlEncodedResponse>
    */
-  getNullBase64UrlEncoded(): Promise<Models.StringGetNullBase64UrlEncodedResponse>;
-  getNullBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Models.StringGetNullBase64UrlEncodedResponse>;
+  getNullBase64UrlEncoded(options?: msRest.RequestOptionsBase): Promise<Models.StringGetNullBase64UrlEncodedResponse>;
+  /**
+   * @param callback The callback
+   */
   getNullBase64UrlEncoded(callback: msRest.ServiceCallback<Uint8Array>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getNullBase64UrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
   getNullBase64UrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.StringGetNullBase64UrlEncodedResponse> {
     return this.client.sendOperationRequest(
@@ -289,7 +342,6 @@ export class String {
       getNullBase64UrlEncodedOperationSpec,
       callback) as Promise<Models.StringGetNullBase64UrlEncodedResponse>;
   }
-
 }
 
 // Operation Specifications

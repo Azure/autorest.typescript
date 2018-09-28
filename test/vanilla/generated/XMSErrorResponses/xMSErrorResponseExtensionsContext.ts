@@ -18,7 +18,6 @@ export class XMSErrorResponseExtensionsContext extends msRest.ServiceClient {
 
   /**
    * Initializes a new instance of the XMSErrorResponseExtensionsContext class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.XMSErrorResponseExtensionsOptions) {

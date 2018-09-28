@@ -18,7 +18,6 @@ export class PetStoreIncContext extends msRest.ServiceClient {
 
   /**
    * Initializes a new instance of the PetStoreIncContext class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.PetStoreIncOptions) {

@@ -27,14 +27,18 @@ export class Primitive {
 
   /**
    * Get complex types with integer properties
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PrimitiveGetIntResponse>
    */
-  getInt(): Promise<Models.PrimitiveGetIntResponse>;
-  getInt(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetIntResponse>;
+  getInt(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetIntResponse>;
+  /**
+   * @param callback The callback
+   */
   getInt(callback: msRest.ServiceCallback<Models.IntWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getInt(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.IntWrapper>): void;
   getInt(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.IntWrapper>): Promise<Models.PrimitiveGetIntResponse> {
     return this.client.sendOperationRequest(
@@ -47,16 +51,21 @@ export class Primitive {
 
   /**
    * Put complex types with integer properties
-   *
    * @param complexBody Please put -1 and 2
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putInt(complexBody: Models.IntWrapper): Promise<msRest.RestResponse>;
-  putInt(complexBody: Models.IntWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putInt(complexBody: Models.IntWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param complexBody Please put -1 and 2
+   * @param callback The callback
+   */
   putInt(complexBody: Models.IntWrapper, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param complexBody Please put -1 and 2
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putInt(complexBody: Models.IntWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putInt(complexBody: Models.IntWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -70,14 +79,18 @@ export class Primitive {
 
   /**
    * Get complex types with long properties
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PrimitiveGetLongResponse>
    */
-  getLong(): Promise<Models.PrimitiveGetLongResponse>;
-  getLong(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetLongResponse>;
+  getLong(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetLongResponse>;
+  /**
+   * @param callback The callback
+   */
   getLong(callback: msRest.ServiceCallback<Models.LongWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getLong(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LongWrapper>): void;
   getLong(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LongWrapper>): Promise<Models.PrimitiveGetLongResponse> {
     return this.client.sendOperationRequest(
@@ -90,16 +103,21 @@ export class Primitive {
 
   /**
    * Put complex types with long properties
-   *
    * @param complexBody Please put 1099511627775 and -999511627788
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putLong(complexBody: Models.LongWrapper): Promise<msRest.RestResponse>;
-  putLong(complexBody: Models.LongWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putLong(complexBody: Models.LongWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param complexBody Please put 1099511627775 and -999511627788
+   * @param callback The callback
+   */
   putLong(complexBody: Models.LongWrapper, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param complexBody Please put 1099511627775 and -999511627788
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putLong(complexBody: Models.LongWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putLong(complexBody: Models.LongWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -113,14 +131,18 @@ export class Primitive {
 
   /**
    * Get complex types with float properties
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PrimitiveGetFloatResponse>
    */
-  getFloat(): Promise<Models.PrimitiveGetFloatResponse>;
-  getFloat(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetFloatResponse>;
+  getFloat(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetFloatResponse>;
+  /**
+   * @param callback The callback
+   */
   getFloat(callback: msRest.ServiceCallback<Models.FloatWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getFloat(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FloatWrapper>): void;
   getFloat(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FloatWrapper>): Promise<Models.PrimitiveGetFloatResponse> {
     return this.client.sendOperationRequest(
@@ -133,16 +155,21 @@ export class Primitive {
 
   /**
    * Put complex types with float properties
-   *
    * @param complexBody Please put 1.05 and -0.003
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putFloat(complexBody: Models.FloatWrapper): Promise<msRest.RestResponse>;
-  putFloat(complexBody: Models.FloatWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putFloat(complexBody: Models.FloatWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param complexBody Please put 1.05 and -0.003
+   * @param callback The callback
+   */
   putFloat(complexBody: Models.FloatWrapper, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param complexBody Please put 1.05 and -0.003
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putFloat(complexBody: Models.FloatWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putFloat(complexBody: Models.FloatWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -156,14 +183,18 @@ export class Primitive {
 
   /**
    * Get complex types with double properties
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PrimitiveGetDoubleResponse>
    */
-  getDouble(): Promise<Models.PrimitiveGetDoubleResponse>;
-  getDouble(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDoubleResponse>;
+  getDouble(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDoubleResponse>;
+  /**
+   * @param callback The callback
+   */
   getDouble(callback: msRest.ServiceCallback<Models.DoubleWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDouble(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DoubleWrapper>): void;
   getDouble(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DoubleWrapper>): Promise<Models.PrimitiveGetDoubleResponse> {
     return this.client.sendOperationRequest(
@@ -176,17 +207,24 @@ export class Primitive {
 
   /**
    * Put complex types with double properties
-   *
    * @param complexBody Please put 3e-100 and
    * -0.000000000000000000000000000000000000000000000000000000005
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putDouble(complexBody: Models.DoubleWrapper): Promise<msRest.RestResponse>;
-  putDouble(complexBody: Models.DoubleWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putDouble(complexBody: Models.DoubleWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param complexBody Please put 3e-100 and
+   * -0.000000000000000000000000000000000000000000000000000000005
+   * @param callback The callback
+   */
   putDouble(complexBody: Models.DoubleWrapper, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param complexBody Please put 3e-100 and
+   * -0.000000000000000000000000000000000000000000000000000000005
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putDouble(complexBody: Models.DoubleWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putDouble(complexBody: Models.DoubleWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -200,14 +238,18 @@ export class Primitive {
 
   /**
    * Get complex types with bool properties
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PrimitiveGetBoolResponse>
    */
-  getBool(): Promise<Models.PrimitiveGetBoolResponse>;
-  getBool(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetBoolResponse>;
+  getBool(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetBoolResponse>;
+  /**
+   * @param callback The callback
+   */
   getBool(callback: msRest.ServiceCallback<Models.BooleanWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getBool(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.BooleanWrapper>): void;
   getBool(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.BooleanWrapper>): Promise<Models.PrimitiveGetBoolResponse> {
     return this.client.sendOperationRequest(
@@ -220,16 +262,21 @@ export class Primitive {
 
   /**
    * Put complex types with bool properties
-   *
    * @param complexBody Please put true and false
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putBool(complexBody: Models.BooleanWrapper): Promise<msRest.RestResponse>;
-  putBool(complexBody: Models.BooleanWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putBool(complexBody: Models.BooleanWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param complexBody Please put true and false
+   * @param callback The callback
+   */
   putBool(complexBody: Models.BooleanWrapper, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param complexBody Please put true and false
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putBool(complexBody: Models.BooleanWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBool(complexBody: Models.BooleanWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -243,14 +290,18 @@ export class Primitive {
 
   /**
    * Get complex types with string properties
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PrimitiveGetStringResponse>
    */
-  getString(): Promise<Models.PrimitiveGetStringResponse>;
-  getString(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetStringResponse>;
+  getString(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetStringResponse>;
+  /**
+   * @param callback The callback
+   */
   getString(callback: msRest.ServiceCallback<Models.StringWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StringWrapper>): void;
   getString(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.StringWrapper>): Promise<Models.PrimitiveGetStringResponse> {
     return this.client.sendOperationRequest(
@@ -263,16 +314,21 @@ export class Primitive {
 
   /**
    * Put complex types with string properties
-   *
    * @param complexBody Please put 'goodrequest', '', and null
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putString(complexBody: Models.StringWrapper): Promise<msRest.RestResponse>;
-  putString(complexBody: Models.StringWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putString(complexBody: Models.StringWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param complexBody Please put 'goodrequest', '', and null
+   * @param callback The callback
+   */
   putString(complexBody: Models.StringWrapper, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param complexBody Please put 'goodrequest', '', and null
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putString(complexBody: Models.StringWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putString(complexBody: Models.StringWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -286,14 +342,18 @@ export class Primitive {
 
   /**
    * Get complex types with date properties
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PrimitiveGetDateResponse>
    */
-  getDate(): Promise<Models.PrimitiveGetDateResponse>;
-  getDate(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateResponse>;
+  getDate(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateResponse>;
+  /**
+   * @param callback The callback
+   */
   getDate(callback: msRest.ServiceCallback<Models.DateWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DateWrapper>): void;
   getDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DateWrapper>): Promise<Models.PrimitiveGetDateResponse> {
     return this.client.sendOperationRequest(
@@ -306,16 +366,21 @@ export class Primitive {
 
   /**
    * Put complex types with date properties
-   *
    * @param complexBody Please put '0001-01-01' and '2016-02-29'
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putDate(complexBody: Models.DateWrapper): Promise<msRest.RestResponse>;
-  putDate(complexBody: Models.DateWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putDate(complexBody: Models.DateWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param complexBody Please put '0001-01-01' and '2016-02-29'
+   * @param callback The callback
+   */
   putDate(complexBody: Models.DateWrapper, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param complexBody Please put '0001-01-01' and '2016-02-29'
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putDate(complexBody: Models.DateWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putDate(complexBody: Models.DateWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -329,14 +394,18 @@ export class Primitive {
 
   /**
    * Get complex types with datetime properties
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PrimitiveGetDateTimeResponse>
    */
-  getDateTime(): Promise<Models.PrimitiveGetDateTimeResponse>;
-  getDateTime(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateTimeResponse>;
+  getDateTime(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateTimeResponse>;
+  /**
+   * @param callback The callback
+   */
   getDateTime(callback: msRest.ServiceCallback<Models.DatetimeWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DatetimeWrapper>): void;
   getDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DatetimeWrapper>): Promise<Models.PrimitiveGetDateTimeResponse> {
     return this.client.sendOperationRequest(
@@ -349,16 +418,21 @@ export class Primitive {
 
   /**
    * Put complex types with datetime properties
-   *
    * @param complexBody Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putDateTime(complexBody: Models.DatetimeWrapper): Promise<msRest.RestResponse>;
-  putDateTime(complexBody: Models.DatetimeWrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putDateTime(complexBody: Models.DatetimeWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param complexBody Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'
+   * @param callback The callback
+   */
   putDateTime(complexBody: Models.DatetimeWrapper, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param complexBody Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putDateTime(complexBody: Models.DatetimeWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putDateTime(complexBody: Models.DatetimeWrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -372,14 +446,18 @@ export class Primitive {
 
   /**
    * Get complex types with datetimeRfc1123 properties
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PrimitiveGetDateTimeRfc1123Response>
    */
-  getDateTimeRfc1123(): Promise<Models.PrimitiveGetDateTimeRfc1123Response>;
-  getDateTimeRfc1123(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateTimeRfc1123Response>;
+  getDateTimeRfc1123(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDateTimeRfc1123Response>;
+  /**
+   * @param callback The callback
+   */
   getDateTimeRfc1123(callback: msRest.ServiceCallback<Models.Datetimerfc1123Wrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDateTimeRfc1123(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Datetimerfc1123Wrapper>): void;
   getDateTimeRfc1123(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Datetimerfc1123Wrapper>): Promise<Models.PrimitiveGetDateTimeRfc1123Response> {
     return this.client.sendOperationRequest(
@@ -392,17 +470,24 @@ export class Primitive {
 
   /**
    * Put complex types with datetimeRfc1123 properties
-   *
    * @param complexBody Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
    * GMT'
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper): Promise<msRest.RestResponse>;
-  putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param complexBody Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
+   * GMT'
+   * @param callback The callback
+   */
   putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param complexBody Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
+   * GMT'
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -416,14 +501,18 @@ export class Primitive {
 
   /**
    * Get complex types with duration properties
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PrimitiveGetDurationResponse>
    */
-  getDuration(): Promise<Models.PrimitiveGetDurationResponse>;
-  getDuration(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDurationResponse>;
+  getDuration(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetDurationResponse>;
+  /**
+   * @param callback The callback
+   */
   getDuration(callback: msRest.ServiceCallback<Models.DurationWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getDuration(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DurationWrapper>): void;
   getDuration(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DurationWrapper>): Promise<Models.PrimitiveGetDurationResponse> {
     return this.client.sendOperationRequest(
@@ -436,14 +525,18 @@ export class Primitive {
 
   /**
    * Put complex types with duration properties
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putDuration(): Promise<msRest.RestResponse>;
-  putDuration(options: Models.PrimitivePutDurationOptionalParams): Promise<msRest.RestResponse>;
+  putDuration(options?: Models.PrimitivePutDurationOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   putDuration(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putDuration(options: Models.PrimitivePutDurationOptionalParams, callback: msRest.ServiceCallback<void>): void;
   putDuration(options?: Models.PrimitivePutDurationOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -456,14 +549,18 @@ export class Primitive {
 
   /**
    * Get complex types with byte properties
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PrimitiveGetByteResponse>
    */
-  getByte(): Promise<Models.PrimitiveGetByteResponse>;
-  getByte(options: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetByteResponse>;
+  getByte(options?: msRest.RequestOptionsBase): Promise<Models.PrimitiveGetByteResponse>;
+  /**
+   * @param callback The callback
+   */
   getByte(callback: msRest.ServiceCallback<Models.ByteWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getByte(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ByteWrapper>): void;
   getByte(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ByteWrapper>): Promise<Models.PrimitiveGetByteResponse> {
     return this.client.sendOperationRequest(
@@ -476,14 +573,18 @@ export class Primitive {
 
   /**
    * Put complex types with byte properties
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putByte(): Promise<msRest.RestResponse>;
-  putByte(options: Models.PrimitivePutByteOptionalParams): Promise<msRest.RestResponse>;
+  putByte(options?: Models.PrimitivePutByteOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   putByte(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putByte(options: Models.PrimitivePutByteOptionalParams, callback: msRest.ServiceCallback<void>): void;
   putByte(options?: Models.PrimitivePutByteOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -493,7 +594,6 @@ export class Primitive {
       putByteOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications

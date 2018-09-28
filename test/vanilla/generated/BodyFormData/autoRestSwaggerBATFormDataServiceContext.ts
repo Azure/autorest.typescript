@@ -18,7 +18,6 @@ export class AutoRestSwaggerBATFormDataServiceContext extends msRest.ServiceClie
 
   /**
    * Initializes a new instance of the AutoRestSwaggerBATFormDataServiceContext class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATFormDataServiceOptions) {

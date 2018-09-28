@@ -30,18 +30,24 @@ export class PathItems {
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery='globalStringQuery',
    * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
-   *
    * @param localStringPath should contain value 'localStringPath'
-   *
    * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getAllWithValues(localStringPath: string, pathItemStringPath: string): Promise<msRest.RestResponse>;
-  getAllWithValues(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetAllWithValuesOptionalParams): Promise<msRest.RestResponse>;
+  getAllWithValues(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetAllWithValuesOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param localStringPath should contain value 'localStringPath'
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param callback The callback
+   */
   getAllWithValues(localStringPath: string, pathItemStringPath: string, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param localStringPath should contain value 'localStringPath'
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getAllWithValues(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetAllWithValuesOptionalParams, callback: msRest.ServiceCallback<void>): void;
   getAllWithValues(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetAllWithValuesOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -58,18 +64,24 @@ export class PathItems {
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery=null,
    * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
-   *
    * @param localStringPath should contain value 'localStringPath'
-   *
    * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getGlobalQueryNull(localStringPath: string, pathItemStringPath: string): Promise<msRest.RestResponse>;
-  getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalQueryNullOptionalParams): Promise<msRest.RestResponse>;
+  getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalQueryNullOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param localStringPath should contain value 'localStringPath'
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param callback The callback
+   */
   getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param localStringPath should contain value 'localStringPath'
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalQueryNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   getGlobalQueryNull(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalQueryNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -86,18 +98,24 @@ export class PathItems {
    * send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery=null,
    * pathItemStringQuery='pathItemStringQuery', localStringQuery=null
-   *
    * @param localStringPath should contain value 'localStringPath'
-   *
    * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string): Promise<msRest.RestResponse>;
-  getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams): Promise<msRest.RestResponse>;
+  getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param localStringPath should contain value 'localStringPath'
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param callback The callback
+   */
   getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param localStringPath should contain value 'localStringPath'
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -114,18 +132,24 @@ export class PathItems {
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery='globalStringQuery',
    * pathItemStringQuery=null, localStringQuery=null
-   *
    * @param localStringPath should contain value 'localStringPath'
-   *
    * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string): Promise<msRest.RestResponse>;
-  getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetLocalPathItemQueryNullOptionalParams): Promise<msRest.RestResponse>;
+  getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param localStringPath should contain value 'localStringPath'
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param callback The callback
+   */
   getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param localStringPath should contain value 'localStringPath'
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, options: Models.PathItemsGetLocalPathItemQueryNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -137,7 +161,6 @@ export class PathItems {
       getLocalPathItemQueryNullOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications

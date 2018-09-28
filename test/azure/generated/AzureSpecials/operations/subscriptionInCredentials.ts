@@ -28,14 +28,18 @@ export class SubscriptionInCredentials {
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * '1234-5678-9012-3456' to succeed
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  postMethodGlobalValid(): Promise<msRest.RestResponse>;
-  postMethodGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  postMethodGlobalValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   postMethodGlobalValid(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   postMethodGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   postMethodGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -49,14 +53,18 @@ export class SubscriptionInCredentials {
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * null, and client-side validation should prevent you from making this call
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  postMethodGlobalNull(): Promise<msRest.RestResponse>;
-  postMethodGlobalNull(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  postMethodGlobalNull(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   postMethodGlobalNull(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   postMethodGlobalNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   postMethodGlobalNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -70,14 +78,18 @@ export class SubscriptionInCredentials {
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * '1234-5678-9012-3456' to succeed
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  postMethodGlobalNotProvidedValid(): Promise<msRest.RestResponse>;
-  postMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  postMethodGlobalNotProvidedValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   postMethodGlobalNotProvidedValid(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   postMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   postMethodGlobalNotProvidedValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -91,14 +103,18 @@ export class SubscriptionInCredentials {
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * '1234-5678-9012-3456' to succeed
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  postPathGlobalValid(): Promise<msRest.RestResponse>;
-  postPathGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  postPathGlobalValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   postPathGlobalValid(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   postPathGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   postPathGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -112,14 +128,18 @@ export class SubscriptionInCredentials {
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
    * '1234-5678-9012-3456' to succeed
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  postSwaggerGlobalValid(): Promise<msRest.RestResponse>;
-  postSwaggerGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  postSwaggerGlobalValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   postSwaggerGlobalValid(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   postSwaggerGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   postSwaggerGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -129,7 +149,6 @@ export class SubscriptionInCredentials {
       postSwaggerGlobalValidOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications

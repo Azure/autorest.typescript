@@ -28,14 +28,18 @@ export class Dictionary {
 
   /**
    * Get complex types with dictionary property
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetValidResponse>
    */
-  getValid(): Promise<Models.DictionaryGetValidResponse>;
-  getValid(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetValidResponse>;
+  getValid(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getValid(callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
   getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): Promise<Models.DictionaryGetValidResponse> {
     return this.client.sendOperationRequest(
@@ -48,14 +52,18 @@ export class Dictionary {
 
   /**
    * Put complex types with dictionary property
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putValid(): Promise<msRest.RestResponse>;
-  putValid(options: Models.DictionaryPutValidOptionalParams): Promise<msRest.RestResponse>;
+  putValid(options?: Models.DictionaryPutValidOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   putValid(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putValid(options: Models.DictionaryPutValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
   putValid(options?: Models.DictionaryPutValidOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -68,14 +76,18 @@ export class Dictionary {
 
   /**
    * Get complex types with dictionary property which is empty
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetEmptyResponse>
    */
-  getEmpty(): Promise<Models.DictionaryGetEmptyResponse>;
-  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyResponse>;
+  getEmpty(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetEmptyResponse>;
+  /**
+   * @param callback The callback
+   */
   getEmpty(callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
   getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): Promise<Models.DictionaryGetEmptyResponse> {
     return this.client.sendOperationRequest(
@@ -88,14 +100,18 @@ export class Dictionary {
 
   /**
    * Put complex types with dictionary property which is empty
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putEmpty(): Promise<msRest.RestResponse>;
-  putEmpty(options: Models.DictionaryPutEmptyOptionalParams): Promise<msRest.RestResponse>;
+  putEmpty(options?: Models.DictionaryPutEmptyOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   putEmpty(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putEmpty(options: Models.DictionaryPutEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
   putEmpty(options?: Models.DictionaryPutEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -108,14 +124,18 @@ export class Dictionary {
 
   /**
    * Get complex types with dictionary property which is null
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetNullResponse>
    */
-  getNull(): Promise<Models.DictionaryGetNullResponse>;
-  getNull(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullResponse>;
+  getNull(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getNull(callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
   getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): Promise<Models.DictionaryGetNullResponse> {
     return this.client.sendOperationRequest(
@@ -128,14 +148,18 @@ export class Dictionary {
 
   /**
    * Get complex types with dictionary property while server doesn't provide a response payload
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DictionaryGetNotProvidedResponse>
    */
-  getNotProvided(): Promise<Models.DictionaryGetNotProvidedResponse>;
-  getNotProvided(options: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNotProvidedResponse>;
+  getNotProvided(options?: msRest.RequestOptionsBase): Promise<Models.DictionaryGetNotProvidedResponse>;
+  /**
+   * @param callback The callback
+   */
   getNotProvided(callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DictionaryWrapper>): void;
   getNotProvided(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DictionaryWrapper>): Promise<Models.DictionaryGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
@@ -145,7 +169,6 @@ export class Dictionary {
       getNotProvidedOperationSpec,
       callback) as Promise<Models.DictionaryGetNotProvidedResponse>;
   }
-
 }
 
 // Operation Specifications

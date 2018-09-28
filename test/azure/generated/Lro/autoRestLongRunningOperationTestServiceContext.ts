@@ -25,9 +25,7 @@ export class AutoRestLongRunningOperationTestServiceContext extends msRestAzure.
 
   /**
    * Initializes a new instance of the AutoRestLongRunningOperationTestService class.
-   *
    * @param credentials Credentials needed for the client to connect to Azure.
-   *
    * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestLongRunningOperationTestServiceOptions) {

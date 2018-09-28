@@ -19,7 +19,6 @@ export class AutoRestParameterizedHostTestClientContext extends msRest.ServiceCl
 
   /**
    * Initializes a new instance of the AutoRestParameterizedHostTestClientContext class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestParameterizedHostTestClientOptions) {

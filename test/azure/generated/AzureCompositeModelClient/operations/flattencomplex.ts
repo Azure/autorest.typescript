@@ -27,13 +27,18 @@ export class Flattencomplex {
   }
 
   /**
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.FlattencomplexGetValidResponse>
    */
-  getValid(): Promise<Models.FlattencomplexGetValidResponse>;
-  getValid(options: msRest.RequestOptionsBase): Promise<Models.FlattencomplexGetValidResponse>;
+  getValid(options?: msRest.RequestOptionsBase): Promise<Models.FlattencomplexGetValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getValid(callback: msRest.ServiceCallback<Models.MyBaseTypeUnion>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.MyBaseTypeUnion>): void;
   getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.MyBaseTypeUnion>): Promise<Models.FlattencomplexGetValidResponse> {
     return this.client.sendOperationRequest(
@@ -43,7 +48,6 @@ export class Flattencomplex {
       getValidOperationSpec,
       callback) as Promise<Models.FlattencomplexGetValidResponse>;
   }
-
 }
 
 // Operation Specifications

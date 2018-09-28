@@ -19,7 +19,6 @@ class AutoRestDateTimeTestService extends AutoRestDateTimeTestServiceContext {
 
   /**
    * Initializes a new instance of the AutoRestDateTimeTestService class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestDateTimeTestServiceOptions) {

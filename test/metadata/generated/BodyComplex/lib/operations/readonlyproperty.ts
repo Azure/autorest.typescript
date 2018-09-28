@@ -27,14 +27,18 @@ export class Readonlyproperty {
 
   /**
    * Get complex types that have readonly properties
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.ReadonlypropertyGetValidResponse>
    */
-  getValid(): Promise<Models.ReadonlypropertyGetValidResponse>;
-  getValid(options: msRest.RequestOptionsBase): Promise<Models.ReadonlypropertyGetValidResponse>;
+  getValid(options?: msRest.RequestOptionsBase): Promise<Models.ReadonlypropertyGetValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getValid(callback: msRest.ServiceCallback<Models.ReadonlyObj>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ReadonlyObj>): void;
   getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ReadonlyObj>): Promise<Models.ReadonlypropertyGetValidResponse> {
     return this.client.sendOperationRequest(
@@ -47,14 +51,18 @@ export class Readonlyproperty {
 
   /**
    * Put complex types that have readonly properties
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putValid(): Promise<msRest.RestResponse>;
-  putValid(options: Models.ReadonlypropertyPutValidOptionalParams): Promise<msRest.RestResponse>;
+  putValid(options?: Models.ReadonlypropertyPutValidOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   putValid(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putValid(options: Models.ReadonlypropertyPutValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
   putValid(options?: Models.ReadonlypropertyPutValidOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -64,7 +72,6 @@ export class Readonlyproperty {
       putValidOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications

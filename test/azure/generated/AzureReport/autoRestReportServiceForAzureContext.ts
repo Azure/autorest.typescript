@@ -25,9 +25,7 @@ export class AutoRestReportServiceForAzureContext extends msRestAzure.AzureServi
 
   /**
    * Initializes a new instance of the AutoRestReportServiceForAzure class.
-   *
    * @param credentials Credentials needed for the client to connect to Azure.
-   *
    * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestReportServiceForAzureOptions) {

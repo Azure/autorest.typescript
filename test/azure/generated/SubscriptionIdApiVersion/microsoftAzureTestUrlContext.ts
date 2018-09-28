@@ -29,11 +29,8 @@ export class MicrosoftAzureTestUrlContext extends msRestAzure.AzureServiceClient
 
   /**
    * Initializes a new instance of the MicrosoftAzureTestUrl class.
-   *
    * @param credentials Credentials needed for the client to connect to Azure.
-   *
    * @param subscriptionId Subscription Id.
-   *
    * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: Models.MicrosoftAzureTestUrlOptions) {

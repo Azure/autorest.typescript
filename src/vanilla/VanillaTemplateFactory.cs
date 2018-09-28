@@ -30,11 +30,6 @@ namespace AutoRest.TypeScript
             return new MapperIndexTemplate { Model = codeModel };
         }
 
-        public override Template<MethodGroupTS> CreateMethodGroupTemplate(MethodGroupTS methodGroup)
-        {
-            return new MethodGroupTemplate { Model = methodGroup };
-        }
-
         public override Template<CodeModelTS> CreateReadmeTemplate(CodeModelTS codeModel)
         {
             return new ReadmeTemplate { Model = codeModel };

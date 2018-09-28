@@ -27,14 +27,18 @@ export class Inheritance {
 
   /**
    * Get complex types that extend others
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.InheritanceGetValidResponse>
    */
-  getValid(): Promise<Models.InheritanceGetValidResponse>;
-  getValid(options: msRest.RequestOptionsBase): Promise<Models.InheritanceGetValidResponse>;
+  getValid(options?: msRest.RequestOptionsBase): Promise<Models.InheritanceGetValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getValid(callback: msRest.ServiceCallback<Models.Siamese>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Siamese>): void;
   getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Siamese>): Promise<Models.InheritanceGetValidResponse> {
     return this.client.sendOperationRequest(
@@ -47,18 +51,27 @@ export class Inheritance {
 
   /**
    * Put complex types that extend others
-   *
    * @param complexBody Please put a siamese with id=2, name="Siameee", color=green, breed=persion,
    * which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one
    * named "Tomato" with id=-1 and food="french fries".
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putValid(complexBody: Models.Siamese): Promise<msRest.RestResponse>;
-  putValid(complexBody: Models.Siamese, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putValid(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param complexBody Please put a siamese with id=2, name="Siameee", color=green, breed=persion,
+   * which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one
+   * named "Tomato" with id=-1 and food="french fries".
+   * @param callback The callback
+   */
   putValid(complexBody: Models.Siamese, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param complexBody Please put a siamese with id=2, name="Siameee", color=green, breed=persion,
+   * which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one
+   * named "Tomato" with id=-1 and food="french fries".
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putValid(complexBody: Models.Siamese, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putValid(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -69,7 +82,6 @@ export class Inheritance {
       putValidOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications
