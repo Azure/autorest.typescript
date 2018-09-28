@@ -178,8 +178,7 @@ export type DatetimeGetUtcUppercaseMaxDateTimeResponse = {
 };
 
 /**
- * Contains response data for the getLocalPositiveOffsetLowercaseMaxDateTime
- * operation.
+ * Contains response data for the getLocalPositiveOffsetLowercaseMaxDateTime operation.
  */
 export type DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse = {
   /**
@@ -202,8 +201,7 @@ export type DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse = {
 };
 
 /**
- * Contains response data for the getLocalPositiveOffsetUppercaseMaxDateTime
- * operation.
+ * Contains response data for the getLocalPositiveOffsetUppercaseMaxDateTime operation.
  */
 export type DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse = {
   /**
@@ -226,8 +224,7 @@ export type DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse = {
 };
 
 /**
- * Contains response data for the getLocalNegativeOffsetUppercaseMaxDateTime
- * operation.
+ * Contains response data for the getLocalNegativeOffsetUppercaseMaxDateTime operation.
  */
 export type DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse = {
   /**
@@ -250,8 +247,7 @@ export type DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse = {
 };
 
 /**
- * Contains response data for the getLocalNegativeOffsetLowercaseMaxDateTime
- * operation.
+ * Contains response data for the getLocalNegativeOffsetLowercaseMaxDateTime operation.
  */
 export type DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse = {
   /**

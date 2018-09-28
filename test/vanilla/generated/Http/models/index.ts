@@ -1931,8 +1931,7 @@ export type HttpServerFailureDelete505Response = ErrorModel & {
 };
 
 /**
- * Contains response data for the get200Model204NoModelDefaultError200Valid
- * operation.
+ * Contains response data for the get200Model204NoModelDefaultError200Valid operation.
  */
 export type MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse = A & {
   /**
@@ -1951,8 +1950,7 @@ export type MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse =
 };
 
 /**
- * Contains response data for the get200Model204NoModelDefaultError204Valid
- * operation.
+ * Contains response data for the get200Model204NoModelDefaultError204Valid operation.
  */
 export type MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse = A & {
   /**
@@ -1971,8 +1969,7 @@ export type MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse =
 };
 
 /**
- * Contains response data for the get200Model204NoModelDefaultError201Invalid
- * operation.
+ * Contains response data for the get200Model204NoModelDefaultError201Invalid operation.
  */
 export type MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse = A & {
   /**
@@ -1991,8 +1988,7 @@ export type MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse
 };
 
 /**
- * Contains response data for the get200Model204NoModelDefaultError202None
- * operation.
+ * Contains response data for the get200Model204NoModelDefaultError202None operation.
  */
 export type MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse = A & {
   /**
@@ -2011,8 +2007,7 @@ export type MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse = 
 };
 
 /**
- * Contains response data for the get200Model204NoModelDefaultError400Valid
- * operation.
+ * Contains response data for the get200Model204NoModelDefaultError400Valid operation.
  */
 export type MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse = A & {
   /**
@@ -2031,8 +2026,7 @@ export type MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse =
 };
 
 /**
- * Contains response data for the get200Model201ModelDefaultError200Valid
- * operation.
+ * Contains response data for the get200Model201ModelDefaultError200Valid operation.
  */
 export type MultipleResponsesGet200Model201ModelDefaultError200ValidResponse = A & {
   /**
@@ -2051,8 +2045,7 @@ export type MultipleResponsesGet200Model201ModelDefaultError200ValidResponse = A
 };
 
 /**
- * Contains response data for the get200Model201ModelDefaultError201Valid
- * operation.
+ * Contains response data for the get200Model201ModelDefaultError201Valid operation.
  */
 export type MultipleResponsesGet200Model201ModelDefaultError201ValidResponse = A & {
   /**
@@ -2071,8 +2064,7 @@ export type MultipleResponsesGet200Model201ModelDefaultError201ValidResponse = A
 };
 
 /**
- * Contains response data for the get200Model201ModelDefaultError400Valid
- * operation.
+ * Contains response data for the get200Model201ModelDefaultError400Valid operation.
  */
 export type MultipleResponsesGet200Model201ModelDefaultError400ValidResponse = A & {
   /**
@@ -2091,8 +2083,7 @@ export type MultipleResponsesGet200Model201ModelDefaultError400ValidResponse = A
 };
 
 /**
- * Contains response data for the
- * get200ModelA201ModelC404ModelDDefaultError200Valid operation.
+ * Contains response data for the get200ModelA201ModelC404ModelDDefaultError200Valid operation.
  */
 export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse = {
   /**
@@ -2115,8 +2106,7 @@ export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidR
 };
 
 /**
- * Contains response data for the
- * get200ModelA201ModelC404ModelDDefaultError201Valid operation.
+ * Contains response data for the get200ModelA201ModelC404ModelDDefaultError201Valid operation.
  */
 export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse = {
   /**
@@ -2139,8 +2129,7 @@ export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidR
 };
 
 /**
- * Contains response data for the
- * get200ModelA201ModelC404ModelDDefaultError404Valid operation.
+ * Contains response data for the get200ModelA201ModelC404ModelDDefaultError404Valid operation.
  */
 export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse = {
   /**
@@ -2163,8 +2152,7 @@ export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidR
 };
 
 /**
- * Contains response data for the
- * get200ModelA201ModelC404ModelDDefaultError400Valid operation.
+ * Contains response data for the get200ModelA201ModelC404ModelDDefaultError400Valid operation.
  */
 export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse = {
   /**

@@ -92,12 +92,18 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        /// <summary>
-        /// Get whether or not this CodeModelTS has any model types.
-        /// </summary>
-        public bool HasModelTypes()
+        private IEnumerable<string> allModelTypeNames;
+        [JsonIgnore]
+        public IEnumerable<string> AllModelTypeNames
         {
-            return ModelTypes.Any();
+            get
+            {
+                if (allModelTypeNames == null)
+                {
+                    allModelTypeNames = AllModelTypes.Select((CompositeType modelType) => modelType.Name.ToString()).ToHashSet();
+                }
+                return allModelTypeNames;
+            }
         }
 
         public bool IsCustomBaseUri => Extensions.ContainsKey(SwaggerExtensions.ParameterizedHostExtension);
@@ -624,6 +630,17 @@ namespace AutoRest.TypeScript.Model
 
                 comment.Parameter("options", "The parameter options", isOptional: true);
             });
+            return builder.ToString();
+        }
+
+        public string GenerateResponseTypes(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+            foreach (MethodTS method in MethodsWithCustomResponseType)
+            {
+                builder.Line(emptyLine);
+                method.GenerateResponseType(builder);
+            }
             return builder.ToString();
         }
     }
