@@ -110,8 +110,8 @@ export interface MyOperationHeaders {
 ## --source-code-folder-path
 The folder relative to the output-folder path that the TypeScript source code files will be generated in. If no value is provided for this flag, then it will default to `lib`. If an empty string is provided for this flag, then the TypeScript source code files will be generated in the output-folder.
 
-### Azure Service Client
-For generating a client for an azure service, provide `--typescript.azure-arm=true`:
+### --azure-arm
+For generating a client for an Azure service, provide `--typescript.azure-arm=true`:
 ```sh
 autorest --typescript \
   --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> \
@@ -123,7 +123,7 @@ autorest --typescript \
   --typescript.azure-arm=true
 ```
 
-### With Client Credentials
+### --add-credentials
 If you want to use services which need authorization you need to generate a constructor taking `msRest.ServiceClientCredentials`. In order to to do so add `--add-credentials` as commandline parameter
 ```
 autorest --typescript \
@@ -137,7 +137,7 @@ autorest --typescript \
 
 the generated constructor will look like
 ```ts
-constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRest.ServiceClientOptions)
+constructor(credentials: msRest.ServiceClientCredentials, options?: msRest.ServiceClientOptions)
 ```
 
 ### Further Documentation on the Command Line
