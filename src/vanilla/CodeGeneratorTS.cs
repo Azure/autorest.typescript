@@ -99,10 +99,13 @@ namespace AutoRest.TypeScript
                 await WriteLicenseFile(codeModel);
             }
 
-            await WriteTsConfig(codeModel);
-            await WriteWebpackTsConfig(codeModel);
-            await WriteWebpackConfig(codeModel);
-            await WriteNpmIgnore(codeModel);
+            if (ShouldWriteMetadata(codeModel))
+            {
+                await WriteTsConfig(codeModel);
+                await WriteWebpackTsConfig(codeModel);
+                await WriteWebpackConfig(codeModel);
+                await WriteNpmIgnore(codeModel);
+            }
         }
 
         public static bool HasMappableParameters(IEnumerable<Method> methods)
@@ -147,6 +150,11 @@ namespace AutoRest.TypeScript
         protected bool ShouldWriteLicenseFile(CodeModelTS codeModel)
         {
             return (codeModel.Settings.GenerateLicenseTxt ?? codeModel.Settings.GenerateMetadata);
+        }
+
+        protected bool ShouldWriteMetadata(CodeModelTS codeModel)
+        {
+            return codeModel.Settings.GenerateMetadata;
         }
 
         protected bool IsNotDefaultApiVersion(CodeModelTS codeModel)
@@ -235,21 +243,6 @@ namespace AutoRest.TypeScript
         protected Task WriteLicenseFile(CodeModelTS codeModel)
         {
             return Write(new LicenseTemplate { Model = codeModel }, "LICENSE.txt");
-        }
-
-        protected Task WriteMultiApiPackageJson(CodeModelTS codeModel)
-        {
-            return Write(new PackageJsonMultiApi() { Model = codeModel }, "package.json");
-        }
-
-        protected Task WriteMultiApiTsConfig(CodeModelTS codeModel)
-        {
-            return Write(new TsConfigMultiApi() { Model = codeModel }, "tsconfig.json");
-        }
-
-        protected Task WriteMultiApiWebpackTsConfig(CodeModelTS codeModel)
-        {
-            return Write(new TsConfigWebpackMultiApi() { Model = codeModel }, "tsconfig.esm.json");
         }
 
         protected Task WriteTsConfig(CodeModelTS codeModel)
