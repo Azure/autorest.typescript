@@ -17,12 +17,12 @@ api-versions:
 batch:
   - tag: package-2017-10
     api-version: "2017-10-01"
-    output-folder: ./generated-2017-10-01
+    output-folder: ./packages/multiapi-test-2017-10-01
   - tag: package-2018-02
     api-version: "2018-02-01"
-    output-folder: ./generated-2018-02-01
+    output-folder: ./packages/multiapi-test-2018-02-01
   - multiapi-latest: true
-    output-folder: ./generated
+    output-folder: ./packages/multiapi-test
 ```
 
 ```yaml $(tag) == 'package-2017-10'
