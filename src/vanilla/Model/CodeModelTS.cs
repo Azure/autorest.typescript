@@ -37,7 +37,7 @@ namespace AutoRest.TypeScript.Model
         /// The value to use in the "name" property of package.json.
         /// </summary>
         [JsonIgnore]
-        public string CurrentNpmPackageName => string.IsNullOrEmpty(Settings.DefaultApiVersionPackage) ? ApiVersionPackageName : Settings.PackageName;
+        public string CurrentNpmPackageName => Settings.Multiapi && string.IsNullOrEmpty(Settings.DefaultApiVersionPackage) ? ApiVersionPackageName : Settings.PackageName;
 
         private bool _computedRequestContentType;
         private string _requestContentType;
