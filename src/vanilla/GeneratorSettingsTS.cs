@@ -43,7 +43,7 @@ namespace AutoRest.TypeScript
         public string SourceCodeFolderPath { get; set; } = "lib";
 
         /// <summary>
-        /// The name of the npm package.
+        /// The name of the npm package, e.g. "@azure/arm-storage".
         /// </summary>
         public string PackageName { get; set; }
 
@@ -58,16 +58,25 @@ namespace AutoRest.TypeScript
         public bool Multiapi { get; set; }
 
         /// <summary>
-        /// The path to the "default" API version, e.g. 2016-04-01.
-        /// The presence of this property indicates that we are generating
-        /// the multi-api "root" artifacts, and not any TS source files.
+        /// The NPM package name of the "default" API version package.
+        /// e.g. "@azure/arm-storage-2018-03-01-preview"
+        /// This package will be used as a dependency in the "alias" package.
+        /// e.g. "@azure/arm-storage"
         /// </summary>
-        public string DefaultApiVersion { get; set; }
+        public string DefaultApiVersionPackage { get; set; }
+
+        /// <summary>The version of the package referenced in <see cref="DefaultApiVersionPackage" />.</summary>
+        public string AliasedNpmVersion { get; set; }
 
         /// <summary>
         /// All API version subfolders present in this package.
         /// </summary>
         public string[] ApiVersions { get; set; }
+
+        /// <summary>
+        /// The current API version being generated
+        /// </summary>
+        public string ApiVersion { get; set; }
 
         /// <summary>
         /// If true, outputs package.json, tsconfig.json, webpack.config.js, and README.md files.
@@ -131,6 +140,14 @@ namespace AutoRest.TypeScript
                                 PackageVersion = packageJsonVersion;
                                 Log(Category.Information, $"Got version \"{PackageVersion}\" for package \"{PackageName}\" from existing package.json file.");
                             }
+
+                            JObject packageJsonDeps = (JObject) packageJson["dependencies"];
+                            string aliasedPackageVersion = DefaultApiVersionPackage != null ? packageJsonDeps?[DefaultApiVersionPackage]?.ToString() : null;
+                            if (aliasedPackageVersion != null)
+                            {
+                                Log(Category.Information, $"Using package version \"{aliasedPackageVersion}\" for alias package \"{DefaultApiVersionPackage}\" from existing package.json file.");
+                                AliasedNpmVersion = aliasedPackageVersion;
+                            }
                         }
                         catch (Exception e)
                         {
@@ -163,7 +180,7 @@ namespace AutoRest.TypeScript
             }
         }
 
-        private static string GetNPMPackageVersion(string packageName)
+        internal static string GetNPMPackageVersion(string packageName)
         {
             string filePath = ResolveFilePath("npm");
             string arguments = $"view {packageName} --json";
@@ -232,11 +249,6 @@ namespace AutoRest.TypeScript
             }
 
             return packageVersion;
-        }
-
-        private static void NpmProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private static string ResolveFilePath(string fileName)

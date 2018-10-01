@@ -79,6 +79,10 @@ namespace AutoRest.TypeScript
                     }
                 }
             }
+            else
+            {
+                await WriteAliasFile(codeModel);
+            }
 
             if (ShouldWritePackageJsonFile(codeModel))
             {
@@ -97,12 +101,12 @@ namespace AutoRest.TypeScript
 
             if (ShouldWriteMultiApiMetadata(codeModel))
             {
-                await WriteMultiApiPackageJson(codeModel);
-                await WriteMultiApiTsConfig(codeModel);
-                await WriteMultiApiWebpackTsConfig(codeModel);
+                // await WriteMultiApiPackageJson(codeModel);
+                // await WriteMultiApiTsConfig(codeModel);
+                // await WriteMultiApiWebpackTsConfig(codeModel);
             }
 
-            if (ShouldWriteNonMultiApiMetadata(codeModel))
+            if (true || ShouldWriteNonMultiApiMetadata(codeModel))
             {
                 await WriteTsConfig(codeModel);
                 await WriteWebpackTsConfig(codeModel);
@@ -142,30 +146,22 @@ namespace AutoRest.TypeScript
 
         protected bool ShouldWritePackageJsonFile(CodeModelTS codeModel)
         {
-            return (codeModel.Settings.GeneratePackageJson ?? codeModel.Settings.GenerateMetadata) &&
-                !IsMultiApiVersionButNotDefaultVersion(codeModel);
+            return (codeModel.Settings.GeneratePackageJson ?? codeModel.Settings.GenerateMetadata);
         }
 
         protected bool ShouldWriteReadmeMdFile(CodeModelTS codeModel)
         {
-            return (codeModel.Settings.GenerateReadmeMd ?? codeModel.Settings.GenerateMetadata) &&
-                !IsMultiApiVersionButNotDefaultVersion(codeModel);
+            return (codeModel.Settings.GenerateReadmeMd ?? codeModel.Settings.GenerateMetadata);
         }
 
         protected bool ShouldWriteLicenseFile(CodeModelTS codeModel)
         {
-            return (codeModel.Settings.GenerateLicenseTxt ?? codeModel.Settings.GenerateMetadata) &&
-                !IsMultiApiVersionButNotDefaultVersion(codeModel);
-        }
-
-        protected bool ShouldWriteTSCongiFile(CodeModelTS codeModel)
-        {
-            return codeModel.Settings.GenerateMetadata && !IsMultiApiVersionButNotDefaultVersion(codeModel);
+            return (codeModel.Settings.GenerateLicenseTxt ?? codeModel.Settings.GenerateMetadata);
         }
 
         protected bool IsNotDefaultApiVersion(CodeModelTS codeModel)
         {
-            return string.IsNullOrEmpty(codeModel.Settings.DefaultApiVersion);
+            return string.IsNullOrEmpty(codeModel.Settings.DefaultApiVersionPackage);
         }
 
         protected bool IsMultiApiVersionButNotDefaultVersion(CodeModelTS codeModel)
@@ -237,6 +233,13 @@ namespace AutoRest.TypeScript
             CodeModelTS codeModel = methodGroup.CodeModelTS;
             string filePath = GetSourceCodeFilePath(codeModel, "operations", methodGroup.TypeName.ToCamelCase() + ".ts");
             return Write(methodGroupTemplate, filePath);
+        }
+
+        protected Task WriteAliasFile(CodeModelTS codeModel)
+        {
+            string filePath = GetSourceCodeFilePath(codeModel, "index.ts");
+            AliasIndexTemplate template = new AliasIndexTemplate { Model = codeModel };
+            return Write(template, filePath);
         }
 
         protected Task WritePackageJsonFile(CodeModelTS codeModel)

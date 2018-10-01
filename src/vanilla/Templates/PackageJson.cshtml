@@ -1,7 +1,7 @@
 ﻿@using AutoRest.Core.Utilities;
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
 {
-  "name": "@(Model.Settings.PackageName)",
+  "name": "@(Model.CurrentNpmPackageName)",
   "author": "Microsoft Corporation",
   "description": "@(Model.Name.ToPascalCase()) Library with typescript type definitions for node.js and browser.",
   "version": "@(Model.Settings.PackageVersion)",
@@ -16,7 +16,7 @@
     "isomorphic"
   ],
   "license": "MIT",
-@if (string.IsNullOrEmpty(Model.Settings.DefaultApiVersion))
+@if (string.IsNullOrEmpty(Model.Settings.DefaultApiVersionPackage))
 {
 @:  "main": "./cjs/@(Model.Name.ToCamelCase()).js",
 @:  "module": "./esm/@(Model.Name.ToCamelCase()).js",
@@ -24,9 +24,9 @@
 }
 else
 {
-@:  "main": "./@(Model.Settings.DefaultApiVersion)/cjs/lib/@(Model.Name.ToCamelCase()).js",
-@:  "module": "./@(Model.Settings.DefaultApiVersion)/esm/lib/@(Model.Name.ToCamelCase()).js",
-@:  "types": "./@(Model.Settings.DefaultApiVersion)/cjs/lib/@(Model.Name.ToCamelCase()).d.ts",
+@:  "main": "./cjs/index.js",
+@:  "module": "./esm/index.js",
+@:  "types": "./cjs/index.d.ts",
 }
   "devDependencies": {
     "tslib": "^1.9.3",
@@ -43,7 +43,7 @@ else
     "url": "@(Model.BugsUrl)"
   },
   "scripts": {
-    "build": "tsc @(string.IsNullOrEmpty(Model.Settings.DefaultApiVersion) ? "&& tsc -p tsconfig.esm.json" : "-b") && webpack",
+    "build": "tsc && tsc -p tsconfig.esm.json && webpack",
     "prepare": "npm run build"
   }
 }

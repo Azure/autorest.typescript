@@ -30,6 +30,15 @@ namespace AutoRest.TypeScript.Model
         [JsonIgnore]
         public string ContextName => Name + "Context";
 
+        [JsonIgnore]
+        public string ApiVersionPackageName => Settings.PackageName + "-" + Settings.ApiVersion;
+
+        /// <summary>
+        /// The value to use in the "name" property of package.json.
+        /// </summary>
+        [JsonIgnore]
+        public string CurrentNpmPackageName => string.IsNullOrEmpty(Settings.DefaultApiVersionPackage) ? ApiVersionPackageName : Settings.PackageName;
+
         private bool _computedRequestContentType;
         private string _requestContentType;
         public string RequestContentType
@@ -393,7 +402,13 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"~0.22.422\"";
+            string deps = "\"ms-rest-js\": \"~0.22.422\"";
+            if (!string.IsNullOrEmpty(Settings.DefaultApiVersionPackage))
+            {
+                string version = Settings.AliasedNpmVersion ?? "^1.0.0";
+                deps += ",\n" + $"\"{Settings.DefaultApiVersionPackage}\": \"{version}\"";
+            }
+            return deps;
         }
 
         public virtual Method GetSampleMethod()
