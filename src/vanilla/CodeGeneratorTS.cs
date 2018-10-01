@@ -99,20 +99,10 @@ namespace AutoRest.TypeScript
                 await WriteLicenseFile(codeModel);
             }
 
-            if (ShouldWriteMultiApiMetadata(codeModel))
-            {
-                // await WriteMultiApiPackageJson(codeModel);
-                // await WriteMultiApiTsConfig(codeModel);
-                // await WriteMultiApiWebpackTsConfig(codeModel);
-            }
-
-            if (true || ShouldWriteNonMultiApiMetadata(codeModel))
-            {
-                await WriteTsConfig(codeModel);
-                await WriteWebpackTsConfig(codeModel);
-                await WriteWebpackConfig(codeModel);
-                await WriteNpmIgnore(codeModel);
-            }
+            await WriteTsConfig(codeModel);
+            await WriteWebpackTsConfig(codeModel);
+            await WriteWebpackConfig(codeModel);
+            await WriteNpmIgnore(codeModel);
         }
 
         public static bool HasMappableParameters(IEnumerable<Method> methods)
@@ -167,16 +157,6 @@ namespace AutoRest.TypeScript
         protected bool IsMultiApiVersionButNotDefaultVersion(CodeModelTS codeModel)
         {
             return codeModel.Settings.Multiapi && IsNotDefaultApiVersion(codeModel);
-        }
-
-        protected bool ShouldWriteMultiApiMetadata(CodeModelTS codeModel)
-        {
-            return codeModel.Settings.GenerateMetadata && IsMultiApiVersionButNotDefaultVersion(codeModel);
-        }
-
-        protected bool ShouldWriteNonMultiApiMetadata(CodeModelTS codeModel)
-        {
-            return codeModel.Settings.GenerateMetadata && !IsMultiApiVersionButNotDefaultVersion(codeModel);
         }
 
         protected Task WriteServiceClientCodeFile<TCodeModel>(TemplateFactory<TCodeModel> templateFactory, TCodeModel codeModel) where TCodeModel : CodeModelTS
