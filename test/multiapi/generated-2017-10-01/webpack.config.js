@@ -7,7 +7,7 @@ const path = require('path');
  */
 const config = {
   mode: 'production',
-  entry: './esm/index.js',
+  entry: './esm/autoRestParameterizedCustomHostTestClient.js',
   devtool: 'source-map',
   output: {
     filename: 'autoRestParameterizedCustomHostTestClientBundle.js',
