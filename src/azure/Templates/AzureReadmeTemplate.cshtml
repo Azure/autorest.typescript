@@ -2,33 +2,59 @@
 @using AutoRest.TypeScript.Azure.Model
 @inherits AutoRest.Core.Template<CodeModelTSa>
 
-# Microsoft Azure SDK for isomorphic javascript - @(Model.Name)
-This project provides an isomorphic javascript package for accessing Azure. Right now it supports:
-- node.js version 6.x.x or higher
-- browser javascript
-@EmptyLine
-## How to Install
-@EmptyLine
-- nodejs
-```
-npm install @(Model.Settings.PackageName)
-```
-- browser
-```html
-@{
-@:<script type="text/javascript" src="https://raw.githubusercontent.com/Azure/azure-sdk-for-js/master/lib/services/@(Model.Settings.PackageName)/@(Model.Name.ToCamelCase())Bundle.js"></script>
+# Azure @(Model.Name) SDK for JavaScript
+@if (Model.Settings.MultiapiLatest)
+{
+@:This package provides the **latest API version (@(Model.Settings.ApiVersions[0]))** of @(Model.Name).
 }
+else if (Model.Settings.Multiapi)
+{
+@:This package contains **API version @(Model.Settings.ApiVersion)** of @(Model.Name).
+@EmptyLine
+
+@:For other API versions, see https://npmjs.com/@(Model.Settings.PackageName).
+}
+else
+{
+@:This package contains an isomorphic SDK for @(Model.Name).
+}
+@EmptyLine
+
+## Currently supported environments
+- Node.js version 6.x.x or higher
+- Browser JavaScript
+@EmptyLine
+
+## How to Install
+```
+npm install @(Model.PackageName)
 ```
 @EmptyLine
+@if (Model.Settings.MultiapiLatest)
+{
+@:## Available API versions
+@:| API version | NPM package | Latest |
+@:| - | - | - |
+bool first = true;
+@foreach (string apiVersion in Model.Settings.ApiVersions)
+{
+@:| @(apiVersion) | https://npmjs.com/@(Model.Settings.PackageName)-@(apiVersion) | @(first ? "✔️" : "") |
+first = false;
+}
+}
+@EmptyLine
+
 ## How to use
 @EmptyLine
+
 ### nodejs - Authentication, client creation and @(Model.GetSampleMethod()?.Name) @(Model.GetSampleMethodGroupName()) as an example written in TypeScript.
 @EmptyLine
+
 ```ts
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
 import * as msRestNodeAuth from "ms-rest-nodeauth";
-import { @(Model.Name), @(Model.ClientPrefix)Models, @(Model.ClientPrefix)Mappers } from "@(Model.Settings.PackageName)";
+import { @(Model.Name), @(Model.ClientPrefix)Models, @(Model.ClientPrefix)Mappers } from "@(Model.PackageName)";
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
 @EmptyLine
 msRestNodeAuth.interactiveLogin().then((creds) => {
@@ -39,19 +65,21 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
 });
 ```
 @EmptyLine
-### browser - Authentication, client creation and @(Model.GetSampleMethod().Name) @(Model.GetSampleMethodGroupName()) as an example written in javascript.
+
+### browser - Authentication, client creation and @(Model.GetSampleMethod().Name) @(Model.GetSampleMethodGroupName()) as an example written in JavaScript.
 @EmptyLine
+
 - index.html
 ```html
 @{
 @:<!DOCTYPE html>
 @:<html lang="en">
 @:  <head>
-@:    <title>@(Model.Settings.PackageName) sample</title>
-@:    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/ms-rest-js/master/msRestBundle.js"></script>
-@:    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/ms-rest-js/master/msRestAzureBundle.js"></script>
-@:    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/azure-sdk-for-js/master/lib/services/@(Model.Settings.PackageName)/@(Model.Name.ToCamelCase())Bundle.js"></script>
-@:    <script type="text/javascript">
+@:    <title>@(Model.PackageName) sample</title>
+@:    <script src="node_modules/ms-rest-js/master/msRestBundle.js"></script>
+@:    <script src="node_modules/ms-rest-azure-js/master/msRestAzureBundle.js"></script>
+@:    <script src="node_modules/@(Model.PackageName)/@(Model.Name.ToCamelCase())Bundle.js"></script>
+@:    <script>
 @:      const subscriptionId = "<Subscription_Id>";
 @:      const token = "<access_token>";
 @:      const creds = new msRest.TokenCredentials(token);
@@ -68,5 +96,6 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
 }
 ```
 @EmptyLine
+
 # Related projects
  - [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
