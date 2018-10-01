@@ -19,7 +19,6 @@ class AutoRestSwaggerBATFileService extends AutoRestSwaggerBATFileServiceContext
 
   /**
    * Initializes a new instance of the AutoRestSwaggerBATFileService class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATFileServiceOptions) {

@@ -19,7 +19,6 @@ class AutoRestSwaggerBATXMLService extends AutoRestSwaggerBATXMLServiceContext {
 
   /**
    * Initializes a new instance of the AutoRestSwaggerBATXMLService class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATXMLServiceOptions) {

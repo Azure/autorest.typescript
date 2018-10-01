@@ -19,7 +19,6 @@ class AutoRestIntegerTestService extends AutoRestIntegerTestServiceContext {
 
   /**
    * Initializes a new instance of the AutoRestIntegerTestService class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestIntegerTestServiceOptions) {

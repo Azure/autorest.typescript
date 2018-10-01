@@ -617,8 +617,7 @@ export type PagingGetMultiplePagesFragmentNextLinkResponse = OdataProductResult 
 };
 
 /**
- * Contains response data for the getMultiplePagesFragmentWithGroupingNextLink
- * operation.
+ * Contains response data for the getMultiplePagesFragmentWithGroupingNextLink operation.
  */
 export type PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse = OdataProductResult & {
   /**

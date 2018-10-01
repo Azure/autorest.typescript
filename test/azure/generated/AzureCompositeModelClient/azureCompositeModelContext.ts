@@ -27,9 +27,7 @@ export class AzureCompositeModelContext extends msRestAzure.AzureServiceClient {
 
   /**
    * Initializes a new instance of the AzureCompositeModel class.
-   *
    * @param credentials Credentials needed for the client to connect to Azure.
-   *
    * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AzureCompositeModelOptions) {

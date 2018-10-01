@@ -1,4 +1,4 @@
-# Microsoft Azure SDK for isomorphic javascript - AutoRestParameterizedCustomHostTestClient
+# Microsoft Azure SDK for isomorphic javascript - AutoRestParameterizedHostTestClient
 This project provides an isomorphic javascript package for accessing Azure. Right now it supports:
 - node.js version 6.x.x or higher
 - browser javascript
@@ -11,7 +11,7 @@ npm install @azure/multiapi-test
 ```
 - browser
 ```html
-<script type="text/javascript" src="https://raw.githubusercontent.com/Azure/azure-sdk-for-js/master/lib/services/@azure/multiapi-test/autoRestParameterizedCustomHostTestClientBundle.js"></script>
+<script type="text/javascript" src="https://raw.githubusercontent.com/Azure/azure-sdk-for-js/master/lib/services/@azure/multiapi-test/autoRestParameterizedHostTestClientBundle.js"></script>
 ```
 
 ## How to use
@@ -22,16 +22,13 @@ npm install @azure/multiapi-test
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
 import * as msRestNodeAuth from "ms-rest-nodeauth";
-import { AutoRestParameterizedCustomHostTestClient, AutoRestParameterizedCustomHostTestModels, AutoRestParameterizedCustomHostTestMappers } from "@azure/multiapi-test";
+import { AutoRestParameterizedHostTestClient, AutoRestParameterizedHostTestModels, AutoRestParameterizedHostTestMappers } from "@azure/multiapi-test";
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
 
 msRestNodeAuth.interactiveLogin().then((creds) => {
-  const client = new AutoRestParameterizedCustomHostTestClient(creds, subscriptionId);
-  const vault = "testvault";
-  const secret = "testsecret";
-  const keyName = "testkeyName";
-  const keyVersion = "testkeyVersion";
-  client.paths.getEmpty(vault, secret, keyName, keyVersion).then((result) => {
+  const client = new AutoRestParameterizedHostTestClient(creds, subscriptionId);
+  const accountName = "testaccountName";
+  client.paths.getEmpty(accountName).then((result) => {
     console.log("The result is:");
     console.log(result);
   });
@@ -50,17 +47,14 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
     <title>@azure/multiapi-test sample</title>
     <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/ms-rest-js/master/msRestBundle.js"></script>
     <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/ms-rest-js/master/msRestAzureBundle.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/azure-sdk-for-js/master/lib/services/@azure/multiapi-test/autoRestParameterizedCustomHostTestClientBundle.js"></script>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/azure-sdk-for-js/master/lib/services/@azure/multiapi-test/autoRestParameterizedHostTestClientBundle.js"></script>
     <script type="text/javascript">
       const subscriptionId = "<Subscription_Id>";
       const token = "<access_token>";
       const creds = new msRest.TokenCredentials(token);
-      const client = new AutoRestParameterizedCustomHostTestClient(creds, undefined, subscriptionId);
-      const vault = "testvault";
-      const secret = "testsecret";
-      const keyName = "testkeyName";
-      const keyVersion = "testkeyVersion";
-      client.paths.getEmpty(vault, secret, keyName, keyVersion).then((result) => {
+      const client = new AutoRestParameterizedHostTestClient(creds, undefined, subscriptionId);
+      const accountName = "testaccountName";
+      client.paths.getEmpty(accountName).then((result) => {
         console.log("The result is:");
         console.log(result);
       }).catch((err) => {

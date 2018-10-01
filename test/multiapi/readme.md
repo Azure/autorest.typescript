@@ -12,16 +12,16 @@ generate-metadata: true
 multiapi: true
 tag: package-2018-02
 api-versions:
-  - "2017-10-01"
   - "2018-02-01"
+  - "2017-10-01"
 batch:
   - tag: package-2017-10
     api-version: "2017-10-01"
     output-folder: ./generated-2017-10-01
   - tag: package-2018-02
     api-version: "2018-02-01"
-    output-folder: ./generated-2017-10-01
-  - default-api-version-package: "@azure/multiapi-test-2018-02-01"
+    output-folder: ./generated-2018-02-01
+  - multiapi-latest: true
     output-folder: ./generated
 ```
 

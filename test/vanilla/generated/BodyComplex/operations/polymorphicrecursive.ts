@@ -27,14 +27,18 @@ export class Polymorphicrecursive {
 
   /**
    * Get complex types that are polymorphic and have recursive references
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PolymorphicrecursiveGetValidResponse>
    */
-  getValid(): Promise<Models.PolymorphicrecursiveGetValidResponse>;
-  getValid(options: msRest.RequestOptionsBase): Promise<Models.PolymorphicrecursiveGetValidResponse>;
+  getValid(options?: msRest.RequestOptionsBase): Promise<Models.PolymorphicrecursiveGetValidResponse>;
+  /**
+   * @param callback The callback
+   */
   getValid(callback: msRest.ServiceCallback<Models.FishUnion>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FishUnion>): void;
   getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FishUnion>): Promise<Models.PolymorphicrecursiveGetValidResponse> {
     return this.client.sendOperationRequest(
@@ -47,7 +51,6 @@ export class Polymorphicrecursive {
 
   /**
    * Put complex types that are polymorphic and have recursive references
-   *
    * @param complexBody Please put a salmon that looks like this:
    * {
    * "fishtype": "salmon",
@@ -101,14 +104,124 @@ export class Polymorphicrecursive {
    * }
    * ]
    * }
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putValid(complexBody: Models.FishUnion): Promise<msRest.RestResponse>;
-  putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putValid(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param complexBody Please put a salmon that looks like this:
+   * {
+   * "fishtype": "salmon",
+   * "species": "king",
+   * "length": 1,
+   * "age": 1,
+   * "location": "alaska",
+   * "iswild": true,
+   * "siblings": [
+   * {
+   * "fishtype": "shark",
+   * "species": "predator",
+   * "length": 20,
+   * "age": 6,
+   * "siblings": [
+   * {
+   * "fishtype": "salmon",
+   * "species": "coho",
+   * "length": 2,
+   * "age": 2,
+   * "location": "atlantic",
+   * "iswild": true,
+   * "siblings": [
+   * {
+   * "fishtype": "shark",
+   * "species": "predator",
+   * "length": 20,
+   * "age": 6
+   * },
+   * {
+   * "fishtype": "sawshark",
+   * "species": "dangerous",
+   * "length": 10,
+   * "age": 105
+   * }
+   * ]
+   * },
+   * {
+   * "fishtype": "sawshark",
+   * "species": "dangerous",
+   * "length": 10,
+   * "age": 105
+   * }
+   * ]
+   * },
+   * {
+   * "fishtype": "sawshark",
+   * "species": "dangerous",
+   * "length": 10,
+   * "age": 105
+   * }
+   * ]
+   * }
+   * @param callback The callback
+   */
   putValid(complexBody: Models.FishUnion, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param complexBody Please put a salmon that looks like this:
+   * {
+   * "fishtype": "salmon",
+   * "species": "king",
+   * "length": 1,
+   * "age": 1,
+   * "location": "alaska",
+   * "iswild": true,
+   * "siblings": [
+   * {
+   * "fishtype": "shark",
+   * "species": "predator",
+   * "length": 20,
+   * "age": 6,
+   * "siblings": [
+   * {
+   * "fishtype": "salmon",
+   * "species": "coho",
+   * "length": 2,
+   * "age": 2,
+   * "location": "atlantic",
+   * "iswild": true,
+   * "siblings": [
+   * {
+   * "fishtype": "shark",
+   * "species": "predator",
+   * "length": 20,
+   * "age": 6
+   * },
+   * {
+   * "fishtype": "sawshark",
+   * "species": "dangerous",
+   * "length": 10,
+   * "age": 105
+   * }
+   * ]
+   * },
+   * {
+   * "fishtype": "sawshark",
+   * "species": "dangerous",
+   * "length": 10,
+   * "age": 105
+   * }
+   * ]
+   * },
+   * {
+   * "fishtype": "sawshark",
+   * "species": "dangerous",
+   * "length": 10,
+   * "age": 105
+   * }
+   * ]
+   * }
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putValid(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -119,7 +232,6 @@ export class Polymorphicrecursive {
       putValidOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications

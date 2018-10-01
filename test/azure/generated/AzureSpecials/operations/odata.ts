@@ -28,14 +28,18 @@ export class Odata {
 
   /**
    * Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getWithFilter(): Promise<msRest.RestResponse>;
-  getWithFilter(options: Models.OdataGetWithFilterOptionalParams): Promise<msRest.RestResponse>;
+  getWithFilter(options?: Models.OdataGetWithFilterOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getWithFilter(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getWithFilter(options: Models.OdataGetWithFilterOptionalParams, callback: msRest.ServiceCallback<void>): void;
   getWithFilter(options?: Models.OdataGetWithFilterOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -45,7 +49,6 @@ export class Odata {
       getWithFilterOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications

@@ -20,9 +20,7 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRest.Ser
 
   /**
    * Initializes a new instance of the AutoRestParameterizedCustomHostTestClientContext class.
-   *
    * @param subscriptionId The subscription id with value 'test12'.
-   *
    * @param [options] The parameter options
    */
   constructor(subscriptionId: string, options?: Models.AutoRestParameterizedCustomHostTestClientOptions) {

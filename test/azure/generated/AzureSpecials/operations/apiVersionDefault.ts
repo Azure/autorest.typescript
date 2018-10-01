@@ -27,14 +27,18 @@ export class ApiVersionDefault {
 
   /**
    * GET method with api-version modeled in global settings.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getMethodGlobalValid(): Promise<msRest.RestResponse>;
-  getMethodGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getMethodGlobalValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getMethodGlobalValid(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getMethodGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getMethodGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -47,14 +51,18 @@ export class ApiVersionDefault {
 
   /**
    * GET method with api-version modeled in global settings.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getMethodGlobalNotProvidedValid(): Promise<msRest.RestResponse>;
-  getMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getMethodGlobalNotProvidedValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getMethodGlobalNotProvidedValid(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getMethodGlobalNotProvidedValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -67,14 +75,18 @@ export class ApiVersionDefault {
 
   /**
    * GET method with api-version modeled in global settings.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getPathGlobalValid(): Promise<msRest.RestResponse>;
-  getPathGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getPathGlobalValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getPathGlobalValid(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getPathGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getPathGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -87,14 +99,18 @@ export class ApiVersionDefault {
 
   /**
    * GET method with api-version modeled in global settings.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getSwaggerGlobalValid(): Promise<msRest.RestResponse>;
-  getSwaggerGlobalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getSwaggerGlobalValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getSwaggerGlobalValid(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getSwaggerGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getSwaggerGlobalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -104,7 +120,6 @@ export class ApiVersionDefault {
       getSwaggerGlobalValidOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications

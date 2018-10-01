@@ -18,7 +18,6 @@ export class AutoRestHttpInfrastructureTestServiceContext extends msRest.Service
 
   /**
    * Initializes a new instance of the AutoRestHttpInfrastructureTestServiceContext class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestHttpInfrastructureTestServiceOptions) {

@@ -5,68 +5,59 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as Models from "../models";
 import * as Mappers from "../models/pathsMappers";
 import * as Parameters from "../models/parameters";
-import { AutoRestParameterizedCustomHostTestClientContext } from "../autoRestParameterizedCustomHostTestClientContext";
+import { AutoRestParameterizedHostTestClientContext } from "../autoRestParameterizedHostTestClientContext";
 
 /** Class representing a Paths. */
 export class Paths {
-  private readonly client: AutoRestParameterizedCustomHostTestClientContext;
+  private readonly client: AutoRestParameterizedHostTestClientContext;
 
   /**
    * Create a Paths.
-   * @param {AutoRestParameterizedCustomHostTestClientContext} client Reference to the service client.
+   * @param {AutoRestParameterizedHostTestClientContext} client Reference to the service client.
    */
-  constructor(client: AutoRestParameterizedCustomHostTestClientContext) {
+  constructor(client: AutoRestParameterizedHostTestClientContext) {
     this.client = client;
   }
 
   /**
    * Get a 200 to test a valid base uri
-   *
-   * @param vault The vault name, e.g. https://myvault
-   *
-   * @param secret Secret value.
-   *
-   * @param keyName The key name with value 'key1'.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param accountName Account Name
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getEmpty(vault: string, secret: string, keyName: string): Promise<msRest.RestResponse>;
-  getEmpty(vault: string, secret: string, keyName: string, options: Models.PathsGetEmptyOptionalParams): Promise<msRest.RestResponse>;
-  getEmpty(vault: string, secret: string, keyName: string, callback: msRest.ServiceCallback<void>): void;
-  getEmpty(vault: string, secret: string, keyName: string, options: Models.PathsGetEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getEmpty(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getEmpty(accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param accountName Account Name
+   * @param callback The callback
+   */
+  getEmpty(accountName: string, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param accountName Account Name
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getEmpty(accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  getEmpty(accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        vault,
-        secret,
-        keyName,
+        accountName,
         options
       },
       getEmptyOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications
 const serializer = new msRest.Serializer(Mappers);
 const getEmptyOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
-  path: "customuri/{subscriptionId}/{keyName}",
+  path: "customuri",
   urlParameters: [
-    Parameters.vault,
-    Parameters.secret,
-    Parameters.dnsSuffix,
-    Parameters.keyName,
-    Parameters.subscriptionId
-  ],
-  queryParameters: [
-    Parameters.keyVersion
+    Parameters.accountName,
+    Parameters.host
   ],
   headerParameters: [
     Parameters.acceptLanguage

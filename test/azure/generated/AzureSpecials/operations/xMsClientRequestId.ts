@@ -28,14 +28,18 @@ export class XMsClientRequestId {
   /**
    * Get method that overwrites x-ms-client-request header with value
    * 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  get(): Promise<msRest.RestResponse>;
-  get(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  get(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   get(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   get(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   get(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -49,17 +53,24 @@ export class XMsClientRequestId {
   /**
    * Get method that overwrites x-ms-client-request header with value
    * 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   *
    * @param xMsClientRequestId This should appear as a method parameter, use value
    * '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  paramGet(xMsClientRequestId: string): Promise<msRest.RestResponse>;
-  paramGet(xMsClientRequestId: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  paramGet(xMsClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param xMsClientRequestId This should appear as a method parameter, use value
+   * '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
+   * @param callback The callback
+   */
   paramGet(xMsClientRequestId: string, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param xMsClientRequestId This should appear as a method parameter, use value
+   * '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   paramGet(xMsClientRequestId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   paramGet(xMsClientRequestId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -70,7 +81,6 @@ export class XMsClientRequestId {
       paramGetOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications

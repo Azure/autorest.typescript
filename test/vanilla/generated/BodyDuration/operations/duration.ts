@@ -27,14 +27,18 @@ export class Duration {
 
   /**
    * Get null duration value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DurationGetNullResponse>
    */
-  getNull(): Promise<Models.DurationGetNullResponse>;
-  getNull(options: msRest.RequestOptionsBase): Promise<Models.DurationGetNullResponse>;
+  getNull(options?: msRest.RequestOptionsBase): Promise<Models.DurationGetNullResponse>;
+  /**
+   * @param callback The callback
+   */
   getNull(callback: msRest.ServiceCallback<string>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
   getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DurationGetNullResponse> {
     return this.client.sendOperationRequest(
@@ -47,16 +51,21 @@ export class Duration {
 
   /**
    * Put a positive duration value
-   *
    * @param durationBody
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  putPositiveDuration(durationBody: string): Promise<msRest.RestResponse>;
-  putPositiveDuration(durationBody: string, options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putPositiveDuration(durationBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param durationBody
+   * @param callback The callback
+   */
   putPositiveDuration(durationBody: string, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param durationBody
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   putPositiveDuration(durationBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putPositiveDuration(durationBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -70,14 +79,18 @@ export class Duration {
 
   /**
    * Get a positive duration value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DurationGetPositiveDurationResponse>
    */
-  getPositiveDuration(): Promise<Models.DurationGetPositiveDurationResponse>;
-  getPositiveDuration(options: msRest.RequestOptionsBase): Promise<Models.DurationGetPositiveDurationResponse>;
+  getPositiveDuration(options?: msRest.RequestOptionsBase): Promise<Models.DurationGetPositiveDurationResponse>;
+  /**
+   * @param callback The callback
+   */
   getPositiveDuration(callback: msRest.ServiceCallback<string>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getPositiveDuration(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
   getPositiveDuration(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DurationGetPositiveDurationResponse> {
     return this.client.sendOperationRequest(
@@ -90,14 +103,18 @@ export class Duration {
 
   /**
    * Get an invalid duration value
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DurationGetInvalidResponse>
    */
-  getInvalid(): Promise<Models.DurationGetInvalidResponse>;
-  getInvalid(options: msRest.RequestOptionsBase): Promise<Models.DurationGetInvalidResponse>;
+  getInvalid(options?: msRest.RequestOptionsBase): Promise<Models.DurationGetInvalidResponse>;
+  /**
+   * @param callback The callback
+   */
   getInvalid(callback: msRest.ServiceCallback<string>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
   getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DurationGetInvalidResponse> {
     return this.client.sendOperationRequest(
@@ -107,7 +124,6 @@ export class Duration {
       getInvalidOperationSpec,
       callback) as Promise<Models.DurationGetInvalidResponse>;
   }
-
 }
 
 // Operation Specifications

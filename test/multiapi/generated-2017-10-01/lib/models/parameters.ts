@@ -16,69 +16,24 @@ export const acceptLanguage: msRest.OperationParameter = {
     }
   }
 };
-export const dnsSuffix: msRest.OperationURLParameter = {
-  parameterPath: "dnsSuffix",
+export const accountName: msRest.OperationURLParameter = {
+  parameterPath: "accountName",
   mapper: {
     required: true,
-    serializedName: "dnsSuffix",
+    serializedName: "accountName",
+    defaultValue: '',
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+export const host: msRest.OperationURLParameter = {
+  parameterPath: "host",
+  mapper: {
+    required: true,
+    serializedName: "host",
     defaultValue: 'host',
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-export const keyName: msRest.OperationURLParameter = {
-  parameterPath: "keyName",
-  mapper: {
-    required: true,
-    serializedName: "keyName",
-    type: {
-      name: "String"
-    }
-  }
-};
-export const keyVersion: msRest.OperationQueryParameter = {
-  parameterPath: [
-    "options",
-    "keyVersion"
-  ],
-  mapper: {
-    serializedName: "keyVersion",
-    defaultValue: 'v1',
-    type: {
-      name: "String"
-    }
-  }
-};
-export const secret: msRest.OperationURLParameter = {
-  parameterPath: "secret",
-  mapper: {
-    required: true,
-    serializedName: "secret",
-    defaultValue: '',
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-export const subscriptionId: msRest.OperationURLParameter = {
-  parameterPath: "subscriptionId",
-  mapper: {
-    required: true,
-    serializedName: "subscriptionId",
-    type: {
-      name: "String"
-    }
-  }
-};
-export const vault: msRest.OperationURLParameter = {
-  parameterPath: "vault",
-  mapper: {
-    required: true,
-    serializedName: "vault",
-    defaultValue: '',
     type: {
       name: "String"
     }

@@ -19,7 +19,6 @@ class AutoRestBoolTestService extends AutoRestBoolTestServiceContext {
 
   /**
    * Initializes a new instance of the AutoRestBoolTestService class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestBoolTestServiceOptions) {

@@ -19,7 +19,6 @@ class AutoRestSwaggerBATArrayService extends AutoRestSwaggerBATArrayServiceConte
 
   /**
    * Initializes a new instance of the AutoRestSwaggerBATArrayService class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATArrayServiceOptions) {

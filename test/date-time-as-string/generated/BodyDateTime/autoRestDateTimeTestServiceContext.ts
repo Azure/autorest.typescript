@@ -18,7 +18,6 @@ export class AutoRestDateTimeTestServiceContext extends msRest.ServiceClient {
 
   /**
    * Initializes a new instance of the AutoRestDateTimeTestServiceContext class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestDateTimeTestServiceOptions) {

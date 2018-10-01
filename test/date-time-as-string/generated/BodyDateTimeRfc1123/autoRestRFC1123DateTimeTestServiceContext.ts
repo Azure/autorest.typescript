@@ -18,7 +18,6 @@ export class AutoRestRFC1123DateTimeTestServiceContext extends msRest.ServiceCli
 
   /**
    * Initializes a new instance of the AutoRestRFC1123DateTimeTestServiceContext class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestRFC1123DateTimeTestServiceOptions) {

@@ -28,14 +28,18 @@ export class ApiVersionLocal {
 
   /**
    * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getMethodLocalValid(): Promise<msRest.RestResponse>;
-  getMethodLocalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getMethodLocalValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getMethodLocalValid(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getMethodLocalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getMethodLocalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -48,14 +52,18 @@ export class ApiVersionLocal {
 
   /**
    * Get method with api-version modeled in the method.  pass in api-version = null to succeed
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getMethodLocalNull(): Promise<msRest.RestResponse>;
-  getMethodLocalNull(options: Models.ApiVersionLocalGetMethodLocalNullOptionalParams): Promise<msRest.RestResponse>;
+  getMethodLocalNull(options?: Models.ApiVersionLocalGetMethodLocalNullOptionalParams): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getMethodLocalNull(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getMethodLocalNull(options: Models.ApiVersionLocalGetMethodLocalNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   getMethodLocalNull(options?: Models.ApiVersionLocalGetMethodLocalNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -68,14 +76,18 @@ export class ApiVersionLocal {
 
   /**
    * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getPathLocalValid(): Promise<msRest.RestResponse>;
-  getPathLocalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getPathLocalValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getPathLocalValid(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getPathLocalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getPathLocalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -88,14 +100,18 @@ export class ApiVersionLocal {
 
   /**
    * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
    */
-  getSwaggerLocalValid(): Promise<msRest.RestResponse>;
-  getSwaggerLocalValid(options: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getSwaggerLocalValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param callback The callback
+   */
   getSwaggerLocalValid(callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getSwaggerLocalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getSwaggerLocalValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
@@ -105,7 +121,6 @@ export class ApiVersionLocal {
       getSwaggerLocalValidOperationSpec,
       callback);
   }
-
 }
 
 // Operation Specifications

@@ -4,8 +4,8 @@
   "description": "AutoRestParameterizedCustomHostTestClient Library with typescript type definitions for node.js and browser.",
   "version": "1.0.0",
   "dependencies": {
-    "ms-rest-azure-js": "~0.17.164",
-    "ms-rest-js": "~0.22.422",
+    "ms-rest-azure-js": "~0.17.165",
+    "ms-rest-js": "~0.22.426",
     "@azure/multiapi-test-2018-02-01": "^1.0.0"
   },
   "keywords": [

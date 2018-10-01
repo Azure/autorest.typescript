@@ -99,28 +99,31 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        [JsonIgnore]
-        public virtual IEnumerable<MethodTS> MethodWrappableTemplateModels =>
-            MethodTemplateModels.Where(method => method.IsWrappable());
-
         public bool ContainsCompositeOrEnumTypeInParametersOrReturnType()
         {
             bool result = false;
-            foreach(var method in MethodTemplateModels)
+            IEnumerable<MethodTS> methods = MethodTemplateModels;
+            foreach(MethodTS method in methods)
             {
-                var parametersToBeScanned = method.LocalParameters.Where(l => l.IsRequired);
-                if (!method.OptionsParameterModelType.Name.EqualsIgnoreCase("RequestOptionsBase"))
+                result = !method.OptionsParameterModelType.Name.EqualsIgnoreCase("RequestOptionsBase");
+                if (result)
                 {
-                    result = true;
                     break;
                 }
-                result = parametersToBeScanned.Any(p => p.ModelType.IsCompositeOrEnumType());
 
+                IEnumerable<Parameter> parametersToBeScanned = method.LocalParameters.Where(l => l.IsRequired);
+                result = parametersToBeScanned.Any(p => p.ModelType.IsCompositeOrEnumType());
                 if (result)
+                {
                     break;
+                }
             }
+
             if (!result)
-                result = MethodTemplateModels.Any(m => m.ReturnType.Body.IsCompositeOrEnumType());
+            {
+                result = methods.Any(m => m.ReturnType.Body.IsCompositeOrEnumType());
+            }
+
             return result;
         }
 

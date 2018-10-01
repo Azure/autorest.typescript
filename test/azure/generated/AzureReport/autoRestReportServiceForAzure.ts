@@ -18,26 +18,27 @@ import { AutoRestReportServiceForAzureContext } from "./autoRestReportServiceFor
 class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext {
   /**
    * Initializes a new instance of the AutoRestReportServiceForAzure class.
-   *
    * @param credentials Credentials needed for the client to connect to Azure.
-   *
    * @param [options] The parameter options
    */
   constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestReportServiceForAzureOptions) {
     super(credentials, options);
   }
-  // methods on the client.
 
   /**
    * Get test coverage report
-   *
-   * @param [options] Optional Parameters.
-   *
-   * @returns A promise is returned
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetReportResponse>
    */
-  getReport(): Promise<Models.GetReportResponse>;
-  getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<Models.GetReportResponse>;
+  getReport(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<Models.GetReportResponse>;
+  /**
+   * @param callback The callback
+   */
   getReport(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
   getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   getReport(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.GetReportResponse> {
     return this.sendOperationRequest(

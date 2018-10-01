@@ -18,7 +18,6 @@ export class CompositeBoolIntContext extends msRest.ServiceClient {
 
   /**
    * Initializes a new instance of the CompositeBoolIntContext class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.CompositeBoolIntOptions) {

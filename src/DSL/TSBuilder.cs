@@ -17,12 +17,17 @@ namespace AutoRest.TypeScript.DSL
     {
         private const string newLine = "\n";
         private const string singleIndent = "  ";
+        private const int defaultCommentWordWrapWidth = 100;
 
+        private readonly int commentWordWrapWidth;
         private readonly StringBuilder contents = new StringBuilder();
         private readonly StringBuilder linePrefix = new StringBuilder();
         private readonly List<TSPosition> positions = new List<TSPosition>();
 
-        public const int multiLineCommentWordWrapWidth = 100;
+        public TSBuilder(int commentWordWrapWidth = defaultCommentWordWrapWidth)
+        {
+            this.commentWordWrapWidth = commentWordWrapWidth;
+        }
 
         public enum State
         {
@@ -31,6 +36,11 @@ namespace AutoRest.TypeScript.DSL
         }
 
         public State CurrentState { get; private set; }
+
+        /// <summary>
+        /// The word wrap width. A null wordWrapWidth indicates that no word wrapping should take place.
+        /// </summary>
+        public int? WordWrapWidth { get; set; }
 
         /// <summary>
         /// Create a position object that will track a certain position within the TSBuilder's content.
@@ -115,11 +125,6 @@ namespace AutoRest.TypeScript.DSL
         }
 
         /// <summary>
-        /// The word wrap width. A null wordWrapWidth indicates that no word wrapping should take place.
-        /// </summary>
-        public int? WordWrapWidth { get; set; }
-
-        /// <summary>
         /// Get the text that has been added to this TSBuilder.
         /// </summary>
         /// <returns>The text that has been added to this TSBuilder.</returns>
@@ -151,25 +156,6 @@ namespace AutoRest.TypeScript.DSL
             else
             {
                 linePrefix.Remove(linePrefix.Length - toRemoveLength, toRemoveLength);
-            }
-        }
-
-        /// <summary>
-        /// Invoke the provided action with the provided word wrap width.
-        /// </summary>
-        /// <param name="wordWrapWidth">The word wrap width to apply to the provided action.</param>
-        /// <param name="action">The action to invoke with the provided word wrap width.</param>
-        public void WithWordWrap(int wordWrapWidth, Action action)
-        {
-            int? previousWordWrapWidth = WordWrapWidth;
-            WordWrapWidth = wordWrapWidth;
-            try
-            {
-                action.Invoke();
-            }
-            finally
-            {
-                WordWrapWidth = previousWordWrapWidth;
             }
         }
 
@@ -226,32 +212,35 @@ namespace AutoRest.TypeScript.DSL
         /// <param name="line">The line to wrap.</param>
         /// <param name="addPrefix">Whether or not to add the line prefix to the wrapped lines.</param>
         /// <returns>The wrapped lines.</returns>
-        private IEnumerable<string> WordWrap(string line, bool addPrefix)
+        internal IEnumerable<string> WordWrap(string line, bool addPrefix)
         {
             List<string> lines = new List<string>();
 
-            if (WordWrapWidth == null)
+            if (!string.IsNullOrEmpty(line))
             {
-                lines.Add(line);
-            }
-            else
-            {
-                // Subtract an extra column from the word wrap width because columns generally are
-                // 1 -based instead of 0-based.
-                int wordWrapIndexMinusLinePrefixLength = WordWrapWidth.Value - (addPrefix ? linePrefix.Length : 0) - 1;
-                IEnumerable<string> wrappedLines = line.WordWrap(wordWrapIndexMinusLinePrefixLength);
-                foreach (string wrappedLine in wrappedLines.SkipLast(1))
+                if (WordWrapWidth == null)
                 {
-                    lines.Add(wrappedLine + newLine);
+                    lines.Add(line);
                 }
-
-                string lastWrappedLine = wrappedLines.Last();
-                if (!string.IsNullOrEmpty(lastWrappedLine))
+                else
                 {
-                    lines.Add(lastWrappedLine);
+                    // Subtract an extra column from the word wrap width because columns generally are
+                    // 1 -based instead of 0-based.
+                    int wordWrapIndexMinusLinePrefixLength = WordWrapWidth.Value - (addPrefix ? linePrefix.Length : 0) - 1;
+
+                    IEnumerable<string> wrappedLines = line.WordWrap(wordWrapIndexMinusLinePrefixLength);
+                    foreach (string wrappedLine in wrappedLines.SkipLast(1))
+                    {
+                        lines.Add(wrappedLine + newLine);
+                    }
+
+                    string lastWrappedLine = wrappedLines.Last();
+                    if (!string.IsNullOrEmpty(lastWrappedLine))
+                    {
+                        lines.Add(lastWrappedLine);
+                    }
                 }
             }
-
             return lines;
         }
 
@@ -339,16 +328,24 @@ namespace AutoRest.TypeScript.DSL
             {
                 Line(commentHeader);
                 WithAddedPrefix(" * ", () =>
-                WithWordWrap(multiLineCommentWordWrapWidth, () =>
                 {
-                    foreach (string line in lines)
+                    int? previousWordWrapWidth = WordWrapWidth;
+                    WordWrapWidth = commentWordWrapWidth;
+                    try
                     {
-                        if (line != null)
+                        foreach (string line in lines)
                         {
-                            Line(line);
+                            if (line != null)
+                            {
+                                Line(line);
+                            }
                         }
                     }
-                }));
+                    finally
+                    {
+                        WordWrapWidth = previousWordWrapWidth;
+                    }
+                });
                 Line(" */");
             }
         }
@@ -366,7 +363,7 @@ namespace AutoRest.TypeScript.DSL
         {
             if (commentAction != null)
             {
-                using (TSDocumentationComment comment = new TSDocumentationComment(this))
+                using (TSDocumentationComment comment = new TSDocumentationComment(this, commentWordWrapWidth))
                 {
                     commentAction.Invoke(comment);
                 }

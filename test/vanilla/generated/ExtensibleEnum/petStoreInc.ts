@@ -19,7 +19,6 @@ class PetStoreInc extends PetStoreIncContext {
 
   /**
    * Initializes a new instance of the PetStoreInc class.
-   *
    * @param [options] The parameter options
    */
   constructor(options?: Models.PetStoreIncOptions) {
