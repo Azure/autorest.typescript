@@ -44,6 +44,8 @@ namespace AutoRest.TypeScript
 
         /// <summary>
         /// The name of the npm package, e.g. "@azure/arm-storage".
+        /// In multi-api scenarios this is used as a prefix to the package name, with the API version appended.
+        /// e.g. "@azure/arm-storage-2018-02-01".
         /// </summary>
         public string PackageName { get; set; }
 
@@ -58,18 +60,18 @@ namespace AutoRest.TypeScript
         public bool Multiapi { get; set; }
 
         /// <summary>
-        /// The NPM package name of the "default" API version package.
-        /// e.g. "@azure/arm-storage-2018-03-01-preview"
-        /// This package will be used as a dependency in the "alias" package.
-        /// e.g. "@azure/arm-storage"
+        /// If true, generate the "alias" package containing the latest API version.
         /// </summary>
-        public string DefaultApiVersionPackage { get; set; }
+        public bool MultiapiLatest { get; set; }
 
-        /// <summary>The version of the package referenced in <see cref="DefaultApiVersionPackage" />.</summary>
+        /// <summary>
+        /// The NPM version of the package referenced in the "latest" alias package.
+        /// </summary>
         public string AliasedNpmVersion { get; set; }
 
         /// <summary>
         /// All API version subfolders present in this package.
+        /// Must be ordered from most recent to least recent, i.e. the first package in the array is considered to be the "latest".
         /// </summary>
         public string[] ApiVersions { get; set; }
 
@@ -104,6 +106,21 @@ namespace AutoRest.TypeScript
         /// If true, uses optional types for the response headers interface properties.
         /// </summary>
         public bool OptionalResponseHeaders { get; set; }
+
+        /// <summary>
+        /// Computes the NPM package referenced by an alias package.
+        /// </summary>
+        public string AliasedNpmPackageName
+        {
+            get
+            {
+                if (ApiVersions != null && ApiVersions.Length != 0)
+                {
+                    return PackageName + "-" + ApiVersions[0];
+                }
+                return null;
+            }
+        }
 
         /// <summary>
         /// If the PackageVersion property is null or empty, then first try to update it from an
@@ -142,10 +159,11 @@ namespace AutoRest.TypeScript
                             }
 
                             JObject packageJsonDeps = (JObject) packageJson["dependencies"];
-                            string aliasedPackageVersion = DefaultApiVersionPackage != null ? packageJsonDeps?[DefaultApiVersionPackage]?.ToString() : null;
+                            string aliasedPackageName = AliasedNpmPackageName;
+                            string aliasedPackageVersion = MultiapiLatest && aliasedPackageName != null ? packageJsonDeps?[aliasedPackageName]?.ToString() : null;
                             if (aliasedPackageVersion != null)
                             {
-                                Log(Category.Information, $"Using package version \"{aliasedPackageVersion}\" for alias package \"{DefaultApiVersionPackage}\" from existing package.json file.");
+                                Log(Category.Information, $"Using package version \"{aliasedPackageVersion}\" for alias package \"{MultiapiLatest}\" from existing package.json file.");
                                 AliasedNpmVersion = aliasedPackageVersion;
                             }
                         }

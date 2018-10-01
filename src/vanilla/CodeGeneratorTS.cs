@@ -45,7 +45,7 @@ namespace AutoRest.TypeScript
 
         protected async Task Generate<TCodeModel>(TemplateFactory<TCodeModel> templateFactory, TCodeModel codeModel) where TCodeModel : CodeModelTS
         {
-            if (IsNotDefaultApiVersion(codeModel))
+            if (!IsMultiapiLatest(codeModel))
             {
                 await WriteServiceClientCodeFile(templateFactory, codeModel);
                 await WriteServiceClientContextCodeFile(templateFactory, codeModel);
@@ -157,14 +157,9 @@ namespace AutoRest.TypeScript
             return codeModel.Settings.GenerateMetadata;
         }
 
-        protected bool IsNotDefaultApiVersion(CodeModelTS codeModel)
+        protected bool IsMultiapiLatest(CodeModelTS codeModel)
         {
-            return string.IsNullOrEmpty(codeModel.Settings.DefaultApiVersionPackage);
-        }
-
-        protected bool IsMultiApiVersionButNotDefaultVersion(CodeModelTS codeModel)
-        {
-            return codeModel.Settings.Multiapi && IsNotDefaultApiVersion(codeModel);
+            return codeModel.Settings.MultiapiLatest;
         }
 
         protected Task WriteServiceClientCodeFile<TCodeModel>(TemplateFactory<TCodeModel> templateFactory, TCodeModel codeModel) where TCodeModel : CodeModelTS

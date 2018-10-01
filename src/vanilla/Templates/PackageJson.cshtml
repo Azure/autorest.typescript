@@ -1,7 +1,7 @@
 ﻿@using AutoRest.Core.Utilities;
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
 {
-  "name": "@(Model.CurrentNpmPackageName)",
+  "name": "@(Model.PackageName)",
   "author": "Microsoft Corporation",
   "description": "@(Model.Name.ToPascalCase()) Library with typescript type definitions for node.js and browser.",
   "version": "@(Model.Settings.PackageVersion)",
@@ -16,7 +16,7 @@
     "isomorphic"
   ],
   "license": "MIT",
-@if (string.IsNullOrEmpty(Model.Settings.DefaultApiVersionPackage))
+@if (!Model.Settings.MultiapiLatest)
 {
 @:  "main": "./cjs/@(Model.Name.ToCamelCase()).js",
 @:  "module": "./esm/@(Model.Name.ToCamelCase()).js",

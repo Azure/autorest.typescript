@@ -37,7 +37,7 @@ namespace AutoRest.TypeScript.Model
         /// The value to use in the "name" property of package.json.
         /// </summary>
         [JsonIgnore]
-        public string CurrentNpmPackageName => Settings.Multiapi && string.IsNullOrEmpty(Settings.DefaultApiVersionPackage) ? ApiVersionPackageName : Settings.PackageName;
+        public string PackageName => Settings.Multiapi && !Settings.MultiapiLatest ? ApiVersionPackageName : Settings.PackageName;
 
         private bool _computedRequestContentType;
         private string _requestContentType;
@@ -403,10 +403,10 @@ namespace AutoRest.TypeScript.Model
         public virtual string PackageDependencies()
         {
             string deps = "\"ms-rest-js\": \"~0.22.422\"";
-            if (!string.IsNullOrEmpty(Settings.DefaultApiVersionPackage))
+            if (Settings.MultiapiLatest)
             {
                 string version = Settings.AliasedNpmVersion ?? "^1.0.0";
-                deps += ",\n" + $"\"{Settings.DefaultApiVersionPackage}\": \"{version}\"";
+                deps += ",\n" + $"\"{Settings.AliasedNpmPackageName}\": \"{version}\"";
             }
             return deps;
         }

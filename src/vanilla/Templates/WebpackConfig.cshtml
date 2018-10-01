@@ -11,7 +11,7 @@ const path = require('path');
  */
 const config = {
   mode: 'production',
-@if (!string.IsNullOrEmpty(Model.Settings.DefaultApiVersionPackage))
+@if (Model.Settings.MultiapiLatest)
 {
 <text>
   entry: './esm/index.js',
