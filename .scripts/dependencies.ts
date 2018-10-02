@@ -285,13 +285,14 @@ export function updateLocalDependencies(packageFolders: PackageFolder[], localDe
       runLocalRepositoryNPMScript(localDependency, localDependencyNPMScript);
     }
 
+    const dependenciesToRefresh: string[] = [];
     for (const localDependency of allLocalDependencies) {
       if (updateLocalDependency(packageFolder, localDependency, getNewDependencyVersion)) {
-        refreshPackageFolder = true;
+        dependenciesToRefresh.push(localDependency);
       }
     }
 
-    if (refreshPackageFolder) {
+    if (dependenciesToRefresh.length > 0) {
       const packageLockFilePath = resolvePath(packageFolderPath, "package-lock.json");
       if (exists(packageLockFilePath)) {
         log(packageLockFilePath, `Deleting...`);
@@ -300,8 +301,13 @@ export function updateLocalDependencies(packageFolders: PackageFolder[], localDe
 
       const nodeModulesFolderPath = resolvePath(packageFolderPath, "node_modules");
       if (exists(nodeModulesFolderPath)) {
-        log(nodeModulesFolderPath, `Deleting...`);
-        deleteFolder(nodeModulesFolderPath);
+        for (const dependencyToRefresh of dependenciesToRefresh) {
+          const dependencyNodeModuleFolderPath: string = resolvePath(nodeModulesFolderPath, dependencyToRefresh);
+          if (exists(dependencyNodeModuleFolderPath)) {
+            log(dependencyNodeModuleFolderPath, `Deleting...`);
+            deleteFolder(dependencyNodeModuleFolderPath);
+          }
+        }
       }
 
       execute("npm install", packageFolderPath);
