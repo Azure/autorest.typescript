@@ -51,16 +51,7 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        public string BundleVarName
-        {
-            get
-            {
-                string packageName = PackageName ?? "bundle";
-                int slashIndex = packageName.IndexOf("/");
-                string bundleVarName = packageName.Substring(slashIndex + 1).ToPascalCase();
-                return bundleVarName;
-            }
-        }
+        public string BundleVarName => BundleFilename.ToPascalCase();
 
         private bool _computedRequestContentType;
         private string _requestContentType;
