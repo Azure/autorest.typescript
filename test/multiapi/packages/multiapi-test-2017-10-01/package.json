@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "dependencies": {
     "ms-rest-azure-js": "~0.17.165",
-    "ms-rest-js": "~0.22.426"
+    "ms-rest-js": "~0.22.434"
   },
   "keywords": [
     "node",
