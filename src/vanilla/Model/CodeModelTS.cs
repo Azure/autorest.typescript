@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace AutoRest.TypeScript.Model
 {
@@ -45,7 +46,7 @@ namespace AutoRest.TypeScript.Model
             {
                 string packageName = PackageName ?? "bundle";
                 int slashIndex = packageName.IndexOf("/");
-                string bundleFilename = packageName.Substring(slashIndex + 1) + ".js";
+                string bundleFilename = packageName.Substring(slashIndex + 1);
                 return bundleFilename;
             }
         }

@@ -18,23 +18,24 @@
   "license": "MIT",
 @if (!Model.Settings.MultiapiLatest)
 {
-@:  "main": "./dist/@(Model.BundleFilename)",
+@:  "main": "./dist/@(Model.BundleFilename).js",
 @:  "module": "./esm/@(Model.Name.ToCamelCase()).js",
 @:  "types": "./esm/@(Model.Name.ToCamelCase()).d.ts",
 }
 else
 {
-@:  "main": "./dist/@(Model.BundleFilename)",
+@:  "main": "./dist/@(Model.BundleFilename).js",
 @:  "module": "./esm/index.js",
 @:  "types": "./esm/index.d.ts",
 }
   "devDependencies": {
     "tslib": "^1.9.3",
-    "typescript": "^3.0.3",
+    "typescript": "^3.1.1",
     "rollup": "^0.66.2",
     "rollup-plugin-commonjs": "^9.1.8",
     "rollup-plugin-json": "^3.1.0",
-    "rollup-plugin-node-resolve": "^3.4.0"
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "uglify-js": "^3.4.9"
   },
   "homepage": "@(Model.HomePageUrl)",
   "repository": {
@@ -45,7 +46,7 @@ else
     "url": "@(Model.BugsUrl)"
   },
   "scripts": {
-    "build": "tsc && rollup -c rollup.config.js",
+    "build": "tsc && rollup -c rollup.config.js && uglifyjs ./dist/@(Model.BundleFilename).js -c -m -o ./dist/@(Model.BundleFilename).min.js",
     "prepare": "npm run build"
   }
 }
