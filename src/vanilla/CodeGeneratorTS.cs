@@ -104,7 +104,7 @@ namespace AutoRest.TypeScript
             {
                 await WriteTsConfig(codeModel);
                 await WriteWebpackTsConfig(codeModel);
-                await WriteWebpackConfig(codeModel);
+                await WriteRollupConfig(codeModel);
                 await WriteNpmIgnore(codeModel);
             }
         }
@@ -250,9 +250,9 @@ namespace AutoRest.TypeScript
             return Write(new TsConfigWebpack { Model = codeModel }, "tsconfig.esm.json");
         }
 
-        protected Task WriteWebpackConfig(CodeModelTS codeModel)
+        protected Task WriteRollupConfig(CodeModelTS codeModel)
         {
-            return Write(new WebpackConfig { Model = codeModel }, "webpack.config.js");
+            return Write(new RollupConfig { Model = codeModel }, "rollup.config.js");
         }
 
         protected Task WriteNpmIgnore(CodeModelTS codeModel)

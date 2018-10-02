@@ -31,8 +31,10 @@ else
   "devDependencies": {
     "tslib": "^1.9.3",
     "typescript": "^3.0.3",
-    "webpack": "^4.17.2",
-    "webpack-cli": "^3.1.0"
+    "rollup": "^0.66.2",
+    "rollup-plugin-commonjs": "^9.1.8",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-resolve": "^3.4.0"
   },
   "homepage": "@(Model.HomePageUrl)",
   "repository": {
@@ -43,7 +45,7 @@ else
     "url": "@(Model.BugsUrl)"
   },
   "scripts": {
-    "build": "tsc && tsc -p tsconfig.esm.json && webpack",
+    "build": "tsc && tsc -p tsconfig.esm.json && rollup -c rollup.config.js",
     "prepare": "npm run build"
   }
 }

@@ -39,6 +39,28 @@ namespace AutoRest.TypeScript.Model
         [JsonIgnore]
         public string PackageName => Settings.Multiapi && !Settings.MultiapiLatest ? ApiVersionPackageName : Settings.PackageName;
 
+        public string BundleFilename
+        {
+            get
+            {
+                string packageName = PackageName ?? "bundle";
+                int slashIndex = packageName.IndexOf("/");
+                string bundleFilename = packageName.Substring(slashIndex + 1) + ".js";
+                return bundleFilename;
+            }
+        }
+
+        public string BundleVarName
+        {
+            get
+            {
+                string packageName = PackageName ?? "bundle";
+                int slashIndex = packageName.IndexOf("/");
+                string bundleVarName = packageName.Substring(slashIndex + 1).ToPascalCase();
+                return bundleVarName;
+            }
+        }
+
         private bool _computedRequestContentType;
         private string _requestContentType;
         public string RequestContentType
