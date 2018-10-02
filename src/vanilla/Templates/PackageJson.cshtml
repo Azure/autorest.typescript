@@ -18,15 +18,15 @@
   "license": "MIT",
 @if (!Model.Settings.MultiapiLatest)
 {
-@:  "main": "./cjs/@(Model.Name.ToCamelCase()).js",
+@:  "main": "./dist/@(Model.BundleFilename)",
 @:  "module": "./esm/@(Model.Name.ToCamelCase()).js",
-@:  "types": "./cjs/@(Model.Name.ToCamelCase()).d.ts",
+@:  "types": "./esm/@(Model.Name.ToCamelCase()).d.ts",
 }
 else
 {
-@:  "main": "./cjs/index.js",
+@:  "main": "./dist/@(Model.BundleFilename)",
 @:  "module": "./esm/index.js",
-@:  "types": "./cjs/index.d.ts",
+@:  "types": "./esm/index.d.ts",
 }
   "devDependencies": {
     "tslib": "^1.9.3",
@@ -45,7 +45,7 @@ else
     "url": "@(Model.BugsUrl)"
   },
   "scripts": {
-    "build": "tsc && tsc -p tsconfig.esm.json && rollup -c rollup.config.js",
+    "build": "tsc && rollup -c rollup.config.js",
     "prepare": "npm run build"
   }
 }

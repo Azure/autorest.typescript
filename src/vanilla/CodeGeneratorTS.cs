@@ -103,7 +103,6 @@ namespace AutoRest.TypeScript
             if (ShouldWriteMetadata(codeModel))
             {
                 await WriteTsConfig(codeModel);
-                await WriteWebpackTsConfig(codeModel);
                 await WriteRollupConfig(codeModel);
                 await WriteNpmIgnore(codeModel);
             }
@@ -243,11 +242,6 @@ namespace AutoRest.TypeScript
         protected Task WriteTsConfig(CodeModelTS codeModel)
         {
             return Write(new TsConfig { Model = codeModel }, "tsconfig.json");
-        }
-
-        protected Task WriteWebpackTsConfig(CodeModelTS codeModel)
-        {
-            return Write(new TsConfigWebpack { Model = codeModel }, "tsconfig.esm.json");
         }
 
         protected Task WriteRollupConfig(CodeModelTS codeModel)
