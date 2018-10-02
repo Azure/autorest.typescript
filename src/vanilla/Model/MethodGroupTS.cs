@@ -48,11 +48,7 @@ namespace AutoRest.TypeScript.Model
                     }
                     if (method.DefaultResponse != null)
                     {
-                        // We don't want to collect types contained within the error type
-                        if (method.DefaultResponse.Body is CompositeType)
-                        {
-                            modelNames.Add(method.DefaultResponse.Body.Name);
-                        }
+                        CollectReferencedModelNames(modelNames, method.DefaultResponse.Body);
                         CollectReferencedModelNames(modelNames, method.DefaultResponse.Headers);
                     }
                 }
