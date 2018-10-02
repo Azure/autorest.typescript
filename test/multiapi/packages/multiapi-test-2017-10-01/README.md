@@ -1,18 +1,17 @@
-# Microsoft Azure SDK for isomorphic javascript - AutoRestParameterizedHostTestClient
-This project provides an isomorphic javascript package for accessing Azure. Right now it supports:
-- node.js version 6.x.x or higher
-- browser javascript
+# Azure AutoRestParameterizedHostTestClient SDK for JavaScript
+This package contains **API version 2017-10-01** of AutoRestParameterizedHostTestClient.
+
+For other API versions, see https://npmjs.com/@azure/multiapi-test.
+
+## Currently supported environments
+- Node.js version 6.x.x or higher
+- Browser JavaScript
 
 ## How to Install
+```
+npm install @azure/multiapi-test-2017-10-01
+```
 
-- nodejs
-```
-npm install @azure/multiapi-test
-```
-- browser
-```html
-<script type="text/javascript" src="https://raw.githubusercontent.com/Azure/azure-sdk-for-js/master/lib/services/@azure/multiapi-test/autoRestParameterizedHostTestClientBundle.js"></script>
-```
 
 ## How to use
 
@@ -22,7 +21,7 @@ npm install @azure/multiapi-test
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
 import * as msRestNodeAuth from "ms-rest-nodeauth";
-import { AutoRestParameterizedHostTestClient, AutoRestParameterizedHostTestModels, AutoRestParameterizedHostTestMappers } from "@azure/multiapi-test";
+import { AutoRestParameterizedHostTestClient, AutoRestParameterizedHostTestModels, AutoRestParameterizedHostTestMappers } from "@azure/multiapi-test-2017-10-01";
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
 
 msRestNodeAuth.interactiveLogin().then((creds) => {
@@ -37,18 +36,18 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
 });
 ```
 
-### browser - Authentication, client creation and getEmpty paths as an example written in javascript.
+### browser - Authentication, client creation and getEmpty paths as an example written in JavaScript.
 
 - index.html
 ```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>@azure/multiapi-test sample</title>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/ms-rest-js/master/msRestBundle.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/ms-rest-js/master/msRestAzureBundle.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/azure-sdk-for-js/master/lib/services/@azure/multiapi-test/autoRestParameterizedHostTestClientBundle.js"></script>
-    <script type="text/javascript">
+    <title>@azure/multiapi-test-2017-10-01 sample</title>
+    <script src="node_modules/ms-rest-js/master/msRestBundle.js"></script>
+    <script src="node_modules/ms-rest-azure-js/master/msRestAzureBundle.js"></script>
+    <script src="node_modules/@azure/multiapi-test-2017-10-01/autoRestParameterizedHostTestClientBundle.js"></script>
+    <script>
       const subscriptionId = "<Subscription_Id>";
       const token = "<access_token>";
       const creds = new msRest.TokenCredentials(token);
