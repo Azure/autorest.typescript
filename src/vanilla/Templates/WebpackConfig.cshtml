@@ -11,10 +11,10 @@ const path = require('path');
  */
 const config = {
   mode: 'production',
-@if (!string.IsNullOrEmpty(Model.Settings.DefaultApiVersion))
+@if (Model.Settings.MultiapiLatest)
 {
 <text>
-  entry: './@(Model.Settings.DefaultApiVersion)/esm/lib/@(Model.Name.ToCamelCase()).js',
+  entry: './esm/index.js',
 </text>
 }
 else

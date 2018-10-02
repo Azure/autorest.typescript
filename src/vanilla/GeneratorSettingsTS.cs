@@ -43,7 +43,9 @@ namespace AutoRest.TypeScript
         public string SourceCodeFolderPath { get; set; } = "lib";
 
         /// <summary>
-        /// The name of the npm package.
+        /// The name of the npm package, e.g. "@azure/arm-storage".
+        /// In multi-api scenarios this is used as a prefix to the package name, with the API version appended.
+        /// e.g. "@azure/arm-storage-2018-02-01".
         /// </summary>
         public string PackageName { get; set; }
 
@@ -58,16 +60,25 @@ namespace AutoRest.TypeScript
         public bool Multiapi { get; set; }
 
         /// <summary>
-        /// The path to the "default" API version, e.g. 2016-04-01.
-        /// The presence of this property indicates that we are generating
-        /// the multi-api "root" artifacts, and not any TS source files.
+        /// If true, generate the "alias" package containing the latest API version.
         /// </summary>
-        public string DefaultApiVersion { get; set; }
+        public bool MultiapiLatest { get; set; }
+
+        /// <summary>
+        /// The NPM version of the package referenced in the "latest" alias package.
+        /// </summary>
+        public string AliasedNpmVersion { get; set; }
 
         /// <summary>
         /// All API version subfolders present in this package.
+        /// Must be ordered from most recent to least recent, i.e. the first package in the array is considered to be the "latest".
         /// </summary>
         public string[] ApiVersions { get; set; }
+
+        /// <summary>
+        /// The current API version being generated
+        /// </summary>
+        public string ApiVersion { get; set; }
 
         /// <summary>
         /// If true, outputs package.json, tsconfig.json, webpack.config.js, and README.md files.
@@ -95,6 +106,21 @@ namespace AutoRest.TypeScript
         /// If true, uses optional types for the response headers interface properties.
         /// </summary>
         public bool OptionalResponseHeaders { get; set; }
+
+        /// <summary>
+        /// Computes the NPM package referenced by an alias package.
+        /// </summary>
+        public string AliasedNpmPackageName
+        {
+            get
+            {
+                if (ApiVersions != null && ApiVersions.Length != 0)
+                {
+                    return PackageName + "-" + ApiVersions[0];
+                }
+                return null;
+            }
+        }
 
         /// <summary>
         /// If the PackageVersion property is null or empty, then first try to update it from an
@@ -131,6 +157,15 @@ namespace AutoRest.TypeScript
                                 PackageVersion = packageJsonVersion;
                                 Log(Category.Information, $"Got version \"{PackageVersion}\" for package \"{PackageName}\" from existing package.json file.");
                             }
+
+                            JObject packageJsonDeps = (JObject) packageJson["dependencies"];
+                            string aliasedPackageName = AliasedNpmPackageName;
+                            string aliasedPackageVersion = MultiapiLatest && aliasedPackageName != null ? packageJsonDeps?[aliasedPackageName]?.ToString() : null;
+                            if (aliasedPackageVersion != null)
+                            {
+                                Log(Category.Information, $"Using package version \"{aliasedPackageVersion}\" for alias package \"{MultiapiLatest}\" from existing package.json file.");
+                                AliasedNpmVersion = aliasedPackageVersion;
+                            }
                         }
                         catch (Exception e)
                         {
@@ -163,7 +198,7 @@ namespace AutoRest.TypeScript
             }
         }
 
-        private static string GetNPMPackageVersion(string packageName)
+        internal static string GetNPMPackageVersion(string packageName)
         {
             string filePath = ResolveFilePath("npm");
             string arguments = $"view {packageName} --json";
@@ -232,11 +267,6 @@ namespace AutoRest.TypeScript
             }
 
             return packageVersion;
-        }
-
-        private static void NpmProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private static string ResolveFilePath(string fileName)

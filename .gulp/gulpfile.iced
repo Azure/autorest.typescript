@@ -71,7 +71,7 @@ task 'test/azure-metadata', '', [], (done) ->
   done()
 
 task 'test/multiapi', '', [], (done) ->
-  cwd = "#{basefolder}/test/multiapi/generated"
+  cwd = "#{basefolder}/test/multiapi"
   await execute "npm install", {cwd: cwd, silent: false }, defer _
   done()
 

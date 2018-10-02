@@ -12,31 +12,8 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["es6"],
     "declaration": true,
-@if(!string.IsNullOrEmpty(Model.Settings.DefaultApiVersion))
-{
-<text>
-    "composite": true
-</text>
-}
-else
-{
-<text>
     "outDir": "./cjs"
-</text>
-}
   },
-@if(string.IsNullOrEmpty(Model.Settings.DefaultApiVersion))
-{
-<text>
   "include": ["./lib/**/*"],
   "exclude": ["node_modules"]
-</text>
-}
-else
-{
-<text>
-  "references": @(Model.GenerateTsConfigReferences()),
-  "include": []
-</text>
-}
 }
