@@ -2,10 +2,7 @@
 {
   "extends": "./tsconfig",
   "compilerOptions": {
-@if(string.IsNullOrEmpty(Model.Settings.DefaultApiVersion))
-{
-@:    "outDir": "./esm",
-}
+    "outDir": "./esm",
     "module": "es6",
     "target": "es5"
   }

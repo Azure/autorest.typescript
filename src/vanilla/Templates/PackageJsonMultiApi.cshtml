@@ -1,9 +1,0 @@
-﻿@using AutoRest.Core.Utilities;
-@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
-{
-  "private": true,
-  "sideEffects": false,
-  "main": "./cjs/lib/@(Model.Name.ToCamelCase()).js",
-  "module": "./esm/lib/@(Model.Name.ToCamelCase()).js",
-  "types": "./esm/lib/@(Model.Name.ToCamelCase()).d.ts"
-}

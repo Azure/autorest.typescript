@@ -1,8 +1,8 @@
 import * as assert from "assert";
 
-import * as vDefault from "./generated";
-import * as v2017_10 from "./generated/2017-10-01";
-import * as v2018_02 from "./generated/2018-02-01";
+import * as vDefault from "./packages/multiapi-test";
+import * as v2017_10 from "./packages/multiapi-test-2017-10-01";
+import * as v2018_02 from "./packages/multiapi-test-2018-02-01";
 
 describe("multi-api client", function () {
   it("should import a reasonable default", function () {

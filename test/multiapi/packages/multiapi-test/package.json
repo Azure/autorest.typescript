@@ -1,11 +1,12 @@
 {
-  "name": "",
+  "name": "@azure/multiapi-test",
   "author": "Microsoft Corporation",
-  "description": "AutoRestLongRunningOperationTestService Library with typescript type definitions for node.js and browser.",
-  "version": "",
+  "description": "AutoRestParameterizedCustomHostTestClient Library with typescript type definitions for node.js and browser.",
+  "version": "1.0.0",
   "dependencies": {
     "ms-rest-azure-js": "~0.17.165",
-    "ms-rest-js": "~0.22.426"
+    "ms-rest-js": "~0.22.426",
+    "@azure/multiapi-test-2018-02-01": "^1.0.0"
   },
   "keywords": [
     "node",
@@ -15,9 +16,9 @@
     "isomorphic"
   ],
   "license": "MIT",
-  "main": "./cjs/autoRestLongRunningOperationTestService.js",
-  "module": "./esm/autoRestLongRunningOperationTestService.js",
-  "types": "./cjs/autoRestLongRunningOperationTestService.d.ts",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "types": "./cjs/index.d.ts",
   "devDependencies": {
     "tslib": "^1.9.3",
     "typescript": "^3.0.3",

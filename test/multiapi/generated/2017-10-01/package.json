@@ -1,7 +1,0 @@
-{
-  "private": true,
-  "sideEffects": false,
-  "main": "./cjs/lib/autoRestParameterizedHostTestClient.js",
-  "module": "./esm/lib/autoRestParameterizedHostTestClient.js",
-  "types": "./esm/lib/autoRestParameterizedHostTestClient.d.ts"
-}

@@ -7,13 +7,13 @@ const path = require('path');
  */
 const config = {
   mode: 'production',
-  entry: './2018-02-01/esm/lib/autoRestParameterizedCustomHostTestClient.js',
+  entry: './esm/autoRestParameterizedHostTestClient.js',
   devtool: 'source-map',
   output: {
-    filename: 'autoRestParameterizedCustomHostTestClientBundle.js',
+    filename: 'autoRestParameterizedHostTestClientBundle.js',
     path: __dirname,
     libraryTarget: 'var',
-    library: 'autoRestParameterizedCustomHostTestClient'
+    library: 'autoRestParameterizedHostTestClient'
   },
   // "ms-rest-js" and "ms-rest-azure-js" are dependencies of this library.
   // Customer is expected to import/include this library in browser javascript

@@ -46,7 +46,7 @@ namespace AutoRest.TypeScript
 
         protected async Task Generate<TCodeModel>(TemplateFactory<TCodeModel> templateFactory, TCodeModel codeModel) where TCodeModel : CodeModelTS
         {
-            if (IsNotDefaultApiVersion(codeModel))
+            if (!IsMultiapiLatest(codeModel))
             {
                 await WriteServiceClientCodeFile(templateFactory, codeModel);
                 await WriteServiceClientContextCodeFile(templateFactory, codeModel);
@@ -80,6 +80,10 @@ namespace AutoRest.TypeScript
                     }
                 }
             }
+            else
+            {
+                await WriteAliasFile(codeModel);
+            }
 
             if (ShouldWritePackageJsonFile(codeModel))
             {
@@ -96,14 +100,7 @@ namespace AutoRest.TypeScript
                 await WriteLicenseFile(codeModel);
             }
 
-            if (ShouldWriteMultiApiMetadata(codeModel))
-            {
-                await WriteMultiApiPackageJson(codeModel);
-                await WriteMultiApiTsConfig(codeModel);
-                await WriteMultiApiWebpackTsConfig(codeModel);
-            }
-
-            if (ShouldWriteNonMultiApiMetadata(codeModel))
+            if (ShouldWriteMetadata(codeModel))
             {
                 await WriteTsConfig(codeModel);
                 await WriteWebpackTsConfig(codeModel);
@@ -143,45 +140,27 @@ namespace AutoRest.TypeScript
 
         protected bool ShouldWritePackageJsonFile(CodeModelTS codeModel)
         {
-            return (codeModel.Settings.GeneratePackageJson ?? codeModel.Settings.GenerateMetadata) &&
-                !IsMultiApiVersionButNotDefaultVersion(codeModel);
+            return (codeModel.Settings.GeneratePackageJson ?? codeModel.Settings.GenerateMetadata);
         }
 
         protected bool ShouldWriteReadmeMdFile(CodeModelTS codeModel)
         {
-            return (codeModel.Settings.GenerateReadmeMd ?? codeModel.Settings.GenerateMetadata) &&
-                !IsMultiApiVersionButNotDefaultVersion(codeModel);
+            return (codeModel.Settings.GenerateReadmeMd ?? codeModel.Settings.GenerateMetadata);
         }
 
         protected bool ShouldWriteLicenseFile(CodeModelTS codeModel)
         {
-            return (codeModel.Settings.GenerateLicenseTxt ?? codeModel.Settings.GenerateMetadata) &&
-                !IsMultiApiVersionButNotDefaultVersion(codeModel);
+            return (codeModel.Settings.GenerateLicenseTxt ?? codeModel.Settings.GenerateMetadata);
         }
 
-        protected bool ShouldWriteTSCongiFile(CodeModelTS codeModel)
+        protected bool ShouldWriteMetadata(CodeModelTS codeModel)
         {
-            return codeModel.Settings.GenerateMetadata && !IsMultiApiVersionButNotDefaultVersion(codeModel);
+            return codeModel.Settings.GenerateMetadata;
         }
 
-        protected bool IsNotDefaultApiVersion(CodeModelTS codeModel)
+        protected bool IsMultiapiLatest(CodeModelTS codeModel)
         {
-            return string.IsNullOrEmpty(codeModel.Settings.DefaultApiVersion);
-        }
-
-        protected bool IsMultiApiVersionButNotDefaultVersion(CodeModelTS codeModel)
-        {
-            return codeModel.Settings.Multiapi && IsNotDefaultApiVersion(codeModel);
-        }
-
-        protected bool ShouldWriteMultiApiMetadata(CodeModelTS codeModel)
-        {
-            return codeModel.Settings.GenerateMetadata && IsMultiApiVersionButNotDefaultVersion(codeModel);
-        }
-
-        protected bool ShouldWriteNonMultiApiMetadata(CodeModelTS codeModel)
-        {
-            return codeModel.Settings.GenerateMetadata && !IsMultiApiVersionButNotDefaultVersion(codeModel);
+            return codeModel.Settings.MultiapiLatest;
         }
 
         protected Task WriteServiceClientCodeFile<TCodeModel>(TemplateFactory<TCodeModel> templateFactory, TCodeModel codeModel) where TCodeModel : CodeModelTS
@@ -239,6 +218,13 @@ namespace AutoRest.TypeScript
             return Write(new MethodGroupTemplate { Model = methodGroup }, filePath);
         }
 
+        protected Task WriteAliasFile(CodeModelTS codeModel)
+        {
+            string filePath = GetSourceCodeFilePath(codeModel, "index.ts");
+            AliasIndexTemplate template = new AliasIndexTemplate { Model = codeModel };
+            return Write(template, filePath);
+        }
+
         protected Task WritePackageJsonFile(CodeModelTS codeModel)
         {
             return Write(new PackageJson { Model = codeModel }, "package.json");
@@ -252,21 +238,6 @@ namespace AutoRest.TypeScript
         protected Task WriteLicenseFile(CodeModelTS codeModel)
         {
             return Write(new LicenseTemplate { Model = codeModel }, "LICENSE.txt");
-        }
-
-        protected Task WriteMultiApiPackageJson(CodeModelTS codeModel)
-        {
-            return Write(new PackageJsonMultiApi() { Model = codeModel }, "package.json");
-        }
-
-        protected Task WriteMultiApiTsConfig(CodeModelTS codeModel)
-        {
-            return Write(new TsConfigMultiApi() { Model = codeModel }, "tsconfig.json");
-        }
-
-        protected Task WriteMultiApiWebpackTsConfig(CodeModelTS codeModel)
-        {
-            return Write(new TsConfigWebpackMultiApi() { Model = codeModel }, "tsconfig.esm.json");
         }
 
         protected Task WriteTsConfig(CodeModelTS codeModel)

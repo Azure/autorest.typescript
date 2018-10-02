@@ -1,10 +1,11 @@
 {
-  "name": "@azure/multiapi-test",
+  "name": "@azure/multiapi-test-2017-10-01",
   "author": "Microsoft Corporation",
-  "description": "AutoRestParameterizedCustomHostTestClient Library with typescript type definitions for node.js and browser.",
+  "description": "AutoRestParameterizedHostTestClient Library with typescript type definitions for node.js and browser.",
   "version": "1.0.0",
   "dependencies": {
-    "ms-rest-azure-js": "~0.17.165"
+    "ms-rest-azure-js": "~0.17.165",
+    "ms-rest-js": "~0.22.426"
   },
   "keywords": [
     "node",
@@ -14,9 +15,9 @@
     "isomorphic"
   ],
   "license": "MIT",
-  "main": "./2018-02-01/cjs/lib/autoRestParameterizedCustomHostTestClient.js",
-  "module": "./2018-02-01/esm/lib/autoRestParameterizedCustomHostTestClient.js",
-  "types": "./2018-02-01/cjs/lib/autoRestParameterizedCustomHostTestClient.d.ts",
+  "main": "./cjs/autoRestParameterizedHostTestClient.js",
+  "module": "./esm/autoRestParameterizedHostTestClient.js",
+  "types": "./cjs/autoRestParameterizedHostTestClient.d.ts",
   "devDependencies": {
     "tslib": "^1.9.3",
     "typescript": "^3.0.3",
@@ -32,7 +33,7 @@
     "url": "https://github.com/azure/azure-sdk-for-js/issues"
   },
   "scripts": {
-    "build": "tsc -b && webpack",
+    "build": "tsc && tsc -p tsconfig.esm.json && webpack",
     "prepare": "npm run build"
   }
 }

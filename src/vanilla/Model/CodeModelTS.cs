@@ -30,6 +30,15 @@ namespace AutoRest.TypeScript.Model
         [JsonIgnore]
         public string ContextName => Name + "Context";
 
+        [JsonIgnore]
+        public string ApiVersionPackageName => Settings.PackageName + "-" + Settings.ApiVersion;
+
+        /// <summary>
+        /// The value to use in the "name" property of package.json.
+        /// </summary>
+        [JsonIgnore]
+        public string PackageName => Settings.Multiapi && !Settings.MultiapiLatest ? ApiVersionPackageName : Settings.PackageName;
+
         private bool _computedRequestContentType;
         private string _requestContentType;
         public string RequestContentType
@@ -399,7 +408,13 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"~0.22.426\"";
+            string deps = "\"ms-rest-js\": \"~0.22.426\"";
+            if (Settings.MultiapiLatest)
+            {
+                string version = Settings.AliasedNpmVersion ?? "^1.0.0";
+                deps += ",\n" + $"\"{Settings.AliasedNpmPackageName}\": \"{version}\"";
+            }
+            return deps;
         }
 
         public virtual Method GetSampleMethod()
@@ -598,20 +613,6 @@ namespace AutoRest.TypeScript.Model
             {
                 builder.ExportAll("./operations");
             }
-            return builder.ToString();
-        }
-
-        public string GenerateTsConfigReferences()
-        {
-            TSBuilder builder = new TSBuilder();
-            builder.Array(arr =>
-            {
-                foreach (string version in Settings.ApiVersions)
-                {
-                    arr.Text($"{{ \"path\": \"{version}/tsconfig.json\" }}");
-                    arr.Text($"{{ \"path\": \"{version}/tsconfig.esm.json\" }}");
-                }
-            });
             return builder.ToString();
         }
 

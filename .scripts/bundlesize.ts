@@ -10,8 +10,7 @@ const exec = promisify(cp.exec);
 
 async function getBundleSize() {
   await new Promise((resolve) => {
-    const opts = { maxBuffer: 1024 * 1024, stdio: 'inherit' };
-    const child = cp.spawn(join(__dirname, "../node_modules/.bin/webpack"), ['-p'], opts);
+    const child = cp.spawn(join(__dirname, "../node_modules/.bin/webpack"), ['-p'], { stdio: 'inherit' });
     child.on('exit', () => resolve());
   });
   const status = fs.statSync(join(__dirname, "../testBundle.js"));
