@@ -50,12 +50,12 @@ async function main() {
   try {
     await execVerbose("git reset --hard " + branch);
     await execVerbose("npm i --ignore-scripts");
-    await execVerbose("npm i", { cwd: "./test/multiapi/generated" });
+    await execVerbose("npm i", { cwd: "./test/multiapi" });
     baseSize = await getBundleSize();
 
     await execVerbose("git reset --hard " + prCommit);
     await execVerbose("npm i --ignore-scripts");
-    await execVerbose("npm i", { cwd: "./test/multiapi/generated" });
+    await execVerbose("npm i", { cwd: "./test/multiapi" });
     headSize = await getBundleSize();
 
     const change = (headSize / baseSize) - 1;
