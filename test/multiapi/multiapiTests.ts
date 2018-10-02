@@ -6,7 +6,7 @@ import * as v2018_02 from "./packages/multiapi-test-2018-02-01";
 
 describe("multi-api client", function () {
   it("should import a reasonable default", function () {
-    assert.strictEqual(vDefault.AutoRestParameterizedCustomHostTestClient, v2018_02.AutoRestParameterizedCustomHostTestClient);
+    assert.strictEqual(vDefault.AutoRestParameterizedCustomHostTestClient.name, v2018_02.AutoRestParameterizedCustomHostTestClient.name);
   });
 
   it("should have different API versions", function () {
