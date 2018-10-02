@@ -16,6 +16,6 @@ export const packageFolders: dependencies.PackageFolder[] = [
     folderPath: dependencies.resolvePath(repositoryFolderPath, "test", "metadata", "generated", "BodyComplex")
   },
   {
-    folderPath: dependencies.resolvePath(repositoryFolderPath, "test", "multiapi", "generated")
+    folderPath: dependencies.resolvePath(repositoryFolderPath, "test", "multiapi")
   }
 ];
