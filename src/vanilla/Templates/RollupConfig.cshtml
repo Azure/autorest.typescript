@@ -1,8 +1,6 @@
 ﻿@using AutoRest.Core.Utilities;
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
 import nodeResolve from "rollup-plugin-node-resolve";
-import commonjs from "rollup-plugin-commonjs";
-import json from "rollup-plugin-json";
 
 /**
  * @@type {import('rollup').RollupFileOptions}
@@ -31,9 +29,7 @@ else
  */`
   },
   plugins: [
-    nodeResolve({ module: true }),
-    commonjs(),
-    json()
+    nodeResolve({ module: true })
   ]
 };
 
