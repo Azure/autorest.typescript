@@ -163,7 +163,7 @@ namespace AutoRest.TypeScript
                             string aliasedPackageVersion = MultiapiLatest && aliasedPackageName != null ? packageJsonDeps?[aliasedPackageName]?.ToString() : null;
                             if (aliasedPackageVersion != null)
                             {
-                                Log(Category.Information, $"Using package version \"{aliasedPackageVersion}\" for alias package \"{MultiapiLatest}\" from existing package.json file.");
+                                Log(Category.Information, $"Using package version \"{aliasedPackageVersion}\" for alias package \"{aliasedPackageName}\" from existing package.json file.");
                                 AliasedNpmVersion = aliasedPackageVersion;
                             }
                         }
