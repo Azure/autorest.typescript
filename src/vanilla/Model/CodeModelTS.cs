@@ -51,7 +51,25 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        public string BundleVarName => BundleFilename.ToPascalCase();
+        private static Regex npmScopePattern = new Regex(@"@(\w+)/");
+        public string BundleVarName
+        {
+            get
+            {
+                string varName = BundleFilename.ToPascalCase();
+                string packageName = PackageName;
+                if (!string.IsNullOrEmpty(packageName))
+                {
+                    Match match = npmScopePattern.Match(PackageName);
+                    if (match.Success)
+                    {
+                        string namespaceName = match.Groups[1].Value.ToPascalCase();
+                        varName = namespaceName + "." + varName;
+                    }
+                }
+                return varName;
+            }
+        }
 
         private bool _computedRequestContentType;
         private string _requestContentType;
