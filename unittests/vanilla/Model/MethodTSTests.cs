@@ -160,6 +160,36 @@ namespace AutoRest.TypeScript.Model
                 builder);
         }
 
+        [TestMethod]
+        public void GenerateOperationSpecWithFormDataParameterAndDifferentRequestContentTypeThanCodeModel()
+        {
+            CodeModelTS codeModel = CreateCodeModel();
+            CreateMethod(codeModel: codeModel, requestContentType: "application/json");
+            MethodTS method = CreateMethod(
+                codeModel: codeModel,
+                requestContentType: "fake-content-type",
+                parameters: new[] { CreateParameter(location: ParameterLocation.FormData) });
+
+            TSBuilder builder = GenerateOperationSpec(method);
+
+            AssertEx.EqualLines(
+                new[]
+                {
+                    "{",
+                    "  httpMethod: \"GET\",",
+                    "  formDataParameters: [",
+                    "    Parameters.fakeParameterName",
+                    "  ],",
+                    "  contentType: \"fake-content-type\",",
+                    "  responses: {",
+                    "    default: {}",
+                    "  },",
+                    "  serializer",
+                    "}"
+                },
+                builder);
+        }
+
         private static TSBuilder GenerateOperationSpec(MethodTS method)
         {
             TSBuilder builder = new TSBuilder();
