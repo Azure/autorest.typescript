@@ -29,7 +29,6 @@ else
 @:  "types": "./esm/index.d.ts",
 }
   "devDependencies": {
-    "tslib": "^1.9.3",
     "typescript": "^3.1.1",
     "rollup": "^0.66.2",
     "rollup-plugin-node-resolve": "^3.4.0",
@@ -46,5 +45,6 @@ else
   "scripts": {
     "build": "tsc && rollup -c rollup.config.js && uglifyjs ./dist/@(Model.BundleFilename).js -c -m -o ./dist/@(Model.BundleFilename).min.js",
     "prepare": "npm run build"
-  }
+  },
+  "sideEffects": false
 }

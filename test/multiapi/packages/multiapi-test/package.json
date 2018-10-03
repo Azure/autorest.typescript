@@ -6,6 +6,7 @@
   "dependencies": {
     "ms-rest-azure-js": "~0.17.165",
     "ms-rest-js": "~0.22.434",
+    "tslib": "^1.9.3",
     "@azure/multiapi-test-2018-02-01": "^1.0.0"
   },
   "keywords": [
@@ -20,7 +21,6 @@
   "module": "./esm/index.js",
   "types": "./esm/index.d.ts",
   "devDependencies": {
-    "tslib": "^1.9.3",
     "typescript": "^3.1.1",
     "rollup": "^0.66.2",
     "rollup-plugin-node-resolve": "^3.4.0",
@@ -37,5 +37,6 @@
   "scripts": {
     "build": "tsc && rollup -c rollup.config.js && uglifyjs ./dist/multiapi-test.js -c -m -o ./dist/multiapi-test.min.js",
     "prepare": "npm run build"
-  }
+  },
+  "sideEffects": false
 }
