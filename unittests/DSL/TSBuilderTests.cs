@@ -218,7 +218,7 @@ namespace AutoRest.TypeScript.DSL
             .Catch("error2", catchBlock1 =>
             {
             });
-            AssertLinesEqual(
+            AssertEx.EqualLines(
                 new[]
                 {
                     "try {",
@@ -241,7 +241,7 @@ namespace AutoRest.TypeScript.DSL
                 {
                 });
             });
-            AssertLinesEqual(
+            AssertEx.EqualLines(
                 new[]
                 {
                     "if (a) {",
@@ -268,7 +268,7 @@ namespace AutoRest.TypeScript.DSL
             .Else(elseBlock1 =>
             {
             }); ;
-            AssertLinesEqual(
+            AssertEx.EqualLines(
                 new[]
                 {
                     "if (a) {",
@@ -297,7 +297,7 @@ namespace AutoRest.TypeScript.DSL
             .ElseIf("a2", elseIfBlock1 =>
             {
             }); ;
-            AssertLinesEqual(
+            AssertEx.EqualLines(
                 new[]
                 {
                     "if (a1) {",
@@ -323,7 +323,7 @@ namespace AutoRest.TypeScript.DSL
                 {
                 });
             });
-            AssertLinesEqual(
+            AssertEx.EqualLines(
                 "if (true) {" + Environment.NewLine +
                 "  try {" + Environment.NewLine +
                 "  } catch (error) {" + Environment.NewLine +
@@ -345,7 +345,7 @@ namespace AutoRest.TypeScript.DSL
             .Catch("error", catchBlock1 =>
             {
             });
-            AssertLinesEqual(
+            AssertEx.EqualLines(
                 "try {" + Environment.NewLine +
                 "  if (true) {" + Environment.NewLine +
                 "  }" + Environment.NewLine +
@@ -376,7 +376,7 @@ namespace AutoRest.TypeScript.DSL
             TSBuilder builder = new TSBuilder();
             builder.WordWrapWidth = 20;
             IEnumerable<string> wrappedLines = builder.WordWrap("abcd", false);
-            AssertLinesEqual(
+            AssertEx.EqualLines(
                 "abcd",
                 wrappedLines);
         }
@@ -387,7 +387,7 @@ namespace AutoRest.TypeScript.DSL
             TSBuilder builder = new TSBuilder();
             builder.WordWrapWidth = 5;
             IEnumerable<string> wrappedLines = builder.WordWrap("abcdefghij", false);
-            AssertLinesEqual(
+            AssertEx.EqualLines(
                 new[]
                 {
                     "abcdefghij"
@@ -401,7 +401,7 @@ namespace AutoRest.TypeScript.DSL
             TSBuilder builder = new TSBuilder();
             builder.WordWrapWidth = 5;
             IEnumerable<string> wrappedLines = builder.WordWrap("abc def ghij", false);
-            AssertLinesEqual(
+            AssertEx.EqualLines(
                 new[]
                 {
                     "abc\n",
@@ -427,7 +427,7 @@ namespace AutoRest.TypeScript.DSL
             {
                 comment.Description("Hello");
             });
-            AssertLinesEqual(
+            AssertEx.EqualLines(
                 "/**\n" +
                 " * Hello\n" +
                 " */\n",
@@ -443,7 +443,7 @@ namespace AutoRest.TypeScript.DSL
                 comment.Description("This is my description.");
                 comment.Parameter("parameterName", "This is my parameter description.");
             });
-            AssertLinesEqual(
+            AssertEx.EqualLines(
                 "/**\n" +
                 " * This is my description.\n" +
                 " * @param parameterName This is my parameter description.\n" +
@@ -461,7 +461,7 @@ namespace AutoRest.TypeScript.DSL
             });
             // The leading whitespace in the description should be preserved, but the AutoRest
             // WordWrap() trims away leading whitespace.
-            AssertLinesEqual(
+            AssertEx.EqualLines(
                 "/**\n" +
                 " * This\n" +
                 " * is\n" +
@@ -482,7 +482,7 @@ namespace AutoRest.TypeScript.DSL
             // The AutoRest WordWrap() function seems to include the trailing newline character in
             // its wordwrap algorithm. " * This is" is 10 characters long, so it shouldn't get
             // wrapped, but AutoRest WordWrap() wraps it.
-            AssertLinesEqual(
+            AssertEx.EqualLines(
                 "/**\n" +
                 " * This\n" +
                 " * is my\n" +
@@ -494,81 +494,6 @@ namespace AutoRest.TypeScript.DSL
                 " * wrapped.\n" +
                 " */\n",
                 builder);
-        }
-
-        private static IEnumerable<string> Lines(string text)
-        {
-            return text?.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None);
-        }
-
-        private static void AssertLinesEqual(string expected, string actual)
-        {
-            AssertLinesEqual(Lines(expected), Lines(actual));
-        }
-
-        private static void AssertLinesEqual(string expected, TSBuilder actual)
-        {
-            AssertLinesEqual(Lines(expected), actual?.ToString());
-        }
-
-        private static void AssertLinesEqual(string expected, IEnumerable<string> actual)
-        {
-            AssertLinesEqual(Lines(expected), actual);
-        }
-
-        private static void AssertLinesEqual(IEnumerable<string> expected, string actual)
-        {
-            AssertLinesEqual(expected, Lines(actual));
-        }
-
-        private static void AssertLinesEqual(IEnumerable<string> expected, TSBuilder actual)
-        {
-            AssertLinesEqual(expected, actual?.ToString());
-        }
-
-        private static void AssertLinesEqual(IEnumerable<string> expected, IEnumerable<string> actual)
-        {
-            if (expected != actual)
-            {
-                Assert.IsNotNull(expected, "expected was null, but actual was not null.");
-                Assert.IsNotNull(actual, "actual was null but expected was not null.");
-
-                string[] expectedLines = expected.ToArray();
-                string[] actualLines = actual.ToArray();
-
-                int commonLineCount = Math.Min(expectedLines.Length, actualLines.Length);
-                for (int i = 0; i < commonLineCount; ++i)
-                {
-                    string expectedLine = expectedLines[i];
-                    string actualLine = actualLines[i];
-                    if (!expectedLine.Equals(actualLine))
-                    {
-                        int commonLineLength = Math.Min(expectedLine.Length, actualLine.Length);
-
-                        int differentIndex;
-                        for (differentIndex = 0; differentIndex < commonLineLength; ++differentIndex)
-                        {
-                            if (expectedLine[differentIndex] != actualLine[differentIndex])
-                            {
-                                break;
-                            }
-                        }
-
-                        Assert.Fail(
-                            $"Line {i + 1} doesn't match at character {differentIndex + 1}:\n" +
-                            $"expected: \"{expectedLine}\"\n" +
-                            $"actual:   \"{actualLine}\"");
-                    }
-                }
-
-                if (expectedLines.Length != actualLines.Length)
-                {
-                    Assert.Fail(
-                        $"Line counts don't match:\n" +
-                        $"expected: {expectedLines.Length}\n" +
-                        $"actual:   {actualLines.Length}");
-                }
-            }
         }
     }
 }
