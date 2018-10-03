@@ -10,7 +10,7 @@ const config = {
   output: {
     file: "./dist/multiapi-test-2018-02-01.js",
     format: "umd",
-    name: "MultiapiTest20180201",
+    name: "Azure.MultiapiTest20180201",
     sourcemap: true,
     globals: {
       "ms-rest-js": "msRest",
