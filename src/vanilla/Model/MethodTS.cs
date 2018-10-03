@@ -423,6 +423,7 @@ namespace AutoRest.TypeScript.Model
             AddParameterRefs(operationSpec, "queryParameters", logicalParameters.Where(p => p.Location == ParameterLocation.Query));
             AddParameterRefs(operationSpec, "headerParameters", logicalParameters.Where(p => p.Location == ParameterLocation.Header));
 
+            bool addContentTypeProperty = (!string.IsNullOrEmpty(RequestContentType) && RequestContentType != CodeModelTS.RequestContentType);
             if (Body != null)
             {
                 operationSpec.ObjectProperty("requestBody", requestBodyObject =>
@@ -437,10 +438,10 @@ namespace AutoRest.TypeScript.Model
                 if (formDataParameters.Any())
                 {
                     AddParameterRefs(operationSpec, "formDataParameters", formDataParameters);
-                    operationSpec.QuotedStringProperty("contentType", RequestContentType);
+                    addContentTypeProperty = true;
                 }
             }
-            if (!string.IsNullOrEmpty(RequestContentType) && RequestContentType != CodeModelTS.RequestContentType)
+            if (addContentTypeProperty)
             {
                 operationSpec.QuotedStringProperty("contentType", RequestContentType);
             }
