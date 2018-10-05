@@ -52,7 +52,7 @@ const client = new @(Model.Name)(creds, subscriptionId);
 @:      const subscriptionId = "<Subscription_Id>";
 @:      const token = "<access_token>";
 @:      const creds = new msRest.TokenCredentials(token);
-@:      const client = new @(Model.Name)(creds, subscriptionId);
+@:      const client = new @(Model.BundleVarName).@(Model.Name)(creds, subscriptionId);
 @:      @(Model.GenerateSampleMethod(true)).catch((err) => {
 @:        console.error(err);
 @:      });
