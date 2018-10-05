@@ -11,14 +11,12 @@ namespace AutoRest.TypeScript.Model
     {
         private static CodeModelTS CreateCodeModel(string outputFolder, string packageName = "arm-batch")
         {
-            return new CodeModelTS()
-            {
-                Settings = new GeneratorSettingsTS()
+            return Models.CodeModel(
+                settings: new GeneratorSettingsTS
                 {
                     OutputFolder = outputFolder,
                     PackageName = packageName
-                }
-            };
+                });
         }
 
         [TestMethod]
