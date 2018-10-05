@@ -11,7 +11,7 @@ npm install
 ```
 - browser
 ```html
-<script type="text/javascript" src="/autoRestComplexTestServiceBundle.js"></script>
+<script type="text/javascript" src="/dist/bundle.js"></script>
 ```
 
 ## How to use
@@ -42,13 +42,13 @@ client.basic.getValid().then((result) => {
 <html lang="en">
   <head>
     <title> sample</title>
-    <script type="text/javascript" src="./node_modules/ms-rest-js/msRestBundle.js"></script>
-    <script type="text/javascript" src="./autoRestComplexTestServiceBundle.js"></script>
+    <script type="text/javascript" src="./node_modules/ms-rest-js/dist/msRest.browser.js"></script>
+    <script type="text/javascript" src="./dist/bundle.js"></script>
     <script type="text/javascript">
       const subscriptionId = "<Subscription_Id>";
       const token = "<access_token>";
       const creds = new msRest.TokenCredentials(token);
-      const client = new AutoRestComplexTestService(creds, subscriptionId);
+      const client = new Bundle.AutoRestComplexTestService(creds, subscriptionId);
       client.basic.getValid().then((result) => {
         console.log("The result is:");
         console.log(result);
