@@ -1,14 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.Collections.Generic;
-using System.Linq;
-using AutoRest.Core;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
-using AutoRest.TypeScript.Azure.Model;
 using AutoRest.TypeScript.DSL;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AutoRest.TypeScript.Model
 {
@@ -73,16 +71,26 @@ namespace AutoRest.TypeScript.Model
 
         public static void CollectReferencedModelNames(ISet<string> closure, IModelType model)
         {
-            if (model is CompositeType composite && !closure.Contains(composite.Name))
+            if (model is CompositeType composite)
             {
-                closure.Add(composite.Name);
-                if (composite.BaseModelType != null)
+                string compositeName = composite.Name;
+                // Some services define a property of CloudError named CloudErrorBody, but we don't
+                // have a mapper for that in ms-rest-azure-js. In ms-rest-azure-js we only have a
+                // mapper for CloudError that contains all of the information that is contained by
+                // CloudErrorBody. Because of that, we can safely ignore CloudErrorBody.
+                if (!closure.Contains(compositeName) && compositeName != "CloudErrorBody")
                 {
-                    CollectReferencedModelNames(closure, composite.BaseModelType);
-                }
-                foreach (Property property in composite.Properties)
-                {
-                    CollectReferencedModelNames(closure, property.ModelType);
+                    closure.Add(compositeName);
+
+                    if (composite.BaseModelType != null)
+                    {
+                        CollectReferencedModelNames(closure, composite.BaseModelType);
+                    }
+
+                    foreach (Property property in composite.Properties)
+                    {
+                        CollectReferencedModelNames(closure, property.ModelType);
+                    }
                 }
             }
             else if (model is SequenceType sequence)
