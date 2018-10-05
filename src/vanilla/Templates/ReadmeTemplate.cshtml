@@ -11,12 +11,12 @@ This project provides an isomorphic javascript package. Right now it supports:
 @EmptyLine
 - nodejs
 ```
-npm install @(Model.Settings.PackageName)
+npm install @(Model.PackageName)
 ```
 - browser
 ```html
 @{
-@:<script type="text/javascript" src="@(Model.Settings.PackageName)/@(Model.Name.ToCamelCase())Bundle.js"></script>
+@:<script type="text/javascript" src="@(Model.PackageName)/dist/@(Model.BundleFilename).js"></script>
 }
 ```
 @EmptyLine
@@ -26,7 +26,7 @@ npm install @(Model.Settings.PackageName)
 @EmptyLine
 ```ts
 import * as msRest from "ms-rest-js";
-import { @(Model.Name), @(Model.ClientPrefix)Models, @(Model.ClientPrefix)Mappers } from "@(Model.Settings.PackageName)";
+import { @(Model.Name), @(Model.ClientPrefix)Models, @(Model.ClientPrefix)Mappers } from "@(Model.PackageName)";
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
 @EmptyLine
 const token = "<access_token>";
@@ -46,8 +46,8 @@ const client = new @(Model.Name)(creds, subscriptionId);
 @:<html lang="en">
 @:  <head>
 @:    <title>@(Model.Settings.PackageName) sample</title>
-@:    <script type="text/javascript" src="./node_modules/ms-rest-js/msRestBundle.js"></script>
-@:    <script type="text/javascript" src="./@(Model.Name.ToCamelCase())Bundle.js"></script>
+@:    <script type="text/javascript" src="./node_modules/ms-rest-js/dist/msRest.browser.js"></script>
+@:    <script type="text/javascript" src="./dist/@(Model.BundleFilename).js"></script>
 @:    <script type="text/javascript">
 @:      const subscriptionId = "<Subscription_Id>";
 @:      const token = "<access_token>";

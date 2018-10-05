@@ -76,9 +76,9 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
 @:<html lang="en">
 @:  <head>
 @:    <title>@(Model.PackageName) sample</title>
-@:    <script src="node_modules/ms-rest-js/master/msRestBundle.js"></script>
-@:    <script src="node_modules/ms-rest-azure-js/master/msRestAzureBundle.js"></script>
-@:    <script src="node_modules/@(Model.PackageName)/@(Model.Name.ToCamelCase())Bundle.js"></script>
+@:    <script src="node_modules/ms-rest-js/dist/msRest.browser.js"></script>
+@:    <script src="node_modules/ms-rest-azure-js/dist/msRestAzure.js"></script>
+@:    <script src="node_modules/@(Model.PackageName)/dist/@(Model.BundleFilename).js"></script>
 @:    <script>
 @:      const subscriptionId = "<Subscription_Id>";
 @:      const token = "<access_token>";
