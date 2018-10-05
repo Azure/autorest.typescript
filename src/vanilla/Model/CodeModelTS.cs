@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace AutoRest.TypeScript.Model
 {
@@ -38,6 +39,37 @@ namespace AutoRest.TypeScript.Model
         /// </summary>
         [JsonIgnore]
         public string PackageName => Settings.Multiapi && !Settings.MultiapiLatest ? ApiVersionPackageName : Settings.PackageName;
+
+        public string BundleFilename
+        {
+            get
+            {
+                string packageName = PackageName ?? "bundle";
+                int slashIndex = packageName.IndexOf("/");
+                string bundleFilename = packageName.Substring(slashIndex + 1);
+                return bundleFilename;
+            }
+        }
+
+        private static Regex npmScopePattern = new Regex(@"@(\w+)/");
+        public string BundleVarName
+        {
+            get
+            {
+                string varName = BundleFilename.ToPascalCase();
+                string packageName = PackageName;
+                if (!string.IsNullOrEmpty(packageName))
+                {
+                    Match match = npmScopePattern.Match(PackageName);
+                    if (match.Success)
+                    {
+                        string namespaceName = match.Groups[1].Value.ToPascalCase();
+                        varName = namespaceName + "." + varName;
+                    }
+                }
+                return varName;
+            }
+        }
 
         private bool _computedRequestContentType;
         private string _requestContentType;
@@ -408,7 +440,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            string deps = "\"ms-rest-js\": \"~0.22.434\"";
+            string deps = "\"ms-rest-js\": \"^1.0.439\",\n" + "\"tslib\": \"^1.9.3\"";
             if (Settings.MultiapiLatest)
             {
                 string version = Settings.AliasedNpmVersion ?? "^1.0.0";

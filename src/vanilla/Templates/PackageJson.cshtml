@@ -18,21 +18,21 @@
   "license": "MIT",
 @if (!Model.Settings.MultiapiLatest)
 {
-@:  "main": "./cjs/@(Model.Name.ToCamelCase()).js",
+@:  "main": "./dist/@(Model.BundleFilename).js",
 @:  "module": "./esm/@(Model.Name.ToCamelCase()).js",
-@:  "types": "./cjs/@(Model.Name.ToCamelCase()).d.ts",
+@:  "types": "./esm/@(Model.Name.ToCamelCase()).d.ts",
 }
 else
 {
-@:  "main": "./cjs/index.js",
+@:  "main": "./dist/@(Model.BundleFilename).js",
 @:  "module": "./esm/index.js",
-@:  "types": "./cjs/index.d.ts",
+@:  "types": "./esm/index.d.ts",
 }
   "devDependencies": {
-    "tslib": "^1.9.3",
-    "typescript": "^3.0.3",
-    "webpack": "^4.17.2",
-    "webpack-cli": "^3.1.0"
+    "typescript": "^3.1.1",
+    "rollup": "^0.66.2",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "uglify-js": "^3.4.9"
   },
   "homepage": "@(Model.HomePageUrl)",
   "repository": {
@@ -43,7 +43,9 @@ else
     "url": "@(Model.BugsUrl)"
   },
   "scripts": {
-    "build": "tsc && tsc -p tsconfig.esm.json && webpack",
+    "build": "tsc && rollup -c rollup.config.js && npm run minify",
+    "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/@(Model.BundleFilename).js.map'\" -o ./dist/@(Model.BundleFilename).min.js ./dist/@(Model.BundleFilename).js",
     "prepare": "npm run build"
-  }
+  },
+  "sideEffects": false
 }

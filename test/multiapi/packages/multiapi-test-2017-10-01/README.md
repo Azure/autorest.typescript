@@ -37,6 +37,7 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
 ```
 
 ### browser - Authentication, client creation and getEmpty paths as an example written in JavaScript.
+See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to Azure in the browser.
 
 - index.html
 ```html
@@ -44,21 +45,30 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
 <html lang="en">
   <head>
     <title>@azure/multiapi-test-2017-10-01 sample</title>
-    <script src="node_modules/ms-rest-js/master/msRestBundle.js"></script>
-    <script src="node_modules/ms-rest-azure-js/master/msRestAzureBundle.js"></script>
-    <script src="node_modules/@azure/multiapi-test-2017-10-01/autoRestParameterizedHostTestClientBundle.js"></script>
+    <script src="node_modules/ms-rest-js/dist/msRest.browser.js"></script>
+    <script src="node_modules/ms-rest-azure-js/dist/msRestAzure.js"></script>
+    <script src="node_modules/ms-rest-browserauth/dist/msAuth.js"></script>
+    <script src="node_modules/@azure/multiapi-test-2017-10-01/dist/multiapi-test-2017-10-01.js"></script>
     <script>
       const subscriptionId = "<Subscription_Id>";
-      const token = "<access_token>";
-      const creds = new msRest.TokenCredentials(token);
-      const client = new AutoRestParameterizedHostTestClient(creds, undefined, subscriptionId);
-      const accountName = "testaccountName";
-      client.paths.getEmpty(accountName).then((result) => {
-        console.log("The result is:");
-        console.log(result);
-      }).catch((err) => {
-        console.log('An error ocurred:');
-        console.error(err);
+      const authManager = new msAuth.AuthManager({
+        clientId: "<client id for your Azure AD app>",
+        tenant: "<optional tenant for your organization>"
+      });
+      authManager.finalizeLogin().then((res) => {
+        if (!res.isLoggedIn) {
+          // may cause redirects
+          authManager.login();
+        }
+        const client = new Azure.MultiapiTest20171001.AutoRestParameterizedHostTestClient(res.creds, subscriptionId);
+        const accountName = "testaccountName";
+        client.paths.getEmpty(accountName).then((result) => {
+          console.log("The result is:");
+          console.log(result);
+        }).catch((err) => {
+          console.log('An error occurred:');
+          console.error(err);
+        });
       });
     </script>
   </head>

@@ -1,0 +1,36 @@
+﻿@using AutoRest.Core.Utilities;
+@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
+import nodeResolve from "rollup-plugin-node-resolve";
+
+/**
+ * @@type {import('rollup').RollupFileOptions}
+ */
+const config = {
+@if (Model.Settings.MultiapiLatest)
+{
+@:  input: './esm/index.js',
+}
+else
+{
+@:  input: './esm/@(Model.Name.ToCamelCase()).js',
+}
+  external: ["ms-rest-js", "ms-rest-azure-js"],
+  output: {
+    file: "./dist/@(Model.BundleFilename).js",
+    format: "umd",
+    name: "@(Model.BundleVarName)",
+    sourcemap: true,
+    globals: {
+      "ms-rest-js": "msRest",
+      "ms-rest-azure-js": "msRestAzure"
+    },
+    banner: `/*
+@Header(" * ")
+ */`
+  },
+  plugins: [
+    nodeResolve({ module: true })
+  ]
+};
+
+export default config;
