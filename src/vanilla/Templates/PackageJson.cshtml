@@ -43,7 +43,8 @@ else
     "url": "@(Model.BugsUrl)"
   },
   "scripts": {
-    "build": "tsc && rollup -c rollup.config.js && uglifyjs ./dist/@(Model.BundleFilename).js -c -m -o ./dist/@(Model.BundleFilename).min.js",
+    "build": "tsc && rollup -c rollup.config.js && npm run minify",
+    "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/@(Model.BundleFilename).js.map'\" -o ./dist/@(Model.BundleFilename).min.js ./dist/@(Model.BundleFilename).js",
     "prepare": "npm run build"
   },
   "sideEffects": false

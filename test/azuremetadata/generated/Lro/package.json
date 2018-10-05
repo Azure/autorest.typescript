@@ -34,7 +34,8 @@
     "url": "https://github.com/azure/azure-sdk-for-js/issues"
   },
   "scripts": {
-    "build": "tsc && rollup -c rollup.config.js && uglifyjs ./dist/bundle.js -c -m -o ./dist/bundle.min.js",
+    "build": "tsc && rollup -c rollup.config.js && npm run minify",
+    "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/bundle.js.map'\" -o ./dist/bundle.min.js ./dist/bundle.js",
     "prepare": "npm run build"
   },
   "sideEffects": false

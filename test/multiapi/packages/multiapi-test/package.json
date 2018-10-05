@@ -35,7 +35,8 @@
     "url": "https://github.com/azure/azure-sdk-for-js/issues"
   },
   "scripts": {
-    "build": "tsc && rollup -c rollup.config.js && uglifyjs ./dist/multiapi-test.js -c -m -o ./dist/multiapi-test.min.js",
+    "build": "tsc && rollup -c rollup.config.js && npm run minify",
+    "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/multiapi-test.js.map'\" -o ./dist/multiapi-test.min.js ./dist/multiapi-test.js",
     "prepare": "npm run build"
   },
   "sideEffects": false
