@@ -86,5 +86,39 @@ namespace AutoRest.TypeScript
                 }
             }
         }
+
+        /// <summary>
+        /// Assert that the two IEnumerables have equal contents in the same order.
+        /// </summary>
+        /// <typeparam name="T">The type of the values contained by the IEnumerables.</typeparam>
+        /// <param name="expected">The expected IEnumerable.</param>
+        /// <param name="actual">The actual IEnumerable.</param>
+        public static void HaveEqualContents<T>(IEnumerable<T> expected, IEnumerable<T> actual)
+        {
+            if (expected != actual)
+            {
+                if (expected == null)
+                {
+                    Assert.Fail("Expected the IEnumerable to be null.");
+                }
+
+                if (actual == null)
+                {
+                    Assert.Fail("Expected the IEnumerable to be not null.");
+                }
+
+                IEnumerator<T> lhsEnumerator = expected.GetEnumerator();
+                IEnumerator<T> rhsEnumerator = actual.GetEnumerator();
+
+                int index = 0;
+                // The & operator (instead of &&) ensures that both enumerators call MoveNext
+                // because it doesn't short-circuit if lhsEnumerator.MoveNext returns false.
+                while (lhsEnumerator.MoveNext() & rhsEnumerator.MoveNext())
+                {
+                    Assert.AreEqual(lhsEnumerator.Current, rhsEnumerator.Current, $"Values at index {index} are not equal");
+                }
+                Assert.AreEqual(expected.Count(), actual.Count(), "The two IEnumerables don't have the same number of values.");
+            }
+        }
     }
 }

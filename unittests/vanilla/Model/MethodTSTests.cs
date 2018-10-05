@@ -3,10 +3,8 @@
 // 
 
 using AutoRest.Core.Model;
-using AutoRest.Core.Utilities;
 using AutoRest.TypeScript.DSL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 
 namespace AutoRest.TypeScript.Model
 {
@@ -16,7 +14,7 @@ namespace AutoRest.TypeScript.Model
         [TestMethod]
         public void GenerateOperationSpecWithMinimalGetMethod()
         {
-            MethodTS method = CreateMethod();
+            MethodTS method = Models.Method();
 
             TSBuilder builder = GenerateOperationSpec(method);
 
@@ -37,7 +35,7 @@ namespace AutoRest.TypeScript.Model
         [TestMethod]
         public void GenerateOperationSpecWithMinimalPostMethod()
         {
-            MethodTS method = CreateMethod(httpMethod: HttpMethod.Post);
+            MethodTS method = Models.Method(httpMethod: HttpMethod.Post);
 
             TSBuilder builder = GenerateOperationSpec(method);
 
@@ -58,8 +56,8 @@ namespace AutoRest.TypeScript.Model
         [TestMethod]
         public void GenerateOperationSpecWithSameRequestContentTypeAsCodeModel()
         {
-            CodeModelTS codeModel = CreateCodeModel();
-            MethodTS method = CreateMethod(codeModel: codeModel, requestContentType: "application/json");
+            CodeModelTS codeModel = Models.CodeModel();
+            MethodTS method = Models.Method(codeModel: codeModel, requestContentType: "application/json");
             Assert.AreEqual(method.RequestContentType, codeModel.RequestContentType);
 
             TSBuilder builder = GenerateOperationSpec(method);
@@ -81,9 +79,9 @@ namespace AutoRest.TypeScript.Model
         [TestMethod]
         public void GenerateOperationSpecWithDifferentRequestContentTypeThanCodeModel()
         {
-            CodeModelTS codeModel = CreateCodeModel();
-            CreateMethod(codeModel: codeModel, requestContentType: "application/json");
-            MethodTS method = CreateMethod(codeModel: codeModel, requestContentType: "blah");
+            CodeModelTS codeModel = Models.CodeModel();
+            Models.Method(codeModel: codeModel, requestContentType: "application/json");
+            MethodTS method = Models.Method(codeModel: codeModel, requestContentType: "blah");
             Assert.AreNotEqual(method.RequestContentType, codeModel.RequestContentType);
 
             TSBuilder builder = GenerateOperationSpec(method);
@@ -106,11 +104,11 @@ namespace AutoRest.TypeScript.Model
         [TestMethod]
         public void GenerateOperationSpecWithHeaderParameter()
         {
-            CodeModelTS codeModel = CreateCodeModel();
-            MethodTS method = CreateMethod(
+            CodeModelTS codeModel = Models.CodeModel();
+            MethodTS method = Models.Method(
                 codeModel: codeModel,
                 requestContentType: "fake-content-type",
-                parameters: new[] { CreateParameter(location: ParameterLocation.Header) });
+                parameters: new[] { Models.Parameter(name: "fakeParameterName", location: ParameterLocation.Header) });
 
             TSBuilder builder = GenerateOperationSpec(method);
 
@@ -134,11 +132,11 @@ namespace AutoRest.TypeScript.Model
         [TestMethod]
         public void GenerateOperationSpecWithFormDataParameter()
         {
-            CodeModelTS codeModel = CreateCodeModel();
-            MethodTS method = CreateMethod(
+            CodeModelTS codeModel = Models.CodeModel();
+            MethodTS method = Models.Method(
                 codeModel: codeModel,
                 requestContentType: "fake-content-type",
-                parameters: new[] { CreateParameter(location: ParameterLocation.FormData) });
+                parameters: new[] { Models.Parameter(name: "fakeParameterName", location: ParameterLocation.FormData) });
             
             TSBuilder builder = GenerateOperationSpec(method);
 
@@ -163,12 +161,12 @@ namespace AutoRest.TypeScript.Model
         [TestMethod]
         public void GenerateOperationSpecWithFormDataParameterAndDifferentRequestContentTypeThanCodeModel()
         {
-            CodeModelTS codeModel = CreateCodeModel();
-            CreateMethod(codeModel: codeModel, requestContentType: "application/json");
-            MethodTS method = CreateMethod(
+            CodeModelTS codeModel = Models.CodeModel();
+            Models.Method(codeModel: codeModel, requestContentType: "application/json");
+            MethodTS method = Models.Method(
                 codeModel: codeModel,
                 requestContentType: "fake-content-type",
-                parameters: new[] { CreateParameter(location: ParameterLocation.FormData) });
+                parameters: new[] { Models.Parameter(name: "fakeParameterName", location: ParameterLocation.FormData) });
 
             TSBuilder builder = GenerateOperationSpec(method);
 
@@ -198,69 +196,6 @@ namespace AutoRest.TypeScript.Model
                 method.GenerateOperationSpec(tsObject);
             });
             return builder;
-        }
-
-        private static CodeModelTS CreateCodeModel()
-        {
-            return DependencyInjection.New<CodeModelTS>();
-        }
-
-        private static MethodGroupTS CreateMethodGroup(CodeModelTS codeModel = null)
-        {
-            if (codeModel == null)
-            {
-                codeModel = CreateCodeModel();
-            }
-
-            MethodGroupTS methodGroup = DependencyInjection.New<MethodGroupTS>();
-            codeModel.Add(methodGroup);
-
-            return methodGroup;
-        }
-
-        private static MethodTS CreateMethod(
-            HttpMethod httpMethod = HttpMethod.Get,
-            string requestContentType = null,
-            CodeModelTS codeModel = null,
-            MethodGroupTS methodGroup = null,
-            IEnumerable<ParameterTS> parameters = null)
-        {
-            if (codeModel == null)
-            {
-                codeModel = CreateCodeModel();
-            }
-
-            MethodTS method = DependencyInjection.New<MethodTS>();
-            if (methodGroup == null)
-            {
-                methodGroup = CreateMethodGroup(codeModel);
-            }
-            method.MethodGroup = methodGroup;
-
-            codeModel.Add(method);
-
-            method.HttpMethod = httpMethod;
-            method.RequestContentType = requestContentType;
-
-            if (parameters != null)
-            {
-                foreach (ParameterTS parameter in parameters)
-                {
-                    method.Add(parameter);
-                }
-            }
-
-            return method;
-        }
-
-        private static ParameterTS CreateParameter(string name = "fakeParameterName", ParameterLocation location = ParameterLocation.None)
-        {
-            ParameterTS parameter = DependencyInjection.New<ParameterTS>();
-
-            parameter.Name = name;
-            parameter.Location = location;
-
-            return parameter;
         }
     }
 }
