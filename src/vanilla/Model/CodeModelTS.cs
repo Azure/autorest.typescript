@@ -440,7 +440,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            string deps = "\"ms-rest-js\": \"^1.0.439\",\n" + "\"tslib\": \"^1.9.3\"";
+            string deps = "\"ms-rest-js\": \"^1.0.443\",\n" + "\"tslib\": \"^1.9.3\"";
             if (Settings.MultiapiLatest)
             {
                 string version = Settings.AliasedNpmVersion ?? "^1.0.0";

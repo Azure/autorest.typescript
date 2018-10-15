@@ -222,7 +222,7 @@ function updateGeneratedPackageDependencyVersion(codeFilePath: string, dependenc
       codeFilePath,
       codeFileContents,
       dependencyName,
-      new RegExp(`\\\\"${dependencyName}\\\\": \\\\"(.*)\\\\"`),
+      new RegExp(`\\\\"${dependencyName}\\\\": \\\\"(.*?)\\\\"`),
       `\\"${dependencyName}\\": \\"${newDependencyVersion}\\"`,
       newDependencyVersion);
 
@@ -230,7 +230,7 @@ function updateGeneratedPackageDependencyVersion(codeFilePath: string, dependenc
       codeFilePath,
       codeFileContents,
       dependencyName,
-      new RegExp(`"${dependencyName}": "(.*)"`),
+      new RegExp(`"${dependencyName}": "(.*?)"`),
       `"${dependencyName}": "${newDependencyVersion}"`,
       newDependencyVersion);
 
@@ -272,8 +272,6 @@ export function updateLocalDependencies(packageFolders: PackageFolder[], localDe
   for (const packageFolder of packageFolders) {
     const packageFolderPath: string = packageFolder.folderPath;
 
-    let refreshPackageFolder: boolean = forceRefresh;
-
     const packageJson: any = getPackageJson(resolvePath(packageFolderPath, "package.json"));
 
     const localDependencies: string[] = getClonedRepositories(packageJson.dependencies);
@@ -292,7 +290,7 @@ export function updateLocalDependencies(packageFolders: PackageFolder[], localDe
       }
     }
 
-    if (dependenciesToRefresh.length > 0) {
+    if (forceRefresh || dependenciesToRefresh.length > 0) {
       const packageLockFilePath = resolvePath(packageFolderPath, "package-lock.json");
       if (exists(packageLockFilePath)) {
         log(packageLockFilePath, `Deleting...`);
@@ -347,7 +345,7 @@ export function getLocalDependencyVersion(dependencyName: string): string {
 }
 
 export function getPreviewDependencyVersion(dependencyName: string): string | undefined {
-  let version: string | undefined = addTildePrefix(getNpmPackageVersion(dependencyName, "preview"));
+  let version: string | undefined = addCaretPrefix(getNpmPackageVersion(dependencyName, "preview"));
   if (!version) {
     version = getLatestDependencyVersion(dependencyName);
   }
@@ -355,9 +353,9 @@ export function getPreviewDependencyVersion(dependencyName: string): string | un
 }
 
 export function getLatestDependencyVersion(dependencyName: string): string | undefined {
-  return addTildePrefix(getNpmPackageVersion(dependencyName, "latest"));
+  return addCaretPrefix(getNpmPackageVersion(dependencyName, "latest"));
 }
 
-function addTildePrefix(version: string | undefined): string | undefined {
-  return version ? `~${version}` : version;
+function addCaretPrefix(version: string | undefined): string | undefined {
+  return version ? `^${version}` : version;
 }
