@@ -275,6 +275,15 @@ namespace AutoRest.TypeScript
                 mapper.QuotedStringProperty("xmlName", xmlName);
             }
 
+            if (isXML && !string.IsNullOrEmpty(serializedName))
+            {
+                string xmlPrefix = property?.XmlPrefix ?? type?.XmlPrefix;
+                if (!string.IsNullOrEmpty(xmlPrefix))
+                {
+                    serializedName = $"{xmlPrefix}:{serializedName}";
+                }
+            }
+
             if (property != null)
             {
                 isReadOnly = property.IsReadOnly;
@@ -367,7 +376,7 @@ namespace AutoRest.TypeScript
 
             void applyConstraints(TSObject obj)
             {
-                bool useClientSideValidation = (bool) Settings.Instance.CustomSettings[CodeModelTS.ClientSideValidationSettingName];
+                bool useClientSideValidation = (bool) (Settings.Instance?.CustomSettings[CodeModelTS.ClientSideValidationSettingName] ?? false);
                 if (useClientSideValidation && constraints != null && constraints.Any())
                 {
                     obj.ObjectProperty("constraints", constraintsObject =>

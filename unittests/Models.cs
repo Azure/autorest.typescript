@@ -97,9 +97,17 @@ namespace AutoRest.TypeScript
             return response;
         }
 
-        public static CompositeTypeTS CompositeType(string name = null, IEnumerable<PropertyTS> properties = null)
+        public static CompositeTypeTS CompositeType(string name = null, IEnumerable<PropertyTS> properties = null, string xmlPrefix = null)
         {
             CompositeTypeTS compositeType = new CompositeTypeTS(name);
+
+            if (!string.IsNullOrEmpty(xmlPrefix))
+            {
+                compositeType.XmlProperties = new XmlProperties
+                {
+                    Prefix = xmlPrefix,
+                };
+            }
 
             if (properties != null)
             {
@@ -112,12 +120,20 @@ namespace AutoRest.TypeScript
             return compositeType;
         }
 
-        public static PropertyTS Property(string name = null, IModelType type = null)
+        public static PropertyTS Property(string name = null, IModelType type = null, string xmlPrefix = null)
         {
             PropertyTS property = DependencyInjection.New<PropertyTS>();
 
             property.Name = name;
             property.ModelType = type;
+
+            if (!string.IsNullOrEmpty(xmlPrefix))
+            {
+                property.XmlProperties = new XmlProperties
+                {
+                    Prefix = xmlPrefix,
+                };
+            }
 
             return property;
         }
