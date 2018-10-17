@@ -269,19 +269,21 @@ namespace AutoRest.TypeScript
                 constraints = parameter.Constraints;
             }
 
+            string xmlPrefix = !isXML ? null : property?.XmlPrefix ?? type?.XmlPrefix;
+
             bool addXmlNameFromParameterValue = isXML && !string.IsNullOrEmpty(xmlName) && xmlName != serializedName;
             if (addXmlNameFromParameterValue)
             {
+                if (!string.IsNullOrEmpty(xmlPrefix))
+                {
+                    xmlName = $"{xmlPrefix}:{xmlName}";
+                }
                 mapper.QuotedStringProperty("xmlName", xmlName);
             }
 
-            if (isXML && !string.IsNullOrEmpty(serializedName))
+            if (isXML && !string.IsNullOrEmpty(serializedName) && !string.IsNullOrEmpty(xmlPrefix))
             {
-                string xmlPrefix = property?.XmlPrefix ?? type?.XmlPrefix;
-                if (!string.IsNullOrEmpty(xmlPrefix))
-                {
-                    serializedName = $"{xmlPrefix}:{serializedName}";
-                }
+                serializedName = $"{xmlPrefix}:{serializedName}";
             }
 
             if (property != null)
@@ -303,6 +305,14 @@ namespace AutoRest.TypeScript
                     string propertyXmlName = property.ModelType.XmlProperties?.Name ?? property.XmlName;
                     if (!addXmlNameFromParameterValue && !string.IsNullOrEmpty(propertyXmlName))
                     {
+                        if (!string.IsNullOrEmpty(xmlPrefix))
+                        {
+                            propertyXmlName = $"{xmlPrefix}:{propertyXmlName}";
+                        }
+
+                        // For some reason we can't omit xmlName in this scenario if it is equal to
+                        // serializedName. It might have to do with whether or not xmlElementName
+                        // is present, but I'm not sure at this time.
                         mapper.QuotedStringProperty("xmlName", propertyXmlName);
                     }
                 }

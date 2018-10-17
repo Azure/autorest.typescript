@@ -97,7 +97,7 @@ namespace AutoRest.TypeScript
             return response;
         }
 
-        public static CompositeTypeTS CompositeType(string name = null, IEnumerable<PropertyTS> properties = null, string xmlPrefix = null)
+        public static CompositeTypeTS CompositeType(string name = null, IEnumerable<PropertyTS> properties = null, string xmlPrefix = null, string xmlName = null)
         {
             CompositeTypeTS compositeType = new CompositeTypeTS(name);
 
@@ -105,6 +105,7 @@ namespace AutoRest.TypeScript
             {
                 compositeType.XmlProperties = new XmlProperties
                 {
+                    Name = xmlName,
                     Prefix = xmlPrefix,
                 };
             }
@@ -120,17 +121,18 @@ namespace AutoRest.TypeScript
             return compositeType;
         }
 
-        public static PropertyTS Property(string name = null, IModelType type = null, string xmlPrefix = null)
+        public static PropertyTS Property(string name = null, IModelType type = null, string xmlPrefix = null, string xmlName = null)
         {
             PropertyTS property = DependencyInjection.New<PropertyTS>();
 
             property.Name = name;
             property.ModelType = type;
 
-            if (!string.IsNullOrEmpty(xmlPrefix))
+            if (!string.IsNullOrEmpty(xmlPrefix) || !string.IsNullOrEmpty(xmlName))
             {
                 property.XmlProperties = new XmlProperties
                 {
+                    Name = xmlName,
                     Prefix = xmlPrefix,
                 };
             }
