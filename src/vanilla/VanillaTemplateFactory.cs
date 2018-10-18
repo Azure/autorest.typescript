@@ -25,11 +25,6 @@ namespace AutoRest.TypeScript
             return new ModelIndexTemplate { Model = codeModel };
         }
 
-        public override Template<CodeModelTS> CreateMappersIndexTemplate(CodeModelTS codeModel)
-        {
-            return new MapperIndexTemplate { Model = codeModel };
-        }
-
         public override Template<CodeModelTS> CreateReadmeTemplate(CodeModelTS codeModel)
         {
             return new ReadmeTemplate { Model = codeModel };

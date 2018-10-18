@@ -10,11 +10,19 @@ namespace AutoRest.TypeScript
 {
     public static class Models
     {
-        public static CodeModelTS CodeModel(GeneratorSettingsTS settings = null)
+        public static CodeModelTS CodeModel(GeneratorSettingsTS settings = null, IEnumerable<CompositeTypeTS> modelTypes = null)
         {
             CodeModelTS codeModel = DependencyInjection.New<CodeModelTS>();
 
             codeModel.Settings = settings;
+
+            if (modelTypes != null)
+            {
+                foreach (CompositeTypeTS modelType in modelTypes)
+                {
+                    codeModel.Add(modelType);
+                }
+            }
 
             return codeModel;
         }

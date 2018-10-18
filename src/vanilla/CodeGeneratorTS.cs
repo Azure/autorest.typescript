@@ -54,9 +54,9 @@ namespace AutoRest.TypeScript
                 if (ShouldWriteModelsFiles(codeModel))
                 {
                     await WriteModelsIndexFile(templateFactory.CreateModelsIndexTemplate(codeModel));
-                    if (ShouldWriteMappersIndexFile(codeModel))
+                    if (codeModel.HasMappers())
                     {
-                        await WriteMappersIndexFile(templateFactory.CreateMappersIndexTemplate(codeModel));
+                        await WriteMappersIndexFile(codeModel);
                     }
                 }
 
@@ -122,14 +122,7 @@ namespace AutoRest.TypeScript
 
         public static bool ShouldWriteModelsFiles(CodeModelTS codeModel)
         {
-            return ShouldWriteMappersIndexFile(codeModel) || codeModel.MethodsWithCustomResponseType.Any();
-        }
-
-        public static bool ShouldWriteMappersIndexFile(CodeModelTS codeModel)
-        {
-            // We should always generate a mappers index file in the Azure scenario because we
-            // export CloudError from that file.
-            return codeModel.ModelTypes.Any() || codeModel.Settings.AzureArm == true;
+            return codeModel.HasMappers() || codeModel.MethodsWithCustomResponseType.Any();
         }
 
         public static bool ShouldWriteMethodGroupFiles(CodeModelTS codeModel)
@@ -185,11 +178,10 @@ namespace AutoRest.TypeScript
             return Write(modelIndexTemplate, filePath);
         }
 
-        protected Task WriteMappersIndexFile<T>(Template<T> mappersIndexTemplate) where T : CodeModelTS
+        protected Task WriteMappersIndexFile(CodeModelTS codeModel)
         {
-            CodeModelTS codeModel = mappersIndexTemplate.Model;
             string filePath = GetSourceCodeFilePath(codeModel, "models", "mappers.ts");
-            return Write(mappersIndexTemplate, filePath);
+            return Write(new MapperIndexTemplate { Model = codeModel }, filePath);
         }
 
         protected Task WriteParameterMappersFile(CodeModelTS codeModel)
