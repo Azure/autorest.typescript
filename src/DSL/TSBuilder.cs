@@ -642,31 +642,5 @@ namespace AutoRest.TypeScript.DSL
         {
             Line($"export const {exportedVariableName} = {exportSource};");
         }
-
-        public void ForEachOf(string iterationVariableName, string iterableSource, Action<TSBlock> blockAction)
-        {
-            Line($"foreach (const {iterationVariableName} of {iterableSource}) {{");
-            Indent(() =>
-            {
-                using (TSBlock block = new TSBlock(this))
-                {
-                    blockAction.Invoke(block);
-                }
-            });
-            Line($"}}");
-        }
-
-        public void ForEachIn(string iterationVariableName, string iterableSource, Action<TSBlock> blockAction)
-        {
-            Line($"foreach (const {iterationVariableName} in {iterableSource}) {{");
-            Indent(() =>
-            {
-                using (TSBlock block = new TSBlock(this))
-                {
-                    blockAction.Invoke(block);
-                }
-            });
-            Line($"}}");
-        }
     }
 }
