@@ -177,7 +177,7 @@ namespace AutoRest.TypeScript.Model
                 {
                     builder.ImportAllAs("Models", "../models");
                 }
-                if (CodeGeneratorTS.ShouldWriteMappersIndexFile(codeModel))
+                if (codeModel.HasMappers())
                 {
                     builder.ImportAllAs("Mappers", $"../models/{MappersModuleName}");
                 }

@@ -9,8 +9,6 @@ namespace AutoRest.TypeScript
 {
     public abstract class TemplateFactory<TCodeModel> where TCodeModel : CodeModelTS
     {
-        public abstract Template<TCodeModel> CreateMappersIndexTemplate(TCodeModel codeModel);
-
         public abstract Template<TCodeModel> CreateModelsIndexTemplate(TCodeModel codeModel);
 
         public abstract Template<TCodeModel> CreateServiceClientContextTemplate(TCodeModel codeModel);

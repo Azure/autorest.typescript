@@ -637,5 +637,10 @@ namespace AutoRest.TypeScript.DSL
         {
             Line($"export * from \"{modulePath}\";");
         }
+
+        public void ExportConst(string exportedVariableName, string exportSource)
+        {
+            Line($"export const {exportedVariableName} = {exportSource};");
+        }
     }
 }

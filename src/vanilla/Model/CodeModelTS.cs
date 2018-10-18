@@ -605,7 +605,7 @@ namespace AutoRest.TypeScript.Model
                 builder.ImportAllAs("Models", "./models");
             }
 
-            if (CodeGeneratorTS.ShouldWriteMappersIndexFile(this))
+            if (HasMappers())
             {
                 builder.ImportAllAs("Mappers", "./models/mappers");
             }
@@ -635,7 +635,7 @@ namespace AutoRest.TypeScript.Model
                 {
                     exports.ExportAs("Models", $"{ClientPrefix}Models");
                 }
-                if (CodeGeneratorTS.ShouldWriteMappersIndexFile(this))
+                if (HasMappers())
                 {
                     exports.ExportAs("Mappers", $"{ClientPrefix}Mappers");
                 }
@@ -675,6 +675,60 @@ namespace AutoRest.TypeScript.Model
                 method.GenerateResponseType(builder);
             }
             return builder.ToString();
+        }
+
+        public virtual bool HasMappers()
+        {
+            return OrderedMapperTemplateModels.Any();
+        }
+
+        public virtual string GenerateMapperIndex(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+            CompositeTypeTS[] orderedMapperTemplateModels = OrderedMapperTemplateModels.ToArray();
+
+            ImportMsRestForMappers(builder, orderedMapperTemplateModels);
+
+            builder.Line(emptyLine);
+
+            ExportOrderedMapperModels(builder, orderedMapperTemplateModels, emptyLine);
+
+            ExportPolymorphicDictionary(builder, emptyLine);
+
+            return builder.ToString();
+        }
+
+        public void ImportMsRestForMappers(TSBuilder builder, IEnumerable<CompositeTypeTS> orderedMapperModels)
+        {
+            if (orderedMapperModels.Any())
+            {
+                builder.ImportAllAs("msRest", "ms-rest-js");
+            }
+        }
+
+        public void ExportOrderedMapperModels(TSBuilder builder, IEnumerable<CompositeTypeTS> orderedMapperModels, string emptyLine)
+        {
+            foreach (CompositeTypeTS mapperModel in OrderedMapperTemplateModels)
+            {
+                builder.Line(emptyLine);
+
+                mapperModel.ConstructModelMapper(builder);
+            }
+        }
+
+        public void ExportPolymorphicDictionary(TSBuilder builder, string emptyLine)
+        {
+            string polymorphicDictionary = PolymorphicDictionary;
+            if (!string.IsNullOrEmpty(polymorphicDictionary))
+            {
+                builder.Line(emptyLine);
+                builder.Line($"export const discriminators = {{");
+                builder.Indent(() =>
+                {
+                    builder.Line(polymorphicDictionary);
+                });
+                builder.Line($"}};");
+            }
         }
     }
 }

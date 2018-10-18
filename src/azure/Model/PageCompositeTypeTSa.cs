@@ -48,13 +48,11 @@ namespace AutoRest.TypeScript.Azure.Model
             return builder.ToString();
         }
 
-        public override string ConstructModelMapper()
+        public override void ConstructModelMapper(TSBuilder builder)
         {
-            TSBuilder builder = new TSBuilder();
             builder.Text($"export const {Name}: msRest.CompositeMapper = ");
             ClientModelExtensions.ConstructMapper(builder, this, SerializedName, null, isPageable: true, expandComposite: true, isXML: CodeModel?.ShouldGenerateXmlSerialization == true);
             builder.Line(";");
-            return builder.ToString();
         }
     }
 }

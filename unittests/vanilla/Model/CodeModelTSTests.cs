@@ -3,20 +3,22 @@
 // 
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace AutoRest.TypeScript.Model
 {
     [TestClass]
     public class CodeModelTSTests
     {
-        private static CodeModelTS CreateCodeModel(string outputFolder, string packageName = "arm-batch")
+        private static CodeModelTS CreateCodeModel(string outputFolder = null, string packageName = "arm-batch", IEnumerable<CompositeTypeTS> modelTypes = null)
         {
             return Models.CodeModel(
                 settings: new GeneratorSettingsTS
                 {
                     OutputFolder = outputFolder,
                     PackageName = packageName
-                });
+                },
+                modelTypes: modelTypes);
         }
 
         [TestMethod]
@@ -66,6 +68,36 @@ namespace AutoRest.TypeScript.Model
         {
             CodeModelTS codeModel = CreateCodeModel("C:/Users/daschult/Sources/azure-sdk-for-js/packages/arm-batch", "");
             Assert.AreEqual("https://github.com/azure/azure-sdk-for-js/tree/master/packages/arm-batch", codeModel.HomePageUrl);
+        }
+
+        [TestMethod]
+        public void GenerateServiceClientImportsWithEmptyCodeModel()
+        {
+            CodeModelTS codeModel = CreateCodeModel();
+            AssertEx.EqualLines(
+                new[]
+                {
+                    "import * as msRest from \"ms-rest-js\";",
+                    "import { Context } from \"./context\";",
+                    ""
+                },
+                codeModel.GenerateServiceClientImports());
+        }
+
+        [TestMethod]
+        public void GenerateServiceClientImportsWithOneModelType()
+        {
+            CodeModelTS codeModel = CreateCodeModel(modelTypes: new[] { Models.CompositeType(name: "MyFakeType") });
+            AssertEx.EqualLines(
+                new[]
+                {
+                    "import * as msRest from \"ms-rest-js\";",
+                    "import * as Models from \"./models\";",
+                    "import * as Mappers from \"./models/mappers\";",
+                    "import { Context } from \"./context\";",
+                    ""
+                },
+                codeModel.GenerateServiceClientImports());
         }
     }
 }
