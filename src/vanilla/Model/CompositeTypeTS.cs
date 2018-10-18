@@ -327,13 +327,6 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        public virtual string ConstructModelMapper()
-        {
-            TSBuilder builder = new TSBuilder();
-            ConstructModelMapper(builder);
-            return builder.ToString();
-        }
-
         public virtual void ConstructModelMapper(TSBuilder builder)
         {
             builder.Text($"export const {Name}: msRest.CompositeMapper = ");
