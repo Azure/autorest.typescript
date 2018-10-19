@@ -1,4 +1,3 @@
-@using AutoRest.Core.Utilities
 @using AutoRest.TypeScript.Model
 @inherits AutoRest.Core.Template<CodeModelTS>
 
@@ -25,16 +24,7 @@ npm install @(Model.PackageName)
 ### nodejs - Authentication, client creation and @(Model.GetSampleMethod()?.Name) @(Model.GetSampleMethodGroupName()) as an example written in TypeScript.
 @EmptyLine
 ```ts
-import * as msRest from "ms-rest-js";
-import { @(Model.Name), @(Model.ClientPrefix)Models, @(Model.ClientPrefix)Mappers } from "@(Model.PackageName)";
-const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
-@EmptyLine
-const token = "<access_token>";
-const creds = new msRest.TokenCredentials(token);
-const client = new @(Model.Name)(creds, subscriptionId);
-@(Model.GenerateSampleMethod(true)).catch((err) => {
-  console.error(err);
-});
+@(Model.GenerateReadmeMdNodeSampleCode(EmptyLine))
 ```
 @EmptyLine
 ### browser - Authentication, client creation and @(Model.GetSampleMethod().Name) @(Model.GetSampleMethodGroupName()) as an example written in javascript.
@@ -49,13 +39,7 @@ const client = new @(Model.Name)(creds, subscriptionId);
 @:    <script type="text/javascript" src="./node_modules/ms-rest-js/dist/msRest.browser.js"></script>
 @:    <script type="text/javascript" src="./dist/@(Model.BundleFilename).js"></script>
 @:    <script type="text/javascript">
-@:      const subscriptionId = "<Subscription_Id>";
-@:      const token = "<access_token>";
-@:      const creds = new msRest.TokenCredentials(token);
-@:      const client = new @(Model.BundleVarName).@(Model.Name)(creds, subscriptionId);
-@:      @(Model.GenerateSampleMethod(true)).catch((err) => {
-@:        console.error(err);
-@:      });
+@:      @Model.GenerateReadmeMdBrowserSampleCode(EmptyLine)
 @:    </script>
 @:  </head>
 @:  <body>

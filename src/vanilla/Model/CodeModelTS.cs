@@ -730,5 +730,45 @@ namespace AutoRest.TypeScript.Model
                 builder.Line($"}};");
             }
         }
+
+        public string GenerateReadmeMdNodeSampleCode(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+
+            builder.ImportAllAs("msRest", "ms-rest-js");
+            builder.Import(new[] { Name, $"{ClientPrefix}Models", $"{ClientPrefix}Mappers" }, PackageName);
+
+            builder.ConstVariable("subscriptionId", "process.env[\"AZURE_SUBSCRIPTION_ID\"]");
+            builder.Line(emptyLine);
+            builder.ConstQuotedStringVariable("token", "<access_token>");
+            builder.ConstVariable("creds", "new msRest.TokenCredentials(token)");
+            builder.ConstVariable("client", $"new {Name}(creds, subscriptionId)");
+            builder.Line($"{GenerateSampleMethod(true)}.catch((err) => {{");
+            builder.Indent(() =>
+            {
+                builder.Line("console.error(err);");
+            });
+            builder.Line($"}});");
+
+            return builder.ToString();
+        }
+
+        public string GenerateReadmeMdBrowserSampleCode(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+
+            builder.ConstQuotedStringVariable("subscriptionId", "<Subscription_Id>");
+            builder.ConstQuotedStringVariable("token", "<access_token>");
+            builder.ConstVariable("creds", "new msRest.TokenCredentials(token)");
+            builder.ConstVariable("client", $"new {BundleVarName}.{Name}(creds, subscriptionId)");
+            builder.Line($"{GenerateSampleMethod(true)}.catch((err) => {{");
+            builder.Indent(() =>
+            {
+                builder.Line("console.error(err);");
+            });
+            builder.Line($"}});");
+
+            return builder.ToString();
+        }
     }
 }

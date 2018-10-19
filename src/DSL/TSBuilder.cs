@@ -575,6 +575,28 @@ namespace AutoRest.TypeScript.DSL
             Line($"throw {valueToThrow};");
         }
 
+        public void ConstQuotedStringVariable(string variableName, string text)
+        {
+            ConstVariable(variableName, $"\"{text}\"");
+        }
+
+        public void ConstVariable(string variableName, string variableValue)
+        {
+            ConstVariable(variableName, null, variableValue);
+        }
+
+        public void ConstVariable(string variableName, string variableType, string variableValue)
+        {
+            Text($"const {variableName}");
+            if (!string.IsNullOrEmpty(variableType))
+            {
+                Text($": {variableType}");
+            }
+            Text(" = ");
+            Text(variableValue);
+            Line($";");
+        }
+
         public void ConstObjectVariable(string variableName, string variableType, Action<TSObject> valueAction)
         {
             Text($"const {variableName}");
