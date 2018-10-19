@@ -58,23 +58,24 @@ See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to
         clientId: "<client id for your Azure AD app>",
         tenant: "<optional tenant for your organization>"
       });
+
       authManager.finalizeLogin().then((res) => {
         if (!res.isLoggedIn) {
           // may cause redirects
           authManager.login();
-        }
-        const client = new Azure.MultiapiTest20180201.AutoRestParameterizedCustomHostTestClient(res.creds, subscriptionId);
-        const vault = "testvault";
-        const secret = "testsecret";
-        const keyName = "testkeyName";
-        const keyVersion = "testkeyVersion";
-        client.paths.getEmpty(vault, secret, keyName, keyVersion).then((result) => {
-          console.log("The result is:");
-          console.log(result);
-        }).catch((err) => {
-          console.log('An error occurred:');
-          console.error(err);
-        });
+        }});
+
+      const client = new Azure.MultiapiTest20180201.AutoRestParameterizedCustomHostTestClient(res.creds, subscriptionId);
+      const vault = "testvault";
+      const secret = "testsecret";
+      const keyName = "testkeyName";
+      const keyVersion = "testkeyVersion";
+      client.paths.getEmpty(vault, secret, keyName, keyVersion).then((result) => {
+        console.log("The result is:");
+        console.log(result);
+      }).catch((err) => {
+        console.log("An error occurred:");
+        console.error(err);
       });
     </script>
   </head>

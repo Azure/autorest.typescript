@@ -355,6 +355,26 @@ namespace AutoRest.TypeScript.DSL
         }
 
         [TestMethod]
+        public void IfBlockWithSurroundingLines()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Line("const x = 5;");
+            builder.If("true", ifBlock =>
+            {
+            });
+            builder.Line("const y = 6;");
+            AssertEx.EqualLines(
+                new[]
+                {
+                    "const x = 5;",
+                    "if (true) {",
+                    "}",
+                    "const y = 6;"
+                },
+                builder.ToString());
+        }
+
+        [TestMethod]
         public void WordWrapWithNullLine()
         {
             TSBuilder builder = new TSBuilder();

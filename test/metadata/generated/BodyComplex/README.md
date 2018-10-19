@@ -48,13 +48,23 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
     <script src="node_modules//dist/bundle.js"></script>
     <script type="text/javascript">
       const subscriptionId = "<Subscription_Id>";
-      const token = "<access_token>";
-      const creds = new msRest.TokenCredentials(token);
-      const client = new Bundle.AutoRestComplexTestService(creds, subscriptionId);
+      const authManager = new msAuth.AuthManager({
+        clientId: "<client id for your Azure AD app>",
+        tenant: "<optional tenant for your organization>"
+      });
+
+      authManager.finalizeLogin().then((res) => {
+        if (!res.isLoggedIn) {
+          // may cause redirects
+          authManager.login();
+        }});
+
+      const client = new Bundle.AutoRestComplexTestService(res.creds, subscriptionId);
       client.basic.getValid().then((result) => {
         console.log("The result is:");
         console.log(result);
       }).catch((err) => {
+        console.log("An error occurred:");
         console.error(err);
       });
     </script>

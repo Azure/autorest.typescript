@@ -782,12 +782,32 @@ namespace AutoRest.TypeScript.Model
             TSBuilder builder = new TSBuilder();
 
             builder.ConstQuotedStringVariable("subscriptionId", "<Subscription_Id>");
-            builder.ConstQuotedStringVariable("token", "<access_token>");
-            builder.ConstVariable("creds", "new msRest.TokenCredentials(token)");
-            builder.ConstVariable("client", $"new {BundleVarName}.{Name}(creds, subscriptionId)");
+            builder.Text("const authManager = new msAuth.AuthManager(");
+            builder.Object(tsObject =>
+            {
+                tsObject.QuotedStringProperty("clientId", "<client id for your Azure AD app>");
+                tsObject.QuotedStringProperty("tenant", "<optional tenant for your organization>");
+            });
+            builder.Line(");");
+            builder.Line(emptyLine);
+
+            builder.Line($"authManager.finalizeLogin().then((res) => {{");
+            builder.Indent(() =>
+            {
+                builder.If("!res.isLoggedIn", ifBlock =>
+                {
+                    ifBlock.LineComment("may cause redirects");
+                    ifBlock.Line("authManager.login();");
+                });
+            });
+            builder.Line($"}});");
+            builder.Line(emptyLine);
+
+            builder.ConstVariable("client", $"new {BundleVarName}.{Name}(res.creds, subscriptionId)");
             builder.Line($"{GenerateSampleMethod(true)}.catch((err) => {{");
             builder.Indent(() =>
             {
+                builder.Line("console.log(\"An error occurred:\");");
                 builder.Line("console.error(err);");
             });
             builder.Line($"}});");

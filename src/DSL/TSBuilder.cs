@@ -35,6 +35,8 @@ namespace AutoRest.TypeScript.DSL
             LineWithText,
         }
 
+        public bool InsertNewLineBeforeNextLine { get; set; }
+
         public State CurrentState { get; private set; }
 
         /// <summary>
