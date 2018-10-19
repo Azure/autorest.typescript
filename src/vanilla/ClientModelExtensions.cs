@@ -175,9 +175,32 @@ namespace AutoRest.TypeScript
             return tsType;
         }
 
-        private static string CreatePatternConstraintValue(string constraintValue)
+        internal static string CreateRegexPatternConstraintValue(string constraintValue)
         {
-            return "/" + constraintValue.Replace("/", "\\/") + "/";
+            StringBuilder builder = new StringBuilder();
+            if (!string.IsNullOrEmpty(constraintValue))
+            {
+                builder.Append('/');
+                bool escaped = false;
+                foreach (char c in constraintValue)
+                {
+                    if (c == '/' && !escaped)
+                    {
+                        builder.Append('\\');
+                    }
+                    else if (c == '\\')
+                    {
+                        escaped = !escaped;
+                    }
+                    else
+                    {
+                        escaped = false;
+                    }
+                    builder.Append(c);
+                }
+                builder.Append('/');
+            }
+            return builder.ToString();
         }
 
         public static string CreateSerializerExpression(this CodeModel codeModel)
@@ -397,7 +420,7 @@ namespace AutoRest.TypeScript
                             string constraintValue = constraintEntry.Value;
                             if (constraint == Constraint.Pattern)
                             {
-                                constraintValue = CreatePatternConstraintValue(constraintValue);
+                                constraintValue = CreateRegexPatternConstraintValue(constraintValue);
                             }
                             constraintsObject.TextProperty(constraint.ToString(), constraintValue);
                         }
