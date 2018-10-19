@@ -35,9 +35,10 @@ npm install @(Model.PackageName)
 @:<!DOCTYPE html>
 @:<html lang="en">
 @:  <head>
-@:    <title>@(Model.Settings.PackageName) sample</title>
-@:    <script type="text/javascript" src="./node_modules/ms-rest-js/dist/msRest.browser.js"></script>
-@:    <script type="text/javascript" src="./dist/@(Model.BundleFilename).js"></script>
+@:    <title>@(Model.PackageName) sample</title>
+@:    <script src="node_modules/ms-rest-js/dist/msRest.browser.js"></script>
+@:    <script src="node_modules/ms-rest-browserauth/dist/msAuth.js"></script>
+@:    <script src="node_modules/@(Model.PackageName)/dist/@(Model.BundleFilename).js"></script>
 @:    <script type="text/javascript">
 @:      @Model.GenerateReadmeMdBrowserSampleCode(EmptyLine)
 @:    </script>

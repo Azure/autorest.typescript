@@ -21,6 +21,8 @@ npm install @azure/multiapi-test
 ### nodejs - Authentication, client creation and getEmpty paths as an example written in TypeScript.
 
 ```ts
+import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as msRestNodeAuth from "ms-rest-nodeauth";
 import { AutoRestParameterizedCustomHostTestClient, AutoRestParameterizedCustomHostTestModels, AutoRestParameterizedCustomHostTestMappers } from "@azure/multiapi-test";
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];

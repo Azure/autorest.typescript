@@ -16,6 +16,8 @@ npm install
 ### nodejs - Authentication, client creation and put200Succeeded lROs as an example written in TypeScript.
 
 ```ts
+import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as msRestNodeAuth from "ms-rest-nodeauth";
 import { AutoRestLongRunningOperationTestService, AutoRestLongRunningOperationTestServiceModels, AutoRestLongRunningOperationTestServiceMappers } from "";
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];

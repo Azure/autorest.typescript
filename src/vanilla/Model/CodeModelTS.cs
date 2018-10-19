@@ -731,12 +731,33 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
+        protected void GenerateNodeSampleMsRestJsImport(TSBuilder builder)
+        {
+            builder.ImportAllAs("msRest", "ms-rest-js");
+        }
+
+        protected void GenerateNodeSampleMsRestNodeAuthImport(TSBuilder builder)
+        {
+            builder.ImportAllAs("msRestNodeAuth", "ms-rest-nodeauth");
+        }
+
+        protected void GenerateNodeSampleClientImport(TSBuilder builder)
+        {
+            builder.Import(new[] { Name, $"{ClientPrefix}Models", $"{ClientPrefix}Mappers" }, PackageName);
+        }
+
+        protected virtual void GenerateNodeSampleImports(TSBuilder builder)
+        {
+            GenerateNodeSampleMsRestJsImport(builder);
+            GenerateNodeSampleMsRestNodeAuthImport(builder);
+            GenerateNodeSampleClientImport(builder);
+        }
+
         public string GenerateReadmeMdNodeSampleCode(string emptyLine)
         {
             TSBuilder builder = new TSBuilder();
 
-            builder.ImportAllAs("msRestNodeAuth", "ms-rest-nodeauth");
-            builder.Import(new[] { Name, $"{ClientPrefix}Models", $"{ClientPrefix}Mappers" }, PackageName);
+            GenerateNodeSampleImports(builder);
 
             builder.ConstVariable("subscriptionId", "process.env[\"AZURE_SUBSCRIPTION_ID\"]");
             builder.Line(emptyLine);
