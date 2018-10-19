@@ -456,5 +456,41 @@ namespace AutoRest.TypeScript
                 },
                 builder);
         }
+
+        [TestMethod]
+        public void CreatePatternConstraintValueWithNull()
+        {
+            Assert.AreEqual("", ClientModelExtensions.CreatePatternConstraintValue(null));
+        }
+
+        [TestMethod]
+        public void CreatePatternConstraintValueWithEmpty()
+        {
+            Assert.AreEqual("", ClientModelExtensions.CreatePatternConstraintValue(""));
+        }
+
+        [TestMethod]
+        public void CreatePatternConstraintValueWithWhitespace()
+        {
+            Assert.AreEqual("/ \t /", ClientModelExtensions.CreatePatternConstraintValue(" \t "));
+        }
+
+        [TestMethod]
+        public void CreatePatternConstraintValueWithUnescapedForwardSlash()
+        {
+            Assert.AreEqual(
+                "/^([0-9]{1,3}\\.){3}[0-9]{1,3}(\\/([0-9]|[1-2][0-9]|3[0-2]))?$/",
+                ClientModelExtensions.CreatePatternConstraintValue(
+                    "^([0-9]{1,3}\\.){3}[0-9]{1,3}(/([0-9]|[1-2][0-9]|3[0-2]))?$"));
+        }
+
+        [TestMethod]
+        public void CreatePatternConstraintValueWithEscapedForwardSlash()
+        {
+            Assert.AreEqual(
+                "/^([0-9]{1,3}\\.){3}[0-9]{1,3}(\\/([0-9]|[1-2][0-9]|3[0-2]))?$/",
+                ClientModelExtensions.CreatePatternConstraintValue(
+                    "^([0-9]{1,3}\\.){3}[0-9]{1,3}(\\/([0-9]|[1-2][0-9]|3[0-2]))?$"));
+        }
     }
 }

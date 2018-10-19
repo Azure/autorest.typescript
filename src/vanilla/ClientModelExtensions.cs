@@ -175,9 +175,32 @@ namespace AutoRest.TypeScript
             return tsType;
         }
 
-        private static string CreatePatternConstraintValue(string constraintValue)
+        internal static string CreatePatternConstraintValue(string constraintValue)
         {
-            return "/" + constraintValue.Replace("/", "\\/") + "/";
+            StringBuilder builder = new StringBuilder();
+            if (!string.IsNullOrEmpty(constraintValue))
+            {
+                builder.Append('/');
+                bool escaped = false;
+                foreach (char c in constraintValue)
+                {
+                    if (c == '/' && !escaped)
+                    {
+                        builder.Append('\\');
+                    }
+                    else if (c == '\\')
+                    {
+                        escaped = !escaped;
+                    }
+                    else
+                    {
+                        escaped = false;
+                    }
+                    builder.Append(c);
+                }
+                builder.Append('/');
+            }
+            return builder.ToString();
         }
 
         public static string CreateSerializerExpression(this CodeModel codeModel)
