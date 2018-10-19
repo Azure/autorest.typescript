@@ -50,18 +50,7 @@ first = false;
 @EmptyLine
 
 ```ts
-import * as msRest from "ms-rest-js";
-import * as msRestAzure from "ms-rest-azure-js";
-import * as msRestNodeAuth from "ms-rest-nodeauth";
-import { @(Model.Name), @(Model.ClientPrefix)Models, @(Model.ClientPrefix)Mappers } from "@(Model.PackageName)";
-const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
-@EmptyLine
-msRestNodeAuth.interactiveLogin().then((creds) => {
-  const client = new @(Model.Name)(creds, subscriptionId);
-  @(Model.GenerateSampleMethod())
-}).catch((err) => {
-  console.error(err);
-});
+@(Model.GenerateReadmeMdNodeSampleCode(EmptyLine))
 ```
 @EmptyLine
 

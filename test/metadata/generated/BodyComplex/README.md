@@ -19,16 +19,16 @@ npm install
 ### nodejs - Authentication, client creation and getValid basic as an example written in TypeScript.
 
 ```ts
-import * as msRest from "ms-rest-js";
+import * as msRestNodeAuth from "ms-rest-nodeauth";
 import { AutoRestComplexTestService, AutoRestComplexTestServiceModels, AutoRestComplexTestServiceMappers } from "";
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
 
-const token = "<access_token>";
-const creds = new msRest.TokenCredentials(token);
-const client = new AutoRestComplexTestService(creds, subscriptionId);
-client.basic.getValid().then((result) => {
-  console.log("The result is:");
-  console.log(result);
+msRestNodeAuth.interactiveLogin().then((creds) => {
+  const client = new AutoRestComplexTestService(creds, subscriptionId);
+  client.basic.getValid().then((result) => {
+    console.log("The result is:");
+    console.log(result);
+  });
 }).catch((err) => {
   console.error(err);
 });

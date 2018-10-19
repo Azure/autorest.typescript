@@ -735,15 +735,18 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            builder.ImportAllAs("msRest", "ms-rest-js");
+            builder.ImportAllAs("msRestNodeAuth", "ms-rest-nodeauth");
             builder.Import(new[] { Name, $"{ClientPrefix}Models", $"{ClientPrefix}Mappers" }, PackageName);
 
             builder.ConstVariable("subscriptionId", "process.env[\"AZURE_SUBSCRIPTION_ID\"]");
             builder.Line(emptyLine);
-            builder.ConstQuotedStringVariable("token", "<access_token>");
-            builder.ConstVariable("creds", "new msRest.TokenCredentials(token)");
-            builder.ConstVariable("client", $"new {Name}(creds, subscriptionId)");
-            builder.Line($"{GenerateSampleMethod(true)}.catch((err) => {{");
+            builder.Line($"msRestNodeAuth.interactiveLogin().then((creds) => {{");
+            builder.Indent(() =>
+            {
+                builder.ConstVariable("client", $"new {Name}(creds, subscriptionId)");
+                builder.Line(GenerateSampleMethod(false));
+            });
+            builder.Line($"}}).catch((err) => {{");
             builder.Indent(() =>
             {
                 builder.Line("console.error(err);");
