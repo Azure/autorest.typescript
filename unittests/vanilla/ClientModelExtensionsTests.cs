@@ -458,38 +458,38 @@ namespace AutoRest.TypeScript
         }
 
         [TestMethod]
-        public void CreatePatternConstraintValueWithNull()
+        public void CreateRegexPatternConstraintValueWithNull()
         {
-            Assert.AreEqual("", ClientModelExtensions.CreatePatternConstraintValue(null));
+            Assert.AreEqual("", ClientModelExtensions.CreateRegexPatternConstraintValue(null));
         }
 
         [TestMethod]
-        public void CreatePatternConstraintValueWithEmpty()
+        public void CreateRegexPatternConstraintValueWithEmpty()
         {
-            Assert.AreEqual("", ClientModelExtensions.CreatePatternConstraintValue(""));
+            Assert.AreEqual("", ClientModelExtensions.CreateRegexPatternConstraintValue(""));
         }
 
         [TestMethod]
-        public void CreatePatternConstraintValueWithWhitespace()
+        public void CreateRegexPatternConstraintValueWithWhitespace()
         {
-            Assert.AreEqual("/ \t /", ClientModelExtensions.CreatePatternConstraintValue(" \t "));
+            Assert.AreEqual("/ \t /", ClientModelExtensions.CreateRegexPatternConstraintValue(" \t "));
         }
 
         [TestMethod]
-        public void CreatePatternConstraintValueWithUnescapedForwardSlash()
+        public void CreateRegexPatternConstraintValueWithUnescapedForwardSlash()
         {
             Assert.AreEqual(
                 "/^([0-9]{1,3}\\.){3}[0-9]{1,3}(\\/([0-9]|[1-2][0-9]|3[0-2]))?$/",
-                ClientModelExtensions.CreatePatternConstraintValue(
+                ClientModelExtensions.CreateRegexPatternConstraintValue(
                     "^([0-9]{1,3}\\.){3}[0-9]{1,3}(/([0-9]|[1-2][0-9]|3[0-2]))?$"));
         }
 
         [TestMethod]
-        public void CreatePatternConstraintValueWithEscapedForwardSlash()
+        public void CreateRegexPatternConstraintValueWithEscapedForwardSlash()
         {
             Assert.AreEqual(
                 "/^([0-9]{1,3}\\.){3}[0-9]{1,3}(\\/([0-9]|[1-2][0-9]|3[0-2]))?$/",
-                ClientModelExtensions.CreatePatternConstraintValue(
+                ClientModelExtensions.CreateRegexPatternConstraintValue(
                     "^([0-9]{1,3}\\.){3}[0-9]{1,3}(\\/([0-9]|[1-2][0-9]|3[0-2]))?$"));
         }
     }
