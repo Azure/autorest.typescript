@@ -14,29 +14,12 @@ namespace AutoRest.TypeScript.DSL
 
         public TSIfBlock ElseIf(string condition, Action<TSBlock> bodyAction)
         {
-            builder.Line($" else if ({condition}) {{");
-            builder.Indent(() =>
-            {
-                using (TSBlock block = new TSBlock(builder))
-                {
-                    bodyAction.Invoke(block);
-                }
-            });
-            builder.Text($"}}");
-            return new TSIfBlock(builder);
+            return builder.ElseIf(condition, bodyAction);
         }
 
         public void Else(Action<TSBlock> bodyAction)
         {
-            builder.Line($" else {{");
-            builder.Indent(() =>
-            {
-                using (TSBlock block = new TSBlock(builder))
-                {
-                    bodyAction.Invoke(block);
-                }
-            });
-            builder.Text($"}}");
+            builder.Else(bodyAction);
         }
     }
 }

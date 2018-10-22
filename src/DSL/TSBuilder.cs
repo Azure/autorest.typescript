@@ -23,21 +23,13 @@ namespace AutoRest.TypeScript.DSL
         private readonly StringBuilder contents = new StringBuilder();
         private readonly StringBuilder linePrefix = new StringBuilder();
         private readonly List<TSPosition> positions = new List<TSPosition>();
-
+        
         public TSBuilder(int commentWordWrapWidth = defaultCommentWordWrapWidth)
         {
             this.commentWordWrapWidth = commentWordWrapWidth;
         }
 
-        public enum State
-        {
-            EmptyLine,
-            LineWithText,
-        }
-
-        public bool InsertNewLineBeforeNextLine { get; set; }
-
-        public State CurrentState { get; private set; }
+        internal bool WriteNewLineBeforeNextText { get; private set; }
 
         /// <summary>
         /// The word wrap width. A null wordWrapWidth indicates that no word wrapping should take place.
@@ -257,9 +249,15 @@ namespace AutoRest.TypeScript.DSL
                 text = string.Format(text, formattedArguments);
             }
 
-            bool addPrefix = (CurrentState == State.EmptyLine);
+            bool addPrefix = WriteNewLineBeforeNextText;
 
             List<string> lines = new List<string>();
+
+            if (WriteNewLineBeforeNextText)
+            {
+                WriteNewLineBeforeNextText = false;
+                contents.Append(newLine);
+            }
 
             if (string.IsNullOrEmpty(text))
             {
@@ -300,8 +298,6 @@ namespace AutoRest.TypeScript.DSL
 
                 contents.Append(line);
             }
-
-            CurrentState = text.EndsWith(newLine) ? State.EmptyLine : State.LineWithText;
         }
 
         /// <summary>
@@ -311,7 +307,8 @@ namespace AutoRest.TypeScript.DSL
         /// <param name="formattedArguments">Any optional formatted arguments that will be inserted into the text if provided.</param>
         public void Line(string text = "", params object[] formattedArguments)
         {
-            Text(text + Environment.NewLine, formattedArguments);
+            Text(text, formattedArguments);
+            WriteNewLineBeforeNextText = true;
         }
 
         /// <summary>
@@ -516,48 +513,53 @@ namespace AutoRest.TypeScript.DSL
 
         public void Method(string methodName, string returnType, string parameterList, Action<TSBlock> methodBodyAction)
         {
-            Line($"{methodName}({parameterList}): {returnType} {{");
+            Block($"{methodName}({parameterList}): {returnType}", methodBodyAction);
+        }
+
+        private void Block(string beforeBlock, Action<TSBlock> blockAction)
+        {
+            Line($"{beforeBlock} {{");
             Indent(() =>
             {
-                methodBodyAction.Invoke(new TSBlock(this));
+                using (TSBlock block = new TSBlock(this))
+                {
+                    blockAction.Invoke(block);
+                }
             });
-            Line($"}}");
+            WriteNewLineBeforeNextText = true;
+            Text($"}}");
+            WriteNewLineBeforeNextText = true;
         }
 
         public TSIfBlock If(string condition, Action<TSBlock> bodyAction)
         {
-            Line($"if ({condition}) {{");
-            Indent(() =>
-            {
-                using (TSBlock block = new TSBlock(this))
-                {
-                    bodyAction.Invoke(block);
-                }
-            });
-            if (CurrentState == State.LineWithText)
-            {
-                Line();
-            }
-            Text($"}}");
+            Block($"if ({condition})", bodyAction);
             return new TSIfBlock(this);
+        }
+
+        public TSIfBlock ElseIf(string condition, Action<TSBlock> bodyAction)
+        {
+            WriteNewLineBeforeNextText = false;
+            Block($" else if ({condition})", bodyAction);
+            return new TSIfBlock(this);
+        }
+
+        public void Else(Action<TSBlock> bodyAction)
+        {
+            WriteNewLineBeforeNextText = false;
+            Block($" else", bodyAction);
         }
 
         public TSTryBlock Try(Action<TSBlock> tryAction)
         {
-            Line($"try {{");
-            Indent(() =>
-            {
-                using (TSBlock block = new TSBlock(this))
-                {
-                    tryAction.Invoke(block);
-                }
-            });
-            if (CurrentState == State.LineWithText)
-            {
-                Line();
-            }
-            Text($"}}");
+            Block($"try", tryAction);
             return new TSTryBlock(this);
+        }
+
+        public void Catch(string errorName, Action<TSBlock> catchAction)
+        {
+            WriteNewLineBeforeNextText = false;
+            Block($" catch ({errorName})", catchAction);
         }
 
         public void Return(string result)

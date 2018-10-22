@@ -36,21 +36,12 @@ namespace AutoRest.TypeScript.DSL
 
                 case State.Returned:
                     throw new Exception("Once a block's return statement has been emitted, no further statements can be emitted.");
-
-                case State.If:
-                case State.Try:
-                    builder.Line();
-                    break;
             }
             currentState = newState;
         }
 
         public void Dispose()
         {
-            if (currentState == State.If)
-            {
-                builder.Line();
-            }
         }
 
         public void Text(string text)

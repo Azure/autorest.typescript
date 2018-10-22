@@ -17,6 +17,7 @@ namespace AutoRest.TypeScript.DSL
         {
             TSBuilder builder = new TSBuilder();
             Assert.AreEqual("", builder.ToString());
+            Assert.IsFalse(builder.WriteNewLineBeforeNextText);
         }
 
         [TestMethod]
@@ -203,6 +204,173 @@ namespace AutoRest.TypeScript.DSL
         }
 
         [TestMethod]
+        public void LineWithNoArguments()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Line();
+            Assert.AreEqual("", builder.ToString());
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void LineWithNoArgumentsTwice()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Line();
+            builder.Line();
+            Assert.AreEqual("\n", builder.ToString());
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void LineWithNull()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Line(null);
+            Assert.AreEqual("", builder.ToString());
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void LineWithNullTwice()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Line(null);
+            builder.Line(null);
+            Assert.AreEqual("\n", builder.ToString());
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void LineWithEmpty()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Line("");
+            Assert.AreEqual("", builder.ToString());
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void LineWithEmptyTwice()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Line("");
+            builder.Line("");
+            Assert.AreEqual("\n", builder.ToString());
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void LineWithText()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Line("Hello");
+            Assert.AreEqual("Hello", builder.ToString());
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void LineWithTextTwice()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Line("Hello");
+            builder.Line("World");
+            Assert.AreEqual("Hello\nWorld", builder.ToString());
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void TextWithNull()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Text(null);
+            Assert.AreEqual("", builder.ToString());
+            Assert.IsFalse(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void TextWithNullTwice()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Text(null);
+            builder.Text(null);
+            Assert.AreEqual("", builder.ToString());
+            Assert.IsFalse(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void TextWithEmpty()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Text("");
+            Assert.AreEqual("", builder.ToString());
+            Assert.IsFalse(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void TextWithEmptyTwice()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Text("");
+            builder.Text("");
+            Assert.AreEqual("", builder.ToString());
+            Assert.IsFalse(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void TextWithText()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Text("a");
+            Assert.AreEqual("a", builder.ToString());
+            Assert.IsFalse(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void TextWithTextTwice()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Text("a");
+            builder.Text("b");
+            Assert.AreEqual("ab", builder.ToString());
+            Assert.IsFalse(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void TextWithNewLine()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Text("\n");
+            Assert.AreEqual("\n", builder.ToString());
+            Assert.IsFalse(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void TextWithNewLineTwice()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Text("\n");
+            builder.Text("\n");
+            Assert.AreEqual("\n\n", builder.ToString());
+            Assert.IsFalse(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void TryWithEmptyBlock()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Try(tryBlock => { });
+            AssertEx.EqualLines(
+                new[]
+                {
+                    "try {",
+                    "}"
+                },
+                builder);
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
         public void NestedTryBlocks()
         {
             TSBuilder builder = new TSBuilder();
@@ -232,15 +400,169 @@ namespace AutoRest.TypeScript.DSL
         }
 
         [TestMethod]
+        public void IfWithEmptyBlock()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.If("true", ifBlock => { });
+            AssertEx.EqualLines(
+                new[]
+                {
+                    "if (true) {",
+                    "}"
+                },
+                builder);
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void IfWithTextBlock()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.If("true", ifBlock =>
+            {
+                ifBlock.Text("Hello");
+            });
+            AssertEx.EqualLines(
+                new[]
+                {
+                    "if (true) {",
+                    "  Hello",
+                    "}"
+                },
+                builder);
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void IfWithLineBlock()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.If("true", ifBlock =>
+            {
+                ifBlock.Line("Hello");
+            });
+            AssertEx.EqualLines(
+                new[]
+                {
+                    "if (true) {",
+                    "  Hello",
+                    "}"
+                },
+                builder);
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void IfElseWithEmptyBlocks()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.If("true", ifBlock => { })
+                .Else(elseBlock => { });
+            AssertEx.EqualLines(
+                new[]
+                {
+                    "if (true) {",
+                    "} else {",
+                    "}"
+                },
+                builder);
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void IfElseIfWithEmptyBlocks()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.If("true", ifBlock => { })
+                .ElseIf("false", elseBlock => { });
+            AssertEx.EqualLines(
+                new[]
+                {
+                    "if (true) {",
+                    "} else if (false) {",
+                    "}"
+                },
+                builder);
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void IfElseIfWithTextBlocks()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.If("true", ifBlock =>
+            {
+                ifBlock.Text("Hello");
+            })
+            .ElseIf("false", elseBlock =>
+            {
+                elseBlock.Text("World");
+            });
+            AssertEx.EqualLines(
+                new[]
+                {
+                    "if (true) {",
+                    "  Hello",
+                    "} else if (false) {",
+                    "  World",
+                    "}"
+                },
+                builder);
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
+        public void IfWithLineAfterwards()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.If("true", ifBlock => { });
+            builder.Line("Test");
+            AssertEx.EqualLines(
+                new[]
+                {
+                    "if (true) {",
+                    "}",
+                    "Test"
+                },
+                builder);
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+        }
+
+        [TestMethod]
         public void NestedIfBlocks()
         {
             TSBuilder builder = new TSBuilder();
             builder.If("a", ifBlock1 =>
             {
+                Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+                AssertEx.EqualLines(
+                    "if (a) {",
+                    builder);
+
                 ifBlock1.If("b", ifBlock2 =>
                 {
+                    Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+                    AssertEx.EqualLines(
+                    new[]
+                    {
+                        "if (a) {",
+                        "  if (b) {"
+                    },
+                    builder);
                 });
+
+                Assert.IsTrue(builder.WriteNewLineBeforeNextText);
+                AssertEx.EqualLines(
+                    new[]
+                    {
+                        "if (a) {",
+                        "  if (b) {",
+                        "  }"
+                    },
+                    builder);
             });
+
+            Assert.IsTrue(builder.WriteNewLineBeforeNextText);
             AssertEx.EqualLines(
                 new[]
                 {
@@ -375,6 +697,26 @@ namespace AutoRest.TypeScript.DSL
         }
 
         [TestMethod]
+        public void IfBlockWithSurroundingEmptyLines()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Line();
+            builder.If("true", ifBlock =>
+            {
+            });
+            builder.Line();
+            AssertEx.EqualLines(
+                new[]
+                {
+                    "",
+                    "if (true) {",
+                    "}",
+                    ""
+                },
+                builder.ToString());
+        }
+
+        [TestMethod]
         public void WordWrapWithNullLine()
         {
             TSBuilder builder = new TSBuilder();
@@ -450,7 +792,7 @@ namespace AutoRest.TypeScript.DSL
             AssertEx.EqualLines(
                 "/**\n" +
                 " * Hello\n" +
-                " */\n",
+                " */",
                 builder);
         }
 
@@ -467,7 +809,7 @@ namespace AutoRest.TypeScript.DSL
                 "/**\n" +
                 " * This is my description.\n" +
                 " * @param parameterName This is my parameter description.\n" +
-                " */\n",
+                " */",
                 builder);
         }
 
@@ -487,7 +829,7 @@ namespace AutoRest.TypeScript.DSL
                 " * is\n" +
                 " * my\n" +
                 " * description.\n" +
-                " */\n",
+                " */",
                 builder);
         }
 
@@ -512,7 +854,7 @@ namespace AutoRest.TypeScript.DSL
                 " * will\n" +
                 " * get\n" +
                 " * wrapped.\n" +
-                " */\n",
+                " */",
                 builder);
         }
     }

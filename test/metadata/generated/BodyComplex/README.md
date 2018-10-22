@@ -57,7 +57,8 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
         if (!res.isLoggedIn) {
           // may cause redirects
           authManager.login();
-        }});
+        }
+      });
 
       const client = new Bundle.AutoRestComplexTestService(res.creds, subscriptionId);
       client.basic.getValid().then((result) => {
