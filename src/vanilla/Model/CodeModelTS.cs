@@ -799,16 +799,17 @@ namespace AutoRest.TypeScript.Model
                     ifBlock.LineComment("may cause redirects");
                     ifBlock.Line("authManager.login();");
                 });
-            });
-            builder.Line($"}});");
-            builder.Line(emptyLine);
 
-            builder.ConstVariable("client", $"new {BundleVarName}.{Name}(res.creds, subscriptionId)");
-            builder.Line($"{GenerateSampleMethod(true)}.catch((err) => {{");
-            builder.Indent(() =>
-            {
-                builder.Line("console.log(\"An error occurred:\");");
-                builder.Line("console.error(err);");
+                builder.Line(emptyLine);
+
+                builder.ConstVariable("client", $"new {BundleVarName}.{Name}(res.creds, subscriptionId)");
+                builder.Line($"{GenerateSampleMethod(true)}.catch((err) => {{");
+                builder.Indent(() =>
+                {
+                    builder.Line("console.log(\"An error occurred:\");");
+                    builder.Line("console.error(err);");
+                });
+                builder.Line($"}});");
             });
             builder.Line($"}});");
 

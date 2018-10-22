@@ -58,15 +58,15 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
           // may cause redirects
           authManager.login();
         }
-      });
 
-      const client = new Bundle.AutoRestComplexTestService(res.creds, subscriptionId);
-      client.basic.getValid().then((result) => {
-        console.log("The result is:");
-        console.log(result);
-      }).catch((err) => {
-        console.log("An error occurred:");
-        console.error(err);
+        const client = new Bundle.AutoRestComplexTestService(res.creds, subscriptionId);
+        client.basic.getValid().then((result) => {
+          console.log("The result is:");
+          console.log(result);
+        }).catch((err) => {
+          console.log("An error occurred:");
+          console.error(err);
+        });
       });
     </script>
   </head>

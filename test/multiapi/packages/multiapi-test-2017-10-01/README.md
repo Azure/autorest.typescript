@@ -61,16 +61,16 @@ See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to
           // may cause redirects
           authManager.login();
         }
-      });
 
-      const client = new Azure.MultiapiTest20171001.AutoRestParameterizedHostTestClient(res.creds, subscriptionId);
-      const accountName = "testaccountName";
-      client.paths.getEmpty(accountName).then((result) => {
-        console.log("The result is:");
-        console.log(result);
-      }).catch((err) => {
-        console.log("An error occurred:");
-        console.error(err);
+        const client = new Azure.MultiapiTest20171001.AutoRestParameterizedHostTestClient(res.creds, subscriptionId);
+        const accountName = "testaccountName";
+        client.paths.getEmpty(accountName).then((result) => {
+          console.log("The result is:");
+          console.log(result);
+        }).catch((err) => {
+          console.log("An error occurred:");
+          console.error(err);
+        });
       });
     </script>
   </head>

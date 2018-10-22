@@ -63,20 +63,20 @@ See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to
           // may cause redirects
           authManager.login();
         }
-      });
 
-      const client = new Bundle.AutoRestLongRunningOperationTestService(res.creds, subscriptionId);
-      const product = {
-        tags: { "key1": "testtags" },
-        location: "westus",
-        provisioningState: "testprovisioningState"
-      };
-      client.lROs.put200Succeeded(product).then((result) => {
-        console.log("The result is:");
-        console.log(result);
-      }).catch((err) => {
-        console.log("An error occurred:");
-        console.error(err);
+        const client = new Bundle.AutoRestLongRunningOperationTestService(res.creds, subscriptionId);
+        const product = {
+          tags: { "key1": "testtags" },
+          location: "westus",
+          provisioningState: "testprovisioningState"
+        };
+        client.lROs.put200Succeeded(product).then((result) => {
+          console.log("The result is:");
+          console.log(result);
+        }).catch((err) => {
+          console.log("An error occurred:");
+          console.error(err);
+        });
       });
     </script>
   </head>
