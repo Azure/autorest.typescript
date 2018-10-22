@@ -1,4 +1,3 @@
-@using AutoRest.Core.Utilities
 @using AutoRest.TypeScript.Azure.Model
 @inherits AutoRest.Core.Template<CodeModelTSa>
 
@@ -51,18 +50,7 @@ first = false;
 @EmptyLine
 
 ```ts
-import * as msRest from "ms-rest-js";
-import * as msRestAzure from "ms-rest-azure-js";
-import * as msRestNodeAuth from "ms-rest-nodeauth";
-import { @(Model.Name), @(Model.ClientPrefix)Models, @(Model.ClientPrefix)Mappers } from "@(Model.PackageName)";
-const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
-@EmptyLine
-msRestNodeAuth.interactiveLogin().then((creds) => {
-  const client = new @(Model.Name)(creds, subscriptionId);
-  @(Model.GenerateSampleMethod())
-}).catch((err) => {
-  console.error(err);
-});
+@(Model.GenerateReadmeMdNodeSampleCode(EmptyLine))
 ```
 @EmptyLine
 
@@ -82,24 +70,7 @@ See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to
 @:    <script src="node_modules/ms-rest-browserauth/dist/msAuth.js"></script>
 @:    <script src="node_modules/@(Model.PackageName)/dist/@(Model.BundleFilename).js"></script>
 @:    <script>
-@:      const subscriptionId = "<Subscription_Id>";
-@:      const authManager = new msAuth.AuthManager({
-@:        clientId: "<client id for your Azure AD app>",
-@:        tenant: "<optional tenant for your organization>"
-@:      });
-@:
-@:      authManager.finalizeLogin().then((res) => {
-@:        if (!res.isLoggedIn) {
-@:          // may cause redirects
-@:          authManager.login();
-@:        }
-@:
-@:        const client = new @(Model.BundleVarName).@(Model.Name)(res.creds, subscriptionId);
-@:        @(Model.GenerateSampleMethod(true)).catch((err) => {
-@:          console.log('An error occurred:');
-@:          console.error(err);
-@:        });
-@:      });
+@:      @(Model.GenerateReadmeMdBrowserSampleCode(EmptyLine))
 @:    </script>
 @:  </head>
 @:  <body>

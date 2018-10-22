@@ -730,5 +730,87 @@ namespace AutoRest.TypeScript.Model
                 builder.Line($"}};");
             }
         }
+
+        protected void GenerateNodeSampleMsRestJsImport(TSBuilder builder)
+        {
+            builder.ImportAllAs("msRest", "ms-rest-js");
+        }
+
+        protected void GenerateNodeSampleMsRestNodeAuthImport(TSBuilder builder)
+        {
+            builder.ImportAllAs("msRestNodeAuth", "ms-rest-nodeauth");
+        }
+
+        protected void GenerateNodeSampleClientImport(TSBuilder builder)
+        {
+            builder.Import(new[] { Name, $"{ClientPrefix}Models", $"{ClientPrefix}Mappers" }, PackageName);
+        }
+
+        protected virtual void GenerateNodeSampleImports(TSBuilder builder)
+        {
+            GenerateNodeSampleMsRestJsImport(builder);
+            GenerateNodeSampleMsRestNodeAuthImport(builder);
+            GenerateNodeSampleClientImport(builder);
+        }
+
+        public string GenerateReadmeMdNodeSampleCode(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+
+            GenerateNodeSampleImports(builder);
+
+            builder.ConstVariable("subscriptionId", "process.env[\"AZURE_SUBSCRIPTION_ID\"]");
+            builder.Line(emptyLine);
+            builder.Line($"msRestNodeAuth.interactiveLogin().then((creds) => {{");
+            builder.Indent(() =>
+            {
+                builder.ConstVariable("client", $"new {Name}(creds, subscriptionId)");
+                builder.Line(GenerateSampleMethod(false));
+            });
+            builder.Line($"}}).catch((err) => {{");
+            builder.Indent(() =>
+            {
+                builder.Line("console.error(err);");
+            });
+            builder.Line($"}});");
+
+            return builder.ToString();
+        }
+
+        public string GenerateReadmeMdBrowserSampleCode(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+
+            builder.ConstQuotedStringVariable("subscriptionId", "<Subscription_Id>");
+            builder.Text("const authManager = new msAuth.AuthManager(");
+            builder.Object(tsObject =>
+            {
+                tsObject.QuotedStringProperty("clientId", "<client id for your Azure AD app>");
+                tsObject.QuotedStringProperty("tenant", "<optional tenant for your organization>");
+            });
+            builder.Line(");");
+
+            builder.Line($"authManager.finalizeLogin().then((res) => {{");
+            builder.Indent(() =>
+            {
+                builder.If("!res.isLoggedIn", ifBlock =>
+                {
+                    ifBlock.LineComment("may cause redirects");
+                    ifBlock.Line("authManager.login();");
+                });
+
+                builder.ConstVariable("client", $"new {BundleVarName}.{Name}(res.creds, subscriptionId)");
+                builder.Line($"{GenerateSampleMethod(true)}.catch((err) => {{");
+                builder.Indent(() =>
+                {
+                    builder.Line("console.log(\"An error occurred:\");");
+                    builder.Line("console.error(err);");
+                });
+                builder.Line($"}});");
+            });
+            builder.Line($"}});");
+
+            return builder.ToString();
+        }
     }
 }

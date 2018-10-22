@@ -78,8 +78,7 @@ namespace AutoRest.TypeScript.Model
                 new[]
                 {
                     "import * as msRest from \"ms-rest-js\";",
-                    "import { Context } from \"./context\";",
-                    ""
+                    "import { Context } from \"./context\";"
                 },
                 codeModel.GenerateServiceClientImports());
         }
@@ -94,8 +93,7 @@ namespace AutoRest.TypeScript.Model
                     "import * as msRest from \"ms-rest-js\";",
                     "import * as Models from \"./models\";",
                     "import * as Mappers from \"./models/mappers\";",
-                    "import { Context } from \"./context\";",
-                    ""
+                    "import { Context } from \"./context\";"
                 },
                 codeModel.GenerateServiceClientImports());
         }

@@ -14,15 +14,7 @@ namespace AutoRest.TypeScript.DSL
 
         public void Catch(string errorName, Action<TSBlock> catchAction)
         {
-            builder.Line($" catch ({errorName}) {{");
-            builder.Indent(() =>
-            {
-                using (TSBlock block = new TSBlock(builder))
-                {
-                    catchAction.Invoke(block);
-                }
-            });
-            builder.Text($"}}");
+            builder.Catch(errorName, catchAction);
         }
     }
 }

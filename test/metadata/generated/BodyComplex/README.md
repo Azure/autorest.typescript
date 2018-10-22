@@ -20,15 +20,16 @@ npm install
 
 ```ts
 import * as msRest from "ms-rest-js";
+import * as msRestNodeAuth from "ms-rest-nodeauth";
 import { AutoRestComplexTestService, AutoRestComplexTestServiceModels, AutoRestComplexTestServiceMappers } from "";
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
 
-const token = "<access_token>";
-const creds = new msRest.TokenCredentials(token);
-const client = new AutoRestComplexTestService(creds, subscriptionId);
-client.basic.getValid().then((result) => {
-  console.log("The result is:");
-  console.log(result);
+msRestNodeAuth.interactiveLogin().then((creds) => {
+  const client = new AutoRestComplexTestService(creds, subscriptionId);
+  client.basic.getValid().then((result) => {
+    console.log("The result is:");
+    console.log(result);
+  });
 }).catch((err) => {
   console.error(err);
 });
@@ -42,18 +43,28 @@ client.basic.getValid().then((result) => {
 <html lang="en">
   <head>
     <title> sample</title>
-    <script type="text/javascript" src="./node_modules/ms-rest-js/dist/msRest.browser.js"></script>
-    <script type="text/javascript" src="./dist/bundle.js"></script>
+    <script src="node_modules/ms-rest-js/dist/msRest.browser.js"></script>
+    <script src="node_modules/ms-rest-browserauth/dist/msAuth.js"></script>
+    <script src="node_modules//dist/bundle.js"></script>
     <script type="text/javascript">
       const subscriptionId = "<Subscription_Id>";
-      const token = "<access_token>";
-      const creds = new msRest.TokenCredentials(token);
-      const client = new Bundle.AutoRestComplexTestService(creds, subscriptionId);
-      client.basic.getValid().then((result) => {
-        console.log("The result is:");
-        console.log(result);
-      }).catch((err) => {
-        console.error(err);
+      const authManager = new msAuth.AuthManager({
+        clientId: "<client id for your Azure AD app>",
+        tenant: "<optional tenant for your organization>"
+      });
+      authManager.finalizeLogin().then((res) => {
+        if (!res.isLoggedIn) {
+          // may cause redirects
+          authManager.login();
+        }
+        const client = new Bundle.AutoRestComplexTestService(res.creds, subscriptionId);
+        client.basic.getValid().then((result) => {
+          console.log("The result is:");
+          console.log(result);
+        }).catch((err) => {
+          console.log("An error occurred:");
+          console.error(err);
+        });
       });
     </script>
   </head>
