@@ -789,7 +789,6 @@ namespace AutoRest.TypeScript.Model
                 tsObject.QuotedStringProperty("tenant", "<optional tenant for your organization>");
             });
             builder.Line(");");
-            builder.Line(emptyLine);
 
             builder.Line($"authManager.finalizeLogin().then((res) => {{");
             builder.Indent(() =>
@@ -799,8 +798,6 @@ namespace AutoRest.TypeScript.Model
                     ifBlock.LineComment("may cause redirects");
                     ifBlock.Line("authManager.login();");
                 });
-
-                builder.Line(emptyLine);
 
                 builder.ConstVariable("client", $"new {BundleVarName}.{Name}(res.creds, subscriptionId)");
                 builder.Line($"{GenerateSampleMethod(true)}.catch((err) => {{");

@@ -55,13 +55,11 @@ See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to
         clientId: "<client id for your Azure AD app>",
         tenant: "<optional tenant for your organization>"
       });
-
       authManager.finalizeLogin().then((res) => {
         if (!res.isLoggedIn) {
           // may cause redirects
           authManager.login();
         }
-
         const client = new Azure.MultiapiTest20171001.AutoRestParameterizedHostTestClient(res.creds, subscriptionId);
         const accountName = "testaccountName";
         client.paths.getEmpty(accountName).then((result) => {

@@ -52,13 +52,11 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
         clientId: "<client id for your Azure AD app>",
         tenant: "<optional tenant for your organization>"
       });
-
       authManager.finalizeLogin().then((res) => {
         if (!res.isLoggedIn) {
           // may cause redirects
           authManager.login();
         }
-
         const client = new Bundle.AutoRestComplexTestService(res.creds, subscriptionId);
         client.basic.getValid().then((result) => {
           console.log("The result is:");
