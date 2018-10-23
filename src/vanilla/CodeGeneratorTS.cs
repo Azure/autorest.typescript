@@ -104,7 +104,6 @@ namespace AutoRest.TypeScript
             {
                 await WriteTsConfig(codeModel);
                 await WriteRollupConfig(codeModel);
-                await WriteNpmIgnore(codeModel);
             }
         }
 
@@ -239,11 +238,6 @@ namespace AutoRest.TypeScript
         protected Task WriteRollupConfig(CodeModelTS codeModel)
         {
             return Write(new RollupConfig { Model = codeModel }, "rollup.config.js");
-        }
-
-        protected Task WriteNpmIgnore(CodeModelTS codeModel)
-        {
-            return Write(new NpmIgnore { Model = codeModel }, ".npmignore");
         }
 
         protected string GetSourceCodeFilePath(CodeModelTS codeModel, params string[] pathSegments)
