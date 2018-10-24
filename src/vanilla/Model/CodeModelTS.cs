@@ -595,7 +595,7 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            if (MethodTemplateModels.Any() || OptionalParameterTypeForClientConstructor == ServiceClientOptions)
+            if (MethodTemplateModels.Any() || OptionalParameterTypeForClientConstructor == ServiceClientOptions || RequiredConstructorParametersTS.Contains("msRest."))
             {
                 builder.ImportAllAs("msRest", "ms-rest-js");
             }
