@@ -2,8 +2,10 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 // 
 
+using AutoRest.Core.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AutoRest.TypeScript.Model
 {
@@ -96,6 +98,17 @@ namespace AutoRest.TypeScript.Model
                     "import { Context } from \"./context\";"
                 },
                 codeModel.GenerateServiceClientImports());
+        }
+
+        [TestMethod]
+        public void Foo()
+        {
+            PropertyTS property = Models.Property("property", new PrimaryTypeTS(KnownPrimaryType.String));
+            CodeModelTS codeModel = CreateCodeModel(modelTypes: new[] { Models.CompositeType(name: "Type", properties: new[] { property }) });
+
+            string fieldsDeclaration = codeModel.GenerateClassFields("");
+
+            Assert.AreEqual("property?: string;", fieldsDeclaration);
         }
     }
 }
