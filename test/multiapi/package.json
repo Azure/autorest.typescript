@@ -5,6 +5,7 @@
     "lerna": "^3.3.2"
   },
   "scripts": {
-    "prepare": "lerna bootstrap"
+    "prepare": "lerna bootstrap",
+    "build": "lerna run build"
   }
 }
