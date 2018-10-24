@@ -1,7 +1,6 @@
 ﻿@using System.Linq
 @using AutoRest.Core.Model
 @using AutoRest.Core.Utilities
-@using AutoRest.TypeScript
 @using AutoRest.TypeScript.Azure.Model
 @inherits AutoRest.Core.Template<CodeModelTSa>
 /*
@@ -24,11 +23,7 @@ const packageVersion = "@Model.Settings.PackageVersion";
 @{var optionalParameters = Model.Properties.Where(p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)) && !p.IsConstant && !p.Name.EqualsIgnoreCase("apiVersion"));}
 @EmptyLine
 export class @(Model.ContextName) extends msRestAzure.AzureServiceClient {
-@foreach (var property in Model.Properties.Where(p => p.Name != "generateClientRequestId"))
-{
-  @EmptyLine
-  @:@(property.Name): @(property.ModelType.TSType(false));
-}
+  @(Model.GenerateClassFields(EmptyLine))
   @EmptyLine
   @(Model.GenerateConstructorComment(Model.Name))
 @{ var clientOptionType = Model.OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions" ? "msRestAzure.AzureServiceClientOptions" : Model.OptionalParameterTypeForClientConstructor;}

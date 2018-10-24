@@ -143,6 +143,16 @@ namespace AutoRest.TypeScript.Azure.Model
             GenerateNodeSampleMsRestNodeAuthImport(builder);
             GenerateNodeSampleClientImport(builder);
         }
+
+        protected override bool ShouldGenerateProperty(string propertyName)
+        {
+            string[] baseClassProperties = {
+                "acceptLanguage",
+                "longRunningOperationRetryTimeout",
+            };
+
+            return base.ShouldGenerateProperty(propertyName) && !baseClassProperties.Contains(propertyName);
+        }
     }
 }
  

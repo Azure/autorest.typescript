@@ -812,5 +812,36 @@ namespace AutoRest.TypeScript.Model
 
             return builder.ToString();
         }
+
+        public string GenerateClassFields(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+
+            foreach (Property property in Properties.Where(property => ShouldGenerateProperty(property.Name)))
+            {
+                builder.Line(emptyLine);
+                builder.Property(property.Name, property.ModelType.TSType(false), property.IsRequired);
+            }
+
+            return builder.ToString();
+        }
+
+        protected virtual bool ShouldGenerateProperty(string propertyName)
+        {
+            string[] propertiesToIgnore = { "generateClientRequestId" };
+            string[] baseClassProperties = {
+                "clientRequestIdHeaderName",
+                "deserializationContentTypes",
+                "generateClientRequestIdHeader",
+                "httpClient",
+                "httpPipelineLogger",
+                "noRetryPolicy",
+                "requestPolicyFactories",
+                "rpRegistrationRetryTimeout",
+                "withCredentials"
+            };
+ 
+            return !propertiesToIgnore.Contains(propertyName) && !baseClassProperties.Contains(propertyName);
+        }
     }
 }
