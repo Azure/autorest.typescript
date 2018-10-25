@@ -21,11 +21,7 @@ export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure
 
   subscriptionId: string;
 
-  apiVersion: string;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
+  apiVersion?: string;
 
   /**
    * Initializes a new instance of the AutoRestAzureSpecialParametersTestClient class.

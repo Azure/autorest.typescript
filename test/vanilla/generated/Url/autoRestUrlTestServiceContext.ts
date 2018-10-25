@@ -15,7 +15,9 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestUrlTestServiceContext extends msRest.ServiceClient {
+
   globalStringPath: string;
+
   globalStringQuery?: string;
 
   /**

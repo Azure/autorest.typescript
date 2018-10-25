@@ -21,10 +21,6 @@ export class AzureCompositeModelContext extends msRestAzure.AzureServiceClient {
 
   subscriptionId: string;
 
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
-
   /**
    * Initializes a new instance of the AzureCompositeModel class.
    * @param credentials Credentials needed for the client to connect to Azure.

@@ -15,7 +15,9 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestValidationTestContext extends msRest.ServiceClient {
+
   subscriptionId: string;
+
   apiVersion: string;
 
   /**

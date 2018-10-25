@@ -21,11 +21,7 @@ export class StorageManagementClientContext extends msRestAzure.AzureServiceClie
 
   subscriptionId: string;
 
-  apiVersion: string;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
+  apiVersion?: string;
 
   /**
    * Initializes a new instance of the StorageManagementClient class.

@@ -19,10 +19,6 @@ export class AutoRestParameterGroupingTestServiceContext extends msRestAzure.Azu
 
   credentials: msRest.ServiceClientCredentials;
 
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
-
   /**
    * Initializes a new instance of the AutoRestParameterGroupingTestService class.
    * @param credentials Credentials needed for the client to connect to Azure.

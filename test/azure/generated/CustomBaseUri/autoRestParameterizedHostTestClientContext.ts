@@ -19,11 +19,7 @@ export class AutoRestParameterizedHostTestClientContext extends msRestAzure.Azur
 
   credentials: msRest.ServiceClientCredentials;
 
-  host: string;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
+  host?: string;
 
   /**
    * Initializes a new instance of the AutoRestParameterizedHostTestClient class.

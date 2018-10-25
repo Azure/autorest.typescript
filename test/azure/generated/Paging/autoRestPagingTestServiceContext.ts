@@ -19,10 +19,6 @@ export class AutoRestPagingTestServiceContext extends msRestAzure.AzureServiceCl
 
   credentials: msRest.ServiceClientCredentials;
 
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
-
   /**
    * Initializes a new instance of the AutoRestPagingTestService class.
    * @param credentials Credentials needed for the client to connect to Azure.

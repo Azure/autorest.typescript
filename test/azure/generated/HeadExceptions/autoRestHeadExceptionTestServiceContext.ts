@@ -19,10 +19,6 @@ export class AutoRestHeadExceptionTestServiceContext extends msRestAzure.AzureSe
 
   credentials: msRest.ServiceClientCredentials;
 
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
-
   /**
    * Initializes a new instance of the AutoRestHeadExceptionTestService class.
    * @param credentials Credentials needed for the client to connect to Azure.

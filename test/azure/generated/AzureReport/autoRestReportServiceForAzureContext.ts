@@ -19,10 +19,6 @@ export class AutoRestReportServiceForAzureContext extends msRestAzure.AzureServi
 
   credentials: msRest.ServiceClientCredentials;
 
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
-
   /**
    * Initializes a new instance of the AutoRestReportServiceForAzure class.
    * @param credentials Credentials needed for the client to connect to Azure.
