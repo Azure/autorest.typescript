@@ -24,6 +24,20 @@ namespace AutoRest.TypeScript.Model
         private const string defaultGitHubRepositoryName = "azure-sdk-for-js";
         private const string defaultGitHubUrl = "https://github.com/azure/" + defaultGitHubRepositoryName;
 
+        private static readonly string[] propertiesToIgnore = { "generateClientRequestId" };
+
+        private static readonly string[] serviceClientProperties = {
+            "clientRequestIdHeaderName",
+            "deserializationContentTypes",
+            "generateClientRequestIdHeader",
+            "httpClient",
+            "httpPipelineLogger",
+            "noRetryPolicy",
+            "requestPolicyFactories",
+            "rpRegistrationRetryTimeout",
+            "withCredentials"
+        };
+
         public GeneratorSettingsTS Settings { get; set; }
 
         private string _optionalParameterTypeForClientConstructor;
@@ -813,14 +827,14 @@ namespace AutoRest.TypeScript.Model
             return builder.ToString();
         }
 
-        public string GenerateClassFields(string emptyLine)
+        public string GenerateClassProperties(string emptyLine)
         {
             TSBuilder builder = new TSBuilder();
 
             foreach (Property property in Properties.Where(property => ShouldGenerateProperty(property.Name)))
             {
                 builder.Line(emptyLine);
-                builder.Property(property.Name, property.ModelType.TSType(false), property.IsRequired);
+                builder.Property(property.Name, property.ModelType.TSType(false));
             }
 
             return builder.ToString();
@@ -828,20 +842,7 @@ namespace AutoRest.TypeScript.Model
 
         protected virtual bool ShouldGenerateProperty(string propertyName)
         {
-            string[] propertiesToIgnore = { "generateClientRequestId" };
-            string[] baseClassProperties = {
-                "clientRequestIdHeaderName",
-                "deserializationContentTypes",
-                "generateClientRequestIdHeader",
-                "httpClient",
-                "httpPipelineLogger",
-                "noRetryPolicy",
-                "requestPolicyFactories",
-                "rpRegistrationRetryTimeout",
-                "withCredentials"
-            };
- 
-            return !propertiesToIgnore.Contains(propertyName) && !baseClassProperties.Contains(propertyName);
+            return !propertiesToIgnore.Contains(propertyName) && !serviceClientProperties.Contains(propertyName);
         }
     }
 }

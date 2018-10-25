@@ -633,7 +633,7 @@ namespace AutoRest.TypeScript.DSL
             ConstObjectVariable(variableName, null, value);
         }
 
-        public void Property(string name, string type, bool required, string accessModifier = "")
+        public void Property(string name, string type, bool required = true, string accessModifier = "")
         {
             string modifier = String.IsNullOrEmpty(accessModifier) ? "" : $"{accessModifier} ";
             string optionalSuffix = required ? "" : "?";

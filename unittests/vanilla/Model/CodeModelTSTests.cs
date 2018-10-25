@@ -107,7 +107,7 @@ namespace AutoRest.TypeScript.Model
             CodeModelTS codeModel = new CodeModelTS();
             codeModel.Add(property);
 
-            string fieldsDeclaration = codeModel.GenerateClassFields("");
+            string fieldsDeclaration = codeModel.GenerateClassProperties("");
 
             Assert.AreEqual("\nProperty?: string;", fieldsDeclaration);
         }
@@ -120,7 +120,7 @@ namespace AutoRest.TypeScript.Model
             CodeModelTS codeModel = new CodeModelTS();
             codeModel.Add(property);
 
-            string fieldsDeclaration = codeModel.GenerateClassFields("");
+            string fieldsDeclaration = codeModel.GenerateClassProperties("");
 
             Assert.AreEqual("\nPropertyName: string;", fieldsDeclaration);
         }
@@ -137,7 +137,7 @@ namespace AutoRest.TypeScript.Model
             codeModel.Add(boolProperty);
             codeModel.Add(intProperty);
 
-            string fieldsDeclaration = codeModel.GenerateClassFields("");
+            string fieldsDeclaration = codeModel.GenerateClassProperties("");
 
             Assert.AreEqual("\nPropertyName?: string;\n\nIsProperty: boolean;\n\nNumProperty?: number;", fieldsDeclaration);
         }

@@ -15,6 +15,11 @@ namespace AutoRest.TypeScript.Azure.Model
 
     public class CodeModelTSa : CodeModelTS
     {
+        private static readonly string[] azureServiceClientProperties = {
+            "acceptLanguage",
+            "longRunningOperationRetryTimeout",
+        };
+
         private string _optionalParameterTypeForClientConstructor;
 
         [JsonIgnore]
@@ -146,12 +151,7 @@ namespace AutoRest.TypeScript.Azure.Model
 
         protected override bool ShouldGenerateProperty(string propertyName)
         {
-            string[] baseClassProperties = {
-                "acceptLanguage",
-                "longRunningOperationRetryTimeout",
-            };
-
-            return base.ShouldGenerateProperty(propertyName) && !baseClassProperties.Contains(propertyName);
+            return base.ShouldGenerateProperty(propertyName) && !azureServiceClientProperties.Contains(propertyName);
         }
     }
 }
