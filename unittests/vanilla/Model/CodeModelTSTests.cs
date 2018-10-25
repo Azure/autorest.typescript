@@ -101,14 +101,45 @@ namespace AutoRest.TypeScript.Model
         }
 
         [TestMethod]
-        public void Foo()
+        public void GenerateClassFieldsGeneratesProperlyOptionalPropertyDeclaration()
         {
             PropertyTS property = Models.Property("property", new PrimaryTypeTS(KnownPrimaryType.String));
-            CodeModelTS codeModel = CreateCodeModel(modelTypes: new[] { Models.CompositeType(name: "Type", properties: new[] { property }) });
+            CodeModelTS codeModel = new CodeModelTS();
+            codeModel.Add(property);
 
             string fieldsDeclaration = codeModel.GenerateClassFields("");
 
-            Assert.AreEqual("property?: string;", fieldsDeclaration);
+            Assert.AreEqual("\nProperty?: string;", fieldsDeclaration);
+        }
+
+        [TestMethod]
+        public void GenerateClassFieldsGeneratesProperlyRequiredPropertyDeclaration()
+        {
+            PropertyTS property = Models.Property("property-name", new PrimaryTypeTS(KnownPrimaryType.String));
+            property.IsRequired = true;
+            CodeModelTS codeModel = new CodeModelTS();
+            codeModel.Add(property);
+
+            string fieldsDeclaration = codeModel.GenerateClassFields("");
+
+            Assert.AreEqual("\nPropertyName: string;", fieldsDeclaration);
+        }
+
+        [TestMethod]
+        public void GenerateClassFieldsGeneratesMultiplePropertiesDeclaration()
+        {
+            PropertyTS stringProperty = Models.Property("property-name", new PrimaryTypeTS(KnownPrimaryType.String));
+            PropertyTS boolProperty = Models.Property("is-property", new PrimaryTypeTS(KnownPrimaryType.Boolean));
+            PropertyTS intProperty = Models.Property("numProperty", new PrimaryTypeTS(KnownPrimaryType.Int));
+            boolProperty.IsRequired = true;
+            CodeModelTS codeModel = new CodeModelTS();
+            codeModel.Add(stringProperty);
+            codeModel.Add(boolProperty);
+            codeModel.Add(intProperty);
+
+            string fieldsDeclaration = codeModel.GenerateClassFields("");
+
+            Assert.AreEqual("\nPropertyName?: string;\n\nIsProperty: boolean;\n\nNumProperty?: number;", fieldsDeclaration);
         }
     }
 }
