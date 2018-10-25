@@ -12,12 +12,9 @@ const packageName = "@azure/multiapi-test";
 const packageVersion = "1.0.0";
 
 export class AutoRestParameterizedCustomHostTestClientContext extends msRestAzure.AzureServiceClient {
-
   credentials: msRest.ServiceClientCredentials;
-
   subscriptionId: string;
-
-  dnsSuffix: string;
+  dnsSuffix?: string;
 
   /**
    * Initializes a new instance of the AutoRestParameterizedCustomHostTestClient class.

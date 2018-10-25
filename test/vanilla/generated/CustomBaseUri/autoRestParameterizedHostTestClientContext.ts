@@ -15,8 +15,7 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestParameterizedHostTestClientContext extends msRest.ServiceClient {
-
-  host: string;
+  host?: string;
 
   /**
    * Initializes a new instance of the AutoRestParameterizedHostTestClientContext class.

@@ -15,8 +15,7 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestRenameParameterTestServiceContext extends msRest.ServiceClient {
-
-  withCredentialsProperty: string;
+  withCredentialsProperty?: string;
 
   /**
    * Initializes a new instance of the AutoRestRenameParameterTestServiceContext class.

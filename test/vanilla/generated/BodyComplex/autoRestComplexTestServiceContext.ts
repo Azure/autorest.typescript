@@ -15,7 +15,6 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestComplexTestServiceContext extends msRest.ServiceClient {
-
   apiVersion: string;
 
   /**

@@ -15,12 +15,9 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceClient {
-
   requiredGlobalPath: string;
-
   requiredGlobalQuery: string;
-
-  optionalGlobalQuery: number;
+  optionalGlobalQuery?: number;
 
   /**
    * Initializes a new instance of the AutoRestRequiredOptionalTestServiceContext class.

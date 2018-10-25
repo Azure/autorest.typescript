@@ -16,7 +16,6 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestReportServiceForAzureContext extends msRestAzure.AzureServiceClient {
-
   credentials: msRest.ServiceClientCredentials;
 
   /**

@@ -16,12 +16,9 @@ const packageName = "";
 const packageVersion = "";
 
 export class StorageManagementClientContext extends msRestAzure.AzureServiceClient {
-
   credentials: msRest.ServiceClientCredentials;
-
   subscriptionId: string;
-
-  apiVersion: string;
+  apiVersion?: string;
 
   /**
    * Initializes a new instance of the StorageManagementClient class.

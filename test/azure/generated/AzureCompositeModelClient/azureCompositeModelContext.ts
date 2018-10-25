@@ -16,9 +16,7 @@ const packageName = "";
 const packageVersion = "";
 
 export class AzureCompositeModelContext extends msRestAzure.AzureServiceClient {
-
   credentials: msRest.ServiceClientCredentials;
-
   subscriptionId: string;
 
   /**
