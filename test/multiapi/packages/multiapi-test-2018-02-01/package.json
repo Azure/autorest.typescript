@@ -49,7 +49,7 @@
   "scripts": {
     "build": "tsc && rollup -c rollup.config.js && npm run minify",
     "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/multiapi-test-2018-02-01.js.map'\" -o ./dist/multiapi-test-2018-02-01.min.js ./dist/multiapi-test-2018-02-01.js",
-    "prepare": "npm run build"
+    "prepack": "npm install && npm run build"
   },
   "sideEffects": false
 }

@@ -58,7 +58,7 @@ else
   "scripts": {
     "build": "tsc && rollup -c rollup.config.js && npm run minify",
     "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/@(Model.BundleFilename).js.map'\" -o ./dist/@(Model.BundleFilename).min.js ./dist/@(Model.BundleFilename).js",
-    "prepare": "npm run build"
+    "prepack": "npm install && npm run build"
   },
   "sideEffects": false
 }
