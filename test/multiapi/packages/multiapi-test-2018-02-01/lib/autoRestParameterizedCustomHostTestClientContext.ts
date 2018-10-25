@@ -17,7 +17,7 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRestAzur
 
   subscriptionId: string;
 
-  dnsSuffix?: string;
+  dnsSuffix: string;
 
   /**
    * Initializes a new instance of the AutoRestParameterizedCustomHostTestClient class.

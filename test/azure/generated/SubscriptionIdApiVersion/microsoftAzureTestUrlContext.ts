@@ -21,7 +21,7 @@ export class MicrosoftAzureTestUrlContext extends msRestAzure.AzureServiceClient
 
   subscriptionId: string;
 
-  apiVersion?: string;
+  apiVersion: string;
 
   /**
    * Initializes a new instance of the MicrosoftAzureTestUrl class.

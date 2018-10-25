@@ -20,7 +20,7 @@ export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceCl
 
   requiredGlobalQuery: string;
 
-  optionalGlobalQuery?: number;
+  optionalGlobalQuery: number;
 
   /**
    * Initializes a new instance of the AutoRestRequiredOptionalTestServiceContext class.

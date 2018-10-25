@@ -21,7 +21,7 @@ export class StorageManagementClientContext extends msRestAzure.AzureServiceClie
 
   subscriptionId: string;
 
-  apiVersion?: string;
+  apiVersion: string;
 
   /**
    * Initializes a new instance of the StorageManagementClient class.
