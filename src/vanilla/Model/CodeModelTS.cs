@@ -833,8 +833,7 @@ namespace AutoRest.TypeScript.Model
 
             foreach (Property property in Properties.Where(property => ShouldGenerateProperty(property.Name)))
             {
-                builder.Line(emptyLine);
-                builder.Property(property.Name, property.ModelType.TSType(false));
+                builder.Property(property.Name, property.ModelType.TSType(false), property.IsRequired);
             }
 
             return builder.ToString();
