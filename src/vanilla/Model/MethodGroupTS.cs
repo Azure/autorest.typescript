@@ -147,7 +147,7 @@ namespace AutoRest.TypeScript.Model
                     }
                     else
                     {
-                        builder.ConstObjectVariable("serializer", CodeModel.CreateSerializerExpression());
+                        builder.ConstObjectVariable("serializer", CodeModelTS.CreateSerializerExpression());
                         addedFirstValue = true;
                     }
                     method.GenerateOperationSpecDefinition(builder);
