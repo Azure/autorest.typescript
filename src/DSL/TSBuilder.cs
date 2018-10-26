@@ -633,6 +633,13 @@ namespace AutoRest.TypeScript.DSL
             ConstObjectVariable(variableName, null, value);
         }
 
+        public void Property(string name, string type, bool required = true, string accessModifier = "")
+        {
+            string modifier = String.IsNullOrEmpty(accessModifier) ? "" : $"{accessModifier} ";
+            string optionalSuffix = required ? "" : "?";
+            Line($"{modifier}{name}{optionalSuffix}: {type};");
+        }
+
         public void ImportAllAs(string importAs, string importSource)
         {
             Line($"import * as {importAs} from \"{importSource}\";");

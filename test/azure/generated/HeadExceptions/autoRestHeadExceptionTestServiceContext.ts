@@ -16,12 +16,7 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestHeadExceptionTestServiceContext extends msRestAzure.AzureServiceClient {
-
   credentials: msRest.ServiceClientCredentials;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
 
   /**
    * Initializes a new instance of the AutoRestHeadExceptionTestService class.

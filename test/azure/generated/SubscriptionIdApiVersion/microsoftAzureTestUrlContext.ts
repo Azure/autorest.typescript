@@ -16,16 +16,9 @@ const packageName = "";
 const packageVersion = "";
 
 export class MicrosoftAzureTestUrlContext extends msRestAzure.AzureServiceClient {
-
   credentials: msRest.ServiceClientCredentials;
-
   subscriptionId: string;
-
-  apiVersion: string;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
+  apiVersion?: string;
 
   /**
    * Initializes a new instance of the MicrosoftAzureTestUrl class.

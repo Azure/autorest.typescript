@@ -857,5 +857,35 @@ namespace AutoRest.TypeScript.DSL
                 " */",
                 builder);
         }
+
+        [TestMethod]
+        public void PropertyGeneratesOptionalParameterCorrectly()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Property("name", "AType", false);
+            string declaration = builder.ToString();
+
+            Assert.AreEqual("name?: AType;", declaration);
+        }
+
+        [TestMethod]
+        public void PropertyGeneratesRequiredParameterCorrectly()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Property("longerName", "SomeOtherType", true);
+            string declaration = builder.ToString();
+
+            Assert.AreEqual("longerName: SomeOtherType;", declaration);
+        }
+
+        [TestMethod]
+        public void PropertyAddsAccessModifierWhenSpecified()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Property("name", "Type", true, "protected");
+            string declaration = builder.ToString();
+
+            Assert.AreEqual("protected name: Type;", declaration);
+        }
     }
 }

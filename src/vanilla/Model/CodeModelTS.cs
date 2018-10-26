@@ -24,6 +24,14 @@ namespace AutoRest.TypeScript.Model
         private const string defaultGitHubRepositoryName = "azure-sdk-for-js";
         private const string defaultGitHubUrl = "https://github.com/azure/" + defaultGitHubRepositoryName;
 
+        private static readonly string[] propertiesToIgnore = { "generateClientRequestId" };
+
+        private static readonly string[] serviceClientProperties = {
+            "baseUri",
+            "requestContentType",
+            "userAgentInfo",
+        };
+
         public GeneratorSettingsTS Settings { get; set; }
 
         private string _optionalParameterTypeForClientConstructor;
@@ -811,6 +819,24 @@ namespace AutoRest.TypeScript.Model
             builder.Line($"}});");
 
             return builder.ToString();
+        }
+
+        public string GenerateClassProperties(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+
+            foreach (Property property in Properties.Where(property => ShouldGenerateProperty(property.Name)))
+            {
+                builder.Property(property.Name, property.ModelType.TSType(false), property.IsRequired);
+            }
+
+            return builder.ToString();
+        }
+
+        protected virtual bool ShouldGenerateProperty(string propertyName)
+        {
+            string camelCaseProperty = propertyName.ToCamelCase();
+            return !propertiesToIgnore.Contains(camelCaseProperty) && !serviceClientProperties.Contains(camelCaseProperty);
         }
     }
 }

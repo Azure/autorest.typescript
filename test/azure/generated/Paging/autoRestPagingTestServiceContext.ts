@@ -16,12 +16,7 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestPagingTestServiceContext extends msRestAzure.AzureServiceClient {
-
   credentials: msRest.ServiceClientCredentials;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
 
   /**
    * Initializes a new instance of the AutoRestPagingTestService class.

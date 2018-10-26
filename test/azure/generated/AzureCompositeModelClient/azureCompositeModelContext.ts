@@ -16,14 +16,8 @@ const packageName = "";
 const packageVersion = "";
 
 export class AzureCompositeModelContext extends msRestAzure.AzureServiceClient {
-
   credentials: msRest.ServiceClientCredentials;
-
   subscriptionId: string;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
 
   /**
    * Initializes a new instance of the AzureCompositeModel class.
