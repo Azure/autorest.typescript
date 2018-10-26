@@ -27,15 +27,9 @@ namespace AutoRest.TypeScript.Model
         private static readonly string[] propertiesToIgnore = { "generateClientRequestId" };
 
         private static readonly string[] serviceClientProperties = {
-            "clientRequestIdHeaderName",
-            "deserializationContentTypes",
-            "generateClientRequestIdHeader",
-            "httpClient",
-            "httpPipelineLogger",
-            "noRetryPolicy",
-            "requestPolicyFactories",
-            "rpRegistrationRetryTimeout",
-            "withCredentials"
+            "baseUri",
+            "requestContentType",
+            "userAgentInfo",
         };
 
         public GeneratorSettingsTS Settings { get; set; }
