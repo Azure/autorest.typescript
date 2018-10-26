@@ -835,7 +835,8 @@ namespace AutoRest.TypeScript.Model
 
         protected virtual bool ShouldGenerateProperty(string propertyName)
         {
-            return !propertiesToIgnore.Contains(propertyName) && !serviceClientProperties.Contains(propertyName);
+            string camelCaseProperty = propertyName.ToCamelCase();
+            return !propertiesToIgnore.Contains(camelCaseProperty) && !serviceClientProperties.Contains(camelCaseProperty);
         }
     }
 }

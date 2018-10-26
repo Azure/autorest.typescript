@@ -109,7 +109,7 @@ namespace AutoRest.TypeScript.Model
 
             string fieldsDeclaration = codeModel.GenerateClassProperties("");
 
-            Assert.AreEqual("\nProperty?: string;", fieldsDeclaration);
+            Assert.AreEqual("Property?: string;", fieldsDeclaration);
         }
 
         [TestMethod]
@@ -122,7 +122,7 @@ namespace AutoRest.TypeScript.Model
 
             string fieldsDeclaration = codeModel.GenerateClassProperties("");
 
-            Assert.AreEqual("\nPropertyName: string;", fieldsDeclaration);
+            Assert.AreEqual("PropertyName: string;", fieldsDeclaration);
         }
 
         [TestMethod]
@@ -139,7 +139,21 @@ namespace AutoRest.TypeScript.Model
 
             string fieldsDeclaration = codeModel.GenerateClassProperties("");
 
-            Assert.AreEqual("\nPropertyName?: string;\n\nIsProperty: boolean;\n\nNumProperty?: number;", fieldsDeclaration);
+            Assert.AreEqual("PropertyName?: string;\nIsProperty: boolean;\nNumProperty?: number;", fieldsDeclaration);
+        }
+
+        [TestMethod]
+        public void GenerateClassFieldsSkipBaseClassProperties()
+        {
+            PropertyTS stringProperty = Models.Property("property-name", new PrimaryTypeTS(KnownPrimaryType.String));
+            PropertyTS baseClassProperty = Models.Property("user-agent-info", new PrimaryTypeTS(KnownPrimaryType.String));
+            CodeModelTS codeModel = new CodeModelTS();
+            codeModel.Add(stringProperty);
+            codeModel.Add(baseClassProperty);
+
+            string fieldsDeclaration = codeModel.GenerateClassProperties("");
+
+            Assert.AreEqual("PropertyName?: string;", fieldsDeclaration);
         }
     }
 }
