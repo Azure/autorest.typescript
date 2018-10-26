@@ -105,7 +105,7 @@ namespace AutoRest.TypeScript.DSL
         /// Add an object argument to this argument list.
         /// </summary>
         /// <param name="objectAction">The action that will be used to populate the properties of the object.</param>
-        public override void Object(Action<TSObject> objectAction)
+        public override void Object(Action<TSObject> objectAction = null)
         {
             BeforeArgumentAdded();
             base.Object(objectAction);

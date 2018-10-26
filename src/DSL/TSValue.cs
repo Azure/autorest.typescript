@@ -80,7 +80,7 @@ namespace AutoRest.TypeScript.DSL
         /// Add a JSON array to this TSValue.
         /// </summary>
         /// <param name="arrayAction">The action that will be invoked to produce the elements of the JSON array.</param>
-        public virtual void Array(Action<TSArray> arrayAction)
+        public virtual void Array(Action<TSArray> arrayAction = null)
         {
             builder.Array(arrayAction);
         }
@@ -89,7 +89,7 @@ namespace AutoRest.TypeScript.DSL
         /// Add a JSON object to this TSValue.
         /// </summary>
         /// <param name="objectAction">The action that will be invoked to produce the properties of the JSON object.</param>
-        public virtual void Object(Action<TSObject> objectAction)
+        public virtual void Object(Action<TSObject> objectAction = null)
         {
             builder.Object(objectAction);
         }

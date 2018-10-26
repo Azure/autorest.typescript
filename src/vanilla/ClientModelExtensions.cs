@@ -203,9 +203,28 @@ namespace AutoRest.TypeScript
             return builder.ToString();
         }
 
-        public static string CreateSerializerExpression(this CodeModel codeModel)
+        public static string CreateSerializerExpression(this CodeModelTS codeModel)
         {
-            return $"new msRest.Serializer(Mappers{(codeModel.ShouldGenerateXmlSerialization == true ? ", true" : "")})";
+            TSBuilder builder = new TSBuilder();
+            builder.FunctionCall("new msRest.Serializer", arguments =>
+            {
+                bool hasMappers = codeModel.HasMappers();
+                if (hasMappers)
+                {
+                    arguments.Text("Mappers");
+                }
+
+                if (codeModel.ShouldGenerateXmlSerialization == true)
+                {
+                    if (!hasMappers)
+                    {
+                        arguments.Object();
+                    }
+
+                    arguments.Boolean(true);
+                }
+            });
+            return builder.ToString();
         }
 
         public static void ConstructParameterMapper(TSObject obj, ParameterTS parameter)

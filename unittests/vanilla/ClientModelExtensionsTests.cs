@@ -3,6 +3,7 @@
 
 using AutoRest.Core.Model;
 using AutoRest.TypeScript.DSL;
+using AutoRest.TypeScript.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AutoRest.TypeScript
@@ -491,6 +492,24 @@ namespace AutoRest.TypeScript
                 "/^([0-9]{1,3}\\.){3}[0-9]{1,3}(\\/([0-9]|[1-2][0-9]|3[0-2]))?$/",
                 ClientModelExtensions.CreateRegexPatternConstraintValue(
                     "^([0-9]{1,3}\\.){3}[0-9]{1,3}(\\/([0-9]|[1-2][0-9]|3[0-2]))?$"));
+        }
+
+        [TestMethod]
+        public void CreateSerializerExpressionWithNoMappersAndNoXML()
+        {
+            CodeModelTS codeModel = Models.CodeModel();
+            Assert.AreEqual("new msRest.Serializer()", ClientModelExtensions.CreateSerializerExpression(codeModel));
+        }
+
+        [TestMethod]
+        public void CreateSerializerExpressionWithNoMappersAndXML()
+        {
+            CodeModelTS codeModel = Models.CodeModel(
+                modelTypes: new[]
+                {
+                    Models.CompositeType(name: "FakeModelType")
+                });
+            Assert.AreEqual("new msRest.Serializer(Mappers)", ClientModelExtensions.CreateSerializerExpression(codeModel));
         }
     }
 }
