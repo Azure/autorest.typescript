@@ -36,14 +36,14 @@ export class DateModel {
    */
   getNull(callback: msRest.ServiceCallback<Date>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): Promise<Models.DateModelGetNullResponse> {
+  getNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback: msRest.ServiceCallback<Date>): void;
+  getNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback?: msRest.ServiceCallback<Date>): Promise<Models.DateModelGetNullResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getNullOperationSpec,
       callback) as Promise<Models.DateModelGetNullResponse>;
@@ -60,14 +60,14 @@ export class DateModel {
    */
   getInvalidDate(callback: msRest.ServiceCallback<Date>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getInvalidDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getInvalidDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): Promise<Models.DateModelGetInvalidDateResponse> {
+  getInvalidDate(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback: msRest.ServiceCallback<Date>): void;
+  getInvalidDate(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback?: msRest.ServiceCallback<Date>): Promise<Models.DateModelGetInvalidDateResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getInvalidDateOperationSpec,
       callback) as Promise<Models.DateModelGetInvalidDateResponse>;
@@ -84,14 +84,14 @@ export class DateModel {
    */
   getOverflowDate(callback: msRest.ServiceCallback<Date>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getOverflowDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getOverflowDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): Promise<Models.DateModelGetOverflowDateResponse> {
+  getOverflowDate(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback: msRest.ServiceCallback<Date>): void;
+  getOverflowDate(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback?: msRest.ServiceCallback<Date>): Promise<Models.DateModelGetOverflowDateResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getOverflowDateOperationSpec,
       callback) as Promise<Models.DateModelGetOverflowDateResponse>;
@@ -108,14 +108,14 @@ export class DateModel {
    */
   getUnderflowDate(callback: msRest.ServiceCallback<Date>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getUnderflowDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUnderflowDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): Promise<Models.DateModelGetUnderflowDateResponse> {
+  getUnderflowDate(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback: msRest.ServiceCallback<Date>): void;
+  getUnderflowDate(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback?: msRest.ServiceCallback<Date>): Promise<Models.DateModelGetUnderflowDateResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getUnderflowDateOperationSpec,
       callback) as Promise<Models.DateModelGetUnderflowDateResponse>;
@@ -135,15 +135,15 @@ export class DateModel {
   putMaxDate(dateBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param dateBody
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  putMaxDate(dateBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMaxDate(dateBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putMaxDate(dateBody: Date | string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putMaxDate(dateBody: Date | string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         dateBody,
-        options
+        optionsOrCallback
       },
       putMaxDateOperationSpec,
       callback);
@@ -160,14 +160,14 @@ export class DateModel {
    */
   getMaxDate(callback: msRest.ServiceCallback<Date>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getMaxDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getMaxDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): Promise<Models.DateModelGetMaxDateResponse> {
+  getMaxDate(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback: msRest.ServiceCallback<Date>): void;
+  getMaxDate(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback?: msRest.ServiceCallback<Date>): Promise<Models.DateModelGetMaxDateResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getMaxDateOperationSpec,
       callback) as Promise<Models.DateModelGetMaxDateResponse>;
@@ -187,15 +187,15 @@ export class DateModel {
   putMinDate(dateBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param dateBody
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  putMinDate(dateBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMinDate(dateBody: Date | string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putMinDate(dateBody: Date | string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putMinDate(dateBody: Date | string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         dateBody,
-        options
+        optionsOrCallback
       },
       putMinDateOperationSpec,
       callback);
@@ -212,14 +212,14 @@ export class DateModel {
    */
   getMinDate(callback: msRest.ServiceCallback<Date>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getMinDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getMinDate(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Date>): Promise<Models.DateModelGetMinDateResponse> {
+  getMinDate(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback: msRest.ServiceCallback<Date>): void;
+  getMinDate(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback?: msRest.ServiceCallback<Date>): Promise<Models.DateModelGetMinDateResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getMinDateOperationSpec,
       callback) as Promise<Models.DateModelGetMinDateResponse>;

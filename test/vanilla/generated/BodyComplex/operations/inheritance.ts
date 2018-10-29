@@ -36,14 +36,14 @@ export class Inheritance {
    */
   getValid(callback: msRest.ServiceCallback<Models.Siamese>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Siamese>): void;
-  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Siamese>): Promise<Models.InheritanceGetValidResponse> {
+  getValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Siamese>, callback: msRest.ServiceCallback<Models.Siamese>): void;
+  getValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Siamese>, callback?: msRest.ServiceCallback<Models.Siamese>): Promise<Models.InheritanceGetValidResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getValidOperationSpec,
       callback) as Promise<Models.InheritanceGetValidResponse>;
@@ -69,15 +69,15 @@ export class Inheritance {
    * @param complexBody Please put a siamese with id=2, name="Siameee", color=green, breed=persion,
    * which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one
    * named "Tomato" with id=-1 and food="french fries".
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  putValid(complexBody: Models.Siamese, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putValid(complexBody: Models.Siamese, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putValid(complexBody: Models.Siamese, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
-        options
+        optionsOrCallback
       },
       putValidOperationSpec,
       callback);

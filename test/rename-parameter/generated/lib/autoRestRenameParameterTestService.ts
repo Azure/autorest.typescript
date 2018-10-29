@@ -35,14 +35,14 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
    */
   getUsingOptional(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getUsingOptional(options: Models.AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getUsingOptional(options?: Models.AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getUsingOptional(optionsOrCallback: Models.AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getUsingOptional(optionsOrCallback?: Models.AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getUsingOptionalOperationSpec,
       callback);
@@ -62,15 +62,15 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
   getUsingRequired(timeout: string, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param timeout A query parameter.
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getUsingRequired(timeout: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getUsingRequired(timeout: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getUsingRequired(timeout: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getUsingRequired(timeout: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
       {
         timeout,
-        options
+        optionsOrCallback
       },
       getUsingRequiredOperationSpec,
       callback);
@@ -87,14 +87,14 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
    */
   getUsingClientOptional(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getUsingClientOptional(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getUsingClientOptional(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getUsingClientOptional(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getUsingClientOptional(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getUsingClientOptionalOperationSpec,
       callback);
@@ -111,14 +111,14 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
    */
   getUsingClientRequired(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getUsingClientRequired(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getUsingClientRequired(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getUsingClientRequired(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getUsingClientRequired(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getUsingClientRequiredOperationSpec,
       callback);

@@ -36,14 +36,14 @@ export class Bool {
    */
   getTrue(callback: msRest.ServiceCallback<boolean>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getTrue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.BoolGetTrueResponse> {
+  getTrue(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback: msRest.ServiceCallback<boolean>): void;
+  getTrue(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.BoolGetTrueResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getTrueOperationSpec,
       callback) as Promise<Models.BoolGetTrueResponse>;
@@ -60,14 +60,14 @@ export class Bool {
    */
   putTrue(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  putTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putTrue(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putTrue(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putTrue(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       putTrueOperationSpec,
       callback);
@@ -84,14 +84,14 @@ export class Bool {
    */
   getFalse(callback: msRest.ServiceCallback<boolean>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getFalse(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.BoolGetFalseResponse> {
+  getFalse(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback: msRest.ServiceCallback<boolean>): void;
+  getFalse(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.BoolGetFalseResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getFalseOperationSpec,
       callback) as Promise<Models.BoolGetFalseResponse>;
@@ -108,14 +108,14 @@ export class Bool {
    */
   putFalse(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  putFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putFalse(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putFalse(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putFalse(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       putFalseOperationSpec,
       callback);
@@ -132,14 +132,14 @@ export class Bool {
    */
   getNull(callback: msRest.ServiceCallback<boolean>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.BoolGetNullResponse> {
+  getNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback: msRest.ServiceCallback<boolean>): void;
+  getNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.BoolGetNullResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getNullOperationSpec,
       callback) as Promise<Models.BoolGetNullResponse>;
@@ -156,14 +156,14 @@ export class Bool {
    */
   getInvalid(callback: msRest.ServiceCallback<boolean>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.BoolGetInvalidResponse> {
+  getInvalid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback: msRest.ServiceCallback<boolean>): void;
+  getInvalid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.BoolGetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getInvalidOperationSpec,
       callback) as Promise<Models.BoolGetInvalidResponse>;

@@ -46,17 +46,17 @@ export class Paths {
    * @param vault The vault name, e.g. https://myvault
    * @param secret Secret value.
    * @param keyName The key name with value 'key1'.
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getEmpty(vault: string, secret: string, keyName: string, options: Models.PathsGetEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getEmpty(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getEmpty(vault: string, secret: string, keyName: string, optionsOrCallback: Models.PathsGetEmptyOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getEmpty(vault: string, secret: string, keyName: string, optionsOrCallback?: Models.PathsGetEmptyOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         vault,
         secret,
         keyName,
-        options
+        optionsOrCallback
       },
       getEmptyOperationSpec,
       callback);

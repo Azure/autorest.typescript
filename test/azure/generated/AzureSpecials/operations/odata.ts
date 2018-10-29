@@ -37,14 +37,14 @@ export class Odata {
    */
   getWithFilter(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getWithFilter(options: Models.OdataGetWithFilterOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getWithFilter(options?: Models.OdataGetWithFilterOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getWithFilter(optionsOrCallback: Models.OdataGetWithFilterOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getWithFilter(optionsOrCallback?: Models.OdataGetWithFilterOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getWithFilterOperationSpec,
       callback);

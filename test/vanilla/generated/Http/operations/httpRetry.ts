@@ -36,14 +36,14 @@ export class HttpRetry {
    */
   head408(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  head408(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head408(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  head408(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  head408(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       head408OperationSpec,
       callback);
@@ -60,14 +60,14 @@ export class HttpRetry {
    */
   put500(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  put500(options: Models.HttpRetryPut500OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put500(options?: Models.HttpRetryPut500OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  put500(optionsOrCallback: Models.HttpRetryPut500OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  put500(optionsOrCallback?: Models.HttpRetryPut500OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       put500OperationSpec,
       callback);
@@ -84,14 +84,14 @@ export class HttpRetry {
    */
   patch500(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  patch500(options: Models.HttpRetryPatch500OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch500(options?: Models.HttpRetryPatch500OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  patch500(optionsOrCallback: Models.HttpRetryPatch500OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  patch500(optionsOrCallback?: Models.HttpRetryPatch500OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       patch500OperationSpec,
       callback);
@@ -108,14 +108,14 @@ export class HttpRetry {
    */
   get502(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  get502(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get502(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  get502(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  get502(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       get502OperationSpec,
       callback);
@@ -132,14 +132,14 @@ export class HttpRetry {
    */
   post503(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  post503(options: Models.HttpRetryPost503OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post503(options?: Models.HttpRetryPost503OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  post503(optionsOrCallback: Models.HttpRetryPost503OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  post503(optionsOrCallback?: Models.HttpRetryPost503OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       post503OperationSpec,
       callback);
@@ -156,14 +156,14 @@ export class HttpRetry {
    */
   delete503(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  delete503(options: Models.HttpRetryDelete503OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  delete503(options?: Models.HttpRetryDelete503OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  delete503(optionsOrCallback: Models.HttpRetryDelete503OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  delete503(optionsOrCallback?: Models.HttpRetryDelete503OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       delete503OperationSpec,
       callback);
@@ -180,14 +180,14 @@ export class HttpRetry {
    */
   put504(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  put504(options: Models.HttpRetryPut504OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put504(options?: Models.HttpRetryPut504OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  put504(optionsOrCallback: Models.HttpRetryPut504OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  put504(optionsOrCallback?: Models.HttpRetryPut504OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       put504OperationSpec,
       callback);
@@ -204,14 +204,14 @@ export class HttpRetry {
    */
   patch504(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  patch504(options: Models.HttpRetryPatch504OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch504(options?: Models.HttpRetryPatch504OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  patch504(optionsOrCallback: Models.HttpRetryPatch504OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  patch504(optionsOrCallback?: Models.HttpRetryPatch504OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       patch504OperationSpec,
       callback);

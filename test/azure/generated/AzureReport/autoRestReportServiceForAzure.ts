@@ -36,14 +36,14 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
    */
   getReport(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getReport(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.GetReportResponse> {
+  getReport(optionsOrCallback: Models.AutoRestReportServiceForAzureGetReportOptionalParams | msRest.ServiceCallback<{ [propertyName: string]: number }>, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  getReport(optionsOrCallback?: Models.AutoRestReportServiceForAzureGetReportOptionalParams | msRest.ServiceCallback<{ [propertyName: string]: number }>, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.GetReportResponse> {
     return this.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getReportOperationSpec,
       callback) as Promise<Models.GetReportResponse>;

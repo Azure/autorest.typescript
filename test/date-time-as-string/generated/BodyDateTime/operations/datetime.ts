@@ -36,14 +36,14 @@ export class Datetime {
    */
   getNull(callback: msRest.ServiceCallback<string>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetNullResponse> {
+  getNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback: msRest.ServiceCallback<string>): void;
+  getNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetNullResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getNullOperationSpec,
       callback) as Promise<Models.DatetimeGetNullResponse>;
@@ -60,14 +60,14 @@ export class Datetime {
    */
   getInvalid(callback: msRest.ServiceCallback<string>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetInvalidResponse> {
+  getInvalid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback: msRest.ServiceCallback<string>): void;
+  getInvalid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getInvalidOperationSpec,
       callback) as Promise<Models.DatetimeGetInvalidResponse>;
@@ -84,14 +84,14 @@ export class Datetime {
    */
   getOverflow(callback: msRest.ServiceCallback<string>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getOverflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getOverflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetOverflowResponse> {
+  getOverflow(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback: msRest.ServiceCallback<string>): void;
+  getOverflow(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetOverflowResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getOverflowOperationSpec,
       callback) as Promise<Models.DatetimeGetOverflowResponse>;
@@ -108,14 +108,14 @@ export class Datetime {
    */
   getUnderflow(callback: msRest.ServiceCallback<string>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getUnderflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUnderflow(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetUnderflowResponse> {
+  getUnderflow(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback: msRest.ServiceCallback<string>): void;
+  getUnderflow(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetUnderflowResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getUnderflowOperationSpec,
       callback) as Promise<Models.DatetimeGetUnderflowResponse>;
@@ -141,15 +141,15 @@ export class Datetime {
    * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  putUtcMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUtcMaxDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putUtcMaxDateTime(datetimeBody: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putUtcMaxDateTime(datetimeBody: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
-        options
+        optionsOrCallback
       },
       putUtcMaxDateTimeOperationSpec,
       callback);
@@ -166,14 +166,14 @@ export class Datetime {
    */
   getUtcLowercaseMaxDateTime(callback: msRest.ServiceCallback<string>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUtcLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetUtcLowercaseMaxDateTimeResponse> {
+  getUtcLowercaseMaxDateTime(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback: msRest.ServiceCallback<string>): void;
+  getUtcLowercaseMaxDateTime(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetUtcLowercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getUtcLowercaseMaxDateTimeOperationSpec,
       callback) as Promise<Models.DatetimeGetUtcLowercaseMaxDateTimeResponse>;
@@ -190,14 +190,14 @@ export class Datetime {
    */
   getUtcUppercaseMaxDateTime(callback: msRest.ServiceCallback<string>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUtcUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetUtcUppercaseMaxDateTimeResponse> {
+  getUtcUppercaseMaxDateTime(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback: msRest.ServiceCallback<string>): void;
+  getUtcUppercaseMaxDateTime(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetUtcUppercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getUtcUppercaseMaxDateTimeOperationSpec,
       callback) as Promise<Models.DatetimeGetUtcUppercaseMaxDateTimeResponse>;
@@ -223,15 +223,15 @@ export class Datetime {
    * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  putLocalPositiveOffsetMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLocalPositiveOffsetMaxDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putLocalPositiveOffsetMaxDateTime(datetimeBody: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putLocalPositiveOffsetMaxDateTime(datetimeBody: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
-        options
+        optionsOrCallback
       },
       putLocalPositiveOffsetMaxDateTimeOperationSpec,
       callback);
@@ -248,14 +248,14 @@ export class Datetime {
    */
   getLocalPositiveOffsetLowercaseMaxDateTime(callback: msRest.ServiceCallback<string>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getLocalPositiveOffsetLowercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getLocalPositiveOffsetLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse> {
+  getLocalPositiveOffsetLowercaseMaxDateTime(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback: msRest.ServiceCallback<string>): void;
+  getLocalPositiveOffsetLowercaseMaxDateTime(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec,
       callback) as Promise<Models.DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse>;
@@ -272,14 +272,14 @@ export class Datetime {
    */
   getLocalPositiveOffsetUppercaseMaxDateTime(callback: msRest.ServiceCallback<string>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getLocalPositiveOffsetUppercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getLocalPositiveOffsetUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse> {
+  getLocalPositiveOffsetUppercaseMaxDateTime(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback: msRest.ServiceCallback<string>): void;
+  getLocalPositiveOffsetUppercaseMaxDateTime(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec,
       callback) as Promise<Models.DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse>;
@@ -305,15 +305,15 @@ export class Datetime {
    * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  putLocalNegativeOffsetMaxDateTime(datetimeBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLocalNegativeOffsetMaxDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putLocalNegativeOffsetMaxDateTime(datetimeBody: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putLocalNegativeOffsetMaxDateTime(datetimeBody: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
-        options
+        optionsOrCallback
       },
       putLocalNegativeOffsetMaxDateTimeOperationSpec,
       callback);
@@ -330,14 +330,14 @@ export class Datetime {
    */
   getLocalNegativeOffsetUppercaseMaxDateTime(callback: msRest.ServiceCallback<string>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getLocalNegativeOffsetUppercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getLocalNegativeOffsetUppercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse> {
+  getLocalNegativeOffsetUppercaseMaxDateTime(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback: msRest.ServiceCallback<string>): void;
+  getLocalNegativeOffsetUppercaseMaxDateTime(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec,
       callback) as Promise<Models.DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse>;
@@ -354,14 +354,14 @@ export class Datetime {
    */
   getLocalNegativeOffsetLowercaseMaxDateTime(callback: msRest.ServiceCallback<string>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getLocalNegativeOffsetLowercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getLocalNegativeOffsetLowercaseMaxDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse> {
+  getLocalNegativeOffsetLowercaseMaxDateTime(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback: msRest.ServiceCallback<string>): void;
+  getLocalNegativeOffsetLowercaseMaxDateTime(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec,
       callback) as Promise<Models.DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse>;
@@ -387,15 +387,15 @@ export class Datetime {
    * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  putUtcMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUtcMinDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putUtcMinDateTime(datetimeBody: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putUtcMinDateTime(datetimeBody: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
-        options
+        optionsOrCallback
       },
       putUtcMinDateTimeOperationSpec,
       callback);
@@ -412,14 +412,14 @@ export class Datetime {
    */
   getUtcMinDateTime(callback: msRest.ServiceCallback<string>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getUtcMinDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getUtcMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetUtcMinDateTimeResponse> {
+  getUtcMinDateTime(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback: msRest.ServiceCallback<string>): void;
+  getUtcMinDateTime(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetUtcMinDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getUtcMinDateTimeOperationSpec,
       callback) as Promise<Models.DatetimeGetUtcMinDateTimeResponse>;
@@ -445,15 +445,15 @@ export class Datetime {
    * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  putLocalPositiveOffsetMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLocalPositiveOffsetMinDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putLocalPositiveOffsetMinDateTime(datetimeBody: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putLocalPositiveOffsetMinDateTime(datetimeBody: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
-        options
+        optionsOrCallback
       },
       putLocalPositiveOffsetMinDateTimeOperationSpec,
       callback);
@@ -470,14 +470,14 @@ export class Datetime {
    */
   getLocalPositiveOffsetMinDateTime(callback: msRest.ServiceCallback<string>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getLocalPositiveOffsetMinDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getLocalPositiveOffsetMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalPositiveOffsetMinDateTimeResponse> {
+  getLocalPositiveOffsetMinDateTime(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback: msRest.ServiceCallback<string>): void;
+  getLocalPositiveOffsetMinDateTime(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalPositiveOffsetMinDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getLocalPositiveOffsetMinDateTimeOperationSpec,
       callback) as Promise<Models.DatetimeGetLocalPositiveOffsetMinDateTimeResponse>;
@@ -503,15 +503,15 @@ export class Datetime {
    * @param datetimeBody
    * **NOTE: This entity will be treated as a string instead of a Date because the API can
    * potentially deal with a higher precision value than what is supported by JavaScript.**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  putLocalNegativeOffsetMinDateTime(datetimeBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLocalNegativeOffsetMinDateTime(datetimeBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putLocalNegativeOffsetMinDateTime(datetimeBody: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putLocalNegativeOffsetMinDateTime(datetimeBody: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         datetimeBody,
-        options
+        optionsOrCallback
       },
       putLocalNegativeOffsetMinDateTimeOperationSpec,
       callback);
@@ -528,14 +528,14 @@ export class Datetime {
    */
   getLocalNegativeOffsetMinDateTime(callback: msRest.ServiceCallback<string>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getLocalNegativeOffsetMinDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getLocalNegativeOffsetMinDateTime(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalNegativeOffsetMinDateTimeResponse> {
+  getLocalNegativeOffsetMinDateTime(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback: msRest.ServiceCallback<string>): void;
+  getLocalNegativeOffsetMinDateTime(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback?: msRest.ServiceCallback<string>): Promise<Models.DatetimeGetLocalNegativeOffsetMinDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getLocalNegativeOffsetMinDateTimeOperationSpec,
       callback) as Promise<Models.DatetimeGetLocalNegativeOffsetMinDateTimeResponse>;

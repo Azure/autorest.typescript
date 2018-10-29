@@ -36,14 +36,14 @@ export class Polymorphicrecursive {
    */
   getValid(callback: msRest.ServiceCallback<Models.FishUnion>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FishUnion>): void;
-  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FishUnion>): Promise<Models.PolymorphicrecursiveGetValidResponse> {
+  getValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.FishUnion>, callback: msRest.ServiceCallback<Models.FishUnion>): void;
+  getValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.FishUnion>, callback?: msRest.ServiceCallback<Models.FishUnion>): Promise<Models.PolymorphicrecursiveGetValidResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       getValidOperationSpec,
       callback) as Promise<Models.PolymorphicrecursiveGetValidResponse>;
@@ -219,15 +219,15 @@ export class Polymorphicrecursive {
    * }
    * ]
    * }
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putValid(complexBody: Models.FishUnion, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putValid(complexBody: Models.FishUnion, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
-        options
+        optionsOrCallback
       },
       putValidOperationSpec,
       callback);

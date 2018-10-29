@@ -36,14 +36,14 @@ export class HttpSuccess {
    */
   head200(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  head200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  head200(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  head200(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       head200OperationSpec,
       callback);
@@ -60,14 +60,14 @@ export class HttpSuccess {
    */
   get200(callback: msRest.ServiceCallback<boolean>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  get200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  get200(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessGet200Response> {
+  get200(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback: msRest.ServiceCallback<boolean>): void;
+  get200(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessGet200Response> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       get200OperationSpec,
       callback) as Promise<Models.HttpSuccessGet200Response>;
@@ -84,14 +84,14 @@ export class HttpSuccess {
    */
   put200(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  put200(options: Models.HttpSuccessPut200OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put200(options?: Models.HttpSuccessPut200OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  put200(optionsOrCallback: Models.HttpSuccessPut200OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  put200(optionsOrCallback?: Models.HttpSuccessPut200OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       put200OperationSpec,
       callback);
@@ -108,14 +108,14 @@ export class HttpSuccess {
    */
   patch200(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  patch200(options: Models.HttpSuccessPatch200OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch200(options?: Models.HttpSuccessPatch200OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  patch200(optionsOrCallback: Models.HttpSuccessPatch200OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  patch200(optionsOrCallback?: Models.HttpSuccessPatch200OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       patch200OperationSpec,
       callback);
@@ -132,14 +132,14 @@ export class HttpSuccess {
    */
   post200(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  post200(options: Models.HttpSuccessPost200OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post200(options?: Models.HttpSuccessPost200OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  post200(optionsOrCallback: Models.HttpSuccessPost200OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  post200(optionsOrCallback?: Models.HttpSuccessPost200OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       post200OperationSpec,
       callback);
@@ -156,14 +156,14 @@ export class HttpSuccess {
    */
   delete200(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  delete200(options: Models.HttpSuccessDelete200OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  delete200(options?: Models.HttpSuccessDelete200OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  delete200(optionsOrCallback: Models.HttpSuccessDelete200OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  delete200(optionsOrCallback?: Models.HttpSuccessDelete200OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       delete200OperationSpec,
       callback);
@@ -180,14 +180,14 @@ export class HttpSuccess {
    */
   put201(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  put201(options: Models.HttpSuccessPut201OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put201(options?: Models.HttpSuccessPut201OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  put201(optionsOrCallback: Models.HttpSuccessPut201OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  put201(optionsOrCallback?: Models.HttpSuccessPut201OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       put201OperationSpec,
       callback);
@@ -204,14 +204,14 @@ export class HttpSuccess {
    */
   post201(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  post201(options: Models.HttpSuccessPost201OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post201(options?: Models.HttpSuccessPost201OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  post201(optionsOrCallback: Models.HttpSuccessPost201OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  post201(optionsOrCallback?: Models.HttpSuccessPost201OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       post201OperationSpec,
       callback);
@@ -228,14 +228,14 @@ export class HttpSuccess {
    */
   put202(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  put202(options: Models.HttpSuccessPut202OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put202(options?: Models.HttpSuccessPut202OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  put202(optionsOrCallback: Models.HttpSuccessPut202OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  put202(optionsOrCallback?: Models.HttpSuccessPut202OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       put202OperationSpec,
       callback);
@@ -252,14 +252,14 @@ export class HttpSuccess {
    */
   patch202(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  patch202(options: Models.HttpSuccessPatch202OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch202(options?: Models.HttpSuccessPatch202OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  patch202(optionsOrCallback: Models.HttpSuccessPatch202OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  patch202(optionsOrCallback?: Models.HttpSuccessPatch202OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       patch202OperationSpec,
       callback);
@@ -276,14 +276,14 @@ export class HttpSuccess {
    */
   post202(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  post202(options: Models.HttpSuccessPost202OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post202(options?: Models.HttpSuccessPost202OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  post202(optionsOrCallback: Models.HttpSuccessPost202OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  post202(optionsOrCallback?: Models.HttpSuccessPost202OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       post202OperationSpec,
       callback);
@@ -300,14 +300,14 @@ export class HttpSuccess {
    */
   delete202(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  delete202(options: Models.HttpSuccessDelete202OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  delete202(options?: Models.HttpSuccessDelete202OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  delete202(optionsOrCallback: Models.HttpSuccessDelete202OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  delete202(optionsOrCallback?: Models.HttpSuccessDelete202OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       delete202OperationSpec,
       callback);
@@ -324,14 +324,14 @@ export class HttpSuccess {
    */
   head204(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  head204(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head204(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  head204(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  head204(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       head204OperationSpec,
       callback);
@@ -348,14 +348,14 @@ export class HttpSuccess {
    */
   put204(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  put204(options: Models.HttpSuccessPut204OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put204(options?: Models.HttpSuccessPut204OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  put204(optionsOrCallback: Models.HttpSuccessPut204OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  put204(optionsOrCallback?: Models.HttpSuccessPut204OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       put204OperationSpec,
       callback);
@@ -372,14 +372,14 @@ export class HttpSuccess {
    */
   patch204(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  patch204(options: Models.HttpSuccessPatch204OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch204(options?: Models.HttpSuccessPatch204OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  patch204(optionsOrCallback: Models.HttpSuccessPatch204OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  patch204(optionsOrCallback?: Models.HttpSuccessPatch204OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       patch204OperationSpec,
       callback);
@@ -396,14 +396,14 @@ export class HttpSuccess {
    */
   post204(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  post204(options: Models.HttpSuccessPost204OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post204(options?: Models.HttpSuccessPost204OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  post204(optionsOrCallback: Models.HttpSuccessPost204OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  post204(optionsOrCallback?: Models.HttpSuccessPost204OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       post204OperationSpec,
       callback);
@@ -420,14 +420,14 @@ export class HttpSuccess {
    */
   delete204(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  delete204(options: Models.HttpSuccessDelete204OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  delete204(options?: Models.HttpSuccessDelete204OptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  delete204(optionsOrCallback: Models.HttpSuccessDelete204OptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  delete204(optionsOrCallback?: Models.HttpSuccessDelete204OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       delete204OperationSpec,
       callback);
@@ -444,14 +444,14 @@ export class HttpSuccess {
    */
   head404(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  head404(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head404(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  head404(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  head404(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       head404OperationSpec,
       callback);

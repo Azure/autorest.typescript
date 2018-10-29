@@ -39,15 +39,15 @@ export class PetOperations {
   getByPetId(petId: string, callback: msRest.ServiceCallback<Models.Pet>): void;
   /**
    * @param petId Pet id
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getByPetId(petId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Pet>): void;
-  getByPetId(petId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Pet>): Promise<Models.PetGetByPetIdResponse> {
+  getByPetId(petId: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Pet>, callback: msRest.ServiceCallback<Models.Pet>): void;
+  getByPetId(petId: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Pet>, callback?: msRest.ServiceCallback<Models.Pet>): Promise<Models.PetGetByPetIdResponse> {
     return this.client.sendOperationRequest(
       {
         petId,
-        options
+        optionsOrCallback
       },
       getByPetIdOperationSpec,
       callback) as Promise<Models.PetGetByPetIdResponse>;
@@ -63,14 +63,14 @@ export class PetOperations {
    */
   addPet(callback: msRest.ServiceCallback<Models.Pet>): void;
   /**
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  addPet(options: Models.PetAddPetOptionalParams, callback: msRest.ServiceCallback<Models.Pet>): void;
-  addPet(options?: Models.PetAddPetOptionalParams, callback?: msRest.ServiceCallback<Models.Pet>): Promise<Models.PetAddPetResponse> {
+  addPet(optionsOrCallback: Models.PetAddPetOptionalParams | msRest.ServiceCallback<Models.Pet>, callback: msRest.ServiceCallback<Models.Pet>): void;
+  addPet(optionsOrCallback?: Models.PetAddPetOptionalParams | msRest.ServiceCallback<Models.Pet>, callback?: msRest.ServiceCallback<Models.Pet>): Promise<Models.PetAddPetResponse> {
     return this.client.sendOperationRequest(
       {
-        options
+        optionsOrCallback
       },
       addPetOperationSpec,
       callback) as Promise<Models.PetAddPetResponse>;

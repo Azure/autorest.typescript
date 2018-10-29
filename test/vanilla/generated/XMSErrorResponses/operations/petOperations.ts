@@ -40,15 +40,15 @@ export class PetOperations {
   getPetById(petId: string, callback: msRest.ServiceCallback<Models.Pet>): void;
   /**
    * @param petId pet id
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  getPetById(petId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Pet>): void;
-  getPetById(petId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Pet>): Promise<Models.PetGetPetByIdResponse> {
+  getPetById(petId: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Pet>, callback: msRest.ServiceCallback<Models.Pet>): void;
+  getPetById(petId: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Pet>, callback?: msRest.ServiceCallback<Models.Pet>): Promise<Models.PetGetPetByIdResponse> {
     return this.client.sendOperationRequest(
       {
         petId,
-        options
+        optionsOrCallback
       },
       getPetByIdOperationSpec,
       callback) as Promise<Models.PetGetPetByIdResponse>;
@@ -68,15 +68,15 @@ export class PetOperations {
   doSomething(whatAction: string, callback: msRest.ServiceCallback<Models.PetAction>): void;
   /**
    * @param whatAction what action the pet should do
-   * @param options The optional parameters
+   * @param optionsOrCallback The optional parameters or the callback
    * @param callback The callback
    */
-  doSomething(whatAction: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PetAction>): void;
-  doSomething(whatAction: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.PetAction>): Promise<Models.PetDoSomethingResponse> {
+  doSomething(whatAction: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAction>, callback: msRest.ServiceCallback<Models.PetAction>): void;
+  doSomething(whatAction: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAction>, callback?: msRest.ServiceCallback<Models.PetAction>): Promise<Models.PetDoSomethingResponse> {
     return this.client.sendOperationRequest(
       {
         whatAction,
-        options
+        optionsOrCallback
       },
       doSomethingOperationSpec,
       callback) as Promise<Models.PetDoSomethingResponse>;
