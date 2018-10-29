@@ -535,7 +535,8 @@ namespace AutoRest.TypeScript
             {
                 AddTypeProperty(mapper, "Composite", typeObject =>
                 {
-                    if (expandComposite) {
+                    if (expandComposite)
+                    {
                         if (composite.IsPolymorphic)
                         {
                             // Note: If the polymorphicDiscriminator has a dot in it's name then do not escape that dot for
