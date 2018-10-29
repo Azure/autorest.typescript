@@ -381,7 +381,7 @@ namespace AutoRest.TypeScript.Model
             return sb.ToString();
         }
 
-        public void GenerateOperationArguments(TSObject operationArguments)
+        public void GenerateOperationArguments(TSObject operationArguments, string optionsCallbackUnionName = "options")
         {
             ParameterTransformations transformations = GetParameterTransformations();
 
@@ -394,13 +394,13 @@ namespace AutoRest.TypeScript.Model
                     !parameter.IsClientProperty &&
                     !operationArguments.ContainsProperty(parameter.Name) &&
                     !transformations.IsCreatedFromTransformation(parameter.Name) &&
-                    parameter.Name != "options")
+                    parameter.Name != optionsCallbackUnionName)
                 {
                     operationArguments.TextProperty(parameter.Name, parameter.Name);
                 }
             }
 
-            operationArguments.TextProperty("options", "options");
+            operationArguments.TextProperty(optionsCallbackUnionName, optionsCallbackUnionName);
         }
 
         public void GenerateOperationSpec(TSObject operationSpec)
@@ -774,18 +774,24 @@ namespace AutoRest.TypeScript.Model
             GenerateDocumentationComment(tsClass, "void", requiredParametersWithRequiredCallback, includeDescription: false);
             tsClass.MethodOverload(methodName, "void", requiredParametersWithRequiredCallback);
 
-            IEnumerable<TSParameter> requiredParametersWithRequiredOptionsAndRequiredCallback = requiredParameters.Concat(new[] { requiredOptionsParameter, requiredCallbackParameter });
+            string optionsCallbackUnionName = $"{optionalOptionsParameter.Name}Or{optionalCallbackParameter.Name.ToPascalCase()}";
+            string[] optionsCallbackUnionTypes = new [] { optionalOptionsParameter.Type, optionalCallbackParameter.Type };
+            string optionsCallbackUnionDescriptino = $"{optionalOptionsParameter.Description} or {Char.ToLowerInvariant(optionalCallbackParameter.Description[0]) + optionalCallbackParameter.Description.Substring(1)}";
+
+            TSParameter requiredOptionsUnionCallbackParameter = new TSParameter(optionsCallbackUnionName, optionsCallbackUnionTypes, optionsCallbackUnionDescriptino, true);
+            IEnumerable<TSParameter> requiredParametersWithRequiredOptionsAndRequiredCallback = requiredParameters.Concat(new[] { requiredOptionsUnionCallbackParameter, requiredCallbackParameter });
             GenerateDocumentationComment(tsClass, "void", requiredParametersWithRequiredOptionsAndRequiredCallback, includeDescription: false);
             tsClass.MethodOverload(methodName, "void", requiredParametersWithRequiredOptionsAndRequiredCallback);
 
-            IEnumerable<TSParameter> requiredParametersWithOptionalOptionsAndOptionalCallback = requiredParameters.Concat(new[] { optionalOptionsParameter, optionalCallbackParameter });
+            TSParameter optionalOptionsUnionCallbackParameter = new TSParameter(optionsCallbackUnionName, optionsCallbackUnionTypes, optionsCallbackUnionDescriptino, false);
+            IEnumerable<TSParameter> requiredParametersWithOptionalOptionsAndOptionalCallback = requiredParameters.Concat(new[] { optionalOptionsUnionCallbackParameter, optionalCallbackParameter });
             tsClass.Method(methodName, returnType, requiredParametersWithOptionalOptionsAndOptionalCallback, methodBody =>
             {
                 methodBody.Return(returnValue =>
                 {
                     returnValue.FunctionCall($"{ClientReference}.sendOperationRequest", argumentList =>
                     {
-                        argumentList.Object(GenerateOperationArguments);
+                        argumentList.Object((TSObject tsObject) => GenerateOperationArguments(tsObject, optionsCallbackUnionName));
                         argumentList.Text(GetOperationSpecVariableName());
                         argumentList.Text("callback");
                     });

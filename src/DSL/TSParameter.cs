@@ -1,6 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-// 
+//
+
+using System;
+using System.Collections.Generic;
 
 namespace AutoRest.TypeScript.DSL
 {
@@ -20,6 +23,21 @@ namespace AutoRest.TypeScript.DSL
         {
             Name = name;
             Type = type;
+            Description = description;
+            Required = required;
+        }
+
+        /// <summary>
+        /// Create a new TSParameter object.
+        /// </summary>
+        /// <param name="name">The name of the parameter.</param>
+        /// <param name="unionTypes">The types of the parameter to unionize.</param>
+        /// <param name="description">The description of the parameter.</param>
+        /// <param name="required">Whether or not the parameter is required.</param>
+        public TSParameter(string name, IEnumerable<string> unionTypes, string description, bool required = true)
+        {
+            Name = name;
+            Type = String.Join(" | ", unionTypes);
             Description = description;
             Required = required;
         }
