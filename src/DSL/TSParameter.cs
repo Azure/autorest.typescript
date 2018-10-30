@@ -4,6 +4,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using AutoRest.Core.Utilities;
 
 namespace AutoRest.TypeScript.DSL
 {
@@ -28,7 +30,7 @@ namespace AutoRest.TypeScript.DSL
         }
 
         /// <summary>
-        /// Create a new TSParameter object.
+        /// Create a new TSParameter object with unionized types.
         /// </summary>
         /// <param name="name">The name of the parameter.</param>
         /// <param name="unionTypes">The types of the parameter to unionize.</param>
@@ -58,5 +60,41 @@ namespace AutoRest.TypeScript.DSL
         /// Whether or not the parameter is required.
         /// </summary>
         public bool Required { get; }
+
+        public static TSParameter Union(params TSParameter[] parameters)
+        {
+            return TSParameter.Union(parameters, null, null, null, null);
+        }
+
+        public static TSParameter Union(TSParameter[] parameters = null, string name = null, string type = null, string description = null, bool? required = null)
+        {
+            if (parameters == null || parameters.Length < 2)
+            {
+                throw new ArgumentException($"Cannot create union of none or single parameter");
+            }
+
+            if (String.IsNullOrEmpty(name))
+            {
+                name = parameters.Select(param => param.Name.ToPascalCase()).Aggregate((fullName, paramName) => $"{fullName}Or{paramName}");
+            }
+
+            if (String.IsNullOrEmpty(type))
+            {
+                type = parameters.Select(param => param.Type).Distinct().Aggregate((fullType, typeName) => $"{fullType} | {typeName}");
+            }
+
+            if (String.IsNullOrEmpty(description))
+            {
+                Func<string, string> lowerFirstLetterCase = (string str) => $"{Char.ToLowerInvariant(str[0])}{str.Substring(1)}";
+                description = parameters.Select(param => param.Description).Aggregate((fullDescription, typeDecription) => $"{fullDescription} or {lowerFirstLetterCase(typeDecription)}");
+            }
+
+            if (required == null)
+            {
+                required = parameters.Any(param => param.Required);
+            }
+
+            return new TSParameter(name, type, description, required == true);
+        }
     }
 }

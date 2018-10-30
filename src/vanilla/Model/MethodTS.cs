@@ -8,7 +8,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
-using AutoRest.Core;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.TypeScript.DSL;
@@ -778,11 +777,7 @@ namespace AutoRest.TypeScript.Model
             GenerateDocumentationComment(tsClass, "void", requiredParametersWithRequiredOptionsAndRequiredCallback, includeDescription: false);
             tsClass.MethodOverload(methodName, "void", requiredParametersWithRequiredOptionsAndRequiredCallback);
 
-            string optionsCallbackUnionName = $"{optionalOptionsParameter.Name}Or{optionalCallbackParameter.Name.ToPascalCase()}";
-            string[] optionsCallbackUnionTypes = new[] { optionalOptionsParameter.Type, optionalCallbackParameter.Type };
-            string optionsCallbackUnionDescriptino = $"{optionalOptionsParameter.Description} or {Char.ToLowerInvariant(optionalCallbackParameter.Description[0]) + optionalCallbackParameter.Description.Substring(1)}";
-
-            TSParameter optionalOptionsCallbackUnionParameter = new TSParameter(optionsCallbackUnionName, optionsCallbackUnionTypes, optionsCallbackUnionDescriptino, false);
+            TSParameter optionalOptionsCallbackUnionParameter = TSParameter.Union(optionalOptionsParameter, optionalCallbackParameter);
             IEnumerable<TSParameter> requiredParametersWithOptionalOptionsAndOptionalCallback = requiredParameters.Concat(new[] { optionalOptionsCallbackUnionParameter, optionalCallbackParameter });
             tsClass.Method(methodName, returnType, requiredParametersWithOptionalOptionsAndOptionalCallback, methodBody =>
             {
@@ -790,7 +785,7 @@ namespace AutoRest.TypeScript.Model
                 {
                     returnValue.FunctionCall($"{ClientReference}.sendOperationRequest", argumentList =>
                     {
-                        argumentList.Object((TSObject tsObject) => GenerateOperationArguments(tsObject, optionsCallbackUnionName));
+                        argumentList.Object((TSObject tsObject) => GenerateOperationArguments(tsObject, optionalOptionsCallbackUnionParameter.Name));
                         argumentList.Text(GetOperationSpecVariableName());
                         argumentList.Text("callback");
                     });
