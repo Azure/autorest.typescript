@@ -35,11 +35,8 @@ namespace AutoRest.TypeScript.DSL
         /// <param name="description">The description of the parameter.</param>
         /// <param name="required">Whether or not the parameter is required.</param>
         public TSParameter(string name, IEnumerable<string> unionTypes, string description, bool required = true)
+            : this(name, String.Join(" | ", unionTypes), description, required)
         {
-            Name = name;
-            Type = String.Join(" | ", unionTypes);
-            Description = description;
-            Required = required;
         }
 
         /// <summary>
