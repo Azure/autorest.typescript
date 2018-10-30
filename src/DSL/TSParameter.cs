@@ -73,9 +73,11 @@ namespace AutoRest.TypeScript.DSL
                 throw new ArgumentException($"Cannot create union of none or single parameter");
             }
 
+            Func<string, string> lowerFirstLetterCase = (string str) => $"{Char.ToLowerInvariant(str[0])}{str.Substring(1)}";
+
             if (String.IsNullOrEmpty(name))
             {
-                name = parameters.Select(param => param.Name.ToPascalCase()).Aggregate((fullName, paramName) => $"{fullName}Or{paramName}");
+                name = parameters.Select(param => param.Name.ToPascalCase()).Aggregate((fullName, paramName) => $"{lowerFirstLetterCase(fullName)}Or{paramName}");
             }
 
             if (String.IsNullOrEmpty(type))
@@ -85,7 +87,6 @@ namespace AutoRest.TypeScript.DSL
 
             if (String.IsNullOrEmpty(description))
             {
-                Func<string, string> lowerFirstLetterCase = (string str) => $"{Char.ToLowerInvariant(str[0])}{str.Substring(1)}";
                 description = parameters.Select(param => param.Description).Aggregate((fullDescription, typeDecription) => $"{fullDescription} or {lowerFirstLetterCase(typeDecription)}");
             }
 

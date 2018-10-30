@@ -44,7 +44,7 @@ namespace AutoRest.TypeScript.DSL
 
             TSParameter union = TSParameter.Union(firstParameter, secondParameter, thirdParameter);
 
-            Assert.AreEqual("NameOrOtherNameOrMoreComplicatedName", union.Name);
+            Assert.AreEqual("nameOrOtherNameOrMoreComplicatedName", union.Name);
         }
 
         [TestMethod]
