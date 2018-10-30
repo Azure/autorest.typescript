@@ -37,10 +37,10 @@ export class SubscriptionInCredentials {
    */
   postMethodGlobalValid(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  postMethodGlobalValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  postMethodGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   postMethodGlobalValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -62,10 +62,10 @@ export class SubscriptionInCredentials {
    */
   postMethodGlobalNull(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  postMethodGlobalNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  postMethodGlobalNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   postMethodGlobalNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -87,10 +87,10 @@ export class SubscriptionInCredentials {
    */
   postMethodGlobalNotProvidedValid(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  postMethodGlobalNotProvidedValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  postMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   postMethodGlobalNotProvidedValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -112,10 +112,10 @@ export class SubscriptionInCredentials {
    */
   postPathGlobalValid(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  postPathGlobalValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  postPathGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   postPathGlobalValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -137,10 +137,10 @@ export class SubscriptionInCredentials {
    */
   postSwaggerGlobalValid(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  postSwaggerGlobalValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  postSwaggerGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   postSwaggerGlobalValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {

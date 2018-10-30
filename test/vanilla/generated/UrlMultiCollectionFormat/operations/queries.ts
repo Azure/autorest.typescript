@@ -37,10 +37,10 @@ export class Queries {
    */
   arrayStringMultiNull(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  arrayStringMultiNull(optionsOrCallback: Models.QueriesArrayStringMultiNullOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  arrayStringMultiNull(options: Models.QueriesArrayStringMultiNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   arrayStringMultiNull(optionsOrCallback?: Models.QueriesArrayStringMultiNullOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -61,10 +61,10 @@ export class Queries {
    */
   arrayStringMultiEmpty(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  arrayStringMultiEmpty(optionsOrCallback: Models.QueriesArrayStringMultiEmptyOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  arrayStringMultiEmpty(options: Models.QueriesArrayStringMultiEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
   arrayStringMultiEmpty(optionsOrCallback?: Models.QueriesArrayStringMultiEmptyOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -86,10 +86,10 @@ export class Queries {
    */
   arrayStringMultiValid(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  arrayStringMultiValid(optionsOrCallback: Models.QueriesArrayStringMultiValidOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  arrayStringMultiValid(options: Models.QueriesArrayStringMultiValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
   arrayStringMultiValid(optionsOrCallback?: Models.QueriesArrayStringMultiValidOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {

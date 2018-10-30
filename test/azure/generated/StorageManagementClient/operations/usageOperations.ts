@@ -37,10 +37,10 @@ export class UsageOperations {
    */
   list(callback: msRest.ServiceCallback<Models.UsageListResult>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  list(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.UsageListResult>, callback: msRest.ServiceCallback<Models.UsageListResult>): void;
+  list(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.UsageListResult>): void;
   list(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.UsageListResult>, callback?: msRest.ServiceCallback<Models.UsageListResult>): Promise<Models.UsageListResponse> {
     return this.client.sendOperationRequest(
       {

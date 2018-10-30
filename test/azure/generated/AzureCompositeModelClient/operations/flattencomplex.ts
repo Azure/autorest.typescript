@@ -36,10 +36,10 @@ export class Flattencomplex {
    */
   getValid(callback: msRest.ServiceCallback<Models.MyBaseTypeUnion>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.MyBaseTypeUnion>, callback: msRest.ServiceCallback<Models.MyBaseTypeUnion>): void;
+  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.MyBaseTypeUnion>): void;
   getValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.MyBaseTypeUnion>, callback?: msRest.ServiceCallback<Models.MyBaseTypeUnion>): Promise<Models.FlattencomplexGetValidResponse> {
     return this.client.sendOperationRequest(
       {

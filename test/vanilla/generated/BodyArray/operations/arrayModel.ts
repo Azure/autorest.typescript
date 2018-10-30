@@ -36,10 +36,10 @@ export class ArrayModel {
    */
   getNull(callback: msRest.ServiceCallback<number[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback: msRest.ServiceCallback<number[]>): void;
+  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
   getNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -60,10 +60,10 @@ export class ArrayModel {
    */
   getInvalid(callback: msRest.ServiceCallback<number[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getInvalid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback: msRest.ServiceCallback<number[]>): void;
+  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
   getInvalid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -84,10 +84,10 @@ export class ArrayModel {
    */
   getEmpty(callback: msRest.ServiceCallback<number[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getEmpty(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback: msRest.ServiceCallback<number[]>): void;
+  getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
   getEmpty(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetEmptyResponse> {
     return this.client.sendOperationRequest(
       {
@@ -111,10 +111,10 @@ export class ArrayModel {
   putEmpty(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putEmpty(arrayBody: string[], optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putEmpty(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putEmpty(arrayBody: string[], optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -136,10 +136,10 @@ export class ArrayModel {
    */
   getBooleanTfft(callback: msRest.ServiceCallback<boolean[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getBooleanTfft(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean[]>, callback: msRest.ServiceCallback<boolean[]>): void;
+  getBooleanTfft(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean[]>): void;
   getBooleanTfft(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean[]>, callback?: msRest.ServiceCallback<boolean[]>): Promise<Models.ArrayModelGetBooleanTfftResponse> {
     return this.client.sendOperationRequest(
       {
@@ -163,10 +163,10 @@ export class ArrayModel {
   putBooleanTfft(arrayBody: boolean[], callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putBooleanTfft(arrayBody: boolean[], optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putBooleanTfft(arrayBody: boolean[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBooleanTfft(arrayBody: boolean[], optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -188,10 +188,10 @@ export class ArrayModel {
    */
   getBooleanInvalidNull(callback: msRest.ServiceCallback<boolean[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getBooleanInvalidNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean[]>, callback: msRest.ServiceCallback<boolean[]>): void;
+  getBooleanInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean[]>): void;
   getBooleanInvalidNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean[]>, callback?: msRest.ServiceCallback<boolean[]>): Promise<Models.ArrayModelGetBooleanInvalidNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -212,10 +212,10 @@ export class ArrayModel {
    */
   getBooleanInvalidString(callback: msRest.ServiceCallback<boolean[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getBooleanInvalidString(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean[]>, callback: msRest.ServiceCallback<boolean[]>): void;
+  getBooleanInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean[]>): void;
   getBooleanInvalidString(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean[]>, callback?: msRest.ServiceCallback<boolean[]>): Promise<Models.ArrayModelGetBooleanInvalidStringResponse> {
     return this.client.sendOperationRequest(
       {
@@ -236,10 +236,10 @@ export class ArrayModel {
    */
   getIntegerValid(callback: msRest.ServiceCallback<number[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getIntegerValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback: msRest.ServiceCallback<number[]>): void;
+  getIntegerValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
   getIntegerValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetIntegerValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -263,10 +263,10 @@ export class ArrayModel {
   putIntegerValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putIntegerValid(arrayBody: number[], optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putIntegerValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putIntegerValid(arrayBody: number[], optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -288,10 +288,10 @@ export class ArrayModel {
    */
   getIntInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getIntInvalidNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback: msRest.ServiceCallback<number[]>): void;
+  getIntInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
   getIntInvalidNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetIntInvalidNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -312,10 +312,10 @@ export class ArrayModel {
    */
   getIntInvalidString(callback: msRest.ServiceCallback<number[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getIntInvalidString(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback: msRest.ServiceCallback<number[]>): void;
+  getIntInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
   getIntInvalidString(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetIntInvalidStringResponse> {
     return this.client.sendOperationRequest(
       {
@@ -336,10 +336,10 @@ export class ArrayModel {
    */
   getLongValid(callback: msRest.ServiceCallback<number[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getLongValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback: msRest.ServiceCallback<number[]>): void;
+  getLongValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
   getLongValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetLongValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -363,10 +363,10 @@ export class ArrayModel {
   putLongValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putLongValid(arrayBody: number[], optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putLongValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putLongValid(arrayBody: number[], optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -388,10 +388,10 @@ export class ArrayModel {
    */
   getLongInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getLongInvalidNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback: msRest.ServiceCallback<number[]>): void;
+  getLongInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
   getLongInvalidNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetLongInvalidNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -412,10 +412,10 @@ export class ArrayModel {
    */
   getLongInvalidString(callback: msRest.ServiceCallback<number[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getLongInvalidString(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback: msRest.ServiceCallback<number[]>): void;
+  getLongInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
   getLongInvalidString(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetLongInvalidStringResponse> {
     return this.client.sendOperationRequest(
       {
@@ -436,10 +436,10 @@ export class ArrayModel {
    */
   getFloatValid(callback: msRest.ServiceCallback<number[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getFloatValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback: msRest.ServiceCallback<number[]>): void;
+  getFloatValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
   getFloatValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetFloatValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -463,10 +463,10 @@ export class ArrayModel {
   putFloatValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putFloatValid(arrayBody: number[], optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putFloatValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putFloatValid(arrayBody: number[], optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -488,10 +488,10 @@ export class ArrayModel {
    */
   getFloatInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getFloatInvalidNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback: msRest.ServiceCallback<number[]>): void;
+  getFloatInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
   getFloatInvalidNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetFloatInvalidNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -512,10 +512,10 @@ export class ArrayModel {
    */
   getFloatInvalidString(callback: msRest.ServiceCallback<number[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getFloatInvalidString(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback: msRest.ServiceCallback<number[]>): void;
+  getFloatInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
   getFloatInvalidString(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetFloatInvalidStringResponse> {
     return this.client.sendOperationRequest(
       {
@@ -536,10 +536,10 @@ export class ArrayModel {
    */
   getDoubleValid(callback: msRest.ServiceCallback<number[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getDoubleValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback: msRest.ServiceCallback<number[]>): void;
+  getDoubleValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
   getDoubleValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetDoubleValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -563,10 +563,10 @@ export class ArrayModel {
   putDoubleValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putDoubleValid(arrayBody: number[], optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putDoubleValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putDoubleValid(arrayBody: number[], optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -588,10 +588,10 @@ export class ArrayModel {
    */
   getDoubleInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getDoubleInvalidNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback: msRest.ServiceCallback<number[]>): void;
+  getDoubleInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
   getDoubleInvalidNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetDoubleInvalidNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -612,10 +612,10 @@ export class ArrayModel {
    */
   getDoubleInvalidString(callback: msRest.ServiceCallback<number[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getDoubleInvalidString(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback: msRest.ServiceCallback<number[]>): void;
+  getDoubleInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
   getDoubleInvalidString(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetDoubleInvalidStringResponse> {
     return this.client.sendOperationRequest(
       {
@@ -636,10 +636,10 @@ export class ArrayModel {
    */
   getStringValid(callback: msRest.ServiceCallback<string[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getStringValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback: msRest.ServiceCallback<string[]>): void;
+  getStringValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
   getStringValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetStringValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -663,10 +663,10 @@ export class ArrayModel {
   putStringValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putStringValid(arrayBody: string[], optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putStringValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putStringValid(arrayBody: string[], optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -688,10 +688,10 @@ export class ArrayModel {
    */
   getEnumValid(callback: msRest.ServiceCallback<Models.FooEnum[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getEnumValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.FooEnum[]>, callback: msRest.ServiceCallback<Models.FooEnum[]>): void;
+  getEnumValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FooEnum[]>): void;
   getEnumValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.FooEnum[]>, callback?: msRest.ServiceCallback<Models.FooEnum[]>): Promise<Models.ArrayModelGetEnumValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -715,10 +715,10 @@ export class ArrayModel {
   putEnumValid(arrayBody: Models.FooEnum[], callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putEnumValid(arrayBody: Models.FooEnum[], optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putEnumValid(arrayBody: Models.FooEnum[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putEnumValid(arrayBody: Models.FooEnum[], optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -740,10 +740,10 @@ export class ArrayModel {
    */
   getStringEnumValid(callback: msRest.ServiceCallback<string[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getStringEnumValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback: msRest.ServiceCallback<string[]>): void;
+  getStringEnumValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
   getStringEnumValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetStringEnumValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -767,10 +767,10 @@ export class ArrayModel {
   putStringEnumValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putStringEnumValid(arrayBody: string[], optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putStringEnumValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putStringEnumValid(arrayBody: string[], optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -792,10 +792,10 @@ export class ArrayModel {
    */
   getStringWithNull(callback: msRest.ServiceCallback<string[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getStringWithNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback: msRest.ServiceCallback<string[]>): void;
+  getStringWithNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
   getStringWithNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetStringWithNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -816,10 +816,10 @@ export class ArrayModel {
    */
   getStringWithInvalid(callback: msRest.ServiceCallback<string[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getStringWithInvalid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback: msRest.ServiceCallback<string[]>): void;
+  getStringWithInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
   getStringWithInvalid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetStringWithInvalidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -841,10 +841,10 @@ export class ArrayModel {
    */
   getUuidValid(callback: msRest.ServiceCallback<string[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getUuidValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback: msRest.ServiceCallback<string[]>): void;
+  getUuidValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
   getUuidValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetUuidValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -869,10 +869,10 @@ export class ArrayModel {
   putUuidValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putUuidValid(arrayBody: string[], optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putUuidValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putUuidValid(arrayBody: string[], optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -894,10 +894,10 @@ export class ArrayModel {
    */
   getUuidInvalidChars(callback: msRest.ServiceCallback<string[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getUuidInvalidChars(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback: msRest.ServiceCallback<string[]>): void;
+  getUuidInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
   getUuidInvalidChars(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetUuidInvalidCharsResponse> {
     return this.client.sendOperationRequest(
       {
@@ -918,10 +918,10 @@ export class ArrayModel {
    */
   getDateValid(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getDateValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback: msRest.ServiceCallback<Date[] | string[]>): void;
+  getDateValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -945,10 +945,10 @@ export class ArrayModel {
   putDateValid(arrayBody: Array<Date> | Array<string>, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putDateValid(arrayBody: Array<Date> | Array<string>, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putDateValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putDateValid(arrayBody: Array<Date> | Array<string>, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -970,10 +970,10 @@ export class ArrayModel {
    */
   getDateInvalidNull(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getDateInvalidNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback: msRest.ServiceCallback<Date[] | string[]>): void;
+  getDateInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateInvalidNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateInvalidNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -994,10 +994,10 @@ export class ArrayModel {
    */
   getDateInvalidChars(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getDateInvalidChars(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback: msRest.ServiceCallback<Date[] | string[]>): void;
+  getDateInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateInvalidChars(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateInvalidCharsResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1019,10 +1019,10 @@ export class ArrayModel {
    */
   getDateTimeValid(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getDateTimeValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback: msRest.ServiceCallback<Date[] | string[]>): void;
+  getDateTimeValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateTimeValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateTimeValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1047,10 +1047,10 @@ export class ArrayModel {
   putDateTimeValid(arrayBody: Array<Date> | Array<string>, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putDateTimeValid(arrayBody: Array<Date> | Array<string>, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putDateTimeValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putDateTimeValid(arrayBody: Array<Date> | Array<string>, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1072,10 +1072,10 @@ export class ArrayModel {
    */
   getDateTimeInvalidNull(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getDateTimeInvalidNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback: msRest.ServiceCallback<Date[] | string[]>): void;
+  getDateTimeInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateTimeInvalidNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateTimeInvalidNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1096,10 +1096,10 @@ export class ArrayModel {
    */
   getDateTimeInvalidChars(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getDateTimeInvalidChars(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback: msRest.ServiceCallback<Date[] | string[]>): void;
+  getDateTimeInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateTimeInvalidChars(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateTimeInvalidCharsResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1121,10 +1121,10 @@ export class ArrayModel {
    */
   getDateTimeRfc1123Valid(callback: msRest.ServiceCallback<Date[] | string[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getDateTimeRfc1123Valid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback: msRest.ServiceCallback<Date[] | string[]>): void;
+  getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
   getDateTimeRfc1123Valid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateTimeRfc1123ValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1149,10 +1149,10 @@ export class ArrayModel {
   putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1174,10 +1174,10 @@ export class ArrayModel {
    */
   getDurationValid(callback: msRest.ServiceCallback<string[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getDurationValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback: msRest.ServiceCallback<string[]>): void;
+  getDurationValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
   getDurationValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetDurationValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1201,10 +1201,10 @@ export class ArrayModel {
   putDurationValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putDurationValid(arrayBody: string[], optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putDurationValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putDurationValid(arrayBody: string[], optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1227,10 +1227,10 @@ export class ArrayModel {
    */
   getByteValid(callback: msRest.ServiceCallback<Uint8Array[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getByteValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Uint8Array[]>, callback: msRest.ServiceCallback<Uint8Array[]>): void;
+  getByteValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
   getByteValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Uint8Array[]>, callback?: msRest.ServiceCallback<Uint8Array[]>): Promise<Models.ArrayModelGetByteValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1255,10 +1255,10 @@ export class ArrayModel {
   putByteValid(arrayBody: Uint8Array[], callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putByteValid(arrayBody: Uint8Array[], optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putByteValid(arrayBody: Uint8Array[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putByteValid(arrayBody: Uint8Array[], optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1280,10 +1280,10 @@ export class ArrayModel {
    */
   getByteInvalidNull(callback: msRest.ServiceCallback<Uint8Array[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getByteInvalidNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Uint8Array[]>, callback: msRest.ServiceCallback<Uint8Array[]>): void;
+  getByteInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
   getByteInvalidNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Uint8Array[]>, callback?: msRest.ServiceCallback<Uint8Array[]>): Promise<Models.ArrayModelGetByteInvalidNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1305,10 +1305,10 @@ export class ArrayModel {
    */
   getBase64Url(callback: msRest.ServiceCallback<Uint8Array[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getBase64Url(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Uint8Array[]>, callback: msRest.ServiceCallback<Uint8Array[]>): void;
+  getBase64Url(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
   getBase64Url(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Uint8Array[]>, callback?: msRest.ServiceCallback<Uint8Array[]>): Promise<Models.ArrayModelGetBase64UrlResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1329,10 +1329,10 @@ export class ArrayModel {
    */
   getComplexNull(callback: msRest.ServiceCallback<Models.Product[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getComplexNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product[]>, callback: msRest.ServiceCallback<Models.Product[]>): void;
+  getComplexNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product[]>, callback?: msRest.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1353,10 +1353,10 @@ export class ArrayModel {
    */
   getComplexEmpty(callback: msRest.ServiceCallback<Models.Product[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getComplexEmpty(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product[]>, callback: msRest.ServiceCallback<Models.Product[]>): void;
+  getComplexEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexEmpty(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product[]>, callback?: msRest.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexEmptyResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1378,10 +1378,10 @@ export class ArrayModel {
    */
   getComplexItemNull(callback: msRest.ServiceCallback<Models.Product[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getComplexItemNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product[]>, callback: msRest.ServiceCallback<Models.Product[]>): void;
+  getComplexItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexItemNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product[]>, callback?: msRest.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexItemNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1403,10 +1403,10 @@ export class ArrayModel {
    */
   getComplexItemEmpty(callback: msRest.ServiceCallback<Models.Product[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getComplexItemEmpty(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product[]>, callback: msRest.ServiceCallback<Models.Product[]>): void;
+  getComplexItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexItemEmpty(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product[]>, callback?: msRest.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexItemEmptyResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1428,10 +1428,10 @@ export class ArrayModel {
    */
   getComplexValid(callback: msRest.ServiceCallback<Models.Product[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getComplexValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product[]>, callback: msRest.ServiceCallback<Models.Product[]>): void;
+  getComplexValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
   getComplexValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product[]>, callback?: msRest.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1456,10 +1456,10 @@ export class ArrayModel {
   putComplexValid(arrayBody: Models.Product[], callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putComplexValid(arrayBody: Models.Product[], optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putComplexValid(arrayBody: Models.Product[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putComplexValid(arrayBody: Models.Product[], optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1481,10 +1481,10 @@ export class ArrayModel {
    */
   getArrayNull(callback: msRest.ServiceCallback<string[][]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getArrayNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string[][]>, callback: msRest.ServiceCallback<string[][]>): void;
+  getArrayNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
   getArrayNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[][]>, callback?: msRest.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1505,10 +1505,10 @@ export class ArrayModel {
    */
   getArrayEmpty(callback: msRest.ServiceCallback<string[][]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getArrayEmpty(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string[][]>, callback: msRest.ServiceCallback<string[][]>): void;
+  getArrayEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
   getArrayEmpty(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[][]>, callback?: msRest.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayEmptyResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1529,10 +1529,10 @@ export class ArrayModel {
    */
   getArrayItemNull(callback: msRest.ServiceCallback<string[][]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getArrayItemNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string[][]>, callback: msRest.ServiceCallback<string[][]>): void;
+  getArrayItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
   getArrayItemNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[][]>, callback?: msRest.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayItemNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1553,10 +1553,10 @@ export class ArrayModel {
    */
   getArrayItemEmpty(callback: msRest.ServiceCallback<string[][]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getArrayItemEmpty(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string[][]>, callback: msRest.ServiceCallback<string[][]>): void;
+  getArrayItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
   getArrayItemEmpty(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[][]>, callback?: msRest.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayItemEmptyResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1577,10 +1577,10 @@ export class ArrayModel {
    */
   getArrayValid(callback: msRest.ServiceCallback<string[][]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getArrayValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<string[][]>, callback: msRest.ServiceCallback<string[][]>): void;
+  getArrayValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
   getArrayValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[][]>, callback?: msRest.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1604,10 +1604,10 @@ export class ArrayModel {
   putArrayValid(arrayBody: string[][], callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putArrayValid(arrayBody: string[][], optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putArrayValid(arrayBody: string[][], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putArrayValid(arrayBody: string[][], optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1629,10 +1629,10 @@ export class ArrayModel {
    */
   getDictionaryNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getDictionaryNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: string }[]>, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
+  getDictionaryNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: string }[]>, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1653,10 +1653,10 @@ export class ArrayModel {
    */
   getDictionaryEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getDictionaryEmpty(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: string }[]>, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
+  getDictionaryEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryEmpty(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: string }[]>, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryEmptyResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1678,10 +1678,10 @@ export class ArrayModel {
    */
   getDictionaryItemNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getDictionaryItemNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: string }[]>, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
+  getDictionaryItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryItemNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: string }[]>, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryItemNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1703,10 +1703,10 @@ export class ArrayModel {
    */
   getDictionaryItemEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getDictionaryItemEmpty(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: string }[]>, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
+  getDictionaryItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryItemEmpty(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: string }[]>, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryItemEmptyResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1728,10 +1728,10 @@ export class ArrayModel {
    */
   getDictionaryValid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getDictionaryValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: string }[]>, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
+  getDictionaryValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   getDictionaryValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: string }[]>, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1756,10 +1756,10 @@ export class ArrayModel {
   putDictionaryValid(arrayBody: { [propertyName: string]: string }[], callback: msRest.ServiceCallback<void>): void;
   /**
    * @param arrayBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putDictionaryValid(arrayBody: { [propertyName: string]: string }[], optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putDictionaryValid(arrayBody: { [propertyName: string]: string }[], optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {

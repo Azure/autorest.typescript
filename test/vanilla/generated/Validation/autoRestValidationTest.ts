@@ -42,10 +42,10 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   /**
    * @param resourceGroupName Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
    * @param id Required int multiple of 10 from 100 to 1000.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  validationOfMethodParameters(resourceGroupName: string, id: number, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product>, callback: msRest.ServiceCallback<Models.Product>): void;
+  validationOfMethodParameters(resourceGroupName: string, id: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
   validationOfMethodParameters(resourceGroupName: string, id: number, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product>, callback?: msRest.ServiceCallback<Models.Product>): Promise<Models.ValidationOfMethodParametersResponse> {
     return this.sendOperationRequest(
       {
@@ -74,10 +74,10 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   /**
    * @param resourceGroupName Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
    * @param id Required int multiple of 10 from 100 to 1000.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  validationOfBody(resourceGroupName: string, id: number, optionsOrCallback: Models.AutoRestValidationTestValidationOfBodyOptionalParams | msRest.ServiceCallback<Models.Product>, callback: msRest.ServiceCallback<Models.Product>): void;
+  validationOfBody(resourceGroupName: string, id: number, options: Models.AutoRestValidationTestValidationOfBodyOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
   validationOfBody(resourceGroupName: string, id: number, optionsOrCallback?: Models.AutoRestValidationTestValidationOfBodyOptionalParams | msRest.ServiceCallback<Models.Product>, callback?: msRest.ServiceCallback<Models.Product>): Promise<Models.ValidationOfBodyResponse> {
     return this.sendOperationRequest(
       {
@@ -99,10 +99,10 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    */
   getWithConstantInPath(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getWithConstantInPath(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getWithConstantInPath(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getWithConstantInPath(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
       {
@@ -122,10 +122,10 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    */
   postWithConstantInBody(callback: msRest.ServiceCallback<Models.Product>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  postWithConstantInBody(optionsOrCallback: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams | msRest.ServiceCallback<Models.Product>, callback: msRest.ServiceCallback<Models.Product>): void;
+  postWithConstantInBody(options: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
   postWithConstantInBody(optionsOrCallback?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams | msRest.ServiceCallback<Models.Product>, callback?: msRest.ServiceCallback<Models.Product>): Promise<Models.PostWithConstantInBodyResponse> {
     return this.sendOperationRequest(
       {

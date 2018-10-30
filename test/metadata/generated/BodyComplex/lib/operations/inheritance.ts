@@ -36,10 +36,10 @@ export class Inheritance {
    */
   getValid(callback: msRest.ServiceCallback<Models.Siamese>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Siamese>, callback: msRest.ServiceCallback<Models.Siamese>): void;
+  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Siamese>): void;
   getValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Siamese>, callback?: msRest.ServiceCallback<Models.Siamese>): Promise<Models.InheritanceGetValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -69,10 +69,10 @@ export class Inheritance {
    * @param complexBody Please put a siamese with id=2, name="Siameee", color=green, breed=persion,
    * which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one
    * named "Tomato" with id=-1 and food="french fries".
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putValid(complexBody: Models.Siamese, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putValid(complexBody: Models.Siamese, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putValid(complexBody: Models.Siamese, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {

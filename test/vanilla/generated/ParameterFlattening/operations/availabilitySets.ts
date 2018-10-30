@@ -45,10 +45,10 @@ export class AvailabilitySets {
    * @param resourceGroupName The name of the resource group.
    * @param avset The name of the storage availability set.
    * @param tags A set of tags. A description about the set of tags.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {

@@ -36,10 +36,10 @@ export class HttpClientFailure {
    */
   head400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  head400(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  head400(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   head400(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureHead400Response> {
     return this.client.sendOperationRequest(
       {
@@ -60,10 +60,10 @@ export class HttpClientFailure {
    */
   get400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  get400(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  get400(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get400(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureGet400Response> {
     return this.client.sendOperationRequest(
       {
@@ -84,10 +84,10 @@ export class HttpClientFailure {
    */
   put400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  put400(optionsOrCallback: Models.HttpClientFailurePut400OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  put400(options: Models.HttpClientFailurePut400OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   put400(optionsOrCallback?: Models.HttpClientFailurePut400OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePut400Response> {
     return this.client.sendOperationRequest(
       {
@@ -108,10 +108,10 @@ export class HttpClientFailure {
    */
   patch400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  patch400(optionsOrCallback: Models.HttpClientFailurePatch400OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  patch400(options: Models.HttpClientFailurePatch400OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   patch400(optionsOrCallback?: Models.HttpClientFailurePatch400OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePatch400Response> {
     return this.client.sendOperationRequest(
       {
@@ -132,10 +132,10 @@ export class HttpClientFailure {
    */
   post400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  post400(optionsOrCallback: Models.HttpClientFailurePost400OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  post400(options: Models.HttpClientFailurePost400OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   post400(optionsOrCallback?: Models.HttpClientFailurePost400OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePost400Response> {
     return this.client.sendOperationRequest(
       {
@@ -156,10 +156,10 @@ export class HttpClientFailure {
    */
   delete400(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  delete400(optionsOrCallback: Models.HttpClientFailureDelete400OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  delete400(options: Models.HttpClientFailureDelete400OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   delete400(optionsOrCallback?: Models.HttpClientFailureDelete400OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureDelete400Response> {
     return this.client.sendOperationRequest(
       {
@@ -180,10 +180,10 @@ export class HttpClientFailure {
    */
   head401(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  head401(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  head401(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   head401(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureHead401Response> {
     return this.client.sendOperationRequest(
       {
@@ -204,10 +204,10 @@ export class HttpClientFailure {
    */
   get402(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  get402(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  get402(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get402(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureGet402Response> {
     return this.client.sendOperationRequest(
       {
@@ -228,10 +228,10 @@ export class HttpClientFailure {
    */
   get403(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  get403(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  get403(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get403(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureGet403Response> {
     return this.client.sendOperationRequest(
       {
@@ -252,10 +252,10 @@ export class HttpClientFailure {
    */
   put404(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  put404(optionsOrCallback: Models.HttpClientFailurePut404OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  put404(options: Models.HttpClientFailurePut404OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   put404(optionsOrCallback?: Models.HttpClientFailurePut404OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePut404Response> {
     return this.client.sendOperationRequest(
       {
@@ -276,10 +276,10 @@ export class HttpClientFailure {
    */
   patch405(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  patch405(optionsOrCallback: Models.HttpClientFailurePatch405OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  patch405(options: Models.HttpClientFailurePatch405OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   patch405(optionsOrCallback?: Models.HttpClientFailurePatch405OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePatch405Response> {
     return this.client.sendOperationRequest(
       {
@@ -300,10 +300,10 @@ export class HttpClientFailure {
    */
   post406(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  post406(optionsOrCallback: Models.HttpClientFailurePost406OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  post406(options: Models.HttpClientFailurePost406OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   post406(optionsOrCallback?: Models.HttpClientFailurePost406OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePost406Response> {
     return this.client.sendOperationRequest(
       {
@@ -324,10 +324,10 @@ export class HttpClientFailure {
    */
   delete407(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  delete407(optionsOrCallback: Models.HttpClientFailureDelete407OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  delete407(options: Models.HttpClientFailureDelete407OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   delete407(optionsOrCallback?: Models.HttpClientFailureDelete407OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureDelete407Response> {
     return this.client.sendOperationRequest(
       {
@@ -348,10 +348,10 @@ export class HttpClientFailure {
    */
   put409(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  put409(optionsOrCallback: Models.HttpClientFailurePut409OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  put409(options: Models.HttpClientFailurePut409OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   put409(optionsOrCallback?: Models.HttpClientFailurePut409OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePut409Response> {
     return this.client.sendOperationRequest(
       {
@@ -372,10 +372,10 @@ export class HttpClientFailure {
    */
   head410(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  head410(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  head410(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   head410(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureHead410Response> {
     return this.client.sendOperationRequest(
       {
@@ -396,10 +396,10 @@ export class HttpClientFailure {
    */
   get411(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  get411(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  get411(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get411(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureGet411Response> {
     return this.client.sendOperationRequest(
       {
@@ -420,10 +420,10 @@ export class HttpClientFailure {
    */
   get412(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  get412(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  get412(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get412(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureGet412Response> {
     return this.client.sendOperationRequest(
       {
@@ -444,10 +444,10 @@ export class HttpClientFailure {
    */
   put413(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  put413(optionsOrCallback: Models.HttpClientFailurePut413OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  put413(options: Models.HttpClientFailurePut413OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   put413(optionsOrCallback?: Models.HttpClientFailurePut413OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePut413Response> {
     return this.client.sendOperationRequest(
       {
@@ -468,10 +468,10 @@ export class HttpClientFailure {
    */
   patch414(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  patch414(optionsOrCallback: Models.HttpClientFailurePatch414OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  patch414(options: Models.HttpClientFailurePatch414OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   patch414(optionsOrCallback?: Models.HttpClientFailurePatch414OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePatch414Response> {
     return this.client.sendOperationRequest(
       {
@@ -492,10 +492,10 @@ export class HttpClientFailure {
    */
   post415(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  post415(optionsOrCallback: Models.HttpClientFailurePost415OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  post415(options: Models.HttpClientFailurePost415OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   post415(optionsOrCallback?: Models.HttpClientFailurePost415OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailurePost415Response> {
     return this.client.sendOperationRequest(
       {
@@ -516,10 +516,10 @@ export class HttpClientFailure {
    */
   get416(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  get416(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  get416(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get416(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureGet416Response> {
     return this.client.sendOperationRequest(
       {
@@ -540,10 +540,10 @@ export class HttpClientFailure {
    */
   delete417(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  delete417(optionsOrCallback: Models.HttpClientFailureDelete417OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  delete417(options: Models.HttpClientFailureDelete417OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   delete417(optionsOrCallback?: Models.HttpClientFailureDelete417OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureDelete417Response> {
     return this.client.sendOperationRequest(
       {
@@ -564,10 +564,10 @@ export class HttpClientFailure {
    */
   head429(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  head429(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  head429(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   head429(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpClientFailureHead429Response> {
     return this.client.sendOperationRequest(
       {

@@ -40,10 +40,10 @@ export class Group {
   getSampleResourceGroup(resourceGroupName: string, callback: msRest.ServiceCallback<Models.SampleResourceGroup>): void;
   /**
    * @param resourceGroupName Resource Group name 'testgroup101'.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getSampleResourceGroup(resourceGroupName: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.SampleResourceGroup>, callback: msRest.ServiceCallback<Models.SampleResourceGroup>): void;
+  getSampleResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SampleResourceGroup>): void;
   getSampleResourceGroup(resourceGroupName: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.SampleResourceGroup>, callback?: msRest.ServiceCallback<Models.SampleResourceGroup>): Promise<Models.GroupGetSampleResourceGroupResponse> {
     return this.client.sendOperationRequest(
       {

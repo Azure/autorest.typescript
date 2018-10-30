@@ -36,10 +36,10 @@ export class Readonlyproperty {
    */
   getValid(callback: msRest.ServiceCallback<Models.ReadonlyObj>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ReadonlyObj>, callback: msRest.ServiceCallback<Models.ReadonlyObj>): void;
+  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ReadonlyObj>): void;
   getValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ReadonlyObj>, callback?: msRest.ServiceCallback<Models.ReadonlyObj>): Promise<Models.ReadonlypropertyGetValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -60,10 +60,10 @@ export class Readonlyproperty {
    */
   putValid(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putValid(optionsOrCallback: Models.ReadonlypropertyPutValidOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putValid(options: Models.ReadonlypropertyPutValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
   putValid(optionsOrCallback?: Models.ReadonlypropertyPutValidOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {

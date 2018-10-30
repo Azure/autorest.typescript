@@ -40,10 +40,10 @@ export class SubscriptionInMethod {
   postMethodLocalValid(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param subscriptionId This should appear as a method parameter, use value '1234-5678-9012-3456'
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  postMethodLocalValid(subscriptionId: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  postMethodLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   postMethodLocalValid(subscriptionId: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -72,10 +72,10 @@ export class SubscriptionInMethod {
   /**
    * @param subscriptionId This should appear as a method parameter, use value null, client-side
    * validation should prvenet the call
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  postMethodLocalNull(subscriptionId: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  postMethodLocalNull(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   postMethodLocalNull(subscriptionId: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -101,10 +101,10 @@ export class SubscriptionInMethod {
   postPathLocalValid(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param subscriptionId Should appear as a method parameter -use value '1234-5678-9012-3456'
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  postPathLocalValid(subscriptionId: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  postPathLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   postPathLocalValid(subscriptionId: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -133,10 +133,10 @@ export class SubscriptionInMethod {
   /**
    * @param subscriptionId The subscriptionId, which appears in the path, the value is always
    * '1234-5678-9012-3456'
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  postSwaggerLocalValid(subscriptionId: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  postSwaggerLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   postSwaggerLocalValid(subscriptionId: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {

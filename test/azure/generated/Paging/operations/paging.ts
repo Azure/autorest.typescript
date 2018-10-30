@@ -38,10 +38,10 @@ export class Paging {
    */
   getSinglePages(callback: msRest.ServiceCallback<Models.ProductResult>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getSinglePages(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getSinglePages(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getSinglePages(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback?: msRest.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetSinglePagesResponse> {
     return this.client.sendOperationRequest(
       {
@@ -62,10 +62,10 @@ export class Paging {
    */
   getMultiplePages(callback: msRest.ServiceCallback<Models.ProductResult>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getMultiplePages(optionsOrCallback: Models.PagingGetMultiplePagesOptionalParams | msRest.ServiceCallback<Models.ProductResult>, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getMultiplePages(options: Models.PagingGetMultiplePagesOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePages(optionsOrCallback?: Models.PagingGetMultiplePagesOptionalParams | msRest.ServiceCallback<Models.ProductResult>, callback?: msRest.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetMultiplePagesResponse> {
     return this.client.sendOperationRequest(
       {
@@ -86,10 +86,10 @@ export class Paging {
    */
   getOdataMultiplePages(callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getOdataMultiplePages(optionsOrCallback: Models.PagingGetOdataMultiplePagesOptionalParams | msRest.ServiceCallback<Models.OdataProductResult>, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
+  getOdataMultiplePages(options: Models.PagingGetOdataMultiplePagesOptionalParams, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
   getOdataMultiplePages(optionsOrCallback?: Models.PagingGetOdataMultiplePagesOptionalParams | msRest.ServiceCallback<Models.OdataProductResult>, callback?: msRest.ServiceCallback<Models.OdataProductResult>): Promise<Models.PagingGetOdataMultiplePagesResponse> {
     return this.client.sendOperationRequest(
       {
@@ -113,10 +113,10 @@ export class Paging {
   getMultiplePagesWithOffset(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   /**
    * @param pagingGetMultiplePagesWithOffsetOptions Additional parameters for the operation
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getMultiplePagesWithOffset(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions, optionsOrCallback: Models.PagingGetMultiplePagesWithOffsetOptionalParams | msRest.ServiceCallback<Models.ProductResult>, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getMultiplePagesWithOffset(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions, options: Models.PagingGetMultiplePagesWithOffsetOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesWithOffset(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions, optionsOrCallback?: Models.PagingGetMultiplePagesWithOffsetOptionalParams | msRest.ServiceCallback<Models.ProductResult>, callback?: msRest.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetMultiplePagesWithOffsetResponse> {
     return this.client.sendOperationRequest(
       {
@@ -139,10 +139,10 @@ export class Paging {
    */
   getMultiplePagesRetryFirst(callback: msRest.ServiceCallback<Models.ProductResult>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getMultiplePagesRetryFirst(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getMultiplePagesRetryFirst(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesRetryFirst(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback?: msRest.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetMultiplePagesRetryFirstResponse> {
     return this.client.sendOperationRequest(
       {
@@ -164,10 +164,10 @@ export class Paging {
    */
   getMultiplePagesRetrySecond(callback: msRest.ServiceCallback<Models.ProductResult>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getMultiplePagesRetrySecond(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getMultiplePagesRetrySecond(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesRetrySecond(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback?: msRest.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetMultiplePagesRetrySecondResponse> {
     return this.client.sendOperationRequest(
       {
@@ -188,10 +188,10 @@ export class Paging {
    */
   getSinglePagesFailure(callback: msRest.ServiceCallback<Models.ProductResult>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getSinglePagesFailure(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getSinglePagesFailure(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getSinglePagesFailure(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback?: msRest.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetSinglePagesFailureResponse> {
     return this.client.sendOperationRequest(
       {
@@ -212,10 +212,10 @@ export class Paging {
    */
   getMultiplePagesFailure(callback: msRest.ServiceCallback<Models.ProductResult>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getMultiplePagesFailure(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getMultiplePagesFailure(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesFailure(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback?: msRest.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetMultiplePagesFailureResponse> {
     return this.client.sendOperationRequest(
       {
@@ -236,10 +236,10 @@ export class Paging {
    */
   getMultiplePagesFailureUri(callback: msRest.ServiceCallback<Models.ProductResult>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getMultiplePagesFailureUri(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getMultiplePagesFailureUri(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesFailureUri(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback?: msRest.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetMultiplePagesFailureUriResponse> {
     return this.client.sendOperationRequest(
       {
@@ -266,10 +266,10 @@ export class Paging {
   /**
    * @param apiVersion Sets the api version to use.
    * @param tenant Sets the tenant to use.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getMultiplePagesFragmentNextLink(apiVersion: string, tenant: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.OdataProductResult>, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
+  getMultiplePagesFragmentNextLink(apiVersion: string, tenant: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
   getMultiplePagesFragmentNextLink(apiVersion: string, tenant: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.OdataProductResult>, callback?: msRest.ServiceCallback<Models.OdataProductResult>): Promise<Models.PagingGetMultiplePagesFragmentNextLinkResponse> {
     return this.client.sendOperationRequest(
       {
@@ -295,10 +295,10 @@ export class Paging {
   getMultiplePagesFragmentWithGroupingNextLink(customParameterGroup: Models.CustomParameterGroup, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
   /**
    * @param customParameterGroup Additional parameters for the operation
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getMultiplePagesFragmentWithGroupingNextLink(customParameterGroup: Models.CustomParameterGroup, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.OdataProductResult>, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
+  getMultiplePagesFragmentWithGroupingNextLink(customParameterGroup: Models.CustomParameterGroup, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
   getMultiplePagesFragmentWithGroupingNextLink(customParameterGroup: Models.CustomParameterGroup, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.OdataProductResult>, callback?: msRest.ServiceCallback<Models.OdataProductResult>): Promise<Models.PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse> {
     return this.client.sendOperationRequest(
       {
@@ -339,10 +339,10 @@ export class Paging {
    * @param apiVersion Sets the api version to use.
    * @param tenant Sets the tenant to use.
    * @param nextLink Next link for list operation.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  nextFragment(apiVersion: string, tenant: string, nextLink: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.OdataProductResult>, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
+  nextFragment(apiVersion: string, tenant: string, nextLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
   nextFragment(apiVersion: string, tenant: string, nextLink: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.OdataProductResult>, callback?: msRest.ServiceCallback<Models.OdataProductResult>): Promise<Models.PagingNextFragmentResponse> {
     return this.client.sendOperationRequest(
       {
@@ -372,10 +372,10 @@ export class Paging {
   /**
    * @param nextLink Next link for list operation.
    * @param customParameterGroup Additional parameters for the operation
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  nextFragmentWithGrouping(nextLink: string, customParameterGroup: Models.CustomParameterGroup, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.OdataProductResult>, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
+  nextFragmentWithGrouping(nextLink: string, customParameterGroup: Models.CustomParameterGroup, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
   nextFragmentWithGrouping(nextLink: string, customParameterGroup: Models.CustomParameterGroup, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.OdataProductResult>, callback?: msRest.ServiceCallback<Models.OdataProductResult>): Promise<Models.PagingNextFragmentWithGroupingResponse> {
     return this.client.sendOperationRequest(
       {
@@ -415,10 +415,10 @@ export class Paging {
   getSinglePagesNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   /**
    * @param nextPageLink The NextLink from the previous successful call to List operation.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getSinglePagesNext(nextPageLink: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getSinglePagesNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getSinglePagesNext(nextPageLink: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback?: msRest.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetSinglePagesNextResponse> {
     return this.client.sendOperationRequest(
       {
@@ -443,10 +443,10 @@ export class Paging {
   getMultiplePagesNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   /**
    * @param nextPageLink The NextLink from the previous successful call to List operation.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getMultiplePagesNext(nextPageLink: string, optionsOrCallback: Models.PagingGetMultiplePagesNextOptionalParams | msRest.ServiceCallback<Models.ProductResult>, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getMultiplePagesNext(nextPageLink: string, options: Models.PagingGetMultiplePagesNextOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesNext(nextPageLink: string, optionsOrCallback?: Models.PagingGetMultiplePagesNextOptionalParams | msRest.ServiceCallback<Models.ProductResult>, callback?: msRest.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetMultiplePagesNextResponse> {
     return this.client.sendOperationRequest(
       {
@@ -471,10 +471,10 @@ export class Paging {
   getOdataMultiplePagesNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
   /**
    * @param nextPageLink The NextLink from the previous successful call to List operation.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getOdataMultiplePagesNext(nextPageLink: string, optionsOrCallback: Models.PagingGetOdataMultiplePagesNextOptionalParams | msRest.ServiceCallback<Models.OdataProductResult>, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
+  getOdataMultiplePagesNext(nextPageLink: string, options: Models.PagingGetOdataMultiplePagesNextOptionalParams, callback: msRest.ServiceCallback<Models.OdataProductResult>): void;
   getOdataMultiplePagesNext(nextPageLink: string, optionsOrCallback?: Models.PagingGetOdataMultiplePagesNextOptionalParams | msRest.ServiceCallback<Models.OdataProductResult>, callback?: msRest.ServiceCallback<Models.OdataProductResult>): Promise<Models.PagingGetOdataMultiplePagesNextResponse> {
     return this.client.sendOperationRequest(
       {
@@ -499,10 +499,10 @@ export class Paging {
   getMultiplePagesWithOffsetNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   /**
    * @param nextPageLink The NextLink from the previous successful call to List operation.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getMultiplePagesWithOffsetNext(nextPageLink: string, optionsOrCallback: Models.PagingGetMultiplePagesWithOffsetNextOptionalParams | msRest.ServiceCallback<Models.ProductResult>, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getMultiplePagesWithOffsetNext(nextPageLink: string, options: Models.PagingGetMultiplePagesWithOffsetNextOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesWithOffsetNext(nextPageLink: string, optionsOrCallback?: Models.PagingGetMultiplePagesWithOffsetNextOptionalParams | msRest.ServiceCallback<Models.ProductResult>, callback?: msRest.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetMultiplePagesWithOffsetNextResponse> {
     return this.client.sendOperationRequest(
       {
@@ -528,10 +528,10 @@ export class Paging {
   getMultiplePagesRetryFirstNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   /**
    * @param nextPageLink The NextLink from the previous successful call to List operation.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getMultiplePagesRetryFirstNext(nextPageLink: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getMultiplePagesRetryFirstNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesRetryFirstNext(nextPageLink: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback?: msRest.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetMultiplePagesRetryFirstNextResponse> {
     return this.client.sendOperationRequest(
       {
@@ -557,10 +557,10 @@ export class Paging {
   getMultiplePagesRetrySecondNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   /**
    * @param nextPageLink The NextLink from the previous successful call to List operation.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getMultiplePagesRetrySecondNext(nextPageLink: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getMultiplePagesRetrySecondNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesRetrySecondNext(nextPageLink: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback?: msRest.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetMultiplePagesRetrySecondNextResponse> {
     return this.client.sendOperationRequest(
       {
@@ -585,10 +585,10 @@ export class Paging {
   getSinglePagesFailureNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   /**
    * @param nextPageLink The NextLink from the previous successful call to List operation.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getSinglePagesFailureNext(nextPageLink: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getSinglePagesFailureNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getSinglePagesFailureNext(nextPageLink: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback?: msRest.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetSinglePagesFailureNextResponse> {
     return this.client.sendOperationRequest(
       {
@@ -613,10 +613,10 @@ export class Paging {
   getMultiplePagesFailureNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   /**
    * @param nextPageLink The NextLink from the previous successful call to List operation.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getMultiplePagesFailureNext(nextPageLink: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getMultiplePagesFailureNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesFailureNext(nextPageLink: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback?: msRest.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetMultiplePagesFailureNextResponse> {
     return this.client.sendOperationRequest(
       {
@@ -641,10 +641,10 @@ export class Paging {
   getMultiplePagesFailureUriNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   /**
    * @param nextPageLink The NextLink from the previous successful call to List operation.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getMultiplePagesFailureUriNext(nextPageLink: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getMultiplePagesFailureUriNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductResult>): void;
   getMultiplePagesFailureUriNext(nextPageLink: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductResult>, callback?: msRest.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetMultiplePagesFailureUriNextResponse> {
     return this.client.sendOperationRequest(
       {

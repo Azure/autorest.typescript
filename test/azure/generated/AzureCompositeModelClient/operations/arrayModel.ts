@@ -37,10 +37,10 @@ export class ArrayModel {
    */
   getValid(callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ArrayWrapper>, callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
+  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
   getValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ArrayWrapper>, callback?: msRest.ServiceCallback<Models.ArrayWrapper>): Promise<Models.ArrayModelGetValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -61,10 +61,10 @@ export class ArrayModel {
    */
   putValid(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putValid(optionsOrCallback: Models.ArrayModelPutValidOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putValid(options: Models.ArrayModelPutValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
   putValid(optionsOrCallback?: Models.ArrayModelPutValidOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -85,10 +85,10 @@ export class ArrayModel {
    */
   getEmpty(callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getEmpty(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ArrayWrapper>, callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
+  getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
   getEmpty(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ArrayWrapper>, callback?: msRest.ServiceCallback<Models.ArrayWrapper>): Promise<Models.ArrayModelGetEmptyResponse> {
     return this.client.sendOperationRequest(
       {
@@ -109,10 +109,10 @@ export class ArrayModel {
    */
   putEmpty(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putEmpty(optionsOrCallback: Models.ArrayModelPutEmptyOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putEmpty(options: Models.ArrayModelPutEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
   putEmpty(optionsOrCallback?: Models.ArrayModelPutEmptyOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -133,10 +133,10 @@ export class ArrayModel {
    */
   getNotProvided(callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getNotProvided(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ArrayWrapper>, callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
+  getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ArrayWrapper>): void;
   getNotProvided(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ArrayWrapper>, callback?: msRest.ServiceCallback<Models.ArrayWrapper>): Promise<Models.ArrayModelGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       {

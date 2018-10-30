@@ -36,10 +36,10 @@ export class Polymorphism {
    */
   getValid(callback: msRest.ServiceCallback<Models.FishUnion>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.FishUnion>, callback: msRest.ServiceCallback<Models.FishUnion>): void;
+  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FishUnion>): void;
   getValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.FishUnion>, callback?: msRest.ServiceCallback<Models.FishUnion>): Promise<Models.PolymorphismGetValidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -159,10 +159,10 @@ export class Polymorphism {
    * }
    * ]
    * };
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putValid(complexBody: Models.FishUnion, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putValid(complexBody: Models.FishUnion, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -185,10 +185,10 @@ export class Polymorphism {
    */
   getComplicated(callback: msRest.ServiceCallback<Models.SalmonUnion>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getComplicated(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.SalmonUnion>, callback: msRest.ServiceCallback<Models.SalmonUnion>): void;
+  getComplicated(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SalmonUnion>): void;
   getComplicated(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.SalmonUnion>, callback?: msRest.ServiceCallback<Models.SalmonUnion>): Promise<Models.PolymorphismGetComplicatedResponse> {
     return this.client.sendOperationRequest(
       {
@@ -213,10 +213,10 @@ export class Polymorphism {
   putComplicated(complexBody: Models.SalmonUnion, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param complexBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putComplicated(complexBody: Models.SalmonUnion, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putComplicated(complexBody: Models.SalmonUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putComplicated(complexBody: Models.SalmonUnion, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -241,10 +241,10 @@ export class Polymorphism {
   putMissingDiscriminator(complexBody: Models.SalmonUnion, callback: msRest.ServiceCallback<Models.SalmonUnion>): void;
   /**
    * @param complexBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putMissingDiscriminator(complexBody: Models.SalmonUnion, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.SalmonUnion>, callback: msRest.ServiceCallback<Models.SalmonUnion>): void;
+  putMissingDiscriminator(complexBody: Models.SalmonUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SalmonUnion>): void;
   putMissingDiscriminator(complexBody: Models.SalmonUnion, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.SalmonUnion>, callback?: msRest.ServiceCallback<Models.SalmonUnion>): Promise<Models.PolymorphismPutMissingDiscriminatorResponse> {
     return this.client.sendOperationRequest(
       {
@@ -348,10 +348,10 @@ export class Polymorphism {
    * }
    * ]
    * }
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putValidMissingRequired(complexBody: Models.FishUnion, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putValidMissingRequired(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putValidMissingRequired(complexBody: Models.FishUnion, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {

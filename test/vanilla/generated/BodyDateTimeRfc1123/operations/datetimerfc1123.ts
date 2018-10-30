@@ -36,10 +36,10 @@ export class Datetimerfc1123 {
    */
   getNull(callback: msRest.ServiceCallback<Date>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback: msRest.ServiceCallback<Date>): void;
+  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
   getNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback?: msRest.ServiceCallback<Date>): Promise<Models.Datetimerfc1123GetNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -60,10 +60,10 @@ export class Datetimerfc1123 {
    */
   getInvalid(callback: msRest.ServiceCallback<Date>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getInvalid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback: msRest.ServiceCallback<Date>): void;
+  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
   getInvalid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback?: msRest.ServiceCallback<Date>): Promise<Models.Datetimerfc1123GetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
@@ -84,10 +84,10 @@ export class Datetimerfc1123 {
    */
   getOverflow(callback: msRest.ServiceCallback<Date>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getOverflow(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback: msRest.ServiceCallback<Date>): void;
+  getOverflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
   getOverflow(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback?: msRest.ServiceCallback<Date>): Promise<Models.Datetimerfc1123GetOverflowResponse> {
     return this.client.sendOperationRequest(
       {
@@ -108,10 +108,10 @@ export class Datetimerfc1123 {
    */
   getUnderflow(callback: msRest.ServiceCallback<Date>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getUnderflow(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback: msRest.ServiceCallback<Date>): void;
+  getUnderflow(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
   getUnderflow(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback?: msRest.ServiceCallback<Date>): Promise<Models.Datetimerfc1123GetUnderflowResponse> {
     return this.client.sendOperationRequest(
       {
@@ -135,10 +135,10 @@ export class Datetimerfc1123 {
   putUtcMaxDateTime(datetimeBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param datetimeBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putUtcMaxDateTime(datetimeBody: Date | string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putUtcMaxDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putUtcMaxDateTime(datetimeBody: Date | string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -160,10 +160,10 @@ export class Datetimerfc1123 {
    */
   getUtcLowercaseMaxDateTime(callback: msRest.ServiceCallback<Date>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getUtcLowercaseMaxDateTime(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback: msRest.ServiceCallback<Date>): void;
+  getUtcLowercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
   getUtcLowercaseMaxDateTime(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback?: msRest.ServiceCallback<Date>): Promise<Models.Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
@@ -184,10 +184,10 @@ export class Datetimerfc1123 {
    */
   getUtcUppercaseMaxDateTime(callback: msRest.ServiceCallback<Date>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getUtcUppercaseMaxDateTime(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback: msRest.ServiceCallback<Date>): void;
+  getUtcUppercaseMaxDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
   getUtcUppercaseMaxDateTime(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback?: msRest.ServiceCallback<Date>): Promise<Models.Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
@@ -211,10 +211,10 @@ export class Datetimerfc1123 {
   putUtcMinDateTime(datetimeBody: Date | string, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param datetimeBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putUtcMinDateTime(datetimeBody: Date | string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putUtcMinDateTime(datetimeBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putUtcMinDateTime(datetimeBody: Date | string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -236,10 +236,10 @@ export class Datetimerfc1123 {
    */
   getUtcMinDateTime(callback: msRest.ServiceCallback<Date>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getUtcMinDateTime(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback: msRest.ServiceCallback<Date>): void;
+  getUtcMinDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
   getUtcMinDateTime(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback?: msRest.ServiceCallback<Date>): Promise<Models.Datetimerfc1123GetUtcMinDateTimeResponse> {
     return this.client.sendOperationRequest(
       {

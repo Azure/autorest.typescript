@@ -36,10 +36,10 @@ export class Files {
    */
   getFile(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getFile(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getFile(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getFile(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetFileResponse> {
     return this.client.sendOperationRequest(
       {
@@ -60,10 +60,10 @@ export class Files {
    */
   getFileLarge(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getFileLarge(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getFileLarge(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getFileLarge(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetFileLargeResponse> {
     return this.client.sendOperationRequest(
       {
@@ -84,10 +84,10 @@ export class Files {
    */
   getEmptyFile(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getEmptyFile(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getEmptyFile(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getEmptyFile(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetEmptyFileResponse> {
     return this.client.sendOperationRequest(
       {

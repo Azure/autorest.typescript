@@ -63,10 +63,10 @@ class AzureCompositeModel extends AzureCompositeModelContext {
   list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
   /**
    * @param resourceGroupName Resource Group ID.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  list(resourceGroupName: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.CatalogArray>, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
+  list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
   list(resourceGroupName: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.CatalogArray>, callback?: msRest.ServiceCallback<Models.CatalogArray>): Promise<Models.ListResponse> {
     return this.sendOperationRequest(
       {
@@ -95,10 +95,10 @@ class AzureCompositeModel extends AzureCompositeModelContext {
   /**
    * @param subscriptionId Subscription ID.
    * @param resourceGroupName Resource Group ID.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  create(subscriptionId: string, resourceGroupName: string, optionsOrCallback: Models.AzureCompositeModelCreateOptionalParams | msRest.ServiceCallback<Models.CatalogDictionary>, callback: msRest.ServiceCallback<Models.CatalogDictionary>): void;
+  create(subscriptionId: string, resourceGroupName: string, options: Models.AzureCompositeModelCreateOptionalParams, callback: msRest.ServiceCallback<Models.CatalogDictionary>): void;
   create(subscriptionId: string, resourceGroupName: string, optionsOrCallback?: Models.AzureCompositeModelCreateOptionalParams | msRest.ServiceCallback<Models.CatalogDictionary>, callback?: msRest.ServiceCallback<Models.CatalogDictionary>): Promise<Models.CreateResponse> {
     return this.sendOperationRequest(
       {
@@ -128,10 +128,10 @@ class AzureCompositeModel extends AzureCompositeModelContext {
   /**
    * @param subscriptionId Subscription ID.
    * @param resourceGroupName Resource Group ID.
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  update(subscriptionId: string, resourceGroupName: string, optionsOrCallback: Models.AzureCompositeModelUpdateOptionalParams | msRest.ServiceCallback<Models.CatalogArray>, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
+  update(subscriptionId: string, resourceGroupName: string, options: Models.AzureCompositeModelUpdateOptionalParams, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
   update(subscriptionId: string, resourceGroupName: string, optionsOrCallback?: Models.AzureCompositeModelUpdateOptionalParams | msRest.ServiceCallback<Models.CatalogArray>, callback?: msRest.ServiceCallback<Models.CatalogArray>): Promise<Models.UpdateResponse> {
     return this.sendOperationRequest(
       {

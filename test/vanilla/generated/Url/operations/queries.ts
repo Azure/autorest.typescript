@@ -37,10 +37,10 @@ export class Queries {
    */
   getBooleanTrue(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getBooleanTrue(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getBooleanTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getBooleanTrue(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -61,10 +61,10 @@ export class Queries {
    */
   getBooleanFalse(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getBooleanFalse(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getBooleanFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getBooleanFalse(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -85,10 +85,10 @@ export class Queries {
    */
   getBooleanNull(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getBooleanNull(optionsOrCallback: Models.QueriesGetBooleanNullOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getBooleanNull(options: Models.QueriesGetBooleanNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   getBooleanNull(optionsOrCallback?: Models.QueriesGetBooleanNullOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -109,10 +109,10 @@ export class Queries {
    */
   getIntOneMillion(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getIntOneMillion(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getIntOneMillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getIntOneMillion(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -133,10 +133,10 @@ export class Queries {
    */
   getIntNegativeOneMillion(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getIntNegativeOneMillion(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getIntNegativeOneMillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getIntNegativeOneMillion(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -157,10 +157,10 @@ export class Queries {
    */
   getIntNull(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getIntNull(optionsOrCallback: Models.QueriesGetIntNullOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getIntNull(options: Models.QueriesGetIntNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   getIntNull(optionsOrCallback?: Models.QueriesGetIntNullOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -181,10 +181,10 @@ export class Queries {
    */
   getTenBillion(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getTenBillion(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getTenBillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getTenBillion(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -205,10 +205,10 @@ export class Queries {
    */
   getNegativeTenBillion(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getNegativeTenBillion(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getNegativeTenBillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   getNegativeTenBillion(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -229,10 +229,10 @@ export class Queries {
    */
   getLongNull(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getLongNull(optionsOrCallback: Models.QueriesGetLongNullOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  getLongNull(options: Models.QueriesGetLongNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   getLongNull(optionsOrCallback?: Models.QueriesGetLongNullOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -253,10 +253,10 @@ export class Queries {
    */
   floatScientificPositive(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  floatScientificPositive(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  floatScientificPositive(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   floatScientificPositive(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -277,10 +277,10 @@ export class Queries {
    */
   floatScientificNegative(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  floatScientificNegative(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  floatScientificNegative(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   floatScientificNegative(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -301,10 +301,10 @@ export class Queries {
    */
   floatNull(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  floatNull(optionsOrCallback: Models.QueriesFloatNullOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  floatNull(options: Models.QueriesFloatNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   floatNull(optionsOrCallback?: Models.QueriesFloatNullOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -325,10 +325,10 @@ export class Queries {
    */
   doubleDecimalPositive(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  doubleDecimalPositive(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  doubleDecimalPositive(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   doubleDecimalPositive(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -349,10 +349,10 @@ export class Queries {
    */
   doubleDecimalNegative(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  doubleDecimalNegative(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  doubleDecimalNegative(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   doubleDecimalNegative(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -373,10 +373,10 @@ export class Queries {
    */
   doubleNull(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  doubleNull(optionsOrCallback: Models.QueriesDoubleNullOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  doubleNull(options: Models.QueriesDoubleNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   doubleNull(optionsOrCallback?: Models.QueriesDoubleNullOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -397,10 +397,10 @@ export class Queries {
    */
   stringUnicode(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  stringUnicode(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  stringUnicode(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   stringUnicode(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -421,10 +421,10 @@ export class Queries {
    */
   stringUrlEncoded(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  stringUrlEncoded(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  stringUrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   stringUrlEncoded(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -445,10 +445,10 @@ export class Queries {
    */
   stringEmpty(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  stringEmpty(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  stringEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   stringEmpty(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -469,10 +469,10 @@ export class Queries {
    */
   stringNull(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  stringNull(optionsOrCallback: Models.QueriesStringNullOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  stringNull(options: Models.QueriesStringNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   stringNull(optionsOrCallback?: Models.QueriesStringNullOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -493,10 +493,10 @@ export class Queries {
    */
   enumValid(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  enumValid(optionsOrCallback: Models.QueriesEnumValidOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  enumValid(options: Models.QueriesEnumValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
   enumValid(optionsOrCallback?: Models.QueriesEnumValidOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -517,10 +517,10 @@ export class Queries {
    */
   enumNull(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  enumNull(optionsOrCallback: Models.QueriesEnumNullOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  enumNull(options: Models.QueriesEnumNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   enumNull(optionsOrCallback?: Models.QueriesEnumNullOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -541,10 +541,10 @@ export class Queries {
    */
   byteMultiByte(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  byteMultiByte(optionsOrCallback: Models.QueriesByteMultiByteOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  byteMultiByte(options: Models.QueriesByteMultiByteOptionalParams, callback: msRest.ServiceCallback<void>): void;
   byteMultiByte(optionsOrCallback?: Models.QueriesByteMultiByteOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -565,10 +565,10 @@ export class Queries {
    */
   byteEmpty(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  byteEmpty(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  byteEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   byteEmpty(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -589,10 +589,10 @@ export class Queries {
    */
   byteNull(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  byteNull(optionsOrCallback: Models.QueriesByteNullOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  byteNull(options: Models.QueriesByteNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   byteNull(optionsOrCallback?: Models.QueriesByteNullOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -613,10 +613,10 @@ export class Queries {
    */
   dateValid(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  dateValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  dateValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   dateValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -637,10 +637,10 @@ export class Queries {
    */
   dateNull(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  dateNull(optionsOrCallback: Models.QueriesDateNullOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  dateNull(options: Models.QueriesDateNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   dateNull(optionsOrCallback?: Models.QueriesDateNullOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -661,10 +661,10 @@ export class Queries {
    */
   dateTimeValid(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  dateTimeValid(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  dateTimeValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   dateTimeValid(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -685,10 +685,10 @@ export class Queries {
    */
   dateTimeNull(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  dateTimeNull(optionsOrCallback: Models.QueriesDateTimeNullOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  dateTimeNull(options: Models.QueriesDateTimeNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   dateTimeNull(optionsOrCallback?: Models.QueriesDateTimeNullOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -710,10 +710,10 @@ export class Queries {
    */
   arrayStringCsvValid(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  arrayStringCsvValid(optionsOrCallback: Models.QueriesArrayStringCsvValidOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  arrayStringCsvValid(options: Models.QueriesArrayStringCsvValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
   arrayStringCsvValid(optionsOrCallback?: Models.QueriesArrayStringCsvValidOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -734,10 +734,10 @@ export class Queries {
    */
   arrayStringCsvNull(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  arrayStringCsvNull(optionsOrCallback: Models.QueriesArrayStringCsvNullOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  arrayStringCsvNull(options: Models.QueriesArrayStringCsvNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
   arrayStringCsvNull(optionsOrCallback?: Models.QueriesArrayStringCsvNullOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -758,10 +758,10 @@ export class Queries {
    */
   arrayStringCsvEmpty(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  arrayStringCsvEmpty(optionsOrCallback: Models.QueriesArrayStringCsvEmptyOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  arrayStringCsvEmpty(options: Models.QueriesArrayStringCsvEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
   arrayStringCsvEmpty(optionsOrCallback?: Models.QueriesArrayStringCsvEmptyOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -783,10 +783,10 @@ export class Queries {
    */
   arrayStringSsvValid(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  arrayStringSsvValid(optionsOrCallback: Models.QueriesArrayStringSsvValidOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  arrayStringSsvValid(options: Models.QueriesArrayStringSsvValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
   arrayStringSsvValid(optionsOrCallback?: Models.QueriesArrayStringSsvValidOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -808,10 +808,10 @@ export class Queries {
    */
   arrayStringTsvValid(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  arrayStringTsvValid(optionsOrCallback: Models.QueriesArrayStringTsvValidOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  arrayStringTsvValid(options: Models.QueriesArrayStringTsvValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
   arrayStringTsvValid(optionsOrCallback?: Models.QueriesArrayStringTsvValidOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -833,10 +833,10 @@ export class Queries {
    */
   arrayStringPipesValid(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  arrayStringPipesValid(optionsOrCallback: Models.QueriesArrayStringPipesValidOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  arrayStringPipesValid(options: Models.QueriesArrayStringPipesValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
   arrayStringPipesValid(optionsOrCallback?: Models.QueriesArrayStringPipesValidOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {

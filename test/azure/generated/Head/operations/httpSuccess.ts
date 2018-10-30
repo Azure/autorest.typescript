@@ -37,10 +37,10 @@ export class HttpSuccess {
    */
   head200(callback: msRest.ServiceCallback<boolean>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  head200(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback: msRest.ServiceCallback<boolean>): void;
+  head200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
   head200(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead200Response> {
     return this.client.sendOperationRequest(
       {
@@ -61,10 +61,10 @@ export class HttpSuccess {
    */
   head204(callback: msRest.ServiceCallback<boolean>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  head204(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback: msRest.ServiceCallback<boolean>): void;
+  head204(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
   head204(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead204Response> {
     return this.client.sendOperationRequest(
       {
@@ -85,10 +85,10 @@ export class HttpSuccess {
    */
   head404(callback: msRest.ServiceCallback<boolean>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  head404(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback: msRest.ServiceCallback<boolean>): void;
+  head404(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
   head404(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead404Response> {
     return this.client.sendOperationRequest(
       {

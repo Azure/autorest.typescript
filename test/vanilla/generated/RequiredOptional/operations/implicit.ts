@@ -40,10 +40,10 @@ export class Implicit {
   getRequiredPath(pathParameter: string, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
    * @param pathParameter
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getRequiredPath(pathParameter: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  getRequiredPath(pathParameter: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   getRequiredPath(pathParameter: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.ImplicitGetRequiredPathResponse> {
     return this.client.sendOperationRequest(
       {
@@ -65,10 +65,10 @@ export class Implicit {
    */
   putOptionalQuery(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putOptionalQuery(optionsOrCallback: Models.ImplicitPutOptionalQueryOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putOptionalQuery(options: Models.ImplicitPutOptionalQueryOptionalParams, callback: msRest.ServiceCallback<void>): void;
   putOptionalQuery(optionsOrCallback?: Models.ImplicitPutOptionalQueryOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -89,10 +89,10 @@ export class Implicit {
    */
   putOptionalHeader(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putOptionalHeader(optionsOrCallback: Models.ImplicitPutOptionalHeaderOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putOptionalHeader(options: Models.ImplicitPutOptionalHeaderOptionalParams, callback: msRest.ServiceCallback<void>): void;
   putOptionalHeader(optionsOrCallback?: Models.ImplicitPutOptionalHeaderOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -113,10 +113,10 @@ export class Implicit {
    */
   putOptionalBody(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putOptionalBody(optionsOrCallback: Models.ImplicitPutOptionalBodyOptionalParams | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putOptionalBody(options: Models.ImplicitPutOptionalBodyOptionalParams, callback: msRest.ServiceCallback<void>): void;
   putOptionalBody(optionsOrCallback?: Models.ImplicitPutOptionalBodyOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -137,10 +137,10 @@ export class Implicit {
    */
   getRequiredGlobalPath(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getRequiredGlobalPath(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  getRequiredGlobalPath(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   getRequiredGlobalPath(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.ImplicitGetRequiredGlobalPathResponse> {
     return this.client.sendOperationRequest(
       {
@@ -161,10 +161,10 @@ export class Implicit {
    */
   getRequiredGlobalQuery(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getRequiredGlobalQuery(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  getRequiredGlobalQuery(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   getRequiredGlobalQuery(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.ImplicitGetRequiredGlobalQueryResponse> {
     return this.client.sendOperationRequest(
       {
@@ -185,10 +185,10 @@ export class Implicit {
    */
   getOptionalGlobalQuery(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getOptionalGlobalQuery(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  getOptionalGlobalQuery(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   getOptionalGlobalQuery(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.ImplicitGetOptionalGlobalQueryResponse> {
     return this.client.sendOperationRequest(
       {

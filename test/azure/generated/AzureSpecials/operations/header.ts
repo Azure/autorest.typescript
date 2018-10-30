@@ -40,10 +40,10 @@ export class Header {
   customNamedRequestId(fooClientRequestId: string, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param fooClientRequestId The fooRequestId
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  customNamedRequestId(fooClientRequestId: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  customNamedRequestId(fooClientRequestId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   customNamedRequestId(fooClientRequestId: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderCustomNamedRequestIdResponse> {
     return this.client.sendOperationRequest(
       {
@@ -69,10 +69,10 @@ export class Header {
   customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param headerCustomNamedRequestIdParamGroupingParameters Additional parameters for the operation
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse> {
     return this.client.sendOperationRequest(
       {
@@ -97,10 +97,10 @@ export class Header {
   customNamedRequestIdHead(fooClientRequestId: string, callback: msRest.ServiceCallback<boolean>): void;
   /**
    * @param fooClientRequestId The fooRequestId
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  customNamedRequestIdHead(fooClientRequestId: string, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback: msRest.ServiceCallback<boolean>): void;
+  customNamedRequestIdHead(fooClientRequestId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
   customNamedRequestIdHead(fooClientRequestId: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HeaderCustomNamedRequestIdHeadResponse> {
     return this.client.sendOperationRequest(
       {

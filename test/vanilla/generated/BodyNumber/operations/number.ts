@@ -36,10 +36,10 @@ export class Number {
    */
   getNull(callback: msRest.ServiceCallback<number>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getNull(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback: msRest.ServiceCallback<number>): void;
+  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getNull(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetNullResponse> {
     return this.client.sendOperationRequest(
       {
@@ -60,10 +60,10 @@ export class Number {
    */
   getInvalidFloat(callback: msRest.ServiceCallback<number>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getInvalidFloat(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback: msRest.ServiceCallback<number>): void;
+  getInvalidFloat(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getInvalidFloat(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetInvalidFloatResponse> {
     return this.client.sendOperationRequest(
       {
@@ -84,10 +84,10 @@ export class Number {
    */
   getInvalidDouble(callback: msRest.ServiceCallback<number>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getInvalidDouble(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback: msRest.ServiceCallback<number>): void;
+  getInvalidDouble(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getInvalidDouble(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetInvalidDoubleResponse> {
     return this.client.sendOperationRequest(
       {
@@ -108,10 +108,10 @@ export class Number {
    */
   getInvalidDecimal(callback: msRest.ServiceCallback<number>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getInvalidDecimal(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback: msRest.ServiceCallback<number>): void;
+  getInvalidDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getInvalidDecimal(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetInvalidDecimalResponse> {
     return this.client.sendOperationRequest(
       {
@@ -135,10 +135,10 @@ export class Number {
   putBigFloat(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param numberBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putBigFloat(numberBody: number, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putBigFloat(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBigFloat(numberBody: number, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -160,10 +160,10 @@ export class Number {
    */
   getBigFloat(callback: msRest.ServiceCallback<number>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getBigFloat(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback: msRest.ServiceCallback<number>): void;
+  getBigFloat(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getBigFloat(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetBigFloatResponse> {
     return this.client.sendOperationRequest(
       {
@@ -187,10 +187,10 @@ export class Number {
   putBigDouble(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param numberBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putBigDouble(numberBody: number, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putBigDouble(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBigDouble(numberBody: number, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -212,10 +212,10 @@ export class Number {
    */
   getBigDouble(callback: msRest.ServiceCallback<number>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getBigDouble(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback: msRest.ServiceCallback<number>): void;
+  getBigDouble(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getBigDouble(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetBigDoubleResponse> {
     return this.client.sendOperationRequest(
       {
@@ -236,10 +236,10 @@ export class Number {
    */
   putBigDoublePositiveDecimal(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putBigDoublePositiveDecimal(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putBigDoublePositiveDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBigDoublePositiveDecimal(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -260,10 +260,10 @@ export class Number {
    */
   getBigDoublePositiveDecimal(callback: msRest.ServiceCallback<number>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getBigDoublePositiveDecimal(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback: msRest.ServiceCallback<number>): void;
+  getBigDoublePositiveDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getBigDoublePositiveDecimal(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetBigDoublePositiveDecimalResponse> {
     return this.client.sendOperationRequest(
       {
@@ -284,10 +284,10 @@ export class Number {
    */
   putBigDoubleNegativeDecimal(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putBigDoubleNegativeDecimal(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putBigDoubleNegativeDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBigDoubleNegativeDecimal(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -308,10 +308,10 @@ export class Number {
    */
   getBigDoubleNegativeDecimal(callback: msRest.ServiceCallback<number>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getBigDoubleNegativeDecimal(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback: msRest.ServiceCallback<number>): void;
+  getBigDoubleNegativeDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getBigDoubleNegativeDecimal(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetBigDoubleNegativeDecimalResponse> {
     return this.client.sendOperationRequest(
       {
@@ -335,10 +335,10 @@ export class Number {
   putBigDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param numberBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putBigDecimal(numberBody: number, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putBigDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBigDecimal(numberBody: number, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -360,10 +360,10 @@ export class Number {
    */
   getBigDecimal(callback: msRest.ServiceCallback<number>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getBigDecimal(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback: msRest.ServiceCallback<number>): void;
+  getBigDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getBigDecimal(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetBigDecimalResponse> {
     return this.client.sendOperationRequest(
       {
@@ -384,10 +384,10 @@ export class Number {
    */
   putBigDecimalPositiveDecimal(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putBigDecimalPositiveDecimal(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putBigDecimalPositiveDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBigDecimalPositiveDecimal(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -408,10 +408,10 @@ export class Number {
    */
   getBigDecimalPositiveDecimal(callback: msRest.ServiceCallback<number>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getBigDecimalPositiveDecimal(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback: msRest.ServiceCallback<number>): void;
+  getBigDecimalPositiveDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getBigDecimalPositiveDecimal(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetBigDecimalPositiveDecimalResponse> {
     return this.client.sendOperationRequest(
       {
@@ -432,10 +432,10 @@ export class Number {
    */
   putBigDecimalNegativeDecimal(callback: msRest.ServiceCallback<void>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putBigDecimalNegativeDecimal(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putBigDecimalNegativeDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putBigDecimalNegativeDecimal(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -456,10 +456,10 @@ export class Number {
    */
   getBigDecimalNegativeDecimal(callback: msRest.ServiceCallback<number>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getBigDecimalNegativeDecimal(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback: msRest.ServiceCallback<number>): void;
+  getBigDecimalNegativeDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getBigDecimalNegativeDecimal(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetBigDecimalNegativeDecimalResponse> {
     return this.client.sendOperationRequest(
       {
@@ -483,10 +483,10 @@ export class Number {
   putSmallFloat(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param numberBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putSmallFloat(numberBody: number, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putSmallFloat(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putSmallFloat(numberBody: number, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -508,10 +508,10 @@ export class Number {
    */
   getSmallFloat(callback: msRest.ServiceCallback<number>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getSmallFloat(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback: msRest.ServiceCallback<number>): void;
+  getSmallFloat(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getSmallFloat(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetSmallFloatResponse> {
     return this.client.sendOperationRequest(
       {
@@ -535,10 +535,10 @@ export class Number {
   putSmallDouble(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param numberBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putSmallDouble(numberBody: number, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putSmallDouble(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putSmallDouble(numberBody: number, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -560,10 +560,10 @@ export class Number {
    */
   getSmallDouble(callback: msRest.ServiceCallback<number>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getSmallDouble(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback: msRest.ServiceCallback<number>): void;
+  getSmallDouble(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getSmallDouble(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetSmallDoubleResponse> {
     return this.client.sendOperationRequest(
       {
@@ -587,10 +587,10 @@ export class Number {
   putSmallDecimal(numberBody: number, callback: msRest.ServiceCallback<void>): void;
   /**
    * @param numberBody
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  putSmallDecimal(numberBody: number, optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback: msRest.ServiceCallback<void>): void;
+  putSmallDecimal(numberBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   putSmallDecimal(numberBody: number, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
@@ -612,10 +612,10 @@ export class Number {
    */
   getSmallDecimal(callback: msRest.ServiceCallback<number>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  getSmallDecimal(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback: msRest.ServiceCallback<number>): void;
+  getSmallDecimal(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
   getSmallDecimal(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.NumberGetSmallDecimalResponse> {
     return this.client.sendOperationRequest(
       {

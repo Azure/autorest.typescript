@@ -36,10 +36,10 @@ export class HttpServerFailure {
    */
   head501(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  head501(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  head501(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   head501(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpServerFailureHead501Response> {
     return this.client.sendOperationRequest(
       {
@@ -60,10 +60,10 @@ export class HttpServerFailure {
    */
   get501(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  get501(optionsOrCallback: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  get501(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   get501(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpServerFailureGet501Response> {
     return this.client.sendOperationRequest(
       {
@@ -84,10 +84,10 @@ export class HttpServerFailure {
    */
   post505(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  post505(optionsOrCallback: Models.HttpServerFailurePost505OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  post505(options: Models.HttpServerFailurePost505OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   post505(optionsOrCallback?: Models.HttpServerFailurePost505OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpServerFailurePost505Response> {
     return this.client.sendOperationRequest(
       {
@@ -108,10 +108,10 @@ export class HttpServerFailure {
    */
   delete505(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   /**
-   * @param optionsOrCallback The optional parameters or the callback
+   * @param options The optional parameters
    * @param callback The callback
    */
-  delete505(optionsOrCallback: Models.HttpServerFailureDelete505OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  delete505(options: Models.HttpServerFailureDelete505OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
   delete505(optionsOrCallback?: Models.HttpServerFailureDelete505OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpServerFailureDelete505Response> {
     return this.client.sendOperationRequest(
       {
