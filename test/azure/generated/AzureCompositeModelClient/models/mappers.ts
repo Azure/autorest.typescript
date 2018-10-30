@@ -319,11 +319,6 @@ export const Fish: msRest.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              polymorphicDiscriminator: {
-                serializedName: "fishtype",
-                clientName: "fishtype"
-              },
-              uberParent: "Fish",
               className: "Fish"
             }
           }
