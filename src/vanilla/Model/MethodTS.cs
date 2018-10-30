@@ -778,13 +778,13 @@ namespace AutoRest.TypeScript.Model
             string[] optionsCallbackUnionTypes = new [] { optionalOptionsParameter.Type, optionalCallbackParameter.Type };
             string optionsCallbackUnionDescriptino = $"{optionalOptionsParameter.Description} or {Char.ToLowerInvariant(optionalCallbackParameter.Description[0]) + optionalCallbackParameter.Description.Substring(1)}";
 
-            TSParameter requiredOptionsUnionCallbackParameter = new TSParameter(optionsCallbackUnionName, optionsCallbackUnionTypes, optionsCallbackUnionDescriptino, true);
-            IEnumerable<TSParameter> requiredParametersWithRequiredOptionsAndRequiredCallback = requiredParameters.Concat(new[] { requiredOptionsUnionCallbackParameter, requiredCallbackParameter });
+            TSParameter requiredOptionsCallbackUnionParameter = new TSParameter(optionsCallbackUnionName, optionsCallbackUnionTypes, optionsCallbackUnionDescriptino, true);
+            IEnumerable<TSParameter> requiredParametersWithRequiredOptionsAndRequiredCallback = requiredParameters.Concat(new[] { requiredOptionsCallbackUnionParameter, requiredCallbackParameter });
             GenerateDocumentationComment(tsClass, "void", requiredParametersWithRequiredOptionsAndRequiredCallback, includeDescription: false);
             tsClass.MethodOverload(methodName, "void", requiredParametersWithRequiredOptionsAndRequiredCallback);
 
-            TSParameter optionalOptionsUnionCallbackParameter = new TSParameter(optionsCallbackUnionName, optionsCallbackUnionTypes, optionsCallbackUnionDescriptino, false);
-            IEnumerable<TSParameter> requiredParametersWithOptionalOptionsAndOptionalCallback = requiredParameters.Concat(new[] { optionalOptionsUnionCallbackParameter, optionalCallbackParameter });
+            TSParameter optionalOptionsCallbackUnionParameter = new TSParameter(optionsCallbackUnionName, optionsCallbackUnionTypes, optionsCallbackUnionDescriptino, false);
+            IEnumerable<TSParameter> requiredParametersWithOptionalOptionsAndOptionalCallback = requiredParameters.Concat(new[] { optionalOptionsCallbackUnionParameter, optionalCallbackParameter });
             tsClass.Method(methodName, returnType, requiredParametersWithOptionalOptionsAndOptionalCallback, methodBody =>
             {
                 methodBody.Return(returnValue =>
