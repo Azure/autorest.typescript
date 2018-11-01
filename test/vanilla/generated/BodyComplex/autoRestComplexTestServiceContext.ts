@@ -26,6 +26,10 @@ export class AutoRestComplexTestServiceContext extends msRest.ServiceClient {
     if (!options) {
       options = {};
     }
+    if(!options.userAgent) {
+      const defaultUserAgent = msRest.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
 
     super(undefined, options);
 
@@ -33,6 +37,5 @@ export class AutoRestComplexTestServiceContext extends msRest.ServiceClient {
     this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
 
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
   }
 }

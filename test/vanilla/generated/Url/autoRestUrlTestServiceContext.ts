@@ -31,6 +31,10 @@ export class AutoRestUrlTestServiceContext extends msRest.ServiceClient {
     if (!options) {
       options = {};
     }
+    if(!options.userAgent) {
+      const defaultUserAgent = msRest.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
 
     super(undefined, options);
 
@@ -38,7 +42,6 @@ export class AutoRestUrlTestServiceContext extends msRest.ServiceClient {
     this.requestContentType = "application/json; charset=utf-8";
     this.globalStringPath = globalStringPath;
 
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     if(options.globalStringQuery !== null && options.globalStringQuery !== undefined) {
       this.globalStringQuery = options.globalStringQuery;
     }

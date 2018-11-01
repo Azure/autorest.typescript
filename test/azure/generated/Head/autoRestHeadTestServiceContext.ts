@@ -31,6 +31,11 @@ export class AutoRestHeadTestServiceContext extends msRestAzure.AzureServiceClie
     if (!options) {
       options = {};
     }
+    if(!options.userAgent) {
+      const defaultUserAgent = msRestAzure.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
+
     super(credentials, options);
 
     this.acceptLanguage = 'en-US';
@@ -39,7 +44,6 @@ export class AutoRestHeadTestServiceContext extends msRestAzure.AzureServiceClie
     this.requestContentType = "application/json; charset=utf-8";
     this.credentials = credentials;
 
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     if(options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
       this.acceptLanguage = options.acceptLanguage;
     }

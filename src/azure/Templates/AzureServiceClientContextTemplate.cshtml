@@ -38,6 +38,12 @@ export class @(Model.ContextName) extends msRestAzure.AzureServiceClient {
     if (!options) {
       options = {};
     }
+
+    if(!options.userAgent) {
+      const defaultUserAgent = msRestAzure.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
+    @EmptyLine
     super(@(requiredParameters.Any(p => p.ModelType.IsPrimaryType(KnownPrimaryType.Credentials)) ? "credentials" : "undefined"), options);
     @EmptyLine
 @foreach (var property in Model.Properties.Where(p => p.DefaultValue != null && p.Name != "generateClientRequestId"))
@@ -68,7 +74,6 @@ else
   @:  this.@(param.Name) = @(param.Name);
 }
   @EmptyLine
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
   @foreach (var property in optionalParameters.Where(p => p.Name != "generateClientRequestId"))
   {
     @:if(options.@(property.Name) !== null && options.@(property.Name) !== undefined) {
