@@ -31,8 +31,11 @@ export class AutoRestParameterGroupingTestServiceContext extends msRestAzure.Azu
     if (!options) {
       options = {};
     }
-    const defaultUserAgent = msRest.getDefaultUserAgentValue();
-    options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    if(!options.userAgent) {
+      const defaultUserAgent = msRestAzure.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
+
     super(credentials, options);
 
     this.acceptLanguage = 'en-US';

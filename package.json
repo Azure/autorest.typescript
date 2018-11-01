@@ -69,7 +69,7 @@
     "mocha": "^5.0.4",
     "mocha-chrome": "^1.0.3",
     "moment": "~2.21.0",
-    "ms-rest-azure-js": "^1.0.180",
+    "ms-rest-azure-js": "^1.0.181",
     "ms-rest-js": "^1.0.457",
     "run-sequence": "*",
     "should": "5.2.0",

@@ -38,8 +38,11 @@ export class StorageManagementClientContext extends msRestAzure.AzureServiceClie
     if (!options) {
       options = {};
     }
-    const defaultUserAgent = msRest.getDefaultUserAgentValue();
-    options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    if(!options.userAgent) {
+      const defaultUserAgent = msRestAzure.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
+
     super(credentials, options);
 
     this.apiVersion = '2015-05-01-preview';

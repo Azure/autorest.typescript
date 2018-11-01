@@ -25,8 +25,10 @@ export class AutoRestRFC1123DateTimeTestServiceContext extends msRest.ServiceCli
     if (!options) {
       options = {};
     }
-    const defaultUserAgent = msRest.getDefaultUserAgentValue();
-    options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    if(!options.userAgent) {
+      const defaultUserAgent = msRest.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
 
     super(undefined, options);
 
