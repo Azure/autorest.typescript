@@ -31,6 +31,8 @@ export class AutoRestHeadExceptionTestServiceContext extends msRestAzure.AzureSe
     if (!options) {
       options = {};
     }
+    const defaultUserAgent = msRest.getDefaultUserAgentValue();
+    options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     super(credentials, options);
 
     this.acceptLanguage = 'en-US';
@@ -39,7 +41,6 @@ export class AutoRestHeadExceptionTestServiceContext extends msRestAzure.AzureSe
     this.requestContentType = "application/json; charset=utf-8";
     this.credentials = credentials;
 
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     if(options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
       this.acceptLanguage = options.acceptLanguage;
     }

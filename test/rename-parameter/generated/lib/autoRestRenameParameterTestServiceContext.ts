@@ -31,6 +31,8 @@ export class AutoRestRenameParameterTestServiceContext extends msRest.ServiceCli
     if (!options) {
       options = {};
     }
+    const defaultUserAgent = msRest.getDefaultUserAgentValue();
+    options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
 
     super(undefined, options);
 
@@ -38,7 +40,6 @@ export class AutoRestRenameParameterTestServiceContext extends msRest.ServiceCli
     this.requestContentType = "application/json; charset=utf-8";
     this.noRetryPolicy = noRetryPolicy;
 
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     if(options.withCredentialsProperty !== null && options.withCredentialsProperty !== undefined) {
       this.withCredentialsProperty = options.withCredentialsProperty;
     }

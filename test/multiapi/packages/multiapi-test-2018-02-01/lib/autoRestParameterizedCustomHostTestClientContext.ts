@@ -33,6 +33,8 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRestAzur
     if (!options) {
       options = {};
     }
+    const defaultUserAgent = msRest.getDefaultUserAgentValue();
+    options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     super(credentials, options);
 
     this.dnsSuffix = 'host';
@@ -43,7 +45,6 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRestAzur
     this.credentials = credentials;
     this.subscriptionId = subscriptionId;
 
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     if(options.dnsSuffix !== null && options.dnsSuffix !== undefined) {
       this.dnsSuffix = options.dnsSuffix;
     }

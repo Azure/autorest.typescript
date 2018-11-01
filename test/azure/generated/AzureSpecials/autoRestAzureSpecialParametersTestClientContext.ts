@@ -38,6 +38,8 @@ export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure
     if (!options) {
       options = {};
     }
+    const defaultUserAgent = msRest.getDefaultUserAgentValue();
+    options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     super(credentials, options);
 
     this.apiVersion = '2015-07-01-preview';
@@ -48,7 +50,6 @@ export class AutoRestAzureSpecialParametersTestClientContext extends msRestAzure
     this.credentials = credentials;
     this.subscriptionId = subscriptionId;
 
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     if(options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
       this.acceptLanguage = options.acceptLanguage;
     }

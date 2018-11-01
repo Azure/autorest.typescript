@@ -28,6 +28,8 @@ export class AutoRestParameterizedHostTestClientContext extends msRestAzure.Azur
     if (!options) {
       options = {};
     }
+    const defaultUserAgent = msRest.getDefaultUserAgentValue();
+    options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     super(credentials, options);
 
     this.host = 'host';
@@ -37,7 +39,6 @@ export class AutoRestParameterizedHostTestClientContext extends msRestAzure.Azur
     this.requestContentType = "application/json; charset=utf-8";
     this.credentials = credentials;
 
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     if(options.host !== null && options.host !== undefined) {
       this.host = options.host;
     }

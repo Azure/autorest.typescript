@@ -31,6 +31,8 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRest.Ser
     if (!options) {
       options = {};
     }
+    const defaultUserAgent = msRest.getDefaultUserAgentValue();
+    options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
 
     super(undefined, options);
 
@@ -39,7 +41,6 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRest.Ser
     this.requestContentType = "application/json; charset=utf-8";
     this.subscriptionId = subscriptionId;
 
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     if(options.dnsSuffix !== null && options.dnsSuffix !== undefined) {
       this.dnsSuffix = options.dnsSuffix;
     }

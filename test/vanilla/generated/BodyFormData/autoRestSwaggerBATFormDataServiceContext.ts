@@ -25,12 +25,13 @@ export class AutoRestSwaggerBATFormDataServiceContext extends msRest.ServiceClie
     if (!options) {
       options = {};
     }
+    const defaultUserAgent = msRest.getDefaultUserAgentValue();
+    options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
 
     super(undefined, options);
 
     this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "multipart/form-data";
 
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
   }
 }

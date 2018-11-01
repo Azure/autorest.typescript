@@ -25,12 +25,13 @@ export class AutoRestBoolTestServiceContext extends msRest.ServiceClient {
     if (!options) {
       options = {};
     }
+    const defaultUserAgent = msRest.getDefaultUserAgentValue();
+    options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
 
     super(undefined, options);
 
     this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
 
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
   }
 }

@@ -35,6 +35,8 @@ export class AutoRestValidationTestContext extends msRest.ServiceClient {
     if (!options) {
       options = {};
     }
+    const defaultUserAgent = msRest.getDefaultUserAgentValue();
+    options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
 
     super(undefined, options);
 
@@ -43,6 +45,5 @@ export class AutoRestValidationTestContext extends msRest.ServiceClient {
     this.subscriptionId = subscriptionId;
     this.apiVersion = apiVersion;
 
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
   }
 }
