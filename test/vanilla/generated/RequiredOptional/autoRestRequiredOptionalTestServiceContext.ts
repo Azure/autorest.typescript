@@ -36,6 +36,10 @@ export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceCl
     if (!options) {
       options = {};
     }
+    if(!options.userAgent) {
+      const defaultUserAgent = msRest.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
 
     super(undefined, options);
 
@@ -44,7 +48,6 @@ export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceCl
     this.requiredGlobalPath = requiredGlobalPath;
     this.requiredGlobalQuery = requiredGlobalQuery;
 
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     if(options.optionalGlobalQuery !== null && options.optionalGlobalQuery !== undefined) {
       this.optionalGlobalQuery = options.optionalGlobalQuery;
     }
