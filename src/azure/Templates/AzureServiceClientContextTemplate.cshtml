@@ -38,7 +38,7 @@ export class @(Model.ContextName) extends msRestAzure.AzureServiceClient {
     if (!options) {
       options = {};
     }
-    const defaultUserAgent = msRest.getDefaultUserAgentValue();
+    const defaultUserAgent = msRestAzure.getDefaultUserAgentValue();
     options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     super(@(requiredParameters.Any(p => p.ModelType.IsPrimaryType(KnownPrimaryType.Credentials)) ? "credentials" : "undefined"), options);
     @EmptyLine
