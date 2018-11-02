@@ -885,212 +885,122 @@ export interface HttpRedirectsDelete307Headers {
 /**
  * Defines values for Location.
  * Possible values include: '/http/success/head/200'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Location = <Location>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Location {
-  Httpsuccesshead200 = '/http/success/head/200',
-}
+export type Location = '/http/success/head/200';
 
 /**
  * Defines values for Location1.
  * Possible values include: '/http/success/get/200'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Location1 = <Location1>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Location1 {
-  Httpsuccessget200 = '/http/success/get/200',
-}
+export type Location1 = '/http/success/get/200';
 
 /**
  * Defines values for Location2.
  * Possible values include: '/http/success/head/200'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Location2 = <Location2>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Location2 {
-  Httpsuccesshead200 = '/http/success/head/200',
-}
+export type Location2 = '/http/success/head/200';
 
 /**
  * Defines values for Location3.
  * Possible values include: '/http/success/get/200'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Location3 = <Location3>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Location3 {
-  Httpsuccessget200 = '/http/success/get/200',
-}
+export type Location3 = '/http/success/get/200';
 
 /**
  * Defines values for Location4.
  * Possible values include: '/http/failure/500'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Location4 = <Location4>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Location4 {
-  Httpfailure500 = '/http/failure/500',
-}
+export type Location4 = '/http/failure/500';
 
 /**
  * Defines values for Location5.
  * Possible values include: '/http/success/head/200'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Location5 = <Location5>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Location5 {
-  Httpsuccesshead200 = '/http/success/head/200',
-}
+export type Location5 = '/http/success/head/200';
 
 /**
  * Defines values for Location6.
  * Possible values include: '/http/success/get/200'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Location6 = <Location6>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Location6 {
-  Httpsuccessget200 = '/http/success/get/200',
-}
+export type Location6 = '/http/success/get/200';
 
 /**
  * Defines values for Location7.
  * Possible values include: '/http/failure/500'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Location7 = <Location7>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Location7 {
-  Httpfailure500 = '/http/failure/500',
-}
+export type Location7 = '/http/failure/500';
 
 /**
  * Defines values for Location8.
  * Possible values include: '/http/success/get/200'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Location8 = <Location8>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Location8 {
-  Httpsuccessget200 = '/http/success/get/200',
-}
+export type Location8 = '/http/success/get/200';
 
 /**
  * Defines values for Location9.
  * Possible values include: '/http/success/head/200'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Location9 = <Location9>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Location9 {
-  Httpsuccesshead200 = '/http/success/head/200',
-}
+export type Location9 = '/http/success/head/200';
 
 /**
  * Defines values for Location10.
  * Possible values include: '/http/success/get/200'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Location10 = <Location10>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Location10 {
-  Httpsuccessget200 = '/http/success/get/200',
-}
+export type Location10 = '/http/success/get/200';
 
 /**
  * Defines values for Location11.
  * Possible values include: '/http/success/put/200'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Location11 = <Location11>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Location11 {
-  Httpsuccessput200 = '/http/success/put/200',
-}
+export type Location11 = '/http/success/put/200';
 
 /**
  * Defines values for Location12.
  * Possible values include: '/http/success/patch/200'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Location12 = <Location12>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Location12 {
-  Httpsuccesspatch200 = '/http/success/patch/200',
-}
+export type Location12 = '/http/success/patch/200';
 
 /**
  * Defines values for Location13.
  * Possible values include: '/http/success/post/200'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Location13 = <Location13>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Location13 {
-  Httpsuccesspost200 = '/http/success/post/200',
-}
+export type Location13 = '/http/success/post/200';
 
 /**
  * Defines values for Location14.
  * Possible values include: '/http/success/delete/200'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Location14 = <Location14>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Location14 {
-  Httpsuccessdelete200 = '/http/success/delete/200',
-}
+export type Location14 = '/http/success/delete/200';
 
 /**
  * Contains response data for the getEmptyError operation.

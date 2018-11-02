@@ -483,11 +483,32 @@ namespace AutoRest.TypeScript.DSL
             valueAction?.Invoke(new TSValue(this));
         }
 
+        public void ExportUnionType(string typeName, IEnumerable<string> values)
+        {
+            ExportUnionType(typeName, unionType =>
+            {
+                foreach (string value in values)
+                {
+                    unionType.Text(value);
+                }
+            });
+        }
+
+        public void ExportUnionType(string typeName, Action<TSUnionType> unionTypeAction)
+        {
+            ExportType(typeName, () => unionTypeAction.Invoke(new TSUnionType(this)));
+        }
+
         public void ExportIntersectionType(string typeName, Action<TSIntersectionType> typeAction)
         {
-            this.Text($"export type {typeName} = ");
-            typeAction?.Invoke(new TSIntersectionType(this));
-            this.Line(";");
+            ExportType(typeName, () => typeAction.Invoke(new TSIntersectionType(this)));
+        }
+
+        private void ExportType(string typeName, Action typeDefinitionAction)
+        {
+            Text($"export type {typeName} = ");
+            typeDefinitionAction.Invoke();
+            Line(";");
         }
 
         /// <summary>

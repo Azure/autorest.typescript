@@ -280,11 +280,7 @@ export interface HeaderResponseEnumHeaders {
  * @readonly
  * @enum {string}
  */
-export enum GreyscaleColors {
-  White = 'White',
-  Black = 'black',
-  GREY = 'GREY',
-}
+export type GreyscaleColors = 'White' | 'black' | 'GREY';
 
 /**
  * Contains response data for the responseExistingKey operation.

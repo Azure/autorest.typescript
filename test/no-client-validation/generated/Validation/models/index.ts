@@ -130,9 +130,7 @@ export interface AutoRestValidationTestPostWithConstantInBodyOptionalParams exte
  * @readonly
  * @enum {string}
  */
-export enum EnumConst {
-  ConstantStringAsEnum = 'constant_string_as_enum',
-}
+export type EnumConst = 'constant_string_as_enum';
 
 /**
  * Contains response data for the validationOfMethodParameters operation.

@@ -388,8 +388,4 @@ export interface PathItemsGetLocalPathItemQueryNullOptionalParams extends msRest
  * @readonly
  * @enum {string}
  */
-export enum UriColor {
-  Redcolor = 'red color',
-  Greencolor = 'green color',
-  Bluecolor = 'blue color',
-}
+export type UriColor = 'red color' | 'green color' | 'blue color';

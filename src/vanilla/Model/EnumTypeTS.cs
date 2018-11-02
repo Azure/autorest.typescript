@@ -3,14 +3,28 @@
 
 using AutoRest.Core;
 using AutoRest.Core.Model;
+using AutoRest.TypeScript.DSL;
+using System.Linq;
 
 namespace AutoRest.TypeScript.Model
 {
     public class EnumTypeTS : EnumType
     {
-        public CodeModelTS CodeModelTS => (CodeModelTS) base.CodeModel;
-        protected override string ModelAsStringType => "string";
-        public string EnumName => CodeNamer.Instance.PascalCase(Name);
-        public bool ModelAsUnion => CodeModelTS.Settings.ModelEnumAsUnion;
+        public string Generate(string emptyLine)
+        {
+            TSBuilder builder = new TSBuilder();
+
+            builder.DocumentationComment(comment =>
+            {
+                comment.Description($"Defines values for {Name}.");
+                comment.Description(ExtendedDocumentation);
+                comment.ReadOnly();
+                comment.Enum(CodeNamer.Instance.CamelCase(UnderlyingType.Name));
+            });
+
+            builder.ExportUnionType(Name, Values.Select(v => CodeNamerTS.GetEnumValueName(v.SerializedName, UnderlyingType)));
+
+            return builder.ToString();
+        }
     }
 }

@@ -716,25 +716,15 @@ export interface XmlGetHeadersHeaders {
  * @readonly
  * @enum {string}
  */
-export enum LeaseStatusType {
-  Locked = 'locked',
-  Unlocked = 'unlocked',
-}
+export type LeaseStatusType = 'locked' | 'unlocked';
 
 /**
  * Defines values for LeaseStateType.
- * Possible values include: 'available', 'leased', 'expired', 'breaking',
- * 'broken'
+ * Possible values include: 'available', 'leased', 'expired', 'breaking', 'broken'
  * @readonly
  * @enum {string}
  */
-export enum LeaseStateType {
-  Available = 'available',
-  Leased = 'leased',
-  Expired = 'expired',
-  Breaking = 'breaking',
-  Broken = 'broken',
-}
+export type LeaseStateType = 'available' | 'leased' | 'expired' | 'breaking' | 'broken';
 
 /**
  * Defines values for LeaseDurationType.
@@ -742,26 +732,15 @@ export enum LeaseStateType {
  * @readonly
  * @enum {string}
  */
-export enum LeaseDurationType {
-  Infinite = 'infinite',
-  Fixed = 'fixed',
-}
+export type LeaseDurationType = 'infinite' | 'fixed';
 
 /**
  * Defines values for PublicAccessType.
  * Possible values include: 'container', 'blob'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: PublicAccessType =
- * <PublicAccessType>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum PublicAccessType {
-  Container = 'container',
-  Blob = 'blob',
-}
+export type PublicAccessType = 'container' | 'blob';
 
 /**
  * Defines values for BlobType.
@@ -769,11 +748,7 @@ export enum PublicAccessType {
  * @readonly
  * @enum {string}
  */
-export enum BlobType {
-  BlockBlob = 'BlockBlob',
-  PageBlob = 'PageBlob',
-  AppendBlob = 'AppendBlob',
-}
+export type BlobType = 'BlockBlob' | 'PageBlob' | 'AppendBlob';
 
 /**
  * Defines values for CopyStatusType.
@@ -781,53 +756,23 @@ export enum BlobType {
  * @readonly
  * @enum {string}
  */
-export enum CopyStatusType {
-  Pending = 'pending',
-  Success = 'success',
-  Aborted = 'aborted',
-  Failed = 'failed',
-}
+export type CopyStatusType = 'pending' | 'success' | 'aborted' | 'failed';
 
 /**
  * Defines values for AccessTier.
- * Possible values include: 'P4', 'P6', 'P10', 'P20', 'P30', 'P40', 'P50',
- * 'Hot', 'Cool', 'Archive'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: AccessTier = <AccessTier>"someUnknownValueThatWillStillBeValid";
+ * Possible values include: 'P4', 'P6', 'P10', 'P20', 'P30', 'P40', 'P50', 'Hot', 'Cool', 'Archive'
  * @readonly
  * @enum {string}
  */
-export enum AccessTier {
-  P4 = 'P4',
-  P6 = 'P6',
-  P10 = 'P10',
-  P20 = 'P20',
-  P30 = 'P30',
-  P40 = 'P40',
-  P50 = 'P50',
-  Hot = 'Hot',
-  Cool = 'Cool',
-  Archive = 'Archive',
-}
+export type AccessTier = 'P4' | 'P6' | 'P10' | 'P20' | 'P30' | 'P40' | 'P50' | 'Hot' | 'Cool' | 'Archive';
 
 /**
  * Defines values for ArchiveStatus.
- * Possible values include: 'rehydrate-pending-to-hot',
- * 'rehydrate-pending-to-cool'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: ArchiveStatus =
- * <ArchiveStatus>"someUnknownValueThatWillStillBeValid";
+ * Possible values include: 'rehydrate-pending-to-hot', 'rehydrate-pending-to-cool'
  * @readonly
  * @enum {string}
  */
-export enum ArchiveStatus {
-  RehydratePendingToHot = 'rehydrate-pending-to-hot',
-  RehydratePendingToCool = 'rehydrate-pending-to-cool',
-}
+export type ArchiveStatus = 'rehydrate-pending-to-hot' | 'rehydrate-pending-to-cool';
 
 /**
  * Contains response data for the getComplexTypeRefNoMeta operation.
