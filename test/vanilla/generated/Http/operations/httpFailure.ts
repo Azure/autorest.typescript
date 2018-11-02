@@ -40,7 +40,7 @@ export class HttpFailure {
    * @param callback The callback
    */
   getEmptyError(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getEmptyError(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpFailureGetEmptyErrorResponse> {
+  getEmptyError(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpFailureGetEmptyErrorResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -64,7 +64,7 @@ export class HttpFailure {
    * @param callback The callback
    */
   getNoModelError(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getNoModelError(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpFailureGetNoModelErrorResponse> {
+  getNoModelError(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpFailureGetNoModelErrorResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -88,7 +88,7 @@ export class HttpFailure {
    * @param callback The callback
    */
   getNoModelEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getNoModelEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpFailureGetNoModelEmptyResponse> {
+  getNoModelEmpty(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpFailureGetNoModelEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options

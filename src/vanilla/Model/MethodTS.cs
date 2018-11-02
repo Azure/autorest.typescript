@@ -8,7 +8,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
-using AutoRest.Core;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.TypeScript.DSL;
@@ -780,14 +779,15 @@ namespace AutoRest.TypeScript.Model
             GenerateDocumentationComment(tsClass, "void", requiredParametersWithRequiredOptionsAndRequiredCallback, includeDescription: false, deprecatedMessage: deprecatedMessage);
             tsClass.MethodOverload(methodName, "void", requiredParametersWithRequiredOptionsAndRequiredCallback);
 
-            IEnumerable<TSParameter> requiredParametersWithOptionalOptionsAndOptionalCallback = requiredParameters.Concat(new[] { optionalOptionsParameter, optionalCallbackParameter });
+            TSParameter optionalOptionsCallbackUnionParameter = TSParameter.Union(new [] { optionalOptionsParameter, optionalCallbackParameter}, name: "options");
+            IEnumerable<TSParameter> requiredParametersWithOptionalOptionsAndOptionalCallback = requiredParameters.Concat(new[] { optionalOptionsCallbackUnionParameter, optionalCallbackParameter });
             tsClass.Method(methodName, returnType, requiredParametersWithOptionalOptionsAndOptionalCallback, methodBody =>
             {
                 methodBody.Return(returnValue =>
                 {
                     returnValue.FunctionCall($"{ClientReference}.sendOperationRequest", argumentList =>
                     {
-                        argumentList.Object(GenerateOperationArguments);
+                        argumentList.Object((TSObject tsObject) => GenerateOperationArguments(tsObject));
                         argumentList.Text(GetOperationSpecVariableName());
                         argumentList.Text("callback");
                     });

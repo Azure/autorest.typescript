@@ -44,7 +44,7 @@ export class SkipUrlEncoding {
    * @param callback The callback
    */
   getMethodPathValid(unencodedPathParam: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getMethodPathValid(unencodedPathParam: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getMethodPathValid(unencodedPathParam: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         unencodedPathParam,
@@ -72,7 +72,7 @@ export class SkipUrlEncoding {
    * @param callback The callback
    */
   getPathPathValid(unencodedPathParam: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getPathPathValid(unencodedPathParam: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getPathPathValid(unencodedPathParam: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         unencodedPathParam,
@@ -97,7 +97,7 @@ export class SkipUrlEncoding {
    * @param callback The callback
    */
   getSwaggerPathValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getSwaggerPathValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getSwaggerPathValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -124,7 +124,7 @@ export class SkipUrlEncoding {
    * @param callback The callback
    */
   getMethodQueryValid(q1: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getMethodQueryValid(q1: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getMethodQueryValid(q1: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         q1,
@@ -149,7 +149,7 @@ export class SkipUrlEncoding {
    * @param callback The callback
    */
   getMethodQueryNull(options: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getMethodQueryNull(options?: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getMethodQueryNull(options?: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -176,7 +176,7 @@ export class SkipUrlEncoding {
    * @param callback The callback
    */
   getPathQueryValid(q1: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getPathQueryValid(q1: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getPathQueryValid(q1: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         q1,
@@ -201,7 +201,7 @@ export class SkipUrlEncoding {
    * @param callback The callback
    */
   getSwaggerQueryValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getSwaggerQueryValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getSwaggerQueryValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options

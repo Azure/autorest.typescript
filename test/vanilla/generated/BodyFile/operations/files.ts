@@ -40,7 +40,7 @@ export class Files {
    * @param callback The callback
    */
   getFile(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getFile(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetFileResponse> {
+  getFile(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetFileResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -64,7 +64,7 @@ export class Files {
    * @param callback The callback
    */
   getFileLarge(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getFileLarge(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetFileLargeResponse> {
+  getFileLarge(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetFileLargeResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -88,7 +88,7 @@ export class Files {
    * @param callback The callback
    */
   getEmptyFile(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getEmptyFile(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetEmptyFileResponse> {
+  getEmptyFile(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetEmptyFileResponse> {
     return this.client.sendOperationRequest(
       {
         options

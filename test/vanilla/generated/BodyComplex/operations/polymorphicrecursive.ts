@@ -40,7 +40,7 @@ export class Polymorphicrecursive {
    * @param callback The callback
    */
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FishUnion>): void;
-  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FishUnion>): Promise<Models.PolymorphicrecursiveGetValidResponse> {
+  getValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.FishUnion>, callback?: msRest.ServiceCallback<Models.FishUnion>): Promise<Models.PolymorphicrecursiveGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -223,7 +223,7 @@ export class Polymorphicrecursive {
    * @param callback The callback
    */
   putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putValid(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,

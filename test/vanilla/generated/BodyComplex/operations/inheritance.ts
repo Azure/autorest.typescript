@@ -40,7 +40,7 @@ export class Inheritance {
    * @param callback The callback
    */
   getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Siamese>): void;
-  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Siamese>): Promise<Models.InheritanceGetValidResponse> {
+  getValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Siamese>, callback?: msRest.ServiceCallback<Models.Siamese>): Promise<Models.InheritanceGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -73,7 +73,7 @@ export class Inheritance {
    * @param callback The callback
    */
   putValid(complexBody: Models.Siamese, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putValid(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
