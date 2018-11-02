@@ -26,6 +26,10 @@ export class AutoRestParameterizedHostTestClientContext extends msRest.ServiceCl
     if (!options) {
       options = {};
     }
+    if(!options.userAgent) {
+      const defaultUserAgent = msRest.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
 
     super(undefined, options);
 
@@ -33,7 +37,6 @@ export class AutoRestParameterizedHostTestClientContext extends msRest.ServiceCl
     this.baseUri = "http://{accountName}{host}";
     this.requestContentType = "application/json; charset=utf-8";
 
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     if(options.host !== null && options.host !== undefined) {
       this.host = options.host;
     }
