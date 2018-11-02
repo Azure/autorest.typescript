@@ -54,7 +54,8 @@ namespace AutoRest.TypeScript
             CodeModelTS codeModel = null,
             MethodGroupTS methodGroup = null,
             Response defaultResponse = null,
-            IEnumerable<ParameterTS> parameters = null)
+            IEnumerable<ParameterTS> parameters = null,
+            string deprecatedMessage = null)
         {
             if (codeModel == null)
             {
@@ -82,6 +83,8 @@ namespace AutoRest.TypeScript
                     method.Add(parameter);
                 }
             }
+
+            method.DeprecationMessage = deprecatedMessage;
 
             return method;
         }
