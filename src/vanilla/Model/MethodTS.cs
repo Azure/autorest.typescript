@@ -713,7 +713,7 @@ namespace AutoRest.TypeScript.Model
         private static TSParameter AutoRestParameterToTSParameter(Parameter autoRestParameter)
             => new TSParameter(autoRestParameter.Name, ProvideParameterType(autoRestParameter.ModelType), autoRestParameter.Documentation, autoRestParameter.IsRequired);
 
-        protected void GenerateDocumentationComment(TSClass tsClass, string returnType, IEnumerable<TSParameter> parameters, bool includeDescription = true)
+        protected void GenerateDocumentationComment(TSClass tsClass, string returnType, IEnumerable<TSParameter> parameters, bool includeDescription = true, string deprecatedMessage = null)
         {
             tsClass.DocumentationComment(comment =>
             {
@@ -723,6 +723,7 @@ namespace AutoRest.TypeScript.Model
                     comment.Summary(Summary);
                 }
                 comment.Parameters(parameters);
+                comment.Deprecated(deprecatedMessage);
                 if (returnType != "void")
                 {
                     comment.Returns(returnType);
@@ -764,17 +765,18 @@ namespace AutoRest.TypeScript.Model
             TSParameter optionalCallbackParameter = GetCallbackParameter(false);
             TSParameter requiredCallbackParameter = GetCallbackParameter(true);
             string returnType = $"Promise<{responseName}>";
+            string deprecatedMessage = DeprecationMessage;
 
             IEnumerable<TSParameter> requiredParametersWithOptionalOptions = requiredParameters.Concat(new[] { optionalOptionsParameter });
-            GenerateDocumentationComment(tsClass, returnType, requiredParametersWithOptionalOptions);
+            GenerateDocumentationComment(tsClass, returnType, requiredParametersWithOptionalOptions, deprecatedMessage: deprecatedMessage);
             tsClass.MethodOverload(methodName, returnType, requiredParametersWithOptionalOptions);
 
             IEnumerable<TSParameter> requiredParametersWithRequiredCallback = requiredParameters.Concat(new[] { requiredCallbackParameter });
-            GenerateDocumentationComment(tsClass, "void", requiredParametersWithRequiredCallback, includeDescription: false);
+            GenerateDocumentationComment(tsClass, "void", requiredParametersWithRequiredCallback, includeDescription: false, deprecatedMessage: deprecatedMessage);
             tsClass.MethodOverload(methodName, "void", requiredParametersWithRequiredCallback);
 
             IEnumerable<TSParameter> requiredParametersWithRequiredOptionsAndRequiredCallback = requiredParameters.Concat(new[] { requiredOptionsParameter, requiredCallbackParameter });
-            GenerateDocumentationComment(tsClass, "void", requiredParametersWithRequiredOptionsAndRequiredCallback, includeDescription: false);
+            GenerateDocumentationComment(tsClass, "void", requiredParametersWithRequiredOptionsAndRequiredCallback, includeDescription: false, deprecatedMessage: deprecatedMessage);
             tsClass.MethodOverload(methodName, "void", requiredParametersWithRequiredOptionsAndRequiredCallback);
 
             TSParameter optionalOptionsCallbackUnionParameter = TSParameter.Union(new [] { optionalOptionsParameter, optionalCallbackParameter}, name: "options");

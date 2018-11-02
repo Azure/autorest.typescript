@@ -18,6 +18,7 @@ namespace AutoRest.TypeScript.DSL
             Summary,
             Description,
             Parameters,
+            Deprecated,
             Returns
         }
 
@@ -81,6 +82,27 @@ namespace AutoRest.TypeScript.DSL
                 {
                     Parameter(parameter.Name, parameter.Description, !parameter.Required);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Add an @deprecated tag to this comment. If the deprecatedMessage is null, then the tag
+        /// will not be added. If the deprecatedMessage is empty or whitespace, then just the
+        /// @deprecated tag will be added. Otherwise the @deprecated tag and the message will be
+        /// written.
+        /// </summary>
+        /// <param name="deprecatedMessage">The message to accompany the @deprecated tag.</param>
+        public void Deprecated(string deprecatedMessage)
+        {
+            if (deprecatedMessage != null)
+            {
+                SetCurrentState(State.Deprecated);
+                string text = "@deprecated";
+                if (!string.IsNullOrWhiteSpace(deprecatedMessage))
+                {
+                    text += $" {deprecatedMessage}";
+                }
+                builder.Line(text);
             }
         }
 
