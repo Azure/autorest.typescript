@@ -4,7 +4,6 @@
 'use strict';
 
 import * as assert from 'assert';
-import * as msRest from 'ms-rest-js';
 import * as moment from 'moment';
 import * as should from 'should';
 
@@ -18,26 +17,18 @@ describe('typescript', function () {
   describe('Swagger Complex Type BAT', function () {
     describe('Basic Types Operations', function () {
       var testClient = new AutoRestComplexTestService(clientOptions);
-      it('should get and put valid basic type properties', function (done) {
-        testClient.basic.getValid(function (error, result) {
-          should.not.exist(error);
-          result.id.should.equal(2);
-          result.name.should.equal('abc');
-          result.color.should.equal('YELLOW');
-          testClient.basic.putValid({ 'id': 2, 'name': 'abc', color: AutoRestComplexTestServiceModels.CMYKColors.Magenta }, function (error, result) {
-            should.not.exist(error);
-            done();
-          });
-        });
+      it('should get and put valid basic type properties', async function () {
+        const result = await testClient.basic.getValid();
+        result.id.should.equal(2);
+        result.name.should.equal('abc');
+        result.color.should.equal('YELLOW');
+        await testClient.basic.putValid({ 'id': 2, 'name': 'abc', color: 'Magenta' });
       });
 
-      it('should get null basic type properties', function (done) {
-        testClient.basic.getNull(function (error, result) {
-          should.not.exist(error);
-          assert.equal(null, result.id);
-          assert.equal(null, result.name);
-          done();
-        });
+      it('should get null basic type properties', async function () {
+        const result = await testClient.basic.getNull();
+        assert.equal(null, result.id);
+        assert.equal(null, result.name);
       });
 
       it('should get empty basic type properties', function (done) {

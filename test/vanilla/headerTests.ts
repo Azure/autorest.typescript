@@ -106,11 +106,11 @@ describe('typescript', function () {
       });
 
       it('should send and receive enum type headers', async function () {
-        await testClient.header.paramEnum('valid', { value: AutoRestSwaggerBATHeaderServiceModels.GreyscaleColors.GREY });
+        await testClient.header.paramEnum('valid', { value: "GREY" });
         await testClient.header.paramEnum('null', { value: null });
 
         const response1 = await testClient.header.responseEnum('valid');
-        response1.value.should.be.exactly(AutoRestSwaggerBATHeaderServiceModels.GreyscaleColors.GREY);
+        response1.value.should.be.exactly("GREY");
 
         const response2 = await testClient.header.responseEnum('null');
         response2.value.should.be.exactly('');
