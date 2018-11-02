@@ -40,10 +40,10 @@ export class Primitive {
    * @param callback The callback
    */
   getInt(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.IntWrapper>): void;
-  getInt(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.IntWrapper>, callback?: msRest.ServiceCallback<Models.IntWrapper>): Promise<Models.PrimitiveGetIntResponse> {
+  getInt(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.IntWrapper>, callback?: msRest.ServiceCallback<Models.IntWrapper>): Promise<Models.PrimitiveGetIntResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getIntOperationSpec,
       callback) as Promise<Models.PrimitiveGetIntResponse>;
@@ -67,11 +67,11 @@ export class Primitive {
    * @param callback The callback
    */
   putInt(complexBody: Models.IntWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putInt(complexBody: Models.IntWrapper, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putInt(complexBody: Models.IntWrapper, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
-        optionsOrCallback
+        options
       },
       putIntOperationSpec,
       callback);
@@ -92,10 +92,10 @@ export class Primitive {
    * @param callback The callback
    */
   getLong(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LongWrapper>): void;
-  getLong(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.LongWrapper>, callback?: msRest.ServiceCallback<Models.LongWrapper>): Promise<Models.PrimitiveGetLongResponse> {
+  getLong(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.LongWrapper>, callback?: msRest.ServiceCallback<Models.LongWrapper>): Promise<Models.PrimitiveGetLongResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getLongOperationSpec,
       callback) as Promise<Models.PrimitiveGetLongResponse>;
@@ -119,11 +119,11 @@ export class Primitive {
    * @param callback The callback
    */
   putLong(complexBody: Models.LongWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLong(complexBody: Models.LongWrapper, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putLong(complexBody: Models.LongWrapper, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
-        optionsOrCallback
+        options
       },
       putLongOperationSpec,
       callback);
@@ -144,10 +144,10 @@ export class Primitive {
    * @param callback The callback
    */
   getFloat(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FloatWrapper>): void;
-  getFloat(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.FloatWrapper>, callback?: msRest.ServiceCallback<Models.FloatWrapper>): Promise<Models.PrimitiveGetFloatResponse> {
+  getFloat(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.FloatWrapper>, callback?: msRest.ServiceCallback<Models.FloatWrapper>): Promise<Models.PrimitiveGetFloatResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getFloatOperationSpec,
       callback) as Promise<Models.PrimitiveGetFloatResponse>;
@@ -171,11 +171,11 @@ export class Primitive {
    * @param callback The callback
    */
   putFloat(complexBody: Models.FloatWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putFloat(complexBody: Models.FloatWrapper, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putFloat(complexBody: Models.FloatWrapper, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
-        optionsOrCallback
+        options
       },
       putFloatOperationSpec,
       callback);
@@ -196,10 +196,10 @@ export class Primitive {
    * @param callback The callback
    */
   getDouble(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DoubleWrapper>): void;
-  getDouble(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.DoubleWrapper>, callback?: msRest.ServiceCallback<Models.DoubleWrapper>): Promise<Models.PrimitiveGetDoubleResponse> {
+  getDouble(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.DoubleWrapper>, callback?: msRest.ServiceCallback<Models.DoubleWrapper>): Promise<Models.PrimitiveGetDoubleResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getDoubleOperationSpec,
       callback) as Promise<Models.PrimitiveGetDoubleResponse>;
@@ -226,11 +226,11 @@ export class Primitive {
    * @param callback The callback
    */
   putDouble(complexBody: Models.DoubleWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDouble(complexBody: Models.DoubleWrapper, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putDouble(complexBody: Models.DoubleWrapper, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
-        optionsOrCallback
+        options
       },
       putDoubleOperationSpec,
       callback);
@@ -251,10 +251,10 @@ export class Primitive {
    * @param callback The callback
    */
   getBool(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.BooleanWrapper>): void;
-  getBool(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.BooleanWrapper>, callback?: msRest.ServiceCallback<Models.BooleanWrapper>): Promise<Models.PrimitiveGetBoolResponse> {
+  getBool(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.BooleanWrapper>, callback?: msRest.ServiceCallback<Models.BooleanWrapper>): Promise<Models.PrimitiveGetBoolResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getBoolOperationSpec,
       callback) as Promise<Models.PrimitiveGetBoolResponse>;
@@ -278,11 +278,11 @@ export class Primitive {
    * @param callback The callback
    */
   putBool(complexBody: Models.BooleanWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBool(complexBody: Models.BooleanWrapper, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putBool(complexBody: Models.BooleanWrapper, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
-        optionsOrCallback
+        options
       },
       putBoolOperationSpec,
       callback);
@@ -303,10 +303,10 @@ export class Primitive {
    * @param callback The callback
    */
   getString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StringWrapper>): void;
-  getString(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.StringWrapper>, callback?: msRest.ServiceCallback<Models.StringWrapper>): Promise<Models.PrimitiveGetStringResponse> {
+  getString(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.StringWrapper>, callback?: msRest.ServiceCallback<Models.StringWrapper>): Promise<Models.PrimitiveGetStringResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getStringOperationSpec,
       callback) as Promise<Models.PrimitiveGetStringResponse>;
@@ -330,11 +330,11 @@ export class Primitive {
    * @param callback The callback
    */
   putString(complexBody: Models.StringWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putString(complexBody: Models.StringWrapper, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putString(complexBody: Models.StringWrapper, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
-        optionsOrCallback
+        options
       },
       putStringOperationSpec,
       callback);
@@ -355,10 +355,10 @@ export class Primitive {
    * @param callback The callback
    */
   getDate(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DateWrapper>): void;
-  getDate(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.DateWrapper>, callback?: msRest.ServiceCallback<Models.DateWrapper>): Promise<Models.PrimitiveGetDateResponse> {
+  getDate(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.DateWrapper>, callback?: msRest.ServiceCallback<Models.DateWrapper>): Promise<Models.PrimitiveGetDateResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getDateOperationSpec,
       callback) as Promise<Models.PrimitiveGetDateResponse>;
@@ -382,11 +382,11 @@ export class Primitive {
    * @param callback The callback
    */
   putDate(complexBody: Models.DateWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDate(complexBody: Models.DateWrapper, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putDate(complexBody: Models.DateWrapper, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
-        optionsOrCallback
+        options
       },
       putDateOperationSpec,
       callback);
@@ -407,10 +407,10 @@ export class Primitive {
    * @param callback The callback
    */
   getDateTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DatetimeWrapper>): void;
-  getDateTime(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.DatetimeWrapper>, callback?: msRest.ServiceCallback<Models.DatetimeWrapper>): Promise<Models.PrimitiveGetDateTimeResponse> {
+  getDateTime(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.DatetimeWrapper>, callback?: msRest.ServiceCallback<Models.DatetimeWrapper>): Promise<Models.PrimitiveGetDateTimeResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getDateTimeOperationSpec,
       callback) as Promise<Models.PrimitiveGetDateTimeResponse>;
@@ -434,11 +434,11 @@ export class Primitive {
    * @param callback The callback
    */
   putDateTime(complexBody: Models.DatetimeWrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTime(complexBody: Models.DatetimeWrapper, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putDateTime(complexBody: Models.DatetimeWrapper, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
-        optionsOrCallback
+        options
       },
       putDateTimeOperationSpec,
       callback);
@@ -459,10 +459,10 @@ export class Primitive {
    * @param callback The callback
    */
   getDateTimeRfc1123(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Datetimerfc1123Wrapper>): void;
-  getDateTimeRfc1123(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Datetimerfc1123Wrapper>, callback?: msRest.ServiceCallback<Models.Datetimerfc1123Wrapper>): Promise<Models.PrimitiveGetDateTimeRfc1123Response> {
+  getDateTimeRfc1123(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Datetimerfc1123Wrapper>, callback?: msRest.ServiceCallback<Models.Datetimerfc1123Wrapper>): Promise<Models.PrimitiveGetDateTimeRfc1123Response> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getDateTimeRfc1123OperationSpec,
       callback) as Promise<Models.PrimitiveGetDateTimeRfc1123Response>;
@@ -489,11 +489,11 @@ export class Primitive {
    * @param callback The callback
    */
   putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
-        optionsOrCallback
+        options
       },
       putDateTimeRfc1123OperationSpec,
       callback);
@@ -514,10 +514,10 @@ export class Primitive {
    * @param callback The callback
    */
   getDuration(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DurationWrapper>): void;
-  getDuration(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.DurationWrapper>, callback?: msRest.ServiceCallback<Models.DurationWrapper>): Promise<Models.PrimitiveGetDurationResponse> {
+  getDuration(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.DurationWrapper>, callback?: msRest.ServiceCallback<Models.DurationWrapper>): Promise<Models.PrimitiveGetDurationResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getDurationOperationSpec,
       callback) as Promise<Models.PrimitiveGetDurationResponse>;
@@ -538,10 +538,10 @@ export class Primitive {
    * @param callback The callback
    */
   putDuration(options: Models.PrimitivePutDurationOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putDuration(optionsOrCallback?: Models.PrimitivePutDurationOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putDuration(options?: Models.PrimitivePutDurationOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       putDurationOperationSpec,
       callback);
@@ -562,10 +562,10 @@ export class Primitive {
    * @param callback The callback
    */
   getByte(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ByteWrapper>): void;
-  getByte(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ByteWrapper>, callback?: msRest.ServiceCallback<Models.ByteWrapper>): Promise<Models.PrimitiveGetByteResponse> {
+  getByte(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ByteWrapper>, callback?: msRest.ServiceCallback<Models.ByteWrapper>): Promise<Models.PrimitiveGetByteResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getByteOperationSpec,
       callback) as Promise<Models.PrimitiveGetByteResponse>;
@@ -586,10 +586,10 @@ export class Primitive {
    * @param callback The callback
    */
   putByte(options: Models.PrimitivePutByteOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putByte(optionsOrCallback?: Models.PrimitivePutByteOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putByte(options?: Models.PrimitivePutByteOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       putByteOperationSpec,
       callback);

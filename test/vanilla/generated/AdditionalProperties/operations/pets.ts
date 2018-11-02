@@ -43,11 +43,11 @@ export class Pets {
    * @param callback The callback
    */
   createAPTrue(createParameters: Models.PetAPTrue, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PetAPTrue>): void;
-  createAPTrue(createParameters: Models.PetAPTrue, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAPTrue>, callback?: msRest.ServiceCallback<Models.PetAPTrue>): Promise<Models.PetsCreateAPTrueResponse> {
+  createAPTrue(createParameters: Models.PetAPTrue, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAPTrue>, callback?: msRest.ServiceCallback<Models.PetAPTrue>): Promise<Models.PetsCreateAPTrueResponse> {
     return this.client.sendOperationRequest(
       {
         createParameters,
-        optionsOrCallback
+        options
       },
       createAPTrueOperationSpec,
       callback) as Promise<Models.PetsCreateAPTrueResponse>;
@@ -71,11 +71,11 @@ export class Pets {
    * @param callback The callback
    */
   createCatAPTrue(createParameters: Models.CatAPTrue, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.CatAPTrue>): void;
-  createCatAPTrue(createParameters: Models.CatAPTrue, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.CatAPTrue>, callback?: msRest.ServiceCallback<Models.CatAPTrue>): Promise<Models.PetsCreateCatAPTrueResponse> {
+  createCatAPTrue(createParameters: Models.CatAPTrue, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.CatAPTrue>, callback?: msRest.ServiceCallback<Models.CatAPTrue>): Promise<Models.PetsCreateCatAPTrueResponse> {
     return this.client.sendOperationRequest(
       {
         createParameters,
-        optionsOrCallback
+        options
       },
       createCatAPTrueOperationSpec,
       callback) as Promise<Models.PetsCreateCatAPTrueResponse>;
@@ -99,11 +99,11 @@ export class Pets {
    * @param callback The callback
    */
   createAPObject(createParameters: Models.PetAPObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PetAPObject>): void;
-  createAPObject(createParameters: Models.PetAPObject, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAPObject>, callback?: msRest.ServiceCallback<Models.PetAPObject>): Promise<Models.PetsCreateAPObjectResponse> {
+  createAPObject(createParameters: Models.PetAPObject, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAPObject>, callback?: msRest.ServiceCallback<Models.PetAPObject>): Promise<Models.PetsCreateAPObjectResponse> {
     return this.client.sendOperationRequest(
       {
         createParameters,
-        optionsOrCallback
+        options
       },
       createAPObjectOperationSpec,
       callback) as Promise<Models.PetsCreateAPObjectResponse>;
@@ -127,11 +127,11 @@ export class Pets {
    * @param callback The callback
    */
   createAPString(createParameters: Models.PetAPString, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PetAPString>): void;
-  createAPString(createParameters: Models.PetAPString, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAPString>, callback?: msRest.ServiceCallback<Models.PetAPString>): Promise<Models.PetsCreateAPStringResponse> {
+  createAPString(createParameters: Models.PetAPString, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAPString>, callback?: msRest.ServiceCallback<Models.PetAPString>): Promise<Models.PetsCreateAPStringResponse> {
     return this.client.sendOperationRequest(
       {
         createParameters,
-        optionsOrCallback
+        options
       },
       createAPStringOperationSpec,
       callback) as Promise<Models.PetsCreateAPStringResponse>;
@@ -155,11 +155,11 @@ export class Pets {
    * @param callback The callback
    */
   createAPInProperties(createParameters: Models.PetAPInProperties, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PetAPInProperties>): void;
-  createAPInProperties(createParameters: Models.PetAPInProperties, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAPInProperties>, callback?: msRest.ServiceCallback<Models.PetAPInProperties>): Promise<Models.PetsCreateAPInPropertiesResponse> {
+  createAPInProperties(createParameters: Models.PetAPInProperties, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAPInProperties>, callback?: msRest.ServiceCallback<Models.PetAPInProperties>): Promise<Models.PetsCreateAPInPropertiesResponse> {
     return this.client.sendOperationRequest(
       {
         createParameters,
-        optionsOrCallback
+        options
       },
       createAPInPropertiesOperationSpec,
       callback) as Promise<Models.PetsCreateAPInPropertiesResponse>;
@@ -183,11 +183,11 @@ export class Pets {
    * @param callback The callback
    */
   createAPInPropertiesWithAPString(createParameters: Models.PetAPInPropertiesWithAPString, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PetAPInPropertiesWithAPString>): void;
-  createAPInPropertiesWithAPString(createParameters: Models.PetAPInPropertiesWithAPString, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAPInPropertiesWithAPString>, callback?: msRest.ServiceCallback<Models.PetAPInPropertiesWithAPString>): Promise<Models.PetsCreateAPInPropertiesWithAPStringResponse> {
+  createAPInPropertiesWithAPString(createParameters: Models.PetAPInPropertiesWithAPString, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAPInPropertiesWithAPString>, callback?: msRest.ServiceCallback<Models.PetAPInPropertiesWithAPString>): Promise<Models.PetsCreateAPInPropertiesWithAPStringResponse> {
     return this.client.sendOperationRequest(
       {
         createParameters,
-        optionsOrCallback
+        options
       },
       createAPInPropertiesWithAPStringOperationSpec,
       callback) as Promise<Models.PetsCreateAPInPropertiesWithAPStringResponse>;

@@ -380,7 +380,7 @@ namespace AutoRest.TypeScript.Model
             return sb.ToString();
         }
 
-        public void GenerateOperationArguments(TSObject operationArguments, string optionsCallbackUnionName = "options")
+        public void GenerateOperationArguments(TSObject operationArguments)
         {
             ParameterTransformations transformations = GetParameterTransformations();
 
@@ -393,13 +393,13 @@ namespace AutoRest.TypeScript.Model
                     !parameter.IsClientProperty &&
                     !operationArguments.ContainsProperty(parameter.Name) &&
                     !transformations.IsCreatedFromTransformation(parameter.Name) &&
-                    parameter.Name != optionsCallbackUnionName)
+                    parameter.Name != "options")
                 {
                     operationArguments.TextProperty(parameter.Name, parameter.Name);
                 }
             }
 
-            operationArguments.TextProperty(optionsCallbackUnionName, optionsCallbackUnionName);
+            operationArguments.TextProperty("options", "options");
         }
 
         public void GenerateOperationSpec(TSObject operationSpec)
@@ -777,7 +777,7 @@ namespace AutoRest.TypeScript.Model
             GenerateDocumentationComment(tsClass, "void", requiredParametersWithRequiredOptionsAndRequiredCallback, includeDescription: false);
             tsClass.MethodOverload(methodName, "void", requiredParametersWithRequiredOptionsAndRequiredCallback);
 
-            TSParameter optionalOptionsCallbackUnionParameter = TSParameter.Union(optionalOptionsParameter, optionalCallbackParameter);
+            TSParameter optionalOptionsCallbackUnionParameter = TSParameter.Union(new [] { optionalOptionsParameter, optionalCallbackParameter}, name: "options");
             IEnumerable<TSParameter> requiredParametersWithOptionalOptionsAndOptionalCallback = requiredParameters.Concat(new[] { optionalOptionsCallbackUnionParameter, optionalCallbackParameter });
             tsClass.Method(methodName, returnType, requiredParametersWithOptionalOptionsAndOptionalCallback, methodBody =>
             {
@@ -785,7 +785,7 @@ namespace AutoRest.TypeScript.Model
                 {
                     returnValue.FunctionCall($"{ClientReference}.sendOperationRequest", argumentList =>
                     {
-                        argumentList.Object((TSObject tsObject) => GenerateOperationArguments(tsObject, optionalOptionsCallbackUnionParameter.Name));
+                        argumentList.Object((TSObject tsObject) => GenerateOperationArguments(tsObject));
                         argumentList.Text(GetOperationSpecVariableName());
                         argumentList.Text("callback");
                     });

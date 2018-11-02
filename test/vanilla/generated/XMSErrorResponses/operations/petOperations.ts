@@ -44,11 +44,11 @@ export class PetOperations {
    * @param callback The callback
    */
   getPetById(petId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Pet>): void;
-  getPetById(petId: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Pet>, callback?: msRest.ServiceCallback<Models.Pet>): Promise<Models.PetGetPetByIdResponse> {
+  getPetById(petId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Pet>, callback?: msRest.ServiceCallback<Models.Pet>): Promise<Models.PetGetPetByIdResponse> {
     return this.client.sendOperationRequest(
       {
         petId,
-        optionsOrCallback
+        options
       },
       getPetByIdOperationSpec,
       callback) as Promise<Models.PetGetPetByIdResponse>;
@@ -72,11 +72,11 @@ export class PetOperations {
    * @param callback The callback
    */
   doSomething(whatAction: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PetAction>): void;
-  doSomething(whatAction: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAction>, callback?: msRest.ServiceCallback<Models.PetAction>): Promise<Models.PetDoSomethingResponse> {
+  doSomething(whatAction: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAction>, callback?: msRest.ServiceCallback<Models.PetAction>): Promise<Models.PetDoSomethingResponse> {
     return this.client.sendOperationRequest(
       {
         whatAction,
-        optionsOrCallback
+        options
       },
       doSomethingOperationSpec,
       callback) as Promise<Models.PetDoSomethingResponse>;

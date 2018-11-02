@@ -44,11 +44,11 @@ export class SubscriptionInMethod {
    * @param callback The callback
    */
   postMethodLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodLocalValid(subscriptionId: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  postMethodLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         subscriptionId,
-        optionsOrCallback
+        options
       },
       postMethodLocalValidOperationSpec,
       callback);
@@ -76,11 +76,11 @@ export class SubscriptionInMethod {
    * @param callback The callback
    */
   postMethodLocalNull(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodLocalNull(subscriptionId: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  postMethodLocalNull(subscriptionId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         subscriptionId,
-        optionsOrCallback
+        options
       },
       postMethodLocalNullOperationSpec,
       callback);
@@ -105,11 +105,11 @@ export class SubscriptionInMethod {
    * @param callback The callback
    */
   postPathLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postPathLocalValid(subscriptionId: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  postPathLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         subscriptionId,
-        optionsOrCallback
+        options
       },
       postPathLocalValidOperationSpec,
       callback);
@@ -137,11 +137,11 @@ export class SubscriptionInMethod {
    * @param callback The callback
    */
   postSwaggerLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postSwaggerLocalValid(subscriptionId: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  postSwaggerLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         subscriptionId,
-        optionsOrCallback
+        options
       },
       postSwaggerLocalValidOperationSpec,
       callback);

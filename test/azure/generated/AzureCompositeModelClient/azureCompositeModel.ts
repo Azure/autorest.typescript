@@ -67,11 +67,11 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    * @param callback The callback
    */
   list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
-  list(resourceGroupName: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.CatalogArray>, callback?: msRest.ServiceCallback<Models.CatalogArray>): Promise<Models.ListResponse> {
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.CatalogArray>, callback?: msRest.ServiceCallback<Models.CatalogArray>): Promise<Models.ListResponse> {
     return this.sendOperationRequest(
       {
         resourceGroupName,
-        optionsOrCallback
+        options
       },
       listOperationSpec,
       callback) as Promise<Models.ListResponse>;
@@ -99,12 +99,12 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    * @param callback The callback
    */
   create(subscriptionId: string, resourceGroupName: string, options: Models.AzureCompositeModelCreateOptionalParams, callback: msRest.ServiceCallback<Models.CatalogDictionary>): void;
-  create(subscriptionId: string, resourceGroupName: string, optionsOrCallback?: Models.AzureCompositeModelCreateOptionalParams | msRest.ServiceCallback<Models.CatalogDictionary>, callback?: msRest.ServiceCallback<Models.CatalogDictionary>): Promise<Models.CreateResponse> {
+  create(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelCreateOptionalParams | msRest.ServiceCallback<Models.CatalogDictionary>, callback?: msRest.ServiceCallback<Models.CatalogDictionary>): Promise<Models.CreateResponse> {
     return this.sendOperationRequest(
       {
         subscriptionId,
         resourceGroupName,
-        optionsOrCallback
+        options
       },
       createOperationSpec,
       callback) as Promise<Models.CreateResponse>;
@@ -132,12 +132,12 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    * @param callback The callback
    */
   update(subscriptionId: string, resourceGroupName: string, options: Models.AzureCompositeModelUpdateOptionalParams, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
-  update(subscriptionId: string, resourceGroupName: string, optionsOrCallback?: Models.AzureCompositeModelUpdateOptionalParams | msRest.ServiceCallback<Models.CatalogArray>, callback?: msRest.ServiceCallback<Models.CatalogArray>): Promise<Models.UpdateResponse> {
+  update(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelUpdateOptionalParams | msRest.ServiceCallback<Models.CatalogArray>, callback?: msRest.ServiceCallback<Models.CatalogArray>): Promise<Models.UpdateResponse> {
     return this.sendOperationRequest(
       {
         subscriptionId,
         resourceGroupName,
-        optionsOrCallback
+        options
       },
       updateOperationSpec,
       callback) as Promise<Models.UpdateResponse>;

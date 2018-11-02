@@ -44,11 +44,11 @@ export class Header {
    * @param callback The callback
    */
   paramExistingKey(userAgent: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramExistingKey(userAgent: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramExistingKey(userAgent: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         userAgent,
-        optionsOrCallback
+        options
       },
       paramExistingKeyOperationSpec,
       callback);
@@ -69,10 +69,10 @@ export class Header {
    * @param callback The callback
    */
   responseExistingKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseExistingKey(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseExistingKeyResponse> {
+  responseExistingKey(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseExistingKeyResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       responseExistingKeyOperationSpec,
       callback) as Promise<Models.HeaderResponseExistingKeyResponse>;
@@ -96,11 +96,11 @@ export class Header {
    * @param callback The callback
    */
   paramProtectedKey(contentType: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramProtectedKey(contentType: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramProtectedKey(contentType: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         contentType,
-        optionsOrCallback
+        options
       },
       paramProtectedKeyOperationSpec,
       callback);
@@ -121,10 +121,10 @@ export class Header {
    * @param callback The callback
    */
   responseProtectedKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseProtectedKey(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseProtectedKeyResponse> {
+  responseProtectedKey(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseProtectedKeyResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       responseProtectedKeyOperationSpec,
       callback) as Promise<Models.HeaderResponseProtectedKeyResponse>;
@@ -152,12 +152,12 @@ export class Header {
    * @param callback The callback
    */
   paramInteger(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramInteger(scenario: string, value: number, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramInteger(scenario: string, value: number, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
         value,
-        optionsOrCallback
+        options
       },
       paramIntegerOperationSpec,
       callback);
@@ -181,11 +181,11 @@ export class Header {
    * @param callback The callback
    */
   responseInteger(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseInteger(scenario: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseIntegerResponse> {
+  responseInteger(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseIntegerResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
-        optionsOrCallback
+        options
       },
       responseIntegerOperationSpec,
       callback) as Promise<Models.HeaderResponseIntegerResponse>;
@@ -213,12 +213,12 @@ export class Header {
    * @param callback The callback
    */
   paramLong(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramLong(scenario: string, value: number, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramLong(scenario: string, value: number, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
         value,
-        optionsOrCallback
+        options
       },
       paramLongOperationSpec,
       callback);
@@ -242,11 +242,11 @@ export class Header {
    * @param callback The callback
    */
   responseLong(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseLong(scenario: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseLongResponse> {
+  responseLong(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseLongResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
-        optionsOrCallback
+        options
       },
       responseLongOperationSpec,
       callback) as Promise<Models.HeaderResponseLongResponse>;
@@ -274,12 +274,12 @@ export class Header {
    * @param callback The callback
    */
   paramFloat(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramFloat(scenario: string, value: number, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramFloat(scenario: string, value: number, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
         value,
-        optionsOrCallback
+        options
       },
       paramFloatOperationSpec,
       callback);
@@ -303,11 +303,11 @@ export class Header {
    * @param callback The callback
    */
   responseFloat(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseFloat(scenario: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseFloatResponse> {
+  responseFloat(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseFloatResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
-        optionsOrCallback
+        options
       },
       responseFloatOperationSpec,
       callback) as Promise<Models.HeaderResponseFloatResponse>;
@@ -335,12 +335,12 @@ export class Header {
    * @param callback The callback
    */
   paramDouble(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDouble(scenario: string, value: number, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramDouble(scenario: string, value: number, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
         value,
-        optionsOrCallback
+        options
       },
       paramDoubleOperationSpec,
       callback);
@@ -364,11 +364,11 @@ export class Header {
    * @param callback The callback
    */
   responseDouble(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDouble(scenario: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDoubleResponse> {
+  responseDouble(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDoubleResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
-        optionsOrCallback
+        options
       },
       responseDoubleOperationSpec,
       callback) as Promise<Models.HeaderResponseDoubleResponse>;
@@ -396,12 +396,12 @@ export class Header {
    * @param callback The callback
    */
   paramBool(scenario: string, value: boolean, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramBool(scenario: string, value: boolean, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramBool(scenario: string, value: boolean, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
         value,
-        optionsOrCallback
+        options
       },
       paramBoolOperationSpec,
       callback);
@@ -425,11 +425,11 @@ export class Header {
    * @param callback The callback
    */
   responseBool(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseBool(scenario: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseBoolResponse> {
+  responseBool(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseBoolResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
-        optionsOrCallback
+        options
       },
       responseBoolOperationSpec,
       callback) as Promise<Models.HeaderResponseBoolResponse>;
@@ -454,11 +454,11 @@ export class Header {
    * @param callback The callback
    */
   paramString(scenario: string, options: Models.HeaderParamStringOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  paramString(scenario: string, optionsOrCallback?: Models.HeaderParamStringOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramString(scenario: string, options?: Models.HeaderParamStringOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
-        optionsOrCallback
+        options
       },
       paramStringOperationSpec,
       callback);
@@ -482,11 +482,11 @@ export class Header {
    * @param callback The callback
    */
   responseString(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseString(scenario: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseStringResponse> {
+  responseString(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseStringResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
-        optionsOrCallback
+        options
       },
       responseStringOperationSpec,
       callback) as Promise<Models.HeaderResponseStringResponse>;
@@ -514,12 +514,12 @@ export class Header {
    * @param callback The callback
    */
   paramDate(scenario: string, value: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDate(scenario: string, value: Date | string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramDate(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
         value,
-        optionsOrCallback
+        options
       },
       paramDateOperationSpec,
       callback);
@@ -543,11 +543,11 @@ export class Header {
    * @param callback The callback
    */
   responseDate(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDate(scenario: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDateResponse> {
+  responseDate(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDateResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
-        optionsOrCallback
+        options
       },
       responseDateOperationSpec,
       callback) as Promise<Models.HeaderResponseDateResponse>;
@@ -578,12 +578,12 @@ export class Header {
    * @param callback The callback
    */
   paramDatetime(scenario: string, value: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDatetime(scenario: string, value: Date | string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramDatetime(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
         value,
-        optionsOrCallback
+        options
       },
       paramDatetimeOperationSpec,
       callback);
@@ -607,11 +607,11 @@ export class Header {
    * @param callback The callback
    */
   responseDatetime(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDatetime(scenario: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDatetimeResponse> {
+  responseDatetime(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDatetimeResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
-        optionsOrCallback
+        options
       },
       responseDatetimeOperationSpec,
       callback) as Promise<Models.HeaderResponseDatetimeResponse>;
@@ -636,11 +636,11 @@ export class Header {
    * @param callback The callback
    */
   paramDatetimeRfc1123(scenario: string, options: Models.HeaderParamDatetimeRfc1123OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  paramDatetimeRfc1123(scenario: string, optionsOrCallback?: Models.HeaderParamDatetimeRfc1123OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramDatetimeRfc1123(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
-        optionsOrCallback
+        options
       },
       paramDatetimeRfc1123OperationSpec,
       callback);
@@ -665,11 +665,11 @@ export class Header {
    * @param callback The callback
    */
   responseDatetimeRfc1123(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDatetimeRfc1123(scenario: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDatetimeRfc1123Response> {
+  responseDatetimeRfc1123(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDatetimeRfc1123Response> {
     return this.client.sendOperationRequest(
       {
         scenario,
-        optionsOrCallback
+        options
       },
       responseDatetimeRfc1123OperationSpec,
       callback) as Promise<Models.HeaderResponseDatetimeRfc1123Response>;
@@ -696,12 +696,12 @@ export class Header {
    * @param callback The callback
    */
   paramDuration(scenario: string, value: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDuration(scenario: string, value: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramDuration(scenario: string, value: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
         value,
-        optionsOrCallback
+        options
       },
       paramDurationOperationSpec,
       callback);
@@ -725,11 +725,11 @@ export class Header {
    * @param callback The callback
    */
   responseDuration(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDuration(scenario: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDurationResponse> {
+  responseDuration(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDurationResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
-        optionsOrCallback
+        options
       },
       responseDurationOperationSpec,
       callback) as Promise<Models.HeaderResponseDurationResponse>;
@@ -756,12 +756,12 @@ export class Header {
    * @param callback The callback
    */
   paramByte(scenario: string, value: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramByte(scenario: string, value: Uint8Array, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramByte(scenario: string, value: Uint8Array, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
         value,
-        optionsOrCallback
+        options
       },
       paramByteOperationSpec,
       callback);
@@ -785,11 +785,11 @@ export class Header {
    * @param callback The callback
    */
   responseByte(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseByte(scenario: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseByteResponse> {
+  responseByte(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseByteResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
-        optionsOrCallback
+        options
       },
       responseByteOperationSpec,
       callback) as Promise<Models.HeaderResponseByteResponse>;
@@ -814,11 +814,11 @@ export class Header {
    * @param callback The callback
    */
   paramEnum(scenario: string, options: Models.HeaderParamEnumOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  paramEnum(scenario: string, optionsOrCallback?: Models.HeaderParamEnumOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramEnum(scenario: string, options?: Models.HeaderParamEnumOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
-        optionsOrCallback
+        options
       },
       paramEnumOperationSpec,
       callback);
@@ -842,11 +842,11 @@ export class Header {
    * @param callback The callback
    */
   responseEnum(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseEnum(scenario: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseEnumResponse> {
+  responseEnum(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseEnumResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
-        optionsOrCallback
+        options
       },
       responseEnumOperationSpec,
       callback) as Promise<Models.HeaderResponseEnumResponse>;
@@ -867,10 +867,10 @@ export class Header {
    * @param callback The callback
    */
   customRequestId(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  customRequestId(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  customRequestId(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       customRequestIdOperationSpec,
       callback);

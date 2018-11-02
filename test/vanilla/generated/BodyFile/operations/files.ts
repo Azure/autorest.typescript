@@ -40,10 +40,10 @@ export class Files {
    * @param callback The callback
    */
   getFile(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getFile(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetFileResponse> {
+  getFile(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetFileResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getFileOperationSpec,
       callback) as Promise<Models.FilesGetFileResponse>;
@@ -64,10 +64,10 @@ export class Files {
    * @param callback The callback
    */
   getFileLarge(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getFileLarge(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetFileLargeResponse> {
+  getFileLarge(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetFileLargeResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getFileLargeOperationSpec,
       callback) as Promise<Models.FilesGetFileLargeResponse>;
@@ -88,10 +88,10 @@ export class Files {
    * @param callback The callback
    */
   getEmptyFile(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getEmptyFile(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetEmptyFileResponse> {
+  getEmptyFile(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetEmptyFileResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getEmptyFileOperationSpec,
       callback) as Promise<Models.FilesGetEmptyFileResponse>;

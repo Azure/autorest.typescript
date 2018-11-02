@@ -38,10 +38,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param callback The callback
    */
   putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putArray(optionsOrCallback?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putArray(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       putArrayOperationSpec,
       callback);
@@ -62,10 +62,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param callback The callback
    */
   getArray(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FlattenedProduct[]>): void;
-  getArray(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.FlattenedProduct[]>, callback?: msRest.ServiceCallback<Models.FlattenedProduct[]>): Promise<Models.GetArrayResponse> {
+  getArray(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.FlattenedProduct[]>, callback?: msRest.ServiceCallback<Models.FlattenedProduct[]>): Promise<Models.GetArrayResponse> {
     return this.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getArrayOperationSpec,
       callback) as Promise<Models.GetArrayResponse>;
@@ -87,10 +87,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param callback The callback
    */
   putWrappedArray(options: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putWrappedArray(optionsOrCallback?: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putWrappedArray(options?: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       putWrappedArrayOperationSpec,
       callback);
@@ -112,10 +112,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param callback The callback
    */
   getWrappedArray(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductWrapper[]>): void;
-  getWrappedArray(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductWrapper[]>, callback?: msRest.ServiceCallback<Models.ProductWrapper[]>): Promise<Models.GetWrappedArrayResponse> {
+  getWrappedArray(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ProductWrapper[]>, callback?: msRest.ServiceCallback<Models.ProductWrapper[]>): Promise<Models.GetWrappedArrayResponse> {
     return this.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getWrappedArrayOperationSpec,
       callback) as Promise<Models.GetWrappedArrayResponse>;
@@ -136,10 +136,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param callback The callback
    */
   putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putDictionary(optionsOrCallback?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putDictionary(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       putDictionaryOperationSpec,
       callback);
@@ -160,10 +160,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param callback The callback
    */
   getDictionary(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
-  getDictionary(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): Promise<Models.GetDictionaryResponse> {
+  getDictionary(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): Promise<Models.GetDictionaryResponse> {
     return this.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getDictionaryOperationSpec,
       callback) as Promise<Models.GetDictionaryResponse>;
@@ -184,10 +184,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param callback The callback
    */
   putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putResourceCollection(optionsOrCallback?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putResourceCollection(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       putResourceCollectionOperationSpec,
       callback);
@@ -208,10 +208,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param callback The callback
    */
   getResourceCollection(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ResourceCollection>): void;
-  getResourceCollection(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ResourceCollection>, callback?: msRest.ServiceCallback<Models.ResourceCollection>): Promise<Models.GetResourceCollectionResponse> {
+  getResourceCollection(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ResourceCollection>, callback?: msRest.ServiceCallback<Models.ResourceCollection>): Promise<Models.GetResourceCollectionResponse> {
     return this.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getResourceCollectionOperationSpec,
       callback) as Promise<Models.GetResourceCollectionResponse>;
@@ -232,10 +232,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param callback The callback
    */
   putSimpleProduct(options: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  putSimpleProduct(optionsOrCallback?: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams | msRest.ServiceCallback<Models.SimpleProduct>, callback?: msRest.ServiceCallback<Models.SimpleProduct>): Promise<Models.PutSimpleProductResponse> {
+  putSimpleProduct(options?: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams | msRest.ServiceCallback<Models.SimpleProduct>, callback?: msRest.ServiceCallback<Models.SimpleProduct>): Promise<Models.PutSimpleProductResponse> {
     return this.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       putSimpleProductOperationSpec,
       callback) as Promise<Models.PutSimpleProductResponse>;
@@ -268,12 +268,12 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param callback The callback
    */
   postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, optionsOrCallback?: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams | msRest.ServiceCallback<Models.SimpleProduct>, callback?: msRest.ServiceCallback<Models.SimpleProduct>): Promise<Models.PostFlattenedSimpleProductResponse> {
+  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options?: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams | msRest.ServiceCallback<Models.SimpleProduct>, callback?: msRest.ServiceCallback<Models.SimpleProduct>): Promise<Models.PostFlattenedSimpleProductResponse> {
     return this.sendOperationRequest(
       {
         productId,
         maxProductDisplayName,
-        optionsOrCallback
+        options
       },
       postFlattenedSimpleProductOperationSpec,
       callback) as Promise<Models.PostFlattenedSimpleProductResponse>;
@@ -297,11 +297,11 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param callback The callback
    */
   putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.SimpleProduct>, callback?: msRest.ServiceCallback<Models.SimpleProduct>): Promise<Models.PutSimpleProductWithGroupingResponse> {
+  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.SimpleProduct>, callback?: msRest.ServiceCallback<Models.SimpleProduct>): Promise<Models.PutSimpleProductWithGroupingResponse> {
     return this.sendOperationRequest(
       {
         flattenParameterGroup,
-        optionsOrCallback
+        options
       },
       putSimpleProductWithGroupingOperationSpec,
       callback) as Promise<Models.PutSimpleProductWithGroupingResponse>;

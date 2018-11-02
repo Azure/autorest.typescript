@@ -41,10 +41,10 @@ export class HttpSuccess {
    * @param callback The callback
    */
   head200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  head200(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead200Response> {
+  head200(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead200Response> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       head200OperationSpec,
       callback) as Promise<Models.HttpSuccessHead200Response>;
@@ -65,10 +65,10 @@ export class HttpSuccess {
    * @param callback The callback
    */
   head204(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  head204(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead204Response> {
+  head204(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead204Response> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       head204OperationSpec,
       callback) as Promise<Models.HttpSuccessHead204Response>;
@@ -89,10 +89,10 @@ export class HttpSuccess {
    * @param callback The callback
    */
   head404(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  head404(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead404Response> {
+  head404(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead404Response> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       head404OperationSpec,
       callback) as Promise<Models.HttpSuccessHead404Response>;

@@ -40,10 +40,10 @@ export class EnumModel {
    * @param callback The callback
    */
   getNotExpandable(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Colors>): void;
-  getNotExpandable(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Colors>, callback?: msRest.ServiceCallback<Models.Colors>): Promise<Models.EnumModelGetNotExpandableResponse> {
+  getNotExpandable(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Colors>, callback?: msRest.ServiceCallback<Models.Colors>): Promise<Models.EnumModelGetNotExpandableResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getNotExpandableOperationSpec,
       callback) as Promise<Models.EnumModelGetNotExpandableResponse>;
@@ -67,11 +67,11 @@ export class EnumModel {
    * @param callback The callback
    */
   putNotExpandable(stringBody: Models.Colors, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putNotExpandable(stringBody: Models.Colors, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putNotExpandable(stringBody: Models.Colors, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         stringBody,
-        optionsOrCallback
+        options
       },
       putNotExpandableOperationSpec,
       callback);
@@ -92,10 +92,10 @@ export class EnumModel {
    * @param callback The callback
    */
   getReferenced(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Colors>): void;
-  getReferenced(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Colors>, callback?: msRest.ServiceCallback<Models.Colors>): Promise<Models.EnumModelGetReferencedResponse> {
+  getReferenced(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Colors>, callback?: msRest.ServiceCallback<Models.Colors>): Promise<Models.EnumModelGetReferencedResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getReferencedOperationSpec,
       callback) as Promise<Models.EnumModelGetReferencedResponse>;
@@ -119,11 +119,11 @@ export class EnumModel {
    * @param callback The callback
    */
   putReferenced(enumStringBody: Models.Colors, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putReferenced(enumStringBody: Models.Colors, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putReferenced(enumStringBody: Models.Colors, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         enumStringBody,
-        optionsOrCallback
+        options
       },
       putReferencedOperationSpec,
       callback);
@@ -144,10 +144,10 @@ export class EnumModel {
    * @param callback The callback
    */
   getReferencedConstant(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RefColorConstant>): void;
-  getReferencedConstant(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.RefColorConstant>, callback?: msRest.ServiceCallback<Models.RefColorConstant>): Promise<Models.EnumModelGetReferencedConstantResponse> {
+  getReferencedConstant(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.RefColorConstant>, callback?: msRest.ServiceCallback<Models.RefColorConstant>): Promise<Models.EnumModelGetReferencedConstantResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getReferencedConstantOperationSpec,
       callback) as Promise<Models.EnumModelGetReferencedConstantResponse>;
@@ -168,10 +168,10 @@ export class EnumModel {
    * @param callback The callback
    */
   putReferencedConstant(options: Models.EnumModelPutReferencedConstantOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putReferencedConstant(optionsOrCallback?: Models.EnumModelPutReferencedConstantOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putReferencedConstant(options?: Models.EnumModelPutReferencedConstantOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       putReferencedConstantOperationSpec,
       callback);

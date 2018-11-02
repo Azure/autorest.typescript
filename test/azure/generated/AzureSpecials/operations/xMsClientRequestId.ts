@@ -41,10 +41,10 @@ export class XMsClientRequestId {
    * @param callback The callback
    */
   get(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get(optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  get(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
-        optionsOrCallback
+        options
       },
       getOperationSpec,
       callback);
@@ -72,11 +72,11 @@ export class XMsClientRequestId {
    * @param callback The callback
    */
   paramGet(xMsClientRequestId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramGet(xMsClientRequestId: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramGet(xMsClientRequestId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.client.sendOperationRequest(
       {
         xMsClientRequestId,
-        optionsOrCallback
+        options
       },
       paramGetOperationSpec,
       callback);

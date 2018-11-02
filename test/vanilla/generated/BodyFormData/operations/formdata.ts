@@ -47,12 +47,12 @@ export class Formdata {
    * @param callback The callback
    */
   uploadFile(fileContent: msRest.HttpRequestBody, fileName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  uploadFile(fileContent: msRest.HttpRequestBody, fileName: string, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FormdataUploadFileResponse> {
+  uploadFile(fileContent: msRest.HttpRequestBody, fileName: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FormdataUploadFileResponse> {
     return this.client.sendOperationRequest(
       {
         fileContent,
         fileName,
-        optionsOrCallback
+        options
       },
       uploadFileOperationSpec,
       callback) as Promise<Models.FormdataUploadFileResponse>;
@@ -76,11 +76,11 @@ export class Formdata {
    * @param callback The callback
    */
   uploadFileViaBody(fileContent: msRest.HttpRequestBody, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  uploadFileViaBody(fileContent: msRest.HttpRequestBody, optionsOrCallback?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FormdataUploadFileViaBodyResponse> {
+  uploadFileViaBody(fileContent: msRest.HttpRequestBody, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FormdataUploadFileViaBodyResponse> {
     return this.client.sendOperationRequest(
       {
         fileContent,
-        optionsOrCallback
+        options
       },
       uploadFileViaBodyOperationSpec,
       callback) as Promise<Models.FormdataUploadFileViaBodyResponse>;
