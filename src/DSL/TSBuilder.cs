@@ -311,6 +311,14 @@ namespace AutoRest.TypeScript.DSL
             WriteNewLineBeforeNextText = true;
         }
 
+        public void Class(string className, Action<TSClass> classAction)
+        {
+            Block($"class {className}", block =>
+            {
+                classAction?.Invoke(new TSClass(this));
+            });
+        }
+
         /// <summary>
         /// Get whether or not the provided lines has any lines that are not null and not whitespace.
         /// </summary>
