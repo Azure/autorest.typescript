@@ -6,7 +6,8 @@ import * as path from "path";
 async function getBundleSize(ref: string): Promise<number> {
   await runCommand("git", ["checkout", ref]);
   await runCommand("npm", ["install"], { cwd: "./test/multiapi" });
-  await runCommand("npx", ["webpack"]);
+  await runCommand("npm", ["run", "build"], { cwd: "./test/multiapi" });
+  await runCommand("npx", ["webpack", "-p"]);
 
   const testBundlePath: string = path.join(__dirname, "../testBundle.js");
   const status: fs.Stats = fs.statSync(testBundlePath);
