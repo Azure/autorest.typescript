@@ -340,7 +340,7 @@ describe('typescript', function () {
         ]
       });
       var testClient = new AutoRestComplexTestService(clientOptions);
-      it('should get valid polymorphic properties', async function () {
+      it.only('should get valid polymorphic properties', async function () {
         const getResult = await testClient.polymorphism.getValid();
 
         const actualBytes = (getResult.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
