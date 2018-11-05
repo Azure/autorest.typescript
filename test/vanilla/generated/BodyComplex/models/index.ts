@@ -709,50 +709,26 @@ export interface ReadonlypropertyPutValidOptionalParams extends msRest.RequestOp
 /**
  * Defines values for CMYKColors.
  * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: CMYKColors = <CMYKColors>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum CMYKColors {
-  Cyan = 'cyan',
-  Magenta = 'Magenta',
-  YELLOW = 'YELLOW',
-  BlacK = 'blacK',
-}
+export type CMYKColors = 'cyan' | 'Magenta' | 'YELLOW' | 'blacK';
 
 /**
  * Defines values for GoblinSharkColor.
  * Possible values include: 'pink', 'gray', 'brown'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: GoblinSharkColor =
- * <GoblinSharkColor>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum GoblinSharkColor {
-  Pink = 'pink',
-  Gray = 'gray',
-  Brown = 'brown',
-}
+export type GoblinSharkColor = 'pink' | 'gray' | 'brown';
 
 /**
  * Defines values for MyKind.
  * Possible values include: 'Kind1'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: MyKind = <MyKind>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum MyKind {
-  Kind1 = 'Kind1',
-}
+export type MyKind = 'Kind1';
 
 /**
  * Contains response data for the getValid operation.

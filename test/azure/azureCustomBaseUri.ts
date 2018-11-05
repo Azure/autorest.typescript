@@ -18,13 +18,12 @@ describe('typescript', function () {
   describe('Custom BaseUri Client', function () {
     clientOptions.host = 'host:3000';
     var testClient = new AutoRestParameterizedHostTestClient(credentials, clientOptions);
-    it('should return 200', function (done) {
-      testClient.paths.getEmpty('local', function (error, result, request, response) {
-        should.not.exist(error);
-        response.status.should.equal(200);
-        done();
-      });
+
+    it('should return 200', async function () {
+      const response = await testClient.paths.getEmpty('local');
+      response._response.status.should.equal(200);
     });
+
     it('should throw due to bad "host", bad "account" and missing account', async function () {
       testClient.host = 'nonexistent';
       try {

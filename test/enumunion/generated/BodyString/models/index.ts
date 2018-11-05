@@ -89,10 +89,6 @@ export type Colors = 'red color' | 'green-color' | 'blue_color';
 /**
  * Defines values for StringBody.
  * Possible values include: ''
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: StringBody = <StringBody>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -101,11 +97,6 @@ export type StringBody = null;
 /**
  * Defines values for GetNullOKResponse.
  * Possible values include: ''
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: GetNullOKResponse =
- * <GetNullOKResponse>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -114,11 +105,6 @@ export type GetNullOKResponse = null;
 /**
  * Defines values for GetEmptyOKResponse.
  * Possible values include: ''
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: GetEmptyOKResponse =
- * <GetEmptyOKResponse>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -126,13 +112,7 @@ export type GetEmptyOKResponse = '';
 
 /**
  * Defines values for GetMbcsOKResponse.
- * Possible values include:
- * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: GetMbcsOKResponse =
- * <GetMbcsOKResponse>"someUnknownValueThatWillStillBeValid";
+ * Possible values include: '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
  * @readonly
  * @enum {string}
  */
@@ -140,13 +120,8 @@ export type GetMbcsOKResponse = '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱
 
 /**
  * Defines values for GetWhitespaceOKResponse.
- * Possible values include: '    Now is the time for all good men to come to
- * the aid of their country    '
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: GetWhitespaceOKResponse =
- * <GetWhitespaceOKResponse>"someUnknownValueThatWillStillBeValid";
+ * Possible values include: '    Now is the time for all good men to come to the aid of their
+ * country    '
  * @readonly
  * @enum {string}
  */

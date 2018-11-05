@@ -2652,80 +2652,30 @@ export interface LROsCustomHeaderPostAsyncRetrySucceededHeaders {
 
 /**
  * Defines values for ProvisioningStateValues.
- * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
- * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: ProvisioningStateValues =
- * <ProvisioningStateValues>"someUnknownValueThatWillStillBeValid";
+ * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+ * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
  * @readonly
  * @enum {string}
  */
-export enum ProvisioningStateValues {
-  Succeeded = 'Succeeded',
-  Failed = 'Failed',
-  Canceled = 'canceled',
-  Accepted = 'Accepted',
-  Creating = 'Creating',
-  Created = 'Created',
-  Updating = 'Updating',
-  Updated = 'Updated',
-  Deleting = 'Deleting',
-  Deleted = 'Deleted',
-  OK = 'OK',
-}
+export type ProvisioningStateValues = 'Succeeded' | 'Failed' | 'canceled' | 'Accepted' | 'Creating' | 'Created' | 'Updating' | 'Updated' | 'Deleting' | 'Deleted' | 'OK';
 
 /**
  * Defines values for ProvisioningStateValues1.
- * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
- * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: ProvisioningStateValues1 =
- * <ProvisioningStateValues1>"someUnknownValueThatWillStillBeValid";
+ * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+ * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
  * @readonly
  * @enum {string}
  */
-export enum ProvisioningStateValues1 {
-  Succeeded = 'Succeeded',
-  Failed = 'Failed',
-  Canceled = 'canceled',
-  Accepted = 'Accepted',
-  Creating = 'Creating',
-  Created = 'Created',
-  Updating = 'Updating',
-  Updated = 'Updated',
-  Deleting = 'Deleting',
-  Deleted = 'Deleted',
-  OK = 'OK',
-}
+export type ProvisioningStateValues1 = 'Succeeded' | 'Failed' | 'canceled' | 'Accepted' | 'Creating' | 'Created' | 'Updating' | 'Updated' | 'Deleting' | 'Deleted' | 'OK';
 
 /**
  * Defines values for Status.
- * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
- * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Status = <Status>"someUnknownValueThatWillStillBeValid";
+ * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+ * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
  * @readonly
  * @enum {string}
  */
-export enum Status {
-  Succeeded = 'Succeeded',
-  Failed = 'Failed',
-  Canceled = 'canceled',
-  Accepted = 'Accepted',
-  Creating = 'Creating',
-  Created = 'Created',
-  Updating = 'Updating',
-  Updated = 'Updated',
-  Deleting = 'Deleting',
-  Deleted = 'Deleted',
-  OK = 'OK',
-}
+export type Status = 'Succeeded' | 'Failed' | 'canceled' | 'Accepted' | 'Creating' | 'Created' | 'Updating' | 'Updated' | 'Deleting' | 'Deleted' | 'OK';
 
 /**
  * Contains response data for the put200Succeeded operation.

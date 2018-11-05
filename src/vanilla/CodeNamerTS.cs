@@ -61,16 +61,16 @@ namespace AutoRest.TypeScript
             return base.GetEnumMemberName(name).ToPascalCase();
         }
 
-        public static string GetEnumValueName(string valueName, PrimaryType valueType, bool modelAsUnion = false)
+        public static string GetEnumValueName(string valueName, PrimaryType valueType)
         {
             if (valueName == null)
             {
-                return modelAsUnion ? "null" : "null as any";
+                return "null";
             }
             if (valueType == null)
             {
                 // Since valueType is null we will default the EnumValue to be a string. Hence sending a quoted string back.
-                return Instance.QuoteValue(valueName, "'");
+                return Instance.QuoteValue(valueName, "\"");
             }
             return Instance.EscapeDefaultValue(valueName, valueType);
         }

@@ -44,7 +44,7 @@ export class Header {
    * @param callback The callback
    */
   customNamedRequestId(fooClientRequestId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  customNamedRequestId(fooClientRequestId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderCustomNamedRequestIdResponse> {
+  customNamedRequestId(fooClientRequestId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderCustomNamedRequestIdResponse> {
     return this.client.sendOperationRequest(
       {
         fooClientRequestId,
@@ -73,7 +73,7 @@ export class Header {
    * @param callback The callback
    */
   customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse> {
+  customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse> {
     return this.client.sendOperationRequest(
       {
         headerCustomNamedRequestIdParamGroupingParameters,
@@ -101,7 +101,7 @@ export class Header {
    * @param callback The callback
    */
   customNamedRequestIdHead(fooClientRequestId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  customNamedRequestIdHead(fooClientRequestId: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HeaderCustomNamedRequestIdHeadResponse> {
+  customNamedRequestIdHead(fooClientRequestId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HeaderCustomNamedRequestIdHeadResponse> {
     return this.client.sendOperationRequest(
       {
         fooClientRequestId,

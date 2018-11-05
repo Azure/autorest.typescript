@@ -62,9 +62,9 @@ namespace AutoRest.TypeScript.DSL
         {
             if (!string.IsNullOrEmpty(text))
             {
-                bool isFirstTag = (currentState == State.Start);
+                bool addJSDocTag = currentState != State.Start && currentState != State.Description;
                 SetCurrentState(State.Description);
-                builder.Line($"{(isFirstTag ? "" : "@description ")}{text}");
+                builder.Line($"{(addJSDocTag ? "@description " : "")}{text}");
             }
         }
 
@@ -113,6 +113,16 @@ namespace AutoRest.TypeScript.DSL
                 SetCurrentState(State.Returns);
                 builder.Line($"@returns {returnDocumentation}");
             }
+        }
+
+        public void ReadOnly()
+        {
+            builder.Line("@readonly");
+        }
+
+        public void Enum(string enumType)
+        {
+            builder.Line($"@enum {{{enumType}}}");
         }
     }
 }

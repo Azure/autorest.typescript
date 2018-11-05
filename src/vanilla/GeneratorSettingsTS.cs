@@ -92,12 +92,6 @@ namespace AutoRest.TypeScript
         public string OutputFolder { get; set; }
 
         /// <summary>
-        /// If true, models enums as unions of literal strings.
-        /// Otherwise, models enums as TypeScript enums. Defaults to false.
-        /// </summary>
-        public bool ModelEnumAsUnion { get; set; }
-
-        /// <summary>
         /// If true, models Date parameters as string in parameters and properties.
         /// </summary>
         public bool ModelDateTimeAsString { get; set; }

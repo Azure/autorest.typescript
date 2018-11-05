@@ -61,50 +61,20 @@ export interface PetAddPetOptionalParams extends msRest.RequestOptionsBase {
 
 /**
  * Defines values for DaysOfWeekExtensibleEnum.
- * Possible values include: 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
- * 'Friday', 'Saturday', 'Sunday'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: DaysOfWeekExtensibleEnum =
- * <DaysOfWeekExtensibleEnum>"someUnknownValueThatWillStillBeValid";
+ * Possible values include: 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+ * 'Sunday'
  * @readonly
  * @enum {string}
  */
-export enum DaysOfWeekExtensibleEnum {
-  Monday = 'Monday',
-  Tuesday = 'Tuesday',
-  Wednesday = 'Wednesday',
-  Thursday = 'Thursday',
-  Friday = 'Friday',
-  Saturday = 'Saturday',
-  Sunday = 'Sunday',
-}
+export type DaysOfWeekExtensibleEnum = 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday';
 
 /**
  * Defines values for IntEnum.
  * Possible values include: '1', '2', '3'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: IntEnum = <IntEnum>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum IntEnum {
-  /**
-   * one
-   */
-  One = '1',
-  /**
-   * two
-   */
-  Two = '2',
-  /**
-   * three
-   */
-  Three = '3',
-}
+export type IntEnum = '1' | '2' | '3';
 
 /**
  * Contains response data for the getByPetId operation.
