@@ -46,7 +46,9 @@ jobs:
       script: gulp testci/regenerate-tsazure
 
     - env: CHECK_NAME="Bundle Size"
-      install: npm install --ignore-scripts
+      install:
+        - npm install --ignore-scripts
+        - npm run preview -- --force
       script: npm run bundle-size
 
     - env: CHECK_NAME="Generate Metadata Flag"
