@@ -93,7 +93,7 @@ namespace AutoRest.TypeScript.Azure.Model
                 {
                     returnValue.FunctionCall($"{ClientReference}.sendLRORequest", argumentList =>
                     {
-                        argumentList.Object(GenerateOperationArguments);
+                        argumentList.Object((TSObject tsObject) => GenerateOperationArguments(tsObject));
                         argumentList.Text(GetOperationSpecVariableName());
                         argumentList.Text("options");
                     });

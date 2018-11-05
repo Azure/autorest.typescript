@@ -46,7 +46,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * @param callback The callback
    */
   validationOfMethodParameters(resourceGroupName: string, id: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  validationOfMethodParameters(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): Promise<Models.ValidationOfMethodParametersResponse> {
+  validationOfMethodParameters(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product>, callback?: msRest.ServiceCallback<Models.Product>): Promise<Models.ValidationOfMethodParametersResponse> {
     return this.sendOperationRequest(
       {
         resourceGroupName,
@@ -78,7 +78,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * @param callback The callback
    */
   validationOfBody(resourceGroupName: string, id: number, options: Models.AutoRestValidationTestValidationOfBodyOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  validationOfBody(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): Promise<Models.ValidationOfBodyResponse> {
+  validationOfBody(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams | msRest.ServiceCallback<Models.Product>, callback?: msRest.ServiceCallback<Models.Product>): Promise<Models.ValidationOfBodyResponse> {
     return this.sendOperationRequest(
       {
         resourceGroupName,
@@ -103,7 +103,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * @param callback The callback
    */
   getWithConstantInPath(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getWithConstantInPath(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getWithConstantInPath(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -126,7 +126,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * @param callback The callback
    */
   postWithConstantInBody(options: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  postWithConstantInBody(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams, callback?: msRest.ServiceCallback<Models.Product>): Promise<Models.PostWithConstantInBodyResponse> {
+  postWithConstantInBody(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams | msRest.ServiceCallback<Models.Product>, callback?: msRest.ServiceCallback<Models.Product>): Promise<Models.PostWithConstantInBodyResponse> {
     return this.sendOperationRequest(
       {
         options
