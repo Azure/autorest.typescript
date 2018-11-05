@@ -1,82 +1,80 @@
-import { join } from "path";
-import { promisify } from "util";
-import cp = require("child_process");
-import fs = require("fs");
-import path = require("path");
+import { ChildProcess, ExecOptions, spawn } from "child_process";
+import * as filesize from "filesize";
+import * as fs from "fs";
+import * as path from "path";
 
-import filesize = require("filesize");
+async function getBundleSize(ref: string): Promise<number> {
+  await runCommand("git", ["checkout", ref]);
+  await runCommand("npm", ["install", "--ignore-scripts"]);
+  await runCommand("npm", ["install"], { cwd: "./test/multiapi" });
+  await runCommand("npm", ["run", "build"], { cwd: "./test/multiapi" });
+  await runCommand("npx", ["webpack", "-p"]);
 
-const exec = promisify(cp.exec);
+  const testBundlePath: string = path.join(__dirname, "../testBundle.js");
+  const status: fs.Stats = fs.statSync(testBundlePath);
 
-async function getBundleSize() {
-  await new Promise((resolve) => {
-    const child = cp.spawn(join(__dirname, "../node_modules/.bin/webpack"), ['-p'], { stdio: 'inherit' });
-    child.on('exit', () => resolve());
-  });
-  const status = fs.statSync(join(__dirname, "../testBundle.js"));
   return status.size;
 }
 
-function execVerbose(script: string, opts?: cp.ExecOptions): any {
-  const cwd = path.resolve(opts && opts.cwd || process.cwd());
-  console.log(`> ${cwd} - ${script}`);
-  return exec(script, { maxBuffer: 1024 * 1024, ...opts });
+function runCommand(command: string, args?: string[], options?: ExecOptions): Promise<number> {
+  const cwd: string = path.resolve((options && options.cwd) || process.cwd());
+  const commandString: string = `${command}${args && args.length ? " " + args.join(" ") : ""}`;
+  console.log(`> ${cwd} - ${commandString}`);
+  const childProcess: ChildProcess = spawn(command, args, { stdio: [0, 1, 2], shell: true, ...options });
+  return new Promise<number>((resolve, reject) => {
+    childProcess.on("close", (exitCode: number) => {
+      resolve(exitCode);
+    });
+    childProcess.on("disconnect", () => {
+      reject(new Error(`Disconnected from ${command}`));
+    })
+    childProcess.on("error", (error: Error) => {
+      reject(error);
+    });
+    childProcess.on("exit", (exitCode: number) => {
+      resolve(exitCode);
+    });
+  });
 }
 
 /**
  * Output a message to the console.
  */
-function outputMessage(message: string) {
+function outputMessage(message: string): void {
   const json = JSON.stringify({
     title: message,
     summary: ""
   });
-  console.log(`---output
-${json}
----`)
+  console.log(`---output\n${json}\n---`)
 }
 
-function outputErrorMessage(message: string, error: any) {
-  outputMessage(`${message}: ${JSON.stringify(error)}`);
+function getRequiredEnvironmentVariable(environmentVariableName: string): string | undefined {
+  const result: string | undefined = process.env[environmentVariableName];
+  if (!result) {
+    outputMessage(`ERROR: Expected to find an environment variable named ${environmentVariableName}.`);
+  }
+  return result;
 }
 
-async function main() {
-  let baseSize = undefined;
-  let headSize = undefined;
-
-  const branch = process.env.TRAVIS_BRANCH;
-  const prCommit = process.env.TRAVIS_PULL_REQUEST_SHA;
-
+async function main(): Promise<void> {
   try {
-    await execVerbose("git reset --hard " + branch);
-    await execVerbose("npm i --ignore-scripts");
-    await execVerbose("npm i", { cwd: "./test/multiapi" });
-    baseSize = await getBundleSize();
+    const baseRef: string | undefined = getRequiredEnvironmentVariable("TRAVIS_BRANCH");
+    const headRef: string | undefined = getRequiredEnvironmentVariable("TRAVIS_PULL_REQUEST_SHA");
 
-    await execVerbose("git reset --hard " + prCommit);
-    await execVerbose("npm i --ignore-scripts");
-    await execVerbose("npm i", { cwd: "./test/multiapi" });
-    headSize = await getBundleSize();
+    if (baseRef && headRef) {
+      const baseSize: number = await getBundleSize(baseRef);
+      const headSize: number = await getBundleSize(headRef);
 
-    const change = (headSize / baseSize) - 1;
-    const percentChange = (Math.abs(change) * 100).toFixed(2) + '%';
+      const change: number = (headSize / baseSize) - 1;
+      const percentChanged: string = (Math.abs(change) * 100).toFixed(2) + '%';
+      const bytesChanged: string = filesize(headSize - baseSize);
 
-    outputMessage(`Size ${change >= 0 ? "increased" : "decreased"} by ${percentChange} (${filesize(headSize - baseSize)})`);
-  } catch (error) {
-    if (baseSize == undefined) {
-      outputErrorMessage(`Failed to get the bundle size of the base branch (${branch})`, error);
-    } else if (headSize == undefined) {
-      outputErrorMessage(`Failed to get the bundle size of the PR commit (${prCommit})`, error);
-    } else {
-      outputErrorMessage(`Unrecognized error`, error);
+      outputMessage(`Size ${change >= 0 ? "increased" : "decreased"} by ${percentChanged} (${bytesChanged})`);
     }
-    throw error;
+  } catch (error) {
+    outputMessage(`ERROR: ${JSON.stringify(error)}`);
+    process.exit(1);
   }
 }
 
-main()
-  .catch(err => {
-    console.error(err.message);
-    console.error(err.stack);
-    process.exit(1);
-  });
+main();
