@@ -437,25 +437,16 @@ export interface StorageAccountListResult extends Array<StorageAccount> {
  * @readonly
  * @enum {string}
  */
-export enum Reason {
-  AccountNameInvalid = 'AccountNameInvalid',
-  AlreadyExists = 'AlreadyExists',
-}
+export type Reason = 'AccountNameInvalid' | 'AlreadyExists';
 
 /**
  * Defines values for AccountType.
- * Possible values include: 'Standard_LRS', 'Standard_ZRS', 'Standard_GRS',
- * 'Standard_RAGRS', 'Premium_LRS'
+ * Possible values include: 'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS',
+ * 'Premium_LRS'
  * @readonly
  * @enum {string}
  */
-export enum AccountType {
-  StandardLRS = 'Standard_LRS',
-  StandardZRS = 'Standard_ZRS',
-  StandardGRS = 'Standard_GRS',
-  StandardRAGRS = 'Standard_RAGRS',
-  PremiumLRS = 'Premium_LRS',
-}
+export type AccountType = 'Standard_LRS' | 'Standard_ZRS' | 'Standard_GRS' | 'Standard_RAGRS' | 'Premium_LRS';
 
 /**
  * Defines values for ProvisioningState.
@@ -463,11 +454,7 @@ export enum AccountType {
  * @readonly
  * @enum {string}
  */
-export enum ProvisioningState {
-  Creating = 'Creating',
-  ResolvingDNS = 'ResolvingDNS',
-  Succeeded = 'Succeeded',
-}
+export type ProvisioningState = 'Creating' | 'ResolvingDNS' | 'Succeeded';
 
 /**
  * Defines values for AccountStatus.
@@ -475,10 +462,7 @@ export enum ProvisioningState {
  * @readonly
  * @enum {string}
  */
-export enum AccountStatus {
-  Available = 'Available',
-  Unavailable = 'Unavailable',
-}
+export type AccountStatus = 'Available' | 'Unavailable';
 
 /**
  * Defines values for KeyName.
@@ -486,26 +470,16 @@ export enum AccountStatus {
  * @readonly
  * @enum {string}
  */
-export enum KeyName {
-  Key1 = 'key1',
-  Key2 = 'key2',
-}
+export type KeyName = 'key1' | 'key2';
 
 /**
  * Defines values for UsageUnit.
- * Possible values include: 'Count', 'Bytes', 'Seconds', 'Percent',
- * 'CountsPerSecond', 'BytesPerSecond'
+ * Possible values include: 'Count', 'Bytes', 'Seconds', 'Percent', 'CountsPerSecond',
+ * 'BytesPerSecond'
  * @readonly
  * @enum {string}
  */
-export enum UsageUnit {
-  Count = 'Count',
-  Bytes = 'Bytes',
-  Seconds = 'Seconds',
-  Percent = 'Percent',
-  CountsPerSecond = 'CountsPerSecond',
-  BytesPerSecond = 'BytesPerSecond',
-}
+export type UsageUnit = 'Count' | 'Bytes' | 'Seconds' | 'Percent' | 'CountsPerSecond' | 'BytesPerSecond';
 
 /**
  * Contains response data for the checkNameAvailability operation.

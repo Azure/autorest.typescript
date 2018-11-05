@@ -4,7 +4,7 @@
 'use strict';
 
 import * as msRest from 'ms-rest-js';
-import { AzureCompositeModel, AzureCompositeModelModels } from './generated/AzureCompositeModelClient/azureCompositeModel';
+import { AzureCompositeModel } from './generated/AzureCompositeModelClient/azureCompositeModel';
 import { AzureCompositeModelOptions } from './generated/AzureCompositeModelClient/models';
 
 const dummyToken = 'dummy12321343423';
@@ -24,7 +24,7 @@ describe('typescript', function () {
       result.name.should.equal('abc');
       result.color.should.equal('YELLOW');
 
-      await testClient.basic.putValid({ 'id': 2, 'name': 'abc', color: AzureCompositeModelModels.CMYKColors.Magenta });
+      await testClient.basic.putValid({ 'id': 2, 'name': 'abc', color: 'Magenta' });
     });
   });
 });

@@ -8,7 +8,6 @@ import * as util from 'util';
 import * as assert from 'assert';
 import * as msAssert from "../util/msAssert";
 import * as msRest from 'ms-rest-js';
-import * as stream from 'stream';
 import * as fs from "fs";
 
 import { AutoRestBoolTestService } from './generated/BodyBoolean/autoRestBoolTestService';
@@ -26,9 +25,7 @@ import { AutoRestSwaggerBATFileService } from './generated/BodyFile/autoRestSwag
 import { AutoRestSwaggerBATArrayService } from './generated/BodyArray/autoRestSwaggerBATArrayService';
 import { AutoRestSwaggerBATdictionaryService, AutoRestSwaggerBATdictionaryServiceModels } from './generated/BodyDictionary/autoRestSwaggerBATdictionaryService';
 import { AutoRestHttpInfrastructureTestService, AutoRestHttpInfrastructureTestServiceMappers } from './generated/Http/autoRestHttpInfrastructureTestService';
-import * as AutoRestHttpInfrastructureMappers from "./generated/Http/models/mappers";
 import { AutoRestSwaggerBATFormDataService } from './generated/BodyFormData/autoRestSwaggerBATFormDataService';
-import { AutoRestParameterizedHostTestClient } from './generated/CustomBaseUri/autoRestParameterizedHostTestClient';
 import { AutoRestParameterizedCustomHostTestClient } from './generated/CustomBaseUriMoreOptions/autoRestParameterizedCustomHostTestClient';
 import { fail } from "assert";
 import { timeoutPromise } from '../util/util';
@@ -382,24 +379,17 @@ describe('typescript', function () {
 
     describe('String Client', function () {
       var testClient = new AutoRestSwaggerBATService(clientOptions);
-      it('should support valid null value', function (done) {
-        testClient.string.getNull(function (error, result) {
-          should.not.exist(result);
-          testClient.string.putNull({ stringBody: AutoRestSwaggerBATServiceModels.StringBody.Null }, function (error, result) {
-            should.not.exist(error);
-            done();
-          });
-        });
+      it('should support valid null value', async function () {
+        const result = await testClient.string.getNull();
+        assert.deepStrictEqual(result, { body: undefined });
+
+        await testClient.string.putNull({ stringBody: null });
       });
 
-      it('should support valid empty string value', function (done) {
-        testClient.string.putEmpty(function (error) {
-          should.not.exist(error);
-          testClient.string.getEmpty(function (error, result) {
-            result.should.equal('');
-            done();
-          });
-        });
+      it('should support valid empty string value', async function () {
+        await testClient.string.putEmpty();
+        const result = await testClient.string.getEmpty();
+        assert.deepStrictEqual(result, { body: "" });
       });
 
       it('should support valid MBC string value', async function () {
@@ -410,59 +400,43 @@ describe('typescript', function () {
 
         await testClient.string.putMbcs();
         const result = await testClient.string.getMbcs();
-        result.body.should.equal(AutoRestSwaggerBATServiceModels.GetMbcsOKResponse.啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯаяāɡㄅㄩɑɡ䜣);
+        assert.deepStrictEqual(result, { body: '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' });
       });
 
-      it('should support whitespace string value', function (done) {
-        testClient.string.putWhitespace(function (error) {
-          should.not.exist(error);
-          testClient.string.getWhitespace(function (error, result) {
-            result.should.equal(AutoRestSwaggerBATServiceModels.GetWhitespaceOKResponse.Nowisthetimeforallgoodmentocometotheaidoftheircountry);
-            done();
-          });
-        });
+      it('should support whitespace string value', async function () {
+        await testClient.string.putWhitespace();
+        const result = await testClient.string.getWhitespace();
+        assert.deepStrictEqual(result, { body: '    Now is the time for all good men to come to the aid of their country    ' });
       });
 
-      it('should support not provided value', function (done) {
-        testClient.string.getNotProvided(function (error, result) {
-          should.not.exist(error);
-          should.not.exist(result);
-          done();
-        });
+      it('should support not provided value', async function () {
+        const result = await testClient.string.getNotProvided();
+        assert.deepStrictEqual(result, { body: undefined });
       });
 
-      it('should support valid enum valid value', function (done) {
-        testClient.enumModel.getNotExpandable(function (error, result) {
-          should.not.exist(error);
-          result.should.equal(AutoRestSwaggerBATServiceModels.Colors.Redcolor);
-          testClient.enumModel.putNotExpandable(AutoRestSwaggerBATServiceModels.Colors.Redcolor, function (error, result) {
-            should.not.exist(error);
-            done();
-          });
-        });
+      it('should support valid enum valid value', async function () {
+        const result = await testClient.enumModel.getNotExpandable();
+        assert.deepStrictEqual(result, { body: 'red color' });
+        await testClient.enumModel.putNotExpandable('red color');
       });
 
-      it('should correctly handle invalid values for enum', function (done) {
-        testClient.enumModel.putNotExpandable(<AutoRestSwaggerBATServiceModels.Colors>'orange color', function (error, result) {
-          should.exist(error);
-          error.message.should.match(/.*is not a valid value.*/ig);
-          done();
-        });
+      it('should correctly handle invalid values for enum', async function () {
+        const error = await msAssert.throwsAsync(testClient.enumModel.putNotExpandable('orange color' as AutoRestSwaggerBATServiceModels.Colors))
+        should.exist(error);
+        error.message.should.match(/.*is not a valid value.*/ig);
       });
 
-      it('should correctly deserialize base64 encoded string', function (done) {
-        testClient.string.getBase64Encoded(function (error, result) {
-          should.not.exist(error);
-          should.exist(result);
+      it('should correctly deserialize base64 encoded string', async function () {
+        const result: any = await testClient.string.getBase64Encoded();
+        assert(result);
+        assert(result.body);
 
-          const expected = 'a string that gets encoded with base64';
-          if (msRest.isNode) {
-            (result as Buffer).toString("utf8").should.equal(expected);
-          } else {
-            new TextDecoder("utf8").decode(result).should.equal(expected);
-          }
-          done();
-        });
+        const expected = 'a string that gets encoded with base64';
+        if (msRest.isNode) {
+          assert.strictEqual((result.body as Buffer).toString("utf8"), expected);
+        } else {
+          assert.strictEqual(new TextDecoder("utf8").decode(result.body), expected);
+        }
       });
 
       it('should correctly handle null base64url encoded string', function (done) {
@@ -495,11 +469,11 @@ describe('typescript', function () {
 
       it('should getEnumReferenced', async function () {
         const result = await testClient.enumModel.getReferenced();
-        should(result.body).equal(Colors.Redcolor);
+        should(result.body).equal('red color');
       });
 
       it('should putEnumReferenced', async function () {
-        await testClient.enumModel.putReferenced(Colors.Redcolor);
+        await testClient.enumModel.putReferenced('red color');
       });
 
       it('should getEnumReferencedConstant', async function () {
@@ -1088,7 +1062,7 @@ describe('typescript', function () {
         });
 
         it('should get and put enum arrays', async function () {
-          const testArray = [FooEnum.Foo1, FooEnum.Foo2, FooEnum.Foo3];
+          const testArray: FooEnum[] = ["foo1", "foo2", "foo3"];
           const result = await testClient.arrayModel.getEnumValid();
           assert.deepEqual(result.slice(), testArray);
           await testClient.arrayModel.putEnumValid(testArray);
@@ -2062,43 +2036,27 @@ describe('typescript', function () {
         });
       });
 
-      it('should work when path has date', function (done) {
-        testClient.paths.dateValid(function (error, result) {
-          should.not.exist(error);
-          done();
-        });
+      it('should work when path has date', async function () {
+        await testClient.paths.dateValid();
       });
 
-      it('should work when query has date', function (done) {
-        testClient.queries.dateValid(function (error, result) {
-          should.not.exist(error);
-          done();
-        });
+      it('should work when query has date', async function () {
+        await testClient.queries.dateValid();
       });
 
-      it('should work when path has enum', function (done) {
-        testClient.paths.enumValid(<AutoRestUrlTestServiceModels.UriColor>'', function (error, result) {
-          should.exist(error);
-          error.message.should.equal(` is not a valid value for enumPath. The valid values are: ["red color","green color","blue color"].`);
-          testClient.paths.enumNull(<AutoRestUrlTestServiceModels.UriColor>null, function (error, result) {
-            should.exist(error);
-            error.message.should.equal(`enumPath cannot be null or undefined.`);
-            testClient.paths.enumValid(AutoRestUrlTestServiceModels.UriColor.Greencolor, function (error, result) {
-              should.not.exist(error);
-              done();
-            });
-          });
-        });
+      it('should work when path has enum', async function () {
+        const error1 = await msAssert.throwsAsync(testClient.paths.enumValid(<AutoRestUrlTestServiceModels.UriColor>''));
+        error1.message.should.equal(` is not a valid value for enumPath. The valid values are: ["red color","green color","blue color"].`);
+
+        const error2 = await msAssert.throwsAsync(testClient.paths.enumNull(<AutoRestUrlTestServiceModels.UriColor>null));
+        error2.message.should.equal(`enumPath cannot be null or undefined.`);
+
+        await testClient.paths.enumValid('green color');
       });
 
-      it('should work when path has bool', function (done) {
-        testClient.paths.getBooleanTrue(function (error, result) {
-          should.not.exist(error);
-          testClient.paths.getBooleanFalse(function (error, result) {
-            should.not.exist(error);
-            done();
-          });
-        });
+      it('should work when path has bool', async function () {
+        await testClient.paths.getBooleanTrue();
+        await testClient.paths.getBooleanFalse();
       });
 
       it('should work when path has double decimal values', function (done) {
@@ -2225,26 +2183,14 @@ describe('typescript', function () {
           done();
         });
       });
-      it('should work when query has byte values', function (done) {
-        testClient.queries.byteEmpty(function (error, result) {
-          should.not.exist(error);
-          testClient.queries.byteMultiByte({ byteQuery: stringToByteArray('啊齄丂狛狜隣郎隣兀﨩') }, function (error, result) {
-            should.not.exist(error);
-            done();
-          });
-        });
+      it('should work when query has byte values', async function () {
+        await testClient.queries.byteEmpty();
+        await testClient.queries.byteMultiByte({ byteQuery: stringToByteArray('啊齄丂狛狜隣郎隣兀﨩') });
       });
-      it('should work when query has enum values', function (done) {
-        testClient.queries.enumValid({ enumQuery: <AutoRestUrlTestServiceModels.UriColor>'' }, function (error, result) {
-          should.exist(error);
-          testClient.queries.enumNull({ enumQuery: null }, function (error, result) {
-            should.not.exist(error);
-            testClient.queries.enumValid({ enumQuery: AutoRestUrlTestServiceModels.UriColor.Greencolor }, function (error, result) {
-              should.not.exist(error);
-              done();
-            });
-          });
-        });
+      it('should work when query has enum values', async function () {
+        await msAssert.throwsAsync(testClient.queries.enumValid({ enumQuery: <AutoRestUrlTestServiceModels.UriColor>'' }));
+        await testClient.queries.enumNull({ enumQuery: null });
+        await testClient.queries.enumValid({ enumQuery: 'green color' });
       });
       it('should work when query has string array values', async function () {
         const testArray = ['ArrayQuery1', 'begin!*\'();:@ &=+$,/?#[]end', null, ''];
@@ -2254,45 +2200,20 @@ describe('typescript', function () {
         await testClient.queries.arrayStringSsvValid({ arrayQuery: testArray });
         await testClient.queries.arrayStringTsvValid({ arrayQuery: testArray });
       });
-      it('should work when path has string array values', function (done) {
-        var testArray = ['ArrayPath1', 'begin!*\'();:@ &=+$,/?#[]end', null, ''];
-        testClient.paths.arrayCsvInPath(testArray, function (error, result) {
-          should.not.exist(error);
-          done();
-        });
+      it('should work when path has string array values', async function () {
+        await testClient.paths.arrayCsvInPath(['ArrayPath1', 'begin!*\'();:@ &=+$,/?#[]end', null, '']);
       });
-      it('should work when use null values in url query', function (done) {
-        testClient.queries.byteNull({ byteQuery: null }, function (error, result) {
-          should.not.exist(error);
-          testClient.queries.dateNull({ dateQuery: null }, function (error, result) {
-            should.not.exist(error);
-            testClient.queries.dateTimeNull({ dateTimeQuery: null }, function (error, result) {
-              should.not.exist(error);
-              testClient.queries.doubleNull({ doubleQuery: null }, function (error, result) {
-                should.not.exist(error);
-                testClient.queries.floatNull({ floatQuery: null }, function (error, result) {
-                  should.not.exist(error);
-                  testClient.queries.getBooleanNull({ boolQuery: null }, function (error, result) {
-                    should.not.exist(error);
-                    testClient.queries.getIntNull({ intQuery: null }, function (error, result) {
-                      should.not.exist(error);
-                      testClient.queries.getLongNull({ longQuery: null }, function (error, result) {
-                        should.not.exist(error);
-                        testClient.queries.stringNull({ stringQuery: null }, function (error, result) {
-                          should.not.exist(error);
-                          testClient.queries.arrayStringCsvNull({ arrayQuery: null }, function (error, result) {
-                            should.not.exist(error);
-                            done();
-                          });
-                        });
-                      });
-                    });
-                  });
-                });
-              });
-            });
-          });
-        });
+      it('should work when use null values in url query', async function () {
+        await testClient.queries.byteNull({ byteQuery: null });
+        await testClient.queries.dateNull({ dateQuery: null });
+        await testClient.queries.dateTimeNull({ dateTimeQuery: null });
+        await testClient.queries.doubleNull({ doubleQuery: null });
+        await testClient.queries.floatNull({ floatQuery: null });
+        await testClient.queries.getBooleanNull({ boolQuery: null });
+        await testClient.queries.getIntNull({ intQuery: null });
+        await testClient.queries.getLongNull({ longQuery: null });
+        await testClient.queries.stringNull({ stringQuery: null });
+        await testClient.queries.arrayStringCsvNull({ arrayQuery: null });
       });
     });
     describe('Http infrastructure Client', function () {

@@ -1,11 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-
 namespace AutoRest.TypeScript.DSL
 {
-    public class TSIntersectionType
+    public class TSUnionType
     {
         private readonly TSBuilder builder;
 
@@ -16,7 +14,7 @@ namespace AutoRest.TypeScript.DSL
             TypeDeclaration
         }
 
-        public TSIntersectionType(TSBuilder builder)
+        public TSUnionType(TSBuilder builder)
         {
             this.builder = builder;
             currentState = State.Start;
@@ -27,26 +25,22 @@ namespace AutoRest.TypeScript.DSL
             switch (currentState)
             {
                 case State.TypeDeclaration:
-                    builder.Text(" & ");
+                    builder.Text(" | ");
                     break;
             }
             currentState = newState;
         }
 
-        public void ObjectType(Action<TSObjectType> objectTypeAction)
+        public void Text(string text)
         {
             SetCurrentState(State.TypeDeclaration);
-            builder.Line("{");
-            builder.IncreaseIndent();
-            objectTypeAction?.Invoke(new TSObjectType(builder));
-            builder.DecreaseIndent();
-            builder.Text("}");
+            builder.Text(text);
         }
 
-        public void NamedType(string typeName)
+        public void QuotedString(string text)
         {
             SetCurrentState(State.TypeDeclaration);
-            builder.Text(typeName);
+            builder.QuotedString(text);
         }
     }
 }

@@ -60,11 +60,7 @@ export interface AutoRestSwaggerBATArrayServiceOptions extends ServiceClientOpti
  * @readonly
  * @enum {string}
  */
-export enum FooEnum {
-  Foo1 = 'foo1',
-  Foo2 = 'foo2',
-  Foo3 = 'foo3',
-}
+export type FooEnum = 'foo1' | 'foo2' | 'foo3';
 
 /**
  * Contains response data for the getNull operation.

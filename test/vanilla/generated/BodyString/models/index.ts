@@ -84,87 +84,48 @@ export interface EnumModelPutReferencedConstantOptionalParams extends msRest.Req
  * @readonly
  * @enum {string}
  */
-export enum Colors {
-  Redcolor = 'red color',
-  GreenColor = 'green-color',
-  BlueColor = 'blue_color',
-}
+export type Colors = 'red color' | 'green-color' | 'blue_color';
 
 /**
  * Defines values for StringBody.
  * Possible values include: ''
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: StringBody = <StringBody>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum StringBody {
-  Null = null as any,
-}
+export type StringBody = null;
 
 /**
  * Defines values for GetNullOKResponse.
  * Possible values include: ''
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: GetNullOKResponse =
- * <GetNullOKResponse>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum GetNullOKResponse {
-  Null = null as any,
-}
+export type GetNullOKResponse = null;
 
 /**
  * Defines values for GetEmptyOKResponse.
  * Possible values include: ''
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: GetEmptyOKResponse =
- * <GetEmptyOKResponse>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum GetEmptyOKResponse {
-  EmptyString = '',
-}
+export type GetEmptyOKResponse = '';
 
 /**
  * Defines values for GetMbcsOKResponse.
- * Possible values include:
- * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: GetMbcsOKResponse =
- * <GetMbcsOKResponse>"someUnknownValueThatWillStillBeValid";
+ * Possible values include: '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
  * @readonly
  * @enum {string}
  */
-export enum GetMbcsOKResponse {
-  啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯаяāɡㄅㄩɑɡ䜣 = '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€',
-}
+export type GetMbcsOKResponse = '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€';
 
 /**
  * Defines values for GetWhitespaceOKResponse.
- * Possible values include: '    Now is the time for all good men to come to
- * the aid of their country    '
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: GetWhitespaceOKResponse =
- * <GetWhitespaceOKResponse>"someUnknownValueThatWillStillBeValid";
+ * Possible values include: '    Now is the time for all good men to come to the aid of their
+ * country    '
  * @readonly
  * @enum {string}
  */
-export enum GetWhitespaceOKResponse {
-  Nowisthetimeforallgoodmentocometotheaidoftheircountry = '    Now is the time for all good men to come to the aid of their country    ',
-}
+export type GetWhitespaceOKResponse = '    Now is the time for all good men to come to the aid of their country    ';
 
 /**
  * Contains response data for the getNull operation.

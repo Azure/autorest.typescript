@@ -58,21 +58,6 @@ autorest --typescript \
   --generate-metadata=true
 ```
 
-## --model-enum-as-union
-By default, a Swagger enum is translated into a TypeScript enum, like so:
-```ts
-enum Colors {
-  Redcolor = 'red color',
-  GreenColor = 'green-color',
-  BlueColor = 'blue_color',
-}
-```
-You may instead generate a union of literal values (example below) by passing `--model-enum-as-union=true` to AutoRest.
-```ts
-type Colors = 'red color' | 'green-color' | 'blue_color';
-```
-This can save some space when bundling for the browser.
-
 ## --model-date-time-as-string
 Swagger strings can have the format `"date-time"`, which causes AutoRest to model the parameter as JavaScript Date.
 ```ts
@@ -142,6 +127,24 @@ constructor(credentials: msRest.ServiceClientCredentials, options?: msRest.Servi
 
 ### Further Documentation on the Command Line
 The complete list of command line arguments can be found [here](https://github.com/Azure/autorest/blob/master/docs/user/cli.md). Not every command line option is available for the typescript extension.
+
+# Deprecated Flags
+
+## --model-enum-as-union (deprecated)
+This flag is now on by default and cannot be turned off. Swagger enum values are now always treated as a union of literal values.
+
+Previous behavior (when `--model-enum-as-union` was `false` or not defined):
+```ts
+enum Colors {
+  Redcolor = 'red color',
+  GreenColor = 'green-color',
+  BlueColor = 'blue_color',
+}
+```
+Current behavior:
+```ts
+type Colors = 'red color' | 'green-color' | 'blue_color';
+```
 
 # Development
 
