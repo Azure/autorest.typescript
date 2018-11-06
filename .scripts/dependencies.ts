@@ -5,6 +5,7 @@ import { execSync } from "child_process";
 export interface PackageFolder {
   folderPath: string;
   extraFilePaths?: string[];
+  isLernaPackage?: boolean;
 }
 
 function log(filePath: string, message: string): void {
@@ -291,24 +292,28 @@ export function updateLocalDependencies(packageFolders: PackageFolder[], localDe
     }
 
     if (forceRefresh || dependenciesToRefresh.length > 0) {
-      const packageLockFilePath = resolvePath(packageFolderPath, "package-lock.json");
-      if (exists(packageLockFilePath)) {
-        log(packageLockFilePath, `Deleting...`);
-        deleteFile(packageLockFilePath);
-      }
+      if (packageFolder.isLernaPackage) {
+        log(packageFolderPath, `Not refreshing dependencies since this is a lerna package.`);
+      } else {
+        const packageLockFilePath = resolvePath(packageFolderPath, "package-lock.json");
+        if (exists(packageLockFilePath)) {
+          log(packageLockFilePath, `Deleting...`);
+          deleteFile(packageLockFilePath);
+        }
 
-      const nodeModulesFolderPath = resolvePath(packageFolderPath, "node_modules");
-      if (exists(nodeModulesFolderPath)) {
-        for (const dependencyToRefresh of dependenciesToRefresh) {
-          const dependencyNodeModuleFolderPath: string = resolvePath(nodeModulesFolderPath, dependencyToRefresh);
-          if (exists(dependencyNodeModuleFolderPath)) {
-            log(dependencyNodeModuleFolderPath, `Deleting...`);
-            deleteFolder(dependencyNodeModuleFolderPath);
+        const nodeModulesFolderPath = resolvePath(packageFolderPath, "node_modules");
+        if (exists(nodeModulesFolderPath)) {
+          for (const dependencyToRefresh of dependenciesToRefresh) {
+            const dependencyNodeModuleFolderPath: string = resolvePath(nodeModulesFolderPath, dependencyToRefresh);
+            if (exists(dependencyNodeModuleFolderPath)) {
+              log(dependencyNodeModuleFolderPath, `Deleting...`);
+              deleteFolder(dependencyNodeModuleFolderPath);
+            }
           }
         }
-      }
 
-      execute("npm install", packageFolderPath);
+        execute("npm install", packageFolderPath);
+      }
     }
   }
 }

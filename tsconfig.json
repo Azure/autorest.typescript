@@ -3,10 +3,10 @@
     "module": "commonjs",
     "sourceMap": true,
     "importHelpers": true,
-    "target": "es6",
+    "target": "es2018",
     "lib": [
       "dom",
-      "es2015"
+      "es2018"
     ]
   }
 }

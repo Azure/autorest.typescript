@@ -180,7 +180,7 @@ namespace AutoRest.TypeScript
                 }
                 else
                 {
-                    string newPackageVersion = "1.0.0";
+                    string newPackageVersion = "0.1.0";
                     string[] inputFilePaths = host?.GetValue<string[]>("input-file").Result;
                     if (inputFilePaths != null && inputFilePaths.Any((string inputFilePath) => inputFilePath.Replace('\\', '/').ToLowerInvariant().Contains("/preview/")))
                     {
