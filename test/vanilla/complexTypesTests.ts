@@ -6,6 +6,7 @@
 import * as assert from 'assert';
 import * as moment from 'moment';
 import * as should from 'should';
+import * as msAssert from "../util/msAssert";
 
 import { AutoRestComplexTestService, AutoRestComplexTestServiceModels } from './generated/BodyComplex/autoRestComplexTestService';
 
@@ -339,30 +340,25 @@ describe('typescript', function () {
         ]
       });
       var testClient = new AutoRestComplexTestService(clientOptions);
-      it('should get valid polymorphic properties', function (done) {
-        testClient.polymorphism.getValid(function (error, result) {
-          should.not.exist(error);
+      it.only('should get valid polymorphic properties', async function () {
+        const getResult = await testClient.polymorphism.getValid();
 
-          const actualBytes = (result.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
-          should.exist(actualBytes);
-          actualBytes.length.should.equal(5);
-          actualBytes[0].should.equal(255);
-          actualBytes[1].should.equal(255);
-          actualBytes[2].should.equal(255);
-          actualBytes[3].should.equal(255);
-          actualBytes[4].should.equal(254);
+        const actualBytes = (getResult.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+        should.exist(actualBytes);
+        actualBytes.length.should.equal(5);
+        actualBytes[0].should.equal(255);
+        actualBytes[1].should.equal(255);
+        actualBytes[2].should.equal(255);
+        actualBytes[3].should.equal(255);
+        actualBytes[4].should.equal(254);
 
-          // Working around the fact that Uint8Array doesn't work with deepEqual
-          delete (result.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
-          const expectedFish = getFish();
-          delete (expectedFish.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
-          assert.deepEqual(result, expectedFish);
+        // Working around the fact that Uint8Array doesn't work with deepEqual
+        delete (getResult.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+        const expectedFish = getFish();
+        delete (expectedFish.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+        assert.deepEqual(getResult, expectedFish);
 
-          testClient.polymorphism.putValid(getFish(), function (error, result) {
-            should.not.exist(error);
-            done();
-          });
-        });
+        await testClient.polymorphism.putValid(getFish());
       });
       var getBadfish = () => (<AutoRestComplexTestServiceModels.FishUnion>{
         'fishtype': 'sawshark',
@@ -389,13 +385,11 @@ describe('typescript', function () {
           }
         ]
       });
-      it('should throw when required fields are omitted from polymorphic types', function (done) {
-        testClient.polymorphism.putValidMissingRequired(getBadfish(), function (error, result) {
-          should.exist(error);
-          error.message.should.containEql('birthday');
-          error.message.should.containEql('cannot be null or undefined');
-          done();
-        });
+      it('should throw when required fields are omitted from polymorphic types', async function () {
+        const error = await msAssert.throwsAsync(testClient.polymorphism.putValidMissingRequired(getBadfish()));
+        should.exist(error);
+        error.message.should.containEql('birthday');
+        error.message.should.containEql('cannot be null or undefined');
       });
 
       var getRawSalmon = () => (<AutoRestComplexTestServiceModels.SalmonUnion>{
@@ -437,26 +431,23 @@ describe('typescript', function () {
         ]
       });
 
-      it('should get complicated polymorphic types', function (done) {
-        testClient.polymorphism.getComplicated(function (err, result, req, res) {
-          should.not.exist(err);
+      it('should get complicated polymorphic types', async function () {
+        const result = await testClient.polymorphism.getComplicated();
 
-          const picture = (result.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
-          should.exist(picture);
-          picture.length.should.equal(5);
-          picture[0].should.equal(255);
-          picture[1].should.equal(255);
-          picture[2].should.equal(255);
-          picture[3].should.equal(255);
-          picture[4].should.equal(254);
-          delete (result.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+        const picture = (result.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+        should.exist(picture);
+        picture.length.should.equal(5);
+        picture[0].should.equal(255);
+        picture[1].should.equal(255);
+        picture[2].should.equal(255);
+        picture[3].should.equal(255);
+        picture[4].should.equal(254);
+        delete (result.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
 
-          const rawSalmon = getRawSalmon();
-          delete (rawSalmon.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+        const rawSalmon = getRawSalmon();
+        delete (rawSalmon.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
 
-          assert.deepEqual(result, rawSalmon);
-          done();
-        });
+        assert.deepEqual(result, rawSalmon);
       });
 
       it('should put complicated polymorphic types', async function () {
@@ -548,37 +539,32 @@ describe('typescript', function () {
         ]
       });
       var testClient = new AutoRestComplexTestService(clientOptions);
-      it('should get and put valid basic type properties', function (done) {
-        testClient.polymorphicrecursive.getValid(function (error, result) {
-          should.not.exist(error);
+      it('should get and put valid basic type properties', async function () {
+        const result = await testClient.polymorphicrecursive.getValid();
 
-          function checkSawshark(sawshark) {
-            const actualBytes = sawshark.picture;
-            should.exist(actualBytes);
-            actualBytes.length.should.equal(5);
-            actualBytes[0].should.equal(255);
-            actualBytes[1].should.equal(255);
-            actualBytes[2].should.equal(255);
-            actualBytes[3].should.equal(255);
-            actualBytes[4].should.equal(254);
-            delete sawshark.picture;
-          }
+        function checkSawshark(sawshark) {
+          const actualBytes = sawshark.picture;
+          should.exist(actualBytes);
+          actualBytes.length.should.equal(5);
+          actualBytes[0].should.equal(255);
+          actualBytes[1].should.equal(255);
+          actualBytes[2].should.equal(255);
+          actualBytes[3].should.equal(255);
+          actualBytes[4].should.equal(254);
+          delete sawshark.picture;
+        }
 
-          checkSawshark(result.siblings[0].siblings[0].siblings[1]);
-          checkSawshark(result.siblings[0].siblings[1]);
-          checkSawshark(result.siblings[1]);
+        checkSawshark(result.siblings[0].siblings[0].siblings[1]);
+        checkSawshark(result.siblings[0].siblings[1]);
+        checkSawshark(result.siblings[1]);
 
-          const bigfish = getBigfish();
-          delete (bigfish.siblings[0].siblings[0].siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
-          delete (bigfish.siblings[0].siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
-          delete (bigfish.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+        const bigfish = getBigfish();
+        delete (bigfish.siblings[0].siblings[0].siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+        delete (bigfish.siblings[0].siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+        delete (bigfish.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
 
-          assert.deepEqual(result, bigfish);
-          testClient.polymorphicrecursive.putValid(getBigfish(), function (error, result) {
-            should.not.exist(error);
-            done();
-          });
-        });
+        assert.deepEqual(result, bigfish);
+        await testClient.polymorphicrecursive.putValid(getBigfish());
       });
     });
   });

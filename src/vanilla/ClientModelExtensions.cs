@@ -535,31 +535,34 @@ namespace AutoRest.TypeScript
             {
                 AddTypeProperty(mapper, "Composite", typeObject =>
                 {
-                    if (composite.IsPolymorphic)
+                    if (expandComposite)
                     {
-                        // Note: If the polymorphicDiscriminator has a dot in it's name then do not escape that dot for
-                        // it's serializedName, the way it is done for other properties. This makes it easy to find the
-                        // discriminator property from the responseBody during deserialization. Please, do not get confused
-                        // between the definition of the discriminator and the definition of the property that is
-                        // marked as the discriminator.
-                        typeObject.ObjectProperty("polymorphicDiscriminator", polymorphicDiscriminator =>
+                        if (composite.IsPolymorphic)
                         {
-                            polymorphicDiscriminator.QuotedStringProperty("serializedName", composite.PolymorphicDiscriminator);
-                            polymorphicDiscriminator.QuotedStringProperty("clientName", Singleton<CodeNamerTS>.Instance.GetPropertyName(composite.PolymorphicDiscriminator));
-                        });
-                        typeObject.QuotedStringProperty("uberParent", composite.Name);
-                    }
-                    else
-                    {
-                        CompositeType baseType = composite;
-                        while (baseType.BaseModelType != null)
-                        {
-                            baseType = baseType.BaseModelType;
+                            // Note: If the polymorphicDiscriminator has a dot in it's name then do not escape that dot for
+                            // it's serializedName, the way it is done for other properties. This makes it easy to find the
+                            // discriminator property from the responseBody during deserialization. Please, do not get confused
+                            // between the definition of the discriminator and the definition of the property that is
+                            // marked as the discriminator.
+                            typeObject.ObjectProperty("polymorphicDiscriminator", polymorphicDiscriminator =>
+                            {
+                                polymorphicDiscriminator.QuotedStringProperty("serializedName", composite.PolymorphicDiscriminator);
+                                polymorphicDiscriminator.QuotedStringProperty("clientName", Singleton<CodeNamerTS>.Instance.GetPropertyName(composite.PolymorphicDiscriminator));
+                            });
+                            typeObject.QuotedStringProperty("uberParent", composite.Name);
                         }
-                        if (baseType.IsPolymorphic)
+                        else
                         {
-                            typeObject.TextProperty("polymorphicDiscriminator", baseType.Name + ".type.polymorphicDiscriminator");
-                            typeObject.QuotedStringProperty("uberParent", baseType.Name);
+                            CompositeType baseType = composite;
+                            while (baseType.BaseModelType != null)
+                            {
+                                baseType = baseType.BaseModelType;
+                            }
+                            if (baseType.IsPolymorphic)
+                            {
+                                typeObject.TextProperty("polymorphicDiscriminator", baseType.Name + ".type.polymorphicDiscriminator");
+                                typeObject.QuotedStringProperty("uberParent", baseType.Name);
+                            }
                         }
                     }
 
