@@ -10,9 +10,9 @@ namespace AutoRest.TypeScript.DSL
     /// A TypeScript DSL representation for a value. This could be a property value, an argument in
     /// an argument list, or an element in an array.
     /// </summary>
-    public class TSValue
+    public class JSValue
     {
-        private readonly TSBuilder builder;
+        private readonly JSBuilder builder;
 
         protected BuilderPosition CreatePosition()
         {
@@ -40,10 +40,10 @@ namespace AutoRest.TypeScript.DSL
         }
 
         /// <summary>
-        /// Create a new TSValue that will emit to the provided TSBuilder.
+        /// Create a new TSValue that will emit to the provided JSBuilder.
         /// </summary>
-        /// <param name="builder">The TSBuilder this TSValue will emit to.</param>
-        public TSValue(TSBuilder builder)
+        /// <param name="builder">The JSBuilder this TSValue will emit to.</param>
+        public JSValue(JSBuilder builder)
         {
             this.builder = builder;
         }
@@ -62,7 +62,7 @@ namespace AutoRest.TypeScript.DSL
         /// </summary>
         /// <param name="functionName">The name of the function.</param>
         /// <param name="argumentListAction">An action that will be invoked to produce the arguments of the function call.</param>
-        public virtual void FunctionCall(string functionName, Action<TSArgumentList> argumentListAction)
+        public virtual void FunctionCall(string functionName, Action<JSArgumentList> argumentListAction)
         {
             builder.FunctionCall(functionName, argumentListAction);
         }
@@ -80,7 +80,7 @@ namespace AutoRest.TypeScript.DSL
         /// Add a JSON array to this TSValue.
         /// </summary>
         /// <param name="arrayAction">The action that will be invoked to produce the elements of the JSON array.</param>
-        public virtual void Array(Action<TSArray> arrayAction = null)
+        public virtual void Array(Action<JSArray> arrayAction = null)
         {
             builder.Array(arrayAction);
         }
@@ -89,7 +89,7 @@ namespace AutoRest.TypeScript.DSL
         /// Add a JSON object to this TSValue.
         /// </summary>
         /// <param name="objectAction">The action that will be invoked to produce the properties of the JSON object.</param>
-        public virtual void Object(Action<TSObject> objectAction = null)
+        public virtual void Object(Action<JSObject> objectAction = null)
         {
             builder.Object(objectAction);
         }
@@ -119,7 +119,7 @@ namespace AutoRest.TypeScript.DSL
             builder.Undefined();
         }
 
-        public virtual void Lambda(string paramName, Action<TSBlock> lambdaBodyAction)
+        public virtual void Lambda(string paramName, Action<JSBlock> lambdaBodyAction)
         {
             builder.Lambda(paramName, lambdaBodyAction);
         }

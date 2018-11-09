@@ -1,24 +1,36 @@
-# Azure AutoRestParameterizedCustomHostTestClient SDK for JavaScript
-This package provides the **latest API version (2018-02-01)** of AutoRestParameterizedCustomHostTestClient.
+## Azure AutoRestParameterizedCustomHostTestClient SDK for JavaScript
 
-## Currently supported environments
+This package contains the **latest API version (2018-02-01)** of AutoRestParameterizedCustomHostTestClient.
+
+### Currently supported environments
+
 - Node.js version 6.x.x or higher
 - Browser JavaScript
 
-## How to Install
+### How to Install
+
 ```
 npm install @azure/multiapi-test
 ```
 
-## Available API versions
+### Available API versions
+
 | API version | NPM package | Latest |
 | - | - | - |
 | 2018-02-01 | https://npmjs.com/@azure/multiapi-test-2018-02-01 | ✔️ |
 | 2017-10-01 | https://npmjs.com/@azure/multiapi-test-2017-10-01 |  |
 
-## How to use
+### How to use
 
-### nodejs - Authentication, client creation and getEmpty paths as an example written in TypeScript.
+#### nodejs - Authentication, client creation and getEmpty paths as an example written in TypeScript.
+
+##### Install ms-rest-nodeauth
+
+```
+npm install ms-rest-nodeauth
+```
+
+##### Sample code
 
 ```ts
 import * as msRest from "ms-rest-js";
@@ -42,7 +54,16 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
 });
 ```
 
-### browser - Authentication, client creation and getEmpty paths as an example written in JavaScript.
+#### browser - Authentication, client creation and getEmpty paths as an example written in JavaScript.
+
+##### Install ms-rest-browserauth
+
+```
+npm install ms-rest-browserauth
+```
+
+##### Sample code
+
 See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to Azure in the browser.
 
 - index.html
@@ -55,7 +76,7 @@ See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to
     <script src="node_modules/ms-rest-azure-js/dist/msRestAzure.js"></script>
     <script src="node_modules/ms-rest-browserauth/dist/msAuth.js"></script>
     <script src="node_modules/@azure/multiapi-test/dist/multiapi-test.js"></script>
-    <script>
+    <script type="text/javascript">
       const subscriptionId = "<Subscription_Id>";
       const authManager = new msAuth.AuthManager({
         clientId: "<client id for your Azure AD app>",
@@ -81,10 +102,10 @@ See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to
       });
     </script>
   </head>
-  <body>
-  </body>
+  <body></body>
 </html>
 ```
 
-# Related projects
- - [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
+## Related projects
+
+- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)

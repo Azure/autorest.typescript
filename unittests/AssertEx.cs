@@ -22,7 +22,7 @@ namespace AutoRest.TypeScript
             EqualLines(Lines(expected), Lines(actual));
         }
 
-        public static void EqualLines(string expected, TSBuilder actual)
+        public static void EqualLines(string expected, IBuilder actual)
         {
             EqualLines(Lines(expected), actual?.ToString());
         }
@@ -37,7 +37,7 @@ namespace AutoRest.TypeScript
             EqualLines(expected, Lines(actual));
         }
 
-        public static void EqualLines(IEnumerable<string> expected, TSBuilder actual)
+        public static void EqualLines(IEnumerable<string> expected, IBuilder actual)
         {
             EqualLines(expected, actual?.ToString());
         }

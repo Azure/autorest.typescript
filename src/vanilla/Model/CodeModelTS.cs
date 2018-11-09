@@ -468,63 +468,43 @@ namespace AutoRest.TypeScript.Model
             return GetSampleMethod()?.MethodGroup?.Name?.ToCamelCase();
         }
 
-        public virtual string GenerateSampleMethod(bool isBrowser = false)
+        public void GenerateSampleMethod(JSBuilder builder, bool isBrowser = false)
         {
-            var method = GetSampleMethod();
-            var methodGroup = GetSampleMethodGroupName();
-            var requiredParameters = method.LogicalParameters.Where(
+            Method method = GetSampleMethod();
+            string methodGroup = GetSampleMethodGroupName();
+            List<Parameter> requiredParameters = method.LogicalParameters.Where(
                 p => p != null && !p.IsClientProperty && !string.IsNullOrWhiteSpace(p.Name) && !p.IsConstant).OrderBy(item => !item.IsRequired).ToList();
-            var builder = new IndentedStringBuilder("  ");
-            var paramInit = InitializeParametersForSampleMethod(requiredParameters, isBrowser);
-            builder.AppendLine(paramInit);
-            var declaration = new StringBuilder();
-            bool first = true;
-            foreach (var param in requiredParameters)
-            {
-                if (!first)
-                    declaration.Append(", ");
-                declaration.Append(param.Name);
-                first = false;
-            }
-            var clientRef = "client.";
-            if (!string.IsNullOrEmpty(methodGroup))
-            {
-                clientRef = $"client.{methodGroup}.";
-            }
-            var methodRef = $"{clientRef}{method.Name.ToCamelCase()}({declaration.ToString()}).then((result) => {{";
-            builder.AppendLine(methodRef)
-                   .Indent()
-                   .AppendLine("console.log(\"The result is:\");")
-                   .AppendLine("console.log(result);")
-                   .Outdent();
-            if (isBrowser)
-            {
-                builder.Append("})");
-            }
-            else
-            {
-                builder.AppendLine("});");
-            }
 
-            return builder.ToString();
-        }
-
-        public string InitializeParametersForSampleMethod(List<Parameter> requiredParameters, bool isBrowser = false)
-        {
-            var builder = new IndentedStringBuilder("  ");
-            foreach (var param in requiredParameters)
+            foreach (Parameter param in requiredParameters)
             {
-                var paramValue = "\"\"";
-                paramValue = param.ModelType.InitializeType(param.Name, isBrowser);
-                var paramDeclaration = $"const {param.Name}";
+                string parameterName = param.Name;
                 if (param.ModelType is CompositeType && !isBrowser)
                 {
-                    paramDeclaration += $": {ClientPrefix}Models.{param.ModelTypeName}";
+                    parameterName += $": {ClientPrefix}Models.{param.ModelTypeName}";
                 }
-                paramDeclaration += $" = {paramValue};";
-                builder.AppendLine(paramDeclaration);
+
+                string parameterValue = param.ModelType.InitializeType(param.Name, isBrowser);
+
+                builder.ConstVariable(parameterName, parameterValue);
             }
-            return builder.ToString();
+
+            builder.FunctionCall($"client.{(string.IsNullOrEmpty(methodGroup) ? "" : $"{methodGroup}.")}{method.Name.ToCamelCase()}", argumentList =>
+            {
+                foreach (Parameter parameter in requiredParameters)
+                {
+                    argumentList.Text(parameter.Name);
+                }
+            });
+            builder.Block(".then((result) =>", false, block =>
+            {
+                block.Line("console.log(\"The result is:\");");
+                block.Line("console.log(result);");
+            });
+            builder.Text(")");
+            if (!isBrowser)
+            {
+                builder.Line(";");
+            }
         }
 
         public string GenerateOperationSpecDefinitions(string emptyLine)
@@ -761,19 +741,26 @@ namespace AutoRest.TypeScript.Model
             GenerateNodeSampleClientImport(builder);
         }
 
-        public string GenerateReadmeMdNodeSampleCode(string emptyLine)
+        public string GenerateReadmeMdNodeSampleCode()
         {
             TSBuilder builder = new TSBuilder();
 
+            GenerateReadmeMdNodeSampleCode(builder);
+
+            return builder.ToString();
+        }
+
+        public void GenerateReadmeMdNodeSampleCode(TSBuilder builder)
+        {
             GenerateNodeSampleImports(builder);
 
             builder.ConstVariable("subscriptionId", "process.env[\"AZURE_SUBSCRIPTION_ID\"]");
-            builder.Line(emptyLine);
+            builder.Line();
             builder.Line($"msRestNodeAuth.interactiveLogin().then((creds) => {{");
             builder.Indent(() =>
             {
                 builder.ConstVariable("client", $"new {Name}(creds, subscriptionId)");
-                builder.Line(GenerateSampleMethod(false));
+                GenerateSampleMethod(builder, false);
             });
             builder.Line($"}}).catch((err) => {{");
             builder.Indent(() =>
@@ -781,14 +768,20 @@ namespace AutoRest.TypeScript.Model
                 builder.Line("console.error(err);");
             });
             builder.Line($"}});");
+        }
+
+        public string GenerateReadmeMdBrowserSampleCode(string indentation = "")
+        {
+            JSBuilder builder = new JSBuilder();
+            builder.AddToPrefix(indentation);
+
+            GenerateReadmeMdBrowserSampleCode(builder);
 
             return builder.ToString();
         }
 
-        public string GenerateReadmeMdBrowserSampleCode(string emptyLine)
+        public void GenerateReadmeMdBrowserSampleCode(JSBuilder builder)
         {
-            TSBuilder builder = new TSBuilder();
-
             builder.ConstQuotedStringVariable("subscriptionId", "<Subscription_Id>");
             builder.Text("const authManager = new msAuth.AuthManager(");
             builder.Object(tsObject =>
@@ -808,7 +801,8 @@ namespace AutoRest.TypeScript.Model
                 });
 
                 builder.ConstVariable("client", $"new {BundleVarName}.{Name}(res.creds, subscriptionId)");
-                builder.Line($"{GenerateSampleMethod(true)}.catch((err) => {{");
+                GenerateSampleMethod(builder, true);
+                builder.Line($".catch((err) => {{");
                 builder.Indent(() =>
                 {
                     builder.Line("console.log(\"An error occurred:\");");
@@ -817,8 +811,6 @@ namespace AutoRest.TypeScript.Model
                 builder.Line($"}});");
             });
             builder.Line($"}});");
-
-            return builder.ToString();
         }
 
         public string GenerateClassProperties(string emptyLine)
@@ -837,6 +829,159 @@ namespace AutoRest.TypeScript.Model
         {
             string camelCaseProperty = propertyName.ToCamelCase();
             return !propertiesToIgnore.Contains(camelCaseProperty) && !serviceClientProperties.Contains(camelCaseProperty);
+        }
+
+        public string GenerateReadmeMd()
+        {
+            MarkdownBuilder builder = new MarkdownBuilder();
+            builder.IncreaseCurrentHeaderLevel();
+
+            string mainSectionHeader = IsAzure
+                ? $"Azure {Name} SDK for JavaScript"
+                : $"An isomorphic javascript sdk for - {Name}";
+
+            builder.Section(mainSectionHeader, () =>
+            {
+                GeneratePackageContains(builder);
+                builder.Line();
+                GenerateCurrentlySupportedEnvironments(builder);
+                builder.Line();
+                GenerateHowToInstall(builder);
+                builder.Line();
+                if (Settings.MultiapiLatest)
+                {
+                    GenerateAvailableAPIVersions(builder);
+                    builder.Line();
+                }
+                builder.Section("How to use", () =>
+                {
+                    GenerateHowToUseInNodeJs(builder);
+                    builder.Line();
+                    GenerateHowToUseInBrowser(builder);
+                });
+            });
+            builder.Line();
+            GenerateRelatedProjects(builder);
+
+            return builder.ToString();
+        }
+
+        private void GeneratePackageContains(MarkdownBuilder builder)
+        {
+            if (Settings.MultiapiLatest)
+            {
+                builder.Line($"This package contains the **latest API version ({Settings.ApiVersions[0]})** of {Name}.");
+            }
+            else if (Settings.Multiapi)
+            {
+                builder.Line($"This package contains **API version {Settings.ApiVersion}** of {Name}.");
+                builder.Line();
+                builder.Line($"For other API versions, see https://npmjs.com/{Settings.PackageName}.");
+            }
+            else
+            {
+                builder.Line($"This package contains an isomorphic SDK for {Name}.");
+            }
+        }
+
+        private void GenerateCurrentlySupportedEnvironments(MarkdownBuilder builder)
+        {
+            builder.Section("Currently supported environments", () =>
+            {
+                builder.List(new[]
+                {
+                    "Node.js version 6.x.x or higher",
+                    "Browser JavaScript"
+                });
+            });
+        }
+
+        private void GenerateHowToInstall(MarkdownBuilder builder)
+        {
+            builder.Section("How to Install", () =>
+            {
+                builder.Console($"npm install {PackageName}");
+            });
+        }
+
+        private void GenerateAvailableAPIVersions(MarkdownBuilder builder)
+        {
+            builder.Section("Available API versions", () =>
+            {
+                builder.Line("| API version | NPM package | Latest |");
+                builder.Line("| - | - | - |");
+                bool first = true;
+                foreach (string apiVersion in Settings.ApiVersions)
+                {
+                    builder.Line($"| {apiVersion} | https://npmjs.com/{Settings.PackageName}-{apiVersion} | {(first ? "✔️" : "")} |");
+                    first = false;
+                }
+            });
+        }
+
+        private void GenerateHowToUseInNodeJs(MarkdownBuilder builder)
+        {
+            builder.Section($"nodejs - Authentication, client creation and {GetSampleMethod()?.Name} {GetSampleMethodGroupName()} as an example written in TypeScript.", () =>
+            {
+                builder.Section("Install ms-rest-nodeauth", () =>
+                {
+                    builder.Console("npm install ms-rest-nodeauth");
+                });
+                builder.Line();
+                builder.Section("Sample code", () =>
+                {
+                    builder.TypeScript(tsBuilder => GenerateReadmeMdNodeSampleCode(tsBuilder));
+                });
+            });
+        }
+
+        private void GenerateHowToUseInBrowser(MarkdownBuilder builder)
+        {
+            builder.Section($"browser - Authentication, client creation and {GetSampleMethod().Name} {GetSampleMethodGroupName()} as an example written in JavaScript.", () =>
+            {
+                builder.Section("Install ms-rest-browserauth", () =>
+                {
+                    builder.Console("npm install ms-rest-browserauth");
+                });
+                builder.Line();
+                builder.Section("Sample code", () =>
+                {
+                    builder.Line("See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to Azure in the browser.");
+                    builder.Line();
+                    builder.List("index.html");
+                    builder.HTML(htmlBuilder =>
+                    {
+                        htmlBuilder.DOCTYPE();
+                        htmlBuilder.Html(html =>
+                        {
+                            html.Head(head =>
+                            {
+                                head.Title($"{PackageName} sample");
+                                head.Script("node_modules/ms-rest-js/dist/msRest.browser.js");
+                                if (IsAzure)
+                                {
+                                    head.Script("node_modules/ms-rest-azure-js/dist/msRestAzure.js");
+                                }
+                                head.Script("node_modules/ms-rest-browserauth/dist/msAuth.js");
+                                head.Script($"node_modules/{PackageName}/dist/{BundleFilename}.js");
+                                head.Script(jsBuilder =>
+                                {
+                                    GenerateReadmeMdBrowserSampleCode(jsBuilder);
+                                });
+                            });
+                            html.Body();
+                        });
+                    });
+                });
+            });
+        }
+
+        private void GenerateRelatedProjects(MarkdownBuilder builder)
+        {
+            builder.Section("Related projects", () =>
+            {
+                builder.List("[Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)");
+            });
         }
     }
 }

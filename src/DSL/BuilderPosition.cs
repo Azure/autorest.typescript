@@ -7,11 +7,11 @@ namespace AutoRest.TypeScript.DSL
     /// <summary>
     /// A position within a TSBuilder.
     /// </summary>
-    public class TSPosition
+    public class BuilderPosition
     {
-        private readonly TSPosition previousPosition;
+        private readonly BuilderPosition previousPosition;
 
-        public TSPosition(TSPosition previousPosition, int charactersAfterPreviousPosition)
+        public BuilderPosition(BuilderPosition previousPosition, int charactersAfterPreviousPosition)
         {
             this.previousPosition = previousPosition;
             this.CharactersAfterPreviousPosition = charactersAfterPreviousPosition;
