@@ -1,22 +1,29 @@
-# An isomorphic javascript sdk for - AutoRestComplexTestService
-This project provides an isomorphic javascript package. Right now it supports:
-- node.js version 6.x.x or higher
-- browser javascript
+## An isomorphic javascript sdk for - AutoRestComplexTestService
 
-## How to Install
+This package contains an isomorphic SDK for AutoRestComplexTestService.
 
-- nodejs
+### Currently supported environments
+
+- Node.js version 6.x.x or higher
+- Browser JavaScript
+
+### How to Install
+
 ```
 npm install
 ```
-- browser
-```html
-<script type="text/javascript" src="/dist/bundle.js"></script>
+
+### How to use
+
+#### nodejs - Authentication, client creation and getValid basic as an example written in TypeScript.
+
+##### Install ms-rest-nodeauth
+
+```
+npm install ms-rest-nodeauth
 ```
 
-## How to use
-
-### nodejs - Authentication, client creation and getValid basic as an example written in TypeScript.
+##### Sample code
 
 ```ts
 import * as msRest from "ms-rest-js";
@@ -35,7 +42,17 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
 });
 ```
 
-### browser - Authentication, client creation and getValid basic as an example written in javascript.
+#### browser - Authentication, client creation and getValid basic as an example written in JavaScript.
+
+##### Install ms-rest-browserauth
+
+```
+npm install ms-rest-browserauth
+```
+
+##### Sample code
+
+See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to Azure in the browser.
 
 - index.html
 ```html
@@ -68,10 +85,10 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
       });
     </script>
   </head>
-  <body>
-  </body>
+  <body></body>
 </html>
 ```
 
-# Related projects
- - [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
+## Related projects
+
+- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)

@@ -1,19 +1,29 @@
-# Azure AutoRestLongRunningOperationTestService SDK for JavaScript
+## Azure AutoRestLongRunningOperationTestService SDK for JavaScript
+
 This package contains an isomorphic SDK for AutoRestLongRunningOperationTestService.
 
-## Currently supported environments
+### Currently supported environments
+
 - Node.js version 6.x.x or higher
 - Browser JavaScript
 
-## How to Install
+### How to Install
+
 ```
 npm install
 ```
 
+### How to use
 
-## How to use
+#### nodejs - Authentication, client creation and put200Succeeded lROs as an example written in TypeScript.
 
-### nodejs - Authentication, client creation and put200Succeeded lROs as an example written in TypeScript.
+##### Install ms-rest-nodeauth
+
+```
+npm install ms-rest-nodeauth
+```
+
+##### Sample code
 
 ```ts
 import * as msRest from "ms-rest-js";
@@ -38,7 +48,16 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
 });
 ```
 
-### browser - Authentication, client creation and put200Succeeded lROs as an example written in JavaScript.
+#### browser - Authentication, client creation and put200Succeeded lROs as an example written in JavaScript.
+
+##### Install ms-rest-browserauth
+
+```
+npm install ms-rest-browserauth
+```
+
+##### Sample code
+
 See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to Azure in the browser.
 
 - index.html
@@ -51,7 +70,7 @@ See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to
     <script src="node_modules/ms-rest-azure-js/dist/msRestAzure.js"></script>
     <script src="node_modules/ms-rest-browserauth/dist/msAuth.js"></script>
     <script src="node_modules//dist/bundle.js"></script>
-    <script>
+    <script type="text/javascript">
       const subscriptionId = "<Subscription_Id>";
       const authManager = new msAuth.AuthManager({
         clientId: "<client id for your Azure AD app>",
@@ -78,10 +97,10 @@ See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to
       });
     </script>
   </head>
-  <body>
-  </body>
+  <body></body>
 </html>
 ```
 
-# Related projects
- - [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
+## Related projects
+
+- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)

@@ -24,10 +24,5 @@ namespace AutoRest.TypeScript
         {
             return new AzureModelIndexTemplate { Model = codeModel };
         }
-
-        public override Template<CodeModelTSa> CreateReadmeTemplate(CodeModelTSa codeModel)
-        {
-            return new AzureReadmeTemplate { Model = codeModel };
-        }
     }
 }

@@ -5,9 +5,9 @@ using System;
 
 namespace AutoRest.TypeScript.DSL
 {
-    public class TSBlock : IDisposable
+    public class JSBlock : IDisposable
     {
-        protected readonly TSBuilder builder;
+        protected readonly JSBuilder builder;
         private State currentState;
 
         protected enum State
@@ -21,7 +21,7 @@ namespace AutoRest.TypeScript.DSL
             Returned
         }
 
-        public TSBlock(TSBuilder builder)
+        public JSBlock(JSBuilder builder)
         {
             this.builder = builder;
             currentState = State.Start;
@@ -67,7 +67,7 @@ namespace AutoRest.TypeScript.DSL
             builder.LineComment(text);
         }
 
-        public void FunctionCall(string functionName, Action<TSArgumentList> argumentListAction)
+        public void FunctionCall(string functionName, Action<JSArgumentList> argumentListAction)
         {
             SetCurrentState(State.Statement);
             builder.FunctionCall(functionName, argumentListAction);
@@ -78,16 +78,10 @@ namespace AutoRest.TypeScript.DSL
             builder.Indent(action);
         }
 
-        public void ConstObjectVariable(string variableName, string variableType, Action<TSObject> valueAction)
+        public void ConstObjectVariable(string variableName, Action<JSObject> valueAction)
         {
             SetCurrentState(State.Statement);
-            builder.ConstObjectVariable(variableName, variableType, valueAction);
-        }
-
-        public void ConstObjectVariable(string variableName, Action<TSObject> valueAction)
-        {
-            SetCurrentState(State.Statement);
-            builder.ConstObjectVariable(variableName, null, valueAction);
+            builder.ConstObjectVariable(variableName, valueAction);
         }
 
         public void ConstObjectVariable(string variableName, string value)
@@ -96,13 +90,13 @@ namespace AutoRest.TypeScript.DSL
             builder.ConstObjectVariable(variableName, value);
         }
 
-        public TSIfBlock If(string condition, Action<TSBlock> thenAction)
+        public JSIfBlock If(string condition, Action<JSBlock> thenAction)
         {
             SetCurrentState(State.If);
             return builder.If(condition, thenAction);
         }
 
-        public TSTryBlock Try(Action<TSBlock> tryAction)
+        public JSTryBlock Try(Action<JSBlock> tryAction)
         {
             SetCurrentState(State.Try);
             return builder.Try(tryAction);
@@ -113,7 +107,7 @@ namespace AutoRest.TypeScript.DSL
             Return(value => value.Text(text));
         }
 
-        public void Return(Action<TSValue> returnValueAction)
+        public void Return(Action<JSValue> returnValueAction)
         {
             SetCurrentState(State.Returned);
             builder.Return(returnValueAction);
@@ -125,7 +119,7 @@ namespace AutoRest.TypeScript.DSL
             builder.Throw(valueToThrow);
         }
 
-        public void Value(Action<TSValue> valueAction)
+        public void Value(Action<JSValue> valueAction)
         {
             builder.Value(valueAction);
         }
