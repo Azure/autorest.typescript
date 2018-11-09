@@ -18,6 +18,11 @@ namespace AutoRest.TypeScript
     public class GeneratorSettingsTS : IGeneratorSettings
     {
         /// <summary>
+        /// The version that packages that haven't been published to NPM before will be generated with.
+        /// </summary>
+        public const string newPackageVersion = "0.1.0";
+
+        /// <summary>
         /// Whether or not the generator should produce Azure-specific code.
         /// </summary>
         public bool? AzureArm { get; set; }
@@ -180,12 +185,6 @@ namespace AutoRest.TypeScript
                 }
                 else
                 {
-                    string newPackageVersion = "0.1.0";
-                    string[] inputFilePaths = host?.GetValue<string[]>("input-file").Result;
-                    if (inputFilePaths != null && inputFilePaths.Any((string inputFilePath) => inputFilePath.Replace('\\', '/').ToLowerInvariant().Contains("/preview/")))
-                    {
-                        newPackageVersion += "-preview";
-                    }
                     Log(Category.Information, $"Package doesn't exist on NPM, so setting its initial version to \"{newPackageVersion}\".");
                     PackageVersion = newPackageVersion;
                 }
