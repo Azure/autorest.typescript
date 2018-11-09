@@ -92,7 +92,7 @@ namespace AutoRest.TypeScript
 
             if (ShouldWriteReadmeMdFile(codeModel))
             {
-                await WriteReadmeMdFile(templateFactory.CreateReadmeTemplate(codeModel));
+                await WriteReadmeMdFile(codeModel);
             }
 
             if (ShouldWriteLicenseFile(codeModel))
@@ -220,9 +220,9 @@ namespace AutoRest.TypeScript
             return Write(new PackageJson { Model = codeModel }, "package.json");
         }
 
-        protected Task WriteReadmeMdFile<T>(Template<T> readmeTemplate) where T : CodeModelTS
+        protected Task WriteReadmeMdFile(CodeModelTS codeModel)
         {
-            return Write(readmeTemplate, "README.md");
+            return Write(codeModel.GenerateReadmeMd(), "README.md");
         }
 
         protected Task WriteLicenseFile(CodeModelTS codeModel)

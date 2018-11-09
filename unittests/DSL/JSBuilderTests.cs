@@ -10,12 +10,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AutoRest.TypeScript.DSL
 {
     [TestClass]
-    public class TSBuilderTests
+    public class JSBuilderTests
     {
         [TestMethod]
         public void Constructor()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             Assert.AreEqual("", builder.ToString());
             Assert.IsFalse(builder.WriteNewLineBeforeNextText);
         }
@@ -23,7 +23,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void CreatePositionWithEmptyBuilder()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             BuilderPosition p = builder.CreatePosition();
             Assert.AreEqual(0, p.CharactersAfterPreviousPosition);
             Assert.AreEqual(0, p.GetIndexInBuilder());
@@ -33,7 +33,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void CreatePositionWithNonEmptyBuilder()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Text("abcd");
             BuilderPosition p = builder.CreatePosition();
             Assert.AreEqual(4, p.CharactersAfterPreviousPosition);
@@ -44,7 +44,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void CreatePositionWhenAnotherPositionAlreadyExists()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             BuilderPosition p1 = builder.CreatePosition();
             builder.Text("abcd");
             BuilderPosition p2 = builder.CreatePosition();
@@ -57,14 +57,14 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void HasChangedLinesSinceWithNegativeIndexAndEmptyBuilder()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             Assert.ThrowsException<IndexOutOfRangeException>(() => builder.HasChangedLinesSince(-1));
         }
 
         [TestMethod]
         public void HasChangedLinesSinceWithNegativeIndexAndSingleLine()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Text("abc");
             Assert.ThrowsException<IndexOutOfRangeException>(() => builder.HasChangedLinesSince(-1));
         }
@@ -72,7 +72,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void HasChangedLinesSinceWithNegativeIndexAndMultipleLines()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Text("a\nb\nc");
             Assert.ThrowsException<IndexOutOfRangeException>(() => builder.HasChangedLinesSince(-1));
         }
@@ -80,14 +80,14 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void HasChangedLinesSinceWithZeroIndexAndEmptyBuilder()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             Assert.IsFalse(builder.HasChangedLinesSince(0));
         }
 
         [TestMethod]
         public void HasChangedLinesSinceWithZeroIndexAndSingleLine()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Text("abc");
             Assert.IsFalse(builder.HasChangedLinesSince(0));
         }
@@ -95,7 +95,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void HasChangedLinesSinceWithZeroIndexAndMultipleLines()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Text("a\nb\nc");
             Assert.IsTrue(builder.HasChangedLinesSince(0));
         }
@@ -103,7 +103,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void InsertWithNoPositions()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Insert(0, "abcd");
             Assert.AreEqual("abcd", builder.ToString());
         }
@@ -111,7 +111,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void InsertAtAnExistingPosition()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             BuilderPosition p = builder.CreatePosition();
             builder.Insert(0, "abcd");
             Assert.AreEqual("abcd", builder.ToString());
@@ -122,7 +122,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void InsertBeforeAnExistingPosition()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Text("abd");
             BuilderPosition p = builder.CreatePosition();
             builder.Text("ef");
@@ -139,7 +139,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void InsertAfterAnExistingPosition()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Text("abc");
             BuilderPosition p = builder.CreatePosition();
             builder.Text("df");
@@ -156,7 +156,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void InsertBetweenExistingPositions()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Text("ab");
             BuilderPosition p1 = builder.CreatePosition();
             builder.Text("cd");
@@ -180,7 +180,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void InsertNewLine()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.InsertNewLine(0);
             Assert.AreEqual("\n", builder.ToString());
         }
@@ -188,25 +188,25 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void AddPropertyToParentObjectWhileBuildingChildObject()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             InvalidOperationException exception = Assert.ThrowsException<InvalidOperationException>(() =>
             {
-                builder.Object((TSObject parentObject) =>
+                builder.Object((JSObject parentObject) =>
                 {
-                    parentObject.ObjectProperty("child", (TSObject childObject) =>
+                    parentObject.ObjectProperty("child", (JSObject childObject) =>
                     {
                         childObject.TextProperty("a", "A");
                         parentObject.TextProperty("b", "B");
                     });
                 });
             });
-            Assert.AreEqual("Cannot add a property to a TSObject while constructing its child property (\"child\").", exception.Message);
+            Assert.AreEqual("Cannot add a property to a JSObject while constructing its child property (\"child\").", exception.Message);
         }
 
         [TestMethod]
         public void LineWithNoArguments()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Line();
             Assert.AreEqual("", builder.ToString());
             Assert.IsTrue(builder.WriteNewLineBeforeNextText);
@@ -215,7 +215,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void LineWithNoArgumentsTwice()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Line();
             builder.Line();
             Assert.AreEqual("\n", builder.ToString());
@@ -225,7 +225,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void LineWithNull()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Line(null);
             Assert.AreEqual("", builder.ToString());
             Assert.IsTrue(builder.WriteNewLineBeforeNextText);
@@ -234,7 +234,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void LineWithNullTwice()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Line(null);
             builder.Line(null);
             Assert.AreEqual("\n", builder.ToString());
@@ -244,7 +244,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void LineWithEmpty()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Line("");
             Assert.AreEqual("", builder.ToString());
             Assert.IsTrue(builder.WriteNewLineBeforeNextText);
@@ -253,7 +253,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void LineWithEmptyTwice()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Line("");
             builder.Line("");
             Assert.AreEqual("\n", builder.ToString());
@@ -263,7 +263,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void LineWithText()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Line("Hello");
             Assert.AreEqual("Hello", builder.ToString());
             Assert.IsTrue(builder.WriteNewLineBeforeNextText);
@@ -272,7 +272,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void LineWithTextTwice()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Line("Hello");
             builder.Line("World");
             Assert.AreEqual("Hello\nWorld", builder.ToString());
@@ -282,7 +282,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void TextWithNull()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Text(null);
             Assert.AreEqual("", builder.ToString());
             Assert.IsFalse(builder.WriteNewLineBeforeNextText);
@@ -291,7 +291,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void TextWithNullTwice()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Text(null);
             builder.Text(null);
             Assert.AreEqual("", builder.ToString());
@@ -301,7 +301,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void TextWithEmpty()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Text("");
             Assert.AreEqual("", builder.ToString());
             Assert.IsFalse(builder.WriteNewLineBeforeNextText);
@@ -310,7 +310,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void TextWithEmptyTwice()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Text("");
             builder.Text("");
             Assert.AreEqual("", builder.ToString());
@@ -320,7 +320,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void TextWithText()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Text("a");
             Assert.AreEqual("a", builder.ToString());
             Assert.IsFalse(builder.WriteNewLineBeforeNextText);
@@ -329,7 +329,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void TextWithTextTwice()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Text("a");
             builder.Text("b");
             Assert.AreEqual("ab", builder.ToString());
@@ -339,7 +339,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void TextWithNewLine()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Text("\n");
             Assert.AreEqual("\n", builder.ToString());
             Assert.IsFalse(builder.WriteNewLineBeforeNextText);
@@ -348,7 +348,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void TextWithNewLineTwice()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Text("\n");
             builder.Text("\n");
             Assert.AreEqual("\n\n", builder.ToString());
@@ -358,7 +358,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void TryWithEmptyBlock()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Try(tryBlock => { });
             AssertEx.EqualLines(
                 new[]
@@ -373,7 +373,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void NestedTryBlocks()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Try(tryBlock1 =>
             {
                 tryBlock1.Try(tryBlock2 =>
@@ -402,7 +402,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void IfWithEmptyBlock()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.If("true", ifBlock => { });
             AssertEx.EqualLines(
                 new[]
@@ -417,7 +417,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void IfWithTextBlock()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.If("true", ifBlock =>
             {
                 ifBlock.Text("Hello");
@@ -436,7 +436,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void IfWithLineBlock()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.If("true", ifBlock =>
             {
                 ifBlock.Line("Hello");
@@ -455,7 +455,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void IfElseWithEmptyBlocks()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.If("true", ifBlock => { })
                 .Else(elseBlock => { });
             AssertEx.EqualLines(
@@ -472,7 +472,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void IfElseIfWithEmptyBlocks()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.If("true", ifBlock => { })
                 .ElseIf("false", elseBlock => { });
             AssertEx.EqualLines(
@@ -489,7 +489,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void IfElseIfWithTextBlocks()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.If("true", ifBlock =>
             {
                 ifBlock.Text("Hello");
@@ -514,7 +514,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void IfWithLineAfterwards()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.If("true", ifBlock => { });
             builder.Line("Test");
             AssertEx.EqualLines(
@@ -531,7 +531,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void NestedIfBlocks()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.If("a", ifBlock1 =>
             {
                 Assert.IsTrue(builder.WriteNewLineBeforeNextText);
@@ -577,7 +577,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void NestedElseBlocks()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.If("a", ifBlock1 =>
             {
                 ifBlock1.If("b", ifBlock2 =>
@@ -606,7 +606,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void NestedElseIfBlocks()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.If("a1", ifBlock1 =>
             {
                 ifBlock1.If("b1", ifBlock2 =>
@@ -635,7 +635,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void TryBlockInIfBlock()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.If("true", ifBlock =>
             {
                 ifBlock.Try(tryBlock =>
@@ -657,7 +657,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void IfBlockInTryBlock()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Try(tryBlock =>
             {
                 tryBlock.If("true", ifBlock =>
@@ -679,7 +679,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void IfBlockWithSurroundingLines()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Line("const x = 5;");
             builder.If("true", ifBlock =>
             {
@@ -699,7 +699,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void IfBlockWithSurroundingEmptyLines()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.Line();
             builder.If("true", ifBlock =>
             {
@@ -719,7 +719,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void DocumentCommentWithNoContents()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.DocumentationComment(comment => { });
             Assert.AreEqual("", builder.ToString());
         }
@@ -727,7 +727,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void DocumentationCommentWithDescription()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.DocumentationComment(comment =>
             {
                 comment.Description("Hello");
@@ -742,16 +742,16 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void DocumentationCommentWithDescriptionAndParameter()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.DocumentationComment(comment =>
             {
                 comment.Description("This is my description.");
-                comment.Parameter("parameterName", "This is my parameter description.");
+                comment.Parameter("parameterName", "parameterType", "This is my parameter description.");
             });
             AssertEx.EqualLines(
                 "/**\n" +
                 " * This is my description.\n" +
-                " * @param parameterName This is my parameter description.\n" +
+                " * @param {parameterType} parameterName This is my parameter description.\n" +
                 " */",
                 builder);
         }
@@ -759,7 +759,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void DocumentationCommentWithLeadingWhitespaceInDescription()
         {
-            TSBuilder builder = new TSBuilder();
+            JSBuilder builder = new JSBuilder();
             builder.DocumentationComment(comment =>
             {
                 comment.Description("This\n  is\n\tmy\ndescription.");
@@ -779,7 +779,7 @@ namespace AutoRest.TypeScript.DSL
         [TestMethod]
         public void DocumentationCommentWithWrappedDescription()
         {
-            TSBuilder builder = new TSBuilder(10);
+            JSBuilder builder = new JSBuilder(10);
             builder.DocumentationComment(comment =>
             {
                 comment.Description("This is my long description that will get wrapped.");
@@ -799,36 +799,6 @@ namespace AutoRest.TypeScript.DSL
                 " * wrapped.\n" +
                 " */",
                 builder);
-        }
-
-        [TestMethod]
-        public void PropertyGeneratesOptionalParameterCorrectly()
-        {
-            TSBuilder builder = new TSBuilder();
-            builder.Property("name", "AType", false);
-            string declaration = builder.ToString();
-
-            Assert.AreEqual("name?: AType;", declaration);
-        }
-
-        [TestMethod]
-        public void PropertyGeneratesRequiredParameterCorrectly()
-        {
-            TSBuilder builder = new TSBuilder();
-            builder.Property("longerName", "SomeOtherType", true);
-            string declaration = builder.ToString();
-
-            Assert.AreEqual("longerName: SomeOtherType;", declaration);
-        }
-
-        [TestMethod]
-        public void PropertyAddsAccessModifierWhenSpecified()
-        {
-            TSBuilder builder = new TSBuilder();
-            builder.Property("name", "Type", true, "protected");
-            string declaration = builder.ToString();
-
-            Assert.AreEqual("protected name: Type;", declaration);
         }
     }
 }

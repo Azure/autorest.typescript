@@ -11,15 +11,15 @@ namespace AutoRest.TypeScript.DSL
     /// <summary>
     /// The TypeScript DSL representation for adding arguments to a function call's argument list.
     /// </summary>
-    public class TSArgumentList : TSValue, IDisposable
+    public class JSArgumentList : JSValue, IDisposable
     {
         private List<BuilderPosition> argumentPositions;
 
         /// <summary>
-        /// Create a new TSArgumentList that will emit text to the provided TSBuilder.
+        /// Create a new TSArgumentList that will emit text to the provided JSBuilder.
         /// </summary>
-        /// <param name="builder">The TSBuilder to emit text to.</param>
-        public TSArgumentList(TSBuilder builder)
+        /// <param name="builder">The JSBuilder to emit text to.</param>
+        public JSArgumentList(JSBuilder builder)
             : base(builder)
         {
             argumentPositions = new List<BuilderPosition>();
@@ -75,7 +75,7 @@ namespace AutoRest.TypeScript.DSL
         /// </summary>
         /// <param name="functionName">The name of the function to invoke.</param>
         /// <param name="argumentListAction">The action that will be used to populate the arguments of the function call.</param>
-        public override void FunctionCall(string functionName, Action<TSArgumentList> argumentListAction)
+        public override void FunctionCall(string functionName, Action<JSArgumentList> argumentListAction)
         {
             BeforeArgumentAdded();
             base.FunctionCall(functionName, argumentListAction);
@@ -95,7 +95,7 @@ namespace AutoRest.TypeScript.DSL
         /// Add a JSON array to this TSValue.
         /// </summary>
         /// <param name="arrayAction">The action that will be invoked to produce the elements of the JSON array.</param>
-        public override void Array(Action<TSArray> arrayAction)
+        public override void Array(Action<JSArray> arrayAction)
         {
             BeforeArgumentAdded();
             base.Array(arrayAction);
@@ -105,7 +105,7 @@ namespace AutoRest.TypeScript.DSL
         /// Add an object argument to this argument list.
         /// </summary>
         /// <param name="objectAction">The action that will be used to populate the properties of the object.</param>
-        public override void Object(Action<TSObject> objectAction = null)
+        public override void Object(Action<JSObject> objectAction = null)
         {
             BeforeArgumentAdded();
             base.Object(objectAction);
@@ -142,7 +142,7 @@ namespace AutoRest.TypeScript.DSL
         /// <summary>
         /// Add a lambda to this TSArgumentList.
         /// </summary>
-        public override void Lambda(string paramName, Action<TSBlock> lambdaBodyAction)
+        public override void Lambda(string paramName, Action<JSBlock> lambdaBodyAction)
         {
             BeforeArgumentAdded();
             base.Lambda(paramName, lambdaBodyAction);
