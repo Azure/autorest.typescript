@@ -5,8 +5,8 @@
  */
 
 import * as Models from "./models";
-import * as msRest from "ms-rest-js";
-import * as msRestAzure from "ms-rest-azure-js";
+import * as msRest from "@azure/ms-rest-js";
+import * as msRestAzure from "@azure/ms-rest-azure-js";
 
 const packageName = "@azure/multiapi-test";
 const packageVersion = "1.0.0";
@@ -28,7 +28,7 @@ export class AutoRestParameterizedHostTestClientContext extends msRestAzure.Azur
     if (!options) {
       options = {};
     }
-    if(!options.userAgent) {
+    if (!options.userAgent) {
       const defaultUserAgent = msRestAzure.getDefaultUserAgentValue();
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
@@ -42,13 +42,13 @@ export class AutoRestParameterizedHostTestClientContext extends msRestAzure.Azur
     this.requestContentType = "application/json; charset=utf-8";
     this.credentials = credentials;
 
-    if(options.host !== null && options.host !== undefined) {
+    if (options.host !== null && options.host !== undefined) {
       this.host = options.host;
     }
-    if(options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
+    if (options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
       this.acceptLanguage = options.acceptLanguage;
     }
-    if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
+    if (options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
       this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
     }
   }

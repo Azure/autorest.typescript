@@ -441,14 +441,14 @@ namespace AutoRest.TypeScript.Model
             TSBuilder builder = new TSBuilder();
             if (OptionalParameterTypeForClientConstructor != ServiceClientOptions)
             {
-                builder.Import(new string[] { ServiceClientOptions }, "ms-rest-js");
+                builder.Import(new string[] { ServiceClientOptions }, "@azure/ms-rest-js");
             }
             return builder.ToString();
         }
 
         public virtual string PackageDependencies()
         {
-            string deps = "\"ms-rest-js\": \"^1.0.462\",\n" + "\"tslib\": \"^1.9.3\"";
+            string deps = "\"@azure/ms-rest-js\": \"^1.0.462\",\n" + "\"tslib\": \"^1.9.3\"";
             if (Settings.MultiapiLatest)
             {
                 string version = Settings.AliasedNpmVersion ?? "^1.0.0";
@@ -690,7 +690,7 @@ namespace AutoRest.TypeScript.Model
         {
             if (orderedMapperModels.Any())
             {
-                builder.ImportAllAs("msRest", "ms-rest-js");
+                builder.ImportAllAs("msRest", "@azure/ms-rest-js");
             }
         }
 
@@ -721,12 +721,12 @@ namespace AutoRest.TypeScript.Model
 
         protected void GenerateNodeSampleMsRestJsImport(TSBuilder builder)
         {
-            builder.ImportAllAs("msRest", "ms-rest-js");
+            builder.ImportAllAs("msRest", "@azure/ms-rest-js");
         }
 
         protected void GenerateNodeSampleMsRestNodeAuthImport(TSBuilder builder)
         {
-            builder.ImportAllAs("msRestNodeAuth", "ms-rest-nodeauth");
+            builder.ImportAllAs("msRestNodeAuth", "@azure/ms-rest-nodeauth");
         }
 
         protected void GenerateNodeSampleClientImport(TSBuilder builder)

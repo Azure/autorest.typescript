@@ -163,10 +163,10 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            builder.ImportAllAs("msRest", "ms-rest-js");
+            builder.ImportAllAs("msRest", "@azure/ms-rest-js");
             if (MethodTemplateModels.Any((MethodTS method) => method.IsLongRunningOperation))
             {
-                builder.ImportAllAs("msRestAzure", "ms-rest-azure-js");
+                builder.ImportAllAs("msRestAzure", "@azure/ms-rest-azure-js");
             }
 
             CodeModelTS codeModel = CodeModelTS;

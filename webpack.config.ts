@@ -32,8 +32,8 @@ const config: webpack.Configuration = {
   // TODO: setup which ensures that the bundle we ship out of ms-rest[-azure]-js works in the browser
   // Downside: more individual watches are required to make this responsive to your edits
   // externals: {
-  //   "ms-rest-js": "msRest",
-  //   "ms-rest-azure-js": "msRestAzure"
+  //   "@azure/ms-rest-js": "msRest",
+  //   "@azure/ms-rest-azure-js": "msRestAzure"
   // },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],

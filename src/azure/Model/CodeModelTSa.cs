@@ -45,7 +45,7 @@ namespace AutoRest.TypeScript.Azure.Model
         public override CompositeType Add(CompositeType item)
         {
             // Removing all models that contain the extension "x-ms-external", as they will be
-            // generated in TypeScript client runtime for azure - "ms-rest-azure-js".
+            // generated in TypeScript client runtime for azure - "@azure/ms-rest-azure-js".
             if (item.Extensions.ContainsKey(AzureExtensions.PageableExtension) ||
                 item.Extensions.ContainsKey(AzureExtensions.ExternalExtension))
             {
@@ -78,12 +78,12 @@ namespace AutoRest.TypeScript.Azure.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            builder.ImportAllAs("msRest", "ms-rest-js");
+            builder.ImportAllAs("msRest", "@azure/ms-rest-js");
 
             bool usesAzureOptionsType = OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions";
             if (usesAzureOptionsType || MethodTemplateModels.Any((MethodTS method) => method.IsLongRunningOperation))
             {
-                builder.ImportAllAs("msRestAzure", "ms-rest-azure-js");
+                builder.ImportAllAs("msRestAzure", "@azure/ms-rest-azure-js");
             }
 
             if (CodeGeneratorTS.ShouldWriteModelsFiles(this))
@@ -119,7 +119,7 @@ namespace AutoRest.TypeScript.Azure.Model
             TSBuilder builder = new TSBuilder();
             CompositeTypeTS[] orderedMapperTemplateModels = OrderedMapperTemplateModels.ToArray();
 
-            builder.Import(new[] { "CloudErrorMapper", "BaseResourceMapper" }, "ms-rest-azure-js");
+            builder.Import(new[] { "CloudErrorMapper", "BaseResourceMapper" }, "@azure/ms-rest-azure-js");
 
             ImportMsRestForMappers(builder, orderedMapperTemplateModels);
 
@@ -144,7 +144,7 @@ namespace AutoRest.TypeScript.Azure.Model
         protected override void GenerateNodeSampleImports(TSBuilder builder)
         {
             GenerateNodeSampleMsRestJsImport(builder);
-            builder.ImportAllAs("msRestAzure", "ms-rest-azure-js");
+            builder.ImportAllAs("msRestAzure", "@azure/ms-rest-azure-js");
             GenerateNodeSampleMsRestNodeAuthImport(builder);
             GenerateNodeSampleClientImport(builder);
         }
