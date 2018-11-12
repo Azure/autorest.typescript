@@ -9,7 +9,7 @@
  */
 
 import { BaseResource, CloudError, AzureServiceClientOptions } from "ms-rest-azure-js";
-import * as msRest from "ms-rest-js";
+import * as msRest from ;
 
 export { BaseResource, CloudError };
 

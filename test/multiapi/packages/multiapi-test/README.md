@@ -33,7 +33,7 @@ npm install ms-rest-nodeauth
 ##### Sample code
 
 ```ts
-import * as msRest from "@azirems-rest-js";
+import * as msRest from "@azure/ms-rest-js";
 import * as msRestAzure from "@azure/ms-rest-azure-js";
 import * as msRestNodeAuth from "@azure/ms-rest-nodeauth";
 import { AutoRestParameterizedCustomHostTestClient, AutoRestParameterizedCustomHostTestModels, AutoRestParameterizedCustomHostTestMappers } from "@azure/multiapi-test";

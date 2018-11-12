@@ -14,15 +14,15 @@ else
 {
 @:  input: './esm/@(Model.Name.ToCamelCase()).js',
 }
-  external: ["@azure/ms-rest-js", "@azure/ms-rest-azure-js"],
+  external: ["@@azure/ms-rest-js", "@@azure/ms-rest-azure-js"],
   output: {
     file: "./dist/@(Model.BundleFilename).js",
     format: "umd",
     name: "@(Model.BundleVarName)",
     sourcemap: true,
     globals: {
-      "@azure/ms-rest-js": "msRest",
-      "@azure/ms-rest-azure-js": "msRestAzure"
+      "@@azure/ms-rest-js": "msRest",
+      "@@azure/ms-rest-azure-js": "msRestAzure"
     },
     banner: `/*
 @Header(" * ")

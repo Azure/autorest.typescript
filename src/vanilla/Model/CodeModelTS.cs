@@ -585,7 +585,7 @@ namespace AutoRest.TypeScript.Model
 
             if (MethodTemplateModels.Any() || OptionalParameterTypeForClientConstructor == ServiceClientOptions || RequiredConstructorParametersTS.Contains("msRest."))
             {
-                builder.ImportAllAs("msRest", "ms-rest-js");
+                builder.ImportAllAs("msRest", "@azure/ms-rest-js");
             }
 
             if (CodeGeneratorTS.ShouldWriteModelsFiles(this))

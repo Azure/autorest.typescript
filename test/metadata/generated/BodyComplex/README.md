@@ -26,8 +26,8 @@ npm install ms-rest-nodeauth
 ##### Sample code
 
 ```ts
-import * as msRest from "ms-rest-js";
-import * as msRestNodeAuth from "ms-rest-nodeauth";
+import * as msRest from "@azure/ms-rest-js";
+import * as msRestNodeAuth from "@azure/ms-rest-nodeauth";
 import { AutoRestComplexTestService, AutoRestComplexTestServiceModels, AutoRestComplexTestServiceMappers } from "";
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
 
