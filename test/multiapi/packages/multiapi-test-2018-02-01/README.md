@@ -67,8 +67,8 @@ See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to
 <html lang="en">
   <head>
     <title>@azure/multiapi-test-2018-02-01 sample</title>
-    <script src="node_modules/ms-rest-js/dist/msRest.browser.js"></script>
-    <script src="node_modules/ms-rest-azure-js/dist/msRestAzure.js"></script>
+    <script src="node_modules/@azure/ms-rest-js/dist/msRest.browser.js"></script>
+    <script src="node_modules/@azure/ms-rest-azure-js/dist/msRestAzure.js"></script>
     <script src="node_modules/ms-rest-browserauth/dist/msAuth.js"></script>
     <script src="node_modules/@azure/multiapi-test-2018-02-01/dist/multiapi-test-2018-02-01.js"></script>
     <script type="text/javascript">

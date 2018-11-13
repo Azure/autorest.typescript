@@ -65,13 +65,13 @@ namespace AutoRest.TypeScript.Azure.Model
             {
                 builder.Append(", AzureServiceClientOptions");
             }
-            builder.Append(" } from \"ms-rest-azure-js\";");
+            builder.Append(" } from \"@azure/ms-rest-azure-js\";");
             return builder.ToString();
         }
 
         public override string PackageDependencies()
         {
-            return "\"ms-rest-azure-js\": \"^1.0.181\"" + ",\n" + base.PackageDependencies();
+            return "\"@azure/ms-rest-azure-js\": \"^1.1.0\"" + ",\n" + base.PackageDependencies();
         }
 
         public string GenerateAzureServiceClientImports()
@@ -155,4 +155,3 @@ namespace AutoRest.TypeScript.Azure.Model
         }
     }
 }
- 

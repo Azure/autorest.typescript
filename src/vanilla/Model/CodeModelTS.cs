@@ -957,10 +957,10 @@ namespace AutoRest.TypeScript.Model
                             html.Head(head =>
                             {
                                 head.Title($"{PackageName} sample");
-                                head.Script("node_modules/ms-rest-js/dist/msRest.browser.js");
+                                head.Script("node_modules/@azure/ms-rest-js/dist/msRest.browser.js");
                                 if (IsAzure)
                                 {
-                                    head.Script("node_modules/ms-rest-azure-js/dist/msRestAzure.js");
+                                    head.Script("node_modules/@azure/ms-rest-azure-js/dist/msRestAzure.js");
                                 }
                                 head.Script("node_modules/ms-rest-browserauth/dist/msAuth.js");
                                 head.Script($"node_modules/{PackageName}/dist/{BundleFilename}.js");
