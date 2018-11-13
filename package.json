@@ -39,6 +39,8 @@
   },
   "homepage": "https://github.com/Azure/autorest.typescript/blob/master/README.md",
   "devDependencies": {
+    "@azure/ms-rest-azure-js": "^1.1.0",
+    "@azure/ms-rest-js": "^1.1.0",
     "@microsoft.azure/autorest.modeler": "^2.3.51",
     "@microsoft.azure/autorest.testserver": "2.6.0",
     "@types/assert": "0.0.31",
@@ -69,8 +71,6 @@
     "mocha": "^5.2.0",
     "mocha-chrome": "^1.0.3",
     "moment": "~2.21.0",
-    "@azure/ms-rest-azure-js": "^1.1.0",
-    "@azure/ms-rest-js": "^1.1.0",
     "run-sequence": "*",
     "should": "5.2.0",
     "shx": "^0.2.2",
