@@ -12,7 +12,7 @@
     "testci/generator-unit": "gulp testci/generator-unit",
     "regenerateci": "gulp regenerateci",
     "build": "gulp build",
-    "prepare": "gulp install_common && gulp build",
+    "prepack": "npm install && gulp install_common && gulp build",
     "publish-preview": "gulp publish-preview --release",
     "regenerate": "gulp regenerate",
     "clean": "gulp clean",
