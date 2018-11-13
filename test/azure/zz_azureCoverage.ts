@@ -3,7 +3,7 @@
 
 'use strict';
 
-import * as msRest from 'ms-rest-js';
+import * as msRest from '@azure/ms-rest-js';
 
 import { AutoRestReportServiceForAzure } from './generated/AzureReport/autoRestReportServiceForAzure';
 import { AutoRestReportServiceForAzureOptions } from './generated/AzureReport/models';

@@ -5,7 +5,7 @@
 
 import * as should from 'should';
 import * as assert from 'assert';
-import * as msRest from 'ms-rest-js';
+import * as msRest from '@azure/ms-rest-js';
 
 import { AutoRestParameterizedHostTestClient } from './generated/CustomBaseUri/autoRestParameterizedHostTestClient';
 import { timeoutPromise } from '../util/util';

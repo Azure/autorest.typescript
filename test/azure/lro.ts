@@ -5,7 +5,7 @@
 
 import * as should from 'should';
 import * as msAssert from "../util/msAssert";
-import * as msRest from 'ms-rest-js';
+import * as msRest from '@azure/ms-rest-js';
 
 import { AutoRestLongRunningOperationTestService, AutoRestLongRunningOperationTestServiceModels } from './generated/Lro/autoRestLongRunningOperationTestService';
 import { AutoRestLongRunningOperationTestServiceOptions } from '../azuremetadata/generated/Lro/lib/models';
