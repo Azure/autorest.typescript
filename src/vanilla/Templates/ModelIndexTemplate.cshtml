@@ -10,7 +10,7 @@
     Model.IsAnyModelInheritingFromRequestOptionsBase() ||
     Model.MethodsWithCustomResponseType.Any())
 {
-@:import * as msRest from "ms-rest-js";
+@:import * as msRest from "@@azure/ms-rest-js";
 }
 @EmptyLine
 @foreach (var model in Model.OrderedModelTemplateModels) {

@@ -4,7 +4,7 @@
 'use strict';
 
 import * as should from 'should';
-import * as msRest from 'ms-rest-js';
+import * as msRest from '@azure/ms-rest-js';
 
 import { AutoRestAzureSpecialParametersTestClient } from './generated/AzureSpecials/autoRestAzureSpecialParametersTestClient';
 var dummySubscriptionId = '1234-5678-9012-3456';

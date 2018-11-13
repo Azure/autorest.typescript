@@ -7,7 +7,7 @@ import * as should from 'should';
 import * as util from 'util';
 import * as assert from 'assert';
 import * as msAssert from "../util/msAssert";
-import * as msRest from 'ms-rest-js';
+import * as msRest from '@azure/ms-rest-js';
 import * as fs from "fs";
 
 import { AutoRestBoolTestService } from './generated/BodyBoolean/autoRestBoolTestService';

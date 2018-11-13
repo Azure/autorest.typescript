@@ -1,6 +1,6 @@
 import * as assert from "assert";
 
-import { RestError } from "ms-rest-js";
+import { RestError } from "@azure/ms-rest-js";
 import { AutoRestValidationTest } from './generated/Validation/autoRestValidationTest';
 
 describe("--client-side-validation=false", function () {

@@ -4,7 +4,7 @@
 'use strict';
 
 import * as should from 'should';
-import * as msRest from 'ms-rest-js';
+import * as msRest from '@azure/ms-rest-js';
 
 import { AutoRestParameterGroupingTestService } from './generated/AzureParameterGrouping/autoRestParameterGroupingTestService';
 import { ParameterGroupingPostOptionalOptionalParams, AutoRestParameterGroupingTestServiceOptions } from "./generated/AzureParameterGrouping/models";

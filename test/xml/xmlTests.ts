@@ -3,7 +3,7 @@
 
 import * as should from 'should';
 import * as msAssert from "../util/msAssert";
-import * as msRest from "ms-rest-js";
+import * as msRest from "@azure/ms-rest-js";
 import { AutoRestSwaggerBATXMLService, AutoRestSwaggerBATXMLServiceModels as models } from './generated/Xml/autoRestSwaggerBATXMLService';
 
 const testClient = new AutoRestSwaggerBATXMLService({ baseUri: 'http://localhost:3000' });
