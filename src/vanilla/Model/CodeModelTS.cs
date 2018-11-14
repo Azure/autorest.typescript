@@ -923,9 +923,9 @@ namespace AutoRest.TypeScript.Model
         {
             builder.Section($"nodejs - Authentication, client creation and {GetSampleMethod()?.Name} {GetSampleMethodGroupName()} as an example written in TypeScript.", () =>
             {
-                builder.Section("Install ms-rest-nodeauth", () =>
+                builder.Section("Install @azure/ms-rest-nodeauth", () =>
                 {
-                    builder.Console("npm install ms-rest-nodeauth");
+                    builder.Console("npm install @azure/ms-rest-nodeauth");
                 });
                 builder.Line();
                 builder.Section("Sample code", () =>
@@ -939,9 +939,9 @@ namespace AutoRest.TypeScript.Model
         {
             builder.Section($"browser - Authentication, client creation and {GetSampleMethod().Name} {GetSampleMethodGroupName()} as an example written in JavaScript.", () =>
             {
-                builder.Section("Install ms-rest-browserauth", () =>
+                builder.Section("Install @azure/ms-rest-browserauth", () =>
                 {
-                    builder.Console("npm install ms-rest-browserauth");
+                    builder.Console("npm install @azure/ms-rest-browserauth");
                 });
                 builder.Line();
                 builder.Section("Sample code", () =>
@@ -962,7 +962,7 @@ namespace AutoRest.TypeScript.Model
                                 {
                                     head.Script("node_modules/@azure/ms-rest-azure-js/dist/msRestAzure.js");
                                 }
-                                head.Script("node_modules/ms-rest-browserauth/dist/msAuth.js");
+                                head.Script("node_modules/@azure/ms-rest-browserauth/dist/msAuth.js");
                                 head.Script($"node_modules/{PackageName}/dist/{BundleFilename}.js");
                                 head.Script(jsBuilder =>
                                 {
