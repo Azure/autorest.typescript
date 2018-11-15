@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-// 
+//
 
 using AutoRest.Core.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -79,7 +79,7 @@ namespace AutoRest.TypeScript.Model
             AssertEx.EqualLines(
                 new[]
                 {
-                    "import * as msRest from \"ms-rest-js\";",
+                    "import * as msRest from \"@azure/ms-rest-js\";",
                     "import { Context } from \"./context\";"
                 },
                 codeModel.GenerateServiceClientImports());
@@ -92,7 +92,7 @@ namespace AutoRest.TypeScript.Model
             AssertEx.EqualLines(
                 new[]
                 {
-                    "import * as msRest from \"ms-rest-js\";",
+                    "import * as msRest from \"@azure/ms-rest-js\";",
                     "import * as Models from \"./models\";",
                     "import * as Mappers from \"./models/mappers\";",
                     "import { Context } from \"./context\";"

@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "ms-rest-js";
+import * as msRest from "@azure/ms-rest-js";
 import * as Mappers from "../models/availabilitySetsMappers";
 import * as Parameters from "../models/parameters";
 import { AutoRestParameterFlatteningContext } from "../autoRestParameterFlatteningContext";

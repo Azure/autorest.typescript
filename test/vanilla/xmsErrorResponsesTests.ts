@@ -3,7 +3,7 @@
 
 import * as assert from "assert";
 import { XMSErrorResponseExtensions } from './generated/XMSErrorResponses/xMSErrorResponseExtensions';
-import { deserializationPolicy } from 'ms-rest-js';
+import { deserializationPolicy } from '@azure/ms-rest-js';
 
 const testClient = new XMSErrorResponseExtensions({ baseUri: "http://localhost:3000", requestPolicyFactories: [deserializationPolicy()] });
 

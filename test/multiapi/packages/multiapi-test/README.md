@@ -24,18 +24,18 @@ npm install @azure/multiapi-test
 
 #### nodejs - Authentication, client creation and getEmpty paths as an example written in TypeScript.
 
-##### Install ms-rest-nodeauth
+##### Install @azure/ms-rest-nodeauth
 
 ```
-npm install ms-rest-nodeauth
+npm install @azure/ms-rest-nodeauth
 ```
 
 ##### Sample code
 
 ```ts
-import * as msRest from "ms-rest-js";
-import * as msRestAzure from "ms-rest-azure-js";
-import * as msRestNodeAuth from "ms-rest-nodeauth";
+import * as msRest from "@azure/ms-rest-js";
+import * as msRestAzure from "@azure/ms-rest-azure-js";
+import * as msRestNodeAuth from "@azure/ms-rest-nodeauth";
 import { AutoRestParameterizedCustomHostTestClient, AutoRestParameterizedCustomHostTestModels, AutoRestParameterizedCustomHostTestMappers } from "@azure/multiapi-test";
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
 
@@ -56,10 +56,10 @@ msRestNodeAuth.interactiveLogin().then((creds) => {
 
 #### browser - Authentication, client creation and getEmpty paths as an example written in JavaScript.
 
-##### Install ms-rest-browserauth
+##### Install @azure/ms-rest-browserauth
 
 ```
-npm install ms-rest-browserauth
+npm install @azure/ms-rest-browserauth
 ```
 
 ##### Sample code
@@ -72,9 +72,9 @@ See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to
 <html lang="en">
   <head>
     <title>@azure/multiapi-test sample</title>
-    <script src="node_modules/ms-rest-js/dist/msRest.browser.js"></script>
-    <script src="node_modules/ms-rest-azure-js/dist/msRestAzure.js"></script>
-    <script src="node_modules/ms-rest-browserauth/dist/msAuth.js"></script>
+    <script src="node_modules/@azure/ms-rest-js/dist/msRest.browser.js"></script>
+    <script src="node_modules/@azure/ms-rest-azure-js/dist/msRestAzure.js"></script>
+    <script src="node_modules/@azure/ms-rest-browserauth/dist/msAuth.js"></script>
     <script src="node_modules/@azure/multiapi-test/dist/multiapi-test.js"></script>
     <script type="text/javascript">
       const subscriptionId = "<Subscription_Id>";
