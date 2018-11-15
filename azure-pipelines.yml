@@ -12,7 +12,7 @@ jobs:
       command: custom
       verbose: false
       customCommand: pack
-  - task: Gulp@1
+  - task: gulp@1
     displayName: 'gulp regenerate'
     inputs:
       command: custom
@@ -41,7 +41,7 @@ jobs:
     inputs:
       versionSpec: $(node.version)
   - script: npm install
-  - task: Gulp@1
+  - task: gulp@1
     displayName: 'gulp test'
     inputs:
       command: custom
