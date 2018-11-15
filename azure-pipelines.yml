@@ -15,9 +15,8 @@ jobs:
   - task: gulp@0
     displayName: 'gulp regenerate'
     inputs:
-      command: custom
+      command: regenerate
       verbose: false
-      customCommand: regenerate
   - task: CopyFiles@2
     displayName: 'Copy Files to: drop'
     inputs:
@@ -44,9 +43,8 @@ jobs:
   - task: gulp@0
     displayName: 'gulp test'
     inputs:
-      command: custom
+      command: test
       verbose: false
-      customCommand: test
   - task: PublishTestResults@2
     inputs:
       testResultsFiles: '**/test-results.xml'
