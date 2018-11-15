@@ -42,7 +42,7 @@ jobs:
       command: custom
       verbose: false
       customCommand: pack
-  - task: TestRegenerate
+  - task: TestRegenerate@1
     displayName: 'Regenerating tests'
     inputs:
       versionSpec: $(node.version)
