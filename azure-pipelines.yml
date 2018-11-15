@@ -25,16 +25,6 @@ jobs:
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: $(Build.SourcesDirectory)/drop
-- job: Test
-  pool:
-    vmImage: 'Ubuntu 16.04'
-  strategy:
-    matrix:
-      Node10:
-        node.version: 10.x
-      Node11:
-        node.version: 11.x
-  steps:
   - task: NodeTool@0
     displayName: 'Install Node'
     inputs:
