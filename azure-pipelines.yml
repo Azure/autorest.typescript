@@ -13,13 +13,13 @@ jobs:
         node.version: 11.x
   steps:
   - task: Npm@1
-    displayName: 'npm pack'
+    displayName: 'Run npm pack'
     inputs:
       command: custom
       verbose: false
       customCommand: pack
   - task: gulp@0
-    displayName: 'gulp regenerate'
+    displayName: 'Run gulp regenerate'
     inputs:
       targets: regenerate
       verbose: false
@@ -32,7 +32,7 @@ jobs:
     inputs:
       pathtoPublish: $(Build.SourcesDirectory)/drop
   - task: NodeTool@0
-    displayName: 'Install Node'
+    displayName: 'Install Node $(node.version)'
     inputs:
       versionSpec: $(node.version)
   - script: npm install
