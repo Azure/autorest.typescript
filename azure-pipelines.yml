@@ -3,6 +3,7 @@ trigger:
 
 jobs:
 - job: Build
+  displayName: "Build, regenerate and test on $(node.version)"
   pool:
     vmImage: 'Ubuntu 16.04'
   strategy:
