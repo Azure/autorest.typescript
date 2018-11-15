@@ -12,7 +12,12 @@ jobs:
       command: custom
       verbose: false
       customCommand: pack
-  - script: gulp regenerate
+  - task: Gulp@1
+    displayName: 'gulp regenerate'
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: regenerate
   - task: CopyFiles@2
     displayName: 'Copy Files to: drop'
     inputs:
@@ -36,8 +41,8 @@ jobs:
     inputs:
       versionSpec: $(node.version)
   - script: npm install
-  - task: Npm@1
-    displayName: 'npm test'
+  - task: Gulp@1
+    displayName: 'gulp test'
     inputs:
       command: custom
       verbose: false
