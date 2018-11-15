@@ -42,10 +42,6 @@ jobs:
       command: custom
       verbose: false
       customCommand: pack
-  - task: TestRegenerate@1
-    displayName: 'Regenerating tests'
-    inputs:
-      versionSpec: $(node.version)
   - script: gulp regenerate
   - task: CopyFiles@2
     displayName: 'Copy Files to: drop'
