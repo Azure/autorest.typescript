@@ -5,6 +5,12 @@ jobs:
 - job: Build
   pool:
     vmImage: 'Ubuntu 16.04'
+  strategy:
+    matrix:
+      Node10:
+        node.version: 10.x
+      Node11:
+        node.version: 11.x
   steps:
   - task: Npm@1
     displayName: 'npm pack'
