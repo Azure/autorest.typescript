@@ -1,6 +1,6 @@
 {
   "name": "@microsoft.azure/autorest.typescript",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "The typescript extension for classic generators in AutoRest.",
   "scripts": {
     "autorest": "autorest",
