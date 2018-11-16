@@ -19,7 +19,10 @@ namespace AutoRest.TypeScript.DSL
             Description,
             Parameters,
             Deprecated,
-            Returns
+            Returns,
+            Type,
+            ReadOnly,
+            Enum
         }
 
         public JSDocumentationComment(JSBuilder builder, int commentWordWrapWidth)
@@ -114,12 +117,20 @@ namespace AutoRest.TypeScript.DSL
 
         public void ReadOnly()
         {
+            SetCurrentState(State.ReadOnly);
             builder.Line("@readonly");
         }
 
         public void Enum(string enumType)
         {
+            SetCurrentState(State.Enum);
             builder.Line($"@enum {{{enumType}}}");
+        }
+
+        public void Type(string type)
+        {
+            SetCurrentState(State.Type);
+            builder.Line($"@type {{{type}}}");
         }
     }
 }
