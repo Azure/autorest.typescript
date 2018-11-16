@@ -13,6 +13,7 @@ jobs:
       Node11:
         node.version: 11.x
   steps:
+  - script: npm install
   - task: Npm@1
     displayName: 'Run npm pack'
     inputs:
@@ -36,7 +37,6 @@ jobs:
     displayName: 'Install Node $(node.version)'
     inputs:
       versionSpec: $(node.version)
-  - script: npm install
   - task: gulp@0
     displayName: 'gulp test'
     inputs:
