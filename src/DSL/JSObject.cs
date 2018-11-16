@@ -106,7 +106,7 @@ namespace AutoRest.TypeScript.DSL
 
         private bool PropertyNameNeedsToBeQuoted(string propertyName)
         {
-            return propertyName.Contains(".");
+            return propertyName.Contains(".") || propertyName.Contains("/");
         }
 
         /// <summary>
