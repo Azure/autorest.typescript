@@ -283,7 +283,12 @@ namespace AutoRest.TypeScript.DSL
         /// <param name="text">The text to double-quote and add to this JSBuilder.</param>
         public void QuotedString(string text)
         {
-            Text($"\"{text}\"");
+            char quote = '"';
+            if (!string.IsNullOrEmpty(text) && (text.Contains('\n') || text.Contains('"')))
+            {
+                quote = '`';
+            }
+            Text($"{quote}{text}{quote}");
         }
 
         /// <summary>
@@ -446,9 +451,19 @@ namespace AutoRest.TypeScript.DSL
             Line($"import * as {importAs} from \"{importSource}\";");
         }
 
+        public void ImportFrom(string importAs, string importSource)
+        {
+            Line($"import {importAs} from \"{importSource}\";");
+        }
+
         public void Import(IEnumerable<string> importedTypeNames, string importSource)
         {
             Line($"import {{ {string.Join(", ", importedTypeNames)} }} from \"{importSource}\";");
+        }
+
+        public void ExportDefault(string variableName)
+        {
+            Line($"export default {variableName};");
         }
     }
 }

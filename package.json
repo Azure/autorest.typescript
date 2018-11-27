@@ -1,6 +1,6 @@
 {
   "name": "@microsoft.azure/autorest.typescript",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "The typescript extension for classic generators in AutoRest.",
   "scripts": {
     "autorest": "autorest",
@@ -13,7 +13,7 @@
     "regenerateci": "gulp regenerateci",
     "build": "gulp build",
     "prepare": "gulp install_common && gulp build",
-    "publish-preview": "gulp publish-preview --release",
+    "prepack": "npm install && gulp install_common && gulp build",
     "regenerate": "gulp regenerate",
     "clean": "gulp clean",
     "nuke": "git clean -xdf",

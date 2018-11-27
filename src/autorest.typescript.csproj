@@ -53,8 +53,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="YamlDotNet.Signed" Version="4.2.1" />
-    <!-- <PackageReference Include="Microsoft.AutoRest.Common" Version="2.4.44" /> -->
+    <PackageReference Include="YamlDotNet.Signed" Version="5.2.1" />
     <ProjectReference Include="../autorest.common/src/autorest.common.csproj" />
   </ItemGroup>
 

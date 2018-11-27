@@ -983,5 +983,50 @@ namespace AutoRest.TypeScript.Model
                 builder.List("[Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)");
             });
         }
+
+        public string GenerateRollupConfig()
+        {
+            JSBuilder builder = new JSBuilder();
+
+            builder.ImportFrom("rollup", "rollup");
+            builder.ImportFrom("nodeResolve", "rollup-plugin-node-resolve");
+            builder.ImportFrom("sourcemaps", "rollup-plugin-sourcemaps");
+            builder.Line();
+            builder.DocumentationComment(comment =>
+            {
+                comment.Type("rollup.RollupFileOptions");
+            });
+            builder.ConstObjectVariable("config", config =>
+            {
+                string inputFilePath = $"./esm/{(Settings.MultiapiLatest ? "index" : Name.ToCamelCase())}.js";
+                config.QuotedStringProperty($"input", inputFilePath);
+                config.QuotedStringArrayProperty("external", new[] { "@azure/ms-rest-js", "@azure/ms-rest-azure-js" });
+                config.ObjectProperty("output", output =>
+                {
+                    output.QuotedStringProperty("file", $"./dist/{BundleFilename}.js");
+                    output.QuotedStringProperty("format", "umd");
+                    output.QuotedStringProperty("name", BundleVarName);
+                    output.BooleanProperty("sourcemap", true);
+                    output.ObjectProperty("globals", globals =>
+                    {
+                        globals.QuotedStringProperty("@azure/ms-rest-js", "msRest");
+                        globals.QuotedStringProperty("@azure/ms-rest-azure-js", "msRestAzure");
+                    });
+
+                    JSBuilder banner = new JSBuilder();
+                    banner.Comment(AutoRest.Core.Settings.Instance.Header);
+                    output.QuotedStringProperty("banner", banner.ToString());
+                });
+                config.ArrayProperty("plugins", plugins =>
+                {
+                    plugins.Text("nodeResolve({ module: true })");
+                    plugins.Text("sourcemaps()");
+                });
+            });
+            builder.Line();
+            builder.ExportDefault("config");
+
+            return builder.ToString();
+        }
     }
 }

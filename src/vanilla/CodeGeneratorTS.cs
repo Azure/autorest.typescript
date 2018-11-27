@@ -237,7 +237,7 @@ namespace AutoRest.TypeScript
 
         protected Task WriteRollupConfig(CodeModelTS codeModel)
         {
-            return Write(new RollupConfig { Model = codeModel }, "rollup.config.js");
+            return Write(codeModel.GenerateRollupConfig(), "rollup.config.js");
         }
 
         protected string GetSourceCodeFilePath(CodeModelTS codeModel, params string[] pathSegments)
