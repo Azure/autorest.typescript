@@ -3,7 +3,7 @@
 
 'use strict';
 
-import * as should from 'should';
+import { should } from 'chai';
 import * as msAssert from "../util/msAssert";
 import * as msRest from '@azure/ms-rest-js';
 
@@ -112,7 +112,7 @@ describe('typescript', function () {
 
     it('should work with Put200Succeeded', async () => {
       const result = await testClient.lROs.put200Succeeded({ product: product });
-      should.exist(result);
+      result.should.exist
       should(result.provisioningState).be.exactly('Succeeded');
     });
 

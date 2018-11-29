@@ -3,7 +3,7 @@
 
 'use strict';
 
-import * as should from 'should';
+import { should } from 'chai';
 import * as msRest from '@azure/ms-rest-js';
 
 import { AutoRestParameterGroupingTestService } from './generated/AzureParameterGrouping/autoRestParameterGroupingTestService';
@@ -25,7 +25,7 @@ describe('typescript', function () {
     var testClient = new AutoRestParameterGroupingTestService(credentials, clientOptions);
     it('should accept valid required parameters', function (done) {
       testClient.parameterGrouping.postRequired({ body: body, customHeader: header, query: query, path: path }, function (error, result, request, response) {
-        should.not.exist(error);
+        error.should.not.exist
         response.status.should.equal(200);
         done();
       });
@@ -33,7 +33,7 @@ describe('typescript', function () {
 
     it('should accept required parameters but null optional parameters', function (done) {
       testClient.parameterGrouping.postRequired({ body: body, path: path }, function (error, result, request, response) {
-        should.not.exist(error);
+        error.should.not.exist
         response.status.should.equal(200);
         done();
       });
@@ -41,10 +41,10 @@ describe('typescript', function () {
 
     it('should reject null required parameters', function (done) {
       testClient.parameterGrouping.postRequired(null, function (error, result, request, response) {
-        should.exist(error);
+        error.should.exist
         error.message.should.match(/.*cannot be null or undefined.*/);
-        should.not.exist(result);
-        should.not.exist(response);
+        result.should.not.exist
+        response.should.not.exist
         done();
       });
     });
@@ -57,7 +57,7 @@ describe('typescript', function () {
         }
       };
       testClient.parameterGrouping.postOptional(options, function (error, result, request, response) {
-        should.not.exist(error);
+        error.should.not.exist
         response.status.should.equal(200);
         done();
       });
@@ -68,7 +68,7 @@ describe('typescript', function () {
         parameterGroupingPostOptionalParameters: null
       };
       testClient.parameterGrouping.postOptional(options, function (error, result, request, response) {
-        should.not.exist(error);
+        error.should.not.exist
         response.status.should.equal(200);
         done();
       });
@@ -80,7 +80,7 @@ describe('typescript', function () {
         parameterGroupingPostMultiParamGroupsSecondParamGroup: { headerTwo: "header2", queryTwo: 42 }
       };
       testClient.parameterGrouping.postMultiParamGroups(options, function (error, result, request, response) {
-        should.not.exist(error);
+        error.should.not.exist
         response.status.should.equal(200);
         done();
       });
@@ -92,7 +92,7 @@ describe('typescript', function () {
         parameterGroupingPostMultiParamGroupsSecondParamGroup: { queryTwo: 42 }
       };
       testClient.parameterGrouping.postMultiParamGroups(options, function (error, result, request, response) {
-        should.not.exist(error);
+        error.should.not.exist
         response.status.should.equal(200);
         done();
       });
@@ -103,7 +103,7 @@ describe('typescript', function () {
         firstParameterGroup: { headerOne: header, queryOne: 42 }
       };
       testClient.parameterGrouping.postSharedParameterGroupObject(options, function (error, result, request, response) {
-        should.not.exist(error);
+        error.should.not.exist
         response.status.should.equal(200);
         done();
       });

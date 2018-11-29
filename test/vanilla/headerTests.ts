@@ -99,7 +99,7 @@ describe('typescript', function () {
 
         // Note: converting the header value "null" to a null literal is not supported.
         // const response2 = await testClient.header.responseString('null');
-        // should.not.exist(response2.value);
+        // response2.value.should.not.exist
 
         const response3 = await testClient.header.responseString('empty');
         response3.value.should.be.exactly('');

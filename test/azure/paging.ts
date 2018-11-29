@@ -3,7 +3,7 @@
 
 'use strict';
 
-import * as should from 'should';
+import { should } from 'chai';
 import * as assert from 'assert';
 import * as msAssert from "../util/msAssert";
 import * as msRest from '@azure/ms-rest-js';
@@ -31,17 +31,17 @@ describe('typescript', function () {
 
       it('should get single pages', async function () {
         const result = await testClient.paging.getSinglePages();
-        should.not.exist(result.nextLink);
+        result.nextLink.should.not.exist
         assert.deepEqual(result.slice(), [{ properties: { id: 1, name: "Product" } }]);
       });
 
       it('should get multiple pages using promises', async function () {
         let result = await testClient.paging.getMultiplePages({ clientRequestId: 'client-id' });
         for (let i = 1; i < 10; i++) {
-          should.exist(result.nextLink);
+          result.nextLink.should.exist
           result = await testClient.paging.getMultiplePagesNext(result.nextLink, { clientRequestId: 'client-id' });
         }
-        should.not.exist(result.nextLink);
+        result.nextLink.should.not.exist
       });
 
       it('should get multiple pages', function (done) {
@@ -49,7 +49,7 @@ describe('typescript', function () {
           const loop = function (nextLink: string, count: number) {
             if (nextLink !== null && nextLink !== undefined) {
               testClient.paging.getMultiplePagesNext(nextLink, { clientRequestId: 'client-id' }, function (err, res) {
-                should.not.exist(err);
+                err.should.not.exist
                 loop(res.nextLink, count + 1);
               });
             } else {
@@ -58,8 +58,8 @@ describe('typescript', function () {
             }
           };
 
-          should.not.exist(error);
-          should.exist(result.nextLink);
+          error.should.not.exist
+          result.nextLink.should.exist
           loop(result.nextLink, 1);
         });
       });
@@ -69,7 +69,7 @@ describe('typescript', function () {
           var loop = function (nextLink: string, count: number) {
             if (nextLink !== null && nextLink !== undefined) {
               testClient.paging.getOdataMultiplePagesNext(nextLink, { clientRequestId: 'client-id' }, function (err, res) {
-                should.not.exist(err);
+                err.should.not.exist
                 loop(res.odatanextLink, count + 1);
               });
             } else {
@@ -78,8 +78,8 @@ describe('typescript', function () {
             }
           };
 
-          should.not.exist(error);
-          should.exist(result.odatanextLink);
+          error.should.not.exist
+          result.odatanextLink.should.exist
           loop(result.odatanextLink, 1);
         });
       });
@@ -89,7 +89,7 @@ describe('typescript', function () {
           var loop = function (nextLink: string, count: number) {
             if (nextLink !== null && nextLink !== undefined) {
               testClient.paging.getMultiplePagesWithOffsetNext(nextLink, { clientRequestId: 'client-id' }, function (err, res) {
-                should.not.exist(err);
+                err.should.not.exist
                 result = res;
                 loop(res.nextLink, count + 1);
               });
@@ -100,8 +100,8 @@ describe('typescript', function () {
             }
           };
 
-          should.not.exist(error);
-          should.exist(result.nextLink);
+          error.should.not.exist
+          result.nextLink.should.exist
           loop(result.nextLink, 1);
         });
       });
@@ -111,7 +111,7 @@ describe('typescript', function () {
           var loop = function (nextLink, count) {
             if (nextLink !== null && nextLink !== undefined) {
               testClient.paging.getMultiplePagesRetryFirstNext(nextLink, function (err, res) {
-                should.not.exist(err);
+                err.should.not.exist
                 loop(res.nextLink, count + 1);
               });
             } else {
@@ -120,8 +120,8 @@ describe('typescript', function () {
             }
           };
 
-          should.not.exist(error);
-          should.exist(result.nextLink);
+          error.should.not.exist
+          result.nextLink.should.exist
           loop(result.nextLink, 1);
         });
       });
@@ -131,7 +131,7 @@ describe('typescript', function () {
           var loop = function (nextLink, count) {
             if (nextLink !== null && nextLink !== undefined) {
               testClient.paging.getMultiplePagesRetrySecondNext(nextLink, function (err, res) {
-                should.not.exist(err);
+                err.should.not.exist
                 loop(res.nextLink, count + 1);
               });
             } else {
@@ -140,8 +140,8 @@ describe('typescript', function () {
             }
           };
 
-          should.not.exist(error);
-          should.exist(result.nextLink);
+          error.should.not.exist
+          result.nextLink.should.exist
           loop(result.nextLink, 1);
         });
       });
@@ -151,7 +151,7 @@ describe('typescript', function () {
           var loop = function (odatanextLink, count) {
             if (odatanextLink !== null && odatanextLink !== undefined) {
               testClient.paging.nextFragment('1.6', 'test_user', odatanextLink, function (err, res) {
-                should.not.exist(err);
+                err.should.not.exist
                 loop(res.odatanextLink, count + 1);
               });
             } else {
@@ -160,8 +160,8 @@ describe('typescript', function () {
             }
           };
 
-          should.not.exist(error);
-          should.exist(result.odatanextLink);
+          error.should.not.exist
+          result.odatanextLink.should.exist
           loop(result.odatanextLink, 1);
         });
       });

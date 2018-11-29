@@ -3,7 +3,7 @@
 
 'use strict';
 
-import * as should from 'should';
+import { should } from 'chai';
 import * as msRest from '@azure/ms-rest-js';
 
 import { MicrosoftAzureTestUrl } from './generated/SubscriptionIdApiVersion/microsoftAzureTestUrl';
@@ -24,7 +24,7 @@ describe('typescript', function () {
     it('should correctly send the subscriptionId as path parameter and api-version ' +
       'as a query parameter in the request url', function (done) {
         testClient.group.getSampleResourceGroup('testgroup101', function (error, result, request, response) {
-          should.not.exist(error);
+          error.should.not.exist
           response.status.should.equal(200);
           done();
         });

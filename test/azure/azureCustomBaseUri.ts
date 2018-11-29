@@ -3,7 +3,7 @@
 
 'use strict';
 
-import * as should from 'should';
+import { should } from 'chai';
 import * as assert from 'assert';
 import * as msRest from '@azure/ms-rest-js';
 
@@ -30,20 +30,20 @@ describe('typescript', function () {
         await Promise.race([testClient.paths.getEmpty('local'), timeoutPromise(1000)]);
         assert.fail('');
       } catch (error) {
-        should(error).not.be.instanceof(assert.AssertionError);
+        error.should.not.be.instanceof(assert.AssertionError);
       }
       testClient.host = 'host:3000';
       try {
         await Promise.race([testClient.paths.getEmpty('bad'), timeoutPromise(1000)]);
         assert.fail('');
       } catch (error) {
-        should(error).not.be.instanceof(assert.AssertionError);
+        error.should.not.be.instanceof(assert.AssertionError);
       }
 
       try {
         await Promise.race([testClient.paths.getEmpty(null), timeoutPromise(1000)]);
       } catch (error) {
-        should(error).not.be.instanceof(assert.AssertionError);
+        error.should.not.be.instanceof(assert.AssertionError);
       }
     });
 
@@ -63,7 +63,7 @@ describe('typescript', function () {
 
         const res = await client.paths.getEmpty("local");
         const request = res._response.request;
-        request.url.should.not.startWith("http://microsoft.com");
+        request.url.startsWith("http://microsoft.com").should.be.false;
       });
     });
   });

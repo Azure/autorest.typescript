@@ -3,7 +3,7 @@
 
 'use strict';
 
-import * as should from 'should';
+import { should } from 'chai';
 import * as msRest from '@azure/ms-rest-js';
 
 import { AutoRestAzureSpecialParametersTestClient } from './generated/AzureSpecials/autoRestAzureSpecialParametersTestClient';
@@ -130,7 +130,7 @@ describe('typescript', function () {
         generateClientRequestIdHeader: false
       });
       testClient2.xMsClientRequestId.get(function (error, result, request, response) {
-        should.not.exist(error);
+        error.should.not.exist
         response.status.should.equal(200);
         response.headers.get('x-ms-request-id').should.equal('123');
         done();
@@ -145,7 +145,6 @@ describe('typescript', function () {
         }
       };
       testClient.xMsClientRequestId.get(options, function (error, result, request, response) {
-        should.exist(error);
         (error as msRest.RestError).response.headers.get('x-ms-request-id').should.equal('123');
         done();
       });
@@ -153,30 +152,30 @@ describe('typescript', function () {
 
     it('should allow custom-named request-id headers to be used', function (done) {
       testClient.header.customNamedRequestId("9C4D50EE-2D56-4CD3-8152-34347DC9F2B0", function (error, result, request, response) {
-        should.not.exist(error);
+        error.should.not.exist
         response.status.should.equal(200);
-        should.not.exist(request.headers["x-ms-client-request-id"]);
-        should.equal(response.headers.get("foo-request-id"), "123");
+        request.headers["x-ms-client-request-id"].should.not.exist
+        response.headers.get("foo-request-id").should.equal("123");
         done();
       });
     });
 
     it('should allow custom-named request-id headers to be used with parameter grouping', function (done) {
       testClient.header.customNamedRequestIdParamGrouping({ fooClientRequestId: "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0" }, function (error, result, request, response) {
-        should.not.exist(error);
+        error.should.not.exist
         response.status.should.equal(200);
-        should.not.exist(request.headers["x-ms-client-request-id"]);
-        should.equal(response.headers.get("foo-request-id"), "123");
+        request.headers["x-ms-client-request-id"].should.not.exist
+        response.headers.get("foo-request-id").should.equal("123");
         done();
       });
     });
 
     it('should allow custom-named request-id headers to be used in head operations', function (done) {
       testClient.header.customNamedRequestIdHead("9C4D50EE-2D56-4CD3-8152-34347DC9F2B0", function (error, result, request, response) {
-        should.not.exist(error);
+        error.should.not.exist
         response.status.should.equal(200);
-        should.not.exist(request.headers["x-ms-client-request-id"]);
-        should.equal(response.headers.get("foo-request-id"), "123");
+        request.headers["x-ms-client-request-id"].should.not.exist
+        response.headers.get("foo-request-id").should.equal("123");
         result.should.equal(true);
         done();
       });
@@ -189,7 +188,7 @@ describe('typescript', function () {
         orderby: 'id'
       };
       testClient.odata.getWithFilter(options, function (error, result, request, response) {
-        should.not.exist(error);
+        error.should.not.exist
         response.status.should.equal(200);
         done();
       });
@@ -210,7 +209,7 @@ describe('typescript', function () {
           }
         });
         const response = await client.apiVersionDefault.getMethodGlobalValid();
-        response._response.request.url.should.startWith("http://microsoft.com");
+        response._response.request.url.startsWith("http://microsoft.com").should.be.true;
       });
 
       it("should be overridden by a user-specified base URL", async function () {
@@ -221,7 +220,7 @@ describe('typescript', function () {
           baseUri: "http://usethisone.com"
         });
         const response = await client.apiVersionDefault.getMethodGlobalValid();
-        response._response.request.url.should.startWith("http://usethisone.com");
+        response._response.request.url.startsWith("http://usethisone.com").should.be.true;
       });
     });
   });
