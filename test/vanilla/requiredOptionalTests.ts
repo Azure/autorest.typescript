@@ -65,8 +65,8 @@ describe('typescript', function () {
       it('should throw error on null values for required integer properties', function (done) {
         testClient.explicit.postRequiredIntegerProperty(null, function (error, result) {
           error.should.exist
-          error.message.should.containEql('value');
-          error.message.should.containEql('cannot be null or undefined');
+          error.message.should.contains('value');
+          error.message.should.contains('cannot be null or undefined');
           done();
         });
       });
@@ -122,7 +122,7 @@ describe('typescript', function () {
       it('should throw error on null values for required string header', function (done) {
         testClient.explicit.postRequiredStringHeader(null, function (error, result) {
           error.should.exist
-          error.message.should.containEql('headerParameter cannot be null or undefined.');
+          error.message.should.contains('headerParameter cannot be null or undefined.');
           done();
         });
       });
@@ -192,7 +192,7 @@ describe('typescript', function () {
       it('should throw error on null values for required array header', function (done) {
         testClient.explicit.postRequiredArrayHeader(null, function (error, result) {
           error.should.exist
-          error.message.should.containEql('headerParameter cannot be null or undefined.');
+          error.message.should.contains('headerParameter cannot be null or undefined.');
           done();
         });
       });
@@ -207,7 +207,7 @@ describe('typescript', function () {
         testClient.requiredGlobalPath = null;
         testClient.implicit.getRequiredGlobalPath(function (error, result) {
           error.should.exist
-          error.message.should.containEql('requiredGlobalPath cannot be null or undefined.');
+          error.message.should.contains('requiredGlobalPath cannot be null or undefined.');
           done();
         });
       });
@@ -215,7 +215,7 @@ describe('typescript', function () {
         testClient.requiredGlobalQuery = null;
         testClient.implicit.getRequiredGlobalQuery(function (error, result) {
           error.should.exist
-          error.message.should.containEql('requiredGlobalQuery cannot be null or undefined.');
+          error.message.should.contains('requiredGlobalQuery cannot be null or undefined.');
           done();
         });
       });

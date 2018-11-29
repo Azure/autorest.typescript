@@ -388,8 +388,8 @@ describe('typescript', function () {
       it('should throw when required fields are omitted from polymorphic types', async function () {
         const error = await msAssert.throwsAsync(testClient.polymorphism.putValidMissingRequired(getBadfish()));
         error.should.exist
-        error.message.should.containEql('birthday');
-        error.message.should.containEql('cannot be null or undefined');
+        error.message.should.contains('birthday');
+        error.message.should.contains('cannot be null or undefined');
       });
 
       var getRawSalmon = () => (<AutoRestComplexTestServiceModels.SalmonUnion>{

@@ -63,7 +63,7 @@ describe('typescript', function () {
     it('should use the subscriptionId parameter when it is present', async function () {
       try {
         await testClient.subscriptionInMethod.postMethodLocalNull(null);
-        assert.fail();
+        should().fail;
       } catch (error) {
         error.message.should.equal("subscriptionId cannot be null or undefined.");
       }

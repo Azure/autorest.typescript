@@ -168,13 +168,13 @@ describe('typescript', function () {
 
       it('should fail on 400 single page', async () => {
         const error: Error = await msAssert.throwsAsync(testClient.paging.getSinglePagesFailure());
-        error.message.should.containEql("Expected");
+        error.message.should.contains("Expected");
       });
 
       it('should fail on 400 multiple pages', async () => {
         const result = await testClient.paging.getMultiplePagesFailure();
         const error: Error = await msAssert.throwsAsync(testClient.paging.getMultiplePagesFailureNext(result.nextLink));
-        error.message.should.containEql("Expected");
+        error.message.should.contains("Expected");
       });
 
       it('should fail on invalid next link URL in multiple pages', async () => {

@@ -3,7 +3,7 @@
 
 'use strict';
 
-import { should } from 'chai';
+import { assert, should } from 'chai';
 import * as msAssert from "../util/msAssert";
 import * as msRest from '@azure/ms-rest-js';
 
@@ -34,7 +34,7 @@ describe('typescript', function () {
 
     it('should work with Put201CreatingFailed200', async () => {
       const error = await msAssert.throwsAsync(testClient.lROs.put201CreatingFailed200({ product: product }));
-      error.message.should.be.exactly('Long running operation failed with status: "Failed".');
+      assert.deepEqual(error.message, 'Long running operation failed with status: "Failed".');
     });
 
     it('should work with Put200UpdatingSucceeded204', async () => {
@@ -43,12 +43,12 @@ describe('typescript', function () {
 
     it('should work with Put200Acceptedcanceled200', async () => {
       const error = await msAssert.throwsAsync(testClient.lROs.put200Acceptedcanceled200({ product: product }));
-      error.message.should.containEql('Long running operation failed with status: "Canceled".');
+      error.message.should.contain('Long running operation failed with status: "Canceled".');
     });
 
     it('should work with PutAsyncNoRetrySucceeded', async () => {
       const result = await testClient.lROs.putAsyncNoRetrySucceeded({ product: product });
-      should(result._response.parsedBody).eql({ id: '100', name: 'foo', provisioningState: "Succeeded" });
+      result._response.parsedBody.should.eql({ id: '100', name: 'foo', provisioningState: "Succeeded" });
     });
 
     it('should work with PutNoHeaderInRetry', async () => {
@@ -107,18 +107,18 @@ describe('typescript', function () {
 
     it('should work with put202Retry200', async () => {
       const result = await testClient.lROs.put202Retry200({ product: product });
-      should(result.id).be.exactly('100');
+      result.id.should.be.exactly('100');
     });
 
     it('should work with Put200Succeeded', async () => {
       const result = await testClient.lROs.put200Succeeded({ product: product });
       result.should.exist
-      should(result.provisioningState).be.exactly('Succeeded');
+      result.provisioningState.should.be.exactly('Succeeded');
     });
 
     it('should work with Put200SucceededNoState', async () => {
       const result = await testClient.lROs.put200SucceededNoState({ product: product });
-      should(result.id).be.exactly('100');
+      result.id.should.be.exactly('100');
     });
 
     it('should work with PutAsyncRetrySucceeded', async () => {
@@ -128,12 +128,12 @@ describe('typescript', function () {
 
     it('should work with PutAsyncRetryFailed', async () => {
       const error = await msAssert.throwsAsync(testClient.lROs.putAsyncRetryFailed({ product: product }));
-      error.message.should.containEql('Long running operation failed');
+      error.message.should.contains('Long running operation failed');
     });
 
     it('should work with PutAsyncNoRetrycanceled', async () => {
       const error = await msAssert.throwsAsync(testClient.lROs.putAsyncNoRetrycanceled({ product: product }));
-      error.message.should.containEql('Long running operation failed');
+      error.message.should.contains('Long running operation failed');
     });
 
     it('should work with delete204Succeeded', async () => {
@@ -170,12 +170,12 @@ describe('typescript', function () {
 
     it('should work with DeleteAsyncRetrycanceled', async () => {
       const error = await msAssert.throwsAsync(testClient.lROs.deleteAsyncRetrycanceled());
-      error.message.should.containEql('Long running operation failed');
+      error.message.should.contains('Long running operation failed');
     });
 
     it('should work with DeleteAsyncRetryFailed', async () => {
       const error = await msAssert.throwsAsync(testClient.lROs.deleteAsyncRetryFailed());
-      error.message.should.containEql('Long running operation failed');
+      error.message.should.contains('Long running operation failed');
     });
 
     it('should work with post202Retry200', async () => {
@@ -218,12 +218,12 @@ describe('typescript', function () {
 
     it('should work with PostAsyncRetrycanceled', async () => {
       const error = await msAssert.throwsAsync(testClient.lROs.postAsyncRetrycanceled({ product: product }));
-      error.message.should.containEql('Long running operation failed with status: "Canceled".');
+      error.message.should.contains('Long running operation failed with status: "Canceled".');
     });
 
     it('should work with PostAsyncRetryFailed', async () => {
       const error: msRest.RestError = await msAssert.throwsAsync(testClient.lROs.postAsyncRetryFailed({ product: product }));
-      error.message.should.containEql('Long running operation failed with error: "Internal Server Error".');
+      error.message.should.contains('Long running operation failed with error: "Internal Server Error".');
       const errObject = error.body;
       errObject.error.code.should.be.exactly(500);
       errObject.error.message.should.be.exactly('Internal Server Error');
@@ -279,17 +279,17 @@ describe('typescript', function () {
 
     it('should throw on PutNonRetry400', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.putNonRetry400({ product: product }));
-      error.message.should.containEql('Expected bad request message');
+      error.message.should.contains('Expected bad request message');
     });
 
     it('should throw on PutNonRetry201Creating400', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.putNonRetry201Creating400({ product: product }));
-      error.message.should.containEql(`"Error from the server"`);
+      error.message.should.contains(`"Error from the server"`);
     });
 
     it('should throw on LRONonRetryPut201Creating400InvalidJson', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.putNonRetry201Creating400InvalidJson({ product: product }));
-      error.message.should.containEql(`"Error from the server"`);
+      error.message.should.contains(`"Error from the server"`);
     });
 
     it('should throw on PutAsyncRelativeRetry400', async () => {
@@ -299,47 +299,47 @@ describe('typescript', function () {
 
     it('should throw on DeleteNonRetry400', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.deleteNonRetry400());
-      error.message.should.containEql('Expected');
+      error.message.should.contains('Expected');
     });
 
     it('should throw on Delete202NonRetry400', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.delete202NonRetry400());
-      error.message.should.containEql('{"message":"Expected bad request message","status":400}');
+      error.message.should.contains('{"message":"Expected bad request message","status":400}');
     });
 
     it('should throw on DeleteAsyncRelativeRetry400', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.deleteAsyncRelativeRetry400());
-      error.message.should.containEql('{"message":"Expected bad request message","status":400}');
+      error.message.should.contains('{"message":"Expected bad request message","status":400}');
     });
 
     it('should throw on PostNonRetry400', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.postNonRetry400({ product: product }));
-      error.message.should.containEql('Expected bad request message');
+      error.message.should.contains('Expected bad request message');
     });
 
     it('should throw on Post202NonRetry400', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.post202NonRetry400({ product: product }));
-      error.message.should.containEql('{"message":"Expected bad request message","status":400}');
+      error.message.should.contains('{"message":"Expected bad request message","status":400}');
     });
 
     it('should throw on PostAsyncRelativeRetry400', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.postAsyncRelativeRetry400({ product: product }));
-      error.message.should.containEql('{"message":"Expected bad request message","status":400}');
+      error.message.should.contains('{"message":"Expected bad request message","status":400}');
     });
 
     it('should throw on PutError201NoProvisioningStatePayload', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.putError201NoProvisioningStatePayload({ product: product }));
-      error.message.should.containEql('The response from long running operation does not contain a body.');
+      error.message.should.contains('The response from long running operation does not contain a body.');
     });
 
     it('should throw on PutAsyncRelativeRetryNoStatusPayload', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.putAsyncRelativeRetryNoStatusPayload({ product: product }));
-      error.message.should.containEql('The response from long running operation does not contain a body.');
+      error.message.should.contains('The response from long running operation does not contain a body.');
     });
 
     it('should throw on PutAsyncRelativeRetryNoStatus', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.putAsyncRelativeRetryNoStatus({ product: product }));
-      error.message.should.containEql('The response "{ }" from long running operation does not contain the status property.');
+      error.message.should.contains('The response "{ }" from long running operation does not contain the status property.');
     });
 
     it('should throw on Delete204Succeeded', async () => {
@@ -348,7 +348,7 @@ describe('typescript', function () {
 
     it('should throw on DeleteAsyncRelativeRetryNoStatus', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.deleteAsyncRelativeRetryNoStatus());
-      error.message.should.containEql('The response "{ }" from long running operation does not contain the status property.');
+      error.message.should.contains('The response "{ }" from long running operation does not contain the status property.');
     });
 
     it('should not throw on Post202NoLocation', async () => {
@@ -357,7 +357,7 @@ describe('typescript', function () {
 
     it('should throw on PostAsyncRelativeRetryNoPayload', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.postAsyncRelativeRetryNoPayload({ product: product }));
-      error.message.should.containEql('The response from long running operation does not contain a body.');
+      error.message.should.contains('The response from long running operation does not contain a body.');
     });
 
     it('should throw on Put200InvalidJson', async () => {
