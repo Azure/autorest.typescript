@@ -71,7 +71,7 @@ namespace AutoRest.TypeScript.Azure.Model
 
         public override string PackageDependencies()
         {
-            return "\"@azure/ms-rest-azure-js\": \"^1.1.0\"" + ",\n" + base.PackageDependencies();
+            return "\"@azure/ms-rest-azure-js\": \"^1.1.2\"" + ",\n" + base.PackageDependencies();
         }
 
         public string GenerateAzureServiceClientImports()
