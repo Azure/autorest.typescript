@@ -53,22 +53,22 @@ describe('typescript', function () {
 
     it('should work with PutNoHeaderInRetry', async () => {
       const result = await testClient.lROs.putNoHeaderInRetry({ product: product });
-      result.provisioningState.should.be.exactly('Succeeded');
+      result.provisioningState.should.be.deep.equal('Succeeded');
     });
 
     it('should work with PutAsyncNoHeaderInRetry', async () => {
       const result = await testClient.lROs.putAsyncNoHeaderInRetry({ product: product });
-      result.provisioningState.should.be.exactly('Succeeded');
+      result.provisioningState.should.be.deep.equal('Succeeded');
     });
 
     it('should work with PutSubResource', async () => {
       const result = await testClient.lROs.putSubResource();
-      result.provisioningState.should.be.exactly('Succeeded');
+      result.provisioningState.should.be.deep.equal('Succeeded');
     });
 
     it('should work with PutAsyncSubResource', async () => {
       const result = await testClient.lROs.putAsyncSubResource();
-      result.provisioningState.should.be.exactly('Succeeded');
+      result.provisioningState.should.be.deep.equal('Succeeded');
     });
 
     it('should work with PutNonResource', async () => {
@@ -77,8 +77,8 @@ describe('typescript', function () {
         'id': 'doesNotMatter'
       };
       const result = await testClient.lROs.putNonResource({ sku: sku });
-      result.id.should.be.exactly('100');
-      result.name.should.be.exactly('sku');
+      result.id.should.be.deep.equal('100');
+      result.name.should.be.deep.equal('sku');
     });
 
     it('should work with PutAsyncNonResource', async () => {
@@ -87,8 +87,8 @@ describe('typescript', function () {
         'id': 'doesNotMatter'
       };
       const result = await testClient.lROs.putAsyncNonResource({ sku: sku });
-      result.id.should.be.exactly('100');
-      result.name.should.be.exactly('sku');
+      result.id.should.be.deep.equal('100');
+      result.name.should.be.deep.equal('sku');
     });
 
     it('should work with DeleteNoHeaderInRetry', async () => {
@@ -107,23 +107,23 @@ describe('typescript', function () {
 
     it('should work with put202Retry200', async () => {
       const result = await testClient.lROs.put202Retry200({ product: product });
-      result.id.should.be.exactly('100');
+      result.id.should.be.deep.equal('100');
     });
 
     it('should work with Put200Succeeded', async () => {
       const result = await testClient.lROs.put200Succeeded({ product: product });
-      result.should.exist
-      result.provisioningState.should.be.exactly('Succeeded');
+      result.should.exist;
+      result.provisioningState.should.be.deep.equal('Succeeded');
     });
 
     it('should work with Put200SucceededNoState', async () => {
       const result = await testClient.lROs.put200SucceededNoState({ product: product });
-      result.id.should.be.exactly('100');
+      result.id.should.be.deep.equal('100');
     });
 
     it('should work with PutAsyncRetrySucceeded', async () => {
       const result = await testClient.lROs.putAsyncRetrySucceeded({ product: product });
-      result.provisioningState.should.be.exactly('Succeeded');
+      result.provisioningState.should.be.deep.equal('Succeeded');
     });
 
     it('should work with PutAsyncRetryFailed', async () => {
@@ -208,12 +208,12 @@ describe('typescript', function () {
 
     it('should work with PostAsyncRetrySucceeded', async () => {
       const result = await testClient.lROs.postAsyncRetrySucceeded({ product: product });
-      result.id.should.be.exactly('100');
+      result.id.should.be.deep.equal('100');
     });
 
     it('should work with PostAsyncNoRetrySucceeded', async () => {
       const result = await testClient.lROs.postAsyncNoRetrySucceeded({ product: product });
-      result.id.should.be.exactly('100');
+      result.id.should.be.deep.equal('100');
     });
 
     it('should work with PostAsyncRetrycanceled', async () => {
@@ -225,8 +225,8 @@ describe('typescript', function () {
       const error: msRest.RestError = await msAssert.throwsAsync(testClient.lROs.postAsyncRetryFailed({ product: product }));
       error.message.should.contains('Long running operation failed with error: "Internal Server Error".');
       const errObject = error.body;
-      errObject.error.code.should.be.exactly(500);
-      errObject.error.message.should.be.exactly('Internal Server Error');
+      errObject.error.code.should.be.deep.equal(500);
+      errObject.error.message.should.be.deep.equal('Internal Server Error');
     });
 
     /** LRO Retrys **/

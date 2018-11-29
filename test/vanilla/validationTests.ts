@@ -24,7 +24,7 @@ describe('typescript', function () {
 
       it('should test the maximum length constraint on resourceGroupName', function (done) {
         testClient.validationOfMethodParameters("1234567890A", 100, function (err, result) {
-          err.should.exist
+          err.should.exist;
           err.message.should.match(/.*resourceGroupName.*constraint.*MaxLength.*10/ig);
           done();
         });
@@ -32,7 +32,7 @@ describe('typescript', function () {
 
       it('should test the pattern length constraint on resourceGroupName', function (done) {
         testClient.validationOfMethodParameters("!@#$", 100, function (err, result) {
-          err.should.exist
+          err.should.exist;
           err.message.should.match(/.*resourceGroupName.*constraint.*Pattern.*/ig);
           done();
         });
@@ -40,7 +40,7 @@ describe('typescript', function () {
 
       it('should test the multipleof constraint on id', function (done) {
         testClient.validationOfMethodParameters("123", 105, function (err, result) {
-          err.should.exist
+          err.should.exist;
           err.message.should.match(/.*id.*constraint.*MultipleOf.*10/ig);
           done();
         });
@@ -48,7 +48,7 @@ describe('typescript', function () {
 
       it('should test the InclusiveMinimum constraint on id', function (done) {
         testClient.validationOfMethodParameters("123", 0, function (err, result) {
-          err.should.exist
+          err.should.exist;
           err.message.should.match(/.*id.*constraint.*InclusiveMinimum.*100/ig);
           done();
         });
@@ -56,7 +56,7 @@ describe('typescript', function () {
 
       it('should test the InclusiveMaximum constraint on id', function (done) {
         testClient.validationOfMethodParameters("123", 2000, function (err, result) {
-          err.should.exist
+          err.should.exist;
           err.message.should.match(/.*id.*constraint.*InclusiveMaximum.*1000/ig);
           done();
         });
@@ -65,7 +65,7 @@ describe('typescript', function () {
       it('should test the pattern constraint on apiVersion', function (done) {
         var testClient2 = new AutoRestValidationTest("abc123", "12345", clientOptions);
         testClient2.validationOfMethodParameters("123", 150, function (err, result) {
-          err.should.exist
+          err.should.exist;
           err.message.should.match(/.*apiVersion.*constraint.*Pattern.*/ig);
           done();
         });
@@ -75,7 +75,7 @@ describe('typescript', function () {
     describe('Of Body Parameters', function () {
       it('should test the ExclusiveMinimum constraint on capacity', function (done) {
         testClient.validationOfBody("123", 150, { body: { capacity: 0, child: {} } }, function (err, result) {
-          err.should.exist
+          err.should.exist;
           err.message.should.match(/.*capacity.*constraint.*ExclusiveMinimum.*0.*/ig);
           done();
         });
@@ -83,7 +83,7 @@ describe('typescript', function () {
 
       it('should test the ExclusiveMaximum constraint on capacity', function (done) {
         testClient.validationOfBody("123", 150, { body: { capacity: 2000, child: {} } }, function (err, result) {
-          err.should.exist
+          err.should.exist;
           err.message.should.match(/.*capacity.*constraint.*ExclusiveMaximum.*100.*/ig);
           done();
         });
@@ -91,7 +91,7 @@ describe('typescript', function () {
 
       it('should test the MaxItems constraint on displayNames', function (done) {
         testClient.validationOfBody("123", 150, { body: { displayNames: ["item1", "item2", "item3", "item4", "item5", "item6", "item7"], child: {} } }, function (err, result) {
-          err.should.exist
+          err.should.exist;
           err.message.should.match(/.*display_names.*constraint.*MaxItems.*6.*/ig);
           done();
         });
@@ -101,14 +101,14 @@ describe('typescript', function () {
     describe('Constants', function () {
       it('should work in path', function (done) {
         testClient.getWithConstantInPath(function (err, result) {
-          err.should.not.exist
+          err.should.not.exist;
           done();
         });
       });
 
       it('should work in body', function (done) {
         testClient.postWithConstantInBody({ body: { child: {} } }, function (err, result) {
-          err.should.not.exist
+          err.should.not.exist;
           done();
         });
       });

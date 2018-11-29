@@ -32,19 +32,19 @@ describe('typescript', function () {
 
       it('should return true for 200 status code', async () => {
         const result = await testClient.httpSuccess.head200();
-        result.body.should.exist
+        result.body.should.exist;
         result.body.should.be.true;
       });
 
       it('should return true for 204 status code', async () => {
         const result = await testClient.httpSuccess.head204();
-        result.body.should.exist
+        result.body.should.exist;
         result.body.should.be.true;
       });
 
       it('should return false for 404 status code', async () => {
         const result = await testClient.httpSuccess.head404();
-        result.body.should.exist
+        result.body.should.exist;
         result.body.should.be.false;
       });
     });

@@ -3,8 +3,8 @@
 
 'use strict';
 
-import should = require('should');
-import assert = require('assert');
+import { should } from 'chai';
+import * as assert from 'assert'
 var _ = require('underscore');
 
 import { AutoRestResourceFlatteningTestService, AutoRestResourceFlatteningTestServiceModels } from './generated/ModelFlattening/autoRestResourceFlatteningTestService';
@@ -44,7 +44,7 @@ describe('typescript', function () {
           }
         ];
         testClient.getArray(function (error, result) {
-          error.should.not.exist
+          should().not.exist(error);
           assert.deepEqual(result, expectedResult);
           done();
         });
@@ -56,7 +56,7 @@ describe('typescript', function () {
           <AutoRestResourceFlatteningTestServiceModels.Resource>{ "location": "Building 44", "pname": "Product2" }
         ];
         testClient.putArray({ resourceArray: resourceBody }, function (error, result) {
-          error.should.not.exist
+          error.should.not.exist;
           done();
         });
       });
@@ -85,7 +85,7 @@ describe('typescript', function () {
           }
         };
         testClient.getDictionary(function (error, result) {
-          error.should.not.exist
+          error.should.not.exist;
           assert.deepEqual(result, expectedResult);
           done();
         });
@@ -97,7 +97,7 @@ describe('typescript', function () {
           "Resource2": { "location": "Building 44", "pname": "Product2", "flattenedProductType": "Flat" }
         };
         testClient.putDictionary({ resourceDictionary: resourceBody }, function (error, result) {
-          error.should.not.exist
+          error.should.not.exist;
           done();
         });
       });
@@ -155,7 +155,7 @@ describe('typescript', function () {
           }
         };
         testClient.getResourceCollection(function (error, result) {
-          error.should.not.exist
+          error.should.not.exist;
           assert.deepEqual(result, expectedResult);
           done();
         });
@@ -174,7 +174,7 @@ describe('typescript', function () {
           "productresource": { "location": "India", "pname": "Azure", "flattenedProductType": "Flat" }
         };
         testClient.putResourceCollection({ resourceComplexObject: resourceBody }, function (error, result) {
-          error.should.not.exist
+          error.should.not.exist;
           done();
         });
       });
@@ -188,7 +188,7 @@ describe('typescript', function () {
           genericValue: "https://generic"
         };
         testClient.putSimpleProduct({ simpleBodyProduct: resourceBody }, function (error, result) {
-          error.should.not.exist
+          error.should.not.exist;
           var newResourceBody = JSON.parse(JSON.stringify(resourceBody));
           newResourceBody.capacity = "Large";
           assert.deepEqual(result, newResourceBody);
@@ -204,7 +204,7 @@ describe('typescript', function () {
           odatavalue: "http://foo"
         };
         testClient.postFlattenedSimpleProduct("123", "max name", { description: "product description", odatavalue: "http://foo" }, function (error, result) {
-          error.should.not.exist
+          error.should.not.exist;
           var newResourceBody = JSON.parse(JSON.stringify(resourceBody));
           newResourceBody.capacity = "Large";
           assert.deepEqual(result, newResourceBody);
@@ -227,7 +227,7 @@ describe('typescript', function () {
           name: "groupproduct"
         };
         testClient.putSimpleProductWithGrouping(paramGroup, function (error, result) {
-          error.should.not.exist
+          error.should.not.exist;
           var newResourceBody = JSON.parse(JSON.stringify(resourceBody));
           newResourceBody.capacity = "Large";
           assert.deepEqual(result, newResourceBody);

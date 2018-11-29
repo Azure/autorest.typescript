@@ -31,17 +31,17 @@ describe('typescript', function () {
 
       it('should get single pages', async function () {
         const result = await testClient.paging.getSinglePages();
-        result.nextLink.should.not.exist
+        result.nextLink.should.not.exist;
         assert.deepEqual(result.slice(), [{ properties: { id: 1, name: "Product" } }]);
       });
 
       it('should get multiple pages using promises', async function () {
         let result = await testClient.paging.getMultiplePages({ clientRequestId: 'client-id' });
         for (let i = 1; i < 10; i++) {
-          result.nextLink.should.exist
+          result.nextLink.should.exist;
           result = await testClient.paging.getMultiplePagesNext(result.nextLink, { clientRequestId: 'client-id' });
         }
-        result.nextLink.should.not.exist
+        result.nextLink.should.not.exist;
       });
 
       it('should get multiple pages', function (done) {
@@ -49,17 +49,17 @@ describe('typescript', function () {
           const loop = function (nextLink: string, count: number) {
             if (nextLink !== null && nextLink !== undefined) {
               testClient.paging.getMultiplePagesNext(nextLink, { clientRequestId: 'client-id' }, function (err, res) {
-                err.should.not.exist
+                err.should.not.exist;
                 loop(res.nextLink, count + 1);
               });
             } else {
-              count.should.be.exactly(10);
+              count.should.be.deep.equal(10);
               done();
             }
           };
 
-          error.should.not.exist
-          result.nextLink.should.exist
+          error.should.not.exist;
+          result.nextLink.should.exist;
           loop(result.nextLink, 1);
         });
       });
@@ -69,17 +69,17 @@ describe('typescript', function () {
           var loop = function (nextLink: string, count: number) {
             if (nextLink !== null && nextLink !== undefined) {
               testClient.paging.getOdataMultiplePagesNext(nextLink, { clientRequestId: 'client-id' }, function (err, res) {
-                err.should.not.exist
+                err.should.not.exist;
                 loop(res.odatanextLink, count + 1);
               });
             } else {
-              count.should.be.exactly(10);
+              count.should.be.deep.equal(10);
               done();
             }
           };
 
-          error.should.not.exist
-          result.odatanextLink.should.exist
+          error.should.not.exist;
+          result.odatanextLink.should.exist;
           loop(result.odatanextLink, 1);
         });
       });
@@ -89,19 +89,19 @@ describe('typescript', function () {
           var loop = function (nextLink: string, count: number) {
             if (nextLink !== null && nextLink !== undefined) {
               testClient.paging.getMultiplePagesWithOffsetNext(nextLink, { clientRequestId: 'client-id' }, function (err, res) {
-                err.should.not.exist
+                err.should.not.exist;
                 result = res;
                 loop(res.nextLink, count + 1);
               });
             } else {
-              count.should.be.exactly(10);
-              result[0].properties.id.should.be.exactly(110);
+              count.should.be.deep.equal(10);
+              result[0].properties.id.should.be.deep.equal(110);
               done();
             }
           };
 
-          error.should.not.exist
-          result.nextLink.should.exist
+          error.should.not.exist;
+          result.nextLink.should.exist;
           loop(result.nextLink, 1);
         });
       });
@@ -111,17 +111,17 @@ describe('typescript', function () {
           var loop = function (nextLink, count) {
             if (nextLink !== null && nextLink !== undefined) {
               testClient.paging.getMultiplePagesRetryFirstNext(nextLink, function (err, res) {
-                err.should.not.exist
+                err.should.not.exist;
                 loop(res.nextLink, count + 1);
               });
             } else {
-              count.should.be.exactly(10);
+              count.should.be.deep.equal(10);
               done();
             }
           };
 
-          error.should.not.exist
-          result.nextLink.should.exist
+          error.should.not.exist;
+          result.nextLink.should.exist;
           loop(result.nextLink, 1);
         });
       });
@@ -131,17 +131,17 @@ describe('typescript', function () {
           var loop = function (nextLink, count) {
             if (nextLink !== null && nextLink !== undefined) {
               testClient.paging.getMultiplePagesRetrySecondNext(nextLink, function (err, res) {
-                err.should.not.exist
+                err.should.not.exist;
                 loop(res.nextLink, count + 1);
               });
             } else {
-              count.should.be.exactly(10);
+              count.should.be.deep.equal(10);
               done();
             }
           };
 
-          error.should.not.exist
-          result.nextLink.should.exist
+          error.should.not.exist;
+          result.nextLink.should.exist;
           loop(result.nextLink, 1);
         });
       });
@@ -151,17 +151,17 @@ describe('typescript', function () {
           var loop = function (odatanextLink, count) {
             if (odatanextLink !== null && odatanextLink !== undefined) {
               testClient.paging.nextFragment('1.6', 'test_user', odatanextLink, function (err, res) {
-                err.should.not.exist
+                err.should.not.exist;
                 loop(res.odatanextLink, count + 1);
               });
             } else {
-              count.should.be.exactly(10);
+              count.should.be.deep.equal(10);
               done();
             }
           };
 
-          error.should.not.exist
-          result.odatanextLink.should.exist
+          error.should.not.exist;
+          result.odatanextLink.should.exist;
           loop(result.odatanextLink, 1);
         });
       });
