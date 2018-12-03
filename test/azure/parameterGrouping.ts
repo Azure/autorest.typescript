@@ -3,7 +3,7 @@
 
 'use strict';
 
-import { should } from 'chai';
+import * as should from "chai/register-should";
 import * as msRest from '@azure/ms-rest-js';
 
 import { AutoRestParameterGroupingTestService } from './generated/AzureParameterGrouping/autoRestParameterGroupingTestService';
@@ -23,20 +23,14 @@ describe('typescript', function () {
 
   describe('Azure Parameter Grouping', function () {
     var testClient = new AutoRestParameterGroupingTestService(credentials, clientOptions);
-    it('should accept valid required parameters', function (done) {
-      testClient.parameterGrouping.postRequired({ body: body, customHeader: header, query: query, path: path }, function (error, result, request, response) {
-        error.should.not.exist;
-        response.status.should.equal(200);
-        done();
-      });
+    it('should accept valid required parameters', async () => {
+      const result = await testClient.parameterGrouping.postRequired({ body: body, customHeader: header, query: query, path: path });
+      result._response.status.should.equal(200);
     });
 
-    it('should accept required parameters but null optional parameters', function (done) {
-      testClient.parameterGrouping.postRequired({ body: body, path: path }, function (error, result, request, response) {
-        error.should.not.exist;
-        response.status.should.equal(200);
-        done();
-      });
+    it('should accept required parameters but null optional parameters', async () => {
+      const result = await testClient.parameterGrouping.postRequired({ body: body, path: path });
+      result._response.status.should.equal(200);
     });
 
     it('should reject null required parameters', function (done) {

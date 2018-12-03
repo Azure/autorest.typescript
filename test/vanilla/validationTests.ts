@@ -3,7 +3,7 @@
 
 'use strict';
 
-import { should } from 'chai';
+import * as should from "chai/register-should";
 import { AutoRestValidationTest } from './generated/Validation/autoRestValidationTest';
 
 var clientOptions = {

@@ -3,7 +3,7 @@
 
 'use strict';
 
-import { should } from 'chai';
+import * as should from "chai/register-should";
 import * as util from 'util';
 import * as assert from 'assert';
 import * as msAssert from "../util/msAssert";

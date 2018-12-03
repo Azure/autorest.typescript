@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-import { should } from 'chai';
+import * as should from "chai/register-should";
 import * as msAssert from "../util/msAssert";
 import * as msRest from "@azure/ms-rest-js";
 import { AutoRestSwaggerBATXMLService, AutoRestSwaggerBATXMLServiceModels as models } from './generated/Xml/autoRestSwaggerBATXMLService';

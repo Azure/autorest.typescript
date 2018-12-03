@@ -5,7 +5,7 @@
 
 import * as assert from 'assert';
 import * as moment from 'moment';
-import { should } from 'chai';
+import * as should from "chai/register-should";
 import * as msAssert from "../util/msAssert";
 
 import { AutoRestComplexTestService, AutoRestComplexTestServiceModels } from './generated/BodyComplex/autoRestComplexTestService';

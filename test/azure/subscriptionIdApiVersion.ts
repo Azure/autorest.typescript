@@ -3,7 +3,7 @@
 
 'use strict';
 
-import { should } from 'chai';
+import * as should from "chai/register-should";
 import * as msRest from '@azure/ms-rest-js';
 
 import { MicrosoftAzureTestUrl } from './generated/SubscriptionIdApiVersion/microsoftAzureTestUrl';

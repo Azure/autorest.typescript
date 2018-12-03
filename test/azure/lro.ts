@@ -3,7 +3,8 @@
 
 'use strict';
 
-import { assert, should } from 'chai';
+import { assert } from 'chai';
+import * as should from "chai/register-should";
 import * as msAssert from "../util/msAssert";
 import * as msRest from '@azure/ms-rest-js';
 
@@ -48,27 +49,27 @@ describe('typescript', function () {
 
     it('should work with PutAsyncNoRetrySucceeded', async () => {
       const result = await testClient.lROs.putAsyncNoRetrySucceeded({ product: product });
-      result._response.parsedBody.should.eql({ id: '100', name: 'foo', provisioningState: "Succeeded" });
+      result._response.parsedBody.should.equal({ id: '100', name: 'foo', provisioningState: "Succeeded" });
     });
 
     it('should work with PutNoHeaderInRetry', async () => {
       const result = await testClient.lROs.putNoHeaderInRetry({ product: product });
-      result.provisioningState.should.be.deep.equal('Succeeded');
+      result.provisioningState.should.equal('Succeeded');
     });
 
     it('should work with PutAsyncNoHeaderInRetry', async () => {
       const result = await testClient.lROs.putAsyncNoHeaderInRetry({ product: product });
-      result.provisioningState.should.be.deep.equal('Succeeded');
+      result.provisioningState.should.equal('Succeeded');
     });
 
     it('should work with PutSubResource', async () => {
       const result = await testClient.lROs.putSubResource();
-      result.provisioningState.should.be.deep.equal('Succeeded');
+      result.provisioningState.should.equal('Succeeded');
     });
 
     it('should work with PutAsyncSubResource', async () => {
       const result = await testClient.lROs.putAsyncSubResource();
-      result.provisioningState.should.be.deep.equal('Succeeded');
+      result.provisioningState.should.equal('Succeeded');
     });
 
     it('should work with PutNonResource', async () => {
@@ -77,8 +78,8 @@ describe('typescript', function () {
         'id': 'doesNotMatter'
       };
       const result = await testClient.lROs.putNonResource({ sku: sku });
-      result.id.should.be.deep.equal('100');
-      result.name.should.be.deep.equal('sku');
+      result.id.should.equal('100');
+      result.name.should.equal('sku');
     });
 
     it('should work with PutAsyncNonResource', async () => {
@@ -87,8 +88,8 @@ describe('typescript', function () {
         'id': 'doesNotMatter'
       };
       const result = await testClient.lROs.putAsyncNonResource({ sku: sku });
-      result.id.should.be.deep.equal('100');
-      result.name.should.be.deep.equal('sku');
+      result.id.should.equal('100');
+      result.name.should.equal('sku');
     });
 
     it('should work with DeleteNoHeaderInRetry', async () => {
@@ -107,23 +108,23 @@ describe('typescript', function () {
 
     it('should work with put202Retry200', async () => {
       const result = await testClient.lROs.put202Retry200({ product: product });
-      result.id.should.be.deep.equal('100');
+      result.id.should.equal('100');
     });
 
     it('should work with Put200Succeeded', async () => {
       const result = await testClient.lROs.put200Succeeded({ product: product });
-      result.should.exist;
-      result.provisioningState.should.be.deep.equal('Succeeded');
+      should(result).exist;
+      result.provisioningState.should.equal('Succeeded');
     });
 
     it('should work with Put200SucceededNoState', async () => {
       const result = await testClient.lROs.put200SucceededNoState({ product: product });
-      result.id.should.be.deep.equal('100');
+      result.id.should.equal('100');
     });
 
     it('should work with PutAsyncRetrySucceeded', async () => {
       const result = await testClient.lROs.putAsyncRetrySucceeded({ product: product });
-      result.provisioningState.should.be.deep.equal('Succeeded');
+      result.provisioningState.should.equal('Succeeded');
     });
 
     it('should work with PutAsyncRetryFailed', async () => {
@@ -186,18 +187,15 @@ describe('typescript', function () {
       await testClient.lROs.post202NoRetry204({ product: product });
     });
 
-    // TODO coverage
-    it.skip('should work with LROPostDoubleHeadersFinalLocationGet', async () => {
+    it.only('should work with LROPostDoubleHeadersFinalLocationGet', async () => {
       await testClient.lROs.postDoubleHeadersFinalLocationGet({ product });
     });
 
-    // TODO coverage
-    it.skip('should work with LROPostDoubleHeadersFinalAzureHeaderGet', async () => {
+    it('should work with LROPostDoubleHeadersFinalAzureHeaderGet', async () => {
       await testClient.lROs.postDoubleHeadersFinalAzureHeaderGet({ product });
     });
 
-    // TODO coverage
-    it.skip('should work with LROPostDoubleHeadersFinalAzureHeaderGetDefault', async () => {
+    it('should work with LROPostDoubleHeadersFinalAzureHeaderGetDefault', async () => {
       await testClient.lROs.postDoubleHeadersFinalAzureHeaderGetDefault({ product });
     });
 
@@ -208,12 +206,12 @@ describe('typescript', function () {
 
     it('should work with PostAsyncRetrySucceeded', async () => {
       const result = await testClient.lROs.postAsyncRetrySucceeded({ product: product });
-      result.id.should.be.deep.equal('100');
+      result.id.should.equal('100');
     });
 
     it('should work with PostAsyncNoRetrySucceeded', async () => {
       const result = await testClient.lROs.postAsyncNoRetrySucceeded({ product: product });
-      result.id.should.be.deep.equal('100');
+      result.id.should.equal('100');
     });
 
     it('should work with PostAsyncRetrycanceled', async () => {
@@ -225,8 +223,8 @@ describe('typescript', function () {
       const error: msRest.RestError = await msAssert.throwsAsync(testClient.lROs.postAsyncRetryFailed({ product: product }));
       error.message.should.contains('Long running operation failed with error: "Internal Server Error".');
       const errObject = error.body;
-      errObject.error.code.should.be.deep.equal(500);
-      errObject.error.message.should.be.deep.equal('Internal Server Error');
+      errObject.error.code.should.equal(500);
+      errObject.error.message.should.equal('Internal Server Error');
     });
 
     /** LRO Retrys **/
@@ -303,13 +301,15 @@ describe('typescript', function () {
     });
 
     it('should throw on Delete202NonRetry400', async () => {
-      const error = await msAssert.throwsAsync(testClient.lROSADs.delete202NonRetry400());
-      error.message.should.contains('{"message":"Expected bad request message","status":400}');
+      const error: msRest.RestError = await msAssert.throwsAsync(testClient.lROSADs.delete202NonRetry400());
+      error.message.should.equal("Expected bad request message");
+      error.statusCode.should.equal(400);
     });
 
     it('should throw on DeleteAsyncRelativeRetry400', async () => {
-      const error = await msAssert.throwsAsync(testClient.lROSADs.deleteAsyncRelativeRetry400());
-      error.message.should.contains('{"message":"Expected bad request message","status":400}');
+      const error: msRest.RestError = await msAssert.throwsAsync(testClient.lROSADs.deleteAsyncRelativeRetry400());
+      error.message.should.equal("Expected bad request message");
+      error.statusCode.should.equal(400);
     });
 
     it('should throw on PostNonRetry400', async () => {
@@ -318,13 +318,15 @@ describe('typescript', function () {
     });
 
     it('should throw on Post202NonRetry400', async () => {
-      const error = await msAssert.throwsAsync(testClient.lROSADs.post202NonRetry400({ product: product }));
-      error.message.should.contains('{"message":"Expected bad request message","status":400}');
+      const error: msRest.RestError = await msAssert.throwsAsync(testClient.lROSADs.post202NonRetry400({ product: product }));
+      error.message.should.equal("Expected bad request message");
+      error.statusCode.should.equal(400);
     });
 
     it('should throw on PostAsyncRelativeRetry400', async () => {
-      const error = await msAssert.throwsAsync(testClient.lROSADs.postAsyncRelativeRetry400({ product: product }));
-      error.message.should.contains('{"message":"Expected bad request message","status":400}');
+      const error: msRest.RestError = await msAssert.throwsAsync(testClient.lROSADs.postAsyncRelativeRetry400({ product: product }));
+      error.message.should.equal("Expected bad request message");
+      error.statusCode.should.equal(400);
     });
 
     it('should throw on PutError201NoProvisioningStatePayload', async () => {

@@ -3,20 +3,21 @@
 
 'use strict';
 
-import { should } from 'chai';
+import * as should from "chai/register-should";
 import * as msRest from '@azure/ms-rest-js';
 
 import { AutoRestAzureSpecialParametersTestClient } from './generated/AzureSpecials/autoRestAzureSpecialParametersTestClient';
+import { AutoRestAzureSpecialParametersTestClientOptions } from './generated/AzureSpecials/models';
 var dummySubscriptionId = '1234-5678-9012-3456';
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
-var clientOptions: any = { baseUri: 'http://localhost:3000' };
+var clientOptions: AutoRestAzureSpecialParametersTestClientOptions = { baseUri: 'http://localhost:3000', generateClientRequestIdHeader: false };
 var baseUri = 'http://localhost:3000';
 
 describe('typescript', function () {
 
-  describe.only('Azure Special Properties', function () {
+  describe('Azure Special Properties', function () {
     var testClient = new AutoRestAzureSpecialParametersTestClient(credentials, dummySubscriptionId, clientOptions);
     it('should use the default api-version when no api-version parameter is present', async function () {
       let result = await testClient.apiVersionDefault.getMethodGlobalValid();
@@ -152,21 +153,18 @@ describe('typescript', function () {
     it('should allow custom-named request-id headers to be used', async () => {
       const result = await testClient.header.customNamedRequestId("9C4D50EE-2D56-4CD3-8152-34347DC9F2B0");
       result._response.status.should.equal(200);
-      result._response.request.headers["x-ms-client-request-id"].should.not.exist;
       result._response.headers.get("foo-request-id").should.equal("123");
     });
 
     it('should allow custom-named request-id headers to be used with parameter grouping', async () => {
       const result = await testClient.header.customNamedRequestIdParamGrouping({ fooClientRequestId: "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0" });
       result._response.status.should.equal(200);
-      result._response.request.headers["x-ms-client-request-id"].should.not.exist;
       result._response.headers.get("foo-request-id").should.equal("123");
     });
 
     it('should allow custom-named request-id headers to be used in head operations', async () => {
       const result = await testClient.header.customNamedRequestIdHead("9C4D50EE-2D56-4CD3-8152-34347DC9F2B0");
       result._response.status.should.equal(200);
-      result._response.request.headers["x-ms-client-request-id"].should.not.exist;
       result._response.headers.get("foo-request-id").should.equal("123");
       result.body.should.equal(true);
     });

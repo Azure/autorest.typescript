@@ -3,7 +3,7 @@
 
 'use strict';
 
-import { should } from 'chai';
+import * as should from "chai/register-should";
 import * as assert from 'assert';
 import * as msAssert from "../util/msAssert";
 import * as msRest from '@azure/ms-rest-js';
@@ -31,7 +31,7 @@ describe('typescript', function () {
 
       it('should get single pages', async function () {
         const result = await testClient.paging.getSinglePages();
-        result.nextLink.should.not.exist;
+        should(result.nextLink).not.exist;
         assert.deepEqual(result.slice(), [{ properties: { id: 1, name: "Product" } }]);
       });
 
@@ -44,126 +44,95 @@ describe('typescript', function () {
         result.nextLink.should.not.exist;
       });
 
-      it('should get multiple pages', function (done) {
-        testClient.paging.getMultiplePages({ clientRequestId: 'client-id' }, function (error, result) {
-          const loop = function (nextLink: string, count: number) {
-            if (nextLink !== null && nextLink !== undefined) {
-              testClient.paging.getMultiplePagesNext(nextLink, { clientRequestId: 'client-id' }, function (err, res) {
-                err.should.not.exist;
-                loop(res.nextLink, count + 1);
-              });
-            } else {
-              count.should.be.deep.equal(10);
-              done();
-            }
-          };
+      it('should get multiple pages', async () => {
+        const result = await testClient.paging.getMultiplePages({ clientRequestId: 'client-id' });
+        const loop = async function (nextLink: string, count: number) {
+          if (nextLink !== null && nextLink !== undefined) {
+            const res = await testClient.paging.getMultiplePagesNext(nextLink, { clientRequestId: 'client-id' });
+            await loop(res.nextLink, count + 1);
+          } else {
+            count.should.be.equal(10);
+          }
+        };
 
-          error.should.not.exist;
-          result.nextLink.should.exist;
-          loop(result.nextLink, 1);
-        });
+        result.nextLink.should.exist;
+        await loop(result.nextLink, 1);
       });
 
-      it('should get multiple pages with odata kind nextLink', function (done) {
-        testClient.paging.getOdataMultiplePages({ clientRequestId: 'client-id' }, function (error, result) {
-          var loop = function (nextLink: string, count: number) {
-            if (nextLink !== null && nextLink !== undefined) {
-              testClient.paging.getOdataMultiplePagesNext(nextLink, { clientRequestId: 'client-id' }, function (err, res) {
-                err.should.not.exist;
-                loop(res.odatanextLink, count + 1);
-              });
-            } else {
-              count.should.be.deep.equal(10);
-              done();
-            }
-          };
+      it('should get multiple pages with odata kind nextLink', async () => {
+        const result = await testClient.paging.getOdataMultiplePages({ clientRequestId: 'client-id' });
+        const loop = async function (nextLink: string, count: number) {
+          if (nextLink !== null && nextLink !== undefined) {
+            const res = await testClient.paging.getOdataMultiplePagesNext(nextLink, { clientRequestId: 'client-id' });
+            await loop(res.odatanextLink, count + 1);
+          } else {
+            count.should.equal(10);
+          }
+        };
 
-          error.should.not.exist;
-          result.odatanextLink.should.exist;
-          loop(result.odatanextLink, 1);
-        });
+        result.odatanextLink.should.exist;
+        await loop(result.odatanextLink, 1);
       });
 
-      it('should get multiple pages with offset', function (done) {
-        testClient.paging.getMultiplePagesWithOffset({ 'offset': 100 }, { clientRequestId: 'client-id' }, function (error, result) {
-          var loop = function (nextLink: string, count: number) {
-            if (nextLink !== null && nextLink !== undefined) {
-              testClient.paging.getMultiplePagesWithOffsetNext(nextLink, { clientRequestId: 'client-id' }, function (err, res) {
-                err.should.not.exist;
-                result = res;
-                loop(res.nextLink, count + 1);
-              });
-            } else {
-              count.should.be.deep.equal(10);
-              result[0].properties.id.should.be.deep.equal(110);
-              done();
-            }
-          };
+      it('should get multiple pages with offset', async () => {
+        const result = await testClient.paging.getMultiplePagesWithOffset({ 'offset': 100 }, { clientRequestId: 'client-id' });
+        const loop = async function (nextLink: string, count: number) {
+          if (nextLink !== null && nextLink !== undefined) {
+            const res = await testClient.paging.getMultiplePagesWithOffsetNext(nextLink, { clientRequestId: 'client-id' });
+            await loop(res.nextLink, count + 1);
+          } else {
+            count.should.equal(10);
+            result[0].properties.id.should.equal(110);
+          }
+        };
 
-          error.should.not.exist;
-          result.nextLink.should.exist;
-          loop(result.nextLink, 1);
-        });
+        result.nextLink.should.exist;
+        await loop(result.nextLink, 1);
       });
 
-      it('should get multiple pages with retry on first call', function (done) {
-        testClient.paging.getMultiplePagesRetryFirst(function (error, result) {
-          var loop = function (nextLink, count) {
-            if (nextLink !== null && nextLink !== undefined) {
-              testClient.paging.getMultiplePagesRetryFirstNext(nextLink, function (err, res) {
-                err.should.not.exist;
-                loop(res.nextLink, count + 1);
-              });
-            } else {
-              count.should.be.deep.equal(10);
-              done();
-            }
-          };
+      it('should get multiple pages with retry on first call', async () => {
+        const result = await testClient.paging.getMultiplePagesRetryFirst();
+        const loop = async function (nextLink, count) {
+          if (nextLink !== null && nextLink !== undefined) {
+            const res = await testClient.paging.getMultiplePagesRetryFirstNext(nextLink);
+            await loop(res.nextLink, count + 1);
+          } else {
+            count.should.be.deep.equal(10);
+          }
+        };
 
-          error.should.not.exist;
-          result.nextLink.should.exist;
-          loop(result.nextLink, 1);
-        });
+        result.nextLink.should.exist;
+        await loop(result.nextLink, 1);
       });
 
-      it('should get multiple pages with retry on second call', function (done) {
-        testClient.paging.getMultiplePagesRetrySecond(function (error, result) {
-          var loop = function (nextLink, count) {
-            if (nextLink !== null && nextLink !== undefined) {
-              testClient.paging.getMultiplePagesRetrySecondNext(nextLink, function (err, res) {
-                err.should.not.exist;
-                loop(res.nextLink, count + 1);
-              });
-            } else {
-              count.should.be.deep.equal(10);
-              done();
-            }
-          };
+      it('should get multiple pages with retry on second call', async () => {
+        const result = await testClient.paging.getMultiplePagesRetrySecond();
+        const loop = async function (nextLink, count) {
+          if (nextLink !== null && nextLink !== undefined) {
+            const res = await testClient.paging.getMultiplePagesRetrySecondNext(nextLink);
+            await loop(res.nextLink, count + 1);
+          } else {
+            count.should.be.deep.equal(10);
+          }
+        };
 
-          error.should.not.exist;
-          result.nextLink.should.exist;
-          loop(result.nextLink, 1);
-        });
+        result.nextLink.should.exist;
+        await loop(result.nextLink, 1);
       });
 
-      it('should get multiple pages with fragmented nextLink', function (done) {
-        testClient.paging.getMultiplePagesFragmentNextLink('1.6', 'test_user', function (error, result) {
-          var loop = function (odatanextLink, count) {
-            if (odatanextLink !== null && odatanextLink !== undefined) {
-              testClient.paging.nextFragment('1.6', 'test_user', odatanextLink, function (err, res) {
-                err.should.not.exist;
-                loop(res.odatanextLink, count + 1);
-              });
-            } else {
-              count.should.be.deep.equal(10);
-              done();
-            }
-          };
+      it('should get multiple pages with fragmented nextLink', async () => {
+        const result = await testClient.paging.getMultiplePagesFragmentNextLink('1.6', 'test_user');
+        const loop = async function (odatanextLink, count) {
+          if (odatanextLink !== null && odatanextLink !== undefined) {
+            const res = await testClient.paging.nextFragment('1.6', 'test_user', odatanextLink);
+            await loop(res.odatanextLink, count + 1);
+          } else {
+            count.should.be.deep.equal(10);
+          }
+        };
 
-          error.should.not.exist;
-          result.odatanextLink.should.exist;
-          loop(result.odatanextLink, 1);
-        });
+        result.odatanextLink.should.exist;
+        await loop(result.odatanextLink, 1);
       });
 
       it('should fail on 400 single page', async () => {
