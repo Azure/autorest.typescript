@@ -5,6 +5,7 @@ import { execSync } from "child_process";
 export interface PackageFolder {
   folderPath: string;
   extraFilePaths?: string[];
+  isLernaPackage?: boolean;
 }
 
 function log(filePath: string, message: string): void {
