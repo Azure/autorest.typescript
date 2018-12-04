@@ -20,7 +20,7 @@ namespace AutoRest.TypeScript
         /// <summary>
         /// The version that packages that haven't been published to NPM before will be generated with.
         /// </summary>
-        public const string newPackageVersion = "0.1.0";
+        public const string newPackageVersion = "1.0.0";
 
         /// <summary>
         /// Whether or not the generator should produce Azure-specific code.
