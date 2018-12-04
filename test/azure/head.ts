@@ -6,7 +6,7 @@
 import * as msAssert from "../util/msAssert";
 import * as msRestAzure from '@azure/ms-rest-azure-js';
 import * as msRest from '@azure/ms-rest-js';
-import * as should from 'should';
+import * as should from "chai/register-should";
 import { AutoRestHeadTestService } from './generated/Head/autoRestHeadTestService';
 import { AutoRestHeadExceptionTestService } from './generated/HeadExceptions/autoRestHeadExceptionTestService';
 import { AutoRestHeadTestServiceOptions } from './generated/Head/models';
@@ -32,20 +32,20 @@ describe('typescript', function () {
 
       it('should return true for 200 status code', async () => {
         const result = await testClient.httpSuccess.head200();
-        should.exist(result.body);
-        result.body.should.be.exactly(true);
+        result.body.should.exist;
+        result.body.should.be.true;
       });
 
       it('should return true for 204 status code', async () => {
         const result = await testClient.httpSuccess.head204();
-        should.exist(result.body);
-        result.body.should.be.exactly(true);
+        result.body.should.exist;
+        result.body.should.be.true;
       });
 
       it('should return false for 404 status code', async () => {
         const result = await testClient.httpSuccess.head404();
-        should.exist(result.body);
-        result.body.should.be.exactly(false);
+        result.body.should.exist;
+        result.body.should.be.false;
       });
     });
 

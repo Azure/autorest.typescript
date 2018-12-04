@@ -3,7 +3,7 @@
 
 'use strict';
 
-import * as should from 'should';
+import * as should from "chai/register-should";
 import * as assert from 'assert';
 import * as msAssert from "../util/msAssert";
 import * as msRest from '@azure/ms-rest-js';
@@ -31,150 +31,119 @@ describe('typescript', function () {
 
       it('should get single pages', async function () {
         const result = await testClient.paging.getSinglePages();
-        should.not.exist(result.nextLink);
+        should(result.nextLink).not.exist;
         assert.deepEqual(result.slice(), [{ properties: { id: 1, name: "Product" } }]);
       });
 
       it('should get multiple pages using promises', async function () {
         let result = await testClient.paging.getMultiplePages({ clientRequestId: 'client-id' });
         for (let i = 1; i < 10; i++) {
-          should.exist(result.nextLink);
+          result.nextLink.should.exist;
           result = await testClient.paging.getMultiplePagesNext(result.nextLink, { clientRequestId: 'client-id' });
         }
-        should.not.exist(result.nextLink);
+        result.nextLink.should.not.exist;
       });
 
-      it('should get multiple pages', function (done) {
-        testClient.paging.getMultiplePages({ clientRequestId: 'client-id' }, function (error, result) {
-          const loop = function (nextLink: string, count: number) {
-            if (nextLink !== null && nextLink !== undefined) {
-              testClient.paging.getMultiplePagesNext(nextLink, { clientRequestId: 'client-id' }, function (err, res) {
-                should.not.exist(err);
-                loop(res.nextLink, count + 1);
-              });
-            } else {
-              count.should.be.exactly(10);
-              done();
-            }
-          };
+      it('should get multiple pages', async () => {
+        const result = await testClient.paging.getMultiplePages({ clientRequestId: 'client-id' });
+        const loop = async function (nextLink: string, count: number) {
+          if (nextLink !== null && nextLink !== undefined) {
+            const res = await testClient.paging.getMultiplePagesNext(nextLink, { clientRequestId: 'client-id' });
+            await loop(res.nextLink, count + 1);
+          } else {
+            count.should.be.equal(10);
+          }
+        };
 
-          should.not.exist(error);
-          should.exist(result.nextLink);
-          loop(result.nextLink, 1);
-        });
+        result.nextLink.should.exist;
+        await loop(result.nextLink, 1);
       });
 
-      it('should get multiple pages with odata kind nextLink', function (done) {
-        testClient.paging.getOdataMultiplePages({ clientRequestId: 'client-id' }, function (error, result) {
-          var loop = function (nextLink: string, count: number) {
-            if (nextLink !== null && nextLink !== undefined) {
-              testClient.paging.getOdataMultiplePagesNext(nextLink, { clientRequestId: 'client-id' }, function (err, res) {
-                should.not.exist(err);
-                loop(res.odatanextLink, count + 1);
-              });
-            } else {
-              count.should.be.exactly(10);
-              done();
-            }
-          };
+      it('should get multiple pages with odata kind nextLink', async () => {
+        const result = await testClient.paging.getOdataMultiplePages({ clientRequestId: 'client-id' });
+        const loop = async function (nextLink: string, count: number) {
+          if (nextLink !== null && nextLink !== undefined) {
+            const res = await testClient.paging.getOdataMultiplePagesNext(nextLink, { clientRequestId: 'client-id' });
+            await loop(res.odatanextLink, count + 1);
+          } else {
+            count.should.equal(10);
+          }
+        };
 
-          should.not.exist(error);
-          should.exist(result.odatanextLink);
-          loop(result.odatanextLink, 1);
-        });
+        result.odatanextLink.should.exist;
+        await loop(result.odatanextLink, 1);
       });
 
-      it('should get multiple pages with offset', function (done) {
-        testClient.paging.getMultiplePagesWithOffset({ 'offset': 100 }, { clientRequestId: 'client-id' }, function (error, result) {
-          var loop = function (nextLink: string, count: number) {
-            if (nextLink !== null && nextLink !== undefined) {
-              testClient.paging.getMultiplePagesWithOffsetNext(nextLink, { clientRequestId: 'client-id' }, function (err, res) {
-                should.not.exist(err);
-                result = res;
-                loop(res.nextLink, count + 1);
-              });
-            } else {
-              count.should.be.exactly(10);
-              result[0].properties.id.should.be.exactly(110);
-              done();
-            }
-          };
+      it('should get multiple pages with offset', async () => {
+        const result = await testClient.paging.getMultiplePagesWithOffset({ 'offset': 100 }, { clientRequestId: 'client-id' });
+        const loop = async function (nextLink: string, count: number) {
+          if (nextLink !== null && nextLink !== undefined) {
+            const res = await testClient.paging.getMultiplePagesWithOffsetNext(nextLink, { clientRequestId: 'client-id' });
+            await loop(res.nextLink, count + 1);
+          } else {
+            count.should.equal(10);
+            result[0].properties.id.should.equal(110);
+          }
+        };
 
-          should.not.exist(error);
-          should.exist(result.nextLink);
-          loop(result.nextLink, 1);
-        });
+        result.nextLink.should.exist;
+        await loop(result.nextLink, 1);
       });
 
-      it('should get multiple pages with retry on first call', function (done) {
-        testClient.paging.getMultiplePagesRetryFirst(function (error, result) {
-          var loop = function (nextLink, count) {
-            if (nextLink !== null && nextLink !== undefined) {
-              testClient.paging.getMultiplePagesRetryFirstNext(nextLink, function (err, res) {
-                should.not.exist(err);
-                loop(res.nextLink, count + 1);
-              });
-            } else {
-              count.should.be.exactly(10);
-              done();
-            }
-          };
+      it('should get multiple pages with retry on first call', async () => {
+        const result = await testClient.paging.getMultiplePagesRetryFirst();
+        const loop = async function (nextLink, count) {
+          if (nextLink !== null && nextLink !== undefined) {
+            const res = await testClient.paging.getMultiplePagesRetryFirstNext(nextLink);
+            await loop(res.nextLink, count + 1);
+          } else {
+            count.should.be.deep.equal(10);
+          }
+        };
 
-          should.not.exist(error);
-          should.exist(result.nextLink);
-          loop(result.nextLink, 1);
-        });
+        result.nextLink.should.exist;
+        await loop(result.nextLink, 1);
       });
 
-      it('should get multiple pages with retry on second call', function (done) {
-        testClient.paging.getMultiplePagesRetrySecond(function (error, result) {
-          var loop = function (nextLink, count) {
-            if (nextLink !== null && nextLink !== undefined) {
-              testClient.paging.getMultiplePagesRetrySecondNext(nextLink, function (err, res) {
-                should.not.exist(err);
-                loop(res.nextLink, count + 1);
-              });
-            } else {
-              count.should.be.exactly(10);
-              done();
-            }
-          };
+      it('should get multiple pages with retry on second call', async () => {
+        const result = await testClient.paging.getMultiplePagesRetrySecond();
+        const loop = async function (nextLink, count) {
+          if (nextLink !== null && nextLink !== undefined) {
+            const res = await testClient.paging.getMultiplePagesRetrySecondNext(nextLink);
+            await loop(res.nextLink, count + 1);
+          } else {
+            count.should.be.deep.equal(10);
+          }
+        };
 
-          should.not.exist(error);
-          should.exist(result.nextLink);
-          loop(result.nextLink, 1);
-        });
+        result.nextLink.should.exist;
+        await loop(result.nextLink, 1);
       });
 
-      it('should get multiple pages with fragmented nextLink', function (done) {
-        testClient.paging.getMultiplePagesFragmentNextLink('1.6', 'test_user', function (error, result) {
-          var loop = function (odatanextLink, count) {
-            if (odatanextLink !== null && odatanextLink !== undefined) {
-              testClient.paging.nextFragment('1.6', 'test_user', odatanextLink, function (err, res) {
-                should.not.exist(err);
-                loop(res.odatanextLink, count + 1);
-              });
-            } else {
-              count.should.be.exactly(10);
-              done();
-            }
-          };
+      it('should get multiple pages with fragmented nextLink', async () => {
+        const result = await testClient.paging.getMultiplePagesFragmentNextLink('1.6', 'test_user');
+        const loop = async function (odatanextLink, count) {
+          if (odatanextLink !== null && odatanextLink !== undefined) {
+            const res = await testClient.paging.nextFragment('1.6', 'test_user', odatanextLink);
+            await loop(res.odatanextLink, count + 1);
+          } else {
+            count.should.be.deep.equal(10);
+          }
+        };
 
-          should.not.exist(error);
-          should.exist(result.odatanextLink);
-          loop(result.odatanextLink, 1);
-        });
+        result.odatanextLink.should.exist;
+        await loop(result.odatanextLink, 1);
       });
 
       it('should fail on 400 single page', async () => {
         const error: Error = await msAssert.throwsAsync(testClient.paging.getSinglePagesFailure());
-        error.message.should.containEql("Expected");
+        error.message.should.contains("Expected");
       });
 
       it('should fail on 400 multiple pages', async () => {
         const result = await testClient.paging.getMultiplePagesFailure();
         const error: Error = await msAssert.throwsAsync(testClient.paging.getMultiplePagesFailureNext(result.nextLink));
-        error.message.should.containEql("Expected");
+        error.message.should.contains("Expected");
       });
 
       it('should fail on invalid next link URL in multiple pages', async () => {

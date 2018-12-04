@@ -36,7 +36,11 @@ export function resolvePath(...paths: string[]): string {
   return path.resolve(...paths).split("\\").join("/");
 }
 
-function exists(path: string): boolean {
+function exists(path: string | undefined): boolean {
+  if (!path) {
+    return false;
+  }
+
   return fs.existsSync(path);
 }
 
@@ -110,13 +114,33 @@ function getPackageJsonFilePath(packageFolder: string): string {
   return resolvePath(packageFolder, "package.json");
 }
 
+function getPackageNameFromPackageJson(packageJsonFilePath: string): string {
+  const packageJson: { name: string } = getPackageJson(packageJsonFilePath);
+  return packageJson.name;
+}
+
 /**
  * Get the absolute path to the local clone of the repository with the provided name.
  * @param {string} repoName The name of the repository.
  * @returns {string} The absolute path to the local clone of the repository.
  */
-export function getLocalRepositoryPath(repoName: string): string {
-  return resolvePath(getThisRepositoryFolderPath(), "..", repoName);
+export function getLocalRepositoryPath(repoName: string): string | undefined {
+  const repositoriesRoot: string = resolvePath(getThisRepositoryFolderPath(), "..");
+  const repositoryPaths: string[] = fs.readdirSync(repositoriesRoot).map(childDir => resolvePath(repositoriesRoot, childDir));
+
+  for (const repositoryPath of repositoryPaths) {
+    const packageJsonPath = getPackageJsonFilePath(repositoryPath);
+    if (!fs.existsSync(packageJsonPath)) {
+      continue;
+    }
+
+    const packageName = getPackageNameFromPackageJson(packageJsonPath);
+    if (packageName === repoName) {
+      return repositoryPath;
+    }
+  }
+
+  return undefined;
 }
 
 /**
@@ -159,7 +183,11 @@ function getClonedRepositories(dependencies?: { [packageName: string]: string })
  * @returns {void}
  */
 export function runLocalRepositoryNPMScript(repoName: string, scriptName: string): void {
-  const repoFolderPath: string = getLocalRepositoryPath(repoName);
+  const repoFolderPath: string | undefined = getLocalRepositoryPath(repoName);
+  if (!repoFolderPath) {
+    return;
+  }
+
   const packageJsonFilePath: string = getPackageJsonFilePath(repoFolderPath);
   const packageJson: any = getPackageJson(packageJsonFilePath);
   const repoScripts: any = packageJson.scripts;
@@ -179,26 +207,6 @@ export function runLocalRepositoryNPMScript(repoName: string, scriptName: string
 export function getNpmPackageVersion(packageName: string, tag: string): string | undefined {
   const npmViewResult: any = JSON.parse(execSync(`npm view ${packageName} --json`, { stdio: ["pipe", "pipe", "ignore"] }).toString());
   return npmViewResult["dist-tags"][tag];
-}
-
-/**
- * Update the package.json property values for "main".
- * @param {string} mainValue The value that will be used for "main".
- * @returns {void}
- */
-export function updatePackageJsonMain(packageFolderPath: string, mainValue: string): void {
-  const packageJsonFilePath: string = getPackageJsonFilePath(packageFolderPath);
-
-  const packageJson: any = getPackageJson(packageJsonFilePath);
-
-  if (packageJson.main === mainValue) {
-    log(packageJsonFilePath, `"main" is already set to "${mainValue}".`);
-  } else {
-    log(packageJsonFilePath, `Changing "main" to "${mainValue}".`);
-    packageJson.main = mainValue;
-
-    writePackageJson(packageJson, packageJsonFilePath);
-  }
 }
 
 /**
@@ -257,21 +265,13 @@ function regularExpressionReplace(filePath: string, fileContents: string, depend
   return newFileContents;
 }
 
-/**
- * Write the provided packageJSON object to the file at the provided packageJsonFilePath.
- * @param {any} packageJson The package json object to write.
- * @param {string} packageJsonFilePath The path to the package.json file.
- * @returns {void}
- */
-function writePackageJson(packageJson: any, packageJsonFilePath: string): void {
-  fs.writeFileSync(packageJsonFilePath, JSON.stringify(packageJson, undefined, "  ") + "\n");
-}
-
 export function updateLocalDependencies(packageFolders: PackageFolder[], localDependencyNPMScript: string, getNewDependencyVersion: (dependencyName: string) => (string | undefined)): void {
   const forceRefresh: boolean = shouldForceRefresh(process.argv);
 
   for (const packageFolder of packageFolders) {
     const packageFolderPath: string = packageFolder.folderPath;
+
+    let refreshPackageFolder: boolean = forceRefresh;
 
     const packageJson: any = getPackageJson(resolvePath(packageFolderPath, "package.json"));
 
@@ -284,36 +284,26 @@ export function updateLocalDependencies(packageFolders: PackageFolder[], localDe
       runLocalRepositoryNPMScript(localDependency, localDependencyNPMScript);
     }
 
-    const dependenciesToRefresh: string[] = [];
     for (const localDependency of allLocalDependencies) {
       if (updateLocalDependency(packageFolder, localDependency, getNewDependencyVersion)) {
-        dependenciesToRefresh.push(localDependency);
+        refreshPackageFolder = true;
       }
     }
 
-    if (forceRefresh || dependenciesToRefresh.length > 0) {
-      if (packageFolder.isLernaPackage) {
-        log(packageFolderPath, `Not refreshing dependencies since this is a lerna package.`);
-      } else {
-        const packageLockFilePath = resolvePath(packageFolderPath, "package-lock.json");
-        if (exists(packageLockFilePath)) {
-          log(packageLockFilePath, `Deleting...`);
-          deleteFile(packageLockFilePath);
-        }
-
-        const nodeModulesFolderPath = resolvePath(packageFolderPath, "node_modules");
-        if (exists(nodeModulesFolderPath)) {
-          for (const dependencyToRefresh of dependenciesToRefresh) {
-            const dependencyNodeModuleFolderPath: string = resolvePath(nodeModulesFolderPath, dependencyToRefresh);
-            if (exists(dependencyNodeModuleFolderPath)) {
-              log(dependencyNodeModuleFolderPath, `Deleting...`);
-              deleteFolder(dependencyNodeModuleFolderPath);
-            }
-          }
-        }
-
-        execute("npm install", packageFolderPath);
+    if (refreshPackageFolder) {
+      const packageLockFilePath = resolvePath(packageFolderPath, "package-lock.json");
+      if (exists(packageLockFilePath)) {
+        log(packageLockFilePath, `Deleting...`);
+        deleteFile(packageLockFilePath);
       }
+
+      const nodeModulesFolderPath = resolvePath(packageFolderPath, "node_modules");
+      if (exists(nodeModulesFolderPath)) {
+        log(nodeModulesFolderPath, `Deleting...`);
+        deleteFolder(nodeModulesFolderPath);
+      }
+
+      execute("npm install", packageFolderPath);
     }
   }
 }
