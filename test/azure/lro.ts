@@ -277,22 +277,36 @@ describe('typescript', function () {
 
     it('should throw on PutNonRetry400', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.putNonRetry400({ product: product }));
-      error.message.should.contains('Expected bad request message');
+      error.message.should.equal("Expected bad request message");
     });
 
     it('should throw on PutNonRetry201Creating400', async () => {
       const error = await msAssert.throwsAsync(testClient.lROSADs.putNonRetry201Creating400({ product: product }));
-      error.message.should.contains(`"Error from the server"`);
+      error.message.should.equal(`Error from the server`);
     });
 
     it('should throw on LRONonRetryPut201Creating400InvalidJson', async () => {
-      const error = await msAssert.throwsAsync(testClient.lROSADs.putNonRetry201Creating400InvalidJson({ product: product }));
-      error.message.should.contains(`"Error from the server"`);
+      const error: msRest.RestError = await msAssert.throwsAsync(testClient.lROSADs.putNonRetry201Creating400InvalidJson({ product: product }));
+      should.strictEqual(error.body, `<{ "message" : "Error from the server" }`);
+      should.strictEqual(error.code, "PARSE_ERROR");
+      should.strictEqual(error.message, `Error "SyntaxError: Unexpected token < in JSON at position 0" occurred while parsing the response body - <{ "message" : "Error from the server" }.`);
+      should.strictEqual(error.name, "Error");
+      should.exist(error.request);
+      should.exist(error.response);
+      should.exist(error.stack);
+      should.strictEqual(error.statusCode, 400);
     });
 
     it('should throw on PutAsyncRelativeRetry400', async () => {
-      const error = await msAssert.throwsAsync(testClient.lROSADs.putAsyncRelativeRetry400({ product: product }));
-      error.message.should.equal(`Invalid status code (400) with response body "" occurred when polling for operation status.`);
+      const error: msRest.RestError = await msAssert.throwsAsync(testClient.lROSADs.putAsyncRelativeRetry400({ product: product }));
+      should.strictEqual(error.body, undefined);
+      should.strictEqual(error.code, undefined);
+      should.strictEqual(error.message, "");
+      should.strictEqual(error.name, "Error");
+      should.exist(error.request);
+      should.exist(error.response);
+      should.exist(error.stack);
+      should.strictEqual(error.statusCode, 400);
     });
 
     it('should throw on DeleteNonRetry400', async () => {

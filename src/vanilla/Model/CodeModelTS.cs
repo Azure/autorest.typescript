@@ -448,7 +448,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            string deps = "\"@azure/ms-rest-js\": \"^1.1.0\",\n" + "\"tslib\": \"^1.9.3\"";
+            string deps = "\"@azure/ms-rest-js\": \"^1.2.0\",\n" + "\"tslib\": \"^1.9.3\"";
             if (Settings.MultiapiLatest)
             {
                 string version = Settings.AliasedNpmVersion ?? "^1.0.0";

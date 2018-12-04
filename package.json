@@ -18,7 +18,6 @@
     "clean": "gulp clean",
     "nuke": "git clean -xdf",
     "local": "ts-node -T ./.scripts/local.ts",
-    "preview": "ts-node -T ./.scripts/preview.ts",
     "latest": "ts-node -T ./.scripts/latest.ts",
     "bundle-size": "ts-node -T ./.scripts/bundlesize.ts"
   },
