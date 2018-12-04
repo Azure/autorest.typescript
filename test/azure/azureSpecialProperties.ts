@@ -152,21 +152,20 @@ describe('typescript', function () {
     it('should allow custom-named request-id headers to be used', async () => {
       const result = await testClient.header.customNamedRequestId("9C4D50EE-2D56-4CD3-8152-34347DC9F2B0");
       result._response.status.should.equal(200);
-      result._response.request.headers["x-ms-client-request-id"].should.not.exist;
+      should().not.exist(result._response.request.headers["x-ms-client-request-id"]);
       result._response.headers.get("foo-request-id").should.equal("123");
     });
 
     it('should allow custom-named request-id headers to be used with parameter grouping', async () => {
       const result = await testClient.header.customNamedRequestIdParamGrouping({ fooClientRequestId: "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0" });
       result._response.status.should.equal(200);
-      result._response.request.headers["x-ms-client-request-id"].should.not.exist;
+      should().not.exist(result._response.request.headers["x-ms-client-request-id"]);
       result._response.headers.get("foo-request-id").should.equal("123");
     });
 
     it('should allow custom-named request-id headers to be used in head operations', async () => {
       const result = await testClient.header.customNamedRequestIdHead("9C4D50EE-2D56-4CD3-8152-34347DC9F2B0");
       result._response.status.should.equal(200);
-      result._response.request.headers["x-ms-client-request-id"].should.not.exist;
       result._response.headers.get("foo-request-id").should.equal("123");
       result.body.should.equal(true);
     });

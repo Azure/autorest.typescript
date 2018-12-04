@@ -4,6 +4,7 @@
 'use strict';
 
 import { should } from 'chai';
+import "chai/register-should"
 import * as assert from 'assert';
 import * as msRest from '@azure/ms-rest-js';
 
@@ -22,6 +23,7 @@ describe('typescript', function () {
     it('should return 200', async function () {
       const response = await testClient.paths.getEmpty('local');
       response._response.status.should.equal(200);
+      should().equal(response._response.status, 200);
     });
 
     it('should throw due to bad "host", bad "account" and missing account', async function () {
