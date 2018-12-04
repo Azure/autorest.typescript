@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-import * as should from 'should';
+import * as should from "chai/register-should";
 import * as msAssert from "../util/msAssert";
 import * as msRest from "@azure/ms-rest-js";
 import { AutoRestSwaggerBATXMLService, AutoRestSwaggerBATXMLServiceModels as models } from './generated/Xml/autoRestSwaggerBATXMLService';
@@ -31,18 +31,18 @@ describe('typescript', function () {
 
     it('should correctly deserialize a simple XML document', async function () {
       const slideshow = await testClient.xml.getSimple();
-      should.exist(slideshow);
+      slideshow.should.exist;
 
-      should.exist(slideshow.author);
+      slideshow.author.should.exist;
       slideshow.author.should.equal('Yours Truly');
 
-      should.exist(slideshow.date);
+      slideshow.date.should.exist;
       slideshow.date.should.equal('Date of publication');
 
-      should.exist(slideshow.title);
+      slideshow.title.should.exist;
       slideshow.title.should.equal('Sample Slide Show');
 
-      should.exist(slideshow.slides);
+      slideshow.slides.should.exist;
       slideshow.slides.length.should.equal(2);
 
       slideshow.slides[0].title.should.equal('Wake up to WonderWidgets!');
@@ -82,12 +82,12 @@ describe('typescript', function () {
     it('should correctly deserialize XML wrapped lists', async function () {
       const appleBarrel = await testClient.xml.getWrappedLists();
 
-      should.exist(appleBarrel.goodApples);
+      appleBarrel.goodApples.should.exist;
       appleBarrel.goodApples.length.should.equal(2);
       appleBarrel.goodApples[0].should.equal('Fuji');
       appleBarrel.goodApples[1].should.equal('Gala');
 
-      should.exist(appleBarrel.badApples);
+      appleBarrel.badApples.should.exist;
       appleBarrel.badApples.length.should.equal(1);
       appleBarrel.badApples[0].should.equal('Red Delicious');
     });
@@ -103,12 +103,12 @@ describe('typescript', function () {
 
     it('should correctly deserialize an empty XML list', async function () {
       const emptyList = await testClient.xml.getEmptyList();
-      should.exist(emptyList);
-      should.not.exist(emptyList.author);
-      should.not.exist(emptyList.date);
-      should.not.exist(emptyList.title);
+      emptyList.should.exist;
+      emptyList.author.should.not.exist;
+      emptyList.date.should.not.exist;
+      emptyList.title.should.not.exist;
 
-      should.exist(emptyList.slides);
+      emptyList.slides.should.exist;
       emptyList.slides.length.should.equal(0);
     });
 
@@ -122,12 +122,12 @@ describe('typescript', function () {
 
     it('should correctly deserialize empty wrapped XML lists', async function () {
       const wrappedLists = await testClient.xml.getEmptyWrappedLists();
-      should.exist(wrappedLists);
+      wrappedLists.should.exist;
 
-      should.exist(wrappedLists.goodApples);
+      wrappedLists.goodApples.should.exist;
       wrappedLists.goodApples.length.should.equal(0);
 
-      should.exist(wrappedLists.badApples);
+      wrappedLists.badApples.should.exist;
       wrappedLists.badApples.length.should.equal(0);
     });
 
@@ -142,7 +142,7 @@ describe('typescript', function () {
     it('should correctly deserialize a root XML list', async function () {
       const rootList = await testClient.xml.getRootList();
 
-      should.exist(rootList);
+      rootList.should.exist;
       rootList.length.should.equal(2);
 
       rootList[0].name.should.equal('Cavendish');
@@ -174,7 +174,7 @@ describe('typescript', function () {
     it('should correctly deserialize a root XML list of one element', async function () {
       const rootList = await testClient.xml.getRootListSingleItem();
 
-      should.exist(rootList);
+      rootList.should.exist;
       rootList.length.should.equal(1);
 
       rootList[0].name.should.equal('Cavendish');
@@ -197,7 +197,7 @@ describe('typescript', function () {
 
     it('should correctly deserialize an empty root XML list', async function () {
       const rootList = await testClient.xml.getEmptyRootList();
-      should.exist(rootList);
+      rootList.should.exist;
       rootList.length.should.equal(0);
     });
 
@@ -207,7 +207,7 @@ describe('typescript', function () {
 
     it('should correctly deserialize an XML document with an empty child element', async function () {
       const banana = await testClient.xml.getEmptyChildElement();
-      should.exist(banana);
+      banana.should.exist;
       banana.name.should.equal('Unknown Banana');
       banana.flavor.should.equal('');
       banana.expiration.valueOf().should.equal(new Date('2012-02-24T00:53:52.789Z').valueOf());
@@ -256,14 +256,14 @@ describe('typescript', function () {
 
     it('should list containers in a storage account', async function () {
       const listContainersResponse = await testClient.xml.listContainers();
-      should.exist(listContainersResponse);
+      listContainersResponse.should.exist;
       listContainersResponse.serviceEndpoint.should.equal('https://myaccount.blob.core.windows.net/');
       listContainersResponse.maxResults.should.equal(3);
-      should.not.exist(listContainersResponse.marker);
+      listContainersResponse.marker.should.not.exist;
       listContainersResponse.nextMarker.should.equal('video');
-      should.not.exist(listContainersResponse.prefix);
+      listContainersResponse.prefix.should.not.exist;
 
-      should.exist(listContainersResponse.containers);
+      listContainersResponse.containers.should.exist;
       listContainersResponse.containers.length.should.equal(3);
 
       listContainersResponse.containers[0].name.should.equal('audio');
@@ -274,17 +274,17 @@ describe('typescript', function () {
       listContainersResponse.containers[1].name.should.equal('images');
       listContainersResponse.containers[1].properties.etag.should.equal('0x8CACB9BD7C1EEEC');
       listContainersResponse.containers[1].properties.lastModified.valueOf().should.equal(new Date('Wed, 26 Oct 2016 20:39:39 GMT').valueOf());
-      should.not.exist(listContainersResponse.containers[1].properties.publicAccess)
+      listContainersResponse.containers[1].properties.publicAccess.should.not.exist;
 
       listContainersResponse.containers[2].name.should.equal('textfiles');
       listContainersResponse.containers[2].properties.etag.should.equal('0x8CACB9BD7BACAC3');
       listContainersResponse.containers[2].properties.lastModified.valueOf().should.equal(new Date('Wed, 26 Oct 2016 20:39:39 GMT').valueOf());
-      should.not.exist(listContainersResponse.containers[2].properties.publicAccess)
+      listContainersResponse.containers[2].properties.publicAccess.should.not.exist
     });
 
     it('should get service properties in a storage account', async function () {
       const serviceProperties = await testClient.xml.getServiceProperties();
-      should.exist(serviceProperties);
+      serviceProperties.should.exist;
 
       serviceProperties.logging.version.should.equal('1.0');
       serviceProperties.logging.deleteProperty.should.equal(true);
@@ -344,7 +344,7 @@ describe('typescript', function () {
 
     it('should get storage ACLs for a container', async function () {
       const acls = await testClient.xml.getAcls();
-      should.exist(acls);
+      acls.should.exist;
       acls.length.should.equal(1);
       acls[0].id.should.equal('MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=');
       acls[0].accessPolicy.permission.should.equal('rwd');
@@ -369,20 +369,20 @@ describe('typescript', function () {
 
     it('should list blobs in a container', async function () {
       const listBlobsResponse = await testClient.xml.listBlobs();
-      should.exist(listBlobsResponse);
+      listBlobsResponse.should.exist;
       listBlobsResponse.containerName.should.equal('https://myaccount.blob.core.windows.net/mycontainer');
       listBlobsResponse.nextMarker.should.equal('');
-      should.not.exist(listBlobsResponse.maxResults);
-      should.not.exist(listBlobsResponse.delimiter);
-      should.not.exist(listBlobsResponse.marker);
-      should.not.exist(listBlobsResponse.prefix);
-      should.not.exist(listBlobsResponse.serviceEndpoint);
+      listBlobsResponse.maxResults.should.not.exist;
+      listBlobsResponse.delimiter.should.not.exist;
+      listBlobsResponse.marker.should.not.exist;
+      listBlobsResponse.prefix.should.not.exist;
+      listBlobsResponse.serviceEndpoint.should.not.exist;
 
       listBlobsResponse.blobs.blob.length.should.equal(5);
 
       listBlobsResponse.blobs.blob[0].name.should.equal('blob1.txt');
-      should.not.exist(listBlobsResponse.blobs.blob[0].deleted);
-      should.not.exist(listBlobsResponse.blobs.blob[0].snapshot);
+      listBlobsResponse.blobs.blob[0].deleted.should.not.exist;
+      listBlobsResponse.blobs.blob[0].snapshot.should.not.exist;
       listBlobsResponse.blobs.blob[0].metadata.Color.should.equal('blue');
       listBlobsResponse.blobs.blob[0].metadata.BlobNumber.should.equal('01');
       listBlobsResponse.blobs.blob[0].metadata.SomeMetadataName.should.equal('SomeMetadataValue');

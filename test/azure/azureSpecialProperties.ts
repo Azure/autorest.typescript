@@ -3,15 +3,16 @@
 
 'use strict';
 
-import * as should from 'should';
+import * as should from "chai/register-should";
 import * as msRest from '@azure/ms-rest-js';
 
 import { AutoRestAzureSpecialParametersTestClient } from './generated/AzureSpecials/autoRestAzureSpecialParametersTestClient';
+import { AutoRestAzureSpecialParametersTestClientOptions } from './generated/AzureSpecials/models';
 var dummySubscriptionId = '1234-5678-9012-3456';
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
-var clientOptions: any = { baseUri: 'http://localhost:3000' };
+var clientOptions: AutoRestAzureSpecialParametersTestClientOptions = { baseUri: 'http://localhost:3000', generateClientRequestIdHeader: false };
 var baseUri = 'http://localhost:3000';
 
 describe('typescript', function () {
@@ -63,7 +64,7 @@ describe('typescript', function () {
     it('should use the subscriptionId parameter when it is present', async function () {
       try {
         await testClient.subscriptionInMethod.postMethodLocalNull(null);
-        assert.fail();
+        should().fail;
       } catch (error) {
         error.message.should.equal("subscriptionId cannot be null or undefined.");
       }
@@ -124,75 +125,60 @@ describe('typescript', function () {
       result._response.headers.get('x-ms-request-id').should.equal('123');
     });
 
-    it('should not overwrite x-ms-client-request-id', function (done) {
+    it('should not overwrite x-ms-client-request-id', async () => {
       var testClient2 = new AutoRestAzureSpecialParametersTestClient(credentials, dummySubscriptionId, {
         ...clientOptions,
         generateClientRequestIdHeader: false
       });
-      testClient2.xMsClientRequestId.get(function (error, result, request, response) {
-        should.not.exist(error);
-        response.status.should.equal(200);
-        response.headers.get('x-ms-request-id').should.equal('123');
-        done();
-      });
+      const result = await testClient2.xMsClientRequestId.get();
+      result._response.status.should.equal(200);
+      result._response.headers.get('x-ms-request-id').should.equal('123');
     });
 
-    it('should have x-ms-request-id in the err object', function (done) {
+    it('should have x-ms-request-id in the err object', async () => {
       var invalidClientId = '123';
       var options = {
         customHeaders: {
           'x-ms-client-request-id': invalidClientId
         }
       };
-      testClient.xMsClientRequestId.get(options, function (error, result, request, response) {
-        should.exist(error);
+
+      try {
+        await testClient.xMsClientRequestId.get(options);
+      } catch (error) {
         (error as msRest.RestError).response.headers.get('x-ms-request-id').should.equal('123');
-        done();
-      });
+      }
     });
 
-    it('should allow custom-named request-id headers to be used', function (done) {
-      testClient.header.customNamedRequestId("9C4D50EE-2D56-4CD3-8152-34347DC9F2B0", function (error, result, request, response) {
-        should.not.exist(error);
-        response.status.should.equal(200);
-        should.not.exist(request.headers["x-ms-client-request-id"]);
-        should.equal(response.headers.get("foo-request-id"), "123");
-        done();
-      });
+    it('should allow custom-named request-id headers to be used', async () => {
+      const result = await testClient.header.customNamedRequestId("9C4D50EE-2D56-4CD3-8152-34347DC9F2B0");
+      result._response.status.should.equal(200);
+      should().not.exist(result._response.request.headers["x-ms-client-request-id"]);
+      result._response.headers.get("foo-request-id").should.equal("123");
     });
 
-    it('should allow custom-named request-id headers to be used with parameter grouping', function (done) {
-      testClient.header.customNamedRequestIdParamGrouping({ fooClientRequestId: "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0" }, function (error, result, request, response) {
-        should.not.exist(error);
-        response.status.should.equal(200);
-        should.not.exist(request.headers["x-ms-client-request-id"]);
-        should.equal(response.headers.get("foo-request-id"), "123");
-        done();
-      });
+    it('should allow custom-named request-id headers to be used with parameter grouping', async () => {
+      const result = await testClient.header.customNamedRequestIdParamGrouping({ fooClientRequestId: "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0" });
+      result._response.status.should.equal(200);
+      should().not.exist(result._response.request.headers["x-ms-client-request-id"]);
+      result._response.headers.get("foo-request-id").should.equal("123");
     });
 
-    it('should allow custom-named request-id headers to be used in head operations', function (done) {
-      testClient.header.customNamedRequestIdHead("9C4D50EE-2D56-4CD3-8152-34347DC9F2B0", function (error, result, request, response) {
-        should.not.exist(error);
-        response.status.should.equal(200);
-        should.not.exist(request.headers["x-ms-client-request-id"]);
-        should.equal(response.headers.get("foo-request-id"), "123");
-        result.should.equal(true);
-        done();
-      });
+    it('should allow custom-named request-id headers to be used in head operations', async () => {
+      const result = await testClient.header.customNamedRequestIdHead("9C4D50EE-2D56-4CD3-8152-34347DC9F2B0");
+      result._response.status.should.equal(200);
+      result._response.headers.get("foo-request-id").should.equal("123");
+      result.body.should.equal(true);
     });
 
-    it('should support OData filter', function (done) {
+    it('should support OData filter', async () => {
       var options = {
         filter: "id gt 5 and name eq 'foo'",
         top: 10,
         orderby: 'id'
       };
-      testClient.odata.getWithFilter(options, function (error, result, request, response) {
-        should.not.exist(error);
-        response.status.should.equal(200);
-        done();
-      });
+      const result = await testClient.odata.getWithFilter(options);
+      result._response.status.should.equal(200);
     });
 
     describe("credentials.environment property", function () {
@@ -210,7 +196,7 @@ describe('typescript', function () {
           }
         });
         const response = await client.apiVersionDefault.getMethodGlobalValid();
-        response._response.request.url.should.startWith("http://microsoft.com");
+        response._response.request.url.startsWith("http://microsoft.com").should.be.true;
       });
 
       it("should be overridden by a user-specified base URL", async function () {
@@ -221,7 +207,7 @@ describe('typescript', function () {
           baseUri: "http://usethisone.com"
         });
         const response = await client.apiVersionDefault.getMethodGlobalValid();
-        response._response.request.url.should.startWith("http://usethisone.com");
+        response._response.request.url.startsWith("http://usethisone.com").should.be.true;
       });
     });
   });

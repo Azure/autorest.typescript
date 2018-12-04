@@ -25,13 +25,13 @@ describe('typescript', function () {
 
         await testClient.header.paramExistingKey('overwrite');
         const response = await testClient.header.responseExistingKey();
-        response.userAgent.should.be.exactly('overwrite');
+        response.userAgent.should.be.deep.equal('overwrite');
       });
 
       it('should throw on changing protected headers', async function () {
         await testClient.header.paramProtectedKey('text/html')
         const response = await testClient.header.responseProtectedKey();
-        response.contentType.should.be.exactly('text/html; charset=utf-8');
+        response.contentType.should.be.deep.equal('text/html; charset=utf-8');
       });
 
       it('should send and receive integer type headers', async function () {
@@ -39,10 +39,10 @@ describe('typescript', function () {
         await testClient.header.paramInteger('negative', -2);
 
         const response1 = await testClient.header.responseInteger('positive');
-        response1.value.should.be.exactly(1);
+        response1.value.should.be.deep.equal(1);
 
         const response2 = await testClient.header.responseInteger('negative');
-        response2.value.should.be.exactly(-2);
+        response2.value.should.be.deep.equal(-2);
       });
 
       it('should send and receive long type headers', async function () {
@@ -50,10 +50,10 @@ describe('typescript', function () {
         await testClient.header.paramLong('negative', -2);
 
         const response1 = await testClient.header.responseLong('positive');
-        response1.value.should.be.exactly(105);
+        response1.value.should.be.deep.equal(105);
 
         const response2 = await testClient.header.responseLong('negative');
-        response2.value.should.be.exactly(-2);
+        response2.value.should.be.deep.equal(-2);
       });
 
       it('should send and receive float type headers', async function () {
@@ -61,10 +61,10 @@ describe('typescript', function () {
         await testClient.header.paramFloat('negative', -3.0);
 
         const response1 = await testClient.header.responseFloat('positive');
-        response1.value.should.be.exactly(0.07);
+        response1.value.should.be.deep.equal(0.07);
 
         const response2 = await testClient.header.responseFloat('negative');
-        response2.value.should.be.exactly(-3.0);
+        response2.value.should.be.deep.equal(-3.0);
       });
 
       it('should send and receive double type headers', async function () {
@@ -72,10 +72,10 @@ describe('typescript', function () {
         await testClient.header.paramDouble('negative', -3.0);
 
         const response1 = await testClient.header.responseDouble('positive');
-        response1.value.should.be.exactly(7e120);
+        response1.value.should.be.deep.equal(7e120);
 
         const response2 = await testClient.header.responseDouble('negative');
-        response2.value.should.be.exactly(-3.0);
+        response2.value.should.be.deep.equal(-3.0);
       });
 
       it('should send and receive boolean type headers', async function () {
@@ -83,10 +83,10 @@ describe('typescript', function () {
         await testClient.header.paramBool('false', false);
 
         const response1 = await testClient.header.responseBool('true');
-        response1.value.should.be.exactly(true);
+        response1.value.should.be.deep.equal(true);
 
         const response2 = await testClient.header.responseBool('false');
-        response2.value.should.be.exactly(false);
+        response2.value.should.be.deep.equal(false);
       });
 
       it('should send and receive string type headers', async function () {
@@ -95,14 +95,14 @@ describe('typescript', function () {
         await testClient.header.paramString('empty', { value: '' });
 
         const response1 = await testClient.header.responseString('valid');
-        response1.value.should.be.exactly('The quick brown fox jumps over the lazy dog');
+        response1.value.should.be.deep.equal('The quick brown fox jumps over the lazy dog');
 
         // Note: converting the header value "null" to a null literal is not supported.
         // const response2 = await testClient.header.responseString('null');
-        // should.not.exist(response2.value);
+        // response2.value.should.not.exist;
 
         const response3 = await testClient.header.responseString('empty');
-        response3.value.should.be.exactly('');
+        response3.value.should.be.deep.equal('');
       });
 
       it('should send and receive enum type headers', async function () {
@@ -110,10 +110,10 @@ describe('typescript', function () {
         await testClient.header.paramEnum('null', { value: null });
 
         const response1 = await testClient.header.responseEnum('valid');
-        response1.value.should.be.exactly("GREY");
+        response1.value.should.be.deep.equal("GREY");
 
         const response2 = await testClient.header.responseEnum('null');
-        response2.value.should.be.exactly('');
+        response2.value.should.be.deep.equal('');
       });
 
       it('should send and receive date type headers', async function () {
@@ -121,10 +121,10 @@ describe('typescript', function () {
         await testClient.header.paramDate('min', new Date('0001-01-01'));
 
         const response1 = await testClient.header.responseDate('valid');
-        _.isEqual(new Date(response1.value), new Date('2010-01-01')).should.be.exactly(true);
+        _.isEqual(new Date(response1.value), new Date('2010-01-01')).should.be.deep.equal(true);
 
         const response2 = await testClient.header.responseDate('min');
-        _.isEqual(response2.value, new Date('0001-01-01')).should.be.exactly(true);
+        _.isEqual(response2.value, new Date('0001-01-01')).should.be.deep.equal(true);
       });
 
       it('should send and receive datetime type headers', async function () {
@@ -132,10 +132,10 @@ describe('typescript', function () {
         await testClient.header.paramDatetime('min', new Date('0001-01-01T00:00:00Z'));
 
         const response1 = await testClient.header.responseDatetime('valid');
-        _.isEqual(response1.value, new Date('2010-01-01T12:34:56Z')).should.be.exactly(true);
+        _.isEqual(response1.value, new Date('2010-01-01T12:34:56Z')).should.be.deep.equal(true);
 
         const response2 = await testClient.header.responseDatetime('min');
-        _.isEqual(response2.value, new Date('0001-01-01T00:00:00Z')).should.be.exactly(true);
+        _.isEqual(response2.value, new Date('0001-01-01T00:00:00Z')).should.be.deep.equal(true);
       });
 
       it('should send and receive datetimerfc1123 type headers', async function () {
@@ -143,10 +143,10 @@ describe('typescript', function () {
         await testClient.header.paramDatetimeRfc1123('min', { value: new Date('0001-01-01T00:00:00Z') });
 
         const response1 = await testClient.header.responseDatetimeRfc1123('valid');
-        _.isEqual(response1.value, new Date('Fri, 01 Jan 2010 12:34:56 GMT')).should.be.exactly(true);
+        _.isEqual(response1.value, new Date('Fri, 01 Jan 2010 12:34:56 GMT')).should.be.deep.equal(true);
 
         const response2 = await testClient.header.responseDatetimeRfc1123('min');
-        _.isEqual(response2.value, new Date('Mon, 01 Jan 0001 00:00:00 GMT')).should.be.exactly(true);
+        _.isEqual(response2.value, new Date('Mon, 01 Jan 0001 00:00:00 GMT')).should.be.deep.equal(true);
       });
 
       it('should send and receive duration type headers', async function () {
@@ -154,7 +154,7 @@ describe('typescript', function () {
         await testClient.header.paramDuration('valid', duration);
 
         const response = await testClient.header.responseDuration('valid')
-        _.isEqual(response.value, 'P123DT22H14M12.011S').should.be.exactly(true);
+        _.isEqual(response.value, 'P123DT22H14M12.011S').should.be.deep.equal(true);
       });
 
       it('should send and receive byte array type headers', async function () {
