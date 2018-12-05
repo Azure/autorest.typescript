@@ -17,8 +17,8 @@
     "regenerate": "gulp regenerate",
     "clean": "gulp clean",
     "nuke": "git clean -xdf",
-    "local": "ts-node -T ./.scripts/local.ts",
-    "latest": "ts-node -T ./.scripts/latest.ts",
+    "local": "npm explore @ts-common/azure-js-dev-tools -- npm run local",
+    "latest": "npm explore @ts-common/azure-js-dev-tools -- npm run latest",
     "bundle-size": "ts-node -T ./.scripts/bundlesize.ts"
   },
   "repository": {
