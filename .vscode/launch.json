@@ -3,8 +3,7 @@
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
-  "configurations": [
-    {
+  "configurations": [{
       "type": "coreclr",
       "request": "attach",
       "name": ".NET Core Attach",
@@ -27,6 +26,23 @@
         "-r", "ts-node/register"
       ],
       "args": ["${workspaceRoot}/testserver/index.ts"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch via NPM",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "local"
+      ],
+      "port": 9229
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "program": "${workspaceFolder}/../azure-js-dev-tools/dist/dependencies/local.js"
     }
   ]
 }
