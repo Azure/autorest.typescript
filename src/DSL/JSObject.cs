@@ -106,7 +106,7 @@ namespace AutoRest.TypeScript.DSL
 
         private bool PropertyNameNeedsToBeQuoted(string propertyName)
         {
-            return propertyName.Contains(".") || propertyName.Contains("/");
+            return !JSBuilder.IsQuoted(propertyName) && (propertyName.Contains(".") || propertyName.Contains("/"));
         }
 
         /// <summary>
@@ -208,7 +208,7 @@ namespace AutoRest.TypeScript.DSL
         /// </summary>
         /// <param name="propertyName">The name of the new property.</param>
         /// <param name="propertyValue">The quoted string[] values of the new property.</param>
-        public void QuotedStringArrayProperty(string propertyName, string[] propertyValue)
+        public void QuotedStringArrayProperty(string propertyName, IEnumerable<string> propertyValue)
         {
             ArrayProperty(propertyName, (JSArray tsArray) =>
             {

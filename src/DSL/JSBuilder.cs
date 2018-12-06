@@ -9,7 +9,7 @@ using System.Linq;
 namespace AutoRest.TypeScript.DSL
 {
     /// <summary>
-    /// A StringBuilder that has helper methods for building TypeScript code.
+    /// A StringBuilder that has helper methods for building JavaScript code.
     /// </summary>
     public class JSBuilder : IBuilder
     {
@@ -278,17 +278,55 @@ namespace AutoRest.TypeScript.DSL
         }
 
         /// <summary>
-        /// Surround the provided text with double-quotes and add it to this JSBuilder.
+        /// Surround the provided text with quotes and add it to this JSBuilder.
         /// </summary>
-        /// <param name="text">The text to double-quote and add to this JSBuilder.</param>
+        /// <param name="text">The text to quote and add to this JSBuilder.</param>
         public void QuotedString(string text)
         {
-            char quote = '"';
-            if (!string.IsNullOrEmpty(text) && (text.Contains('\n') || text.Contains('"')))
+            Text(Quote(text));
+        }
+
+        public static string Quote(string text)
+        {
+            string result;
+            if (string.IsNullOrEmpty(text))
             {
-                quote = '`';
+                result = "\"\"";
             }
-            Text($"{quote}{text}{quote}");
+            else
+            {
+                if (IsQuoted(text))
+                {
+                    result = text;
+                }
+                else
+                {
+                    char quote = '"';
+                    if (text.Contains('\n') || text.Contains('"'))
+                    {
+                        quote = '`';
+                    }
+                    result = $"{quote}{text}{quote}";
+                }
+            }
+            return result;
+        }
+
+        public static bool IsQuoted(string value)
+        {
+            bool result = false;
+            int valueLength = value == null ? 0 : value.Length;
+            if (2 <= valueLength)
+            {
+                char firstCharacter = value[0];
+                result = IsQuote(firstCharacter) && firstCharacter == value[valueLength - 1];
+            }
+            return result;
+        }
+
+        private static bool IsQuote(char value)
+        {
+            return value == '\'' || value == '\"' || value == '`';
         }
 
         /// <summary>

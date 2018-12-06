@@ -217,7 +217,7 @@ namespace AutoRest.TypeScript
 
         protected Task WritePackageJsonFile(CodeModelTS codeModel)
         {
-            return Write(new PackageJson { Model = codeModel }, "package.json");
+            return Write(codeModel.GeneratePackageJson(), "package.json");
         }
 
         protected Task WriteReadmeMdFile(CodeModelTS codeModel)

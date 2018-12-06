@@ -800,5 +800,59 @@ namespace AutoRest.TypeScript.DSL
                 " */",
                 builder);
         }
+
+        [TestMethod]
+        public void QuoteWithNull()
+        {
+            Assert.AreEqual("\"\"", JSBuilder.Quote(null));
+        }
+
+        [TestMethod]
+        public void QuoteWithEmpty()
+        {
+            Assert.AreEqual("\"\"", JSBuilder.Quote(""));
+        }
+
+        [TestMethod]
+        public void QuoteWithNonEmpty()
+        {
+            Assert.AreEqual("\"abc\"", JSBuilder.Quote("abc"));
+        }
+
+        [TestMethod]
+        public void QuoteWithSurroundingSingleQuotes()
+        {
+            Assert.AreEqual("'abc'", JSBuilder.Quote("'abc'"));
+        }
+
+        [TestMethod]
+        public void QuoteWithSurroundingDoubleQuotes()
+        {
+            Assert.AreEqual("\"abc\"", JSBuilder.Quote("\"abc\""));
+        }
+
+        [TestMethod]
+        public void QuoteWithSurroundingBacktickQuotes()
+        {
+            Assert.AreEqual("`abc`", JSBuilder.Quote("`abc`"));
+        }
+
+        [TestMethod]
+        public void QuoteWithInternalSingleQuote()
+        {
+            Assert.AreEqual("\"ab'c\"", JSBuilder.Quote("ab'c"));
+        }
+
+        [TestMethod]
+        public void QuoteWithInternalDoubleQuote()
+        {
+            Assert.AreEqual("`ab\"c`", JSBuilder.Quote("ab\"c"));
+        }
+
+        [TestMethod]
+        public void QuoteWithInternalBacktickQuote()
+        {
+            Assert.AreEqual("\"ab`c\"", JSBuilder.Quote("ab`c"));
+        }
     }
 }
