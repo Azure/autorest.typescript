@@ -30,18 +30,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch via NPM",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run",
-        "local"
-      ],
-      "port": 9229
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Program",
+      "name": "Launch npm run local",
       "program": "${workspaceFolder}/node_modules/@ts-common/azure-js-dev-tools/dist/dependencies/local.js"
     }
   ]
