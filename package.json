@@ -17,8 +17,8 @@
     "regenerate": "gulp regenerate",
     "clean": "gulp clean",
     "nuke": "git clean -xdf",
-    "local": "ts-node -T ./.scripts/local.ts",
-    "latest": "ts-node -T ./.scripts/latest.ts",
+    "local": "npm explore @ts-common/azure-js-dev-tools -- npm run local",
+    "latest": "npm explore @ts-common/azure-js-dev-tools -- npm run latest",
     "bundle-size": "ts-node -T ./.scripts/bundlesize.ts"
   },
   "repository": {
@@ -42,6 +42,7 @@
     "@azure/ms-rest-js": "^1.2.0",
     "@microsoft.azure/autorest.modeler": "^2.3.51",
     "@microsoft.azure/autorest.testserver": "2.6.0",
+    "@ts-common/azure-js-dev-tools": "^0.1.7",
     "@types/assert": "1.4.0",
     "@types/chai": "^4.1.7",
     "@types/express": "^4.11.1",
