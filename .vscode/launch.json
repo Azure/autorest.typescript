@@ -42,7 +42,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/../azure-js-dev-tools/dist/dependencies/local.js"
+      "program": "${workspaceFolder}/node_modules/@ts-common/azure-js-dev-tools/dist/dependencies/local.js"
     }
   ]
 }
