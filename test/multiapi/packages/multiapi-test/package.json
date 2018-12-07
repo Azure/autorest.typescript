@@ -45,6 +45,7 @@
     "esm/**/*.d.ts",
     "esm/**/*.d.ts.map",
     "lib/**/*.ts",
+    "README.md",
     "rollup.config.js",
     "tsconfig.json"
   ],

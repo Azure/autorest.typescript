@@ -446,15 +446,14 @@ namespace AutoRest.TypeScript.Model
             return builder.ToString();
         }
 
-        public virtual string PackageDependencies()
+        public virtual void PackageDependencies(JSONObject dependencies)
         {
-            string deps = "\"@azure/ms-rest-js\": \"^1.2.0\",\n" + "\"tslib\": \"^1.9.3\"";
+            dependencies.StringProperty("@azure/ms-rest-js", "^1.2.0");
+            dependencies.StringProperty("tslib", "^1.9.3");
             if (Settings.MultiapiLatest)
             {
-                string version = Settings.AliasedNpmVersion ?? "^1.0.0";
-                deps += ",\n" + $"\"{Settings.AliasedNpmPackageName}\": \"{version}\"";
+                dependencies.StringProperty(Settings.AliasedNpmPackageName, Settings.AliasedNpmVersion ?? "^1.0.0");
             }
-            return deps;
         }
 
         public virtual Method GetSampleMethod()
@@ -1025,6 +1024,77 @@ namespace AutoRest.TypeScript.Model
             });
             builder.Line();
             builder.ExportDefault("config");
+
+            return builder.ToString();
+        }
+
+        public string GeneratePackageJson()
+        {
+            JSONBuilder builder = new JSONBuilder();
+
+            string bundleFileName = BundleFilename;
+
+            builder.Object(packageJson =>
+            {
+                packageJson.StringProperty("name", PackageName);
+                packageJson.StringProperty("author", "Microsoft Corporation");
+                packageJson.StringProperty("description", $"{Name.ToPascalCase()} Library with typescript type definitions for node.js and browser.");
+                packageJson.StringProperty("version", Settings.PackageVersion);
+                packageJson.ObjectProperty("dependencies", PackageDependencies);
+                packageJson.StringArrayProperty("keywords", new[]
+                {
+                    "node",
+                    "azure",
+                    "typescript",
+                    "browser",
+                    "isomorphic"
+                });
+                packageJson.StringProperty("license", "MIT");
+                packageJson.StringProperty("main", $"./dist/{bundleFileName}.js");
+                string moduleName = Settings.MultiapiLatest ? "index" : Name.ToCamelCase();
+                packageJson.StringProperty("module", $"./esm/{moduleName}.js");
+                packageJson.StringProperty("types", $"./esm/{moduleName}.d.ts");
+                packageJson.ObjectProperty("devDependencies", devDependencies =>
+                {
+                    devDependencies.StringProperty("typescript", "^3.1.1");
+                    devDependencies.StringProperty("rollup", "^0.66.2");
+                    devDependencies.StringProperty("rollup-plugin-node-resolve", "^3.4.0");
+                    devDependencies.StringProperty("rollup-plugin-sourcemaps", "^0.4.2");
+                    devDependencies.StringProperty("uglify-js", "^3.4.9");
+                });
+                packageJson.StringProperty("homepage", HomePageUrl);
+                packageJson.ObjectProperty("repository", repository =>
+                {
+                    repository.StringProperty("type", "git");
+                    repository.StringProperty("url", RepositoryUrl);
+                });
+                packageJson.ObjectProperty("bugs", bugs =>
+                {
+                    bugs.StringProperty("url", BugsUrl);
+                });
+                packageJson.StringArrayProperty("files", new[]
+                {
+                    "dist/**/*.js",
+                    "dist/**/*.js.map",
+                    "dist/**/*.d.ts",
+                    "dist/**/*.d.ts.map",
+                    "esm/**/*.js",
+                    "esm/**/*.js.map",
+                    "esm/**/*.d.ts",
+                    "esm/**/*.d.ts.map",
+                    "lib/**/*.ts",
+                    "README.md",
+                    "rollup.config.js",
+                    "tsconfig.json"
+                });
+                packageJson.ObjectProperty("scripts", scripts =>
+                {
+                    scripts.StringProperty("build", "tsc && rollup -c rollup.config.js && npm run minify");
+                    scripts.StringProperty("minify", $"\"uglifyjs -c -m --comments --source-map \\\"content='./dist/{bundleFileName}.js.map'\\\" -o ./dist/{bundleFileName}.min.js ./dist/{bundleFileName}.js\"");
+                    scripts.StringProperty("prepack", "npm install && npm run build");
+                });
+                packageJson.BooleanProperty("sideEffects", false);
+            });
 
             return builder.ToString();
         }
