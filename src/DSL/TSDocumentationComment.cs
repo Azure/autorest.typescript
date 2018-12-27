@@ -120,9 +120,31 @@ namespace AutoRest.TypeScript.DSL
             builder.Line("@readonly");
         }
 
+        public void Interface()
+        {
+            SetCurrentState(State.Description);
+            builder.Line("@interface");
+        }
+
+        public void Extends(string baseType)
+        {
+            if (!string.IsNullOrEmpty(baseType))
+            {
+                builder.Line($"@extends {baseType}");
+            }
+        }
+
         public void Enum(string enumType)
         {
-            builder.Line($"@enum {{{enumType}}}");
+            if (!string.IsNullOrEmpty(enumType))
+            {
+                builder.Line($"@enum {{{enumType}}}");
+            }
+        }
+
+        public void Line(string text)
+        {
+            builder.Line(text);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace AutoRest.TypeScript.Model
 {
     public class EnumTypeTS : EnumType
     {
-        public string Generate(string emptyLine)
+        public string Generate()
         {
             TSBuilder builder = new TSBuilder();
 

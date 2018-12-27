@@ -318,15 +318,6 @@ namespace AutoRest.TypeScript.Model
                 return propertyName + ": " + typeString;
         }
 
-        public string PolymorphicUnionDeclaration
-        {
-            get
-            {
-                IEnumerable<string> cases = new[] { this.Name.ToString() }.Concat(ImmediatePolymorphicSubtypes.Select(m => m.UnionTypeName));
-                return $"export type {Name}Union = {string.Join(" | ", cases)};";
-            }
-        }
-
         public virtual void ConstructModelMapper(TSBuilder builder)
         {
             builder.Text($"export const {Name}: msRest.CompositeMapper = ");
@@ -397,6 +388,73 @@ namespace AutoRest.TypeScript.Model
             }
 
             return typeName.ToLowerInvariant();
+        }
+
+        public virtual string Generate()
+        {
+            TSBuilder builder = new TSBuilder();
+
+            if (ImmediatePolymorphicSubtypes.Any())
+            {
+                builder.DocumentationComment($"Contains the possible cases for {Name}.");
+                List<string> unionTypeValues = new List<string>() { Name };
+                unionTypeValues.AddRange(ImmediatePolymorphicSubtypes.Select(m => m.UnionTypeName));
+                builder.ExportUnionType($"{Name}Union", unionTypeValues);
+                builder.Line();
+            }
+
+            builder.DocumentationComment(comment =>
+            {
+                string description = Documentation;
+                if (string.IsNullOrEmpty(description))
+                {
+                    description = $"An interface representing {Name}.";
+                }
+                comment.Description(description);
+                comment.Summary(Summary);
+            });
+            string baseTypeName = null;
+            if (BaseModelType != null && !BaseIsPolymorphic)
+            {
+                baseTypeName = BaseModelType.Name;
+                if (baseTypeName == "RequestOptionsBase")
+                {
+                    baseTypeName = $"msRest.{baseTypeName}";
+                }
+            }
+            builder.ExportInterface(Name, baseTypeName, tsInterface =>
+            {
+                ISet<string> addedPropertyNames = new HashSet<string>();
+                
+                foreach (Property property in InterfaceProperties)
+                {
+                    string propertyName = property.Name;
+                    if (!addedPropertyNames.Contains(propertyName))
+                    {
+                        addedPropertyNames.Add(propertyName);
+
+                        string propertyDescription = $"{property.Summary.EnsureEndsWith(".")} {property.Documentation}".Trim();
+                        if (!property.DefaultValue.IsNullOrEmpty())
+                        {
+                            propertyDescription = $"{propertyDescription.EnsureEndsWith(".")} Default value: {property.DefaultValue}.".Trim();
+                        }
+                        tsInterface.DocumentationComment(propertyDescription);
+
+                        string propertyType = property.IsPolymorphicDiscriminator ? $"\"{SerializedName}\"" : property.ModelType.TSType(true);
+                        bool isReadonly = property.IsReadOnly;
+                        bool isOptional = !property.IsRequired && (!(CodeModel?.HeaderTypes.Contains(this) == true) || CodeModelTS.Settings.OptionalResponseHeaders);
+                        tsInterface.Property(property.Name, propertyType, optional: isOptional, isReadonly: isReadonly);
+                    }
+                }
+
+                if (AdditionalProperties != null)
+                {
+                    tsInterface.DocumentationComment(AdditionalPropertiesDocumentation());
+                    tsInterface.Property("[property: string]", AdditionalPropertiesTSType());
+                }
+            });
+
+            return builder.ToString();
         }
     }
 }

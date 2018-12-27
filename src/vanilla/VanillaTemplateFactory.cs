@@ -19,10 +19,5 @@ namespace AutoRest.TypeScript
         {
             return new ServiceClientContextTemplate { Model = codeModel };
         }
-
-        public override Template<CodeModelTS> CreateModelsIndexTemplate(CodeModelTS codeModel)
-        {
-            return new ModelIndexTemplate { Model = codeModel };
-        }
     }
 }

@@ -125,6 +125,21 @@ the generated constructor will look like
 constructor(credentials: msRest.ServiceClientCredentials, options?: msRest.ServiceClientOptions)
 ```
 
+## --enums
+By default, a Swagger enum is translated into a TypeScript enum, like so:
+```ts
+type Colors = 'red color' | 'green-color' | 'blue_color';
+```
+You may instead generate an actual enum type by passing `--enums=true` to AutoRest, which will instead produce:
+```ts
+type Colors {
+  RedColor = 'red color',
+  GreenColor = 'green-color',
+  BlueColor = 'blue_color',
+}
+```
+Using string unions instead of enum types can produce more future-proof code, which is why we default to string unions.
+
 ### Further Documentation on the Command Line
 The complete list of command line arguments can be found [here](https://github.com/Azure/autorest/blob/master/docs/user/cli.md). Not every command line option is available for the typescript extension.
 

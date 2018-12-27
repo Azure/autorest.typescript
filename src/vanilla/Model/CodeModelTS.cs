@@ -436,14 +436,19 @@ namespace AutoRest.TypeScript.Model
             return ModelTemplateModels.Any(m => m != null && m.BaseModelType != null && m.BaseModelType.Name.EqualsIgnoreCase("RequestOptionsBase"));
         }
 
-        public virtual string ConstructRuntimeImportForModelIndex()
+        public string ConstructRuntimeImportForModelIndex()
         {
             TSBuilder builder = new TSBuilder();
+            ConstructRuntimeImportForModelIndex(builder);
+            return builder.ToString();
+        }
+
+        public virtual void ConstructRuntimeImportForModelIndex(TSBuilder builder)
+        {
             if (OptionalParameterTypeForClientConstructor != ServiceClientOptions)
             {
                 builder.Import(new string[] { ServiceClientOptions }, "@azure/ms-rest-js");
             }
-            return builder.ToString();
         }
 
         public virtual void PackageDependencies(JSONObject dependencies)
@@ -653,12 +658,12 @@ namespace AutoRest.TypeScript.Model
             return builder.ToString();
         }
 
-        public string GenerateResponseTypes(string emptyLine)
+        public string GenerateResponseTypes()
         {
             TSBuilder builder = new TSBuilder();
             foreach (MethodTS method in MethodsWithCustomResponseType)
             {
-                builder.Line(emptyLine);
+                builder.Line();
                 method.GenerateResponseType(builder);
             }
             return builder.ToString();
@@ -1095,6 +1100,32 @@ namespace AutoRest.TypeScript.Model
                 });
                 packageJson.BooleanProperty("sideEffects", false);
             });
+
+            return builder.ToString();
+        }
+
+        public virtual string GenerateModelIndex()
+        {
+            TSBuilder builder = new TSBuilder();
+
+            builder.Comment(AutoRest.Core.Settings.Instance.Header);
+            builder.Line();
+            builder.Line(ConstructRuntimeImportForModelIndex());
+            if(ContainsDurationPropertyInModels() || IsAnyModelInheritingFromRequestOptionsBase() || MethodsWithCustomResponseType.Any())
+            {
+                builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+            }
+            foreach(CompositeTypeTS model in OrderedModelTemplateModels)
+            {
+                builder.Line();
+                builder.Line(model.Generate());
+            }
+            foreach(EnumTypeTS model in EnumTemplateModels)
+            {
+                builder.Line();
+                builder.Line(model.Generate());
+            }
+            builder.Line(GenerateResponseTypes());
 
             return builder.ToString();
         }
