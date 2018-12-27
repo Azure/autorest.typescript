@@ -53,7 +53,7 @@ namespace AutoRest.TypeScript
 
                 if (ShouldWriteModelsFiles(codeModel))
                 {
-                    await WriteModelsIndexFile(templateFactory.CreateModelsIndexTemplate(codeModel));
+                    await WriteModelsIndexFile(codeModel);
                     if (codeModel.HasMappers())
                     {
                         await WriteMappersIndexFile(codeModel);
@@ -170,11 +170,10 @@ namespace AutoRest.TypeScript
             return Write(serviceClientContextTemplate, filePath);
         }
 
-        protected Task WriteModelsIndexFile<T>(Template<T> modelIndexTemplate) where T : CodeModelTS
+        protected Task WriteModelsIndexFile(CodeModelTS codeModel)
         {
-            CodeModelTS codeModel = modelIndexTemplate.Model;
             string filePath = GetSourceCodeFilePath(codeModel, "models", "index.ts");
-            return Write(modelIndexTemplate, filePath);
+            return Write(codeModel.GenerateModelIndex(), filePath);
         }
 
         protected Task WriteMappersIndexFile(CodeModelTS codeModel)

@@ -107,6 +107,11 @@ namespace AutoRest.TypeScript
         public bool OptionalResponseHeaders { get; set; }
 
         /// <summary>
+        /// If true, uses enum types instead of string unions.
+        /// </summary>
+        public bool EnumTypes { get; set; }
+
+        /// <summary>
         /// Computes the NPM package referenced by an alias package.
         /// </summary>
         public string AliasedNpmPackageName

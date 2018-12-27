@@ -54,5 +54,39 @@ namespace AutoRest.TypeScript.Azure.Model
             ClientModelExtensions.ConstructMapper(builder, this, SerializedName, null, isPageable: true, expandComposite: true, isXML: CodeModel?.ShouldGenerateXmlSerialization == true);
             builder.Line(";");
         }
+
+        public override string Generate()
+        {
+            TSBuilder builder = new TSBuilder();
+
+            builder.DocumentationComment(comment =>
+            {
+                comment.Interface();
+                string description = Documentation;
+                if (string.IsNullOrEmpty(description))
+                {
+                    description = $"An interface representing the {Name}.";
+                }
+                comment.Description(description);
+                comment.Summary(Summary);
+                comment.Extends($"Array{ConstructTSItemTypeName()}");
+            });
+            builder.ExportInterface(Name, $"Array{ConstructTSItemTypeName()}", tsInterface =>
+            {
+                foreach (Property property in InterfaceProperties)
+                {
+                    if (!(property.Name.ToLowerInvariant() == "value" || property.Name.ToLowerInvariant() == "values"))
+                    {
+                        tsInterface.DocumentationComment(property.Documentation);
+                        string propertyType = property.IsPolymorphicDiscriminator ? $"\"{SerializedName}\"" : property.ModelType.TSType(true);
+                        bool isReadonly = property.IsReadOnly;
+                        bool isOptional = !property.IsRequired && (!(CodeModel?.HeaderTypes.Contains(this) == true) || CodeModelTS.Settings.OptionalResponseHeaders);
+                        tsInterface.Property(property.Name, propertyType, optional: isOptional, isReadonly: isReadonly);
+                    }
+                }
+            });
+
+            return builder.ToString();
+        }
     }
 }

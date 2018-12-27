@@ -261,6 +261,19 @@ namespace AutoRest.TypeScript.DSL
             Line($"}};");
         }
 
+        public void Export(params string[] exportedValues)
+        {
+            Export((IEnumerable<string>)exportedValues);
+        }
+
+        public void Export(IEnumerable<string> exportedValues)
+        {
+            if (exportedValues != null && exportedValues.Any())
+            {
+                Line($"export {{ {string.Join(", ", exportedValues)} }};");
+            }
+        }
+
         /// <summary>
         /// Exports all the exports from the given module.
         /// </summary>
@@ -272,6 +285,27 @@ namespace AutoRest.TypeScript.DSL
         public void ExportConst(string exportedVariableName, string exportSource)
         {
             Line($"export const {exportedVariableName} = {exportSource};");
+        }
+
+        public void ExportInterface(string interfaceName, string baseTypeName, Action<TSInterface> action)
+        {
+            string declaration = $"interface {interfaceName}";
+            if (!string.IsNullOrEmpty(baseTypeName))
+            {
+                declaration += $" extends {baseTypeName}";
+            }
+            Block($"export {declaration}", block =>
+            {
+                action?.Invoke(new TSInterface(this));
+            });
+        }
+
+        public void ExportEnum(string enumName, Action<TSEnum> action)
+        {
+            Block($"export enum {enumName}", block =>
+            {
+                action?.Invoke(new TSEnum(this));
+            });
         }
     }
 }
