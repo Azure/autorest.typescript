@@ -10,7 +10,7 @@ namespace AutoRest.TypeScript.Model
 {
     public class EnumTypeTS : EnumType
     {
-        public string Generate(string emptyLine)
+        public string Generate(bool emitEnumType)
         {
             TSBuilder builder = new TSBuilder();
 
@@ -22,7 +22,27 @@ namespace AutoRest.TypeScript.Model
                 comment.Enum(CodeNamer.Instance.CamelCase(UnderlyingType.Name));
             });
 
-            builder.ExportUnionType(Name, Values.Select(v => CodeNamerTS.GetEnumValueName(v.SerializedName, UnderlyingType)));
+            if (emitEnumType)
+            {
+                builder.ExportEnum(Name, tsEnum =>
+                {
+                    foreach (EnumValue value in Values)
+                    {
+                        tsEnum.DocumentationComment(value.Description);
+                        string valueName = CodeNamer.Instance.GetEnumMemberName(value.MemberName);
+                        string valueValue = CodeNamerTS.GetEnumValueName(value.SerializedName, UnderlyingType);
+                        if (valueValue == null || valueValue == "null")
+                        {
+                            valueValue = "\"null\"";
+                        }
+                        tsEnum.Value(valueName, valueValue);
+                    }
+                });
+            }
+            else
+            {
+                builder.ExportUnionType(Name, Values.Select(v => CodeNamerTS.GetEnumValueName(v.SerializedName, UnderlyingType)));
+            }
 
             return builder.ToString();
         }

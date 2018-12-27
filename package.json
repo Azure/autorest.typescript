@@ -1,6 +1,6 @@
 {
   "name": "@microsoft.azure/autorest.typescript",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "description": "The typescript extension for classic generators in AutoRest.",
   "scripts": {
     "autorest": "autorest",
@@ -81,7 +81,7 @@
     "ts-node": "^7.0.1",
     "tslib": "^1.9.3",
     "tslint": "^5.10.0",
-    "typescript": "^3.1.6",
+    "typescript": "^3.2.2",
     "underscore": "^1.8.3",
     "webpack": "~4.26.1",
     "webpack-cli": "~3.1.2",

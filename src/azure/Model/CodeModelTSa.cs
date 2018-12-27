@@ -57,16 +57,14 @@ namespace AutoRest.TypeScript.Azure.Model
 
         public IList<PageCompositeTypeTSa> PageTemplateModels { get; set; } = new List<PageCompositeTypeTSa>();
 
-        public override string ConstructRuntimeImportForModelIndex()
+        public override void ConstructRuntimeImportForModelIndex(TSBuilder builder)
         {
-            var builder = new IndentedStringBuilder("  ");
-            builder.Append("import { BaseResource, CloudError");
+            List<string> imports = new List<string>() { "BaseResource", "CloudError" };
             if (OptionalParameterTypeForClientConstructor != "AzureServiceClientOptions")
             {
-                builder.Append(", AzureServiceClientOptions");
+                imports.Add("AzureServiceClientOptions");
             }
-            builder.Append(" } from \"@azure/ms-rest-azure-js\";");
-            return builder.ToString();
+            builder.Import(imports, "@azure/ms-rest-azure-js");
         }
 
         public override void PackageDependencies(JSONObject dependencies)
@@ -154,5 +152,39 @@ namespace AutoRest.TypeScript.Azure.Model
         {
             return base.ShouldGenerateProperty(propertyName) && !azureServiceClientProperties.Contains(propertyName);
         }
+
+        public override string GenerateModelIndex()
+        {
+            TSBuilder builder = new TSBuilder();
+
+            builder.Comment(AutoRest.Core.Settings.Instance.Header);
+            builder.Line();
+            builder.Line(ConstructRuntimeImportForModelIndex());
+            if (ContainsDurationPropertyInModels() || IsAnyModelInheritingFromRequestOptionsBase() || MethodsWithCustomResponseType.Any())
+            {
+                builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+            }
+            builder.Line();
+            builder.Export("BaseResource", "CloudError");
+            foreach (CompositeTypeTS model in OrderedModelTemplateModels)
+            {
+                builder.Line();
+                builder.Line(model.Generate());
+            }
+            foreach(PageCompositeTypeTSa model in PageTemplateModels)
+            {
+                builder.Line();
+                builder.Line(model.Generate());
+            }
+            foreach (EnumTypeTS model in EnumTemplateModels)
+            {
+                builder.Line();
+                builder.Line(model.Generate(Settings.EnumTypes));
+            }
+            builder.Line(GenerateResponseTypes());
+
+            return builder.ToString();
+        }
+
     }
 }
