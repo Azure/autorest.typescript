@@ -20,8 +20,9 @@
     "local": "ts-node ./.scripts/local.ts",
     "latest": "ts-node ./.scripts/latest.ts",
     "bundle-size": "ts-node -T ./.scripts/bundlesize.ts",
-    "check:packagejsonversion": "ts-node ./.scripts/checkPackageJsonVersion.ts",
-    "check:testsforonly": "ts-node ./.scripts/checkTestsForOnly.ts"
+    "check:everything": "ts-node ./.scripts/checkEverything.ts",
+    "check:foronlycalls": "ts-node ./.scripts/checkForOnlyCalls.ts",
+    "check:packagejsonversion": "ts-node ./.scripts/checkPackageJsonVersion.ts"
   },
   "repository": {
     "type": "git",
