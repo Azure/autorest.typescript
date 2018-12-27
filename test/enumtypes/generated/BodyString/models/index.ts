@@ -60,7 +60,11 @@ export interface EnumModelPutReferencedConstantOptionalParams extends msRest.Req
  * @readonly
  * @enum {string}
  */
-export type Colors = 'red color' | 'green-color' | 'blue_color';
+export enum Colors {
+  Redcolor = 'red color',
+  GreenColor = 'green-color',
+  BlueColor = 'blue_color',
+}
 
 /**
  * Defines values for StringBody.
@@ -68,7 +72,9 @@ export type Colors = 'red color' | 'green-color' | 'blue_color';
  * @readonly
  * @enum {string}
  */
-export type StringBody = null;
+export enum StringBody {
+  Null = "null",
+}
 
 /**
  * Defines values for GetNullOKResponse.
@@ -76,7 +82,9 @@ export type StringBody = null;
  * @readonly
  * @enum {string}
  */
-export type GetNullOKResponse = null;
+export enum GetNullOKResponse {
+  Null = "null",
+}
 
 /**
  * Defines values for GetEmptyOKResponse.
@@ -84,7 +92,9 @@ export type GetNullOKResponse = null;
  * @readonly
  * @enum {string}
  */
-export type GetEmptyOKResponse = '';
+export enum GetEmptyOKResponse {
+  EmptyString = '',
+}
 
 /**
  * Defines values for GetMbcsOKResponse.
@@ -92,7 +102,9 @@ export type GetEmptyOKResponse = '';
  * @readonly
  * @enum {string}
  */
-export type GetMbcsOKResponse = '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€';
+export enum GetMbcsOKResponse {
+  啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯаяāɡㄅㄩɑɡ䜣 = '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€',
+}
 
 /**
  * Defines values for GetWhitespaceOKResponse.
@@ -101,7 +113,9 @@ export type GetMbcsOKResponse = '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱
  * @readonly
  * @enum {string}
  */
-export type GetWhitespaceOKResponse = '    Now is the time for all good men to come to the aid of their country    ';
+export enum GetWhitespaceOKResponse {
+  Nowisthetimeforallgoodmentocometotheaidoftheircountry = '    Now is the time for all good men to come to the aid of their country    ',
+}
 
 /**
  * Contains response data for the getNull operation.

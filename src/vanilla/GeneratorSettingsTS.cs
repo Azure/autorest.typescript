@@ -109,7 +109,7 @@ namespace AutoRest.TypeScript
         /// <summary>
         /// If true, uses enum types instead of string unions.
         /// </summary>
-        public bool Enum { get; set; }
+        public bool EnumTypes { get; set; }
 
         /// <summary>
         /// Computes the NPM package referenced by an alias package.

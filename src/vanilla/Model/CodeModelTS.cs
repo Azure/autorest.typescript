@@ -1123,7 +1123,7 @@ namespace AutoRest.TypeScript.Model
             foreach(EnumTypeTS model in EnumTemplateModels)
             {
                 builder.Line();
-                builder.Line(model.Generate());
+                builder.Line(model.Generate(Settings.EnumTypes));
             }
             builder.Line(GenerateResponseTypes());
 

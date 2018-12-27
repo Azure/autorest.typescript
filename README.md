@@ -125,14 +125,14 @@ the generated constructor will look like
 constructor(credentials: msRest.ServiceClientCredentials, options?: msRest.ServiceClientOptions)
 ```
 
-## --enums
+## --enum-types
 By default, a Swagger enum is translated into a TypeScript enum, like so:
 ```ts
 type Colors = 'red color' | 'green-color' | 'blue_color';
 ```
-You may instead generate an actual enum type by passing `--enums=true` to AutoRest, which will instead produce:
+You may instead generate an actual enum type by passing `--enum-types=true` to AutoRest, which will instead produce:
 ```ts
-type Colors {
+enum Colors {
   RedColor = 'red color',
   GreenColor = 'green-color',
   BlueColor = 'blue_color',

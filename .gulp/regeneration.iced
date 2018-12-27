@@ -42,8 +42,8 @@ regenExpected = (opts,done) ->
     if (opts.enableXML)
       args.push("--enable-xml")
 
-    if (opts.modelEnumAsUnion)
-      args.push("--model-enum-as-union=true")
+    if (opts.enumTypes)
+      args.push("--enum-types=true")
 
     if (opts.modelDateAsString)
       args.push("--model-date-time-as-string=true")
@@ -141,7 +141,7 @@ tsMappings = {
   'ComplexModelClient': 'complex-model.json'
 }
 
-enumUnionMappings = {
+enumTypesMappings = {
   'BodyString': 'body-string.json'
 }
 
@@ -237,16 +237,16 @@ task 'regenerate-tsxml', '', [], (done) ->
   },done
   return null
 
-task 'regenerate-ts-enum-union', '', [], (done) ->
+task 'regenerate-ts-enum-types', '', [], (done) ->
   regenExpected {
-    'outputBaseDir': 'test/enumunion',
+    'outputBaseDir': 'test/enumtypes',
     'inputBaseDir': swaggerDir,
-    'mappings': enumUnionMappings,
+    'mappings': enumTypesMappings,
     'outputDir': 'generated',
     'language': 'typescript',
     'nsPrefix': 'Fixtures',
     'flatteningThreshold': '1',
-    'modelEnumAsUnion': true
+    'enumTypes': true
   },done
   return null
 
@@ -334,7 +334,7 @@ task 'regenerate-ts-rename-parameter', '', [], (done) ->
 tsTasks = [
   'regenerate-tscomposite',
   'regenerate-tsxml',
-  'regenerate-ts-enum-union',
+  'regenerate-ts-enum-types',
   'regenerate-ts-metadata',
   'regenerate-ts-no-client-validation',
   'regenerate-ts-date-time-as-string',

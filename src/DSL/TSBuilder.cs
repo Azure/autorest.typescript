@@ -299,5 +299,13 @@ namespace AutoRest.TypeScript.DSL
                 action?.Invoke(new TSInterface(this));
             });
         }
+
+        public void ExportEnum(string enumName, Action<TSEnum> action)
+        {
+            Block($"export enum {enumName}", block =>
+            {
+                action?.Invoke(new TSEnum(this));
+            });
+        }
     }
 }
