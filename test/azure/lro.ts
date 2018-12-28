@@ -187,7 +187,7 @@ describe('typescript', function () {
       await testClient.lROs.post202NoRetry204({ product: product });
     });
 
-    it.only('should work with LROPostDoubleHeadersFinalLocationGet', async () => {
+    it('should work with LROPostDoubleHeadersFinalLocationGet', async () => {
       await testClient.lROs.postDoubleHeadersFinalLocationGet({ product });
     });
 
