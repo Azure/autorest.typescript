@@ -51,7 +51,7 @@ jobs:
       codeCoverageTool: Cobertura
       summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
       reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
-- job: Check_Tests_For_Only
+- job: Check_Everything
   pool:
     vmImage: 'Ubuntu 16.04'
   steps:
@@ -62,24 +62,8 @@ jobs:
       verbose: false
       customCommand: install
   - task: Npm@1
-    displayName: 'npm run check:testsforonly -- --azure-devops'
+    displayName: 'npm run check:everything -- --azure-devops'
     inputs:
       command: custom
       verbose: false
-      customCommand: run check:testsforonly -- --azure-devops 
-- job: Check_PackageJson_Version_Number
-  pool:
-    vmImage: 'Ubuntu 16.04'
-  steps:
-  - task: Npm@1
-    displayName: 'npm install'
-    inputs:
-      command: custom
-      verbose: false
-      customCommand: install
-  - task: Npm@1
-    displayName: 'npm run check:packagejsonversion -- --azure-devops'
-    inputs:
-      command: custom
-      verbose: false
-      customCommand: run check:packagejsonversion -- --azure-devops 
+      customCommand: run check:everything -- --azure-devops 
