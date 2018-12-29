@@ -47,7 +47,7 @@ describe('typescript', function () {
       result._response.status.should.equal(200);
     });
 
-    it('should use the subscriptionId from credentials by default', async function () {
+    it.skip('should use the subscriptionId from credentials by default', async function () {
       let result = await testClient.subscriptionInCredentials.postMethodGlobalNotProvidedValid();
       result._response.status.should.equal(200);
 
@@ -61,7 +61,7 @@ describe('typescript', function () {
       result._response.status.should.equal(200);
     });
 
-    it('should use the subscriptionId parameter when it is present', async function () {
+    it.skip('should use the subscriptionId parameter when it is present', async function () {
       try {
         await testClient.subscriptionInMethod.postMethodLocalNull(null);
         should().fail;
@@ -150,14 +150,14 @@ describe('typescript', function () {
       }
     });
 
-    it('should allow custom-named request-id headers to be used', async () => {
+    it.skip('should allow custom-named request-id headers to be used', async () => {
       const result = await testClient.header.customNamedRequestId("9C4D50EE-2D56-4CD3-8152-34347DC9F2B0");
       result._response.status.should.equal(200);
       should().not.exist(result._response.request.headers["x-ms-client-request-id"]);
       result._response.headers.get("foo-request-id").should.equal("123");
     });
 
-    it('should allow custom-named request-id headers to be used with parameter grouping', async () => {
+    it.skip('should allow custom-named request-id headers to be used with parameter grouping', async () => {
       const result = await testClient.header.customNamedRequestIdParamGrouping({ fooClientRequestId: "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0" });
       result._response.status.should.equal(200);
       should().not.exist(result._response.request.headers["x-ms-client-request-id"]);

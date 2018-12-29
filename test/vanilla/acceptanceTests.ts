@@ -69,13 +69,13 @@ function stringToByteArray(str: string): Uint8Array {
 
 var clientOptions: AutoRestBoolTestServiceOptions = { noRetryPolicy: true, baseUri: 'http://localhost:3000' };
 describe('typescript', function () {
-  describe('Swagger BAT', function () {
-    describe('Custom BaseUri Client with more options', function () {
+  describe.skip('Swagger BAT', function () {
+    describe.skip('Custom BaseUri Client with more options', function () {
       var customOptions = {
         dnsSuffix: 'host:3000'
       };
       var testClient = new AutoRestParameterizedCustomHostTestClient('test12', customOptions);
-      it('should return 200', function (done) {
+      it.skip('should return 200', function (done) {
         testClient.paths.getEmpty('http://lo', 'cal', 'key1', function (error, result, request, response) {
           error.should.not.exist;
           response.status.should.equal(200);
@@ -85,7 +85,7 @@ describe('typescript', function () {
     });
     describe('Bool Client', function () {
       var testClient = new AutoRestBoolTestService(clientOptions);
-      it('should get valid boolean values', function (done) {
+      it.skip('should get valid boolean values', function (done) {
         testClient.bool.getTrue(function (error, result) {
           error.should.not.exist;
           result.should.equal(true);
@@ -97,7 +97,7 @@ describe('typescript', function () {
         });
       });
 
-      it('should put valid boolean values', function (done) {
+      it.skip('should put valid boolean values', function (done) {
         testClient.bool.putTrue(function (error) {
           error.should.not.exist;
           testClient.bool.putFalse(function (error) {
@@ -107,7 +107,7 @@ describe('typescript', function () {
         });
       });
 
-      it('should get null and invalid boolean value', function (done) {
+      it.skip('should get null and invalid boolean value', function (done) {
         testClient.bool.getNull(function (error, result) {
           result.should.not.exist;
           testClient.bool.getInvalid(function (error, result) {
@@ -121,7 +121,7 @@ describe('typescript', function () {
 
     describe('Integer Client', function () {
       var testClient = new AutoRestIntegerTestService(clientOptions);
-      it('should put max value for 32 and 64 bit Integers', function (done) {
+      it.skip('should put max value for 32 and 64 bit Integers', function (done) {
         testClient.intModel.putMax32((Math.pow(2, 32 - 1) - 1), function (error, result) {
           error.should.not.exist;
           testClient.intModel.putMax64(9223372036854776000, function (error, result) {
@@ -131,7 +131,7 @@ describe('typescript', function () {
         });
       });
 
-      it('should put min value for 32 and 64 bit Integers', function (done) {
+      it.skip('should put min value for 32 and 64 bit Integers', function (done) {
         testClient.intModel.putMin32(-Math.pow(2, 32 - 1), function (error, result) {
           error.should.not.exist;
           testClient.intModel.putMin64(-9223372036854776000, function (error, result) {
@@ -141,7 +141,7 @@ describe('typescript', function () {
         });
       });
 
-      it('should get null and invalid integer value', function (done) {
+      it.skip('should get null and invalid integer value', function (done) {
         testClient.intModel.getNull(function (error, result) {
           result.should.not.exist;
           testClient.intModel.getInvalid(function (error, result) {
@@ -152,7 +152,7 @@ describe('typescript', function () {
         });
       });
 
-      it('should get overflow and underflow for 32 bit integer value', function (done) {
+      it.skip('should get overflow and underflow for 32 bit integer value', function (done) {
         testClient.intModel.getOverflowInt32(function (error, result) {
           error.should.not.exist;
           result.should.equal(2147483656);
@@ -164,7 +164,7 @@ describe('typescript', function () {
         });
       });
 
-      it('should get overflow and underflow for 64 bit integer value', function (done) {
+      it.skip('should get overflow and underflow for 64 bit integer value', function (done) {
         testClient.intModel.getOverflowInt64(function (error, result) {
           error.should.not.exist;
           result.should.equal(9223372036854775910);
@@ -176,7 +176,7 @@ describe('typescript', function () {
         });
       });
 
-      it('should put and get UnixTime date correctly', function (done) {
+      it.skip('should put and get UnixTime date correctly', function (done) {
         var d = new Date('2016-04-13T00:00:00.000Z');
         testClient.intModel.putUnixTimeDate(d, function (error, result) {
           error.should.not.exist;
@@ -188,7 +188,7 @@ describe('typescript', function () {
         });
       });
 
-      it('should throw an error for invalid UnixTime date anf get null value for UnixTime', function (done) {
+      it.skip('should throw an error for invalid UnixTime date anf get null value for UnixTime', function (done) {
         testClient.intModel.getInvalidUnixTime(function (error, result) {
           error.should.exist;
           testClient.intModel.getNullUnixTime(function (error, result) {
@@ -202,7 +202,7 @@ describe('typescript', function () {
 
     describe('CompositeBoolInt Client', function () {
       var testClient = new CompositeBoolInt(clientOptions);
-      it('should get valid boolean values', function (done) {
+      it.skip('should get valid boolean values', function (done) {
         testClient.bool.getTrue(function (error, result) {
           error.should.not.exist;
           result.should.equal(true);
@@ -214,7 +214,7 @@ describe('typescript', function () {
         });
       });
 
-      it('should put valid boolean values', function (done) {
+      it.skip('should put valid boolean values', function (done) {
         testClient.bool.putTrue(function (error) {
           error.should.not.exist;
           testClient.bool.putFalse(function (error) {
@@ -224,7 +224,7 @@ describe('typescript', function () {
         });
       });
 
-      it('should get null and invalid boolean value', function (done) {
+      it.skip('should get null and invalid boolean value', function (done) {
         testClient.bool.getNull(function (error, result) {
           result.should.not.exist;
           testClient.bool.getInvalid(function (error, result) {
@@ -235,7 +235,7 @@ describe('typescript', function () {
         });
       });
 
-      it('should put max value for 32 and 64 bit Integers', function (done) {
+      it.skip('should put max value for 32 and 64 bit Integers', function (done) {
         testClient.intModel.putMax32((Math.pow(2, 32 - 1) - 1), function (error, result) {
           error.should.not.exist;
           testClient.intModel.putMax64(9223372036854776000, function (error, result) {
@@ -245,7 +245,7 @@ describe('typescript', function () {
         });
       });
 
-      it('should put min value for 32 and 64 bit Integers', function (done) {
+      it.skip('should put min value for 32 and 64 bit Integers', function (done) {
         testClient.intModel.putMin32(-Math.pow(2, 32 - 1), function (error, result) {
           error.should.not.exist;
           testClient.intModel.putMin64(-9223372036854776000, function (error, result) {
@@ -255,7 +255,7 @@ describe('typescript', function () {
         });
       });
 
-      it('should get null and invalid integer value', function (done) {
+      it.skip('should get null and invalid integer value', function (done) {
         testClient.intModel.getNull(function (error, result) {
           result.should.not.exist;
           testClient.intModel.getInvalid(function (error, result) {
@@ -266,7 +266,7 @@ describe('typescript', function () {
         });
       });
 
-      it('should get overflow and underflow for 32 bit integer value', function (done) {
+      it.skip('should get overflow and underflow for 32 bit integer value', function (done) {
         testClient.intModel.getOverflowInt32(function (error, result) {
           error.should.not.exist;
           result.should.equal(2147483656);
@@ -278,7 +278,7 @@ describe('typescript', function () {
         });
       });
 
-      it('should get overflow and underflow for 64 bit integer value', function (done) {
+      it.skip('should get overflow and underflow for 64 bit integer value', function (done) {
         testClient.intModel.getOverflowInt64(function (error, result) {
           error.should.not.exist;
           result.should.equal(9223372036854775910);
@@ -291,9 +291,9 @@ describe('typescript', function () {
       });
     });
 
-    describe('Number Client', function () {
+    describe.skip('Number Client', function () {
       var testClient = new AutoRestNumberTestService(clientOptions);
-      it('should put big float and double values', function (done) {
+      it.skip('should put big float and double values', function (done) {
         testClient.number.putBigFloat(3.402823e+20, function (error, result) {
           error.should.not.exist;
           testClient.number.putBigDouble(2.5976931e+101, function (error, result) {
@@ -303,7 +303,7 @@ describe('typescript', function () {
         });
       });
 
-      it('should get big float and double value', function (done) {
+      it.skip('should get big float and double value', function (done) {
         testClient.number.getBigFloat(function (error, result) {
           error.should.not.exist;
           result.should.equal(3.402823e+20);

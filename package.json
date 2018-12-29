@@ -22,6 +22,7 @@
     "bundle-size": "ts-node -T ./.scripts/bundlesize.ts",
     "check:everything": "ts-node ./.scripts/checkEverything.ts",
     "check:foronlycalls": "ts-node ./.scripts/checkForOnlyCalls.ts",
+    "check:forskipcalls": "ts-node ./.scripts/checkForSkipCalls.ts",
     "check:packagejsonversion": "ts-node ./.scripts/checkPackageJsonVersion.ts"
   },
   "repository": {
@@ -45,7 +46,7 @@
     "@azure/ms-rest-js": "^1.2.6",
     "@microsoft.azure/autorest.modeler": "^2.3.51",
     "@microsoft.azure/autorest.testserver": "^2.6.0",
-    "@ts-common/azure-js-dev-tools": "^0.6.5",
+    "@ts-common/azure-js-dev-tools": "^0.6.7",
     "@types/assert": "1.4.0",
     "@types/chai": "^4.1.7",
     "@types/express": "^4.11.1",
