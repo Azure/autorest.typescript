@@ -1,3 +1,4 @@
 import { changeClonedDependenciesTo } from "@ts-common/azure-js-dev-tools";
+import { dependenciesOptions } from "./dependenciesOptions";
 
-changeClonedDependenciesTo(__dirname, "local"); 
+changeClonedDependenciesTo(__dirname, "local", dependenciesOptions); 

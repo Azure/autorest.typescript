@@ -3,11 +3,11 @@
 
 'use strict';
 
-import * as should from "chai/register-should";
 import * as msRest from '@azure/ms-rest-js';
-
+import * as assert from "assert";
 import { MicrosoftAzureTestUrl } from './generated/SubscriptionIdApiVersion/microsoftAzureTestUrl';
 import { MicrosoftAzureTestUrlOptions } from './generated/SubscriptionIdApiVersion/models';
+
 var dummySubscriptionId = 'a878ae02-6106-429z-9397-58091ee45g98';
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
@@ -17,17 +17,14 @@ var clientOptions: MicrosoftAzureTestUrlOptions = {
 };
 
 describe('typescript', function () {
-
   describe('Azure Swagger Url', function () {
     var testClient = new MicrosoftAzureTestUrl(credentials, dummySubscriptionId, clientOptions);
 
-    it('should correctly send the subscriptionId as path parameter and api-version ' +
-      'as a query parameter in the request url', function (done) {
-        testClient.group.getSampleResourceGroup('testgroup101', function (error, result, request, response) {
-          error.should.not.exist;
-          response.status.should.equal(200);
-          done();
-        });
-      });
+    it('should correctly send the subscriptionId as path parameter and api-version as a query parameter in the request url', async function () {
+      const result = await testClient.group.getSampleResourceGroup('testgroup101');
+      assert(result);
+      assert(result._response);
+      assert.strictEqual(result._response.status, 200);
+    });
   });
 });

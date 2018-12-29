@@ -14,7 +14,7 @@ var clientOptions = {
 
 describe('typescript', function () {
 
-  describe('Swagger Required Optional BAT', function () {
+  describe.skip('Swagger Required Optional BAT', function () {
 
     describe('Basic Required Optional Operations', function () {
       var testClient = new AutoRestRequiredOptionalTestService('', '', clientOptions);

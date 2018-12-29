@@ -69,7 +69,7 @@ namespace AutoRest.TypeScript.Azure.Model
 
         public override void PackageDependencies(JSONObject dependencies)
         {
-            dependencies.StringProperty("@azure/ms-rest-azure-js", "^1.2.0");
+            dependencies.StringProperty("@azure/ms-rest-azure-js", "^1.2.4");
             base.PackageDependencies(dependencies);
         }
 
