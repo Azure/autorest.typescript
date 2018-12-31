@@ -60,9 +60,10 @@ namespace AutoRest.TypeScript.Model
                     // Search for polymorphic subtypes
                     foreach (CompositeType model in CodeModel.ModelTypes)
                     {
-                        if (model.BaseModelType != null &&
-                            modelNames.Contains(model.BaseModelType.Name) &&
-                            !skipPolymorphismForTypes.Contains(model.Name?.ToString()))
+                        string baseModelTypeName = model.BaseModelType?.Name?.ToString();
+                        if (baseModelTypeName != null &&
+                            modelNames.Contains(baseModelTypeName) &&
+                            !skipPolymorphismForTypes.Contains(baseModelTypeName))
                         {
                             CollectReferencedModelNames(modelNames, model);
                         }

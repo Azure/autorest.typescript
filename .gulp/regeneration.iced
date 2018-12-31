@@ -60,7 +60,7 @@ regenExpected = (opts,done) ->
     if (opts.clientSideValidation == false)
       args.push("--client-side-validation=false")
 
-    if (opts.skipPolymorhpismForTypes != undefined && opts.length > 0)
+    if (opts.skipPolymorphismForTypes != undefined && opts.skipPolymorphismForTypes.length > 0)
       args.push("--skip-polymorphism-for-types=#{opts.skipPolymorphismForTypes}")
 
     if (!!opts.nsPrefix)
@@ -346,7 +346,8 @@ task 'regenerate-ts-skip-polymorphism-for-types', '', [], (done) ->
     'outputDir': 'generated',
     'language': 'typescript',
     'generateMetadata': true,
-    'sourceCodeFolderPath': 'lib'
+    'sourceCodeFolderPath': 'lib',
+    'skipPolymorphismForTypes': '[Fish]'
   },done
   return null
 

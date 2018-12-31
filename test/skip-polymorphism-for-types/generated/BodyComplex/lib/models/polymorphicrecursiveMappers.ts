@@ -9,11 +9,5 @@
 export {
   discriminators,
   Fish,
-  ErrorModel,
-  Salmon,
-  SmartSalmon,
-  Shark,
-  Sawshark,
-  Goblinshark,
-  Cookiecuttershark
+  ErrorModel
 } from "../models/mappers";

@@ -11,9 +11,5 @@ export {
   Fish,
   ErrorModel,
   Salmon,
-  SmartSalmon,
-  Shark,
-  Sawshark,
-  Goblinshark,
-  Cookiecuttershark
+  SmartSalmon
 } from "../models/mappers";
