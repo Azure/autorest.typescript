@@ -60,6 +60,9 @@ regenExpected = (opts,done) ->
     if (opts.clientSideValidation == false)
       args.push("--client-side-validation=false")
 
+    if (opts.skipPolymorhpismForTypes != undefined && opts.length > 0)
+      args.push("--skip-polymorphism-for-types=#{opts.skipPolymorphismForTypes}")
+
     if (!!opts.nsPrefix)
       if (optsMappingsValue instanceof Array && optsMappingsValue[1] != undefined)
         args.push("--#{opts.language}.namespace=#{optsMappingsValue[1]}")
@@ -169,6 +172,10 @@ renameParameterMappings = {
 
 noClientValidationMappings = {
   'Validation': 'validation.json'
+}
+
+skipPolymorphismForTypesMappings = {
+  'BodyComplex': 'body-complex.json'
 }
 
 swaggerDir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
@@ -331,6 +338,18 @@ task 'regenerate-ts-rename-parameter', '', [], (done) ->
   },done
   return null
 
+task 'regenerate-ts-skip-polymorphism-for-types', '', [], (done) ->
+  regenExpected {
+    'outputBaseDir': 'test/skip-polymorphism-for-types',
+    'inputBaseDir': swaggerDir,
+    'mappings': skipPolymorphismForTypesMappings,
+    'outputDir': 'generated',
+    'language': 'typescript',
+    'nsPrefix': 'Fixtures'
+  },done
+  return null
+
+
 tsTasks = [
   'regenerate-tscomposite',
   'regenerate-tsxml',
@@ -339,7 +358,8 @@ tsTasks = [
   'regenerate-ts-no-client-validation',
   'regenerate-ts-date-time-as-string',
   'regenerate-ts-optional-response-headers',
-  'regenerate-ts-rename-parameter'
+  'regenerate-ts-rename-parameter',
+  'regenerate-ts-skip-polymorphism-for-types'
 ]
 
 task 'regenerate-ts', '', tsTasks, (done) ->
