@@ -112,6 +112,12 @@ namespace AutoRest.TypeScript
         public bool EnumTypes { get; set; }
 
         /// <summary>
+        /// A list of model type names that will not be treated polymorphically during
+        /// serialization and deserialization.
+        /// </summary>
+        public string[] SkipPolymorphismForTypes { get; set; }
+
+        /// <summary>
         /// Computes the NPM package referenced by an alias package.
         /// </summary>
         public string AliasedNpmPackageName
