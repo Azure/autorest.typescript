@@ -345,7 +345,8 @@ task 'regenerate-ts-skip-polymorphism-for-types', '', [], (done) ->
     'mappings': skipPolymorphismForTypesMappings,
     'outputDir': 'generated',
     'language': 'typescript',
-    'nsPrefix': 'Fixtures'
+    'generateMetadata': true,
+    'sourceCodeFolderPath': 'lib'
   },done
   return null
 
