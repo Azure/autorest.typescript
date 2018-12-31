@@ -113,29 +113,32 @@ namespace AutoRest.TypeScript.Azure.Model
             return true;
         }
 
-        public override string GenerateMapperIndex(string emptyLine)
+        public override string GenerateMapperIndex()
         {
             TSBuilder builder = new TSBuilder();
+            builder.Comment(AutoRest.Core.Settings.Instance.Header);
+            builder.Line();
+
             CompositeTypeTS[] orderedMapperTemplateModels = OrderedMapperTemplateModels.ToArray();
 
             builder.Import(new[] { "CloudErrorMapper", "BaseResourceMapper" }, "@azure/ms-rest-azure-js");
 
             ImportMsRestForMappers(builder, orderedMapperTemplateModels);
 
-            builder.Line(emptyLine);
+            builder.Line();
 
             builder.ExportConst("CloudError", "CloudErrorMapper");
             builder.ExportConst("BaseResource", "BaseResourceMapper");
 
-            ExportOrderedMapperModels(builder, orderedMapperTemplateModels, emptyLine);
+            ExportOrderedMapperModels(builder, orderedMapperTemplateModels);
 
             foreach (PageCompositeTypeTSa pageModel in PageTemplateModels)
             {
-                builder.Line(emptyLine);
+                builder.Line();
                 pageModel.ConstructModelMapper(builder);
             }
 
-            ExportPolymorphicDictionary(builder, emptyLine);
+            ExportPolymorphicDictionary(builder);
 
             return builder.ToString();
         }

@@ -179,7 +179,7 @@ namespace AutoRest.TypeScript
         protected Task WriteMappersIndexFile(CodeModelTS codeModel)
         {
             string filePath = GetSourceCodeFilePath(codeModel, "models", "mappers.ts");
-            return Write(new MapperIndexTemplate { Model = codeModel }, filePath);
+            return Write(codeModel.GenerateMapperIndex(), filePath);
         }
 
         protected Task WriteParameterMappersFile(CodeModelTS codeModel)
