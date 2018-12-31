@@ -197,7 +197,7 @@ namespace AutoRest.TypeScript
         protected Task WriteMethodGroupMappersFile(MethodGroupTS methodGroup)
         {
             string filePath = GetSourceCodeFilePath(methodGroup.CodeModelTS, "models", methodGroup.MappersModuleName + ".ts");
-            return Write(new MethodGroupMappersTemplate { Model = methodGroup }, filePath);
+            return Write(methodGroup.GenerateMappers(), filePath);
         }
 
         protected Task WriteMethodGroupFile(MethodGroupTS methodGroup)

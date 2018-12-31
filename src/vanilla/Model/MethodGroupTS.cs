@@ -51,6 +51,8 @@ namespace AutoRest.TypeScript.Model
                     }
                 }
 
+                IEnumerable<string> skipPolymorphismForTypes = CodeModelTS?.Settings?.SkipPolymorphismForTypes?.ToHashSet() ?? Enumerable.Empty<string>();
+
                 int initialCount;
                 do
                 {
@@ -58,12 +60,15 @@ namespace AutoRest.TypeScript.Model
                     // Search for polymorphic subtypes
                     foreach (CompositeType model in CodeModel.ModelTypes)
                     {
-                        if (model.BaseModelType != null && modelNames.Contains(model.BaseModelType.Name))
+                        if (model.BaseModelType != null &&
+                            modelNames.Contains(model.BaseModelType.Name) &&
+                            !skipPolymorphismForTypes.Contains(model.Name?.ToString()))
                         {
                             CollectReferencedModelNames(modelNames, model);
                         }
                     }
-                } while (initialCount != modelNames.Count);
+                }
+                while (initialCount != modelNames.Count);
 
                 return modelNames;
             }
@@ -189,6 +194,28 @@ namespace AutoRest.TypeScript.Model
             }
 
             builder.Import(new string[] { codeModel.ContextName }, $"../{codeModel.ContextName.ToCamelCase()}");
+
+            return builder.ToString();
+        }
+
+        public string GenerateMappers()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Comment(AutoRest.Core.Settings.Instance.Header);
+            builder.Line();
+            builder.Line("export {");
+            builder.Indent(() =>
+            {
+                List<string> exportedValues = new List<string>();
+                if (!string.IsNullOrWhiteSpace(CodeModelTS.PolymorphicDictionary))
+                {
+                    exportedValues.Add("discriminators");
+                }
+                exportedValues.AddRange(OperationModelNames);
+
+                builder.Line(string.Join(",\n", exportedValues));
+            });
+            builder.Line("} from \"../models/mappers\";");
 
             return builder.ToString();
         }
