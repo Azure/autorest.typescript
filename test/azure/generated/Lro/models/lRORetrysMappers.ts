@@ -7,16 +7,16 @@
  */
 
 export {
-  Product,
-  Resource,
   BaseResource,
   CloudError,
-  LRORetrysPutAsyncRelativeRetrySucceededHeaders,
-  LRORetrysDeleteProvisioning202Accepted200SucceededHeaders,
   LRORetrysDelete202Retry200Headers,
   LRORetrysDeleteAsyncRelativeRetrySucceededHeaders,
+  LRORetrysDeleteProvisioning202Accepted200SucceededHeaders,
   LRORetrysPost202Retry200Headers,
   LRORetrysPostAsyncRelativeRetrySucceededHeaders,
-  SubResource,
-  SubProduct
+  LRORetrysPutAsyncRelativeRetrySucceededHeaders,
+  Product,
+  Resource,
+  SubProduct,
+  SubResource
 } from "../models/mappers";

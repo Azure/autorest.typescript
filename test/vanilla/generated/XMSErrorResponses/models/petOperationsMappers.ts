@@ -8,14 +8,14 @@
 
 export {
   discriminators,
-  Pet,
   Animal,
-  NotFoundErrorBase,
+  AnimalNotFound,
   BaseError,
+  LinkNotFound,
+  NotFoundErrorBase,
+  Pet,
   PetAction,
   PetActionError,
-  LinkNotFound,
-  AnimalNotFound,
-  PetSadError,
-  PetHungryOrThirstyError
+  PetHungryOrThirstyError,
+  PetSadError
 } from "../models/mappers";

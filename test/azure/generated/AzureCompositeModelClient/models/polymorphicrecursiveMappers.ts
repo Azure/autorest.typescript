@@ -8,12 +8,12 @@
 
 export {
   discriminators,
-  Fish,
+  Cookiecuttershark,
   ErrorModel,
-  Salmon,
-  SmartSalmon,
-  Shark,
-  Sawshark,
+  Fish,
   Goblinshark,
-  Cookiecuttershark
+  Salmon,
+  Sawshark,
+  Shark,
+  SmartSalmon
 } from "../models/mappers";

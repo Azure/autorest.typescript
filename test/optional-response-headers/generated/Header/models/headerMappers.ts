@@ -8,18 +8,18 @@
 
 export {
   ErrorModel,
-  HeaderResponseExistingKeyHeaders,
-  HeaderResponseProtectedKeyHeaders,
-  HeaderResponseIntegerHeaders,
-  HeaderResponseLongHeaders,
-  HeaderResponseFloatHeaders,
-  HeaderResponseDoubleHeaders,
   HeaderResponseBoolHeaders,
-  HeaderResponseStringHeaders,
+  HeaderResponseByteHeaders,
   HeaderResponseDateHeaders,
   HeaderResponseDatetimeHeaders,
   HeaderResponseDatetimeRfc1123Headers,
+  HeaderResponseDoubleHeaders,
   HeaderResponseDurationHeaders,
-  HeaderResponseByteHeaders,
-  HeaderResponseEnumHeaders
+  HeaderResponseEnumHeaders,
+  HeaderResponseExistingKeyHeaders,
+  HeaderResponseFloatHeaders,
+  HeaderResponseIntegerHeaders,
+  HeaderResponseLongHeaders,
+  HeaderResponseProtectedKeyHeaders,
+  HeaderResponseStringHeaders
 } from "../models/mappers";

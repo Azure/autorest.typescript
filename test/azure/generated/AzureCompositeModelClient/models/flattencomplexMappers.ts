@@ -8,7 +8,7 @@
 
 export {
   discriminators,
-  MyBaseType,
   CloudError,
+  MyBaseType,
   MyDerivedType
 } from "../models/mappers";

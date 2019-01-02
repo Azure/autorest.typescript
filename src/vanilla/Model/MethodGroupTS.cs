@@ -212,7 +212,7 @@ namespace AutoRest.TypeScript.Model
                 {
                     exportedValues.Add("discriminators");
                 }
-                exportedValues.AddRange(OperationModelNames);
+                exportedValues.AddRange(OperationModelNames.OrderBy(mapperName => mapperName));
 
                 builder.Line(string.Join(",\n", exportedValues));
             });

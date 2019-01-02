@@ -8,9 +8,9 @@
 
 export {
   discriminators,
-  Siamese,
   Cat,
-  Pet,
   Dog,
-  ErrorModel
+  ErrorModel,
+  Pet,
+  Siamese
 } from "../models/mappers";

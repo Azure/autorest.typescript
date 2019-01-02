@@ -8,16 +8,16 @@
 
 export {
   discriminators,
-  IntWrapper,
-  ErrorModel,
-  LongWrapper,
-  FloatWrapper,
-  DoubleWrapper,
   BooleanWrapper,
-  StringWrapper,
-  DateWrapper,
-  DatetimeWrapper,
+  ByteWrapper,
   Datetimerfc1123Wrapper,
+  DatetimeWrapper,
+  DateWrapper,
+  DoubleWrapper,
   DurationWrapper,
-  ByteWrapper
+  ErrorModel,
+  FloatWrapper,
+  IntWrapper,
+  LongWrapper,
+  StringWrapper
 } from "../models/mappers";

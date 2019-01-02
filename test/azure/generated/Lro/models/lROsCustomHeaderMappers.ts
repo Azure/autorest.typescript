@@ -7,13 +7,13 @@
  */
 
 export {
-  Product,
-  Resource,
   BaseResource,
-  LROsCustomHeaderPutAsyncRetrySucceededHeaders,
   CloudError,
   LROsCustomHeaderPost202Retry200Headers,
   LROsCustomHeaderPostAsyncRetrySucceededHeaders,
-  SubResource,
-  SubProduct
+  LROsCustomHeaderPutAsyncRetrySucceededHeaders,
+  Product,
+  Resource,
+  SubProduct,
+  SubResource
 } from "../models/mappers";

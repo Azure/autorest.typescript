@@ -7,6 +7,6 @@
  */
 
 export {
-  SampleResourceGroup,
-  ErrorModel
+  ErrorModel,
+  SampleResourceGroup
 } from "../models/mappers";

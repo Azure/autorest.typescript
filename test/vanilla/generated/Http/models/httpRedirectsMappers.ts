@@ -7,20 +7,20 @@
  */
 
 export {
-  HttpRedirectsHead300Headers,
   ErrorModel,
+  HttpRedirectsDelete307Headers,
   HttpRedirectsGet300Headers,
-  HttpRedirectsHead301Headers,
   HttpRedirectsGet301Headers,
-  HttpRedirectsPut301Headers,
-  HttpRedirectsHead302Headers,
   HttpRedirectsGet302Headers,
-  HttpRedirectsPatch302Headers,
-  HttpRedirectsPost303Headers,
-  HttpRedirectsHead307Headers,
   HttpRedirectsGet307Headers,
-  HttpRedirectsPut307Headers,
+  HttpRedirectsHead300Headers,
+  HttpRedirectsHead301Headers,
+  HttpRedirectsHead302Headers,
+  HttpRedirectsHead307Headers,
+  HttpRedirectsPatch302Headers,
   HttpRedirectsPatch307Headers,
+  HttpRedirectsPost303Headers,
   HttpRedirectsPost307Headers,
-  HttpRedirectsDelete307Headers
+  HttpRedirectsPut301Headers,
+  HttpRedirectsPut307Headers
 } from "../models/mappers";

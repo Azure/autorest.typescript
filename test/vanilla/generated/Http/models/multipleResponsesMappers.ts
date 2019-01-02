@@ -8,8 +8,8 @@
 
 export {
   A,
-  ErrorModel,
   B,
   C,
-  D
+  D,
+  ErrorModel
 } from "../models/mappers";

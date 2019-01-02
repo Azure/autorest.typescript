@@ -8,6 +8,6 @@
 
 export {
   discriminators,
-  ReadonlyObj,
-  ErrorModel
+  ErrorModel,
+  ReadonlyObj
 } from "../models/mappers";

@@ -8,8 +8,8 @@
 
 export {
   discriminators,
-  Fish,
   ErrorModel,
+  Fish,
   Salmon,
   SmartSalmon
 } from "../models/mappers";

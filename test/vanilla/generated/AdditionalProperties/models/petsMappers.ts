@@ -7,11 +7,11 @@
  */
 
 export {
-  PetAPTrue,
-  ErrorModel,
   CatAPTrue,
+  ErrorModel,
+  PetAPInProperties,
+  PetAPInPropertiesWithAPString,
   PetAPObject,
   PetAPString,
-  PetAPInProperties,
-  PetAPInPropertiesWithAPString
+  PetAPTrue
 } from "../models/mappers";

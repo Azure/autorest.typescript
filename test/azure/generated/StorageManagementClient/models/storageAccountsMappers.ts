@@ -7,20 +7,20 @@
  */
 
 export {
-  StorageAccountCheckNameAvailabilityParameters,
+  Bar,
+  BaseResource,
   CheckNameAvailabilityResult,
   CloudError,
-  StorageAccountCreateParameters,
-  Resource,
-  BaseResource,
-  StorageAccount,
+  CustomDomain,
   Endpoints,
   Foo,
-  Bar,
-  CustomDomain,
-  StorageAccountUpdateParameters,
+  Resource,
+  StorageAccount,
+  StorageAccountCheckNameAvailabilityParameters,
+  StorageAccountCreateParameters,
   StorageAccountKeys,
   StorageAccountListResult,
   StorageAccountRegenerateKeyParameters,
+  StorageAccountUpdateParameters,
   SubResource
 } from "../models/mappers";

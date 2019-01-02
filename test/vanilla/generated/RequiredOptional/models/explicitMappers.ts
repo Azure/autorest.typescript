@@ -7,14 +7,14 @@
  */
 
 export {
-  ErrorModel,
-  IntWrapper,
-  IntOptionalWrapper,
-  StringWrapper,
-  StringOptionalWrapper,
-  Product,
-  ClassWrapper,
-  ClassOptionalWrapper,
+  ArrayOptionalWrapper,
   ArrayWrapper,
-  ArrayOptionalWrapper
+  ClassOptionalWrapper,
+  ClassWrapper,
+  ErrorModel,
+  IntOptionalWrapper,
+  IntWrapper,
+  Product,
+  StringOptionalWrapper,
+  StringWrapper
 } from "../models/mappers";

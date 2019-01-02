@@ -7,8 +7,8 @@
  */
 
 export {
-  UsageListResult,
+  CloudError,
   Usage,
-  UsageName,
-  CloudError
+  UsageListResult,
+  UsageName
 } from "../models/mappers";

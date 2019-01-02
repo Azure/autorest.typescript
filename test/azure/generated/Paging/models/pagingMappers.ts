@@ -7,9 +7,9 @@
  */
 
 export {
-  ProductResult,
+  CloudError,
+  OdataProductResult,
   Product,
   ProductProperties,
-  CloudError,
-  OdataProductResult
+  ProductResult
 } from "../models/mappers";

@@ -7,8 +7,8 @@
  */
 
 export {
-  HeaderCustomNamedRequestIdHeaders,
   ErrorModel,
-  HeaderCustomNamedRequestIdParamGroupingHeaders,
-  HeaderCustomNamedRequestIdHeadHeaders
+  HeaderCustomNamedRequestIdHeaders,
+  HeaderCustomNamedRequestIdHeadHeaders,
+  HeaderCustomNamedRequestIdParamGroupingHeaders
 } from "../models/mappers";
