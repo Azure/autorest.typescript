@@ -51,25 +51,25 @@ namespace AutoRest.TypeScript.Model
                     }
                 }
 
-                IEnumerable<string> skipPolymorphismForTypes = CodeModelTS?.Settings?.SkipPolymorphismForTypes?.ToHashSet() ?? Enumerable.Empty<string>();
+                IEnumerable<string> skippedSubtypes = CodeModelTS?.Settings?.SkipSubtypes?.ToHashSet() ?? Enumerable.Empty<string>();
 
-                int initialCount;
+                IEnumerable<CompositeType> modelTypesWithBaseType = CodeModel.ModelTypes.Where(modelType => modelType.BaseModelType != null).ToArray();
+                int previousModelNameCount;
                 do
                 {
-                    initialCount = modelNames.Count;
+                    previousModelNameCount = modelNames.Count;
                     // Search for polymorphic subtypes
-                    foreach (CompositeType model in CodeModel.ModelTypes)
+                    foreach (CompositeType model in modelTypesWithBaseType)
                     {
-                        string baseModelTypeName = model.BaseModelType?.Name?.ToString();
-                        if (baseModelTypeName != null &&
-                            modelNames.Contains(baseModelTypeName) &&
-                            !skipPolymorphismForTypes.Contains(baseModelTypeName))
+                        string modelTypeName = model.Name.ToString();
+                        string baseModelTypeName = model.BaseModelType.Name.ToString();
+                        if (modelNames.Contains(baseModelTypeName) && !modelNames.Contains(modelTypeName) && !skippedSubtypes.Contains(baseModelTypeName))
                         {
                             CollectReferencedModelNames(modelNames, model);
                         }
                     }
                 }
-                while (initialCount != modelNames.Count);
+                while (previousModelNameCount != modelNames.Count);
 
                 return modelNames;
             }

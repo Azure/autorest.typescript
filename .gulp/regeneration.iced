@@ -60,8 +60,8 @@ regenExpected = (opts,done) ->
     if (opts.clientSideValidation == false)
       args.push("--client-side-validation=false")
 
-    if (opts.skipPolymorphismForTypes != undefined && opts.skipPolymorphismForTypes.length > 0)
-      args.push("--skip-polymorphism-for-types=#{opts.skipPolymorphismForTypes}")
+    if (opts.skipSubtypes != undefined && opts.skipSubtypes.length > 0)
+      args.push("--skip-subtypes=#{opts.skipSubtypes}")
 
     if (!!opts.nsPrefix)
       if (optsMappingsValue instanceof Array && optsMappingsValue[1] != undefined)
@@ -174,7 +174,7 @@ noClientValidationMappings = {
   'Validation': 'validation.json'
 }
 
-skipPolymorphismForTypesMappings = {
+skipSubtypesMappings = {
   'BodyComplex': 'body-complex.json'
 }
 
@@ -338,16 +338,16 @@ task 'regenerate-ts-rename-parameter', '', [], (done) ->
   },done
   return null
 
-task 'regenerate-ts-skip-polymorphism-for-types', '', [], (done) ->
+task 'regenerate-ts-skip-subtypes', '', [], (done) ->
   regenExpected {
-    'outputBaseDir': 'test/skip-polymorphism-for-types',
+    'outputBaseDir': 'test/skip-subtypes',
     'inputBaseDir': swaggerDir,
-    'mappings': skipPolymorphismForTypesMappings,
+    'mappings': skipSubtypesMappings,
     'outputDir': 'generated',
     'language': 'typescript',
     'generateMetadata': true,
     'sourceCodeFolderPath': 'lib',
-    'skipPolymorphismForTypes': '[Fish]'
+    'skipSubtypes': '[Fish]'
   },done
   return null
 
@@ -361,7 +361,7 @@ tsTasks = [
   'regenerate-ts-date-time-as-string',
   'regenerate-ts-optional-response-headers',
   'regenerate-ts-rename-parameter',
-  'regenerate-ts-skip-polymorphism-for-types'
+  'regenerate-ts-skip-subtypes'
 ]
 
 task 'regenerate-ts', '', tsTasks, (done) ->
