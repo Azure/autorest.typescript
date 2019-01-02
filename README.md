@@ -103,7 +103,6 @@ autorest --typescript \
   --license-header=MICROSOFT_MIT_NO_VERSION \
   --input-file=<path-to-swagger-spec> \
   --package-name=<your-package-name> \
-  --package-version=<your-package-version> \
   --generate-metadata=true \
   --typescript.azure-arm=true
 ```
@@ -116,7 +115,6 @@ autorest --typescript \
   --license-header=MICROSOFT_MIT_NO_VERSION \
   --input-file=<path-to-swagger-spec> \
   --package-name=<your-package-name> \
-  --package-version=<your-package-version> \
   --add-credentials=true
 ```
 
@@ -139,6 +137,17 @@ enum Colors {
 }
 ```
 Using string unions instead of enum types can produce more future-proof code, which is why we default to string unions.
+
+## --skip-subtypes
+This parameter can be used to reduce the size of your generated mapper set for your MethodGroups. The mapper set is used during serialization and deserialization, so skipping subtypes may result in some types not being serialized or deserialized properly. For example, the following argument will include any types that are directly referenced by the MethodGroup's methods that "inherit" from BaseResource, Resource, or SubResource. It will not discover any additional types that inherit from BaseResource, Resource, or SubResource that are not specifically mentioned in the MethodGroup's methods.
+```bash
+autorest --typescript \
+  --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> \
+  --license-header=MICROSOFT_MIT_NO_VERSION \
+  --input-file=<path-to-swagger-spec> \
+  --package-name=<your-package-name> \
+  --skip-subtypes=[BaseResource,Resource,SubResource]
+```
 
 ### Further Documentation on the Command Line
 The complete list of command line arguments can be found [here](https://github.com/Azure/autorest/blob/master/docs/user/cli.md). Not every command line option is available for the typescript extension.

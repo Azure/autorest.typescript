@@ -60,6 +60,9 @@ regenExpected = (opts,done) ->
     if (opts.clientSideValidation == false)
       args.push("--client-side-validation=false")
 
+    if (opts.skipSubtypes != undefined && opts.skipSubtypes.length > 0)
+      args.push("--skip-subtypes=#{opts.skipSubtypes}")
+
     if (!!opts.nsPrefix)
       if (optsMappingsValue instanceof Array && optsMappingsValue[1] != undefined)
         args.push("--#{opts.language}.namespace=#{optsMappingsValue[1]}")
@@ -169,6 +172,10 @@ renameParameterMappings = {
 
 noClientValidationMappings = {
   'Validation': 'validation.json'
+}
+
+skipSubtypesMappings = {
+  'BodyComplex': 'body-complex.json'
 }
 
 swaggerDir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
@@ -331,6 +338,20 @@ task 'regenerate-ts-rename-parameter', '', [], (done) ->
   },done
   return null
 
+task 'regenerate-ts-skip-subtypes', '', [], (done) ->
+  regenExpected {
+    'outputBaseDir': 'test/skip-subtypes',
+    'inputBaseDir': swaggerDir,
+    'mappings': skipSubtypesMappings,
+    'outputDir': 'generated',
+    'language': 'typescript',
+    'generateMetadata': true,
+    'sourceCodeFolderPath': 'lib',
+    'skipSubtypes': '[Fish]'
+  },done
+  return null
+
+
 tsTasks = [
   'regenerate-tscomposite',
   'regenerate-tsxml',
@@ -339,7 +360,8 @@ tsTasks = [
   'regenerate-ts-no-client-validation',
   'regenerate-ts-date-time-as-string',
   'regenerate-ts-optional-response-headers',
-  'regenerate-ts-rename-parameter'
+  'regenerate-ts-rename-parameter',
+  'regenerate-ts-skip-subtypes'
 ]
 
 task 'regenerate-ts', '', tsTasks, (done) ->

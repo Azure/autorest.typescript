@@ -112,6 +112,21 @@ namespace AutoRest.TypeScript
         public bool EnumTypes { get; set; }
 
         /// <summary>
+        /// A list of model type names that will only be treated polymorphically during
+        /// serialization and deserialization if they are directly referenced in the specification.
+        /// When determining the mapper set for a MethodGroup, first a pass is made through the
+        /// methods of the MethodGroup and all of the types directly referenced by the methods are
+        /// collected. These types include any base/parent types that the referenced types
+        /// "inherit" from.
+        /// After the method pass, a pass is made through all of the types declared in the
+        /// specification (not just the ones that are referenced by the MethodGroup). If any of
+        /// those types have a base/parent type in the current set of collected types and the
+        /// base/parent type is not included in the SkipSubtypes list, then that type will also be
+        /// collected.
+        /// </summary>
+        public string[] SkipSubtypes { get; set; }
+
+        /// <summary>
         /// Computes the NPM package referenced by an alias package.
         /// </summary>
         public string AliasedNpmPackageName

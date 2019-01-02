@@ -674,18 +674,21 @@ namespace AutoRest.TypeScript.Model
             return OrderedMapperTemplateModels.Any();
         }
 
-        public virtual string GenerateMapperIndex(string emptyLine)
+        public virtual string GenerateMapperIndex()
         {
             TSBuilder builder = new TSBuilder();
+            builder.Comment(AutoRest.Core.Settings.Instance.Header);
+            builder.Line();
+
             CompositeTypeTS[] orderedMapperTemplateModels = OrderedMapperTemplateModels.ToArray();
 
             ImportMsRestForMappers(builder, orderedMapperTemplateModels);
 
-            builder.Line(emptyLine);
+            builder.Line();
 
-            ExportOrderedMapperModels(builder, orderedMapperTemplateModels, emptyLine);
+            ExportOrderedMapperModels(builder, orderedMapperTemplateModels);
 
-            ExportPolymorphicDictionary(builder, emptyLine);
+            ExportPolymorphicDictionary(builder);
 
             return builder.ToString();
         }
@@ -698,22 +701,22 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        public void ExportOrderedMapperModels(TSBuilder builder, IEnumerable<CompositeTypeTS> orderedMapperModels, string emptyLine)
+        public void ExportOrderedMapperModels(TSBuilder builder, IEnumerable<CompositeTypeTS> orderedMapperModels)
         {
             foreach (CompositeTypeTS mapperModel in OrderedMapperTemplateModels)
             {
-                builder.Line(emptyLine);
+                builder.Line();
 
                 mapperModel.ConstructModelMapper(builder);
             }
         }
 
-        public void ExportPolymorphicDictionary(TSBuilder builder, string emptyLine)
+        public void ExportPolymorphicDictionary(TSBuilder builder)
         {
             string polymorphicDictionary = PolymorphicDictionary;
             if (!string.IsNullOrEmpty(polymorphicDictionary))
             {
-                builder.Line(emptyLine);
+                builder.Line();
                 builder.Line($"export const discriminators = {{");
                 builder.Indent(() =>
                 {

@@ -51,19 +51,25 @@ namespace AutoRest.TypeScript.Model
                     }
                 }
 
-                int initialCount;
+                IEnumerable<string> skippedSubtypes = CodeModelTS?.Settings?.SkipSubtypes?.ToHashSet() ?? Enumerable.Empty<string>();
+
+                IEnumerable<CompositeType> modelTypesWithBaseType = CodeModel.ModelTypes.Where(modelType => modelType.BaseModelType != null).ToArray();
+                int previousModelNameCount;
                 do
                 {
-                    initialCount = modelNames.Count;
+                    previousModelNameCount = modelNames.Count;
                     // Search for polymorphic subtypes
-                    foreach (CompositeType model in CodeModel.ModelTypes)
+                    foreach (CompositeType model in modelTypesWithBaseType)
                     {
-                        if (model.BaseModelType != null && modelNames.Contains(model.BaseModelType.Name))
+                        string modelTypeName = model.Name.ToString();
+                        string baseModelTypeName = model.BaseModelType.Name.ToString();
+                        if (modelNames.Contains(baseModelTypeName) && !modelNames.Contains(modelTypeName) && !skippedSubtypes.Contains(baseModelTypeName))
                         {
                             CollectReferencedModelNames(modelNames, model);
                         }
                     }
-                } while (initialCount != modelNames.Count);
+                }
+                while (previousModelNameCount != modelNames.Count);
 
                 return modelNames;
             }
@@ -189,6 +195,28 @@ namespace AutoRest.TypeScript.Model
             }
 
             builder.Import(new string[] { codeModel.ContextName }, $"../{codeModel.ContextName.ToCamelCase()}");
+
+            return builder.ToString();
+        }
+
+        public string GenerateMappers()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.Comment(AutoRest.Core.Settings.Instance.Header);
+            builder.Line();
+            builder.Line("export {");
+            builder.Indent(() =>
+            {
+                List<string> exportedValues = new List<string>();
+                if (!string.IsNullOrWhiteSpace(CodeModelTS.PolymorphicDictionary))
+                {
+                    exportedValues.Add("discriminators");
+                }
+                exportedValues.AddRange(OperationModelNames.OrderBy(mapperName => mapperName));
+
+                builder.Line(string.Join(",\n", exportedValues));
+            });
+            builder.Line("} from \"../models/mappers\";");
 
             return builder.ToString();
         }
