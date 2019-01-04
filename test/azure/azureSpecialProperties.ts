@@ -3,7 +3,8 @@
 
 'use strict';
 
-import * as should from "chai/register-should";
+import { should } from "chai";
+import "chai/register-should";
 import * as msRest from '@azure/ms-rest-js';
 
 import { AutoRestAzureSpecialParametersTestClient } from './generated/AzureSpecials/autoRestAzureSpecialParametersTestClient';
@@ -12,7 +13,7 @@ var dummySubscriptionId = '1234-5678-9012-3456';
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
-var clientOptions: AutoRestAzureSpecialParametersTestClientOptions = { baseUri: 'http://localhost:3000', generateClientRequestIdHeader: false };
+var clientOptions: AutoRestAzureSpecialParametersTestClientOptions = { baseUri: 'http://localhost:3000', generateClientRequestIdHeader: true };
 var baseUri = 'http://localhost:3000';
 
 describe('typescript', function () {
@@ -47,7 +48,7 @@ describe('typescript', function () {
       result._response.status.should.equal(200);
     });
 
-    it.skip('should use the subscriptionId from credentials by default', async function () {
+    it('should use the subscriptionId from credentials by default', async function () {
       let result = await testClient.subscriptionInCredentials.postMethodGlobalNotProvidedValid();
       result._response.status.should.equal(200);
 
@@ -61,7 +62,7 @@ describe('typescript', function () {
       result._response.status.should.equal(200);
     });
 
-    it.skip('should use the subscriptionId parameter when it is present', async function () {
+    it('should use the subscriptionId parameter when it is present', async function () {
       try {
         await testClient.subscriptionInMethod.postMethodLocalNull(null);
         should().fail;
@@ -150,14 +151,16 @@ describe('typescript', function () {
       }
     });
 
-    it.skip('should allow custom-named request-id headers to be used', async () => {
+    it('should allow custom-named request-id headers to be used', async () => {
+      const testClient = new AutoRestAzureSpecialParametersTestClient(credentials, dummySubscriptionId, { ...clientOptions, generateClientRequestIdHeader: false });
       const result = await testClient.header.customNamedRequestId("9C4D50EE-2D56-4CD3-8152-34347DC9F2B0");
       result._response.status.should.equal(200);
       should().not.exist(result._response.request.headers["x-ms-client-request-id"]);
       result._response.headers.get("foo-request-id").should.equal("123");
     });
 
-    it.skip('should allow custom-named request-id headers to be used with parameter grouping', async () => {
+    it('should allow custom-named request-id headers to be used with parameter grouping', async () => {
+      const testClient = new AutoRestAzureSpecialParametersTestClient(credentials, dummySubscriptionId, { ...clientOptions, generateClientRequestIdHeader: false });
       const result = await testClient.header.customNamedRequestIdParamGrouping({ fooClientRequestId: "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0" });
       result._response.status.should.equal(200);
       should().not.exist(result._response.request.headers["x-ms-client-request-id"]);
