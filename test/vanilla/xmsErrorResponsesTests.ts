@@ -14,7 +14,7 @@ describe("XMS Error Responses", function () {
     assert.equal(response.aniType, "Dog");
   });
 
-  it.skip("should handle expectedPetSadError", async function () {
-    const res = await testClient.pet.doSomething("jump");
+  it("should handle expectedPetSadError", async function () {
+    const _ = await testClient.pet.doSomething("jump");
   });
 });
