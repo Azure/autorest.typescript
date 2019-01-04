@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 'use strict';
@@ -69,7 +69,7 @@ function stringToByteArray(str: string): Uint8Array {
 }
 
 var clientOptions: AutoRestBoolTestServiceOptions = { noRetryPolicy: true, baseUri: 'http://localhost:3000' };
-describe.only('typescript', function () {
+describe('typescript', function () {
   describe('Swagger BAT', function () {
     describe('Custom BaseUri Client with more options', function () {
       var customOptions = {
@@ -510,7 +510,6 @@ describe.only('typescript', function () {
           const expected = new Uint8Array([73, 96, 6, 24, 68]);
           result.length.should.equal(expected.length);
           for (let i = 0; i < result.length; i++) {
-            console.log(result[i]);
             result[i].should.equal(expected[i]);
           }
           done();
