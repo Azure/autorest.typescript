@@ -285,7 +285,7 @@ describe('typescript', function () {
       error.message.should.equal(`Error from the server`);
     });
 
-    it.skip('should throw on LRONonRetryPut201Creating400InvalidJson', async () => {
+    it('should throw on LRONonRetryPut201Creating400InvalidJson', async () => {
       const error: msRest.RestError = await msAssert.throwsAsync(testClient.lROSADs.putNonRetry201Creating400InvalidJson({ product: product }));
       should.strictEqual(error.body, `<{ "message" : "Error from the server" }`);
       should.strictEqual(error.code, "PARSE_ERROR");
