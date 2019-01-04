@@ -3,9 +3,10 @@
 
 'use strict';
 
+import "chai/register-should";
+import { should } from "chai";
 import * as assert from 'assert';
 import * as moment from 'moment';
-import * as should from "chai/register-should";
 import * as msAssert from "../util/msAssert";
 
 import { AutoRestComplexTestService, AutoRestComplexTestServiceModels } from './generated/BodyComplex/autoRestComplexTestService';
@@ -15,8 +16,8 @@ var clientOptions = {
 };
 
 describe('typescript', function () {
-  describe.skip('Swagger Complex Type BAT', function () {
-    describe.skip('Basic Types Operations', function () {
+  describe('Swagger Complex Type BAT', function () {
+    describe('Basic Types Operations', function () {
       var testClient = new AutoRestComplexTestService(clientOptions);
       it('should get and put valid basic type properties', async function () {
         const result = await testClient.basic.getValid();
@@ -34,24 +35,24 @@ describe('typescript', function () {
 
       it('should get empty basic type properties', function (done) {
         testClient.basic.getEmpty(function (error, result) {
-          error.should.not.exist;
-          result.id.should.not.exist;
-          result.name.should.not.exist;
+          should().not.exist(error);
+          should().not.exist(result.id);
+          should().not.exist(result.name);
           done();
         });
       });
 
       it('should get basic type properties when the payload is empty', function (done) {
         testClient.basic.getNotProvided(function (error, result) {
-          error.should.not.exist;
-          result.should.not.exist;
+          should().not.exist(error);
+          should().not.exist(result);
           done();
         });
       });
 
       it('should deserialize invalid basic types without throwing', function (done) {
         testClient.basic.getInvalid(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           result.should.exist;
           done();
         });
@@ -59,15 +60,15 @@ describe('typescript', function () {
 
     });
 
-    describe.skip('Primitive Types Operations', function () {
+    describe('Primitive Types Operations', function () {
       var testClient = new AutoRestComplexTestService(clientOptions);
       it('should get and put valid int properties', function (done) {
         testClient.primitive.getInt(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           result.field1.should.equal(-1);
           result.field2.should.equal(2);
           testClient.primitive.putInt({ 'field1': -1, 'field2': 2 }, function (error, result) {
-            error.should.not.exist;
+            should().not.exist(error);
             done();
           });
         });
@@ -75,11 +76,11 @@ describe('typescript', function () {
 
       it('should get and put valid long properties', function (done) {
         testClient.primitive.getLong(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           result.field1.should.equal(1099511627775);
           result.field2.should.equal(-999511627788);
           testClient.primitive.putLong({ 'field1': 1099511627775, 'field2': -999511627788 }, function (error, result) {
-            error.should.not.exist;
+            should().not.exist(error);
             done();
           });
         });
@@ -87,11 +88,11 @@ describe('typescript', function () {
 
       it('should get and put valid float properties', function (done) {
         testClient.primitive.getFloat(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           result.field1.should.equal(1.05);
           result.field2.should.equal(-0.003);
           testClient.primitive.putFloat({ 'field1': 1.05, 'field2': -0.003 }, function (error, result) {
-            error.should.not.exist;
+            should().not.exist(error);
             done();
           });
         });
@@ -99,11 +100,11 @@ describe('typescript', function () {
 
       it('should get and put valid double properties', function (done) {
         testClient.primitive.getDouble(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           result.field1.should.equal(3e-100);
           result.field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose.should.equal(-0.000000000000000000000000000000000000000000000000000000005);
           testClient.primitive.putDouble({ 'field1': 3e-100, 'field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose': -0.000000000000000000000000000000000000000000000000000000005 }, function (error, result) {
-            error.should.not.exist;
+            should().not.exist(error);
             done();
           });
         });
@@ -111,11 +112,11 @@ describe('typescript', function () {
 
       it('should get and put valid bool properties', function (done) {
         testClient.primitive.getBool(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           result.fieldTrue.should.equal(true);
           result.fieldFalse.should.equal(false);
           testClient.primitive.putBool({ 'fieldTrue': true, 'fieldFalse': false }, function (error, result) {
-            error.should.not.exist;
+            should().not.exist(error);
             done();
           });
         });
@@ -123,12 +124,12 @@ describe('typescript', function () {
 
       it('should get and put valid string properties', function (done) {
         testClient.primitive.getString(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           result.field.should.equal('goodrequest');
           result.empty.should.equal('');
-          result['nullProperty'].should.not.exist;
+          should().not.exist(result['nullProperty']);
           testClient.primitive.putString({ 'field': 'goodrequest', 'empty': '' }, function (error, result) {
-            error.should.not.exist;
+            should().not.exist(error);
             done();
           });
         });
@@ -136,23 +137,23 @@ describe('typescript', function () {
 
       it('should get and put valid date properties', function (done) {
         testClient.primitive.getDate(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           assert.deepEqual(result.field, new Date('0001-01-01'));
           assert.deepEqual(result.leap, new Date('2016-02-29'));
           var complexBody = <AutoRestComplexTestServiceModels.DateWrapper>{ 'field': new Date('0001-01-01'), 'leap': new Date('2016-02-29') }
           testClient.primitive.putDate(complexBody, function (error, result) {
-            error.should.not.exist;
+            should().not.exist(error);
             done();
           });
         });
       });
       it('should get and put valid date-time properties', function (done) {
         testClient.primitive.getDateTime(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           assert.deepEqual(result.field, new Date('0001-01-01T00:00:00Z'));
           assert.deepEqual(result.now, new Date('2015-05-18T18:38:00Z'));
           testClient.primitive.putDateTime({ 'field': new Date('0001-01-01T00:00:00Z'), 'now': new Date('2015-05-18T18:38:00Z') }, function (error, result) {
-            error.should.not.exist;
+            should().not.exist(error);
             done();
           });
         });
@@ -162,7 +163,7 @@ describe('typescript', function () {
         var timeStringOne = 'Mon, 01 Jan 0001 00:00:00 GMT';
         var timeStringTwo = 'Mon, 18 May 2015 11:38:00 GMT';
         testClient.primitive.getDateTimeRfc1123(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           assert.deepEqual(result.field, new Date(timeStringOne));
           assert.deepEqual(result.now, new Date(timeStringTwo));
           var dateFormat = 'ddd, DD MMM YYYY HH:mm:ss';
@@ -170,7 +171,7 @@ describe('typescript', function () {
           //Have to use moment.js to construct the date object because NodeJS default Date constructor doesn't parse "old" RFC dates right
           var fieldDate = moment.utc(timeStringOne, dateFormat).toDate();
           testClient.primitive.putDateTimeRfc1123({ 'field': fieldDate, 'now': new Date(timeStringTwo) }, function (error, result) {
-            error.should.not.exist;
+            should().not.exist(error);
             done();
           });
         });
@@ -186,10 +187,10 @@ describe('typescript', function () {
       it('should get and put valid byte properties', function (done) {
         var byteBuffer = new Uint8Array([255, 254, 253, 252, 0, 250, 249, 248, 247, 246]);
         testClient.primitive.getByte(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           assert.deepEqual([].slice.apply(result.field), [].slice.apply(byteBuffer));
           testClient.primitive.putByte({ field: byteBuffer }, function (error, result) {
-            error.should.not.exist;
+            should().not.exist(error);
             done();
           });
         });
@@ -197,15 +198,15 @@ describe('typescript', function () {
 
     });
 
-    describe.skip('Array Types Operations', function () {
+    describe('Array Types Operations', function () {
       var testClient = new AutoRestComplexTestService(clientOptions);
       it('should get valid array type properties', function (done) {
         var testArray = ['1, 2, 3, 4', '', null, '&S#$(*Y', 'The quick brown fox jumps over the lazy dog'];
         testClient.arrayModel.getValid(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           assert.deepEqual(result.arrayProperty, testArray);
           testClient.arrayModel.putValid({ arrayProperty: testArray }, function (error, result) {
-            error.should.not.exist;
+            should().not.exist(error);
             done();
           });
         });
@@ -213,10 +214,10 @@ describe('typescript', function () {
 
       it('should get and put empty array type properties', function (done) {
         testClient.arrayModel.getEmpty(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           assert.deepEqual(result.arrayProperty, []);
           testClient.arrayModel.putEmpty({ arrayProperty: [] }, function (error, result) {
-            error.should.not.exist;
+            should().not.exist(error);
             done();
           });
         });
@@ -224,23 +225,23 @@ describe('typescript', function () {
 
       it('should get array type properties when the payload is empty', function (done) {
         testClient.arrayModel.getNotProvided(function (error, result) {
-          error.should.not.exist;
-          result.arrayProperty.should.not.exist;
+          should().not.exist(error);
+          should().not.exist(result.arrayProperty);
           done();
         });
       });
     });
 
-    describe.skip('Dictionary Types Operations', function () {
+    describe('Dictionary Types Operations', function () {
       var testClient = new AutoRestComplexTestService(clientOptions);
       it('should get and put valid dictionary type properties', function (done) {
         var testDictionary: { [propertyName: string]: string } =
           { 'txt': 'notepad', 'bmp': 'mspaint', 'xls': 'excel', 'exe': '', '': null };
         testClient.dictionary.getValid(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           assert.deepEqual(result.defaultProgram, testDictionary);
           testClient.dictionary.putValid({ defaultProgram: testDictionary }, function (error, result) {
-            error.should.not.exist;
+            should().not.exist(error);
             done();
           });
         });
@@ -248,10 +249,10 @@ describe('typescript', function () {
 
       it('should get and put empty dictionary type properties', function (done) {
         testClient.dictionary.getEmpty(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           assert.deepEqual(result.defaultProgram, {});
           testClient.dictionary.putEmpty({ defaultProgram: {} }, function (error, result) {
-            error.should.not.exist;
+            should().not.exist(error);
             done();
           });
         });
@@ -259,31 +260,31 @@ describe('typescript', function () {
 
       it('should get null dictionary type properties', function (done) {
         testClient.dictionary.getNull(function (error, result) {
-          error.should.not.exist;
-          result.defaultProgram.should.not.exist;
+          should().not.exist(error);
+          should().not.exist(result.defaultProgram);
           done();
         });
       });
 
       it('should get dictionary type properties when the payload is empty', function (done) {
         testClient.dictionary.getNotProvided(function (error, result) {
-          error.should.not.exist;
-          result.defaultProgram.should.not.exist;
+          should().not.exist(error);
+          should().not.exist(result.defaultProgram);
           done();
         });
       });
 
     });
 
-    describe.skip('Complex Types with Inheritance Operations', function () {
+    describe('Complex Types with Inheritance Operations', function () {
       var siamese = { "breed": "persian", "color": "green", "hates": [{ "food": "tomato", "id": 1, "name": "Potato" }, { "food": "french fries", "id": -1, "name": "Tomato" }], "id": 2, "name": "Siameeee" };
       var testClient = new AutoRestComplexTestService(clientOptions);
       it('should get valid basic type properties', function (done) {
         testClient.inheritance.getValid(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           assert.deepEqual(result, siamese);
           testClient.inheritance.putValid(siamese, function (error, result) {
-            error.should.not.exist;
+            should().not.exist(error);
             done();
           });
         });
@@ -291,13 +292,13 @@ describe('typescript', function () {
 
     });
 
-    describe.skip('Complex Types with ReadOnly Properties', function () {
+    describe('Complex Types with ReadOnly Properties', function () {
       var testClient = new AutoRestComplexTestService(clientOptions);
       it('should get and put complex types with readonly properties', function (done) {
         testClient.readonlyproperty.getValid(function (error, result) {
-          error.should.not.exist;
+          should().not.exist(error);
           testClient.readonlyproperty.putValid(result, function (error, result) {
-            error.should.not.exist;
+            should().not.exist(error);
             done();
           });
         });

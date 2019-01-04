@@ -3,7 +3,8 @@
 
 'use strict';
 
-import * as should from "chai/register-should";
+import { should } from "chai";
+import "chai/register-should";
 import * as assert from 'assert';
 import * as msAssert from "../util/msAssert";
 import * as msRest from '@azure/ms-rest-js';
@@ -29,9 +30,9 @@ describe('typescript', function () {
       ];
       var testClient = new AutoRestPagingTestService(credentials, clientOptions);
 
-      it.skip('should get single pages', async function () {
+      it('should get single pages', async function () {
         const result = await testClient.paging.getSinglePages();
-        should(result.nextLink).not.exist;
+        should().not.exist(result.nextLink)
         assert.deepEqual(result.slice(), [{ properties: { id: 1, name: "Product" } }]);
       });
 
@@ -41,7 +42,7 @@ describe('typescript', function () {
           result.nextLink.should.exist;
           result = await testClient.paging.getMultiplePagesNext(result.nextLink, { clientRequestId: 'client-id' });
         }
-        result.nextLink.should.not.exist;
+        should().not.exist(result.nextLink);
       });
 
       it('should get multiple pages', async () => {
