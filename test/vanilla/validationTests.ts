@@ -99,16 +99,16 @@ describe('typescript', function () {
     });
 
     describe('Constants', function () {
-      it.skip('should work in path', function (done) {
+      it('should work in path', function (done) {
         testClient.getWithConstantInPath(function (err, result) {
-          err.should.not.exist;
+          should().not.exist(err);
           done();
         });
       });
 
-      it.skip('should work in body', function (done) {
+      it('should work in body', function (done) {
         testClient.postWithConstantInBody({ body: { child: {} } }, function (err, result) {
-          err.should.not.exist;
+          should().not.exist(err);
           done();
         });
       });
