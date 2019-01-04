@@ -287,26 +287,26 @@ describe('typescript', function () {
 
     it('should throw on LRONonRetryPut201Creating400InvalidJson', async () => {
       const error: msRest.RestError = await msAssert.throwsAsync(testClient.lROSADs.putNonRetry201Creating400InvalidJson({ product: product }));
-      should.strictEqual(error.body, `<{ "message" : "Error from the server" }`);
-      should.strictEqual(error.code, "PARSE_ERROR");
-      should.strictEqual(error.message, `Error "SyntaxError: Unexpected token < in JSON at position 0" occurred while parsing the response body - <{ "message" : "Error from the server" }.`);
-      should.strictEqual(error.name, "Error");
-      should.exist(error.request);
-      should.exist(error.response);
-      should.exist(error.stack);
-      should.strictEqual(error.statusCode, 400);
+      error.body.should.deep.equal(`<{ "message" : "Error from the server" }`);
+      error.code.should.deep.equal("PARSE_ERROR");
+      error.message.should.deep.equal(`Error "SyntaxError: Unexpected token < in JSON at position 0" occurred while parsing the response body - <{ "message" : "Error from the server" }.`);
+      error.name.should.deep.equal("Error");
+      error.request.should.exist;
+      error.response.should.exist;
+      error.stack.should.exist;
+      error.statusCode.should.deep.equal(400);
     });
 
-    it.skip('should throw on PutAsyncRelativeRetry400', async () => {
+    it('should throw on PutAsyncRelativeRetry400', async () => {
       const error: msRest.RestError = await msAssert.throwsAsync(testClient.lROSADs.putAsyncRelativeRetry400({ product: product }));
-      should.strictEqual(error.body, undefined);
-      should.strictEqual(error.code, undefined);
-      should.strictEqual(error.message, "");
-      should.strictEqual(error.name, "Error");
+      should.deep.equal(error.body, undefined);
+      should.deep.equal(error.code, undefined);
+      should.deep.equal(error.message, "");
+      should.deep.equal(error.name, "Error");
       should.exist(error.request);
       should.exist(error.response);
       should.exist(error.stack);
-      should.strictEqual(error.statusCode, 400);
+      should.deep.equal(error.statusCode, 400);
     });
 
     it('should throw on DeleteNonRetry400', async () => {
