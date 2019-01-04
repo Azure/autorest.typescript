@@ -3,7 +3,8 @@
 
 'use strict';
 
-import * as should from "chai/register-should";
+import { should } from "chai";
+import "chai/register-should";
 
 import { AutoRestRequiredOptionalTestService } from './generated/RequiredOptional/autoRestRequiredOptionalTestService';
 
@@ -14,40 +15,35 @@ var clientOptions = {
 
 describe('typescript', function () {
 
-  describe.skip('Swagger Required Optional BAT', function () {
+  describe('Swagger Required Optional BAT', function () {
 
     describe('Basic Required Optional Operations', function () {
       var testClient = new AutoRestRequiredOptionalTestService('', '', clientOptions);
 
-      it('should throw error on null path parameter', function (done) {
-        testClient.implicit.getRequiredPath(null, function (error, result) {
+      it('should throw error on null path parameter', async function () {
+        try {
+          await testClient.implicit.getRequiredPath(null);
+        } catch (error) {
           error.should.exist;
           error.message.should.equal('pathParameter cannot be null or undefined.');
-          done();
-        });
+        };
       });
 
-      it('should accept null values for query parameters', function (done) {
-        testClient.implicit.putOptionalQuery({ queryParameter: null }, function (error, result, request, response) {
-          error.should.not.exist;
-          response.status.should.equal(200);
-          done();
-        });
+      it('should accept null values for query parameters', async function () {
+        const response = await testClient.implicit.putOptionalQuery({ queryParameter: null });
+        response._response.status.should.equal(200);
       });
-      it('should accept null values for optional header parameters', function (done) {
-        testClient.implicit.putOptionalHeader({ queryParameter: null }, function (error, result, request, response) {
-          error.should.not.exist;
-          response.status.should.equal(200);
-          done();
-        });
+
+      it('should accept null values for optional header parameters', async function () {
+        const response = await testClient.implicit.putOptionalHeader({ queryParameter: null });
+        response._response.status.should.equal(200);
       });
-      it('should accept null values for optional body parameters', function (done) {
-        testClient.implicit.putOptionalBody({ bodyParameter: null }, function (error, result, request, response) {
-          error.should.not.exist;
-          response.status.should.equal(200);
-          done();
-        });
+
+      it('should accept null values for optional body parameters', async function () {
+        const response = await testClient.implicit.putOptionalBody({ bodyParameter: null });
+        response._response.status.should.equal(200);
       });
+
       it('should throw error on null values for required integer parameters', function (done) {
         testClient.explicit.postRequiredIntegerParameter(null, function (error, result) {
           error.should.exist;
@@ -57,7 +53,7 @@ describe('typescript', function () {
       });
       it('should accept null values for optional integer parameters', function (done) {
         testClient.explicit.postOptionalIntegerParameter({ bodyParameter: null }, function (error, result, request, response) {
-          error.should.not.exist;
+          should().not.exist(error);
           response.status.should.equal(200);
           done();
         });
@@ -72,7 +68,7 @@ describe('typescript', function () {
       });
       it('should accept null values for optional integer properties', function (done) {
         testClient.explicit.postOptionalIntegerProperty({ value: null }, function (error, result, request, response) {
-          error.should.not.exist;
+          should().not.exist(error);
           response.status.should.equal(200);
           done();
         });
@@ -86,7 +82,7 @@ describe('typescript', function () {
       });
       it('should accept null values for optional integer header', function (done) {
         testClient.explicit.postOptionalIntegerHeader({ headerParameter: null }, function (error, result, request, response) {
-          error.should.not.exist;
+          should().not.exist(error);
           response.status.should.equal(200);
           done();
         });
@@ -100,7 +96,7 @@ describe('typescript', function () {
       });
       it('should accept null values for optional string parameters', function (done) {
         testClient.explicit.postOptionalStringParameter({ bodyParameter: null }, function (error, result, request, response) {
-          error.should.not.exist;
+          should().not.exist(error);
           response.status.should.equal(200);
           done();
         });
@@ -114,7 +110,7 @@ describe('typescript', function () {
       });
       it('should accept null values for optional string properties', function (done) {
         testClient.explicit.postOptionalStringProperty({ value: null }, function (error, result, request, response) {
-          error.should.not.exist;
+          should().not.exist(error);
           response.status.should.equal(200);
           done();
         });
@@ -128,7 +124,7 @@ describe('typescript', function () {
       });
       it('should accept null values for optional string header', function (done) {
         testClient.explicit.postOptionalStringHeader({ bodyParameter: null }, function (error, result, request, response) {
-          error.should.not.exist;
+          should().not.exist(error);
           response.status.should.equal(200);
           done();
         });
@@ -142,7 +138,7 @@ describe('typescript', function () {
       });
       it('should accept null values for optional class parameters', function (done) {
         testClient.explicit.postOptionalClassParameter({ bodyParameter: null }, function (error, result, request, response) {
-          error.should.not.exist;
+          should().not.exist(error);
           response.status.should.equal(200);
           done();
         });
@@ -156,7 +152,7 @@ describe('typescript', function () {
       });
       it('should accept null values for optional class properties', function (done) {
         testClient.explicit.postOptionalClassProperty({ value: null }, function (error, result, request, response) {
-          error.should.not.exist;
+          should().not.exist(error);
           response.status.should.equal(200);
           done();
         });
@@ -170,7 +166,7 @@ describe('typescript', function () {
       });
       it('should accept null values for optional array parameters', function (done) {
         testClient.explicit.postOptionalArrayParameter({ bodyParameter: null }, function (error, result, request, response) {
-          error.should.not.exist;
+          should().not.exist(error);
           response.status.should.equal(200);
           done();
         });
@@ -184,7 +180,7 @@ describe('typescript', function () {
       });
       it('should accept null values for optional array properties', function (done) {
         testClient.explicit.postOptionalArrayProperty({ value: null }, function (error, result, request, response) {
-          error.should.not.exist;
+          should().not.exist(error);
           response.status.should.equal(200);
           done();
         });
@@ -198,7 +194,7 @@ describe('typescript', function () {
       });
       it('should accept null values for optional array header', function (done) {
         testClient.explicit.postOptionalArrayHeader({ headerParameter: null }, function (error, result, request, response) {
-          error.should.not.exist;
+          should().not.exist(error);
           response.status.should.equal(200);
           done();
         });
@@ -221,7 +217,7 @@ describe('typescript', function () {
       });
       it('should accept null values for optional global property in query', function (done) {
         testClient.implicit.getOptionalGlobalQuery(function (error, result, request, response) {
-          error.should.not.exist;
+          should().not.exist(error);
           response.status.should.equal(200);
           done();
         });
