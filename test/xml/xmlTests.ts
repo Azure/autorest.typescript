@@ -102,7 +102,7 @@ describe('typescript', function () {
       await testClient.xml.putWrappedLists(appleBarrel);
     });
 
-    it.skip('should correctly deserialize an empty XML list', async function () {
+    it('should correctly deserialize an empty XML list', async function () {
       const emptyList = await testClient.xml.getEmptyList();
       emptyList.should.exist;
       should().not.exist(emptyList.author);
@@ -255,7 +255,7 @@ describe('typescript', function () {
       await testClient.xml.putComplexTypeRefWithMeta(arg);
     });
 
-    it.skip('should list containers in a storage account', async function () {
+    it('should list containers in a storage account', async function () {
       const listContainersResponse = await testClient.xml.listContainers();
       listContainersResponse.should.exist;
       listContainersResponse.serviceEndpoint.should.equal('https://myaccount.blob.core.windows.net/');
@@ -368,7 +368,7 @@ describe('typescript', function () {
       await testClient.xml.putAcls(acls);
     });
 
-    it.skip('should list blobs in a container', async function () {
+    it('should list blobs in a container', async function () {
       const listBlobsResponse = await testClient.xml.listBlobs();
       listBlobsResponse.should.exist;
       listBlobsResponse.containerName.should.equal('https://myaccount.blob.core.windows.net/mycontainer');
