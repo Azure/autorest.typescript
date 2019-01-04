@@ -280,7 +280,7 @@ describe('typescript', function () {
       listContainersResponse.containers[2].name.should.equal('textfiles');
       listContainersResponse.containers[2].properties.etag.should.equal('0x8CACB9BD7BACAC3');
       listContainersResponse.containers[2].properties.lastModified.valueOf().should.equal(new Date('Wed, 26 Oct 2016 20:39:39 GMT').valueOf());
-      listContainersResponse.containers[2].properties.publicAccess.should.not.exist
+      should().not.exist(listContainersResponse.containers[2].properties.publicAccess);
     });
 
     it('should get service properties in a storage account', async function () {
