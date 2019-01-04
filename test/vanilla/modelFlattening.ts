@@ -3,7 +3,8 @@
 
 'use strict';
 
-import * as should from "chai/register-should";
+import { should } from "chai";
+import "chai/register-should";
 import * as assert from 'assert'
 var _ = require('underscore');
 
@@ -15,7 +16,7 @@ var clientOptions = {
 
 describe('typescript', function () {
 
-  describe.skip('Swagger ModelFlattening BAT', function () {
+  describe('Swagger ModelFlattening BAT', function () {
 
     describe('Resource Flattening Operations', function () {
       var testClient = new AutoRestResourceFlatteningTestService(clientOptions);

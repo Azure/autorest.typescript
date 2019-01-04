@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 'use strict';
@@ -292,7 +292,7 @@ describe('typescript', function () {
       });
     });
 
-    describe.skip('Number Client', function () {
+    describe('Number Client', function () {
       var testClient = new AutoRestNumberTestService(clientOptions);
       it('should put big float and double values', function (done) {
         testClient.number.putBigFloat(3.402823e+20, function (error, result) {
