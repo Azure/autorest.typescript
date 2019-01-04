@@ -192,11 +192,11 @@ describe('typescript', function () {
       await testClient.lROs.postDoubleHeadersFinalLocationGet({ product });
     });
 
-    it('should work with LROPostDoubleHeadersFinalAzureHeaderGet', async () => {
+    it.skip('should work with LROPostDoubleHeadersFinalAzureHeaderGet', async () => {
       await testClient.lROs.postDoubleHeadersFinalAzureHeaderGet({ product });
     });
 
-    it('should work with LROPostDoubleHeadersFinalAzureHeaderGetDefault', async () => {
+    it.skip('should work with LROPostDoubleHeadersFinalAzureHeaderGetDefault', async () => {
       await testClient.lROs.postDoubleHeadersFinalAzureHeaderGetDefault({ product });
     });
 

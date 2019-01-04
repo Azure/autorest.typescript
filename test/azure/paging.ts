@@ -36,7 +36,7 @@ describe('typescript', function () {
         assert.deepEqual(result.slice(), [{ properties: { id: 1, name: "Product" } }]);
       });
 
-      it('should get multiple pages using promises', async function () {
+      it.skip('should get multiple pages using promises', async function () {
         let result = await testClient.paging.getMultiplePages({ clientRequestId: 'client-id' });
         for (let i = 1; i < 10; i++) {
           result.nextLink.should.exist;
