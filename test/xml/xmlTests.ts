@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-import * as should from "chai/register-should";
+import { should } from "chai";
+import "chai/register-should";
 import * as msAssert from "../util/msAssert";
 import * as msRest from "@azure/ms-rest-js";
 import { AutoRestSwaggerBATXMLService, AutoRestSwaggerBATXMLServiceModels as models } from './generated/Xml/autoRestSwaggerBATXMLService';
@@ -104,9 +105,9 @@ describe('typescript', function () {
     it.skip('should correctly deserialize an empty XML list', async function () {
       const emptyList = await testClient.xml.getEmptyList();
       emptyList.should.exist;
-      emptyList.author.should.not.exist;
-      emptyList.date.should.not.exist;
-      emptyList.title.should.not.exist;
+      should().not.exist(emptyList.author);
+      should().not.exist(emptyList.date);
+      should().not.exist(emptyList.title);
 
       emptyList.slides.should.exist;
       emptyList.slides.length.should.equal(0);
@@ -259,9 +260,9 @@ describe('typescript', function () {
       listContainersResponse.should.exist;
       listContainersResponse.serviceEndpoint.should.equal('https://myaccount.blob.core.windows.net/');
       listContainersResponse.maxResults.should.equal(3);
-      listContainersResponse.marker.should.not.exist;
+      should().not.exist(listContainersResponse.marker);
       listContainersResponse.nextMarker.should.equal('video');
-      listContainersResponse.prefix.should.not.exist;
+      should().not.exist(listContainersResponse.prefix);
 
       listContainersResponse.containers.should.exist;
       listContainersResponse.containers.length.should.equal(3);
@@ -274,7 +275,7 @@ describe('typescript', function () {
       listContainersResponse.containers[1].name.should.equal('images');
       listContainersResponse.containers[1].properties.etag.should.equal('0x8CACB9BD7C1EEEC');
       listContainersResponse.containers[1].properties.lastModified.valueOf().should.equal(new Date('Wed, 26 Oct 2016 20:39:39 GMT').valueOf());
-      listContainersResponse.containers[1].properties.publicAccess.should.not.exist;
+      should().not.exist(listContainersResponse.containers[1].properties.publicAccess);
 
       listContainersResponse.containers[2].name.should.equal('textfiles');
       listContainersResponse.containers[2].properties.etag.should.equal('0x8CACB9BD7BACAC3');
@@ -372,17 +373,17 @@ describe('typescript', function () {
       listBlobsResponse.should.exist;
       listBlobsResponse.containerName.should.equal('https://myaccount.blob.core.windows.net/mycontainer');
       listBlobsResponse.nextMarker.should.equal('');
-      listBlobsResponse.maxResults.should.not.exist;
-      listBlobsResponse.delimiter.should.not.exist;
-      listBlobsResponse.marker.should.not.exist;
-      listBlobsResponse.prefix.should.not.exist;
-      listBlobsResponse.serviceEndpoint.should.not.exist;
+      should().not.exist(listBlobsResponse.maxResults);
+      should().not.exist(listBlobsResponse.delimiter);
+      should().not.exist(listBlobsResponse.marker);
+      should().not.exist(listBlobsResponse.prefix);
+      should().not.exist(listBlobsResponse.serviceEndpoint);
 
       listBlobsResponse.blobs.blob.length.should.equal(5);
 
       listBlobsResponse.blobs.blob[0].name.should.equal('blob1.txt');
-      listBlobsResponse.blobs.blob[0].deleted.should.not.exist;
-      listBlobsResponse.blobs.blob[0].snapshot.should.not.exist;
+      should().not.exist(listBlobsResponse.blobs.blob[0].deleted);
+      should().not.exist(listBlobsResponse.blobs.blob[0].snapshot);
       listBlobsResponse.blobs.blob[0].metadata.Color.should.equal('blue');
       listBlobsResponse.blobs.blob[0].metadata.BlobNumber.should.equal('01');
       listBlobsResponse.blobs.blob[0].metadata.SomeMetadataName.should.equal('SomeMetadataValue');
