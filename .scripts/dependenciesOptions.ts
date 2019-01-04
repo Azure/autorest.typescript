@@ -6,6 +6,10 @@ const multiapiFolderPath: string = joinPath(testFolderPath, "multiapi");
 const multiapiPackagesFolderPath: string = joinPath(multiapiFolderPath, "packages");
 export const dependenciesOptions: ChangeClonedDependenciesToOptions = {
   packageFolders: [
+    {
+      path: repositoryFolderPath,
+      dependenciesToIgnore: ["autorest"]
+    },
     joinPath(testFolderPath, "azuremetadata/generated/Lro"),
     joinPath(testFolderPath, "metadata/generated/BodyComplex"),
     {
