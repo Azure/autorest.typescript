@@ -47,9 +47,9 @@ describe('typescript', function () {
       error.message.should.contain('Long running operation failed with status: "Canceled".');
     });
 
-    it.skip('should work with PutAsyncNoRetrySucceeded', async () => {
+    it('should work with PutAsyncNoRetrySucceeded', async () => {
       const result = await testClient.lROs.putAsyncNoRetrySucceeded({ product: product });
-      result._response.parsedBody.should.equal({ id: '100', name: 'foo', provisioningState: "Succeeded" });
+      result._response.parsedBody.should.deep.equal({ id: '100', name: 'foo', provisioningState: "Succeeded" });
     });
 
     it('should work with PutNoHeaderInRetry', async () => {
