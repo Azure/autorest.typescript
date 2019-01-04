@@ -111,9 +111,9 @@ describe('typescript', function () {
       result.id.should.equal('100');
     });
 
-    it.skip('should work with Put200Succeeded', async () => {
+    it.only('should work with Put200Succeeded', async () => {
       const result = await testClient.lROs.put200Succeeded({ product: product });
-      should(result).exist;
+      result.should.exist;
       result.provisioningState.should.equal('Succeeded');
     });
 
