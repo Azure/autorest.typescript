@@ -75,12 +75,12 @@ describe('typescript', function () {
         await loop(result.odatanextLink, 1);
       });
 
-      it.skip('should get multiple pages with offset', async () => {
-        const result = await testClient.paging.getMultiplePagesWithOffset({ 'offset': 100 }, { clientRequestId: 'client-id' });
+      it('should get multiple pages with offset', async () => {
+        let result = await testClient.paging.getMultiplePagesWithOffset({ 'offset': 100 }, { clientRequestId: 'client-id' });
         const loop = async function (nextLink: string, count: number) {
           if (nextLink !== null && nextLink !== undefined) {
-            const res = await testClient.paging.getMultiplePagesWithOffsetNext(nextLink, { clientRequestId: 'client-id' });
-            await loop(res.nextLink, count + 1);
+            result = await testClient.paging.getMultiplePagesWithOffsetNext(nextLink, { clientRequestId: 'client-id' });
+            await loop(result.nextLink, count + 1);
           } else {
             count.should.equal(10);
             result[0].properties.id.should.equal(110);
