@@ -386,16 +386,12 @@ namespace AutoRest.TypeScript
                 mapper.BooleanProperty("required", true);
             }
 
-            if (parameter?.IsXNullable != null)
+            bool isNextLink = parameter?.Name == "nextLink";
+            bool hasValue = isNextLink || parameter?.IsXNullable.HasValue == true;
+            bool isXNullable = isNextLink || parameter?.IsXNullable == true;
+            if (hasValue)
             {
-                if (parameter.IsXNullable.Value)
-                {
-                    mapper.BooleanProperty("nullable", true);
-                }
-                else
-                {
-                    mapper.BooleanProperty("nullable", false);
-                }
+                mapper.BooleanProperty("nullable", isXNullable);
             }
 
             if (isReadOnly)
