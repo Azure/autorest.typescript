@@ -192,11 +192,11 @@ describe('typescript', function () {
       await testClient.lROs.postDoubleHeadersFinalLocationGet({ product });
     });
 
-    it.skip('should work with LROPostDoubleHeadersFinalAzureHeaderGet', async () => {
+    it('should work with LROPostDoubleHeadersFinalAzureHeaderGet', async () => {
       await testClient.lROs.postDoubleHeadersFinalAzureHeaderGet({ product });
     });
 
-    it.skip('should work with LROPostDoubleHeadersFinalAzureHeaderGetDefault', async () => {
+    it('should work with LROPostDoubleHeadersFinalAzureHeaderGetDefault', async () => {
       await testClient.lROs.postDoubleHeadersFinalAzureHeaderGetDefault({ product });
     });
 
@@ -315,7 +315,7 @@ describe('typescript', function () {
       error.message.should.contains('Expected');
     });
 
-    it.skip('should throw on Delete202NonRetry400', async () => {
+    it('should throw on Delete202NonRetry400', async () => {
       const error: msRest.RestError = await msAssert.throwsAsync(testClient.lROSADs.delete202NonRetry400());
       error.message.should.equal("Expected bad request message");
       error.statusCode.should.equal(400);
@@ -332,7 +332,7 @@ describe('typescript', function () {
       error.message.should.contains('Expected bad request message');
     });
 
-    it.skip('should throw on Post202NonRetry400', async () => {
+    it('should throw on Post202NonRetry400', async () => {
       const error: msRest.RestError = await msAssert.throwsAsync(testClient.lROSADs.post202NonRetry400({ product: product }));
       error.message.should.equal("Expected bad request message");
       error.statusCode.should.equal(400);

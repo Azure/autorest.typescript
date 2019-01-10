@@ -34,10 +34,10 @@ describe('typescript', function () {
       result._response.status.should.equal(200);
     });
 
-    it.skip('should reject null required parameters', async function () {
+    it('should reject null required parameters', async function () {
       const error = await assertEx.throwsAsync(testClient.parameterGrouping.postRequired(null));
       assert(error);
-      assert.strictEqual(error.message, "blah");
+      assert.strictEqual(error.message, "parameterGroupingPostRequiredParameters.path cannot be null or undefined.");
     });
 
     it('should accept valid optional parameters', async function () {
