@@ -252,6 +252,19 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
+        public bool AutoPublish
+        {
+            get
+            {
+                if (Settings.AutoPublish.HasValue) {
+                    return Settings.AutoPublish.Value;
+                } else {
+                    bool isGeneratedForAzureSdkForJs = Settings.OutputFolder.Contains(defaultGitHubRepositoryName);
+                    return isGeneratedForAzureSdkForJs;
+                }
+            }
+        }
+
         public bool ContainsDurationProperty()
         {
             Core.Model.Property prop = Properties.FirstOrDefault(p =>
@@ -1102,6 +1115,10 @@ namespace AutoRest.TypeScript.Model
                     scripts.StringProperty("prepack", "npm install && npm run build");
                 });
                 packageJson.BooleanProperty("sideEffects", false);
+
+                if (AutoPublish) {
+                    packageJson.BooleanProperty("autoPublish", true);
+                }
             });
 
             return builder.ToString();

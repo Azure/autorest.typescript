@@ -142,6 +142,12 @@ namespace AutoRest.TypeScript
         }
 
         /// <summary>
+        /// If true, adds "autoPublish" property to package's package.json.
+        /// The property is used to determine if package can be publish automatically.
+        /// </summary>
+        public bool? AutoPublish { get; set; }
+
+        /// <summary>
         /// If the PackageVersion property is null or empty, then first try to update it from an
         /// existing package.json file in the output directory. If no existing package.json file
         /// exists or it doesn't contain a version property, then update it to the latest version
