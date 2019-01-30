@@ -18,7 +18,7 @@ namespace AutoRest.TypeScript
 {
     public class CodeGeneratorTS : CodeGenerator
     {
-        private const string ClientRuntimePackage = "ms-rest-js version 1.0.0";
+        private const string ClientRuntimePackage = "@azure/ms-rest-js version 1.6.0";
 
 
         public override string ImplementationFileExtension => ".ts";
