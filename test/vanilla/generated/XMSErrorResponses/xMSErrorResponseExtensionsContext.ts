@@ -35,6 +35,5 @@ export class XMSErrorResponseExtensionsContext extends msRest.ServiceClient {
 
     this.baseUri = options.baseUri || this.baseUri || "http://localhost";
     this.requestContentType = "application/json; charset=utf-8";
-
   }
 }

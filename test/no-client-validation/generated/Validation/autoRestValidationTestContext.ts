@@ -47,6 +47,5 @@ export class AutoRestValidationTestContext extends msRest.ServiceClient {
     this.requestContentType = "application/json; charset=utf-8";
     this.subscriptionId = subscriptionId;
     this.apiVersion = apiVersion;
-
   }
 }

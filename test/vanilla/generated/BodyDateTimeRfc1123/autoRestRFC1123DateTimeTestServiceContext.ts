@@ -35,6 +35,5 @@ export class AutoRestRFC1123DateTimeTestServiceContext extends msRest.ServiceCli
 
     this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
-
   }
 }

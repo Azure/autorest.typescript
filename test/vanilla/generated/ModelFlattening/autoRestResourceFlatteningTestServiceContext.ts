@@ -35,6 +35,5 @@ export class AutoRestResourceFlatteningTestServiceContext extends msRest.Service
 
     this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
-
   }
 }

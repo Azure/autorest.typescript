@@ -35,6 +35,5 @@ export class AutoRestUrlMutliCollectionFormatTestServiceContext extends msRest.S
 
     this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
-
   }
 }

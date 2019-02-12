@@ -18,8 +18,6 @@ if (usesCustomOptionsType)
 
 const packageName = "@Model.Settings.PackageName";
 const packageVersion = "@Model.Settings.PackageVersion";
-@{var requiredParameters = Model.Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));}
-@{var optionalParameters = Model.Properties.Where(p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)) && !p.IsConstant);}
 @EmptyLine
 export class @(Model.ContextName) extends msRest.ServiceClient {
   @(Model.GenerateClassProperties(EmptyLine))
@@ -27,7 +25,7 @@ export class @(Model.ContextName) extends msRest.ServiceClient {
   @(Model.GenerateConstructorComment(Model.ContextName))
 @{ var clientOptionType = Model.OptionalParameterTypeForClientConstructor == "ServiceClientOptions" ? "msRest.ServiceClientOptions" : Model.OptionalParameterTypeForClientConstructor;}
   constructor(@(!string.IsNullOrEmpty(Model.RequiredConstructorParametersTS) ? Model.RequiredConstructorParametersTS + ", " : "")options?: @clientOptionType) {
-@foreach (var param in requiredParameters)
+@foreach (var param in Model.RequiredParameters)
 {
 <text>
     if (@(param.Name) === null || @(param.Name) === undefined) {
@@ -57,7 +55,7 @@ export class @(Model.ContextName) extends msRest.ServiceClient {
 </text>
 }
 @EmptyLine
-    super(@(requiredParameters.Any(p => p.ModelType.IsPrimaryType(KnownPrimaryType.Credentials)) ? "credentials" : "undefined"), options);
+    super(@(Model.RequiredParameters.Any(p => p.ModelType.IsPrimaryType(KnownPrimaryType.Credentials)) ? "credentials" : "undefined"), options);
     @EmptyLine
 @foreach (var property in Model.Properties.Where(p => p.DefaultValue != null))
 {
@@ -86,14 +84,17 @@ else
 </text>
 }
 
-@foreach (var param in requiredParameters)
+@foreach (var param in Model.RequiredParameters)
 {
 <text>
     this.@(param.Name) = @(param.Name);
 </text>
 }
+@if (Model.OptionalParameters.Where(p => p.Name != "generatedClientRequestId").Any())
+{
 @EmptyLine
-@foreach (var property in optionalParameters.Where(p => p.Name != "generatedClientRequestId"))
+}
+@foreach (var property in Model.OptionalParameters.Where(p => p.Name != "generatedClientRequestId"))
 {
 <text>
     if(options.@(property.Name) !== null && options.@(property.Name) !== undefined) {

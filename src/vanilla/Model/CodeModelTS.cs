@@ -441,6 +441,22 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
+        public virtual IEnumerable<Property> RequiredParameters
+        {
+            get
+            {
+                return Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));
+            }
+        }
+
+        public virtual IEnumerable<Property> OptionalParameters
+        {
+            get
+            {
+                return Properties.Where(p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)) && !p.IsConstant);
+            }
+        }
+
         public override IEnumerable<string> MyReservedNames => new[] { Name };
 
         public string ExportMethodGroupNames()

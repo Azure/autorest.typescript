@@ -35,6 +35,5 @@ export class AutoRestSwaggerBATFormDataServiceContext extends msRest.ServiceClie
 
     this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "multipart/form-data";
-
   }
 }
