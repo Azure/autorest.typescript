@@ -126,6 +126,8 @@ namespace AutoRest.TypeScript
         /// </summary>
         public string[] SkipSubtypes { get; set; }
 
+        public string[] CustomServiceClientOptions { get; set; }
+
         /// <summary>
         /// Computes the NPM package referenced by an alias package.
         /// </summary>

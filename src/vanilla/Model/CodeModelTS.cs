@@ -423,6 +423,24 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
+        public virtual bool ShouldGenerateCustomServiceClientOptions
+        {
+            get
+            {
+                return Settings.CustomServiceClientOptions != null && Settings.CustomServiceClientOptions.Any();
+            }
+        }
+
+        public virtual string CustomServiceClientOptions
+        {
+            get
+            {
+                return String.Join(",\n", Settings.CustomServiceClientOptions
+                    .Select(str => str.Split('='))
+                    .Select(arr => $"\"{arr[0]}\": \"{arr[1]}\""));
+            }
+        }
+
         public override IEnumerable<string> MyReservedNames => new[] { Name };
 
         public string ExportMethodGroupNames()
