@@ -14,19 +14,13 @@ import * as Models from "./models";
 const packageName = "";
 const packageVersion = "";
 
-export class AutoRestParameterizedCustomHostTestClientContext extends msRest.ServiceClient {
-  subscriptionId: string;
-  dnsSuffix?: string;
+export class AutoRestSwaggerBATXMLServiceContext extends msRest.ServiceClient {
 
   /**
-   * Initializes a new instance of the AutoRestParameterizedCustomHostTestClientContext class.
-   * @param subscriptionId The subscription id with value 'test12'.
+   * Initializes a new instance of the AutoRestSwaggerBATXMLServiceContext class.
    * @param [options] The parameter options
    */
-  constructor(subscriptionId: string, options?: Models.AutoRestParameterizedCustomHostTestClientOptions) {
-    if (subscriptionId === null || subscriptionId === undefined) {
-      throw new Error('\'subscriptionId\' cannot be null.');
-    }
+  constructor(options?: Models.AutoRestSwaggerBATXMLServiceOptions) {
 
     if (!options) {
       options = {};
@@ -37,15 +31,18 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRest.Ser
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
 
+    if (true) {
+      options = {
+        ...options,
+        "noRetryPolicy": "true",
+        "userAgentHeaderName": "My-Header-Key"
+      };
+    }
+
     super(undefined, options);
 
-    this.dnsSuffix = 'host';
-    this.baseUri = "{vault}{secret}{dnsSuffix}";
+    this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
-    this.subscriptionId = subscriptionId;
 
-    if(options.dnsSuffix !== null && options.dnsSuffix !== undefined) {
-      this.dnsSuffix = options.dnsSuffix;
-    }
   }
 }

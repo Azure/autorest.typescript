@@ -25,7 +25,8 @@ export class AutoRestUrlMutliCollectionFormatTestServiceContext extends msRest.S
     if (!options) {
       options = {};
     }
-    if(!options.userAgent) {
+
+    if (!options.userAgent) {
       const defaultUserAgent = msRest.getDefaultUserAgentValue();
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }

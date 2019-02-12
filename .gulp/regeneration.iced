@@ -358,7 +358,7 @@ task 'regenerate-ts-custom-service-client-options', '', [], (done) ->
   regenExpected {
     'outputBaseDir': 'test/custom-service-client-options',
     'inputBaseDir': swaggerDir,
-    'mappings': compositeMappings,
+    'mappings': xmlMappings,
     'outputDir': 'generated',
     'language': 'typescript',
     'generateMetadata': true,
