@@ -42,16 +42,7 @@ export class @(Model.ContextName) extends msRest.ServiceClient {
       const defaultUserAgent = msRest.getDefaultUserAgentValue();
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
-@if(@Model.ShouldGenerateCustomServiceClientOptions)
-{
-@EmptyLine
-<text>
-    options = {
-      ...options,
-      @Model.CustomServiceClientOptions
-    };
-</text>
-}
+    @(Model.GenerateCustomServiceClientOptions(@EmptyLine))
 @EmptyLine
     super(@(Model.RequiredParameters.Any(p => p.ModelType.IsPrimaryType(KnownPrimaryType.Credentials)) ? "credentials" : "undefined"), options);
     @EmptyLine

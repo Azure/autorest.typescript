@@ -363,7 +363,7 @@ task 'regenerate-ts-custom-service-client-options', '', [], (done) ->
     'language': 'typescript',
     'generateMetadata': true,
     'sourceCodeFolderPath': 'lib',
-    'customServiceClientOptions': '[noRetryPolicy=true,userAgentHeaderName="My-Header-Key"]'
+    'customServiceClientOptions': '[noRetryPolicy=true,userAgentHeaderName=\'My-Header-Key\']'
   },done
   return null
 

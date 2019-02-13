@@ -423,24 +423,6 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        public virtual bool ShouldGenerateCustomServiceClientOptions
-        {
-            get
-            {
-                return Settings.CustomServiceClientOptions != null && Settings.CustomServiceClientOptions.Any();
-            }
-        }
-
-        public virtual string CustomServiceClientOptions
-        {
-            get
-            {
-                return String.Join(",\n", Settings.CustomServiceClientOptions
-                    .Select(str => str.Split('='))
-                    .Select(arr => $"\"{arr[0]}\": \"{arr[1]}\""));
-            }
-        }
-
         public virtual IEnumerable<Property> RequiredParameters
         {
             get
@@ -1181,6 +1163,25 @@ namespace AutoRest.TypeScript.Model
             }
             builder.Line(GenerateResponseTypes());
 
+            return builder.ToString();
+        }
+
+        public virtual string GenerateCustomServiceClientOptions(string emptyLine)
+        {
+            if (Settings.CustomServiceClientOptions == null || !Settings.CustomServiceClientOptions.Any()) {
+                return String.Empty;
+            }
+
+            TSBuilder builder = new TSBuilder();
+            builder.Block("options =", block => {
+                block.Line("...options,");
+
+                foreach (string optionSettings in Settings.CustomServiceClientOptions) {
+                    string[] keyValueArray = optionSettings.Split('=');
+                    block.Line($"\"{keyValueArray[0]}\": {keyValueArray[1].Replace("'", "\"")},");
+                }
+            });
+            builder.Line(";");
             return builder.ToString();
         }
     }
