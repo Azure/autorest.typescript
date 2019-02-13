@@ -1173,7 +1173,7 @@ namespace AutoRest.TypeScript.Model
             }
 
             TSBuilder builder = new TSBuilder();
-            builder.Block("options =", block => {
+            builder.Block("options =", false, block => {
                 block.Line("...options,");
 
                 foreach (string optionSettings in Settings.CustomServiceClientOptions) {

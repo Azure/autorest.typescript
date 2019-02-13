@@ -149,6 +149,17 @@ autorest --typescript \
   --skip-subtypes=[BaseResource,Resource,SubResource]
 ```
 
+## --custom-service-client-options
+A list of `ServiceClientOptions` settings to override in the generated client. By default keys are wrapped in quotes but values are not. Use single quotation marks (`'`) if you want your values to be injected as a string. See [ServiceClientOptions in @azure/ms-rest-js package](https://github.com/Azure/ms-rest-js/blob/master/lib/serviceClient.ts) for available options.
+```bash
+autorest --typescript \
+  --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> \
+  --license-header=MICROSOFT_MIT_NO_VERSION \
+  --input-file=<path-to-swagger-spec> \
+  --package-name=<your-package-name> \
+  --custom-service-client-options=[noRetryPolicy=true,userAgentHeaderName=\'My-Header-Key\']
+```
+
 ### Further Documentation on the Command Line
 The complete list of command line arguments can be found [here](https://github.com/Azure/autorest/blob/master/docs/user/cli.md). Not every command line option is available for the typescript extension.
 
