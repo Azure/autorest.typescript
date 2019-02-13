@@ -30,6 +30,7 @@ export class AutoRestSwaggerBATXMLServiceContext extends msRest.ServiceClient {
       const defaultUserAgent = msRest.getDefaultUserAgentValue();
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
+
     options = {
       ...options,
       "noRetryPolicy": true,

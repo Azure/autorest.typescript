@@ -1173,6 +1173,7 @@ namespace AutoRest.TypeScript.Model
             }
 
             TSBuilder builder = new TSBuilder();
+            builder.Line(emptyLine);
             builder.Block("options =", false, block => {
                 block.Line("...options,");
 
