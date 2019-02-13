@@ -63,6 +63,9 @@ regenExpected = (opts,done) ->
     if (opts.skipSubtypes != undefined && opts.skipSubtypes.length > 0)
       args.push("--skip-subtypes=#{opts.skipSubtypes}")
 
+    if (opts.customServiceClientOptions != undefined && opts.customServiceClientOptions.length > 0)
+      args.push("--custom-service-client-options=#{opts.customServiceClientOptions}")
+
     if (!!opts.nsPrefix)
       if (optsMappingsValue instanceof Array && optsMappingsValue[1] != undefined)
         args.push("--#{opts.language}.namespace=#{optsMappingsValue[1]}")
@@ -351,6 +354,18 @@ task 'regenerate-ts-skip-subtypes', '', [], (done) ->
   },done
   return null
 
+task 'regenerate-ts-custom-service-client-options', '', [], (done) ->
+  regenExpected {
+    'outputBaseDir': 'test/custom-service-client-options',
+    'inputBaseDir': swaggerDir,
+    'mappings': xmlMappings,
+    'outputDir': 'generated',
+    'language': 'typescript',
+    'generateMetadata': true,
+    'sourceCodeFolderPath': 'lib',
+    'customServiceClientOptions': '[noRetryPolicy=true,userAgentHeaderName=\'My-Header-Key\']'
+  },done
+  return null
 
 tsTasks = [
   'regenerate-tscomposite',
@@ -361,7 +376,8 @@ tsTasks = [
   'regenerate-ts-date-time-as-string',
   'regenerate-ts-optional-response-headers',
   'regenerate-ts-rename-parameter',
-  'regenerate-ts-skip-subtypes'
+  'regenerate-ts-skip-subtypes',
+  'regenerate-ts-custom-service-client-options'
 ]
 
 task 'regenerate-ts', '', tsTasks, (done) ->

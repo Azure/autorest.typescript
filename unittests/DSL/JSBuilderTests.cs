@@ -854,5 +854,89 @@ namespace AutoRest.TypeScript.DSL
         {
             Assert.AreEqual("\"ab`c\"", JSBuilder.Quote("ab`c"));
         }
+
+        [TestMethod]
+        public void ConstObjectVariableWithNoProperties()
+        {
+            JSBuilder builder = new JSBuilder();
+            builder.ConstObjectVariable("a", value => { });
+            AssertEx.EqualLines("const a = {};", builder);
+        }
+
+        [TestMethod]
+        public void ConstObjectVariableWithOneProperty()
+        {
+            JSBuilder builder = new JSBuilder();
+            builder.ConstObjectVariable("a", value => { value.BooleanProperty("b", true); });
+            AssertEx.EqualLines(new[]
+                {
+                    "const a = {",
+                    "  b: true",
+                    "};"
+                },
+                builder);
+        }
+
+        [TestMethod]
+        public void ConstObjectVariableWithTwoProperties()
+        {
+            JSBuilder builder = new JSBuilder();
+            builder.ConstObjectVariable("a", value =>
+            {
+                value.BooleanProperty("b", true);
+                value.QuotedStringProperty("c", "cats");
+            });
+            AssertEx.EqualLines(new[]
+                {
+                    "const a = {",
+                    "  b: true,",
+                    "  c: \"cats\"",
+                    "};"
+                },
+                builder);
+        }
+
+
+
+        [TestMethod]
+        public void ObjectAssignmentWithNoProperties()
+        {
+            JSBuilder builder = new JSBuilder();
+            builder.ObjectAssignment("a", value => { });
+            AssertEx.EqualLines("a = {};", builder);
+        }
+
+        [TestMethod]
+        public void ObjectAssignmentWithOneProperty()
+        {
+            JSBuilder builder = new JSBuilder();
+            builder.ObjectAssignment("a", value => { value.BooleanProperty("b", true); });
+            AssertEx.EqualLines(new[]
+                {
+                    "a = {",
+                    "  b: true",
+                    "};"
+                },
+                builder);
+        }
+
+        [TestMethod]
+        public void ObjectAssignmentWithTwoProperties()
+        {
+            JSBuilder builder = new JSBuilder();
+            builder.ObjectAssignment("a", value =>
+            {
+                value.BooleanProperty("b", true);
+                value.QuotedStringProperty("c", "cats");
+            });
+            AssertEx.EqualLines(new[]
+                {
+                    "a = {",
+                    "  b: true,",
+                    "  c: \"cats\"",
+                    "};"
+                },
+                builder);
+        }
     }
 }

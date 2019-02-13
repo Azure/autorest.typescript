@@ -423,6 +423,22 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
+        public virtual IEnumerable<Property> RequiredParameters
+        {
+            get
+            {
+                return Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));
+            }
+        }
+
+        public virtual IEnumerable<Property> OptionalParameters
+        {
+            get
+            {
+                return Properties.Where(p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)) && !p.IsConstant);
+            }
+        }
+
         public override IEnumerable<string> MyReservedNames => new[] { Name };
 
         public string ExportMethodGroupNames()
@@ -1147,6 +1163,28 @@ namespace AutoRest.TypeScript.Model
             }
             builder.Line(GenerateResponseTypes());
 
+            return builder.ToString();
+        }
+
+        public virtual string GenerateCustomServiceClientOptions(string emptyLine)
+        {
+            if (Settings.CustomServiceClientOptions == null || !Settings.CustomServiceClientOptions.Any()) {
+                return String.Empty;
+            }
+
+            TSBuilder builder = new TSBuilder();
+            builder.Line(emptyLine);
+            builder.ObjectAssignment("options", options =>
+            {
+                options.Spread("options");
+                foreach (string optionSettings in Settings.CustomServiceClientOptions)
+                {
+                    string[] keyValueArray = optionSettings.Split('=');
+                    string propertyName = $"\"{keyValueArray[0]}\"";
+                    string propertyValue = keyValueArray[1].Replace("'", "\"");
+                    options.TextProperty(propertyName, propertyValue);
+                }
+            });
             return builder.ToString();
         }
     }

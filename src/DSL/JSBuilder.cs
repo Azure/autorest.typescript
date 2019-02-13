@@ -474,9 +474,14 @@ namespace AutoRest.TypeScript.DSL
 
         public void ConstObjectVariable(string variableName, Action<JSObject> valueAction)
         {
-            Text($"const {variableName} = ");
+            ObjectAssignment($"const {variableName}", valueAction);
+        }
+
+        public void ObjectAssignment(string variableName, Action<JSObject> valueAction)
+        {
+            Text($"{variableName} = ");
             Object(valueAction);
-            Line($";");
+            Line(";");
         }
 
         public void ConstObjectVariable(string variableName, string value)

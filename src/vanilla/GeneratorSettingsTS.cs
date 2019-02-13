@@ -127,6 +127,14 @@ namespace AutoRest.TypeScript
         public string[] SkipSubtypes { get; set; }
 
         /// <summary>
+        /// A list of ServiceClientOptions settings to override in the generated client.
+        /// By default keys are wrapped in quotes but values are not.
+        /// Use single quotation marks ("'") if you want your values to be injected as a string.
+        /// See ServiceClientOptions in @azure/ms-rest-js package for available options.
+        /// </summary>
+        public string[] CustomServiceClientOptions { get; set; }
+
+        /// <summary>
         /// Computes the NPM package referenced by an alias package.
         /// </summary>
         public string AliasedNpmPackageName

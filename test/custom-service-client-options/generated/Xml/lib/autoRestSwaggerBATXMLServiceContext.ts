@@ -14,13 +14,13 @@ import * as Models from "./models";
 const packageName = "";
 const packageVersion = "";
 
-export class CompositeBoolIntContext extends msRest.ServiceClient {
+export class AutoRestSwaggerBATXMLServiceContext extends msRest.ServiceClient {
 
   /**
-   * Initializes a new instance of the CompositeBoolIntContext class.
+   * Initializes a new instance of the AutoRestSwaggerBATXMLServiceContext class.
    * @param [options] The parameter options
    */
-  constructor(options?: Models.CompositeBoolIntOptions) {
+  constructor(options?: Models.AutoRestSwaggerBATXMLServiceOptions) {
 
     if (!options) {
       options = {};
@@ -30,6 +30,12 @@ export class CompositeBoolIntContext extends msRest.ServiceClient {
       const defaultUserAgent = msRest.getDefaultUserAgentValue();
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
+
+    options = {
+      ...options,
+      "noRetryPolicy": true,
+      "userAgentHeaderName": "My-Header-Key"
+    };
 
     super(undefined, options);
 
