@@ -34,7 +34,7 @@ export class AutoRestSwaggerBATXMLServiceContext extends msRest.ServiceClient {
     options = {
       ...options,
       "noRetryPolicy": true,
-      "userAgentHeaderName": "My-Header-Key",
+      "userAgentHeaderName": "My-Header-Key"
     };
 
     super(undefined, options);

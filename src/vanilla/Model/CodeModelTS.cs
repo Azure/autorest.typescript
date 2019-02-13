@@ -1174,15 +1174,17 @@ namespace AutoRest.TypeScript.Model
 
             TSBuilder builder = new TSBuilder();
             builder.Line(emptyLine);
-            builder.Block("options =", false, block => {
-                block.Line("...options,");
-
-                foreach (string optionSettings in Settings.CustomServiceClientOptions) {
+            builder.ObjectAssignment("options", options =>
+            {
+                options.Spread("options");
+                foreach (string optionSettings in Settings.CustomServiceClientOptions)
+                {
                     string[] keyValueArray = optionSettings.Split('=');
-                    block.Line($"\"{keyValueArray[0]}\": {keyValueArray[1].Replace("'", "\"")},");
+                    string propertyName = $"\"{keyValueArray[0]}\"";
+                    string propertyValue = keyValueArray[1].Replace("'", "\"");
+                    options.TextProperty(propertyName, propertyValue);
                 }
             });
-            builder.Line(";");
             return builder.ToString();
         }
     }
