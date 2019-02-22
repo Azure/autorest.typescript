@@ -407,7 +407,7 @@ namespace AutoRest.TypeScript.Model
             operationSpec.QuotedStringProperty("httpMethod", HttpMethod.ToString().ToUpper());
             if (IsAbsoluteUrl)
             {
-                operationSpec.QuotedStringProperty("baseUrl", CodeModelTS.SchemeHostAndPort);
+                operationSpec.QuotedStringProperty("baseUrl", CodeModelTS.BaseUrl);
             }
 
             string path = Path;

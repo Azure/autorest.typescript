@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using AutoRest.Core.Model;
@@ -98,25 +98,6 @@ namespace AutoRest.TypeScript.Model
                 }
 
                 return _requestContentType;
-            }
-        }
-
-        [JsonIgnore]
-        public string SchemeHostAndPort
-        {
-            get
-            {
-                string result = null;
-                string baseUrl = BaseUrl;
-                if (!string.IsNullOrEmpty(baseUrl))
-                {
-                    const string colonSlashSlash = "://";
-                    int colonSlashSlashIndex = baseUrl.IndexOf(colonSlashSlash);
-                    int hostStartIndex = colonSlashSlashIndex == -1 ? 0 : colonSlashSlashIndex + colonSlashSlash.Length;
-                    int pathStartIndex = baseUrl.IndexOf('/', hostStartIndex);
-                    result = (pathStartIndex == -1 ? baseUrl : baseUrl.Substring(0, pathStartIndex));
-                }
-                return result;
             }
         }
 
