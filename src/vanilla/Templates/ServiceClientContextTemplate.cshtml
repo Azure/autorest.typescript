@@ -52,20 +52,7 @@ export class @(Model.ContextName) extends msRest.ServiceClient {
     this.@(property.Name) = @(property.DefaultValue);
 </text>
 }
-
-@if (!Model.IsCustomBaseUri)
-{
-<text>
-    this.baseUri = options.baseUri || this.baseUri || "@Model.SchemeHostAndPort";
-</text>
-}
-else
-{
-<text>
-    this.baseUri = "@Model.SchemeHostAndPort";
-</text>
-}
-
+    @Model.GenerateBaseUri()
 @if (!string.IsNullOrEmpty(Model.RequestContentType))
 {
 <text>

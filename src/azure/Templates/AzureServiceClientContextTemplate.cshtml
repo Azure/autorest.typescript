@@ -51,17 +51,7 @@ export class @(Model.ContextName) extends msRestAzure.AzureServiceClient {
     @:this.@(property.Name) = @(property.DefaultValue);
 }
 
-@if(!Model.IsCustomBaseUri)
-{
-<text>
-    this.baseUri = options.baseUri || this.baseUri || "@Model.BaseUrl";
-</text>
-}
-else
-{
-    @:this.baseUri = '@Model.BaseUrl';
-}
-
+    @Model.GenerateBaseUri()
 @if (!string.IsNullOrEmpty(Model.RequestContentType))
 {
 <text>

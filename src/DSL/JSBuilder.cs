@@ -469,7 +469,20 @@ namespace AutoRest.TypeScript.DSL
 
         public void ConstVariable(string variableName, string variableValue)
         {
-            Line($"const {variableName} = {variableValue};");
+            Assignment($"const {variableName}", variableValue);
+        }
+
+        public void ThisAssignment(string memberVariableName, string variableValue) {
+            Assignment($"this.{memberVariableName}", variableValue);
+        }
+
+        public void ConstObjectVariable(string variableName, string value)
+        {
+            Assignment($"const {variableName}", value);
+        }
+
+        public void Assignment(string variableName, string variableValue) {
+            Line($"{variableName} = {variableValue};");
         }
 
         public void ConstObjectVariable(string variableName, Action<JSObject> valueAction)
@@ -482,11 +495,6 @@ namespace AutoRest.TypeScript.DSL
             Text($"{variableName} = ");
             Object(valueAction);
             Line(";");
-        }
-
-        public void ConstObjectVariable(string variableName, string value)
-        {
-            Line($"const {variableName} = {value};");
         }
 
         public void ImportAllAs(string importAs, string importSource)
