@@ -43,7 +43,7 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRestAzur
     this.dnsSuffix = 'host';
     this.acceptLanguage = 'en-US';
     this.longRunningOperationRetryTimeout = 30;
-    this.baseUri = '{vault}{secret}{dnsSuffix}';
+    this.baseUri = "{vault}{secret}{dnsSuffix}";
     this.requestContentType = "application/json; charset=utf-8";
     this.credentials = credentials;
     this.subscriptionId = subscriptionId;

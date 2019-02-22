@@ -38,7 +38,7 @@ export class AutoRestParameterizedHostTestClientContext extends msRestAzure.Azur
     this.host = 'host';
     this.acceptLanguage = 'en-US';
     this.longRunningOperationRetryTimeout = 30;
-    this.baseUri = 'http://{accountName}{host}';
+    this.baseUri = "http://{accountName}{host}";
     this.requestContentType = "application/json; charset=utf-8";
     this.credentials = credentials;
 

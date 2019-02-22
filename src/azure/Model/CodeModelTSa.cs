@@ -188,6 +188,5 @@ namespace AutoRest.TypeScript.Azure.Model
 
             return builder.ToString();
         }
-
     }
 }
