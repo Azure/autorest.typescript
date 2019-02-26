@@ -21,7 +21,6 @@ export class AutoRestDateTestServiceContext extends msRest.ServiceClient {
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestDateTestServiceOptions) {
-
     if (!options) {
       options = {};
     }

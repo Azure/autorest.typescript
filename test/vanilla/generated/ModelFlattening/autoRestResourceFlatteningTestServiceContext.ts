@@ -21,7 +21,6 @@ export class AutoRestResourceFlatteningTestServiceContext extends msRest.Service
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestResourceFlatteningTestServiceOptions) {
-
     if (!options) {
       options = {};
     }

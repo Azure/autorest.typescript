@@ -21,7 +21,6 @@ export class AutoRestRFC1123DateTimeTestServiceContext extends msRest.ServiceCli
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestRFC1123DateTimeTestServiceOptions) {
-
     if (!options) {
       options = {};
     }

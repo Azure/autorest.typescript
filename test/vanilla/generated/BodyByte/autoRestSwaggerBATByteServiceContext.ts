@@ -21,7 +21,6 @@ export class AutoRestSwaggerBATByteServiceContext extends msRest.ServiceClient {
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATByteServiceOptions) {
-
     if (!options) {
       options = {};
     }

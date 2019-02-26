@@ -23,7 +23,6 @@ export class ComplexModelClientContext extends msRest.ServiceClient {
    * @param [options] The parameter options
    */
   constructor(options?: Models.ComplexModelClientOptions) {
-
     if (!options) {
       options = {};
     }

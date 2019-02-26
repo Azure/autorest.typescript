@@ -21,7 +21,6 @@ export class AdditionalPropertiesClientContext extends msRest.ServiceClient {
    * @param [options] The parameter options
    */
   constructor(options?: Models.AdditionalPropertiesClientOptions) {
-
     if (!options) {
       options = {};
     }

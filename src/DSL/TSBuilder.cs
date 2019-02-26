@@ -307,5 +307,16 @@ namespace AutoRest.TypeScript.DSL
                 action?.Invoke(new TSEnum(this));
             });
         }
+
+        public void Constructor(string parameters, string superParameters, Action<TSBlock> guardChecks = null, Action<TSBlock> implementation = null)
+        {
+            Block($"constructor({parameters})", block => {
+                guardChecks?.Invoke(new TSBlock(this));
+                Line();
+                Line($"super({superParameters});");
+                Line();
+                implementation?.Invoke(new TSBlock(this));
+            });
+        }
     }
 }

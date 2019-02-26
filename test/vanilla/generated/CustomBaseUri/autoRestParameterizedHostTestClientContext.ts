@@ -22,7 +22,6 @@ export class AutoRestParameterizedHostTestClientContext extends msRest.ServiceCl
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestParameterizedHostTestClientOptions) {
-
     if (!options) {
       options = {};
     }
@@ -37,8 +36,7 @@ export class AutoRestParameterizedHostTestClientContext extends msRest.ServiceCl
     this.host = 'host';
     this.baseUri = "http://{accountName}{host}";
     this.requestContentType = "application/json; charset=utf-8";
-
-    if(options.host !== null && options.host !== undefined) {
+    if (options.host !== null && options.host !== undefined) {
       this.host = options.host;
     }
   }

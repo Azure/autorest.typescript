@@ -188,5 +188,10 @@ namespace AutoRest.TypeScript.Azure.Model
 
             return builder.ToString();
         }
+
+        protected override string GetServiceClientOptionsName()
+        {
+            return "Azure" + base.GetServiceClientOptionsName();
+        }
     }
 }

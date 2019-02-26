@@ -21,7 +21,6 @@ export class AutoRestReportServiceContext extends msRest.ServiceClient {
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestReportServiceOptions) {
-
     if (!options) {
       options = {};
     }

@@ -21,7 +21,6 @@ export class AutoRestIntegerTestServiceContext extends msRest.ServiceClient {
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestIntegerTestServiceOptions) {
-
     if (!options) {
       options = {};
     }
