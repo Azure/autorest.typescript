@@ -394,7 +394,7 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        public virtual string GenerateConstructor(string superParameterList, Action<TSBlock> guardChecks = null, Action<TSBlock> implementation = null)
+        public virtual string GenerateConstructor(string superArgumentList, Action<TSBlock> guardChecks = null, Action<TSBlock> implementation = null)
         {
             TSBuilder builder = new TSBuilder();
             var clientOptionType = OptionalParameterTypeForClientConstructor == GetServiceClientOptionsName()
@@ -403,7 +403,7 @@ namespace AutoRest.TypeScript.Model
 
             string parameterList = (!string.IsNullOrEmpty(RequiredConstructorParametersTS) ? RequiredConstructorParametersTS + ", " : "") + "options?: " + clientOptionType;
 
-            builder.Constructor(parameterList, superParameterList, guardChecks, implementation);
+            builder.Constructor(parameterList, superArgumentList, guardChecks, implementation);
 
             return builder.ToString();
         }
@@ -411,7 +411,7 @@ namespace AutoRest.TypeScript.Model
         public virtual string GenerateClientConstructor()
         {
             string superParameterList = (!string.IsNullOrEmpty(RequiredConstructorParameters) ? RequiredConstructorParameters + ", " : "") + "options";
-            return this.GenerateConstructor(superParameterList, null, GenerateOperationInstantiating);
+            return this.GenerateConstructor(superParameterList, null, GenerateOperationGroupInitialization);
         }
 
         public virtual string GenerateContextConstructor(string emptyLine)
@@ -422,7 +422,7 @@ namespace AutoRest.TypeScript.Model
                 {
                     block.If($"{param.Name} === null || {param.Name} === undefined", then =>
                     {
-                        then.Line($"throw new Error(\"\'{param.Name}\' cannot be null.\");");
+                        then.Throw($"new Error(\"\'{param.Name}\' cannot be null.\")");
                     });
                 }
 
@@ -433,7 +433,7 @@ namespace AutoRest.TypeScript.Model
 
                 block.If("!options", then =>
                 {
-                    then.Line("options = {};");
+                    then.Assignment("options", "{}");
                 });
 
                 block.Line(emptyLine);
@@ -490,7 +490,7 @@ namespace AutoRest.TypeScript.Model
             return ServiceClientOptions;
         }
 
-        private void GenerateOperationInstantiating(TSBlock block)
+        private void GenerateOperationGroupInitialization(TSBlock block)
         {
             foreach (var methodGroup in MethodGroupModels)
             {
