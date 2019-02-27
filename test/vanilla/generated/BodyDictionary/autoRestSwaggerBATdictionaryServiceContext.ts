@@ -21,7 +21,6 @@ export class AutoRestSwaggerBATdictionaryServiceContext extends msRest.ServiceCl
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATdictionaryServiceOptions) {
-
     if (!options) {
       options = {};
     }

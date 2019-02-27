@@ -21,7 +21,6 @@ export class XMSErrorResponseExtensionsContext extends msRest.ServiceClient {
    * @param [options] The parameter options
    */
   constructor(options?: Models.XMSErrorResponseExtensionsOptions) {
-
     if (!options) {
       options = {};
     }

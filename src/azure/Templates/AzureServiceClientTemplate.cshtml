@@ -20,14 +20,7 @@ foreach (var methodGroup in Model.MethodGroupModels)
 @EmptyLine
 }
   @(Model.GenerateConstructorComment(Model.Name))
-@{ var clientOptionType = Model.OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions" ? "msRestAzure.AzureServiceClientOptions" : Model.OptionalParameterTypeForClientConstructor;}
-  constructor(@(!string.IsNullOrEmpty(Model.RequiredConstructorParametersTS) ? Model.RequiredConstructorParametersTS + ", " : "")options?: @clientOptionType) {
-    super(@(!string.IsNullOrEmpty(Model.RequiredConstructorParameters) ? Model.RequiredConstructorParameters + ", " : "")options);
-  @foreach (var methodGroup in Model.MethodGroupModels)
-  {
-    @:this.@(methodGroup.NameForProperty) = new operations.@(methodGroup.TypeName)(this);
-  }
-  }
+  @(Model.GenerateClientConstructor())
   @(CodeGeneratorTS.GenerateMethods(Model.MethodTemplateModels, EmptyLine))
 }
 @EmptyLine

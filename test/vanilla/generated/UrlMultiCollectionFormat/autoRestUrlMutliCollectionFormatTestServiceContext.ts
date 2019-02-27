@@ -21,7 +21,6 @@ export class AutoRestUrlMutliCollectionFormatTestServiceContext extends msRest.S
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestUrlMutliCollectionFormatTestServiceOptions) {
-
     if (!options) {
       options = {};
     }

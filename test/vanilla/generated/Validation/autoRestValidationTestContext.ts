@@ -25,11 +25,11 @@ export class AutoRestValidationTestContext extends msRest.ServiceClient {
    * @param [options] The parameter options
    */
   constructor(subscriptionId: string, apiVersion: string, options?: Models.AutoRestValidationTestOptions) {
-    if (subscriptionId === null || subscriptionId === undefined) {
-      throw new Error('\'subscriptionId\' cannot be null.');
+    if (subscriptionId == undefined) {
+      throw new Error("'subscriptionId' cannot be null.");
     }
-    if (apiVersion === null || apiVersion === undefined) {
-      throw new Error('\'apiVersion\' cannot be null.');
+    if (apiVersion == undefined) {
+      throw new Error("'apiVersion' cannot be null.");
     }
 
     if (!options) {

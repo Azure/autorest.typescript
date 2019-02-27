@@ -21,7 +21,6 @@ export class AutoRestParameterFlatteningContext extends msRest.ServiceClient {
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestParameterFlatteningOptions) {
-
     if (!options) {
       options = {};
     }

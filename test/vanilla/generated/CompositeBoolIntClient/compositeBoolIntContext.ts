@@ -21,7 +21,6 @@ export class CompositeBoolIntContext extends msRest.ServiceClient {
    * @param [options] The parameter options
    */
   constructor(options?: Models.CompositeBoolIntOptions) {
-
     if (!options) {
       options = {};
     }

@@ -21,7 +21,6 @@ export class AutoRestHttpInfrastructureTestServiceContext extends msRest.Service
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestHttpInfrastructureTestServiceOptions) {
-
     if (!options) {
       options = {};
     }

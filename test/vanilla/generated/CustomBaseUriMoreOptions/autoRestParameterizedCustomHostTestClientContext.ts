@@ -24,8 +24,8 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRest.Ser
    * @param [options] The parameter options
    */
   constructor(subscriptionId: string, options?: Models.AutoRestParameterizedCustomHostTestClientOptions) {
-    if (subscriptionId === null || subscriptionId === undefined) {
-      throw new Error('\'subscriptionId\' cannot be null.');
+    if (subscriptionId == undefined) {
+      throw new Error("'subscriptionId' cannot be null.");
     }
 
     if (!options) {
@@ -43,8 +43,7 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRest.Ser
     this.baseUri = "{vault}{secret}{dnsSuffix}";
     this.requestContentType = "application/json; charset=utf-8";
     this.subscriptionId = subscriptionId;
-
-    if(options.dnsSuffix !== null && options.dnsSuffix !== undefined) {
+    if (options.dnsSuffix !== null && options.dnsSuffix !== undefined) {
       this.dnsSuffix = options.dnsSuffix;
     }
   }

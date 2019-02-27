@@ -21,7 +21,6 @@ export class AutoRestSwaggerBATFormDataServiceContext extends msRest.ServiceClie
    * @param [options] The parameter options
    */
   constructor(options?: Models.AutoRestSwaggerBATFormDataServiceOptions) {
-
     if (!options) {
       options = {};
     }

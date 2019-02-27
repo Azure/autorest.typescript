@@ -4,6 +4,7 @@
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.Extensions;
+using AutoRest.Core.Model;
 using AutoRest.TypeScript.DSL;
 using Newtonsoft.Json;
 using System;
@@ -237,9 +238,12 @@ namespace AutoRest.TypeScript.Model
         {
             get
             {
-                if (Settings.AutoPublish.HasValue) {
+                if (Settings.AutoPublish.HasValue)
+                {
                     return Settings.AutoPublish.Value;
-                } else {
+                }
+                else
+                {
                     bool isGeneratedForAzureSdkForJs = Settings.OutputFolder.Contains(defaultGitHubRepositoryName);
                     return isGeneratedForAzureSdkForJs;
                 }
@@ -350,7 +354,7 @@ namespace AutoRest.TypeScript.Model
             get
             {
                 var requireParams = new List<string>();
-                this.Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue))
+                Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue))
                     .ForEach(p => requireParams.Add(p.Name.ToCamelCase()));
 
                 if (requireParams == null || requireParams.Count == 0)
@@ -372,7 +376,8 @@ namespace AutoRest.TypeScript.Model
                 StringBuilder requiredParams = new StringBuilder();
 
                 bool first = true;
-                foreach (var p in this.Properties)
+                IEnumerable<Property> sortedProperties = Properties.OrderBy(prop => prop.ModelType.IsPrimaryType(KnownPrimaryType.Credentials) ? 0 : 1);
+                foreach (var p in sortedProperties)
                 {
                     if (!p.IsRequired || p.IsConstant || (p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)))
                         continue;
@@ -388,6 +393,110 @@ namespace AutoRest.TypeScript.Model
                 }
 
                 return requiredParams.ToString();
+            }
+        }
+
+        public virtual string GenerateConstructor(string superArgumentList, Action<TSBlock> guardChecks = null, Action<TSBlock> implementation = null)
+        {
+            TSBuilder builder = new TSBuilder();
+            var clientOptionType = OptionalParameterTypeForClientConstructor == GetServiceClientOptionsName()
+                ? "msRest." + GetServiceClientOptionsName()
+                : OptionalParameterTypeForClientConstructor;
+
+            string parameterList = (!string.IsNullOrEmpty(RequiredConstructorParametersTS) ? RequiredConstructorParametersTS + ", " : "") + "options?: " + clientOptionType;
+
+            builder.Constructor(parameterList, superArgumentList, guardChecks, implementation);
+
+            return builder.ToString();
+        }
+
+        public virtual string GenerateClientConstructor()
+        {
+            string superParameterList = (!string.IsNullOrEmpty(RequiredConstructorParameters) ? RequiredConstructorParameters + ", " : "") + "options";
+            return this.GenerateConstructor(superParameterList, null, GenerateOperationGroupInitialization);
+        }
+
+        public virtual string GenerateContextConstructor(string emptyLine)
+        {
+            Action<TSBlock> guardCheck = block =>
+            {
+                foreach (var param in RequiredParameters)
+                {
+                    block.If($"{param.Name} == undefined", then =>
+                    {
+                        then.Throw($"new Error(\"\'{param.Name}\' cannot be null.\")");
+                    });
+                }
+
+                if (RequiredParameters.Any())
+                {
+                    block.Line(emptyLine);
+                }
+
+                block.If("!options", then =>
+                {
+                    then.Assignment("options", "{}");
+                });
+
+                block.Line(emptyLine);
+                block.If("!options.userAgent", then =>
+                {
+                    then.ConstObjectVariable("defaultUserAgent", "msRest.getDefaultUserAgentValue()");
+                    then.Assignment("options.userAgent", "`${packageName}/${packageVersion} ${defaultUserAgent}`");
+                });
+
+                block.Line(GenerateCustomServiceClientOptions(emptyLine));
+                block.Line(emptyLine);
+            };
+
+            string credentialsParameter = RequiredParameters.Any(p => p.ModelType.IsPrimaryType(KnownPrimaryType.Credentials)) ? "credentials" : "undefined";
+            string superParameters = credentialsParameter + ", options";
+
+            Action<TSBlock> implementation = block =>
+            {
+                block.Line(emptyLine);
+                foreach (var property in Properties.Where(p => p.DefaultValue != null))
+                {
+                    block.ThisAssignment(property.Name, property.DefaultValue);
+                }
+
+                block.Line(GenerateBaseUri());
+
+                if (!String.IsNullOrEmpty(RequestContentType))
+                {
+                    block.ThisAssignment("requestContentType", $"\"{RequestContentType}\"");
+                }
+
+                foreach (var param in RequiredParameters)
+                {
+                    block.ThisAssignment(param.Name, param.Name);
+                }
+
+                if (OptionalParameters.Where(p => p.Name != "generatedClientRequestId").Any())
+                {
+                    foreach (var property in OptionalParameters.Where(p => p.Name != "generatedClientRequestId"))
+                    {
+                        block.If($"options.{property.Name} !== null && options.{property.Name} !== undefined", then =>
+                        {
+                            block.ThisAssignment(property.Name, $"options.{property.Name}");
+                        });
+                    }
+                }
+            };
+
+            return this.GenerateConstructor(superParameters, guardCheck, implementation);
+        }
+
+        protected virtual string GetServiceClientOptionsName()
+        {
+            return ServiceClientOptions;
+        }
+
+        private void GenerateOperationGroupInitialization(TSBlock block)
+        {
+            foreach (var methodGroup in MethodGroupModels)
+            {
+                block.ThisAssignment(methodGroup.NameForProperty, $"new operations.{methodGroup.TypeName}(this)");
             }
         }
 
@@ -549,7 +658,7 @@ namespace AutoRest.TypeScript.Model
 
         private sealed class ParameterNameComparer : IEqualityComparer<ParameterTS>
         {
-            private ParameterNameComparer() {}
+            private ParameterNameComparer() { }
             public static ParameterNameComparer Instance { get; } = new ParameterNameComparer();
 
             public bool Equals(ParameterTS x, ParameterTS y)
@@ -1113,7 +1222,8 @@ namespace AutoRest.TypeScript.Model
                 });
                 packageJson.BooleanProperty("sideEffects", false);
 
-                if (AutoPublish) {
+                if (AutoPublish)
+                {
                     packageJson.BooleanProperty("autoPublish", true);
                 }
             });
@@ -1128,16 +1238,16 @@ namespace AutoRest.TypeScript.Model
             builder.Comment(AutoRest.Core.Settings.Instance.Header);
             builder.Line();
             builder.Line(ConstructRuntimeImportForModelIndex());
-            if(ContainsDurationPropertyInModels() || IsAnyModelInheritingFromRequestOptionsBase() || MethodsWithCustomResponseType.Any())
+            if (ContainsDurationPropertyInModels() || IsAnyModelInheritingFromRequestOptionsBase() || MethodsWithCustomResponseType.Any())
             {
                 builder.ImportAllAs("msRest", "@azure/ms-rest-js");
             }
-            foreach(CompositeTypeTS model in OrderedModelTemplateModels)
+            foreach (CompositeTypeTS model in OrderedModelTemplateModels)
             {
                 builder.Line();
                 builder.Line(model.Generate());
             }
-            foreach(EnumTypeTS model in EnumTemplateModels)
+            foreach (EnumTypeTS model in EnumTemplateModels)
             {
                 builder.Line();
                 builder.Line(model.Generate(Settings.EnumTypes));
@@ -1149,7 +1259,8 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string GenerateCustomServiceClientOptions(string emptyLine)
         {
-            if (Settings.CustomServiceClientOptions == null || !Settings.CustomServiceClientOptions.Any()) {
+            if (Settings.CustomServiceClientOptions == null || !Settings.CustomServiceClientOptions.Any())
+            {
                 return String.Empty;
             }
 
@@ -1169,7 +1280,8 @@ namespace AutoRest.TypeScript.Model
             return builder.ToString();
         }
 
-        public virtual string GenerateBaseUri() {
+        public virtual string GenerateBaseUri()
+        {
             TSBuilder builder = new TSBuilder();
             string baseUrlValue = !this.IsCustomBaseUri
                 ? baseUrlValue = $"options.baseUri || this.baseUri || \"{BaseUrl}\""

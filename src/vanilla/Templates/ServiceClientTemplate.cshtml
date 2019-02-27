@@ -22,16 +22,7 @@ class @(Model.Name) extends @(Model.ContextName) {
 </text>
 }
   @(Model.GenerateConstructorComment(Model.Name))
-@{ var clientOptionType = Model.OptionalParameterTypeForClientConstructor == "ServiceClientOptions" ? "msRest.ServiceClientOptions" : Model.OptionalParameterTypeForClientConstructor;}
-  constructor(@(!string.IsNullOrEmpty(Model.RequiredConstructorParametersTS) ? Model.RequiredConstructorParametersTS + ", " : "")options?: @clientOptionType) {
-    super(@(!string.IsNullOrEmpty(Model.RequiredConstructorParameters) ? Model.RequiredConstructorParameters + ", " : "")options);
-@foreach (var methodGroup in Model.MethodGroupModels)
-{
-<text>
-    this.@(methodGroup.NameForProperty) = new operations.@(methodGroup.TypeName)(this);
-</text>
-}
-  }
+  @(Model.GenerateClientConstructor())
   @(CodeGeneratorTS.GenerateMethods(Model.MethodTemplateModels, EmptyLine))
 }
 @EmptyLine

@@ -129,5 +129,15 @@ namespace AutoRest.TypeScript.DSL
         {
             builder.Value(valueAction);
         }
+
+        public void Assignment(string variableName, string variableValue) {
+            SetCurrentState(State.Statement);
+            builder.Assignment(variableName, variableValue);
+        }
+
+        public void ThisAssignment(string memberVariableName, string variableValue) {
+            SetCurrentState(State.Statement);
+            builder.ThisAssignment(memberVariableName, variableValue);
+        }
     }
 }
