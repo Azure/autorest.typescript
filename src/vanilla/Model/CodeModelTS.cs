@@ -420,7 +420,7 @@ namespace AutoRest.TypeScript.Model
             {
                 foreach (var param in RequiredParameters)
                 {
-                    block.If($"{param.Name} === null || {param.Name} === undefined", then =>
+                    block.If($"{param.Name} == undefined", then =>
                     {
                         then.Throw($"new Error(\"\'{param.Name}\' cannot be null.\")");
                     });
