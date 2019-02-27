@@ -24,7 +24,7 @@ export class AutoRestUrlTestServiceContext extends msRest.ServiceClient {
    * @param [options] The parameter options
    */
   constructor(globalStringPath: string, options?: Models.AutoRestUrlTestServiceOptions) {
-    if (globalStringPath === null || globalStringPath === undefined) {
+    if (globalStringPath == undefined) {
       throw new Error("'globalStringPath' cannot be null.");
     }
 

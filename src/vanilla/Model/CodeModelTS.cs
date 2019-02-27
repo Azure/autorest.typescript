@@ -4,6 +4,7 @@
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.Extensions;
+using AutoRest.Core.Model;
 using AutoRest.TypeScript.DSL;
 using Newtonsoft.Json;
 using System;
@@ -353,7 +354,7 @@ namespace AutoRest.TypeScript.Model
             get
             {
                 var requireParams = new List<string>();
-                this.Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue))
+                Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue))
                     .ForEach(p => requireParams.Add(p.Name.ToCamelCase()));
 
                 if (requireParams == null || requireParams.Count == 0)
@@ -375,7 +376,8 @@ namespace AutoRest.TypeScript.Model
                 StringBuilder requiredParams = new StringBuilder();
 
                 bool first = true;
-                foreach (var p in this.Properties)
+                IEnumerable<Property> sortedProperties = Properties.OrderBy(prop => prop.ModelType.IsPrimaryType(KnownPrimaryType.Credentials) ? 0 : 1);
+                foreach (var p in sortedProperties)
                 {
                     if (!p.IsRequired || p.IsConstant || (p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)))
                         continue;

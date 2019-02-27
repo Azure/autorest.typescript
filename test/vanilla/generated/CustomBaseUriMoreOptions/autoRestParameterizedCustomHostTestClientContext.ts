@@ -24,7 +24,7 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRest.Ser
    * @param [options] The parameter options
    */
   constructor(subscriptionId: string, options?: Models.AutoRestParameterizedCustomHostTestClientOptions) {
-    if (subscriptionId === null || subscriptionId === undefined) {
+    if (subscriptionId == undefined) {
       throw new Error("'subscriptionId' cannot be null.");
     }
 

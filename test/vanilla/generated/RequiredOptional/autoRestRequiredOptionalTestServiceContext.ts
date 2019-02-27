@@ -26,10 +26,10 @@ export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceCl
    * @param [options] The parameter options
    */
   constructor(requiredGlobalPath: string, requiredGlobalQuery: string, options?: Models.AutoRestRequiredOptionalTestServiceOptions) {
-    if (requiredGlobalPath === null || requiredGlobalPath === undefined) {
+    if (requiredGlobalPath == undefined) {
       throw new Error("'requiredGlobalPath' cannot be null.");
     }
-    if (requiredGlobalQuery === null || requiredGlobalQuery === undefined) {
+    if (requiredGlobalQuery == undefined) {
       throw new Error("'requiredGlobalQuery' cannot be null.");
     }
 
