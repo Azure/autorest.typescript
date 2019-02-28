@@ -349,12 +349,20 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
+        protected IEnumerable<Property> SortedProperties
+        {
+            get
+            {
+                return Properties.OrderBy(prop => prop.ModelType.IsPrimaryType(KnownPrimaryType.Credentials) ? 0 : 1);
+            }
+        }
+
         public string RequiredConstructorParameters
         {
             get
             {
                 var requireParams = new List<string>();
-                Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue))
+                SortedProperties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue))
                     .ForEach(p => requireParams.Add(p.Name.ToCamelCase()));
 
                 if (requireParams == null || requireParams.Count == 0)
@@ -376,8 +384,7 @@ namespace AutoRest.TypeScript.Model
                 StringBuilder requiredParams = new StringBuilder();
 
                 bool first = true;
-                IEnumerable<Property> sortedProperties = Properties.OrderBy(prop => prop.ModelType.IsPrimaryType(KnownPrimaryType.Credentials) ? 0 : 1);
-                foreach (var p in sortedProperties)
+                foreach (var p in SortedProperties)
                 {
                     if (!p.IsRequired || p.IsConstant || (p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)))
                         continue;
