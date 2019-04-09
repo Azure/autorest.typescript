@@ -310,7 +310,7 @@ task 'regenerate-ts-metadata', '', [], (done) ->
     'flatteningThreshold': '1',
     'generateMetadata': true,
     'generateLicenseTxt': false,
-    'sourceCodeFolderPath': 'lib'
+    'sourceCodeFolderPath': 'src'
   },done
   return null
 
@@ -325,7 +325,7 @@ task 'regenerate-tsazure-metadata', '', [], (done) ->
     'flatteningThreshold': '1',
     'azureArm': true,
     'generateMetadata': true,
-    'sourceCodeFolderPath': 'lib'
+    'sourceCodeFolderPath': 'src'
   },done
   return null
 
@@ -349,7 +349,7 @@ task 'regenerate-ts-skip-subtypes', '', [], (done) ->
     'outputDir': 'generated',
     'language': 'typescript',
     'generateMetadata': true,
-    'sourceCodeFolderPath': 'lib',
+    'sourceCodeFolderPath': 'src',
     'skipSubtypes': '[Fish]'
   },done
   return null
@@ -362,7 +362,7 @@ task 'regenerate-ts-custom-service-client-options', '', [], (done) ->
     'outputDir': 'generated',
     'language': 'typescript',
     'generateMetadata': true,
-    'sourceCodeFolderPath': 'lib',
+    'sourceCodeFolderPath': 'src',
     'customServiceClientOptions': '[noRetryPolicy=true,userAgentHeaderName=\'My-Header-Key\']'
   },done
   return null

@@ -579,7 +579,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual void PackageDependencies(JSONObject dependencies)
         {
-            dependencies.StringProperty("@azure/ms-rest-js", "^1.6.0");
+            dependencies.StringProperty("@azure/ms-rest-js", "^1.8.1");
             dependencies.StringProperty("tslib", "^1.9.3");
             if (Settings.MultiapiLatest)
             {
@@ -1216,7 +1216,7 @@ namespace AutoRest.TypeScript.Model
                     "esm/**/*.js.map",
                     "esm/**/*.d.ts",
                     "esm/**/*.d.ts.map",
-                    "lib/**/*.ts",
+                    "src/**/*.ts",
                     "README.md",
                     "rollup.config.js",
                     "tsconfig.json"
