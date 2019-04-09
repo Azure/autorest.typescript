@@ -174,6 +174,30 @@ export class Polymorphism {
   }
 
   /**
+   * Get complex types that are polymorphic, JSON key contains a dot
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PolymorphismGetDotSyntaxResponse>
+   */
+  getDotSyntax(options?: msRest.RequestOptionsBase): Promise<Models.PolymorphismGetDotSyntaxResponse>;
+  /**
+   * @param callback The callback
+   */
+  getDotSyntax(callback: msRest.ServiceCallback<Models.DotFishUnion>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getDotSyntax(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DotFishUnion>): void;
+  getDotSyntax(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.DotFishUnion>, callback?: msRest.ServiceCallback<Models.DotFishUnion>): Promise<Models.PolymorphismGetDotSyntaxResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getDotSyntaxOperationSpec,
+      callback) as Promise<Models.PolymorphismGetDotSyntaxResponse>;
+  }
+
+  /**
    * Get complex types that are polymorphic, but not at the root of the hierarchy; also have
    * additional properties
    * @param [options] The optional parameters
@@ -391,6 +415,20 @@ const putValidOperationSpec: msRest.OperationSpec = {
   },
   responses: {
     200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer
+};
+
+const getDotSyntaxOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/polymorphism/dotsyntax",
+  responses: {
+    200: {
+      bodyMapper: Mappers.DotFish
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }

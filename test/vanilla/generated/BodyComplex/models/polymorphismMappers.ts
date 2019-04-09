@@ -9,6 +9,8 @@
 export {
   discriminators,
   Cookiecuttershark,
+  DotFish,
+  DotSalmon,
   ErrorModel,
   Fish,
   Goblinshark,

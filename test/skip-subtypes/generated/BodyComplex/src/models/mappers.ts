@@ -144,6 +144,59 @@ export const Siamese: msRest.CompositeMapper = {
   }
 };
 
+export const DotFish: msRest.CompositeMapper = {
+  serializedName: "DotFish",
+  type: {
+    name: "Composite",
+    polymorphicDiscriminator: {
+      serializedName: "fish.type",
+      clientName: "fishtype"
+    },
+    uberParent: "DotFish",
+    className: "DotFish",
+    modelProperties: {
+      species: {
+        serializedName: "species",
+        type: {
+          name: "String"
+        }
+      },
+      fishtype: {
+        required: true,
+        serializedName: "fish\\.type",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const DotSalmon: msRest.CompositeMapper = {
+  serializedName: "DotSalmon",
+  type: {
+    name: "Composite",
+    polymorphicDiscriminator: DotFish.type.polymorphicDiscriminator,
+    uberParent: "DotFish",
+    className: "DotSalmon",
+    modelProperties: {
+      ...DotFish.type.modelProperties,
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
+      iswild: {
+        serializedName: "iswild",
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  }
+};
+
 export const Fish: msRest.CompositeMapper = {
   serializedName: "Fish",
   type: {
@@ -679,6 +732,8 @@ export const MyDerivedType: msRest.CompositeMapper = {
 };
 
 export const discriminators = {
+  'DotFish' : DotFish,
+  'DotFish.DotSalmon' : DotSalmon,
   'Fish' : Fish,
   'Fish.salmon' : Salmon,
   'Fish.smart_salmon' : SmartSalmon,

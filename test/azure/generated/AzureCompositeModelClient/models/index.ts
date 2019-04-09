@@ -136,6 +136,35 @@ export interface Siamese extends Cat {
 }
 
 /**
+ * Contains the possible cases for DotFish.
+ */
+export type DotFishUnion = DotFish | DotSalmon;
+
+/**
+ * An interface representing DotFish.
+ */
+export interface DotFish {
+  /**
+   * Polymorphic Discriminator
+   */
+  fishtype: "DotFish";
+  species?: string;
+}
+
+/**
+ * An interface representing DotSalmon.
+ */
+export interface DotSalmon {
+  /**
+   * Polymorphic Discriminator
+   */
+  fishtype: "DotSalmon";
+  species?: string;
+  location?: string;
+  iswild?: boolean;
+}
+
+/**
  * Contains the possible cases for Fish.
  */
 export type FishUnion = Fish | SalmonUnion | SharkUnion;
@@ -1063,6 +1092,26 @@ export type PolymorphismGetValidResponse = FishUnion & {
        * The response body as parsed JSON or XML
        */
       parsedBody: FishUnion;
+    };
+};
+
+/**
+ * Contains response data for the getDotSyntax operation.
+ */
+export type PolymorphismGetDotSyntaxResponse = DotFishUnion & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DotFishUnion;
     };
 };
 

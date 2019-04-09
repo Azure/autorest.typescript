@@ -8,6 +8,8 @@
 
 export {
   discriminators,
+  DotFish,
+  DotSalmon,
   ErrorModel,
   Fish,
   Salmon,
