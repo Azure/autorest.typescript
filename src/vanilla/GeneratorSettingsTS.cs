@@ -45,7 +45,7 @@ namespace AutoRest.TypeScript
         /// <summary>
         /// The sub-folder path where source code will be generated.
         /// </summary>
-        public string SourceCodeFolderPath { get; set; } = "lib";
+        public string SourceCodeFolderPath { get; set; } = "src";
 
         /// <summary>
         /// The name of the npm package, e.g. "@azure/arm-storage".

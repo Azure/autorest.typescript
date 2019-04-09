@@ -1216,7 +1216,7 @@ namespace AutoRest.TypeScript.Model
                     "esm/**/*.js.map",
                     "esm/**/*.d.ts",
                     "esm/**/*.d.ts.map",
-                    "lib/**/*.ts",
+                    "src/**/*.ts",
                     "README.md",
                     "rollup.config.js",
                     "tsconfig.json"

@@ -10,7 +10,7 @@ import * as msAssert from "../util/msAssert";
 import * as msRest from '@azure/ms-rest-js';
 
 import { AutoRestLongRunningOperationTestService, AutoRestLongRunningOperationTestServiceModels } from './generated/Lro/autoRestLongRunningOperationTestService';
-import { AutoRestLongRunningOperationTestServiceOptions } from '../azuremetadata/generated/Lro/lib/models';
+import { AutoRestLongRunningOperationTestServiceOptions } from '../azuremetadata/generated/Lro/src/models';
 
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
