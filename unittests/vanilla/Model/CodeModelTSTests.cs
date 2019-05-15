@@ -27,49 +27,49 @@ namespace AutoRest.TypeScript.Model
         public void HomePageUrlWithNullOutputFolder()
         {
             CodeModelTS codeModel = CreateCodeModel(null);
-            Assert.AreEqual("https://github.com/azure/azure-sdk-for-js", codeModel.HomePageUrl);
+            Assert.AreEqual("https://github.com/Azure/azure-sdk-for-js", codeModel.HomePageUrl);
         }
 
         [TestMethod]
         public void HomePageUrlWithEmptyOutputFolder()
         {
             CodeModelTS codeModel = CreateCodeModel("");
-            Assert.AreEqual("https://github.com/azure/azure-sdk-for-js", codeModel.HomePageUrl);
+            Assert.AreEqual("https://github.com/Azure/azure-sdk-for-js", codeModel.HomePageUrl);
         }
 
         [TestMethod]
         public void HomePageUrlWithOutputFolderThatDoesntContainAzureSdkForJs()
         {
             CodeModelTS codeModel = CreateCodeModel("test/azure/generated/StorageManagementClient");
-            Assert.AreEqual("https://github.com/azure/azure-sdk-for-js", codeModel.HomePageUrl);
+            Assert.AreEqual("https://github.com/Azure/azure-sdk-for-js", codeModel.HomePageUrl);
         }
 
         [TestMethod]
         public void HomePageUrlWithBackslashOutputFolderThatContainsAzureSdkForJs()
         {
-            CodeModelTS codeModel = CreateCodeModel("C:\\Users\\daschult\\Sources\\azure-sdk-for-js\\packages\\arm-batch");
-            Assert.AreEqual("https://github.com/azure/azure-sdk-for-js/tree/master/packages/arm-batch", codeModel.HomePageUrl);
+            CodeModelTS codeModel = CreateCodeModel("C:\\Users\\daschult\\Sources\\azure-sdk-for-js\\sdk\\batch\\arm-batch");
+            Assert.AreEqual("https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/batch/arm-batch", codeModel.HomePageUrl);
         }
 
         [TestMethod]
         public void HomePageUrlWithForwardSlashOutputFolderThatContainsAzureSdkForJs()
         {
-            CodeModelTS codeModel = CreateCodeModel("C:/Users/daschult/Sources/azure-sdk-for-js/packages/arm-batch");
-            Assert.AreEqual("https://github.com/azure/azure-sdk-for-js/tree/master/packages/arm-batch", codeModel.HomePageUrl);
+            CodeModelTS codeModel = CreateCodeModel("C:/Users/daschult/Sources/azure-sdk-for-js/sdk/batch/arm-batch");
+            Assert.AreEqual("https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/batch/arm-batch", codeModel.HomePageUrl);
         }
 
         [TestMethod]
         public void HomePageUrlWithForwardSlashOutputFolderThatContainsAzureSdkForJsButNullPackageNameProperty()
         {
-            CodeModelTS codeModel = CreateCodeModel("C:/Users/daschult/Sources/azure-sdk-for-js/packages/arm-batch", null);
-            Assert.AreEqual("https://github.com/azure/azure-sdk-for-js/tree/master/packages/arm-batch", codeModel.HomePageUrl);
+            CodeModelTS codeModel = CreateCodeModel("C:/Users/daschult/Sources/azure-sdk-for-js/sdk/batch/arm-batch", null);
+            Assert.AreEqual("https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/batch/arm-batch", codeModel.HomePageUrl);
         }
 
         [TestMethod]
         public void HomePageUrlWithForwardSlashOutputFolderThatContainsAzureSdkForJsButEmptyPackageNameProperty()
         {
-            CodeModelTS codeModel = CreateCodeModel("C:/Users/daschult/Sources/azure-sdk-for-js/packages/arm-batch", "");
-            Assert.AreEqual("https://github.com/azure/azure-sdk-for-js/tree/master/packages/arm-batch", codeModel.HomePageUrl);
+            CodeModelTS codeModel = CreateCodeModel("C:/Users/daschult/Sources/azure-sdk-for-js/sdk/batch/arm-batch", "");
+            Assert.AreEqual("https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/batch/arm-batch", codeModel.HomePageUrl);
         }
 
         [TestMethod]
