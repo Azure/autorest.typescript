@@ -992,6 +992,7 @@ namespace AutoRest.TypeScript.Model
             });
             builder.Line();
             GenerateRelatedProjects(builder);
+            builder.Line();
             GenerateImpressionPixel(builder);
 
             return builder.ToString();
@@ -1117,7 +1118,6 @@ namespace AutoRest.TypeScript.Model
 
         private void GenerateImpressionPixel(MarkdownBuilder builder)
         {
-            builder.Line();
             builder.Line($"![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js/sdk{Settings.RelativeOutputPath}/README.png)");
         }
 
