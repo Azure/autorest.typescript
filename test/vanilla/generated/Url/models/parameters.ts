@@ -77,6 +77,24 @@ export const arrayQuery2: msRest.OperationQueryParameter = {
       }
     }
   },
+  collectionFormat: msRest.QueryCollectionFormat.Tsv
+};
+export const arrayQuery3: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "arrayQuery"
+  ],
+  mapper: {
+    serializedName: "arrayQuery",
+    type: {
+      name: "Sequence",
+      element: {
+        type: {
+          name: "String"
+        }
+      }
+    }
+  },
   collectionFormat: msRest.QueryCollectionFormat.Pipes
 };
 export const base64UrlPath: msRest.OperationURLParameter = {
