@@ -194,7 +194,7 @@ export interface HeaderResponseEnumHeaders {
   /**
    * response with header values "GREY" or null. Possible values include: 'White', 'black', 'GREY'
    */
-  value: Value;
+  value: GreyscaleColors;
 }
 
 /**
@@ -204,14 +204,6 @@ export interface HeaderResponseEnumHeaders {
  * @enum {string}
  */
 export type GreyscaleColors = 'White' | 'black' | 'GREY';
-
-/**
- * Defines values for Value.
- * Possible values include: 'White', 'black', 'GREY'
- * @readonly
- * @enum {string}
- */
-export type Value = 'White' | 'black' | 'GREY';
 
 /**
  * Contains response data for the responseExistingKey operation.
