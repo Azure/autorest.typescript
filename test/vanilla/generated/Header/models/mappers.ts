@@ -248,12 +248,7 @@ export const HeaderResponseEnumHeaders: msRest.CompositeMapper = {
       value: {
         serializedName: "value",
         type: {
-          name: "Enum",
-          allowedValues: [
-            "White",
-            "black",
-            "GREY"
-          ]
+          name: "String"
         }
       }
     }

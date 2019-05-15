@@ -1333,7 +1333,7 @@ const arrayStringTsvValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/tsv/string/valid",
   queryParameters: [
-    Parameters.arrayQuery2
+    Parameters.arrayQuery0
   ],
   responses: {
     200: {},
@@ -1348,7 +1348,7 @@ const arrayStringPipesValidOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/pipes/string/valid",
   queryParameters: [
-    Parameters.arrayQuery3
+    Parameters.arrayQuery2
   ],
   responses: {
     200: {},

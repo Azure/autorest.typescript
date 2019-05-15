@@ -37,14 +37,14 @@ export class PetOperations {
    * @param petId pet id
    * @param callback The callback
    */
-  getPetById(petId: string, callback: msRest.ServiceCallback<Models.Pet>): void;
+  getPetById(petId: string, callback: msRest.ServiceCallback<any>): void;
   /**
    * @param petId pet id
    * @param options The optional parameters
    * @param callback The callback
    */
-  getPetById(petId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Pet>): void;
-  getPetById(petId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Pet>, callback?: msRest.ServiceCallback<Models.Pet>): Promise<Models.PetGetPetByIdResponse> {
+  getPetById(petId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
+  getPetById(petId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<any>, callback?: msRest.ServiceCallback<any>): Promise<Models.PetGetPetByIdResponse> {
     return this.client.sendOperationRequest(
       {
         petId,
@@ -65,14 +65,14 @@ export class PetOperations {
    * @param whatAction what action the pet should do
    * @param callback The callback
    */
-  doSomething(whatAction: string, callback: msRest.ServiceCallback<Models.PetAction>): void;
+  doSomething(whatAction: string, callback: msRest.ServiceCallback<any>): void;
   /**
    * @param whatAction what action the pet should do
    * @param options The optional parameters
    * @param callback The callback
    */
-  doSomething(whatAction: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PetAction>): void;
-  doSomething(whatAction: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAction>, callback?: msRest.ServiceCallback<Models.PetAction>): Promise<Models.PetDoSomethingResponse> {
+  doSomething(whatAction: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
+  doSomething(whatAction: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<any>, callback?: msRest.ServiceCallback<any>): Promise<Models.PetDoSomethingResponse> {
     return this.client.sendOperationRequest(
       {
         whatAction,

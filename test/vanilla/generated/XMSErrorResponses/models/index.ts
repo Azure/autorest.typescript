@@ -161,7 +161,12 @@ export interface XMSErrorResponseExtensionsOptions extends ServiceClientOptions 
 /**
  * Contains response data for the getPetById operation.
  */
-export type PetGetPetByIdResponse = Pet & {
+export type PetGetPetByIdResponse = {
+  /**
+   * The parsed response body.
+   */
+  body: any;
+
   /**
    * The underlying HTTP response.
    */
@@ -174,14 +179,19 @@ export type PetGetPetByIdResponse = Pet & {
       /**
        * The response body as parsed JSON or XML
        */
-      parsedBody: Pet;
+      parsedBody: any;
     };
 };
 
 /**
  * Contains response data for the doSomething operation.
  */
-export type PetDoSomethingResponse = PetAction & {
+export type PetDoSomethingResponse = {
+  /**
+   * The parsed response body.
+   */
+  body: any;
+
   /**
    * The underlying HTTP response.
    */
@@ -194,6 +204,6 @@ export type PetDoSomethingResponse = PetAction & {
       /**
        * The response body as parsed JSON or XML
        */
-      parsedBody: PetAction;
+      parsedBody: any;
     };
 };
