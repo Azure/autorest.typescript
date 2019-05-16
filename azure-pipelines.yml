@@ -38,9 +38,9 @@ jobs:
     inputs:
       versionSpec: $(node.version)
   - task: gulp@0
-    displayName: 'gulp test'
+    displayName: 'gulp testci'
     inputs:
-      targets: test
+      targets: testci
       verbose: false
   - task: PublishTestResults@2
     inputs:
