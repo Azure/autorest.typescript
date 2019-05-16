@@ -60,6 +60,9 @@ regenExpected = (opts,done) ->
     if (opts.test)
       args.push("--test=#{opts.test}")
 
+    if (opts.testDependencies)
+      args.push("--test-dependencies=#{opts.testDependencies}")
+
     if (opts.clientSideValidation == false)
       args.push("--client-side-validation=false")
 
@@ -392,7 +395,8 @@ task 'regenerate-ts-tests-custom', '', [], (done) ->
     'language': 'typescript',
     'generateMetadata': true,
     'sourceCodeFolderPath': 'src',
-    'test': 'echo \"skipped\"'
+    'test': 'echo \"skipped\"',
+    'testDependencies': 'nock@1.0.0, jest@2.0.0; @azure/ms-rest-js@3.0.0'
   },done
   return null
 

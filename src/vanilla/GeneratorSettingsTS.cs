@@ -50,6 +50,13 @@ namespace AutoRest.TypeScript
         /// </summary>
         public string Test { get; set; }
 
+        /// <summery>
+        /// List of comma or semicolon separated dependencies used in packages test.
+        /// Dependencies will be added to devDependencies section of package.json.
+        /// E.g. "nock@1.0.0, jest@2.0.0; @azure/ms-rest-js@3.0.0".
+        /// </summary>
+        public string TestDependencies { get; set; }
+
         /// <summary>
         /// The sub-folder path where source code will be generated.
         /// </summary>

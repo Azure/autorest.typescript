@@ -1201,8 +1201,21 @@ namespace AutoRest.TypeScript.Model
                     devDependencies.StringProperty("rollup-plugin-node-resolve", "^3.4.0");
                     devDependencies.StringProperty("rollup-plugin-sourcemaps", "^0.4.2");
                     devDependencies.StringProperty("uglify-js", "^3.4.9");
-                    if (Settings.Test != null) {
+                    if (!String.IsNullOrEmpty(Settings.Test)) {
                         devDependencies.StringProperty("mocha", "^6.1.4");
+
+                        if (!String.IsNullOrEmpty(Settings.TestDependencies)) {
+                            string[] testDependencies = Settings.TestDependencies.Split(',', ';').Select(dep => dep.Trim()).ToArray();
+                            foreach (string testDependency in testDependencies)
+                            {
+                                string[] dependencyInfo = testDependency.Split('@', StringSplitOptions.RemoveEmptyEntries);
+
+                                string testDependencyName = testDependency.StartsWith('@') ? $"@{dependencyInfo[0]}" : dependencyInfo[0];
+                                string testDependencyVersion = dependencyInfo[1];
+
+                                devDependencies.StringProperty(testDependencyName, $"^{testDependencyVersion}");
+                            }
+                        }
                     }
                 });
                 packageJson.StringProperty("homepage", HomePageUrl);
