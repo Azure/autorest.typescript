@@ -371,5 +371,21 @@ namespace AutoRest.TypeScript
                 Console.WriteLine($"{category}: {logMessage}");
             }
         }
+
+        public string RelativeOutputPath
+        {
+            get
+            {
+                    string outputFolder = OutputFolder.Replace('\\', '/');
+                    string outputFolderSearchString = "/azure-sdk-for-js/sdk";
+                    int searchStringIndex = outputFolder.IndexOf(outputFolderSearchString, StringComparison.OrdinalIgnoreCase);
+
+                    if (searchStringIndex == -1) {
+                        return null;
+                    }
+
+                    return outputFolder.Substring(searchStringIndex + outputFolderSearchString.Length);
+            }
+        }
     }
 }

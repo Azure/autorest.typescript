@@ -4,7 +4,6 @@
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.Extensions;
-using AutoRest.Core.Model;
 using AutoRest.TypeScript.DSL;
 using Newtonsoft.Json;
 using System;
@@ -23,7 +22,8 @@ namespace AutoRest.TypeScript.Model
         private const string ServiceClientOptions = "ServiceClientOptions";
 
         private const string defaultGitHubRepositoryName = "azure-sdk-for-js";
-        private const string defaultGitHubUrl = "https://github.com/azure/" + defaultGitHubRepositoryName;
+
+        private const string defaultGitHubUrl = "https://github.com/Azure/" + defaultGitHubRepositoryName;
 
         private static readonly string[] propertiesToIgnore = { "generateClientRequestId" };
 
@@ -208,13 +208,10 @@ namespace AutoRest.TypeScript.Model
                 string result = defaultGitHubUrl;
                 if (!string.IsNullOrEmpty(Settings.OutputFolder))
                 {
-                    string outputFolder = Settings.OutputFolder.Replace('\\', '/');
-                    string searchStringSuffix = $"/packages/";
-                    string outputFolderSearchString = "/" + defaultGitHubRepositoryName + searchStringSuffix;
-                    int searchStringIndex = outputFolder.IndexOf(outputFolderSearchString, StringComparison.OrdinalIgnoreCase);
-                    if (0 <= searchStringIndex)
+                    string relativeOutputPath = Settings.RelativeOutputPath;
+                    if (!String.IsNullOrEmpty(relativeOutputPath))
                     {
-                        result += "/tree/master" + searchStringSuffix + outputFolder.Substring(searchStringIndex + outputFolderSearchString.Length);
+                        result += "/tree/master/sdk" + relativeOutputPath;
                     }
                 }
                 return result;
@@ -1001,6 +998,8 @@ namespace AutoRest.TypeScript.Model
             });
             builder.Line();
             GenerateRelatedProjects(builder);
+            builder.Line();
+            GenerateImpressionPixel(builder);
 
             return builder.ToString();
         }
@@ -1121,6 +1120,11 @@ namespace AutoRest.TypeScript.Model
             {
                 builder.List("[Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)");
             });
+        }
+
+        private void GenerateImpressionPixel(MarkdownBuilder builder)
+        {
+            builder.Line($"![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js/sdk{Settings.RelativeOutputPath}/README.png)");
         }
 
         public string GenerateRollupConfig()
