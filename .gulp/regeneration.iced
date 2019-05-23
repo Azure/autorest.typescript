@@ -19,6 +19,7 @@ regenExpected = (opts,done) ->
       "--output-folder=#{outputDir}/#{key}",
       "--license-header=#{if !!opts.header then opts.header else 'MICROSOFT_MIT_NO_VERSION'}",
       "--source-code-folder-path=#{opts.sourceCodeFolderPath ? "''"}"
+      "--version=2.0.4300"
     ]
 
     for swaggerFile in swaggerFiles
