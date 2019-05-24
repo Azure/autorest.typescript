@@ -247,6 +247,12 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
+        [JsonIgnore]
+        public bool HasTests => Settings.Test != null;
+
+        [JsonIgnore]
+        internal string TestCommand => Settings.Test.ToLowerInvariant() == "true" ? "mocha" : Settings.Test;
+
         public bool ContainsDurationProperty()
         {
             Core.Model.Property prop = Properties.FirstOrDefault(p =>
@@ -1199,6 +1205,22 @@ namespace AutoRest.TypeScript.Model
                     devDependencies.StringProperty("rollup-plugin-node-resolve", "^3.4.0");
                     devDependencies.StringProperty("rollup-plugin-sourcemaps", "^0.4.2");
                     devDependencies.StringProperty("uglify-js", "^3.4.9");
+                    if (!String.IsNullOrEmpty(Settings.Test)) {
+                        devDependencies.StringProperty("mocha", "^6.1.4");
+
+                        if (!String.IsNullOrEmpty(Settings.TestDependencies)) {
+                            string[] testDependencies = Settings.TestDependencies.Split(',', ';').Select(dep => dep.Trim()).ToArray();
+                            foreach (string testDependency in testDependencies)
+                            {
+                                string[] dependencyInfo = testDependency.Split('@', StringSplitOptions.RemoveEmptyEntries);
+
+                                string testDependencyName = testDependency.StartsWith('@') ? $"@{dependencyInfo[0]}" : dependencyInfo[0];
+                                string testDependencyVersion = dependencyInfo[1];
+
+                                devDependencies.StringProperty(testDependencyName, $"^{testDependencyVersion}");
+                            }
+                        }
+                    }
                 });
                 packageJson.StringProperty("homepage", HomePageUrl);
                 packageJson.ObjectProperty("repository", repository =>
@@ -1229,7 +1251,17 @@ namespace AutoRest.TypeScript.Model
                 {
                     scripts.StringProperty("build", "tsc && rollup -c rollup.config.js && npm run minify");
                     scripts.StringProperty("minify", $"\"uglifyjs -c -m --comments --source-map \\\"content='./dist/{bundleFileName}.js.map'\\\" -o ./dist/{bundleFileName}.min.js ./dist/{bundleFileName}.js\"");
-                    scripts.StringProperty("prepack", "npm install && npm run build");
+
+                    string prepackCommand = "npm install && npm run build";
+                    if (HasTests) {
+                        prepackCommand += " && npm run test";
+                    }
+
+                    scripts.StringProperty("prepack", prepackCommand);
+
+                    if (HasTests) {
+                        scripts.StringProperty("test", TestCommand);
+                    }
                 });
                 packageJson.BooleanProperty("sideEffects", false);
 

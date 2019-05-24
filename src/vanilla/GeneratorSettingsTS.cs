@@ -42,6 +42,21 @@ namespace AutoRest.TypeScript
         /// </summary>
         public bool? GenerateLicenseTxt { get; set; }
 
+        /// <summery>
+        /// Whether to add "test" NPM script.
+        /// This enables "npm run test" command to be run in CI.
+        /// If "true" passed, default command will be added i.e. "mocha".
+        /// Otherwise, the content of the variable will be added to the script.
+        /// </summary>
+        public string Test { get; set; }
+
+        /// <summery>
+        /// List of comma or semicolon separated dependencies used in packages test.
+        /// Dependencies will be added to devDependencies section of package.json.
+        /// E.g. "nock@1.0.0, jest@2.0.0; @azure/ms-rest-js@3.0.0".
+        /// </summary>
+        public string TestDependencies { get; set; }
+
         /// <summary>
         /// The sub-folder path where source code will be generated.
         /// </summary>
