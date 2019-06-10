@@ -80,6 +80,58 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
+        public string MsRestLibName
+        {
+            get
+            {
+                return Settings.UseAzureCore ?? false
+                    ? "@azure/core-http"
+                    : "@azure/ms-rest-js";
+            }
+        }
+
+        public string MsRestModuleName
+        {
+            get
+            {
+                return "msRest";
+            }
+        }
+
+        public string MsRestDependencyVersion
+        {
+            get
+            {
+                return "^1.8.1";
+            }
+        }
+
+        public string MsRestAzureLibName
+        {
+            get
+            {
+                return Settings.UseAzureCore ?? false
+                    ? "@azure/core-lro"
+                    : "@azure/ms-rest-azure-js";
+            }
+        }
+
+        public string MsRestAzureModuleName
+        {
+            get
+            {
+                return "msRestAzure";
+            }
+        }
+
+        public string MsRestAzureDependencyVersion
+        {
+            get
+            {
+                return "^1.3.2";
+            }
+        }
+
         private bool _computedRequestContentType;
         private string _requestContentType;
         public string RequestContentType
@@ -410,9 +462,9 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
             var clientOptionType = OptionalParameterTypeForClientConstructor == GetServiceClientOptionsName()
-                ? "msRest." + GetServiceClientOptionsName()
+                ? $"{GetServiceClientOptionsModuleName()}.{GetServiceClientOptionsName()}"
                 : OptionalParameterTypeForClientConstructor;
-
+                
             string parameterList = (!string.IsNullOrEmpty(RequiredConstructorParametersTS) ? RequiredConstructorParametersTS + ", " : "") + "options?: " + clientOptionType;
 
             builder.Constructor(parameterList, superArgumentList, guardChecks, implementation);
@@ -502,6 +554,11 @@ namespace AutoRest.TypeScript.Model
             return ServiceClientOptions;
         }
 
+        protected virtual string GetServiceClientOptionsModuleName()
+        {
+            return MsRestModuleName;
+        }
+
         private void GenerateOperationGroupInitialization(TSBlock block)
         {
             foreach (var methodGroup in MethodGroupModels)
@@ -576,13 +633,13 @@ namespace AutoRest.TypeScript.Model
         {
             if (OptionalParameterTypeForClientConstructor != ServiceClientOptions)
             {
-                builder.Import(new string[] { ServiceClientOptions }, "@azure/ms-rest-js");
+                builder.Import(new string[] { ServiceClientOptions }, MsRestLibName);
             }
         }
 
         public virtual void PackageDependencies(JSONObject dependencies)
         {
-            dependencies.StringProperty("@azure/ms-rest-js", "^1.8.1");
+            dependencies.StringProperty(MsRestLibName, MsRestDependencyVersion);
             dependencies.StringProperty("tslib", "^1.9.3");
             if (Settings.MultiapiLatest)
             {
@@ -718,7 +775,7 @@ namespace AutoRest.TypeScript.Model
 
             if (MethodTemplateModels.Any() || OptionalParameterTypeForClientConstructor == ServiceClientOptions || RequiredConstructorParametersTS.Contains("msRest."))
             {
-                builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+                builder.ImportAllAs(MsRestModuleName, MsRestLibName);
             }
 
             if (CodeGeneratorTS.ShouldWriteModelsFiles(this))
@@ -826,7 +883,7 @@ namespace AutoRest.TypeScript.Model
         {
             if (orderedMapperModels.Any())
             {
-                builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+                builder.ImportAllAs(MsRestModuleName, MsRestLibName);
             }
         }
 
@@ -857,7 +914,7 @@ namespace AutoRest.TypeScript.Model
 
         protected void GenerateNodeSampleMsRestJsImport(TSBuilder builder)
         {
-            builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+            builder.ImportAllAs(MsRestModuleName, MsRestLibName);
         }
 
         protected void GenerateNodeSampleMsRestNodeAuthImport(TSBuilder builder)
@@ -1143,7 +1200,7 @@ namespace AutoRest.TypeScript.Model
             {
                 string inputFilePath = $"./esm/{(Settings.MultiapiLatest ? "index" : Name.ToCamelCase())}.js";
                 config.QuotedStringProperty($"input", inputFilePath);
-                config.QuotedStringArrayProperty("external", new[] { "@azure/ms-rest-js", "@azure/ms-rest-azure-js" });
+                config.QuotedStringArrayProperty("external", new[] { MsRestLibName, MsRestAzureLibName });
                 config.ObjectProperty("output", output =>
                 {
                     output.QuotedStringProperty("file", $"./dist/{BundleFilename}.js");
@@ -1152,8 +1209,8 @@ namespace AutoRest.TypeScript.Model
                     output.BooleanProperty("sourcemap", true);
                     output.ObjectProperty("globals", globals =>
                     {
-                        globals.QuotedStringProperty("@azure/ms-rest-js", "msRest");
-                        globals.QuotedStringProperty("@azure/ms-rest-azure-js", "msRestAzure");
+                        globals.QuotedStringProperty(MsRestLibName, MsRestModuleName);
+                        globals.QuotedStringProperty(MsRestAzureLibName, MsRestAzureModuleName);
                     });
 
                     JSBuilder banner = new JSBuilder();
@@ -1283,7 +1340,7 @@ namespace AutoRest.TypeScript.Model
             builder.Line(ConstructRuntimeImportForModelIndex());
             if (ContainsDurationPropertyInModels() || IsAnyModelInheritingFromRequestOptionsBase() || MethodsWithCustomResponseType.Any())
             {
-                builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+                builder.ImportAllAs(MsRestModuleName, MsRestLibName);
             }
             foreach (CompositeTypeTS model in OrderedModelTemplateModels)
             {

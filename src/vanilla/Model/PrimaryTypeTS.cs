@@ -58,7 +58,10 @@ namespace AutoRest.TypeScript.Model
                         return "Object";
 
                     case KnownPrimaryType.Credentials:
-                        return "msRest.ServiceClientCredentials";
+                        return "msRest.ServiceClientCredentials" + 
+                            ((CodeModel as CodeModelTS).Settings.UseAzureCore ?? false
+                                ? " | msRest.TokenCredential"
+                                : string.Empty);
                 }
                 throw new NotImplementedException($"Primary type {KnownPrimaryType} is not implemented in {GetType().Name}");
             }

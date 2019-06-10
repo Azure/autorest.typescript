@@ -87,7 +87,10 @@ namespace AutoRest.TypeScript
             else if (primary.KnownPrimaryType == KnownPrimaryType.TimeSpan)
                 return "string";
             else if (primary.KnownPrimaryType == KnownPrimaryType.Credentials)
-                return "msRest.ServiceClientCredentials"; //TODO: test this, add include for it
+                return "msRest.ServiceClientCredentials" + //TODO: test this, add include for it
+                    ((Singleton<GeneratorSettingsTS>.Instance).UseAzureCore ?? false
+                        ? " | msRest.TokenCredential"
+                        : string.Empty); 
             else {
                 throw new NotImplementedException($"Type '{primary}' not implemented");
             }

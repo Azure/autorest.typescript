@@ -165,6 +165,13 @@ namespace AutoRest.TypeScript
         }
 
         /// <summary>
+        /// If true, the generated source will use @azure/core-http and @azure/core-lro
+        /// as dependencies instead of @azure/ms-rest-js and @azure/ms-rest-azure-js,
+        /// respectively.
+        /// </summary>
+        public bool? UseAzureCore { get; set; }
+
+        /// <summary>
         /// If true, adds "autoPublish" property to package's package.json.
         /// The property is used to determine if package can be publish automatically.
         /// </summary>

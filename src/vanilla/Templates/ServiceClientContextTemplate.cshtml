@@ -6,7 +6,7 @@
 @Header(" * ")
  */
 @EmptyLine
-import * as msRest from "@@azure/ms-rest-js";
+import * as msRest from "@Model.MsRestLibName";
 @{
 bool usesCustomOptionsType = Model.OptionalParameterTypeForClientConstructor != "ServiceClientOptions";
 if (usesCustomOptionsType)

@@ -64,12 +64,12 @@ namespace AutoRest.TypeScript.Azure.Model
             {
                 imports.Add("AzureServiceClientOptions");
             }
-            builder.Import(imports, "@azure/ms-rest-azure-js");
+            builder.Import(imports, MsRestAzureLibName);
         }
 
         public override void PackageDependencies(JSONObject dependencies)
         {
-            dependencies.StringProperty("@azure/ms-rest-azure-js", "^1.3.2");
+            dependencies.StringProperty(MsRestAzureLibName, MsRestAzureDependencyVersion);
             base.PackageDependencies(dependencies);
         }
 
@@ -77,12 +77,12 @@ namespace AutoRest.TypeScript.Azure.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+            builder.ImportAllAs(MsRestModuleName, MsRestLibName);
 
             bool usesAzureOptionsType = OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions";
             if (usesAzureOptionsType || MethodTemplateModels.Any((MethodTS method) => method.IsLongRunningOperation))
             {
-                builder.ImportAllAs("msRestAzure", "@azure/ms-rest-azure-js");
+                builder.ImportAllAs(MsRestAzureModuleName, MsRestAzureLibName);
             }
 
             if (CodeGeneratorTS.ShouldWriteModelsFiles(this))
@@ -121,7 +121,7 @@ namespace AutoRest.TypeScript.Azure.Model
 
             CompositeTypeTS[] orderedMapperTemplateModels = OrderedMapperTemplateModels.ToArray();
 
-            builder.Import(new[] { "CloudErrorMapper", "BaseResourceMapper" }, "@azure/ms-rest-azure-js");
+            builder.Import(new[] { "CloudErrorMapper", "BaseResourceMapper" }, MsRestAzureLibName);
 
             ImportMsRestForMappers(builder, orderedMapperTemplateModels);
 
@@ -146,7 +146,7 @@ namespace AutoRest.TypeScript.Azure.Model
         protected override void GenerateNodeSampleImports(TSBuilder builder)
         {
             GenerateNodeSampleMsRestJsImport(builder);
-            builder.ImportAllAs("msRestAzure", "@azure/ms-rest-azure-js");
+            builder.ImportAllAs(MsRestAzureModuleName, MsRestAzureLibName);
             GenerateNodeSampleMsRestNodeAuthImport(builder);
             GenerateNodeSampleClientImport(builder);
         }
@@ -165,7 +165,7 @@ namespace AutoRest.TypeScript.Azure.Model
             builder.Line(ConstructRuntimeImportForModelIndex());
             if (ContainsDurationPropertyInModels() || IsAnyModelInheritingFromRequestOptionsBase() || MethodsWithCustomResponseType.Any())
             {
-                builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+                builder.ImportAllAs(MsRestModuleName, MsRestLibName);
             }
             builder.Line();
             builder.Export("BaseResource", "CloudError");
@@ -192,6 +192,11 @@ namespace AutoRest.TypeScript.Azure.Model
         protected override string GetServiceClientOptionsName()
         {
             return "Azure" + base.GetServiceClientOptionsName();
+        }
+
+        protected override string GetServiceClientOptionsModuleName()
+        {
+            return MsRestAzureModuleName;
         }
     }
 }

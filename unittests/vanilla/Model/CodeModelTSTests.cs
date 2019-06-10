@@ -101,6 +101,21 @@ namespace AutoRest.TypeScript.Model
         }
 
         [TestMethod]
+        public void GenerateServiceClientImportsWithAzureCore()
+        {
+            CodeModelTS codeModel = CreateCodeModel();
+            codeModel.Settings.UseAzureCore = true;
+
+            AssertEx.EqualLines(
+                new[]
+                {
+                    "import * as msRest from \"@azure/core-http\";",
+                    "import { Context } from \"./context\";"
+                },
+                codeModel.GenerateServiceClientImports());
+        }
+
+        [TestMethod]
         public void GenerateClassFieldsGeneratesProperlyOptionalPropertyDeclaration()
         {
             PropertyTS property = Models.Property("property", new PrimaryTypeTS(KnownPrimaryType.String));
