@@ -4,7 +4,7 @@
  */
 
 import { BaseResource, CloudError, AzureServiceClientOptions } from "@azure/ms-rest-azure-js";
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 export { BaseResource, CloudError };
 
@@ -19,7 +19,7 @@ export interface ErrorModel {
 /**
  * Optional Parameters.
  */
-export interface PathsGetEmptyOptionalParams extends msRest.RequestOptionsBase {
+export interface PathsGetEmptyOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * The key version. Default value 'v1'. Default value: 'v1'.
    */

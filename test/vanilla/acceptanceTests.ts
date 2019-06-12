@@ -8,7 +8,7 @@ import { should } from "chai";
 import * as util from 'util';
 import * as assert from 'assert';
 import * as msAssert from "../util/msAssert";
-import * as msRest from '@azure/ms-rest-js';
+import * as coreHttp from '@azure/core-http';
 import * as fs from "fs";
 
 import { AutoRestBoolTestService } from './generated/BodyBoolean/autoRestBoolTestService';

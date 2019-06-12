@@ -5,7 +5,7 @@
 
 import * as msAssert from "../util/msAssert";
 import * as msRestAzure from '@azure/ms-rest-azure-js';
-import * as msRest from '@azure/ms-rest-js';
+import * as coreHttp from '@azure/core-http';
 import * as should from "chai/register-should";
 import { AutoRestHeadTestService } from './generated/Head/autoRestHeadTestService';
 import { AutoRestHeadExceptionTestService } from './generated/HeadExceptions/autoRestHeadExceptionTestService';

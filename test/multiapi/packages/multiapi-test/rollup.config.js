@@ -8,7 +8,7 @@ import sourcemaps from "rollup-plugin-sourcemaps";
 const config = {
   input: "./esm/index.js",
   external: [
-    "@azure/ms-rest-js",
+    "@azure/core-http",
     "@azure/ms-rest-azure-js"
   ],
   output: {
@@ -17,7 +17,7 @@ const config = {
     name: "Azure.MultiapiTest",
     sourcemap: true,
     globals: {
-      "@azure/ms-rest-js": "msRest",
+      "@azure/core-http": "coreHttp",
       "@azure/ms-rest-azure-js": "msRestAzure"
     },
     banner: `/*

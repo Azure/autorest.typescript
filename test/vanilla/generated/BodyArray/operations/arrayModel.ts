@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/arrayModelMappers";
 import { AutoRestSwaggerBATArrayServiceContext } from "../autoRestSwaggerBATArrayServiceContext";
@@ -30,17 +30,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetNullResponse>
    */
-  getNull(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetNullResponse>;
+  getNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetNullResponse>;
   /**
    * @param callback The callback
    */
-  getNull(callback: msRest.ServiceCallback<number[]>): void;
+  getNull(callback: coreHttp.ServiceCallback<number[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetNullResponse> {
+  getNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number[]>): void;
+  getNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number[]>, callback?: coreHttp.ServiceCallback<number[]>): Promise<Models.ArrayModelGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -54,17 +54,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetInvalidResponse>
    */
-  getInvalid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetInvalidResponse>;
+  getInvalid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetInvalidResponse>;
   /**
    * @param callback The callback
    */
-  getInvalid(callback: msRest.ServiceCallback<number[]>): void;
+  getInvalid(callback: coreHttp.ServiceCallback<number[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getInvalid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetInvalidResponse> {
+  getInvalid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number[]>): void;
+  getInvalid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number[]>, callback?: coreHttp.ServiceCallback<number[]>): Promise<Models.ArrayModelGetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -78,17 +78,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetEmptyResponse>
    */
-  getEmpty(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetEmptyResponse>;
+  getEmpty(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetEmptyResponse>;
   /**
    * @param callback The callback
    */
-  getEmpty(callback: msRest.ServiceCallback<number[]>): void;
+  getEmpty(callback: coreHttp.ServiceCallback<number[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getEmpty(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetEmptyResponse> {
+  getEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number[]>): void;
+  getEmpty(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number[]>, callback?: coreHttp.ServiceCallback<number[]>): Promise<Models.ArrayModelGetEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -101,21 +101,21 @@ export class ArrayModel {
    * Set array value empty []
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putEmpty(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putEmpty(arrayBody: string[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putEmpty(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
+  putEmpty(arrayBody: string[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putEmpty(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(arrayBody: string[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putEmpty(arrayBody: string[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putEmpty(arrayBody: string[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -130,17 +130,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetBooleanTfftResponse>
    */
-  getBooleanTfft(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetBooleanTfftResponse>;
+  getBooleanTfft(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetBooleanTfftResponse>;
   /**
    * @param callback The callback
    */
-  getBooleanTfft(callback: msRest.ServiceCallback<boolean[]>): void;
+  getBooleanTfft(callback: coreHttp.ServiceCallback<boolean[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getBooleanTfft(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean[]>): void;
-  getBooleanTfft(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean[]>, callback?: msRest.ServiceCallback<boolean[]>): Promise<Models.ArrayModelGetBooleanTfftResponse> {
+  getBooleanTfft(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<boolean[]>): void;
+  getBooleanTfft(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<boolean[]>, callback?: coreHttp.ServiceCallback<boolean[]>): Promise<Models.ArrayModelGetBooleanTfftResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -153,21 +153,21 @@ export class ArrayModel {
    * Set array value empty [true, false, false, true]
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putBooleanTfft(arrayBody: boolean[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putBooleanTfft(arrayBody: boolean[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putBooleanTfft(arrayBody: boolean[], callback: msRest.ServiceCallback<void>): void;
+  putBooleanTfft(arrayBody: boolean[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putBooleanTfft(arrayBody: boolean[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBooleanTfft(arrayBody: boolean[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putBooleanTfft(arrayBody: boolean[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putBooleanTfft(arrayBody: boolean[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -182,17 +182,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetBooleanInvalidNullResponse>
    */
-  getBooleanInvalidNull(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetBooleanInvalidNullResponse>;
+  getBooleanInvalidNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetBooleanInvalidNullResponse>;
   /**
    * @param callback The callback
    */
-  getBooleanInvalidNull(callback: msRest.ServiceCallback<boolean[]>): void;
+  getBooleanInvalidNull(callback: coreHttp.ServiceCallback<boolean[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getBooleanInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean[]>): void;
-  getBooleanInvalidNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean[]>, callback?: msRest.ServiceCallback<boolean[]>): Promise<Models.ArrayModelGetBooleanInvalidNullResponse> {
+  getBooleanInvalidNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<boolean[]>): void;
+  getBooleanInvalidNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<boolean[]>, callback?: coreHttp.ServiceCallback<boolean[]>): Promise<Models.ArrayModelGetBooleanInvalidNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -206,17 +206,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetBooleanInvalidStringResponse>
    */
-  getBooleanInvalidString(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetBooleanInvalidStringResponse>;
+  getBooleanInvalidString(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetBooleanInvalidStringResponse>;
   /**
    * @param callback The callback
    */
-  getBooleanInvalidString(callback: msRest.ServiceCallback<boolean[]>): void;
+  getBooleanInvalidString(callback: coreHttp.ServiceCallback<boolean[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getBooleanInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean[]>): void;
-  getBooleanInvalidString(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean[]>, callback?: msRest.ServiceCallback<boolean[]>): Promise<Models.ArrayModelGetBooleanInvalidStringResponse> {
+  getBooleanInvalidString(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<boolean[]>): void;
+  getBooleanInvalidString(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<boolean[]>, callback?: coreHttp.ServiceCallback<boolean[]>): Promise<Models.ArrayModelGetBooleanInvalidStringResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -230,17 +230,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetIntegerValidResponse>
    */
-  getIntegerValid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetIntegerValidResponse>;
+  getIntegerValid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetIntegerValidResponse>;
   /**
    * @param callback The callback
    */
-  getIntegerValid(callback: msRest.ServiceCallback<number[]>): void;
+  getIntegerValid(callback: coreHttp.ServiceCallback<number[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getIntegerValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getIntegerValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetIntegerValidResponse> {
+  getIntegerValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number[]>): void;
+  getIntegerValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number[]>, callback?: coreHttp.ServiceCallback<number[]>): Promise<Models.ArrayModelGetIntegerValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -253,21 +253,21 @@ export class ArrayModel {
    * Set array value empty [1, -1, 3, 300]
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putIntegerValid(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putIntegerValid(arrayBody: number[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putIntegerValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
+  putIntegerValid(arrayBody: number[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putIntegerValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putIntegerValid(arrayBody: number[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putIntegerValid(arrayBody: number[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putIntegerValid(arrayBody: number[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -282,17 +282,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetIntInvalidNullResponse>
    */
-  getIntInvalidNull(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetIntInvalidNullResponse>;
+  getIntInvalidNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetIntInvalidNullResponse>;
   /**
    * @param callback The callback
    */
-  getIntInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
+  getIntInvalidNull(callback: coreHttp.ServiceCallback<number[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getIntInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getIntInvalidNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetIntInvalidNullResponse> {
+  getIntInvalidNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number[]>): void;
+  getIntInvalidNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number[]>, callback?: coreHttp.ServiceCallback<number[]>): Promise<Models.ArrayModelGetIntInvalidNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -306,17 +306,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetIntInvalidStringResponse>
    */
-  getIntInvalidString(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetIntInvalidStringResponse>;
+  getIntInvalidString(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetIntInvalidStringResponse>;
   /**
    * @param callback The callback
    */
-  getIntInvalidString(callback: msRest.ServiceCallback<number[]>): void;
+  getIntInvalidString(callback: coreHttp.ServiceCallback<number[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getIntInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getIntInvalidString(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetIntInvalidStringResponse> {
+  getIntInvalidString(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number[]>): void;
+  getIntInvalidString(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number[]>, callback?: coreHttp.ServiceCallback<number[]>): Promise<Models.ArrayModelGetIntInvalidStringResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -330,17 +330,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetLongValidResponse>
    */
-  getLongValid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetLongValidResponse>;
+  getLongValid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetLongValidResponse>;
   /**
    * @param callback The callback
    */
-  getLongValid(callback: msRest.ServiceCallback<number[]>): void;
+  getLongValid(callback: coreHttp.ServiceCallback<number[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getLongValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getLongValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetLongValidResponse> {
+  getLongValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number[]>): void;
+  getLongValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number[]>, callback?: coreHttp.ServiceCallback<number[]>): Promise<Models.ArrayModelGetLongValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -353,21 +353,21 @@ export class ArrayModel {
    * Set array value empty [1, -1, 3, 300]
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putLongValid(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putLongValid(arrayBody: number[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putLongValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
+  putLongValid(arrayBody: number[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putLongValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putLongValid(arrayBody: number[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putLongValid(arrayBody: number[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putLongValid(arrayBody: number[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -382,17 +382,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetLongInvalidNullResponse>
    */
-  getLongInvalidNull(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetLongInvalidNullResponse>;
+  getLongInvalidNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetLongInvalidNullResponse>;
   /**
    * @param callback The callback
    */
-  getLongInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
+  getLongInvalidNull(callback: coreHttp.ServiceCallback<number[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getLongInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getLongInvalidNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetLongInvalidNullResponse> {
+  getLongInvalidNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number[]>): void;
+  getLongInvalidNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number[]>, callback?: coreHttp.ServiceCallback<number[]>): Promise<Models.ArrayModelGetLongInvalidNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -406,17 +406,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetLongInvalidStringResponse>
    */
-  getLongInvalidString(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetLongInvalidStringResponse>;
+  getLongInvalidString(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetLongInvalidStringResponse>;
   /**
    * @param callback The callback
    */
-  getLongInvalidString(callback: msRest.ServiceCallback<number[]>): void;
+  getLongInvalidString(callback: coreHttp.ServiceCallback<number[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getLongInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getLongInvalidString(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetLongInvalidStringResponse> {
+  getLongInvalidString(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number[]>): void;
+  getLongInvalidString(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number[]>, callback?: coreHttp.ServiceCallback<number[]>): Promise<Models.ArrayModelGetLongInvalidStringResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -430,17 +430,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetFloatValidResponse>
    */
-  getFloatValid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetFloatValidResponse>;
+  getFloatValid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetFloatValidResponse>;
   /**
    * @param callback The callback
    */
-  getFloatValid(callback: msRest.ServiceCallback<number[]>): void;
+  getFloatValid(callback: coreHttp.ServiceCallback<number[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getFloatValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getFloatValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetFloatValidResponse> {
+  getFloatValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number[]>): void;
+  getFloatValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number[]>, callback?: coreHttp.ServiceCallback<number[]>): Promise<Models.ArrayModelGetFloatValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -453,21 +453,21 @@ export class ArrayModel {
    * Set array value [0, -0.01, 1.2e20]
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putFloatValid(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putFloatValid(arrayBody: number[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putFloatValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
+  putFloatValid(arrayBody: number[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putFloatValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putFloatValid(arrayBody: number[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putFloatValid(arrayBody: number[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putFloatValid(arrayBody: number[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -482,17 +482,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetFloatInvalidNullResponse>
    */
-  getFloatInvalidNull(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetFloatInvalidNullResponse>;
+  getFloatInvalidNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetFloatInvalidNullResponse>;
   /**
    * @param callback The callback
    */
-  getFloatInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
+  getFloatInvalidNull(callback: coreHttp.ServiceCallback<number[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getFloatInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getFloatInvalidNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetFloatInvalidNullResponse> {
+  getFloatInvalidNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number[]>): void;
+  getFloatInvalidNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number[]>, callback?: coreHttp.ServiceCallback<number[]>): Promise<Models.ArrayModelGetFloatInvalidNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -506,17 +506,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetFloatInvalidStringResponse>
    */
-  getFloatInvalidString(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetFloatInvalidStringResponse>;
+  getFloatInvalidString(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetFloatInvalidStringResponse>;
   /**
    * @param callback The callback
    */
-  getFloatInvalidString(callback: msRest.ServiceCallback<number[]>): void;
+  getFloatInvalidString(callback: coreHttp.ServiceCallback<number[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getFloatInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getFloatInvalidString(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetFloatInvalidStringResponse> {
+  getFloatInvalidString(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number[]>): void;
+  getFloatInvalidString(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number[]>, callback?: coreHttp.ServiceCallback<number[]>): Promise<Models.ArrayModelGetFloatInvalidStringResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -530,17 +530,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetDoubleValidResponse>
    */
-  getDoubleValid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDoubleValidResponse>;
+  getDoubleValid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetDoubleValidResponse>;
   /**
    * @param callback The callback
    */
-  getDoubleValid(callback: msRest.ServiceCallback<number[]>): void;
+  getDoubleValid(callback: coreHttp.ServiceCallback<number[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDoubleValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getDoubleValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetDoubleValidResponse> {
+  getDoubleValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number[]>): void;
+  getDoubleValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number[]>, callback?: coreHttp.ServiceCallback<number[]>): Promise<Models.ArrayModelGetDoubleValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -553,21 +553,21 @@ export class ArrayModel {
    * Set array value [0, -0.01, 1.2e20]
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putDoubleValid(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putDoubleValid(arrayBody: number[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putDoubleValid(arrayBody: number[], callback: msRest.ServiceCallback<void>): void;
+  putDoubleValid(arrayBody: number[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putDoubleValid(arrayBody: number[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDoubleValid(arrayBody: number[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putDoubleValid(arrayBody: number[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putDoubleValid(arrayBody: number[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -582,17 +582,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetDoubleInvalidNullResponse>
    */
-  getDoubleInvalidNull(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDoubleInvalidNullResponse>;
+  getDoubleInvalidNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetDoubleInvalidNullResponse>;
   /**
    * @param callback The callback
    */
-  getDoubleInvalidNull(callback: msRest.ServiceCallback<number[]>): void;
+  getDoubleInvalidNull(callback: coreHttp.ServiceCallback<number[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDoubleInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getDoubleInvalidNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetDoubleInvalidNullResponse> {
+  getDoubleInvalidNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number[]>): void;
+  getDoubleInvalidNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number[]>, callback?: coreHttp.ServiceCallback<number[]>): Promise<Models.ArrayModelGetDoubleInvalidNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -606,17 +606,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetDoubleInvalidStringResponse>
    */
-  getDoubleInvalidString(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDoubleInvalidStringResponse>;
+  getDoubleInvalidString(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetDoubleInvalidStringResponse>;
   /**
    * @param callback The callback
    */
-  getDoubleInvalidString(callback: msRest.ServiceCallback<number[]>): void;
+  getDoubleInvalidString(callback: coreHttp.ServiceCallback<number[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDoubleInvalidString(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number[]>): void;
-  getDoubleInvalidString(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number[]>, callback?: msRest.ServiceCallback<number[]>): Promise<Models.ArrayModelGetDoubleInvalidStringResponse> {
+  getDoubleInvalidString(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number[]>): void;
+  getDoubleInvalidString(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number[]>, callback?: coreHttp.ServiceCallback<number[]>): Promise<Models.ArrayModelGetDoubleInvalidStringResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -630,17 +630,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetStringValidResponse>
    */
-  getStringValid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetStringValidResponse>;
+  getStringValid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetStringValidResponse>;
   /**
    * @param callback The callback
    */
-  getStringValid(callback: msRest.ServiceCallback<string[]>): void;
+  getStringValid(callback: coreHttp.ServiceCallback<string[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getStringValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getStringValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetStringValidResponse> {
+  getStringValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<string[]>): void;
+  getStringValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<string[]>, callback?: coreHttp.ServiceCallback<string[]>): Promise<Models.ArrayModelGetStringValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -653,21 +653,21 @@ export class ArrayModel {
    * Set array value ['foo1', 'foo2', 'foo3']
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putStringValid(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putStringValid(arrayBody: string[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putStringValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
+  putStringValid(arrayBody: string[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putStringValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putStringValid(arrayBody: string[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putStringValid(arrayBody: string[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putStringValid(arrayBody: string[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -682,17 +682,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetEnumValidResponse>
    */
-  getEnumValid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetEnumValidResponse>;
+  getEnumValid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetEnumValidResponse>;
   /**
    * @param callback The callback
    */
-  getEnumValid(callback: msRest.ServiceCallback<Models.FooEnum[]>): void;
+  getEnumValid(callback: coreHttp.ServiceCallback<Models.FooEnum[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getEnumValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FooEnum[]>): void;
-  getEnumValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.FooEnum[]>, callback?: msRest.ServiceCallback<Models.FooEnum[]>): Promise<Models.ArrayModelGetEnumValidResponse> {
+  getEnumValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.FooEnum[]>): void;
+  getEnumValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.FooEnum[]>, callback?: coreHttp.ServiceCallback<Models.FooEnum[]>): Promise<Models.ArrayModelGetEnumValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -705,21 +705,21 @@ export class ArrayModel {
    * Set array value ['foo1', 'foo2', 'foo3']
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putEnumValid(arrayBody: Models.FooEnum[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putEnumValid(arrayBody: Models.FooEnum[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putEnumValid(arrayBody: Models.FooEnum[], callback: msRest.ServiceCallback<void>): void;
+  putEnumValid(arrayBody: Models.FooEnum[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putEnumValid(arrayBody: Models.FooEnum[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEnumValid(arrayBody: Models.FooEnum[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putEnumValid(arrayBody: Models.FooEnum[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putEnumValid(arrayBody: Models.FooEnum[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -734,17 +734,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetStringEnumValidResponse>
    */
-  getStringEnumValid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetStringEnumValidResponse>;
+  getStringEnumValid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetStringEnumValidResponse>;
   /**
    * @param callback The callback
    */
-  getStringEnumValid(callback: msRest.ServiceCallback<string[]>): void;
+  getStringEnumValid(callback: coreHttp.ServiceCallback<string[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getStringEnumValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getStringEnumValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetStringEnumValidResponse> {
+  getStringEnumValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<string[]>): void;
+  getStringEnumValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<string[]>, callback?: coreHttp.ServiceCallback<string[]>): Promise<Models.ArrayModelGetStringEnumValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -757,21 +757,21 @@ export class ArrayModel {
    * Set array value ['foo1', 'foo2', 'foo3']
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putStringEnumValid(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putStringEnumValid(arrayBody: string[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putStringEnumValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
+  putStringEnumValid(arrayBody: string[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putStringEnumValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putStringEnumValid(arrayBody: string[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putStringEnumValid(arrayBody: string[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putStringEnumValid(arrayBody: string[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -786,17 +786,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetStringWithNullResponse>
    */
-  getStringWithNull(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetStringWithNullResponse>;
+  getStringWithNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetStringWithNullResponse>;
   /**
    * @param callback The callback
    */
-  getStringWithNull(callback: msRest.ServiceCallback<string[]>): void;
+  getStringWithNull(callback: coreHttp.ServiceCallback<string[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getStringWithNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getStringWithNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetStringWithNullResponse> {
+  getStringWithNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<string[]>): void;
+  getStringWithNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<string[]>, callback?: coreHttp.ServiceCallback<string[]>): Promise<Models.ArrayModelGetStringWithNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -810,17 +810,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetStringWithInvalidResponse>
    */
-  getStringWithInvalid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetStringWithInvalidResponse>;
+  getStringWithInvalid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetStringWithInvalidResponse>;
   /**
    * @param callback The callback
    */
-  getStringWithInvalid(callback: msRest.ServiceCallback<string[]>): void;
+  getStringWithInvalid(callback: coreHttp.ServiceCallback<string[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getStringWithInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getStringWithInvalid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetStringWithInvalidResponse> {
+  getStringWithInvalid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<string[]>): void;
+  getStringWithInvalid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<string[]>, callback?: coreHttp.ServiceCallback<string[]>): Promise<Models.ArrayModelGetStringWithInvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -835,17 +835,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetUuidValidResponse>
    */
-  getUuidValid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetUuidValidResponse>;
+  getUuidValid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetUuidValidResponse>;
   /**
    * @param callback The callback
    */
-  getUuidValid(callback: msRest.ServiceCallback<string[]>): void;
+  getUuidValid(callback: coreHttp.ServiceCallback<string[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getUuidValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getUuidValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetUuidValidResponse> {
+  getUuidValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<string[]>): void;
+  getUuidValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<string[]>, callback?: coreHttp.ServiceCallback<string[]>): Promise<Models.ArrayModelGetUuidValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -859,21 +859,21 @@ export class ArrayModel {
    * 'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205']
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putUuidValid(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putUuidValid(arrayBody: string[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putUuidValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
+  putUuidValid(arrayBody: string[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putUuidValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUuidValid(arrayBody: string[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putUuidValid(arrayBody: string[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putUuidValid(arrayBody: string[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -888,17 +888,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetUuidInvalidCharsResponse>
    */
-  getUuidInvalidChars(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetUuidInvalidCharsResponse>;
+  getUuidInvalidChars(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetUuidInvalidCharsResponse>;
   /**
    * @param callback The callback
    */
-  getUuidInvalidChars(callback: msRest.ServiceCallback<string[]>): void;
+  getUuidInvalidChars(callback: coreHttp.ServiceCallback<string[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getUuidInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getUuidInvalidChars(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetUuidInvalidCharsResponse> {
+  getUuidInvalidChars(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<string[]>): void;
+  getUuidInvalidChars(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<string[]>, callback?: coreHttp.ServiceCallback<string[]>): Promise<Models.ArrayModelGetUuidInvalidCharsResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -912,17 +912,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetDateValidResponse>
    */
-  getDateValid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateValidResponse>;
+  getDateValid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetDateValidResponse>;
   /**
    * @param callback The callback
    */
-  getDateValid(callback: msRest.ServiceCallback<Date[] | string[]>): void;
+  getDateValid(callback: coreHttp.ServiceCallback<Date[] | string[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDateValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateValidResponse> {
+  getDateValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Date[] | string[]>): void;
+  getDateValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Date[] | string[]>, callback?: coreHttp.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -935,21 +935,21 @@ export class ArrayModel {
    * Set array value  ['2000-12-01', '1980-01-02', '1492-10-12']
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putDateValid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putDateValid(arrayBody: Array<Date> | Array<string>, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putDateValid(arrayBody: Array<Date> | Array<string>, callback: msRest.ServiceCallback<void>): void;
+  putDateValid(arrayBody: Array<Date> | Array<string>, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putDateValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateValid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putDateValid(arrayBody: Array<Date> | Array<string>, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putDateValid(arrayBody: Array<Date> | Array<string>, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -964,17 +964,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetDateInvalidNullResponse>
    */
-  getDateInvalidNull(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateInvalidNullResponse>;
+  getDateInvalidNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetDateInvalidNullResponse>;
   /**
    * @param callback The callback
    */
-  getDateInvalidNull(callback: msRest.ServiceCallback<Date[] | string[]>): void;
+  getDateInvalidNull(callback: coreHttp.ServiceCallback<Date[] | string[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDateInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateInvalidNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateInvalidNullResponse> {
+  getDateInvalidNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Date[] | string[]>): void;
+  getDateInvalidNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Date[] | string[]>, callback?: coreHttp.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateInvalidNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -988,17 +988,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetDateInvalidCharsResponse>
    */
-  getDateInvalidChars(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateInvalidCharsResponse>;
+  getDateInvalidChars(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetDateInvalidCharsResponse>;
   /**
    * @param callback The callback
    */
-  getDateInvalidChars(callback: msRest.ServiceCallback<Date[] | string[]>): void;
+  getDateInvalidChars(callback: coreHttp.ServiceCallback<Date[] | string[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDateInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateInvalidChars(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateInvalidCharsResponse> {
+  getDateInvalidChars(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Date[] | string[]>): void;
+  getDateInvalidChars(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Date[] | string[]>, callback?: coreHttp.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateInvalidCharsResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1013,17 +1013,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetDateTimeValidResponse>
    */
-  getDateTimeValid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeValidResponse>;
+  getDateTimeValid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeValidResponse>;
   /**
    * @param callback The callback
    */
-  getDateTimeValid(callback: msRest.ServiceCallback<Date[] | string[]>): void;
+  getDateTimeValid(callback: coreHttp.ServiceCallback<Date[] | string[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDateTimeValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateTimeValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateTimeValidResponse> {
+  getDateTimeValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Date[] | string[]>): void;
+  getDateTimeValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Date[] | string[]>, callback?: coreHttp.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateTimeValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1037,21 +1037,21 @@ export class ArrayModel {
    * '1492-10-12T10:15:01-08:00']
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putDateTimeValid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putDateTimeValid(arrayBody: Array<Date> | Array<string>, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putDateTimeValid(arrayBody: Array<Date> | Array<string>, callback: msRest.ServiceCallback<void>): void;
+  putDateTimeValid(arrayBody: Array<Date> | Array<string>, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putDateTimeValid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTimeValid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putDateTimeValid(arrayBody: Array<Date> | Array<string>, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putDateTimeValid(arrayBody: Array<Date> | Array<string>, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -1066,17 +1066,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetDateTimeInvalidNullResponse>
    */
-  getDateTimeInvalidNull(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeInvalidNullResponse>;
+  getDateTimeInvalidNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeInvalidNullResponse>;
   /**
    * @param callback The callback
    */
-  getDateTimeInvalidNull(callback: msRest.ServiceCallback<Date[] | string[]>): void;
+  getDateTimeInvalidNull(callback: coreHttp.ServiceCallback<Date[] | string[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDateTimeInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateTimeInvalidNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateTimeInvalidNullResponse> {
+  getDateTimeInvalidNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Date[] | string[]>): void;
+  getDateTimeInvalidNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Date[] | string[]>, callback?: coreHttp.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateTimeInvalidNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1090,17 +1090,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetDateTimeInvalidCharsResponse>
    */
-  getDateTimeInvalidChars(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeInvalidCharsResponse>;
+  getDateTimeInvalidChars(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeInvalidCharsResponse>;
   /**
    * @param callback The callback
    */
-  getDateTimeInvalidChars(callback: msRest.ServiceCallback<Date[] | string[]>): void;
+  getDateTimeInvalidChars(callback: coreHttp.ServiceCallback<Date[] | string[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDateTimeInvalidChars(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateTimeInvalidChars(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateTimeInvalidCharsResponse> {
+  getDateTimeInvalidChars(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Date[] | string[]>): void;
+  getDateTimeInvalidChars(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Date[] | string[]>, callback?: coreHttp.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateTimeInvalidCharsResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1115,17 +1115,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetDateTimeRfc1123ValidResponse>
    */
-  getDateTimeRfc1123Valid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeRfc1123ValidResponse>;
+  getDateTimeRfc1123Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetDateTimeRfc1123ValidResponse>;
   /**
    * @param callback The callback
    */
-  getDateTimeRfc1123Valid(callback: msRest.ServiceCallback<Date[] | string[]>): void;
+  getDateTimeRfc1123Valid(callback: coreHttp.ServiceCallback<Date[] | string[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDateTimeRfc1123Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date[] | string[]>): void;
-  getDateTimeRfc1123Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date[] | string[]>, callback?: msRest.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateTimeRfc1123ValidResponse> {
+  getDateTimeRfc1123Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Date[] | string[]>): void;
+  getDateTimeRfc1123Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Date[] | string[]>, callback?: coreHttp.ServiceCallback<Date[] | string[]>): Promise<Models.ArrayModelGetDateTimeRfc1123ValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1139,21 +1139,21 @@ export class ArrayModel {
    * 1492 10:15:01 GMT']
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, callback: msRest.ServiceCallback<void>): void;
+  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putDateTimeRfc1123Valid(arrayBody: Array<Date> | Array<string>, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -1168,17 +1168,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetDurationValidResponse>
    */
-  getDurationValid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDurationValidResponse>;
+  getDurationValid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetDurationValidResponse>;
   /**
    * @param callback The callback
    */
-  getDurationValid(callback: msRest.ServiceCallback<string[]>): void;
+  getDurationValid(callback: coreHttp.ServiceCallback<string[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDurationValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  getDurationValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback?: msRest.ServiceCallback<string[]>): Promise<Models.ArrayModelGetDurationValidResponse> {
+  getDurationValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<string[]>): void;
+  getDurationValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<string[]>, callback?: coreHttp.ServiceCallback<string[]>): Promise<Models.ArrayModelGetDurationValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1191,21 +1191,21 @@ export class ArrayModel {
    * Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S']
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putDurationValid(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putDurationValid(arrayBody: string[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putDurationValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
+  putDurationValid(arrayBody: string[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putDurationValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDurationValid(arrayBody: string[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putDurationValid(arrayBody: string[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putDurationValid(arrayBody: string[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -1221,17 +1221,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetByteValidResponse>
    */
-  getByteValid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetByteValidResponse>;
+  getByteValid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetByteValidResponse>;
   /**
    * @param callback The callback
    */
-  getByteValid(callback: msRest.ServiceCallback<Uint8Array[]>): void;
+  getByteValid(callback: coreHttp.ServiceCallback<Uint8Array[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getByteValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
-  getByteValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Uint8Array[]>, callback?: msRest.ServiceCallback<Uint8Array[]>): Promise<Models.ArrayModelGetByteValidResponse> {
+  getByteValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Uint8Array[]>): void;
+  getByteValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Uint8Array[]>, callback?: coreHttp.ServiceCallback<Uint8Array[]>): Promise<Models.ArrayModelGetByteValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1245,21 +1245,21 @@ export class ArrayModel {
    * in base 64
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putByteValid(arrayBody: Uint8Array[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putByteValid(arrayBody: Uint8Array[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putByteValid(arrayBody: Uint8Array[], callback: msRest.ServiceCallback<void>): void;
+  putByteValid(arrayBody: Uint8Array[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putByteValid(arrayBody: Uint8Array[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putByteValid(arrayBody: Uint8Array[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putByteValid(arrayBody: Uint8Array[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putByteValid(arrayBody: Uint8Array[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -1274,17 +1274,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetByteInvalidNullResponse>
    */
-  getByteInvalidNull(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetByteInvalidNullResponse>;
+  getByteInvalidNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetByteInvalidNullResponse>;
   /**
    * @param callback The callback
    */
-  getByteInvalidNull(callback: msRest.ServiceCallback<Uint8Array[]>): void;
+  getByteInvalidNull(callback: coreHttp.ServiceCallback<Uint8Array[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getByteInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
-  getByteInvalidNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Uint8Array[]>, callback?: msRest.ServiceCallback<Uint8Array[]>): Promise<Models.ArrayModelGetByteInvalidNullResponse> {
+  getByteInvalidNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Uint8Array[]>): void;
+  getByteInvalidNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Uint8Array[]>, callback?: coreHttp.ServiceCallback<Uint8Array[]>): Promise<Models.ArrayModelGetByteInvalidNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1299,17 +1299,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetBase64UrlResponse>
    */
-  getBase64Url(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetBase64UrlResponse>;
+  getBase64Url(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetBase64UrlResponse>;
   /**
    * @param callback The callback
    */
-  getBase64Url(callback: msRest.ServiceCallback<Uint8Array[]>): void;
+  getBase64Url(callback: coreHttp.ServiceCallback<Uint8Array[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getBase64Url(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
-  getBase64Url(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Uint8Array[]>, callback?: msRest.ServiceCallback<Uint8Array[]>): Promise<Models.ArrayModelGetBase64UrlResponse> {
+  getBase64Url(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Uint8Array[]>): void;
+  getBase64Url(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Uint8Array[]>, callback?: coreHttp.ServiceCallback<Uint8Array[]>): Promise<Models.ArrayModelGetBase64UrlResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1323,17 +1323,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetComplexNullResponse>
    */
-  getComplexNull(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexNullResponse>;
+  getComplexNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetComplexNullResponse>;
   /**
    * @param callback The callback
    */
-  getComplexNull(callback: msRest.ServiceCallback<Models.Product[]>): void;
+  getComplexNull(callback: coreHttp.ServiceCallback<Models.Product[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getComplexNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product[]>, callback?: msRest.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexNullResponse> {
+  getComplexNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Product[]>): void;
+  getComplexNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Product[]>, callback?: coreHttp.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1347,17 +1347,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetComplexEmptyResponse>
    */
-  getComplexEmpty(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexEmptyResponse>;
+  getComplexEmpty(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetComplexEmptyResponse>;
   /**
    * @param callback The callback
    */
-  getComplexEmpty(callback: msRest.ServiceCallback<Models.Product[]>): void;
+  getComplexEmpty(callback: coreHttp.ServiceCallback<Models.Product[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getComplexEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexEmpty(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product[]>, callback?: msRest.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexEmptyResponse> {
+  getComplexEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Product[]>): void;
+  getComplexEmpty(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Product[]>, callback?: coreHttp.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1372,17 +1372,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetComplexItemNullResponse>
    */
-  getComplexItemNull(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexItemNullResponse>;
+  getComplexItemNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetComplexItemNullResponse>;
   /**
    * @param callback The callback
    */
-  getComplexItemNull(callback: msRest.ServiceCallback<Models.Product[]>): void;
+  getComplexItemNull(callback: coreHttp.ServiceCallback<Models.Product[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getComplexItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexItemNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product[]>, callback?: msRest.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexItemNullResponse> {
+  getComplexItemNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Product[]>): void;
+  getComplexItemNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Product[]>, callback?: coreHttp.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexItemNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1397,17 +1397,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetComplexItemEmptyResponse>
    */
-  getComplexItemEmpty(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexItemEmptyResponse>;
+  getComplexItemEmpty(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetComplexItemEmptyResponse>;
   /**
    * @param callback The callback
    */
-  getComplexItemEmpty(callback: msRest.ServiceCallback<Models.Product[]>): void;
+  getComplexItemEmpty(callback: coreHttp.ServiceCallback<Models.Product[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getComplexItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexItemEmpty(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product[]>, callback?: msRest.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexItemEmptyResponse> {
+  getComplexItemEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Product[]>): void;
+  getComplexItemEmpty(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Product[]>, callback?: coreHttp.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexItemEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1422,17 +1422,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetComplexValidResponse>
    */
-  getComplexValid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetComplexValidResponse>;
+  getComplexValid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetComplexValidResponse>;
   /**
    * @param callback The callback
    */
-  getComplexValid(callback: msRest.ServiceCallback<Models.Product[]>): void;
+  getComplexValid(callback: coreHttp.ServiceCallback<Models.Product[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getComplexValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product[]>): void;
-  getComplexValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product[]>, callback?: msRest.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexValidResponse> {
+  getComplexValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Product[]>): void;
+  getComplexValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Product[]>, callback?: coreHttp.ServiceCallback<Models.Product[]>): Promise<Models.ArrayModelGetComplexValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1446,21 +1446,21 @@ export class ArrayModel {
    * '4'}, {'integer': 5, 'string': '6'}]
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putComplexValid(arrayBody: Models.Product[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putComplexValid(arrayBody: Models.Product[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putComplexValid(arrayBody: Models.Product[], callback: msRest.ServiceCallback<void>): void;
+  putComplexValid(arrayBody: Models.Product[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putComplexValid(arrayBody: Models.Product[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putComplexValid(arrayBody: Models.Product[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putComplexValid(arrayBody: Models.Product[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putComplexValid(arrayBody: Models.Product[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -1475,17 +1475,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetArrayNullResponse>
    */
-  getArrayNull(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayNullResponse>;
+  getArrayNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetArrayNullResponse>;
   /**
    * @param callback The callback
    */
-  getArrayNull(callback: msRest.ServiceCallback<string[][]>): void;
+  getArrayNull(callback: coreHttp.ServiceCallback<string[][]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getArrayNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[][]>, callback?: msRest.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayNullResponse> {
+  getArrayNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<string[][]>): void;
+  getArrayNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<string[][]>, callback?: coreHttp.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1499,17 +1499,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetArrayEmptyResponse>
    */
-  getArrayEmpty(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayEmptyResponse>;
+  getArrayEmpty(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetArrayEmptyResponse>;
   /**
    * @param callback The callback
    */
-  getArrayEmpty(callback: msRest.ServiceCallback<string[][]>): void;
+  getArrayEmpty(callback: coreHttp.ServiceCallback<string[][]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getArrayEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayEmpty(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[][]>, callback?: msRest.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayEmptyResponse> {
+  getArrayEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<string[][]>): void;
+  getArrayEmpty(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<string[][]>, callback?: coreHttp.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1523,17 +1523,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetArrayItemNullResponse>
    */
-  getArrayItemNull(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayItemNullResponse>;
+  getArrayItemNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetArrayItemNullResponse>;
   /**
    * @param callback The callback
    */
-  getArrayItemNull(callback: msRest.ServiceCallback<string[][]>): void;
+  getArrayItemNull(callback: coreHttp.ServiceCallback<string[][]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getArrayItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayItemNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[][]>, callback?: msRest.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayItemNullResponse> {
+  getArrayItemNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<string[][]>): void;
+  getArrayItemNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<string[][]>, callback?: coreHttp.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayItemNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1547,17 +1547,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetArrayItemEmptyResponse>
    */
-  getArrayItemEmpty(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayItemEmptyResponse>;
+  getArrayItemEmpty(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetArrayItemEmptyResponse>;
   /**
    * @param callback The callback
    */
-  getArrayItemEmpty(callback: msRest.ServiceCallback<string[][]>): void;
+  getArrayItemEmpty(callback: coreHttp.ServiceCallback<string[][]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getArrayItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayItemEmpty(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[][]>, callback?: msRest.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayItemEmptyResponse> {
+  getArrayItemEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<string[][]>): void;
+  getArrayItemEmpty(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<string[][]>, callback?: coreHttp.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayItemEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1571,17 +1571,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetArrayValidResponse>
    */
-  getArrayValid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetArrayValidResponse>;
+  getArrayValid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetArrayValidResponse>;
   /**
    * @param callback The callback
    */
-  getArrayValid(callback: msRest.ServiceCallback<string[][]>): void;
+  getArrayValid(callback: coreHttp.ServiceCallback<string[][]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getArrayValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[][]>): void;
-  getArrayValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[][]>, callback?: msRest.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayValidResponse> {
+  getArrayValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<string[][]>): void;
+  getArrayValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<string[][]>, callback?: coreHttp.ServiceCallback<string[][]>): Promise<Models.ArrayModelGetArrayValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1594,21 +1594,21 @@ export class ArrayModel {
    * Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putArrayValid(arrayBody: string[][], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putArrayValid(arrayBody: string[][], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putArrayValid(arrayBody: string[][], callback: msRest.ServiceCallback<void>): void;
+  putArrayValid(arrayBody: string[][], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putArrayValid(arrayBody: string[][], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putArrayValid(arrayBody: string[][], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putArrayValid(arrayBody: string[][], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putArrayValid(arrayBody: string[][], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -1623,17 +1623,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetDictionaryNullResponse>
    */
-  getDictionaryNull(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryNullResponse>;
+  getDictionaryNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryNullResponse>;
   /**
    * @param callback The callback
    */
-  getDictionaryNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
+  getDictionaryNull(callback: coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDictionaryNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: string }[]>, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryNullResponse> {
+  getDictionaryNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>): void;
+  getDictionaryNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>, callback?: coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1647,17 +1647,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetDictionaryEmptyResponse>
    */
-  getDictionaryEmpty(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryEmptyResponse>;
+  getDictionaryEmpty(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryEmptyResponse>;
   /**
    * @param callback The callback
    */
-  getDictionaryEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
+  getDictionaryEmpty(callback: coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDictionaryEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryEmpty(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: string }[]>, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryEmptyResponse> {
+  getDictionaryEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>): void;
+  getDictionaryEmpty(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>, callback?: coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1672,17 +1672,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetDictionaryItemNullResponse>
    */
-  getDictionaryItemNull(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryItemNullResponse>;
+  getDictionaryItemNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryItemNullResponse>;
   /**
    * @param callback The callback
    */
-  getDictionaryItemNull(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
+  getDictionaryItemNull(callback: coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDictionaryItemNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryItemNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: string }[]>, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryItemNullResponse> {
+  getDictionaryItemNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>): void;
+  getDictionaryItemNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>, callback?: coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryItemNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1697,17 +1697,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetDictionaryItemEmptyResponse>
    */
-  getDictionaryItemEmpty(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryItemEmptyResponse>;
+  getDictionaryItemEmpty(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryItemEmptyResponse>;
   /**
    * @param callback The callback
    */
-  getDictionaryItemEmpty(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
+  getDictionaryItemEmpty(callback: coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDictionaryItemEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryItemEmpty(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: string }[]>, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryItemEmptyResponse> {
+  getDictionaryItemEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>): void;
+  getDictionaryItemEmpty(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>, callback?: coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryItemEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1722,17 +1722,17 @@ export class ArrayModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ArrayModelGetDictionaryValidResponse>
    */
-  getDictionaryValid(options?: msRest.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryValidResponse>;
+  getDictionaryValid(options?: coreHttp.RequestOptionsBase): Promise<Models.ArrayModelGetDictionaryValidResponse>;
   /**
    * @param callback The callback
    */
-  getDictionaryValid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
+  getDictionaryValid(callback: coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDictionaryValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): void;
-  getDictionaryValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: string }[]>, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryValidResponse> {
+  getDictionaryValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>): void;
+  getDictionaryValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>, callback?: coreHttp.ServiceCallback<{ [propertyName: string]: string }[]>): Promise<Models.ArrayModelGetDictionaryValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -1746,21 +1746,21 @@ export class ArrayModel {
    * 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}]
    * @param arrayBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayBody
    * @param callback The callback
    */
-  putDictionaryValid(arrayBody: { [propertyName: string]: string }[], callback: msRest.ServiceCallback<void>): void;
+  putDictionaryValid(arrayBody: { [propertyName: string]: string }[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putDictionaryValid(arrayBody: { [propertyName: string]: string }[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayBody,
@@ -1772,8 +1772,8 @@ export class ArrayModel {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getNullOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/null",
   responses: {
@@ -1797,7 +1797,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getInvalidOperationSpec: msRest.OperationSpec = {
+const getInvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/invalid",
   responses: {
@@ -1821,7 +1821,7 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getEmptyOperationSpec: msRest.OperationSpec = {
+const getEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/empty",
   responses: {
@@ -1845,7 +1845,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putEmptyOperationSpec: msRest.OperationSpec = {
+const putEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/empty",
   requestBody: {
@@ -1872,7 +1872,7 @@ const putEmptyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getBooleanTfftOperationSpec: msRest.OperationSpec = {
+const getBooleanTfftOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/boolean/tfft",
   responses: {
@@ -1896,7 +1896,7 @@ const getBooleanTfftOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putBooleanTfftOperationSpec: msRest.OperationSpec = {
+const putBooleanTfftOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/boolean/tfft",
   requestBody: {
@@ -1923,7 +1923,7 @@ const putBooleanTfftOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getBooleanInvalidNullOperationSpec: msRest.OperationSpec = {
+const getBooleanInvalidNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/boolean/true.null.false",
   responses: {
@@ -1947,7 +1947,7 @@ const getBooleanInvalidNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getBooleanInvalidStringOperationSpec: msRest.OperationSpec = {
+const getBooleanInvalidStringOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/boolean/true.boolean.false",
   responses: {
@@ -1971,7 +1971,7 @@ const getBooleanInvalidStringOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getIntegerValidOperationSpec: msRest.OperationSpec = {
+const getIntegerValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/integer/1.-1.3.300",
   responses: {
@@ -1995,7 +1995,7 @@ const getIntegerValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putIntegerValidOperationSpec: msRest.OperationSpec = {
+const putIntegerValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/integer/1.-1.3.300",
   requestBody: {
@@ -2022,7 +2022,7 @@ const putIntegerValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getIntInvalidNullOperationSpec: msRest.OperationSpec = {
+const getIntInvalidNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/integer/1.null.zero",
   responses: {
@@ -2046,7 +2046,7 @@ const getIntInvalidNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getIntInvalidStringOperationSpec: msRest.OperationSpec = {
+const getIntInvalidStringOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/integer/1.integer.0",
   responses: {
@@ -2070,7 +2070,7 @@ const getIntInvalidStringOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getLongValidOperationSpec: msRest.OperationSpec = {
+const getLongValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/long/1.-1.3.300",
   responses: {
@@ -2094,7 +2094,7 @@ const getLongValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putLongValidOperationSpec: msRest.OperationSpec = {
+const putLongValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/long/1.-1.3.300",
   requestBody: {
@@ -2121,7 +2121,7 @@ const putLongValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getLongInvalidNullOperationSpec: msRest.OperationSpec = {
+const getLongInvalidNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/long/1.null.zero",
   responses: {
@@ -2145,7 +2145,7 @@ const getLongInvalidNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getLongInvalidStringOperationSpec: msRest.OperationSpec = {
+const getLongInvalidStringOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/long/1.integer.0",
   responses: {
@@ -2169,7 +2169,7 @@ const getLongInvalidStringOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getFloatValidOperationSpec: msRest.OperationSpec = {
+const getFloatValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/float/0--0.01-1.2e20",
   responses: {
@@ -2193,7 +2193,7 @@ const getFloatValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putFloatValidOperationSpec: msRest.OperationSpec = {
+const putFloatValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/float/0--0.01-1.2e20",
   requestBody: {
@@ -2220,7 +2220,7 @@ const putFloatValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getFloatInvalidNullOperationSpec: msRest.OperationSpec = {
+const getFloatInvalidNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/float/0.0-null-1.2e20",
   responses: {
@@ -2244,7 +2244,7 @@ const getFloatInvalidNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getFloatInvalidStringOperationSpec: msRest.OperationSpec = {
+const getFloatInvalidStringOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/float/1.number.0",
   responses: {
@@ -2268,7 +2268,7 @@ const getFloatInvalidStringOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDoubleValidOperationSpec: msRest.OperationSpec = {
+const getDoubleValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/double/0--0.01-1.2e20",
   responses: {
@@ -2292,7 +2292,7 @@ const getDoubleValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putDoubleValidOperationSpec: msRest.OperationSpec = {
+const putDoubleValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/double/0--0.01-1.2e20",
   requestBody: {
@@ -2319,7 +2319,7 @@ const putDoubleValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDoubleInvalidNullOperationSpec: msRest.OperationSpec = {
+const getDoubleInvalidNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/double/0.0-null-1.2e20",
   responses: {
@@ -2343,7 +2343,7 @@ const getDoubleInvalidNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDoubleInvalidStringOperationSpec: msRest.OperationSpec = {
+const getDoubleInvalidStringOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/double/1.number.0",
   responses: {
@@ -2367,7 +2367,7 @@ const getDoubleInvalidStringOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getStringValidOperationSpec: msRest.OperationSpec = {
+const getStringValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/string/foo1.foo2.foo3",
   responses: {
@@ -2391,7 +2391,7 @@ const getStringValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putStringValidOperationSpec: msRest.OperationSpec = {
+const putStringValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/string/foo1.foo2.foo3",
   requestBody: {
@@ -2418,7 +2418,7 @@ const putStringValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getEnumValidOperationSpec: msRest.OperationSpec = {
+const getEnumValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/enum/foo1.foo2.foo3",
   responses: {
@@ -2447,7 +2447,7 @@ const getEnumValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putEnumValidOperationSpec: msRest.OperationSpec = {
+const putEnumValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/enum/foo1.foo2.foo3",
   requestBody: {
@@ -2479,7 +2479,7 @@ const putEnumValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getStringEnumValidOperationSpec: msRest.OperationSpec = {
+const getStringEnumValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/string-enum/foo1.foo2.foo3",
   responses: {
@@ -2503,7 +2503,7 @@ const getStringEnumValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putStringEnumValidOperationSpec: msRest.OperationSpec = {
+const putStringEnumValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/string-enum/foo1.foo2.foo3",
   requestBody: {
@@ -2530,7 +2530,7 @@ const putStringEnumValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getStringWithNullOperationSpec: msRest.OperationSpec = {
+const getStringWithNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/string/foo.null.foo2",
   responses: {
@@ -2554,7 +2554,7 @@ const getStringWithNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getStringWithInvalidOperationSpec: msRest.OperationSpec = {
+const getStringWithInvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/string/foo.123.foo2",
   responses: {
@@ -2578,7 +2578,7 @@ const getStringWithInvalidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getUuidValidOperationSpec: msRest.OperationSpec = {
+const getUuidValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/uuid/valid",
   responses: {
@@ -2602,7 +2602,7 @@ const getUuidValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putUuidValidOperationSpec: msRest.OperationSpec = {
+const putUuidValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/uuid/valid",
   requestBody: {
@@ -2629,7 +2629,7 @@ const putUuidValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getUuidInvalidCharsOperationSpec: msRest.OperationSpec = {
+const getUuidInvalidCharsOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/uuid/invalidchars",
   responses: {
@@ -2653,7 +2653,7 @@ const getUuidInvalidCharsOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDateValidOperationSpec: msRest.OperationSpec = {
+const getDateValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date/valid",
   responses: {
@@ -2677,7 +2677,7 @@ const getDateValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putDateValidOperationSpec: msRest.OperationSpec = {
+const putDateValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/date/valid",
   requestBody: {
@@ -2704,7 +2704,7 @@ const putDateValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDateInvalidNullOperationSpec: msRest.OperationSpec = {
+const getDateInvalidNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date/invalidnull",
   responses: {
@@ -2728,7 +2728,7 @@ const getDateInvalidNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDateInvalidCharsOperationSpec: msRest.OperationSpec = {
+const getDateInvalidCharsOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date/invalidchars",
   responses: {
@@ -2752,7 +2752,7 @@ const getDateInvalidCharsOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDateTimeValidOperationSpec: msRest.OperationSpec = {
+const getDateTimeValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date-time/valid",
   responses: {
@@ -2776,7 +2776,7 @@ const getDateTimeValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putDateTimeValidOperationSpec: msRest.OperationSpec = {
+const putDateTimeValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/date-time/valid",
   requestBody: {
@@ -2803,7 +2803,7 @@ const putDateTimeValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDateTimeInvalidNullOperationSpec: msRest.OperationSpec = {
+const getDateTimeInvalidNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date-time/invalidnull",
   responses: {
@@ -2827,7 +2827,7 @@ const getDateTimeInvalidNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDateTimeInvalidCharsOperationSpec: msRest.OperationSpec = {
+const getDateTimeInvalidCharsOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date-time/invalidchars",
   responses: {
@@ -2851,7 +2851,7 @@ const getDateTimeInvalidCharsOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDateTimeRfc1123ValidOperationSpec: msRest.OperationSpec = {
+const getDateTimeRfc1123ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/date-time-rfc1123/valid",
   responses: {
@@ -2875,7 +2875,7 @@ const getDateTimeRfc1123ValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putDateTimeRfc1123ValidOperationSpec: msRest.OperationSpec = {
+const putDateTimeRfc1123ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/date-time-rfc1123/valid",
   requestBody: {
@@ -2902,7 +2902,7 @@ const putDateTimeRfc1123ValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDurationValidOperationSpec: msRest.OperationSpec = {
+const getDurationValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/duration/valid",
   responses: {
@@ -2926,7 +2926,7 @@ const getDurationValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putDurationValidOperationSpec: msRest.OperationSpec = {
+const putDurationValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/duration/valid",
   requestBody: {
@@ -2953,7 +2953,7 @@ const putDurationValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getByteValidOperationSpec: msRest.OperationSpec = {
+const getByteValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/byte/valid",
   responses: {
@@ -2977,7 +2977,7 @@ const getByteValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putByteValidOperationSpec: msRest.OperationSpec = {
+const putByteValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/prim/byte/valid",
   requestBody: {
@@ -3004,7 +3004,7 @@ const putByteValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getByteInvalidNullOperationSpec: msRest.OperationSpec = {
+const getByteInvalidNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/byte/invalidnull",
   responses: {
@@ -3028,7 +3028,7 @@ const getByteInvalidNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getBase64UrlOperationSpec: msRest.OperationSpec = {
+const getBase64UrlOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/prim/base64url/valid",
   responses: {
@@ -3052,7 +3052,7 @@ const getBase64UrlOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getComplexNullOperationSpec: msRest.OperationSpec = {
+const getComplexNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/complex/null",
   responses: {
@@ -3077,7 +3077,7 @@ const getComplexNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getComplexEmptyOperationSpec: msRest.OperationSpec = {
+const getComplexEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/complex/empty",
   responses: {
@@ -3102,7 +3102,7 @@ const getComplexEmptyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getComplexItemNullOperationSpec: msRest.OperationSpec = {
+const getComplexItemNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/complex/itemnull",
   responses: {
@@ -3127,7 +3127,7 @@ const getComplexItemNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getComplexItemEmptyOperationSpec: msRest.OperationSpec = {
+const getComplexItemEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/complex/itemempty",
   responses: {
@@ -3152,7 +3152,7 @@ const getComplexItemEmptyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getComplexValidOperationSpec: msRest.OperationSpec = {
+const getComplexValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/complex/valid",
   responses: {
@@ -3177,7 +3177,7 @@ const getComplexValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putComplexValidOperationSpec: msRest.OperationSpec = {
+const putComplexValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/complex/valid",
   requestBody: {
@@ -3205,7 +3205,7 @@ const putComplexValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getArrayNullOperationSpec: msRest.OperationSpec = {
+const getArrayNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/array/null",
   responses: {
@@ -3234,7 +3234,7 @@ const getArrayNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getArrayEmptyOperationSpec: msRest.OperationSpec = {
+const getArrayEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/array/empty",
   responses: {
@@ -3263,7 +3263,7 @@ const getArrayEmptyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getArrayItemNullOperationSpec: msRest.OperationSpec = {
+const getArrayItemNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/array/itemnull",
   responses: {
@@ -3292,7 +3292,7 @@ const getArrayItemNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getArrayItemEmptyOperationSpec: msRest.OperationSpec = {
+const getArrayItemEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/array/itemempty",
   responses: {
@@ -3321,7 +3321,7 @@ const getArrayItemEmptyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getArrayValidOperationSpec: msRest.OperationSpec = {
+const getArrayValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/array/valid",
   responses: {
@@ -3350,7 +3350,7 @@ const getArrayValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putArrayValidOperationSpec: msRest.OperationSpec = {
+const putArrayValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/array/valid",
   requestBody: {
@@ -3382,7 +3382,7 @@ const putArrayValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDictionaryNullOperationSpec: msRest.OperationSpec = {
+const getDictionaryNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/dictionary/null",
   responses: {
@@ -3411,7 +3411,7 @@ const getDictionaryNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDictionaryEmptyOperationSpec: msRest.OperationSpec = {
+const getDictionaryEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/dictionary/empty",
   responses: {
@@ -3440,7 +3440,7 @@ const getDictionaryEmptyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDictionaryItemNullOperationSpec: msRest.OperationSpec = {
+const getDictionaryItemNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/dictionary/itemnull",
   responses: {
@@ -3469,7 +3469,7 @@ const getDictionaryItemNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDictionaryItemEmptyOperationSpec: msRest.OperationSpec = {
+const getDictionaryItemEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/dictionary/itemempty",
   responses: {
@@ -3498,7 +3498,7 @@ const getDictionaryItemEmptyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDictionaryValidOperationSpec: msRest.OperationSpec = {
+const getDictionaryValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "array/dictionary/valid",
   responses: {
@@ -3527,7 +3527,7 @@ const getDictionaryValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putDictionaryValidOperationSpec: msRest.OperationSpec = {
+const putDictionaryValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "array/dictionary/valid",
   requestBody: {

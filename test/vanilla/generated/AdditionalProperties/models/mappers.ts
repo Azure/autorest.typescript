@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 
-export const ErrorModel: msRest.CompositeMapper = {
+export const ErrorModel: coreHttp.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -31,7 +31,7 @@ export const ErrorModel: msRest.CompositeMapper = {
   }
 };
 
-export const PetAPTrue: msRest.CompositeMapper = {
+export const PetAPTrue: coreHttp.CompositeMapper = {
   serializedName: "PetAPTrue",
   type: {
     name: "Composite",
@@ -66,7 +66,7 @@ export const PetAPTrue: msRest.CompositeMapper = {
   }
 };
 
-export const CatAPTrue: msRest.CompositeMapper = {
+export const CatAPTrue: coreHttp.CompositeMapper = {
   serializedName: "CatAPTrue",
   type: {
     name: "Composite",
@@ -84,7 +84,7 @@ export const CatAPTrue: msRest.CompositeMapper = {
   }
 };
 
-export const PetAPObject: msRest.CompositeMapper = {
+export const PetAPObject: coreHttp.CompositeMapper = {
   serializedName: "PetAPObject",
   type: {
     name: "Composite",
@@ -119,7 +119,7 @@ export const PetAPObject: msRest.CompositeMapper = {
   }
 };
 
-export const PetAPString: msRest.CompositeMapper = {
+export const PetAPString: coreHttp.CompositeMapper = {
   serializedName: "PetAPString",
   type: {
     name: "Composite",
@@ -154,7 +154,7 @@ export const PetAPString: msRest.CompositeMapper = {
   }
 };
 
-export const PetAPInProperties: msRest.CompositeMapper = {
+export const PetAPInProperties: coreHttp.CompositeMapper = {
   serializedName: "PetAPInProperties",
   type: {
     name: "Composite",
@@ -195,7 +195,7 @@ export const PetAPInProperties: msRest.CompositeMapper = {
   }
 };
 
-export const PetAPInPropertiesWithAPString: msRest.CompositeMapper = {
+export const PetAPInPropertiesWithAPString: coreHttp.CompositeMapper = {
   serializedName: "PetAPInPropertiesWithAPString",
   type: {
     name: "Composite",

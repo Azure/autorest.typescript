@@ -9,14 +9,14 @@
  */
 
 import * as Models from "./models";
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as msRestAzure from "@azure/ms-rest-azure-js";
 
 const packageName = "";
 const packageVersion = "";
 
 export class StorageManagementClientContext extends msRestAzure.AzureServiceClient {
-  credentials: msRest.ServiceClientCredentials;
+  credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential;
   subscriptionId: string;
   apiVersion?: string;
 
@@ -27,7 +27,7 @@ export class StorageManagementClientContext extends msRestAzure.AzureServiceClie
    * subscription. The subscription ID forms part of the URI for every service call.
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: Models.StorageManagementClientOptions) {
+  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, subscriptionId: string, options?: Models.StorageManagementClientOptions) {
     if (credentials == undefined) {
       throw new Error('\'credentials\' cannot be null.');
     }

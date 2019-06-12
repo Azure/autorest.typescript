@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -24,7 +24,7 @@ class AutoRestParameterGroupingTestService extends AutoRestParameterGroupingTest
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestParameterGroupingTestServiceOptions) {
+  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, options?: Models.AutoRestParameterGroupingTestServiceOptions) {
     super(credentials, options);
     this.parameterGrouping = new operations.ParameterGrouping(this);
   }

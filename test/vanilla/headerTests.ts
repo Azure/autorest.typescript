@@ -3,7 +3,7 @@
 
 'use strict';
 
-import * as msRest from '@azure/ms-rest-js';
+import * as coreHttp from '@azure/core-http';
 var _ = require('underscore');
 
 import { AutoRestSwaggerBATHeaderService, AutoRestSwaggerBATHeaderServiceModels } from './generated/Header/autoRestSwaggerBATHeaderService';

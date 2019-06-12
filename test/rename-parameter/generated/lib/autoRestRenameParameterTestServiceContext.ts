@@ -8,13 +8,13 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "./models";
 
 const packageName = "";
 const packageVersion = "";
 
-export class AutoRestRenameParameterTestServiceContext extends msRest.ServiceClient {
+export class AutoRestRenameParameterTestServiceContext extends coreHttp.ServiceClient {
   withCredentialsProperty?: string;
   noRetryPolicy: string;
 
@@ -33,7 +33,7 @@ export class AutoRestRenameParameterTestServiceContext extends msRest.ServiceCli
     }
 
     if (!options.userAgent) {
-      const defaultUserAgent = msRest.getDefaultUserAgentValue();
+      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
 

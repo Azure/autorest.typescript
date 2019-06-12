@@ -8,9 +8,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const noRetryPolicy: msRest.OperationQueryParameter = {
+export const noRetryPolicy: coreHttp.OperationQueryParameter = {
   parameterPath: "noRetryPolicy",
   mapper: {
     required: true,
@@ -20,7 +20,7 @@ export const noRetryPolicy: msRest.OperationQueryParameter = {
     }
   }
 };
-export const timeout0: msRest.OperationQueryParameter = {
+export const timeout0: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "timeout"
@@ -32,7 +32,7 @@ export const timeout0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const timeout1: msRest.OperationQueryParameter = {
+export const timeout1: coreHttp.OperationQueryParameter = {
   parameterPath: "timeout",
   mapper: {
     required: true,
@@ -42,7 +42,7 @@ export const timeout1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const withCredentials: msRest.OperationQueryParameter = {
+export const withCredentials: coreHttp.OperationQueryParameter = {
   parameterPath: "withCredentials",
   mapper: {
     serializedName: "withCredentials",

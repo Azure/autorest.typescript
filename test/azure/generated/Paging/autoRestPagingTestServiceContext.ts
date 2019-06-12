@@ -9,21 +9,21 @@
  */
 
 import * as Models from "./models";
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as msRestAzure from "@azure/ms-rest-azure-js";
 
 const packageName = "";
 const packageVersion = "";
 
 export class AutoRestPagingTestServiceContext extends msRestAzure.AzureServiceClient {
-  credentials: msRest.ServiceClientCredentials;
+  credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential;
 
   /**
    * Initializes a new instance of the AutoRestPagingTestService class.
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestPagingTestServiceOptions) {
+  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, options?: Models.AutoRestPagingTestServiceOptions) {
     if (credentials == undefined) {
       throw new Error('\'credentials\' cannot be null.');
     }

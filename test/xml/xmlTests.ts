@@ -4,7 +4,7 @@
 import { should } from "chai";
 import "chai/register-should";
 import * as msAssert from "../util/msAssert";
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import { AutoRestSwaggerBATXMLService, AutoRestSwaggerBATXMLServiceModels as models } from './generated/Xml/autoRestSwaggerBATXMLService';
 
 const testClient = new AutoRestSwaggerBATXMLService({ baseUri: 'http://localhost:3000' });

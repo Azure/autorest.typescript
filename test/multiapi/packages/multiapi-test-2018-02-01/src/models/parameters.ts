@@ -4,9 +4,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const acceptLanguage: msRest.OperationParameter = {
+export const acceptLanguage: coreHttp.OperationParameter = {
   parameterPath: "acceptLanguage",
   mapper: {
     serializedName: "accept-language",
@@ -16,7 +16,7 @@ export const acceptLanguage: msRest.OperationParameter = {
     }
   }
 };
-export const dnsSuffix: msRest.OperationURLParameter = {
+export const dnsSuffix: coreHttp.OperationURLParameter = {
   parameterPath: "dnsSuffix",
   mapper: {
     required: true,
@@ -28,7 +28,7 @@ export const dnsSuffix: msRest.OperationURLParameter = {
   },
   skipEncoding: true
 };
-export const keyName: msRest.OperationURLParameter = {
+export const keyName: coreHttp.OperationURLParameter = {
   parameterPath: "keyName",
   mapper: {
     required: true,
@@ -38,7 +38,7 @@ export const keyName: msRest.OperationURLParameter = {
     }
   }
 };
-export const keyVersion: msRest.OperationQueryParameter = {
+export const keyVersion: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "keyVersion"
@@ -51,7 +51,7 @@ export const keyVersion: msRest.OperationQueryParameter = {
     }
   }
 };
-export const secret: msRest.OperationURLParameter = {
+export const secret: coreHttp.OperationURLParameter = {
   parameterPath: "secret",
   mapper: {
     required: true,
@@ -63,7 +63,7 @@ export const secret: msRest.OperationURLParameter = {
   },
   skipEncoding: true
 };
-export const subscriptionId: msRest.OperationURLParameter = {
+export const subscriptionId: coreHttp.OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     required: true,
@@ -73,7 +73,7 @@ export const subscriptionId: msRest.OperationURLParameter = {
     }
   }
 };
-export const vault: msRest.OperationURLParameter = {
+export const vault: coreHttp.OperationURLParameter = {
   parameterPath: "vault",
   mapper: {
     required: true,

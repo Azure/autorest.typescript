@@ -26,7 +26,7 @@ npm install @azure/ms-rest-nodeauth
 ##### Sample code
 
 ```typescript
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as msRestNodeAuth from "@azure/ms-rest-nodeauth";
 import { AutoRestSwaggerBATService, AutoRestSwaggerBATServiceModels, AutoRestSwaggerBATServiceMappers } from "";
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
@@ -60,7 +60,7 @@ See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to
 <html lang="en">
   <head>
     <title> sample</title>
-    <script src="node_modules/@azure/ms-rest-js/dist/msRest.browser.js"></script>
+    <script src="node_modules/@azure/ms-rest-js/dist/coreHttp.browser.js"></script>
     <script src="node_modules/@azure/ms-rest-browserauth/dist/msAuth.js"></script>
     <script src="node_modules//dist/bundle.js"></script>
     <script type="text/javascript">

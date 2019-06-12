@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ServiceClientOptions } from "@azure/ms-rest-js";
-import * as msRest from "@azure/ms-rest-js";
+import { ServiceClientOptions } from "@azure/core-http";
+import * as coreHttp from "@azure/core-http";
 
 /**
  * An interface representing ErrorModel.
@@ -490,7 +490,7 @@ export type XmlGetComplexTypeRefNoMetaResponse = RootWithRefAndNoMeta & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -510,7 +510,7 @@ export type XmlGetComplexTypeRefWithMetaResponse = RootWithRefAndMeta & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -530,7 +530,7 @@ export type XmlGetSimpleResponse = Slideshow & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -550,7 +550,7 @@ export type XmlGetWrappedListsResponse = AppleBarrel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -570,7 +570,7 @@ export type XmlGetHeadersResponse = XmlGetHeadersHeaders & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -585,7 +585,7 @@ export type XmlGetEmptyListResponse = Slideshow & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -605,7 +605,7 @@ export type XmlGetEmptyWrappedListsResponse = AppleBarrel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -625,7 +625,7 @@ export type XmlGetRootListResponse = Array<Banana> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -645,7 +645,7 @@ export type XmlGetRootListSingleItemResponse = Array<Banana> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -665,7 +665,7 @@ export type XmlGetEmptyRootListResponse = Array<Banana> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -685,7 +685,7 @@ export type XmlGetEmptyChildElementResponse = Banana & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -705,7 +705,7 @@ export type XmlListContainersResponse = ListContainersResponse & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -725,7 +725,7 @@ export type XmlGetServicePropertiesResponse = StorageServiceProperties & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -745,7 +745,7 @@ export type XmlGetAclsResponse = Array<SignedIdentifier> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -765,7 +765,7 @@ export type XmlListBlobsResponse = ListBlobsResponse & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */

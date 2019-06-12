@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ServiceClientOptions } from "@azure/ms-rest-js";
-import * as msRest from "@azure/ms-rest-js";
+import { ServiceClientOptions } from "@azure/core-http";
+import * as coreHttp from "@azure/core-http";
 
 /**
  * An interface representing Product.
@@ -47,7 +47,7 @@ export type ArrayModelGetNullResponse = Array<number> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -67,7 +67,7 @@ export type ArrayModelGetInvalidResponse = Array<number> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -87,7 +87,7 @@ export type ArrayModelGetEmptyResponse = Array<number> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -107,7 +107,7 @@ export type ArrayModelGetBooleanTfftResponse = Array<boolean> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -127,7 +127,7 @@ export type ArrayModelGetBooleanInvalidNullResponse = Array<boolean> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -147,7 +147,7 @@ export type ArrayModelGetBooleanInvalidStringResponse = Array<boolean> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -167,7 +167,7 @@ export type ArrayModelGetIntegerValidResponse = Array<number> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -187,7 +187,7 @@ export type ArrayModelGetIntInvalidNullResponse = Array<number> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -207,7 +207,7 @@ export type ArrayModelGetIntInvalidStringResponse = Array<number> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -227,7 +227,7 @@ export type ArrayModelGetLongValidResponse = Array<number> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -247,7 +247,7 @@ export type ArrayModelGetLongInvalidNullResponse = Array<number> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -267,7 +267,7 @@ export type ArrayModelGetLongInvalidStringResponse = Array<number> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -287,7 +287,7 @@ export type ArrayModelGetFloatValidResponse = Array<number> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -307,7 +307,7 @@ export type ArrayModelGetFloatInvalidNullResponse = Array<number> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -327,7 +327,7 @@ export type ArrayModelGetFloatInvalidStringResponse = Array<number> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -347,7 +347,7 @@ export type ArrayModelGetDoubleValidResponse = Array<number> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -367,7 +367,7 @@ export type ArrayModelGetDoubleInvalidNullResponse = Array<number> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -387,7 +387,7 @@ export type ArrayModelGetDoubleInvalidStringResponse = Array<number> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -407,7 +407,7 @@ export type ArrayModelGetStringValidResponse = Array<string> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -427,7 +427,7 @@ export type ArrayModelGetEnumValidResponse = Array<FooEnum> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -447,7 +447,7 @@ export type ArrayModelGetStringEnumValidResponse = Array<string> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -467,7 +467,7 @@ export type ArrayModelGetStringWithNullResponse = Array<string> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -487,7 +487,7 @@ export type ArrayModelGetStringWithInvalidResponse = Array<string> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -507,7 +507,7 @@ export type ArrayModelGetUuidValidResponse = Array<string> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -527,7 +527,7 @@ export type ArrayModelGetUuidInvalidCharsResponse = Array<string> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -547,7 +547,7 @@ export type ArrayModelGetDateValidResponse = Array<Date> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -567,7 +567,7 @@ export type ArrayModelGetDateInvalidNullResponse = Array<Date> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -587,7 +587,7 @@ export type ArrayModelGetDateInvalidCharsResponse = Array<Date> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -607,7 +607,7 @@ export type ArrayModelGetDateTimeValidResponse = Array<Date> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -627,7 +627,7 @@ export type ArrayModelGetDateTimeInvalidNullResponse = Array<Date> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -647,7 +647,7 @@ export type ArrayModelGetDateTimeInvalidCharsResponse = Array<Date> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -667,7 +667,7 @@ export type ArrayModelGetDateTimeRfc1123ValidResponse = Array<Date> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -687,7 +687,7 @@ export type ArrayModelGetDurationValidResponse = Array<string> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -707,7 +707,7 @@ export type ArrayModelGetByteValidResponse = Array<Uint8Array> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -727,7 +727,7 @@ export type ArrayModelGetByteInvalidNullResponse = Array<Uint8Array> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -747,7 +747,7 @@ export type ArrayModelGetBase64UrlResponse = Array<Uint8Array> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -767,7 +767,7 @@ export type ArrayModelGetComplexNullResponse = Array<Product> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -787,7 +787,7 @@ export type ArrayModelGetComplexEmptyResponse = Array<Product> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -807,7 +807,7 @@ export type ArrayModelGetComplexItemNullResponse = Array<Product> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -827,7 +827,7 @@ export type ArrayModelGetComplexItemEmptyResponse = Array<Product> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -847,7 +847,7 @@ export type ArrayModelGetComplexValidResponse = Array<Product> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -867,7 +867,7 @@ export type ArrayModelGetArrayNullResponse = Array<string[]> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -887,7 +887,7 @@ export type ArrayModelGetArrayEmptyResponse = Array<string[]> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -907,7 +907,7 @@ export type ArrayModelGetArrayItemNullResponse = Array<string[]> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -927,7 +927,7 @@ export type ArrayModelGetArrayItemEmptyResponse = Array<string[]> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -947,7 +947,7 @@ export type ArrayModelGetArrayValidResponse = Array<string[]> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -967,7 +967,7 @@ export type ArrayModelGetDictionaryNullResponse = Array<{ [propertyName: string]
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -987,7 +987,7 @@ export type ArrayModelGetDictionaryEmptyResponse = Array<{ [propertyName: string
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1007,7 +1007,7 @@ export type ArrayModelGetDictionaryItemNullResponse = Array<{ [propertyName: str
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1027,7 +1027,7 @@ export type ArrayModelGetDictionaryItemEmptyResponse = Array<{ [propertyName: st
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1047,7 +1047,7 @@ export type ArrayModelGetDictionaryValidResponse = Array<{ [propertyName: string
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */

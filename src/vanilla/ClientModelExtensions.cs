@@ -38,12 +38,12 @@ namespace AutoRest.TypeScript
                 switch (known.KnownPrimaryType)
                 {
                     case KnownPrimaryType.Date:
-                        return $"msRest.serializeObject({reference}).replace(/[Tt].*[Zz]/, '')";
+                        return $"coreHttp.serializeObject({reference}).replace(/[Tt].*[Zz]/, '')";
                     case KnownPrimaryType.DateTimeRfc1123:
                         return $"{reference} instanceof Date ? {reference}.toUTCString() : {reference}";
                     case KnownPrimaryType.DateTime:
                     case KnownPrimaryType.ByteArray:
-                        return $"msRest.serializeObject({reference})";
+                        return $"coreHttp.serializeObject({reference})";
                     case KnownPrimaryType.TimeSpan:
                         return $"{reference}";
                     case KnownPrimaryType.Base64Url:
@@ -83,11 +83,11 @@ namespace AutoRest.TypeScript
             else if (primary.KnownPrimaryType == KnownPrimaryType.ByteArray || primary.KnownPrimaryType == KnownPrimaryType.Base64Url)
                 return "Uint8Array";
             else if (primary.KnownPrimaryType == KnownPrimaryType.Stream)
-                return "msRest.HttpRequestBody";
+                return "coreHttp.HttpRequestBody";
             else if (primary.KnownPrimaryType == KnownPrimaryType.TimeSpan)
                 return "string";
             else if (primary.KnownPrimaryType == KnownPrimaryType.Credentials)
-                return "msRest.ServiceClientCredentials"; //TODO: test this, add include for it
+                return "coreHttp.ServiceClientCredentials | coreHttp.TokenCredential"; //TODO: test this, add include for it
             else {
                 throw new NotImplementedException($"Type '{primary}' not implemented");
             }
@@ -146,10 +146,10 @@ namespace AutoRest.TypeScript
             }
             else if (composite != null)
             {
-                // ServiceClientCredentials starts with the "msRest." prefix, so strip msRest./msRestAzure. as we import those
+                // ServiceClientCredentials starts with the "coreHttp." prefix, so strip coreHttp./msRestAzure. as we import those
                 // types with no module prefix needed
                 var compositeName = composite.UnionTypeName;
-                if (compositeName.StartsWith("msRest.") || compositeName.StartsWith("msRestAzure."))
+                if (compositeName.StartsWith("coreHttp.") || compositeName.StartsWith("msRestAzure."))
                     tsType = compositeName.Substring(compositeName.IndexOf('.') + 1);
                 else if (inModelsModule || compositeName.Contains('.'))
                     tsType = compositeName;
@@ -206,7 +206,7 @@ namespace AutoRest.TypeScript
         public static string CreateSerializerExpression(this CodeModelTS codeModel)
         {
             TSBuilder builder = new TSBuilder();
-            builder.FunctionCall("new msRest.Serializer", arguments =>
+            builder.FunctionCall("new coreHttp.Serializer", arguments =>
             {
                 bool hasMappers = codeModel.HasMappers();
                 if (hasMappers)

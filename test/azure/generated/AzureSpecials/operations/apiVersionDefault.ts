@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/apiVersionDefaultMappers";
 import * as Parameters from "../models/parameters";
 import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzureSpecialParametersTestClientContext";
@@ -28,19 +28,19 @@ export class ApiVersionDefault {
   /**
    * GET method with api-version modeled in global settings.
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getMethodGlobalValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getMethodGlobalValid(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getMethodGlobalValid(callback: msRest.ServiceCallback<void>): void;
+  getMethodGlobalValid(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getMethodGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getMethodGlobalValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getMethodGlobalValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getMethodGlobalValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -52,19 +52,19 @@ export class ApiVersionDefault {
   /**
    * GET method with api-version modeled in global settings.
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getMethodGlobalNotProvidedValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getMethodGlobalNotProvidedValid(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getMethodGlobalNotProvidedValid(callback: msRest.ServiceCallback<void>): void;
+  getMethodGlobalNotProvidedValid(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getMethodGlobalNotProvidedValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getMethodGlobalNotProvidedValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getMethodGlobalNotProvidedValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getMethodGlobalNotProvidedValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -76,19 +76,19 @@ export class ApiVersionDefault {
   /**
    * GET method with api-version modeled in global settings.
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getPathGlobalValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getPathGlobalValid(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getPathGlobalValid(callback: msRest.ServiceCallback<void>): void;
+  getPathGlobalValid(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getPathGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getPathGlobalValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getPathGlobalValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getPathGlobalValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -100,19 +100,19 @@ export class ApiVersionDefault {
   /**
    * GET method with api-version modeled in global settings.
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getSwaggerGlobalValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getSwaggerGlobalValid(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getSwaggerGlobalValid(callback: msRest.ServiceCallback<void>): void;
+  getSwaggerGlobalValid(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getSwaggerGlobalValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getSwaggerGlobalValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getSwaggerGlobalValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getSwaggerGlobalValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -123,8 +123,8 @@ export class ApiVersionDefault {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getMethodGlobalValidOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getMethodGlobalValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview",
   queryParameters: [
@@ -142,7 +142,7 @@ const getMethodGlobalValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getMethodGlobalNotProvidedValidOperationSpec: msRest.OperationSpec = {
+const getMethodGlobalNotProvidedValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview",
   queryParameters: [
@@ -160,7 +160,7 @@ const getMethodGlobalNotProvidedValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getPathGlobalValidOperationSpec: msRest.OperationSpec = {
+const getPathGlobalValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview",
   queryParameters: [
@@ -178,7 +178,7 @@ const getPathGlobalValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getSwaggerGlobalValidOperationSpec: msRest.OperationSpec = {
+const getSwaggerGlobalValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview",
   queryParameters: [

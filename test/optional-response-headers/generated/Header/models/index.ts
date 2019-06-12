@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ServiceClientOptions } from "@azure/ms-rest-js";
-import * as msRest from "@azure/ms-rest-js";
+import { ServiceClientOptions } from "@azure/core-http";
+import * as coreHttp from "@azure/core-http";
 
 /**
  * An interface representing ErrorModel.
@@ -27,7 +27,7 @@ export interface AutoRestSwaggerBATHeaderServiceOptions extends ServiceClientOpt
 /**
  * Optional Parameters.
  */
-export interface HeaderParamStringOptionalParams extends msRest.RequestOptionsBase {
+export interface HeaderParamStringOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Send a post request with header values "The quick brown fox jumps over the lazy dog" or null
    * or ""
@@ -38,7 +38,7 @@ export interface HeaderParamStringOptionalParams extends msRest.RequestOptionsBa
 /**
  * Optional Parameters.
  */
-export interface HeaderParamDatetimeRfc1123OptionalParams extends msRest.RequestOptionsBase {
+export interface HeaderParamDatetimeRfc1123OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001
    * 00:00:00 GMT"
@@ -49,7 +49,7 @@ export interface HeaderParamDatetimeRfc1123OptionalParams extends msRest.Request
 /**
  * Optional Parameters.
  */
-export interface HeaderParamEnumOptionalParams extends msRest.RequestOptionsBase {
+export interface HeaderParamEnumOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Send a post request with header values 'GREY'. Possible values include: 'White', 'black',
    * 'GREY'
@@ -212,7 +212,7 @@ export type HeaderResponseExistingKeyResponse = HeaderResponseExistingKeyHeaders
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -227,7 +227,7 @@ export type HeaderResponseProtectedKeyResponse = HeaderResponseProtectedKeyHeade
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -242,7 +242,7 @@ export type HeaderResponseIntegerResponse = HeaderResponseIntegerHeaders & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -257,7 +257,7 @@ export type HeaderResponseLongResponse = HeaderResponseLongHeaders & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -272,7 +272,7 @@ export type HeaderResponseFloatResponse = HeaderResponseFloatHeaders & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -287,7 +287,7 @@ export type HeaderResponseDoubleResponse = HeaderResponseDoubleHeaders & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -302,7 +302,7 @@ export type HeaderResponseBoolResponse = HeaderResponseBoolHeaders & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -317,7 +317,7 @@ export type HeaderResponseStringResponse = HeaderResponseStringHeaders & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -332,7 +332,7 @@ export type HeaderResponseDateResponse = HeaderResponseDateHeaders & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -347,7 +347,7 @@ export type HeaderResponseDatetimeResponse = HeaderResponseDatetimeHeaders & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -362,7 +362,7 @@ export type HeaderResponseDatetimeRfc1123Response = HeaderResponseDatetimeRfc112
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -377,7 +377,7 @@ export type HeaderResponseDurationResponse = HeaderResponseDurationHeaders & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -392,7 +392,7 @@ export type HeaderResponseByteResponse = HeaderResponseByteHeaders & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -407,7 +407,7 @@ export type HeaderResponseEnumResponse = HeaderResponseEnumHeaders & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */

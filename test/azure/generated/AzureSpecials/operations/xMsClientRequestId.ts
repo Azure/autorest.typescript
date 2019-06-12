@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/xMsClientRequestIdMappers";
 import * as Parameters from "../models/parameters";
 import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzureSpecialParametersTestClientContext";
@@ -29,19 +29,19 @@ export class XMsClientRequestId {
    * Get method that overwrites x-ms-client-request header with value
    * 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  get(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  get(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  get(callback: msRest.ServiceCallback<void>): void;
+  get(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  get(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  get(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -56,23 +56,23 @@ export class XMsClientRequestId {
    * @param xMsClientRequestId This should appear as a method parameter, use value
    * '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  paramGet(xMsClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  paramGet(xMsClientRequestId: string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param xMsClientRequestId This should appear as a method parameter, use value
    * '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
    * @param callback The callback
    */
-  paramGet(xMsClientRequestId: string, callback: msRest.ServiceCallback<void>): void;
+  paramGet(xMsClientRequestId: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param xMsClientRequestId This should appear as a method parameter, use value
    * '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
    * @param options The optional parameters
    * @param callback The callback
    */
-  paramGet(xMsClientRequestId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramGet(xMsClientRequestId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramGet(xMsClientRequestId: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  paramGet(xMsClientRequestId: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         xMsClientRequestId,
@@ -84,8 +84,8 @@ export class XMsClientRequestId {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/overwrite/x-ms-client-request-id/method/",
   headerParameters: [
@@ -100,7 +100,7 @@ const getOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const paramGetOperationSpec: msRest.OperationSpec = {
+const paramGetOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/overwrite/x-ms-client-request-id/via-param/method/",
   headerParameters: [

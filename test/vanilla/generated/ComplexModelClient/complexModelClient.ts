@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as Parameters from "./models/parameters";
@@ -32,19 +32,19 @@ class ComplexModelClient extends ComplexModelClientContext {
    * @param [options] The optional parameters
    * @returns Promise<Models.ListResponse>
    */
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.ListResponse>;
+  list(resourceGroupName: string, options?: coreHttp.RequestOptionsBase): Promise<Models.ListResponse>;
   /**
    * @param resourceGroupName Resource Group ID.
    * @param callback The callback
    */
-  list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
+  list(resourceGroupName: string, callback: coreHttp.ServiceCallback<Models.CatalogArray>): void;
   /**
    * @param resourceGroupName Resource Group ID.
    * @param options The optional parameters
    * @param callback The callback
    */
-  list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.CatalogArray>, callback?: msRest.ServiceCallback<Models.CatalogArray>): Promise<Models.ListResponse> {
+  list(resourceGroupName: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.CatalogArray>): void;
+  list(resourceGroupName: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.CatalogArray>, callback?: coreHttp.ServiceCallback<Models.CatalogArray>): Promise<Models.ListResponse> {
     return this.sendOperationRequest(
       {
         resourceGroupName,
@@ -68,15 +68,15 @@ class ComplexModelClient extends ComplexModelClientContext {
    * @param resourceGroupName Resource Group ID.
    * @param callback The callback
    */
-  create(subscriptionId: string, resourceGroupName: string, callback: msRest.ServiceCallback<Models.CatalogDictionary>): void;
+  create(subscriptionId: string, resourceGroupName: string, callback: coreHttp.ServiceCallback<Models.CatalogDictionary>): void;
   /**
    * @param subscriptionId Subscription ID.
    * @param resourceGroupName Resource Group ID.
    * @param options The optional parameters
    * @param callback The callback
    */
-  create(subscriptionId: string, resourceGroupName: string, options: Models.ComplexModelClientCreateOptionalParams, callback: msRest.ServiceCallback<Models.CatalogDictionary>): void;
-  create(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientCreateOptionalParams | msRest.ServiceCallback<Models.CatalogDictionary>, callback?: msRest.ServiceCallback<Models.CatalogDictionary>): Promise<Models.CreateResponse> {
+  create(subscriptionId: string, resourceGroupName: string, options: Models.ComplexModelClientCreateOptionalParams, callback: coreHttp.ServiceCallback<Models.CatalogDictionary>): void;
+  create(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientCreateOptionalParams | coreHttp.ServiceCallback<Models.CatalogDictionary>, callback?: coreHttp.ServiceCallback<Models.CatalogDictionary>): Promise<Models.CreateResponse> {
     return this.sendOperationRequest(
       {
         subscriptionId,
@@ -101,15 +101,15 @@ class ComplexModelClient extends ComplexModelClientContext {
    * @param resourceGroupName Resource Group ID.
    * @param callback The callback
    */
-  update(subscriptionId: string, resourceGroupName: string, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
+  update(subscriptionId: string, resourceGroupName: string, callback: coreHttp.ServiceCallback<Models.CatalogArray>): void;
   /**
    * @param subscriptionId Subscription ID.
    * @param resourceGroupName Resource Group ID.
    * @param options The optional parameters
    * @param callback The callback
    */
-  update(subscriptionId: string, resourceGroupName: string, options: Models.ComplexModelClientUpdateOptionalParams, callback: msRest.ServiceCallback<Models.CatalogArray>): void;
-  update(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientUpdateOptionalParams | msRest.ServiceCallback<Models.CatalogArray>, callback?: msRest.ServiceCallback<Models.CatalogArray>): Promise<Models.UpdateResponse> {
+  update(subscriptionId: string, resourceGroupName: string, options: Models.ComplexModelClientUpdateOptionalParams, callback: coreHttp.ServiceCallback<Models.CatalogArray>): void;
+  update(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientUpdateOptionalParams | coreHttp.ServiceCallback<Models.CatalogArray>, callback?: coreHttp.ServiceCallback<Models.CatalogArray>): Promise<Models.UpdateResponse> {
     return this.sendOperationRequest(
       {
         subscriptionId,
@@ -122,8 +122,8 @@ class ComplexModelClient extends ComplexModelClientContext {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const listOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const listOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
   urlParameters: [
@@ -144,7 +144,7 @@ const listOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const createOperationSpec: msRest.OperationSpec = {
+const createOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
   urlParameters: [
@@ -177,7 +177,7 @@ const createOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const updateOperationSpec: msRest.OperationSpec = {
+const updateOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
   urlParameters: [

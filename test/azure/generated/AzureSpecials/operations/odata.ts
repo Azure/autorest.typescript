@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/odataMappers";
 import * as Parameters from "../models/parameters";
@@ -29,19 +29,19 @@ export class Odata {
   /**
    * Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getWithFilter(options?: Models.OdataGetWithFilterOptionalParams): Promise<msRest.RestResponse>;
+  getWithFilter(options?: Models.OdataGetWithFilterOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getWithFilter(callback: msRest.ServiceCallback<void>): void;
+  getWithFilter(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getWithFilter(options: Models.OdataGetWithFilterOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getWithFilter(options?: Models.OdataGetWithFilterOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getWithFilter(options: Models.OdataGetWithFilterOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  getWithFilter(options?: Models.OdataGetWithFilterOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -52,8 +52,8 @@ export class Odata {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getWithFilterOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getWithFilterOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "azurespecials/odata/filter",
   queryParameters: [

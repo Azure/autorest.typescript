@@ -7,12 +7,12 @@
  */
 
 import { CloudErrorMapper, BaseResourceMapper } from "@azure/ms-rest-azure-js";
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
-export const ErrorModel: msRest.CompositeMapper = {
+export const ErrorModel: coreHttp.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -34,7 +34,7 @@ export const ErrorModel: msRest.CompositeMapper = {
   }
 };
 
-export const Resource: msRest.CompositeMapper = {
+export const Resource: coreHttp.CompositeMapper = {
   serializedName: "Resource",
   type: {
     name: "Composite",
@@ -82,7 +82,7 @@ export const Resource: msRest.CompositeMapper = {
   }
 };
 
-export const FlattenedProduct: msRest.CompositeMapper = {
+export const FlattenedProduct: coreHttp.CompositeMapper = {
   serializedName: "FlattenedProduct",
   type: {
     name: "Composite",
@@ -111,7 +111,7 @@ export const FlattenedProduct: msRest.CompositeMapper = {
   }
 };
 
-export const ResourceCollection: msRest.CompositeMapper = {
+export const ResourceCollection: coreHttp.CompositeMapper = {
   serializedName: "ResourceCollection",
   type: {
     name: "Composite",

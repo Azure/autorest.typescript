@@ -410,7 +410,7 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
             var clientOptionType = OptionalParameterTypeForClientConstructor == GetServiceClientOptionsName()
-                ? "msRest." + GetServiceClientOptionsName()
+                ? "coreHttp." + GetServiceClientOptionsName()
                 : OptionalParameterTypeForClientConstructor;
 
             string parameterList = (!string.IsNullOrEmpty(RequiredConstructorParametersTS) ? RequiredConstructorParametersTS + ", " : "") + "options?: " + clientOptionType;
@@ -451,7 +451,7 @@ namespace AutoRest.TypeScript.Model
                 block.Line(emptyLine);
                 block.If("!options.userAgent", then =>
                 {
-                    then.ConstObjectVariable("defaultUserAgent", "msRest.getDefaultUserAgentValue()");
+                    then.ConstObjectVariable("defaultUserAgent", "coreHttp.getDefaultUserAgentValue()");
                     then.Assignment("options.userAgent", "`${packageName}/${packageVersion} ${defaultUserAgent}`");
                 });
 
@@ -576,13 +576,13 @@ namespace AutoRest.TypeScript.Model
         {
             if (OptionalParameterTypeForClientConstructor != ServiceClientOptions)
             {
-                builder.Import(new string[] { ServiceClientOptions }, "@azure/ms-rest-js");
+                builder.Import(new string[] { ServiceClientOptions }, "@azure/core-http");
             }
         }
 
         public virtual void PackageDependencies(JSONObject dependencies)
         {
-            dependencies.StringProperty("@azure/ms-rest-js", "^1.8.1");
+            dependencies.StringProperty("@azure/core-http", "^1.8.1");
             dependencies.StringProperty("tslib", "^1.9.3");
             if (Settings.MultiapiLatest)
             {
@@ -697,9 +697,9 @@ namespace AutoRest.TypeScript.Model
             foreach (ParameterTS parameter in parameters)
             {
                 string parameterInterfaceName =
-                    parameter.Location == ParameterLocation.Path ? "msRest.OperationURLParameter" :
-                    parameter.Location == ParameterLocation.Query ? "msRest.OperationQueryParameter" :
-                    "msRest.OperationParameter";
+                    parameter.Location == ParameterLocation.Path ? "coreHttp.OperationURLParameter" :
+                    parameter.Location == ParameterLocation.Query ? "coreHttp.OperationQueryParameter" :
+                    "coreHttp.OperationParameter";
 
                 builder.Text("export ");
                 builder.ConstObjectVariable(
@@ -716,9 +716,9 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            if (MethodTemplateModels.Any() || OptionalParameterTypeForClientConstructor == ServiceClientOptions || RequiredConstructorParametersTS.Contains("msRest."))
+            if (MethodTemplateModels.Any() || OptionalParameterTypeForClientConstructor == ServiceClientOptions || RequiredConstructorParametersTS.Contains("coreHttp."))
             {
-                builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+                builder.ImportAllAs("coreHttp", "@azure/core-http");
             }
 
             if (CodeGeneratorTS.ShouldWriteModelsFiles(this))
@@ -826,7 +826,7 @@ namespace AutoRest.TypeScript.Model
         {
             if (orderedMapperModels.Any())
             {
-                builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+                builder.ImportAllAs("coreHttp", "@azure/core-http");
             }
         }
 
@@ -857,7 +857,7 @@ namespace AutoRest.TypeScript.Model
 
         protected void GenerateNodeSampleMsRestJsImport(TSBuilder builder)
         {
-            builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+            builder.ImportAllAs("coreHttp", "@azure/core-http");
         }
 
         protected void GenerateNodeSampleMsRestNodeAuthImport(TSBuilder builder)
@@ -1095,7 +1095,7 @@ namespace AutoRest.TypeScript.Model
                             html.Head(head =>
                             {
                                 head.Title($"{PackageName} sample");
-                                head.Script("node_modules/@azure/ms-rest-js/dist/msRest.browser.js");
+                                head.Script("node_modules/@azure/core-http/dist/coreHttp.browser.js");
                                 if (IsAzure)
                                 {
                                     head.Script("node_modules/@azure/ms-rest-azure-js/dist/msRestAzure.js");
@@ -1143,7 +1143,7 @@ namespace AutoRest.TypeScript.Model
             {
                 string inputFilePath = $"./esm/{(Settings.MultiapiLatest ? "index" : Name.ToCamelCase())}.js";
                 config.QuotedStringProperty($"input", inputFilePath);
-                config.QuotedStringArrayProperty("external", new[] { "@azure/ms-rest-js", "@azure/ms-rest-azure-js" });
+                config.QuotedStringArrayProperty("external", new[] { "@azure/core-http", "@azure/ms-rest-azure-js" });
                 config.ObjectProperty("output", output =>
                 {
                     output.QuotedStringProperty("file", $"./dist/{BundleFilename}.js");
@@ -1152,7 +1152,7 @@ namespace AutoRest.TypeScript.Model
                     output.BooleanProperty("sourcemap", true);
                     output.ObjectProperty("globals", globals =>
                     {
-                        globals.QuotedStringProperty("@azure/ms-rest-js", "msRest");
+                        globals.QuotedStringProperty("@azure/core-http", "coreHttp");
                         globals.QuotedStringProperty("@azure/ms-rest-azure-js", "msRestAzure");
                     });
 
@@ -1283,7 +1283,7 @@ namespace AutoRest.TypeScript.Model
             builder.Line(ConstructRuntimeImportForModelIndex());
             if (ContainsDurationPropertyInModels() || IsAnyModelInheritingFromRequestOptionsBase() || MethodsWithCustomResponseType.Any())
             {
-                builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+                builder.ImportAllAs("coreHttp", "@azure/core-http");
             }
             foreach (CompositeTypeTS model in OrderedModelTemplateModels)
             {

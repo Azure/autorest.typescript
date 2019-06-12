@@ -8,9 +8,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const fileContent: msRest.OperationParameter = {
+export const fileContent: coreHttp.OperationParameter = {
   parameterPath: "fileContent",
   mapper: {
     required: true,
@@ -20,7 +20,7 @@ export const fileContent: msRest.OperationParameter = {
     }
   }
 };
-export const fileName: msRest.OperationParameter = {
+export const fileName: coreHttp.OperationParameter = {
   parameterPath: "fileName",
   mapper: {
     required: true,

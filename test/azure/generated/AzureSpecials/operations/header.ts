@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/headerMappers";
 import * as Parameters from "../models/parameters";
@@ -32,19 +32,19 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderCustomNamedRequestIdResponse>
    */
-  customNamedRequestId(fooClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdResponse>;
+  customNamedRequestId(fooClientRequestId: string, options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdResponse>;
   /**
    * @param fooClientRequestId The fooRequestId
    * @param callback The callback
    */
-  customNamedRequestId(fooClientRequestId: string, callback: msRest.ServiceCallback<void>): void;
+  customNamedRequestId(fooClientRequestId: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param fooClientRequestId The fooRequestId
    * @param options The optional parameters
    * @param callback The callback
    */
-  customNamedRequestId(fooClientRequestId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  customNamedRequestId(fooClientRequestId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderCustomNamedRequestIdResponse> {
+  customNamedRequestId(fooClientRequestId: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  customNamedRequestId(fooClientRequestId: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HeaderCustomNamedRequestIdResponse> {
     return this.client.sendOperationRequest(
       {
         fooClientRequestId,
@@ -61,19 +61,19 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse>
    */
-  customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse>;
+  customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse>;
   /**
    * @param headerCustomNamedRequestIdParamGroupingParameters Additional parameters for the operation
    * @param callback The callback
    */
-  customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, callback: msRest.ServiceCallback<void>): void;
+  customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param headerCustomNamedRequestIdParamGroupingParameters Additional parameters for the operation
    * @param options The optional parameters
    * @param callback The callback
    */
-  customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse> {
+  customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  customNamedRequestIdParamGrouping(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse> {
     return this.client.sendOperationRequest(
       {
         headerCustomNamedRequestIdParamGroupingParameters,
@@ -89,19 +89,19 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderCustomNamedRequestIdHeadResponse>
    */
-  customNamedRequestIdHead(fooClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdHeadResponse>;
+  customNamedRequestIdHead(fooClientRequestId: string, options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdHeadResponse>;
   /**
    * @param fooClientRequestId The fooRequestId
    * @param callback The callback
    */
-  customNamedRequestIdHead(fooClientRequestId: string, callback: msRest.ServiceCallback<boolean>): void;
+  customNamedRequestIdHead(fooClientRequestId: string, callback: coreHttp.ServiceCallback<boolean>): void;
   /**
    * @param fooClientRequestId The fooRequestId
    * @param options The optional parameters
    * @param callback The callback
    */
-  customNamedRequestIdHead(fooClientRequestId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  customNamedRequestIdHead(fooClientRequestId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HeaderCustomNamedRequestIdHeadResponse> {
+  customNamedRequestIdHead(fooClientRequestId: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<boolean>): void;
+  customNamedRequestIdHead(fooClientRequestId: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<boolean>, callback?: coreHttp.ServiceCallback<boolean>): Promise<Models.HeaderCustomNamedRequestIdHeadResponse> {
     return this.client.sendOperationRequest(
       {
         fooClientRequestId,
@@ -113,8 +113,8 @@ export class Header {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const customNamedRequestIdOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const customNamedRequestIdOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/customNamedRequestId",
   headerParameters: [
@@ -132,7 +132,7 @@ const customNamedRequestIdOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const customNamedRequestIdParamGroupingOperationSpec: msRest.OperationSpec = {
+const customNamedRequestIdParamGroupingOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/customNamedRequestIdParamGrouping",
   headerParameters: [
@@ -150,7 +150,7 @@ const customNamedRequestIdParamGroupingOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const customNamedRequestIdHeadOperationSpec: msRest.OperationSpec = {
+const customNamedRequestIdHeadOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "HEAD",
   path: "azurespecials/customNamedRequestIdHead",
   headerParameters: [

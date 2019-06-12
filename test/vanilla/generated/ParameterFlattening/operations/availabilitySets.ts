@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/availabilitySetsMappers";
 import * as Parameters from "../models/parameters";
 import { AutoRestParameterFlatteningContext } from "../autoRestParameterFlatteningContext";
@@ -31,16 +31,16 @@ export class AvailabilitySets {
    * @param avset The name of the storage availability set.
    * @param tags A set of tags. A description about the set of tags.
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param resourceGroupName The name of the resource group.
    * @param avset The name of the storage availability set.
    * @param tags A set of tags. A description about the set of tags.
    * @param callback The callback
    */
-  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, callback: msRest.ServiceCallback<void>): void;
+  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param resourceGroupName The name of the resource group.
    * @param avset The name of the storage availability set.
@@ -48,8 +48,8 @@ export class AvailabilitySets {
    * @param options The optional parameters
    * @param callback The callback
    */
-  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -63,8 +63,8 @@ export class AvailabilitySets {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const updateOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const updateOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PATCH",
   path: "parameterFlattening/{resourceGroupName}/{availabilitySetName}",
   urlParameters: [

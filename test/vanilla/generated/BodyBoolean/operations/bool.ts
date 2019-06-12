@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/boolMappers";
 import { AutoRestBoolTestServiceContext } from "../autoRestBoolTestServiceContext";
@@ -30,17 +30,17 @@ export class Bool {
    * @param [options] The optional parameters
    * @returns Promise<Models.BoolGetTrueResponse>
    */
-  getTrue(options?: msRest.RequestOptionsBase): Promise<Models.BoolGetTrueResponse>;
+  getTrue(options?: coreHttp.RequestOptionsBase): Promise<Models.BoolGetTrueResponse>;
   /**
    * @param callback The callback
    */
-  getTrue(callback: msRest.ServiceCallback<boolean>): void;
+  getTrue(callback: coreHttp.ServiceCallback<boolean>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getTrue(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.BoolGetTrueResponse> {
+  getTrue(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<boolean>): void;
+  getTrue(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<boolean>, callback?: coreHttp.ServiceCallback<boolean>): Promise<Models.BoolGetTrueResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -52,19 +52,19 @@ export class Bool {
   /**
    * Set Boolean value true
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putTrue(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putTrue(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  putTrue(callback: msRest.ServiceCallback<void>): void;
+  putTrue(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  putTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putTrue(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putTrue(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putTrue(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -78,17 +78,17 @@ export class Bool {
    * @param [options] The optional parameters
    * @returns Promise<Models.BoolGetFalseResponse>
    */
-  getFalse(options?: msRest.RequestOptionsBase): Promise<Models.BoolGetFalseResponse>;
+  getFalse(options?: coreHttp.RequestOptionsBase): Promise<Models.BoolGetFalseResponse>;
   /**
    * @param callback The callback
    */
-  getFalse(callback: msRest.ServiceCallback<boolean>): void;
+  getFalse(callback: coreHttp.ServiceCallback<boolean>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getFalse(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.BoolGetFalseResponse> {
+  getFalse(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<boolean>): void;
+  getFalse(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<boolean>, callback?: coreHttp.ServiceCallback<boolean>): Promise<Models.BoolGetFalseResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -100,19 +100,19 @@ export class Bool {
   /**
    * Set Boolean value false
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putFalse(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putFalse(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  putFalse(callback: msRest.ServiceCallback<void>): void;
+  putFalse(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  putFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putFalse(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putFalse(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putFalse(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -126,17 +126,17 @@ export class Bool {
    * @param [options] The optional parameters
    * @returns Promise<Models.BoolGetNullResponse>
    */
-  getNull(options?: msRest.RequestOptionsBase): Promise<Models.BoolGetNullResponse>;
+  getNull(options?: coreHttp.RequestOptionsBase): Promise<Models.BoolGetNullResponse>;
   /**
    * @param callback The callback
    */
-  getNull(callback: msRest.ServiceCallback<boolean>): void;
+  getNull(callback: coreHttp.ServiceCallback<boolean>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.BoolGetNullResponse> {
+  getNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<boolean>): void;
+  getNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<boolean>, callback?: coreHttp.ServiceCallback<boolean>): Promise<Models.BoolGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -150,17 +150,17 @@ export class Bool {
    * @param [options] The optional parameters
    * @returns Promise<Models.BoolGetInvalidResponse>
    */
-  getInvalid(options?: msRest.RequestOptionsBase): Promise<Models.BoolGetInvalidResponse>;
+  getInvalid(options?: coreHttp.RequestOptionsBase): Promise<Models.BoolGetInvalidResponse>;
   /**
    * @param callback The callback
    */
-  getInvalid(callback: msRest.ServiceCallback<boolean>): void;
+  getInvalid(callback: coreHttp.ServiceCallback<boolean>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getInvalid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.BoolGetInvalidResponse> {
+  getInvalid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<boolean>): void;
+  getInvalid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<boolean>, callback?: coreHttp.ServiceCallback<boolean>): Promise<Models.BoolGetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -171,8 +171,8 @@ export class Bool {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getTrueOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getTrueOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "bool/true",
   responses: {
@@ -191,7 +191,7 @@ const getTrueOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putTrueOperationSpec: msRest.OperationSpec = {
+const putTrueOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "bool/true",
   requestBody: {
@@ -215,7 +215,7 @@ const putTrueOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getFalseOperationSpec: msRest.OperationSpec = {
+const getFalseOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "bool/false",
   responses: {
@@ -234,7 +234,7 @@ const getFalseOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putFalseOperationSpec: msRest.OperationSpec = {
+const putFalseOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "bool/false",
   requestBody: {
@@ -258,7 +258,7 @@ const putFalseOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getNullOperationSpec: msRest.OperationSpec = {
+const getNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "bool/null",
   responses: {
@@ -277,7 +277,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getInvalidOperationSpec: msRest.OperationSpec = {
+const getInvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "bool/invalid",
   responses: {

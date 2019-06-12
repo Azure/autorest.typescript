@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/groupMappers";
 import * as Parameters from "../models/parameters";
@@ -32,19 +32,19 @@ export class Group {
    * @param [options] The optional parameters
    * @returns Promise<Models.GroupGetSampleResourceGroupResponse>
    */
-  getSampleResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.GroupGetSampleResourceGroupResponse>;
+  getSampleResourceGroup(resourceGroupName: string, options?: coreHttp.RequestOptionsBase): Promise<Models.GroupGetSampleResourceGroupResponse>;
   /**
    * @param resourceGroupName Resource Group name 'testgroup101'.
    * @param callback The callback
    */
-  getSampleResourceGroup(resourceGroupName: string, callback: msRest.ServiceCallback<Models.SampleResourceGroup>): void;
+  getSampleResourceGroup(resourceGroupName: string, callback: coreHttp.ServiceCallback<Models.SampleResourceGroup>): void;
   /**
    * @param resourceGroupName Resource Group name 'testgroup101'.
    * @param options The optional parameters
    * @param callback The callback
    */
-  getSampleResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SampleResourceGroup>): void;
-  getSampleResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.SampleResourceGroup>, callback?: msRest.ServiceCallback<Models.SampleResourceGroup>): Promise<Models.GroupGetSampleResourceGroupResponse> {
+  getSampleResourceGroup(resourceGroupName: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.SampleResourceGroup>): void;
+  getSampleResourceGroup(resourceGroupName: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.SampleResourceGroup>, callback?: coreHttp.ServiceCallback<Models.SampleResourceGroup>): Promise<Models.GroupGetSampleResourceGroupResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -56,8 +56,8 @@ export class Group {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getSampleResourceGroupOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getSampleResourceGroupOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
   urlParameters: [

@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/xmlMappers";
 import * as Parameters from "../models/parameters";
@@ -31,17 +31,17 @@ export class Xml {
    * @param [options] The optional parameters
    * @returns Promise<Models.XmlGetComplexTypeRefNoMetaResponse>
    */
-  getComplexTypeRefNoMeta(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetComplexTypeRefNoMetaResponse>;
+  getComplexTypeRefNoMeta(options?: coreHttp.RequestOptionsBase): Promise<Models.XmlGetComplexTypeRefNoMetaResponse>;
   /**
    * @param callback The callback
    */
-  getComplexTypeRefNoMeta(callback: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): void;
+  getComplexTypeRefNoMeta(callback: coreHttp.ServiceCallback<Models.RootWithRefAndNoMeta>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getComplexTypeRefNoMeta(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): void;
-  getComplexTypeRefNoMeta(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.RootWithRefAndNoMeta>, callback?: msRest.ServiceCallback<Models.RootWithRefAndNoMeta>): Promise<Models.XmlGetComplexTypeRefNoMetaResponse> {
+  getComplexTypeRefNoMeta(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.RootWithRefAndNoMeta>): void;
+  getComplexTypeRefNoMeta(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.RootWithRefAndNoMeta>, callback?: coreHttp.ServiceCallback<Models.RootWithRefAndNoMeta>): Promise<Models.XmlGetComplexTypeRefNoMetaResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -54,21 +54,21 @@ export class Xml {
    * Puts a complex type that has a ref to a complex type with no XML node
    * @param model
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param model
    * @param callback The callback
    */
-  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, callback: msRest.ServiceCallback<void>): void;
+  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param model
    * @param options The optional parameters
    * @param callback The callback
    */
-  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putComplexTypeRefNoMeta(model: Models.RootWithRefAndNoMeta, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         model,
@@ -83,17 +83,17 @@ export class Xml {
    * @param [options] The optional parameters
    * @returns Promise<Models.XmlGetComplexTypeRefWithMetaResponse>
    */
-  getComplexTypeRefWithMeta(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetComplexTypeRefWithMetaResponse>;
+  getComplexTypeRefWithMeta(options?: coreHttp.RequestOptionsBase): Promise<Models.XmlGetComplexTypeRefWithMetaResponse>;
   /**
    * @param callback The callback
    */
-  getComplexTypeRefWithMeta(callback: msRest.ServiceCallback<Models.RootWithRefAndMeta>): void;
+  getComplexTypeRefWithMeta(callback: coreHttp.ServiceCallback<Models.RootWithRefAndMeta>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getComplexTypeRefWithMeta(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RootWithRefAndMeta>): void;
-  getComplexTypeRefWithMeta(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.RootWithRefAndMeta>, callback?: msRest.ServiceCallback<Models.RootWithRefAndMeta>): Promise<Models.XmlGetComplexTypeRefWithMetaResponse> {
+  getComplexTypeRefWithMeta(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.RootWithRefAndMeta>): void;
+  getComplexTypeRefWithMeta(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.RootWithRefAndMeta>, callback?: coreHttp.ServiceCallback<Models.RootWithRefAndMeta>): Promise<Models.XmlGetComplexTypeRefWithMetaResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -106,21 +106,21 @@ export class Xml {
    * Puts a complex type that has a ref to a complex type with XML node
    * @param model
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param model
    * @param callback The callback
    */
-  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, callback: msRest.ServiceCallback<void>): void;
+  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param model
    * @param options The optional parameters
    * @param callback The callback
    */
-  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putComplexTypeRefWithMeta(model: Models.RootWithRefAndMeta, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         model,
@@ -135,17 +135,17 @@ export class Xml {
    * @param [options] The optional parameters
    * @returns Promise<Models.XmlGetSimpleResponse>
    */
-  getSimple(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetSimpleResponse>;
+  getSimple(options?: coreHttp.RequestOptionsBase): Promise<Models.XmlGetSimpleResponse>;
   /**
    * @param callback The callback
    */
-  getSimple(callback: msRest.ServiceCallback<Models.Slideshow>): void;
+  getSimple(callback: coreHttp.ServiceCallback<Models.Slideshow>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getSimple(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Slideshow>): void;
-  getSimple(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Slideshow>, callback?: msRest.ServiceCallback<Models.Slideshow>): Promise<Models.XmlGetSimpleResponse> {
+  getSimple(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Slideshow>): void;
+  getSimple(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Slideshow>, callback?: coreHttp.ServiceCallback<Models.Slideshow>): Promise<Models.XmlGetSimpleResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -158,21 +158,21 @@ export class Xml {
    * Put a simple XML document
    * @param slideshow
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putSimple(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putSimple(slideshow: Models.Slideshow, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param slideshow
    * @param callback The callback
    */
-  putSimple(slideshow: Models.Slideshow, callback: msRest.ServiceCallback<void>): void;
+  putSimple(slideshow: Models.Slideshow, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param slideshow
    * @param options The optional parameters
    * @param callback The callback
    */
-  putSimple(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putSimple(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putSimple(slideshow: Models.Slideshow, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putSimple(slideshow: Models.Slideshow, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         slideshow,
@@ -187,17 +187,17 @@ export class Xml {
    * @param [options] The optional parameters
    * @returns Promise<Models.XmlGetWrappedListsResponse>
    */
-  getWrappedLists(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetWrappedListsResponse>;
+  getWrappedLists(options?: coreHttp.RequestOptionsBase): Promise<Models.XmlGetWrappedListsResponse>;
   /**
    * @param callback The callback
    */
-  getWrappedLists(callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
+  getWrappedLists(callback: coreHttp.ServiceCallback<Models.AppleBarrel>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getWrappedLists(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
-  getWrappedLists(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.AppleBarrel>, callback?: msRest.ServiceCallback<Models.AppleBarrel>): Promise<Models.XmlGetWrappedListsResponse> {
+  getWrappedLists(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.AppleBarrel>): void;
+  getWrappedLists(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.AppleBarrel>, callback?: coreHttp.ServiceCallback<Models.AppleBarrel>): Promise<Models.XmlGetWrappedListsResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -210,21 +210,21 @@ export class Xml {
    * Put an XML document with multiple wrapped lists
    * @param wrappedLists
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putWrappedLists(wrappedLists: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putWrappedLists(wrappedLists: Models.AppleBarrel, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param wrappedLists
    * @param callback The callback
    */
-  putWrappedLists(wrappedLists: Models.AppleBarrel, callback: msRest.ServiceCallback<void>): void;
+  putWrappedLists(wrappedLists: Models.AppleBarrel, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param wrappedLists
    * @param options The optional parameters
    * @param callback The callback
    */
-  putWrappedLists(wrappedLists: Models.AppleBarrel, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putWrappedLists(wrappedLists: Models.AppleBarrel, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putWrappedLists(wrappedLists: Models.AppleBarrel, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putWrappedLists(wrappedLists: Models.AppleBarrel, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         wrappedLists,
@@ -239,17 +239,17 @@ export class Xml {
    * @param [options] The optional parameters
    * @returns Promise<Models.XmlGetHeadersResponse>
    */
-  getHeaders(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetHeadersResponse>;
+  getHeaders(options?: coreHttp.RequestOptionsBase): Promise<Models.XmlGetHeadersResponse>;
   /**
    * @param callback The callback
    */
-  getHeaders(callback: msRest.ServiceCallback<void>): void;
+  getHeaders(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getHeaders(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getHeaders(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.XmlGetHeadersResponse> {
+  getHeaders(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getHeaders(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.XmlGetHeadersResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -263,17 +263,17 @@ export class Xml {
    * @param [options] The optional parameters
    * @returns Promise<Models.XmlGetEmptyListResponse>
    */
-  getEmptyList(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetEmptyListResponse>;
+  getEmptyList(options?: coreHttp.RequestOptionsBase): Promise<Models.XmlGetEmptyListResponse>;
   /**
    * @param callback The callback
    */
-  getEmptyList(callback: msRest.ServiceCallback<Models.Slideshow>): void;
+  getEmptyList(callback: coreHttp.ServiceCallback<Models.Slideshow>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getEmptyList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Slideshow>): void;
-  getEmptyList(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Slideshow>, callback?: msRest.ServiceCallback<Models.Slideshow>): Promise<Models.XmlGetEmptyListResponse> {
+  getEmptyList(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Slideshow>): void;
+  getEmptyList(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Slideshow>, callback?: coreHttp.ServiceCallback<Models.Slideshow>): Promise<Models.XmlGetEmptyListResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -286,21 +286,21 @@ export class Xml {
    * Puts an empty list.
    * @param slideshow
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putEmptyList(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putEmptyList(slideshow: Models.Slideshow, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param slideshow
    * @param callback The callback
    */
-  putEmptyList(slideshow: Models.Slideshow, callback: msRest.ServiceCallback<void>): void;
+  putEmptyList(slideshow: Models.Slideshow, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param slideshow
    * @param options The optional parameters
    * @param callback The callback
    */
-  putEmptyList(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmptyList(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putEmptyList(slideshow: Models.Slideshow, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putEmptyList(slideshow: Models.Slideshow, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         slideshow,
@@ -315,17 +315,17 @@ export class Xml {
    * @param [options] The optional parameters
    * @returns Promise<Models.XmlGetEmptyWrappedListsResponse>
    */
-  getEmptyWrappedLists(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetEmptyWrappedListsResponse>;
+  getEmptyWrappedLists(options?: coreHttp.RequestOptionsBase): Promise<Models.XmlGetEmptyWrappedListsResponse>;
   /**
    * @param callback The callback
    */
-  getEmptyWrappedLists(callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
+  getEmptyWrappedLists(callback: coreHttp.ServiceCallback<Models.AppleBarrel>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getEmptyWrappedLists(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
-  getEmptyWrappedLists(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.AppleBarrel>, callback?: msRest.ServiceCallback<Models.AppleBarrel>): Promise<Models.XmlGetEmptyWrappedListsResponse> {
+  getEmptyWrappedLists(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.AppleBarrel>): void;
+  getEmptyWrappedLists(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.AppleBarrel>, callback?: coreHttp.ServiceCallback<Models.AppleBarrel>): Promise<Models.XmlGetEmptyWrappedListsResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -338,21 +338,21 @@ export class Xml {
    * Puts some empty wrapped lists.
    * @param appleBarrel
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param appleBarrel
    * @param callback The callback
    */
-  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, callback: msRest.ServiceCallback<void>): void;
+  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param appleBarrel
    * @param options The optional parameters
    * @param callback The callback
    */
-  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         appleBarrel,
@@ -367,17 +367,17 @@ export class Xml {
    * @param [options] The optional parameters
    * @returns Promise<Models.XmlGetRootListResponse>
    */
-  getRootList(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetRootListResponse>;
+  getRootList(options?: coreHttp.RequestOptionsBase): Promise<Models.XmlGetRootListResponse>;
   /**
    * @param callback The callback
    */
-  getRootList(callback: msRest.ServiceCallback<Models.Banana[]>): void;
+  getRootList(callback: coreHttp.ServiceCallback<Models.Banana[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getRootList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
-  getRootList(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Banana[]>, callback?: msRest.ServiceCallback<Models.Banana[]>): Promise<Models.XmlGetRootListResponse> {
+  getRootList(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Banana[]>): void;
+  getRootList(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Banana[]>, callback?: coreHttp.ServiceCallback<Models.Banana[]>): Promise<Models.XmlGetRootListResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -390,21 +390,21 @@ export class Xml {
    * Puts a list as the root element.
    * @param bananas
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putRootList(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putRootList(bananas: Models.Banana[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param bananas
    * @param callback The callback
    */
-  putRootList(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
+  putRootList(bananas: Models.Banana[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param bananas
    * @param options The optional parameters
    * @param callback The callback
    */
-  putRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putRootList(bananas: Models.Banana[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putRootList(bananas: Models.Banana[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putRootList(bananas: Models.Banana[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         bananas,
@@ -419,17 +419,17 @@ export class Xml {
    * @param [options] The optional parameters
    * @returns Promise<Models.XmlGetRootListSingleItemResponse>
    */
-  getRootListSingleItem(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetRootListSingleItemResponse>;
+  getRootListSingleItem(options?: coreHttp.RequestOptionsBase): Promise<Models.XmlGetRootListSingleItemResponse>;
   /**
    * @param callback The callback
    */
-  getRootListSingleItem(callback: msRest.ServiceCallback<Models.Banana[]>): void;
+  getRootListSingleItem(callback: coreHttp.ServiceCallback<Models.Banana[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getRootListSingleItem(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
-  getRootListSingleItem(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Banana[]>, callback?: msRest.ServiceCallback<Models.Banana[]>): Promise<Models.XmlGetRootListSingleItemResponse> {
+  getRootListSingleItem(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Banana[]>): void;
+  getRootListSingleItem(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Banana[]>, callback?: coreHttp.ServiceCallback<Models.Banana[]>): Promise<Models.XmlGetRootListSingleItemResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -442,21 +442,21 @@ export class Xml {
    * Puts a list with a single item.
    * @param bananas
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putRootListSingleItem(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putRootListSingleItem(bananas: Models.Banana[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param bananas
    * @param callback The callback
    */
-  putRootListSingleItem(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
+  putRootListSingleItem(bananas: Models.Banana[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param bananas
    * @param options The optional parameters
    * @param callback The callback
    */
-  putRootListSingleItem(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putRootListSingleItem(bananas: Models.Banana[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putRootListSingleItem(bananas: Models.Banana[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putRootListSingleItem(bananas: Models.Banana[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         bananas,
@@ -471,17 +471,17 @@ export class Xml {
    * @param [options] The optional parameters
    * @returns Promise<Models.XmlGetEmptyRootListResponse>
    */
-  getEmptyRootList(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetEmptyRootListResponse>;
+  getEmptyRootList(options?: coreHttp.RequestOptionsBase): Promise<Models.XmlGetEmptyRootListResponse>;
   /**
    * @param callback The callback
    */
-  getEmptyRootList(callback: msRest.ServiceCallback<Models.Banana[]>): void;
+  getEmptyRootList(callback: coreHttp.ServiceCallback<Models.Banana[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getEmptyRootList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
-  getEmptyRootList(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Banana[]>, callback?: msRest.ServiceCallback<Models.Banana[]>): Promise<Models.XmlGetEmptyRootListResponse> {
+  getEmptyRootList(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Banana[]>): void;
+  getEmptyRootList(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Banana[]>, callback?: coreHttp.ServiceCallback<Models.Banana[]>): Promise<Models.XmlGetEmptyRootListResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -494,21 +494,21 @@ export class Xml {
    * Puts an empty list as the root element.
    * @param bananas
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putEmptyRootList(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putEmptyRootList(bananas: Models.Banana[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param bananas
    * @param callback The callback
    */
-  putEmptyRootList(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
+  putEmptyRootList(bananas: Models.Banana[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param bananas
    * @param options The optional parameters
    * @param callback The callback
    */
-  putEmptyRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmptyRootList(bananas: Models.Banana[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putEmptyRootList(bananas: Models.Banana[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putEmptyRootList(bananas: Models.Banana[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         bananas,
@@ -523,17 +523,17 @@ export class Xml {
    * @param [options] The optional parameters
    * @returns Promise<Models.XmlGetEmptyChildElementResponse>
    */
-  getEmptyChildElement(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetEmptyChildElementResponse>;
+  getEmptyChildElement(options?: coreHttp.RequestOptionsBase): Promise<Models.XmlGetEmptyChildElementResponse>;
   /**
    * @param callback The callback
    */
-  getEmptyChildElement(callback: msRest.ServiceCallback<Models.Banana>): void;
+  getEmptyChildElement(callback: coreHttp.ServiceCallback<Models.Banana>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getEmptyChildElement(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana>): void;
-  getEmptyChildElement(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Banana>, callback?: msRest.ServiceCallback<Models.Banana>): Promise<Models.XmlGetEmptyChildElementResponse> {
+  getEmptyChildElement(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Banana>): void;
+  getEmptyChildElement(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Banana>, callback?: coreHttp.ServiceCallback<Models.Banana>): Promise<Models.XmlGetEmptyChildElementResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -546,21 +546,21 @@ export class Xml {
    * Puts a value with an empty child element.
    * @param banana
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putEmptyChildElement(banana: Models.Banana, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putEmptyChildElement(banana: Models.Banana, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param banana
    * @param callback The callback
    */
-  putEmptyChildElement(banana: Models.Banana, callback: msRest.ServiceCallback<void>): void;
+  putEmptyChildElement(banana: Models.Banana, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param banana
    * @param options The optional parameters
    * @param callback The callback
    */
-  putEmptyChildElement(banana: Models.Banana, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmptyChildElement(banana: Models.Banana, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putEmptyChildElement(banana: Models.Banana, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putEmptyChildElement(banana: Models.Banana, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         banana,
@@ -575,17 +575,17 @@ export class Xml {
    * @param [options] The optional parameters
    * @returns Promise<Models.XmlListContainersResponse>
    */
-  listContainers(options?: msRest.RequestOptionsBase): Promise<Models.XmlListContainersResponse>;
+  listContainers(options?: coreHttp.RequestOptionsBase): Promise<Models.XmlListContainersResponse>;
   /**
    * @param callback The callback
    */
-  listContainers(callback: msRest.ServiceCallback<Models.ListContainersResponse>): void;
+  listContainers(callback: coreHttp.ServiceCallback<Models.ListContainersResponse>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  listContainers(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ListContainersResponse>): void;
-  listContainers(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ListContainersResponse>, callback?: msRest.ServiceCallback<Models.ListContainersResponse>): Promise<Models.XmlListContainersResponse> {
+  listContainers(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ListContainersResponse>): void;
+  listContainers(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ListContainersResponse>, callback?: coreHttp.ServiceCallback<Models.ListContainersResponse>): Promise<Models.XmlListContainersResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -599,17 +599,17 @@ export class Xml {
    * @param [options] The optional parameters
    * @returns Promise<Models.XmlGetServicePropertiesResponse>
    */
-  getServiceProperties(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetServicePropertiesResponse>;
+  getServiceProperties(options?: coreHttp.RequestOptionsBase): Promise<Models.XmlGetServicePropertiesResponse>;
   /**
    * @param callback The callback
    */
-  getServiceProperties(callback: msRest.ServiceCallback<Models.StorageServiceProperties>): void;
+  getServiceProperties(callback: coreHttp.ServiceCallback<Models.StorageServiceProperties>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getServiceProperties(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageServiceProperties>): void;
-  getServiceProperties(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.StorageServiceProperties>, callback?: msRest.ServiceCallback<Models.StorageServiceProperties>): Promise<Models.XmlGetServicePropertiesResponse> {
+  getServiceProperties(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.StorageServiceProperties>): void;
+  getServiceProperties(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.StorageServiceProperties>, callback?: coreHttp.ServiceCallback<Models.StorageServiceProperties>): Promise<Models.XmlGetServicePropertiesResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -622,21 +622,21 @@ export class Xml {
    * Puts storage service properties.
    * @param properties
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putServiceProperties(properties: Models.StorageServiceProperties, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putServiceProperties(properties: Models.StorageServiceProperties, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param properties
    * @param callback The callback
    */
-  putServiceProperties(properties: Models.StorageServiceProperties, callback: msRest.ServiceCallback<void>): void;
+  putServiceProperties(properties: Models.StorageServiceProperties, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param properties
    * @param options The optional parameters
    * @param callback The callback
    */
-  putServiceProperties(properties: Models.StorageServiceProperties, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putServiceProperties(properties: Models.StorageServiceProperties, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putServiceProperties(properties: Models.StorageServiceProperties, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putServiceProperties(properties: Models.StorageServiceProperties, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         properties,
@@ -651,17 +651,17 @@ export class Xml {
    * @param [options] The optional parameters
    * @returns Promise<Models.XmlGetAclsResponse>
    */
-  getAcls(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetAclsResponse>;
+  getAcls(options?: coreHttp.RequestOptionsBase): Promise<Models.XmlGetAclsResponse>;
   /**
    * @param callback The callback
    */
-  getAcls(callback: msRest.ServiceCallback<Models.SignedIdentifier[]>): void;
+  getAcls(callback: coreHttp.ServiceCallback<Models.SignedIdentifier[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getAcls(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SignedIdentifier[]>): void;
-  getAcls(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.SignedIdentifier[]>, callback?: msRest.ServiceCallback<Models.SignedIdentifier[]>): Promise<Models.XmlGetAclsResponse> {
+  getAcls(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.SignedIdentifier[]>): void;
+  getAcls(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.SignedIdentifier[]>, callback?: coreHttp.ServiceCallback<Models.SignedIdentifier[]>): Promise<Models.XmlGetAclsResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -674,21 +674,21 @@ export class Xml {
    * Puts storage ACLs for a container.
    * @param properties
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putAcls(properties: Models.SignedIdentifier[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putAcls(properties: Models.SignedIdentifier[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param properties
    * @param callback The callback
    */
-  putAcls(properties: Models.SignedIdentifier[], callback: msRest.ServiceCallback<void>): void;
+  putAcls(properties: Models.SignedIdentifier[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param properties
    * @param options The optional parameters
    * @param callback The callback
    */
-  putAcls(properties: Models.SignedIdentifier[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putAcls(properties: Models.SignedIdentifier[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putAcls(properties: Models.SignedIdentifier[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putAcls(properties: Models.SignedIdentifier[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         properties,
@@ -703,17 +703,17 @@ export class Xml {
    * @param [options] The optional parameters
    * @returns Promise<Models.XmlListBlobsResponse>
    */
-  listBlobs(options?: msRest.RequestOptionsBase): Promise<Models.XmlListBlobsResponse>;
+  listBlobs(options?: coreHttp.RequestOptionsBase): Promise<Models.XmlListBlobsResponse>;
   /**
    * @param callback The callback
    */
-  listBlobs(callback: msRest.ServiceCallback<Models.ListBlobsResponse>): void;
+  listBlobs(callback: coreHttp.ServiceCallback<Models.ListBlobsResponse>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  listBlobs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ListBlobsResponse>): void;
-  listBlobs(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ListBlobsResponse>, callback?: msRest.ServiceCallback<Models.ListBlobsResponse>): Promise<Models.XmlListBlobsResponse> {
+  listBlobs(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ListBlobsResponse>): void;
+  listBlobs(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ListBlobsResponse>, callback?: coreHttp.ServiceCallback<Models.ListBlobsResponse>): Promise<Models.XmlListBlobsResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -724,8 +724,8 @@ export class Xml {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers, true);
-const getComplexTypeRefNoMetaOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers, true);
+const getComplexTypeRefNoMetaOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "xml/complex-type-ref-no-meta",
   responses: {
@@ -738,7 +738,7 @@ const getComplexTypeRefNoMetaOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putComplexTypeRefNoMetaOperationSpec: msRest.OperationSpec = {
+const putComplexTypeRefNoMetaOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/complex-type-ref-no-meta",
   requestBody: {
@@ -757,7 +757,7 @@ const putComplexTypeRefNoMetaOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getComplexTypeRefWithMetaOperationSpec: msRest.OperationSpec = {
+const getComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "xml/complex-type-ref-with-meta",
   responses: {
@@ -770,7 +770,7 @@ const getComplexTypeRefWithMetaOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putComplexTypeRefWithMetaOperationSpec: msRest.OperationSpec = {
+const putComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/complex-type-ref-with-meta",
   requestBody: {
@@ -789,7 +789,7 @@ const putComplexTypeRefWithMetaOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getSimpleOperationSpec: msRest.OperationSpec = {
+const getSimpleOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "xml/simple",
   responses: {
@@ -804,7 +804,7 @@ const getSimpleOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putSimpleOperationSpec: msRest.OperationSpec = {
+const putSimpleOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/simple",
   requestBody: {
@@ -825,7 +825,7 @@ const putSimpleOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getWrappedListsOperationSpec: msRest.OperationSpec = {
+const getWrappedListsOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "xml/wrapped-lists",
   responses: {
@@ -838,7 +838,7 @@ const getWrappedListsOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putWrappedListsOperationSpec: msRest.OperationSpec = {
+const putWrappedListsOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/wrapped-lists",
   requestBody: {
@@ -859,7 +859,7 @@ const putWrappedListsOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getHeadersOperationSpec: msRest.OperationSpec = {
+const getHeadersOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "xml/headers",
   responses: {
@@ -872,7 +872,7 @@ const getHeadersOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getEmptyListOperationSpec: msRest.OperationSpec = {
+const getEmptyListOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "xml/empty-list",
   responses: {
@@ -885,7 +885,7 @@ const getEmptyListOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putEmptyListOperationSpec: msRest.OperationSpec = {
+const putEmptyListOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/empty-list",
   requestBody: {
@@ -904,7 +904,7 @@ const putEmptyListOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getEmptyWrappedListsOperationSpec: msRest.OperationSpec = {
+const getEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "xml/empty-wrapped-lists",
   responses: {
@@ -917,7 +917,7 @@ const getEmptyWrappedListsOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putEmptyWrappedListsOperationSpec: msRest.OperationSpec = {
+const putEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/empty-wrapped-lists",
   requestBody: {
@@ -936,7 +936,7 @@ const putEmptyWrappedListsOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getRootListOperationSpec: msRest.OperationSpec = {
+const getRootListOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "xml/root-list",
   responses: {
@@ -961,7 +961,7 @@ const getRootListOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putRootListOperationSpec: msRest.OperationSpec = {
+const putRootListOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/root-list",
   requestBody: {
@@ -990,7 +990,7 @@ const putRootListOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getRootListSingleItemOperationSpec: msRest.OperationSpec = {
+const getRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "xml/root-list-single-item",
   responses: {
@@ -1015,7 +1015,7 @@ const getRootListSingleItemOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putRootListSingleItemOperationSpec: msRest.OperationSpec = {
+const putRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/root-list-single-item",
   requestBody: {
@@ -1044,7 +1044,7 @@ const putRootListSingleItemOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getEmptyRootListOperationSpec: msRest.OperationSpec = {
+const getEmptyRootListOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "xml/empty-root-list",
   responses: {
@@ -1069,7 +1069,7 @@ const getEmptyRootListOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putEmptyRootListOperationSpec: msRest.OperationSpec = {
+const putEmptyRootListOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/empty-root-list",
   requestBody: {
@@ -1098,7 +1098,7 @@ const putEmptyRootListOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getEmptyChildElementOperationSpec: msRest.OperationSpec = {
+const getEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "xml/empty-child-element",
   responses: {
@@ -1111,7 +1111,7 @@ const getEmptyChildElementOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putEmptyChildElementOperationSpec: msRest.OperationSpec = {
+const putEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/empty-child-element",
   requestBody: {
@@ -1130,7 +1130,7 @@ const putEmptyChildElementOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const listContainersOperationSpec: msRest.OperationSpec = {
+const listContainersOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "xml/",
   queryParameters: [
@@ -1146,7 +1146,7 @@ const listContainersOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getServicePropertiesOperationSpec: msRest.OperationSpec = {
+const getServicePropertiesOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "xml/",
   queryParameters: [
@@ -1163,7 +1163,7 @@ const getServicePropertiesOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putServicePropertiesOperationSpec: msRest.OperationSpec = {
+const putServicePropertiesOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/",
   queryParameters: [
@@ -1186,7 +1186,7 @@ const putServicePropertiesOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getAclsOperationSpec: msRest.OperationSpec = {
+const getAclsOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "xml/mycontainer",
   queryParameters: [
@@ -1215,7 +1215,7 @@ const getAclsOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putAclsOperationSpec: msRest.OperationSpec = {
+const putAclsOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "xml/mycontainer",
   queryParameters: [
@@ -1249,7 +1249,7 @@ const putAclsOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const listBlobsOperationSpec: msRest.OperationSpec = {
+const listBlobsOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "xml/mycontainer",
   queryParameters: [

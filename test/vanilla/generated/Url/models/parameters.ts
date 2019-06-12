@@ -8,9 +8,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const arrayPath: msRest.OperationURLParameter = {
+export const arrayPath: coreHttp.OperationURLParameter = {
   parameterPath: "arrayPath",
   mapper: {
     required: true,
@@ -25,7 +25,7 @@ export const arrayPath: msRest.OperationURLParameter = {
     }
   }
 };
-export const arrayQuery0: msRest.OperationQueryParameter = {
+export const arrayQuery0: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "arrayQuery"
@@ -41,9 +41,9 @@ export const arrayQuery0: msRest.OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: msRest.QueryCollectionFormat.Csv
+  collectionFormat: coreHttp.QueryCollectionFormat.Csv
 };
-export const arrayQuery1: msRest.OperationQueryParameter = {
+export const arrayQuery1: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "arrayQuery"
@@ -59,9 +59,9 @@ export const arrayQuery1: msRest.OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: msRest.QueryCollectionFormat.Ssv
+  collectionFormat: coreHttp.QueryCollectionFormat.Ssv
 };
-export const arrayQuery2: msRest.OperationQueryParameter = {
+export const arrayQuery2: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "arrayQuery"
@@ -77,9 +77,9 @@ export const arrayQuery2: msRest.OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: msRest.QueryCollectionFormat.Tsv
+  collectionFormat: coreHttp.QueryCollectionFormat.Tsv
 };
-export const arrayQuery3: msRest.OperationQueryParameter = {
+export const arrayQuery3: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "arrayQuery"
@@ -95,9 +95,9 @@ export const arrayQuery3: msRest.OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: msRest.QueryCollectionFormat.Pipes
+  collectionFormat: coreHttp.QueryCollectionFormat.Pipes
 };
-export const base64UrlPath: msRest.OperationURLParameter = {
+export const base64UrlPath: coreHttp.OperationURLParameter = {
   parameterPath: "base64UrlPath",
   mapper: {
     required: true,
@@ -107,7 +107,7 @@ export const base64UrlPath: msRest.OperationURLParameter = {
     }
   }
 };
-export const boolPath0: msRest.OperationURLParameter = {
+export const boolPath0: coreHttp.OperationURLParameter = {
   parameterPath: "boolPath",
   mapper: {
     required: true,
@@ -119,7 +119,7 @@ export const boolPath0: msRest.OperationURLParameter = {
     }
   }
 };
-export const boolPath1: msRest.OperationURLParameter = {
+export const boolPath1: coreHttp.OperationURLParameter = {
   parameterPath: "boolPath",
   mapper: {
     required: true,
@@ -131,7 +131,7 @@ export const boolPath1: msRest.OperationURLParameter = {
     }
   }
 };
-export const boolQuery0: msRest.OperationQueryParameter = {
+export const boolQuery0: coreHttp.OperationQueryParameter = {
   parameterPath: "boolQuery",
   mapper: {
     required: true,
@@ -143,7 +143,7 @@ export const boolQuery0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const boolQuery1: msRest.OperationQueryParameter = {
+export const boolQuery1: coreHttp.OperationQueryParameter = {
   parameterPath: "boolQuery",
   mapper: {
     required: true,
@@ -155,7 +155,7 @@ export const boolQuery1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const boolQuery2: msRest.OperationQueryParameter = {
+export const boolQuery2: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "boolQuery"
@@ -167,7 +167,7 @@ export const boolQuery2: msRest.OperationQueryParameter = {
     }
   }
 };
-export const bytePath0: msRest.OperationURLParameter = {
+export const bytePath0: coreHttp.OperationURLParameter = {
   parameterPath: "bytePath",
   mapper: {
     required: true,
@@ -177,7 +177,7 @@ export const bytePath0: msRest.OperationURLParameter = {
     }
   }
 };
-export const bytePath1: msRest.OperationURLParameter = {
+export const bytePath1: coreHttp.OperationURLParameter = {
   parameterPath: "bytePath",
   mapper: {
     required: true,
@@ -189,7 +189,7 @@ export const bytePath1: msRest.OperationURLParameter = {
     }
   }
 };
-export const byteQuery0: msRest.OperationQueryParameter = {
+export const byteQuery0: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "byteQuery"
@@ -201,7 +201,7 @@ export const byteQuery0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const byteQuery1: msRest.OperationQueryParameter = {
+export const byteQuery1: coreHttp.OperationQueryParameter = {
   parameterPath: "byteQuery",
   mapper: {
     required: true,
@@ -213,7 +213,7 @@ export const byteQuery1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const datePath0: msRest.OperationURLParameter = {
+export const datePath0: coreHttp.OperationURLParameter = {
   parameterPath: "datePath",
   mapper: {
     required: true,
@@ -225,7 +225,7 @@ export const datePath0: msRest.OperationURLParameter = {
     }
   }
 };
-export const datePath1: msRest.OperationURLParameter = {
+export const datePath1: coreHttp.OperationURLParameter = {
   parameterPath: "datePath",
   mapper: {
     required: true,
@@ -235,7 +235,7 @@ export const datePath1: msRest.OperationURLParameter = {
     }
   }
 };
-export const dateQuery0: msRest.OperationQueryParameter = {
+export const dateQuery0: coreHttp.OperationQueryParameter = {
   parameterPath: "dateQuery",
   mapper: {
     required: true,
@@ -247,7 +247,7 @@ export const dateQuery0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const dateQuery1: msRest.OperationQueryParameter = {
+export const dateQuery1: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "dateQuery"
@@ -259,7 +259,7 @@ export const dateQuery1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const dateTimePath0: msRest.OperationURLParameter = {
+export const dateTimePath0: coreHttp.OperationURLParameter = {
   parameterPath: "dateTimePath",
   mapper: {
     required: true,
@@ -271,7 +271,7 @@ export const dateTimePath0: msRest.OperationURLParameter = {
     }
   }
 };
-export const dateTimePath1: msRest.OperationURLParameter = {
+export const dateTimePath1: coreHttp.OperationURLParameter = {
   parameterPath: "dateTimePath",
   mapper: {
     required: true,
@@ -281,7 +281,7 @@ export const dateTimePath1: msRest.OperationURLParameter = {
     }
   }
 };
-export const dateTimeQuery0: msRest.OperationQueryParameter = {
+export const dateTimeQuery0: coreHttp.OperationQueryParameter = {
   parameterPath: "dateTimeQuery",
   mapper: {
     required: true,
@@ -293,7 +293,7 @@ export const dateTimeQuery0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const dateTimeQuery1: msRest.OperationQueryParameter = {
+export const dateTimeQuery1: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "dateTimeQuery"
@@ -305,7 +305,7 @@ export const dateTimeQuery1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const doublePath0: msRest.OperationURLParameter = {
+export const doublePath0: coreHttp.OperationURLParameter = {
   parameterPath: "doublePath",
   mapper: {
     required: true,
@@ -317,7 +317,7 @@ export const doublePath0: msRest.OperationURLParameter = {
     }
   }
 };
-export const doublePath1: msRest.OperationURLParameter = {
+export const doublePath1: coreHttp.OperationURLParameter = {
   parameterPath: "doublePath",
   mapper: {
     required: true,
@@ -329,7 +329,7 @@ export const doublePath1: msRest.OperationURLParameter = {
     }
   }
 };
-export const doubleQuery0: msRest.OperationQueryParameter = {
+export const doubleQuery0: coreHttp.OperationQueryParameter = {
   parameterPath: "doubleQuery",
   mapper: {
     required: true,
@@ -341,7 +341,7 @@ export const doubleQuery0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const doubleQuery1: msRest.OperationQueryParameter = {
+export const doubleQuery1: coreHttp.OperationQueryParameter = {
   parameterPath: "doubleQuery",
   mapper: {
     required: true,
@@ -353,7 +353,7 @@ export const doubleQuery1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const doubleQuery2: msRest.OperationQueryParameter = {
+export const doubleQuery2: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "doubleQuery"
@@ -365,7 +365,7 @@ export const doubleQuery2: msRest.OperationQueryParameter = {
     }
   }
 };
-export const enumPath: msRest.OperationURLParameter = {
+export const enumPath: coreHttp.OperationURLParameter = {
   parameterPath: "enumPath",
   mapper: {
     required: true,
@@ -380,7 +380,7 @@ export const enumPath: msRest.OperationURLParameter = {
     }
   }
 };
-export const enumQuery: msRest.OperationQueryParameter = {
+export const enumQuery: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "enumQuery"
@@ -397,7 +397,7 @@ export const enumQuery: msRest.OperationQueryParameter = {
     }
   }
 };
-export const floatPath0: msRest.OperationURLParameter = {
+export const floatPath0: coreHttp.OperationURLParameter = {
   parameterPath: "floatPath",
   mapper: {
     required: true,
@@ -409,7 +409,7 @@ export const floatPath0: msRest.OperationURLParameter = {
     }
   }
 };
-export const floatPath1: msRest.OperationURLParameter = {
+export const floatPath1: coreHttp.OperationURLParameter = {
   parameterPath: "floatPath",
   mapper: {
     required: true,
@@ -421,7 +421,7 @@ export const floatPath1: msRest.OperationURLParameter = {
     }
   }
 };
-export const floatQuery0: msRest.OperationQueryParameter = {
+export const floatQuery0: coreHttp.OperationQueryParameter = {
   parameterPath: "floatQuery",
   mapper: {
     required: true,
@@ -433,7 +433,7 @@ export const floatQuery0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const floatQuery1: msRest.OperationQueryParameter = {
+export const floatQuery1: coreHttp.OperationQueryParameter = {
   parameterPath: "floatQuery",
   mapper: {
     required: true,
@@ -445,7 +445,7 @@ export const floatQuery1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const floatQuery2: msRest.OperationQueryParameter = {
+export const floatQuery2: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "floatQuery"
@@ -457,7 +457,7 @@ export const floatQuery2: msRest.OperationQueryParameter = {
     }
   }
 };
-export const globalStringPath: msRest.OperationURLParameter = {
+export const globalStringPath: coreHttp.OperationURLParameter = {
   parameterPath: "globalStringPath",
   mapper: {
     required: true,
@@ -467,7 +467,7 @@ export const globalStringPath: msRest.OperationURLParameter = {
     }
   }
 };
-export const globalStringQuery: msRest.OperationQueryParameter = {
+export const globalStringQuery: coreHttp.OperationQueryParameter = {
   parameterPath: "globalStringQuery",
   mapper: {
     serializedName: "globalStringQuery",
@@ -476,7 +476,7 @@ export const globalStringQuery: msRest.OperationQueryParameter = {
     }
   }
 };
-export const intPath0: msRest.OperationURLParameter = {
+export const intPath0: coreHttp.OperationURLParameter = {
   parameterPath: "intPath",
   mapper: {
     required: true,
@@ -488,7 +488,7 @@ export const intPath0: msRest.OperationURLParameter = {
     }
   }
 };
-export const intPath1: msRest.OperationURLParameter = {
+export const intPath1: coreHttp.OperationURLParameter = {
   parameterPath: "intPath",
   mapper: {
     required: true,
@@ -500,7 +500,7 @@ export const intPath1: msRest.OperationURLParameter = {
     }
   }
 };
-export const intQuery0: msRest.OperationQueryParameter = {
+export const intQuery0: coreHttp.OperationQueryParameter = {
   parameterPath: "intQuery",
   mapper: {
     required: true,
@@ -512,7 +512,7 @@ export const intQuery0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const intQuery1: msRest.OperationQueryParameter = {
+export const intQuery1: coreHttp.OperationQueryParameter = {
   parameterPath: "intQuery",
   mapper: {
     required: true,
@@ -524,7 +524,7 @@ export const intQuery1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const intQuery2: msRest.OperationQueryParameter = {
+export const intQuery2: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "intQuery"
@@ -536,7 +536,7 @@ export const intQuery2: msRest.OperationQueryParameter = {
     }
   }
 };
-export const localStringPath: msRest.OperationURLParameter = {
+export const localStringPath: coreHttp.OperationURLParameter = {
   parameterPath: "localStringPath",
   mapper: {
     required: true,
@@ -546,7 +546,7 @@ export const localStringPath: msRest.OperationURLParameter = {
     }
   }
 };
-export const localStringQuery: msRest.OperationQueryParameter = {
+export const localStringQuery: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "localStringQuery"
@@ -558,7 +558,7 @@ export const localStringQuery: msRest.OperationQueryParameter = {
     }
   }
 };
-export const longPath0: msRest.OperationURLParameter = {
+export const longPath0: coreHttp.OperationURLParameter = {
   parameterPath: "longPath",
   mapper: {
     required: true,
@@ -570,7 +570,7 @@ export const longPath0: msRest.OperationURLParameter = {
     }
   }
 };
-export const longPath1: msRest.OperationURLParameter = {
+export const longPath1: coreHttp.OperationURLParameter = {
   parameterPath: "longPath",
   mapper: {
     required: true,
@@ -582,7 +582,7 @@ export const longPath1: msRest.OperationURLParameter = {
     }
   }
 };
-export const longQuery0: msRest.OperationQueryParameter = {
+export const longQuery0: coreHttp.OperationQueryParameter = {
   parameterPath: "longQuery",
   mapper: {
     required: true,
@@ -594,7 +594,7 @@ export const longQuery0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const longQuery1: msRest.OperationQueryParameter = {
+export const longQuery1: coreHttp.OperationQueryParameter = {
   parameterPath: "longQuery",
   mapper: {
     required: true,
@@ -606,7 +606,7 @@ export const longQuery1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const longQuery2: msRest.OperationQueryParameter = {
+export const longQuery2: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "longQuery"
@@ -618,7 +618,7 @@ export const longQuery2: msRest.OperationQueryParameter = {
     }
   }
 };
-export const pathItemStringPath: msRest.OperationURLParameter = {
+export const pathItemStringPath: coreHttp.OperationURLParameter = {
   parameterPath: "pathItemStringPath",
   mapper: {
     required: true,
@@ -628,7 +628,7 @@ export const pathItemStringPath: msRest.OperationURLParameter = {
     }
   }
 };
-export const pathItemStringQuery: msRest.OperationQueryParameter = {
+export const pathItemStringQuery: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "pathItemStringQuery"
@@ -640,7 +640,7 @@ export const pathItemStringQuery: msRest.OperationQueryParameter = {
     }
   }
 };
-export const stringPath0: msRest.OperationURLParameter = {
+export const stringPath0: coreHttp.OperationURLParameter = {
   parameterPath: "stringPath",
   mapper: {
     required: true,
@@ -652,7 +652,7 @@ export const stringPath0: msRest.OperationURLParameter = {
     }
   }
 };
-export const stringPath1: msRest.OperationURLParameter = {
+export const stringPath1: coreHttp.OperationURLParameter = {
   parameterPath: "stringPath",
   mapper: {
     required: true,
@@ -664,7 +664,7 @@ export const stringPath1: msRest.OperationURLParameter = {
     }
   }
 };
-export const stringPath2: msRest.OperationURLParameter = {
+export const stringPath2: coreHttp.OperationURLParameter = {
   parameterPath: "stringPath",
   mapper: {
     required: true,
@@ -676,7 +676,7 @@ export const stringPath2: msRest.OperationURLParameter = {
     }
   }
 };
-export const stringPath3: msRest.OperationURLParameter = {
+export const stringPath3: coreHttp.OperationURLParameter = {
   parameterPath: "stringPath",
   mapper: {
     required: true,
@@ -686,7 +686,7 @@ export const stringPath3: msRest.OperationURLParameter = {
     }
   }
 };
-export const stringQuery0: msRest.OperationQueryParameter = {
+export const stringQuery0: coreHttp.OperationQueryParameter = {
   parameterPath: "stringQuery",
   mapper: {
     required: true,
@@ -698,7 +698,7 @@ export const stringQuery0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const stringQuery1: msRest.OperationQueryParameter = {
+export const stringQuery1: coreHttp.OperationQueryParameter = {
   parameterPath: "stringQuery",
   mapper: {
     required: true,
@@ -710,7 +710,7 @@ export const stringQuery1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const stringQuery2: msRest.OperationQueryParameter = {
+export const stringQuery2: coreHttp.OperationQueryParameter = {
   parameterPath: "stringQuery",
   mapper: {
     required: true,
@@ -722,7 +722,7 @@ export const stringQuery2: msRest.OperationQueryParameter = {
     }
   }
 };
-export const stringQuery3: msRest.OperationQueryParameter = {
+export const stringQuery3: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "stringQuery"
@@ -734,7 +734,7 @@ export const stringQuery3: msRest.OperationQueryParameter = {
     }
   }
 };
-export const unixTimeUrlPath: msRest.OperationURLParameter = {
+export const unixTimeUrlPath: coreHttp.OperationURLParameter = {
   parameterPath: "unixTimeUrlPath",
   mapper: {
     required: true,

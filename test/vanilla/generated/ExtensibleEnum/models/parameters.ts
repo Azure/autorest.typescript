@@ -8,9 +8,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const petId: msRest.OperationURLParameter = {
+export const petId: coreHttp.OperationURLParameter = {
   parameterPath: "petId",
   mapper: {
     required: true,

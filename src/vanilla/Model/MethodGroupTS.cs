@@ -169,7 +169,7 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+            builder.ImportAllAs("coreHttp", "@azure/core-http");
             if (MethodTemplateModels.Any((MethodTS method) => method.IsLongRunningOperation))
             {
                 builder.ImportAllAs("msRestAzure", "@azure/ms-rest-azure-js");

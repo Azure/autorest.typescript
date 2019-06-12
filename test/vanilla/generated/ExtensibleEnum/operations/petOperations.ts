@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/petOperationsMappers";
 import * as Parameters from "../models/parameters";
@@ -31,19 +31,19 @@ export class PetOperations {
    * @param [options] The optional parameters
    * @returns Promise<Models.PetGetByPetIdResponse>
    */
-  getByPetId(petId: string, options?: msRest.RequestOptionsBase): Promise<Models.PetGetByPetIdResponse>;
+  getByPetId(petId: string, options?: coreHttp.RequestOptionsBase): Promise<Models.PetGetByPetIdResponse>;
   /**
    * @param petId Pet id
    * @param callback The callback
    */
-  getByPetId(petId: string, callback: msRest.ServiceCallback<Models.Pet>): void;
+  getByPetId(petId: string, callback: coreHttp.ServiceCallback<Models.Pet>): void;
   /**
    * @param petId Pet id
    * @param options The optional parameters
    * @param callback The callback
    */
-  getByPetId(petId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Pet>): void;
-  getByPetId(petId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Pet>, callback?: msRest.ServiceCallback<Models.Pet>): Promise<Models.PetGetByPetIdResponse> {
+  getByPetId(petId: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Pet>): void;
+  getByPetId(petId: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Pet>, callback?: coreHttp.ServiceCallback<Models.Pet>): Promise<Models.PetGetByPetIdResponse> {
     return this.client.sendOperationRequest(
       {
         petId,
@@ -61,13 +61,13 @@ export class PetOperations {
   /**
    * @param callback The callback
    */
-  addPet(callback: msRest.ServiceCallback<Models.Pet>): void;
+  addPet(callback: coreHttp.ServiceCallback<Models.Pet>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  addPet(options: Models.PetAddPetOptionalParams, callback: msRest.ServiceCallback<Models.Pet>): void;
-  addPet(options?: Models.PetAddPetOptionalParams | msRest.ServiceCallback<Models.Pet>, callback?: msRest.ServiceCallback<Models.Pet>): Promise<Models.PetAddPetResponse> {
+  addPet(options: Models.PetAddPetOptionalParams, callback: coreHttp.ServiceCallback<Models.Pet>): void;
+  addPet(options?: Models.PetAddPetOptionalParams | coreHttp.ServiceCallback<Models.Pet>, callback?: coreHttp.ServiceCallback<Models.Pet>): Promise<Models.PetAddPetResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -78,8 +78,8 @@ export class PetOperations {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getByPetIdOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getByPetIdOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "extensibleenums/pet/{petId}",
   urlParameters: [
@@ -94,7 +94,7 @@ const getByPetIdOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const addPetOperationSpec: msRest.OperationSpec = {
+const addPetOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "extensibleenums/pet/addPet",
   requestBody: {

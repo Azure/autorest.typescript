@@ -8,9 +8,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const avset: msRest.OperationURLParameter = {
+export const avset: coreHttp.OperationURLParameter = {
   parameterPath: "avset",
   mapper: {
     required: true,
@@ -23,7 +23,7 @@ export const avset: msRest.OperationURLParameter = {
     }
   }
 };
-export const resourceGroupName: msRest.OperationURLParameter = {
+export const resourceGroupName: coreHttp.OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     required: true,

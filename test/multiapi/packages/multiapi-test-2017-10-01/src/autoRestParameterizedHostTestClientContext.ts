@@ -5,14 +5,14 @@
  */
 
 import * as Models from "./models";
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as msRestAzure from "@azure/ms-rest-azure-js";
 
 const packageName = "@azure/multiapi-test";
 const packageVersion = "1.0.0";
 
 export class AutoRestParameterizedHostTestClientContext extends msRestAzure.AzureServiceClient {
-  credentials: msRest.ServiceClientCredentials;
+  credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential;
   host?: string;
 
   /**
@@ -20,7 +20,7 @@ export class AutoRestParameterizedHostTestClientContext extends msRestAzure.Azur
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestParameterizedHostTestClientOptions) {
+  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, options?: Models.AutoRestParameterizedHostTestClientOptions) {
     if (credentials == undefined) {
       throw new Error('\'credentials\' cannot be null.');
     }

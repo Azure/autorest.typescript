@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as msRestAzure from "@azure/ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/lROsCustomHeaderMappers";
@@ -147,8 +147,8 @@ export class LROsCustomHeader {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const beginPutAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const beginPutAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/customheader/putasync/retry/succeeded",
   headerParameters: [
@@ -173,7 +173,7 @@ const beginPutAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
+const beginPut201CreatingSucceeded200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/customheader/put/201/creating/succeeded/200",
   headerParameters: [
@@ -200,7 +200,7 @@ const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
+const beginPost202Retry200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "lro/customheader/post/202/retry/200",
   headerParameters: [
@@ -224,7 +224,7 @@ const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPostAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
+const beginPostAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "lro/customheader/postasync/retry/succeeded",
   headerParameters: [

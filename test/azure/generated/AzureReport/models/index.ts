@@ -7,7 +7,7 @@
  */
 
 import { BaseResource, CloudError, AzureServiceClientOptions } from "@azure/ms-rest-azure-js";
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 export { BaseResource, CloudError };
 
@@ -22,7 +22,7 @@ export interface ErrorModel {
 /**
  * Optional Parameters.
  */
-export interface AutoRestReportServiceForAzureGetReportOptionalParams extends msRest.RequestOptionsBase {
+export interface AutoRestReportServiceForAzureGetReportOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python). The
    * only effect is, that generators that run all tests several times, can distinguish the
@@ -50,7 +50,7 @@ export type GetReportResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */

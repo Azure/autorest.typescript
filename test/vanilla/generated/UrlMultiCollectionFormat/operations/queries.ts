@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/queriesMappers";
 import * as Parameters from "../models/parameters";
@@ -29,19 +29,19 @@ export class Queries {
   /**
    * Get a null array of string using the multi-array format
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  arrayStringMultiNull(options?: Models.QueriesArrayStringMultiNullOptionalParams): Promise<msRest.RestResponse>;
+  arrayStringMultiNull(options?: Models.QueriesArrayStringMultiNullOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  arrayStringMultiNull(callback: msRest.ServiceCallback<void>): void;
+  arrayStringMultiNull(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  arrayStringMultiNull(options: Models.QueriesArrayStringMultiNullOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringMultiNull(options?: Models.QueriesArrayStringMultiNullOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  arrayStringMultiNull(options: Models.QueriesArrayStringMultiNullOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  arrayStringMultiNull(options?: Models.QueriesArrayStringMultiNullOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -53,19 +53,19 @@ export class Queries {
   /**
    * Get an empty array [] of string using the multi-array format
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  arrayStringMultiEmpty(options?: Models.QueriesArrayStringMultiEmptyOptionalParams): Promise<msRest.RestResponse>;
+  arrayStringMultiEmpty(options?: Models.QueriesArrayStringMultiEmptyOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  arrayStringMultiEmpty(callback: msRest.ServiceCallback<void>): void;
+  arrayStringMultiEmpty(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  arrayStringMultiEmpty(options: Models.QueriesArrayStringMultiEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringMultiEmpty(options?: Models.QueriesArrayStringMultiEmptyOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  arrayStringMultiEmpty(options: Models.QueriesArrayStringMultiEmptyOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  arrayStringMultiEmpty(options?: Models.QueriesArrayStringMultiEmptyOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -78,19 +78,19 @@ export class Queries {
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
    * mult-array format
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  arrayStringMultiValid(options?: Models.QueriesArrayStringMultiValidOptionalParams): Promise<msRest.RestResponse>;
+  arrayStringMultiValid(options?: Models.QueriesArrayStringMultiValidOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  arrayStringMultiValid(callback: msRest.ServiceCallback<void>): void;
+  arrayStringMultiValid(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  arrayStringMultiValid(options: Models.QueriesArrayStringMultiValidOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  arrayStringMultiValid(options?: Models.QueriesArrayStringMultiValidOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  arrayStringMultiValid(options: Models.QueriesArrayStringMultiValidOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  arrayStringMultiValid(options?: Models.QueriesArrayStringMultiValidOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -101,8 +101,8 @@ export class Queries {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const arrayStringMultiNullOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const arrayStringMultiNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/multi/string/null",
   queryParameters: [
@@ -117,7 +117,7 @@ const arrayStringMultiNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const arrayStringMultiEmptyOperationSpec: msRest.OperationSpec = {
+const arrayStringMultiEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/multi/string/empty",
   queryParameters: [
@@ -132,7 +132,7 @@ const arrayStringMultiEmptyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const arrayStringMultiValidOperationSpec: msRest.OperationSpec = {
+const arrayStringMultiValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "queries/array/multi/string/valid",
   queryParameters: [

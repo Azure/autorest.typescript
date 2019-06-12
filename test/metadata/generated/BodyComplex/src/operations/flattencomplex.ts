@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/flattencomplexMappers";
 import { AutoRestComplexTestServiceContext } from "../autoRestComplexTestServiceContext";
@@ -29,17 +29,17 @@ export class Flattencomplex {
    * @param [options] The optional parameters
    * @returns Promise<Models.FlattencomplexGetValidResponse>
    */
-  getValid(options?: msRest.RequestOptionsBase): Promise<Models.FlattencomplexGetValidResponse>;
+  getValid(options?: coreHttp.RequestOptionsBase): Promise<Models.FlattencomplexGetValidResponse>;
   /**
    * @param callback The callback
    */
-  getValid(callback: msRest.ServiceCallback<Models.MyBaseTypeUnion>): void;
+  getValid(callback: coreHttp.ServiceCallback<Models.MyBaseTypeUnion>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.MyBaseTypeUnion>): void;
-  getValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.MyBaseTypeUnion>, callback?: msRest.ServiceCallback<Models.MyBaseTypeUnion>): Promise<Models.FlattencomplexGetValidResponse> {
+  getValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.MyBaseTypeUnion>): void;
+  getValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.MyBaseTypeUnion>, callback?: coreHttp.ServiceCallback<Models.MyBaseTypeUnion>): Promise<Models.FlattencomplexGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -50,8 +50,8 @@ export class Flattencomplex {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getValidOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "complex/flatten/valid",
   responses: {

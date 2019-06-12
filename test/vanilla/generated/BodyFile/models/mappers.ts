@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 
-export const ErrorModel: msRest.CompositeMapper = {
+export const ErrorModel: coreHttp.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",

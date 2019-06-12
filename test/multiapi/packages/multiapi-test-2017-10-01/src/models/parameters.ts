@@ -4,9 +4,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const acceptLanguage: msRest.OperationParameter = {
+export const acceptLanguage: coreHttp.OperationParameter = {
   parameterPath: "acceptLanguage",
   mapper: {
     serializedName: "accept-language",
@@ -16,7 +16,7 @@ export const acceptLanguage: msRest.OperationParameter = {
     }
   }
 };
-export const accountName: msRest.OperationURLParameter = {
+export const accountName: coreHttp.OperationURLParameter = {
   parameterPath: "accountName",
   mapper: {
     required: true,
@@ -28,7 +28,7 @@ export const accountName: msRest.OperationURLParameter = {
   },
   skipEncoding: true
 };
-export const host: msRest.OperationURLParameter = {
+export const host: coreHttp.OperationURLParameter = {
   parameterPath: "host",
   mapper: {
     required: true,

@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ServiceClientOptions } from "@azure/ms-rest-js";
-import * as msRest from "@azure/ms-rest-js";
+import { ServiceClientOptions } from "@azure/core-http";
+import * as coreHttp from "@azure/core-http";
 
 /**
  * An interface representing ErrorModel.
@@ -95,98 +95,98 @@ export interface AutoRestRequiredOptionalTestServiceOptions extends ServiceClien
 /**
  * Optional Parameters.
  */
-export interface ImplicitPutOptionalQueryOptionalParams extends msRest.RequestOptionsBase {
+export interface ImplicitPutOptionalQueryOptionalParams extends coreHttp.RequestOptionsBase {
   queryParameter?: string;
 }
 
 /**
  * Optional Parameters.
  */
-export interface ImplicitPutOptionalHeaderOptionalParams extends msRest.RequestOptionsBase {
+export interface ImplicitPutOptionalHeaderOptionalParams extends coreHttp.RequestOptionsBase {
   queryParameter?: string;
 }
 
 /**
  * Optional Parameters.
  */
-export interface ImplicitPutOptionalBodyOptionalParams extends msRest.RequestOptionsBase {
+export interface ImplicitPutOptionalBodyOptionalParams extends coreHttp.RequestOptionsBase {
   bodyParameter?: string;
 }
 
 /**
  * Optional Parameters.
  */
-export interface ExplicitPostOptionalIntegerParameterOptionalParams extends msRest.RequestOptionsBase {
+export interface ExplicitPostOptionalIntegerParameterOptionalParams extends coreHttp.RequestOptionsBase {
   bodyParameter?: number;
 }
 
 /**
  * Optional Parameters.
  */
-export interface ExplicitPostOptionalIntegerPropertyOptionalParams extends msRest.RequestOptionsBase {
+export interface ExplicitPostOptionalIntegerPropertyOptionalParams extends coreHttp.RequestOptionsBase {
   value?: number;
 }
 
 /**
  * Optional Parameters.
  */
-export interface ExplicitPostOptionalIntegerHeaderOptionalParams extends msRest.RequestOptionsBase {
+export interface ExplicitPostOptionalIntegerHeaderOptionalParams extends coreHttp.RequestOptionsBase {
   headerParameter?: number;
 }
 
 /**
  * Optional Parameters.
  */
-export interface ExplicitPostOptionalStringParameterOptionalParams extends msRest.RequestOptionsBase {
+export interface ExplicitPostOptionalStringParameterOptionalParams extends coreHttp.RequestOptionsBase {
   bodyParameter?: string;
 }
 
 /**
  * Optional Parameters.
  */
-export interface ExplicitPostOptionalStringPropertyOptionalParams extends msRest.RequestOptionsBase {
+export interface ExplicitPostOptionalStringPropertyOptionalParams extends coreHttp.RequestOptionsBase {
   value?: string;
 }
 
 /**
  * Optional Parameters.
  */
-export interface ExplicitPostOptionalStringHeaderOptionalParams extends msRest.RequestOptionsBase {
+export interface ExplicitPostOptionalStringHeaderOptionalParams extends coreHttp.RequestOptionsBase {
   bodyParameter?: string;
 }
 
 /**
  * Optional Parameters.
  */
-export interface ExplicitPostOptionalClassParameterOptionalParams extends msRest.RequestOptionsBase {
+export interface ExplicitPostOptionalClassParameterOptionalParams extends coreHttp.RequestOptionsBase {
   bodyParameter?: Product;
 }
 
 /**
  * Optional Parameters.
  */
-export interface ExplicitPostOptionalClassPropertyOptionalParams extends msRest.RequestOptionsBase {
+export interface ExplicitPostOptionalClassPropertyOptionalParams extends coreHttp.RequestOptionsBase {
   value?: Product;
 }
 
 /**
  * Optional Parameters.
  */
-export interface ExplicitPostOptionalArrayParameterOptionalParams extends msRest.RequestOptionsBase {
+export interface ExplicitPostOptionalArrayParameterOptionalParams extends coreHttp.RequestOptionsBase {
   bodyParameter?: string[];
 }
 
 /**
  * Optional Parameters.
  */
-export interface ExplicitPostOptionalArrayPropertyOptionalParams extends msRest.RequestOptionsBase {
+export interface ExplicitPostOptionalArrayPropertyOptionalParams extends coreHttp.RequestOptionsBase {
   value?: string[];
 }
 
 /**
  * Optional Parameters.
  */
-export interface ExplicitPostOptionalArrayHeaderOptionalParams extends msRest.RequestOptionsBase {
+export interface ExplicitPostOptionalArrayHeaderOptionalParams extends coreHttp.RequestOptionsBase {
   headerParameter?: string[];
 }
 
@@ -197,7 +197,7 @@ export type ImplicitGetRequiredPathResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -217,7 +217,7 @@ export type ImplicitGetRequiredGlobalPathResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -237,7 +237,7 @@ export type ImplicitGetRequiredGlobalQueryResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -257,7 +257,7 @@ export type ImplicitGetOptionalGlobalQueryResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -277,7 +277,7 @@ export type ExplicitPostRequiredIntegerParameterResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -297,7 +297,7 @@ export type ExplicitPostRequiredIntegerPropertyResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -317,7 +317,7 @@ export type ExplicitPostRequiredIntegerHeaderResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -337,7 +337,7 @@ export type ExplicitPostRequiredStringParameterResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -357,7 +357,7 @@ export type ExplicitPostRequiredStringPropertyResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -377,7 +377,7 @@ export type ExplicitPostRequiredStringHeaderResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -397,7 +397,7 @@ export type ExplicitPostRequiredClassParameterResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -417,7 +417,7 @@ export type ExplicitPostRequiredClassPropertyResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -437,7 +437,7 @@ export type ExplicitPostRequiredArrayParameterResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -457,7 +457,7 @@ export type ExplicitPostRequiredArrayPropertyResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -477,7 +477,7 @@ export type ExplicitPostRequiredArrayHeaderResponse = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */

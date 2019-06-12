@@ -5,7 +5,7 @@
 
 import { should } from "chai";
 import "chai/register-should";
-import * as msRest from '@azure/ms-rest-js';
+import * as coreHttp from '@azure/core-http';
 
 import { AutoRestAzureSpecialParametersTestClient } from './generated/AzureSpecials/autoRestAzureSpecialParametersTestClient';
 import { AutoRestAzureSpecialParametersTestClientOptions } from './generated/AzureSpecials/models';

@@ -3,7 +3,7 @@
 
 'use strict';
 
-import * as msRest from '@azure/ms-rest-js';
+import * as coreHttp from '@azure/core-http';
 import { AzureCompositeModel } from './generated/AzureCompositeModelClient/azureCompositeModel';
 import { AzureCompositeModelOptions } from './generated/AzureCompositeModelClient/models';
 

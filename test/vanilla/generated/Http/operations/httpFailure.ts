@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/httpFailureMappers";
 import { AutoRestHttpInfrastructureTestServiceContext } from "../autoRestHttpInfrastructureTestServiceContext";
@@ -30,17 +30,17 @@ export class HttpFailure {
    * @param [options] The optional parameters
    * @returns Promise<Models.HttpFailureGetEmptyErrorResponse>
    */
-  getEmptyError(options?: msRest.RequestOptionsBase): Promise<Models.HttpFailureGetEmptyErrorResponse>;
+  getEmptyError(options?: coreHttp.RequestOptionsBase): Promise<Models.HttpFailureGetEmptyErrorResponse>;
   /**
    * @param callback The callback
    */
-  getEmptyError(callback: msRest.ServiceCallback<boolean>): void;
+  getEmptyError(callback: coreHttp.ServiceCallback<boolean>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getEmptyError(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getEmptyError(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpFailureGetEmptyErrorResponse> {
+  getEmptyError(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<boolean>): void;
+  getEmptyError(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<boolean>, callback?: coreHttp.ServiceCallback<boolean>): Promise<Models.HttpFailureGetEmptyErrorResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -54,17 +54,17 @@ export class HttpFailure {
    * @param [options] The optional parameters
    * @returns Promise<Models.HttpFailureGetNoModelErrorResponse>
    */
-  getNoModelError(options?: msRest.RequestOptionsBase): Promise<Models.HttpFailureGetNoModelErrorResponse>;
+  getNoModelError(options?: coreHttp.RequestOptionsBase): Promise<Models.HttpFailureGetNoModelErrorResponse>;
   /**
    * @param callback The callback
    */
-  getNoModelError(callback: msRest.ServiceCallback<boolean>): void;
+  getNoModelError(callback: coreHttp.ServiceCallback<boolean>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getNoModelError(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getNoModelError(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpFailureGetNoModelErrorResponse> {
+  getNoModelError(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<boolean>): void;
+  getNoModelError(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<boolean>, callback?: coreHttp.ServiceCallback<boolean>): Promise<Models.HttpFailureGetNoModelErrorResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -78,17 +78,17 @@ export class HttpFailure {
    * @param [options] The optional parameters
    * @returns Promise<Models.HttpFailureGetNoModelEmptyResponse>
    */
-  getNoModelEmpty(options?: msRest.RequestOptionsBase): Promise<Models.HttpFailureGetNoModelEmptyResponse>;
+  getNoModelEmpty(options?: coreHttp.RequestOptionsBase): Promise<Models.HttpFailureGetNoModelEmptyResponse>;
   /**
    * @param callback The callback
    */
-  getNoModelEmpty(callback: msRest.ServiceCallback<boolean>): void;
+  getNoModelEmpty(callback: coreHttp.ServiceCallback<boolean>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getNoModelEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  getNoModelEmpty(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpFailureGetNoModelEmptyResponse> {
+  getNoModelEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<boolean>): void;
+  getNoModelEmpty(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<boolean>, callback?: coreHttp.ServiceCallback<boolean>): Promise<Models.HttpFailureGetNoModelEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -99,8 +99,8 @@ export class HttpFailure {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getEmptyErrorOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getEmptyErrorOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/emptybody/error",
   responses: {
@@ -119,7 +119,7 @@ const getEmptyErrorOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getNoModelErrorOperationSpec: msRest.OperationSpec = {
+const getNoModelErrorOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/nomodel/error",
   responses: {
@@ -136,7 +136,7 @@ const getNoModelErrorOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getNoModelEmptyOperationSpec: msRest.OperationSpec = {
+const getNoModelEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/nomodel/empty",
   responses: {

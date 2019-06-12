@@ -7,7 +7,7 @@ import { assert } from 'chai';
 import { should } from "chai";
 import "chai/register-should";
 import * as msAssert from "../util/msAssert";
-import * as msRest from '@azure/ms-rest-js';
+import * as coreHttp from '@azure/core-http';
 
 import { AutoRestLongRunningOperationTestService, AutoRestLongRunningOperationTestServiceModels } from './generated/Lro/autoRestLongRunningOperationTestService';
 import { AutoRestLongRunningOperationTestServiceOptions } from '../azuremetadata/generated/Lro/src/models';

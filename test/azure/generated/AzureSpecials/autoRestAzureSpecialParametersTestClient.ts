@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -33,7 +33,7 @@ class AutoRestAzureSpecialParametersTestClient extends AutoRestAzureSpecialParam
    * credentials. The value is always '1234-5678-9012-3456'
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: Models.AutoRestAzureSpecialParametersTestClientOptions) {
+  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, subscriptionId: string, options?: Models.AutoRestAzureSpecialParametersTestClientOptions) {
     super(credentials, subscriptionId, options);
     this.xMsClientRequestId = new operations.XMsClientRequestId(this);
     this.subscriptionInCredentials = new operations.SubscriptionInCredentials(this);

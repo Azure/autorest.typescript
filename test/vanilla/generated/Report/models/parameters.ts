@@ -8,9 +8,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const qualifier: msRest.OperationQueryParameter = {
+export const qualifier: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "qualifier"

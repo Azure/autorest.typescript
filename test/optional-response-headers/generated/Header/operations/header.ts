@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/headerMappers";
 import * as Parameters from "../models/parameters";
@@ -30,21 +30,21 @@ export class Header {
    * Send a post request with header value "User-Agent": "overwrite"
    * @param userAgent Send a post request with header value "User-Agent": "overwrite"
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  paramExistingKey(userAgent: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  paramExistingKey(userAgent: string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param userAgent Send a post request with header value "User-Agent": "overwrite"
    * @param callback The callback
    */
-  paramExistingKey(userAgent: string, callback: msRest.ServiceCallback<void>): void;
+  paramExistingKey(userAgent: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param userAgent Send a post request with header value "User-Agent": "overwrite"
    * @param options The optional parameters
    * @param callback The callback
    */
-  paramExistingKey(userAgent: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramExistingKey(userAgent: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramExistingKey(userAgent: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  paramExistingKey(userAgent: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         userAgent,
@@ -59,17 +59,17 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderResponseExistingKeyResponse>
    */
-  responseExistingKey(options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseExistingKeyResponse>;
+  responseExistingKey(options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderResponseExistingKeyResponse>;
   /**
    * @param callback The callback
    */
-  responseExistingKey(callback: msRest.ServiceCallback<void>): void;
+  responseExistingKey(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  responseExistingKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseExistingKey(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseExistingKeyResponse> {
+  responseExistingKey(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  responseExistingKey(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HeaderResponseExistingKeyResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -82,21 +82,21 @@ export class Header {
    * Send a post request with header value "Content-Type": "text/html"
    * @param contentType Send a post request with header value "Content-Type": "text/html"
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  paramProtectedKey(contentType: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  paramProtectedKey(contentType: string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param contentType Send a post request with header value "Content-Type": "text/html"
    * @param callback The callback
    */
-  paramProtectedKey(contentType: string, callback: msRest.ServiceCallback<void>): void;
+  paramProtectedKey(contentType: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param contentType Send a post request with header value "Content-Type": "text/html"
    * @param options The optional parameters
    * @param callback The callback
    */
-  paramProtectedKey(contentType: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramProtectedKey(contentType: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramProtectedKey(contentType: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  paramProtectedKey(contentType: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         contentType,
@@ -111,17 +111,17 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderResponseProtectedKeyResponse>
    */
-  responseProtectedKey(options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseProtectedKeyResponse>;
+  responseProtectedKey(options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderResponseProtectedKeyResponse>;
   /**
    * @param callback The callback
    */
-  responseProtectedKey(callback: msRest.ServiceCallback<void>): void;
+  responseProtectedKey(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  responseProtectedKey(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseProtectedKey(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseProtectedKeyResponse> {
+  responseProtectedKey(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  responseProtectedKey(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HeaderResponseProtectedKeyResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -136,23 +136,23 @@ export class Header {
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param value Send a post request with header values 1 or -2
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  paramInteger(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  paramInteger(scenario: string, value: number, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param value Send a post request with header values 1 or -2
    * @param callback The callback
    */
-  paramInteger(scenario: string, value: number, callback: msRest.ServiceCallback<void>): void;
+  paramInteger(scenario: string, value: number, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param value Send a post request with header values 1 or -2
    * @param options The optional parameters
    * @param callback The callback
    */
-  paramInteger(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramInteger(scenario: string, value: number, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramInteger(scenario: string, value: number, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  paramInteger(scenario: string, value: number, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -169,19 +169,19 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderResponseIntegerResponse>
    */
-  responseInteger(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseIntegerResponse>;
+  responseInteger(scenario: string, options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderResponseIntegerResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param callback The callback
    */
-  responseInteger(scenario: string, callback: msRest.ServiceCallback<void>): void;
+  responseInteger(scenario: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The optional parameters
    * @param callback The callback
    */
-  responseInteger(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseInteger(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseIntegerResponse> {
+  responseInteger(scenario: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  responseInteger(scenario: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HeaderResponseIntegerResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -197,23 +197,23 @@ export class Header {
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param value Send a post request with header values 105 or -2
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  paramLong(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  paramLong(scenario: string, value: number, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param value Send a post request with header values 105 or -2
    * @param callback The callback
    */
-  paramLong(scenario: string, value: number, callback: msRest.ServiceCallback<void>): void;
+  paramLong(scenario: string, value: number, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param value Send a post request with header values 105 or -2
    * @param options The optional parameters
    * @param callback The callback
    */
-  paramLong(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramLong(scenario: string, value: number, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramLong(scenario: string, value: number, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  paramLong(scenario: string, value: number, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -230,19 +230,19 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderResponseLongResponse>
    */
-  responseLong(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseLongResponse>;
+  responseLong(scenario: string, options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderResponseLongResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param callback The callback
    */
-  responseLong(scenario: string, callback: msRest.ServiceCallback<void>): void;
+  responseLong(scenario: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The optional parameters
    * @param callback The callback
    */
-  responseLong(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseLong(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseLongResponse> {
+  responseLong(scenario: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  responseLong(scenario: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HeaderResponseLongResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -258,23 +258,23 @@ export class Header {
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param value Send a post request with header values 0.07 or -3.0
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  paramFloat(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  paramFloat(scenario: string, value: number, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param value Send a post request with header values 0.07 or -3.0
    * @param callback The callback
    */
-  paramFloat(scenario: string, value: number, callback: msRest.ServiceCallback<void>): void;
+  paramFloat(scenario: string, value: number, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param value Send a post request with header values 0.07 or -3.0
    * @param options The optional parameters
    * @param callback The callback
    */
-  paramFloat(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramFloat(scenario: string, value: number, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramFloat(scenario: string, value: number, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  paramFloat(scenario: string, value: number, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -291,19 +291,19 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderResponseFloatResponse>
    */
-  responseFloat(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseFloatResponse>;
+  responseFloat(scenario: string, options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderResponseFloatResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param callback The callback
    */
-  responseFloat(scenario: string, callback: msRest.ServiceCallback<void>): void;
+  responseFloat(scenario: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The optional parameters
    * @param callback The callback
    */
-  responseFloat(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseFloat(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseFloatResponse> {
+  responseFloat(scenario: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  responseFloat(scenario: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HeaderResponseFloatResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -319,23 +319,23 @@ export class Header {
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param value Send a post request with header values 7e120 or -3.0
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  paramDouble(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  paramDouble(scenario: string, value: number, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param value Send a post request with header values 7e120 or -3.0
    * @param callback The callback
    */
-  paramDouble(scenario: string, value: number, callback: msRest.ServiceCallback<void>): void;
+  paramDouble(scenario: string, value: number, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param value Send a post request with header values 7e120 or -3.0
    * @param options The optional parameters
    * @param callback The callback
    */
-  paramDouble(scenario: string, value: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDouble(scenario: string, value: number, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramDouble(scenario: string, value: number, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  paramDouble(scenario: string, value: number, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -352,19 +352,19 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderResponseDoubleResponse>
    */
-  responseDouble(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDoubleResponse>;
+  responseDouble(scenario: string, options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderResponseDoubleResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param callback The callback
    */
-  responseDouble(scenario: string, callback: msRest.ServiceCallback<void>): void;
+  responseDouble(scenario: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The optional parameters
    * @param callback The callback
    */
-  responseDouble(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDouble(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDoubleResponse> {
+  responseDouble(scenario: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  responseDouble(scenario: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HeaderResponseDoubleResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -380,23 +380,23 @@ export class Header {
    * @param scenario Send a post request with header values "scenario": "true" or "false"
    * @param value Send a post request with header values true or false
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  paramBool(scenario: string, value: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  paramBool(scenario: string, value: boolean, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "true" or "false"
    * @param value Send a post request with header values true or false
    * @param callback The callback
    */
-  paramBool(scenario: string, value: boolean, callback: msRest.ServiceCallback<void>): void;
+  paramBool(scenario: string, value: boolean, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "true" or "false"
    * @param value Send a post request with header values true or false
    * @param options The optional parameters
    * @param callback The callback
    */
-  paramBool(scenario: string, value: boolean, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramBool(scenario: string, value: boolean, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramBool(scenario: string, value: boolean, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  paramBool(scenario: string, value: boolean, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -413,19 +413,19 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderResponseBoolResponse>
    */
-  responseBool(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseBoolResponse>;
+  responseBool(scenario: string, options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderResponseBoolResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "true" or "false"
    * @param callback The callback
    */
-  responseBool(scenario: string, callback: msRest.ServiceCallback<void>): void;
+  responseBool(scenario: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "true" or "false"
    * @param options The optional parameters
    * @param callback The callback
    */
-  responseBool(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseBool(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseBoolResponse> {
+  responseBool(scenario: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  responseBool(scenario: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HeaderResponseBoolResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -440,21 +440,21 @@ export class Header {
    * over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": ""
    * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  paramString(scenario: string, options?: Models.HeaderParamStringOptionalParams): Promise<msRest.RestResponse>;
+  paramString(scenario: string, options?: Models.HeaderParamStringOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    * @param callback The callback
    */
-  paramString(scenario: string, callback: msRest.ServiceCallback<void>): void;
+  paramString(scenario: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    * @param options The optional parameters
    * @param callback The callback
    */
-  paramString(scenario: string, options: Models.HeaderParamStringOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  paramString(scenario: string, options?: Models.HeaderParamStringOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramString(scenario: string, options: Models.HeaderParamStringOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  paramString(scenario: string, options?: Models.HeaderParamStringOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -470,19 +470,19 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderResponseStringResponse>
    */
-  responseString(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseStringResponse>;
+  responseString(scenario: string, options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderResponseStringResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    * @param callback The callback
    */
-  responseString(scenario: string, callback: msRest.ServiceCallback<void>): void;
+  responseString(scenario: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    * @param options The optional parameters
    * @param callback The callback
    */
-  responseString(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseString(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseStringResponse> {
+  responseString(scenario: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  responseString(scenario: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HeaderResponseStringResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -498,23 +498,23 @@ export class Header {
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param value Send a post request with header values "2010-01-01" or "0001-01-01"
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  paramDate(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  paramDate(scenario: string, value: Date | string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param value Send a post request with header values "2010-01-01" or "0001-01-01"
    * @param callback The callback
    */
-  paramDate(scenario: string, value: Date | string, callback: msRest.ServiceCallback<void>): void;
+  paramDate(scenario: string, value: Date | string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param value Send a post request with header values "2010-01-01" or "0001-01-01"
    * @param options The optional parameters
    * @param callback The callback
    */
-  paramDate(scenario: string, value: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDate(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramDate(scenario: string, value: Date | string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  paramDate(scenario: string, value: Date | string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -531,19 +531,19 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderResponseDateResponse>
    */
-  responseDate(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDateResponse>;
+  responseDate(scenario: string, options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderResponseDateResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param callback The callback
    */
-  responseDate(scenario: string, callback: msRest.ServiceCallback<void>): void;
+  responseDate(scenario: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param options The optional parameters
    * @param callback The callback
    */
-  responseDate(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDate(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDateResponse> {
+  responseDate(scenario: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  responseDate(scenario: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HeaderResponseDateResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -560,16 +560,16 @@ export class Header {
    * @param value Send a post request with header values "2010-01-01T12:34:56Z" or
    * "0001-01-01T00:00:00Z"
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  paramDatetime(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  paramDatetime(scenario: string, value: Date | string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param value Send a post request with header values "2010-01-01T12:34:56Z" or
    * "0001-01-01T00:00:00Z"
    * @param callback The callback
    */
-  paramDatetime(scenario: string, value: Date | string, callback: msRest.ServiceCallback<void>): void;
+  paramDatetime(scenario: string, value: Date | string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param value Send a post request with header values "2010-01-01T12:34:56Z" or
@@ -577,8 +577,8 @@ export class Header {
    * @param options The optional parameters
    * @param callback The callback
    */
-  paramDatetime(scenario: string, value: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDatetime(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramDatetime(scenario: string, value: Date | string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  paramDatetime(scenario: string, value: Date | string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -595,19 +595,19 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderResponseDatetimeResponse>
    */
-  responseDatetime(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeResponse>;
+  responseDatetime(scenario: string, options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param callback The callback
    */
-  responseDatetime(scenario: string, callback: msRest.ServiceCallback<void>): void;
+  responseDatetime(scenario: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param options The optional parameters
    * @param callback The callback
    */
-  responseDatetime(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDatetime(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDatetimeResponse> {
+  responseDatetime(scenario: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  responseDatetime(scenario: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HeaderResponseDatetimeResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -622,21 +622,21 @@ export class Header {
    * GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT"
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  paramDatetimeRfc1123(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams): Promise<msRest.RestResponse>;
+  paramDatetimeRfc1123(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param callback The callback
    */
-  paramDatetimeRfc1123(scenario: string, callback: msRest.ServiceCallback<void>): void;
+  paramDatetimeRfc1123(scenario: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param options The optional parameters
    * @param callback The callback
    */
-  paramDatetimeRfc1123(scenario: string, options: Models.HeaderParamDatetimeRfc1123OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  paramDatetimeRfc1123(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramDatetimeRfc1123(scenario: string, options: Models.HeaderParamDatetimeRfc1123OptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  paramDatetimeRfc1123(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -653,19 +653,19 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderResponseDatetimeRfc1123Response>
    */
-  responseDatetimeRfc1123(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeRfc1123Response>;
+  responseDatetimeRfc1123(scenario: string, options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeRfc1123Response>;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param callback The callback
    */
-  responseDatetimeRfc1123(scenario: string, callback: msRest.ServiceCallback<void>): void;
+  responseDatetimeRfc1123(scenario: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param options The optional parameters
    * @param callback The callback
    */
-  responseDatetimeRfc1123(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDatetimeRfc1123(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDatetimeRfc1123Response> {
+  responseDatetimeRfc1123(scenario: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  responseDatetimeRfc1123(scenario: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HeaderResponseDatetimeRfc1123Response> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -680,23 +680,23 @@ export class Header {
    * @param scenario Send a post request with header values "scenario": "valid"
    * @param value Send a post request with header values "P123DT22H14M12.011S"
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  paramDuration(scenario: string, value: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  paramDuration(scenario: string, value: string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "valid"
    * @param value Send a post request with header values "P123DT22H14M12.011S"
    * @param callback The callback
    */
-  paramDuration(scenario: string, value: string, callback: msRest.ServiceCallback<void>): void;
+  paramDuration(scenario: string, value: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "valid"
    * @param value Send a post request with header values "P123DT22H14M12.011S"
    * @param options The optional parameters
    * @param callback The callback
    */
-  paramDuration(scenario: string, value: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDuration(scenario: string, value: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramDuration(scenario: string, value: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  paramDuration(scenario: string, value: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -713,19 +713,19 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderResponseDurationResponse>
    */
-  responseDuration(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDurationResponse>;
+  responseDuration(scenario: string, options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderResponseDurationResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "valid"
    * @param callback The callback
    */
-  responseDuration(scenario: string, callback: msRest.ServiceCallback<void>): void;
+  responseDuration(scenario: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "valid"
    * @param options The optional parameters
    * @param callback The callback
    */
-  responseDuration(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseDuration(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseDurationResponse> {
+  responseDuration(scenario: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  responseDuration(scenario: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HeaderResponseDurationResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -740,23 +740,23 @@ export class Header {
    * @param scenario Send a post request with header values "scenario": "valid"
    * @param value Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  paramByte(scenario: string, value: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  paramByte(scenario: string, value: Uint8Array, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "valid"
    * @param value Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
    * @param callback The callback
    */
-  paramByte(scenario: string, value: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  paramByte(scenario: string, value: Uint8Array, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "valid"
    * @param value Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
    * @param options The optional parameters
    * @param callback The callback
    */
-  paramByte(scenario: string, value: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramByte(scenario: string, value: Uint8Array, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramByte(scenario: string, value: Uint8Array, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  paramByte(scenario: string, value: Uint8Array, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -773,19 +773,19 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderResponseByteResponse>
    */
-  responseByte(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseByteResponse>;
+  responseByte(scenario: string, options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderResponseByteResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "valid"
    * @param callback The callback
    */
-  responseByte(scenario: string, callback: msRest.ServiceCallback<void>): void;
+  responseByte(scenario: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "valid"
    * @param options The optional parameters
    * @param callback The callback
    */
-  responseByte(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseByte(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseByteResponse> {
+  responseByte(scenario: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  responseByte(scenario: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HeaderResponseByteResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -800,21 +800,21 @@ export class Header {
    * "null", "value": null
    * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  paramEnum(scenario: string, options?: Models.HeaderParamEnumOptionalParams): Promise<msRest.RestResponse>;
+  paramEnum(scenario: string, options?: Models.HeaderParamEnumOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    * @param callback The callback
    */
-  paramEnum(scenario: string, callback: msRest.ServiceCallback<void>): void;
+  paramEnum(scenario: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    * @param options The optional parameters
    * @param callback The callback
    */
-  paramEnum(scenario: string, options: Models.HeaderParamEnumOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  paramEnum(scenario: string, options?: Models.HeaderParamEnumOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  paramEnum(scenario: string, options: Models.HeaderParamEnumOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  paramEnum(scenario: string, options?: Models.HeaderParamEnumOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -830,19 +830,19 @@ export class Header {
    * @param [options] The optional parameters
    * @returns Promise<Models.HeaderResponseEnumResponse>
    */
-  responseEnum(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseEnumResponse>;
+  responseEnum(scenario: string, options?: coreHttp.RequestOptionsBase): Promise<Models.HeaderResponseEnumResponse>;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    * @param callback The callback
    */
-  responseEnum(scenario: string, callback: msRest.ServiceCallback<void>): void;
+  responseEnum(scenario: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    * @param options The optional parameters
    * @param callback The callback
    */
-  responseEnum(scenario: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  responseEnum(scenario: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HeaderResponseEnumResponse> {
+  responseEnum(scenario: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  responseEnum(scenario: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HeaderResponseEnumResponse> {
     return this.client.sendOperationRequest(
       {
         scenario,
@@ -855,19 +855,19 @@ export class Header {
   /**
    * Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  customRequestId(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  customRequestId(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  customRequestId(callback: msRest.ServiceCallback<void>): void;
+  customRequestId(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  customRequestId(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  customRequestId(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  customRequestId(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  customRequestId(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -878,8 +878,8 @@ export class Header {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const paramExistingKeyOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const paramExistingKeyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/existingkey",
   headerParameters: [
@@ -894,7 +894,7 @@ const paramExistingKeyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const responseExistingKeyOperationSpec: msRest.OperationSpec = {
+const responseExistingKeyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/existingkey",
   responses: {
@@ -908,7 +908,7 @@ const responseExistingKeyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const paramProtectedKeyOperationSpec: msRest.OperationSpec = {
+const paramProtectedKeyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/protectedkey",
   headerParameters: [
@@ -923,7 +923,7 @@ const paramProtectedKeyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const responseProtectedKeyOperationSpec: msRest.OperationSpec = {
+const responseProtectedKeyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/protectedkey",
   responses: {
@@ -937,7 +937,7 @@ const responseProtectedKeyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const paramIntegerOperationSpec: msRest.OperationSpec = {
+const paramIntegerOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/integer",
   headerParameters: [
@@ -953,7 +953,7 @@ const paramIntegerOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const responseIntegerOperationSpec: msRest.OperationSpec = {
+const responseIntegerOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/integer",
   headerParameters: [
@@ -970,7 +970,7 @@ const responseIntegerOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const paramLongOperationSpec: msRest.OperationSpec = {
+const paramLongOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/long",
   headerParameters: [
@@ -986,7 +986,7 @@ const paramLongOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const responseLongOperationSpec: msRest.OperationSpec = {
+const responseLongOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/long",
   headerParameters: [
@@ -1003,7 +1003,7 @@ const responseLongOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const paramFloatOperationSpec: msRest.OperationSpec = {
+const paramFloatOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/float",
   headerParameters: [
@@ -1019,7 +1019,7 @@ const paramFloatOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const responseFloatOperationSpec: msRest.OperationSpec = {
+const responseFloatOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/float",
   headerParameters: [
@@ -1036,7 +1036,7 @@ const responseFloatOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const paramDoubleOperationSpec: msRest.OperationSpec = {
+const paramDoubleOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/double",
   headerParameters: [
@@ -1052,7 +1052,7 @@ const paramDoubleOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const responseDoubleOperationSpec: msRest.OperationSpec = {
+const responseDoubleOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/double",
   headerParameters: [
@@ -1069,7 +1069,7 @@ const responseDoubleOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const paramBoolOperationSpec: msRest.OperationSpec = {
+const paramBoolOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/bool",
   headerParameters: [
@@ -1085,7 +1085,7 @@ const paramBoolOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const responseBoolOperationSpec: msRest.OperationSpec = {
+const responseBoolOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/bool",
   headerParameters: [
@@ -1102,7 +1102,7 @@ const responseBoolOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const paramStringOperationSpec: msRest.OperationSpec = {
+const paramStringOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/string",
   headerParameters: [
@@ -1118,7 +1118,7 @@ const paramStringOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const responseStringOperationSpec: msRest.OperationSpec = {
+const responseStringOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/string",
   headerParameters: [
@@ -1135,7 +1135,7 @@ const responseStringOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const paramDateOperationSpec: msRest.OperationSpec = {
+const paramDateOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/date",
   headerParameters: [
@@ -1151,7 +1151,7 @@ const paramDateOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const responseDateOperationSpec: msRest.OperationSpec = {
+const responseDateOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/date",
   headerParameters: [
@@ -1168,7 +1168,7 @@ const responseDateOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const paramDatetimeOperationSpec: msRest.OperationSpec = {
+const paramDatetimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/datetime",
   headerParameters: [
@@ -1184,7 +1184,7 @@ const paramDatetimeOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const responseDatetimeOperationSpec: msRest.OperationSpec = {
+const responseDatetimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/datetime",
   headerParameters: [
@@ -1201,7 +1201,7 @@ const responseDatetimeOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const paramDatetimeRfc1123OperationSpec: msRest.OperationSpec = {
+const paramDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/datetimerfc1123",
   headerParameters: [
@@ -1217,7 +1217,7 @@ const paramDatetimeRfc1123OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const responseDatetimeRfc1123OperationSpec: msRest.OperationSpec = {
+const responseDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/datetimerfc1123",
   headerParameters: [
@@ -1234,7 +1234,7 @@ const responseDatetimeRfc1123OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const paramDurationOperationSpec: msRest.OperationSpec = {
+const paramDurationOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/duration",
   headerParameters: [
@@ -1250,7 +1250,7 @@ const paramDurationOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const responseDurationOperationSpec: msRest.OperationSpec = {
+const responseDurationOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/duration",
   headerParameters: [
@@ -1267,7 +1267,7 @@ const responseDurationOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const paramByteOperationSpec: msRest.OperationSpec = {
+const paramByteOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/byte",
   headerParameters: [
@@ -1283,7 +1283,7 @@ const paramByteOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const responseByteOperationSpec: msRest.OperationSpec = {
+const responseByteOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/byte",
   headerParameters: [
@@ -1300,7 +1300,7 @@ const responseByteOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const paramEnumOperationSpec: msRest.OperationSpec = {
+const paramEnumOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/param/prim/enum",
   headerParameters: [
@@ -1316,7 +1316,7 @@ const paramEnumOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const responseEnumOperationSpec: msRest.OperationSpec = {
+const responseEnumOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/response/prim/enum",
   headerParameters: [
@@ -1333,7 +1333,7 @@ const responseEnumOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const customRequestIdOperationSpec: msRest.OperationSpec = {
+const customRequestIdOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0",
   responses: {

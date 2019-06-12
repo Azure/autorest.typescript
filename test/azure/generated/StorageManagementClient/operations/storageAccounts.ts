@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as msRestAzure from "@azure/ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/storageAccountsMappers";
@@ -35,14 +35,14 @@ export class StorageAccounts {
    * @param [options] The optional parameters
    * @returns Promise<Models.StorageAccountsCheckNameAvailabilityResponse>
    */
-  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsCheckNameAvailabilityResponse>;
+  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options?: coreHttp.RequestOptionsBase): Promise<Models.StorageAccountsCheckNameAvailabilityResponse>;
   /**
    * @param accountName The name of the storage account within the specified resource group. Storage
    * account names must be between 3 and 24 characters in length and use numbers and lower-case
    * letters only.
    * @param callback The callback
    */
-  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, callback: msRest.ServiceCallback<Models.CheckNameAvailabilityResult>): void;
+  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, callback: coreHttp.ServiceCallback<Models.CheckNameAvailabilityResult>): void;
   /**
    * @param accountName The name of the storage account within the specified resource group. Storage
    * account names must be between 3 and 24 characters in length and use numbers and lower-case
@@ -50,8 +50,8 @@ export class StorageAccounts {
    * @param options The optional parameters
    * @param callback The callback
    */
-  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.CheckNameAvailabilityResult>): void;
-  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.CheckNameAvailabilityResult>, callback?: msRest.ServiceCallback<Models.CheckNameAvailabilityResult>): Promise<Models.StorageAccountsCheckNameAvailabilityResponse> {
+  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.CheckNameAvailabilityResult>): void;
+  checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.CheckNameAvailabilityResult>, callback?: coreHttp.ServiceCallback<Models.CheckNameAvailabilityResult>): Promise<Models.StorageAccountsCheckNameAvailabilityResponse> {
     return this.client.sendOperationRequest(
       {
         accountName,
@@ -74,7 +74,7 @@ export class StorageAccounts {
    * @param [options] The optional parameters
    * @returns Promise<Models.StorageAccountsCreateResponse>
    */
-  create(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsCreateResponse> {
+  create(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: coreHttp.RequestOptionsBase): Promise<Models.StorageAccountsCreateResponse> {
     return this.beginCreate(resourceGroupName,accountName,parameters,options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.StorageAccountsCreateResponse>;
   }
@@ -86,9 +86,9 @@ export class StorageAccounts {
    * account names must be between 3 and 24 characters in length and use numbers and lower-case
    * letters only.
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  deleteMethod(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  deleteMethod(resourceGroupName: string, accountName: string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param resourceGroupName The name of the resource group within the user’s subscription.
    * @param accountName The name of the storage account within the specified resource group. Storage
@@ -96,7 +96,7 @@ export class StorageAccounts {
    * letters only.
    * @param callback The callback
    */
-  deleteMethod(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<void>): void;
+  deleteMethod(resourceGroupName: string, accountName: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param resourceGroupName The name of the resource group within the user’s subscription.
    * @param accountName The name of the storage account within the specified resource group. Storage
@@ -105,8 +105,8 @@ export class StorageAccounts {
    * @param options The optional parameters
    * @param callback The callback
    */
-  deleteMethod(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  deleteMethod(resourceGroupName: string, accountName: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  deleteMethod(resourceGroupName: string, accountName: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -128,7 +128,7 @@ export class StorageAccounts {
    * @param [options] The optional parameters
    * @returns Promise<Models.StorageAccountsGetPropertiesResponse>
    */
-  getProperties(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsGetPropertiesResponse>;
+  getProperties(resourceGroupName: string, accountName: string, options?: coreHttp.RequestOptionsBase): Promise<Models.StorageAccountsGetPropertiesResponse>;
   /**
    * @param resourceGroupName The name of the resource group within the user’s subscription.
    * @param accountName The name of the storage account within the specified resource group. Storage
@@ -136,7 +136,7 @@ export class StorageAccounts {
    * letters only.
    * @param callback The callback
    */
-  getProperties(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
+  getProperties(resourceGroupName: string, accountName: string, callback: coreHttp.ServiceCallback<Models.StorageAccount>): void;
   /**
    * @param resourceGroupName The name of the resource group within the user’s subscription.
    * @param accountName The name of the storage account within the specified resource group. Storage
@@ -145,8 +145,8 @@ export class StorageAccounts {
    * @param options The optional parameters
    * @param callback The callback
    */
-  getProperties(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
-  getProperties(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.StorageAccount>, callback?: msRest.ServiceCallback<Models.StorageAccount>): Promise<Models.StorageAccountsGetPropertiesResponse> {
+  getProperties(resourceGroupName: string, accountName: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.StorageAccount>): void;
+  getProperties(resourceGroupName: string, accountName: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.StorageAccount>, callback?: coreHttp.ServiceCallback<Models.StorageAccount>): Promise<Models.StorageAccountsGetPropertiesResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -174,7 +174,7 @@ export class StorageAccounts {
    * @param [options] The optional parameters
    * @returns Promise<Models.StorageAccountsUpdateResponse>
    */
-  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsUpdateResponse>;
+  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options?: coreHttp.RequestOptionsBase): Promise<Models.StorageAccountsUpdateResponse>;
   /**
    * @param resourceGroupName The name of the resource group within the user’s subscription.
    * @param accountName The name of the storage account within the specified resource group. Storage
@@ -184,7 +184,7 @@ export class StorageAccounts {
    * changed at a time using this API.
    * @param callback The callback
    */
-  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
+  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, callback: coreHttp.ServiceCallback<Models.StorageAccount>): void;
   /**
    * @param resourceGroupName The name of the resource group within the user’s subscription.
    * @param accountName The name of the storage account within the specified resource group. Storage
@@ -195,8 +195,8 @@ export class StorageAccounts {
    * @param options The optional parameters
    * @param callback The callback
    */
-  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccount>): void;
-  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.StorageAccount>, callback?: msRest.ServiceCallback<Models.StorageAccount>): Promise<Models.StorageAccountsUpdateResponse> {
+  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.StorageAccount>): void;
+  update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.StorageAccount>, callback?: coreHttp.ServiceCallback<Models.StorageAccount>): Promise<Models.StorageAccountsUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -215,21 +215,21 @@ export class StorageAccounts {
    * @param [options] The optional parameters
    * @returns Promise<Models.StorageAccountsListKeysResponse>
    */
-  listKeys(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListKeysResponse>;
+  listKeys(resourceGroupName: string, accountName: string, options?: coreHttp.RequestOptionsBase): Promise<Models.StorageAccountsListKeysResponse>;
   /**
    * @param resourceGroupName The name of the resource group within the user’s subscription.
    * @param accountName The name of the storage account.
    * @param callback The callback
    */
-  listKeys(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
+  listKeys(resourceGroupName: string, accountName: string, callback: coreHttp.ServiceCallback<Models.StorageAccountKeys>): void;
   /**
    * @param resourceGroupName The name of the resource group within the user’s subscription.
    * @param accountName The name of the storage account.
    * @param options The optional parameters
    * @param callback The callback
    */
-  listKeys(resourceGroupName: string, accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
-  listKeys(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.StorageAccountKeys>, callback?: msRest.ServiceCallback<Models.StorageAccountKeys>): Promise<Models.StorageAccountsListKeysResponse> {
+  listKeys(resourceGroupName: string, accountName: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.StorageAccountKeys>): void;
+  listKeys(resourceGroupName: string, accountName: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.StorageAccountKeys>, callback?: coreHttp.ServiceCallback<Models.StorageAccountKeys>): Promise<Models.StorageAccountsListKeysResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -246,17 +246,17 @@ export class StorageAccounts {
    * @param [options] The optional parameters
    * @returns Promise<Models.StorageAccountsListResponse>
    */
-  list(options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListResponse>;
+  list(options?: coreHttp.RequestOptionsBase): Promise<Models.StorageAccountsListResponse>;
   /**
    * @param callback The callback
    */
-  list(callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
+  list(callback: coreHttp.ServiceCallback<Models.StorageAccountListResult>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  list(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
-  list(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.StorageAccountListResult>, callback?: msRest.ServiceCallback<Models.StorageAccountListResult>): Promise<Models.StorageAccountsListResponse> {
+  list(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.StorageAccountListResult>): void;
+  list(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.StorageAccountListResult>, callback?: coreHttp.ServiceCallback<Models.StorageAccountListResult>): Promise<Models.StorageAccountsListResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -272,19 +272,19 @@ export class StorageAccounts {
    * @param [options] The optional parameters
    * @returns Promise<Models.StorageAccountsListByResourceGroupResponse>
    */
-  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.StorageAccountsListByResourceGroupResponse>;
+  listByResourceGroup(resourceGroupName: string, options?: coreHttp.RequestOptionsBase): Promise<Models.StorageAccountsListByResourceGroupResponse>;
   /**
    * @param resourceGroupName The name of the resource group within the user’s subscription.
    * @param callback The callback
    */
-  listByResourceGroup(resourceGroupName: string, callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
+  listByResourceGroup(resourceGroupName: string, callback: coreHttp.ServiceCallback<Models.StorageAccountListResult>): void;
   /**
    * @param resourceGroupName The name of the resource group within the user’s subscription.
    * @param options The optional parameters
    * @param callback The callback
    */
-  listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.StorageAccountListResult>): void;
-  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.StorageAccountListResult>, callback?: msRest.ServiceCallback<Models.StorageAccountListResult>): Promise<Models.StorageAccountsListByResourceGroupResponse> {
+  listByResourceGroup(resourceGroupName: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.StorageAccountListResult>): void;
+  listByResourceGroup(resourceGroupName: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.StorageAccountListResult>, callback?: coreHttp.ServiceCallback<Models.StorageAccountListResult>): Promise<Models.StorageAccountsListByResourceGroupResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -311,7 +311,7 @@ export class StorageAccounts {
    * letters only.
    * @param callback The callback
    */
-  regenerateKey(resourceGroupName: string, accountName: string, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
+  regenerateKey(resourceGroupName: string, accountName: string, callback: coreHttp.ServiceCallback<Models.StorageAccountKeys>): void;
   /**
    * @param resourceGroupName The name of the resource group within the user’s subscription.
    * @param accountName The name of the storage account within the specified resource group. Storage
@@ -320,8 +320,8 @@ export class StorageAccounts {
    * @param options The optional parameters
    * @param callback The callback
    */
-  regenerateKey(resourceGroupName: string, accountName: string, options: Models.StorageAccountsRegenerateKeyOptionalParams, callback: msRest.ServiceCallback<Models.StorageAccountKeys>): void;
-  regenerateKey(resourceGroupName: string, accountName: string, options?: Models.StorageAccountsRegenerateKeyOptionalParams | msRest.ServiceCallback<Models.StorageAccountKeys>, callback?: msRest.ServiceCallback<Models.StorageAccountKeys>): Promise<Models.StorageAccountsRegenerateKeyResponse> {
+  regenerateKey(resourceGroupName: string, accountName: string, options: Models.StorageAccountsRegenerateKeyOptionalParams, callback: coreHttp.ServiceCallback<Models.StorageAccountKeys>): void;
+  regenerateKey(resourceGroupName: string, accountName: string, options?: Models.StorageAccountsRegenerateKeyOptionalParams | coreHttp.ServiceCallback<Models.StorageAccountKeys>, callback?: coreHttp.ServiceCallback<Models.StorageAccountKeys>): Promise<Models.StorageAccountsRegenerateKeyResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -345,7 +345,7 @@ export class StorageAccounts {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         resourceGroupName,
@@ -359,8 +359,8 @@ export class StorageAccounts {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const checkNameAvailabilityOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const checkNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability",
   urlParameters: [
@@ -390,7 +390,7 @@ const checkNameAvailabilityOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const deleteMethodOperationSpec: msRest.OperationSpec = {
+const deleteMethodOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
   urlParameters: [
@@ -414,7 +414,7 @@ const deleteMethodOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getPropertiesOperationSpec: msRest.OperationSpec = {
+const getPropertiesOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
   urlParameters: [
@@ -439,7 +439,7 @@ const getPropertiesOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const updateOperationSpec: msRest.OperationSpec = {
+const updateOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PATCH",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
   urlParameters: [
@@ -471,7 +471,7 @@ const updateOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const listKeysOperationSpec: msRest.OperationSpec = {
+const listKeysOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys",
   urlParameters: [
@@ -496,7 +496,7 @@ const listKeysOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const listOperationSpec: msRest.OperationSpec = {
+const listOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts",
   urlParameters: [
@@ -519,7 +519,7 @@ const listOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const listByResourceGroupOperationSpec: msRest.OperationSpec = {
+const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts",
   urlParameters: [
@@ -543,7 +543,7 @@ const listByResourceGroupOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const regenerateKeyOperationSpec: msRest.OperationSpec = {
+const regenerateKeyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey",
   urlParameters: [
@@ -580,7 +580,7 @@ const regenerateKeyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginCreateOperationSpec: msRest.OperationSpec = {
+const beginCreateOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
   urlParameters: [

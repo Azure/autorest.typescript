@@ -60,8 +60,8 @@ namespace AutoRest.TypeScript.DSL
         /// Add an import statement to this TSFile with the provided imported types, functions, and values.
         /// </summary>
         /// <param name="imports">The types, functions, and values to import.</param>
-        /// <param name="from">The source of the types, functions, and values. If not specified, then this will default to "@azure/ms-rest-js".</param>
-        public void Import(IEnumerable<string> imports, string from = "@azure/ms-rest-js")
+        /// <param name="from">The source of the types, functions, and values. If not specified, then this will default to "@azure/core-http".</param>
+        public void Import(IEnumerable<string> imports, string from = "@azure/core-http")
         {
             List<string> importsList = imports.ToList();
             importsList.Sort();

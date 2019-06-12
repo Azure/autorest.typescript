@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ServiceClientOptions } from "@azure/ms-rest-js";
-import * as msRest from "@azure/ms-rest-js";
+import { ServiceClientOptions } from "@azure/core-http";
+import * as coreHttp from "@azure/core-http";
 
 /**
  * An interface representing Pet.
@@ -35,7 +35,7 @@ export interface PetStoreIncOptions extends ServiceClientOptions {
 /**
  * Optional Parameters.
  */
-export interface PetAddPetOptionalParams extends msRest.RequestOptionsBase {
+export interface PetAddPetOptionalParams extends coreHttp.RequestOptionsBase {
   petParam?: Pet;
 }
 
@@ -63,7 +63,7 @@ export type PetGetByPetIdResponse = Pet & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -83,7 +83,7 @@ export type PetAddPetResponse = Pet & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */

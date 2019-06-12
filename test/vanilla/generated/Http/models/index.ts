@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ServiceClientOptions } from "@azure/ms-rest-js";
-import * as msRest from "@azure/ms-rest-js";
+import { ServiceClientOptions } from "@azure/core-http";
+import * as coreHttp from "@azure/core-http";
 
 /**
  * An interface representing ErrorModel.
@@ -55,7 +55,7 @@ export interface AutoRestHttpInfrastructureTestServiceOptions extends ServiceCli
 /**
  * Optional Parameters.
  */
-export interface HttpSuccessPut200OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpSuccessPut200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -65,7 +65,7 @@ export interface HttpSuccessPut200OptionalParams extends msRest.RequestOptionsBa
 /**
  * Optional Parameters.
  */
-export interface HttpSuccessPatch200OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpSuccessPatch200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -75,7 +75,7 @@ export interface HttpSuccessPatch200OptionalParams extends msRest.RequestOptions
 /**
  * Optional Parameters.
  */
-export interface HttpSuccessPost200OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpSuccessPost200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -85,7 +85,7 @@ export interface HttpSuccessPost200OptionalParams extends msRest.RequestOptionsB
 /**
  * Optional Parameters.
  */
-export interface HttpSuccessDelete200OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpSuccessDelete200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -95,7 +95,7 @@ export interface HttpSuccessDelete200OptionalParams extends msRest.RequestOption
 /**
  * Optional Parameters.
  */
-export interface HttpSuccessPut201OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpSuccessPut201OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -105,7 +105,7 @@ export interface HttpSuccessPut201OptionalParams extends msRest.RequestOptionsBa
 /**
  * Optional Parameters.
  */
-export interface HttpSuccessPost201OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpSuccessPost201OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -115,7 +115,7 @@ export interface HttpSuccessPost201OptionalParams extends msRest.RequestOptionsB
 /**
  * Optional Parameters.
  */
-export interface HttpSuccessPut202OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpSuccessPut202OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -125,7 +125,7 @@ export interface HttpSuccessPut202OptionalParams extends msRest.RequestOptionsBa
 /**
  * Optional Parameters.
  */
-export interface HttpSuccessPatch202OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpSuccessPatch202OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -135,7 +135,7 @@ export interface HttpSuccessPatch202OptionalParams extends msRest.RequestOptions
 /**
  * Optional Parameters.
  */
-export interface HttpSuccessPost202OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpSuccessPost202OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -145,7 +145,7 @@ export interface HttpSuccessPost202OptionalParams extends msRest.RequestOptionsB
 /**
  * Optional Parameters.
  */
-export interface HttpSuccessDelete202OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpSuccessDelete202OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -155,7 +155,7 @@ export interface HttpSuccessDelete202OptionalParams extends msRest.RequestOption
 /**
  * Optional Parameters.
  */
-export interface HttpSuccessPut204OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpSuccessPut204OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -165,7 +165,7 @@ export interface HttpSuccessPut204OptionalParams extends msRest.RequestOptionsBa
 /**
  * Optional Parameters.
  */
-export interface HttpSuccessPatch204OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpSuccessPatch204OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -175,7 +175,7 @@ export interface HttpSuccessPatch204OptionalParams extends msRest.RequestOptions
 /**
  * Optional Parameters.
  */
-export interface HttpSuccessPost204OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpSuccessPost204OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -185,7 +185,7 @@ export interface HttpSuccessPost204OptionalParams extends msRest.RequestOptionsB
 /**
  * Optional Parameters.
  */
-export interface HttpSuccessDelete204OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpSuccessDelete204OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -195,7 +195,7 @@ export interface HttpSuccessDelete204OptionalParams extends msRest.RequestOption
 /**
  * Optional Parameters.
  */
-export interface HttpRedirectsPut301OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpRedirectsPut301OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -205,7 +205,7 @@ export interface HttpRedirectsPut301OptionalParams extends msRest.RequestOptions
 /**
  * Optional Parameters.
  */
-export interface HttpRedirectsPatch302OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpRedirectsPatch302OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -215,7 +215,7 @@ export interface HttpRedirectsPatch302OptionalParams extends msRest.RequestOptio
 /**
  * Optional Parameters.
  */
-export interface HttpRedirectsPost303OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpRedirectsPost303OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -225,7 +225,7 @@ export interface HttpRedirectsPost303OptionalParams extends msRest.RequestOption
 /**
  * Optional Parameters.
  */
-export interface HttpRedirectsPut307OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpRedirectsPut307OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -235,7 +235,7 @@ export interface HttpRedirectsPut307OptionalParams extends msRest.RequestOptions
 /**
  * Optional Parameters.
  */
-export interface HttpRedirectsPatch307OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpRedirectsPatch307OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -245,7 +245,7 @@ export interface HttpRedirectsPatch307OptionalParams extends msRest.RequestOptio
 /**
  * Optional Parameters.
  */
-export interface HttpRedirectsPost307OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpRedirectsPost307OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -255,7 +255,7 @@ export interface HttpRedirectsPost307OptionalParams extends msRest.RequestOption
 /**
  * Optional Parameters.
  */
-export interface HttpRedirectsDelete307OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpRedirectsDelete307OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -265,7 +265,7 @@ export interface HttpRedirectsDelete307OptionalParams extends msRest.RequestOpti
 /**
  * Optional Parameters.
  */
-export interface HttpClientFailurePut400OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpClientFailurePut400OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -275,7 +275,7 @@ export interface HttpClientFailurePut400OptionalParams extends msRest.RequestOpt
 /**
  * Optional Parameters.
  */
-export interface HttpClientFailurePatch400OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpClientFailurePatch400OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -285,7 +285,7 @@ export interface HttpClientFailurePatch400OptionalParams extends msRest.RequestO
 /**
  * Optional Parameters.
  */
-export interface HttpClientFailurePost400OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpClientFailurePost400OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -295,7 +295,7 @@ export interface HttpClientFailurePost400OptionalParams extends msRest.RequestOp
 /**
  * Optional Parameters.
  */
-export interface HttpClientFailureDelete400OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpClientFailureDelete400OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -305,7 +305,7 @@ export interface HttpClientFailureDelete400OptionalParams extends msRest.Request
 /**
  * Optional Parameters.
  */
-export interface HttpClientFailurePut404OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpClientFailurePut404OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -315,7 +315,7 @@ export interface HttpClientFailurePut404OptionalParams extends msRest.RequestOpt
 /**
  * Optional Parameters.
  */
-export interface HttpClientFailurePatch405OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpClientFailurePatch405OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -325,7 +325,7 @@ export interface HttpClientFailurePatch405OptionalParams extends msRest.RequestO
 /**
  * Optional Parameters.
  */
-export interface HttpClientFailurePost406OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpClientFailurePost406OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -335,7 +335,7 @@ export interface HttpClientFailurePost406OptionalParams extends msRest.RequestOp
 /**
  * Optional Parameters.
  */
-export interface HttpClientFailureDelete407OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpClientFailureDelete407OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -345,7 +345,7 @@ export interface HttpClientFailureDelete407OptionalParams extends msRest.Request
 /**
  * Optional Parameters.
  */
-export interface HttpClientFailurePut409OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpClientFailurePut409OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -355,7 +355,7 @@ export interface HttpClientFailurePut409OptionalParams extends msRest.RequestOpt
 /**
  * Optional Parameters.
  */
-export interface HttpClientFailurePut413OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpClientFailurePut413OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -365,7 +365,7 @@ export interface HttpClientFailurePut413OptionalParams extends msRest.RequestOpt
 /**
  * Optional Parameters.
  */
-export interface HttpClientFailurePatch414OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpClientFailurePatch414OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -375,7 +375,7 @@ export interface HttpClientFailurePatch414OptionalParams extends msRest.RequestO
 /**
  * Optional Parameters.
  */
-export interface HttpClientFailurePost415OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpClientFailurePost415OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -385,7 +385,7 @@ export interface HttpClientFailurePost415OptionalParams extends msRest.RequestOp
 /**
  * Optional Parameters.
  */
-export interface HttpClientFailureDelete417OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpClientFailureDelete417OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -395,7 +395,7 @@ export interface HttpClientFailureDelete417OptionalParams extends msRest.Request
 /**
  * Optional Parameters.
  */
-export interface HttpServerFailurePost505OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpServerFailurePost505OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -405,7 +405,7 @@ export interface HttpServerFailurePost505OptionalParams extends msRest.RequestOp
 /**
  * Optional Parameters.
  */
-export interface HttpServerFailureDelete505OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpServerFailureDelete505OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -415,7 +415,7 @@ export interface HttpServerFailureDelete505OptionalParams extends msRest.Request
 /**
  * Optional Parameters.
  */
-export interface HttpRetryPut500OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpRetryPut500OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -425,7 +425,7 @@ export interface HttpRetryPut500OptionalParams extends msRest.RequestOptionsBase
 /**
  * Optional Parameters.
  */
-export interface HttpRetryPatch500OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpRetryPatch500OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -435,7 +435,7 @@ export interface HttpRetryPatch500OptionalParams extends msRest.RequestOptionsBa
 /**
  * Optional Parameters.
  */
-export interface HttpRetryPost503OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpRetryPost503OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -445,7 +445,7 @@ export interface HttpRetryPost503OptionalParams extends msRest.RequestOptionsBas
 /**
  * Optional Parameters.
  */
-export interface HttpRetryDelete503OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpRetryDelete503OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -455,7 +455,7 @@ export interface HttpRetryDelete503OptionalParams extends msRest.RequestOptionsB
 /**
  * Optional Parameters.
  */
-export interface HttpRetryPut504OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpRetryPut504OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -465,7 +465,7 @@ export interface HttpRetryPut504OptionalParams extends msRest.RequestOptionsBase
 /**
  * Optional Parameters.
  */
-export interface HttpRetryPatch504OptionalParams extends msRest.RequestOptionsBase {
+export interface HttpRetryPatch504OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple boolean value true
    */
@@ -754,7 +754,7 @@ export type HttpFailureGetEmptyErrorResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -779,7 +779,7 @@ export type HttpFailureGetNoModelErrorResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -804,7 +804,7 @@ export type HttpFailureGetNoModelEmptyResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -829,7 +829,7 @@ export type HttpSuccessGet200Response = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -849,7 +849,7 @@ export type HttpRedirectsHead300Response = HttpRedirectsHead300Headers & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -864,7 +864,7 @@ export type HttpRedirectsGet300Response = Array<string> & HttpRedirectsGet300Hea
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -889,7 +889,7 @@ export type HttpRedirectsHead301Response = HttpRedirectsHead301Headers & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -904,7 +904,7 @@ export type HttpRedirectsGet301Response = HttpRedirectsGet301Headers & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -919,7 +919,7 @@ export type HttpRedirectsPut301Response = HttpRedirectsPut301Headers & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -934,7 +934,7 @@ export type HttpRedirectsHead302Response = HttpRedirectsHead302Headers & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -949,7 +949,7 @@ export type HttpRedirectsGet302Response = HttpRedirectsGet302Headers & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -964,7 +964,7 @@ export type HttpRedirectsPatch302Response = HttpRedirectsPatch302Headers & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -979,7 +979,7 @@ export type HttpRedirectsPost303Response = HttpRedirectsPost303Headers & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -994,7 +994,7 @@ export type HttpRedirectsHead307Response = HttpRedirectsHead307Headers & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -1009,7 +1009,7 @@ export type HttpRedirectsGet307Response = HttpRedirectsGet307Headers & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -1024,7 +1024,7 @@ export type HttpRedirectsPut307Response = HttpRedirectsPut307Headers & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -1039,7 +1039,7 @@ export type HttpRedirectsPatch307Response = HttpRedirectsPatch307Headers & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -1054,7 +1054,7 @@ export type HttpRedirectsPost307Response = HttpRedirectsPost307Headers & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -1069,7 +1069,7 @@ export type HttpRedirectsDelete307Response = HttpRedirectsDelete307Headers & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -1084,7 +1084,7 @@ export type HttpClientFailureHead400Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1104,7 +1104,7 @@ export type HttpClientFailureGet400Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1124,7 +1124,7 @@ export type HttpClientFailurePut400Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1144,7 +1144,7 @@ export type HttpClientFailurePatch400Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1164,7 +1164,7 @@ export type HttpClientFailurePost400Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1184,7 +1184,7 @@ export type HttpClientFailureDelete400Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1204,7 +1204,7 @@ export type HttpClientFailureHead401Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1224,7 +1224,7 @@ export type HttpClientFailureGet402Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1244,7 +1244,7 @@ export type HttpClientFailureGet403Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1264,7 +1264,7 @@ export type HttpClientFailurePut404Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1284,7 +1284,7 @@ export type HttpClientFailurePatch405Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1304,7 +1304,7 @@ export type HttpClientFailurePost406Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1324,7 +1324,7 @@ export type HttpClientFailureDelete407Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1344,7 +1344,7 @@ export type HttpClientFailurePut409Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1364,7 +1364,7 @@ export type HttpClientFailureHead410Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1384,7 +1384,7 @@ export type HttpClientFailureGet411Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1404,7 +1404,7 @@ export type HttpClientFailureGet412Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1424,7 +1424,7 @@ export type HttpClientFailurePut413Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1444,7 +1444,7 @@ export type HttpClientFailurePatch414Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1464,7 +1464,7 @@ export type HttpClientFailurePost415Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1484,7 +1484,7 @@ export type HttpClientFailureGet416Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1504,7 +1504,7 @@ export type HttpClientFailureDelete417Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1524,7 +1524,7 @@ export type HttpClientFailureHead429Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1544,7 +1544,7 @@ export type HttpServerFailureHead501Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1564,7 +1564,7 @@ export type HttpServerFailureGet501Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1584,7 +1584,7 @@ export type HttpServerFailurePost505Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1604,7 +1604,7 @@ export type HttpServerFailureDelete505Response = ErrorModel & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1624,7 +1624,7 @@ export type MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse =
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1644,7 +1644,7 @@ export type MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse =
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1664,7 +1664,7 @@ export type MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1684,7 +1684,7 @@ export type MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse = 
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1704,7 +1704,7 @@ export type MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse =
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1724,7 +1724,7 @@ export type MultipleResponsesGet200Model201ModelDefaultError200ValidResponse = A
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1744,7 +1744,7 @@ export type MultipleResponsesGet200Model201ModelDefaultError201ValidResponse = A
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1764,7 +1764,7 @@ export type MultipleResponsesGet200Model201ModelDefaultError400ValidResponse = A
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1789,7 +1789,7 @@ export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidR
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1814,7 +1814,7 @@ export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidR
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1839,7 +1839,7 @@ export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidR
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1864,7 +1864,7 @@ export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidR
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1884,7 +1884,7 @@ export type MultipleResponsesGetDefaultModelA200ValidResponse = A & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1904,7 +1904,7 @@ export type MultipleResponsesGetDefaultModelA200NoneResponse = A & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1924,7 +1924,7 @@ export type MultipleResponsesGetDefaultModelA400ValidResponse = A & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1944,7 +1944,7 @@ export type MultipleResponsesGetDefaultModelA400NoneResponse = A & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1964,7 +1964,7 @@ export type MultipleResponsesGet200ModelA200NoneResponse = A & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -1984,7 +1984,7 @@ export type MultipleResponsesGet200ModelA200ValidResponse = A & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2004,7 +2004,7 @@ export type MultipleResponsesGet200ModelA200InvalidResponse = A & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2024,7 +2024,7 @@ export type MultipleResponsesGet200ModelA400NoneResponse = A & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2044,7 +2044,7 @@ export type MultipleResponsesGet200ModelA400ValidResponse = A & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2064,7 +2064,7 @@ export type MultipleResponsesGet200ModelA400InvalidResponse = A & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2084,7 +2084,7 @@ export type MultipleResponsesGet200ModelA202ValidResponse = A & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */

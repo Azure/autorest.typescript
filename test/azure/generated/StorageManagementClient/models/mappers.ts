@@ -7,12 +7,12 @@
  */
 
 import { CloudErrorMapper, BaseResourceMapper } from "@azure/ms-rest-azure-js";
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
-export const StorageAccountCheckNameAvailabilityParameters: msRest.CompositeMapper = {
+export const StorageAccountCheckNameAvailabilityParameters: coreHttp.CompositeMapper = {
   serializedName: "StorageAccountCheckNameAvailabilityParameters",
   type: {
     name: "Composite",
@@ -36,7 +36,7 @@ export const StorageAccountCheckNameAvailabilityParameters: msRest.CompositeMapp
   }
 };
 
-export const CheckNameAvailabilityResult: msRest.CompositeMapper = {
+export const CheckNameAvailabilityResult: coreHttp.CompositeMapper = {
   serializedName: "CheckNameAvailabilityResult",
   type: {
     name: "Composite",
@@ -68,7 +68,7 @@ export const CheckNameAvailabilityResult: msRest.CompositeMapper = {
   }
 };
 
-export const Resource: msRest.CompositeMapper = {
+export const Resource: coreHttp.CompositeMapper = {
   serializedName: "Resource",
   type: {
     name: "Composite",
@@ -117,7 +117,7 @@ export const Resource: msRest.CompositeMapper = {
   }
 };
 
-export const StorageAccountCreateParameters: msRest.CompositeMapper = {
+export const StorageAccountCreateParameters: coreHttp.CompositeMapper = {
   serializedName: "StorageAccountCreateParameters",
   type: {
     name: "Composite",
@@ -141,7 +141,7 @@ export const StorageAccountCreateParameters: msRest.CompositeMapper = {
   }
 };
 
-export const Bar: msRest.CompositeMapper = {
+export const Bar: coreHttp.CompositeMapper = {
   serializedName: "Bar",
   type: {
     name: "Composite",
@@ -158,7 +158,7 @@ export const Bar: msRest.CompositeMapper = {
   }
 };
 
-export const Foo: msRest.CompositeMapper = {
+export const Foo: coreHttp.CompositeMapper = {
   serializedName: "Foo",
   type: {
     name: "Composite",
@@ -175,7 +175,7 @@ export const Foo: msRest.CompositeMapper = {
   }
 };
 
-export const Endpoints: msRest.CompositeMapper = {
+export const Endpoints: coreHttp.CompositeMapper = {
   serializedName: "Endpoints",
   type: {
     name: "Composite",
@@ -217,7 +217,7 @@ export const Endpoints: msRest.CompositeMapper = {
   }
 };
 
-export const CustomDomain: msRest.CompositeMapper = {
+export const CustomDomain: coreHttp.CompositeMapper = {
   serializedName: "CustomDomain",
   type: {
     name: "Composite",
@@ -239,7 +239,7 @@ export const CustomDomain: msRest.CompositeMapper = {
   }
 };
 
-export const StorageAccount: msRest.CompositeMapper = {
+export const StorageAccount: coreHttp.CompositeMapper = {
   serializedName: "StorageAccount",
   type: {
     name: "Composite",
@@ -339,7 +339,7 @@ export const StorageAccount: msRest.CompositeMapper = {
   }
 };
 
-export const StorageAccountKeys: msRest.CompositeMapper = {
+export const StorageAccountKeys: coreHttp.CompositeMapper = {
   serializedName: "StorageAccountKeys",
   type: {
     name: "Composite",
@@ -361,7 +361,7 @@ export const StorageAccountKeys: msRest.CompositeMapper = {
   }
 };
 
-export const StorageAccountUpdateParameters: msRest.CompositeMapper = {
+export const StorageAccountUpdateParameters: coreHttp.CompositeMapper = {
   serializedName: "StorageAccountUpdateParameters",
   type: {
     name: "Composite",
@@ -392,7 +392,7 @@ export const StorageAccountUpdateParameters: msRest.CompositeMapper = {
   }
 };
 
-export const StorageAccountRegenerateKeyParameters: msRest.CompositeMapper = {
+export const StorageAccountRegenerateKeyParameters: coreHttp.CompositeMapper = {
   serializedName: "StorageAccountRegenerateKeyParameters",
   type: {
     name: "Composite",
@@ -412,7 +412,7 @@ export const StorageAccountRegenerateKeyParameters: msRest.CompositeMapper = {
   }
 };
 
-export const UsageName: msRest.CompositeMapper = {
+export const UsageName: coreHttp.CompositeMapper = {
   serializedName: "UsageName",
   type: {
     name: "Composite",
@@ -434,7 +434,7 @@ export const UsageName: msRest.CompositeMapper = {
   }
 };
 
-export const Usage: msRest.CompositeMapper = {
+export const Usage: coreHttp.CompositeMapper = {
   serializedName: "Usage",
   type: {
     name: "Composite",
@@ -477,7 +477,7 @@ export const Usage: msRest.CompositeMapper = {
   }
 };
 
-export const UsageListResult: msRest.CompositeMapper = {
+export const UsageListResult: coreHttp.CompositeMapper = {
   serializedName: "UsageListResult",
   type: {
     name: "Composite",
@@ -499,7 +499,7 @@ export const UsageListResult: msRest.CompositeMapper = {
   }
 };
 
-export const SubResource: msRest.CompositeMapper = {
+export const SubResource: coreHttp.CompositeMapper = {
   serializedName: "SubResource",
   type: {
     name: "Composite",
@@ -515,7 +515,7 @@ export const SubResource: msRest.CompositeMapper = {
   }
 };
 
-export const StorageAccountListResult: msRest.CompositeMapper = {
+export const StorageAccountListResult: coreHttp.CompositeMapper = {
   serializedName: "StorageAccountListResult",
   type: {
     name: "Composite",

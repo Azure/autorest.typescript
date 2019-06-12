@@ -7,12 +7,12 @@
  */
 
 import { CloudErrorMapper, BaseResourceMapper } from "@azure/ms-rest-azure-js";
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
-export const ErrorModel: msRest.CompositeMapper = {
+export const ErrorModel: coreHttp.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -43,7 +43,7 @@ export const ErrorModel: msRest.CompositeMapper = {
   }
 };
 
-export const OdataFilter: msRest.CompositeMapper = {
+export const OdataFilter: coreHttp.CompositeMapper = {
   serializedName: "OdataFilter",
   type: {
     name: "Composite",
@@ -65,7 +65,7 @@ export const OdataFilter: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderCustomNamedRequestIdParamGroupingParameters: msRest.CompositeMapper = {
+export const HeaderCustomNamedRequestIdParamGroupingParameters: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderCustomNamedRequestIdParamGroupingParameters",
@@ -80,7 +80,7 @@ export const HeaderCustomNamedRequestIdParamGroupingParameters: msRest.Composite
   }
 };
 
-export const HeaderCustomNamedRequestIdHeaders: msRest.CompositeMapper = {
+export const HeaderCustomNamedRequestIdHeaders: coreHttp.CompositeMapper = {
   serializedName: "header-customnamedrequestid-headers",
   type: {
     name: "Composite",
@@ -96,7 +96,7 @@ export const HeaderCustomNamedRequestIdHeaders: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderCustomNamedRequestIdParamGroupingHeaders: msRest.CompositeMapper = {
+export const HeaderCustomNamedRequestIdParamGroupingHeaders: coreHttp.CompositeMapper = {
   serializedName: "header-customnamedrequestidparamgrouping-headers",
   type: {
     name: "Composite",
@@ -112,7 +112,7 @@ export const HeaderCustomNamedRequestIdParamGroupingHeaders: msRest.CompositeMap
   }
 };
 
-export const HeaderCustomNamedRequestIdHeadHeaders: msRest.CompositeMapper = {
+export const HeaderCustomNamedRequestIdHeadHeaders: coreHttp.CompositeMapper = {
   serializedName: "header-customnamedrequestidhead-headers",
   type: {
     name: "Composite",

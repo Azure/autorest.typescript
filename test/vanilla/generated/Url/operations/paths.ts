@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/pathsMappers";
 import * as Parameters from "../models/parameters";
@@ -29,19 +29,19 @@ export class Paths {
   /**
    * Get true Boolean value on path
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getBooleanTrue(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getBooleanTrue(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getBooleanTrue(callback: msRest.ServiceCallback<void>): void;
+  getBooleanTrue(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getBooleanTrue(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getBooleanTrue(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getBooleanTrue(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getBooleanTrue(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -53,19 +53,19 @@ export class Paths {
   /**
    * Get false Boolean value on path
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getBooleanFalse(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getBooleanFalse(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getBooleanFalse(callback: msRest.ServiceCallback<void>): void;
+  getBooleanFalse(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getBooleanFalse(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getBooleanFalse(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getBooleanFalse(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getBooleanFalse(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -77,19 +77,19 @@ export class Paths {
   /**
    * Get '1000000' integer value
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getIntOneMillion(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getIntOneMillion(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getIntOneMillion(callback: msRest.ServiceCallback<void>): void;
+  getIntOneMillion(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getIntOneMillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getIntOneMillion(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getIntOneMillion(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getIntOneMillion(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -101,19 +101,19 @@ export class Paths {
   /**
    * Get '-1000000' integer value
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getIntNegativeOneMillion(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getIntNegativeOneMillion(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getIntNegativeOneMillion(callback: msRest.ServiceCallback<void>): void;
+  getIntNegativeOneMillion(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getIntNegativeOneMillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getIntNegativeOneMillion(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getIntNegativeOneMillion(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getIntNegativeOneMillion(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -125,19 +125,19 @@ export class Paths {
   /**
    * Get '10000000000' 64 bit integer value
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getTenBillion(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getTenBillion(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getTenBillion(callback: msRest.ServiceCallback<void>): void;
+  getTenBillion(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getTenBillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getTenBillion(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getTenBillion(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getTenBillion(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -149,19 +149,19 @@ export class Paths {
   /**
    * Get '-10000000000' 64 bit integer value
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getNegativeTenBillion(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getNegativeTenBillion(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getNegativeTenBillion(callback: msRest.ServiceCallback<void>): void;
+  getNegativeTenBillion(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getNegativeTenBillion(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getNegativeTenBillion(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getNegativeTenBillion(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getNegativeTenBillion(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -173,19 +173,19 @@ export class Paths {
   /**
    * Get '1.034E+20' numeric value
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  floatScientificPositive(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  floatScientificPositive(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  floatScientificPositive(callback: msRest.ServiceCallback<void>): void;
+  floatScientificPositive(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  floatScientificPositive(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  floatScientificPositive(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  floatScientificPositive(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  floatScientificPositive(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -197,19 +197,19 @@ export class Paths {
   /**
    * Get '-1.034E-20' numeric value
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  floatScientificNegative(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  floatScientificNegative(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  floatScientificNegative(callback: msRest.ServiceCallback<void>): void;
+  floatScientificNegative(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  floatScientificNegative(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  floatScientificNegative(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  floatScientificNegative(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  floatScientificNegative(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -221,19 +221,19 @@ export class Paths {
   /**
    * Get '9999999.999' numeric value
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  doubleDecimalPositive(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  doubleDecimalPositive(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  doubleDecimalPositive(callback: msRest.ServiceCallback<void>): void;
+  doubleDecimalPositive(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  doubleDecimalPositive(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  doubleDecimalPositive(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  doubleDecimalPositive(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  doubleDecimalPositive(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -245,19 +245,19 @@ export class Paths {
   /**
    * Get '-9999999.999' numeric value
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  doubleDecimalNegative(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  doubleDecimalNegative(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  doubleDecimalNegative(callback: msRest.ServiceCallback<void>): void;
+  doubleDecimalNegative(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  doubleDecimalNegative(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  doubleDecimalNegative(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  doubleDecimalNegative(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  doubleDecimalNegative(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -269,19 +269,19 @@ export class Paths {
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  stringUnicode(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  stringUnicode(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  stringUnicode(callback: msRest.ServiceCallback<void>): void;
+  stringUnicode(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  stringUnicode(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringUnicode(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  stringUnicode(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  stringUnicode(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -293,19 +293,19 @@ export class Paths {
   /**
    * Get 'begin!*'();:@ &=+$,/?#[]end
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  stringUrlEncoded(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  stringUrlEncoded(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  stringUrlEncoded(callback: msRest.ServiceCallback<void>): void;
+  stringUrlEncoded(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  stringUrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringUrlEncoded(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  stringUrlEncoded(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  stringUrlEncoded(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -317,19 +317,19 @@ export class Paths {
   /**
    * Get ''
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  stringEmpty(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  stringEmpty(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  stringEmpty(callback: msRest.ServiceCallback<void>): void;
+  stringEmpty(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  stringEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringEmpty(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  stringEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  stringEmpty(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -342,21 +342,21 @@ export class Paths {
    * Get null (should throw)
    * @param stringPath null string value
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  stringNull(stringPath: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  stringNull(stringPath: string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param stringPath null string value
    * @param callback The callback
    */
-  stringNull(stringPath: string, callback: msRest.ServiceCallback<void>): void;
+  stringNull(stringPath: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param stringPath null string value
    * @param options The optional parameters
    * @param callback The callback
    */
-  stringNull(stringPath: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stringNull(stringPath: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  stringNull(stringPath: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  stringNull(stringPath: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         stringPath,
@@ -371,23 +371,23 @@ export class Paths {
    * @param enumPath send the value green. Possible values include: 'red color', 'green color', 'blue
    * color'
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  enumValid(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  enumValid(enumPath: Models.UriColor, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param enumPath send the value green. Possible values include: 'red color', 'green color', 'blue
    * color'
    * @param callback The callback
    */
-  enumValid(enumPath: Models.UriColor, callback: msRest.ServiceCallback<void>): void;
+  enumValid(enumPath: Models.UriColor, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param enumPath send the value green. Possible values include: 'red color', 'green color', 'blue
    * color'
    * @param options The optional parameters
    * @param callback The callback
    */
-  enumValid(enumPath: Models.UriColor, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  enumValid(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  enumValid(enumPath: Models.UriColor, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  enumValid(enumPath: Models.UriColor, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         enumPath,
@@ -402,23 +402,23 @@ export class Paths {
    * @param enumPath send null should throw. Possible values include: 'red color', 'green color',
    * 'blue color'
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  enumNull(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  enumNull(enumPath: Models.UriColor, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param enumPath send null should throw. Possible values include: 'red color', 'green color',
    * 'blue color'
    * @param callback The callback
    */
-  enumNull(enumPath: Models.UriColor, callback: msRest.ServiceCallback<void>): void;
+  enumNull(enumPath: Models.UriColor, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param enumPath send null should throw. Possible values include: 'red color', 'green color',
    * 'blue color'
    * @param options The optional parameters
    * @param callback The callback
    */
-  enumNull(enumPath: Models.UriColor, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  enumNull(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  enumNull(enumPath: Models.UriColor, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  enumNull(enumPath: Models.UriColor, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         enumPath,
@@ -432,21 +432,21 @@ export class Paths {
    * Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    * @param bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  byteMultiByte(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  byteMultiByte(bytePath: Uint8Array, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    * @param callback The callback
    */
-  byteMultiByte(bytePath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  byteMultiByte(bytePath: Uint8Array, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    * @param options The optional parameters
    * @param callback The callback
    */
-  byteMultiByte(bytePath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  byteMultiByte(bytePath: Uint8Array, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  byteMultiByte(bytePath: Uint8Array, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  byteMultiByte(bytePath: Uint8Array, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         bytePath,
@@ -459,19 +459,19 @@ export class Paths {
   /**
    * Get '' as byte array
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  byteEmpty(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  byteEmpty(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  byteEmpty(callback: msRest.ServiceCallback<void>): void;
+  byteEmpty(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  byteEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  byteEmpty(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  byteEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  byteEmpty(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -484,21 +484,21 @@ export class Paths {
    * Get null as byte array (should throw)
    * @param bytePath null as byte array (should throw)
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  byteNull(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  byteNull(bytePath: Uint8Array, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param bytePath null as byte array (should throw)
    * @param callback The callback
    */
-  byteNull(bytePath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  byteNull(bytePath: Uint8Array, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param bytePath null as byte array (should throw)
    * @param options The optional parameters
    * @param callback The callback
    */
-  byteNull(bytePath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  byteNull(bytePath: Uint8Array, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  byteNull(bytePath: Uint8Array, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  byteNull(bytePath: Uint8Array, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         bytePath,
@@ -511,19 +511,19 @@ export class Paths {
   /**
    * Get '2012-01-01' as date
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  dateValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  dateValid(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  dateValid(callback: msRest.ServiceCallback<void>): void;
+  dateValid(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  dateValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  dateValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  dateValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  dateValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -537,21 +537,21 @@ export class Paths {
    * representation
    * @param datePath null as date (should throw)
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  dateNull(datePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  dateNull(datePath: Date | string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param datePath null as date (should throw)
    * @param callback The callback
    */
-  dateNull(datePath: Date | string, callback: msRest.ServiceCallback<void>): void;
+  dateNull(datePath: Date | string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param datePath null as date (should throw)
    * @param options The optional parameters
    * @param callback The callback
    */
-  dateNull(datePath: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  dateNull(datePath: Date | string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  dateNull(datePath: Date | string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  dateNull(datePath: Date | string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         datePath,
@@ -564,19 +564,19 @@ export class Paths {
   /**
    * Get '2012-01-01T01:01:01Z' as date-time
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  dateTimeValid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  dateTimeValid(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  dateTimeValid(callback: msRest.ServiceCallback<void>): void;
+  dateTimeValid(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  dateTimeValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  dateTimeValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  dateTimeValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  dateTimeValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -589,21 +589,21 @@ export class Paths {
    * Get null as date-time, should be disallowed or throw depending on representation of date-time
    * @param dateTimePath null as date-time
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  dateTimeNull(dateTimePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  dateTimeNull(dateTimePath: Date | string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param dateTimePath null as date-time
    * @param callback The callback
    */
-  dateTimeNull(dateTimePath: Date | string, callback: msRest.ServiceCallback<void>): void;
+  dateTimeNull(dateTimePath: Date | string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param dateTimePath null as date-time
    * @param options The optional parameters
    * @param callback The callback
    */
-  dateTimeNull(dateTimePath: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  dateTimeNull(dateTimePath: Date | string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  dateTimeNull(dateTimePath: Date | string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  dateTimeNull(dateTimePath: Date | string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         dateTimePath,
@@ -617,21 +617,21 @@ export class Paths {
    * Get 'lorem' encoded value as 'bG9yZW0' (base64url)
    * @param base64UrlPath base64url encoded value
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  base64Url(base64UrlPath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  base64Url(base64UrlPath: Uint8Array, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param base64UrlPath base64url encoded value
    * @param callback The callback
    */
-  base64Url(base64UrlPath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  base64Url(base64UrlPath: Uint8Array, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param base64UrlPath base64url encoded value
    * @param options The optional parameters
    * @param callback The callback
    */
-  base64Url(base64UrlPath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  base64Url(base64UrlPath: Uint8Array, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  base64Url(base64UrlPath: Uint8Array, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  base64Url(base64UrlPath: Uint8Array, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         base64UrlPath,
@@ -647,23 +647,23 @@ export class Paths {
    * @param arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
    * using the csv-array format
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  arrayCsvInPath(arrayPath: string[], options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  arrayCsvInPath(arrayPath: string[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
    * using the csv-array format
    * @param callback The callback
    */
-  arrayCsvInPath(arrayPath: string[], callback: msRest.ServiceCallback<void>): void;
+  arrayCsvInPath(arrayPath: string[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
    * using the csv-array format
    * @param options The optional parameters
    * @param callback The callback
    */
-  arrayCsvInPath(arrayPath: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  arrayCsvInPath(arrayPath: string[], options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  arrayCsvInPath(arrayPath: string[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  arrayCsvInPath(arrayPath: string[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         arrayPath,
@@ -677,21 +677,21 @@ export class Paths {
    * Get the date 2016-04-13 encoded value as '1460505600' (Unix time)
    * @param unixTimeUrlPath Unix time encoded value
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  unixTimeUrl(unixTimeUrlPath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  unixTimeUrl(unixTimeUrlPath: Date | string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param unixTimeUrlPath Unix time encoded value
    * @param callback The callback
    */
-  unixTimeUrl(unixTimeUrlPath: Date | string, callback: msRest.ServiceCallback<void>): void;
+  unixTimeUrl(unixTimeUrlPath: Date | string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param unixTimeUrlPath Unix time encoded value
    * @param options The optional parameters
    * @param callback The callback
    */
-  unixTimeUrl(unixTimeUrlPath: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  unixTimeUrl(unixTimeUrlPath: Date | string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  unixTimeUrl(unixTimeUrlPath: Date | string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  unixTimeUrl(unixTimeUrlPath: Date | string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         unixTimeUrlPath,
@@ -703,8 +703,8 @@ export class Paths {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getBooleanTrueOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getBooleanTrueOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/bool/true/{boolPath}",
   urlParameters: [
@@ -719,7 +719,7 @@ const getBooleanTrueOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getBooleanFalseOperationSpec: msRest.OperationSpec = {
+const getBooleanFalseOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/bool/false/{boolPath}",
   urlParameters: [
@@ -734,7 +734,7 @@ const getBooleanFalseOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getIntOneMillionOperationSpec: msRest.OperationSpec = {
+const getIntOneMillionOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/int/1000000/{intPath}",
   urlParameters: [
@@ -749,7 +749,7 @@ const getIntOneMillionOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getIntNegativeOneMillionOperationSpec: msRest.OperationSpec = {
+const getIntNegativeOneMillionOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/int/-1000000/{intPath}",
   urlParameters: [
@@ -764,7 +764,7 @@ const getIntNegativeOneMillionOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getTenBillionOperationSpec: msRest.OperationSpec = {
+const getTenBillionOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/long/10000000000/{longPath}",
   urlParameters: [
@@ -779,7 +779,7 @@ const getTenBillionOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getNegativeTenBillionOperationSpec: msRest.OperationSpec = {
+const getNegativeTenBillionOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/long/-10000000000/{longPath}",
   urlParameters: [
@@ -794,7 +794,7 @@ const getNegativeTenBillionOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const floatScientificPositiveOperationSpec: msRest.OperationSpec = {
+const floatScientificPositiveOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/float/1.034E+20/{floatPath}",
   urlParameters: [
@@ -809,7 +809,7 @@ const floatScientificPositiveOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const floatScientificNegativeOperationSpec: msRest.OperationSpec = {
+const floatScientificNegativeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/float/-1.034E-20/{floatPath}",
   urlParameters: [
@@ -824,7 +824,7 @@ const floatScientificNegativeOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const doubleDecimalPositiveOperationSpec: msRest.OperationSpec = {
+const doubleDecimalPositiveOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/double/9999999.999/{doublePath}",
   urlParameters: [
@@ -839,7 +839,7 @@ const doubleDecimalPositiveOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const doubleDecimalNegativeOperationSpec: msRest.OperationSpec = {
+const doubleDecimalNegativeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/double/-9999999.999/{doublePath}",
   urlParameters: [
@@ -854,7 +854,7 @@ const doubleDecimalNegativeOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const stringUnicodeOperationSpec: msRest.OperationSpec = {
+const stringUnicodeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/unicode/{stringPath}",
   urlParameters: [
@@ -869,7 +869,7 @@ const stringUnicodeOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const stringUrlEncodedOperationSpec: msRest.OperationSpec = {
+const stringUrlEncodedOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
   urlParameters: [
@@ -884,7 +884,7 @@ const stringUrlEncodedOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const stringEmptyOperationSpec: msRest.OperationSpec = {
+const stringEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/empty/{stringPath}",
   urlParameters: [
@@ -899,7 +899,7 @@ const stringEmptyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const stringNullOperationSpec: msRest.OperationSpec = {
+const stringNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/null/{stringPath}",
   urlParameters: [
@@ -914,7 +914,7 @@ const stringNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const enumValidOperationSpec: msRest.OperationSpec = {
+const enumValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/enum/green%20color/{enumPath}",
   urlParameters: [
@@ -929,7 +929,7 @@ const enumValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const enumNullOperationSpec: msRest.OperationSpec = {
+const enumNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/null/{enumPath}",
   urlParameters: [
@@ -944,7 +944,7 @@ const enumNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const byteMultiByteOperationSpec: msRest.OperationSpec = {
+const byteMultiByteOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/byte/multibyte/{bytePath}",
   urlParameters: [
@@ -959,7 +959,7 @@ const byteMultiByteOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const byteEmptyOperationSpec: msRest.OperationSpec = {
+const byteEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/byte/empty/{bytePath}",
   urlParameters: [
@@ -974,7 +974,7 @@ const byteEmptyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const byteNullOperationSpec: msRest.OperationSpec = {
+const byteNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/byte/null/{bytePath}",
   urlParameters: [
@@ -989,7 +989,7 @@ const byteNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const dateValidOperationSpec: msRest.OperationSpec = {
+const dateValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/date/2012-01-01/{datePath}",
   urlParameters: [
@@ -1004,7 +1004,7 @@ const dateValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const dateNullOperationSpec: msRest.OperationSpec = {
+const dateNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/date/null/{datePath}",
   urlParameters: [
@@ -1019,7 +1019,7 @@ const dateNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const dateTimeValidOperationSpec: msRest.OperationSpec = {
+const dateTimeValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
   urlParameters: [
@@ -1034,7 +1034,7 @@ const dateTimeValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const dateTimeNullOperationSpec: msRest.OperationSpec = {
+const dateTimeNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/datetime/null/{dateTimePath}",
   urlParameters: [
@@ -1049,7 +1049,7 @@ const dateTimeNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const base64UrlOperationSpec: msRest.OperationSpec = {
+const base64UrlOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/string/bG9yZW0/{base64UrlPath}",
   urlParameters: [
@@ -1064,7 +1064,7 @@ const base64UrlOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const arrayCsvInPathOperationSpec: msRest.OperationSpec = {
+const arrayCsvInPathOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
   urlParameters: [
@@ -1079,7 +1079,7 @@ const arrayCsvInPathOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const unixTimeUrlOperationSpec: msRest.OperationSpec = {
+const unixTimeUrlOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paths/int/1460505600/{unixTimeUrlPath}",
   urlParameters: [

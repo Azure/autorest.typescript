@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ServiceClientOptions } from "@azure/ms-rest-js";
-import * as msRest from "@azure/ms-rest-js";
+import { ServiceClientOptions } from "@azure/core-http";
+import * as coreHttp from "@azure/core-http";
 
 /**
  * An interface representing ErrorModel.
@@ -27,7 +27,7 @@ export interface AutoRestReportServiceOptions extends ServiceClientOptions {
 /**
  * Optional Parameters.
  */
-export interface AutoRestReportServiceGetReportOptionalParams extends msRest.RequestOptionsBase {
+export interface AutoRestReportServiceGetReportOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python). The
    * only effect is, that generators that run all tests several times, can distinguish the
@@ -48,7 +48,7 @@ export type GetReportResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */

@@ -8,7 +8,7 @@ import sourcemaps from "rollup-plugin-sourcemaps";
 const config = {
   input: "./esm/autoRestLongRunningOperationTestService.js",
   external: [
-    "@azure/ms-rest-js",
+    "@azure/core-http",
     "@azure/ms-rest-azure-js"
   ],
   output: {
@@ -17,7 +17,7 @@ const config = {
     name: "Bundle",
     sourcemap: true,
     globals: {
-      "@azure/ms-rest-js": "msRest",
+      "@azure/core-http": "coreHttp",
       "@azure/ms-rest-azure-js": "msRestAzure"
     },
     banner: `/*

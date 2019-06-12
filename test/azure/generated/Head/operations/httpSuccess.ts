@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/httpSuccessMappers";
 import * as Parameters from "../models/parameters";
@@ -31,17 +31,17 @@ export class HttpSuccess {
    * @param [options] The optional parameters
    * @returns Promise<Models.HttpSuccessHead200Response>
    */
-  head200(options?: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead200Response>;
+  head200(options?: coreHttp.RequestOptionsBase): Promise<Models.HttpSuccessHead200Response>;
   /**
    * @param callback The callback
    */
-  head200(callback: msRest.ServiceCallback<boolean>): void;
+  head200(callback: coreHttp.ServiceCallback<boolean>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  head200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  head200(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead200Response> {
+  head200(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<boolean>): void;
+  head200(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<boolean>, callback?: coreHttp.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead200Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -55,17 +55,17 @@ export class HttpSuccess {
    * @param [options] The optional parameters
    * @returns Promise<Models.HttpSuccessHead204Response>
    */
-  head204(options?: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead204Response>;
+  head204(options?: coreHttp.RequestOptionsBase): Promise<Models.HttpSuccessHead204Response>;
   /**
    * @param callback The callback
    */
-  head204(callback: msRest.ServiceCallback<boolean>): void;
+  head204(callback: coreHttp.ServiceCallback<boolean>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  head204(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  head204(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead204Response> {
+  head204(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<boolean>): void;
+  head204(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<boolean>, callback?: coreHttp.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead204Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -79,17 +79,17 @@ export class HttpSuccess {
    * @param [options] The optional parameters
    * @returns Promise<Models.HttpSuccessHead404Response>
    */
-  head404(options?: msRest.RequestOptionsBase): Promise<Models.HttpSuccessHead404Response>;
+  head404(options?: coreHttp.RequestOptionsBase): Promise<Models.HttpSuccessHead404Response>;
   /**
    * @param callback The callback
    */
-  head404(callback: msRest.ServiceCallback<boolean>): void;
+  head404(callback: coreHttp.ServiceCallback<boolean>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  head404(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<boolean>): void;
-  head404(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<boolean>, callback?: msRest.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead404Response> {
+  head404(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<boolean>): void;
+  head404(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<boolean>, callback?: coreHttp.ServiceCallback<boolean>): Promise<Models.HttpSuccessHead404Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -100,8 +100,8 @@ export class HttpSuccess {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const head200OperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const head200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/200",
   headerParameters: [
@@ -117,7 +117,7 @@ const head200OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const head204OperationSpec: msRest.OperationSpec = {
+const head204OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/204",
   headerParameters: [
@@ -133,7 +133,7 @@ const head204OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const head404OperationSpec: msRest.OperationSpec = {
+const head404OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/404",
   headerParameters: [

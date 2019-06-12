@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/httpServerFailureMappers";
 import { AutoRestHttpInfrastructureTestServiceContext } from "../autoRestHttpInfrastructureTestServiceContext";
@@ -30,17 +30,17 @@ export class HttpServerFailure {
    * @param [options] The optional parameters
    * @returns Promise<Models.HttpServerFailureHead501Response>
    */
-  head501(options?: msRest.RequestOptionsBase): Promise<Models.HttpServerFailureHead501Response>;
+  head501(options?: coreHttp.RequestOptionsBase): Promise<Models.HttpServerFailureHead501Response>;
   /**
    * @param callback The callback
    */
-  head501(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  head501(callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  head501(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  head501(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpServerFailureHead501Response> {
+  head501(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  head501(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpServerFailureHead501Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -54,17 +54,17 @@ export class HttpServerFailure {
    * @param [options] The optional parameters
    * @returns Promise<Models.HttpServerFailureGet501Response>
    */
-  get501(options?: msRest.RequestOptionsBase): Promise<Models.HttpServerFailureGet501Response>;
+  get501(options?: coreHttp.RequestOptionsBase): Promise<Models.HttpServerFailureGet501Response>;
   /**
    * @param callback The callback
    */
-  get501(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  get501(callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get501(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  get501(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpServerFailureGet501Response> {
+  get501(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  get501(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpServerFailureGet501Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -82,13 +82,13 @@ export class HttpServerFailure {
   /**
    * @param callback The callback
    */
-  post505(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  post505(callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  post505(options: Models.HttpServerFailurePost505OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  post505(options?: Models.HttpServerFailurePost505OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpServerFailurePost505Response> {
+  post505(options: Models.HttpServerFailurePost505OptionalParams, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  post505(options?: Models.HttpServerFailurePost505OptionalParams | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpServerFailurePost505Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -106,13 +106,13 @@ export class HttpServerFailure {
   /**
    * @param callback The callback
    */
-  delete505(callback: msRest.ServiceCallback<Models.ErrorModel>): void;
+  delete505(callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  delete505(options: Models.HttpServerFailureDelete505OptionalParams, callback: msRest.ServiceCallback<Models.ErrorModel>): void;
-  delete505(options?: Models.HttpServerFailureDelete505OptionalParams | msRest.ServiceCallback<Models.ErrorModel>, callback?: msRest.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpServerFailureDelete505Response> {
+  delete505(options: Models.HttpServerFailureDelete505OptionalParams, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  delete505(options?: Models.HttpServerFailureDelete505OptionalParams | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.HttpServerFailureDelete505Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -123,8 +123,8 @@ export class HttpServerFailure {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const head501OperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const head501OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/failure/server/501",
   responses: {
@@ -135,7 +135,7 @@ const head501OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const get501OperationSpec: msRest.OperationSpec = {
+const get501OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/failure/server/501",
   responses: {
@@ -146,7 +146,7 @@ const get501OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const post505OperationSpec: msRest.OperationSpec = {
+const post505OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "http/failure/server/505",
   requestBody: {
@@ -169,7 +169,7 @@ const post505OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const delete505OperationSpec: msRest.OperationSpec = {
+const delete505OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/failure/server/505",
   requestBody: {

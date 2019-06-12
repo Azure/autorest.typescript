@@ -9,14 +9,14 @@
  */
 
 import * as Models from "./models";
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as msRestAzure from "@azure/ms-rest-azure-js";
 
 const packageName = "";
 const packageVersion = "";
 
 export class MicrosoftAzureTestUrlContext extends msRestAzure.AzureServiceClient {
-  credentials: msRest.ServiceClientCredentials;
+  credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential;
   subscriptionId: string;
   apiVersion?: string;
 
@@ -26,7 +26,7 @@ export class MicrosoftAzureTestUrlContext extends msRestAzure.AzureServiceClient
    * @param subscriptionId Subscription Id.
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, options?: Models.MicrosoftAzureTestUrlOptions) {
+  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, subscriptionId: string, options?: Models.MicrosoftAzureTestUrlOptions) {
     if (credentials == undefined) {
       throw new Error('\'credentials\' cannot be null.');
     }

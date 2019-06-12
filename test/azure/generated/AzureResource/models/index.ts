@@ -7,7 +7,7 @@
  */
 
 import { BaseResource, CloudError, AzureServiceClientOptions } from "@azure/ms-rest-azure-js";
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 export { BaseResource, CloudError };
 
@@ -66,7 +66,7 @@ export interface ResourceCollection {
 /**
  * Optional Parameters.
  */
-export interface AutoRestResourceFlatteningTestServicePutArrayOptionalParams extends msRest.RequestOptionsBase {
+export interface AutoRestResourceFlatteningTestServicePutArrayOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * External Resource as an Array to put
    */
@@ -76,7 +76,7 @@ export interface AutoRestResourceFlatteningTestServicePutArrayOptionalParams ext
 /**
  * Optional Parameters.
  */
-export interface AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams extends msRest.RequestOptionsBase {
+export interface AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * External Resource as a Dictionary to put
    */
@@ -86,7 +86,7 @@ export interface AutoRestResourceFlatteningTestServicePutDictionaryOptionalParam
 /**
  * Optional Parameters.
  */
-export interface AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams extends msRest.RequestOptionsBase {
+export interface AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * External Resource as a ResourceCollection to put
    */
@@ -107,7 +107,7 @@ export type GetArrayResponse = Array<FlattenedProduct> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -132,7 +132,7 @@ export type GetDictionaryResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -152,7 +152,7 @@ export type GetResourceCollectionResponse = ResourceCollection & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */

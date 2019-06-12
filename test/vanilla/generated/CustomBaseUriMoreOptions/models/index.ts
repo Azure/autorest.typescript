@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ServiceClientOptions } from "@azure/ms-rest-js";
-import * as msRest from "@azure/ms-rest-js";
+import { ServiceClientOptions } from "@azure/core-http";
+import * as coreHttp from "@azure/core-http";
 
 /**
  * An interface representing ErrorModel.
@@ -31,7 +31,7 @@ export interface AutoRestParameterizedCustomHostTestClientOptions extends Servic
 /**
  * Optional Parameters.
  */
-export interface PathsGetEmptyOptionalParams extends msRest.RequestOptionsBase {
+export interface PathsGetEmptyOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * The key version. Default value 'v1'. Default value: 'v1'.
    */

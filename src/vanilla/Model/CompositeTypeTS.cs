@@ -320,7 +320,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual void ConstructModelMapper(TSBuilder builder)
         {
-            builder.Text($"export const {Name}: msRest.CompositeMapper = ");
+            builder.Text($"export const {Name}: coreHttp.CompositeMapper = ");
             bool isHeaders = CodeModel.HeaderTypes.Contains(this) == true;
             bool isXML = !isHeaders && CodeModel.ShouldGenerateXmlSerialization == true;
             ClientModelExtensions.ConstructMapper(builder, this, SerializedName, null, isPageable: false, expandComposite: true, isXML: isXML, isCaseSensitive: !isHeaders, xmlName: isXML ? XmlName : null);
@@ -419,7 +419,7 @@ namespace AutoRest.TypeScript.Model
                 baseTypeName = BaseModelType.Name;
                 if (baseTypeName == "RequestOptionsBase")
                 {
-                    baseTypeName = $"msRest.{baseTypeName}";
+                    baseTypeName = $"coreHttp.{baseTypeName}";
                 }
             }
             builder.ExportInterface(Name, baseTypeName, tsInterface =>

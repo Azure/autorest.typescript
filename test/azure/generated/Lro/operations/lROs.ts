@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as msRestAzure from "@azure/ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/lROsMappers";
@@ -226,7 +226,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse>
    */
-  deleteProvisioning202Accepted200Succeeded(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse> {
+  deleteProvisioning202Accepted200Succeeded(options?: coreHttp.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse> {
     return this.beginDeleteProvisioning202Accepted200Succeeded(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse>;
   }
@@ -238,7 +238,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response>
    */
-  deleteProvisioning202DeletingFailed200(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response> {
+  deleteProvisioning202DeletingFailed200(options?: coreHttp.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response> {
     return this.beginDeleteProvisioning202DeletingFailed200(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response>;
   }
@@ -250,7 +250,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response>
    */
-  deleteProvisioning202Deletingcanceled200(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response> {
+  deleteProvisioning202Deletingcanceled200(options?: coreHttp.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response> {
     return this.beginDeleteProvisioning202Deletingcanceled200(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response>;
   }
@@ -258,9 +258,9 @@ export class LROs {
   /**
    * Long running delete succeeds and returns right away
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  delete204Succeeded(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
+  delete204Succeeded(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse> {
     return this.beginDelete204Succeeded(options)
       .then(lroPoller => lroPoller.pollUntilFinished());
   }
@@ -271,7 +271,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<Models.LROsDelete202Retry200Response>
    */
-  delete202Retry200(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202Retry200Response> {
+  delete202Retry200(options?: coreHttp.RequestOptionsBase): Promise<Models.LROsDelete202Retry200Response> {
     return this.beginDelete202Retry200(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDelete202Retry200Response>;
   }
@@ -282,7 +282,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<Models.LROsDelete202NoRetry204Response>
    */
-  delete202NoRetry204(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202NoRetry204Response> {
+  delete202NoRetry204(options?: coreHttp.RequestOptionsBase): Promise<Models.LROsDelete202NoRetry204Response> {
     return this.beginDelete202NoRetry204(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDelete202NoRetry204Response>;
   }
@@ -293,7 +293,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<Models.LROsDeleteNoHeaderInRetryResponse>
    */
-  deleteNoHeaderInRetry(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteNoHeaderInRetryResponse> {
+  deleteNoHeaderInRetry(options?: coreHttp.RequestOptionsBase): Promise<Models.LROsDeleteNoHeaderInRetryResponse> {
     return this.beginDeleteNoHeaderInRetry(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteNoHeaderInRetryResponse>;
   }
@@ -304,7 +304,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse>
    */
-  deleteAsyncNoHeaderInRetry(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse> {
+  deleteAsyncNoHeaderInRetry(options?: coreHttp.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse> {
     return this.beginDeleteAsyncNoHeaderInRetry(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse>;
   }
@@ -315,7 +315,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<Models.LROsDeleteAsyncRetrySucceededResponse>
    */
-  deleteAsyncRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrySucceededResponse> {
+  deleteAsyncRetrySucceeded(options?: coreHttp.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrySucceededResponse> {
     return this.beginDeleteAsyncRetrySucceeded(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteAsyncRetrySucceededResponse>;
   }
@@ -326,7 +326,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse>
    */
-  deleteAsyncNoRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse> {
+  deleteAsyncNoRetrySucceeded(options?: coreHttp.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse> {
     return this.beginDeleteAsyncNoRetrySucceeded(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse>;
   }
@@ -337,7 +337,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<Models.LROsDeleteAsyncRetryFailedResponse>
    */
-  deleteAsyncRetryFailed(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetryFailedResponse> {
+  deleteAsyncRetryFailed(options?: coreHttp.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetryFailedResponse> {
     return this.beginDeleteAsyncRetryFailed(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteAsyncRetryFailedResponse>;
   }
@@ -348,7 +348,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<Models.LROsDeleteAsyncRetrycanceledResponse>
    */
-  deleteAsyncRetrycanceled(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrycanceledResponse> {
+  deleteAsyncRetrycanceled(options?: coreHttp.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrycanceledResponse> {
     return this.beginDeleteAsyncRetrycanceled(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsDeleteAsyncRetrycanceledResponse>;
   }
@@ -359,7 +359,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<Models.LROsPost200WithPayloadResponse>
    */
-  post200WithPayload(options?: msRest.RequestOptionsBase): Promise<Models.LROsPost200WithPayloadResponse> {
+  post200WithPayload(options?: coreHttp.RequestOptionsBase): Promise<Models.LROsPost200WithPayloadResponse> {
     return this.beginPost200WithPayload(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPost200WithPayloadResponse>;
   }
@@ -393,7 +393,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<Models.LROsPostDoubleHeadersFinalLocationGetResponse>
    */
-  postDoubleHeadersFinalLocationGet(options?: msRest.RequestOptionsBase): Promise<Models.LROsPostDoubleHeadersFinalLocationGetResponse> {
+  postDoubleHeadersFinalLocationGet(options?: coreHttp.RequestOptionsBase): Promise<Models.LROsPostDoubleHeadersFinalLocationGetResponse> {
     return this.beginPostDoubleHeadersFinalLocationGet(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPostDoubleHeadersFinalLocationGetResponse>;
   }
@@ -405,7 +405,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetResponse>
    */
-  postDoubleHeadersFinalAzureHeaderGet(options?: msRest.RequestOptionsBase): Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetResponse> {
+  postDoubleHeadersFinalAzureHeaderGet(options?: coreHttp.RequestOptionsBase): Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetResponse> {
     return this.beginPostDoubleHeadersFinalAzureHeaderGet(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetResponse>;
   }
@@ -417,7 +417,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse>
    */
-  postDoubleHeadersFinalAzureHeaderGetDefault(options?: msRest.RequestOptionsBase): Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse> {
+  postDoubleHeadersFinalAzureHeaderGetDefault(options?: coreHttp.RequestOptionsBase): Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse> {
     return this.beginPostDoubleHeadersFinalAzureHeaderGetDefault(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse>;
   }
@@ -737,7 +737,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginDeleteProvisioning202Accepted200Succeeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteProvisioning202Accepted200Succeeded(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -753,7 +753,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginDeleteProvisioning202DeletingFailed200(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteProvisioning202DeletingFailed200(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -769,7 +769,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginDeleteProvisioning202Deletingcanceled200(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteProvisioning202Deletingcanceled200(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -783,7 +783,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginDelete204Succeeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDelete204Succeeded(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -798,7 +798,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginDelete202Retry200(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDelete202Retry200(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -813,7 +813,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginDelete202NoRetry204(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDelete202NoRetry204(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -828,7 +828,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginDeleteNoHeaderInRetry(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteNoHeaderInRetry(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -843,7 +843,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginDeleteAsyncNoHeaderInRetry(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteAsyncNoHeaderInRetry(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -858,7 +858,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginDeleteAsyncRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteAsyncRetrySucceeded(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -873,7 +873,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginDeleteAsyncNoRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteAsyncNoRetrySucceeded(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -888,7 +888,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginDeleteAsyncRetryFailed(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteAsyncRetryFailed(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -903,7 +903,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginDeleteAsyncRetrycanceled(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteAsyncRetrycanceled(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -918,7 +918,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginPost200WithPayload(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginPost200WithPayload(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -964,7 +964,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginPostDoubleHeadersFinalLocationGet(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginPostDoubleHeadersFinalLocationGet(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -980,7 +980,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginPostDoubleHeadersFinalAzureHeaderGet(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginPostDoubleHeadersFinalAzureHeaderGet(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -996,7 +996,7 @@ export class LROs {
    * @param [options] The optional parameters
    * @returns Promise<msRestAzure.LROPoller>
    */
-  beginPostDoubleHeadersFinalAzureHeaderGetDefault(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginPostDoubleHeadersFinalAzureHeaderGetDefault(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -1071,8 +1071,8 @@ export class LROs {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const beginPut200SucceededOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const beginPut200SucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/200/succeeded",
   headerParameters: [
@@ -1097,7 +1097,7 @@ const beginPut200SucceededOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPut200SucceededNoStateOperationSpec: msRest.OperationSpec = {
+const beginPut200SucceededNoStateOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/200/succeeded/nostate",
   headerParameters: [
@@ -1121,7 +1121,7 @@ const beginPut200SucceededNoStateOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPut202Retry200OperationSpec: msRest.OperationSpec = {
+const beginPut202Retry200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/202/retry/200",
   headerParameters: [
@@ -1145,7 +1145,7 @@ const beginPut202Retry200OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
+const beginPut201CreatingSucceeded200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/201/creating/succeeded/200",
   headerParameters: [
@@ -1172,7 +1172,7 @@ const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPut200UpdatingSucceeded204OperationSpec: msRest.OperationSpec = {
+const beginPut200UpdatingSucceeded204OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/200/updating/succeeded/200",
   headerParameters: [
@@ -1196,7 +1196,7 @@ const beginPut200UpdatingSucceeded204OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPut201CreatingFailed200OperationSpec: msRest.OperationSpec = {
+const beginPut201CreatingFailed200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/201/created/failed/200",
   headerParameters: [
@@ -1223,7 +1223,7 @@ const beginPut201CreatingFailed200OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPut200Acceptedcanceled200OperationSpec: msRest.OperationSpec = {
+const beginPut200Acceptedcanceled200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/200/accepted/canceled/200",
   headerParameters: [
@@ -1247,7 +1247,7 @@ const beginPut200Acceptedcanceled200OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPutNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
+const beginPutNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/put/noheader/202/200",
   headerParameters: [
@@ -1272,7 +1272,7 @@ const beginPutNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPutAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
+const beginPutAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putasync/retry/succeeded",
   headerParameters: [
@@ -1297,7 +1297,7 @@ const beginPutAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPutAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
+const beginPutAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putasync/noretry/succeeded",
   headerParameters: [
@@ -1322,7 +1322,7 @@ const beginPutAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPutAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
+const beginPutAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putasync/retry/failed",
   headerParameters: [
@@ -1347,7 +1347,7 @@ const beginPutAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPutAsyncNoRetrycanceledOperationSpec: msRest.OperationSpec = {
+const beginPutAsyncNoRetrycanceledOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putasync/noretry/canceled",
   headerParameters: [
@@ -1372,7 +1372,7 @@ const beginPutAsyncNoRetrycanceledOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPutAsyncNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
+const beginPutAsyncNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putasync/noheader/201/200",
   headerParameters: [
@@ -1397,7 +1397,7 @@ const beginPutAsyncNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPutNonResourceOperationSpec: msRest.OperationSpec = {
+const beginPutNonResourceOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putnonresource/202/200",
   headerParameters: [
@@ -1421,7 +1421,7 @@ const beginPutNonResourceOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPutAsyncNonResourceOperationSpec: msRest.OperationSpec = {
+const beginPutAsyncNonResourceOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putnonresourceasync/202/200",
   headerParameters: [
@@ -1445,7 +1445,7 @@ const beginPutAsyncNonResourceOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPutSubResourceOperationSpec: msRest.OperationSpec = {
+const beginPutSubResourceOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putsubresource/202/200",
   headerParameters: [
@@ -1471,7 +1471,7 @@ const beginPutSubResourceOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPutAsyncSubResourceOperationSpec: msRest.OperationSpec = {
+const beginPutAsyncSubResourceOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/putsubresourceasync/202/200",
   headerParameters: [
@@ -1497,7 +1497,7 @@ const beginPutAsyncSubResourceOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginDeleteProvisioning202Accepted200SucceededOperationSpec: msRest.OperationSpec = {
+const beginDeleteProvisioning202Accepted200SucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/delete/provisioning/202/accepted/200/succeeded",
   headerParameters: [
@@ -1519,7 +1519,7 @@ const beginDeleteProvisioning202Accepted200SucceededOperationSpec: msRest.Operat
   serializer
 };
 
-const beginDeleteProvisioning202DeletingFailed200OperationSpec: msRest.OperationSpec = {
+const beginDeleteProvisioning202DeletingFailed200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/delete/provisioning/202/deleting/200/failed",
   headerParameters: [
@@ -1541,7 +1541,7 @@ const beginDeleteProvisioning202DeletingFailed200OperationSpec: msRest.Operation
   serializer
 };
 
-const beginDeleteProvisioning202Deletingcanceled200OperationSpec: msRest.OperationSpec = {
+const beginDeleteProvisioning202Deletingcanceled200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/delete/provisioning/202/deleting/200/canceled",
   headerParameters: [
@@ -1563,7 +1563,7 @@ const beginDeleteProvisioning202Deletingcanceled200OperationSpec: msRest.Operati
   serializer
 };
 
-const beginDelete204SucceededOperationSpec: msRest.OperationSpec = {
+const beginDelete204SucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/delete/204/succeeded",
   headerParameters: [
@@ -1578,7 +1578,7 @@ const beginDelete204SucceededOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginDelete202Retry200OperationSpec: msRest.OperationSpec = {
+const beginDelete202Retry200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/delete/202/retry/200",
   headerParameters: [
@@ -1599,7 +1599,7 @@ const beginDelete202Retry200OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginDelete202NoRetry204OperationSpec: msRest.OperationSpec = {
+const beginDelete202NoRetry204OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/delete/202/noretry/204",
   headerParameters: [
@@ -1620,7 +1620,7 @@ const beginDelete202NoRetry204OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginDeleteNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
+const beginDeleteNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/delete/noheader",
   headerParameters: [
@@ -1640,7 +1640,7 @@ const beginDeleteNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginDeleteAsyncNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
+const beginDeleteAsyncNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/deleteasync/noheader/202/204",
   headerParameters: [
@@ -1660,7 +1660,7 @@ const beginDeleteAsyncNoHeaderInRetryOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginDeleteAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
+const beginDeleteAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/deleteasync/retry/succeeded",
   headerParameters: [
@@ -1677,7 +1677,7 @@ const beginDeleteAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginDeleteAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
+const beginDeleteAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/deleteasync/noretry/succeeded",
   headerParameters: [
@@ -1694,7 +1694,7 @@ const beginDeleteAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginDeleteAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
+const beginDeleteAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/deleteasync/retry/failed",
   headerParameters: [
@@ -1711,7 +1711,7 @@ const beginDeleteAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginDeleteAsyncRetrycanceledOperationSpec: msRest.OperationSpec = {
+const beginDeleteAsyncRetrycanceledOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/deleteasync/retry/canceled",
   headerParameters: [
@@ -1728,7 +1728,7 @@ const beginDeleteAsyncRetrycanceledOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPost200WithPayloadOperationSpec: msRest.OperationSpec = {
+const beginPost200WithPayloadOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "lro/post/payload/200",
   headerParameters: [
@@ -1748,7 +1748,7 @@ const beginPost200WithPayloadOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
+const beginPost202Retry200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "lro/post/202/retry/200",
   headerParameters: [
@@ -1772,7 +1772,7 @@ const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPost202NoRetry204OperationSpec: msRest.OperationSpec = {
+const beginPost202NoRetry204OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "lro/post/202/noretry/204",
   headerParameters: [
@@ -1797,7 +1797,7 @@ const beginPost202NoRetry204OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPostDoubleHeadersFinalLocationGetOperationSpec: msRest.OperationSpec = {
+const beginPostDoubleHeadersFinalLocationGetOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "lro/LROPostDoubleHeadersFinalLocationGet",
   headerParameters: [
@@ -1814,7 +1814,7 @@ const beginPostDoubleHeadersFinalLocationGetOperationSpec: msRest.OperationSpec 
   serializer
 };
 
-const beginPostDoubleHeadersFinalAzureHeaderGetOperationSpec: msRest.OperationSpec = {
+const beginPostDoubleHeadersFinalAzureHeaderGetOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "lro/LROPostDoubleHeadersFinalAzureHeaderGet",
   headerParameters: [
@@ -1831,7 +1831,7 @@ const beginPostDoubleHeadersFinalAzureHeaderGetOperationSpec: msRest.OperationSp
   serializer
 };
 
-const beginPostDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: msRest.OperationSpec = {
+const beginPostDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault",
   headerParameters: [
@@ -1848,7 +1848,7 @@ const beginPostDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: msRest.Oper
   serializer
 };
 
-const beginPostAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
+const beginPostAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "lro/postasync/retry/succeeded",
   headerParameters: [
@@ -1876,7 +1876,7 @@ const beginPostAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPostAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
+const beginPostAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "lro/postasync/noretry/succeeded",
   headerParameters: [
@@ -1904,7 +1904,7 @@ const beginPostAsyncNoRetrySucceededOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPostAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
+const beginPostAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "lro/postasync/retry/failed",
   headerParameters: [
@@ -1928,7 +1928,7 @@ const beginPostAsyncRetryFailedOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPostAsyncRetrycanceledOperationSpec: msRest.OperationSpec = {
+const beginPostAsyncRetrycanceledOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "lro/postasync/retry/canceled",
   headerParameters: [

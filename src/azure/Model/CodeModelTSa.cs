@@ -77,7 +77,7 @@ namespace AutoRest.TypeScript.Azure.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+            builder.ImportAllAs("coreHttp", "@azure/core-http");
 
             bool usesAzureOptionsType = OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions";
             if (usesAzureOptionsType || MethodTemplateModels.Any((MethodTS method) => method.IsLongRunningOperation))
@@ -165,7 +165,7 @@ namespace AutoRest.TypeScript.Azure.Model
             builder.Line(ConstructRuntimeImportForModelIndex());
             if (ContainsDurationPropertyInModels() || IsAnyModelInheritingFromRequestOptionsBase() || MethodsWithCustomResponseType.Any())
             {
-                builder.ImportAllAs("msRest", "@azure/ms-rest-js");
+                builder.ImportAllAs("coreHttp", "@azure/core-http");
             }
             builder.Line();
             builder.Export("BaseResource", "CloudError");

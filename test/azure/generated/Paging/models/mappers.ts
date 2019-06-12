@@ -7,12 +7,12 @@
  */
 
 import { CloudErrorMapper, BaseResourceMapper } from "@azure/ms-rest-azure-js";
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
-export const ProductProperties: msRest.CompositeMapper = {
+export const ProductProperties: coreHttp.CompositeMapper = {
   serializedName: "Product_properties",
   type: {
     name: "Composite",
@@ -34,7 +34,7 @@ export const ProductProperties: msRest.CompositeMapper = {
   }
 };
 
-export const Product: msRest.CompositeMapper = {
+export const Product: coreHttp.CompositeMapper = {
   serializedName: "Product",
   type: {
     name: "Composite",
@@ -51,7 +51,7 @@ export const Product: msRest.CompositeMapper = {
   }
 };
 
-export const OperationResult: msRest.CompositeMapper = {
+export const OperationResult: coreHttp.CompositeMapper = {
   serializedName: "OperationResult",
   type: {
     name: "Composite",
@@ -67,7 +67,7 @@ export const OperationResult: msRest.CompositeMapper = {
   }
 };
 
-export const PagingGetMultiplePagesOptions: msRest.CompositeMapper = {
+export const PagingGetMultiplePagesOptions: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PagingGetMultiplePagesOptions",
@@ -87,7 +87,7 @@ export const PagingGetMultiplePagesOptions: msRest.CompositeMapper = {
   }
 };
 
-export const PagingGetOdataMultiplePagesOptions: msRest.CompositeMapper = {
+export const PagingGetOdataMultiplePagesOptions: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PagingGetOdataMultiplePagesOptions",
@@ -107,7 +107,7 @@ export const PagingGetOdataMultiplePagesOptions: msRest.CompositeMapper = {
   }
 };
 
-export const PagingGetMultiplePagesWithOffsetOptions: msRest.CompositeMapper = {
+export const PagingGetMultiplePagesWithOffsetOptions: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PagingGetMultiplePagesWithOffsetOptions",
@@ -133,7 +133,7 @@ export const PagingGetMultiplePagesWithOffsetOptions: msRest.CompositeMapper = {
   }
 };
 
-export const CustomParameterGroup: msRest.CompositeMapper = {
+export const CustomParameterGroup: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CustomParameterGroup",
@@ -154,7 +154,7 @@ export const CustomParameterGroup: msRest.CompositeMapper = {
   }
 };
 
-export const PagingGetMultiplePagesLROOptions: msRest.CompositeMapper = {
+export const PagingGetMultiplePagesLROOptions: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PagingGetMultiplePagesLROOptions",
@@ -174,7 +174,7 @@ export const PagingGetMultiplePagesLROOptions: msRest.CompositeMapper = {
   }
 };
 
-export const PagingGetMultiplePagesWithOffsetNextOptions: msRest.CompositeMapper = {
+export const PagingGetMultiplePagesWithOffsetNextOptions: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PagingGetMultiplePagesWithOffsetNextOptions",
@@ -194,7 +194,7 @@ export const PagingGetMultiplePagesWithOffsetNextOptions: msRest.CompositeMapper
   }
 };
 
-export const ProductResult: msRest.CompositeMapper = {
+export const ProductResult: coreHttp.CompositeMapper = {
   serializedName: "ProductResult",
   type: {
     name: "Composite",
@@ -222,7 +222,7 @@ export const ProductResult: msRest.CompositeMapper = {
   }
 };
 
-export const OdataProductResult: msRest.CompositeMapper = {
+export const OdataProductResult: coreHttp.CompositeMapper = {
   serializedName: "OdataProductResult",
   type: {
     name: "Composite",

@@ -8,13 +8,13 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "./models";
 
 const packageName = "";
 const packageVersion = "";
 
-export class AutoRestUrlMutliCollectionFormatTestServiceContext extends msRest.ServiceClient {
+export class AutoRestUrlMutliCollectionFormatTestServiceContext extends coreHttp.ServiceClient {
 
   /**
    * Initializes a new instance of the AutoRestUrlMutliCollectionFormatTestServiceContext class.
@@ -26,7 +26,7 @@ export class AutoRestUrlMutliCollectionFormatTestServiceContext extends msRest.S
     }
 
     if (!options.userAgent) {
-      const defaultUserAgent = msRest.getDefaultUserAgentValue();
+      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
 

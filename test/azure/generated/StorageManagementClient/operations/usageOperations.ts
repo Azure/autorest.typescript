@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/usageOperationsMappers";
 import * as Parameters from "../models/parameters";
@@ -31,17 +31,17 @@ export class UsageOperations {
    * @param [options] The optional parameters
    * @returns Promise<Models.UsageListResponse>
    */
-  list(options?: msRest.RequestOptionsBase): Promise<Models.UsageListResponse>;
+  list(options?: coreHttp.RequestOptionsBase): Promise<Models.UsageListResponse>;
   /**
    * @param callback The callback
    */
-  list(callback: msRest.ServiceCallback<Models.UsageListResult>): void;
+  list(callback: coreHttp.ServiceCallback<Models.UsageListResult>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  list(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.UsageListResult>): void;
-  list(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.UsageListResult>, callback?: msRest.ServiceCallback<Models.UsageListResult>): Promise<Models.UsageListResponse> {
+  list(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.UsageListResult>): void;
+  list(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.UsageListResult>, callback?: coreHttp.ServiceCallback<Models.UsageListResult>): Promise<Models.UsageListResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -52,8 +52,8 @@ export class UsageOperations {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const listOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const listOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages",
   urlParameters: [

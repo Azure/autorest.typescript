@@ -3,7 +3,7 @@
 
 'use strict';
 
-import * as msRest from '@azure/ms-rest-js';
+import * as coreHttp from '@azure/core-http';
 import { assertEx } from "@ts-common/azure-js-dev-tools";
 import { assert } from 'chai';
 import { AutoRestParameterGroupingTestService } from './generated/AzureParameterGrouping/autoRestParameterGroupingTestService';

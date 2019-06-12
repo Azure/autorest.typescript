@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ServiceClientOptions } from "@azure/ms-rest-js";
+import { ServiceClientOptions } from "@azure/core-http";
 
 /**
  * An interface representing AvailabilitySetUpdateParameters.

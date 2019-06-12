@@ -6,7 +6,7 @@
 @Header(" * ")
  */
 @EmptyLine
-import * as msRest from "@@azure/ms-rest-js";
+import * as coreHttp from "@@azure/core-http";
 @{
 bool usesCustomOptionsType = Model.OptionalParameterTypeForClientConstructor != "ServiceClientOptions";
 if (usesCustomOptionsType)
@@ -19,7 +19,7 @@ if (usesCustomOptionsType)
 const packageName = "@Model.Settings.PackageName";
 const packageVersion = "@Model.Settings.PackageVersion";
 @EmptyLine
-export class @(Model.ContextName) extends msRest.ServiceClient {
+export class @(Model.ContextName) extends coreHttp.ServiceClient {
   @(Model.GenerateClassProperties(EmptyLine))
 @EmptyLine
   @(Model.GenerateConstructorComment(Model.ContextName))

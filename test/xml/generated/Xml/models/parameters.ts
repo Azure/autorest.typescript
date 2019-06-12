@@ -8,9 +8,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const comp0: msRest.OperationQueryParameter = {
+export const comp0: coreHttp.OperationQueryParameter = {
   parameterPath: "comp",
   mapper: {
     required: true,
@@ -22,7 +22,7 @@ export const comp0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const comp1: msRest.OperationQueryParameter = {
+export const comp1: coreHttp.OperationQueryParameter = {
   parameterPath: "comp",
   mapper: {
     required: true,
@@ -34,7 +34,7 @@ export const comp1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const comp2: msRest.OperationQueryParameter = {
+export const comp2: coreHttp.OperationQueryParameter = {
   parameterPath: "comp",
   mapper: {
     required: true,
@@ -46,7 +46,7 @@ export const comp2: msRest.OperationQueryParameter = {
     }
   }
 };
-export const restype0: msRest.OperationQueryParameter = {
+export const restype0: coreHttp.OperationQueryParameter = {
   parameterPath: "restype",
   mapper: {
     required: true,
@@ -58,7 +58,7 @@ export const restype0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const restype1: msRest.OperationQueryParameter = {
+export const restype1: coreHttp.OperationQueryParameter = {
   parameterPath: "restype",
   mapper: {
     required: true,

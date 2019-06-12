@@ -8,9 +8,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const arrayQuery: msRest.OperationQueryParameter = {
+export const arrayQuery: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "arrayQuery"
@@ -26,5 +26,5 @@ export const arrayQuery: msRest.OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: msRest.QueryCollectionFormat.Multi
+  collectionFormat: coreHttp.QueryCollectionFormat.Multi
 };

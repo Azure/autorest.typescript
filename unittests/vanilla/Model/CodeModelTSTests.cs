@@ -79,7 +79,7 @@ namespace AutoRest.TypeScript.Model
             AssertEx.EqualLines(
                 new[]
                 {
-                    "import * as msRest from \"@azure/ms-rest-js\";",
+                    "import * as coreHttp from \"@azure/core-http\";",
                     "import { Context } from \"./context\";"
                 },
                 codeModel.GenerateServiceClientImports());
@@ -92,7 +92,7 @@ namespace AutoRest.TypeScript.Model
             AssertEx.EqualLines(
                 new[]
                 {
-                    "import * as msRest from \"@azure/ms-rest-js\";",
+                    "import * as coreHttp from \"@azure/core-http\";",
                     "import * as Models from \"./models\";",
                     "import * as Mappers from \"./models/mappers\";",
                     "import { Context } from \"./context\";"

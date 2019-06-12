@@ -3,7 +3,7 @@
 
 'use strict';
 
-import * as msRest from '@azure/ms-rest-js';
+import * as coreHttp from '@azure/core-http';
 import * as assert from "assert";
 import { MicrosoftAzureTestUrl } from './generated/SubscriptionIdApiVersion/microsoftAzureTestUrl';
 import { MicrosoftAzureTestUrlOptions } from './generated/SubscriptionIdApiVersion/models';
