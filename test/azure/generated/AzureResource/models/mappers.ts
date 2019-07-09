@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { CloudErrorMapper, BaseResourceMapper } from "@azure/ms-rest-azure-js";
+import { CloudErrorMapper, BaseResourceMapper } from "@azure/core-arm";
 import * as coreHttp from "@azure/core-http";
 
 export const CloudError = CloudErrorMapper;

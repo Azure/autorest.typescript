@@ -9,7 +9,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as msRestAzure from "@azure/ms-rest-azure-js";
+import * as coreArm from "@azure/core-arm";
 import * as Models from "../models";
 import * as Mappers from "../models/lROsCustomHeaderMappers";
 import * as Parameters from "../models/parameters";
@@ -84,9 +84,9 @@ export class LROsCustomHeader {
    * that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPutAsyncRetrySucceeded(options?: Models.LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPutAsyncRetrySucceeded(options?: Models.LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -101,9 +101,9 @@ export class LROsCustomHeader {
    * that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns
    * a ‘200’ with ProvisioningState=’Succeeded’
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPut201CreatingSucceeded200(options?: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPut201CreatingSucceeded200(options?: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -117,9 +117,9 @@ export class LROsCustomHeader {
    * requests. Long running post request, service returns a 202 to the initial request, with
    * 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPost202Retry200(options?: Models.LROsCustomHeaderBeginPost202Retry200OptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPost202Retry200(options?: Models.LROsCustomHeaderBeginPost202Retry200OptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -134,9 +134,9 @@ export class LROsCustomHeader {
    * entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPostAsyncRetrySucceeded(options?: Models.LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPostAsyncRetrySucceeded(options?: Models.LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options

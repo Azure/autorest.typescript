@@ -9,7 +9,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as msRestAzure from "@azure/ms-rest-azure-js";
+import * as coreArm from "@azure/core-arm";
 import * as Models from "../models";
 import * as Mappers from "../models/pagingMappers";
 import * as Parameters from "../models/parameters";
@@ -390,9 +390,9 @@ export class Paging {
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginGetMultiplePagesLRO(options?: Models.PagingBeginGetMultiplePagesLROOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginGetMultiplePagesLRO(options?: Models.PagingBeginGetMultiplePagesLROOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -670,9 +670,9 @@ export class Paging {
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param nextPageLink The NextLink from the previous successful call to List operation.
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginGetMultiplePagesLRONext(nextPageLink: string, options?: Models.PagingBeginGetMultiplePagesLRONextOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginGetMultiplePagesLRONext(nextPageLink: string, options?: Models.PagingBeginGetMultiplePagesLRONextOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         nextPageLink,

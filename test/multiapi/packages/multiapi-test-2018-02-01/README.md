@@ -29,7 +29,7 @@ npm install @azure/ms-rest-nodeauth
 
 ```typescript
 import * as coreHttp from "@azure/core-http";
-import * as msRestAzure from "@azure/ms-rest-azure-js";
+import * as coreArm from "@azure/core-arm";
 import * as msRestNodeAuth from "@azure/ms-rest-nodeauth";
 import { AutoRestParameterizedCustomHostTestClient, AutoRestParameterizedCustomHostTestModels, AutoRestParameterizedCustomHostTestMappers } from "@azure/multiapi-test-2018-02-01";
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
@@ -68,7 +68,7 @@ See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to
   <head>
     <title>@azure/multiapi-test-2018-02-01 sample</title>
     <script src="node_modules/@azure/ms-rest-js/dist/coreHttp.browser.js"></script>
-    <script src="node_modules/@azure/ms-rest-azure-js/dist/msRestAzure.js"></script>
+    <script src="node_modules/@azure/core-arm/dist/coreArm.js"></script>
     <script src="node_modules/@azure/ms-rest-browserauth/dist/msAuth.js"></script>
     <script src="node_modules/@azure/multiapi-test-2018-02-01/dist/multiapi-test-2018-02-01.js"></script>
     <script type="text/javascript">

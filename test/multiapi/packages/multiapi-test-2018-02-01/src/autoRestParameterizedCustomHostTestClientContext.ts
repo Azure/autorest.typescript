@@ -6,12 +6,12 @@
 
 import * as Models from "./models";
 import * as coreHttp from "@azure/core-http";
-import * as msRestAzure from "@azure/ms-rest-azure-js";
+import * as coreArm from "@azure/core-arm";
 
 const packageName = "@azure/multiapi-test";
 const packageVersion = "1.0.0";
 
-export class AutoRestParameterizedCustomHostTestClientContext extends msRestAzure.AzureServiceClient {
+export class AutoRestParameterizedCustomHostTestClientContext extends coreArm.AzureServiceClient {
   credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential;
   subscriptionId: string;
   dnsSuffix?: string;
@@ -34,7 +34,7 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRestAzur
       options = {};
     }
     if(!options.userAgent) {
-      const defaultUserAgent = msRestAzure.getDefaultUserAgentValue();
+      const defaultUserAgent = coreArm.getDefaultUserAgentValue();
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
 

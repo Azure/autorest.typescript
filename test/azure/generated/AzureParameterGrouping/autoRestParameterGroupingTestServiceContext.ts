@@ -10,12 +10,12 @@
 
 import * as Models from "./models";
 import * as coreHttp from "@azure/core-http";
-import * as msRestAzure from "@azure/ms-rest-azure-js";
+import * as coreArm from "@azure/core-arm";
 
 const packageName = "";
 const packageVersion = "";
 
-export class AutoRestParameterGroupingTestServiceContext extends msRestAzure.AzureServiceClient {
+export class AutoRestParameterGroupingTestServiceContext extends coreArm.AzureServiceClient {
   credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential;
 
   /**
@@ -32,7 +32,7 @@ export class AutoRestParameterGroupingTestServiceContext extends msRestAzure.Azu
       options = {};
     }
     if(!options.userAgent) {
-      const defaultUserAgent = msRestAzure.getDefaultUserAgentValue();
+      const defaultUserAgent = coreArm.getDefaultUserAgentValue();
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
 

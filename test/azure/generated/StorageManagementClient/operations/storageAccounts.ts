@@ -9,7 +9,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as msRestAzure from "@azure/ms-rest-azure-js";
+import * as coreArm from "@azure/core-arm";
 import * as Models from "../models";
 import * as Mappers from "../models/storageAccountsMappers";
 import * as Parameters from "../models/parameters";
@@ -343,9 +343,9 @@ export class StorageAccounts {
    * letters only.
    * @param parameters The parameters to provide for the created account.
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         resourceGroupName,

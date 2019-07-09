@@ -9,7 +9,7 @@ const config = {
   input: "./esm/autoRestLongRunningOperationTestService.js",
   external: [
     "@azure/core-http",
-    "@azure/ms-rest-azure-js"
+    "@azure/core-arm"
   ],
   output: {
     file: "./dist/bundle.js",
@@ -18,7 +18,7 @@ const config = {
     sourcemap: true,
     globals: {
       "@azure/core-http": "coreHttp",
-      "@azure/ms-rest-azure-js": "msRestAzure"
+      "@azure/core-arm": "coreArm"
     },
     banner: `/*
  * Copyright (c) Microsoft Corporation. All rights reserved.

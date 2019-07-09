@@ -9,7 +9,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as msRestAzure from "@azure/ms-rest-azure-js";
+import * as coreArm from "@azure/core-arm";
 import * as Models from "../models";
 import * as Mappers from "../models/lROsMappers";
 import * as Parameters from "../models/parameters";
@@ -474,9 +474,9 @@ export class LROs {
    * Long running put request, service returns a 200 to the initial request, with an entity that
    * contains ProvisioningState=’Succeeded’.
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPut200Succeeded(options?: Models.LROsBeginPut200SucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPut200Succeeded(options?: Models.LROsBeginPut200SucceededOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -489,9 +489,9 @@ export class LROs {
    * Long running put request, service returns a 200 to the initial request, with an entity that does
    * not contain ProvisioningState=’Succeeded’.
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPut200SucceededNoState(options?: Models.LROsBeginPut200SucceededNoStateOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPut200SucceededNoState(options?: Models.LROsBeginPut200SucceededNoStateOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -505,9 +505,9 @@ export class LROs {
    * that points to a polling URL that returns a 200 and an entity that doesn't contains
    * ProvisioningState
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPut202Retry200(options?: Models.LROsBeginPut202Retry200OptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPut202Retry200(options?: Models.LROsBeginPut202Retry200OptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -521,9 +521,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Succeeded’
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPut201CreatingSucceeded200(options?: Models.LROsBeginPut201CreatingSucceeded200OptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPut201CreatingSucceeded200(options?: Models.LROsBeginPut201CreatingSucceeded200OptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -537,9 +537,9 @@ export class LROs {
    * contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Succeeded’
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPut200UpdatingSucceeded204(options?: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPut200UpdatingSucceeded204(options?: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -553,9 +553,9 @@ export class LROs {
    * contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Failed’
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPut201CreatingFailed200(options?: Models.LROsBeginPut201CreatingFailed200OptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPut201CreatingFailed200(options?: Models.LROsBeginPut201CreatingFailed200OptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -569,9 +569,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Canceled’
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPut200Acceptedcanceled200(options?: Models.LROsBeginPut200Acceptedcanceled200OptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPut200Acceptedcanceled200(options?: Models.LROsBeginPut200Acceptedcanceled200OptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -584,9 +584,9 @@ export class LROs {
    * Long running put request, service returns a 202 to the initial request with location header.
    * Subsequent calls to operation status do not contain location header.
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPutNoHeaderInRetry(options?: Models.LROsBeginPutNoHeaderInRetryOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPutNoHeaderInRetry(options?: Models.LROsBeginPutNoHeaderInRetryOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -600,9 +600,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPutAsyncRetrySucceeded(options?: Models.LROsBeginPutAsyncRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPutAsyncRetrySucceeded(options?: Models.LROsBeginPutAsyncRetrySucceededOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -616,9 +616,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPutAsyncNoRetrySucceeded(options?: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPutAsyncNoRetrySucceeded(options?: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -632,9 +632,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPutAsyncRetryFailed(options?: Models.LROsBeginPutAsyncRetryFailedOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPutAsyncRetryFailed(options?: Models.LROsBeginPutAsyncRetryFailedOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -648,9 +648,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPutAsyncNoRetrycanceled(options?: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPutAsyncNoRetrycanceled(options?: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -663,9 +663,9 @@ export class LROs {
    * Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation
    * header. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPutAsyncNoHeaderInRetry(options?: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPutAsyncNoHeaderInRetry(options?: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -677,9 +677,9 @@ export class LROs {
   /**
    * Long running put request with non resource.
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPutNonResource(options?: Models.LROsBeginPutNonResourceOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPutNonResource(options?: Models.LROsBeginPutNonResourceOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -691,9 +691,9 @@ export class LROs {
   /**
    * Long running put request with non resource.
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPutAsyncNonResource(options?: Models.LROsBeginPutAsyncNonResourceOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPutAsyncNonResource(options?: Models.LROsBeginPutAsyncNonResourceOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -705,9 +705,9 @@ export class LROs {
   /**
    * Long running put request with sub resource.
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPutSubResource(options?: Models.LROsBeginPutSubResourceOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPutSubResource(options?: Models.LROsBeginPutSubResourceOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -719,9 +719,9 @@ export class LROs {
   /**
    * Long running put request with sub resource.
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPutAsyncSubResource(options?: Models.LROsBeginPutAsyncSubResourceOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPutAsyncSubResource(options?: Models.LROsBeginPutAsyncSubResourceOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -735,9 +735,9 @@ export class LROs {
    * contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Succeeded’
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginDeleteProvisioning202Accepted200Succeeded(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteProvisioning202Accepted200Succeeded(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -751,9 +751,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Failed’
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginDeleteProvisioning202DeletingFailed200(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteProvisioning202DeletingFailed200(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -767,9 +767,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
    * ‘200’ with ProvisioningState=’Canceled’
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginDeleteProvisioning202Deletingcanceled200(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteProvisioning202Deletingcanceled200(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -781,9 +781,9 @@ export class LROs {
   /**
    * Long running delete succeeds and returns right away
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginDelete204Succeeded(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDelete204Succeeded(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -796,9 +796,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Polls return this
    * value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginDelete202Retry200(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDelete202Retry200(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -811,9 +811,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Polls return this
    * value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginDelete202NoRetry204(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDelete202NoRetry204(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -826,9 +826,9 @@ export class LROs {
    * Long running delete request, service returns a location header in the initial request.
    * Subsequent calls to operation status do not contain location header.
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginDeleteNoHeaderInRetry(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteNoHeaderInRetry(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -841,9 +841,9 @@ export class LROs {
    * Long running delete request, service returns an Azure-AsyncOperation header in the initial
    * request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginDeleteAsyncNoHeaderInRetry(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteAsyncNoHeaderInRetry(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -856,9 +856,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginDeleteAsyncRetrySucceeded(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteAsyncRetrySucceeded(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -871,9 +871,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginDeleteAsyncNoRetrySucceeded(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteAsyncNoRetrySucceeded(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -886,9 +886,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginDeleteAsyncRetryFailed(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteAsyncRetryFailed(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -901,9 +901,9 @@ export class LROs {
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginDeleteAsyncRetrycanceled(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteAsyncRetrycanceled(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -916,9 +916,9 @@ export class LROs {
    * Long running post request, service returns a 202 to the initial request, with 'Location' header.
    * Poll returns a 200 with a response body after success.
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPost200WithPayload(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginPost200WithPayload(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -931,9 +931,9 @@ export class LROs {
    * Long running post request, service returns a 202 to the initial request, with 'Location' and
    * 'Retry-After' headers, Polls return a 200 with a response body after success
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPost202Retry200(options?: Models.LROsBeginPost202Retry200OptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPost202Retry200(options?: Models.LROsBeginPost202Retry200OptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -946,9 +946,9 @@ export class LROs {
    * Long running post request, service returns a 202 to the initial request, with 'Location' header,
    * 204 with noresponse body after success
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPost202NoRetry204(options?: Models.LROsBeginPost202NoRetry204OptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPost202NoRetry204(options?: Models.LROsBeginPost202NoRetry204OptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -962,9 +962,9 @@ export class LROs {
    * Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
    * object
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPostDoubleHeadersFinalLocationGet(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginPostDoubleHeadersFinalLocationGet(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -978,9 +978,9 @@ export class LROs {
    * Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final
    * object
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPostDoubleHeadersFinalAzureHeaderGet(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginPostDoubleHeadersFinalAzureHeaderGet(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -994,9 +994,9 @@ export class LROs {
    * Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final
    * object if you support initial Autorest behavior.
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPostDoubleHeadersFinalAzureHeaderGetDefault(options?: coreHttp.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginPostDoubleHeadersFinalAzureHeaderGetDefault(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -1010,9 +1010,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPostAsyncRetrySucceeded(options?: Models.LROsBeginPostAsyncRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPostAsyncRetrySucceeded(options?: Models.LROsBeginPostAsyncRetrySucceededOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -1026,9 +1026,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPostAsyncNoRetrySucceeded(options?: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPostAsyncNoRetrySucceeded(options?: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -1042,9 +1042,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPostAsyncRetryFailed(options?: Models.LROsBeginPostAsyncRetryFailedOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPostAsyncRetryFailed(options?: Models.LROsBeginPostAsyncRetryFailedOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -1058,9 +1058,9 @@ export class LROs {
    * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
    * header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPostAsyncRetrycanceled(options?: Models.LROsBeginPostAsyncRetrycanceledOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPostAsyncRetrycanceled(options?: Models.LROsBeginPostAsyncRetrycanceledOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
