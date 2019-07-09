@@ -81,7 +81,7 @@ namespace AutoRest.TypeScript.Model
             {
                 string compositeName = composite.Name;
                 // Some services define a property of CloudError named CloudErrorBody, but we don't
-                // have a mapper for that in @azure/ms-rest-azure-js. In @azure/ms-rest-azure-js we
+                // have a mapper for that in @azure/core-arm. In @azure/core-arm we
                 // only have a mapper for CloudError that contains all of the information that is
                 // contained by CloudErrorBody. Because of that, we can safely ignore CloudErrorBody.
                 if (!closure.Contains(compositeName) && compositeName != "CloudErrorBody")
@@ -172,7 +172,7 @@ namespace AutoRest.TypeScript.Model
             builder.ImportAllAs("coreHttp", "@azure/core-http");
             if (MethodTemplateModels.Any((MethodTS method) => method.IsLongRunningOperation))
             {
-                builder.ImportAllAs("msRestAzure", "@azure/ms-rest-azure-js");
+                builder.ImportAllAs("coreArm", "@azure/core-arm");
             }
 
             CodeModelTS codeModel = CodeModelTS;

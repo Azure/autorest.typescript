@@ -84,7 +84,7 @@ namespace AutoRest.TypeScript.Azure.Model
         {
             string methodName = Name.ToCamelCase();
             IEnumerable<TSParameter> parameters = GetRequiredParameters().Concat(new[] { GetOptionsParameter(false) });
-            const string returnType = "Promise<msRestAzure.LROPoller>";
+            const string returnType = "Promise<coreArm.LROPoller>";
 
             GenerateDocumentationComment(tsClass, returnType, parameters);
             tsClass.Method(Name.ToString(), returnType, parameters, methodBody =>

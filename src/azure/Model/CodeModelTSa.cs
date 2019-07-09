@@ -45,7 +45,7 @@ namespace AutoRest.TypeScript.Azure.Model
         public override CompositeType Add(CompositeType item)
         {
             // Removing all models that contain the extension "x-ms-external", as they will be
-            // generated in TypeScript client runtime for azure - "@azure/ms-rest-azure-js".
+            // generated in TypeScript client runtime for azure - "@azure/core-arm".
             if (item.Extensions.ContainsKey(AzureExtensions.PageableExtension) ||
                 item.Extensions.ContainsKey(AzureExtensions.ExternalExtension))
             {
@@ -64,12 +64,12 @@ namespace AutoRest.TypeScript.Azure.Model
             {
                 imports.Add("AzureServiceClientOptions");
             }
-            builder.Import(imports, "@azure/ms-rest-azure-js");
+            builder.Import(imports, "@azure/core-arm");
         }
 
         public override void PackageDependencies(JSONObject dependencies)
         {
-            dependencies.StringProperty("@azure/ms-rest-azure-js", "^1.3.2");
+            dependencies.StringProperty("@azure/core-arm", "^1.0.0-preview.1");
             base.PackageDependencies(dependencies);
         }
 
@@ -82,7 +82,7 @@ namespace AutoRest.TypeScript.Azure.Model
             bool usesAzureOptionsType = OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions";
             if (usesAzureOptionsType || MethodTemplateModels.Any((MethodTS method) => method.IsLongRunningOperation))
             {
-                builder.ImportAllAs("msRestAzure", "@azure/ms-rest-azure-js");
+                builder.ImportAllAs("coreArm", "@azure/core-arm");
             }
 
             if (CodeGeneratorTS.ShouldWriteModelsFiles(this))
@@ -121,7 +121,7 @@ namespace AutoRest.TypeScript.Azure.Model
 
             CompositeTypeTS[] orderedMapperTemplateModels = OrderedMapperTemplateModels.ToArray();
 
-            builder.Import(new[] { "CloudErrorMapper", "BaseResourceMapper" }, "@azure/ms-rest-azure-js");
+            builder.Import(new[] { "CloudErrorMapper", "BaseResourceMapper" }, "@azure/core-arm");
 
             ImportMsRestForMappers(builder, orderedMapperTemplateModels);
 
@@ -146,7 +146,7 @@ namespace AutoRest.TypeScript.Azure.Model
         protected override void GenerateNodeSampleImports(TSBuilder builder)
         {
             GenerateNodeSampleMsRestJsImport(builder);
-            builder.ImportAllAs("msRestAzure", "@azure/ms-rest-azure-js");
+            builder.ImportAllAs("coreArm", "@azure/core-arm");
             GenerateNodeSampleMsRestNodeAuthImport(builder);
             GenerateNodeSampleClientImport(builder);
         }

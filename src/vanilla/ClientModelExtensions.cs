@@ -146,10 +146,10 @@ namespace AutoRest.TypeScript
             }
             else if (composite != null)
             {
-                // ServiceClientCredentials starts with the "coreHttp." prefix, so strip coreHttp./msRestAzure. as we import those
+                // ServiceClientCredentials starts with the "coreHttp." prefix, so strip coreHttp./coreArm. as we import those
                 // types with no module prefix needed
                 var compositeName = composite.UnionTypeName;
-                if (compositeName.StartsWith("coreHttp.") || compositeName.StartsWith("msRestAzure."))
+                if (compositeName.StartsWith("coreHttp.") || compositeName.StartsWith("coreArm."))
                     tsType = compositeName.Substring(compositeName.IndexOf('.') + 1);
                 else if (inModelsModule || compositeName.Contains('.'))
                     tsType = compositeName;

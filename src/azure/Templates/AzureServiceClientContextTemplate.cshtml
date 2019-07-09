@@ -15,18 +15,18 @@ if (usesCustomOptionsType)
 }
 }
 import * as coreHttp from "@@azure/core-http";
-import * as msRestAzure from "@@azure/ms-rest-azure-js";
+import * as coreArm from "@@azure/core-arm";
 @EmptyLine
 const packageName = "@Model.Settings.PackageName";
 const packageVersion = "@Model.Settings.PackageVersion";
 @{var requiredParameters = Model.Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));}
 @{var optionalParameters = Model.Properties.Where(p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)) && !p.IsConstant && !p.Name.EqualsIgnoreCase("apiVersion"));}
 @EmptyLine
-export class @(Model.ContextName) extends msRestAzure.AzureServiceClient {
+export class @(Model.ContextName) extends coreArm.AzureServiceClient {
   @(Model.GenerateClassProperties(EmptyLine))
   @EmptyLine
   @(Model.GenerateConstructorComment(Model.Name))
-@{ var clientOptionType = Model.OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions" ? "msRestAzure.AzureServiceClientOptions" : Model.OptionalParameterTypeForClientConstructor;}
+@{ var clientOptionType = Model.OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions" ? "coreArm.AzureServiceClientOptions" : Model.OptionalParameterTypeForClientConstructor;}
   constructor(@(!string.IsNullOrEmpty(Model.RequiredConstructorParametersTS) ? Model.RequiredConstructorParametersTS + ", " : "")options?: @clientOptionType) {
 @foreach (var param in requiredParameters)
 {
@@ -40,7 +40,7 @@ export class @(Model.ContextName) extends msRestAzure.AzureServiceClient {
     }
 
     if(!options.userAgent) {
-      const defaultUserAgent = msRestAzure.getDefaultUserAgentValue();
+      const defaultUserAgent = coreArm.getDefaultUserAgentValue();
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
     @EmptyLine

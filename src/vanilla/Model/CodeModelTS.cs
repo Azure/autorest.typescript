@@ -582,7 +582,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual void PackageDependencies(JSONObject dependencies)
         {
-            dependencies.StringProperty("@azure/core-http", "^1.8.1");
+            dependencies.StringProperty("@azure/core-http", "^1.0.0-preview.1");
             dependencies.StringProperty("tslib", "^1.9.3");
             if (Settings.MultiapiLatest)
             {
@@ -1098,7 +1098,7 @@ namespace AutoRest.TypeScript.Model
                                 head.Script("node_modules/@azure/core-http/dist/coreHttp.browser.js");
                                 if (IsAzure)
                                 {
-                                    head.Script("node_modules/@azure/ms-rest-azure-js/dist/msRestAzure.js");
+                                    head.Script("node_modules/@azure/core-arm/dist/coreArm.js");
                                 }
                                 head.Script("node_modules/@azure/ms-rest-browserauth/dist/msAuth.js");
                                 head.Script($"node_modules/{PackageName}/dist/{BundleFilename}.js");
@@ -1143,7 +1143,7 @@ namespace AutoRest.TypeScript.Model
             {
                 string inputFilePath = $"./esm/{(Settings.MultiapiLatest ? "index" : Name.ToCamelCase())}.js";
                 config.QuotedStringProperty($"input", inputFilePath);
-                config.QuotedStringArrayProperty("external", new[] { "@azure/core-http", "@azure/ms-rest-azure-js" });
+                config.QuotedStringArrayProperty("external", new[] { "@azure/core-http", "@azure/core-arm" });
                 config.ObjectProperty("output", output =>
                 {
                     output.QuotedStringProperty("file", $"./dist/{BundleFilename}.js");
@@ -1153,7 +1153,7 @@ namespace AutoRest.TypeScript.Model
                     output.ObjectProperty("globals", globals =>
                     {
                         globals.QuotedStringProperty("@azure/core-http", "coreHttp");
-                        globals.QuotedStringProperty("@azure/ms-rest-azure-js", "msRestAzure");
+                        globals.QuotedStringProperty("@azure/core-arm", "coreArm");
                     });
 
                     JSBuilder banner = new JSBuilder();
