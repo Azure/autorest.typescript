@@ -1166,7 +1166,7 @@ namespace AutoRest.TypeScript.Model
                 });
                 config.ArrayProperty("plugins", plugins =>
                 {
-                    plugins.Text("nodeResolve({ mainFields: ['module'] })");
+                    plugins.Text("nodeResolve({ mainFields: ['module', 'main'] })");
                     plugins.Text("sourcemaps()");
                 });
             });
