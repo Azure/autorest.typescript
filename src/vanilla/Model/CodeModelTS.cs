@@ -409,9 +409,14 @@ namespace AutoRest.TypeScript.Model
         public virtual string GenerateConstructor(string superArgumentList, Action<TSBlock> guardChecks = null, Action<TSBlock> implementation = null)
         {
             TSBuilder builder = new TSBuilder();
-            var clientOptionType = OptionalParameterTypeForClientConstructor == GetServiceClientOptionsName()
-                ? "coreHttp." + GetServiceClientOptionsName()
-                : OptionalParameterTypeForClientConstructor;
+            var clientOptionType = OptionalParameterTypeForClientConstructor;
+            if (OptionalParameterTypeForClientConstructor == GetServiceClientOptionsName())
+            {
+                clientOptionType =
+                    OptionalParameterTypeForClientConstructor.StartsWith("Azure")
+                    ? "coreArm." + GetServiceClientOptionsName()
+                    : "coreHttp." + GetServiceClientOptionsName();
+            }
 
             string parameterList = (!string.IsNullOrEmpty(RequiredConstructorParametersTS) ? RequiredConstructorParametersTS + ", " : "") + "options?: " + clientOptionType;
 
