@@ -1136,7 +1136,6 @@ namespace AutoRest.TypeScript.Model
         {
             JSBuilder builder = new JSBuilder();
 
-            builder.ImportFrom("rollup", "rollup");
             builder.ImportFrom("nodeResolve", "rollup-plugin-node-resolve");
             builder.ImportFrom("sourcemaps", "rollup-plugin-sourcemaps");
             builder.Line();
@@ -1167,7 +1166,7 @@ namespace AutoRest.TypeScript.Model
                 });
                 config.ArrayProperty("plugins", plugins =>
                 {
-                    plugins.Text("nodeResolve({ module: true })");
+                    plugins.Text("nodeResolve({ mainFields: ['module'] })");
                     plugins.Text("sourcemaps()");
                 });
             });
@@ -1205,9 +1204,10 @@ namespace AutoRest.TypeScript.Model
                 packageJson.StringProperty("types", $"./esm/{moduleName}.d.ts");
                 packageJson.ObjectProperty("devDependencies", devDependencies =>
                 {
-                    devDependencies.StringProperty("typescript", "^3.1.1");
-                    devDependencies.StringProperty("rollup", "^0.66.2");
-                    devDependencies.StringProperty("rollup-plugin-node-resolve", "^3.4.0");
+                    devDependencies.StringProperty("typescript", "^3.2.2");
+                    devDependencies.StringProperty("rimraf", "^2.6.2");
+                    devDependencies.StringProperty("rollup", "^1.16.3");
+                    devDependencies.StringProperty("rollup-plugin-node-resolve", "^5.0.2");
                     devDependencies.StringProperty("rollup-plugin-sourcemaps", "^0.4.2");
                     devDependencies.StringProperty("uglify-js", "^3.4.9");
                     if (!String.IsNullOrEmpty(Settings.Test)) {
@@ -1254,19 +1254,22 @@ namespace AutoRest.TypeScript.Model
                 });
                 packageJson.ObjectProperty("scripts", scripts =>
                 {
-                    scripts.StringProperty("build", "tsc && rollup -c rollup.config.js && npm run minify");
+                    scripts.StringProperty("audit", "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit");
+                    scripts.StringProperty("build", "npm run build:tsc && npm run build:rollup && npm run minify");
+                    scripts.StringProperty("build:tsc", "tsc");
+                    scripts.StringProperty("build:rollup", "rollup -c rollup.config.js 2>&1");
+                    scripts.StringProperty("build:test", "npm run build");
                     scripts.StringProperty("minify", $"\"uglifyjs -c -m --comments --source-map \\\"content='./dist/{bundleFileName}.js.map'\\\" -o ./dist/{bundleFileName}.min.js ./dist/{bundleFileName}.js\"");
 
-                    string prepackCommand = "npm install && npm run build";
-                    if (HasTests) {
-                        prepackCommand += " && npm run test";
-                    }
-
-                    scripts.StringProperty("prepack", prepackCommand);
+                    scripts.StringProperty("lint", "echo skipped");
+                    scripts.StringProperty("pack", "npm pack 2>&1");
 
                     if (HasTests) {
                         scripts.StringProperty("test", TestCommand);
+                    } else {
+                        scripts.StringProperty("test", "echo skipped");
                     }
+                    scripts.StringProperty("unit-test", "echo skipped");
                 });
                 packageJson.BooleanProperty("sideEffects", false);
 
