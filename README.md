@@ -9,8 +9,8 @@ npm install -g autorest
 # Compatibility
 This AutoRest extension generates TypeScript code that is compatible with:
 ```
-"@azure/ms-rest-azure-js": "^1.3.2",
-"@azure/ms-rest-js": "^1.8.1"
+"@azure/core-arm": "^1.0.0-preview.1",
+"@azure/core-http": "^1.0.0-preview.1"
 ```
 
 # Usage
@@ -150,7 +150,7 @@ autorest --typescript \
 ```
 
 ## --custom-service-client-options
-A list of `ServiceClientOptions` settings to override in the generated client. By default keys are wrapped in quotes but values are not. Use single quotation marks (`'`) if you want your values to be injected as a string. See [ServiceClientOptions in @azure/ms-rest-js package](https://github.com/Azure/ms-rest-js/blob/master/lib/serviceClient.ts) for available options.
+A list of `ServiceClientOptions` settings to override in the generated client. By default keys are wrapped in quotes but values are not. Use single quotation marks (`'`) if you want your values to be injected as a string. See [ServiceClientOptions in @azure/core-http package](https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/core/core-http/lib/serviceClient.ts) for available options.
 ```bash
 autorest --typescript \
   --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> \
