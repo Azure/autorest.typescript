@@ -66,7 +66,7 @@ See https://github.com/Azure/ms-rest-browserauth to learn how to authenticate to
 <html lang="en">
   <head>
     <title> sample</title>
-    <script src="node_modules/@azure/ms-rest-js/dist/coreHttp.browser.js"></script>
+    <script src="node_modules/@azure/core-http/dist/coreHttp.browser.js"></script>
     <script src="node_modules/@azure/core-arm/dist/coreArm.js"></script>
     <script src="node_modules/@azure/ms-rest-browserauth/dist/msAuth.js"></script>
     <script src="node_modules//dist/bundle.js"></script>

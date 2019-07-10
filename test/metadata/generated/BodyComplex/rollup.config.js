@@ -1,4 +1,3 @@
-import rollup from "rollup";
 import nodeResolve from "rollup-plugin-node-resolve";
 import sourcemaps from "rollup-plugin-sourcemaps";
 
@@ -29,7 +28,7 @@ const config = {
  */`
   },
   plugins: [
-    nodeResolve({ module: true }),
+    nodeResolve({ mainFields: ['module'] }),
     sourcemaps()
   ]
 };
