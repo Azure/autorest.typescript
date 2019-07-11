@@ -20,10 +20,9 @@
   "module": "./esm/autoRestParameterizedCustomHostTestClient.js",
   "types": "./esm/autoRestParameterizedCustomHostTestClient.d.ts",
   "devDependencies": {
-    "typescript": "^3.2.2",
-    "rimraf": "^2.6.2",
-    "rollup": "^1.16.3",
-    "rollup-plugin-node-resolve": "^5.0.2",
+    "typescript": "^3.1.1",
+    "rollup": "^0.66.2",
+    "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "uglify-js": "^3.4.9"
   },
@@ -50,16 +49,9 @@
     "tsconfig.json"
   ],
   "scripts": {
-    "audit": "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
-    "build": "npm run build:tsc && npm run build:rollup && npm run minify",
-    "build:tsc": "tsc",
-    "build:rollup": "rollup -c rollup.config.js 2>&1",
-    "build:test": "npm run build",
+    "build": "tsc && rollup -c rollup.config.js && npm run minify",
     "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/multiapi-test-2018-02-01.js.map'\" -o ./dist/multiapi-test-2018-02-01.min.js ./dist/multiapi-test-2018-02-01.js",
-    "lint": "echo skipped",
-    "pack": "npm pack 2>&1",
-    "test": "echo skipped",
-    "unit-test": "echo skipped"
+    "prepack": "npm install && npm run build"
   },
   "sideEffects": false
 }
