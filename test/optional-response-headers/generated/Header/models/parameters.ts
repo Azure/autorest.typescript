@@ -8,9 +8,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const contentType: msRest.OperationParameter = {
+export const contentType: coreHttp.OperationParameter = {
   parameterPath: "contentType",
   mapper: {
     required: true,
@@ -20,7 +20,7 @@ export const contentType: msRest.OperationParameter = {
     }
   }
 };
-export const scenario: msRest.OperationParameter = {
+export const scenario: coreHttp.OperationParameter = {
   parameterPath: "scenario",
   mapper: {
     required: true,
@@ -30,7 +30,7 @@ export const scenario: msRest.OperationParameter = {
     }
   }
 };
-export const userAgent: msRest.OperationParameter = {
+export const userAgent: coreHttp.OperationParameter = {
   parameterPath: "userAgent",
   mapper: {
     required: true,
@@ -40,7 +40,7 @@ export const userAgent: msRest.OperationParameter = {
     }
   }
 };
-export const value0: msRest.OperationParameter = {
+export const value0: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
     required: true,
@@ -50,7 +50,7 @@ export const value0: msRest.OperationParameter = {
     }
   }
 };
-export const value1: msRest.OperationParameter = {
+export const value1: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
     required: true,
@@ -60,7 +60,7 @@ export const value1: msRest.OperationParameter = {
     }
   }
 };
-export const value2: msRest.OperationParameter = {
+export const value2: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "value"
@@ -72,7 +72,7 @@ export const value2: msRest.OperationParameter = {
     }
   }
 };
-export const value3: msRest.OperationParameter = {
+export const value3: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
     required: true,
@@ -82,7 +82,7 @@ export const value3: msRest.OperationParameter = {
     }
   }
 };
-export const value4: msRest.OperationParameter = {
+export const value4: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
     required: true,
@@ -92,7 +92,7 @@ export const value4: msRest.OperationParameter = {
     }
   }
 };
-export const value5: msRest.OperationParameter = {
+export const value5: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "value"
@@ -104,7 +104,7 @@ export const value5: msRest.OperationParameter = {
     }
   }
 };
-export const value6: msRest.OperationParameter = {
+export const value6: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
     required: true,
@@ -114,7 +114,7 @@ export const value6: msRest.OperationParameter = {
     }
   }
 };
-export const value7: msRest.OperationParameter = {
+export const value7: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
     required: true,
@@ -124,7 +124,7 @@ export const value7: msRest.OperationParameter = {
     }
   }
 };
-export const value8: msRest.OperationParameter = {
+export const value8: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "value"

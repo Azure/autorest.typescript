@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { BaseResource, CloudError, AzureServiceClientOptions } from "@azure/ms-rest-azure-js";
-import * as msRest from "@azure/ms-rest-js";
+import { BaseResource, CloudError, AzureServiceClientOptions } from "@azure/core-arm";
+import * as coreHttp from "@azure/core-http";
 
 export { BaseResource, CloudError };
 
@@ -72,7 +72,7 @@ export interface ParameterGroupingPostMultiParamGroupsSecondParamGroup {
 /**
  * Optional Parameters.
  */
-export interface ParameterGroupingPostOptionalOptionalParams extends msRest.RequestOptionsBase {
+export interface ParameterGroupingPostOptionalOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Additional parameters for the operation
    */
@@ -82,7 +82,7 @@ export interface ParameterGroupingPostOptionalOptionalParams extends msRest.Requ
 /**
  * Optional Parameters.
  */
-export interface ParameterGroupingPostMultiParamGroupsOptionalParams extends msRest.RequestOptionsBase {
+export interface ParameterGroupingPostMultiParamGroupsOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Additional parameters for the operation
    */
@@ -96,7 +96,7 @@ export interface ParameterGroupingPostMultiParamGroupsOptionalParams extends msR
 /**
  * Optional Parameters.
  */
-export interface ParameterGroupingPostSharedParameterGroupObjectOptionalParams extends msRest.RequestOptionsBase {
+export interface ParameterGroupingPostSharedParameterGroupObjectOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Additional parameters for the operation
    */

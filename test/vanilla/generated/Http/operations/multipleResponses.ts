@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/multipleResponsesMappers";
 import { AutoRestHttpInfrastructureTestServiceContext } from "../autoRestHttpInfrastructureTestServiceContext";
@@ -30,17 +30,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse>
    */
-  get200Model204NoModelDefaultError200Valid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse>;
+  get200Model204NoModelDefaultError200Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse>;
   /**
    * @param callback The callback
    */
-  get200Model204NoModelDefaultError200Valid(callback: msRest.ServiceCallback<Models.A>): void;
+  get200Model204NoModelDefaultError200Valid(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200Model204NoModelDefaultError200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError200Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse> {
+  get200Model204NoModelDefaultError200Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  get200Model204NoModelDefaultError200Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -54,17 +54,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse>
    */
-  get200Model204NoModelDefaultError204Valid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse>;
+  get200Model204NoModelDefaultError204Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse>;
   /**
    * @param callback The callback
    */
-  get200Model204NoModelDefaultError204Valid(callback: msRest.ServiceCallback<Models.A>): void;
+  get200Model204NoModelDefaultError204Valid(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200Model204NoModelDefaultError204Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError204Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse> {
+  get200Model204NoModelDefaultError204Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  get200Model204NoModelDefaultError204Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -78,17 +78,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse>
    */
-  get200Model204NoModelDefaultError201Invalid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse>;
+  get200Model204NoModelDefaultError201Invalid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse>;
   /**
    * @param callback The callback
    */
-  get200Model204NoModelDefaultError201Invalid(callback: msRest.ServiceCallback<Models.A>): void;
+  get200Model204NoModelDefaultError201Invalid(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200Model204NoModelDefaultError201Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError201Invalid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse> {
+  get200Model204NoModelDefaultError201Invalid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  get200Model204NoModelDefaultError201Invalid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -102,17 +102,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse>
    */
-  get200Model204NoModelDefaultError202None(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse>;
+  get200Model204NoModelDefaultError202None(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse>;
   /**
    * @param callback The callback
    */
-  get200Model204NoModelDefaultError202None(callback: msRest.ServiceCallback<Models.A>): void;
+  get200Model204NoModelDefaultError202None(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200Model204NoModelDefaultError202None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError202None(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse> {
+  get200Model204NoModelDefaultError202None(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  get200Model204NoModelDefaultError202None(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -126,17 +126,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse>
    */
-  get200Model204NoModelDefaultError400Valid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse>;
+  get200Model204NoModelDefaultError400Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse>;
   /**
    * @param callback The callback
    */
-  get200Model204NoModelDefaultError400Valid(callback: msRest.ServiceCallback<Models.A>): void;
+  get200Model204NoModelDefaultError400Valid(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200Model204NoModelDefaultError400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model204NoModelDefaultError400Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse> {
+  get200Model204NoModelDefaultError400Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  get200Model204NoModelDefaultError400Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -150,17 +150,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGet200Model201ModelDefaultError200ValidResponse>
    */
-  get200Model201ModelDefaultError200Valid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError200ValidResponse>;
+  get200Model201ModelDefaultError200Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError200ValidResponse>;
   /**
    * @param callback The callback
    */
-  get200Model201ModelDefaultError200Valid(callback: msRest.ServiceCallback<Models.A>): void;
+  get200Model201ModelDefaultError200Valid(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200Model201ModelDefaultError200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model201ModelDefaultError200Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError200ValidResponse> {
+  get200Model201ModelDefaultError200Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  get200Model201ModelDefaultError200Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError200ValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -174,17 +174,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGet200Model201ModelDefaultError201ValidResponse>
    */
-  get200Model201ModelDefaultError201Valid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError201ValidResponse>;
+  get200Model201ModelDefaultError201Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError201ValidResponse>;
   /**
    * @param callback The callback
    */
-  get200Model201ModelDefaultError201Valid(callback: msRest.ServiceCallback<Models.A>): void;
+  get200Model201ModelDefaultError201Valid(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200Model201ModelDefaultError201Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model201ModelDefaultError201Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError201ValidResponse> {
+  get200Model201ModelDefaultError201Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  get200Model201ModelDefaultError201Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError201ValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -198,17 +198,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGet200Model201ModelDefaultError400ValidResponse>
    */
-  get200Model201ModelDefaultError400Valid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError400ValidResponse>;
+  get200Model201ModelDefaultError400Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError400ValidResponse>;
   /**
    * @param callback The callback
    */
-  get200Model201ModelDefaultError400Valid(callback: msRest.ServiceCallback<Models.A>): void;
+  get200Model201ModelDefaultError400Valid(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200Model201ModelDefaultError400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200Model201ModelDefaultError400Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError400ValidResponse> {
+  get200Model201ModelDefaultError400Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  get200Model201ModelDefaultError400Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200Model201ModelDefaultError400ValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -223,17 +223,17 @@ export class MultipleResponses {
    * @returns
    * Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse>
    */
-  get200ModelA201ModelC404ModelDDefaultError200Valid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse>;
+  get200ModelA201ModelC404ModelDDefaultError200Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse>;
   /**
    * @param callback The callback
    */
-  get200ModelA201ModelC404ModelDDefaultError200Valid(callback: msRest.ServiceCallback<any>): void;
+  get200ModelA201ModelC404ModelDDefaultError200Valid(callback: coreHttp.ServiceCallback<any>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200ModelA201ModelC404ModelDDefaultError200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
-  get200ModelA201ModelC404ModelDDefaultError200Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<any>, callback?: msRest.ServiceCallback<any>): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse> {
+  get200ModelA201ModelC404ModelDDefaultError200Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  get200ModelA201ModelC404ModelDDefaultError200Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<any>, callback?: coreHttp.ServiceCallback<any>): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -248,17 +248,17 @@ export class MultipleResponses {
    * @returns
    * Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse>
    */
-  get200ModelA201ModelC404ModelDDefaultError201Valid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse>;
+  get200ModelA201ModelC404ModelDDefaultError201Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse>;
   /**
    * @param callback The callback
    */
-  get200ModelA201ModelC404ModelDDefaultError201Valid(callback: msRest.ServiceCallback<any>): void;
+  get200ModelA201ModelC404ModelDDefaultError201Valid(callback: coreHttp.ServiceCallback<any>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200ModelA201ModelC404ModelDDefaultError201Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
-  get200ModelA201ModelC404ModelDDefaultError201Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<any>, callback?: msRest.ServiceCallback<any>): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse> {
+  get200ModelA201ModelC404ModelDDefaultError201Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  get200ModelA201ModelC404ModelDDefaultError201Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<any>, callback?: coreHttp.ServiceCallback<any>): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -273,17 +273,17 @@ export class MultipleResponses {
    * @returns
    * Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse>
    */
-  get200ModelA201ModelC404ModelDDefaultError404Valid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse>;
+  get200ModelA201ModelC404ModelDDefaultError404Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse>;
   /**
    * @param callback The callback
    */
-  get200ModelA201ModelC404ModelDDefaultError404Valid(callback: msRest.ServiceCallback<any>): void;
+  get200ModelA201ModelC404ModelDDefaultError404Valid(callback: coreHttp.ServiceCallback<any>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200ModelA201ModelC404ModelDDefaultError404Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
-  get200ModelA201ModelC404ModelDDefaultError404Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<any>, callback?: msRest.ServiceCallback<any>): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse> {
+  get200ModelA201ModelC404ModelDDefaultError404Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  get200ModelA201ModelC404ModelDDefaultError404Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<any>, callback?: coreHttp.ServiceCallback<any>): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -298,17 +298,17 @@ export class MultipleResponses {
    * @returns
    * Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse>
    */
-  get200ModelA201ModelC404ModelDDefaultError400Valid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse>;
+  get200ModelA201ModelC404ModelDDefaultError400Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse>;
   /**
    * @param callback The callback
    */
-  get200ModelA201ModelC404ModelDDefaultError400Valid(callback: msRest.ServiceCallback<any>): void;
+  get200ModelA201ModelC404ModelDDefaultError400Valid(callback: coreHttp.ServiceCallback<any>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200ModelA201ModelC404ModelDDefaultError400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<any>): void;
-  get200ModelA201ModelC404ModelDDefaultError400Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<any>, callback?: msRest.ServiceCallback<any>): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse> {
+  get200ModelA201ModelC404ModelDDefaultError400Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  get200ModelA201ModelC404ModelDDefaultError400Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<any>, callback?: coreHttp.ServiceCallback<any>): Promise<Models.MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -320,19 +320,19 @@ export class MultipleResponses {
   /**
    * Send a 202 response with no payload
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  get202None204NoneDefaultError202None(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  get202None204NoneDefaultError202None(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  get202None204NoneDefaultError202None(callback: msRest.ServiceCallback<void>): void;
+  get202None204NoneDefaultError202None(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get202None204NoneDefaultError202None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultError202None(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  get202None204NoneDefaultError202None(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  get202None204NoneDefaultError202None(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -344,19 +344,19 @@ export class MultipleResponses {
   /**
    * Send a 204 response with no payload
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  get202None204NoneDefaultError204None(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  get202None204NoneDefaultError204None(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  get202None204NoneDefaultError204None(callback: msRest.ServiceCallback<void>): void;
+  get202None204NoneDefaultError204None(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get202None204NoneDefaultError204None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultError204None(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  get202None204NoneDefaultError204None(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  get202None204NoneDefaultError204None(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -368,19 +368,19 @@ export class MultipleResponses {
   /**
    * Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  get202None204NoneDefaultError400Valid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  get202None204NoneDefaultError400Valid(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  get202None204NoneDefaultError400Valid(callback: msRest.ServiceCallback<void>): void;
+  get202None204NoneDefaultError400Valid(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get202None204NoneDefaultError400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultError400Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  get202None204NoneDefaultError400Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  get202None204NoneDefaultError400Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -392,19 +392,19 @@ export class MultipleResponses {
   /**
    * Send a 202 response with an unexpected payload {'property': 'value'}
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  get202None204NoneDefaultNone202Invalid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  get202None204NoneDefaultNone202Invalid(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  get202None204NoneDefaultNone202Invalid(callback: msRest.ServiceCallback<void>): void;
+  get202None204NoneDefaultNone202Invalid(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get202None204NoneDefaultNone202Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultNone202Invalid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  get202None204NoneDefaultNone202Invalid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  get202None204NoneDefaultNone202Invalid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -416,19 +416,19 @@ export class MultipleResponses {
   /**
    * Send a 204 response with no payload
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  get202None204NoneDefaultNone204None(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  get202None204NoneDefaultNone204None(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  get202None204NoneDefaultNone204None(callback: msRest.ServiceCallback<void>): void;
+  get202None204NoneDefaultNone204None(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get202None204NoneDefaultNone204None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultNone204None(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  get202None204NoneDefaultNone204None(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  get202None204NoneDefaultNone204None(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -440,19 +440,19 @@ export class MultipleResponses {
   /**
    * Send a 400 response with no payload
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  get202None204NoneDefaultNone400None(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  get202None204NoneDefaultNone400None(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  get202None204NoneDefaultNone400None(callback: msRest.ServiceCallback<void>): void;
+  get202None204NoneDefaultNone400None(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get202None204NoneDefaultNone400None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultNone400None(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  get202None204NoneDefaultNone400None(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  get202None204NoneDefaultNone400None(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -464,19 +464,19 @@ export class MultipleResponses {
   /**
    * Send a 400 response with an unexpected payload {'property': 'value'}
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  get202None204NoneDefaultNone400Invalid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  get202None204NoneDefaultNone400Invalid(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  get202None204NoneDefaultNone400Invalid(callback: msRest.ServiceCallback<void>): void;
+  get202None204NoneDefaultNone400Invalid(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get202None204NoneDefaultNone400Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get202None204NoneDefaultNone400Invalid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  get202None204NoneDefaultNone400Invalid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  get202None204NoneDefaultNone400Invalid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -490,17 +490,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGetDefaultModelA200ValidResponse>
    */
-  getDefaultModelA200Valid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA200ValidResponse>;
+  getDefaultModelA200Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA200ValidResponse>;
   /**
    * @param callback The callback
    */
-  getDefaultModelA200Valid(callback: msRest.ServiceCallback<Models.A>): void;
+  getDefaultModelA200Valid(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDefaultModelA200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  getDefaultModelA200Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGetDefaultModelA200ValidResponse> {
+  getDefaultModelA200Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  getDefaultModelA200Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGetDefaultModelA200ValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -514,17 +514,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGetDefaultModelA200NoneResponse>
    */
-  getDefaultModelA200None(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA200NoneResponse>;
+  getDefaultModelA200None(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA200NoneResponse>;
   /**
    * @param callback The callback
    */
-  getDefaultModelA200None(callback: msRest.ServiceCallback<Models.A>): void;
+  getDefaultModelA200None(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDefaultModelA200None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  getDefaultModelA200None(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGetDefaultModelA200NoneResponse> {
+  getDefaultModelA200None(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  getDefaultModelA200None(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGetDefaultModelA200NoneResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -538,17 +538,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse>
    */
-  getDefaultModelA400Valid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse>;
+  getDefaultModelA400Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse>;
   /**
    * @param callback The callback
    */
-  getDefaultModelA400Valid(callback: msRest.ServiceCallback<Models.A>): void;
+  getDefaultModelA400Valid(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDefaultModelA400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  getDefaultModelA400Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse> {
+  getDefaultModelA400Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  getDefaultModelA400Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -562,17 +562,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse>
    */
-  getDefaultModelA400None(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse>;
+  getDefaultModelA400None(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse>;
   /**
    * @param callback The callback
    */
-  getDefaultModelA400None(callback: msRest.ServiceCallback<Models.A>): void;
+  getDefaultModelA400None(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDefaultModelA400None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  getDefaultModelA400None(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse> {
+  getDefaultModelA400None(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  getDefaultModelA400None(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -584,19 +584,19 @@ export class MultipleResponses {
   /**
    * Send a 200 response with invalid payload: {'statusCode': '200'}
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getDefaultNone200Invalid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getDefaultNone200Invalid(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getDefaultNone200Invalid(callback: msRest.ServiceCallback<void>): void;
+  getDefaultNone200Invalid(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDefaultNone200Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getDefaultNone200Invalid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getDefaultNone200Invalid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getDefaultNone200Invalid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -608,19 +608,19 @@ export class MultipleResponses {
   /**
    * Send a 200 response with no payload
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getDefaultNone200None(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getDefaultNone200None(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getDefaultNone200None(callback: msRest.ServiceCallback<void>): void;
+  getDefaultNone200None(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDefaultNone200None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getDefaultNone200None(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getDefaultNone200None(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getDefaultNone200None(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -632,19 +632,19 @@ export class MultipleResponses {
   /**
    * Send a 400 response with valid payload: {'statusCode': '400'}
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getDefaultNone400Invalid(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getDefaultNone400Invalid(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getDefaultNone400Invalid(callback: msRest.ServiceCallback<void>): void;
+  getDefaultNone400Invalid(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDefaultNone400Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getDefaultNone400Invalid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getDefaultNone400Invalid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getDefaultNone400Invalid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -656,19 +656,19 @@ export class MultipleResponses {
   /**
    * Send a 400 response with no payload
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getDefaultNone400None(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getDefaultNone400None(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getDefaultNone400None(callback: msRest.ServiceCallback<void>): void;
+  getDefaultNone400None(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDefaultNone400None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getDefaultNone400None(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getDefaultNone400None(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getDefaultNone400None(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -683,17 +683,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGet200ModelA200NoneResponse>
    */
-  get200ModelA200None(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA200NoneResponse>;
+  get200ModelA200None(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA200NoneResponse>;
   /**
    * @param callback The callback
    */
-  get200ModelA200None(callback: msRest.ServiceCallback<Models.A>): void;
+  get200ModelA200None(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200ModelA200None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA200None(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA200NoneResponse> {
+  get200ModelA200None(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  get200ModelA200None(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA200NoneResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -707,17 +707,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGet200ModelA200ValidResponse>
    */
-  get200ModelA200Valid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA200ValidResponse>;
+  get200ModelA200Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA200ValidResponse>;
   /**
    * @param callback The callback
    */
-  get200ModelA200Valid(callback: msRest.ServiceCallback<Models.A>): void;
+  get200ModelA200Valid(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200ModelA200Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA200Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA200ValidResponse> {
+  get200ModelA200Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  get200ModelA200Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA200ValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -731,17 +731,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGet200ModelA200InvalidResponse>
    */
-  get200ModelA200Invalid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA200InvalidResponse>;
+  get200ModelA200Invalid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA200InvalidResponse>;
   /**
    * @param callback The callback
    */
-  get200ModelA200Invalid(callback: msRest.ServiceCallback<Models.A>): void;
+  get200ModelA200Invalid(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200ModelA200Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA200Invalid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA200InvalidResponse> {
+  get200ModelA200Invalid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  get200ModelA200Invalid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA200InvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -755,17 +755,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGet200ModelA400NoneResponse>
    */
-  get200ModelA400None(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA400NoneResponse>;
+  get200ModelA400None(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA400NoneResponse>;
   /**
    * @param callback The callback
    */
-  get200ModelA400None(callback: msRest.ServiceCallback<Models.A>): void;
+  get200ModelA400None(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200ModelA400None(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA400None(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA400NoneResponse> {
+  get200ModelA400None(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  get200ModelA400None(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA400NoneResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -779,17 +779,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGet200ModelA400ValidResponse>
    */
-  get200ModelA400Valid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA400ValidResponse>;
+  get200ModelA400Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA400ValidResponse>;
   /**
    * @param callback The callback
    */
-  get200ModelA400Valid(callback: msRest.ServiceCallback<Models.A>): void;
+  get200ModelA400Valid(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200ModelA400Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA400Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA400ValidResponse> {
+  get200ModelA400Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  get200ModelA400Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA400ValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -803,17 +803,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGet200ModelA400InvalidResponse>
    */
-  get200ModelA400Invalid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA400InvalidResponse>;
+  get200ModelA400Invalid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA400InvalidResponse>;
   /**
    * @param callback The callback
    */
-  get200ModelA400Invalid(callback: msRest.ServiceCallback<Models.A>): void;
+  get200ModelA400Invalid(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200ModelA400Invalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA400Invalid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA400InvalidResponse> {
+  get200ModelA400Invalid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  get200ModelA400Invalid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA400InvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -827,17 +827,17 @@ export class MultipleResponses {
    * @param [options] The optional parameters
    * @returns Promise<Models.MultipleResponsesGet200ModelA202ValidResponse>
    */
-  get200ModelA202Valid(options?: msRest.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA202ValidResponse>;
+  get200ModelA202Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGet200ModelA202ValidResponse>;
   /**
    * @param callback The callback
    */
-  get200ModelA202Valid(callback: msRest.ServiceCallback<Models.A>): void;
+  get200ModelA202Valid(callback: coreHttp.ServiceCallback<Models.A>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get200ModelA202Valid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.A>): void;
-  get200ModelA202Valid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.A>, callback?: msRest.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA202ValidResponse> {
+  get200ModelA202Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
+  get200ModelA202Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGet200ModelA202ValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -848,8 +848,8 @@ export class MultipleResponses {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const get200Model204NoModelDefaultError200ValidOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const get200Model204NoModelDefaultError200ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/204/none/default/Error/response/200/valid",
   responses: {
@@ -864,7 +864,7 @@ const get200Model204NoModelDefaultError200ValidOperationSpec: msRest.OperationSp
   serializer
 };
 
-const get200Model204NoModelDefaultError204ValidOperationSpec: msRest.OperationSpec = {
+const get200Model204NoModelDefaultError204ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/204/none/default/Error/response/204/none",
   responses: {
@@ -879,7 +879,7 @@ const get200Model204NoModelDefaultError204ValidOperationSpec: msRest.OperationSp
   serializer
 };
 
-const get200Model204NoModelDefaultError201InvalidOperationSpec: msRest.OperationSpec = {
+const get200Model204NoModelDefaultError201InvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/204/none/default/Error/response/201/valid",
   responses: {
@@ -894,7 +894,7 @@ const get200Model204NoModelDefaultError201InvalidOperationSpec: msRest.Operation
   serializer
 };
 
-const get200Model204NoModelDefaultError202NoneOperationSpec: msRest.OperationSpec = {
+const get200Model204NoModelDefaultError202NoneOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/204/none/default/Error/response/202/none",
   responses: {
@@ -909,7 +909,7 @@ const get200Model204NoModelDefaultError202NoneOperationSpec: msRest.OperationSpe
   serializer
 };
 
-const get200Model204NoModelDefaultError400ValidOperationSpec: msRest.OperationSpec = {
+const get200Model204NoModelDefaultError400ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/204/none/default/Error/response/400/valid",
   responses: {
@@ -924,7 +924,7 @@ const get200Model204NoModelDefaultError400ValidOperationSpec: msRest.OperationSp
   serializer
 };
 
-const get200Model201ModelDefaultError200ValidOperationSpec: msRest.OperationSpec = {
+const get200Model201ModelDefaultError200ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/B/default/Error/response/200/valid",
   responses: {
@@ -941,7 +941,7 @@ const get200Model201ModelDefaultError200ValidOperationSpec: msRest.OperationSpec
   serializer
 };
 
-const get200Model201ModelDefaultError201ValidOperationSpec: msRest.OperationSpec = {
+const get200Model201ModelDefaultError201ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/B/default/Error/response/201/valid",
   responses: {
@@ -958,7 +958,7 @@ const get200Model201ModelDefaultError201ValidOperationSpec: msRest.OperationSpec
   serializer
 };
 
-const get200Model201ModelDefaultError400ValidOperationSpec: msRest.OperationSpec = {
+const get200Model201ModelDefaultError400ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/B/default/Error/response/400/valid",
   responses: {
@@ -975,7 +975,7 @@ const get200Model201ModelDefaultError400ValidOperationSpec: msRest.OperationSpec
   serializer
 };
 
-const get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec: msRest.OperationSpec = {
+const get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/C/404/D/default/Error/response/200/valid",
   responses: {
@@ -995,7 +995,7 @@ const get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec: msRest.Op
   serializer
 };
 
-const get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec: msRest.OperationSpec = {
+const get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/C/404/D/default/Error/response/201/valid",
   responses: {
@@ -1015,7 +1015,7 @@ const get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec: msRest.Op
   serializer
 };
 
-const get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec: msRest.OperationSpec = {
+const get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/C/404/D/default/Error/response/404/valid",
   responses: {
@@ -1035,7 +1035,7 @@ const get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec: msRest.Op
   serializer
 };
 
-const get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec: msRest.OperationSpec = {
+const get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/201/C/404/D/default/Error/response/400/valid",
   responses: {
@@ -1055,7 +1055,7 @@ const get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec: msRest.Op
   serializer
 };
 
-const get202None204NoneDefaultError202NoneOperationSpec: msRest.OperationSpec = {
+const get202None204NoneDefaultError202NoneOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/Error/response/202/none",
   responses: {
@@ -1068,7 +1068,7 @@ const get202None204NoneDefaultError202NoneOperationSpec: msRest.OperationSpec = 
   serializer
 };
 
-const get202None204NoneDefaultError204NoneOperationSpec: msRest.OperationSpec = {
+const get202None204NoneDefaultError204NoneOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/Error/response/204/none",
   responses: {
@@ -1081,7 +1081,7 @@ const get202None204NoneDefaultError204NoneOperationSpec: msRest.OperationSpec = 
   serializer
 };
 
-const get202None204NoneDefaultError400ValidOperationSpec: msRest.OperationSpec = {
+const get202None204NoneDefaultError400ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/Error/response/400/valid",
   responses: {
@@ -1094,7 +1094,7 @@ const get202None204NoneDefaultError400ValidOperationSpec: msRest.OperationSpec =
   serializer
 };
 
-const get202None204NoneDefaultNone202InvalidOperationSpec: msRest.OperationSpec = {
+const get202None204NoneDefaultNone202InvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/none/response/202/invalid",
   responses: {
@@ -1105,7 +1105,7 @@ const get202None204NoneDefaultNone202InvalidOperationSpec: msRest.OperationSpec 
   serializer
 };
 
-const get202None204NoneDefaultNone204NoneOperationSpec: msRest.OperationSpec = {
+const get202None204NoneDefaultNone204NoneOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/none/response/204/none",
   responses: {
@@ -1116,7 +1116,7 @@ const get202None204NoneDefaultNone204NoneOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const get202None204NoneDefaultNone400NoneOperationSpec: msRest.OperationSpec = {
+const get202None204NoneDefaultNone400NoneOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/none/response/400/none",
   responses: {
@@ -1127,7 +1127,7 @@ const get202None204NoneDefaultNone400NoneOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const get202None204NoneDefaultNone400InvalidOperationSpec: msRest.OperationSpec = {
+const get202None204NoneDefaultNone400InvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/202/none/204/none/default/none/response/400/invalid",
   responses: {
@@ -1138,7 +1138,7 @@ const get202None204NoneDefaultNone400InvalidOperationSpec: msRest.OperationSpec 
   serializer
 };
 
-const getDefaultModelA200ValidOperationSpec: msRest.OperationSpec = {
+const getDefaultModelA200ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/A/response/200/valid",
   responses: {
@@ -1149,7 +1149,7 @@ const getDefaultModelA200ValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDefaultModelA200NoneOperationSpec: msRest.OperationSpec = {
+const getDefaultModelA200NoneOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/A/response/200/none",
   responses: {
@@ -1160,7 +1160,7 @@ const getDefaultModelA200NoneOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDefaultModelA400ValidOperationSpec: msRest.OperationSpec = {
+const getDefaultModelA400ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/A/response/400/valid",
   responses: {
@@ -1171,7 +1171,7 @@ const getDefaultModelA400ValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDefaultModelA400NoneOperationSpec: msRest.OperationSpec = {
+const getDefaultModelA400NoneOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/A/response/400/none",
   responses: {
@@ -1182,7 +1182,7 @@ const getDefaultModelA400NoneOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDefaultNone200InvalidOperationSpec: msRest.OperationSpec = {
+const getDefaultNone200InvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/none/response/200/invalid",
   responses: {
@@ -1191,7 +1191,7 @@ const getDefaultNone200InvalidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDefaultNone200NoneOperationSpec: msRest.OperationSpec = {
+const getDefaultNone200NoneOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/none/response/200/none",
   responses: {
@@ -1200,7 +1200,7 @@ const getDefaultNone200NoneOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDefaultNone400InvalidOperationSpec: msRest.OperationSpec = {
+const getDefaultNone400InvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/none/response/400/invalid",
   responses: {
@@ -1209,7 +1209,7 @@ const getDefaultNone400InvalidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDefaultNone400NoneOperationSpec: msRest.OperationSpec = {
+const getDefaultNone400NoneOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/none/response/400/none",
   responses: {
@@ -1218,7 +1218,7 @@ const getDefaultNone400NoneOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const get200ModelA200NoneOperationSpec: msRest.OperationSpec = {
+const get200ModelA200NoneOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/200/none",
   responses: {
@@ -1230,7 +1230,7 @@ const get200ModelA200NoneOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const get200ModelA200ValidOperationSpec: msRest.OperationSpec = {
+const get200ModelA200ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/200/valid",
   responses: {
@@ -1242,7 +1242,7 @@ const get200ModelA200ValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const get200ModelA200InvalidOperationSpec: msRest.OperationSpec = {
+const get200ModelA200InvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/200/invalid",
   responses: {
@@ -1254,7 +1254,7 @@ const get200ModelA200InvalidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const get200ModelA400NoneOperationSpec: msRest.OperationSpec = {
+const get200ModelA400NoneOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/400/none",
   responses: {
@@ -1266,7 +1266,7 @@ const get200ModelA400NoneOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const get200ModelA400ValidOperationSpec: msRest.OperationSpec = {
+const get200ModelA400ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/400/valid",
   responses: {
@@ -1278,7 +1278,7 @@ const get200ModelA400ValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const get200ModelA400InvalidOperationSpec: msRest.OperationSpec = {
+const get200ModelA400InvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/400/invalid",
   responses: {
@@ -1290,7 +1290,7 @@ const get200ModelA400InvalidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const get200ModelA202ValidOperationSpec: msRest.OperationSpec = {
+const get200ModelA202ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/200/A/response/202/valid",
   responses: {

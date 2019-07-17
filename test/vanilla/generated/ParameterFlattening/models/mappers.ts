@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 
-export const AvailabilitySetUpdateParameters: msRest.CompositeMapper = {
+export const AvailabilitySetUpdateParameters: coreHttp.CompositeMapper = {
   serializedName: "AvailabilitySetUpdateParameters",
   type: {
     name: "Composite",

@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/polymorphicrecursiveMappers";
 import { AutoRestComplexTestServiceContext } from "../autoRestComplexTestServiceContext";
@@ -30,17 +30,17 @@ export class Polymorphicrecursive {
    * @param [options] The optional parameters
    * @returns Promise<Models.PolymorphicrecursiveGetValidResponse>
    */
-  getValid(options?: msRest.RequestOptionsBase): Promise<Models.PolymorphicrecursiveGetValidResponse>;
+  getValid(options?: coreHttp.RequestOptionsBase): Promise<Models.PolymorphicrecursiveGetValidResponse>;
   /**
    * @param callback The callback
    */
-  getValid(callback: msRest.ServiceCallback<Models.FishUnion>): void;
+  getValid(callback: coreHttp.ServiceCallback<Models.FishUnion>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FishUnion>): void;
-  getValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.FishUnion>, callback?: msRest.ServiceCallback<Models.FishUnion>): Promise<Models.PolymorphicrecursiveGetValidResponse> {
+  getValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.FishUnion>): void;
+  getValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.FishUnion>, callback?: coreHttp.ServiceCallback<Models.FishUnion>): Promise<Models.PolymorphicrecursiveGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -105,9 +105,9 @@ export class Polymorphicrecursive {
    * ]
    * }
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putValid(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putValid(complexBody: Models.FishUnion, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put a salmon that looks like this:
    * {
@@ -164,7 +164,7 @@ export class Polymorphicrecursive {
    * }
    * @param callback The callback
    */
-  putValid(complexBody: Models.FishUnion, callback: msRest.ServiceCallback<void>): void;
+  putValid(complexBody: Models.FishUnion, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param complexBody Please put a salmon that looks like this:
    * {
@@ -222,8 +222,8 @@ export class Polymorphicrecursive {
    * @param options The optional parameters
    * @param callback The callback
    */
-  putValid(complexBody: Models.FishUnion, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.FishUnion, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putValid(complexBody: Models.FishUnion, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putValid(complexBody: Models.FishUnion, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
@@ -235,8 +235,8 @@ export class Polymorphicrecursive {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getValidOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "complex/polymorphicrecursive/valid",
   responses: {
@@ -250,7 +250,7 @@ const getValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putValidOperationSpec: msRest.OperationSpec = {
+const putValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/polymorphicrecursive/valid",
   requestBody: {

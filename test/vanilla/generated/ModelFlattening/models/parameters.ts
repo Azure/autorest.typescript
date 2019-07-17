@@ -8,9 +8,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const description: msRest.OperationParameter = {
+export const description: coreHttp.OperationParameter = {
   parameterPath: [
     "flattenParameterGroup",
     "description"
@@ -22,7 +22,7 @@ export const description: msRest.OperationParameter = {
     }
   }
 };
-export const genericValue: msRest.OperationParameter = {
+export const genericValue: coreHttp.OperationParameter = {
   parameterPath: [
     "flattenParameterGroup",
     "genericValue"
@@ -34,7 +34,7 @@ export const genericValue: msRest.OperationParameter = {
     }
   }
 };
-export const maxProductDisplayName: msRest.OperationParameter = {
+export const maxProductDisplayName: coreHttp.OperationParameter = {
   parameterPath: [
     "flattenParameterGroup",
     "maxProductDisplayName"
@@ -47,7 +47,7 @@ export const maxProductDisplayName: msRest.OperationParameter = {
     }
   }
 };
-export const name: msRest.OperationURLParameter = {
+export const name: coreHttp.OperationURLParameter = {
   parameterPath: [
     "flattenParameterGroup",
     "name"
@@ -60,7 +60,7 @@ export const name: msRest.OperationURLParameter = {
     }
   }
 };
-export const odatavalue: msRest.OperationParameter = {
+export const odatavalue: coreHttp.OperationParameter = {
   parameterPath: [
     "flattenParameterGroup",
     "odatavalue"
@@ -72,7 +72,7 @@ export const odatavalue: msRest.OperationParameter = {
     }
   }
 };
-export const productId: msRest.OperationParameter = {
+export const productId: coreHttp.OperationParameter = {
   parameterPath: [
     "flattenParameterGroup",
     "productId"

@@ -8,9 +8,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const acceptLanguage: msRest.OperationParameter = {
+export const acceptLanguage: coreHttp.OperationParameter = {
   parameterPath: "acceptLanguage",
   mapper: {
     serializedName: "accept-language",
@@ -20,7 +20,7 @@ export const acceptLanguage: msRest.OperationParameter = {
     }
   }
 };
-export const apiVersion0: msRest.OperationQueryParameter = {
+export const apiVersion0: coreHttp.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     required: true,
@@ -32,7 +32,7 @@ export const apiVersion0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const apiVersion1: msRest.OperationQueryParameter = {
+export const apiVersion1: coreHttp.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     required: true,
@@ -44,7 +44,7 @@ export const apiVersion1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const resourceGroupName: msRest.OperationURLParameter = {
+export const resourceGroupName: coreHttp.OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     required: true,
@@ -54,7 +54,7 @@ export const resourceGroupName: msRest.OperationURLParameter = {
     }
   }
 };
-export const subscriptionId0: msRest.OperationURLParameter = {
+export const subscriptionId0: coreHttp.OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     required: true,
@@ -66,7 +66,7 @@ export const subscriptionId0: msRest.OperationURLParameter = {
     }
   }
 };
-export const subscriptionId1: msRest.OperationURLParameter = {
+export const subscriptionId1: coreHttp.OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     required: true,

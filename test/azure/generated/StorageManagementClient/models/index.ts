@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { BaseResource, CloudError, AzureServiceClientOptions } from "@azure/ms-rest-azure-js";
-import * as msRest from "@azure/ms-rest-js";
+import { BaseResource, CloudError, AzureServiceClientOptions } from "@azure/core-arm";
+import * as coreHttp from "@azure/core-http";
 
 export { BaseResource, CloudError };
 
@@ -308,7 +308,7 @@ export interface SubResource extends BaseResource {
 /**
  * Optional Parameters.
  */
-export interface StorageAccountsRegenerateKeyOptionalParams extends msRest.RequestOptionsBase {
+export interface StorageAccountsRegenerateKeyOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Possible values include: 'key1', 'key2'
    */
@@ -392,7 +392,7 @@ export type StorageAccountsCheckNameAvailabilityResponse = CheckNameAvailability
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -412,7 +412,7 @@ export type StorageAccountsCreateResponse = StorageAccount & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -432,7 +432,7 @@ export type StorageAccountsGetPropertiesResponse = StorageAccount & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -452,7 +452,7 @@ export type StorageAccountsUpdateResponse = StorageAccount & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -472,7 +472,7 @@ export type StorageAccountsListKeysResponse = StorageAccountKeys & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -492,7 +492,7 @@ export type StorageAccountsListResponse = StorageAccountListResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -512,7 +512,7 @@ export type StorageAccountsListByResourceGroupResponse = StorageAccountListResul
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -532,7 +532,7 @@ export type StorageAccountsRegenerateKeyResponse = StorageAccountKeys & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -552,7 +552,7 @@ export type StorageAccountsBeginCreateResponse = StorageAccount & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -572,7 +572,7 @@ export type UsageListResponse = UsageListResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */

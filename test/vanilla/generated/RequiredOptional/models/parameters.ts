@@ -8,9 +8,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const bodyParameter: msRest.OperationParameter = {
+export const bodyParameter: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "bodyParameter"
@@ -22,7 +22,7 @@ export const bodyParameter: msRest.OperationParameter = {
     }
   }
 };
-export const headerParameter0: msRest.OperationParameter = {
+export const headerParameter0: coreHttp.OperationParameter = {
   parameterPath: "headerParameter",
   mapper: {
     required: true,
@@ -32,7 +32,7 @@ export const headerParameter0: msRest.OperationParameter = {
     }
   }
 };
-export const headerParameter1: msRest.OperationParameter = {
+export const headerParameter1: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "headerParameter"
@@ -44,7 +44,7 @@ export const headerParameter1: msRest.OperationParameter = {
     }
   }
 };
-export const headerParameter2: msRest.OperationParameter = {
+export const headerParameter2: coreHttp.OperationParameter = {
   parameterPath: "headerParameter",
   mapper: {
     required: true,
@@ -54,7 +54,7 @@ export const headerParameter2: msRest.OperationParameter = {
     }
   }
 };
-export const headerParameter3: msRest.OperationParameter = {
+export const headerParameter3: coreHttp.OperationParameter = {
   parameterPath: "headerParameter",
   mapper: {
     required: true,
@@ -69,7 +69,7 @@ export const headerParameter3: msRest.OperationParameter = {
     }
   }
 };
-export const headerParameter4: msRest.OperationParameter = {
+export const headerParameter4: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "headerParameter"
@@ -86,7 +86,7 @@ export const headerParameter4: msRest.OperationParameter = {
     }
   }
 };
-export const optionalGlobalQuery: msRest.OperationQueryParameter = {
+export const optionalGlobalQuery: coreHttp.OperationQueryParameter = {
   parameterPath: "optionalGlobalQuery",
   mapper: {
     serializedName: "optional-global-query",
@@ -95,7 +95,7 @@ export const optionalGlobalQuery: msRest.OperationQueryParameter = {
     }
   }
 };
-export const pathParameter: msRest.OperationURLParameter = {
+export const pathParameter: coreHttp.OperationURLParameter = {
   parameterPath: "pathParameter",
   mapper: {
     required: true,
@@ -105,7 +105,7 @@ export const pathParameter: msRest.OperationURLParameter = {
     }
   }
 };
-export const queryParameter: msRest.OperationQueryParameter = {
+export const queryParameter: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "queryParameter"
@@ -117,7 +117,7 @@ export const queryParameter: msRest.OperationQueryParameter = {
     }
   }
 };
-export const requiredGlobalPath: msRest.OperationURLParameter = {
+export const requiredGlobalPath: coreHttp.OperationURLParameter = {
   parameterPath: "requiredGlobalPath",
   mapper: {
     required: true,
@@ -127,7 +127,7 @@ export const requiredGlobalPath: msRest.OperationURLParameter = {
     }
   }
 };
-export const requiredGlobalQuery: msRest.OperationQueryParameter = {
+export const requiredGlobalQuery: coreHttp.OperationQueryParameter = {
   parameterPath: "requiredGlobalQuery",
   mapper: {
     required: true,

@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/byteModelMappers";
 import { AutoRestSwaggerBATByteServiceContext } from "../autoRestSwaggerBATByteServiceContext";
@@ -30,17 +30,17 @@ export class ByteModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ByteModelGetNullResponse>
    */
-  getNull(options?: msRest.RequestOptionsBase): Promise<Models.ByteModelGetNullResponse>;
+  getNull(options?: coreHttp.RequestOptionsBase): Promise<Models.ByteModelGetNullResponse>;
   /**
    * @param callback The callback
    */
-  getNull(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getNull(callback: coreHttp.ServiceCallback<Uint8Array>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Uint8Array>, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.ByteModelGetNullResponse> {
+  getNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Uint8Array>): void;
+  getNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Uint8Array>, callback?: coreHttp.ServiceCallback<Uint8Array>): Promise<Models.ByteModelGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -54,17 +54,17 @@ export class ByteModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ByteModelGetEmptyResponse>
    */
-  getEmpty(options?: msRest.RequestOptionsBase): Promise<Models.ByteModelGetEmptyResponse>;
+  getEmpty(options?: coreHttp.RequestOptionsBase): Promise<Models.ByteModelGetEmptyResponse>;
   /**
    * @param callback The callback
    */
-  getEmpty(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getEmpty(callback: coreHttp.ServiceCallback<Uint8Array>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getEmpty(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Uint8Array>, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.ByteModelGetEmptyResponse> {
+  getEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Uint8Array>): void;
+  getEmpty(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Uint8Array>, callback?: coreHttp.ServiceCallback<Uint8Array>): Promise<Models.ByteModelGetEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -78,17 +78,17 @@ export class ByteModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ByteModelGetNonAsciiResponse>
    */
-  getNonAscii(options?: msRest.RequestOptionsBase): Promise<Models.ByteModelGetNonAsciiResponse>;
+  getNonAscii(options?: coreHttp.RequestOptionsBase): Promise<Models.ByteModelGetNonAsciiResponse>;
   /**
    * @param callback The callback
    */
-  getNonAscii(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getNonAscii(callback: coreHttp.ServiceCallback<Uint8Array>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getNonAscii(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getNonAscii(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Uint8Array>, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.ByteModelGetNonAsciiResponse> {
+  getNonAscii(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Uint8Array>): void;
+  getNonAscii(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Uint8Array>, callback?: coreHttp.ServiceCallback<Uint8Array>): Promise<Models.ByteModelGetNonAsciiResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -101,21 +101,21 @@ export class ByteModel {
    * Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
    * @param byteBody Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putNonAscii(byteBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putNonAscii(byteBody: Uint8Array, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param byteBody Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
    * @param callback The callback
    */
-  putNonAscii(byteBody: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  putNonAscii(byteBody: Uint8Array, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param byteBody Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
    * @param options The optional parameters
    * @param callback The callback
    */
-  putNonAscii(byteBody: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putNonAscii(byteBody: Uint8Array, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putNonAscii(byteBody: Uint8Array, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putNonAscii(byteBody: Uint8Array, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         byteBody,
@@ -130,17 +130,17 @@ export class ByteModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.ByteModelGetInvalidResponse>
    */
-  getInvalid(options?: msRest.RequestOptionsBase): Promise<Models.ByteModelGetInvalidResponse>;
+  getInvalid(options?: coreHttp.RequestOptionsBase): Promise<Models.ByteModelGetInvalidResponse>;
   /**
    * @param callback The callback
    */
-  getInvalid(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getInvalid(callback: coreHttp.ServiceCallback<Uint8Array>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
-  getInvalid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Uint8Array>, callback?: msRest.ServiceCallback<Uint8Array>): Promise<Models.ByteModelGetInvalidResponse> {
+  getInvalid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Uint8Array>): void;
+  getInvalid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Uint8Array>, callback?: coreHttp.ServiceCallback<Uint8Array>): Promise<Models.ByteModelGetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -151,8 +151,8 @@ export class ByteModel {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getNullOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "byte/null",
   responses: {
@@ -171,7 +171,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getEmptyOperationSpec: msRest.OperationSpec = {
+const getEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "byte/empty",
   responses: {
@@ -190,7 +190,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getNonAsciiOperationSpec: msRest.OperationSpec = {
+const getNonAsciiOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "byte/nonAscii",
   responses: {
@@ -209,7 +209,7 @@ const getNonAsciiOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putNonAsciiOperationSpec: msRest.OperationSpec = {
+const putNonAsciiOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "byte/nonAscii",
   requestBody: {
@@ -231,7 +231,7 @@ const putNonAsciiOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getInvalidOperationSpec: msRest.OperationSpec = {
+const getInvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "byte/invalid",
   responses: {

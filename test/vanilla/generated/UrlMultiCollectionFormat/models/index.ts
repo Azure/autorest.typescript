@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ServiceClientOptions } from "@azure/ms-rest-js";
-import * as msRest from "@azure/ms-rest-js";
+import { ServiceClientOptions } from "@azure/core-http";
+import * as coreHttp from "@azure/core-http";
 
 /**
  * An interface representing ErrorModel.
@@ -27,7 +27,7 @@ export interface AutoRestUrlMutliCollectionFormatTestServiceOptions extends Serv
 /**
  * Optional Parameters.
  */
-export interface QueriesArrayStringMultiNullOptionalParams extends msRest.RequestOptionsBase {
+export interface QueriesArrayStringMultiNullOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * a null array of string using the multi-array format
    */
@@ -37,7 +37,7 @@ export interface QueriesArrayStringMultiNullOptionalParams extends msRest.Reques
 /**
  * Optional Parameters.
  */
-export interface QueriesArrayStringMultiEmptyOptionalParams extends msRest.RequestOptionsBase {
+export interface QueriesArrayStringMultiEmptyOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * an empty array [] of string using the multi-array format
    */
@@ -47,7 +47,7 @@ export interface QueriesArrayStringMultiEmptyOptionalParams extends msRest.Reque
 /**
  * Optional Parameters.
  */
-export interface QueriesArrayStringMultiValidOptionalParams extends msRest.RequestOptionsBase {
+export interface QueriesArrayStringMultiValidOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
    * mult-array format

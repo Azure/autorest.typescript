@@ -8,9 +8,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const apiVersion: msRest.OperationQueryParameter = {
+export const apiVersion: coreHttp.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     required: true,
@@ -22,7 +22,7 @@ export const apiVersion: msRest.OperationQueryParameter = {
     }
   }
 };
-export const resourceGroupName: msRest.OperationURLParameter = {
+export const resourceGroupName: coreHttp.OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     required: true,
@@ -32,7 +32,7 @@ export const resourceGroupName: msRest.OperationURLParameter = {
     }
   }
 };
-export const subscriptionId0: msRest.OperationURLParameter = {
+export const subscriptionId0: coreHttp.OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     required: true,
@@ -44,7 +44,7 @@ export const subscriptionId0: msRest.OperationURLParameter = {
     }
   }
 };
-export const subscriptionId1: msRest.OperationURLParameter = {
+export const subscriptionId1: coreHttp.OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     required: true,

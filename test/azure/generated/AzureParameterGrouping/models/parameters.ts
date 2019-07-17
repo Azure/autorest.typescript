@@ -8,9 +8,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const acceptLanguage: msRest.OperationParameter = {
+export const acceptLanguage: coreHttp.OperationParameter = {
   parameterPath: "acceptLanguage",
   mapper: {
     serializedName: "accept-language",
@@ -20,7 +20,7 @@ export const acceptLanguage: msRest.OperationParameter = {
     }
   }
 };
-export const customHeader0: msRest.OperationParameter = {
+export const customHeader0: coreHttp.OperationParameter = {
   parameterPath: [
     "parameterGroupingPostRequiredParameters",
     "customHeader"
@@ -32,7 +32,7 @@ export const customHeader0: msRest.OperationParameter = {
     }
   }
 };
-export const customHeader1: msRest.OperationParameter = {
+export const customHeader1: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "parameterGroupingPostOptionalParameters",
@@ -45,7 +45,7 @@ export const customHeader1: msRest.OperationParameter = {
     }
   }
 };
-export const headerOne: msRest.OperationParameter = {
+export const headerOne: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "firstParameterGroup",
@@ -58,7 +58,7 @@ export const headerOne: msRest.OperationParameter = {
     }
   }
 };
-export const headerTwo: msRest.OperationParameter = {
+export const headerTwo: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "parameterGroupingPostMultiParamGroupsSecondParamGroup",
@@ -71,7 +71,7 @@ export const headerTwo: msRest.OperationParameter = {
     }
   }
 };
-export const path: msRest.OperationURLParameter = {
+export const path: coreHttp.OperationURLParameter = {
   parameterPath: [
     "parameterGroupingPostRequiredParameters",
     "path"
@@ -84,7 +84,7 @@ export const path: msRest.OperationURLParameter = {
     }
   }
 };
-export const query0: msRest.OperationQueryParameter = {
+export const query0: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "parameterGroupingPostRequiredParameters",
     "query"
@@ -97,7 +97,7 @@ export const query0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const query1: msRest.OperationQueryParameter = {
+export const query1: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "parameterGroupingPostOptionalParameters",
@@ -111,7 +111,7 @@ export const query1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const queryOne: msRest.OperationQueryParameter = {
+export const queryOne: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "firstParameterGroup",
@@ -125,7 +125,7 @@ export const queryOne: msRest.OperationQueryParameter = {
     }
   }
 };
-export const queryTwo: msRest.OperationQueryParameter = {
+export const queryTwo: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "parameterGroupingPostMultiParamGroupsSecondParamGroup",

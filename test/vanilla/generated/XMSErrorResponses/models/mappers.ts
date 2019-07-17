@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 
-export const Animal: msRest.CompositeMapper = {
+export const Animal: coreHttp.CompositeMapper = {
   serializedName: "Animal",
   type: {
     name: "Composite",
@@ -25,7 +25,7 @@ export const Animal: msRest.CompositeMapper = {
   }
 };
 
-export const Pet: msRest.CompositeMapper = {
+export const Pet: coreHttp.CompositeMapper = {
   serializedName: "Pet",
   type: {
     name: "Composite",
@@ -43,7 +43,7 @@ export const Pet: msRest.CompositeMapper = {
   }
 };
 
-export const BaseError: msRest.CompositeMapper = {
+export const BaseError: coreHttp.CompositeMapper = {
   serializedName: "BaseError",
   type: {
     name: "Composite",
@@ -59,7 +59,7 @@ export const BaseError: msRest.CompositeMapper = {
   }
 };
 
-export const NotFoundErrorBase: msRest.CompositeMapper = {
+export const NotFoundErrorBase: coreHttp.CompositeMapper = {
   serializedName: "NotFoundErrorBase",
   type: {
     name: "Composite",
@@ -88,7 +88,7 @@ export const NotFoundErrorBase: msRest.CompositeMapper = {
   }
 };
 
-export const LinkNotFound: msRest.CompositeMapper = {
+export const LinkNotFound: coreHttp.CompositeMapper = {
   serializedName: "InvalidResourceLink",
   type: {
     name: "Composite",
@@ -105,7 +105,7 @@ export const LinkNotFound: msRest.CompositeMapper = {
   }
 };
 
-export const AnimalNotFound: msRest.CompositeMapper = {
+export const AnimalNotFound: coreHttp.CompositeMapper = {
   serializedName: "AnimalNotFound",
   type: {
     name: "Composite",
@@ -122,7 +122,7 @@ export const AnimalNotFound: msRest.CompositeMapper = {
   }
 };
 
-export const PetAction: msRest.CompositeMapper = {
+export const PetAction: coreHttp.CompositeMapper = {
   serializedName: "PetAction",
   type: {
     name: "Composite",
@@ -138,7 +138,7 @@ export const PetAction: msRest.CompositeMapper = {
   }
 };
 
-export const PetActionError: msRest.CompositeMapper = {
+export const PetActionError: coreHttp.CompositeMapper = {
   serializedName: "PetActionError",
   type: {
     name: "Composite",
@@ -166,7 +166,7 @@ export const PetActionError: msRest.CompositeMapper = {
   }
 };
 
-export const PetSadError: msRest.CompositeMapper = {
+export const PetSadError: coreHttp.CompositeMapper = {
   serializedName: "PetSadError",
   type: {
     name: "Composite",
@@ -185,7 +185,7 @@ export const PetSadError: msRest.CompositeMapper = {
   }
 };
 
-export const PetHungryOrThirstyError: msRest.CompositeMapper = {
+export const PetHungryOrThirstyError: coreHttp.CompositeMapper = {
   serializedName: "PetHungryOrThirstyError",
   type: {
     name: "Composite",

@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/subscriptionInMethodMappers";
 import * as Parameters from "../models/parameters";
 import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzureSpecialParametersTestClientContext";
@@ -30,21 +30,21 @@ export class SubscriptionInMethod {
    * '1234-5678-9012-3456' to succeed
    * @param subscriptionId This should appear as a method parameter, use value '1234-5678-9012-3456'
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postMethodLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  postMethodLocalValid(subscriptionId: string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param subscriptionId This should appear as a method parameter, use value '1234-5678-9012-3456'
    * @param callback The callback
    */
-  postMethodLocalValid(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
+  postMethodLocalValid(subscriptionId: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param subscriptionId This should appear as a method parameter, use value '1234-5678-9012-3456'
    * @param options The optional parameters
    * @param callback The callback
    */
-  postMethodLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  postMethodLocalValid(subscriptionId: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  postMethodLocalValid(subscriptionId: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         subscriptionId,
@@ -60,23 +60,23 @@ export class SubscriptionInMethod {
    * @param subscriptionId This should appear as a method parameter, use value null, client-side
    * validation should prvenet the call
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postMethodLocalNull(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  postMethodLocalNull(subscriptionId: string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param subscriptionId This should appear as a method parameter, use value null, client-side
    * validation should prvenet the call
    * @param callback The callback
    */
-  postMethodLocalNull(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
+  postMethodLocalNull(subscriptionId: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param subscriptionId This should appear as a method parameter, use value null, client-side
    * validation should prvenet the call
    * @param options The optional parameters
    * @param callback The callback
    */
-  postMethodLocalNull(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postMethodLocalNull(subscriptionId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  postMethodLocalNull(subscriptionId: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  postMethodLocalNull(subscriptionId: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         subscriptionId,
@@ -91,21 +91,21 @@ export class SubscriptionInMethod {
    * '1234-5678-9012-3456' to succeed
    * @param subscriptionId Should appear as a method parameter -use value '1234-5678-9012-3456'
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postPathLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  postPathLocalValid(subscriptionId: string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param subscriptionId Should appear as a method parameter -use value '1234-5678-9012-3456'
    * @param callback The callback
    */
-  postPathLocalValid(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
+  postPathLocalValid(subscriptionId: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param subscriptionId Should appear as a method parameter -use value '1234-5678-9012-3456'
    * @param options The optional parameters
    * @param callback The callback
    */
-  postPathLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postPathLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  postPathLocalValid(subscriptionId: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  postPathLocalValid(subscriptionId: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         subscriptionId,
@@ -121,23 +121,23 @@ export class SubscriptionInMethod {
    * @param subscriptionId The subscriptionId, which appears in the path, the value is always
    * '1234-5678-9012-3456'
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postSwaggerLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  postSwaggerLocalValid(subscriptionId: string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param subscriptionId The subscriptionId, which appears in the path, the value is always
    * '1234-5678-9012-3456'
    * @param callback The callback
    */
-  postSwaggerLocalValid(subscriptionId: string, callback: msRest.ServiceCallback<void>): void;
+  postSwaggerLocalValid(subscriptionId: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param subscriptionId The subscriptionId, which appears in the path, the value is always
    * '1234-5678-9012-3456'
    * @param options The optional parameters
    * @param callback The callback
    */
-  postSwaggerLocalValid(subscriptionId: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postSwaggerLocalValid(subscriptionId: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  postSwaggerLocalValid(subscriptionId: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  postSwaggerLocalValid(subscriptionId: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         subscriptionId,
@@ -149,8 +149,8 @@ export class SubscriptionInMethod {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const postMethodLocalValidOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const postMethodLocalValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
@@ -168,7 +168,7 @@ const postMethodLocalValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const postMethodLocalNullOperationSpec: msRest.OperationSpec = {
+const postMethodLocalNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}",
   urlParameters: [
@@ -186,7 +186,7 @@ const postMethodLocalNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const postPathLocalValidOperationSpec: msRest.OperationSpec = {
+const postPathLocalValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [
@@ -204,7 +204,7 @@ const postPathLocalValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const postSwaggerLocalValidOperationSpec: msRest.OperationSpec = {
+const postSwaggerLocalValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
   urlParameters: [

@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as Parameters from "./models/parameters";
@@ -21,7 +21,7 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestReportServiceForAzureOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: Models.AutoRestReportServiceForAzureOptions) {
     super(credentials, options);
   }
 
@@ -34,13 +34,13 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
   /**
    * @param callback The callback
    */
-  getReport(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  getReport(callback: coreHttp.ServiceCallback<{ [propertyName: string]: number }>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getReport(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams | msRest.ServiceCallback<{ [propertyName: string]: number }>, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.GetReportResponse> {
+  getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback: coreHttp.ServiceCallback<{ [propertyName: string]: number }>): void;
+  getReport(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams | coreHttp.ServiceCallback<{ [propertyName: string]: number }>, callback?: coreHttp.ServiceCallback<{ [propertyName: string]: number }>): Promise<Models.GetReportResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -51,8 +51,8 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getReportOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getReportOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "report/azure",
   queryParameters: [

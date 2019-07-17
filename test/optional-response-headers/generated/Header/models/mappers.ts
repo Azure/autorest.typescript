@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 
-export const ErrorModel: msRest.CompositeMapper = {
+export const ErrorModel: coreHttp.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -31,7 +31,7 @@ export const ErrorModel: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderResponseExistingKeyHeaders: msRest.CompositeMapper = {
+export const HeaderResponseExistingKeyHeaders: coreHttp.CompositeMapper = {
   serializedName: "header-responseexistingkey-headers",
   type: {
     name: "Composite",
@@ -47,7 +47,7 @@ export const HeaderResponseExistingKeyHeaders: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderResponseProtectedKeyHeaders: msRest.CompositeMapper = {
+export const HeaderResponseProtectedKeyHeaders: coreHttp.CompositeMapper = {
   serializedName: "header-responseprotectedkey-headers",
   type: {
     name: "Composite",
@@ -63,7 +63,7 @@ export const HeaderResponseProtectedKeyHeaders: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderResponseIntegerHeaders: msRest.CompositeMapper = {
+export const HeaderResponseIntegerHeaders: coreHttp.CompositeMapper = {
   serializedName: "header-responseinteger-headers",
   type: {
     name: "Composite",
@@ -79,7 +79,7 @@ export const HeaderResponseIntegerHeaders: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderResponseLongHeaders: msRest.CompositeMapper = {
+export const HeaderResponseLongHeaders: coreHttp.CompositeMapper = {
   serializedName: "header-responselong-headers",
   type: {
     name: "Composite",
@@ -95,7 +95,7 @@ export const HeaderResponseLongHeaders: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderResponseFloatHeaders: msRest.CompositeMapper = {
+export const HeaderResponseFloatHeaders: coreHttp.CompositeMapper = {
   serializedName: "header-responsefloat-headers",
   type: {
     name: "Composite",
@@ -111,7 +111,7 @@ export const HeaderResponseFloatHeaders: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderResponseDoubleHeaders: msRest.CompositeMapper = {
+export const HeaderResponseDoubleHeaders: coreHttp.CompositeMapper = {
   serializedName: "header-responsedouble-headers",
   type: {
     name: "Composite",
@@ -127,7 +127,7 @@ export const HeaderResponseDoubleHeaders: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderResponseBoolHeaders: msRest.CompositeMapper = {
+export const HeaderResponseBoolHeaders: coreHttp.CompositeMapper = {
   serializedName: "header-responsebool-headers",
   type: {
     name: "Composite",
@@ -143,7 +143,7 @@ export const HeaderResponseBoolHeaders: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderResponseStringHeaders: msRest.CompositeMapper = {
+export const HeaderResponseStringHeaders: coreHttp.CompositeMapper = {
   serializedName: "header-responsestring-headers",
   type: {
     name: "Composite",
@@ -159,7 +159,7 @@ export const HeaderResponseStringHeaders: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderResponseDateHeaders: msRest.CompositeMapper = {
+export const HeaderResponseDateHeaders: coreHttp.CompositeMapper = {
   serializedName: "header-responsedate-headers",
   type: {
     name: "Composite",
@@ -175,7 +175,7 @@ export const HeaderResponseDateHeaders: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderResponseDatetimeHeaders: msRest.CompositeMapper = {
+export const HeaderResponseDatetimeHeaders: coreHttp.CompositeMapper = {
   serializedName: "header-responsedatetime-headers",
   type: {
     name: "Composite",
@@ -191,7 +191,7 @@ export const HeaderResponseDatetimeHeaders: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderResponseDatetimeRfc1123Headers: msRest.CompositeMapper = {
+export const HeaderResponseDatetimeRfc1123Headers: coreHttp.CompositeMapper = {
   serializedName: "header-responsedatetimerfc1123-headers",
   type: {
     name: "Composite",
@@ -207,7 +207,7 @@ export const HeaderResponseDatetimeRfc1123Headers: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderResponseDurationHeaders: msRest.CompositeMapper = {
+export const HeaderResponseDurationHeaders: coreHttp.CompositeMapper = {
   serializedName: "header-responseduration-headers",
   type: {
     name: "Composite",
@@ -223,7 +223,7 @@ export const HeaderResponseDurationHeaders: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderResponseByteHeaders: msRest.CompositeMapper = {
+export const HeaderResponseByteHeaders: coreHttp.CompositeMapper = {
   serializedName: "header-responsebyte-headers",
   type: {
     name: "Composite",
@@ -239,7 +239,7 @@ export const HeaderResponseByteHeaders: msRest.CompositeMapper = {
   }
 };
 
-export const HeaderResponseEnumHeaders: msRest.CompositeMapper = {
+export const HeaderResponseEnumHeaders: coreHttp.CompositeMapper = {
   serializedName: "header-responseenum-headers",
   type: {
     name: "Composite",

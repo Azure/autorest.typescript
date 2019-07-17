@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/basicOperationsMappers";
 import * as Parameters from "../models/parameters";
@@ -31,17 +31,17 @@ export class BasicOperations {
    * @param [options] The optional parameters
    * @returns Promise<Models.BasicGetValidResponse>
    */
-  getValid(options?: msRest.RequestOptionsBase): Promise<Models.BasicGetValidResponse>;
+  getValid(options?: coreHttp.RequestOptionsBase): Promise<Models.BasicGetValidResponse>;
   /**
    * @param callback The callback
    */
-  getValid(callback: msRest.ServiceCallback<Models.Basic>): void;
+  getValid(callback: coreHttp.ServiceCallback<Models.Basic>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Basic>, callback?: msRest.ServiceCallback<Models.Basic>): Promise<Models.BasicGetValidResponse> {
+  getValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Basic>): void;
+  getValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Basic>, callback?: coreHttp.ServiceCallback<Models.Basic>): Promise<Models.BasicGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -54,21 +54,21 @@ export class BasicOperations {
    * Please put {id: 2, name: 'abc', color: 'Magenta'}
    * @param complexBody Please put {id: 2, name: 'abc', color: 'Magenta'}
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putValid(complexBody: Models.Basic, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putValid(complexBody: Models.Basic, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put {id: 2, name: 'abc', color: 'Magenta'}
    * @param callback The callback
    */
-  putValid(complexBody: Models.Basic, callback: msRest.ServiceCallback<void>): void;
+  putValid(complexBody: Models.Basic, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param complexBody Please put {id: 2, name: 'abc', color: 'Magenta'}
    * @param options The optional parameters
    * @param callback The callback
    */
-  putValid(complexBody: Models.Basic, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.Basic, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putValid(complexBody: Models.Basic, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putValid(complexBody: Models.Basic, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
@@ -83,17 +83,17 @@ export class BasicOperations {
    * @param [options] The optional parameters
    * @returns Promise<Models.BasicGetInvalidResponse>
    */
-  getInvalid(options?: msRest.RequestOptionsBase): Promise<Models.BasicGetInvalidResponse>;
+  getInvalid(options?: coreHttp.RequestOptionsBase): Promise<Models.BasicGetInvalidResponse>;
   /**
    * @param callback The callback
    */
-  getInvalid(callback: msRest.ServiceCallback<Models.Basic>): void;
+  getInvalid(callback: coreHttp.ServiceCallback<Models.Basic>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getInvalid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Basic>, callback?: msRest.ServiceCallback<Models.Basic>): Promise<Models.BasicGetInvalidResponse> {
+  getInvalid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Basic>): void;
+  getInvalid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Basic>, callback?: coreHttp.ServiceCallback<Models.Basic>): Promise<Models.BasicGetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -107,17 +107,17 @@ export class BasicOperations {
    * @param [options] The optional parameters
    * @returns Promise<Models.BasicGetEmptyResponse>
    */
-  getEmpty(options?: msRest.RequestOptionsBase): Promise<Models.BasicGetEmptyResponse>;
+  getEmpty(options?: coreHttp.RequestOptionsBase): Promise<Models.BasicGetEmptyResponse>;
   /**
    * @param callback The callback
    */
-  getEmpty(callback: msRest.ServiceCallback<Models.Basic>): void;
+  getEmpty(callback: coreHttp.ServiceCallback<Models.Basic>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getEmpty(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Basic>, callback?: msRest.ServiceCallback<Models.Basic>): Promise<Models.BasicGetEmptyResponse> {
+  getEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Basic>): void;
+  getEmpty(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Basic>, callback?: coreHttp.ServiceCallback<Models.Basic>): Promise<Models.BasicGetEmptyResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -131,17 +131,17 @@ export class BasicOperations {
    * @param [options] The optional parameters
    * @returns Promise<Models.BasicGetNullResponse>
    */
-  getNull(options?: msRest.RequestOptionsBase): Promise<Models.BasicGetNullResponse>;
+  getNull(options?: coreHttp.RequestOptionsBase): Promise<Models.BasicGetNullResponse>;
   /**
    * @param callback The callback
    */
-  getNull(callback: msRest.ServiceCallback<Models.Basic>): void;
+  getNull(callback: coreHttp.ServiceCallback<Models.Basic>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Basic>, callback?: msRest.ServiceCallback<Models.Basic>): Promise<Models.BasicGetNullResponse> {
+  getNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Basic>): void;
+  getNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Basic>, callback?: coreHttp.ServiceCallback<Models.Basic>): Promise<Models.BasicGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -155,17 +155,17 @@ export class BasicOperations {
    * @param [options] The optional parameters
    * @returns Promise<Models.BasicGetNotProvidedResponse>
    */
-  getNotProvided(options?: msRest.RequestOptionsBase): Promise<Models.BasicGetNotProvidedResponse>;
+  getNotProvided(options?: coreHttp.RequestOptionsBase): Promise<Models.BasicGetNotProvidedResponse>;
   /**
    * @param callback The callback
    */
-  getNotProvided(callback: msRest.ServiceCallback<Models.Basic>): void;
+  getNotProvided(callback: coreHttp.ServiceCallback<Models.Basic>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getNotProvided(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Basic>): void;
-  getNotProvided(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Basic>, callback?: msRest.ServiceCallback<Models.Basic>): Promise<Models.BasicGetNotProvidedResponse> {
+  getNotProvided(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Basic>): void;
+  getNotProvided(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Basic>, callback?: coreHttp.ServiceCallback<Models.Basic>): Promise<Models.BasicGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -176,8 +176,8 @@ export class BasicOperations {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getValidOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "complex/basic/valid",
   headerParameters: [
@@ -194,7 +194,7 @@ const getValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putValidOperationSpec: msRest.OperationSpec = {
+const putValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/basic/valid",
   queryParameters: [
@@ -219,7 +219,7 @@ const putValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getInvalidOperationSpec: msRest.OperationSpec = {
+const getInvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "complex/basic/invalid",
   headerParameters: [
@@ -236,7 +236,7 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getEmptyOperationSpec: msRest.OperationSpec = {
+const getEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "complex/basic/empty",
   headerParameters: [
@@ -253,7 +253,7 @@ const getEmptyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getNullOperationSpec: msRest.OperationSpec = {
+const getNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "complex/basic/null",
   headerParameters: [
@@ -270,7 +270,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getNotProvidedOperationSpec: msRest.OperationSpec = {
+const getNotProvidedOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "complex/basic/notprovided",
   headerParameters: [

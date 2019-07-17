@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/readonlypropertyMappers";
 import { AutoRestComplexTestServiceContext } from "../autoRestComplexTestServiceContext";
@@ -30,17 +30,17 @@ export class Readonlyproperty {
    * @param [options] The optional parameters
    * @returns Promise<Models.ReadonlypropertyGetValidResponse>
    */
-  getValid(options?: msRest.RequestOptionsBase): Promise<Models.ReadonlypropertyGetValidResponse>;
+  getValid(options?: coreHttp.RequestOptionsBase): Promise<Models.ReadonlypropertyGetValidResponse>;
   /**
    * @param callback The callback
    */
-  getValid(callback: msRest.ServiceCallback<Models.ReadonlyObj>): void;
+  getValid(callback: coreHttp.ServiceCallback<Models.ReadonlyObj>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ReadonlyObj>): void;
-  getValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ReadonlyObj>, callback?: msRest.ServiceCallback<Models.ReadonlyObj>): Promise<Models.ReadonlypropertyGetValidResponse> {
+  getValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ReadonlyObj>): void;
+  getValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ReadonlyObj>, callback?: coreHttp.ServiceCallback<Models.ReadonlyObj>): Promise<Models.ReadonlypropertyGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -53,21 +53,21 @@ export class Readonlyproperty {
    * Put complex types that have readonly properties
    * @param complexBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putValid(complexBody: Models.ReadonlyObj, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putValid(complexBody: Models.ReadonlyObj, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody
    * @param callback The callback
    */
-  putValid(complexBody: Models.ReadonlyObj, callback: msRest.ServiceCallback<void>): void;
+  putValid(complexBody: Models.ReadonlyObj, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param complexBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putValid(complexBody: Models.ReadonlyObj, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.ReadonlyObj, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putValid(complexBody: Models.ReadonlyObj, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putValid(complexBody: Models.ReadonlyObj, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
@@ -79,8 +79,8 @@ export class Readonlyproperty {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getValidOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "complex/readonlyproperty/valid",
   responses: {
@@ -94,7 +94,7 @@ const getValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putValidOperationSpec: msRest.OperationSpec = {
+const putValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/readonlyproperty/valid",
   requestBody: {

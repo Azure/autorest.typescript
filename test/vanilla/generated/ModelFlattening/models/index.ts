@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ServiceClientOptions } from "@azure/ms-rest-js";
-import * as msRest from "@azure/ms-rest-js";
+import { ServiceClientOptions } from "@azure/core-http";
+import * as coreHttp from "@azure/core-http";
 
 /**
  * An interface representing ErrorModel.
@@ -172,7 +172,7 @@ export interface AutoRestResourceFlatteningTestServiceOptions extends ServiceCli
 /**
  * Optional Parameters.
  */
-export interface AutoRestResourceFlatteningTestServicePutArrayOptionalParams extends msRest.RequestOptionsBase {
+export interface AutoRestResourceFlatteningTestServicePutArrayOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * External Resource as an Array to put
    */
@@ -182,7 +182,7 @@ export interface AutoRestResourceFlatteningTestServicePutArrayOptionalParams ext
 /**
  * Optional Parameters.
  */
-export interface AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams extends msRest.RequestOptionsBase {
+export interface AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * External Resource as an Array to put
    */
@@ -192,7 +192,7 @@ export interface AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalPar
 /**
  * Optional Parameters.
  */
-export interface AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams extends msRest.RequestOptionsBase {
+export interface AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * External Resource as a Dictionary to put
    */
@@ -202,7 +202,7 @@ export interface AutoRestResourceFlatteningTestServicePutDictionaryOptionalParam
 /**
  * Optional Parameters.
  */
-export interface AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams extends msRest.RequestOptionsBase {
+export interface AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * External Resource as a ResourceCollection to put
    */
@@ -212,7 +212,7 @@ export interface AutoRestResourceFlatteningTestServicePutResourceCollectionOptio
 /**
  * Optional Parameters.
  */
-export interface AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams extends msRest.RequestOptionsBase {
+export interface AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Simple body product to put
    */
@@ -222,7 +222,7 @@ export interface AutoRestResourceFlatteningTestServicePutSimpleProductOptionalPa
 /**
  * Optional Parameters.
  */
-export interface AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams extends msRest.RequestOptionsBase {
+export interface AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Description of product.
    */
@@ -253,7 +253,7 @@ export type GetArrayResponse = Array<FlattenedProduct> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -273,7 +273,7 @@ export type GetWrappedArrayResponse = Array<ProductWrapper> & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -298,7 +298,7 @@ export type GetDictionaryResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -318,7 +318,7 @@ export type GetResourceCollectionResponse = ResourceCollection & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -338,7 +338,7 @@ export type PutSimpleProductResponse = SimpleProduct & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -358,7 +358,7 @@ export type PostFlattenedSimpleProductResponse = SimpleProduct & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -378,7 +378,7 @@ export type PutSimpleProductWithGroupingResponse = SimpleProduct & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */

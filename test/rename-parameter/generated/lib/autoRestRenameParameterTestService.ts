@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as Parameters from "./models/parameters";
@@ -27,19 +27,19 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
   /**
    * GET with an optional query parameter
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getUsingOptional(options?: Models.AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams): Promise<msRest.RestResponse>;
+  getUsingOptional(options?: Models.AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getUsingOptional(callback: msRest.ServiceCallback<void>): void;
+  getUsingOptional(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getUsingOptional(options: Models.AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getUsingOptional(options?: Models.AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getUsingOptional(options: Models.AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  getUsingOptional(options?: Models.AutoRestRenameParameterTestServiceGetUsingOptionalOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -52,21 +52,21 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
    * GET with a required query parameter
    * @param timeout A query parameter.
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getUsingRequired(timeout: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getUsingRequired(timeout: string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param timeout A query parameter.
    * @param callback The callback
    */
-  getUsingRequired(timeout: string, callback: msRest.ServiceCallback<void>): void;
+  getUsingRequired(timeout: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param timeout A query parameter.
    * @param options The optional parameters
    * @param callback The callback
    */
-  getUsingRequired(timeout: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getUsingRequired(timeout: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getUsingRequired(timeout: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getUsingRequired(timeout: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.sendOperationRequest(
       {
         timeout,
@@ -79,19 +79,19 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
   /**
    * GET with an optional client query parameter
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getUsingClientOptional(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getUsingClientOptional(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getUsingClientOptional(callback: msRest.ServiceCallback<void>): void;
+  getUsingClientOptional(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getUsingClientOptional(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getUsingClientOptional(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getUsingClientOptional(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getUsingClientOptional(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -103,19 +103,19 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
   /**
    * GET with a required client query parameter
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getUsingClientRequired(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getUsingClientRequired(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getUsingClientRequired(callback: msRest.ServiceCallback<void>): void;
+  getUsingClientRequired(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getUsingClientRequired(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getUsingClientRequired(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getUsingClientRequired(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getUsingClientRequired(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -126,8 +126,8 @@ class AutoRestRenameParameterTestService extends AutoRestRenameParameterTestServ
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getUsingOptionalOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getUsingOptionalOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "rename-parameter/optional",
   queryParameters: [
@@ -142,7 +142,7 @@ const getUsingOptionalOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getUsingRequiredOperationSpec: msRest.OperationSpec = {
+const getUsingRequiredOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "rename-parameter/required",
   queryParameters: [
@@ -157,7 +157,7 @@ const getUsingRequiredOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getUsingClientOptionalOperationSpec: msRest.OperationSpec = {
+const getUsingClientOptionalOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "rename-parameter/client-optional",
   queryParameters: [
@@ -172,7 +172,7 @@ const getUsingClientOptionalOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getUsingClientRequiredOperationSpec: msRest.OperationSpec = {
+const getUsingClientRequiredOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "rename-parameter/client-required",
   queryParameters: [

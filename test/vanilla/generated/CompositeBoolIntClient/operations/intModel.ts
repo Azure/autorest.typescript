@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/intModelMappers";
 import { CompositeBoolIntContext } from "../compositeBoolIntContext";
@@ -30,17 +30,17 @@ export class IntModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.IntModelGetNullResponse>
    */
-  getNull(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetNullResponse>;
+  getNull(options?: coreHttp.RequestOptionsBase): Promise<Models.IntModelGetNullResponse>;
   /**
    * @param callback The callback
    */
-  getNull(callback: msRest.ServiceCallback<number>): void;
+  getNull(callback: coreHttp.ServiceCallback<number>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.IntModelGetNullResponse> {
+  getNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number>): void;
+  getNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number>, callback?: coreHttp.ServiceCallback<number>): Promise<Models.IntModelGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -54,17 +54,17 @@ export class IntModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.IntModelGetInvalidResponse>
    */
-  getInvalid(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetInvalidResponse>;
+  getInvalid(options?: coreHttp.RequestOptionsBase): Promise<Models.IntModelGetInvalidResponse>;
   /**
    * @param callback The callback
    */
-  getInvalid(callback: msRest.ServiceCallback<number>): void;
+  getInvalid(callback: coreHttp.ServiceCallback<number>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getInvalid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.IntModelGetInvalidResponse> {
+  getInvalid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number>): void;
+  getInvalid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number>, callback?: coreHttp.ServiceCallback<number>): Promise<Models.IntModelGetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -78,17 +78,17 @@ export class IntModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.IntModelGetOverflowInt32Response>
    */
-  getOverflowInt32(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetOverflowInt32Response>;
+  getOverflowInt32(options?: coreHttp.RequestOptionsBase): Promise<Models.IntModelGetOverflowInt32Response>;
   /**
    * @param callback The callback
    */
-  getOverflowInt32(callback: msRest.ServiceCallback<number>): void;
+  getOverflowInt32(callback: coreHttp.ServiceCallback<number>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getOverflowInt32(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getOverflowInt32(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.IntModelGetOverflowInt32Response> {
+  getOverflowInt32(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number>): void;
+  getOverflowInt32(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number>, callback?: coreHttp.ServiceCallback<number>): Promise<Models.IntModelGetOverflowInt32Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -102,17 +102,17 @@ export class IntModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.IntModelGetUnderflowInt32Response>
    */
-  getUnderflowInt32(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetUnderflowInt32Response>;
+  getUnderflowInt32(options?: coreHttp.RequestOptionsBase): Promise<Models.IntModelGetUnderflowInt32Response>;
   /**
    * @param callback The callback
    */
-  getUnderflowInt32(callback: msRest.ServiceCallback<number>): void;
+  getUnderflowInt32(callback: coreHttp.ServiceCallback<number>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getUnderflowInt32(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getUnderflowInt32(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.IntModelGetUnderflowInt32Response> {
+  getUnderflowInt32(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number>): void;
+  getUnderflowInt32(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number>, callback?: coreHttp.ServiceCallback<number>): Promise<Models.IntModelGetUnderflowInt32Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -126,17 +126,17 @@ export class IntModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.IntModelGetOverflowInt64Response>
    */
-  getOverflowInt64(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetOverflowInt64Response>;
+  getOverflowInt64(options?: coreHttp.RequestOptionsBase): Promise<Models.IntModelGetOverflowInt64Response>;
   /**
    * @param callback The callback
    */
-  getOverflowInt64(callback: msRest.ServiceCallback<number>): void;
+  getOverflowInt64(callback: coreHttp.ServiceCallback<number>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getOverflowInt64(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getOverflowInt64(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.IntModelGetOverflowInt64Response> {
+  getOverflowInt64(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number>): void;
+  getOverflowInt64(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number>, callback?: coreHttp.ServiceCallback<number>): Promise<Models.IntModelGetOverflowInt64Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -150,17 +150,17 @@ export class IntModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.IntModelGetUnderflowInt64Response>
    */
-  getUnderflowInt64(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetUnderflowInt64Response>;
+  getUnderflowInt64(options?: coreHttp.RequestOptionsBase): Promise<Models.IntModelGetUnderflowInt64Response>;
   /**
    * @param callback The callback
    */
-  getUnderflowInt64(callback: msRest.ServiceCallback<number>): void;
+  getUnderflowInt64(callback: coreHttp.ServiceCallback<number>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getUnderflowInt64(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<number>): void;
-  getUnderflowInt64(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<number>, callback?: msRest.ServiceCallback<number>): Promise<Models.IntModelGetUnderflowInt64Response> {
+  getUnderflowInt64(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<number>): void;
+  getUnderflowInt64(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<number>, callback?: coreHttp.ServiceCallback<number>): Promise<Models.IntModelGetUnderflowInt64Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -173,21 +173,21 @@ export class IntModel {
    * Put max int32 value
    * @param intBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putMax32(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putMax32(intBody: number, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param intBody
    * @param callback The callback
    */
-  putMax32(intBody: number, callback: msRest.ServiceCallback<void>): void;
+  putMax32(intBody: number, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param intBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putMax32(intBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMax32(intBody: number, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putMax32(intBody: number, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putMax32(intBody: number, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         intBody,
@@ -201,21 +201,21 @@ export class IntModel {
    * Put max int64 value
    * @param intBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putMax64(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putMax64(intBody: number, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param intBody
    * @param callback The callback
    */
-  putMax64(intBody: number, callback: msRest.ServiceCallback<void>): void;
+  putMax64(intBody: number, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param intBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putMax64(intBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMax64(intBody: number, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putMax64(intBody: number, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putMax64(intBody: number, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         intBody,
@@ -229,21 +229,21 @@ export class IntModel {
    * Put min int32 value
    * @param intBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putMin32(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putMin32(intBody: number, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param intBody
    * @param callback The callback
    */
-  putMin32(intBody: number, callback: msRest.ServiceCallback<void>): void;
+  putMin32(intBody: number, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param intBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putMin32(intBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMin32(intBody: number, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putMin32(intBody: number, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putMin32(intBody: number, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         intBody,
@@ -257,21 +257,21 @@ export class IntModel {
    * Put min int64 value
    * @param intBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putMin64(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putMin64(intBody: number, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param intBody
    * @param callback The callback
    */
-  putMin64(intBody: number, callback: msRest.ServiceCallback<void>): void;
+  putMin64(intBody: number, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param intBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putMin64(intBody: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMin64(intBody: number, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putMin64(intBody: number, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putMin64(intBody: number, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         intBody,
@@ -286,17 +286,17 @@ export class IntModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.IntModelGetUnixTimeResponse>
    */
-  getUnixTime(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetUnixTimeResponse>;
+  getUnixTime(options?: coreHttp.RequestOptionsBase): Promise<Models.IntModelGetUnixTimeResponse>;
   /**
    * @param callback The callback
    */
-  getUnixTime(callback: msRest.ServiceCallback<Date>): void;
+  getUnixTime(callback: coreHttp.ServiceCallback<Date>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getUnixTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getUnixTime(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback?: msRest.ServiceCallback<Date>): Promise<Models.IntModelGetUnixTimeResponse> {
+  getUnixTime(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Date>): void;
+  getUnixTime(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Date>, callback?: coreHttp.ServiceCallback<Date>): Promise<Models.IntModelGetUnixTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -309,21 +309,21 @@ export class IntModel {
    * Put datetime encoded as Unix time
    * @param intBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putUnixTimeDate(intBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putUnixTimeDate(intBody: Date | string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param intBody
    * @param callback The callback
    */
-  putUnixTimeDate(intBody: Date | string, callback: msRest.ServiceCallback<void>): void;
+  putUnixTimeDate(intBody: Date | string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param intBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putUnixTimeDate(intBody: Date | string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putUnixTimeDate(intBody: Date | string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putUnixTimeDate(intBody: Date | string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putUnixTimeDate(intBody: Date | string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         intBody,
@@ -338,17 +338,17 @@ export class IntModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.IntModelGetInvalidUnixTimeResponse>
    */
-  getInvalidUnixTime(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetInvalidUnixTimeResponse>;
+  getInvalidUnixTime(options?: coreHttp.RequestOptionsBase): Promise<Models.IntModelGetInvalidUnixTimeResponse>;
   /**
    * @param callback The callback
    */
-  getInvalidUnixTime(callback: msRest.ServiceCallback<Date>): void;
+  getInvalidUnixTime(callback: coreHttp.ServiceCallback<Date>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getInvalidUnixTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getInvalidUnixTime(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback?: msRest.ServiceCallback<Date>): Promise<Models.IntModelGetInvalidUnixTimeResponse> {
+  getInvalidUnixTime(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Date>): void;
+  getInvalidUnixTime(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Date>, callback?: coreHttp.ServiceCallback<Date>): Promise<Models.IntModelGetInvalidUnixTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -362,17 +362,17 @@ export class IntModel {
    * @param [options] The optional parameters
    * @returns Promise<Models.IntModelGetNullUnixTimeResponse>
    */
-  getNullUnixTime(options?: msRest.RequestOptionsBase): Promise<Models.IntModelGetNullUnixTimeResponse>;
+  getNullUnixTime(options?: coreHttp.RequestOptionsBase): Promise<Models.IntModelGetNullUnixTimeResponse>;
   /**
    * @param callback The callback
    */
-  getNullUnixTime(callback: msRest.ServiceCallback<Date>): void;
+  getNullUnixTime(callback: coreHttp.ServiceCallback<Date>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getNullUnixTime(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Date>): void;
-  getNullUnixTime(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Date>, callback?: msRest.ServiceCallback<Date>): Promise<Models.IntModelGetNullUnixTimeResponse> {
+  getNullUnixTime(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Date>): void;
+  getNullUnixTime(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Date>, callback?: coreHttp.ServiceCallback<Date>): Promise<Models.IntModelGetNullUnixTimeResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -383,8 +383,8 @@ export class IntModel {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getNullOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "int/null",
   responses: {
@@ -403,7 +403,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getInvalidOperationSpec: msRest.OperationSpec = {
+const getInvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "int/invalid",
   responses: {
@@ -422,7 +422,7 @@ const getInvalidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getOverflowInt32OperationSpec: msRest.OperationSpec = {
+const getOverflowInt32OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "int/overflowint32",
   responses: {
@@ -441,7 +441,7 @@ const getOverflowInt32OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getUnderflowInt32OperationSpec: msRest.OperationSpec = {
+const getUnderflowInt32OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "int/underflowint32",
   responses: {
@@ -460,7 +460,7 @@ const getUnderflowInt32OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getOverflowInt64OperationSpec: msRest.OperationSpec = {
+const getOverflowInt64OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "int/overflowint64",
   responses: {
@@ -479,7 +479,7 @@ const getOverflowInt64OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getUnderflowInt64OperationSpec: msRest.OperationSpec = {
+const getUnderflowInt64OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "int/underflowint64",
   responses: {
@@ -498,7 +498,7 @@ const getUnderflowInt64OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putMax32OperationSpec: msRest.OperationSpec = {
+const putMax32OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "int/max/32",
   requestBody: {
@@ -520,7 +520,7 @@ const putMax32OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putMax64OperationSpec: msRest.OperationSpec = {
+const putMax64OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "int/max/64",
   requestBody: {
@@ -542,7 +542,7 @@ const putMax64OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putMin32OperationSpec: msRest.OperationSpec = {
+const putMin32OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "int/min/32",
   requestBody: {
@@ -564,7 +564,7 @@ const putMin32OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putMin64OperationSpec: msRest.OperationSpec = {
+const putMin64OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "int/min/64",
   requestBody: {
@@ -586,7 +586,7 @@ const putMin64OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getUnixTimeOperationSpec: msRest.OperationSpec = {
+const getUnixTimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "int/unixtime",
   responses: {
@@ -605,7 +605,7 @@ const getUnixTimeOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putUnixTimeDateOperationSpec: msRest.OperationSpec = {
+const putUnixTimeDateOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "int/unixtime",
   requestBody: {
@@ -627,7 +627,7 @@ const putUnixTimeDateOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getInvalidUnixTimeOperationSpec: msRest.OperationSpec = {
+const getInvalidUnixTimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "int/invalidunixtime",
   responses: {
@@ -646,7 +646,7 @@ const getInvalidUnixTimeOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getNullUnixTimeOperationSpec: msRest.OperationSpec = {
+const getNullUnixTimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "int/nullunixtime",
   responses: {

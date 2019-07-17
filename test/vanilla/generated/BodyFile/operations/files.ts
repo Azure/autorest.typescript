@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/filesMappers";
 import { AutoRestSwaggerBATFileServiceContext } from "../autoRestSwaggerBATFileServiceContext";
@@ -30,17 +30,17 @@ export class Files {
    * @param [options] The optional parameters
    * @returns Promise<Models.FilesGetFileResponse>
    */
-  getFile(options?: msRest.RequestOptionsBase): Promise<Models.FilesGetFileResponse>;
+  getFile(options?: coreHttp.RequestOptionsBase): Promise<Models.FilesGetFileResponse>;
   /**
    * @param callback The callback
    */
-  getFile(callback: msRest.ServiceCallback<void>): void;
+  getFile(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getFile(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getFile(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetFileResponse> {
+  getFile(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getFile(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.FilesGetFileResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -54,17 +54,17 @@ export class Files {
    * @param [options] The optional parameters
    * @returns Promise<Models.FilesGetFileLargeResponse>
    */
-  getFileLarge(options?: msRest.RequestOptionsBase): Promise<Models.FilesGetFileLargeResponse>;
+  getFileLarge(options?: coreHttp.RequestOptionsBase): Promise<Models.FilesGetFileLargeResponse>;
   /**
    * @param callback The callback
    */
-  getFileLarge(callback: msRest.ServiceCallback<void>): void;
+  getFileLarge(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getFileLarge(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getFileLarge(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetFileLargeResponse> {
+  getFileLarge(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getFileLarge(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.FilesGetFileLargeResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -78,17 +78,17 @@ export class Files {
    * @param [options] The optional parameters
    * @returns Promise<Models.FilesGetEmptyFileResponse>
    */
-  getEmptyFile(options?: msRest.RequestOptionsBase): Promise<Models.FilesGetEmptyFileResponse>;
+  getEmptyFile(options?: coreHttp.RequestOptionsBase): Promise<Models.FilesGetEmptyFileResponse>;
   /**
    * @param callback The callback
    */
-  getEmptyFile(callback: msRest.ServiceCallback<void>): void;
+  getEmptyFile(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getEmptyFile(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getEmptyFile(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.FilesGetEmptyFileResponse> {
+  getEmptyFile(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getEmptyFile(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.FilesGetEmptyFileResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -99,8 +99,8 @@ export class Files {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getFileOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getFileOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "files/stream/nonempty",
   responses: {
@@ -119,7 +119,7 @@ const getFileOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getFileLargeOperationSpec: msRest.OperationSpec = {
+const getFileLargeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "files/stream/verylarge",
   responses: {
@@ -138,7 +138,7 @@ const getFileLargeOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getEmptyFileOperationSpec: msRest.OperationSpec = {
+const getEmptyFileOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "files/stream/empty",
   responses: {

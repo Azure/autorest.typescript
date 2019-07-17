@@ -498,7 +498,7 @@ namespace AutoRest.TypeScript
         public void CreateSerializerExpressionWithNoMappersAndNoXML()
         {
             CodeModelTS codeModel = Models.CodeModel();
-            Assert.AreEqual("new msRest.Serializer()", ClientModelExtensions.CreateSerializerExpression(codeModel));
+            Assert.AreEqual("new coreHttp.Serializer()", ClientModelExtensions.CreateSerializerExpression(codeModel));
         }
 
         [TestMethod]
@@ -509,7 +509,7 @@ namespace AutoRest.TypeScript
                 {
                     Models.CompositeType(name: "FakeModelType")
                 });
-            Assert.AreEqual("new msRest.Serializer(Mappers)", ClientModelExtensions.CreateSerializerExpression(codeModel));
+            Assert.AreEqual("new coreHttp.Serializer(Mappers)", ClientModelExtensions.CreateSerializerExpression(codeModel));
         }
     }
 }

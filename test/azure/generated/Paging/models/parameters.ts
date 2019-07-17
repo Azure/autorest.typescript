@@ -8,9 +8,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const acceptLanguage: msRest.OperationParameter = {
+export const acceptLanguage: coreHttp.OperationParameter = {
   parameterPath: "acceptLanguage",
   mapper: {
     serializedName: "accept-language",
@@ -20,7 +20,7 @@ export const acceptLanguage: msRest.OperationParameter = {
     }
   }
 };
-export const apiVersion0: msRest.OperationQueryParameter = {
+export const apiVersion0: coreHttp.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     required: true,
@@ -30,7 +30,7 @@ export const apiVersion0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const apiVersion1: msRest.OperationQueryParameter = {
+export const apiVersion1: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "customParameterGroup",
     "apiVersion"
@@ -43,7 +43,7 @@ export const apiVersion1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const clientRequestId: msRest.OperationParameter = {
+export const clientRequestId: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "clientRequestId"
@@ -55,7 +55,7 @@ export const clientRequestId: msRest.OperationParameter = {
     }
   }
 };
-export const maxresults0: msRest.OperationParameter = {
+export const maxresults0: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "pagingGetMultiplePagesOptions",
@@ -68,7 +68,7 @@ export const maxresults0: msRest.OperationParameter = {
     }
   }
 };
-export const maxresults1: msRest.OperationParameter = {
+export const maxresults1: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "pagingGetOdataMultiplePagesOptions",
@@ -81,7 +81,7 @@ export const maxresults1: msRest.OperationParameter = {
     }
   }
 };
-export const maxresults2: msRest.OperationParameter = {
+export const maxresults2: coreHttp.OperationParameter = {
   parameterPath: [
     "pagingGetMultiplePagesWithOffsetOptions",
     "maxresults"
@@ -93,7 +93,7 @@ export const maxresults2: msRest.OperationParameter = {
     }
   }
 };
-export const maxresults3: msRest.OperationParameter = {
+export const maxresults3: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "pagingGetMultiplePagesLROOptions",
@@ -106,7 +106,7 @@ export const maxresults3: msRest.OperationParameter = {
     }
   }
 };
-export const maxresults4: msRest.OperationParameter = {
+export const maxresults4: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "pagingGetMultiplePagesWithOffsetNextOptions",
@@ -119,7 +119,7 @@ export const maxresults4: msRest.OperationParameter = {
     }
   }
 };
-export const nextLink: msRest.OperationURLParameter = {
+export const nextLink: coreHttp.OperationURLParameter = {
   parameterPath: "nextLink",
   mapper: {
     required: true,
@@ -130,7 +130,7 @@ export const nextLink: msRest.OperationURLParameter = {
   },
   skipEncoding: true
 };
-export const nextPageLink: msRest.OperationURLParameter = {
+export const nextPageLink: coreHttp.OperationURLParameter = {
   parameterPath: "nextPageLink",
   mapper: {
     required: true,
@@ -141,7 +141,7 @@ export const nextPageLink: msRest.OperationURLParameter = {
   },
   skipEncoding: true
 };
-export const offset: msRest.OperationURLParameter = {
+export const offset: coreHttp.OperationURLParameter = {
   parameterPath: [
     "pagingGetMultiplePagesWithOffsetOptions",
     "offset"
@@ -154,7 +154,7 @@ export const offset: msRest.OperationURLParameter = {
     }
   }
 };
-export const tenant0: msRest.OperationURLParameter = {
+export const tenant0: coreHttp.OperationURLParameter = {
   parameterPath: "tenant",
   mapper: {
     required: true,
@@ -164,7 +164,7 @@ export const tenant0: msRest.OperationURLParameter = {
     }
   }
 };
-export const tenant1: msRest.OperationURLParameter = {
+export const tenant1: coreHttp.OperationURLParameter = {
   parameterPath: [
     "customParameterGroup",
     "tenant"
@@ -177,7 +177,7 @@ export const tenant1: msRest.OperationURLParameter = {
     }
   }
 };
-export const timeout0: msRest.OperationParameter = {
+export const timeout0: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "pagingGetMultiplePagesOptions",
@@ -191,7 +191,7 @@ export const timeout0: msRest.OperationParameter = {
     }
   }
 };
-export const timeout1: msRest.OperationParameter = {
+export const timeout1: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "pagingGetOdataMultiplePagesOptions",
@@ -205,7 +205,7 @@ export const timeout1: msRest.OperationParameter = {
     }
   }
 };
-export const timeout2: msRest.OperationParameter = {
+export const timeout2: coreHttp.OperationParameter = {
   parameterPath: [
     "pagingGetMultiplePagesWithOffsetOptions",
     "timeout"
@@ -218,7 +218,7 @@ export const timeout2: msRest.OperationParameter = {
     }
   }
 };
-export const timeout3: msRest.OperationParameter = {
+export const timeout3: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "pagingGetMultiplePagesLROOptions",
@@ -232,7 +232,7 @@ export const timeout3: msRest.OperationParameter = {
     }
   }
 };
-export const timeout4: msRest.OperationParameter = {
+export const timeout4: coreHttp.OperationParameter = {
   parameterPath: [
     "options",
     "pagingGetMultiplePagesWithOffsetNextOptions",

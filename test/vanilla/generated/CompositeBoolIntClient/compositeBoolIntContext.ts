@@ -8,13 +8,13 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "./models";
 
 const packageName = "";
 const packageVersion = "";
 
-export class CompositeBoolIntContext extends msRest.ServiceClient {
+export class CompositeBoolIntContext extends coreHttp.ServiceClient {
 
   /**
    * Initializes a new instance of the CompositeBoolIntContext class.
@@ -26,7 +26,7 @@ export class CompositeBoolIntContext extends msRest.ServiceClient {
     }
 
     if (!options.userAgent) {
-      const defaultUserAgent = msRest.getDefaultUserAgentValue();
+      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
 

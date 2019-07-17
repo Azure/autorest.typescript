@@ -8,13 +8,13 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "./models";
 
 const packageName = "";
 const packageVersion = "";
 
-export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceClient {
+export class AutoRestRequiredOptionalTestServiceContext extends coreHttp.ServiceClient {
   requiredGlobalPath: string;
   requiredGlobalQuery: string;
   optionalGlobalQuery?: number;
@@ -38,7 +38,7 @@ export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceCl
     }
 
     if (!options.userAgent) {
-      const defaultUserAgent = msRest.getDefaultUserAgentValue();
+      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
 

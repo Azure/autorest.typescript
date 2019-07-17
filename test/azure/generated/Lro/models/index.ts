@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { BaseResource, CloudError, AzureServiceClientOptions } from "@azure/ms-rest-azure-js";
-import * as msRest from "@azure/ms-rest-js";
+import { BaseResource, CloudError, AzureServiceClientOptions } from "@azure/core-arm";
+import * as coreHttp from "@azure/core-http";
 
 export { BaseResource, CloudError };
 
@@ -111,7 +111,7 @@ export interface OperationResult {
 /**
  * Optional Parameters.
  */
-export interface LROsPut200SucceededOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPut200SucceededOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -121,7 +121,7 @@ export interface LROsPut200SucceededOptionalParams extends msRest.RequestOptions
 /**
  * Optional Parameters.
  */
-export interface LROsPut200SucceededNoStateOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPut200SucceededNoStateOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -131,7 +131,7 @@ export interface LROsPut200SucceededNoStateOptionalParams extends msRest.Request
 /**
  * Optional Parameters.
  */
-export interface LROsPut202Retry200OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPut202Retry200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -141,7 +141,7 @@ export interface LROsPut202Retry200OptionalParams extends msRest.RequestOptionsB
 /**
  * Optional Parameters.
  */
-export interface LROsPut201CreatingSucceeded200OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPut201CreatingSucceeded200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -151,7 +151,7 @@ export interface LROsPut201CreatingSucceeded200OptionalParams extends msRest.Req
 /**
  * Optional Parameters.
  */
-export interface LROsPut200UpdatingSucceeded204OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPut200UpdatingSucceeded204OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -161,7 +161,7 @@ export interface LROsPut200UpdatingSucceeded204OptionalParams extends msRest.Req
 /**
  * Optional Parameters.
  */
-export interface LROsPut201CreatingFailed200OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPut201CreatingFailed200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -171,7 +171,7 @@ export interface LROsPut201CreatingFailed200OptionalParams extends msRest.Reques
 /**
  * Optional Parameters.
  */
-export interface LROsPut200Acceptedcanceled200OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPut200Acceptedcanceled200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -181,7 +181,7 @@ export interface LROsPut200Acceptedcanceled200OptionalParams extends msRest.Requ
 /**
  * Optional Parameters.
  */
-export interface LROsPutNoHeaderInRetryOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPutNoHeaderInRetryOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -191,7 +191,7 @@ export interface LROsPutNoHeaderInRetryOptionalParams extends msRest.RequestOpti
 /**
  * Optional Parameters.
  */
-export interface LROsPutAsyncRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPutAsyncRetrySucceededOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -201,7 +201,7 @@ export interface LROsPutAsyncRetrySucceededOptionalParams extends msRest.Request
 /**
  * Optional Parameters.
  */
-export interface LROsPutAsyncNoRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPutAsyncNoRetrySucceededOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -211,7 +211,7 @@ export interface LROsPutAsyncNoRetrySucceededOptionalParams extends msRest.Reque
 /**
  * Optional Parameters.
  */
-export interface LROsPutAsyncRetryFailedOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPutAsyncRetryFailedOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -221,7 +221,7 @@ export interface LROsPutAsyncRetryFailedOptionalParams extends msRest.RequestOpt
 /**
  * Optional Parameters.
  */
-export interface LROsPutAsyncNoRetrycanceledOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPutAsyncNoRetrycanceledOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -231,7 +231,7 @@ export interface LROsPutAsyncNoRetrycanceledOptionalParams extends msRest.Reques
 /**
  * Optional Parameters.
  */
-export interface LROsPutAsyncNoHeaderInRetryOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPutAsyncNoHeaderInRetryOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -241,231 +241,7 @@ export interface LROsPutAsyncNoHeaderInRetryOptionalParams extends msRest.Reques
 /**
  * Optional Parameters.
  */
-export interface LROsPutNonResourceOptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * sku to put
-   */
-  sku?: Sku;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsPutAsyncNonResourceOptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Sku to put
-   */
-  sku?: Sku;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsPutSubResourceOptionalParams extends msRest.RequestOptionsBase {
-  provisioningState?: string;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsPutAsyncSubResourceOptionalParams extends msRest.RequestOptionsBase {
-  provisioningState?: string;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsPost202Retry200OptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsPost202NoRetry204OptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsPostAsyncRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsPostAsyncNoRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsPostAsyncRetryFailedOptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsPostAsyncRetrycanceledOptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsBeginPut200SucceededOptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsBeginPut200SucceededNoStateOptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsBeginPut202Retry200OptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsBeginPut201CreatingSucceeded200OptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsBeginPut200UpdatingSucceeded204OptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsBeginPut201CreatingFailed200OptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsBeginPut200Acceptedcanceled200OptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsBeginPutNoHeaderInRetryOptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsBeginPutAsyncRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsBeginPutAsyncNoRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsBeginPutAsyncRetryFailedOptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsBeginPutAsyncNoRetrycanceledOptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsBeginPutAsyncNoHeaderInRetryOptionalParams extends msRest.RequestOptionsBase {
-  /**
-   * Product to put
-   */
-  product?: Product;
-}
-
-/**
- * Optional Parameters.
- */
-export interface LROsBeginPutNonResourceOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPutNonResourceOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * sku to put
    */
@@ -475,7 +251,7 @@ export interface LROsBeginPutNonResourceOptionalParams extends msRest.RequestOpt
 /**
  * Optional Parameters.
  */
-export interface LROsBeginPutAsyncNonResourceOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPutAsyncNonResourceOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Sku to put
    */
@@ -485,21 +261,21 @@ export interface LROsBeginPutAsyncNonResourceOptionalParams extends msRest.Reque
 /**
  * Optional Parameters.
  */
-export interface LROsBeginPutSubResourceOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPutSubResourceOptionalParams extends coreHttp.RequestOptionsBase {
   provisioningState?: string;
 }
 
 /**
  * Optional Parameters.
  */
-export interface LROsBeginPutAsyncSubResourceOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPutAsyncSubResourceOptionalParams extends coreHttp.RequestOptionsBase {
   provisioningState?: string;
 }
 
 /**
  * Optional Parameters.
  */
-export interface LROsBeginPost202Retry200OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPost202Retry200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -509,7 +285,7 @@ export interface LROsBeginPost202Retry200OptionalParams extends msRest.RequestOp
 /**
  * Optional Parameters.
  */
-export interface LROsBeginPost202NoRetry204OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPost202NoRetry204OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -519,7 +295,7 @@ export interface LROsBeginPost202NoRetry204OptionalParams extends msRest.Request
 /**
  * Optional Parameters.
  */
-export interface LROsBeginPostAsyncRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPostAsyncRetrySucceededOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -529,7 +305,7 @@ export interface LROsBeginPostAsyncRetrySucceededOptionalParams extends msRest.R
 /**
  * Optional Parameters.
  */
-export interface LROsBeginPostAsyncNoRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPostAsyncNoRetrySucceededOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -539,7 +315,7 @@ export interface LROsBeginPostAsyncNoRetrySucceededOptionalParams extends msRest
 /**
  * Optional Parameters.
  */
-export interface LROsBeginPostAsyncRetryFailedOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPostAsyncRetryFailedOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -549,7 +325,7 @@ export interface LROsBeginPostAsyncRetryFailedOptionalParams extends msRest.Requ
 /**
  * Optional Parameters.
  */
-export interface LROsBeginPostAsyncRetrycanceledOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsPostAsyncRetrycanceledOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -559,7 +335,7 @@ export interface LROsBeginPostAsyncRetrycanceledOptionalParams extends msRest.Re
 /**
  * Optional Parameters.
  */
-export interface LRORetrysPut201CreatingSucceeded200OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPut200SucceededOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -569,7 +345,7 @@ export interface LRORetrysPut201CreatingSucceeded200OptionalParams extends msRes
 /**
  * Optional Parameters.
  */
-export interface LRORetrysPutAsyncRelativeRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPut200SucceededNoStateOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -579,7 +355,7 @@ export interface LRORetrysPutAsyncRelativeRetrySucceededOptionalParams extends m
 /**
  * Optional Parameters.
  */
-export interface LRORetrysPost202Retry200OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPut202Retry200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -589,7 +365,7 @@ export interface LRORetrysPost202Retry200OptionalParams extends msRest.RequestOp
 /**
  * Optional Parameters.
  */
-export interface LRORetrysPostAsyncRelativeRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPut201CreatingSucceeded200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -599,7 +375,7 @@ export interface LRORetrysPostAsyncRelativeRetrySucceededOptionalParams extends 
 /**
  * Optional Parameters.
  */
-export interface LRORetrysBeginPut201CreatingSucceeded200OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPut200UpdatingSucceeded204OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -609,7 +385,7 @@ export interface LRORetrysBeginPut201CreatingSucceeded200OptionalParams extends 
 /**
  * Optional Parameters.
  */
-export interface LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPut201CreatingFailed200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -619,7 +395,7 @@ export interface LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams exte
 /**
  * Optional Parameters.
  */
-export interface LRORetrysBeginPost202Retry200OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPut200Acceptedcanceled200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -629,7 +405,7 @@ export interface LRORetrysBeginPost202Retry200OptionalParams extends msRest.Requ
 /**
  * Optional Parameters.
  */
-export interface LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPutNoHeaderInRetryOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -639,7 +415,7 @@ export interface LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams ext
 /**
  * Optional Parameters.
  */
-export interface LROSADsPutNonRetry400OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPutAsyncRetrySucceededOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -649,7 +425,7 @@ export interface LROSADsPutNonRetry400OptionalParams extends msRest.RequestOptio
 /**
  * Optional Parameters.
  */
-export interface LROSADsPutNonRetry201Creating400OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPutAsyncNoRetrySucceededOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -659,7 +435,7 @@ export interface LROSADsPutNonRetry201Creating400OptionalParams extends msRest.R
 /**
  * Optional Parameters.
  */
-export interface LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPutAsyncRetryFailedOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -669,7 +445,7 @@ export interface LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams exten
 /**
  * Optional Parameters.
  */
-export interface LROSADsPutAsyncRelativeRetry400OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPutAsyncNoRetrycanceledOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -679,7 +455,7 @@ export interface LROSADsPutAsyncRelativeRetry400OptionalParams extends msRest.Re
 /**
  * Optional Parameters.
  */
-export interface LROSADsPostNonRetry400OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPutAsyncNoHeaderInRetryOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -689,7 +465,41 @@ export interface LROSADsPostNonRetry400OptionalParams extends msRest.RequestOpti
 /**
  * Optional Parameters.
  */
-export interface LROSADsPost202NonRetry400OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPutNonResourceOptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * sku to put
+   */
+  sku?: Sku;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROsBeginPutAsyncNonResourceOptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Sku to put
+   */
+  sku?: Sku;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROsBeginPutSubResourceOptionalParams extends coreHttp.RequestOptionsBase {
+  provisioningState?: string;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROsBeginPutAsyncSubResourceOptionalParams extends coreHttp.RequestOptionsBase {
+  provisioningState?: string;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROsBeginPost202Retry200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -699,7 +509,7 @@ export interface LROSADsPost202NonRetry400OptionalParams extends msRest.RequestO
 /**
  * Optional Parameters.
  */
-export interface LROSADsPostAsyncRelativeRetry400OptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPost202NoRetry204OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -709,7 +519,7 @@ export interface LROSADsPostAsyncRelativeRetry400OptionalParams extends msRest.R
 /**
  * Optional Parameters.
  */
-export interface LROSADsPutError201NoProvisioningStatePayloadOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPostAsyncRetrySucceededOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -719,7 +529,7 @@ export interface LROSADsPutError201NoProvisioningStatePayloadOptionalParams exte
 /**
  * Optional Parameters.
  */
-export interface LROSADsPutAsyncRelativeRetryNoStatusOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPostAsyncNoRetrySucceededOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -729,7 +539,7 @@ export interface LROSADsPutAsyncRelativeRetryNoStatusOptionalParams extends msRe
 /**
  * Optional Parameters.
  */
-export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPostAsyncRetryFailedOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -739,7 +549,7 @@ export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams exten
 /**
  * Optional Parameters.
  */
-export interface LROSADsPost202NoLocationOptionalParams extends msRest.RequestOptionsBase {
+export interface LROsBeginPostAsyncRetrycanceledOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -749,7 +559,7 @@ export interface LROSADsPost202NoLocationOptionalParams extends msRest.RequestOp
 /**
  * Optional Parameters.
  */
-export interface LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams extends msRest.RequestOptionsBase {
+export interface LRORetrysPut201CreatingSucceeded200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -759,7 +569,7 @@ export interface LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams extends ms
 /**
  * Optional Parameters.
  */
-export interface LROSADsPut200InvalidJsonOptionalParams extends msRest.RequestOptionsBase {
+export interface LRORetrysPutAsyncRelativeRetrySucceededOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -769,7 +579,7 @@ export interface LROSADsPut200InvalidJsonOptionalParams extends msRest.RequestOp
 /**
  * Optional Parameters.
  */
-export interface LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams extends msRest.RequestOptionsBase {
+export interface LRORetrysPost202Retry200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -779,7 +589,7 @@ export interface LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams extends
 /**
  * Optional Parameters.
  */
-export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams extends msRest.RequestOptionsBase {
+export interface LRORetrysPostAsyncRelativeRetrySucceededOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -789,7 +599,7 @@ export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams ex
 /**
  * Optional Parameters.
  */
-export interface LROSADsPost202RetryInvalidHeaderOptionalParams extends msRest.RequestOptionsBase {
+export interface LRORetrysBeginPut201CreatingSucceeded200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -799,7 +609,7 @@ export interface LROSADsPost202RetryInvalidHeaderOptionalParams extends msRest.R
 /**
  * Optional Parameters.
  */
-export interface LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams extends msRest.RequestOptionsBase {
+export interface LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -809,7 +619,7 @@ export interface LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams extend
 /**
  * Optional Parameters.
  */
-export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams extends msRest.RequestOptionsBase {
+export interface LRORetrysBeginPost202Retry200OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -819,7 +629,7 @@ export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams e
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPutNonRetry400OptionalParams extends msRest.RequestOptionsBase {
+export interface LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -829,7 +639,7 @@ export interface LROSADsBeginPutNonRetry400OptionalParams extends msRest.Request
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPutNonRetry201Creating400OptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPutNonRetry400OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -839,7 +649,7 @@ export interface LROSADsBeginPutNonRetry201Creating400OptionalParams extends msR
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPutNonRetry201Creating400OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -849,7 +659,7 @@ export interface LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams 
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPutAsyncRelativeRetry400OptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -859,7 +669,7 @@ export interface LROSADsBeginPutAsyncRelativeRetry400OptionalParams extends msRe
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPostNonRetry400OptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPutAsyncRelativeRetry400OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -869,7 +679,7 @@ export interface LROSADsBeginPostNonRetry400OptionalParams extends msRest.Reques
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPost202NonRetry400OptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPostNonRetry400OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -879,7 +689,7 @@ export interface LROSADsBeginPost202NonRetry400OptionalParams extends msRest.Req
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPostAsyncRelativeRetry400OptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPost202NonRetry400OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -889,7 +699,7 @@ export interface LROSADsBeginPostAsyncRelativeRetry400OptionalParams extends msR
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPostAsyncRelativeRetry400OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -899,7 +709,7 @@ export interface LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPutError201NoProvisioningStatePayloadOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -909,7 +719,7 @@ export interface LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams extends
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPutAsyncRelativeRetryNoStatusOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -919,7 +729,7 @@ export interface LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams 
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPost202NoLocationOptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -929,7 +739,7 @@ export interface LROSADsBeginPost202NoLocationOptionalParams extends msRest.Requ
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPost202NoLocationOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -939,7 +749,7 @@ export interface LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams exten
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPut200InvalidJsonOptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -949,7 +759,7 @@ export interface LROSADsBeginPut200InvalidJsonOptionalParams extends msRest.Requ
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPut200InvalidJsonOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -959,7 +769,7 @@ export interface LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams ex
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -969,7 +779,7 @@ export interface LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalPara
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPost202RetryInvalidHeaderOptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -979,7 +789,7 @@ export interface LROSADsBeginPost202RetryInvalidHeaderOptionalParams extends msR
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPost202RetryInvalidHeaderOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -989,7 +799,7 @@ export interface LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams e
 /**
  * Optional Parameters.
  */
-export interface LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -999,7 +809,7 @@ export interface LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalPar
 /**
  * Optional Parameters.
  */
-export interface LROsCustomHeaderPutAsyncRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -1009,7 +819,7 @@ export interface LROsCustomHeaderPutAsyncRetrySucceededOptionalParams extends ms
 /**
  * Optional Parameters.
  */
-export interface LROsCustomHeaderPut201CreatingSucceeded200OptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsBeginPutNonRetry400OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -1019,7 +829,7 @@ export interface LROsCustomHeaderPut201CreatingSucceeded200OptionalParams extend
 /**
  * Optional Parameters.
  */
-export interface LROsCustomHeaderPost202Retry200OptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsBeginPutNonRetry201Creating400OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -1029,7 +839,7 @@ export interface LROsCustomHeaderPost202Retry200OptionalParams extends msRest.Re
 /**
  * Optional Parameters.
  */
-export interface LROsCustomHeaderPostAsyncRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -1039,7 +849,7 @@ export interface LROsCustomHeaderPostAsyncRetrySucceededOptionalParams extends m
 /**
  * Optional Parameters.
  */
-export interface LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsBeginPutAsyncRelativeRetry400OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -1049,7 +859,7 @@ export interface LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams exten
 /**
  * Optional Parameters.
  */
-export interface LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsBeginPostNonRetry400OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -1059,7 +869,7 @@ export interface LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams e
 /**
  * Optional Parameters.
  */
-export interface LROsCustomHeaderBeginPost202Retry200OptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsBeginPost202NonRetry400OptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -1069,7 +879,197 @@ export interface LROsCustomHeaderBeginPost202Retry200OptionalParams extends msRe
 /**
  * Optional Parameters.
  */
-export interface LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
+export interface LROSADsBeginPostAsyncRelativeRetry400OptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROSADsBeginPost202NoLocationOptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROSADsBeginPut200InvalidJsonOptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROSADsBeginPost202RetryInvalidHeaderOptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROsCustomHeaderPutAsyncRetrySucceededOptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROsCustomHeaderPut201CreatingSucceeded200OptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROsCustomHeaderPost202Retry200OptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROsCustomHeaderPostAsyncRetrySucceededOptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROsCustomHeaderBeginPost202Retry200OptionalParams extends coreHttp.RequestOptionsBase {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Product to put
    */
@@ -1999,7 +1999,7 @@ export type LROsPut200SucceededResponse = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2019,7 +2019,7 @@ export type LROsPut200SucceededNoStateResponse = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2039,7 +2039,7 @@ export type LROsPut202Retry200Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2059,7 +2059,7 @@ export type LROsPut201CreatingSucceeded200Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2079,7 +2079,7 @@ export type LROsPut200UpdatingSucceeded204Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2099,7 +2099,7 @@ export type LROsPut201CreatingFailed200Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2119,7 +2119,7 @@ export type LROsPut200Acceptedcanceled200Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2139,7 +2139,7 @@ export type LROsPutNoHeaderInRetryResponse = Product & LROsPutNoHeaderInRetryHea
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2164,7 +2164,7 @@ export type LROsPutAsyncRetrySucceededResponse = Product & LROsPutAsyncRetrySucc
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2189,7 +2189,7 @@ export type LROsPutAsyncNoRetrySucceededResponse = Product & LROsPutAsyncNoRetry
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2214,7 +2214,7 @@ export type LROsPutAsyncRetryFailedResponse = Product & LROsPutAsyncRetryFailedH
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2239,7 +2239,7 @@ export type LROsPutAsyncNoRetrycanceledResponse = Product & LROsPutAsyncNoRetryc
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2264,7 +2264,7 @@ export type LROsPutAsyncNoHeaderInRetryResponse = Product & LROsPutAsyncNoHeader
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2289,7 +2289,7 @@ export type LROsPutNonResourceResponse = Sku & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2309,7 +2309,7 @@ export type LROsPutAsyncNonResourceResponse = Sku & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2329,7 +2329,7 @@ export type LROsPutSubResourceResponse = SubProduct & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2349,7 +2349,7 @@ export type LROsPutAsyncSubResourceResponse = SubProduct & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2369,7 +2369,7 @@ export type LROsDeleteProvisioning202Accepted200SucceededResponse = Product & LR
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2394,7 +2394,7 @@ export type LROsDeleteProvisioning202DeletingFailed200Response = Product & LROsD
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2419,7 +2419,7 @@ export type LROsDeleteProvisioning202Deletingcanceled200Response = Product & LRO
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2444,7 +2444,7 @@ export type LROsDelete202Retry200Response = Product & LROsDelete202Retry200Heade
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2469,7 +2469,7 @@ export type LROsDelete202NoRetry204Response = Product & LROsDelete202NoRetry204H
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2494,7 +2494,7 @@ export type LROsDeleteNoHeaderInRetryResponse = LROsDeleteNoHeaderInRetryHeaders
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2509,7 +2509,7 @@ export type LROsDeleteAsyncNoHeaderInRetryResponse = LROsDeleteAsyncNoHeaderInRe
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2524,7 +2524,7 @@ export type LROsDeleteAsyncRetrySucceededResponse = LROsDeleteAsyncRetrySucceede
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2539,7 +2539,7 @@ export type LROsDeleteAsyncNoRetrySucceededResponse = LROsDeleteAsyncNoRetrySucc
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2554,7 +2554,7 @@ export type LROsDeleteAsyncRetryFailedResponse = LROsDeleteAsyncRetryFailedHeade
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2569,7 +2569,7 @@ export type LROsDeleteAsyncRetrycanceledResponse = LROsDeleteAsyncRetrycanceledH
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2584,7 +2584,7 @@ export type LROsPost200WithPayloadResponse = Sku & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2604,7 +2604,7 @@ export type LROsPost202Retry200Response = LROsPost202Retry200Headers & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2619,7 +2619,7 @@ export type LROsPost202NoRetry204Response = Product & LROsPost202NoRetry204Heade
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2644,7 +2644,7 @@ export type LROsPostDoubleHeadersFinalLocationGetResponse = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2664,7 +2664,7 @@ export type LROsPostDoubleHeadersFinalAzureHeaderGetResponse = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2684,7 +2684,7 @@ export type LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = Product & 
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2704,7 +2704,7 @@ export type LROsPostAsyncRetrySucceededResponse = Product & LROsPostAsyncRetrySu
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2729,7 +2729,7 @@ export type LROsPostAsyncNoRetrySucceededResponse = Product & LROsPostAsyncNoRet
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2754,7 +2754,7 @@ export type LROsPostAsyncRetryFailedResponse = LROsPostAsyncRetryFailedHeaders &
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2769,7 +2769,7 @@ export type LROsPostAsyncRetrycanceledResponse = LROsPostAsyncRetrycanceledHeade
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -2784,7 +2784,7 @@ export type LROsBeginPut200SucceededResponse = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2804,7 +2804,7 @@ export type LROsBeginPut200SucceededNoStateResponse = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2824,7 +2824,7 @@ export type LROsBeginPut202Retry200Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2844,7 +2844,7 @@ export type LROsBeginPut201CreatingSucceeded200Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2864,7 +2864,7 @@ export type LROsBeginPut200UpdatingSucceeded204Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2884,7 +2884,7 @@ export type LROsBeginPut201CreatingFailed200Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2904,7 +2904,7 @@ export type LROsBeginPut200Acceptedcanceled200Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2924,7 +2924,7 @@ export type LROsBeginPutNonResourceResponse = Sku & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2944,7 +2944,7 @@ export type LROsBeginPutAsyncNonResourceResponse = Sku & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2964,7 +2964,7 @@ export type LROsBeginPutSubResourceResponse = SubProduct & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -2984,7 +2984,7 @@ export type LROsBeginPutAsyncSubResourceResponse = SubProduct & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3004,7 +3004,7 @@ export type LROsBeginPost200WithPayloadResponse = Sku & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3024,7 +3024,7 @@ export type LROsBeginPostDoubleHeadersFinalLocationGetResponse = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3044,7 +3044,7 @@ export type LROsBeginPostDoubleHeadersFinalAzureHeaderGetResponse = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3064,7 +3064,7 @@ export type LROsBeginPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = Produ
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3084,7 +3084,7 @@ export type LRORetrysPut201CreatingSucceeded200Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3104,7 +3104,7 @@ export type LRORetrysPutAsyncRelativeRetrySucceededResponse = Product & LRORetry
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3129,7 +3129,7 @@ export type LRORetrysDeleteProvisioning202Accepted200SucceededResponse = Product
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3154,7 +3154,7 @@ export type LRORetrysDelete202Retry200Response = LRORetrysDelete202Retry200Heade
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3169,7 +3169,7 @@ export type LRORetrysDeleteAsyncRelativeRetrySucceededResponse = LRORetrysDelete
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3184,7 +3184,7 @@ export type LRORetrysPost202Retry200Response = LRORetrysPost202Retry200Headers &
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3199,7 +3199,7 @@ export type LRORetrysPostAsyncRelativeRetrySucceededResponse = LRORetrysPostAsyn
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3214,7 +3214,7 @@ export type LRORetrysBeginPut201CreatingSucceeded200Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3234,7 +3234,7 @@ export type LROSADsPutNonRetry400Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3254,7 +3254,7 @@ export type LROSADsPutNonRetry201Creating400Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3274,7 +3274,7 @@ export type LROSADsPutNonRetry201Creating400InvalidJsonResponse = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3294,7 +3294,7 @@ export type LROSADsPutAsyncRelativeRetry400Response = Product & LROSADsPutAsyncR
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3319,7 +3319,7 @@ export type LROSADsDeleteNonRetry400Response = LROSADsDeleteNonRetry400Headers &
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3334,7 +3334,7 @@ export type LROSADsDelete202NonRetry400Response = LROSADsDelete202NonRetry400Hea
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3349,7 +3349,7 @@ export type LROSADsDeleteAsyncRelativeRetry400Response = LROSADsDeleteAsyncRelat
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3364,7 +3364,7 @@ export type LROSADsPostNonRetry400Response = LROSADsPostNonRetry400Headers & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3379,7 +3379,7 @@ export type LROSADsPost202NonRetry400Response = LROSADsPost202NonRetry400Headers
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3394,7 +3394,7 @@ export type LROSADsPostAsyncRelativeRetry400Response = LROSADsPostAsyncRelativeR
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3409,7 +3409,7 @@ export type LROSADsPutError201NoProvisioningStatePayloadResponse = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3429,7 +3429,7 @@ export type LROSADsPutAsyncRelativeRetryNoStatusResponse = Product & LROSADsPutA
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3454,7 +3454,7 @@ export type LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse = Product & LROS
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3479,7 +3479,7 @@ export type LROSADsDeleteAsyncRelativeRetryNoStatusResponse = LROSADsDeleteAsync
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3494,7 +3494,7 @@ export type LROSADsPost202NoLocationResponse = LROSADsPost202NoLocationHeaders &
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3509,7 +3509,7 @@ export type LROSADsPostAsyncRelativeRetryNoPayloadResponse = LROSADsPostAsyncRel
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3524,7 +3524,7 @@ export type LROSADsPut200InvalidJsonResponse = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3544,7 +3544,7 @@ export type LROSADsPutAsyncRelativeRetryInvalidHeaderResponse = Product & LROSAD
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3569,7 +3569,7 @@ export type LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse = Product & L
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3594,7 +3594,7 @@ export type LROSADsDelete202RetryInvalidHeaderResponse = LROSADsDelete202RetryIn
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3609,7 +3609,7 @@ export type LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse = LROSADsDelete
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3624,7 +3624,7 @@ export type LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse = LROSADsD
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3639,7 +3639,7 @@ export type LROSADsPost202RetryInvalidHeaderResponse = LROSADsPost202RetryInvali
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3654,7 +3654,7 @@ export type LROSADsPostAsyncRelativeRetryInvalidHeaderResponse = LROSADsPostAsyn
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3669,7 +3669,7 @@ export type LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse = LROSADsPos
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3684,7 +3684,7 @@ export type LROSADsBeginPutNonRetry400Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3704,7 +3704,7 @@ export type LROSADsBeginPutNonRetry201Creating400Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3724,7 +3724,7 @@ export type LROSADsBeginPutNonRetry201Creating400InvalidJsonResponse = Product &
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3744,7 +3744,7 @@ export type LROSADsBeginPutError201NoProvisioningStatePayloadResponse = Product 
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3764,7 +3764,7 @@ export type LROSADsBeginPut200InvalidJsonResponse = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3784,7 +3784,7 @@ export type LROsCustomHeaderPutAsyncRetrySucceededResponse = Product & LROsCusto
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3809,7 +3809,7 @@ export type LROsCustomHeaderPut201CreatingSucceeded200Response = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -3829,7 +3829,7 @@ export type LROsCustomHeaderPost202Retry200Response = LROsCustomHeaderPost202Ret
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3844,7 +3844,7 @@ export type LROsCustomHeaderPostAsyncRetrySucceededResponse = LROsCustomHeaderPo
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -3859,7 +3859,7 @@ export type LROsCustomHeaderBeginPut201CreatingSucceeded200Response = Product & 
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */

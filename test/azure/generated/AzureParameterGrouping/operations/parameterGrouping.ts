@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/parameterGroupingMappers";
 import * as Parameters from "../models/parameters";
@@ -30,21 +30,21 @@ export class ParameterGrouping {
    * Post a bunch of required parameters grouped
    * @param parameterGroupingPostRequiredParameters Additional parameters for the operation
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param parameterGroupingPostRequiredParameters Additional parameters for the operation
    * @param callback The callback
    */
-  postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, callback: msRest.ServiceCallback<void>): void;
+  postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param parameterGroupingPostRequiredParameters Additional parameters for the operation
    * @param options The optional parameters
    * @param callback The callback
    */
-  postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         parameterGroupingPostRequiredParameters,
@@ -57,19 +57,19 @@ export class ParameterGrouping {
   /**
    * Post a bunch of optional parameters grouped
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postOptional(options?: Models.ParameterGroupingPostOptionalOptionalParams): Promise<msRest.RestResponse>;
+  postOptional(options?: Models.ParameterGroupingPostOptionalOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  postOptional(callback: msRest.ServiceCallback<void>): void;
+  postOptional(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  postOptional(options: Models.ParameterGroupingPostOptionalOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postOptional(options?: Models.ParameterGroupingPostOptionalOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  postOptional(options: Models.ParameterGroupingPostOptionalOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  postOptional(options?: Models.ParameterGroupingPostOptionalOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -81,19 +81,19 @@ export class ParameterGrouping {
   /**
    * Post parameters from multiple different parameter groups
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postMultiParamGroups(options?: Models.ParameterGroupingPostMultiParamGroupsOptionalParams): Promise<msRest.RestResponse>;
+  postMultiParamGroups(options?: Models.ParameterGroupingPostMultiParamGroupsOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  postMultiParamGroups(callback: msRest.ServiceCallback<void>): void;
+  postMultiParamGroups(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  postMultiParamGroups(options: Models.ParameterGroupingPostMultiParamGroupsOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postMultiParamGroups(options?: Models.ParameterGroupingPostMultiParamGroupsOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  postMultiParamGroups(options: Models.ParameterGroupingPostMultiParamGroupsOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  postMultiParamGroups(options?: Models.ParameterGroupingPostMultiParamGroupsOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -105,19 +105,19 @@ export class ParameterGrouping {
   /**
    * Post parameters with a shared parameter group object
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postSharedParameterGroupObject(options?: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams): Promise<msRest.RestResponse>;
+  postSharedParameterGroupObject(options?: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  postSharedParameterGroupObject(callback: msRest.ServiceCallback<void>): void;
+  postSharedParameterGroupObject(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  postSharedParameterGroupObject(options: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  postSharedParameterGroupObject(options?: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  postSharedParameterGroupObject(options: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  postSharedParameterGroupObject(options?: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -128,8 +128,8 @@ export class ParameterGrouping {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const postRequiredOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const postRequiredOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "parameterGrouping/postRequired/{path}",
   urlParameters: [
@@ -164,7 +164,7 @@ const postRequiredOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const postOptionalOperationSpec: msRest.OperationSpec = {
+const postOptionalOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "parameterGrouping/postOptional",
   queryParameters: [
@@ -183,7 +183,7 @@ const postOptionalOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const postMultiParamGroupsOperationSpec: msRest.OperationSpec = {
+const postMultiParamGroupsOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "parameterGrouping/postMultipleParameterGroups",
   queryParameters: [
@@ -204,7 +204,7 @@ const postMultiParamGroupsOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const postSharedParameterGroupObjectOperationSpec: msRest.OperationSpec = {
+const postSharedParameterGroupObjectOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "parameterGrouping/sharedParameterGroupObject",
   queryParameters: [

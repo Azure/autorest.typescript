@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ServiceClientOptions } from "@azure/ms-rest-js";
-import * as msRest from "@azure/ms-rest-js";
+import { ServiceClientOptions } from "@azure/core-http";
+import * as coreHttp from "@azure/core-http";
 
 /**
  * The product documentation.
@@ -94,7 +94,7 @@ export interface ComplexModelClientOptions extends ServiceClientOptions {
 /**
  * Optional Parameters.
  */
-export interface ComplexModelClientCreateOptionalParams extends msRest.RequestOptionsBase {
+export interface ComplexModelClientCreateOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Dictionary of Array of product
    */
@@ -104,7 +104,7 @@ export interface ComplexModelClientCreateOptionalParams extends msRest.RequestOp
 /**
  * Optional Parameters.
  */
-export interface ComplexModelClientUpdateOptionalParams extends msRest.RequestOptionsBase {
+export interface ComplexModelClientUpdateOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Array of dictionary of products
    */
@@ -118,7 +118,7 @@ export type ListResponse = CatalogArray & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -138,7 +138,7 @@ export type CreateResponse = CatalogDictionary & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -158,7 +158,7 @@ export type UpdateResponse = CatalogArray & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */

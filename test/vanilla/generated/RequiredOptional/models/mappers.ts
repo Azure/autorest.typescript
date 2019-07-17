@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 
-export const ErrorModel: msRest.CompositeMapper = {
+export const ErrorModel: coreHttp.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -31,7 +31,7 @@ export const ErrorModel: msRest.CompositeMapper = {
   }
 };
 
-export const IntWrapper: msRest.CompositeMapper = {
+export const IntWrapper: coreHttp.CompositeMapper = {
   serializedName: "int-wrapper",
   type: {
     name: "Composite",
@@ -48,7 +48,7 @@ export const IntWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const IntOptionalWrapper: msRest.CompositeMapper = {
+export const IntOptionalWrapper: coreHttp.CompositeMapper = {
   serializedName: "int-optional-wrapper",
   type: {
     name: "Composite",
@@ -64,7 +64,7 @@ export const IntOptionalWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const StringWrapper: msRest.CompositeMapper = {
+export const StringWrapper: coreHttp.CompositeMapper = {
   serializedName: "string-wrapper",
   type: {
     name: "Composite",
@@ -81,7 +81,7 @@ export const StringWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const StringOptionalWrapper: msRest.CompositeMapper = {
+export const StringOptionalWrapper: coreHttp.CompositeMapper = {
   serializedName: "string-optional-wrapper",
   type: {
     name: "Composite",
@@ -97,7 +97,7 @@ export const StringOptionalWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const ArrayWrapper: msRest.CompositeMapper = {
+export const ArrayWrapper: coreHttp.CompositeMapper = {
   serializedName: "array-wrapper",
   type: {
     name: "Composite",
@@ -119,7 +119,7 @@ export const ArrayWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const ArrayOptionalWrapper: msRest.CompositeMapper = {
+export const ArrayOptionalWrapper: coreHttp.CompositeMapper = {
   serializedName: "array-optional-wrapper",
   type: {
     name: "Composite",
@@ -140,7 +140,7 @@ export const ArrayOptionalWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const Product: msRest.CompositeMapper = {
+export const Product: coreHttp.CompositeMapper = {
   serializedName: "product",
   type: {
     name: "Composite",
@@ -163,7 +163,7 @@ export const Product: msRest.CompositeMapper = {
   }
 };
 
-export const ClassWrapper: msRest.CompositeMapper = {
+export const ClassWrapper: coreHttp.CompositeMapper = {
   serializedName: "class-wrapper",
   type: {
     name: "Composite",
@@ -181,7 +181,7 @@ export const ClassWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const ClassOptionalWrapper: msRest.CompositeMapper = {
+export const ClassOptionalWrapper: coreHttp.CompositeMapper = {
   serializedName: "class-optional-wrapper",
   type: {
     name: "Composite",

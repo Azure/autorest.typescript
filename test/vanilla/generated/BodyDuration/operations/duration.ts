@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/durationMappers";
 import { AutoRestDurationTestServiceContext } from "../autoRestDurationTestServiceContext";
@@ -30,17 +30,17 @@ export class Duration {
    * @param [options] The optional parameters
    * @returns Promise<Models.DurationGetNullResponse>
    */
-  getNull(options?: msRest.RequestOptionsBase): Promise<Models.DurationGetNullResponse>;
+  getNull(options?: coreHttp.RequestOptionsBase): Promise<Models.DurationGetNullResponse>;
   /**
    * @param callback The callback
    */
-  getNull(callback: msRest.ServiceCallback<string>): void;
+  getNull(callback: coreHttp.ServiceCallback<string>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getNull(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback?: msRest.ServiceCallback<string>): Promise<Models.DurationGetNullResponse> {
+  getNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<string>): void;
+  getNull(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<string>, callback?: coreHttp.ServiceCallback<string>): Promise<Models.DurationGetNullResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -53,21 +53,21 @@ export class Duration {
    * Put a positive duration value
    * @param durationBody
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putPositiveDuration(durationBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putPositiveDuration(durationBody: string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param durationBody
    * @param callback The callback
    */
-  putPositiveDuration(durationBody: string, callback: msRest.ServiceCallback<void>): void;
+  putPositiveDuration(durationBody: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param durationBody
    * @param options The optional parameters
    * @param callback The callback
    */
-  putPositiveDuration(durationBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putPositiveDuration(durationBody: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putPositiveDuration(durationBody: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putPositiveDuration(durationBody: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         durationBody,
@@ -82,17 +82,17 @@ export class Duration {
    * @param [options] The optional parameters
    * @returns Promise<Models.DurationGetPositiveDurationResponse>
    */
-  getPositiveDuration(options?: msRest.RequestOptionsBase): Promise<Models.DurationGetPositiveDurationResponse>;
+  getPositiveDuration(options?: coreHttp.RequestOptionsBase): Promise<Models.DurationGetPositiveDurationResponse>;
   /**
    * @param callback The callback
    */
-  getPositiveDuration(callback: msRest.ServiceCallback<string>): void;
+  getPositiveDuration(callback: coreHttp.ServiceCallback<string>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getPositiveDuration(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getPositiveDuration(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback?: msRest.ServiceCallback<string>): Promise<Models.DurationGetPositiveDurationResponse> {
+  getPositiveDuration(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<string>): void;
+  getPositiveDuration(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<string>, callback?: coreHttp.ServiceCallback<string>): Promise<Models.DurationGetPositiveDurationResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -106,17 +106,17 @@ export class Duration {
    * @param [options] The optional parameters
    * @returns Promise<Models.DurationGetInvalidResponse>
    */
-  getInvalid(options?: msRest.RequestOptionsBase): Promise<Models.DurationGetInvalidResponse>;
+  getInvalid(options?: coreHttp.RequestOptionsBase): Promise<Models.DurationGetInvalidResponse>;
   /**
    * @param callback The callback
    */
-  getInvalid(callback: msRest.ServiceCallback<string>): void;
+  getInvalid(callback: coreHttp.ServiceCallback<string>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getInvalid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string>, callback?: msRest.ServiceCallback<string>): Promise<Models.DurationGetInvalidResponse> {
+  getInvalid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<string>): void;
+  getInvalid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<string>, callback?: coreHttp.ServiceCallback<string>): Promise<Models.DurationGetInvalidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -127,8 +127,8 @@ export class Duration {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getNullOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "duration/null",
   responses: {
@@ -147,7 +147,7 @@ const getNullOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putPositiveDurationOperationSpec: msRest.OperationSpec = {
+const putPositiveDurationOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "duration/positiveduration",
   requestBody: {
@@ -169,7 +169,7 @@ const putPositiveDurationOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getPositiveDurationOperationSpec: msRest.OperationSpec = {
+const getPositiveDurationOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "duration/positiveduration",
   responses: {
@@ -188,7 +188,7 @@ const getPositiveDurationOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getInvalidOperationSpec: msRest.OperationSpec = {
+const getInvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "duration/invalid",
   responses: {

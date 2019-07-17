@@ -8,9 +8,9 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
-export const acceptLanguage: msRest.OperationParameter = {
+export const acceptLanguage: coreHttp.OperationParameter = {
   parameterPath: "acceptLanguage",
   mapper: {
     serializedName: "accept-language",
@@ -20,7 +20,7 @@ export const acceptLanguage: msRest.OperationParameter = {
     }
   }
 };
-export const apiVersion0: msRest.OperationQueryParameter = {
+export const apiVersion0: coreHttp.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     required: true,
@@ -30,7 +30,7 @@ export const apiVersion0: msRest.OperationQueryParameter = {
     }
   }
 };
-export const apiVersion1: msRest.OperationQueryParameter = {
+export const apiVersion1: coreHttp.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     required: true,
@@ -42,7 +42,7 @@ export const apiVersion1: msRest.OperationQueryParameter = {
     }
   }
 };
-export const apiVersion2: msRest.OperationQueryParameter = {
+export const apiVersion2: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "apiVersion"
@@ -54,7 +54,7 @@ export const apiVersion2: msRest.OperationQueryParameter = {
     }
   }
 };
-export const filter: msRest.OperationQueryParameter = {
+export const filter: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "filter"
@@ -66,7 +66,7 @@ export const filter: msRest.OperationQueryParameter = {
     }
   }
 };
-export const fooClientRequestId0: msRest.OperationParameter = {
+export const fooClientRequestId0: coreHttp.OperationParameter = {
   parameterPath: "fooClientRequestId",
   mapper: {
     required: true,
@@ -76,7 +76,7 @@ export const fooClientRequestId0: msRest.OperationParameter = {
     }
   }
 };
-export const fooClientRequestId1: msRest.OperationParameter = {
+export const fooClientRequestId1: coreHttp.OperationParameter = {
   parameterPath: [
     "headerCustomNamedRequestIdParamGroupingParameters",
     "fooClientRequestId"
@@ -89,7 +89,7 @@ export const fooClientRequestId1: msRest.OperationParameter = {
     }
   }
 };
-export const orderby: msRest.OperationQueryParameter = {
+export const orderby: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "orderby"
@@ -101,7 +101,7 @@ export const orderby: msRest.OperationQueryParameter = {
     }
   }
 };
-export const q10: msRest.OperationQueryParameter = {
+export const q10: coreHttp.OperationQueryParameter = {
   parameterPath: "q1",
   mapper: {
     required: true,
@@ -112,7 +112,7 @@ export const q10: msRest.OperationQueryParameter = {
   },
   skipEncoding: true
 };
-export const q11: msRest.OperationQueryParameter = {
+export const q11: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "q1"
@@ -125,7 +125,7 @@ export const q11: msRest.OperationQueryParameter = {
   },
   skipEncoding: true
 };
-export const q12: msRest.OperationQueryParameter = {
+export const q12: coreHttp.OperationQueryParameter = {
   parameterPath: "q1",
   mapper: {
     required: true,
@@ -138,7 +138,7 @@ export const q12: msRest.OperationQueryParameter = {
   },
   skipEncoding: true
 };
-export const subscriptionId: msRest.OperationURLParameter = {
+export const subscriptionId: coreHttp.OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     required: true,
@@ -148,7 +148,7 @@ export const subscriptionId: msRest.OperationURLParameter = {
     }
   }
 };
-export const top: msRest.OperationQueryParameter = {
+export const top: coreHttp.OperationQueryParameter = {
   parameterPath: [
     "options",
     "top"
@@ -160,7 +160,7 @@ export const top: msRest.OperationQueryParameter = {
     }
   }
 };
-export const unencodedPathParam0: msRest.OperationURLParameter = {
+export const unencodedPathParam0: coreHttp.OperationURLParameter = {
   parameterPath: "unencodedPathParam",
   mapper: {
     required: true,
@@ -171,7 +171,7 @@ export const unencodedPathParam0: msRest.OperationURLParameter = {
   },
   skipEncoding: true
 };
-export const unencodedPathParam1: msRest.OperationURLParameter = {
+export const unencodedPathParam1: coreHttp.OperationURLParameter = {
   parameterPath: "unencodedPathParam",
   mapper: {
     required: true,
@@ -184,7 +184,7 @@ export const unencodedPathParam1: msRest.OperationURLParameter = {
   },
   skipEncoding: true
 };
-export const xMsClientRequestId: msRest.OperationParameter = {
+export const xMsClientRequestId: coreHttp.OperationParameter = {
   parameterPath: "xMsClientRequestId",
   mapper: {
     required: true,

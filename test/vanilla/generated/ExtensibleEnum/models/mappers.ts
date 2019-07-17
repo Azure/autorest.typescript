@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 
-export const Pet: msRest.CompositeMapper = {
+export const Pet: coreHttp.CompositeMapper = {
   serializedName: "Pet",
   type: {
     name: "Composite",

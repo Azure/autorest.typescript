@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/headExceptionMappers";
 import * as Parameters from "../models/parameters";
 import { AutoRestHeadExceptionTestServiceContext } from "../autoRestHeadExceptionTestServiceContext";
@@ -28,19 +28,19 @@ export class HeadException {
   /**
    * Return 200 status code if successful
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  head200(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  head200(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  head200(callback: msRest.ServiceCallback<void>): void;
+  head200(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  head200(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head200(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  head200(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  head200(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -52,19 +52,19 @@ export class HeadException {
   /**
    * Return 204 status code if successful
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  head204(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  head204(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  head204(callback: msRest.ServiceCallback<void>): void;
+  head204(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  head204(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head204(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  head204(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  head204(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -76,19 +76,19 @@ export class HeadException {
   /**
    * Return 404 status code if successful
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  head404(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  head404(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  head404(callback: msRest.ServiceCallback<void>): void;
+  head404(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  head404(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head404(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  head404(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  head404(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -99,8 +99,8 @@ export class HeadException {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const head200OperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const head200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/200",
   headerParameters: [
@@ -115,7 +115,7 @@ const head200OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const head204OperationSpec: msRest.OperationSpec = {
+const head204OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/204",
   headerParameters: [
@@ -130,7 +130,7 @@ const head204OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const head404OperationSpec: msRest.OperationSpec = {
+const head404OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/success/404",
   headerParameters: [

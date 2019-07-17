@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ServiceClientOptions } from "@azure/ms-rest-js";
-import * as msRest from "@azure/ms-rest-js";
+import { ServiceClientOptions } from "@azure/core-http";
+import * as coreHttp from "@azure/core-http";
 
 /**
  * The product documentation.
@@ -67,14 +67,14 @@ export interface AutoRestValidationTestOptions extends ServiceClientOptions {
 /**
  * Optional Parameters.
  */
-export interface AutoRestValidationTestValidationOfBodyOptionalParams extends msRest.RequestOptionsBase {
+export interface AutoRestValidationTestValidationOfBodyOptionalParams extends coreHttp.RequestOptionsBase {
   body?: Product;
 }
 
 /**
  * Optional Parameters.
  */
-export interface AutoRestValidationTestPostWithConstantInBodyOptionalParams extends msRest.RequestOptionsBase {
+export interface AutoRestValidationTestPostWithConstantInBodyOptionalParams extends coreHttp.RequestOptionsBase {
   body?: Product;
 }
 
@@ -93,7 +93,7 @@ export type ValidationOfMethodParametersResponse = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -113,7 +113,7 @@ export type ValidationOfBodyResponse = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -133,7 +133,7 @@ export type PostWithConstantInBodyResponse = Product & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */

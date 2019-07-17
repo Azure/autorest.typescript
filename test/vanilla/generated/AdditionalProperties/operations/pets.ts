@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/petsMappers";
 import { AdditionalPropertiesClientContext } from "../additionalPropertiesClientContext";
@@ -31,19 +31,19 @@ export class Pets {
    * @param [options] The optional parameters
    * @returns Promise<Models.PetsCreateAPTrueResponse>
    */
-  createAPTrue(createParameters: Models.PetAPTrue, options?: msRest.RequestOptionsBase): Promise<Models.PetsCreateAPTrueResponse>;
+  createAPTrue(createParameters: Models.PetAPTrue, options?: coreHttp.RequestOptionsBase): Promise<Models.PetsCreateAPTrueResponse>;
   /**
    * @param createParameters
    * @param callback The callback
    */
-  createAPTrue(createParameters: Models.PetAPTrue, callback: msRest.ServiceCallback<Models.PetAPTrue>): void;
+  createAPTrue(createParameters: Models.PetAPTrue, callback: coreHttp.ServiceCallback<Models.PetAPTrue>): void;
   /**
    * @param createParameters
    * @param options The optional parameters
    * @param callback The callback
    */
-  createAPTrue(createParameters: Models.PetAPTrue, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PetAPTrue>): void;
-  createAPTrue(createParameters: Models.PetAPTrue, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAPTrue>, callback?: msRest.ServiceCallback<Models.PetAPTrue>): Promise<Models.PetsCreateAPTrueResponse> {
+  createAPTrue(createParameters: Models.PetAPTrue, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.PetAPTrue>): void;
+  createAPTrue(createParameters: Models.PetAPTrue, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.PetAPTrue>, callback?: coreHttp.ServiceCallback<Models.PetAPTrue>): Promise<Models.PetsCreateAPTrueResponse> {
     return this.client.sendOperationRequest(
       {
         createParameters,
@@ -59,19 +59,19 @@ export class Pets {
    * @param [options] The optional parameters
    * @returns Promise<Models.PetsCreateCatAPTrueResponse>
    */
-  createCatAPTrue(createParameters: Models.CatAPTrue, options?: msRest.RequestOptionsBase): Promise<Models.PetsCreateCatAPTrueResponse>;
+  createCatAPTrue(createParameters: Models.CatAPTrue, options?: coreHttp.RequestOptionsBase): Promise<Models.PetsCreateCatAPTrueResponse>;
   /**
    * @param createParameters
    * @param callback The callback
    */
-  createCatAPTrue(createParameters: Models.CatAPTrue, callback: msRest.ServiceCallback<Models.CatAPTrue>): void;
+  createCatAPTrue(createParameters: Models.CatAPTrue, callback: coreHttp.ServiceCallback<Models.CatAPTrue>): void;
   /**
    * @param createParameters
    * @param options The optional parameters
    * @param callback The callback
    */
-  createCatAPTrue(createParameters: Models.CatAPTrue, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.CatAPTrue>): void;
-  createCatAPTrue(createParameters: Models.CatAPTrue, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.CatAPTrue>, callback?: msRest.ServiceCallback<Models.CatAPTrue>): Promise<Models.PetsCreateCatAPTrueResponse> {
+  createCatAPTrue(createParameters: Models.CatAPTrue, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.CatAPTrue>): void;
+  createCatAPTrue(createParameters: Models.CatAPTrue, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.CatAPTrue>, callback?: coreHttp.ServiceCallback<Models.CatAPTrue>): Promise<Models.PetsCreateCatAPTrueResponse> {
     return this.client.sendOperationRequest(
       {
         createParameters,
@@ -87,19 +87,19 @@ export class Pets {
    * @param [options] The optional parameters
    * @returns Promise<Models.PetsCreateAPObjectResponse>
    */
-  createAPObject(createParameters: Models.PetAPObject, options?: msRest.RequestOptionsBase): Promise<Models.PetsCreateAPObjectResponse>;
+  createAPObject(createParameters: Models.PetAPObject, options?: coreHttp.RequestOptionsBase): Promise<Models.PetsCreateAPObjectResponse>;
   /**
    * @param createParameters
    * @param callback The callback
    */
-  createAPObject(createParameters: Models.PetAPObject, callback: msRest.ServiceCallback<Models.PetAPObject>): void;
+  createAPObject(createParameters: Models.PetAPObject, callback: coreHttp.ServiceCallback<Models.PetAPObject>): void;
   /**
    * @param createParameters
    * @param options The optional parameters
    * @param callback The callback
    */
-  createAPObject(createParameters: Models.PetAPObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PetAPObject>): void;
-  createAPObject(createParameters: Models.PetAPObject, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAPObject>, callback?: msRest.ServiceCallback<Models.PetAPObject>): Promise<Models.PetsCreateAPObjectResponse> {
+  createAPObject(createParameters: Models.PetAPObject, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.PetAPObject>): void;
+  createAPObject(createParameters: Models.PetAPObject, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.PetAPObject>, callback?: coreHttp.ServiceCallback<Models.PetAPObject>): Promise<Models.PetsCreateAPObjectResponse> {
     return this.client.sendOperationRequest(
       {
         createParameters,
@@ -115,19 +115,19 @@ export class Pets {
    * @param [options] The optional parameters
    * @returns Promise<Models.PetsCreateAPStringResponse>
    */
-  createAPString(createParameters: Models.PetAPString, options?: msRest.RequestOptionsBase): Promise<Models.PetsCreateAPStringResponse>;
+  createAPString(createParameters: Models.PetAPString, options?: coreHttp.RequestOptionsBase): Promise<Models.PetsCreateAPStringResponse>;
   /**
    * @param createParameters
    * @param callback The callback
    */
-  createAPString(createParameters: Models.PetAPString, callback: msRest.ServiceCallback<Models.PetAPString>): void;
+  createAPString(createParameters: Models.PetAPString, callback: coreHttp.ServiceCallback<Models.PetAPString>): void;
   /**
    * @param createParameters
    * @param options The optional parameters
    * @param callback The callback
    */
-  createAPString(createParameters: Models.PetAPString, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PetAPString>): void;
-  createAPString(createParameters: Models.PetAPString, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAPString>, callback?: msRest.ServiceCallback<Models.PetAPString>): Promise<Models.PetsCreateAPStringResponse> {
+  createAPString(createParameters: Models.PetAPString, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.PetAPString>): void;
+  createAPString(createParameters: Models.PetAPString, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.PetAPString>, callback?: coreHttp.ServiceCallback<Models.PetAPString>): Promise<Models.PetsCreateAPStringResponse> {
     return this.client.sendOperationRequest(
       {
         createParameters,
@@ -143,19 +143,19 @@ export class Pets {
    * @param [options] The optional parameters
    * @returns Promise<Models.PetsCreateAPInPropertiesResponse>
    */
-  createAPInProperties(createParameters: Models.PetAPInProperties, options?: msRest.RequestOptionsBase): Promise<Models.PetsCreateAPInPropertiesResponse>;
+  createAPInProperties(createParameters: Models.PetAPInProperties, options?: coreHttp.RequestOptionsBase): Promise<Models.PetsCreateAPInPropertiesResponse>;
   /**
    * @param createParameters
    * @param callback The callback
    */
-  createAPInProperties(createParameters: Models.PetAPInProperties, callback: msRest.ServiceCallback<Models.PetAPInProperties>): void;
+  createAPInProperties(createParameters: Models.PetAPInProperties, callback: coreHttp.ServiceCallback<Models.PetAPInProperties>): void;
   /**
    * @param createParameters
    * @param options The optional parameters
    * @param callback The callback
    */
-  createAPInProperties(createParameters: Models.PetAPInProperties, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PetAPInProperties>): void;
-  createAPInProperties(createParameters: Models.PetAPInProperties, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAPInProperties>, callback?: msRest.ServiceCallback<Models.PetAPInProperties>): Promise<Models.PetsCreateAPInPropertiesResponse> {
+  createAPInProperties(createParameters: Models.PetAPInProperties, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.PetAPInProperties>): void;
+  createAPInProperties(createParameters: Models.PetAPInProperties, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.PetAPInProperties>, callback?: coreHttp.ServiceCallback<Models.PetAPInProperties>): Promise<Models.PetsCreateAPInPropertiesResponse> {
     return this.client.sendOperationRequest(
       {
         createParameters,
@@ -171,19 +171,19 @@ export class Pets {
    * @param [options] The optional parameters
    * @returns Promise<Models.PetsCreateAPInPropertiesWithAPStringResponse>
    */
-  createAPInPropertiesWithAPString(createParameters: Models.PetAPInPropertiesWithAPString, options?: msRest.RequestOptionsBase): Promise<Models.PetsCreateAPInPropertiesWithAPStringResponse>;
+  createAPInPropertiesWithAPString(createParameters: Models.PetAPInPropertiesWithAPString, options?: coreHttp.RequestOptionsBase): Promise<Models.PetsCreateAPInPropertiesWithAPStringResponse>;
   /**
    * @param createParameters
    * @param callback The callback
    */
-  createAPInPropertiesWithAPString(createParameters: Models.PetAPInPropertiesWithAPString, callback: msRest.ServiceCallback<Models.PetAPInPropertiesWithAPString>): void;
+  createAPInPropertiesWithAPString(createParameters: Models.PetAPInPropertiesWithAPString, callback: coreHttp.ServiceCallback<Models.PetAPInPropertiesWithAPString>): void;
   /**
    * @param createParameters
    * @param options The optional parameters
    * @param callback The callback
    */
-  createAPInPropertiesWithAPString(createParameters: Models.PetAPInPropertiesWithAPString, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PetAPInPropertiesWithAPString>): void;
-  createAPInPropertiesWithAPString(createParameters: Models.PetAPInPropertiesWithAPString, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PetAPInPropertiesWithAPString>, callback?: msRest.ServiceCallback<Models.PetAPInPropertiesWithAPString>): Promise<Models.PetsCreateAPInPropertiesWithAPStringResponse> {
+  createAPInPropertiesWithAPString(createParameters: Models.PetAPInPropertiesWithAPString, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.PetAPInPropertiesWithAPString>): void;
+  createAPInPropertiesWithAPString(createParameters: Models.PetAPInPropertiesWithAPString, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.PetAPInPropertiesWithAPString>, callback?: coreHttp.ServiceCallback<Models.PetAPInPropertiesWithAPString>): Promise<Models.PetsCreateAPInPropertiesWithAPStringResponse> {
     return this.client.sendOperationRequest(
       {
         createParameters,
@@ -195,8 +195,8 @@ export class Pets {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const createAPTrueOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const createAPTrueOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "additionalProperties/true",
   requestBody: {
@@ -217,7 +217,7 @@ const createAPTrueOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const createCatAPTrueOperationSpec: msRest.OperationSpec = {
+const createCatAPTrueOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "additionalProperties/true-subclass",
   requestBody: {
@@ -238,7 +238,7 @@ const createCatAPTrueOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const createAPObjectOperationSpec: msRest.OperationSpec = {
+const createAPObjectOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "additionalProperties/type/object",
   requestBody: {
@@ -259,7 +259,7 @@ const createAPObjectOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const createAPStringOperationSpec: msRest.OperationSpec = {
+const createAPStringOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "additionalProperties/type/string",
   requestBody: {
@@ -280,7 +280,7 @@ const createAPStringOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const createAPInPropertiesOperationSpec: msRest.OperationSpec = {
+const createAPInPropertiesOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "additionalProperties/in/properties",
   requestBody: {
@@ -301,7 +301,7 @@ const createAPInPropertiesOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const createAPInPropertiesWithAPStringOperationSpec: msRest.OperationSpec = {
+const createAPInPropertiesWithAPStringOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "additionalProperties/in/properties/with/additionalProperties/string",
   requestBody: {

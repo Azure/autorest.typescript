@@ -3,7 +3,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { BaseResource, CloudError, AzureServiceClientOptions } from "@azure/ms-rest-azure-js";
+import { BaseResource, CloudError, AzureServiceClientOptions } from "@azure/core-arm";
 
 export { BaseResource, CloudError };
 

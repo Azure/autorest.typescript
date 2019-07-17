@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 
-export const ErrorModel: msRest.CompositeMapper = {
+export const ErrorModel: coreHttp.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -38,7 +38,7 @@ export const ErrorModel: msRest.CompositeMapper = {
   }
 };
 
-export const Resource: msRest.CompositeMapper = {
+export const Resource: coreHttp.CompositeMapper = {
   serializedName: "Resource",
   type: {
     name: "Composite",
@@ -86,7 +86,7 @@ export const Resource: msRest.CompositeMapper = {
   }
 };
 
-export const FlattenedProduct: msRest.CompositeMapper = {
+export const FlattenedProduct: coreHttp.CompositeMapper = {
   serializedName: "FlattenedProduct",
   type: {
     name: "Composite",
@@ -122,7 +122,7 @@ export const FlattenedProduct: msRest.CompositeMapper = {
   }
 };
 
-export const ResourceCollection: msRest.CompositeMapper = {
+export const ResourceCollection: coreHttp.CompositeMapper = {
   serializedName: "ResourceCollection",
   type: {
     name: "Composite",
@@ -163,7 +163,7 @@ export const ResourceCollection: msRest.CompositeMapper = {
   }
 };
 
-export const BaseProduct: msRest.CompositeMapper = {
+export const BaseProduct: coreHttp.CompositeMapper = {
   serializedName: "BaseProduct",
   type: {
     name: "Composite",
@@ -186,7 +186,7 @@ export const BaseProduct: msRest.CompositeMapper = {
   }
 };
 
-export const SimpleProduct: msRest.CompositeMapper = {
+export const SimpleProduct: coreHttp.CompositeMapper = {
   serializedName: "SimpleProduct",
   type: {
     name: "Composite",
@@ -225,7 +225,7 @@ export const SimpleProduct: msRest.CompositeMapper = {
   }
 };
 
-export const GenericUrl: msRest.CompositeMapper = {
+export const GenericUrl: coreHttp.CompositeMapper = {
   serializedName: "GenericUrl",
   type: {
     name: "Composite",
@@ -241,7 +241,7 @@ export const GenericUrl: msRest.CompositeMapper = {
   }
 };
 
-export const WrappedProduct: msRest.CompositeMapper = {
+export const WrappedProduct: coreHttp.CompositeMapper = {
   serializedName: "WrappedProduct",
   type: {
     name: "Composite",
@@ -257,7 +257,7 @@ export const WrappedProduct: msRest.CompositeMapper = {
   }
 };
 
-export const ProductWrapper: msRest.CompositeMapper = {
+export const ProductWrapper: coreHttp.CompositeMapper = {
   serializedName: "ProductWrapper",
   type: {
     name: "Composite",
@@ -273,7 +273,7 @@ export const ProductWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const FlattenParameterGroup: msRest.CompositeMapper = {
+export const FlattenParameterGroup: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FlattenParameterGroup",

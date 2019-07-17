@@ -8,8 +8,8 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
-import * as msRestAzure from "@azure/ms-rest-azure-js";
+import * as coreHttp from "@azure/core-http";
+import * as coreArm from "@azure/core-arm";
 import * as Models from "../models";
 import * as Mappers from "../models/lRORetrysMappers";
 import * as Parameters from "../models/parameters";
@@ -58,7 +58,7 @@ export class LRORetrys {
    * @param [options] The optional parameters
    * @returns Promise<Models.LRORetrysDeleteProvisioning202Accepted200SucceededResponse>
    */
-  deleteProvisioning202Accepted200Succeeded(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDeleteProvisioning202Accepted200SucceededResponse> {
+  deleteProvisioning202Accepted200Succeeded(options?: coreHttp.RequestOptionsBase): Promise<Models.LRORetrysDeleteProvisioning202Accepted200SucceededResponse> {
     return this.beginDeleteProvisioning202Accepted200Succeeded(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LRORetrysDeleteProvisioning202Accepted200SucceededResponse>;
   }
@@ -69,7 +69,7 @@ export class LRORetrys {
    * @param [options] The optional parameters
    * @returns Promise<Models.LRORetrysDelete202Retry200Response>
    */
-  delete202Retry200(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDelete202Retry200Response> {
+  delete202Retry200(options?: coreHttp.RequestOptionsBase): Promise<Models.LRORetrysDelete202Retry200Response> {
     return this.beginDelete202Retry200(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LRORetrysDelete202Retry200Response>;
   }
@@ -80,7 +80,7 @@ export class LRORetrys {
    * @param [options] The optional parameters
    * @returns Promise<Models.LRORetrysDeleteAsyncRelativeRetrySucceededResponse>
    */
-  deleteAsyncRelativeRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDeleteAsyncRelativeRetrySucceededResponse> {
+  deleteAsyncRelativeRetrySucceeded(options?: coreHttp.RequestOptionsBase): Promise<Models.LRORetrysDeleteAsyncRelativeRetrySucceededResponse> {
     return this.beginDeleteAsyncRelativeRetrySucceeded(options)
       .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LRORetrysDeleteAsyncRelativeRetrySucceededResponse>;
   }
@@ -113,9 +113,9 @@ export class LRORetrys {
    * entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
    * returns a ‘200’ with ProvisioningState=’Succeeded’
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPut201CreatingSucceeded200(options?: Models.LRORetrysBeginPut201CreatingSucceeded200OptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPut201CreatingSucceeded200(options?: Models.LRORetrysBeginPut201CreatingSucceeded200OptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -129,9 +129,9 @@ export class LRORetrys {
    * entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPutAsyncRelativeRetrySucceeded(options?: Models.LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPutAsyncRelativeRetrySucceeded(options?: Models.LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -145,9 +145,9 @@ export class LRORetrys {
    * entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll
    * returns a ‘200’ with ProvisioningState=’Succeeded’
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginDeleteProvisioning202Accepted200Succeeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteProvisioning202Accepted200Succeeded(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -160,9 +160,9 @@ export class LRORetrys {
    * Long running delete request, service returns a 500, then a 202 to the initial request. Polls
    * return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginDelete202Retry200(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDelete202Retry200(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -175,9 +175,9 @@ export class LRORetrys {
    * Long running delete request, service returns a 500, then a 202 to the initial request. Poll the
    * endpoint indicated in the Azure-AsyncOperation header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginDeleteAsyncRelativeRetrySucceeded(options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+  beginDeleteAsyncRelativeRetrySucceeded(options?: coreHttp.RequestOptionsBase): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -190,9 +190,9 @@ export class LRORetrys {
    * Long running post request, service returns a 500, then a 202 to the initial request, with
    * 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPost202Retry200(options?: Models.LRORetrysBeginPost202Retry200OptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPost202Retry200(options?: Models.LRORetrysBeginPost202Retry200OptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -206,9 +206,9 @@ export class LRORetrys {
    * entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    * @param [options] The optional parameters
-   * @returns Promise<msRestAzure.LROPoller>
+   * @returns Promise<coreArm.LROPoller>
    */
-  beginPostAsyncRelativeRetrySucceeded(options?: Models.LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams): Promise<msRestAzure.LROPoller> {
+  beginPostAsyncRelativeRetrySucceeded(options?: Models.LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams): Promise<coreArm.LROPoller> {
     return this.client.sendLRORequest(
       {
         options
@@ -219,8 +219,8 @@ export class LRORetrys {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const beginPut201CreatingSucceeded200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/retryerror/put/201/creating/succeeded/200",
   headerParameters: [
@@ -247,7 +247,7 @@ const beginPut201CreatingSucceeded200OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPutAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec = {
+const beginPutAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "lro/retryerror/putasync/retry/succeeded",
   headerParameters: [
@@ -272,7 +272,7 @@ const beginPutAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginDeleteProvisioning202Accepted200SucceededOperationSpec: msRest.OperationSpec = {
+const beginDeleteProvisioning202Accepted200SucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/retryerror/delete/provisioning/202/accepted/200/succeeded",
   headerParameters: [
@@ -294,7 +294,7 @@ const beginDeleteProvisioning202Accepted200SucceededOperationSpec: msRest.Operat
   serializer
 };
 
-const beginDelete202Retry200OperationSpec: msRest.OperationSpec = {
+const beginDelete202Retry200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/retryerror/delete/202/retry/200",
   headerParameters: [
@@ -311,7 +311,7 @@ const beginDelete202Retry200OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginDeleteAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec = {
+const beginDeleteAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "lro/retryerror/deleteasync/retry/succeeded",
   headerParameters: [
@@ -328,7 +328,7 @@ const beginDeleteAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec 
   serializer
 };
 
-const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
+const beginPost202Retry200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "lro/retryerror/post/202/retry/200",
   headerParameters: [
@@ -352,7 +352,7 @@ const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const beginPostAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec = {
+const beginPostAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "lro/retryerror/postasync/retry/succeeded",
   headerParameters: [

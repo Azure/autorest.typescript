@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 
-export const ErrorModel: msRest.CompositeMapper = {
+export const ErrorModel: coreHttp.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -31,7 +31,7 @@ export const ErrorModel: msRest.CompositeMapper = {
   }
 };
 
-export const A: msRest.CompositeMapper = {
+export const A: coreHttp.CompositeMapper = {
   serializedName: "A",
   type: {
     name: "Composite",
@@ -47,7 +47,7 @@ export const A: msRest.CompositeMapper = {
   }
 };
 
-export const B: msRest.CompositeMapper = {
+export const B: coreHttp.CompositeMapper = {
   serializedName: "B",
   type: {
     name: "Composite",
@@ -64,7 +64,7 @@ export const B: msRest.CompositeMapper = {
   }
 };
 
-export const C: msRest.CompositeMapper = {
+export const C: coreHttp.CompositeMapper = {
   serializedName: "C",
   type: {
     name: "Composite",
@@ -80,7 +80,7 @@ export const C: msRest.CompositeMapper = {
   }
 };
 
-export const D: msRest.CompositeMapper = {
+export const D: coreHttp.CompositeMapper = {
   serializedName: "D",
   type: {
     name: "Composite",
@@ -96,7 +96,7 @@ export const D: msRest.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsHead300Headers: msRest.CompositeMapper = {
+export const HttpRedirectsHead300Headers: coreHttp.CompositeMapper = {
   serializedName: "httpredirects-head300-headers",
   type: {
     name: "Composite",
@@ -112,7 +112,7 @@ export const HttpRedirectsHead300Headers: msRest.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsGet300Headers: msRest.CompositeMapper = {
+export const HttpRedirectsGet300Headers: coreHttp.CompositeMapper = {
   serializedName: "httpredirects-get300-headers",
   type: {
     name: "Composite",
@@ -128,7 +128,7 @@ export const HttpRedirectsGet300Headers: msRest.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsHead301Headers: msRest.CompositeMapper = {
+export const HttpRedirectsHead301Headers: coreHttp.CompositeMapper = {
   serializedName: "httpredirects-head301-headers",
   type: {
     name: "Composite",
@@ -144,7 +144,7 @@ export const HttpRedirectsHead301Headers: msRest.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsGet301Headers: msRest.CompositeMapper = {
+export const HttpRedirectsGet301Headers: coreHttp.CompositeMapper = {
   serializedName: "httpredirects-get301-headers",
   type: {
     name: "Composite",
@@ -160,7 +160,7 @@ export const HttpRedirectsGet301Headers: msRest.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsPut301Headers: msRest.CompositeMapper = {
+export const HttpRedirectsPut301Headers: coreHttp.CompositeMapper = {
   serializedName: "httpredirects-put301-headers",
   type: {
     name: "Composite",
@@ -176,7 +176,7 @@ export const HttpRedirectsPut301Headers: msRest.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsHead302Headers: msRest.CompositeMapper = {
+export const HttpRedirectsHead302Headers: coreHttp.CompositeMapper = {
   serializedName: "httpredirects-head302-headers",
   type: {
     name: "Composite",
@@ -192,7 +192,7 @@ export const HttpRedirectsHead302Headers: msRest.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsGet302Headers: msRest.CompositeMapper = {
+export const HttpRedirectsGet302Headers: coreHttp.CompositeMapper = {
   serializedName: "httpredirects-get302-headers",
   type: {
     name: "Composite",
@@ -208,7 +208,7 @@ export const HttpRedirectsGet302Headers: msRest.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsPatch302Headers: msRest.CompositeMapper = {
+export const HttpRedirectsPatch302Headers: coreHttp.CompositeMapper = {
   serializedName: "httpredirects-patch302-headers",
   type: {
     name: "Composite",
@@ -224,7 +224,7 @@ export const HttpRedirectsPatch302Headers: msRest.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsPost303Headers: msRest.CompositeMapper = {
+export const HttpRedirectsPost303Headers: coreHttp.CompositeMapper = {
   serializedName: "httpredirects-post303-headers",
   type: {
     name: "Composite",
@@ -240,7 +240,7 @@ export const HttpRedirectsPost303Headers: msRest.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsHead307Headers: msRest.CompositeMapper = {
+export const HttpRedirectsHead307Headers: coreHttp.CompositeMapper = {
   serializedName: "httpredirects-head307-headers",
   type: {
     name: "Composite",
@@ -256,7 +256,7 @@ export const HttpRedirectsHead307Headers: msRest.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsGet307Headers: msRest.CompositeMapper = {
+export const HttpRedirectsGet307Headers: coreHttp.CompositeMapper = {
   serializedName: "httpredirects-get307-headers",
   type: {
     name: "Composite",
@@ -272,7 +272,7 @@ export const HttpRedirectsGet307Headers: msRest.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsPut307Headers: msRest.CompositeMapper = {
+export const HttpRedirectsPut307Headers: coreHttp.CompositeMapper = {
   serializedName: "httpredirects-put307-headers",
   type: {
     name: "Composite",
@@ -288,7 +288,7 @@ export const HttpRedirectsPut307Headers: msRest.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsPatch307Headers: msRest.CompositeMapper = {
+export const HttpRedirectsPatch307Headers: coreHttp.CompositeMapper = {
   serializedName: "httpredirects-patch307-headers",
   type: {
     name: "Composite",
@@ -304,7 +304,7 @@ export const HttpRedirectsPatch307Headers: msRest.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsPost307Headers: msRest.CompositeMapper = {
+export const HttpRedirectsPost307Headers: coreHttp.CompositeMapper = {
   serializedName: "httpredirects-post307-headers",
   type: {
     name: "Composite",
@@ -320,7 +320,7 @@ export const HttpRedirectsPost307Headers: msRest.CompositeMapper = {
   }
 };
 
-export const HttpRedirectsDelete307Headers: msRest.CompositeMapper = {
+export const HttpRedirectsDelete307Headers: coreHttp.CompositeMapper = {
   serializedName: "httpredirects-delete307-headers",
   type: {
     name: "Composite",

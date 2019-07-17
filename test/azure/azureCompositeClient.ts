@@ -3,12 +3,12 @@
 
 'use strict';
 
-import * as msRest from '@azure/ms-rest-js';
+import * as coreHttp from '@azure/core-http';
 import { AzureCompositeModel } from './generated/AzureCompositeModelClient/azureCompositeModel';
 import { AzureCompositeModelOptions } from './generated/AzureCompositeModelClient/models';
 
 const dummyToken = 'dummy12321343423';
-const credentials = new msRest.TokenCredentials(dummyToken);
+const credentials = new coreHttp.TokenCredentials(dummyToken);
 
 const clientOptions: AzureCompositeModelOptions = {
   baseUri: 'http://localhost:3000'

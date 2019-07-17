@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as Parameters from "./models/parameters";
@@ -21,26 +21,26 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param [options] The parameter options
    */
-  constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestResourceFlatteningTestServiceOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: Models.AutoRestResourceFlatteningTestServiceOptions) {
     super(credentials, options);
   }
 
   /**
    * Put External Resource as an Array
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putArray(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<msRest.RestResponse>;
+  putArray(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  putArray(callback: msRest.ServiceCallback<void>): void;
+  putArray(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putArray(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  putArray(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -54,17 +54,17 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param [options] The optional parameters
    * @returns Promise<Models.GetArrayResponse>
    */
-  getArray(options?: msRest.RequestOptionsBase): Promise<Models.GetArrayResponse>;
+  getArray(options?: coreHttp.RequestOptionsBase): Promise<Models.GetArrayResponse>;
   /**
    * @param callback The callback
    */
-  getArray(callback: msRest.ServiceCallback<Models.FlattenedProduct[]>): void;
+  getArray(callback: coreHttp.ServiceCallback<Models.FlattenedProduct[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getArray(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FlattenedProduct[]>): void;
-  getArray(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.FlattenedProduct[]>, callback?: msRest.ServiceCallback<Models.FlattenedProduct[]>): Promise<Models.GetArrayResponse> {
+  getArray(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.FlattenedProduct[]>): void;
+  getArray(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.FlattenedProduct[]>, callback?: coreHttp.ServiceCallback<Models.FlattenedProduct[]>): Promise<Models.GetArrayResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -76,19 +76,19 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Put External Resource as a Dictionary
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putDictionary(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<msRest.RestResponse>;
+  putDictionary(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  putDictionary(callback: msRest.ServiceCallback<void>): void;
+  putDictionary(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putDictionary(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  putDictionary(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -102,17 +102,17 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param [options] The optional parameters
    * @returns Promise<Models.GetDictionaryResponse>
    */
-  getDictionary(options?: msRest.RequestOptionsBase): Promise<Models.GetDictionaryResponse>;
+  getDictionary(options?: coreHttp.RequestOptionsBase): Promise<Models.GetDictionaryResponse>;
   /**
    * @param callback The callback
    */
-  getDictionary(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
+  getDictionary(callback: coreHttp.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDictionary(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
-  getDictionary(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): Promise<Models.GetDictionaryResponse> {
+  getDictionary(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
+  getDictionary(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>, callback?: coreHttp.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): Promise<Models.GetDictionaryResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -124,19 +124,19 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Put External Resource as a ResourceCollection
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putResourceCollection(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<msRest.RestResponse>;
+  putResourceCollection(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  putResourceCollection(callback: msRest.ServiceCallback<void>): void;
+  putResourceCollection(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putResourceCollection(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  putResourceCollection(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -150,17 +150,17 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    * @param [options] The optional parameters
    * @returns Promise<Models.GetResourceCollectionResponse>
    */
-  getResourceCollection(options?: msRest.RequestOptionsBase): Promise<Models.GetResourceCollectionResponse>;
+  getResourceCollection(options?: coreHttp.RequestOptionsBase): Promise<Models.GetResourceCollectionResponse>;
   /**
    * @param callback The callback
    */
-  getResourceCollection(callback: msRest.ServiceCallback<Models.ResourceCollection>): void;
+  getResourceCollection(callback: coreHttp.ServiceCallback<Models.ResourceCollection>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getResourceCollection(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ResourceCollection>): void;
-  getResourceCollection(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.ResourceCollection>, callback?: msRest.ServiceCallback<Models.ResourceCollection>): Promise<Models.GetResourceCollectionResponse> {
+  getResourceCollection(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ResourceCollection>): void;
+  getResourceCollection(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ResourceCollection>, callback?: coreHttp.ServiceCallback<Models.ResourceCollection>): Promise<Models.GetResourceCollectionResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -171,8 +171,8 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const putArrayOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const putArrayOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "azure/resource-flatten/array",
   headerParameters: [
@@ -205,7 +205,7 @@ const putArrayOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getArrayOperationSpec: msRest.OperationSpec = {
+const getArrayOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "azure/resource-flatten/array",
   headerParameters: [
@@ -233,7 +233,7 @@ const getArrayOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putDictionaryOperationSpec: msRest.OperationSpec = {
+const putDictionaryOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "azure/resource-flatten/dictionary",
   headerParameters: [
@@ -266,7 +266,7 @@ const putDictionaryOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getDictionaryOperationSpec: msRest.OperationSpec = {
+const getDictionaryOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "azure/resource-flatten/dictionary",
   headerParameters: [
@@ -294,7 +294,7 @@ const getDictionaryOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putResourceCollectionOperationSpec: msRest.OperationSpec = {
+const putResourceCollectionOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "azure/resource-flatten/resourcecollection",
   headerParameters: [
@@ -316,7 +316,7 @@ const putResourceCollectionOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getResourceCollectionOperationSpec: msRest.OperationSpec = {
+const getResourceCollectionOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "azure/resource-flatten/resourcecollection",
   headerParameters: [

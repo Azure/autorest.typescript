@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { BaseResource, CloudError, AzureServiceClientOptions } from "@azure/ms-rest-azure-js";
-import * as msRest from "@azure/ms-rest-js";
+import { BaseResource, CloudError, AzureServiceClientOptions } from "@azure/core-arm";
+import * as coreHttp from "@azure/core-http";
 
 export { BaseResource, CloudError };
 
@@ -134,7 +134,7 @@ export interface PagingGetMultiplePagesWithOffsetNextOptions {
 /**
  * Optional Parameters.
  */
-export interface PagingGetMultiplePagesOptionalParams extends msRest.RequestOptionsBase {
+export interface PagingGetMultiplePagesOptionalParams extends coreHttp.RequestOptionsBase {
   clientRequestId?: string;
   /**
    * Additional parameters for the operation
@@ -145,7 +145,7 @@ export interface PagingGetMultiplePagesOptionalParams extends msRest.RequestOpti
 /**
  * Optional Parameters.
  */
-export interface PagingGetOdataMultiplePagesOptionalParams extends msRest.RequestOptionsBase {
+export interface PagingGetOdataMultiplePagesOptionalParams extends coreHttp.RequestOptionsBase {
   clientRequestId?: string;
   /**
    * Additional parameters for the operation
@@ -156,25 +156,14 @@ export interface PagingGetOdataMultiplePagesOptionalParams extends msRest.Reques
 /**
  * Optional Parameters.
  */
-export interface PagingGetMultiplePagesWithOffsetOptionalParams extends msRest.RequestOptionsBase {
+export interface PagingGetMultiplePagesWithOffsetOptionalParams extends coreHttp.RequestOptionsBase {
   clientRequestId?: string;
 }
 
 /**
  * Optional Parameters.
  */
-export interface PagingGetMultiplePagesLROOptionalParams extends msRest.RequestOptionsBase {
-  clientRequestId?: string;
-  /**
-   * Additional parameters for the operation
-   */
-  pagingGetMultiplePagesLROOptions?: PagingGetMultiplePagesLROOptions;
-}
-
-/**
- * Optional Parameters.
- */
-export interface PagingBeginGetMultiplePagesLROOptionalParams extends msRest.RequestOptionsBase {
+export interface PagingGetMultiplePagesLROOptionalParams extends coreHttp.RequestOptionsBase {
   clientRequestId?: string;
   /**
    * Additional parameters for the operation
@@ -185,7 +174,18 @@ export interface PagingBeginGetMultiplePagesLROOptionalParams extends msRest.Req
 /**
  * Optional Parameters.
  */
-export interface PagingGetMultiplePagesNextOptionalParams extends msRest.RequestOptionsBase {
+export interface PagingBeginGetMultiplePagesLROOptionalParams extends coreHttp.RequestOptionsBase {
+  clientRequestId?: string;
+  /**
+   * Additional parameters for the operation
+   */
+  pagingGetMultiplePagesLROOptions?: PagingGetMultiplePagesLROOptions;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface PagingGetMultiplePagesNextOptionalParams extends coreHttp.RequestOptionsBase {
   clientRequestId?: string;
   /**
    * Additional parameters for the operation
@@ -196,7 +196,7 @@ export interface PagingGetMultiplePagesNextOptionalParams extends msRest.Request
 /**
  * Optional Parameters.
  */
-export interface PagingGetOdataMultiplePagesNextOptionalParams extends msRest.RequestOptionsBase {
+export interface PagingGetOdataMultiplePagesNextOptionalParams extends coreHttp.RequestOptionsBase {
   clientRequestId?: string;
   /**
    * Additional parameters for the operation
@@ -207,7 +207,7 @@ export interface PagingGetOdataMultiplePagesNextOptionalParams extends msRest.Re
 /**
  * Optional Parameters.
  */
-export interface PagingGetMultiplePagesWithOffsetNextOptionalParams extends msRest.RequestOptionsBase {
+export interface PagingGetMultiplePagesWithOffsetNextOptionalParams extends coreHttp.RequestOptionsBase {
   clientRequestId?: string;
   /**
    * Additional parameters for the operation
@@ -218,7 +218,7 @@ export interface PagingGetMultiplePagesWithOffsetNextOptionalParams extends msRe
 /**
  * Optional Parameters.
  */
-export interface PagingGetMultiplePagesLRONextOptionalParams extends msRest.RequestOptionsBase {
+export interface PagingGetMultiplePagesLRONextOptionalParams extends coreHttp.RequestOptionsBase {
   clientRequestId?: string;
   /**
    * Additional parameters for the operation
@@ -229,7 +229,7 @@ export interface PagingGetMultiplePagesLRONextOptionalParams extends msRest.Requ
 /**
  * Optional Parameters.
  */
-export interface PagingBeginGetMultiplePagesLRONextOptionalParams extends msRest.RequestOptionsBase {
+export interface PagingBeginGetMultiplePagesLRONextOptionalParams extends coreHttp.RequestOptionsBase {
   clientRequestId?: string;
   /**
    * Additional parameters for the operation
@@ -278,7 +278,7 @@ export type PagingGetSinglePagesResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -298,7 +298,7 @@ export type PagingGetMultiplePagesResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -318,7 +318,7 @@ export type PagingGetOdataMultiplePagesResponse = OdataProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -338,7 +338,7 @@ export type PagingGetMultiplePagesWithOffsetResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -358,7 +358,7 @@ export type PagingGetMultiplePagesRetryFirstResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -378,7 +378,7 @@ export type PagingGetMultiplePagesRetrySecondResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -398,7 +398,7 @@ export type PagingGetSinglePagesFailureResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -418,7 +418,7 @@ export type PagingGetMultiplePagesFailureResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -438,7 +438,7 @@ export type PagingGetMultiplePagesFailureUriResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -458,7 +458,7 @@ export type PagingGetMultiplePagesFragmentNextLinkResponse = OdataProductResult 
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -478,7 +478,7 @@ export type PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse = OdataPr
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -498,7 +498,7 @@ export type PagingGetMultiplePagesLROResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -518,7 +518,7 @@ export type PagingNextFragmentResponse = OdataProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -538,7 +538,7 @@ export type PagingNextFragmentWithGroupingResponse = OdataProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -558,7 +558,7 @@ export type PagingBeginGetMultiplePagesLROResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -578,7 +578,7 @@ export type PagingGetSinglePagesNextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -598,7 +598,7 @@ export type PagingGetMultiplePagesNextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -618,7 +618,7 @@ export type PagingGetOdataMultiplePagesNextResponse = OdataProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -638,7 +638,7 @@ export type PagingGetMultiplePagesWithOffsetNextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -658,7 +658,7 @@ export type PagingGetMultiplePagesRetryFirstNextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -678,7 +678,7 @@ export type PagingGetMultiplePagesRetrySecondNextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -698,7 +698,7 @@ export type PagingGetSinglePagesFailureNextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -718,7 +718,7 @@ export type PagingGetMultiplePagesFailureNextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -738,7 +738,7 @@ export type PagingGetMultiplePagesFailureUriNextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -758,7 +758,7 @@ export type PagingGetMultiplePagesLRONextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -778,7 +778,7 @@ export type PagingBeginGetMultiplePagesLRONextResponse = ProductResult & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */

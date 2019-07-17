@@ -6,13 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { CloudErrorMapper, BaseResourceMapper } from "@azure/ms-rest-azure-js";
-import * as msRest from "@azure/ms-rest-js";
+import { CloudErrorMapper, BaseResourceMapper } from "@azure/core-arm";
+import * as coreHttp from "@azure/core-http";
 
 export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
-export const Product: msRest.CompositeMapper = {
+export const Product: coreHttp.CompositeMapper = {
   serializedName: "Product",
   type: {
     name: "Composite",
@@ -53,7 +53,7 @@ export const Product: msRest.CompositeMapper = {
   }
 };
 
-export const CatalogDictionary: msRest.CompositeMapper = {
+export const CatalogDictionary: coreHttp.CompositeMapper = {
   serializedName: "CatalogDictionary",
   type: {
     name: "Composite",
@@ -75,7 +75,7 @@ export const CatalogDictionary: msRest.CompositeMapper = {
   }
 };
 
-export const CatalogArray: msRest.CompositeMapper = {
+export const CatalogArray: coreHttp.CompositeMapper = {
   serializedName: "CatalogArray",
   type: {
     name: "Composite",
@@ -97,7 +97,7 @@ export const CatalogArray: msRest.CompositeMapper = {
   }
 };
 
-export const CatalogArrayOfDictionary: msRest.CompositeMapper = {
+export const CatalogArrayOfDictionary: coreHttp.CompositeMapper = {
   serializedName: "CatalogArrayOfDictionary",
   type: {
     name: "Composite",
@@ -124,7 +124,7 @@ export const CatalogArrayOfDictionary: msRest.CompositeMapper = {
   }
 };
 
-export const CatalogDictionaryOfArray: msRest.CompositeMapper = {
+export const CatalogDictionaryOfArray: coreHttp.CompositeMapper = {
   serializedName: "CatalogDictionaryOfArray",
   type: {
     name: "Composite",
@@ -151,7 +151,7 @@ export const CatalogDictionaryOfArray: msRest.CompositeMapper = {
   }
 };
 
-export const ErrorModel: msRest.CompositeMapper = {
+export const ErrorModel: coreHttp.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -173,7 +173,7 @@ export const ErrorModel: msRest.CompositeMapper = {
   }
 };
 
-export const Basic: msRest.CompositeMapper = {
+export const Basic: coreHttp.CompositeMapper = {
   serializedName: "basic",
   type: {
     name: "Composite",
@@ -201,7 +201,7 @@ export const Basic: msRest.CompositeMapper = {
   }
 };
 
-export const Pet: msRest.CompositeMapper = {
+export const Pet: coreHttp.CompositeMapper = {
   serializedName: "pet",
   type: {
     name: "Composite",
@@ -223,7 +223,7 @@ export const Pet: msRest.CompositeMapper = {
   }
 };
 
-export const Dog: msRest.CompositeMapper = {
+export const Dog: coreHttp.CompositeMapper = {
   serializedName: "dog",
   type: {
     name: "Composite",
@@ -240,7 +240,7 @@ export const Dog: msRest.CompositeMapper = {
   }
 };
 
-export const Cat: msRest.CompositeMapper = {
+export const Cat: coreHttp.CompositeMapper = {
   serializedName: "cat",
   type: {
     name: "Composite",
@@ -269,7 +269,7 @@ export const Cat: msRest.CompositeMapper = {
   }
 };
 
-export const Siamese: msRest.CompositeMapper = {
+export const Siamese: coreHttp.CompositeMapper = {
   serializedName: "siamese",
   type: {
     name: "Composite",
@@ -286,7 +286,7 @@ export const Siamese: msRest.CompositeMapper = {
   }
 };
 
-export const DotFish: msRest.CompositeMapper = {
+export const DotFish: coreHttp.CompositeMapper = {
   serializedName: "DotFish",
   type: {
     name: "Composite",
@@ -314,7 +314,7 @@ export const DotFish: msRest.CompositeMapper = {
   }
 };
 
-export const DotSalmon: msRest.CompositeMapper = {
+export const DotSalmon: coreHttp.CompositeMapper = {
   serializedName: "DotSalmon",
   type: {
     name: "Composite",
@@ -339,7 +339,7 @@ export const DotSalmon: msRest.CompositeMapper = {
   }
 };
 
-export const Fish: msRest.CompositeMapper = {
+export const Fish: coreHttp.CompositeMapper = {
   serializedName: "Fish",
   type: {
     name: "Composite",
@@ -386,7 +386,7 @@ export const Fish: msRest.CompositeMapper = {
   }
 };
 
-export const Salmon: msRest.CompositeMapper = {
+export const Salmon: coreHttp.CompositeMapper = {
   serializedName: "salmon",
   type: {
     name: "Composite",
@@ -411,7 +411,7 @@ export const Salmon: msRest.CompositeMapper = {
   }
 };
 
-export const SmartSalmon: msRest.CompositeMapper = {
+export const SmartSalmon: coreHttp.CompositeMapper = {
   serializedName: "smart_salmon",
   type: {
     name: "Composite",
@@ -435,7 +435,7 @@ export const SmartSalmon: msRest.CompositeMapper = {
   }
 };
 
-export const Shark: msRest.CompositeMapper = {
+export const Shark: coreHttp.CompositeMapper = {
   serializedName: "shark",
   type: {
     name: "Composite",
@@ -461,7 +461,7 @@ export const Shark: msRest.CompositeMapper = {
   }
 };
 
-export const Sawshark: msRest.CompositeMapper = {
+export const Sawshark: coreHttp.CompositeMapper = {
   serializedName: "sawshark",
   type: {
     name: "Composite",
@@ -480,7 +480,7 @@ export const Sawshark: msRest.CompositeMapper = {
   }
 };
 
-export const Goblinshark: msRest.CompositeMapper = {
+export const Goblinshark: coreHttp.CompositeMapper = {
   serializedName: "goblin",
   type: {
     name: "Composite",
@@ -506,7 +506,7 @@ export const Goblinshark: msRest.CompositeMapper = {
   }
 };
 
-export const Cookiecuttershark: msRest.CompositeMapper = {
+export const Cookiecuttershark: coreHttp.CompositeMapper = {
   serializedName: "cookiecuttershark",
   type: {
     name: "Composite",
@@ -519,7 +519,7 @@ export const Cookiecuttershark: msRest.CompositeMapper = {
   }
 };
 
-export const IntWrapper: msRest.CompositeMapper = {
+export const IntWrapper: coreHttp.CompositeMapper = {
   serializedName: "int-wrapper",
   type: {
     name: "Composite",
@@ -541,7 +541,7 @@ export const IntWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const LongWrapper: msRest.CompositeMapper = {
+export const LongWrapper: coreHttp.CompositeMapper = {
   serializedName: "long-wrapper",
   type: {
     name: "Composite",
@@ -563,7 +563,7 @@ export const LongWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const FloatWrapper: msRest.CompositeMapper = {
+export const FloatWrapper: coreHttp.CompositeMapper = {
   serializedName: "float-wrapper",
   type: {
     name: "Composite",
@@ -585,7 +585,7 @@ export const FloatWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const DoubleWrapper: msRest.CompositeMapper = {
+export const DoubleWrapper: coreHttp.CompositeMapper = {
   serializedName: "double-wrapper",
   type: {
     name: "Composite",
@@ -607,7 +607,7 @@ export const DoubleWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const BooleanWrapper: msRest.CompositeMapper = {
+export const BooleanWrapper: coreHttp.CompositeMapper = {
   serializedName: "boolean-wrapper",
   type: {
     name: "Composite",
@@ -629,7 +629,7 @@ export const BooleanWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const StringWrapper: msRest.CompositeMapper = {
+export const StringWrapper: coreHttp.CompositeMapper = {
   serializedName: "string-wrapper",
   type: {
     name: "Composite",
@@ -657,7 +657,7 @@ export const StringWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const DateWrapper: msRest.CompositeMapper = {
+export const DateWrapper: coreHttp.CompositeMapper = {
   serializedName: "date-wrapper",
   type: {
     name: "Composite",
@@ -679,7 +679,7 @@ export const DateWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const DatetimeWrapper: msRest.CompositeMapper = {
+export const DatetimeWrapper: coreHttp.CompositeMapper = {
   serializedName: "datetime-wrapper",
   type: {
     name: "Composite",
@@ -701,7 +701,7 @@ export const DatetimeWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const Datetimerfc1123Wrapper: msRest.CompositeMapper = {
+export const Datetimerfc1123Wrapper: coreHttp.CompositeMapper = {
   serializedName: "datetimerfc1123-wrapper",
   type: {
     name: "Composite",
@@ -723,7 +723,7 @@ export const Datetimerfc1123Wrapper: msRest.CompositeMapper = {
   }
 };
 
-export const DurationWrapper: msRest.CompositeMapper = {
+export const DurationWrapper: coreHttp.CompositeMapper = {
   serializedName: "duration-wrapper",
   type: {
     name: "Composite",
@@ -739,7 +739,7 @@ export const DurationWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const ByteWrapper: msRest.CompositeMapper = {
+export const ByteWrapper: coreHttp.CompositeMapper = {
   serializedName: "byte-wrapper",
   type: {
     name: "Composite",
@@ -755,7 +755,7 @@ export const ByteWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const ArrayWrapper: msRest.CompositeMapper = {
+export const ArrayWrapper: coreHttp.CompositeMapper = {
   serializedName: "array-wrapper",
   type: {
     name: "Composite",
@@ -776,7 +776,7 @@ export const ArrayWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const DictionaryWrapper: msRest.CompositeMapper = {
+export const DictionaryWrapper: coreHttp.CompositeMapper = {
   serializedName: "dictionary-wrapper",
   type: {
     name: "Composite",
@@ -797,7 +797,7 @@ export const DictionaryWrapper: msRest.CompositeMapper = {
   }
 };
 
-export const ReadonlyObj: msRest.CompositeMapper = {
+export const ReadonlyObj: coreHttp.CompositeMapper = {
   serializedName: "readonly-obj",
   type: {
     name: "Composite",
@@ -820,7 +820,7 @@ export const ReadonlyObj: msRest.CompositeMapper = {
   }
 };
 
-export const MyBaseType: msRest.CompositeMapper = {
+export const MyBaseType: coreHttp.CompositeMapper = {
   serializedName: "MyBaseType",
   type: {
     name: "Composite",
@@ -854,7 +854,7 @@ export const MyBaseType: msRest.CompositeMapper = {
   }
 };
 
-export const MyDerivedType: msRest.CompositeMapper = {
+export const MyDerivedType: coreHttp.CompositeMapper = {
   serializedName: "Kind1",
   type: {
     name: "Composite",

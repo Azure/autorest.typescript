@@ -8,7 +8,7 @@ import { should } from "chai";
 import * as util from 'util';
 import * as assert from 'assert';
 import * as msAssert from "../util/msAssert";
-import * as msRest from '@azure/ms-rest-js';
+import * as coreHttp from '@azure/core-http';
 import * as fs from "fs";
 
 import { AutoRestBoolTestService } from './generated/BodyBoolean/autoRestBoolTestService';
@@ -61,7 +61,7 @@ const readStreamCountBytes = async function (stream: NodeJS.ReadableStream): Pro
 }
 
 function stringToByteArray(str: string): Uint8Array {
-  if (msRest.isNode) {
+  if (coreHttp.isNode) {
     return Buffer.from(str, "utf-8");
   } else {
     return new TextEncoder().encode(str);
@@ -392,7 +392,7 @@ describe('typescript', function () {
       });
 
       it('should support valid MBC string value', async function () {
-        if (!msRest.isNode) {
+        if (!coreHttp.isNode) {
           // Safari doesn't putMbcs correctly
           this.skip();
         }
@@ -431,7 +431,7 @@ describe('typescript', function () {
         assert(result.body);
 
         const expected = 'a string that gets encoded with base64';
-        if (msRest.isNode) {
+        if (coreHttp.isNode) {
           assert.strictEqual((result.body as Buffer).toString("utf8"), expected);
         } else {
           assert.strictEqual(new TextDecoder("utf8").decode(result.body), expected);
@@ -452,7 +452,7 @@ describe('typescript', function () {
           result.should.exist;
 
           const decodedString = 'a string that gets encoded with base64url';
-          if (msRest.isNode) {
+          if (coreHttp.isNode) {
             (result as Buffer).toString("utf8").should.equal(decodedString);
           } else {
             new TextDecoder("utf8").decode(result).should.equal(decodedString);
@@ -621,7 +621,7 @@ describe('typescript', function () {
       });
 
       it('should get uppercase and lowercase UTC max date time', async function () {
-        if (!msRest.isNode) {
+        if (!coreHttp.isNode) {
           // browser behaviors vary for parsing date values
           this.skip();
         }
@@ -676,7 +676,7 @@ describe('typescript', function () {
       });
 
       it('should get local negative offset lowercase and uppercase Max DateTime', async function () {
-        if (!msRest.isNode) {
+        if (!coreHttp.isNode) {
           // browser behaviors vary for parsing date values
           this.skip();
         }
@@ -702,7 +702,7 @@ describe('typescript', function () {
       });
 
       it('should get local positive offset lowercase and uppercase Max DateTime', async function () {
-        if (!msRest.isNode) {
+        if (!coreHttp.isNode) {
           // browser behaviors vary for parsing date values
           this.skip();
         }
@@ -728,7 +728,7 @@ describe('typescript', function () {
       });
 
       it('should get overflow and underflow', async function () {
-        if (!msRest.isNode) {
+        if (!coreHttp.isNode) {
           // browser behaviors vary for parsing date values
           this.skip();
         }
@@ -747,7 +747,7 @@ describe('typescript', function () {
       });
 
       it('should put UTC min and max date time', async function () {
-        if (!msRest.isNode) {
+        if (!coreHttp.isNode) {
           // browser behaviors vary for parsing date values
           this.skip();
         }
@@ -762,7 +762,7 @@ describe('typescript', function () {
       });
 
       it('should put local negative offset max DateTime', async function () {
-        if (!msRest.isNode) {
+        if (!coreHttp.isNode) {
           // browser behaviors vary for parsing date values
           this.skip();
         }
@@ -771,7 +771,7 @@ describe('typescript', function () {
       });
 
       it('should put local positive offset max Date', async function () {
-        if (!msRest.isNode) {
+        if (!coreHttp.isNode) {
           // browser behaviors vary for parsing date values
           this.skip();
         }
@@ -836,7 +836,7 @@ describe('typescript', function () {
       });
 
       it('should get overflow and underflow', function (done) {
-        if (!msRest.isNode) {
+        if (!coreHttp.isNode) {
           // browser behaviors vary for parsing date values
           this.skip();
         }
@@ -1111,7 +1111,7 @@ describe('typescript', function () {
         });
 
         it('should get and put dateTime arrays', async function () {
-          if (!msRest.isNode) {
+          if (!coreHttp.isNode) {
             // browser behaviors vary for parsing date times
             this.skip();
           }
@@ -1583,7 +1583,7 @@ describe('typescript', function () {
         });
 
         it('should get and put dateTime dictionaries', async function () {
-          if (!msRest.isNode) {
+          if (!coreHttp.isNode) {
             // browser behaviors vary for parsing date values
             this.skip();
           }
@@ -1628,7 +1628,7 @@ describe('typescript', function () {
         });
 
         it('should get dateTime dictionaries with null value', async function () {
-          if (!msRest.isNode) {
+          if (!coreHttp.isNode) {
             // browser behaviors vary for parsing date values
             this.skip();
           }
@@ -1823,7 +1823,7 @@ describe('typescript', function () {
     describe('Files Client', function () {
       var testClient = new AutoRestSwaggerBATFileService(clientOptions);
 
-      if (msRest.isNode) {
+      if (coreHttp.isNode) {
         it('nodejs should correctly deserialize binary streams', async function () {
           const result = await testClient.files.getFile()
           const buf = await readStreamToBuffer(result.readableStreamBody);
@@ -1831,7 +1831,7 @@ describe('typescript', function () {
         });
       }
 
-      if (!msRest.isNode) {
+      if (!coreHttp.isNode) {
         it('browser should correctly deserialize binary streams', async function () {
           const result = await testClient.files.getFile();
           result.should.exist;
@@ -1854,7 +1854,7 @@ describe('typescript', function () {
         });
       }
 
-      if (msRest.isNode) {
+      if (coreHttp.isNode) {
         it('nodejs should correctly deserialize empty streams', async function () {
           const result = await testClient.files.getEmptyFile()
           const byteCount = await readStreamCountBytes(result.readableStreamBody as any);
@@ -1862,7 +1862,7 @@ describe('typescript', function () {
         });
       }
 
-      if (!msRest.isNode) {
+      if (!coreHttp.isNode) {
         it('browser should correctly deserialize empty streams', async function () {
           const result = await testClient.files.getEmptyFile();
           const body = await result.blobBody;
@@ -1870,7 +1870,7 @@ describe('typescript', function () {
         });
       }
 
-      if (msRest.isNode) {
+      if (coreHttp.isNode) {
         it('nodejs should correctly deserialize large streams', async function () {
           const result = await testClient.files.getFileLarge();
           const byteCount = await readStreamCountBytes(result.readableStreamBody);
@@ -1878,7 +1878,7 @@ describe('typescript', function () {
         });
       }
 
-      if (!msRest.isNode) {
+      if (!coreHttp.isNode) {
         it('browser should correctly deserialize large streams', async function () {
           this.timeout(1000 * 60 * 10);
           const result = await testClient.files.getFileLarge();
@@ -1891,7 +1891,7 @@ describe('typescript', function () {
     describe('Form Data Client', function () {
       var testClient = new AutoRestSwaggerBATFormDataService(clientOptions);
 
-      if (msRest.isNode) {
+      if (coreHttp.isNode) {
         it('nodejs should correctly accept file via form-dat', async function () {
           const result = await testClient.formdata.uploadFile(() => fs.createReadStream(__dirname + '/sample.png'), 'sample.png');
           const buff = await readStreamToBuffer(result.readableStreamBody)
@@ -1899,7 +1899,7 @@ describe('typescript', function () {
         });
       }
 
-      if (!msRest.isNode) {
+      if (!coreHttp.isNode) {
         it('browser should correctly accept file via form-dat', async function () {
           const content = require(`arraybuffer-loader!${__dirname}/sample.png`);
           const blob = new Blob([content]);
@@ -1922,7 +1922,7 @@ describe('typescript', function () {
         });
       }
 
-      if (msRest.isNode) {
+      if (coreHttp.isNode) {
         it('nodejs should correctly accept file via body', async function () {
           const result = await testClient.formdata.uploadFileViaBody(() => fs.createReadStream(__dirname + '/sample.png'));
           const buff = await readStreamToBuffer(result.readableStreamBody);
@@ -1930,7 +1930,7 @@ describe('typescript', function () {
         });
       }
 
-      if (!msRest.isNode) {
+      if (!coreHttp.isNode) {
         it('browser should correctly accept file via body', async function () {
           const content = require(`arraybuffer-loader!${__dirname}/sample.png`);
           const response = await testClient.formdata.uploadFileViaBody(new Blob([content]));
@@ -2216,11 +2216,11 @@ describe('typescript', function () {
       });
     });
     describe('Http infrastructure Client', function () {
-      const serializer = new msRest.Serializer(AutoRestHttpInfrastructureTestServiceMappers);
+      const serializer = new coreHttp.Serializer(AutoRestHttpInfrastructureTestServiceMappers);
       var testOptions = { ...clientOptions };
 
       // Prevents caching redirects
-      const preventCachingPolicy: msRest.RequestPolicyFactory = {
+      const preventCachingPolicy: coreHttp.RequestPolicyFactory = {
         create: next => ({
           sendRequest: req => {
             if (!req.query) {
@@ -2233,9 +2233,9 @@ describe('typescript', function () {
       };
       testOptions.requestPolicyFactories = [
         preventCachingPolicy,
-        msRest.redirectPolicy(),
-        msRest.exponentialRetryPolicy(3, 0, 0, 0),
-        msRest.deserializationPolicy()
+        coreHttp.redirectPolicy(),
+        coreHttp.exponentialRetryPolicy(3, 0, 0, 0),
+        coreHttp.deserializationPolicy()
       ];
       var testClient = new AutoRestHttpInfrastructureTestService(testOptions);
       it('should work for all http success status codes with different verbs', function (done) {
@@ -2312,62 +2312,62 @@ describe('typescript', function () {
       });
 
       it('should work for all client failure status codes (4xx) with different verbs', async function () {
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.head400(), (err: msRest.RestError) => err.statusCode.should.equal(400));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.get400(), (err: msRest.RestError) => err.statusCode.should.equal(400));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.put400({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(400));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.patch400({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(400));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.post400({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(400));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.delete400({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(400));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.head400(), (err: coreHttp.RestError) => err.statusCode.should.equal(400));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.get400(), (err: coreHttp.RestError) => err.statusCode.should.equal(400));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.put400({ booleanValue: true }), (err: coreHttp.RestError) => err.statusCode.should.equal(400));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.patch400({ booleanValue: true }), (err: coreHttp.RestError) => err.statusCode.should.equal(400));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.post400({ booleanValue: true }), (err: coreHttp.RestError) => err.statusCode.should.equal(400));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.delete400({ booleanValue: true }), (err: coreHttp.RestError) => err.statusCode.should.equal(400));
 
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.head401(), (err: msRest.RestError) => err.statusCode.should.equal(401));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.get402(), (err: msRest.RestError) => err.statusCode.should.equal(402));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.get403(), (err: msRest.RestError) => err.statusCode.should.equal(403));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.put404({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(404));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.patch405({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(405));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.post406({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(406));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.head401(), (err: coreHttp.RestError) => err.statusCode.should.equal(401));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.get402(), (err: coreHttp.RestError) => err.statusCode.should.equal(402));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.get403(), (err: coreHttp.RestError) => err.statusCode.should.equal(403));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.put404({ booleanValue: true }), (err: coreHttp.RestError) => err.statusCode.should.equal(404));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.patch405({ booleanValue: true }), (err: coreHttp.RestError) => err.statusCode.should.equal(405));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.post406({ booleanValue: true }), (err: coreHttp.RestError) => err.statusCode.should.equal(406));
 
         // In browser, HTTP 407 causes an XHR-level error
         // https://bugs.chromium.org/p/chromium/issues/detail?id=372136
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.delete407({ booleanValue: true }), (err: msRest.RestError) => {
-          if (msRest.isNode) {
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.delete407({ booleanValue: true }), (err: coreHttp.RestError) => {
+          if (coreHttp.isNode) {
             err.statusCode.should.equal(407);
           } else {
             err.should.exist;
           }
         });
 
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.put409({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(409));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.head410(), (err: msRest.RestError) => err.statusCode.should.equal(410));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.get411(), (err: msRest.RestError) => err.statusCode.should.equal(411));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.get412(), (err: msRest.RestError) => err.statusCode.should.equal(412));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.put413({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(413));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.patch414({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(414));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.post415({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(415));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.get416(), (err: msRest.RestError) => err.statusCode.should.equal(416));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.delete417({ booleanValue: true }), (err: msRest.RestError) => err.statusCode.should.equal(417));
-        await msAssert.throwsAsync(() => testClient.httpClientFailure.head429(), (err: msRest.RestError) => err.statusCode.should.equal(429));
-        await msAssert.throwsAsync(() => testClient.httpFailure.getEmptyError(), (err: msRest.RestError) => err).should.exist;
-        await msAssert.throwsAsync(() => testClient.httpFailure.getNoModelError(), (err: msRest.RestError) => err.message).should.exist;
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.put409({ booleanValue: true }), (err: coreHttp.RestError) => err.statusCode.should.equal(409));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.head410(), (err: coreHttp.RestError) => err.statusCode.should.equal(410));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.get411(), (err: coreHttp.RestError) => err.statusCode.should.equal(411));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.get412(), (err: coreHttp.RestError) => err.statusCode.should.equal(412));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.put413({ booleanValue: true }), (err: coreHttp.RestError) => err.statusCode.should.equal(413));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.patch414({ booleanValue: true }), (err: coreHttp.RestError) => err.statusCode.should.equal(414));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.post415({ booleanValue: true }), (err: coreHttp.RestError) => err.statusCode.should.equal(415));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.get416(), (err: coreHttp.RestError) => err.statusCode.should.equal(416));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.delete417({ booleanValue: true }), (err: coreHttp.RestError) => err.statusCode.should.equal(417));
+        await msAssert.throwsAsync(() => testClient.httpClientFailure.head429(), (err: coreHttp.RestError) => err.statusCode.should.equal(429));
+        await msAssert.throwsAsync(() => testClient.httpFailure.getEmptyError(), (err: coreHttp.RestError) => err).should.exist;
+        await msAssert.throwsAsync(() => testClient.httpFailure.getNoModelError(), (err: coreHttp.RestError) => err.message).should.exist;
       });
 
       it('should work for all server failure status codes (5xx) with different verbs', async () => {
         await msAssert.throwsAsync(testClient.httpServerFailure.head501(),
-          (error: msRest.RestError) => {
+          (error: coreHttp.RestError) => {
             error.statusCode.should.equal(501);
           });
 
         await msAssert.throwsAsync(testClient.httpServerFailure.get501(),
-          (error: msRest.RestError) => {
+          (error: coreHttp.RestError) => {
             error.statusCode.should.equal(501);
           });
 
         await msAssert.throwsAsync(testClient.httpServerFailure.post505({ booleanValue: true }),
-          (error: msRest.RestError) => {
+          (error: coreHttp.RestError) => {
             error.statusCode.should.equal(505);
           });
 
         await msAssert.throwsAsync(testClient.httpServerFailure.delete505({ booleanValue: true }),
-          (error: msRest.RestError) => {
+          (error: coreHttp.RestError) => {
             error.statusCode.should.equal(505);
           });
       });
@@ -2415,18 +2415,18 @@ describe('typescript', function () {
 
         //should use models.Error to deserialize and set it as body of javascript Error object
         await msAssert.throwsAsync(testClient.multipleResponses.get200Model204NoModelDefaultError201Invalid(),
-          (error: msRest.RestError) => error.statusCode.should.equal(201));
+          (error: coreHttp.RestError) => error.statusCode.should.equal(201));
 
         await msAssert.throwsAsync(testClient.multipleResponses.get200Model204NoModelDefaultError202None(),
-          (error: msRest.RestError) => error.statusCode.should.equal(202));
+          (error: coreHttp.RestError) => error.statusCode.should.equal(202));
 
-        //should we set body property of msRest.HttpOperationResponse to {}.
+        //should we set body property of coreHttp.HttpOperationResponse to {}.
         //C3 does this Assert.Null(client.MultipleResponses.Get200Model204NoModelDefaultError204Valid());
         await testClient.multipleResponses.get200Model204NoModelDefaultError204Valid();
 
         //{"message":"client error","status":400} shouldn't we set this to error model defined in swagger?
         await msAssert.throwsAsync(testClient.multipleResponses.get200Model204NoModelDefaultError400Valid(),
-          (error: msRest.RestError) => error.statusCode.should.equal(400));
+          (error: coreHttp.RestError) => error.statusCode.should.equal(400));
 
         const result2 = await testClient.multipleResponses.get200Model201ModelDefaultError200Valid();
         result2.should.exist;
@@ -2437,7 +2437,7 @@ describe('typescript', function () {
         assert.deepEqual(result3, { 'statusCode': '201', 'textStatusCode': 'Created' });
 
         await msAssert.throwsAsync(testClient.multipleResponses.get200Model201ModelDefaultError400Valid(),
-          (error: msRest.RestError) => error.statusCode.should.equal(400));
+          (error: coreHttp.RestError) => error.statusCode.should.equal(400));
 
         const result4 = await testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError200Valid();
         result4.should.exist;
@@ -2452,24 +2452,24 @@ describe('typescript', function () {
         result6._response.status.should.equal(404);
 
         await msAssert.throwsAsync(testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError400Valid(),
-          (error: msRest.RestError) => error.statusCode.should.equal(400));
+          (error: coreHttp.RestError) => error.statusCode.should.equal(400));
 
         await testClient.multipleResponses.get202None204NoneDefaultError202None();
 
         await testClient.multipleResponses.get202None204NoneDefaultError204None();
 
         await msAssert.throwsAsync(testClient.multipleResponses.get202None204NoneDefaultError400Valid(),
-          (error: msRest.RestError) => error.statusCode.should.equal(400));
+          (error: coreHttp.RestError) => error.statusCode.should.equal(400));
 
         await testClient.multipleResponses.get202None204NoneDefaultNone202Invalid();
 
         await testClient.multipleResponses.get202None204NoneDefaultNone204None();
 
         await msAssert.throwsAsync(testClient.multipleResponses.get202None204NoneDefaultNone400None(),
-          (error: msRest.RestError) => error.statusCode.should.equal(400));
+          (error: coreHttp.RestError) => error.statusCode.should.equal(400));
 
         await msAssert.throwsAsync(testClient.multipleResponses.get202None204NoneDefaultNone400Invalid(),
-          (error: msRest.RestError) => error.statusCode.should.equal(400));
+          (error: coreHttp.RestError) => error.statusCode.should.equal(400));
 
         const result7 = await testClient.multipleResponses.getDefaultModelA200Valid();
         result7.should.exist;
@@ -2478,20 +2478,20 @@ describe('typescript', function () {
         await testClient.multipleResponses.getDefaultModelA200None();
 
         await msAssert.throwsAsync(testClient.multipleResponses.getDefaultModelA400Valid(),
-          (error: msRest.RestError) => error.statusCode.should.equal(400));
+          (error: coreHttp.RestError) => error.statusCode.should.equal(400));
 
         await msAssert.throwsAsync(testClient.multipleResponses.getDefaultModelA400None(),
-          (error: msRest.RestError) => error.statusCode.should.equal(400));
+          (error: coreHttp.RestError) => error.statusCode.should.equal(400));
 
         await testClient.multipleResponses.getDefaultNone200Invalid();
 
         await testClient.multipleResponses.getDefaultNone200None();
 
         await msAssert.throwsAsync(testClient.multipleResponses.getDefaultNone400Invalid(),
-          (error: msRest.RestError) => error.statusCode.should.equal(400));
+          (error: coreHttp.RestError) => error.statusCode.should.equal(400));
 
         await msAssert.throwsAsync(testClient.multipleResponses.getDefaultNone400None(),
-          (error: msRest.RestError) => error.statusCode.should.equal(400));
+          (error: coreHttp.RestError) => error.statusCode.should.equal(400));
 
         await testClient.multipleResponses.get200ModelA200None();
 
@@ -2501,16 +2501,16 @@ describe('typescript', function () {
         await testClient.multipleResponses.get200ModelA200Invalid();
 
         await msAssert.throwsAsync(testClient.multipleResponses.get200ModelA400None(),
-          (error: msRest.RestError) => error.statusCode.should.equal(400));
+          (error: coreHttp.RestError) => error.statusCode.should.equal(400));
 
         await msAssert.throwsAsync(testClient.multipleResponses.get200ModelA400Valid(),
-          (error: msRest.RestError) => error.statusCode.should.equal(400));
+          (error: coreHttp.RestError) => error.statusCode.should.equal(400));
 
         await msAssert.throwsAsync(testClient.multipleResponses.get200ModelA400Invalid(),
-          (error: msRest.RestError) => error.statusCode.should.equal(400));
+          (error: coreHttp.RestError) => error.statusCode.should.equal(400));
 
         await msAssert.throwsAsync(testClient.multipleResponses.get200ModelA202Valid(),
-          (error: msRest.RestError) => error.statusCode.should.equal(202));
+          (error: coreHttp.RestError) => error.statusCode.should.equal(202));
       });
     });
   });

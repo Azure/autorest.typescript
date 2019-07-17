@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/pathsMappers";
 import * as Parameters from "../models/parameters";
@@ -32,16 +32,16 @@ export class Paths {
    * @param secret Secret value.
    * @param keyName The key name with value 'key1'.
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getEmpty(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams): Promise<msRest.RestResponse>;
+  getEmpty(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param vault The vault name, e.g. https://myvault
    * @param secret Secret value.
    * @param keyName The key name with value 'key1'.
    * @param callback The callback
    */
-  getEmpty(vault: string, secret: string, keyName: string, callback: msRest.ServiceCallback<void>): void;
+  getEmpty(vault: string, secret: string, keyName: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param vault The vault name, e.g. https://myvault
    * @param secret Secret value.
@@ -49,8 +49,8 @@ export class Paths {
    * @param options The optional parameters
    * @param callback The callback
    */
-  getEmpty(vault: string, secret: string, keyName: string, options: Models.PathsGetEmptyOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  getEmpty(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getEmpty(vault: string, secret: string, keyName: string, options: Models.PathsGetEmptyOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  getEmpty(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         vault,
@@ -64,8 +64,8 @@ export class Paths {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getEmptyOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "customuri/{subscriptionId}/{keyName}",
   urlParameters: [

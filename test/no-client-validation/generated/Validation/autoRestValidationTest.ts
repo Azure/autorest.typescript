@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as Parameters from "./models/parameters";
@@ -32,21 +32,21 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * @param [options] The optional parameters
    * @returns Promise<Models.ValidationOfMethodParametersResponse>
    */
-  validationOfMethodParameters(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase): Promise<Models.ValidationOfMethodParametersResponse>;
+  validationOfMethodParameters(resourceGroupName: string, id: number, options?: coreHttp.RequestOptionsBase): Promise<Models.ValidationOfMethodParametersResponse>;
   /**
    * @param resourceGroupName Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
    * @param id Required int multiple of 10 from 100 to 1000.
    * @param callback The callback
    */
-  validationOfMethodParameters(resourceGroupName: string, id: number, callback: msRest.ServiceCallback<Models.Product>): void;
+  validationOfMethodParameters(resourceGroupName: string, id: number, callback: coreHttp.ServiceCallback<Models.Product>): void;
   /**
    * @param resourceGroupName Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
    * @param id Required int multiple of 10 from 100 to 1000.
    * @param options The optional parameters
    * @param callback The callback
    */
-  validationOfMethodParameters(resourceGroupName: string, id: number, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
-  validationOfMethodParameters(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Product>, callback?: msRest.ServiceCallback<Models.Product>): Promise<Models.ValidationOfMethodParametersResponse> {
+  validationOfMethodParameters(resourceGroupName: string, id: number, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Product>): void;
+  validationOfMethodParameters(resourceGroupName: string, id: number, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Product>, callback?: coreHttp.ServiceCallback<Models.Product>): Promise<Models.ValidationOfMethodParametersResponse> {
     return this.sendOperationRequest(
       {
         resourceGroupName,
@@ -70,15 +70,15 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    * @param id Required int multiple of 10 from 100 to 1000.
    * @param callback The callback
    */
-  validationOfBody(resourceGroupName: string, id: number, callback: msRest.ServiceCallback<Models.Product>): void;
+  validationOfBody(resourceGroupName: string, id: number, callback: coreHttp.ServiceCallback<Models.Product>): void;
   /**
    * @param resourceGroupName Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
    * @param id Required int multiple of 10 from 100 to 1000.
    * @param options The optional parameters
    * @param callback The callback
    */
-  validationOfBody(resourceGroupName: string, id: number, options: Models.AutoRestValidationTestValidationOfBodyOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  validationOfBody(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams | msRest.ServiceCallback<Models.Product>, callback?: msRest.ServiceCallback<Models.Product>): Promise<Models.ValidationOfBodyResponse> {
+  validationOfBody(resourceGroupName: string, id: number, options: Models.AutoRestValidationTestValidationOfBodyOptionalParams, callback: coreHttp.ServiceCallback<Models.Product>): void;
+  validationOfBody(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams | coreHttp.ServiceCallback<Models.Product>, callback?: coreHttp.ServiceCallback<Models.Product>): Promise<Models.ValidationOfBodyResponse> {
     return this.sendOperationRequest(
       {
         resourceGroupName,
@@ -91,19 +91,19 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
 
   /**
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getWithConstantInPath(options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  getWithConstantInPath(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getWithConstantInPath(callback: msRest.ServiceCallback<void>): void;
+  getWithConstantInPath(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getWithConstantInPath(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getWithConstantInPath(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  getWithConstantInPath(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getWithConstantInPath(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -120,13 +120,13 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   /**
    * @param callback The callback
    */
-  postWithConstantInBody(callback: msRest.ServiceCallback<Models.Product>): void;
+  postWithConstantInBody(callback: coreHttp.ServiceCallback<Models.Product>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  postWithConstantInBody(options: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams, callback: msRest.ServiceCallback<Models.Product>): void;
-  postWithConstantInBody(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams | msRest.ServiceCallback<Models.Product>, callback?: msRest.ServiceCallback<Models.Product>): Promise<Models.PostWithConstantInBodyResponse> {
+  postWithConstantInBody(options: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams, callback: coreHttp.ServiceCallback<Models.Product>): void;
+  postWithConstantInBody(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams | coreHttp.ServiceCallback<Models.Product>, callback?: coreHttp.ServiceCallback<Models.Product>): Promise<Models.PostWithConstantInBodyResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -137,8 +137,8 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const validationOfMethodParametersOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const validationOfMethodParametersOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
   urlParameters: [
@@ -160,7 +160,7 @@ const validationOfMethodParametersOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const validationOfBodyOperationSpec: msRest.OperationSpec = {
+const validationOfBodyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
   urlParameters: [
@@ -189,7 +189,7 @@ const validationOfBodyOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const getWithConstantInPathOperationSpec: msRest.OperationSpec = {
+const getWithConstantInPathOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "validation/constantsInPath/{constantParam}/value",
   urlParameters: [
@@ -202,7 +202,7 @@ const getWithConstantInPathOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const postWithConstantInBodyOperationSpec: msRest.OperationSpec = {
+const postWithConstantInBodyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "validation/constantsInPath/{constantParam}/value",
   urlParameters: [

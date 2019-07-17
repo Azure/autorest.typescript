@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/inheritanceMappers";
 import { AutoRestComplexTestServiceContext } from "../autoRestComplexTestServiceContext";
@@ -30,17 +30,17 @@ export class Inheritance {
    * @param [options] The optional parameters
    * @returns Promise<Models.InheritanceGetValidResponse>
    */
-  getValid(options?: msRest.RequestOptionsBase): Promise<Models.InheritanceGetValidResponse>;
+  getValid(options?: coreHttp.RequestOptionsBase): Promise<Models.InheritanceGetValidResponse>;
   /**
    * @param callback The callback
    */
-  getValid(callback: msRest.ServiceCallback<Models.Siamese>): void;
+  getValid(callback: coreHttp.ServiceCallback<Models.Siamese>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Siamese>): void;
-  getValid(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.Siamese>, callback?: msRest.ServiceCallback<Models.Siamese>): Promise<Models.InheritanceGetValidResponse> {
+  getValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.Siamese>): void;
+  getValid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.Siamese>, callback?: coreHttp.ServiceCallback<Models.Siamese>): Promise<Models.InheritanceGetValidResponse> {
     return this.client.sendOperationRequest(
       {
         options
@@ -55,16 +55,16 @@ export class Inheritance {
    * which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one
    * named "Tomato" with id=-1 and food="french fries".
    * @param [options] The optional parameters
-   * @returns Promise<msRest.RestResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putValid(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  putValid(complexBody: Models.Siamese, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put a siamese with id=2, name="Siameee", color=green, breed=persion,
    * which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one
    * named "Tomato" with id=-1 and food="french fries".
    * @param callback The callback
    */
-  putValid(complexBody: Models.Siamese, callback: msRest.ServiceCallback<void>): void;
+  putValid(complexBody: Models.Siamese, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param complexBody Please put a siamese with id=2, name="Siameee", color=green, breed=persion,
    * which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one
@@ -72,8 +72,8 @@ export class Inheritance {
    * @param options The optional parameters
    * @param callback The callback
    */
-  putValid(complexBody: Models.Siamese, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putValid(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+  putValid(complexBody: Models.Siamese, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  putValid(complexBody: Models.Siamese, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         complexBody,
@@ -85,8 +85,8 @@ export class Inheritance {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const getValidOperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const getValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "complex/inheritance/valid",
   responses: {
@@ -100,7 +100,7 @@ const getValidOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const putValidOperationSpec: msRest.OperationSpec = {
+const putValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "complex/inheritance/valid",
   requestBody: {

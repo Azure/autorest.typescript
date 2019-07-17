@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 
-export const Product: msRest.CompositeMapper = {
+export const Product: coreHttp.CompositeMapper = {
   serializedName: "Product",
   type: {
     name: "Composite",
@@ -50,7 +50,7 @@ export const Product: msRest.CompositeMapper = {
   }
 };
 
-export const CatalogDictionary: msRest.CompositeMapper = {
+export const CatalogDictionary: coreHttp.CompositeMapper = {
   serializedName: "CatalogDictionary",
   type: {
     name: "Composite",
@@ -72,7 +72,7 @@ export const CatalogDictionary: msRest.CompositeMapper = {
   }
 };
 
-export const CatalogArray: msRest.CompositeMapper = {
+export const CatalogArray: coreHttp.CompositeMapper = {
   serializedName: "CatalogArray",
   type: {
     name: "Composite",
@@ -94,7 +94,7 @@ export const CatalogArray: msRest.CompositeMapper = {
   }
 };
 
-export const CatalogArrayOfDictionary: msRest.CompositeMapper = {
+export const CatalogArrayOfDictionary: coreHttp.CompositeMapper = {
   serializedName: "CatalogArrayOfDictionary",
   type: {
     name: "Composite",
@@ -121,7 +121,7 @@ export const CatalogArrayOfDictionary: msRest.CompositeMapper = {
   }
 };
 
-export const CatalogDictionaryOfArray: msRest.CompositeMapper = {
+export const CatalogDictionaryOfArray: coreHttp.CompositeMapper = {
   serializedName: "CatalogDictionaryOfArray",
   type: {
     name: "Composite",
@@ -148,7 +148,7 @@ export const CatalogDictionaryOfArray: msRest.CompositeMapper = {
   }
 };
 
-export const ErrorModel: msRest.CompositeMapper = {
+export const ErrorModel: coreHttp.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",

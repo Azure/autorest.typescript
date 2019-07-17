@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { BaseResource, CloudError, AzureServiceClientOptions } from "@azure/ms-rest-azure-js";
-import * as msRest from "@azure/ms-rest-js";
+import { BaseResource, CloudError, AzureServiceClientOptions } from "@azure/core-arm";
+import * as coreHttp from "@azure/core-http";
 
 export { BaseResource, CloudError };
 
@@ -40,7 +40,7 @@ export interface HeaderCustomNamedRequestIdParamGroupingParameters {
 /**
  * Optional Parameters.
  */
-export interface ApiVersionLocalGetMethodLocalNullOptionalParams extends msRest.RequestOptionsBase {
+export interface ApiVersionLocalGetMethodLocalNullOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * This should appear as a method parameter, use value null, this should result in no serialized
    * parameter
@@ -51,7 +51,7 @@ export interface ApiVersionLocalGetMethodLocalNullOptionalParams extends msRest.
 /**
  * Optional Parameters.
  */
-export interface SkipUrlEncodingGetMethodQueryNullOptionalParams extends msRest.RequestOptionsBase {
+export interface SkipUrlEncodingGetMethodQueryNullOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Unencoded query parameter with value null
    */
@@ -61,7 +61,7 @@ export interface SkipUrlEncodingGetMethodQueryNullOptionalParams extends msRest.
 /**
  * Optional Parameters.
  */
-export interface OdataGetWithFilterOptionalParams extends msRest.RequestOptionsBase {
+export interface OdataGetWithFilterOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * The filter parameter with value '$filter=id gt 5 and name eq 'foo''.
    */
@@ -120,7 +120,7 @@ export type HeaderCustomNamedRequestIdResponse = HeaderCustomNamedRequestIdHeade
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -135,7 +135,7 @@ export type HeaderCustomNamedRequestIdParamGroupingResponse = HeaderCustomNamedR
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */
@@ -155,7 +155,7 @@ export type HeaderCustomNamedRequestIdHeadResponse = HeaderCustomNamedRequestIdH
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The parsed HTTP response headers.
        */

@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 
 
-export const ChildProduct: msRest.CompositeMapper = {
+export const ChildProduct: coreHttp.CompositeMapper = {
   serializedName: "ChildProduct",
   type: {
     name: "Composite",
@@ -34,7 +34,7 @@ export const ChildProduct: msRest.CompositeMapper = {
   }
 };
 
-export const ConstantProduct: msRest.CompositeMapper = {
+export const ConstantProduct: coreHttp.CompositeMapper = {
   serializedName: "ConstantProduct",
   type: {
     name: "Composite",
@@ -62,7 +62,7 @@ export const ConstantProduct: msRest.CompositeMapper = {
   }
 };
 
-export const Product: msRest.CompositeMapper = {
+export const Product: coreHttp.CompositeMapper = {
   serializedName: "Product",
   type: {
     name: "Composite",
@@ -153,7 +153,7 @@ export const Product: msRest.CompositeMapper = {
   }
 };
 
-export const ErrorModel: msRest.CompositeMapper = {
+export const ErrorModel: coreHttp.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",

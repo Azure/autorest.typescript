@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ServiceClientOptions } from "@azure/ms-rest-js";
-import * as msRest from "@azure/ms-rest-js";
+import { ServiceClientOptions } from "@azure/core-http";
+import * as coreHttp from "@azure/core-http";
 
 /**
  * An interface representing ErrorModel.
@@ -37,7 +37,7 @@ export interface AutoRestSwaggerBATServiceOptions extends ServiceClientOptions {
 /**
  * Optional Parameters.
  */
-export interface StringPutNullOptionalParams extends msRest.RequestOptionsBase {
+export interface StringPutNullOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Possible values include: ''
    */
@@ -47,7 +47,7 @@ export interface StringPutNullOptionalParams extends msRest.RequestOptionsBase {
 /**
  * Optional Parameters.
  */
-export interface EnumModelPutReferencedConstantOptionalParams extends msRest.RequestOptionsBase {
+export interface EnumModelPutReferencedConstantOptionalParams extends coreHttp.RequestOptionsBase {
   /**
    * Sample string.
    */
@@ -129,7 +129,7 @@ export type StringGetNullResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -154,7 +154,7 @@ export type StringGetEmptyResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -179,7 +179,7 @@ export type StringGetMbcsResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -204,7 +204,7 @@ export type StringGetWhitespaceResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -229,7 +229,7 @@ export type StringGetNotProvidedResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -254,7 +254,7 @@ export type StringGetBase64EncodedResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -279,7 +279,7 @@ export type StringGetBase64UrlEncodedResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -304,7 +304,7 @@ export type StringGetNullBase64UrlEncodedResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -329,7 +329,7 @@ export type EnumModelGetNotExpandableResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -354,7 +354,7 @@ export type EnumModelGetReferencedResponse = {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */
@@ -374,7 +374,7 @@ export type EnumModelGetReferencedConstantResponse = RefColorConstant & {
   /**
    * The underlying HTTP response.
    */
-  _response: msRest.HttpResponse & {
+  _response: coreHttp.HttpResponse & {
       /**
        * The response body as text (string format)
        */

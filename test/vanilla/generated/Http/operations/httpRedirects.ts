@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "@azure/ms-rest-js";
+import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/httpRedirectsMappers";
 import { AutoRestHttpInfrastructureTestServiceContext } from "../autoRestHttpInfrastructureTestServiceContext";
@@ -30,17 +30,17 @@ export class HttpRedirects {
    * @param [options] The optional parameters
    * @returns Promise<Models.HttpRedirectsHead300Response>
    */
-  head300(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead300Response>;
+  head300(options?: coreHttp.RequestOptionsBase): Promise<Models.HttpRedirectsHead300Response>;
   /**
    * @param callback The callback
    */
-  head300(callback: msRest.ServiceCallback<void>): void;
+  head300(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  head300(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head300(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsHead300Response> {
+  head300(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  head300(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HttpRedirectsHead300Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -54,17 +54,17 @@ export class HttpRedirects {
    * @param [options] The optional parameters
    * @returns Promise<Models.HttpRedirectsGet300Response>
    */
-  get300(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet300Response>;
+  get300(options?: coreHttp.RequestOptionsBase): Promise<Models.HttpRedirectsGet300Response>;
   /**
    * @param callback The callback
    */
-  get300(callback: msRest.ServiceCallback<string[]>): void;
+  get300(callback: coreHttp.ServiceCallback<string[]>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get300(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
-  get300(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<string[]>, callback?: msRest.ServiceCallback<string[]>): Promise<Models.HttpRedirectsGet300Response> {
+  get300(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<string[]>): void;
+  get300(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<string[]>, callback?: coreHttp.ServiceCallback<string[]>): Promise<Models.HttpRedirectsGet300Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -78,17 +78,17 @@ export class HttpRedirects {
    * @param [options] The optional parameters
    * @returns Promise<Models.HttpRedirectsHead301Response>
    */
-  head301(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead301Response>;
+  head301(options?: coreHttp.RequestOptionsBase): Promise<Models.HttpRedirectsHead301Response>;
   /**
    * @param callback The callback
    */
-  head301(callback: msRest.ServiceCallback<void>): void;
+  head301(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  head301(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head301(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsHead301Response> {
+  head301(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  head301(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HttpRedirectsHead301Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -102,17 +102,17 @@ export class HttpRedirects {
    * @param [options] The optional parameters
    * @returns Promise<Models.HttpRedirectsGet301Response>
    */
-  get301(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet301Response>;
+  get301(options?: coreHttp.RequestOptionsBase): Promise<Models.HttpRedirectsGet301Response>;
   /**
    * @param callback The callback
    */
-  get301(callback: msRest.ServiceCallback<void>): void;
+  get301(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get301(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get301(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsGet301Response> {
+  get301(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  get301(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HttpRedirectsGet301Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -131,13 +131,13 @@ export class HttpRedirects {
   /**
    * @param callback The callback
    */
-  put301(callback: msRest.ServiceCallback<void>): void;
+  put301(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  put301(options: Models.HttpRedirectsPut301OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put301(options?: Models.HttpRedirectsPut301OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsPut301Response> {
+  put301(options: Models.HttpRedirectsPut301OptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  put301(options?: Models.HttpRedirectsPut301OptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HttpRedirectsPut301Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -151,17 +151,17 @@ export class HttpRedirects {
    * @param [options] The optional parameters
    * @returns Promise<Models.HttpRedirectsHead302Response>
    */
-  head302(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead302Response>;
+  head302(options?: coreHttp.RequestOptionsBase): Promise<Models.HttpRedirectsHead302Response>;
   /**
    * @param callback The callback
    */
-  head302(callback: msRest.ServiceCallback<void>): void;
+  head302(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  head302(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head302(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsHead302Response> {
+  head302(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  head302(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HttpRedirectsHead302Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -175,17 +175,17 @@ export class HttpRedirects {
    * @param [options] The optional parameters
    * @returns Promise<Models.HttpRedirectsGet302Response>
    */
-  get302(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet302Response>;
+  get302(options?: coreHttp.RequestOptionsBase): Promise<Models.HttpRedirectsGet302Response>;
   /**
    * @param callback The callback
    */
-  get302(callback: msRest.ServiceCallback<void>): void;
+  get302(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get302(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get302(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsGet302Response> {
+  get302(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  get302(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HttpRedirectsGet302Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -204,13 +204,13 @@ export class HttpRedirects {
   /**
    * @param callback The callback
    */
-  patch302(callback: msRest.ServiceCallback<void>): void;
+  patch302(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  patch302(options: Models.HttpRedirectsPatch302OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch302(options?: Models.HttpRedirectsPatch302OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsPatch302Response> {
+  patch302(options: Models.HttpRedirectsPatch302OptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  patch302(options?: Models.HttpRedirectsPatch302OptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HttpRedirectsPatch302Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -229,13 +229,13 @@ export class HttpRedirects {
   /**
    * @param callback The callback
    */
-  post303(callback: msRest.ServiceCallback<void>): void;
+  post303(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  post303(options: Models.HttpRedirectsPost303OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post303(options?: Models.HttpRedirectsPost303OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsPost303Response> {
+  post303(options: Models.HttpRedirectsPost303OptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  post303(options?: Models.HttpRedirectsPost303OptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HttpRedirectsPost303Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -249,17 +249,17 @@ export class HttpRedirects {
    * @param [options] The optional parameters
    * @returns Promise<Models.HttpRedirectsHead307Response>
    */
-  head307(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead307Response>;
+  head307(options?: coreHttp.RequestOptionsBase): Promise<Models.HttpRedirectsHead307Response>;
   /**
    * @param callback The callback
    */
-  head307(callback: msRest.ServiceCallback<void>): void;
+  head307(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  head307(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  head307(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsHead307Response> {
+  head307(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  head307(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HttpRedirectsHead307Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -273,17 +273,17 @@ export class HttpRedirects {
    * @param [options] The optional parameters
    * @returns Promise<Models.HttpRedirectsGet307Response>
    */
-  get307(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet307Response>;
+  get307(options?: coreHttp.RequestOptionsBase): Promise<Models.HttpRedirectsGet307Response>;
   /**
    * @param callback The callback
    */
-  get307(callback: msRest.ServiceCallback<void>): void;
+  get307(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  get307(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  get307(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsGet307Response> {
+  get307(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  get307(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HttpRedirectsGet307Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -301,13 +301,13 @@ export class HttpRedirects {
   /**
    * @param callback The callback
    */
-  put307(callback: msRest.ServiceCallback<void>): void;
+  put307(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  put307(options: Models.HttpRedirectsPut307OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  put307(options?: Models.HttpRedirectsPut307OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsPut307Response> {
+  put307(options: Models.HttpRedirectsPut307OptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  put307(options?: Models.HttpRedirectsPut307OptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HttpRedirectsPut307Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -325,13 +325,13 @@ export class HttpRedirects {
   /**
    * @param callback The callback
    */
-  patch307(callback: msRest.ServiceCallback<void>): void;
+  patch307(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  patch307(options: Models.HttpRedirectsPatch307OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  patch307(options?: Models.HttpRedirectsPatch307OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsPatch307Response> {
+  patch307(options: Models.HttpRedirectsPatch307OptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  patch307(options?: Models.HttpRedirectsPatch307OptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HttpRedirectsPatch307Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -349,13 +349,13 @@ export class HttpRedirects {
   /**
    * @param callback The callback
    */
-  post307(callback: msRest.ServiceCallback<void>): void;
+  post307(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  post307(options: Models.HttpRedirectsPost307OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  post307(options?: Models.HttpRedirectsPost307OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsPost307Response> {
+  post307(options: Models.HttpRedirectsPost307OptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  post307(options?: Models.HttpRedirectsPost307OptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HttpRedirectsPost307Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -373,13 +373,13 @@ export class HttpRedirects {
   /**
    * @param callback The callback
    */
-  delete307(callback: msRest.ServiceCallback<void>): void;
+  delete307(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  delete307(options: Models.HttpRedirectsDelete307OptionalParams, callback: msRest.ServiceCallback<void>): void;
-  delete307(options?: Models.HttpRedirectsDelete307OptionalParams | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<Models.HttpRedirectsDelete307Response> {
+  delete307(options: Models.HttpRedirectsDelete307OptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  delete307(options?: Models.HttpRedirectsDelete307OptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<Models.HttpRedirectsDelete307Response> {
     return this.client.sendOperationRequest(
       {
         options
@@ -390,8 +390,8 @@ export class HttpRedirects {
 }
 
 // Operation Specifications
-const serializer = new msRest.Serializer(Mappers);
-const head300OperationSpec: msRest.OperationSpec = {
+const serializer = new coreHttp.Serializer(Mappers);
+const head300OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/redirect/300",
   responses: {
@@ -408,7 +408,7 @@ const head300OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const get300OperationSpec: msRest.OperationSpec = {
+const get300OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/redirect/300",
   responses: {
@@ -436,7 +436,7 @@ const get300OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const head301OperationSpec: msRest.OperationSpec = {
+const head301OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/redirect/301",
   responses: {
@@ -453,7 +453,7 @@ const head301OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const get301OperationSpec: msRest.OperationSpec = {
+const get301OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/redirect/301",
   responses: {
@@ -470,7 +470,7 @@ const get301OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const put301OperationSpec: msRest.OperationSpec = {
+const put301OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "http/redirect/301",
   requestBody: {
@@ -496,7 +496,7 @@ const put301OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const head302OperationSpec: msRest.OperationSpec = {
+const head302OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/redirect/302",
   responses: {
@@ -513,7 +513,7 @@ const head302OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const get302OperationSpec: msRest.OperationSpec = {
+const get302OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/redirect/302",
   responses: {
@@ -530,7 +530,7 @@ const get302OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const patch302OperationSpec: msRest.OperationSpec = {
+const patch302OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/redirect/302",
   requestBody: {
@@ -556,7 +556,7 @@ const patch302OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const post303OperationSpec: msRest.OperationSpec = {
+const post303OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "http/redirect/303",
   requestBody: {
@@ -585,7 +585,7 @@ const post303OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const head307OperationSpec: msRest.OperationSpec = {
+const head307OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "HEAD",
   path: "http/redirect/307",
   responses: {
@@ -602,7 +602,7 @@ const head307OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const get307OperationSpec: msRest.OperationSpec = {
+const get307OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/redirect/307",
   responses: {
@@ -619,7 +619,7 @@ const get307OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const put307OperationSpec: msRest.OperationSpec = {
+const put307OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   path: "http/redirect/307",
   requestBody: {
@@ -648,7 +648,7 @@ const put307OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const patch307OperationSpec: msRest.OperationSpec = {
+const patch307OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PATCH",
   path: "http/redirect/307",
   requestBody: {
@@ -677,7 +677,7 @@ const patch307OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const post307OperationSpec: msRest.OperationSpec = {
+const post307OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   path: "http/redirect/307",
   requestBody: {
@@ -706,7 +706,7 @@ const post307OperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-const delete307OperationSpec: msRest.OperationSpec = {
+const delete307OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   path: "http/redirect/307",
   requestBody: {
