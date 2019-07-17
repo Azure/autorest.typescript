@@ -16,7 +16,7 @@ const packageName = "";
 const packageVersion = "";
 
 export class MicrosoftAzureTestUrlContext extends coreArm.AzureServiceClient {
-  credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential;
+  credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials;
   subscriptionId: string;
   apiVersion?: string;
 
@@ -26,7 +26,7 @@ export class MicrosoftAzureTestUrlContext extends coreArm.AzureServiceClient {
    * @param subscriptionId Subscription Id.
    * @param [options] The parameter options
    */
-  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, subscriptionId: string, options?: Models.MicrosoftAzureTestUrlOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: Models.MicrosoftAzureTestUrlOptions) {
     if (credentials == undefined) {
       throw new Error('\'credentials\' cannot be null.');
     }

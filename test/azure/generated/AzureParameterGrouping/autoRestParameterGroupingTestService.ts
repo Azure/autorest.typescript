@@ -24,7 +24,7 @@ class AutoRestParameterGroupingTestService extends AutoRestParameterGroupingTest
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param [options] The parameter options
    */
-  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, options?: Models.AutoRestParameterGroupingTestServiceOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: Models.AutoRestParameterGroupingTestServiceOptions) {
     super(credentials, options);
     this.parameterGrouping = new operations.ParameterGrouping(this);
   }

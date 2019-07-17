@@ -24,7 +24,7 @@ class AutoRestHeadExceptionTestService extends AutoRestHeadExceptionTestServiceC
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param [options] The parameter options
    */
-  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, options?: Models.AutoRestHeadExceptionTestServiceOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: Models.AutoRestHeadExceptionTestServiceOptions) {
     super(credentials, options);
     this.headException = new operations.HeadException(this);
   }

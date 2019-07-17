@@ -12,7 +12,7 @@ const packageName = "@azure/multiapi-test";
 const packageVersion = "1.0.0";
 
 export class AutoRestParameterizedHostTestClientContext extends coreArm.AzureServiceClient {
-  credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential;
+  credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials;
   host?: string;
 
   /**
@@ -20,7 +20,7 @@ export class AutoRestParameterizedHostTestClientContext extends coreArm.AzureSer
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param [options] The parameter options
    */
-  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, options?: Models.AutoRestParameterizedHostTestClientOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: Models.AutoRestParameterizedHostTestClientOptions) {
     if (credentials == undefined) {
       throw new Error('\'credentials\' cannot be null.');
     }

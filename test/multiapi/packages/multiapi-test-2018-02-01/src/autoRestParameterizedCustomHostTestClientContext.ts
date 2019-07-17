@@ -12,7 +12,7 @@ const packageName = "@azure/multiapi-test";
 const packageVersion = "1.0.0";
 
 export class AutoRestParameterizedCustomHostTestClientContext extends coreArm.AzureServiceClient {
-  credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential;
+  credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials;
   subscriptionId: string;
   dnsSuffix?: string;
 
@@ -22,7 +22,7 @@ export class AutoRestParameterizedCustomHostTestClientContext extends coreArm.Az
    * @param subscriptionId The subscription id with value 'test12'.
    * @param [options] The parameter options
    */
-  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, subscriptionId: string, options?: Models.AutoRestParameterizedCustomHostTestClientOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: Models.AutoRestParameterizedCustomHostTestClientOptions) {
     if (credentials == undefined) {
       throw new Error('\'credentials\' cannot be null.');
     }

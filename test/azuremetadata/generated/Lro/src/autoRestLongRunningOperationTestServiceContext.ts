@@ -16,14 +16,14 @@ const packageName = "";
 const packageVersion = "";
 
 export class AutoRestLongRunningOperationTestServiceContext extends coreArm.AzureServiceClient {
-  credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential;
+  credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials;
 
   /**
    * Initializes a new instance of the AutoRestLongRunningOperationTestService class.
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param [options] The parameter options
    */
-  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, options?: Models.AutoRestLongRunningOperationTestServiceOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: Models.AutoRestLongRunningOperationTestServiceOptions) {
     if (credentials == undefined) {
       throw new Error('\'credentials\' cannot be null.');
     }

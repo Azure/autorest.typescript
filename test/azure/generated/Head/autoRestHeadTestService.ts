@@ -24,7 +24,7 @@ class AutoRestHeadTestService extends AutoRestHeadTestServiceContext {
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param [options] The parameter options
    */
-  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, options?: Models.AutoRestHeadTestServiceOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: Models.AutoRestHeadTestServiceOptions) {
     super(credentials, options);
     this.httpSuccess = new operations.HttpSuccess(this);
   }

@@ -24,7 +24,7 @@ class AutoRestParameterizedHostTestClient extends AutoRestParameterizedHostTestC
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param [options] The parameter options
    */
-  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, options?: Models.AutoRestParameterizedHostTestClientOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: Models.AutoRestParameterizedHostTestClientOptions) {
     super(credentials, options);
     this.paths = new operations.Paths(this);
   }

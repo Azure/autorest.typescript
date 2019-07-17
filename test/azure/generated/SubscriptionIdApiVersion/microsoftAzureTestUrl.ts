@@ -25,7 +25,7 @@ class MicrosoftAzureTestUrl extends MicrosoftAzureTestUrlContext {
    * @param subscriptionId Subscription Id.
    * @param [options] The parameter options
    */
-  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, subscriptionId: string, options?: Models.MicrosoftAzureTestUrlOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: Models.MicrosoftAzureTestUrlOptions) {
     super(credentials, subscriptionId, options);
     this.group = new operations.Group(this);
   }

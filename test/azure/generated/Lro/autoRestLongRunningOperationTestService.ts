@@ -27,7 +27,7 @@ class AutoRestLongRunningOperationTestService extends AutoRestLongRunningOperati
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param [options] The parameter options
    */
-  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, options?: Models.AutoRestLongRunningOperationTestServiceOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: Models.AutoRestLongRunningOperationTestServiceOptions) {
     super(credentials, options);
     this.lROs = new operations.LROs(this);
     this.lRORetrys = new operations.LRORetrys(this);

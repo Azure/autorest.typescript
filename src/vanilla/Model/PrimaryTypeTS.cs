@@ -58,7 +58,7 @@ namespace AutoRest.TypeScript.Model
                         return "Object";
 
                     case KnownPrimaryType.Credentials:
-                        return "coreHttp.ServiceClientCredentials | coreHttp.TokenCredential";
+                        return "coreHttp.TokenCredential | coreHttp.ServiceClientCredentials";
                 }
                 throw new NotImplementedException($"Primary type {KnownPrimaryType} is not implemented in {GetType().Name}");
             }

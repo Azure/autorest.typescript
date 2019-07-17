@@ -21,7 +21,7 @@ class AutoRestParameterizedCustomHostTestClient extends AutoRestParameterizedCus
    * @param subscriptionId The subscription id with value 'test12'.
    * @param [options] The parameter options
    */
-  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, subscriptionId: string, options?: Models.AutoRestParameterizedCustomHostTestClientOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: Models.AutoRestParameterizedCustomHostTestClientOptions) {
     super(credentials, subscriptionId, options);
     this.paths = new operations.Paths(this);
   }

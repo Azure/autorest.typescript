@@ -87,7 +87,7 @@ namespace AutoRest.TypeScript
             else if (primary.KnownPrimaryType == KnownPrimaryType.TimeSpan)
                 return "string";
             else if (primary.KnownPrimaryType == KnownPrimaryType.Credentials)
-                return "coreHttp.ServiceClientCredentials | coreHttp.TokenCredential"; //TODO: test this, add include for it
+                return "coreHttp.TokenCredential | coreHttp.ServiceClientCredentials";
             else {
                 throw new NotImplementedException($"Type '{primary}' not implemented");
             }

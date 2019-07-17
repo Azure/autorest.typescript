@@ -27,7 +27,7 @@ class StorageManagementClient extends StorageManagementClientContext {
    * subscription. The subscription ID forms part of the URI for every service call.
    * @param [options] The parameter options
    */
-  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, subscriptionId: string, options?: Models.StorageManagementClientOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: Models.StorageManagementClientOptions) {
     super(credentials, subscriptionId, options);
     this.storageAccounts = new operations.StorageAccounts(this);
     this.usage = new operations.UsageOperations(this);

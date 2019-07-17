@@ -21,7 +21,7 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param [options] The parameter options
    */
-  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, options?: Models.AutoRestReportServiceForAzureOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: Models.AutoRestReportServiceForAzureOptions) {
     super(credentials, options);
   }
 

@@ -24,7 +24,7 @@ class AutoRestPagingTestService extends AutoRestPagingTestServiceContext {
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param [options] The parameter options
    */
-  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, options?: Models.AutoRestPagingTestServiceOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: Models.AutoRestPagingTestServiceOptions) {
     super(credentials, options);
     this.paging = new operations.Paging(this);
   }

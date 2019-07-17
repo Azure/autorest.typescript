@@ -33,7 +33,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    * @param credentials Credentials needed for the client to connect to Azure.
    * @param [options] The parameter options
    */
-  constructor(credentials: coreHttp.ServiceClientCredentials | coreHttp.TokenCredential, options?: Models.AzureCompositeModelOptions) {
+  constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: Models.AzureCompositeModelOptions) {
     super(credentials, options);
     this.basic = new operations.BasicOperations(this);
     this.primitive = new operations.Primitive(this);
