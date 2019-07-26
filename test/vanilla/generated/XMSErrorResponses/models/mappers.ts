@@ -67,7 +67,7 @@ export const NotFoundErrorBase: msRest.CompositeMapper = {
       serializedName: "whatNotFound",
       clientName: "whatNotFound"
     },
-    uberParent: "NotFoundErrorBase",
+    uberParent: "BaseError",
     className: "NotFoundErrorBase",
     modelProperties: {
       ...BaseError.type.modelProperties,

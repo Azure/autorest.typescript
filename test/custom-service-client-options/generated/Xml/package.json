@@ -4,8 +4,8 @@
   "description": "AutoRestSwaggerBATXMLService Library with typescript type definitions for node.js and browser.",
   "version": "",
   "dependencies": {
-    "@azure/ms-rest-js": "^1.8.1",
-    "tslib": "^1.9.3"
+    "@azure/ms-rest-js": "^2.0.3",
+    "tslib": "^1.10.0"
   },
   "keywords": [
     "node",
