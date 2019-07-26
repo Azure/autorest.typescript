@@ -165,6 +165,16 @@ export interface DotSalmon {
 }
 
 /**
+ * An interface representing DotFishMarket.
+ */
+export interface DotFishMarket {
+  sampleSalmon?: DotSalmon;
+  salmons?: DotSalmon[];
+  sampleFish?: DotFishUnion;
+  fishes?: DotFishUnion[];
+}
+
+/**
  * Contains the possible cases for Fish.
  */
 export type FishUnion = Fish | SalmonUnion | SharkUnion;
@@ -1112,6 +1122,46 @@ export type PolymorphismGetDotSyntaxResponse = DotFishUnion & {
        * The response body as parsed JSON or XML
        */
       parsedBody: DotFishUnion;
+    };
+};
+
+/**
+ * Contains response data for the getComposedWithDiscriminator operation.
+ */
+export type PolymorphismGetComposedWithDiscriminatorResponse = DotFishMarket & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DotFishMarket;
+    };
+};
+
+/**
+ * Contains response data for the getComposedWithoutDiscriminator operation.
+ */
+export type PolymorphismGetComposedWithoutDiscriminatorResponse = DotFishMarket & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DotFishMarket;
     };
 };
 
