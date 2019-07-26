@@ -1,6 +1,6 @@
 {
   "name": "@microsoft.azure/autorest.typescript",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "description": "The typescript extension for classic generators in AutoRest.",
   "scripts": {
     "autorest": "autorest",
@@ -42,8 +42,8 @@
   },
   "homepage": "https://github.com/Azure/autorest.typescript/blob/master/README.md",
   "devDependencies": {
-    "@azure/ms-rest-azure-js": "^1.3.2",
-    "@azure/ms-rest-js": "^1.8.1",
+    "@azure/ms-rest-azure-js": "^2.0.0",
+    "@azure/ms-rest-js": "^2.0.3",
     "@microsoft.azure/autorest.modeler": "^2.3.47",
     "@microsoft.azure/autorest.testserver": "^2.6.1",
     "@ts-common/azure-js-dev-tools": "^0.7.1",
@@ -81,7 +81,7 @@
     "through2-parallel": "^0.1.3",
     "ts-loader": "^5.3.1",
     "ts-node": "^7.0.1",
-    "tslib": "^1.9.3",
+    "tslib": "^1.10.0",
     "tslint": "^5.10.0",
     "typescript": "^3.2.2",
     "underscore": "^1.8.3",

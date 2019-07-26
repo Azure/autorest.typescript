@@ -537,6 +537,11 @@ namespace AutoRest.TypeScript
                 {
                     if (expandComposite)
                     {
+                        CompositeType baseType = composite;
+                        while (baseType.BaseModelType != null)
+                        {
+                            baseType = baseType.BaseModelType;
+                        }
                         if (composite.IsPolymorphic)
                         {
                             // Note: If the polymorphicDiscriminator has a dot in it's name then do not escape that dot for
@@ -549,20 +554,13 @@ namespace AutoRest.TypeScript
                                 polymorphicDiscriminator.QuotedStringProperty("serializedName", composite.PolymorphicDiscriminator);
                                 polymorphicDiscriminator.QuotedStringProperty("clientName", Singleton<CodeNamerTS>.Instance.GetPropertyName(composite.PolymorphicDiscriminator));
                             });
-                            typeObject.QuotedStringProperty("uberParent", composite.Name);
+                            // uber parent is always the base type, if there exists one
+                            typeObject.QuotedStringProperty("uberParent", baseType.Name);
                         }
-                        else
+                        else if (baseType.IsPolymorphic)
                         {
-                            CompositeType baseType = composite;
-                            while (baseType.BaseModelType != null)
-                            {
-                                baseType = baseType.BaseModelType;
-                            }
-                            if (baseType.IsPolymorphic)
-                            {
-                                typeObject.TextProperty("polymorphicDiscriminator", baseType.Name + ".type.polymorphicDiscriminator");
-                                typeObject.QuotedStringProperty("uberParent", baseType.Name);
-                            }
+                            typeObject.TextProperty("polymorphicDiscriminator", baseType.Name + ".type.polymorphicDiscriminator");
+                            typeObject.QuotedStringProperty("uberParent", baseType.Name);
                         }
                     }
 
