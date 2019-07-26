@@ -10,6 +10,7 @@ export {
   discriminators,
   Cookiecuttershark,
   DotFish,
+  DotFishMarket,
   DotSalmon,
   ErrorModel,
   Fish,

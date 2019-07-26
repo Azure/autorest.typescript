@@ -199,6 +199,58 @@ export class Polymorphism {
   }
 
   /**
+   * Get complex object composing a polymorphic scalar property and array property with polymorphic
+   * element type, with discriminator specified. Deserialization must NOT fail and use the
+   * discriminator type specified on the wire.
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PolymorphismGetComposedWithDiscriminatorResponse>
+   */
+  getComposedWithDiscriminator(options?: msRest.RequestOptionsBase): Promise<Models.PolymorphismGetComposedWithDiscriminatorResponse>;
+  /**
+   * @param callback The callback
+   */
+  getComposedWithDiscriminator(callback: msRest.ServiceCallback<Models.DotFishMarket>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getComposedWithDiscriminator(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DotFishMarket>): void;
+  getComposedWithDiscriminator(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.DotFishMarket>, callback?: msRest.ServiceCallback<Models.DotFishMarket>): Promise<Models.PolymorphismGetComposedWithDiscriminatorResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getComposedWithDiscriminatorOperationSpec,
+      callback) as Promise<Models.PolymorphismGetComposedWithDiscriminatorResponse>;
+  }
+
+  /**
+   * Get complex object composing a polymorphic scalar property and array property with polymorphic
+   * element type, without discriminator specified on wire. Deserialization must NOT fail and use the
+   * explicit type of the property.
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PolymorphismGetComposedWithoutDiscriminatorResponse>
+   */
+  getComposedWithoutDiscriminator(options?: msRest.RequestOptionsBase): Promise<Models.PolymorphismGetComposedWithoutDiscriminatorResponse>;
+  /**
+   * @param callback The callback
+   */
+  getComposedWithoutDiscriminator(callback: msRest.ServiceCallback<Models.DotFishMarket>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getComposedWithoutDiscriminator(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DotFishMarket>): void;
+  getComposedWithoutDiscriminator(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.DotFishMarket>, callback?: msRest.ServiceCallback<Models.DotFishMarket>): Promise<Models.PolymorphismGetComposedWithoutDiscriminatorResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      getComposedWithoutDiscriminatorOperationSpec,
+      callback) as Promise<Models.PolymorphismGetComposedWithoutDiscriminatorResponse>;
+  }
+
+  /**
    * Get complex types that are polymorphic, but not at the root of the hierarchy; also have
    * additional properties
    * @param [options] The optional parameters
@@ -438,6 +490,40 @@ const getDotSyntaxOperationSpec: msRest.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.DotFish
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer
+};
+
+const getComposedWithDiscriminatorOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/polymorphism/composedWithDiscriminator",
+  headerParameters: [
+    Parameters.acceptLanguage
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.DotFishMarket
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  serializer
+};
+
+const getComposedWithoutDiscriminatorOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "complex/polymorphism/composedWithoutDiscriminator",
+  headerParameters: [
+    Parameters.acceptLanguage
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.DotFishMarket
     },
     default: {
       bodyMapper: Mappers.ErrorModel
