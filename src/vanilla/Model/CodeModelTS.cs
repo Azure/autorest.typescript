@@ -582,8 +582,8 @@ namespace AutoRest.TypeScript.Model
 
         public virtual void PackageDependencies(JSONObject dependencies)
         {
-            dependencies.StringProperty("@azure/ms-rest-js", "^1.8.1");
-            dependencies.StringProperty("tslib", "^1.9.3");
+            dependencies.StringProperty("@azure/ms-rest-js", "^2.0.3");
+            dependencies.StringProperty("tslib", "^1.10.0");
             if (Settings.MultiapiLatest)
             {
                 dependencies.StringProperty(Settings.AliasedNpmPackageName, Settings.AliasedNpmVersion ?? "^1.0.0");
