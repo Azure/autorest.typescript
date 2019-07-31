@@ -93,7 +93,7 @@ export interface MyOperationHeaders {
 ```
 
 ## --source-code-folder-path
-The folder relative to the output-folder path that the TypeScript source code files will be generated in. If no value is provided for this flag, then it will default to `lib`. If an empty string is provided for this flag, then the TypeScript source code files will be generated in the output-folder.
+The folder relative to the output-folder path that the TypeScript source code files will be generated in. If no value is provided for this flag, then it will default to `src`. If an empty string is provided for this flag, then the TypeScript source code files will be generated in the output-folder.
 
 ### --azure-arm
 For generating a client for an Azure service, provide `--typescript.azure-arm=true`:
