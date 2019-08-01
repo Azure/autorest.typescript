@@ -582,7 +582,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual void PackageDependencies(JSONObject dependencies)
         {
-            dependencies.StringProperty("@azure/ms-rest-js", "^2.0.3");
+            dependencies.StringProperty("@azure/ms-rest-js", "^2.0.4");
             dependencies.StringProperty("tslib", "^1.10.0");
             if (Settings.MultiapiLatest)
             {
@@ -1162,7 +1162,7 @@ namespace AutoRest.TypeScript.Model
                 });
                 config.ArrayProperty("plugins", plugins =>
                 {
-                    plugins.Text("nodeResolve({ module: true })");
+                    plugins.Text("nodeResolve({ mainFields: ['module', 'main'] })");
                     plugins.Text("sourcemaps()");
                 });
             });
@@ -1200,13 +1200,13 @@ namespace AutoRest.TypeScript.Model
                 packageJson.StringProperty("types", $"./esm/{moduleName}.d.ts");
                 packageJson.ObjectProperty("devDependencies", devDependencies =>
                 {
-                    devDependencies.StringProperty("typescript", "^3.1.1");
-                    devDependencies.StringProperty("rollup", "^0.66.2");
-                    devDependencies.StringProperty("rollup-plugin-node-resolve", "^3.4.0");
+                    devDependencies.StringProperty("typescript", "^3.5.3");
+                    devDependencies.StringProperty("rollup", "^1.18.0");
+                    devDependencies.StringProperty("rollup-plugin-node-resolve", "^5.2.0");
                     devDependencies.StringProperty("rollup-plugin-sourcemaps", "^0.4.2");
-                    devDependencies.StringProperty("uglify-js", "^3.4.9");
+                    devDependencies.StringProperty("uglify-js", "^3.6.0");
                     if (!String.IsNullOrEmpty(Settings.Test)) {
-                        devDependencies.StringProperty("mocha", "^6.1.4");
+                        devDependencies.StringProperty("mocha", "^6.2.0");
 
                         if (!String.IsNullOrEmpty(Settings.TestDependencies)) {
                             string[] testDependencies = Settings.TestDependencies.Split(',', ';').Select(dep => dep.Trim()).ToArray();
