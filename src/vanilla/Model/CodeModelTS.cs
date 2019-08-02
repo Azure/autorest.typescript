@@ -19,6 +19,8 @@ namespace AutoRest.TypeScript.Model
     {
         public const string ClientSideValidationSettingName = "ClientSideValidation";
 
+        private const string msRestNodeAuthVersion = "^3.0.0";
+
         private const string ServiceClientOptions = "ServiceClientOptions";
 
         private const string defaultGitHubRepositoryName = "azure-sdk-for-js";
@@ -1063,7 +1065,8 @@ namespace AutoRest.TypeScript.Model
             {
                 builder.Section("Install @azure/ms-rest-nodeauth", () =>
                 {
-                    builder.Console("npm install @azure/ms-rest-nodeauth");
+                    builder.Line($"- Please install minimum version of `\"@azure/ms-rest-nodeauth\": \"{msRestNodeAuthVersion}\"`.");
+                    builder.Console($"npm install @azure/ms-rest-nodeauth@\"{msRestNodeAuthVersion}\"");
                 });
                 builder.Line();
                 builder.Section("Sample code", () =>
