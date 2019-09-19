@@ -21,6 +21,7 @@ export {
   CorsRule,
   ErrorModel,
   JSONInput,
+  JSONOutput,
   ListBlobsResponse,
   ListContainersResponse,
   Logging,

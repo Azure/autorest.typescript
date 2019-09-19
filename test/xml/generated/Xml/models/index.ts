@@ -17,6 +17,13 @@ export interface JSONInput {
 }
 
 /**
+ * An interface representing JSONOutput.
+ */
+export interface JSONOutput {
+  id?: number;
+}
+
+/**
  * An interface representing ErrorModel.
  */
 export interface ErrorModel {
@@ -782,5 +789,25 @@ export type XmlListBlobsResponse = ListBlobsResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: ListBlobsResponse;
+    };
+};
+
+/**
+ * Contains response data for the jsonOutput operation.
+ */
+export type XmlJsonOutputResponse = JSONOutput & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: JSONOutput;
     };
 };

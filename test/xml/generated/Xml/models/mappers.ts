@@ -26,6 +26,23 @@ export const JSONInput: msRest.CompositeMapper = {
   }
 };
 
+export const JSONOutput: msRest.CompositeMapper = {
+  serializedName: "JSONOutput",
+  type: {
+    name: "Composite",
+    className: "JSONOutput",
+    modelProperties: {
+      id: {
+        xmlName: "id",
+        serializedName: "id",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
 export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
