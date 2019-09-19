@@ -126,7 +126,8 @@ const customNamedRequestIdOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderCustomNamedRequestIdHeaders
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderCustomNamedRequestIdHeaders
     }
   },
   serializer
@@ -144,7 +145,8 @@ const customNamedRequestIdParamGroupingOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderCustomNamedRequestIdParamGroupingHeaders
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderCustomNamedRequestIdParamGroupingHeaders
     }
   },
   serializer
@@ -165,7 +167,8 @@ const customNamedRequestIdHeadOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderCustomNamedRequestIdHeadHeaders
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderCustomNamedRequestIdHeadHeaders
     }
   },
   serializer

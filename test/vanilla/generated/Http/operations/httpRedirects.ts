@@ -402,7 +402,8 @@ const head300OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HttpRedirectsHead300Headers
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HttpRedirectsHead300Headers
     }
   },
   serializer
@@ -430,7 +431,8 @@ const get300OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HttpRedirectsGet300Headers
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HttpRedirectsGet300Headers
     }
   },
   serializer
@@ -447,7 +449,8 @@ const head301OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HttpRedirectsHead301Headers
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HttpRedirectsHead301Headers
     }
   },
   serializer
@@ -464,7 +467,8 @@ const get301OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HttpRedirectsGet301Headers
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HttpRedirectsGet301Headers
     }
   },
   serializer
@@ -490,7 +494,8 @@ const put301OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HttpRedirectsPut301Headers
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HttpRedirectsPut301Headers
     }
   },
   serializer
@@ -507,7 +512,8 @@ const head302OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HttpRedirectsHead302Headers
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HttpRedirectsHead302Headers
     }
   },
   serializer
@@ -524,7 +530,8 @@ const get302OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HttpRedirectsGet302Headers
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HttpRedirectsGet302Headers
     }
   },
   serializer
@@ -550,7 +557,8 @@ const patch302OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HttpRedirectsPatch302Headers
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HttpRedirectsPatch302Headers
     }
   },
   serializer
@@ -579,7 +587,8 @@ const post303OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HttpRedirectsPost303Headers
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HttpRedirectsPost303Headers
     }
   },
   serializer
@@ -596,7 +605,8 @@ const head307OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HttpRedirectsHead307Headers
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HttpRedirectsHead307Headers
     }
   },
   serializer
@@ -613,7 +623,8 @@ const get307OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HttpRedirectsGet307Headers
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HttpRedirectsGet307Headers
     }
   },
   serializer
@@ -642,7 +653,8 @@ const put307OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HttpRedirectsPut307Headers
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HttpRedirectsPut307Headers
     }
   },
   serializer
@@ -671,7 +683,8 @@ const patch307OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HttpRedirectsPatch307Headers
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HttpRedirectsPatch307Headers
     }
   },
   serializer
@@ -700,7 +713,8 @@ const post307OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HttpRedirectsPost307Headers
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HttpRedirectsPost307Headers
     }
   },
   serializer
@@ -729,7 +743,8 @@ const delete307OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HttpRedirectsDelete307Headers
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HttpRedirectsDelete307Headers
     }
   },
   serializer

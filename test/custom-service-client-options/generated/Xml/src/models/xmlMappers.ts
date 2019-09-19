@@ -20,6 +20,7 @@ export {
   ContainerProperties,
   CorsRule,
   ErrorModel,
+  JSONInput,
   ListBlobsResponse,
   ListContainersResponse,
   Logging,

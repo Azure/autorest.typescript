@@ -266,7 +266,8 @@ const beginPutAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
     }
   },
   serializer
@@ -288,7 +289,8 @@ const beginDeleteProvisioning202Accepted200SucceededOperationSpec: msRest.Operat
       headersMapper: Mappers.LRORetrysDeleteProvisioning202Accepted200SucceededHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LRORetrysDeleteProvisioning202Accepted200SucceededHeaders
     }
   },
   serializer
@@ -305,7 +307,8 @@ const beginDelete202Retry200OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LRORetrysDelete202Retry200Headers
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LRORetrysDelete202Retry200Headers
     }
   },
   serializer
@@ -322,7 +325,8 @@ const beginDeleteAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec 
       headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
     }
   },
   serializer
@@ -346,7 +350,8 @@ const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LRORetrysPost202Retry200Headers
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LRORetrysPost202Retry200Headers
     }
   },
   serializer
@@ -370,7 +375,8 @@ const beginPostAsyncRelativeRetrySucceededOperationSpec: msRest.OperationSpec = 
       headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
     }
   },
   serializer

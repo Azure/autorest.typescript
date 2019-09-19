@@ -10,6 +10,13 @@ import { ServiceClientOptions } from "@azure/ms-rest-js";
 import * as msRest from "@azure/ms-rest-js";
 
 /**
+ * An interface representing JSONInput.
+ */
+export interface JSONInput {
+  id?: number;
+}
+
+/**
  * An interface representing ErrorModel.
  */
 export interface ErrorModel {

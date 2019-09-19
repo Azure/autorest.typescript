@@ -9,6 +9,22 @@
 import * as msRest from "@azure/ms-rest-js";
 
 
+export const JSONInput: msRest.CompositeMapper = {
+  serializedName: "JSONInput",
+  type: {
+    name: "Composite",
+    className: "JSONInput",
+    modelProperties: {
+      id: {
+        serializedName: "id",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
 export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {

@@ -721,6 +721,35 @@ export class Xml {
       listBlobsOperationSpec,
       callback) as Promise<Models.XmlListBlobsResponse>;
   }
+
+  /**
+   * A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
+   * number 42
+   * @param properties
+   * @param [options] The optional parameters
+   * @returns Promise<msRest.RestResponse>
+   */
+  jsonInput(properties: Models.JSONInput, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse>;
+  /**
+   * @param properties
+   * @param callback The callback
+   */
+  jsonInput(properties: Models.JSONInput, callback: msRest.ServiceCallback<void>): void;
+  /**
+   * @param properties
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  jsonInput(properties: Models.JSONInput, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  jsonInput(properties: Models.JSONInput, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<void>, callback?: msRest.ServiceCallback<void>): Promise<msRest.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        properties,
+        options
+      },
+      jsonInputOperationSpec,
+      callback);
+  }
 }
 
 // Operation Specifications
@@ -1225,6 +1254,23 @@ const listBlobsOperationSpec: msRest.OperationSpec = {
     200: {
       bodyMapper: Mappers.ListBlobsResponse
     },
+    default: {}
+  },
+  serializer
+};
+
+const jsonInputOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "xml/jsoninput",
+  requestBody: {
+    parameterPath: "properties",
+    mapper: {
+      ...Mappers.JSONInput,
+      required: true
+    }
+  },
+  responses: {
+    200: {},
     default: {}
   },
   serializer

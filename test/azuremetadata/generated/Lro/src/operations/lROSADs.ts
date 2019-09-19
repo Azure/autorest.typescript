@@ -806,7 +806,8 @@ const beginPutAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LROSADsPutAsyncRelativeRetry400Headers
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsPutAsyncRelativeRetry400Headers
     }
   },
   serializer
@@ -823,7 +824,8 @@ const beginDeleteNonRetry400OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LROSADsDeleteNonRetry400Headers
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsDeleteNonRetry400Headers
     }
   },
   serializer
@@ -840,7 +842,8 @@ const beginDelete202NonRetry400OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LROSADsDelete202NonRetry400Headers
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsDelete202NonRetry400Headers
     }
   },
   serializer
@@ -857,7 +860,8 @@ const beginDeleteAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetry400Headers
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetry400Headers
     }
   },
   serializer
@@ -881,7 +885,8 @@ const beginPostNonRetry400OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LROSADsPostNonRetry400Headers
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsPostNonRetry400Headers
     }
   },
   serializer
@@ -905,7 +910,8 @@ const beginPost202NonRetry400OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LROSADsPost202NonRetry400Headers
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsPost202NonRetry400Headers
     }
   },
   serializer
@@ -929,7 +935,8 @@ const beginPostAsyncRelativeRetry400OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LROSADsPostAsyncRelativeRetry400Headers
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsPostAsyncRelativeRetry400Headers
     }
   },
   serializer
@@ -981,7 +988,8 @@ const beginPutAsyncRelativeRetryNoStatusOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LROSADsPutAsyncRelativeRetryNoStatusHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsPutAsyncRelativeRetryNoStatusHeaders
     }
   },
   serializer
@@ -1006,7 +1014,8 @@ const beginPutAsyncRelativeRetryNoStatusPayloadOperationSpec: msRest.OperationSp
       headersMapper: Mappers.LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders
     }
   },
   serializer
@@ -1038,7 +1047,8 @@ const beginDeleteAsyncRelativeRetryNoStatusOperationSpec: msRest.OperationSpec =
       headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryNoStatusHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryNoStatusHeaders
     }
   },
   serializer
@@ -1062,7 +1072,8 @@ const beginPost202NoLocationOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LROSADsPost202NoLocationHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsPost202NoLocationHeaders
     }
   },
   serializer
@@ -1086,7 +1097,8 @@ const beginPostAsyncRelativeRetryNoPayloadOperationSpec: msRest.OperationSpec = 
       headersMapper: Mappers.LROSADsPostAsyncRelativeRetryNoPayloadHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsPostAsyncRelativeRetryNoPayloadHeaders
     }
   },
   serializer
@@ -1136,7 +1148,8 @@ const beginPutAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationSpec
       headersMapper: Mappers.LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders
     }
   },
   serializer
@@ -1161,7 +1174,8 @@ const beginPutAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.Operatio
       headersMapper: Mappers.LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders
     }
   },
   serializer
@@ -1178,7 +1192,8 @@ const beginDelete202RetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LROSADsDelete202RetryInvalidHeaderHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsDelete202RetryInvalidHeaderHeaders
     }
   },
   serializer
@@ -1195,7 +1210,8 @@ const beginDeleteAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationS
       headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders
     }
   },
   serializer
@@ -1212,7 +1228,8 @@ const beginDeleteAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.Opera
       headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders
     }
   },
   serializer
@@ -1236,7 +1253,8 @@ const beginPost202RetryInvalidHeaderOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LROSADsPost202RetryInvalidHeaderHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsPost202RetryInvalidHeaderHeaders
     }
   },
   serializer
@@ -1260,7 +1278,8 @@ const beginPostAsyncRelativeRetryInvalidHeaderOperationSpec: msRest.OperationSpe
       headersMapper: Mappers.LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders
     }
   },
   serializer
@@ -1284,7 +1303,8 @@ const beginPostAsyncRelativeRetryInvalidJsonPollingOperationSpec: msRest.Operati
       headersMapper: Mappers.LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders
     }
   },
   serializer
