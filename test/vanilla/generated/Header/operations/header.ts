@@ -902,7 +902,8 @@ const responseExistingKeyOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderResponseExistingKeyHeaders
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderResponseExistingKeyHeaders
     }
   },
   serializer
@@ -931,7 +932,8 @@ const responseProtectedKeyOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderResponseProtectedKeyHeaders
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderResponseProtectedKeyHeaders
     }
   },
   serializer
@@ -964,7 +966,8 @@ const responseIntegerOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderResponseIntegerHeaders
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderResponseIntegerHeaders
     }
   },
   serializer
@@ -997,7 +1000,8 @@ const responseLongOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderResponseLongHeaders
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderResponseLongHeaders
     }
   },
   serializer
@@ -1030,7 +1034,8 @@ const responseFloatOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderResponseFloatHeaders
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderResponseFloatHeaders
     }
   },
   serializer
@@ -1063,7 +1068,8 @@ const responseDoubleOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderResponseDoubleHeaders
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderResponseDoubleHeaders
     }
   },
   serializer
@@ -1096,7 +1102,8 @@ const responseBoolOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderResponseBoolHeaders
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderResponseBoolHeaders
     }
   },
   serializer
@@ -1129,7 +1136,8 @@ const responseStringOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderResponseStringHeaders
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderResponseStringHeaders
     }
   },
   serializer
@@ -1162,7 +1170,8 @@ const responseDateOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderResponseDateHeaders
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderResponseDateHeaders
     }
   },
   serializer
@@ -1195,7 +1204,8 @@ const responseDatetimeOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderResponseDatetimeHeaders
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderResponseDatetimeHeaders
     }
   },
   serializer
@@ -1228,7 +1238,8 @@ const responseDatetimeRfc1123OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderResponseDatetimeRfc1123Headers
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderResponseDatetimeRfc1123Headers
     }
   },
   serializer
@@ -1261,7 +1272,8 @@ const responseDurationOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderResponseDurationHeaders
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderResponseDurationHeaders
     }
   },
   serializer
@@ -1294,7 +1306,8 @@ const responseByteOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderResponseByteHeaders
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderResponseByteHeaders
     }
   },
   serializer
@@ -1327,7 +1340,8 @@ const responseEnumOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.HeaderResponseEnumHeaders
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
+      bodyMapper: Mappers.ErrorModel,
+      headersMapper: Mappers.HeaderResponseEnumHeaders
     }
   },
   serializer

@@ -167,7 +167,8 @@ const beginPutAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
     }
   },
   serializer
@@ -218,7 +219,8 @@ const beginPost202Retry200OperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
     }
   },
   serializer
@@ -242,7 +244,8 @@ const beginPostAsyncRetrySucceededOperationSpec: msRest.OperationSpec = {
       headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
     }
   },
   serializer
