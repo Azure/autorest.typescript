@@ -469,9 +469,15 @@ namespace AutoRest.TypeScript.Model
                 responses.ObjectProperty("default", defaultResponseObject =>
                 {
                     Response defaultResponse = DefaultResponse;
-                    if (defaultResponse != null && defaultResponse.Body != null)
-                    {
-                        defaultResponseObject.Property("bodyMapper", responseBodyMapper => ClientModelExtensions.ConstructResponseBodyMapper(responseBodyMapper, defaultResponse, this));
+                    if (defaultResponse != null) {
+                        if (defaultResponse.Body != null)
+                        {
+                            defaultResponseObject.Property("bodyMapper", responseBodyMapper => ClientModelExtensions.ConstructResponseBodyMapper(responseBodyMapper, defaultResponse, this));
+                        }
+                        if (defaultResponse.Headers != null)
+                        {
+                            defaultResponseObject.Property("headersMapper", responseHeadersMapper => responseHeadersMapper.Text($"Mappers.{defaultResponse.Headers.Name}"));
+                        }
                     }
                 });
             });
