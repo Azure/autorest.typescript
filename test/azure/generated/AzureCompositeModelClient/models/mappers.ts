@@ -339,6 +339,54 @@ export const DotSalmon: coreHttp.CompositeMapper = {
   }
 };
 
+export const DotFishMarket: coreHttp.CompositeMapper = {
+  serializedName: "DotFishMarket",
+  type: {
+    name: "Composite",
+    className: "DotFishMarket",
+    modelProperties: {
+      sampleSalmon: {
+        serializedName: "sampleSalmon",
+        type: {
+          name: "Composite",
+          className: "DotSalmon"
+        }
+      },
+      salmons: {
+        serializedName: "salmons",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "Composite",
+              className: "DotSalmon"
+            }
+          }
+        }
+      },
+      sampleFish: {
+        serializedName: "sampleFish",
+        type: {
+          name: "Composite",
+          className: "DotFish"
+        }
+      },
+      fishes: {
+        serializedName: "fishes",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "Composite",
+              className: "DotFish"
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
 export const Fish: coreHttp.CompositeMapper = {
   serializedName: "Fish",
   type: {
