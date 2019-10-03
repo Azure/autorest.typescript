@@ -721,6 +721,59 @@ export class Xml {
       listBlobsOperationSpec,
       callback) as Promise<Models.XmlListBlobsResponse>;
   }
+
+  /**
+   * A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
+   * number 42
+   * @param properties
+   * @param [options] The optional parameters
+   * @returns Promise<coreHttp.RestResponse>
+   */
+  jsonInput(properties: Models.JSONInput, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
+  /**
+   * @param properties
+   * @param callback The callback
+   */
+  jsonInput(properties: Models.JSONInput, callback: coreHttp.ServiceCallback<void>): void;
+  /**
+   * @param properties
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  jsonInput(properties: Models.JSONInput, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  jsonInput(properties: Models.JSONInput, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
+    return this.client.sendOperationRequest(
+      {
+        properties,
+        options
+      },
+      jsonInputOperationSpec,
+      callback);
+  }
+
+  /**
+   * A Swagger with XML that has one operation that returns JSON. ID number 42
+   * @param [options] The optional parameters
+   * @returns Promise<Models.XmlJsonOutputResponse>
+   */
+  jsonOutput(options?: coreHttp.RequestOptionsBase): Promise<Models.XmlJsonOutputResponse>;
+  /**
+   * @param callback The callback
+   */
+  jsonOutput(callback: coreHttp.ServiceCallback<Models.JSONOutput>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  jsonOutput(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.JSONOutput>): void;
+  jsonOutput(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.JSONOutput>, callback?: coreHttp.ServiceCallback<Models.JSONOutput>): Promise<Models.XmlJsonOutputResponse> {
+    return this.client.sendOperationRequest(
+      {
+        options
+      },
+      jsonOutputOperationSpec,
+      callback) as Promise<Models.XmlJsonOutputResponse>;
+  }
 }
 
 // Operation Specifications
@@ -1259,6 +1312,37 @@ const listBlobsOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.ListBlobsResponse
+    },
+    default: {}
+  },
+  isXML: true,
+  serializer
+};
+
+const jsonInputOperationSpec: coreHttp.OperationSpec = {
+  httpMethod: "PUT",
+  path: "xml/jsoninput",
+  requestBody: {
+    parameterPath: "properties",
+    mapper: {
+      ...Mappers.JSONInput,
+      required: true
+    }
+  },
+  responses: {
+    200: {},
+    default: {}
+  },
+  isXML: true,
+  serializer
+};
+
+const jsonOutputOperationSpec: coreHttp.OperationSpec = {
+  httpMethod: "GET",
+  path: "xml/jsonoutput",
+  responses: {
+    200: {
+      bodyMapper: Mappers.JSONOutput
     },
     default: {}
   },

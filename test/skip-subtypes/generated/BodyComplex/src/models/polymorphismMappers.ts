@@ -9,6 +9,7 @@
 export {
   discriminators,
   DotFish,
+  DotFishMarket,
   DotSalmon,
   ErrorModel,
   Fish,

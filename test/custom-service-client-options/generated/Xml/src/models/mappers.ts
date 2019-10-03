@@ -9,6 +9,38 @@
 import * as coreHttp from "@azure/core-http";
 
 
+export const JSONInput: coreHttp.CompositeMapper = {
+  serializedName: "JSONInput",
+  type: {
+    name: "Composite",
+    className: "JSONInput",
+    modelProperties: {
+      id: {
+        serializedName: "id",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const JSONOutput: coreHttp.CompositeMapper = {
+  serializedName: "JSONOutput",
+  type: {
+    name: "Composite",
+    className: "JSONOutput",
+    modelProperties: {
+      id: {
+        serializedName: "id",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
 export const ErrorModel: coreHttp.CompositeMapper = {
   serializedName: "Error",
   type: {

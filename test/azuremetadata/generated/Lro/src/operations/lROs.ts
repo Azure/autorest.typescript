@@ -1266,7 +1266,8 @@ const beginPutNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsPutNoHeaderInRetryHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsPutNoHeaderInRetryHeaders
     }
   },
   serializer
@@ -1291,7 +1292,8 @@ const beginPutAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsPutAsyncRetrySucceededHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsPutAsyncRetrySucceededHeaders
     }
   },
   serializer
@@ -1316,7 +1318,8 @@ const beginPutAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsPutAsyncNoRetrySucceededHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsPutAsyncNoRetrySucceededHeaders
     }
   },
   serializer
@@ -1341,7 +1344,8 @@ const beginPutAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsPutAsyncRetryFailedHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsPutAsyncRetryFailedHeaders
     }
   },
   serializer
@@ -1366,7 +1370,8 @@ const beginPutAsyncNoRetrycanceledOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsPutAsyncNoRetrycanceledHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsPutAsyncNoRetrycanceledHeaders
     }
   },
   serializer
@@ -1391,7 +1396,8 @@ const beginPutAsyncNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsPutAsyncNoHeaderInRetryHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsPutAsyncNoHeaderInRetryHeaders
     }
   },
   serializer
@@ -1513,7 +1519,8 @@ const beginDeleteProvisioning202Accepted200SucceededOperationSpec: coreHttp.Oper
       headersMapper: Mappers.LROsDeleteProvisioning202Accepted200SucceededHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsDeleteProvisioning202Accepted200SucceededHeaders
     }
   },
   serializer
@@ -1535,7 +1542,8 @@ const beginDeleteProvisioning202DeletingFailed200OperationSpec: coreHttp.Operati
       headersMapper: Mappers.LROsDeleteProvisioning202DeletingFailed200Headers
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsDeleteProvisioning202DeletingFailed200Headers
     }
   },
   serializer
@@ -1557,7 +1565,8 @@ const beginDeleteProvisioning202Deletingcanceled200OperationSpec: coreHttp.Opera
       headersMapper: Mappers.LROsDeleteProvisioning202Deletingcanceled200Headers
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsDeleteProvisioning202Deletingcanceled200Headers
     }
   },
   serializer
@@ -1593,7 +1602,8 @@ const beginDelete202Retry200OperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsDelete202Retry200Headers
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsDelete202Retry200Headers
     }
   },
   serializer
@@ -1614,7 +1624,8 @@ const beginDelete202NoRetry204OperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsDelete202NoRetry204Headers
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsDelete202NoRetry204Headers
     }
   },
   serializer
@@ -1634,7 +1645,8 @@ const beginDeleteNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsDeleteNoHeaderInRetryHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsDeleteNoHeaderInRetryHeaders
     }
   },
   serializer
@@ -1654,7 +1666,8 @@ const beginDeleteAsyncNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
     }
   },
   serializer
@@ -1671,7 +1684,8 @@ const beginDeleteAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsDeleteAsyncRetrySucceededHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsDeleteAsyncRetrySucceededHeaders
     }
   },
   serializer
@@ -1688,7 +1702,8 @@ const beginDeleteAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsDeleteAsyncNoRetrySucceededHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsDeleteAsyncNoRetrySucceededHeaders
     }
   },
   serializer
@@ -1705,7 +1720,8 @@ const beginDeleteAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsDeleteAsyncRetryFailedHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsDeleteAsyncRetryFailedHeaders
     }
   },
   serializer
@@ -1722,7 +1738,8 @@ const beginDeleteAsyncRetrycanceledOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsDeleteAsyncRetrycanceledHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsDeleteAsyncRetrycanceledHeaders
     }
   },
   serializer
@@ -1766,7 +1783,8 @@ const beginPost202Retry200OperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsPost202Retry200Headers
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsPost202Retry200Headers
     }
   },
   serializer
@@ -1791,7 +1809,8 @@ const beginPost202NoRetry204OperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsPost202NoRetry204Headers
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsPost202NoRetry204Headers
     }
   },
   serializer
@@ -1870,7 +1889,8 @@ const beginPostAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsPostAsyncRetrySucceededHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsPostAsyncRetrySucceededHeaders
     }
   },
   serializer
@@ -1898,7 +1918,8 @@ const beginPostAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsPostAsyncNoRetrySucceededHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsPostAsyncNoRetrySucceededHeaders
     }
   },
   serializer
@@ -1922,7 +1943,8 @@ const beginPostAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsPostAsyncRetryFailedHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsPostAsyncRetryFailedHeaders
     }
   },
   serializer
@@ -1946,7 +1968,8 @@ const beginPostAsyncRetrycanceledOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.LROsPostAsyncRetrycanceledHeaders
     },
     default: {
-      bodyMapper: Mappers.CloudError
+      bodyMapper: Mappers.CloudError,
+      headersMapper: Mappers.LROsPostAsyncRetrycanceledHeaders
     }
   },
   serializer
