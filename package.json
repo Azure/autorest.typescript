@@ -1,0 +1,32 @@
+{
+    "name": "@microsoft.azure/autorest.typescript",
+    "version": "5.0.0",
+    "scripts": {
+        "start": "node ./dist/src/main.js",
+        "debug": "node --inspect-brk ./dist/src/main.js"
+    },
+    "dependencies": {
+        "@autorest/autorest": "^3.0.6118",
+        "@azure-tools/async-io": "3.0.200",
+        "@azure-tools/autorest-extension-base": "3.1.203",
+        "@azure-tools/codegen": "2.1.213",
+        "@azure-tools/codemodel": "3.0.226",
+        "@azure-tools/linq": "3.1.203",
+        "@azure-tools/openapi": "3.0.206",
+        "@types/ejs": "^2.6.3",
+        "ejs": "^2.7.1",
+        "source-map-support": "^0.5.13"
+    },
+    "devDependencies": {
+        "@types/js-yaml": "3.12.1",
+        "@types/mocha": "5.2.7",
+        "@types/node": "12.7.12",
+        "mocha": "6.2.1",
+        "mocha-typescript": "1.1.17",
+        "typescript": "~3.6.2",
+        "@types/xmlbuilder": "0.0.34",
+        "@typescript-eslint/eslint-plugin": "~2.0.0",
+        "@typescript-eslint/parser": "~2.0.0",
+        "eslint": "~6.2.2"
+    }
+}
