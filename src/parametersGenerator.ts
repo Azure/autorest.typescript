@@ -2,8 +2,7 @@ import { CodeModel } from '@azure-tools/codemodel';
 import { Host } from '@azure-tools/autorest-extension-base';
 import * as ejs from 'ejs';
 import * as fs from 'fs';
-import {Schema} from '@azure-tools/codemodel'
-Schema
+import {Schema} from '@azure-tools/codemodel';
 
 export class ParametersGenerator {
     private codeModel:CodeModel;
