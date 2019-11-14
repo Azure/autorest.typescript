@@ -35,10 +35,12 @@ export class ClientGenerator implements Generator{
     clientFileModel.mappersName = `${namingUtils.getMappersName(this.codeModel.info.title)}`;
 
     this.codeModel.operationGroups.forEach(operationGroup => {
-      let og = new OperationGroupName();
-      og.operationGroupName = operationGroup.$key;
-      og.operationGroupReferenceName = namingUtils.getCamelCase(operationGroup.$key);
-      clientFileModel.operationGroupsNameMapper.push(og);
+      if(operationGroup.$key.length > 0) {
+        let og = new OperationGroupName();
+        og.operationGroupName = operationGroup.$key;
+        og.operationGroupReferenceName = namingUtils.getCamelCase(operationGroup.$key);
+        clientFileModel.operationGroupsNameMapper.push(og);
+      }      
     })
 
     let template:string = this.getTemplate();

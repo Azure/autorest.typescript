@@ -7,7 +7,6 @@ export async function processRequest(host: Host) {
         const session = await startSession<CodeModel>(host, undefined, codeModelSchema);
         const tsGenerator = new TypescriptGenerator(session.model, host);
         tsGenerator.process();
-        host.WriteFile('filename.txt', "dummy content", undefined, "source-files-typescript");
     } catch (E) {
         throw E;
     }

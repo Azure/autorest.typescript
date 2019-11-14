@@ -6,16 +6,16 @@
         "debug": "node --inspect-brk ./dist/src/main.js"
     },
     "dependencies": {
-        "@autorest/autorest": "^3.0.6118",
-        "@azure-tools/async-io": "3.0.200",
-        "@azure-tools/autorest-extension-base": "3.1.203",
-        "@azure-tools/codegen": "2.1.213",
-        "@azure-tools/codemodel": "3.0.226",
-        "@azure-tools/linq": "3.1.203",
-        "@azure-tools/openapi": "3.0.206",
+        "@autorest/autorest": "^3.0.6122",
+        "@azure-tools/async-io": "3.0.201",
+        "@azure-tools/autorest-extension-base": "3.1.204",
+        "@azure-tools/codegen": "2.1.216",
+        "@azure-tools/codemodel": "3.0.234",
+        "@azure-tools/linq": "3.1.204",
+        "@azure-tools/openapi": "3.0.207",
         "@types/ejs": "^2.6.3",
-        "ejs": "^2.7.1",
-        "source-map-support": "^0.5.13"
+        "ejs": "^2.7.2",
+        "source-map-support": "^0.5.16"
     },
     "devDependencies": {
         "@types/js-yaml": "3.12.1",
