@@ -1,0 +1,1 @@
+export const TEMPLATE_LOCATION:string = './src/template/';
