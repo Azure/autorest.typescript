@@ -1,10 +1,10 @@
 var cmd = require("node-cmd");
 const waitPort = require("wait-port");
 
-const signalTestServer = async isStart => {
+const signalTestServer = async (isStart: boolean): Promise<boolean> => {
   return new Promise((resolve, reject) => {
     const command = isStart ? "start" : "stop";
-    cmd.get(`${command}-autorest-testserver`, (err, data) => {
+    cmd.get(`${command}-autorest-testserver`, (err: Error) => {
       if (err) {
         console.error(`Error starting server: ${err}`);
         reject(false);
@@ -19,12 +19,12 @@ const signalTestServer = async isStart => {
  * Root-Level hook that makes sure that the autorest test-server is up and running
  * this hook will execute once before the test suite is executed
  */
-before(async function() {
+before(async () => {
   const params = {
     host: "localhost",
     port: 3000,
     output: "silent",
-    timeout: 3000
+    timeout: 5000
   };
   console.log("Starting the testServer");
   await signalTestServer(true);

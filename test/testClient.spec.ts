@@ -1,5 +1,5 @@
-const { ping } = require("./testClient");
-const { equal } = require("assert");
+import { ping } from "./testClient";
+import { equal } from "assert";
 
 /**
  * Basic test suite that verifies that the Test Server is up and running

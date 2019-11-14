@@ -4,6 +4,7 @@
     "scripts": {
         "build": "tsc -p .",
         "start": "node ./dist/src/main.js",
+        "test": "mocha -r ts-node/register './test/**/*spec.ts' --no-timeout",
         "debug": "node --inspect-brk ./dist/src/main.js"
     },
     "dependencies": {

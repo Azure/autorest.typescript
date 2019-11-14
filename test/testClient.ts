@@ -1,6 +1,6 @@
-const http = require("http");
+import { get } from "http";
 
-exports.ping = function(expect) {
+export const ping = (expect: boolean): Promise<boolean> => {
   const options = {
     host: "localhost",
     port: 3000,
@@ -12,9 +12,9 @@ exports.ping = function(expect) {
     }
   };
   return new Promise((resolve, reject) => {
-    http.get(options, response => {
+    get(options, response => {
       let data = "";
-      response.on("data", chunk => {
+      response.on("data", (chunk: Buffer) => {
         data += chunk;
       });
 
@@ -22,7 +22,7 @@ exports.ping = function(expect) {
         resolve(/true/i.test(data));
       });
 
-      response.on("error", error => {
+      response.on("error", (error: Error) => {
         console.error(`Error while fetching ${error}`);
         reject(error);
       });
