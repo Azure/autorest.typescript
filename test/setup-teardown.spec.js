@@ -1,7 +1,5 @@
 var cmd = require("node-cmd");
-const { equal } = require("assert");
 const waitPort = require("wait-port");
-const { ping } = require("./testClient");
 
 const signalTestServer = async isStart => {
   return new Promise((resolve, reject) => {
@@ -25,14 +23,16 @@ before(async function() {
   const params = {
     host: "localhost",
     port: 3000,
-    output: "silent"
+    output: "silent",
+    timeout: 3000
   };
   console.log("Starting the testServer");
   await signalTestServer(true);
   console.log("Waiting for testServer to be ready");
   const started = await waitPort(params);
   if (!started) {
-    console.error("Server couldn't be started");
+    // We may want to retry starting the server
+    throw new Error("Server couldn't be started");
   } else {
     console.log("Test server is ready");
   }
@@ -45,19 +45,4 @@ before(async function() {
 after(async () => {
   console.log("Stopping the test server");
   await signalTestServer(false);
-});
-
-/**
- * Basic test suite that verifies that the Test Server is up and running
- */
-describe("TestServer", () => {
-  it("should get true as response", async () => {
-    const result = await ping(true);
-    equal(result, true);
-  });
-
-  it("should get false as response", async () => {
-    const result = await ping(false);
-    equal(result, false);
-  });
 });
