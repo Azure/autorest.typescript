@@ -14,21 +14,22 @@ const startServer = async (): Promise<boolean> => {
   const isStarted = await signalServer(true);
 
   if (!isStarted) {
-    Promise.reject(new Error("Could not start server"));
+    return Promise.reject(new Error("Could not start server"));
   }
 
   const output: OutputType = "silent";
+  const timeout = 5000;
   const params = {
     host: "localhost",
     port: 3000,
     output,
-    timeout: 5000
+    timeout
   };
 
   const isReady = await waitPort(params);
 
   if (!isReady) {
-    Promise.reject(
+    return Promise.reject(
       new Error(
         `Couldn't get server ready for testing, not responding on port ${params.port}`
       )
@@ -75,11 +76,11 @@ const retry = (
   maxTries: number,
   delay = 1000
 ): Promise<Boolean> =>
-  fn().catch((error: Error) =>
-    maxTries > 1
+  fn().catch((error: Error) => {
+    return maxTries > 1
       ? pause(delay).then(() => retry(fn, maxTries - 1, delay * 2))
-      : Promise.reject(error)
-  );
+      : Promise.reject(error);
+  });
 
 startTestServer()
   .then(result => {
