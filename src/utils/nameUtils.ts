@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 export function getCamelCase(value:string):string{
   return (value.substr(0, 1).toLowerCase() +  value.substr(1));
 }

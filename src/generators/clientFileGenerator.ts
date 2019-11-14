@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { CodeModel } from '@azure-tools/codemodel';
 import { Host } from '@azure-tools/autorest-extension-base';
 import * as ejs from 'ejs';
@@ -10,7 +13,7 @@ import { ClientFileModel, OperationGroupName } from "../models/clientFileModel";
 export class ClientGenerator implements Generator{
   templateName: string;
   private codeModel:CodeModel;
-  private host:Host;  
+  private host:Host;
 
   constructor(codeModel: CodeModel, host: Host) {
     this.codeModel = codeModel;
@@ -40,7 +43,7 @@ export class ClientGenerator implements Generator{
         og.operationGroupName = operationGroup.$key;
         og.operationGroupReferenceName = namingUtils.getCamelCase(operationGroup.$key);
         clientFileModel.operationGroupsNameMapper.push(og);
-      }      
+      }
     })
 
     let template:string = this.getTemplate();

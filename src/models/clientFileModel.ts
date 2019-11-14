@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 export class ClientFileModel {
   clientContextClassName: string = '';
   clientContextFileName: string = '';
