@@ -1,6 +1,6 @@
 {
     "name": "@microsoft.azure/autorest.typescript",
-    "version": "5.0.0",
+    "version": "6.0.0-preview.1",
     "scripts": {
         "build": "tsc -p .",
         "start": "node ./dist/src/main.js",
