@@ -16,17 +16,17 @@ export class TypescriptGenerator {
     this.host = host;
   }
 
-  public process() {
+  public async process() {
     let generator: Generator;
     //generator = new ClientContextFileGenerator(this.codeModel, this.host);
-    //generator.process();
+    //generator.process();    
+    generator = new StaticFilesGenerator(this.codeModel, this.host);
+    await generator.process();
     generator = new ClientGenerator(this.codeModel, this.host);
     generator.process();
     //generator = new ModelsGenerator(this.codeModel, this.host);
     //generator.process();
     //generator = new OperationGroupsGenerator(this.codeModel, this.host);
-    //generator.process();
-    //generator = new StaticFilesGenerator(this.codeModel, this.host);
     //generator.process();
   }
 }

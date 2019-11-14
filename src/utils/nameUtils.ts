@@ -7,17 +7,21 @@ export function getClientFileName(title:string):string {
 }
 
 export function getClientContextClassName(title:string):string {
-  return `${title}Context`
+  return `${title}Context`;
 }
 
 export function getClientContextFileName(title:string):string {
-  return `${getClientFileName(title)}Context`
+  return `${getClientFileName(title)}Context`;
 }
 
 export function getModelsName(title:string):string {
-  return `${title.replace('Client', '')}Models`
+  return `${title.replace('Client', '')}Models`;
 }
 
 export function getMappersName(title:string):string {
-  return `${title.replace('Client', '')}Mappers`
+  return `${title.replace('Client', '')}Mappers`;
+}
+
+export function getPackageNameModified(packageName:string):string {
+  return `${packageName.replace('@azure/', '')}`;
 }

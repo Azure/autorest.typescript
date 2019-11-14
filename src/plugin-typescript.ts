@@ -6,7 +6,7 @@ export async function processRequest(host: Host) {
     try {
         const session = await startSession<CodeModel>(host, undefined, codeModelSchema);
         const tsGenerator = new TypescriptGenerator(session.model, host);
-        tsGenerator.process();
+        await tsGenerator.process();
     } catch (E) {
         throw E;
     }
