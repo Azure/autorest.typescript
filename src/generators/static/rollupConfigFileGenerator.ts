@@ -21,7 +21,7 @@ export class RollupConfigFileGenerator implements Generator {
     });
   }
 
-  public process(): void {
+  public process(): Promise<void> {
     throw new Error("Method not implemented.");
   }
 }

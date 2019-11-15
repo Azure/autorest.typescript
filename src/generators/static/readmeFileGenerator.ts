@@ -23,11 +23,11 @@ export class ReadmeFileGenerator implements Generator {
     });
   }
 
-  public async process() {
+  public async process(): Promise<void> {
     let readmeFileModel = new ReadmeFileModel();
     readmeFileModel.clientName = `${this.codeModel.info.title}`;
     readmeFileModel.packageName = await this.host.GetValue('package-name');
-    
+
     let template:string = this.getTemplate();
     let data = ejs.render(template, { readme: readmeFileModel});
     this.host.WriteFile(

@@ -25,17 +25,17 @@ export class StaticFilesGenerator implements Generator {
     throw new Error("Method not implemented.");
   }
 
-  public async process() {
-    let generator: Generator;
-    generator = new LicenseFileGenerator(this.codeModel, this.host);
-    generator.process();
-    generator = new ReadmeFileGenerator(this.codeModel, this.host);
-    await generator.process();
-    generator = new PackageFileGenerator(this.codeModel, this.host);
-    await generator.process();
-    // generator = new RollupConfigFileGenerator(this.codeModel, this.host);
-    // generator.process();
-    // generator = new TsConfigFileGenerator(this.codeModel, this.host);
-    // generator.process();
+  public async process(): Promise<void> {
+    const generators = [
+      new LicenseFileGenerator(this.codeModel, this.host),
+      new ReadmeFileGenerator(this.codeModel, this.host),
+      new PackageFileGenerator(this.codeModel, this.host),
+      // new RollupConfigFileGenerator(this.codeModel, this.host);
+      // new TsConfigFileGenerator(this.codeModel, this.host);
+    ];
+
+    for (let generator of generators) {
+      await generator.process();
+    }
   }
 }

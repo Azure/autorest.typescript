@@ -27,7 +27,7 @@ export class ClientGenerator implements Generator{
     });
   }
 
-  public process() {
+  public async process(): Promise<void> {
     let clientFileModel = new ClientFileModel();
 
     clientFileModel.clientFileName = `${namingUtils.getClientFileName(this.codeModel.info.title)}.ts`;
