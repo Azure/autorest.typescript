@@ -1,39 +1,39 @@
 {
-  "name": "@microsoft.azure/autorest.typescript",
-  "version": "6.0.0-preview.1",
-  "scripts": {
-    "build": "tsc -p .",
-    "start": "node ./dist/src/main.js",
-    "test": "npm run unit-test & npm run integration-test",
-    "unit-test": "mocha -r ts-node/register './test/unit/**/*spec.ts'",
-    "integration-test": "ts-node test/utils/start-server.ts & mocha -r ts-node/register './test/integration/**/*spec.ts' & stop-autorest-testserver",
-    "debug": "node --inspect-brk ./dist/src/main.js"
-  },
-  "dependencies": {
-    "@autorest/autorest": "^3.0.6122",
-    "@azure-tools/async-io": "3.0.201",
-    "@azure-tools/autorest-extension-base": "3.1.204",
-    "@azure-tools/codegen": "2.1.216",
-    "@azure-tools/codemodel": "3.0.234",
-    "@azure-tools/linq": "3.1.204",
-    "@azure-tools/openapi": "3.0.207",
-    "@types/ejs": "^2.6.3",
-    "ejs": "^2.7.2",
-    "source-map-support": "^0.5.16"
-  },
-  "devDependencies": {
-    "@autorest/test-server": "^3.0.26",
-    "@types/js-yaml": "3.12.1",
-    "@types/mocha": "5.2.7",
-    "@types/node": "12.7.12",
-    "mocha": "6.2.1",
-    "mocha-typescript": "1.1.17",
-    "typescript": "~3.6.2",
-    "@types/xmlbuilder": "0.0.34",
-    "@typescript-eslint/eslint-plugin": "~2.0.0",
-    "@typescript-eslint/parser": "~2.0.0",
-    "eslint": "~6.2.2",
-    "node-cmd": "^3.0.0",
-    "wait-port": "^0.2.6"
-  }
+    "name": "@microsoft.azure/autorest.typescript",
+    "version": "6.0.0-preview.1",
+    "scripts": {
+        "build": "tsc -p .",
+        "start": "node ./dist/src/main.js",
+        "test": "npm run unit-test & npm run integration-test",
+        "unit-test": "mocha -r ts-node/register './test/unit/**/*spec.ts'",
+        "integration-test": "ts-node test/utils/start-server.ts & mocha -r ts-node/register './test/integration/**/*spec.ts' & stop-autorest-testserver",
+        "debug": "node --inspect-brk ./dist/src/main.js"
+    },
+    "dependencies": {
+        "@autorest/autorest": "^3.0.6122",
+        "@azure-tools/async-io": "3.0.201",
+        "@azure-tools/autorest-extension-base": "3.1.204",
+        "@azure-tools/codegen": "2.1.216",
+        "@azure-tools/codemodel": "3.0.234",
+        "@azure-tools/linq": "3.1.204",
+        "@azure-tools/openapi": "3.0.207",
+        "@types/ejs": "^2.6.3",
+        "ejs": "^2.7.2",
+        "source-map-support": "^0.5.16"
+    },
+    "devDependencies": {
+        "@autorest/test-server": "^3.0.26",
+        "@types/js-yaml": "3.12.1",
+        "@types/mocha": "5.2.7",
+        "@types/node": "12.7.12",
+        "mocha": "6.2.1",
+        "mocha-typescript": "1.1.17",
+        "typescript": "~3.6.2",
+        "@types/xmlbuilder": "0.0.34",
+        "@typescript-eslint/eslint-plugin": "~2.0.0",
+        "@typescript-eslint/parser": "~2.0.0",
+        "eslint": "~6.2.2",
+        "node-cmd": "^3.0.0",
+        "wait-port": "^0.2.6"
+    }
 }
