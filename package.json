@@ -4,6 +4,7 @@
     "scripts": {
         "build": "tsc -p .",
         "start": "node ./dist/src/main.js",
+        "test": "ts-node test/utils/start-server.ts & mocha -r ts-node/register './test/**/*spec.ts' & stop-autorest-testserver",
         "debug": "node --inspect-brk ./dist/src/main.js"
     },
     "dependencies": {
@@ -19,6 +20,7 @@
         "source-map-support": "^0.5.16"
     },
     "devDependencies": {
+        "@autorest/test-server": "^3.0.26",
         "@types/js-yaml": "3.12.1",
         "@types/mocha": "5.2.7",
         "@types/node": "12.7.12",
@@ -28,6 +30,8 @@
         "@types/xmlbuilder": "0.0.34",
         "@typescript-eslint/eslint-plugin": "~2.0.0",
         "@typescript-eslint/parser": "~2.0.0",
-        "eslint": "~6.2.2"
+        "eslint": "~6.2.2",
+        "node-cmd": "^3.0.0",
+        "wait-port": "^0.2.6"
     }
 }
