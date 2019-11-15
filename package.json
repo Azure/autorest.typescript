@@ -4,8 +4,9 @@
   "scripts": {
     "build": "tsc -p .",
     "start": "node ./dist/src/main.js",
-    "test:unit": "mocha -r ts-node/register './test/unit/**/*spec.ts'",
-    "test:integration": "ts-node test/utils/start-server.ts & mocha -r ts-node/register './test/integration/**/*spec.ts' & stop-autorest-testserver",
+    "test": "npm run unit-test & npm run integration-test",
+    "unit-test": "mocha -r ts-node/register './test/unit/**/*spec.ts'",
+    "integration-test": "ts-node test/utils/start-server.ts & mocha -r ts-node/register './test/integration/**/*spec.ts' & stop-autorest-testserver",
     "debug": "node --inspect-brk ./dist/src/main.js"
   },
   "dependencies": {
