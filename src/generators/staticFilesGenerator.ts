@@ -31,7 +31,7 @@ export class StaticFilesGenerator implements Generator {
       new ReadmeFileGenerator(this.codeModel, this.host),
       new PackageFileGenerator(this.codeModel, this.host),
       // new RollupConfigFileGenerator(this.codeModel, this.host);
-      // new TsConfigFileGenerator(this.codeModel, this.host);
+      new TsConfigFileGenerator(this.codeModel, this.host)
     ];
 
     for (let generator of generators) {

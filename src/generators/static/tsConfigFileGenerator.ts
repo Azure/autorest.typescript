@@ -3,6 +3,7 @@ import { CodeModel } from '@azure-tools/codemodel';
 import { Host } from '@azure-tools/autorest-extension-base';
 import * as constants from '../../utils/constants';
 import * as fs from 'fs';
+import * as ejs from 'ejs';
 
 export class TsConfigFileGenerator implements Generator {
   templateName: string;
@@ -16,12 +17,19 @@ export class TsConfigFileGenerator implements Generator {
   }
 
   getTemplate(): string {
-    return fs.readFileSync(`${constants.TEMPLATE_LOCATION}/${this.templateName}`, {
+    return fs.readFileSync(`${constants.TEMPLATE_LOCATION}/static/${this.templateName}`, {
       encoding: 'utf8'
     });
   }
 
   public async process(): Promise<void> {
-    throw new Error("Method not implemented.");
+    let template:string = this.getTemplate();
+    let data = ejs.render(template);
+    this.host.WriteFile(
+      `tsconfig.json`,
+      data,
+      undefined,
+      "source-files-typescript"
+    );
   }
 }
