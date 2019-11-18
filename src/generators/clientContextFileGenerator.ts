@@ -5,7 +5,10 @@ import { Generator } from "./generator";
 import { CodeModel } from '@azure-tools/codemodel';
 import { Host } from '@azure-tools/autorest-extension-base';
 import * as fs from 'fs';
+import * as ejs from 'ejs';
+import * as namingUtils from '../utils/nameUtils';
 import * as constants from '../utils/constants';
+import { ClientContextFileModel } from '../models/clientContextFileModel';
 
 export class ClientContextFileGenerator implements Generator {
   templateName: string;
@@ -25,6 +28,19 @@ export class ClientContextFileGenerator implements Generator {
   }
 
   public async process(): Promise<void> {
-    throw new Error("Method not implemented.");
+    let clientContextFileModel = new ClientContextFileModel();
+    clientContextFileModel.clientContextFileName = `${namingUtils.getClientContextFileName(this.codeModel.info.title)}.ts`;
+    clientContextFileModel.packageName = await this.host.GetValue('package-name');
+    clientContextFileModel.packageVersion = await this.host.GetValue('package-version');
+    clientContextFileModel.contextClassName = `${namingUtils.getClientContextClassName(this.codeModel.info.title)}`;
+    clientContextFileModel.clientClassName = `${namingUtils.getClientClassName(this.codeModel.info.title)}`;
+    let template:string = this.getTemplate();
+    let data = ejs.render(template, { context: clientContextFileModel});
+    this.host.WriteFile(
+      `src/${clientContextFileModel.clientContextFileName}`,
+      data,
+      undefined,
+      "source-files-typescript"
+    );
   }
 }

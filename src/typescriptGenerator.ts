@@ -18,7 +18,7 @@ export class TypescriptGenerator {
 
   public async process(): Promise<void> {
     let generators = [
-      //new ClientContextFileGenerator(this.codeModel, this.host),
+      new ClientContextFileGenerator(this.codeModel, this.host),
       new StaticFilesGenerator(this.codeModel, this.host),
       new ClientGenerator(this.codeModel, this.host)
       // new ModelsGenerator(this.codeModel, this.host);
