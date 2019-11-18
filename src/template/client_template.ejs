@@ -17,19 +17,17 @@ import { <%= client.clientContextClassName %> } from "./<%= client.clientContext
 class <%= client.clientClassName %> extends <%= client.clientContextClassName %> {
   // Operation groups
   <% client.operationGroupsNameMapper.forEach(og => { %>
-    <%= og.operationGroupReferenceName %>: operations.<%= og.operationGroupName %>;
+    <%= og.operationGroupName %>: operations.<%= og.operationGroupReferenceName %>;
   <% }); %>
 
   /**
    * Initializes a new instance of the <%= client.clientClassName %> class.
-   * @param url The URL of the service account, container, or blob that is the targe of the desired
-   * operation.
    * @param [options] The parameter options
    */
-  constructor(url: string, options?: coreHttp.ServiceClientOptions) {
-    super(url, options);
+  constructor(options?: Models.<%= client.clientClassName %>Options) {
+    super(options);
     <% client.operationGroupsNameMapper.forEach(og => { %>
-    this.<%= og.operationGroupReferenceName %> = new operations.<%= og.operationGroupName %>(this);
+    this.<%= og.operationGroupName %> = new operations.<%= og.operationGroupReferenceName %>(this);
     <% }); %>
   }
 }

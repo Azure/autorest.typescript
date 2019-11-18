@@ -28,7 +28,7 @@ export class ClientGenerator implements Generator{
     let clientFileModel = new ClientFileModel();
 
     clientFileModel.clientFileName = `${namingUtils.getClientFileName(this.codeModel.info.title)}.ts`;
-    clientFileModel.clientClassName = `${this.codeModel.info.title}`;
+    clientFileModel.clientClassName = `${namingUtils.getClientClassName(this.codeModel.info.title)}`;
     clientFileModel.clientContextClassName = `${namingUtils.getClientContextClassName(this.codeModel.info.title)}`;
     clientFileModel.clientContextFileName = `${namingUtils.getClientContextFileName(this.codeModel.info.title)}`;
     clientFileModel.modelsName = `${namingUtils.getModelsName(this.codeModel.info.title)}`;
@@ -38,7 +38,7 @@ export class ClientGenerator implements Generator{
       if(operationGroup.$key.length > 0) {
         let og = new OperationGroupName();
         og.operationGroupName = operationGroup.$key;
-        og.operationGroupReferenceName = namingUtils.getCamelCase(operationGroup.$key);
+        og.operationGroupReferenceName = namingUtils.getCamelCaseWithUpperCaseBeginning(operationGroup.$key);
         clientFileModel.operationGroupsNameMapper.push(og);
       }      
     })
