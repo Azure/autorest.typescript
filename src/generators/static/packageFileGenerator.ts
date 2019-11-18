@@ -24,7 +24,7 @@ export class PackageFileGenerator implements Generator {
     });
   }
 
-  public async process() {
+  public async process(): Promise<void> {
     let packageFileModel = new PackageFileModel();
 
     packageFileModel.packageName = await this.host.GetValue('package-name');

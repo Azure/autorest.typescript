@@ -22,7 +22,7 @@ export class LicenseFileGenerator implements Generator {
     });
   }
 
-  public process(): void {
+  public async process(): Promise<void> {
     let template:string = this.getTemplate();
     let data = ejs.render(template);
     this.host.WriteFile(

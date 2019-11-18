@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { Generator } from "./generator";
 import { CodeModel } from '@azure-tools/codemodel';
 import { Host } from '@azure-tools/autorest-extension-base';
@@ -7,7 +10,7 @@ import * as constants from '../utils/constants';
 export class ClientContextFileGenerator implements Generator {
   templateName: string;
   private codeModel:CodeModel;
-  private host:Host;  
+  private host:Host;
 
   constructor(codeModel: CodeModel, host: Host) {
     this.codeModel = codeModel;
@@ -21,7 +24,7 @@ export class ClientContextFileGenerator implements Generator {
     });
   }
 
-  public process(): void {
+  public async process(): Promise<void> {
     throw new Error("Method not implemented.");
   }
 }

@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { Generator } from "./generator";
 import { CodeModel } from '@azure-tools/codemodel';
 import { Host } from '@azure-tools/autorest-extension-base';
@@ -21,7 +24,7 @@ export class ModelsGenerator implements Generator {
     });
   }
 
-  public process(): void {
+  public async process(): Promise<void> {
     throw new Error("Method not implemented.");
   }
 }

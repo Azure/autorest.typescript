@@ -21,7 +21,7 @@ export class TsConfigFileGenerator implements Generator {
     });
   }
 
-  public process(): void {
+  public async process(): Promise<void> {
     throw new Error("Method not implemented.");
   }
 }

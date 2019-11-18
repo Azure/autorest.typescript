@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 export function getCamelCase(value:string):string{
   const spaceRemovedValue = value.replace(/ /g,'');
   return (spaceRemovedValue.substr(0, 1).toLowerCase() +  spaceRemovedValue.substr(1));
