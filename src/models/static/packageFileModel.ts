@@ -1,6 +1,6 @@
 export class PackageFileModel {
   packageName: string = '';
-  clientName: string = '';
+  clientClassName: string = '';
   packageVersion: string = '';
   clientFileName: string = '';
   packageNameModified: string = '';

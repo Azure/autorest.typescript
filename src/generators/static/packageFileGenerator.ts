@@ -28,7 +28,7 @@ export class PackageFileGenerator implements Generator {
     let packageFileModel = new PackageFileModel();
 
     packageFileModel.packageName = await this.host.GetValue('package-name');
-    packageFileModel.clientName = `${this.codeModel.info.title}`;
+    packageFileModel.clientClassName = `${namingUtils.getClientClassName(this.codeModel.info.title)}`;;
     packageFileModel.packageVersion = await this.host.GetValue('package-version');
     packageFileModel.clientFileName = `${namingUtils.getClientFileName(this.codeModel.info.title)}`;
     packageFileModel.packageNameModified = `${namingUtils.getPackageNameModified(packageFileModel.packageName)}`;
