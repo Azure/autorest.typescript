@@ -15,6 +15,17 @@ export function getClientFileName(title:string):string {
   return getCamelCase(title);
 }
 
+export function getPackageOutputName(packageName:string):string {
+  packageName = packageName.replace(/-/g,'.');
+  packageName = packageName.replace(/@azure\//g,'');
+  const splitPackageName = packageName.split('-')
+  let result:string = '';
+  splitPackageName.forEach(str => {
+    result = result + str.substr(0, 1).toUpperCase() + '-' + str.substr(1);
+  })
+  return result;
+}
+
 export function getClientClassName(title:string):string {
   const spaceRemovedTitle = title.replace(/ /g,'');
   return spaceRemovedTitle;

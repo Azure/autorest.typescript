@@ -30,7 +30,7 @@ export class StaticFilesGenerator implements Generator {
       new LicenseFileGenerator(this.codeModel, this.host),
       new ReadmeFileGenerator(this.codeModel, this.host),
       new PackageFileGenerator(this.codeModel, this.host),
-      // new RollupConfigFileGenerator(this.codeModel, this.host);
+      new RollupConfigFileGenerator(this.codeModel, this.host),
       new TsConfigFileGenerator(this.codeModel, this.host)
     ];
 
