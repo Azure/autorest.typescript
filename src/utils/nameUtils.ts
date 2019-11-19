@@ -16,12 +16,14 @@ export function getClientFileName(title:string):string {
 }
 
 export function getPackageOutputName(packageName:string):string {
-  packageName = packageName.replace(/-/g,'.');
   packageName = packageName.replace(/@azure\//g,'');
   const splitPackageName = packageName.split('-')
   let result:string = '';
-  splitPackageName.forEach(str => {
-    result = result + str.substr(0, 1).toUpperCase() + '-' + str.substr(1);
+  splitPackageName.forEach((str, index) => {
+    result = result + str.substr(0, 1).toUpperCase() + str.substr(1);
+    if(index != splitPackageName.length-1) {
+      result = result + '-';
+    }
   })
   return result;
 }
