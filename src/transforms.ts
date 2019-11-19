@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { ClientDetails } from "./models/clientDetails";
+import { ModelDetails, PropertyDetails } from "./models/modelDetails";
+
 import {
   CodeModel,
   ObjectSchema,
@@ -11,38 +14,14 @@ import {
   Property
 } from "@azure-tools/codemodel";
 
-const ReservedNames = ["Error"];
 
-export function getNamingDetails(languages: Languages): Language {
-  const metadata = languages.typescript || languages.javascript || languages.default;
-  let name = metadata.name;
+// An array of model names that are "reserved", or shouldn't be used
+// verbatim.  Currently any reserved model name will have "Model"
+// appended to it in the generated code.
+const ReservedModelNames = ["Error"];
 
-  if (ReservedNames.indexOf(name) > -1) {
-    name = `${name}Model`;
-  }
-
-  return {
-    name,
-    description: metadata.description
-  };
-}
-
-export interface PropertyDetails {
-  name: string;
-  description?: string;
-  type: string;
-  required: boolean;
-  readOnly: boolean;
-}
-
-export interface ModelDetails {
-  name: string;
-  description: string;
-  properties: PropertyDetails[];
-}
-
-export interface ClientDetails {
-  models: ModelDetails[]
+export function getLanguageMetadata(languages: Languages): Language {
+  return languages.typescript || languages.javascript || languages.default;
 }
 
 export function getTypeForSchema(schema: Schema): string {
@@ -61,10 +40,10 @@ export function getTypeForSchema(schema: Schema): string {
 }
 
 export function transformProperty(property: Property): PropertyDetails {
-  const naming = getNamingDetails(property.language);
+  const metadata = getLanguageMetadata(property.language);
   return {
-    name: naming.name,
-    description: naming.description && !naming.description.startsWith("MISSING") ? naming.description : undefined,
+    name: metadata.name,
+    description: !metadata.description.startsWith("MISSING") ? metadata.description : undefined,
     required: property.required || true,
     readOnly: property.readOnly || false,
     type: getTypeForSchema(property.schema)
@@ -72,10 +51,14 @@ export function transformProperty(property: Property): PropertyDetails {
 }
 
 export function transformObject(obj: ObjectSchema): ModelDetails {
-  const naming = getNamingDetails(obj.language);
+  const metadata = getLanguageMetadata(obj.language);
+  let name = ReservedModelNames.indexOf(metadata.name) > -1
+    ? `${metadata.name}Model`
+    : metadata.name;
+
   return {
-    name: naming.name,
-    description: `An interface representing ${naming.name}.`,
+    name,
+    description: `An interface representing ${metadata.name}.`,
     properties: obj.properties ? obj.properties.map(prop => transformProperty(prop)) : []
   };
 }

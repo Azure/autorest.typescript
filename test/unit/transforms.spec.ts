@@ -1,5 +1,6 @@
 import * as assert from "assert";
-import { transformObject } from "../../src/transforms"
+import { transformObject, transformProperty } from "../../src/transforms"
+
 import {
   CodeModel,
   Schema,
@@ -33,14 +34,27 @@ const fakeCodeModel: CodeModel = new CodeModel("FakeModel", false, {
 });
 
 describe.only("Transforms", () => {
-  it("ObjectSchema -> ModelDetails", async () => {
-    const model = transformObject(appleSchema)
+  describe("Property to PropertyDetails", () => {
+    it("retains basic details", () => {
+      const property = transformProperty(
+        new Property(
+          "color",
+          "The color",
+          new StringSchema("Color", "A color.")));
 
-    assert.strictEqual(model.name, "Apple");
+      assert.strictEqual(property.name, "color");
+      assert.strictEqual(property.description, "The color");
+    });
+  });
 
-    assert.strictEqual(model.properties.length, 3);
-    assert.strictEqual(model.properties[0].name, "color");
-    assert.strictEqual(model.properties[1].name, "diameter");
-    assert.strictEqual(model.properties[2].name, "constValue");
+  describe("ObjectSchema to ModelDetails", () => {
+    it("retains basic details and contains properties", () => {
+      const model = transformObject(appleSchema)
+      assert.strictEqual(model.name, "Apple");
+      assert.strictEqual(model.properties.length, 3);
+      assert.strictEqual(model.properties[0].name, "color");
+      assert.strictEqual(model.properties[1].name, "diameter");
+      assert.strictEqual(model.properties[2].name, "constValue");
+    });
   });
 });
