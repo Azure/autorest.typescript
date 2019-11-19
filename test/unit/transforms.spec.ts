@@ -40,10 +40,14 @@ describe.only("Transforms", () => {
         new Property(
           "color",
           "The color",
-          new StringSchema("Color", "A color.")));
+          new StringSchema("Color", "A color."),
+          { required: true, readOnly: false }));
 
       assert.strictEqual(property.name, "color");
       assert.strictEqual(property.description, "The color");
+      assert.strictEqual(property.type, "string");
+      assert.strictEqual(property.required, true);
+      assert.strictEqual(property.readOnly, false);
     });
   });
 
