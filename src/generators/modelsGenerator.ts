@@ -1,16 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import * as fs from 'fs';
+import * as ejs from 'ejs';
+
+import * as constants from '../utils/constants';
 import { Generator } from "./generator";
 import { CodeModel } from '@azure-tools/codemodel';
 import { Host } from '@azure-tools/autorest-extension-base';
-import * as constants from '../utils/constants';
-import * as fs from 'fs';
+import { transformCodeModel } from '../transforms';
 
 export class ModelsGenerator implements Generator {
-  templateName: string;
-  private codeModel:CodeModel;
-  private host:Host;
+  private host: Host;
+  private codeModel: CodeModel;
+  private templateName: string;
 
   constructor(codeModel: CodeModel, host: Host) {
     this.codeModel = codeModel;
@@ -25,6 +28,15 @@ export class ModelsGenerator implements Generator {
   }
 
   public async process(): Promise<void> {
-    throw new Error("Method not implemented.");
+    const clientDetails = transformCodeModel(this.codeModel);
+    let template: string = this.getTemplate();
+    let renderedFile = ejs.render(template, { models: clientDetails.models });
+
+    this.host.WriteFile(
+      "src/models/index.ts",
+      renderedFile,
+      undefined,
+      "source-files-typescript"
+    );
   }
 }

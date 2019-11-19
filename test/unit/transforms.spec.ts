@@ -1,0 +1,46 @@
+import * as assert from "assert";
+import { transformObject } from "../../src/transforms"
+import {
+  CodeModel,
+  Schema,
+  SchemaType,
+  ObjectSchema,
+  StringSchema,
+  NumberSchema,
+  Property,
+  ConstantSchema,
+  ConstantValue
+} from "@azure-tools/codemodel";
+
+const appleSchema = new ObjectSchema("Apple", "An apple.", {
+  properties: [
+    new Property("color", "The apple's color.",
+                 new StringSchema("typeForColor", "An apple's color")),
+    new Property("diameter", "The apple's diameter in centimeters.",
+                 new NumberSchema("typeForDiameter", "Diameter in centimeters.", SchemaType.Integer, 32)),
+    new Property("constValue", "A constant value.",
+                 new ConstantSchema("typeForConst", "", { value: new ConstantValue("Worm"),
+                                                          valueType: new StringSchema("wormConst", "") })),
+  ]
+});
+
+const fakeCodeModel: CodeModel = new CodeModel("FakeModel", false, {
+  schemas: {
+    objects: [
+      appleSchema
+    ]
+  }
+});
+
+describe.only("Transforms", () => {
+  it("ObjectSchema -> ModelDetails", async () => {
+    const model = transformObject(appleSchema)
+
+    assert.strictEqual(model.name, "Apple");
+
+    assert.strictEqual(model.properties.length, 3);
+    assert.strictEqual(model.properties[0].name, "color");
+    assert.strictEqual(model.properties[1].name, "diameter");
+    assert.strictEqual(model.properties[2].name, "constValue");
+  });
+});

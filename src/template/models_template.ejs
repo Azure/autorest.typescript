@@ -1,0 +1,22 @@
+/*
+ * Copyright (c) Microsoft Corporation.
+ * Licensed under the MIT License.
+ */
+
+import * as coreHttp from "@azure/core-http";
+
+<%_ models.forEach(function (model) { %>
+/**
+ * <%= model.description %>
+ */
+export interface <%= model.name %> {
+  <%_ model.properties.forEach(function (property) { -%>
+  <%_ if (property.description) { %>
+  /**
+   * <%= property.description %>
+   */
+  <%_ } _%>
+  <%= property.name %><%= property.required ? '?' : '' %>: <%= property.type %><%= ';' %>
+  <%_ }); -%>
+};
+<%_ }); %>

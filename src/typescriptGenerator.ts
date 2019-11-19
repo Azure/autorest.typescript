@@ -20,8 +20,8 @@ export class TypescriptGenerator {
     let generators = [
       new ClientContextFileGenerator(this.codeModel, this.host),
       new StaticFilesGenerator(this.codeModel, this.host),
-      new ClientGenerator(this.codeModel, this.host)
-      // new ModelsGenerator(this.codeModel, this.host);
+      new ClientGenerator(this.codeModel, this.host),
+      new ModelsGenerator(this.codeModel, this.host)
       // new OperationGroupsGenerator(this.codeModel, this.host);
     ];
 
