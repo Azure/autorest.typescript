@@ -18,6 +18,7 @@ import {
   ValueSchema,
   ConstantSchema
 } from "@azure-tools/codemodel";
+import { normalizeName, NameType } from "./utils/nameUtils";
 
 // An array of model names that are "reserved", or shouldn't be used
 // verbatim.  Currently any reserved model name will have "Model"
@@ -34,10 +35,14 @@ export interface PropertyTypeDetails {
   defaultValue?: string;
 }
 
-export function getStringForValue(value: any, valueType: ValueSchema): string {
+export function getStringForValue(
+  value: any,
+  valueType: ValueSchema,
+  quotedStrings = true
+): string {
   switch (valueType.type) {
     case SchemaType.String:
-      return `"${value}"`;
+      return quotedStrings ? `"${value}"` : `${value}`;
     case SchemaType.Number:
     case SchemaType.Integer:
       return value.toString();
@@ -64,10 +69,14 @@ export function getTypeForSchema(schema: Schema): PropertyTypeDetails {
       const constantSchema = schema as ConstantSchema;
       const constantType = getTypeForSchema(constantSchema.valueType);
       typeName = constantType.typeName;
-      defaultValue = getStringForValue(constantSchema.value.value, constantSchema.valueType);
+      defaultValue = getStringForValue(
+        constantSchema.value.value,
+        constantSchema.valueType,
+        false
+      );
       break;
     default:
-      throw new Error(`Unsupported schema type: ${schema.type}`)
+      throw new Error(`Unsupported schema type: ${schema.type}`);
   }
 
   return {
@@ -79,50 +88,67 @@ export function getTypeForSchema(schema: Schema): PropertyTypeDetails {
 
 export function transformProperty(property: Property): PropertyDetails {
   const metadata = getLanguageMetadata(property.language);
-  const propertyType = getTypeForSchema(property.schema);
+  const { typeName, isConstant, defaultValue } = getTypeForSchema(
+    property.schema
+  );
 
   return {
-    name: metadata.name,
-    description: !metadata.description.startsWith("MISSING") ? metadata.description : undefined,
+    name: normalizeName(metadata.name, NameType.Property),
+    description: !metadata.description.startsWith("MISSING")
+      ? metadata.description
+      : undefined,
     serializedName: property.serializedName,
-    type: propertyType.typeName,
-    required: property.required || true,
-    readOnly: property.readOnly || false,
-    isConstant: propertyType.isConstant
+    type: typeName,
+    required: !!property.required,
+    readOnly: !!property.readOnly,
+    isConstant,
+    defaultValue
   };
 }
 
 export function transformChoice(choice: ChoiceSchema): UnionDetails {
   const metadata = getLanguageMetadata(choice.language);
-  let name = ReservedModelNames.indexOf(metadata.name) > -1
-    ? `${metadata.name}Model`
-    : metadata.name;
+  let name =
+    ReservedModelNames.indexOf(metadata.name) > -1
+      ? `${metadata.name}Model`
+      : metadata.name;
 
   return {
     name,
     description: `Defines values for ${metadata.name}.`,
     serializedName: metadata.name,
-    values: choice.choices.map(c => getStringForValue(c.value, choice.choiceType))
+    values: choice.choices.map(c =>
+      getStringForValue(c.value, choice.choiceType)
+    )
   };
 }
 
 export function transformObject(obj: ObjectSchema): ModelDetails {
   const metadata = getLanguageMetadata(obj.language);
-  let name = ReservedModelNames.indexOf(metadata.name) > -1
-    ? `${metadata.name}Model`
-    : metadata.name;
+  let name = normalizeName(
+    ReservedModelNames.indexOf(metadata.name) > -1
+      ? `${metadata.name}Model`
+      : metadata.name,
+    NameType.Class
+  );
 
   return {
     name,
     description: `An interface representing ${metadata.name}.`,
     serializedName: metadata.name,
-    properties: obj.properties ? obj.properties.map(prop => transformProperty(prop)) : []
+    properties: obj.properties
+      ? obj.properties.map(prop => transformProperty(prop))
+      : []
   };
 }
 
 export function transformCodeModel(codeModel: CodeModel): ClientDetails {
   return {
-    models: codeModel.schemas.objects ? codeModel.schemas.objects.map(transformObject) : [],
-    unions: codeModel.schemas.choices ? codeModel.schemas.choices.map(transformChoice) : []
-  }
+    models: codeModel.schemas.objects
+      ? codeModel.schemas.objects.map(transformObject)
+      : [],
+    unions: codeModel.schemas.choices
+      ? codeModel.schemas.choices.map(transformChoice)
+      : []
+  };
 }

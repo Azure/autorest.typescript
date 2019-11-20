@@ -1,0 +1,10 @@
+/*
+ * Copyright (c) Microsoft Corporation.
+ * Licensed under the MIT License.
+ */
+
+import * as coreHttp from "@azure/core-http";
+
+<%_ mappers.forEach(function (mapper) { %>
+export const <%= mapper.type.className %>: coreHttp.CompositeMapper = <%- JSON.stringify(mapper, null, 2)%>
+<%_ }); -%>

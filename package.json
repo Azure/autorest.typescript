@@ -17,6 +17,7 @@
         "@azure-tools/codemodel": "3.0.239",
         "@azure-tools/linq": "3.1.206",
         "@azure-tools/openapi": "3.0.209",
+        "@azure/core-http": "^1.0.0",
         "@microsoft.azure/autorest.testserver": "^2.7.0",
         "@types/ejs": "^2.6.3",
         "ejs": "^2.7.2",
