@@ -32,11 +32,6 @@ export class RollupConfigFileGenerator implements Generator {
 
     let template:string = this.getTemplate();
     let data = ejs.render(template, { rollup: rollupFileModel});
-    this.host.WriteFile(
-      `rollup.config.js`,
-      data,
-      undefined,
-      "source-files-typescript"
-    );
+    this.host.WriteFile(`rollup.config.js`, data);
   }
 }

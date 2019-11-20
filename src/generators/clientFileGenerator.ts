@@ -48,11 +48,6 @@ export class ClientGenerator implements Generator{
 
     let template:string = this.getTemplate();
     let data = ejs.render(template, { client: clientFileModel});
-    this.host.WriteFile(
-      `src/${clientFileModel.clientFileName}`,
-      data,
-      undefined,
-      "source-files-typescript"
-    );
+    this.host.WriteFile(`src/${clientFileModel.clientFileName}`, data);
   }
 }

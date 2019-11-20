@@ -31,12 +31,6 @@ export class ModelsGenerator implements Generator {
     const clientDetails = transformCodeModel(this.codeModel);
     let template: string = this.getTemplate();
     let renderedFile = ejs.render(template, clientDetails);
-
-    this.host.WriteFile(
-      "src/models/index.ts",
-      renderedFile,
-      undefined,
-      "source-files-typescript"
-    );
+    this.host.WriteFile("src/models/index.ts", renderedFile);
   }
 }

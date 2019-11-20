@@ -27,28 +27,21 @@ More information about these can be found [here](https://github.com/Azure/autore
 
 ```yaml
 use-extension:
-  "@autorest/modelerfour": "4.0.43"
+  "@autorest/modelerfour": "4.0.52"
 
 pipeline:
-  modelerfour:
-    input: openapi-document/multi-api/identity
-
-  modelerfour/new-transform:
-    input: modelerfour
-
   typescript: # <- name of plugin
-    input: modelerfour/new-transform
-    scope: typescript
+    input: modelerfour/identity
+    output-artifact: typescript-files
 
   typescript/emitter:
     input: typescript
-    scope: typescript-scope
-    output-artifact: source-files-typescript
+    scope: typescript-scope/emitter
 
-typescript-scope:
-  is-object: false
-  output-artifact:
-    - source-files-typescript
+typescript-scope/emitter:
+  input-artifact: typescript-files
+
+output-artifact: typescript-files
 ```
 
 ## Language Specific Requirements: TypeScript

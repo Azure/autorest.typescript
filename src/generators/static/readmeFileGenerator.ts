@@ -30,11 +30,6 @@ export class ReadmeFileGenerator implements Generator {
 
     let template:string = this.getTemplate();
     let data = ejs.render(template, { readme: readmeFileModel});
-    this.host.WriteFile(
-      `README.md`,
-      data,
-      undefined,
-      "source-files-typescript"
-    );
+    this.host.WriteFile(`README.md`, data);
   }
 }
