@@ -49,7 +49,7 @@ const refColorSchema = new ObjectSchema(
       new Property(
         "field1",
         "A field number 1",
-        new StringSchema("typeOfFieldOne", "Strring representing field one"),
+        new StringSchema("typeOfFieldOne", "String representing field one"),
         { required: false }
       )
     ]

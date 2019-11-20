@@ -3,7 +3,7 @@
 
 export enum CasingConvention {
   Pascal,
-  Cammel
+  Camel
 }
 
 export enum NameType {
@@ -80,7 +80,7 @@ function getCasingConvention(nameType: NameType) {
     case NameType.Class:
       return CasingConvention.Pascal;
     case NameType.Property:
-      return CasingConvention.Cammel;
+      return CasingConvention.Camel;
   }
 }
 

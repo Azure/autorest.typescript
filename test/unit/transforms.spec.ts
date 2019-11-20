@@ -170,7 +170,7 @@ describe("Transforms", () => {
 
       assert.strictEqual(colorUnion.name, "Color");
       assert.strictEqual(colorUnion.description, "Defines values for Color.");
-      assert.deepEqual(colorUnion.values, ["red", "green", "blue"]);
+      assert.deepEqual(colorUnion.values, [`"red"`, `"green"`, `"blue"`]);
     });
   });
 
@@ -180,6 +180,17 @@ describe("Transforms", () => {
         getStringForValue(
           "red",
           new StringSchema("ColorString", "A color string.")
+        ),
+        `"red"`
+      );
+    });
+
+    it("converts a string value to a non-quoted string", () => {
+      assert.strictEqual(
+        getStringForValue(
+          "red",
+          new StringSchema("ColorString", "A color string."),
+          false
         ),
         "red"
       );

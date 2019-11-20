@@ -35,10 +35,14 @@ export interface PropertyTypeDetails {
   defaultValue?: string;
 }
 
-export function getStringForValue(value: any, valueType: ValueSchema): string {
+export function getStringForValue(
+  value: any,
+  valueType: ValueSchema,
+  quotedStrings = true
+): string {
   switch (valueType.type) {
     case SchemaType.String:
-      return `${value}`;
+      return quotedStrings ? `"${value}"` : `${value}`;
     case SchemaType.Number:
     case SchemaType.Integer:
       return value.toString();
@@ -67,7 +71,8 @@ export function getTypeForSchema(schema: Schema): PropertyTypeDetails {
       typeName = constantType.typeName;
       defaultValue = getStringForValue(
         constantSchema.value.value,
-        constantSchema.valueType
+        constantSchema.valueType,
+        false
       );
       break;
     default:
