@@ -32,6 +32,14 @@ export class MappersGenerator implements Generator {
 
   public async process(): Promise<void> {
     const mappers = (this.codeModel.schemas.objects || []).map(transformMapper);
-    console.log(JSON.stringify(mappers));
+    let template: string = this.getTemplate();
+    let renderedFile = ejs.render(template, { mappers });
+
+    this.host.WriteFile(
+      "src/models/index.ts",
+      renderedFile,
+      undefined,
+      "source-files-typescript"
+    );
   }
 }
