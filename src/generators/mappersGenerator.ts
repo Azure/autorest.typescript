@@ -36,7 +36,7 @@ export class MappersGenerator implements Generator {
     let renderedFile = ejs.render(template, { mappers });
 
     this.host.WriteFile(
-      "src/models/index.ts",
+      "src/models/mappers.ts",
       renderedFile,
       undefined,
       "source-files-typescript"

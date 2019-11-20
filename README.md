@@ -1,7 +1,6 @@
-
 # Contributing
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
+This project welcomes contributions and suggestions. Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
 the rights to use your contribution. For details, visit https://cla.microsoft.com.
 
@@ -13,7 +12,6 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
-
 # Simple AutoRest Extension
 
 A simple AutoRest extension that can be used as a template for or documentation about writing such extensions.
@@ -23,34 +21,34 @@ Since this a TypeScript project, we distinguish between language agnostic and la
 
 More information about these can be found [here](https://github.com/Azure/autorest/tree/master/docs/developer), summary:
 
-1) Specify the start command of the extension as the `start` script in the `package.json` 
-2) Implement the AutoRest extension protocol (here: handled by library, see below)
-3) Hook up plugins into the AutoRest pipeline DAG, e.g.
+1. Specify the start command of the extension as the `start` script in the `package.json`
+2. Implement the AutoRest extension protocol (here: handled by library, see below)
+3. Hook up plugins into the AutoRest pipeline DAG, e.g.
 
-``` yaml
+```yaml
 use-extension:
-  "@autorest/modelerfour": "~4.0.2"
-  
+  "@autorest/modelerfour": "4.0.43"
+
 pipeline:
-    modelerfour:
-        input: openapi-document/multi-api/identity
- 
-    modelerfour/new-transform:
-        input: modelerfour
+  modelerfour:
+    input: openapi-document/multi-api/identity
 
-    typescript: # <- name of plugin
-        input: modelerfour/new-transform
-        scope: typescript
+  modelerfour/new-transform:
+    input: modelerfour
 
-    typescript/emitter:
-        input: typescript
-        scope: typescript-scope
-        output-artifact: source-files-typescript
+  typescript: # <- name of plugin
+    input: modelerfour/new-transform
+    scope: typescript
+
+  typescript/emitter:
+    input: typescript
+    scope: typescript-scope
+    output-artifact: source-files-typescript
 
 typescript-scope:
-    is-object: false
-    output-artifact:
-        - source-files-typescript
+  is-object: false
+  output-artifact:
+    - source-files-typescript
 ```
 
 ## Language Specific Requirements: TypeScript
