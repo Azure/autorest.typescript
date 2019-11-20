@@ -7,6 +7,7 @@
 export interface PropertyDetails {
   name: string;
   description?: string;
+  defaultValue?: string;
   serializedName: string;
   type: string;
   required: boolean;
