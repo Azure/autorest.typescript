@@ -10,13 +10,22 @@ import * as coreHttp from "@azure/core-http";
  * <%= model.description %>
  */
 export interface <%= model.name %> {
-  <%_ model.properties.forEach(function (property) { -%>
+  <%_ model.properties.forEach(function (property) { _%>
+  <%_ if (!property.isConstant) { _%>
   <%_ if (property.description) { %>
   /**
    * <%= property.description %>
    */
   <%_ } _%>
   <%= property.name %><%= property.required ? '?' : '' %>: <%= property.type %><%= ';' %>
+  <%_ } _%>
   <%_ }); -%>
 };
+<%_ }); -%>
+
+<%_ unions.forEach(function (union) { _%>
+/**
+ * <%= union.description %>
+ */
+export type <%= union.name %> = <%- union.values.join(" | ") _%>;
 <%_ }); %>

@@ -2,7 +2,9 @@
 // Licensed under the MIT License.
 
 import { ModelDetails } from "./modelDetails";
+import { UnionDetails } from "./unionDetails";
 
 export interface ClientDetails {
-  models: ModelDetails[]
+  models: ModelDetails[],
+  unions: UnionDetails[]
 }

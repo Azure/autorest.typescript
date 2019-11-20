@@ -30,7 +30,7 @@ export class ModelsGenerator implements Generator {
   public async process(): Promise<void> {
     const clientDetails = transformCodeModel(this.codeModel);
     let template: string = this.getTemplate();
-    let renderedFile = ejs.render(template, { models: clientDetails.models });
+    let renderedFile = ejs.render(template, clientDetails);
 
     this.host.WriteFile(
       "src/models/index.ts",
