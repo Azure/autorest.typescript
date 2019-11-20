@@ -83,7 +83,9 @@ export function getTypeForSchema(schema: Schema): PropertyTypeDetails {
 
 export function transformProperty(property: Property): PropertyDetails {
   const metadata = getLanguageMetadata(property.language);
-  const propertyType = getTypeForSchema(property.schema);
+  const { typeName, isConstant, defaultValue } = getTypeForSchema(
+    property.schema
+  );
 
   return {
     name: normalizeName(metadata.name, NameType.Property),
@@ -91,11 +93,11 @@ export function transformProperty(property: Property): PropertyDetails {
       ? metadata.description
       : undefined,
     serializedName: property.serializedName,
-    type: propertyType.typeName,
-    required: property.required || true,
-    readOnly: property.readOnly || false,
-    isConstant: propertyType.isConstant,
-    defaultValue: propertyType.defaultValue
+    type: typeName,
+    required: !!property.required,
+    readOnly: !!property.readOnly,
+    isConstant,
+    defaultValue
   };
 }
 
