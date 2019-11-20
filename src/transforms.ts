@@ -38,7 +38,7 @@ export interface PropertyTypeDetails {
 export function getStringForValue(value: any, valueType: ValueSchema): string {
   switch (valueType.type) {
     case SchemaType.String:
-      return value;
+      return `${value}`;
     case SchemaType.Number:
     case SchemaType.Integer:
       return value.toString();
