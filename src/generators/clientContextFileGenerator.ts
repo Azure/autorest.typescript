@@ -38,9 +38,6 @@ export class ClientContextFileGenerator implements Generator {
     let data = ejs.render(template, { context: clientContextFileModel});
     this.host.WriteFile(
       `src/${clientContextFileModel.clientContextFileName}`,
-      data,
-      undefined,
-      "source-files-typescript"
-    );
+      data);
   }
 }

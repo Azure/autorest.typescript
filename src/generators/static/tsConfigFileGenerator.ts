@@ -25,11 +25,6 @@ export class TsConfigFileGenerator implements Generator {
   public async process(): Promise<void> {
     let template:string = this.getTemplate();
     let data = ejs.render(template);
-    this.host.WriteFile(
-      `tsconfig.json`,
-      data,
-      undefined,
-      "source-files-typescript"
-    );
+    this.host.WriteFile(`tsconfig.json`, data);
   }
 }

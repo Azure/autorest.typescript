@@ -25,11 +25,6 @@ export class LicenseFileGenerator implements Generator {
   public async process(): Promise<void> {
     let template:string = this.getTemplate();
     let data = ejs.render(template);
-    this.host.WriteFile(
-      `LICENSE.txt`,
-      data,
-      undefined,
-      "source-files-typescript"
-    );
+    this.host.WriteFile(`LICENSE.txt`, data);
   }
 }

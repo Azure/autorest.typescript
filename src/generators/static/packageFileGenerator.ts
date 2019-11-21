@@ -35,11 +35,6 @@ export class PackageFileGenerator implements Generator {
 
     let template:string = this.getTemplate();
     let data = ejs.render(template, { package: packageFileModel});
-    this.host.WriteFile(
-      `package.json`,
-      data,
-      undefined,
-      "source-files-typescript"
-    );
+    this.host.WriteFile(`package.json`, data);
   }
 }
