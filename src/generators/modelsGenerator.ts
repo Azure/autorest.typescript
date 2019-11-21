@@ -1,36 +1,52 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import * as fs from 'fs';
-import * as ejs from 'ejs';
+import { CodeModel } from "@azure-tools/codemodel";
+import { transformCodeModel } from "../transforms";
+import { Project, PropertySignatureStructure, StructureKind } from "ts-morph";
 
-import * as constants from '../utils/constants';
-import { Generator } from "./generator";
-import { CodeModel } from '@azure-tools/codemodel';
-import { Host } from '@azure-tools/autorest-extension-base';
-import { transformCodeModel } from '../transforms';
+export async function generateModels(
+  codeModel: CodeModel,
+  project: Project
+): Promise<void> {
+  const clientDetails = transformCodeModel(codeModel);
 
-export class ModelsGenerator implements Generator {
-  private host: Host;
-  private codeModel: CodeModel;
-  private templateName: string;
+  const modelsIndexFile = project.createSourceFile(
+    "src/models/index.ts",
+    undefined,
+    { overwrite: true }
+  );
 
-  constructor(codeModel: CodeModel, host: Host) {
-    this.codeModel = codeModel;
-    this.host = host;
-    this.templateName = 'models_template.ejs';
-  }
+  modelsIndexFile.addImportDeclaration({
+    namespaceImport: "coreHttp",
+    moduleSpecifier: "@azure/core-http"
+  });
 
-  getTemplate(): string {
-    return fs.readFileSync(`${constants.TEMPLATE_LOCATION}/${this.templateName}`, {
-      encoding: 'utf8'
+  for (const model of clientDetails.models) {
+    modelsIndexFile.addInterface({
+      name: model.name,
+      docs: [model.description],
+      isExported: true,
+      properties: model.properties
+        .filter(p => !p.isConstant)
+        .map<PropertySignatureStructure>(p => ({
+          name: p.name,
+          hasQuestionToken: !p.required,
+          isReadonly: p.readOnly,
+          type: p.type,
+          docs: p.description ? [p.description] : undefined,
+          kind: StructureKind.PropertySignature
+        }))
     });
   }
 
-  public async process(): Promise<void> {
-    const clientDetails = transformCodeModel(this.codeModel);
-    let template: string = this.getTemplate();
-    let renderedFile = ejs.render(template, clientDetails);
-    this.host.WriteFile("src/models/index.ts", renderedFile);
+  for (const union of clientDetails.unions) {
+    modelsIndexFile.addTypeAlias({
+      name: union.name,
+      docs: [union.description],
+      isExported: true,
+      type: union.values.join(" | "),
+      trailingTrivia: writer => writer.newLine()
+    });
   }
 }

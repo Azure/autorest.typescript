@@ -3,5 +3,4 @@
 
 export interface Generator {
   process(): Promise<void>;
-  getTemplate(): string;
 }

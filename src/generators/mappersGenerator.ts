@@ -1,39 +1,49 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import * as fs from "fs";
-import * as ejs from "ejs";
-
-import * as constants from "../utils/constants";
-import { Generator } from "./generator";
 import { CodeModel } from "@azure-tools/codemodel";
-import { Host } from "@azure-tools/autorest-extension-base";
 import { transformMapper } from "../mapperTransforms";
+import { Project, VariableDeclarationKind } from "ts-morph";
 
-export class MappersGenerator implements Generator {
-  private host: Host;
-  private codeModel: CodeModel;
-  private templateName: string;
+export async function generateMappers(
+  codeModel: CodeModel,
+  project: Project
+): Promise<void> {
+  const mappers = (codeModel.schemas.objects || []).map(transformMapper);
+  const mappersFile = project.createSourceFile(
+    "src/models/mappers.ts",
+    undefined,
+    { overwrite: true }
+  );
 
-  constructor(codeModel: CodeModel, host: Host) {
-    this.codeModel = codeModel;
-    this.host = host;
-    this.templateName = "mappers_template.ejs";
-  }
+  mappersFile.addImportDeclaration({
+    namespaceImport: "coreHttp",
+    moduleSpecifier: "@azure/core-http"
+  });
 
-  getTemplate(): string {
-    return fs.readFileSync(
-      `${constants.TEMPLATE_LOCATION}/${this.templateName}`,
-      {
-        encoding: "utf8"
-      }
+  for (const mapper of mappers) {
+    // Generate the mapper definition and replace object key strings
+    // with the unquoted name
+    const mapperString = JSON.stringify(mapper, undefined, 2).replace(
+      /\"([^"]+)\":/g,
+      "$1:"
     );
-  }
 
-  public async process(): Promise<void> {
-    const mappers = (this.codeModel.schemas.objects || []).map(transformMapper);
-    let template: string = this.getTemplate();
-    let renderedFile = ejs.render(template, { mappers });
-    this.host.WriteFile("src/models/mappers.ts", renderedFile);
+    if (mapper.type.className) {
+      mappersFile.addVariableStatement({
+        isExported: true,
+        declarations: [
+          {
+            name: mapper.type.className,
+            type: "coreHttp.CompositeMapper",
+            initializer: mapperString
+          }
+        ],
+        declarationKind: VariableDeclarationKind.Const,
+        leadingTrivia: writer => writer.blankLine()
+      });
+    } else {
+      throw new Error("Mapper does not have a className");
+    }
   }
 }

@@ -21,13 +21,16 @@
         "@microsoft.azure/autorest.testserver": "^2.7.0",
         "@types/ejs": "^2.6.3",
         "ejs": "^2.7.2",
-        "source-map-support": "^0.5.16"
+        "prettier": "^1.19.1",
+        "source-map-support": "^0.5.16",
+        "ts-morph": "^5.0.0"
     },
     "devDependencies": {
         "@autorest/test-server": "^3.0.26",
         "@types/js-yaml": "3.12.1",
         "@types/mocha": "5.2.7",
         "@types/node": "12.7.12",
+        "@types/prettier": "^1.18.4",
         "@types/xmlbuilder": "0.0.34",
         "@typescript-eslint/eslint-plugin": "~2.0.0",
         "@typescript-eslint/parser": "~2.0.0",
