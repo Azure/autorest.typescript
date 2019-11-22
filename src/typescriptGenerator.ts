@@ -7,6 +7,7 @@ import { generateClient } from "./generators/clientFileGenerator";
 import { generateModels } from "./generators/modelsGenerator";
 import { generateMappers } from "./generators/mappersGenerator";
 import { StaticFilesGenerator } from "./generators/staticFilesGenerator";
+import { generatePackageJson } from "./generators/static/packageFileGenerator";
 
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
@@ -47,6 +48,8 @@ export class TypescriptGenerator {
     const packageVersion = await this.host.GetValue("package-version");
 
     let generators = [
+      (_codeModel: CodeModel, project: Project) =>
+        generatePackageJson(packageName, packageVersion, project),
       generateClient,
       new ClientContextFileGenerator(this.codeModel, this.host),
       new StaticFilesGenerator(this.codeModel, this.host),
