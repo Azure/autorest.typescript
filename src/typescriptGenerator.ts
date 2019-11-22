@@ -3,10 +3,28 @@ import { CodeModel } from "@azure-tools/codemodel";
 import { Project, IndentationText } from "ts-morph";
 import { Host } from "@azure-tools/autorest-extension-base";
 import { ClientContextFileGenerator } from "./generators/clientContextFileGenerator";
-import { ClientGenerator } from "./generators/clientFileGenerator";
+import { generateClient } from "./generators/clientFileGenerator";
 import { generateModels } from "./generators/modelsGenerator";
 import { generateMappers } from "./generators/mappersGenerator";
 import { StaticFilesGenerator } from "./generators/staticFilesGenerator";
+
+const prettierTypeScriptOptions: prettier.Options = {
+  parser: "typescript",
+  arrowParens: "always",
+  bracketSpacing: true,
+  endOfLine: "lf",
+  printWidth: 100,
+  semi: true,
+  singleQuote: false,
+  tabWidth: 2
+};
+
+const prettierJSONOptions: prettier.Options = {
+  parser: "json",
+  tabWidth: 2,
+  semi: false,
+  singleQuote: false
+};
 
 export class TypescriptGenerator {
   private codeModel: CodeModel;
@@ -25,10 +43,13 @@ export class TypescriptGenerator {
   }
 
   public async process(): Promise<void> {
+    const packageName = await this.host.GetValue("package-name");
+    const packageVersion = await this.host.GetValue("package-version");
+
     let generators = [
+      generateClient,
       new ClientContextFileGenerator(this.codeModel, this.host),
       new StaticFilesGenerator(this.codeModel, this.host),
-      new ClientGenerator(this.codeModel, this.host),
       generateModels,
       generateMappers
     ];
@@ -53,17 +74,6 @@ export class TypescriptGenerator {
  */
 `;
 
-    const prettierOptions: prettier.Options = {
-      parser: "typescript",
-      arrowParens: "always",
-      bracketSpacing: true,
-      endOfLine: "lf",
-      printWidth: 100,
-      semi: true,
-      singleQuote: false,
-      tabWidth: 2
-    };
-
     // Save the source files to the virtual filesystem
     this.project.saveSync();
     const fs = this.project.getFileSystem();
@@ -71,17 +81,21 @@ export class TypescriptGenerator {
     // Loop over the files
     for (const file of this.project.getSourceFiles()) {
       const filePath = file.getFilePath();
+      const isJson = /\.json$/gi.test(filePath);
       let fileContents = fs.readFileSync(filePath);
 
       // Add the license header, if any
-      if (licenseHeader) {
+      if (licenseHeader && !isJson) {
         fileContents = `${licenseHeader.trimLeft()}\n${fileContents}`;
       }
 
       // Write the file to the AutoRest host
       this.host.WriteFile(
         filePath.substr(1), // Get rid of the leading slash '/'
-        prettier.format(fileContents, prettierOptions)
+        prettier.format(
+          fileContents,
+          isJson ? prettierJSONOptions : prettierTypeScriptOptions
+        )
       );
     }
   }

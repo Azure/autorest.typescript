@@ -31,7 +31,7 @@ export function getCamelCaseWithUpperCaseBeginning(value: string): string {
 }
 
 export function getClientFileName(title: string): string {
-  return toCasing(title, CasingConvention.Pascal);
+  return toCasing(title.replace(/ /g, ""), CasingConvention.Camel);
 }
 
 export function getPackageOutputName(packageName: string): string {
