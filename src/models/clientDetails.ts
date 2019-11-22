@@ -5,6 +5,10 @@ import { ModelDetails } from "./modelDetails";
 import { UnionDetails } from "./unionDetails";
 
 export interface ClientDetails {
-  models: ModelDetails[],
-  unions: UnionDetails[]
+  name: string;
+  className: string;
+  description?: string;
+  sourceFileName: string;
+  models: ModelDetails[];
+  unions: UnionDetails[];
 }

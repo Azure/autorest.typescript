@@ -8,7 +8,8 @@ export enum CasingConvention {
 
 export enum NameType {
   Class,
-  Property
+  Property,
+  File
 }
 
 export function normalizeName(name: string, nameType: NameType): string {
@@ -79,6 +80,7 @@ function getCasingConvention(nameType: NameType) {
   switch (nameType) {
     case NameType.Class:
       return CasingConvention.Pascal;
+    case NameType.File:
     case NameType.Property:
       return CasingConvention.Camel;
   }
