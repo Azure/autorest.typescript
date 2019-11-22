@@ -59,7 +59,7 @@ export async function generatePackageJson(
     ],
     scripts: {
       build: "tsc && rollup -c rollup.config.js && npm run minify",
-      minify: `uglifyjs -c -m --comments --source-map "content='./dist/${clientDetails.sourceFileName}.js.map'" -o ./dist/${clientDetails.sourceFileName}.min.js ./dist/${clientDetails.sourceFileName}.js`,
+      minify: `uglifyjs -c -m --comments --source-map "content='./dist/${packageDetails.nameWithoutScope}.js.map'" -o ./dist/${packageDetails.nameWithoutScope}.min.js ./dist/${packageDetails.nameWithoutScope}.js`,
       prepack: "npm install && npm run build"
     },
     sideEffects: false,
