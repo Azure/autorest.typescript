@@ -28,19 +28,6 @@ export function getClientFileName(title: string): string {
   return toCasing(title.replace(/ /g, ""), CasingConvention.Camel);
 }
 
-export function getPackageOutputName(packageName: string): string {
-  packageName = packageName.replace(/@azure\//g, "");
-  const splitPackageName = packageName.split("-");
-  let result: string = "";
-  splitPackageName.forEach((str, index) => {
-    result = result + str.substr(0, 1).toUpperCase() + str.substr(1);
-    if (index != splitPackageName.length - 1) {
-      result = result + "-";
-    }
-  });
-  return result;
-}
-
 export function getModelsName(title: string): string {
   const spaceRemovedTitle = title.replace(/ /g, "");
   return `${spaceRemovedTitle.replace("Client", "")}Models`;

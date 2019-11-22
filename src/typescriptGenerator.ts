@@ -16,6 +16,7 @@ import { generatePackageJson } from "./generators/static/packageFileGenerator";
 import { generateLicenseFile } from "./generators/static/licenseFileGenerator";
 import { generateReadmeFile } from "./generators/static/readmeFileGenerator";
 import { generateTsConfig } from "./generators/static/tsConfigFileGenerator";
+import { generateRollupConfig } from "./generators/static/rollupConfigFileGenerator";
 
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
@@ -69,6 +70,7 @@ export class TypescriptGenerator {
       generateLicenseFile(project);
       generateReadmeFile(clientDetails, packageDetails, project);
       generateTsConfig(project);
+      generateRollupConfig(clientDetails, packageDetails, project);
     }
 
     generateClient(clientDetails, project);

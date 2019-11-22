@@ -4,7 +4,6 @@
 import { Generator } from "./generator";
 import { CodeModel } from "@azure-tools/codemodel";
 import { Host } from "@azure-tools/autorest-extension-base";
-import { RollupConfigFileGenerator } from "./static/rollupConfigFileGenerator";
 
 export class StaticFilesGenerator implements Generator {
   private codeModel: CodeModel;
@@ -15,13 +14,5 @@ export class StaticFilesGenerator implements Generator {
     this.host = host;
   }
 
-  public async process(): Promise<void> {
-    const generators = [
-      new RollupConfigFileGenerator(this.codeModel, this.host)
-    ];
-
-    for (let generator of generators) {
-      await generator.process();
-    }
-  }
+  public async process(): Promise<void> {}
 }
