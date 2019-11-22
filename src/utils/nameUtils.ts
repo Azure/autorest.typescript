@@ -24,10 +24,6 @@ export function normalizeName(name: string, nameType: NameType): string {
   return `${normalizedFirstPart}${normalizedParts}`;
 }
 
-export function getClientFileName(title: string): string {
-  return toCasing(title.replace(/ /g, ""), CasingConvention.Camel);
-}
-
 export function getModelsName(title: string): string {
   const spaceRemovedTitle = title.replace(/ /g, "");
   return `${spaceRemovedTitle.replace("Client", "")}Models`;
@@ -36,10 +32,6 @@ export function getModelsName(title: string): string {
 export function getMappersName(title: string): string {
   const spaceRemovedTitle = title.replace(/ /g, "");
   return `${spaceRemovedTitle.replace("Client", "")}Mappers`;
-}
-
-export function getPackageNameModified(packageName: string): string {
-  return `${packageName.replace("@azure/", "")}`;
 }
 
 function getCasingConvention(nameType: NameType) {
