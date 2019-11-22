@@ -37,52 +37,46 @@ const prettierJSONOptions: prettier.Options = {
   singleQuote: false
 };
 
-export class TypescriptGenerator {
-  private codeModel: CodeModel;
-  private host: Host;
+export async function generateTypeScriptLibrary(
+  codeModel: CodeModel,
+  host: Host
+): Promise<void> {
+  const project = new Project({
+    useVirtualFileSystem: true,
+    manipulationSettings: {
+      indentationText: IndentationText.TwoSpaces
+    }
+  });
 
-  constructor(codeModel: CodeModel, host: Host) {
-    this.codeModel = codeModel;
-    this.host = host;
+  const clientDetails = transformCodeModel(codeModel);
+  const packageName = await host.GetValue("package-name");
+  const packageNameParts = packageName.match(/(^@(.*)\/)?(.*)/);
+  const packageDetails: PackageDetails = {
+    name: packageName,
+    scopeName: packageNameParts[2],
+    nameWithoutScope: packageNameParts[3],
+    description: clientDetails.description,
+    version: await host.GetValue("package-version")
+  };
+
+  // Skip metadata generation if `generate-metadata` is explicitly false
+  if ((await host.GetValue("generate-metadata")) !== false) {
+    generatePackageJson(clientDetails, packageDetails, project);
+    generateLicenseFile(project);
+    generateReadmeFile(clientDetails, packageDetails, project);
+    generateTsConfig(project);
+    generateRollupConfig(clientDetails, packageDetails, project);
   }
 
-  public async process(): Promise<void> {
-    const project = new Project({
-      useVirtualFileSystem: true,
-      manipulationSettings: {
-        indentationText: IndentationText.TwoSpaces
-      }
-    });
+  generateClient(clientDetails, project);
+  generateClientContext(clientDetails, packageDetails, project);
+  generateModels(codeModel, project);
+  generateMappers(codeModel, project);
+  generateOperations(clientDetails, project);
 
-    const clientDetails = transformCodeModel(this.codeModel);
-    const packageName = await this.host.GetValue("package-name");
-    const packageNameParts = packageName.match(/(^@(.*)\/)?(.*)/);
-    const packageDetails: PackageDetails = {
-      name: packageName,
-      scopeName: packageNameParts[2],
-      nameWithoutScope: packageNameParts[3],
-      description: clientDetails.description,
-      version: await this.host.GetValue("package-version")
-    };
-
-    // Skip metadata generation if `generate-metadata` is explicitly false
-    if ((await this.host.GetValue("generate-metadata")) !== false) {
-      generatePackageJson(clientDetails, packageDetails, project);
-      generateLicenseFile(project);
-      generateReadmeFile(clientDetails, packageDetails, project);
-      generateTsConfig(project);
-      generateRollupConfig(clientDetails, packageDetails, project);
-    }
-
-    generateClient(clientDetails, project);
-    generateClientContext(clientDetails, packageDetails, project);
-    generateModels(this.codeModel, project);
-    generateMappers(this.codeModel, project);
-    generateOperations(clientDetails, project);
-
-    // TODO: Get this from the "license-header" setting:
-    //   await this.host.GetValue("license-header");
-    const licenseHeader = `
+  // TODO: Get this from the "license-header" setting:
+  //   await this.host.GetValue("license-header");
+  const licenseHeader = `
 /*
  * Copyright (c) Microsoft Corporation.
  * Licensed under the MIT License.
@@ -92,35 +86,34 @@ export class TypescriptGenerator {
  */
 `;
 
-    // Save the source files to the virtual filesystem
-    project.saveSync();
-    const fs = project.getFileSystem();
+  // Save the source files to the virtual filesystem
+  project.saveSync();
+  const fs = project.getFileSystem();
 
-    // Loop over the files
-    for (const file of project.getSourceFiles()) {
-      const filePath = file.getFilePath();
-      const isJson = /\.json$/gi.test(filePath);
-      const isSourceCode = /\.(ts|js)$/gi.test(filePath);
-      let fileContents = fs.readFileSync(filePath);
+  // Loop over the files
+  for (const file of project.getSourceFiles()) {
+    const filePath = file.getFilePath();
+    const isJson = /\.json$/gi.test(filePath);
+    const isSourceCode = /\.(ts|js)$/gi.test(filePath);
+    let fileContents = fs.readFileSync(filePath);
 
-      // Add the license header to source code files
-      if (licenseHeader && isSourceCode) {
-        fileContents = `${licenseHeader.trimLeft()}\n${fileContents}`;
-      }
+    // Add the license header to source code files
+    if (licenseHeader && isSourceCode) {
+      fileContents = `${licenseHeader.trimLeft()}\n${fileContents}`;
+    }
 
-      // Format the contents if necessary
-      if (isJson || isSourceCode) {
-        fileContents = prettier.format(
-          fileContents,
-          isJson ? prettierJSONOptions : prettierTypeScriptOptions
-        );
-      }
-
-      // Write the file to the AutoRest host
-      this.host.WriteFile(
-        filePath.substr(1), // Get rid of the leading slash '/'
-        fileContents
+    // Format the contents if necessary
+    if (isJson || isSourceCode) {
+      fileContents = prettier.format(
+        fileContents,
+        isJson ? prettierJSONOptions : prettierTypeScriptOptions
       );
     }
+
+    // Write the file to the AutoRest host
+    host.WriteFile(
+      filePath.substr(1), // Get rid of the leading slash '/'
+      fileContents
+    );
   }
 }
