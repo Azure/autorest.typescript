@@ -143,7 +143,12 @@ export function transformObject(obj: ObjectSchema): ModelDetails {
 }
 
 export function transformCodeModel(codeModel: CodeModel): ClientDetails {
+  const className = normalizeName(codeModel.info.title, NameType.Class);
   return {
+    name: codeModel.info.title,
+    className,
+    description: codeModel.info.description,
+    sourceFileName: normalizeName(className, NameType.File),
     models: codeModel.schemas.objects
       ? codeModel.schemas.objects.map(transformObject)
       : [],

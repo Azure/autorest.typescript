@@ -5,10 +5,7 @@ import { CodeModel } from "@azure-tools/codemodel";
 import { transformMapper } from "../mapperTransforms";
 import { Project, VariableDeclarationKind } from "ts-morph";
 
-export async function generateMappers(
-  codeModel: CodeModel,
-  project: Project
-): Promise<void> {
+export function generateMappers(codeModel: CodeModel, project: Project) {
   const mappers = (codeModel.schemas.objects || []).map(transformMapper);
   const mappersFile = project.createSourceFile(
     "src/models/mappers.ts",

@@ -8,7 +8,8 @@ export enum CasingConvention {
 
 export enum NameType {
   Class,
-  Property
+  Property,
+  File
 }
 
 export function normalizeName(name: string, nameType: NameType): string {
@@ -23,44 +24,6 @@ export function normalizeName(name: string, nameType: NameType): string {
   return `${normalizedFirstPart}${normalizedParts}`;
 }
 
-export function getCamelCaseWithUpperCaseBeginning(value: string): string {
-  const spaceRemovedValue = value.replace(/ /g, "");
-  return (
-    spaceRemovedValue.substr(0, 1).toUpperCase() + spaceRemovedValue.substr(1)
-  );
-}
-
-export function getClientFileName(title: string): string {
-  return toCasing(title, CasingConvention.Pascal);
-}
-
-export function getPackageOutputName(packageName: string): string {
-  packageName = packageName.replace(/@azure\//g, "");
-  const splitPackageName = packageName.split("-");
-  let result: string = "";
-  splitPackageName.forEach((str, index) => {
-    result = result + str.substr(0, 1).toUpperCase() + str.substr(1);
-    if (index != splitPackageName.length - 1) {
-      result = result + "-";
-    }
-  });
-  return result;
-}
-
-export function getClientClassName(title: string): string {
-  const spaceRemovedTitle = title.replace(/ /g, "");
-  return spaceRemovedTitle;
-}
-
-export function getClientContextClassName(title: string): string {
-  const spaceRemovedTitle = title.replace(/ /g, "");
-  return `${spaceRemovedTitle}Context`;
-}
-
-export function getClientContextFileName(title: string): string {
-  return `${getClientFileName(title)}Context`;
-}
-
 export function getModelsName(title: string): string {
   const spaceRemovedTitle = title.replace(/ /g, "");
   return `${spaceRemovedTitle.replace("Client", "")}Models`;
@@ -71,14 +34,11 @@ export function getMappersName(title: string): string {
   return `${spaceRemovedTitle.replace("Client", "")}Mappers`;
 }
 
-export function getPackageNameModified(packageName: string): string {
-  return `${packageName.replace("@azure/", "")}`;
-}
-
 function getCasingConvention(nameType: NameType) {
   switch (nameType) {
     case NameType.Class:
       return CasingConvention.Pascal;
+    case NameType.File:
     case NameType.Property:
       return CasingConvention.Camel;
   }

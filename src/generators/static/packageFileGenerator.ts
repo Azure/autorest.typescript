@@ -1,40 +1,76 @@
-import { Generator } from "../generator";
-import { CodeModel } from '@azure-tools/codemodel';
-import { Host } from '@azure-tools/autorest-extension-base';
-import * as constants from '../../utils/constants';
-import * as fs from 'fs';
-import * as ejs from 'ejs';
-import { PackageFileModel } from "../../models/static/packageFileModel";
-import * as namingUtils from '../../utils/nameUtils';
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
-export class PackageFileGenerator implements Generator {
-  templateName: string;
-  private codeModel:CodeModel;
-  private host:Host;
+import { Project } from "ts-morph";
+import { ClientDetails } from "../../models/clientDetails";
+import { PackageDetails } from "../../models/packageDetails";
 
-  constructor(codeModel: CodeModel, host: Host) {
-    this.codeModel = codeModel;
-    this.host = host;
-    this.templateName = 'package_template.ejs';
-  }
+export function generatePackageJson(
+  clientDetails: ClientDetails,
+  packageDetails: PackageDetails,
+  project: Project
+) {
+  const packageJsonContents = {
+    name: packageDetails.name,
+    author: "Microsoft Corporation",
+    description:
+      packageDetails.description ||
+      `A generated SDK for ${clientDetails.name}.`,
+    version: packageDetails.version,
+    dependencies: {
+      "@azure/core-arm": "^1.0.0",
+      "@azure/core-http": "^1.0.0",
+      tslib: "^1.9.3"
+    },
+    keywords: ["node", "azure", "typescript", "browser", "isomorphic"],
+    license: "MIT",
+    main: `./dist/${packageDetails.nameWithoutScope}.js`,
+    module: `./esm/${clientDetails.sourceFileName}.js`,
+    types: `./esm/${clientDetails.sourceFileName}.d.ts`,
+    devDependencies: {
+      typescript: "^3.1.1",
+      rollup: "^0.66.2",
+      "rollup-plugin-node-resolve": "^3.4.0",
+      "rollup-plugin-sourcemaps": "^0.4.2",
+      "uglify-js": "^3.4.9"
+    },
+    // TODO: Calculate the SDK path for the package
+    homepage: `https://github.com/Azure/azure-sdk-for-js`,
+    repository: {
+      type: "git",
+      url: "https://github.com/Azure/azure-sdk-for-js.git"
+    },
+    bugs: {
+      url: "https://github.com/Azure/azure-sdk-for-js/issues"
+    },
+    files: [
+      "dist/**/*.js",
+      "dist/**/*.js.map",
+      "dist/**/*.d.ts",
+      "dist/**/*.d.ts.map",
+      "esm/**/*.js",
+      "esm/**/*.js.map",
+      "esm/**/*.d.ts",
+      "esm/**/*.d.ts.map",
+      "src/**/*.ts",
+      "README.md",
+      "rollup.config.js",
+      "tsconfig.json"
+    ],
+    scripts: {
+      build: "tsc && rollup -c rollup.config.js && npm run minify",
+      minify: `uglifyjs -c -m --comments --source-map "content='./dist/${packageDetails.nameWithoutScope}.js.map'" -o ./dist/${packageDetails.nameWithoutScope}.min.js ./dist/${packageDetails.nameWithoutScope}.js`,
+      prepack: "npm install && npm run build"
+    },
+    sideEffects: false,
+    autoPublish: true
+  };
 
-  getTemplate(): string {
-    return fs.readFileSync(`${constants.TEMPLATE_LOCATION}/static/${this.templateName}`, {
-      encoding: 'utf8'
-    });
-  }
-
-  public async process(): Promise<void> {
-    let packageFileModel = new PackageFileModel();
-
-    packageFileModel.packageName = await this.host.GetValue('package-name');
-    packageFileModel.clientClassName = `${namingUtils.getClientClassName(this.codeModel.info.title)}`;;
-    packageFileModel.packageVersion = await this.host.GetValue('package-version');
-    packageFileModel.clientFileName = `${namingUtils.getClientFileName(this.codeModel.info.title)}`;
-    packageFileModel.packageNameModified = `${namingUtils.getPackageNameModified(packageFileModel.packageName)}`;
-
-    let template:string = this.getTemplate();
-    let data = ejs.render(template, { package: packageFileModel});
-    this.host.WriteFile(`package.json`, data);
-  }
+  project.createSourceFile(
+    "package.json",
+    JSON.stringify(packageJsonContents),
+    {
+      overwrite: true
+    }
+  );
 }

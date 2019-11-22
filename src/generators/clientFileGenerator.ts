@@ -1,53 +1,93 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { CodeModel } from '@azure-tools/codemodel';
-import { Host } from '@azure-tools/autorest-extension-base';
-import * as ejs from 'ejs';
-import * as fs from 'fs';
-import * as constants from '../utils/constants';
-import * as namingUtils from '../utils/nameUtils';
-import { Generator } from "./generator";
-import { ClientFileModel, OperationGroupName } from "../models/clientFileModel";
+import { Project } from "ts-morph";
+import { ClientDetails } from "../models/clientDetails";
+import { getModelsName, getMappersName } from "../utils/nameUtils";
 
-export class ClientGenerator implements Generator{
-  templateName: string;
-  private codeModel:CodeModel;
-  private host:Host;
+export function generateClient(clientDetails: ClientDetails, project: Project) {
+  const modelsName = getModelsName(clientDetails.className);
+  const mappersName = getMappersName(clientDetails.className);
+  const clientContextClassName = `${clientDetails.className}Context`;
+  const clientContextFileName = `${clientDetails.sourceFileName}Context`;
 
-  constructor(codeModel: CodeModel, host: Host) {
-    this.codeModel = codeModel;
-    this.host = host;
-    this.templateName = 'client_template.ejs';
-  }
+  const clientFile = project.createSourceFile(
+    `src/${clientDetails.sourceFileName}.ts`,
+    undefined,
+    {
+      overwrite: true
+    }
+  );
 
-  getTemplate(): string {
-    return fs.readFileSync(`${constants.TEMPLATE_LOCATION}/${this.templateName}`, {
-      encoding: 'utf8'
-    });
-  }
+  clientFile.addImportDeclaration({
+    namespaceImport: "Models",
+    moduleSpecifier: "./models"
+  });
 
-  public async process(): Promise<void> {
-    let clientFileModel = new ClientFileModel();
+  clientFile.addImportDeclaration({
+    namespaceImport: "Mappers",
+    moduleSpecifier: "./models/mappers"
+  });
 
-    clientFileModel.clientFileName = `${namingUtils.getClientFileName(this.codeModel.info.title)}.ts`;
-    clientFileModel.clientClassName = `${namingUtils.getClientClassName(this.codeModel.info.title)}`;
-    clientFileModel.clientContextClassName = `${namingUtils.getClientContextClassName(this.codeModel.info.title)}`;
-    clientFileModel.clientContextFileName = `${namingUtils.getClientContextFileName(this.codeModel.info.title)}`;
-    clientFileModel.modelsName = `${namingUtils.getModelsName(this.codeModel.info.title)}`;
-    clientFileModel.mappersName = `${namingUtils.getMappersName(this.codeModel.info.title)}`;
+  clientFile.addImportDeclaration({
+    namespaceImport: "operations",
+    moduleSpecifier: "./operations"
+  });
 
-    this.codeModel.operationGroups.forEach(operationGroup => {
-      if(operationGroup.$key.length > 0) {
-        let og = new OperationGroupName();
-        og.operationGroupName = operationGroup.$key;
-        og.operationGroupReferenceName = namingUtils.getCamelCaseWithUpperCaseBeginning(operationGroup.$key);
-        clientFileModel.operationGroupsNameMapper.push(og);
+  clientFile.addImportDeclaration({
+    namedImports: [clientContextClassName],
+    moduleSpecifier: `./${clientDetails.sourceFileName}Context`
+  });
+
+  const clientClass = clientFile.addClass({
+    name: clientDetails.className,
+    extends: clientContextClassName
+  });
+
+  clientClass.addProperties([
+    // TODO: Generate these based on operation groups list
+    // {
+    //   name: "string",
+    //   type: "operations.String",
+    //   leadingTrivia: writer => writer.write("// Operation groups")
+    // },
+    // { name: "enumModel", type: "operations.EnumModel" }
+  ]);
+
+  const clientConstructor = clientClass.addConstructor({
+    docs: [
+      // TODO: Parameter list will need to be generated based on real
+      // client parameter list.
+      `Initializes a new instance of the ${clientDetails.className} class.
+@param options The parameter options`
+    ],
+    parameters: [
+      {
+        name: "options",
+        hasQuestionToken: true,
+        type: `Models.${clientDetails.className}Options`
       }
-    })
+    ]
+  });
 
-    let template:string = this.getTemplate();
-    let data = ejs.render(template, { client: clientFileModel});
-    this.host.WriteFile(`src/${clientFileModel.clientFileName}`, data);
-  }
+  clientConstructor.addStatements([
+    "super(options);"
+    // TODO: Generate these based on operation groups list
+    // "this.string = new operations.String(this);",
+    // "this.enumModel = new operations.EnumModel(this);"
+  ]);
+
+  clientFile.addExportDeclaration({
+    leadingTrivia: writer => writer.write("// Operation Specifications\n\n"),
+    namedExports: [
+      { name: clientDetails.className },
+      { name: clientContextClassName },
+      { name: "Models", alias: modelsName },
+      { name: "Mappers", alias: mappersName }
+    ]
+  });
+
+  clientFile.addExportDeclaration({
+    moduleSpecifier: "./operations"
+  });
 }

@@ -19,8 +19,6 @@
         "@azure-tools/openapi": "3.0.209",
         "@azure/core-http": "^1.0.0",
         "@microsoft.azure/autorest.testserver": "^2.7.0",
-        "@types/ejs": "^2.6.3",
-        "ejs": "^2.7.2",
         "prettier": "^1.19.1",
         "source-map-support": "^0.5.16",
         "ts-morph": "^5.0.0"
