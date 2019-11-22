@@ -9,7 +9,6 @@ import { generateClient } from "./generators/clientFileGenerator";
 import { generateClientContext } from "./generators/clientContextFileGenerator";
 import { generateModels } from "./generators/modelsGenerator";
 import { generateMappers } from "./generators/mappersGenerator";
-import { StaticFilesGenerator } from "./generators/staticFilesGenerator";
 import { generatePackageJson } from "./generators/static/packageFileGenerator";
 import { transformCodeModel } from "./transforms";
 import { PackageDetails } from "./models/packageDetails";
@@ -35,45 +34,34 @@ const prettierJSONOptions: prettier.Options = {
 export class TypescriptGenerator {
   private codeModel: CodeModel;
   private host: Host;
-  private project: Project;
 
   constructor(codeModel: CodeModel, host: Host) {
     this.codeModel = codeModel;
     this.host = host;
-    this.project = new Project({
+  }
+
+  public async process(): Promise<void> {
+    const project = new Project({
       useVirtualFileSystem: true,
       manipulationSettings: {
         indentationText: IndentationText.TwoSpaces
       }
     });
-  }
 
-  public async process(): Promise<void> {
     const clientDetails = transformCodeModel(this.codeModel);
     const packageDetails: PackageDetails = {
       name: await this.host.GetValue("package-name"),
       version: await this.host.GetValue("package-version")
     };
 
-    let generators = [
-      (_codeModel: CodeModel, project: Project) =>
-        generatePackageJson(clientDetails, packageDetails, project),
-      (_codeModel: CodeModel, project: Project) =>
-        generateClient(clientDetails, project),
-      (_codeModel: CodeModel, project: Project) =>
-        generateClientContext(clientDetails, packageDetails, project),
-      new StaticFilesGenerator(this.codeModel, this.host),
-      generateModels,
-      generateMappers
-    ];
-
-    for (const generator of generators) {
-      if (typeof generator === "function") {
-        await generator(this.codeModel, this.project);
-      } else {
-        await generator.process();
-      }
+    if ((await this.host.GetValue("generate-metadata")) !== false) {
+      generatePackageJson(clientDetails, packageDetails, project);
     }
+
+    generateClient(clientDetails, project);
+    generateClientContext(clientDetails, packageDetails, project);
+    generateModels(this.codeModel, project);
+    generateMappers(this.codeModel, project);
 
     // TODO: Get this from the "license-header" setting:
     //   await this.host.GetValue("license-header");
@@ -88,27 +76,33 @@ export class TypescriptGenerator {
 `;
 
     // Save the source files to the virtual filesystem
-    this.project.saveSync();
-    const fs = this.project.getFileSystem();
+    project.saveSync();
+    const fs = project.getFileSystem();
 
     // Loop over the files
-    for (const file of this.project.getSourceFiles()) {
+    for (const file of project.getSourceFiles()) {
       const filePath = file.getFilePath();
       const isJson = /\.json$/gi.test(filePath);
+      const isSourceCode = /\.(ts|js)$/gi.test(filePath);
       let fileContents = fs.readFileSync(filePath);
 
-      // Add the license header, if any
-      if (licenseHeader && !isJson) {
+      // Add the license header to source code files
+      if (licenseHeader && isSourceCode) {
         fileContents = `${licenseHeader.trimLeft()}\n${fileContents}`;
+      }
+
+      // Format the contents if necessary
+      if (isJson || isSourceCode) {
+        fileContents = prettier.format(
+          fileContents,
+          isJson ? prettierJSONOptions : prettierTypeScriptOptions
+        );
       }
 
       // Write the file to the AutoRest host
       this.host.WriteFile(
         filePath.substr(1), // Get rid of the leading slash '/'
-        prettier.format(
-          fileContents,
-          isJson ? prettierJSONOptions : prettierTypeScriptOptions
-        )
+        fileContents
       );
     }
   }
