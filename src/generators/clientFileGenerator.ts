@@ -2,26 +2,20 @@
 // Licensed under the MIT License.
 
 import { Project } from "ts-morph";
-import { CodeModel } from "@azure-tools/codemodel";
-import * as namingUtils from "../utils/nameUtils";
+import { ClientDetails } from "../models/clientDetails";
+import { getModelsName, getMappersName } from "../utils/nameUtils";
 
 export async function generateClient(
-  codeModel: CodeModel,
+  clientDetails: ClientDetails,
   project: Project
 ): Promise<void> {
-  const clientFileName = namingUtils.getClientFileName(codeModel.info.title);
-  const clientClassName = namingUtils.getClientClassName(codeModel.info.title);
-  const clientContextClassName = namingUtils.getClientContextClassName(
-    codeModel.info.title
-  );
-  const clientContextFileName = namingUtils.getClientContextFileName(
-    codeModel.info.title
-  );
-  const modelsName = namingUtils.getModelsName(codeModel.info.title);
-  const mappersName = namingUtils.getMappersName(codeModel.info.title);
+  const modelsName = getModelsName(clientDetails.className);
+  const mappersName = getMappersName(clientDetails.className);
+  const clientContextClassName = `${clientDetails.className}Context`;
+  const clientContextFileName = `${clientDetails.sourceFileName}Context`;
 
   const clientFile = project.createSourceFile(
-    `src/${clientFileName}.ts`,
+    `src/${clientDetails.sourceFileName}.ts`,
     undefined,
     {
       overwrite: true
@@ -45,11 +39,11 @@ export async function generateClient(
 
   clientFile.addImportDeclaration({
     namedImports: [clientContextClassName],
-    moduleSpecifier: `./${clientContextFileName}`
+    moduleSpecifier: `./${clientDetails.sourceFileName}Context`
   });
 
   const clientClass = clientFile.addClass({
-    name: clientClassName,
+    name: clientDetails.className,
     extends: clientContextClassName
   });
 
@@ -67,14 +61,14 @@ export async function generateClient(
     docs: [
       // TODO: Parameter list will need to be generated based on real
       // client parameter list.
-      `Initializes a new instance of the ${clientClassName} class.
+      `Initializes a new instance of the ${clientDetails.className} class.
 @param options The parameter options`
     ],
     parameters: [
       {
         name: "options",
         hasQuestionToken: true,
-        type: `Models.${clientClassName}Options`
+        type: `Models.${clientDetails.className}Options`
       }
     ]
   });
@@ -89,7 +83,7 @@ export async function generateClient(
   clientFile.addExportDeclaration({
     leadingTrivia: writer => writer.write("// Operation Specifications\n\n"),
     namedExports: [
-      { name: clientClassName },
+      { name: clientDetails.className },
       { name: clientContextClassName },
       { name: "Models", alias: modelsName },
       { name: "Mappers", alias: mappersName }

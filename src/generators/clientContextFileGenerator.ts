@@ -1,43 +1,78 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Generator } from "./generator";
-import { CodeModel } from '@azure-tools/codemodel';
-import { Host } from '@azure-tools/autorest-extension-base';
-import * as fs from 'fs';
-import * as ejs from 'ejs';
-import * as namingUtils from '../utils/nameUtils';
-import * as constants from '../utils/constants';
-import { ClientContextFileModel } from '../models/clientContextFileModel';
+import { Project } from "ts-morph";
+import { normalizeName, NameType } from "../utils/nameUtils";
+import { ClientDetails } from "../models/clientDetails";
+import { PackageDetails } from "../models/packageDetails";
 
-export class ClientContextFileGenerator implements Generator {
-  templateName: string;
-  private codeModel:CodeModel;
-  private host:Host;
+export async function generateClientContext(
+  clientDetails: ClientDetails,
+  packageDetails: PackageDetails,
+  project: Project
+): Promise<void> {
+  const clientContextClassName = `${clientDetails.className}Context`;
+  const clientContextFileName = normalizeName(
+    clientContextClassName,
+    NameType.File
+  );
 
-  constructor(codeModel: CodeModel, host: Host) {
-    this.codeModel = codeModel;
-    this.host = host;
-    this.templateName = 'client_context_file_template.ejs';
-  }
+  const sourceFile = project.createSourceFile(
+    `src/${clientContextFileName}.ts`,
+    undefined,
+    {
+      overwrite: true
+    }
+  );
 
-  getTemplate(): string {
-    return fs.readFileSync(`${constants.TEMPLATE_LOCATION}/${this.templateName}`, {
-      encoding: 'utf8'
-    });
-  }
+  sourceFile.addImportDeclaration({
+    namespaceImport: "coreHttp",
+    moduleSpecifier: "@azure/core-http"
+  });
 
-  public async process(): Promise<void> {
-    let clientContextFileModel = new ClientContextFileModel();
-    clientContextFileModel.clientContextFileName = `${namingUtils.getClientContextFileName(this.codeModel.info.title)}.ts`;
-    clientContextFileModel.packageName = await this.host.GetValue('package-name');
-    clientContextFileModel.packageVersion = await this.host.GetValue('package-version');
-    clientContextFileModel.contextClassName = `${namingUtils.getClientContextClassName(this.codeModel.info.title)}`;
-    clientContextFileModel.clientClassName = `${namingUtils.getClientClassName(this.codeModel.info.title)}`;
-    let template:string = this.getTemplate();
-    let data = ejs.render(template, { context: clientContextFileModel});
-    this.host.WriteFile(
-      `src/${clientContextFileModel.clientContextFileName}`,
-      data);
-  }
+  sourceFile.addImportDeclaration({
+    namespaceImport: "Models",
+    moduleSpecifier: "./models"
+  });
+
+  sourceFile.addStatements([
+    `\n\n`,
+    `const packageName = "${packageDetails.name}";`,
+    `const packageVersion = "${packageDetails.version}";`
+  ]);
+
+  const contextClass = sourceFile.addClass({
+    name: clientContextClassName,
+    extends: "coreHttp.ServiceClient",
+    isExported: true
+  });
+
+  const classConstructor = contextClass.addConstructor({
+    docs: [
+      `Initializes a new instance of the ${clientContextClassName} class.\n
+@param options The parameter options`
+    ],
+    parameters: [
+      {
+        name: "options",
+        hasQuestionToken: true,
+        type: `Models.${clientDetails.className}Options`
+      }
+    ]
+  });
+
+  // This could all be expressed as one string template, but we may need to
+  // optionally skip some segments based on generation options
+  classConstructor.addStatements([
+    `if (!options) {
+       options = {};
+     }`,
+    `if (!options.userAgent) {
+       const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
+       options.userAgent = \`\${packageName}/\${packageVersion} \${defaultUserAgent}\`;
+     }\n`,
+    `super(undefined, options);\n\n`,
+    `this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
+     this.requestContentType = "application/json; charset=utf-8";`
+  ]);
 }

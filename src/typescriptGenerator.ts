@@ -57,9 +57,11 @@ export class TypescriptGenerator {
 
     let generators = [
       (_codeModel: CodeModel, project: Project) =>
-      generateClient,
-      new ClientContextFileGenerator(this.codeModel, this.host),
         generatePackageJson(clientDetails, packageDetails, project),
+      (_codeModel: CodeModel, project: Project) =>
+        generateClient(clientDetails, project),
+      (_codeModel: CodeModel, project: Project) =>
+        generateClientContext(clientDetails, packageDetails, project),
       new StaticFilesGenerator(this.codeModel, this.host),
       generateModels,
       generateMappers
