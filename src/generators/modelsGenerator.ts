@@ -5,10 +5,7 @@ import { CodeModel } from "@azure-tools/codemodel";
 import { transformCodeModel } from "../transforms";
 import { Project, PropertySignatureStructure, StructureKind } from "ts-morph";
 
-export async function generateModels(
-  codeModel: CodeModel,
-  project: Project
-): Promise<void> {
+export function generateModels(codeModel: CodeModel, project: Project) {
   const clientDetails = transformCodeModel(codeModel);
 
   const modelsIndexFile = project.createSourceFile(

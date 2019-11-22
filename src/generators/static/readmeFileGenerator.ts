@@ -5,11 +5,11 @@ import { Project } from "ts-morph";
 import { PackageDetails } from "../../models/packageDetails";
 import { ClientDetails } from "../../models/clientDetails";
 
-export async function generateReadmeFile(
+export function generateReadmeFile(
   clientDetails: ClientDetails,
   packageDetails: PackageDetails,
   project: Project
-): Promise<void> {
+) {
   const readmeFileContents = `
 ## Azure ${clientDetails.name} SDK for JavaScript
 

@@ -5,10 +5,7 @@ import { Project } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
 import { getModelsName, getMappersName } from "../utils/nameUtils";
 
-export async function generateClient(
-  clientDetails: ClientDetails,
-  project: Project
-): Promise<void> {
+export function generateClient(clientDetails: ClientDetails, project: Project) {
   const modelsName = getModelsName(clientDetails.className);
   const mappersName = getMappersName(clientDetails.className);
   const clientContextClassName = `${clientDetails.className}Context`;

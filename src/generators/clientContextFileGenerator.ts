@@ -6,11 +6,11 @@ import { normalizeName, NameType } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
 import { PackageDetails } from "../models/packageDetails";
 
-export async function generateClientContext(
+export function generateClientContext(
   clientDetails: ClientDetails,
   packageDetails: PackageDetails,
   project: Project
-): Promise<void> {
+) {
   const clientContextClassName = `${clientDetails.className}Context`;
   const clientContextFileName = normalizeName(
     clientContextClassName,

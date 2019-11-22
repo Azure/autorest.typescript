@@ -6,11 +6,11 @@ import { ClientDetails } from "../../models/clientDetails";
 import { PackageDetails } from "../../models/packageDetails";
 import { normalizeName, NameType } from "../../utils/nameUtils";
 
-export async function generateRollupConfig(
+export function generateRollupConfig(
   clientDetails: ClientDetails,
   packageDetails: PackageDetails,
   project: Project
-): Promise<void> {
+) {
   const rollupFile = project.createSourceFile("rollup.config.js", undefined, {
     overwrite: true
   });

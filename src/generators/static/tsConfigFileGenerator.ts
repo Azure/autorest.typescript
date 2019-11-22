@@ -3,7 +3,7 @@
 
 import { Project } from "ts-morph";
 
-export async function generateTsConfig(project: Project): Promise<void> {
+export function generateTsConfig(project: Project) {
   const tsConfigContents = {
     compilerOptions: {
       module: "es6",

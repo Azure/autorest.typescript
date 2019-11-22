@@ -27,7 +27,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 `;
 
-export async function generateLicenseFile(project: Project): Promise<void> {
+export function generateLicenseFile(project: Project) {
   project.createSourceFile("LICENSE.txt", mitLicenseText.trim(), {
     overwrite: true
   });

@@ -5,11 +5,11 @@ import { Project } from "ts-morph";
 import { ClientDetails } from "../../models/clientDetails";
 import { PackageDetails } from "../../models/packageDetails";
 
-export async function generatePackageJson(
+export function generatePackageJson(
   clientDetails: ClientDetails,
   packageDetails: PackageDetails,
   project: Project
-): Promise<void> {
+) {
   const packageJsonContents = {
     name: packageDetails.name,
     author: "Microsoft Corporation",
