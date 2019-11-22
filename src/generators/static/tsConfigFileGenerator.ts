@@ -1,30 +1,30 @@
-import { Generator } from "../generator";
-import { CodeModel } from '@azure-tools/codemodel';
-import { Host } from '@azure-tools/autorest-extension-base';
-import * as constants from '../../utils/constants';
-import * as fs from 'fs';
-import * as ejs from 'ejs';
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
-export class TsConfigFileGenerator implements Generator {
-  templateName: string;
-  private codeModel:CodeModel;
-  private host:Host;
+import { Project } from "ts-morph";
 
-  constructor(codeModel: CodeModel, host: Host) {
-    this.codeModel = codeModel;
-    this.host = host;
-    this.templateName = 'tsconfig_template.ejs';
-  }
+export async function generateTsConfig(project: Project): Promise<void> {
+  const tsConfigContents = {
+    compilerOptions: {
+      module: "es6",
+      moduleResolution: "node",
+      strict: true,
+      target: "es5",
+      sourceMap: true,
+      declarationMap: true,
+      esModuleInterop: true,
+      allowSyntheticDefaultImports: true,
+      forceConsistentCasingInFileNames: true,
+      lib: ["es6"],
+      declaration: true,
+      outDir: "./esm",
+      importHelpers: true
+    },
+    include: ["./src/**/*.ts"],
+    exclude: ["node_modules"]
+  };
 
-  getTemplate(): string {
-    return fs.readFileSync(`${constants.TEMPLATE_LOCATION}/static/${this.templateName}`, {
-      encoding: 'utf8'
-    });
-  }
-
-  public async process(): Promise<void> {
-    let template:string = this.getTemplate();
-    let data = ejs.render(template);
-    this.host.WriteFile(`tsconfig.json`, data);
-  }
+  project.createSourceFile("tsconfig.json", JSON.stringify(tsConfigContents), {
+    overwrite: true
+  });
 }
