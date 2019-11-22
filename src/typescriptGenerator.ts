@@ -5,14 +5,16 @@ import * as prettier from "prettier";
 import { CodeModel } from "@azure-tools/codemodel";
 import { Project, IndentationText } from "ts-morph";
 import { Host } from "@azure-tools/autorest-extension-base";
+import { PackageDetails } from "./models/packageDetails";
+
 import { generateClient } from "./generators/clientFileGenerator";
 import { generateClientContext } from "./generators/clientContextFileGenerator";
 import { generateModels } from "./generators/modelsGenerator";
 import { generateMappers } from "./generators/mappersGenerator";
 import { generatePackageJson } from "./generators/static/packageFileGenerator";
 import { generateLicenseFile } from "./generators/static/licenseFileGenerator";
+import { generateReadmeFile } from "./generators/static/readmeFileGenerator";
 import { transformCodeModel } from "./transforms";
-import { PackageDetails } from "./models/packageDetails";
 
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
@@ -58,6 +60,7 @@ export class TypescriptGenerator {
     if ((await this.host.GetValue("generate-metadata")) !== false) {
       generatePackageJson(clientDetails, packageDetails, project);
       generateLicenseFile(project);
+      generateReadmeFile(clientDetails, packageDetails, project);
     }
 
     generateClient(clientDetails, project);

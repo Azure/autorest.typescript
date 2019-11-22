@@ -1,35 +1,46 @@
-import { Generator } from "../generator";
-import { CodeModel } from '@azure-tools/codemodel';
-import { Host } from '@azure-tools/autorest-extension-base';
-import * as constants from '../../utils/constants';
-import * as fs from 'fs';
-import * as ejs from 'ejs';
-import { ReadmeFileModel } from "../../models/static/readmeFileModel";
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
-export class ReadmeFileGenerator implements Generator {
-  templateName: string;
-  private codeModel:CodeModel;
-  private host:Host;
+import { Project } from "ts-morph";
+import { PackageDetails } from "../../models/packageDetails";
+import { ClientDetails } from "../../models/clientDetails";
 
-  constructor(codeModel: CodeModel, host: Host) {
-    this.codeModel = codeModel;
-    this.host = host;
-    this.templateName = 'readme_template.ejs';
-  }
+export async function generateReadmeFile(
+  clientDetails: ClientDetails,
+  packageDetails: PackageDetails,
+  project: Project
+): Promise<void> {
+  const readmeFileContents = `
+## Azure ${clientDetails.name} SDK for JavaScript
 
-  getTemplate(): string {
-    return fs.readFileSync(`${constants.TEMPLATE_LOCATION}/static/${this.templateName}`, {
-      encoding: 'utf8'
-    });
-  }
+This package contains an isomorphic SDK for ${clientDetails.name}.
 
-  public async process(): Promise<void> {
-    let readmeFileModel = new ReadmeFileModel();
-    readmeFileModel.clientName = `${this.codeModel.info.title}`;
-    readmeFileModel.packageName = await this.host.GetValue('package-name');
+### Currently supported environments
 
-    let template:string = this.getTemplate();
-    let data = ejs.render(template, { readme: readmeFileModel});
-    this.host.WriteFile(`README.md`, data);
-  }
+- Node.js version 8.x.x or higher
+- Browser JavaScript
+
+### How to Install
+
+\`\`\`bash
+npm install ${packageDetails.name}
+\`\`\`
+
+### How to use
+
+#### Sample code
+
+Refer the sample code in the [azure-sdk-for-js-samples](https://github.com/Azure/azure-sdk-for-js-samples) repository.
+
+## Related projects
+
+- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
+
+
+![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)
+`;
+
+  project.createSourceFile("README.md", readmeFileContents.trim(), {
+    overwrite: true
+  });
 }

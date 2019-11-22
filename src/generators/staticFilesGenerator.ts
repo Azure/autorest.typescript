@@ -4,7 +4,6 @@
 import { Generator } from "./generator";
 import { CodeModel } from "@azure-tools/codemodel";
 import { Host } from "@azure-tools/autorest-extension-base";
-import { ReadmeFileGenerator } from "./static/readmeFileGenerator";
 import { RollupConfigFileGenerator } from "./static/rollupConfigFileGenerator";
 import { TsConfigFileGenerator } from "./static/tsConfigFileGenerator";
 
@@ -19,7 +18,6 @@ export class StaticFilesGenerator implements Generator {
 
   public async process(): Promise<void> {
     const generators = [
-      new ReadmeFileGenerator(this.codeModel, this.host),
       new RollupConfigFileGenerator(this.codeModel, this.host),
       new TsConfigFileGenerator(this.codeModel, this.host)
     ];
