@@ -24,13 +24,6 @@ export function normalizeName(name: string, nameType: NameType): string {
   return `${normalizedFirstPart}${normalizedParts}`;
 }
 
-export function getCamelCaseWithUpperCaseBeginning(value: string): string {
-  const spaceRemovedValue = value.replace(/ /g, "");
-  return (
-    spaceRemovedValue.substr(0, 1).toUpperCase() + spaceRemovedValue.substr(1)
-  );
-}
-
 export function getClientFileName(title: string): string {
   return toCasing(title.replace(/ /g, ""), CasingConvention.Camel);
 }
@@ -46,20 +39,6 @@ export function getPackageOutputName(packageName: string): string {
     }
   });
   return result;
-}
-
-export function getClientClassName(title: string): string {
-  const spaceRemovedTitle = title.replace(/ /g, "");
-  return spaceRemovedTitle;
-}
-
-export function getClientContextClassName(title: string): string {
-  const spaceRemovedTitle = title.replace(/ /g, "");
-  return `${spaceRemovedTitle}Context`;
-}
-
-export function getClientContextFileName(title: string): string {
-  return `${getClientFileName(title)}Context`;
 }
 
 export function getModelsName(title: string): string {
