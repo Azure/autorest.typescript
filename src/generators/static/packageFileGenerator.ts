@@ -1,58 +1,25 @@
-import { Generator } from "../generator";
-import { CodeModel } from "@azure-tools/codemodel";
-import { Host } from "@azure-tools/autorest-extension-base";
-import * as constants from "../../utils/constants";
-import * as fs from "fs";
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { Project } from "ts-morph";
-import * as namingUtils from "../../utils/nameUtils";
+import { ClientDetails } from "../../models/clientDetails";
+import { PackageDetails } from "../../models/packageDetails";
 
 export async function generatePackageJson(
-  packageName: string,
-  packageVersion: string,
+  clientDetails: ClientDetails,
+  packageDetails: PackageDetails,
   project: Project
 ): Promise<void> {
-  const packageJsonFile = project.createSourceFile("package.json", undefined, {
-    overwrite: true
-  });
+  // Strip the scope off of the package name, if any
+  const strippedPackageName = packageDetails.name.replace(/^@.*\/(.*)/, "$1");
 
-  const packageJsonContents = getPackageJsonContents(
-    packageName,
-    packageVersion,
-    "",
-    "this-package",
-    "sdk/keyvault/keyvault-keys"
-  );
-
-  packageJsonFile.addStatements(JSON.stringify(packageJsonContents));
-
-  //const packageName =
-  //const packageVersion = await this.host.GetValue("package-version");
-
-  // packageFileModel.clientClassName = `${namingUtils.getClientClassName(
-  //   this.codeModel.info.title
-  // )}`;
-  // packageFileModel.clientFileName = `${namingUtils.getClientFileName(
-  //   this.codeModel.info.title
-  // )}`;
-  // packageFileModel.packageNameModified = `${namingUtils.getPackageNameModified(
-  //   packageFileModel.packageName
-  // )}`;
-
-  //this.host.WriteFile(`package.json`, data);
-}
-
-function getPackageJsonContents(
-  packageName: string,
-  packageVersion: string,
-  packageDescription: string,
-  packageFileName: string,
-  packageSdkPath: string
-) {
-  return {
-    name: packageName,
+  const packageJsonContents = {
+    name: packageDetails.name,
     author: "Microsoft Corporation",
-    description: packageDescription,
-    version: packageVersion,
+    description:
+      packageDetails.description ||
+      `A generated SDK for ${clientDetails.name}.`,
+    version: packageDetails.version,
     dependencies: {
       "@azure/core-arm": "^1.0.0",
       "@azure/core-http": "^1.0.0",
@@ -60,9 +27,9 @@ function getPackageJsonContents(
     },
     keywords: ["node", "azure", "typescript", "browser", "isomorphic"],
     license: "MIT",
-    main: `./dist/${packageFileName}.js`,
-    module: `./esm/${packageFileName}.js`,
-    types: `./esm/${packageFileName}.d.ts`,
+    main: `./dist/${strippedPackageName}.js`,
+    module: `./esm/${clientDetails.sourceFileName}.js`,
+    types: `./esm/${clientDetails.sourceFileName}.d.ts`,
     devDependencies: {
       typescript: "^3.1.1",
       rollup: "^0.66.2",
@@ -70,7 +37,8 @@ function getPackageJsonContents(
       "rollup-plugin-sourcemaps": "^0.4.2",
       "uglify-js": "^3.4.9"
     },
-    homepage: `https://github.com/Azure/azure-sdk-for-js/tree/master/${packageSdkPath}`,
+    // TODO: Calculate the SDK path for the package
+    homepage: `https://github.com/Azure/azure-sdk-for-js`,
     repository: {
       type: "git",
       url: "https://github.com/Azure/azure-sdk-for-js.git"
@@ -94,10 +62,18 @@ function getPackageJsonContents(
     ],
     scripts: {
       build: "tsc && rollup -c rollup.config.js && npm run minify",
-      minify: `uglifyjs -c -m --comments --source-map "content='./dist/${packageFileName}.js.map'" -o ./dist/${packageFileName}.min.js ./dist/${packageFileName}.js`,
+      minify: `uglifyjs -c -m --comments --source-map "content='./dist/${clientDetails.sourceFileName}.js.map'" -o ./dist/${clientDetails.sourceFileName}.min.js ./dist/${clientDetails.sourceFileName}.js`,
       prepack: "npm install && npm run build"
     },
     sideEffects: false,
     autoPublish: true
   };
+
+  project.createSourceFile(
+    "package.json",
+    JSON.stringify(packageJsonContents),
+    {
+      overwrite: true
+    }
+  );
 }

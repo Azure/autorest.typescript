@@ -1,13 +1,18 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import * as prettier from "prettier";
 import { CodeModel } from "@azure-tools/codemodel";
 import { Project, IndentationText } from "ts-morph";
 import { Host } from "@azure-tools/autorest-extension-base";
-import { ClientContextFileGenerator } from "./generators/clientContextFileGenerator";
 import { generateClient } from "./generators/clientFileGenerator";
+import { generateClientContext } from "./generators/clientContextFileGenerator";
 import { generateModels } from "./generators/modelsGenerator";
 import { generateMappers } from "./generators/mappersGenerator";
 import { StaticFilesGenerator } from "./generators/staticFilesGenerator";
 import { generatePackageJson } from "./generators/static/packageFileGenerator";
+import { transformCodeModel } from "./transforms";
+import { PackageDetails } from "./models/packageDetails";
 
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
@@ -44,14 +49,17 @@ export class TypescriptGenerator {
   }
 
   public async process(): Promise<void> {
-    const packageName = await this.host.GetValue("package-name");
-    const packageVersion = await this.host.GetValue("package-version");
+    const clientDetails = transformCodeModel(this.codeModel);
+    const packageDetails: PackageDetails = {
+      name: await this.host.GetValue("package-name"),
+      version: await this.host.GetValue("package-version")
+    };
 
     let generators = [
       (_codeModel: CodeModel, project: Project) =>
-        generatePackageJson(packageName, packageVersion, project),
       generateClient,
       new ClientContextFileGenerator(this.codeModel, this.host),
+        generatePackageJson(clientDetails, packageDetails, project),
       new StaticFilesGenerator(this.codeModel, this.host),
       generateModels,
       generateMappers
