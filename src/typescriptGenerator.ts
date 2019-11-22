@@ -53,8 +53,13 @@ export class TypescriptGenerator {
     });
 
     const clientDetails = transformCodeModel(this.codeModel);
+    const packageName = await this.host.GetValue("package-name");
+    const packageNameParts = packageName.match(/(^@(.*)\/)?(.*)/);
     const packageDetails: PackageDetails = {
-      name: await this.host.GetValue("package-name"),
+      name: packageName,
+      scopeName: packageNameParts[2],
+      nameWithoutScope: packageNameParts[3],
+      description: clientDetails.description,
       version: await this.host.GetValue("package-version")
     };
 

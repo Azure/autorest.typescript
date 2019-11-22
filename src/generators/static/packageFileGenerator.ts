@@ -10,9 +10,6 @@ export async function generatePackageJson(
   packageDetails: PackageDetails,
   project: Project
 ): Promise<void> {
-  // Strip the scope off of the package name, if any
-  const strippedPackageName = packageDetails.name.replace(/^@.*\/(.*)/, "$1");
-
   const packageJsonContents = {
     name: packageDetails.name,
     author: "Microsoft Corporation",
@@ -27,7 +24,7 @@ export async function generatePackageJson(
     },
     keywords: ["node", "azure", "typescript", "browser", "isomorphic"],
     license: "MIT",
-    main: `./dist/${strippedPackageName}.js`,
+    main: `./dist/${packageDetails.nameWithoutScope}.js`,
     module: `./esm/${clientDetails.sourceFileName}.js`,
     types: `./esm/${clientDetails.sourceFileName}.d.ts`,
     devDependencies: {
