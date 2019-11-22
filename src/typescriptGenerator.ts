@@ -10,6 +10,7 @@ import { generateClientContext } from "./generators/clientContextFileGenerator";
 import { generateModels } from "./generators/modelsGenerator";
 import { generateMappers } from "./generators/mappersGenerator";
 import { generatePackageJson } from "./generators/static/packageFileGenerator";
+import { generateLicenseFile } from "./generators/static/licenseFileGenerator";
 import { transformCodeModel } from "./transforms";
 import { PackageDetails } from "./models/packageDetails";
 
@@ -56,6 +57,7 @@ export class TypescriptGenerator {
 
     if ((await this.host.GetValue("generate-metadata")) !== false) {
       generatePackageJson(clientDetails, packageDetails, project);
+      generateLicenseFile(project);
     }
 
     generateClient(clientDetails, project);
