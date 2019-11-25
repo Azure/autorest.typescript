@@ -17,6 +17,7 @@ import { generateLicenseFile } from "./generators/static/licenseFileGenerator";
 import { generateReadmeFile } from "./generators/static/readmeFileGenerator";
 import { generateTsConfig } from "./generators/static/tsConfigFileGenerator";
 import { generateRollupConfig } from "./generators/static/rollupConfigFileGenerator";
+import { generateOperations } from "./generators/operationGenerator";
 
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
@@ -77,6 +78,7 @@ export class TypescriptGenerator {
     generateClientContext(clientDetails, packageDetails, project);
     generateModels(this.codeModel, project);
     generateMappers(this.codeModel, project);
+    generateOperations(this.codeModel, clientDetails, project);
 
     // TODO: Get this from the "license-header" setting:
     //   await this.host.GetValue("license-header");

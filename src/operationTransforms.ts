@@ -14,6 +14,7 @@ import {
   ChoiceSchema
 } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "./transforms";
+import { normalizeName, NameType } from "./utils/nameUtils";
 
 export function transformOperationSpec(operation: Operation): OperationSpec {
   // Extract protocol information
@@ -79,7 +80,7 @@ export function getSpecType(responseSchema: Schema): any {
       break;
     case SchemaType.Object:
       const name = getLanguageMetadata(responseSchema.language).name;
-      return `Mappers.${name}`;
+      return `Mappers.${normalizeName(name, NameType.Class)}`;
     default:
       throw new Error(`Unsupported Spec Type ${responseSchema.type}`);
   }
