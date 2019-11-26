@@ -2,8 +2,8 @@ import * as assert from "assert";
 import {
   transformOperationSpec,
   getSpecType,
-  extractRequest,
-  transformOperation
+  transformOperation,
+  extractSpecRequest
 } from "../../src/operationTransforms";
 import {
   Operation,
@@ -18,7 +18,8 @@ import {
   ConstantValue
 } from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
-import { OperationSpec } from "@azure/core-http";
+import { Mapper } from "@azure/core-http";
+import { OperationSpecDetails } from "../../src/models/operationDetails";
 
 const choice = new ChoiceSchema("mockChoice", "", {
   choices: [
@@ -71,7 +72,7 @@ describe("OperationTransforms", () => {
     });
     it("should return a reference to a mapper when type is object", () => {
       const objectType = getSpecType(objectSchema);
-      assert.strictEqual(objectType, `Mappers.RefColorConstant`);
+      assert.strictEqual(objectType.reference, `Mappers.RefColorConstant`);
     });
   });
 
@@ -131,7 +132,7 @@ describe("OperationTransforms", () => {
         });
       };
 
-      const checkHttpMethodAndPath = (operationSpec: OperationSpec) => {
+      const checkHttpMethodAndPath = (operationSpec: OperationSpecDetails) => {
         assert.strictEqual(
           operationSpec.httpMethod,
           "GET",
@@ -168,7 +169,9 @@ describe("OperationTransforms", () => {
         const operationSpec = transformOperationSpec(operationDetails);
         checkHttpMethodAndPath(operationSpec);
         const okResponse = operationSpec.responses[200];
-        assert.deepEqual(okResponse.bodyMapper!.type, { name: "String" });
+        assert.deepEqual((okResponse.bodyMapper as Mapper).type, {
+          name: "String"
+        });
         assert.deepEqual(
           operationSpec.responses.default.bodyMapper,
           "Mappers.ErrorModel"
@@ -182,7 +185,7 @@ describe("OperationTransforms", () => {
         const operationSpec = transformOperationSpec(operationDetails);
         checkHttpMethodAndPath(operationSpec);
         const okResponse = operationSpec.responses[200];
-        assert.deepEqual(okResponse.bodyMapper!.type, {
+        assert.deepEqual((okResponse.bodyMapper as Mapper).type, {
           name: "Enum",
           allowedValues: ["red color", "green-color", "blue_color"]
         });
@@ -194,9 +197,9 @@ describe("OperationTransforms", () => {
     });
   });
 
-  describe("extractRequest", () => {
+  describe("extractSpecRequest", () => {
     it("should extract request with expected parameterPath", () => {
-      const request = extractRequest({
+      const request = extractSpecRequest({
         request: {
           parameters: [{ location: ParameterLocation.Body, name: "stringBody" }]
         }

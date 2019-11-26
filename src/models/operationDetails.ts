@@ -49,6 +49,16 @@ export interface OperationDetails {
 }
 
 /**
+ * Details of an operation spec, transformed from OperationSpec.
+ */
+export interface OperationSpecDetails {
+  path: string;
+  httpMethod: string;
+  responses: OperationSpecResponses;
+  requestBody?: OperationSpecRequest;
+}
+
+/**
  * Details of an operation group, transformed from OperationGroup.
  */
 export interface OperationGroupDetails {
@@ -56,3 +66,16 @@ export interface OperationGroupDetails {
   name: string;
   operations: OperationDetails[];
 }
+
+export interface OperationSpecResponse {
+  bodyMapper?: Mapper | string;
+}
+
+export type OperationSpecResponses = {
+  [responseCode: string]: OperationSpecResponse;
+};
+
+export type OperationSpecRequest = {
+  parameterPath: string;
+  mapper: Mapper | string;
+};

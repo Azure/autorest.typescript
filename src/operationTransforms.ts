@@ -1,10 +1,4 @@
-import {
-  OperationSpec,
-  Serializer,
-  HttpMethods,
-  OperationResponse,
-  Mapper
-} from "@azure/core-http";
+import { HttpMethods, Mapper, MapperType } from "@azure/core-http";
 import {
   Operation,
   Request,
@@ -23,22 +17,23 @@ import {
   OperationDetails,
   OperationResponseDetails,
   OperationRequestDetails,
-  OperationRequestParameterDetails
+  OperationRequestParameterDetails,
+  OperationSpecDetails,
+  OperationSpecResponses,
+  OperationSpecRequest
 } from "./models/operationDetails";
 import { getLanguageMetadata } from "./utils/languageHelpers";
 import { getTypeForSchema } from "./utils/schemaHelpers";
 
 export function transformOperationSpec(
   operationDetails: OperationDetails
-): OperationSpec {
+): OperationSpecDetails {
   // Extract protocol information
   const httpInfo = extractHttpDetails(operationDetails.request);
-  const serializer = new Serializer();
   return {
     ...httpInfo,
-    responses: extractResponses(operationDetails.responses),
-    requestBody: extractRequest(operationDetails) as any,
-    serializer
+    responses: extractSpecResponses(operationDetails.responses),
+    requestBody: extractSpecRequest(operationDetails)
   };
 }
 
@@ -49,11 +44,11 @@ export function extractHttpDetails({ path, method }: OperationRequestDetails) {
   };
 }
 
-export type OperationResponses = { [responseCode: string]: OperationResponse };
-export function extractResponses(
+export function extractSpecResponses(
   responses?: OperationResponseDetails[]
-): OperationResponses {
+): OperationSpecResponses {
   if (!responses || !responses.length) {
+    // Should we throw an error here?
     return {};
   }
   const schemaResponses = extractSchemaResponses(responses);
@@ -61,7 +56,9 @@ export function extractResponses(
   return schemaResponses;
 }
 
-export function extractRequest(operationDetails: OperationDetails) {
+export function extractSpecRequest(
+  operationDetails: OperationDetails
+): OperationSpecRequest | undefined {
   const parameters = (operationDetails.request.parameters || []).filter(
     p => p.location === ParameterLocation.Body
   );
@@ -77,13 +74,15 @@ export function extractRequest(operationDetails: OperationDetails) {
 }
 
 export interface SpecType {
-  name: any;
-  allowedValues?: any[];
+  name: string;
+  allowedValues?: string[];
+  reference?: string;
 }
 
-export function getSpecType(responseSchema: Schema): any {
-  let typeName: string;
+export function getSpecType(responseSchema: Schema): SpecType {
+  let typeName: string = "";
   let allowedValues: any[] | undefined = undefined;
+  let reference: string | undefined = undefined;
   switch (responseSchema.type) {
     case SchemaType.ByteArray:
       typeName = "Base64Url";
@@ -99,27 +98,23 @@ export function getSpecType(responseSchema: Schema): any {
       break;
     case SchemaType.Object:
       const name = getLanguageMetadata(responseSchema.language).name;
-      return `Mappers.${normalizeName(name, NameType.Class)}`;
+      reference = `Mappers.${normalizeName(name, NameType.Class)}`;
+      break;
     default:
       throw new Error(`Unsupported Spec Type ${responseSchema.type}`);
   }
 
   let result = {
-    name: typeName
+    name: typeName as any,
+    reference
   };
 
   return !!allowedValues ? { ...result, allowedValues } : result;
 }
 
-export function extractBasicResponses(
-  responses: Array<Response | SchemaResponse>
-) {
-  return (responses as any[]).filter((r: SchemaResponse) => !r.schema);
-}
-
 export function extractSchemaResponses(responses: OperationResponseDetails[]) {
   return responses.reduce(
-    (result: OperationResponses, response: OperationResponseDetails) => {
+    (result: OperationSpecResponses, response: OperationResponseDetails) => {
       const statusCodes = response.statusCodes;
 
       if (!statusCodes || !statusCodes.length) {
@@ -130,7 +125,7 @@ export function extractSchemaResponses(responses: OperationResponseDetails[]) {
       result[statusCode] = {};
       if (response.bodyMapper) {
         result[statusCode] = {
-          bodyMapper: response.bodyMapper as any
+          bodyMapper: response.bodyMapper
         };
       }
       return result;
@@ -138,19 +133,6 @@ export function extractSchemaResponses(responses: OperationResponseDetails[]) {
     {}
   );
 }
-
-function getBodyMapperFromSchema(responseSchema: Schema) {
-  const responseType = getSpecType(responseSchema);
-  return !responseType.name
-    ? responseType
-    : {
-        type: responseType
-      };
-}
-
-/**
- * Operation Details
- */
 
 export function transformOperationRequestParameter(
   parameter: Parameter
@@ -185,11 +167,12 @@ export function transformOperationRequest(
 }
 
 export function transformOperationResponse(
-  response: Response
+  response: Response | SchemaResponse
 ): OperationResponseDetails {
   let modelType: string | undefined = undefined;
   let bodyMapper: Mapper | string | undefined = undefined;
-  if ((response as any).schema) {
+
+  if ((response as SchemaResponse).schema) {
     const schemaResponse = response as SchemaResponse;
     modelType = getTypeForSchema(schemaResponse.schema).typeName;
     bodyMapper = getBodyMapperFromSchema(schemaResponse.schema);
@@ -220,6 +203,27 @@ export function transformOperation(operation: Operation): OperationDetails {
   };
 }
 
+export function transformOperationGroup(
+  operationGroup: OperationGroup
+): OperationGroupDetails {
+  const metadata = getLanguageMetadata(operationGroup.language);
+  return {
+    name: normalizeName(metadata.name, NameType.Property),
+    key: operationGroup.$key,
+    operations: operationGroup.operations.map(transformOperation)
+  };
+}
+
+function getBodyMapperFromSchema(responseSchema: Schema): Mapper | string {
+  const responseType = getSpecType(responseSchema);
+  const { reference, ...type } = responseType;
+  return (
+    reference || {
+      type: type as MapperType
+    }
+  );
+}
+
 function mergeResponsesAndExceptions(operation: Operation) {
   let responses: OperationResponseDetails[] = [];
 
@@ -238,15 +242,4 @@ function mergeResponsesAndExceptions(operation: Operation) {
   }
 
   return responses;
-}
-
-export function transformOperationGroup(
-  operationGroup: OperationGroup
-): OperationGroupDetails {
-  const metadata = getLanguageMetadata(operationGroup.language);
-  return {
-    name: normalizeName(metadata.name, NameType.Property),
-    key: operationGroup.$key,
-    operations: operationGroup.operations.map(transformOperation)
-  };
 }
