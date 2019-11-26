@@ -3,9 +3,7 @@ import * as assert from "assert";
 import {
   transformObject,
   transformProperty,
-  transformChoice,
-  getTypeForSchema,
-  getStringForValue
+  transformChoice
 } from "../../src/transforms";
 
 import {
@@ -57,74 +55,6 @@ const fakeCodeModel: CodeModel = new CodeModel("FakeModel", false, {
 });
 
 describe("Transforms", () => {
-  describe("Schema to PropertyTypeDetails", () => {
-    it("converts StringSchema to string", () => {
-      const typeDetails = getTypeForSchema(
-        new StringSchema("StringType", "This is a string.")
-      );
-
-      assert.deepEqual(typeDetails, {
-        typeName: "string",
-        isConstant: false,
-        defaultValue: undefined
-      });
-    });
-
-    it("converts NumberSchema of Number type to number", () => {
-      let typeDetails = getTypeForSchema(
-        new NumberSchema(
-          "NumberType",
-          "This is a number.",
-          SchemaType.Integer,
-          32
-        )
-      );
-
-      assert.deepEqual(typeDetails, {
-        typeName: "number",
-        isConstant: false,
-        defaultValue: undefined
-      });
-    });
-
-    it("converts NumberSchema of Integer type to number", () => {
-      let typeDetails = getTypeForSchema(
-        new NumberSchema(
-          "NumberType",
-          "This is a number.",
-          SchemaType.Number,
-          32
-        )
-      );
-
-      assert.deepEqual(typeDetails, {
-        typeName: "number",
-        isConstant: false,
-        defaultValue: undefined
-      });
-    });
-
-    it("converts ConstantSchema to the underlying type", () => {
-      let typeDetails = getTypeForSchema(
-        new ConstantSchema("ConstantNumber", "This is a constant number", {
-          value: new ConstantValue(311),
-          valueType: new NumberSchema(
-            "NumberType",
-            "This is a number.",
-            SchemaType.Number,
-            32
-          )
-        })
-      );
-
-      assert.deepEqual(typeDetails, {
-        typeName: "number",
-        isConstant: true,
-        defaultValue: 311
-      });
-    });
-  });
-
   describe("Property to PropertyDetails", () => {
     it("retains basic details", () => {
       const property = transformProperty(
@@ -171,46 +101,6 @@ describe("Transforms", () => {
       assert.strictEqual(colorUnion.name, "Color");
       assert.strictEqual(colorUnion.description, "Defines values for Color.");
       assert.deepEqual(colorUnion.values, [`"red"`, `"green"`, `"blue"`]);
-    });
-  });
-
-  describe("Value to string", () => {
-    it("converts a string value to a quoted string", () => {
-      assert.strictEqual(
-        getStringForValue(
-          "red",
-          new StringSchema("ColorString", "A color string.")
-        ),
-        `"red"`
-      );
-    });
-
-    it("converts a string value to a non-quoted string", () => {
-      assert.strictEqual(
-        getStringForValue(
-          "red",
-          new StringSchema("ColorString", "A color string."),
-          false
-        ),
-        "red"
-      );
-    });
-
-    it("converts a numeric value to a plain string", () => {
-      assert.strictEqual(
-        getStringForValue(
-          1,
-          new NumberSchema("Número", "El número.", SchemaType.Number, 32)
-        ),
-        `1`
-      );
-    });
-
-    it("converts a boolean value to a plain string", () => {
-      assert.strictEqual(
-        getStringForValue(true, new BooleanSchema("Truth", "The truth.")),
-        `true`
-      );
     });
   });
 });

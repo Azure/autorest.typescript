@@ -34,6 +34,7 @@ export interface OperationResponseDetails {
   statusCodes: string[]; // Can be a status code number or "default"
   modelType?: string; // Could be a primitive or actual model type
   mediaType?: KnownMediaType;
+  bodyMapper?: Mapper | string;
 }
 
 /**

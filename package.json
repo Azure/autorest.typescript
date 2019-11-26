@@ -8,7 +8,9 @@
         "unit-test": "mocha -r ts-node/register './test/unit/**/*spec.ts'",
         "integration-test": "ts-node test/utils/start-server.ts & mocha -r ts-node/register './test/integration/**/*spec.ts' & stop-autorest-testserver",
         "debug": "node --inspect-brk ./dist/src/main.js",
-        "generate-bodystring": "npm run build && autorest-beta --typescript  --use=/Users/joheredi/Projects/Azure/autorest.typescript.v3 --title=BodyString --input-file=node_modules/@autorest/test-server/__files/swagger/body-string.json --package-name=bodyString --package-version=1.0.0-preview1"
+        "generate-bodystring": "npm run build && autorest-beta --typescript  --use=/Users/joheredi/Projects/Azure/autorest.typescript.v3 --title=BodyString --input-file=node_modules/@autorest/test-server/__files/swagger/body-string.json --package-name=bodyString --package-version=1.0.0-preview1",
+        "generate-bodycomplex": "npm run build && autorest-beta --typescript  --use=/Users/joheredi/Projects/Azure/autorest.typescript.v3 --title=BodyComplexClient --input-file=node_modules/@autorest/test-server/__files/swagger/body-complex.json --package-name=bodyString --package-version=1.0.0-preview1"
+
     },
     "dependencies": {
         "@autorest/autorest": "^3.0.6122",

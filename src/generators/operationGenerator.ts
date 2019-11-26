@@ -16,7 +16,6 @@ import {
   MethodDeclarationOverloadStructure,
   ExportDeclarationStructure
 } from "ts-morph";
-import { getLanguageMetadata } from "../transforms";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
 import {
@@ -27,15 +26,13 @@ import { OperationSpec } from "@azure/core-http";
 import { OperationGroupDetails } from "../models/operationDetails";
 
 export function generateOperations(
-  codeModel: CodeModel,
   clientDetails: ClientDetails,
   project: Project
 ) {
   let fileNames: string[] = [];
-  codeModel.operationGroups.forEach(operationGroup => {
-    const operationDetails = transformOperationGroup(operationGroup);
+  clientDetails.operationGroups.forEach(operationDetails => {
     fileNames.push(normalizeName(operationDetails.name, NameType.File));
-    generateOperation(operationDetails, operationGroup, clientDetails, project);
+    generateOperation(operationDetails, clientDetails, project);
   });
 
   const operationIndexFile = project.createSourceFile(
@@ -55,7 +52,6 @@ export function generateOperations(
 
 function generateOperation(
   operationGroupDetails: OperationGroupDetails,
-  operationGroup: OperationGroup,
   clientDetails: ClientDetails,
   project: Project
 ) {
@@ -69,10 +65,13 @@ function generateOperation(
 
   addImports(operationGroupFile, clientDetails);
   addClass(operationGroupFile, operationGroupDetails, clientDetails);
-  addOperationSchemas(operationGroup, operationGroupFile);
+  addOperationSpecs(operationGroupDetails, operationGroupFile);
 }
 
-function addOperationSchemas(operationGroup: OperationGroup, file: SourceFile) {
+function addOperationSpecs(
+  operationGroupDetails: OperationGroupDetails,
+  file: SourceFile
+) {
   file.addVariableStatement({
     declarationKind: VariableDeclarationKind.Const,
     declarations: [
@@ -83,9 +82,8 @@ function addOperationSchemas(operationGroup: OperationGroup, file: SourceFile) {
     ]
   });
 
-  operationGroup.operations.forEach(operation => {
-    const metadata = getLanguageMetadata(operation.language);
-    const operationName = normalizeName(metadata.name, NameType.Property);
+  operationGroupDetails.operations.forEach(operation => {
+    const operationName = normalizeName(operation.name, NameType.Property);
     const operationSpec = transformOperationSpec(operation);
     file.addVariableStatement({
       declarationKind: VariableDeclarationKind.Const,

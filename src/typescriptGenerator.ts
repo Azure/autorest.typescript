@@ -78,7 +78,7 @@ export class TypescriptGenerator {
     generateClientContext(clientDetails, packageDetails, project);
     generateModels(this.codeModel, project);
     generateMappers(this.codeModel, project);
-    generateOperations(this.codeModel, clientDetails, project);
+    generateOperations(clientDetails, project);
 
     // TODO: Get this from the "license-header" setting:
     //   await this.host.GetValue("license-header");

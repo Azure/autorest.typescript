@@ -8,91 +8,14 @@ import { ModelDetails, PropertyDetails } from "./models/modelDetails";
 import {
   CodeModel,
   ObjectSchema,
-  Languages,
-  Language,
-  Schema,
-  SchemaType,
   Property,
-  ChoiceSchema,
-  ValueSchema,
-  ConstantSchema
+  ChoiceSchema
 } from "@azure-tools/codemodel";
-import { normalizeName, NameType } from "./utils/nameUtils";
-
-// An array of model names that are "reserved", or shouldn't be used
-// verbatim.  Currently any reserved model name will have "Model"
-// appended to it in the generated code.
-const ReservedModelNames = ["Error"];
-
-export function getLanguageMetadata(languages: Languages): Language {
-  return languages.typescript || languages.javascript || languages.default;
-}
-
-export interface PropertyTypeDetails {
-  typeName: string;
-  isConstant: boolean;
-  defaultValue?: string;
-}
-
-export function getStringForValue(
-  value: any,
-  valueType: ValueSchema,
-  quotedStrings = true
-): string {
-  switch (valueType.type) {
-    case SchemaType.String:
-      return quotedStrings ? `"${value}"` : `${value}`;
-    case SchemaType.Number:
-    case SchemaType.Integer:
-      return value.toString();
-    case SchemaType.Boolean:
-      return value.toString();
-    default:
-      throw new Error(`Unexpected value type: ${valueType.type}`);
-  }
-}
-
-export function getTypeForSchema(schema: Schema): PropertyTypeDetails {
-  let typeName: string = "";
-  let defaultValue: string | undefined = undefined;
-
-  switch (schema.type) {
-    case SchemaType.String:
-      typeName = "string";
-      break;
-    case SchemaType.Number:
-    case SchemaType.Integer:
-      typeName = "number";
-      break;
-    case SchemaType.Constant:
-      const constantSchema = schema as ConstantSchema;
-      const constantType = getTypeForSchema(constantSchema.valueType);
-      typeName = constantType.typeName;
-      defaultValue = getStringForValue(
-        constantSchema.value.value,
-        constantSchema.valueType,
-        false
-      );
-      break;
-    case SchemaType.ByteArray:
-      typeName = "Int8Array";
-      break;
-    case SchemaType.Choice:
-    case SchemaType.SealedChoice:
-    case SchemaType.Object:
-      const { name } = getLanguageMetadata(schema.language);
-      typeName = name;
-      break;
-    default:
-      throw new Error(`Unsupported schema type: ${schema.type}`);
-  }
-
-  return {
-    typeName,
-    isConstant: schema.type === SchemaType.Constant,
-    defaultValue
-  };
-}
+import { normalizeName, NameType, guardReservedNames } from "./utils/nameUtils";
+import { getTypeForSchema } from "./utils/schemaHelpers";
+import { getStringForValue } from "./utils/valueHelpers";
+import { getLanguageMetadata } from "./utils/languageHelpers";
+import { transformOperationGroup } from "./operationTransforms";
 
 export function transformProperty(property: Property): PropertyDetails {
   const metadata = getLanguageMetadata(property.language);
@@ -116,10 +39,7 @@ export function transformProperty(property: Property): PropertyDetails {
 
 export function transformChoice(choice: ChoiceSchema): UnionDetails {
   const metadata = getLanguageMetadata(choice.language);
-  let name =
-    ReservedModelNames.indexOf(metadata.name) > -1
-      ? `${metadata.name}Model`
-      : metadata.name;
+  let name = guardReservedNames(metadata.name);
 
   return {
     name,
@@ -133,12 +53,7 @@ export function transformChoice(choice: ChoiceSchema): UnionDetails {
 
 export function transformObject(obj: ObjectSchema): ModelDetails {
   const metadata = getLanguageMetadata(obj.language);
-  let name = normalizeName(
-    ReservedModelNames.indexOf(metadata.name) > -1
-      ? `${metadata.name}Model`
-      : metadata.name,
-    NameType.Class
-  );
+  let name = normalizeName(guardReservedNames(metadata.name), NameType.Class);
 
   return {
     name,
@@ -162,6 +77,7 @@ export function transformCodeModel(codeModel: CodeModel): ClientDetails {
       : [],
     unions: codeModel.schemas.choices
       ? codeModel.schemas.choices.map(transformChoice)
-      : []
+      : [],
+    operationGroups: codeModel.operationGroups.map(transformOperationGroup)
   };
 }

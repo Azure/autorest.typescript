@@ -2,7 +2,8 @@ import {
   OperationSpec,
   Serializer,
   HttpMethods,
-  OperationResponse
+  OperationResponse,
+  Mapper
 } from "@azure/core-http";
 import {
   Operation,
@@ -16,7 +17,6 @@ import {
   ParameterLocation,
   Parameter
 } from "@azure-tools/codemodel";
-import { getLanguageMetadata, getTypeForSchema } from "./transforms";
 import { normalizeName, NameType } from "./utils/nameUtils";
 import {
   OperationGroupDetails,
@@ -25,27 +25,24 @@ import {
   OperationRequestDetails,
   OperationRequestParameterDetails
 } from "./models/operationDetails";
+import { getLanguageMetadata } from "./utils/languageHelpers";
+import { getTypeForSchema } from "./utils/schemaHelpers";
 
-export function transformOperationSpec(operation: Operation): OperationSpec {
+export function transformOperationSpec(
+  operationDetails: OperationDetails
+): OperationSpec {
   // Extract protocol information
-  const httpInfo = extractHttpDetails(operation.request);
+  const httpInfo = extractHttpDetails(operationDetails.request);
   const serializer = new Serializer();
-  const operationDetails = transformOperation(operation);
-
   return {
     ...httpInfo,
-    responses: extractResponses(operation.responses, operation.exceptions),
+    responses: extractResponses(operationDetails.responses),
     requestBody: extractRequest(operationDetails) as any,
     serializer
   };
 }
 
-export function extractHttpDetails({ protocol }: Request) {
-  if (!protocol.http) {
-    throw new Error("operation doesn't contain a definition for HTTP protocol");
-  }
-  const { path, method } = protocol.http;
-
+export function extractHttpDetails({ path, method }: OperationRequestDetails) {
   return {
     path: path.replace("{$host}/", ""),
     httpMethod: method.toUpperCase() as HttpMethods
@@ -54,19 +51,14 @@ export function extractHttpDetails({ protocol }: Request) {
 
 export type OperationResponses = { [responseCode: string]: OperationResponse };
 export function extractResponses(
-  responses?: Array<SchemaResponse | Response>,
-  exceptions: Array<SchemaResponse | Response> = []
+  responses?: OperationResponseDetails[]
 ): OperationResponses {
   if (!responses || !responses.length) {
     return {};
   }
   const schemaResponses = extractSchemaResponses(responses);
-  const defaultResponse = extractSchemaResponses(exceptions);
 
-  return {
-    ...schemaResponses,
-    ...defaultResponse
-  };
+  return schemaResponses;
 }
 
 export function extractRequest(operationDetails: OperationDetails) {
@@ -125,16 +117,10 @@ export function extractBasicResponses(
   return (responses as any[]).filter((r: SchemaResponse) => !r.schema);
 }
 
-export function extractSchemaResponses(
-  responses: Array<Response | SchemaResponse>
-) {
+export function extractSchemaResponses(responses: OperationResponseDetails[]) {
   return responses.reduce(
-    (result: OperationResponses, response: SchemaResponse | Response) => {
-      if (!response.protocol.http) {
-        return result;
-      }
-
-      const statusCodes = response.protocol.http.statusCodes;
+    (result: OperationResponses, response: OperationResponseDetails) => {
+      const statusCodes = response.statusCodes;
 
       if (!statusCodes || !statusCodes.length) {
         return result;
@@ -142,10 +128,9 @@ export function extractSchemaResponses(
 
       const statusCode = statusCodes[0];
       result[statusCode] = {};
-      const schemaResponse = response as any;
-      if (schemaResponse.schema) {
+      if (response.bodyMapper) {
         result[statusCode] = {
-          bodyMapper: getBodyMapperFromSchema(schemaResponse.schema)
+          bodyMapper: response.bodyMapper as any
         };
       }
       return result;
@@ -203,16 +188,19 @@ export function transformOperationResponse(
   response: Response
 ): OperationResponseDetails {
   let modelType: string | undefined = undefined;
+  let bodyMapper: Mapper | string | undefined = undefined;
   if ((response as any).schema) {
     const schemaResponse = response as SchemaResponse;
     modelType = getTypeForSchema(schemaResponse.schema).typeName;
+    bodyMapper = getBodyMapperFromSchema(schemaResponse.schema);
   }
 
   if (response.protocol.http) {
     return {
       statusCodes: response.protocol.http.statusCodes,
       mediaType: response.protocol.http.knownMediaType,
-      modelType
+      modelType,
+      bodyMapper
     };
   } else {
     throw new Error("Operation does not specify HTTP response details.");
@@ -221,7 +209,6 @@ export function transformOperationResponse(
 
 export function transformOperation(operation: Operation): OperationDetails {
   const metadata = getLanguageMetadata(operation.language);
-  operation.responses;
   return {
     name: normalizeName(metadata.name, NameType.Property),
     apiVersions: operation.apiVersions
@@ -229,8 +216,28 @@ export function transformOperation(operation: Operation): OperationDetails {
       : [],
     description: metadata.description,
     request: transformOperationRequest(operation.request),
-    responses: []
+    responses: mergeResponsesAndExceptions(operation)
   };
+}
+
+function mergeResponsesAndExceptions(operation: Operation) {
+  let responses: OperationResponseDetails[] = [];
+
+  if (operation.responses) {
+    responses = [
+      ...(responses || []),
+      ...operation.responses.map(transformOperationResponse)
+    ];
+  }
+
+  if (operation.exceptions) {
+    responses = [
+      ...(responses || []),
+      ...operation.exceptions.map(transformOperationResponse)
+    ];
+  }
+
+  return responses;
 }
 
 export function transformOperationGroup(

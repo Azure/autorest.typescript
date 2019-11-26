@@ -13,6 +13,10 @@ export enum NameType {
   File
 }
 
+export function guardReservedNames(name: string): string {
+  return ReservedModelNames.indexOf(name) > -1 ? `${name}Model` : name;
+}
+
 export function normalizeName(name: string, nameType: NameType): string {
   const casingConvention = getCasingConvention(nameType);
 
@@ -24,9 +28,7 @@ export function normalizeName(name: string, nameType: NameType): string {
     .join("");
 
   const normalized = `${normalizedFirstPart}${normalizedParts}`;
-  return ReservedModelNames.indexOf(normalized) > -1
-    ? `${normalized}Model`
-    : normalized;
+  return guardReservedNames(normalized);
 }
 
 export function getModelsName(title: string): string {
