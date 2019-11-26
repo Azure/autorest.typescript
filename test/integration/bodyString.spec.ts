@@ -1,5 +1,5 @@
 import { equal, fail, ok } from "assert";
-import { BodyString as BodyStringClient } from "../../generated/src/bodyString";
+import { BodyStringClient } from "../../generated/bodyString/src/bodyStringClient";
 
 describe("Integration tests for BodyString", () => {
   describe("getMbcs", () => {
