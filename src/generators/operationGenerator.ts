@@ -177,7 +177,7 @@ function addClass(
   const constructorDefinition = operationGroupClass.addConstructor({
     docs: [
       {
-        description: `Initialize a new instance of the class ${className} class.`
+        description: `Initialize a new instance of the class ${className} class. \n@param client Reference to the service client`
       }
     ],
     parameters: [
@@ -296,6 +296,7 @@ function addOperationSpecs(
   operationGroupDetails: OperationGroupDetails,
   file: SourceFile
 ): void {
+  file.addStatements("// Operation Specifications");
   file.addVariableStatement({
     declarationKind: VariableDeclarationKind.Const,
     declarations: [
