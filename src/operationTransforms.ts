@@ -11,19 +11,31 @@ import {
   Response,
   Schema,
   SchemaType,
-  ChoiceSchema
+  ChoiceSchema,
+  OperationGroup,
+  ParameterLocation,
+  Parameter
 } from "@azure-tools/codemodel";
-import { getLanguageMetadata } from "./transforms";
+import { getLanguageMetadata, getTypeForSchema } from "./transforms";
 import { normalizeName, NameType } from "./utils/nameUtils";
+import {
+  OperationGroupDetails,
+  OperationDetails,
+  OperationResponseDetails,
+  OperationRequestDetails,
+  OperationRequestParameterDetails
+} from "./models/operationDetails";
 
 export function transformOperationSpec(operation: Operation): OperationSpec {
   // Extract protocol information
   const httpInfo = extractHttpDetails(operation.request);
   const serializer = new Serializer();
+  const operationDetails = transformOperation(operation);
 
   return {
     ...httpInfo,
     responses: extractResponses(operation.responses, operation.exceptions),
+    requestBody: extractRequest(operationDetails) as any,
     serializer
   };
 }
@@ -35,7 +47,7 @@ export function extractHttpDetails({ protocol }: Request) {
   const { path, method } = protocol.http;
 
   return {
-    path,
+    path: path.replace("{$host}/", ""),
     httpMethod: method.toUpperCase() as HttpMethods
   };
 }
@@ -54,6 +66,21 @@ export function extractResponses(
   return {
     ...schemaResponses,
     ...defaultResponse
+  };
+}
+
+export function extractRequest(operationDetails: OperationDetails) {
+  const parameters = (operationDetails.request.parameters || []).filter(
+    p => p.location === ParameterLocation.Body
+  );
+
+  if (parameters.length < 1) {
+    return undefined;
+  }
+
+  return {
+    parameterPath: parameters.map(p => p.name)[0],
+    mapper: parameters[0].mapper
   };
 }
 
@@ -134,4 +161,85 @@ function getBodyMapperFromSchema(responseSchema: Schema) {
     : {
         type: responseType
       };
+}
+
+/**
+ * Operation Details
+ */
+
+export function transformOperationRequestParameter(
+  parameter: Parameter
+): OperationRequestParameterDetails {
+  const metadata = getLanguageMetadata(parameter.language);
+  return {
+    name: metadata.name,
+    description: metadata.description,
+    modelType: getTypeForSchema(parameter.schema).typeName,
+    required: parameter.required,
+    location: parameter.protocol.http
+      ? parameter.protocol.http.in
+      : ParameterLocation.Body,
+    mapper: getBodyMapperFromSchema(parameter.schema)
+  };
+}
+
+export function transformOperationRequest(
+  request: Request
+): OperationRequestDetails {
+  if (request.protocol.http) {
+    return {
+      path: request.protocol.http.path.replace("{$host}/", ""),
+      method: request.protocol.http.method,
+      parameters: request.parameters
+        ? request.parameters.map(transformOperationRequestParameter)
+        : undefined
+    };
+  } else {
+    throw new Error("Operation does not specify HTTP request details.");
+  }
+}
+
+export function transformOperationResponse(
+  response: Response
+): OperationResponseDetails {
+  let modelType: string | undefined = undefined;
+  if ((response as any).schema) {
+    const schemaResponse = response as SchemaResponse;
+    modelType = getTypeForSchema(schemaResponse.schema).typeName;
+  }
+
+  if (response.protocol.http) {
+    return {
+      statusCodes: response.protocol.http.statusCodes,
+      mediaType: response.protocol.http.knownMediaType,
+      modelType
+    };
+  } else {
+    throw new Error("Operation does not specify HTTP response details.");
+  }
+}
+
+export function transformOperation(operation: Operation): OperationDetails {
+  const metadata = getLanguageMetadata(operation.language);
+  operation.responses;
+  return {
+    name: normalizeName(metadata.name, NameType.Property),
+    apiVersions: operation.apiVersions
+      ? operation.apiVersions.map(v => v.version)
+      : [],
+    description: metadata.description,
+    request: transformOperationRequest(operation.request),
+    responses: []
+  };
+}
+
+export function transformOperationGroup(
+  operationGroup: OperationGroup
+): OperationGroupDetails {
+  const metadata = getLanguageMetadata(operationGroup.language);
+  return {
+    name: normalizeName(metadata.name, NameType.Property),
+    key: operationGroup.$key,
+    operations: operationGroup.operations.map(transformOperation)
+  };
 }

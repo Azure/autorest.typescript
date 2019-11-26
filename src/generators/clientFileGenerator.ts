@@ -1,15 +1,25 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Project } from "ts-morph";
+import { Project, PropertyDeclarationStructure } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
-import { getModelsName, getMappersName } from "../utils/nameUtils";
+import {
+  getModelsName,
+  getMappersName,
+  normalizeName,
+  NameType
+} from "../utils/nameUtils";
+import { CodeModel } from "@azure-tools/codemodel";
+import { transformOperationGroup } from "../operationTransforms";
 
-export function generateClient(clientDetails: ClientDetails, project: Project) {
+export function generateClient(
+  codeModel: CodeModel,
+  clientDetails: ClientDetails,
+  project: Project
+) {
   const modelsName = getModelsName(clientDetails.className);
   const mappersName = getMappersName(clientDetails.className);
   const clientContextClassName = `${clientDetails.className}Context`;
-  const clientContextFileName = `${clientDetails.sourceFileName}Context`;
 
   const clientFile = project.createSourceFile(
     `src/${clientDetails.sourceFileName}.ts`,
@@ -44,15 +54,25 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     extends: clientContextClassName
   });
 
-  clientClass.addProperties([
-    // TODO: Generate these based on operation groups list
-    // {
-    //   name: "string",
-    //   type: "operations.String",
-    //   leadingTrivia: writer => writer.write("// Operation groups")
-    // },
-    // { name: "enumModel", type: "operations.EnumModel" }
-  ]);
+  const operations = codeModel.operationGroups.map(og => {
+    const operationGoupDetails = transformOperationGroup(og);
+    return {
+      name: normalizeName(operationGoupDetails.name, NameType.Property),
+      typeName: `operations.${normalizeName(
+        operationGoupDetails.name,
+        NameType.Class
+      )}`
+    };
+  });
+
+  clientClass.addProperties(
+    operations.map(op => {
+      return {
+        name: op.name,
+        type: op.typeName
+      } as PropertyDeclarationStructure;
+    })
+  );
 
   const clientConstructor = clientClass.addConstructor({
     docs: [
@@ -65,20 +85,21 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       {
         name: "options",
         hasQuestionToken: true,
-        type: `Models.${clientDetails.className}Options`
+        type: "any" // TODO Use the right type `Models.${clientDetails.className}Options`
       }
     ]
   });
 
   clientConstructor.addStatements([
-    "super(options);"
-    // TODO: Generate these based on operation groups list
-    // "this.string = new operations.String(this);",
-    // "this.enumModel = new operations.EnumModel(this);"
+    "super(options);",
+    ...operations.map(
+      ({ name, typeName }) => `this.${name} = new ${typeName}(this)`
+    )
   ]);
 
   clientFile.addExportDeclaration({
-    leadingTrivia: writer => writer.write("// Operation Specifications\n\n"),
+    leadingTrivia: (writer: any) =>
+      writer.write("// Operation Specifications\n\n"),
     namedExports: [
       { name: clientDetails.className },
       { name: clientContextClassName },

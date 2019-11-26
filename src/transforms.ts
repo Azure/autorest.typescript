@@ -14,7 +14,6 @@ import {
   SchemaType,
   Property,
   ChoiceSchema,
-  ChoiceValue,
   ValueSchema,
   ConstantSchema
 } from "@azure-tools/codemodel";
@@ -74,6 +73,15 @@ export function getTypeForSchema(schema: Schema): PropertyTypeDetails {
         constantSchema.valueType,
         false
       );
+      break;
+    case SchemaType.ByteArray:
+      typeName = "Int8Array";
+      break;
+    case SchemaType.Choice:
+    case SchemaType.SealedChoice:
+    case SchemaType.Object:
+      const { name } = getLanguageMetadata(schema.language);
+      typeName = name;
       break;
     default:
       throw new Error(`Unsupported schema type: ${schema.type}`);

@@ -1,7 +1,8 @@
 import * as assert from "assert";
 import {
   transformOperationSpec,
-  getSpecType
+  getSpecType,
+  extractRequest
 } from "../../src/operationTransforms";
 import {
   Operation,
@@ -10,7 +11,8 @@ import {
   Schema,
   ChoiceValue,
   ChoiceSchema,
-  ObjectSchema
+  ObjectSchema,
+  ParameterLocation
 } from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { OperationSpec } from "@azure/core-http";
@@ -157,10 +159,6 @@ describe("OperationTransforms", () => {
         const operationSpec = transformOperationSpec(mockOperation);
         checkHttpMethodAndPath(operationSpec);
         const okResponse = operationSpec.responses[200];
-        // assert.strictEqual(
-        //   okResponse.bodyMapper!.serializedName,
-        //   "parsedResponse"
-        // );
         assert.deepEqual(okResponse.bodyMapper!.type, { name: "String" });
         assert.deepEqual(
           operationSpec.responses.default.bodyMapper,
@@ -174,10 +172,6 @@ describe("OperationTransforms", () => {
         const operationSpec = transformOperationSpec(mockOperation);
         checkHttpMethodAndPath(operationSpec);
         const okResponse = operationSpec.responses[200];
-        // assert.strictEqual(
-        //   okResponse.bodyMapper!.serializedName,
-        //   "parsedResponse"
-        // );
         assert.deepEqual(okResponse.bodyMapper!.type, {
           name: "Enum",
           allowedValues: ["red color", "green-color", "blue_color"]
@@ -187,6 +181,17 @@ describe("OperationTransforms", () => {
           "Mappers.ErrorModel"
         );
       });
+    });
+  });
+
+  describe("extractRequest", () => {
+    it("should extract request with expected parameterPath", () => {
+      const request = extractRequest({
+        request: {
+          parameters: [{ location: ParameterLocation.Body, name: "stringBody" }]
+        }
+      } as any);
+      assert.deepEqual(request!.parameterPath, "stringBody");
     });
   });
 });
