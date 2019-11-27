@@ -4,7 +4,7 @@ import {
   transformObject,
   transformProperty,
   transformChoice
-} from "../../src/transforms";
+} from "../../../src/transforms/transforms";
 
 import {
   CodeModel,

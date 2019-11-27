@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ClientDetails } from "./models/clientDetails";
-import { UnionDetails } from "./models/unionDetails";
-import { ModelDetails, PropertyDetails } from "./models/modelDetails";
+import { ClientDetails } from "../models/clientDetails";
+import { UnionDetails } from "../models/unionDetails";
+import { ModelDetails, PropertyDetails } from "../models/modelDetails";
 
 import {
   CodeModel,
@@ -11,10 +11,14 @@ import {
   Property,
   ChoiceSchema
 } from "@azure-tools/codemodel";
-import { normalizeName, NameType, guardReservedNames } from "./utils/nameUtils";
-import { getTypeForSchema } from "./utils/schemaHelpers";
-import { getStringForValue } from "./utils/valueHelpers";
-import { getLanguageMetadata } from "./utils/languageHelpers";
+import {
+  normalizeName,
+  NameType,
+  guardReservedNames
+} from "../utils/nameUtils";
+import { getTypeForSchema } from "../utils/schemaHelpers";
+import { getStringForValue } from "../utils/valueHelpers";
+import { getLanguageMetadata } from "../utils/languageHelpers";
 import { transformOperationGroup } from "./operationTransforms";
 
 export function transformProperty(property: Property): PropertyDetails {

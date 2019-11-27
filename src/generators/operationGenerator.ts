@@ -11,7 +11,7 @@ import {
 } from "ts-morph";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
-import { transformOperationSpec } from "../operationTransforms";
+import { transformOperationSpec } from "../transforms/operationTransforms";
 import { Mapper } from "@azure/core-http";
 import {
   OperationGroupDetails,
@@ -232,7 +232,7 @@ function addOperations(
 
     const optionalOptionsParams = [...params, getOptionsParameter(true)];
     const requiredCallbackParams = [...params, getCallbackParameter(false)];
-    const retuiredOptionsAndCallbackParams = [
+    const requiredOptionsAndCallbackParams = [
       ...params,
       getOptionsParameter(false),
       getCallbackParameter(false)
@@ -264,8 +264,8 @@ function addOperations(
         returnType: "void"
       },
       {
-        parameters: retuiredOptionsAndCallbackParams,
-        docs: [generateOperationJSDoc(retuiredOptionsAndCallbackParams)],
+        parameters: requiredOptionsAndCallbackParams,
+        docs: [generateOperationJSDoc(requiredOptionsAndCallbackParams)],
         returnType: "void"
       }
     ]);

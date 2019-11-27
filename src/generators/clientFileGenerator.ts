@@ -10,7 +10,6 @@ import {
   NameType
 } from "../utils/nameUtils";
 import { CodeModel } from "@azure-tools/codemodel";
-import { transformOperationGroup } from "../operationTransforms";
 
 export function generateClient(
   codeModel: CodeModel,
@@ -54,14 +53,10 @@ export function generateClient(
     extends: clientContextClassName
   });
 
-  const operations = codeModel.operationGroups.map(og => {
-    const operationGoupDetails = transformOperationGroup(og);
+  const operations = clientDetails.operationGroups.map(og => {
     return {
-      name: normalizeName(operationGoupDetails.name, NameType.Property),
-      typeName: `operations.${normalizeName(
-        operationGoupDetails.name,
-        NameType.Class
-      )}`
+      name: normalizeName(og.name, NameType.Property),
+      typeName: `operations.${normalizeName(og.name, NameType.Class)}`
     };
   });
 

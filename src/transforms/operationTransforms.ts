@@ -11,7 +11,7 @@ import {
   ParameterLocation,
   Parameter
 } from "@azure-tools/codemodel";
-import { normalizeName, NameType } from "./utils/nameUtils";
+import { normalizeName, NameType } from "../utils/nameUtils";
 import {
   OperationGroupDetails,
   OperationDetails,
@@ -21,9 +21,9 @@ import {
   OperationSpecDetails,
   OperationSpecResponses,
   OperationSpecRequest
-} from "./models/operationDetails";
-import { getLanguageMetadata } from "./utils/languageHelpers";
-import { getTypeForSchema } from "./utils/schemaHelpers";
+} from "../models/operationDetails";
+import { getLanguageMetadata } from "../utils/languageHelpers";
+import { getTypeForSchema } from "../utils/schemaHelpers";
 
 export function transformOperationSpec(
   operationDetails: OperationDetails
@@ -32,27 +32,28 @@ export function transformOperationSpec(
   const httpInfo = extractHttpDetails(operationDetails.request);
   return {
     ...httpInfo,
-    responses: extractSpecResponses(operationDetails.responses),
+    responses: extractSpecResponses(operationDetails),
     requestBody: extractSpecRequest(operationDetails)
   };
 }
 
 export function extractHttpDetails({ path, method }: OperationRequestDetails) {
   return {
+    // TODO: Revisit how we should handle {$host}
     path: path.replace("{$host}/", ""),
     httpMethod: method.toUpperCase() as HttpMethods
   };
 }
 
-export function extractSpecResponses(
-  responses?: OperationResponseDetails[]
-): OperationSpecResponses {
+export function extractSpecResponses({
+  name,
+  responses
+}: OperationDetails): OperationSpecResponses {
   if (!responses || !responses.length) {
-    // Should we throw an error here?
-    return {};
+    throw new Error(`The operation ${name} contains no responses`);
   }
-  const schemaResponses = extractSchemaResponses(responses);
 
+  const schemaResponses = extractSchemaResponses(responses);
   return schemaResponses;
 }
 
@@ -155,6 +156,7 @@ export function transformOperationRequest(
 ): OperationRequestDetails {
   if (request.protocol.http) {
     return {
+      // TODO: Revisit how we should handle {$host}
       path: request.protocol.http.path.replace("{$host}/", ""),
       method: request.protocol.http.method,
       parameters: request.parameters
@@ -229,14 +231,14 @@ function mergeResponsesAndExceptions(operation: Operation) {
 
   if (operation.responses) {
     responses = [
-      ...(responses || []),
+      ...responses,
       ...operation.responses.map(transformOperationResponse)
     ];
   }
 
   if (operation.exceptions) {
     responses = [
-      ...(responses || []),
+      ...responses,
       ...operation.exceptions.map(transformOperationResponse)
     ];
   }

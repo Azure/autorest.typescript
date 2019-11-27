@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { CodeModel } from "@azure-tools/codemodel";
-import { transformCodeModel } from "../transforms";
+import { transformCodeModel } from "../transforms/transforms";
 import { Project, PropertySignatureStructure, StructureKind } from "ts-morph";
 
 export function generateModels(codeModel: CodeModel, project: Project) {

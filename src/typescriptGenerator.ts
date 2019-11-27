@@ -6,7 +6,7 @@ import { CodeModel } from "@azure-tools/codemodel";
 import { Project, IndentationText } from "ts-morph";
 import { Host } from "@azure-tools/autorest-extension-base";
 import { PackageDetails } from "./models/packageDetails";
-import { transformCodeModel } from "./transforms";
+import { transformCodeModel } from "./transforms/transforms";
 
 import { generateClient } from "./generators/clientFileGenerator";
 import { generateClientContext } from "./generators/clientContextFileGenerator";

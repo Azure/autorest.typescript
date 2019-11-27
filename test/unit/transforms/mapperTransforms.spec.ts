@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { transformMapper } from "../../src/mapperTransforms";
+import { transformMapper } from "../../../src/transforms/mapperTransforms";
 import {
   ObjectSchema,
   Property,

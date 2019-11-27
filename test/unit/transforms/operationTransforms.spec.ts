@@ -4,7 +4,7 @@ import {
   getSpecType,
   transformOperation,
   extractSpecRequest
-} from "../../src/operationTransforms";
+} from "../../../src/transforms/operationTransforms";
 import {
   Operation,
   SchemaResponse,
@@ -19,7 +19,7 @@ import {
 } from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { Mapper } from "@azure/core-http";
-import { OperationSpecDetails } from "../../src/models/operationDetails";
+import { OperationSpecDetails } from "../../../src/models/operationDetails";
 
 const choice = new ChoiceSchema("mockChoice", "", {
   choices: [
