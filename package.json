@@ -4,13 +4,15 @@
     "scripts": {
         "build": "tsc -p .",
         "start": "node ./dist/src/main.js",
-        "test": "npm run unit-test & npm run integration-test",
+        "test": "npm-run-all unit-test integration-test",
         "unit-test": "mocha -r ts-node/register './test/unit/**/*spec.ts'",
-        "integration-test": "ts-node test/utils/start-server.ts & npm run generate-bodystring & mocha -r ts-node/register './test/integration/**/*spec.ts' & stop-autorest-testserver",
+        "integration-test": "npm-run-all start-test-server generate-bodystring integration-test:alone stop-test-server",
+        "integration-test:alone": "mocha -r ts-node/register './test/integration/**/*spec.ts'",
+        "start-test-server": "ts-node test/utils/start-server.ts",
+        "stop-test-server": "stop-autorest-testserver",
         "debug": "node --inspect-brk ./dist/src/main.js",
         "generate-bodystring": "npm run build && autorest-beta --typescript  --output-folder=./generated/bodyString --use=. --title=BodyStringClient --input-file=node_modules/@autorest/test-server/__files/swagger/body-string.json --package-name=bodyString --package-version=1.0.0-preview1",
         "generate-bodycomplex": "npm run build && autorest-beta --typescript --output-folder=./generated/bodyComplex --use=. --title=BodyComplexClient --input-file=node_modules/@autorest/test-server/__files/swagger/body-complex.json --package-name=bodyString --package-version=1.0.0-preview1"
-
     },
     "dependencies": {
         "@autorest/autorest": "^3.0.6122",
@@ -39,6 +41,7 @@
         "mocha": "6.2.1",
         "mocha-typescript": "1.1.17",
         "node-cmd": "^3.0.0",
+        "npm-run-all": "^4.1.5",
         "ts-node": "^8.5.2",
         "typescript": "~3.6.2",
         "wait-port": "^0.2.6"
