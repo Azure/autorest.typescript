@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
+const ReservedModelNames = ["Error"];
 
 export enum CasingConvention {
   Pascal,
@@ -12,6 +13,10 @@ export enum NameType {
   File
 }
 
+export function guardReservedNames(name: string): string {
+  return ReservedModelNames.indexOf(name) > -1 ? `${name}Model` : name;
+}
+
 export function normalizeName(name: string, nameType: NameType): string {
   const casingConvention = getCasingConvention(nameType);
 
@@ -21,7 +26,9 @@ export function normalizeName(name: string, nameType: NameType): string {
   const normalizedParts = (otherParts || [])
     .map(part => toCasing(part, CasingConvention.Pascal))
     .join("");
-  return `${normalizedFirstPart}${normalizedParts}`;
+
+  const normalized = `${normalizedFirstPart}${normalizedParts}`;
+  return guardReservedNames(normalized);
 }
 
 export function getModelsName(title: string): string {

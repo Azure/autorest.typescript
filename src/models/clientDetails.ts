@@ -3,6 +3,7 @@
 
 import { ModelDetails } from "./modelDetails";
 import { UnionDetails } from "./unionDetails";
+import { OperationGroupDetails } from "./operationDetails";
 
 export interface ClientDetails {
   name: string;
@@ -11,4 +12,5 @@ export interface ClientDetails {
   sourceFileName: string;
   models: ModelDetails[];
   unions: UnionDetails[];
+  operationGroups: OperationGroupDetails[];
 }

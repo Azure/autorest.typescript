@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { CodeModel } from "@azure-tools/codemodel";
-import { transformMapper } from "../mapperTransforms";
+import { transformMapper } from "../transforms/mapperTransforms";
 import { Project, VariableDeclarationKind } from "ts-morph";
 
 export function generateMappers(codeModel: CodeModel, project: Project) {

@@ -16,6 +16,15 @@ export interface PropertyDetails {
 }
 
 /**
+ * Details of a property's type
+ */
+export interface PropertyTypeDetails {
+  typeName: string;
+  isConstant: boolean;
+  defaultValue?: string;
+}
+
+/**
  * Details of a model, transformed from ObjectSchema.
  */
 export interface ModelDetails {

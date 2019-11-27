@@ -56,7 +56,7 @@ export function generateClientContext(
       {
         name: "options",
         hasQuestionToken: true,
-        type: `Models.${clientDetails.className}Options`
+        type: "any" // TODO: Use the correct type from models `Models.${clientDetails.className}Options`
       }
     ]
   });

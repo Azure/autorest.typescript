@@ -6,7 +6,7 @@ import { CodeModel } from "@azure-tools/codemodel";
 import { Project, IndentationText } from "ts-morph";
 import { Host } from "@azure-tools/autorest-extension-base";
 import { PackageDetails } from "./models/packageDetails";
-import { transformCodeModel } from "./transforms";
+import { transformCodeModel } from "./transforms/transforms";
 
 import { generateClient } from "./generators/clientFileGenerator";
 import { generateClientContext } from "./generators/clientContextFileGenerator";
@@ -17,6 +17,7 @@ import { generateLicenseFile } from "./generators/static/licenseFileGenerator";
 import { generateReadmeFile } from "./generators/static/readmeFileGenerator";
 import { generateTsConfig } from "./generators/static/tsConfigFileGenerator";
 import { generateRollupConfig } from "./generators/static/rollupConfigFileGenerator";
+import { generateOperations } from "./generators/operationGenerator";
 
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
@@ -73,10 +74,11 @@ export class TypescriptGenerator {
       generateRollupConfig(clientDetails, packageDetails, project);
     }
 
-    generateClient(clientDetails, project);
+    generateClient(this.codeModel, clientDetails, project);
     generateClientContext(clientDetails, packageDetails, project);
     generateModels(this.codeModel, project);
     generateMappers(this.codeModel, project);
+    generateOperations(clientDetails, project);
 
     // TODO: Get this from the "license-header" setting:
     //   await this.host.GetValue("license-header");

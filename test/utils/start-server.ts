@@ -5,7 +5,7 @@ type OutputType = "silent" | "dots";
 /**
  * Function that starts the test server with retries
  */
-const startTestServer = () => retry(startServer, 3);
+const startTestServer = () => retry(startServer, 4);
 
 /**
  * Function that starts the tests server and verifies it is ready to receive requests
