@@ -6,7 +6,7 @@ import { getLanguageMetadata } from "./languageHelpers";
 
 export function getTypeForSchema(schema: Schema): PropertyTypeDetails {
   let typeName: string = "";
-  let defaultValue: string | undefined = undefined;
+  let defaultValue: string = "";
 
   switch (schema.type) {
     case SchemaType.String:
@@ -27,7 +27,7 @@ export function getTypeForSchema(schema: Schema): PropertyTypeDetails {
       );
       break;
     case SchemaType.ByteArray:
-      typeName = "Int8Array";
+      typeName = "Uint8Array";
       break;
     case SchemaType.Choice:
     case SchemaType.SealedChoice:

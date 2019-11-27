@@ -43,17 +43,27 @@ const errorSchema = new ObjectSchema("ErrorModel", "", {});
 
 describe("OperationTransforms", () => {
   describe("getSpecType", () => {
-    it("should return string when type is constant or string", () => {
-      assert.strictEqual(
-        getSpecType({ type: SchemaType.Constant } as any).name,
-        "String",
-        "constant"
-      );
+    it("should return string when type is string", () => {
       assert.strictEqual(
         getSpecType({ type: SchemaType.String } as any).name,
         "String",
         "string"
       );
+    });
+    it("should return constant props when type is constant", () => {
+      const constantType = getSpecType(
+        {
+          type: SchemaType.Constant,
+          valueType: { type: SchemaType.String } as any,
+          value: { value: "constantValue" }
+        } as any,
+        true
+      );
+      assert.strictEqual(constantType.name, "String", "constant");
+      assert.deepEqual(constantType.constantProps, {
+        isConstant: true,
+        defaultValue: "constantValue"
+      });
     });
     it("should return Base64Url when type is ByteArray", () => {
       assert.strictEqual(

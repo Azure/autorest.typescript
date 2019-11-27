@@ -9,13 +9,8 @@ import {
   normalizeName,
   NameType
 } from "../utils/nameUtils";
-import { CodeModel } from "@azure-tools/codemodel";
 
-export function generateClient(
-  codeModel: CodeModel,
-  clientDetails: ClientDetails,
-  project: Project
-) {
+export function generateClient(clientDetails: ClientDetails, project: Project) {
   const modelsName = getModelsName(clientDetails.className);
   const mappersName = getMappersName(clientDetails.className);
   const clientContextClassName = `${clientDetails.className}Context`;
