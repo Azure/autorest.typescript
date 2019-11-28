@@ -1,4 +1,9 @@
-import { HttpMethods, Mapper, MapperType } from "@azure/core-http";
+import {
+  HttpMethods,
+  Mapper,
+  MapperType,
+  CompositeMapper
+} from "@azure/core-http";
 import {
   Operation,
   Request,
@@ -9,7 +14,8 @@ import {
   ChoiceSchema,
   OperationGroup,
   ParameterLocation,
-  Parameter
+  Parameter,
+  ConstantSchema
 } from "@azure-tools/codemodel";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import {
@@ -78,18 +84,34 @@ export interface SpecType {
   name: string;
   allowedValues?: string[];
   reference?: string;
+  constantProps?: ConstantProps;
 }
 
-export function getSpecType(responseSchema: Schema): SpecType {
+interface ConstantProps {
+  isConstant: true;
+  defaultValue: any;
+}
+
+export function getSpecType(responseSchema: Schema, expand = false): SpecType {
   let typeName: string = "";
   let allowedValues: any[] | undefined = undefined;
   let reference: string | undefined = undefined;
+  let constantProps: ConstantProps | undefined;
   switch (responseSchema.type) {
     case SchemaType.ByteArray:
       typeName = "Base64Url";
       break;
-    case SchemaType.String:
     case SchemaType.Constant:
+      const constantSchema = responseSchema as ConstantSchema;
+      typeName = getSpecType(constantSchema.valueType).name;
+      constantProps = expand
+        ? {
+            isConstant: true,
+            defaultValue: constantSchema.value.value || ""
+          }
+        : undefined;
+      break;
+    case SchemaType.String:
       typeName = "String";
       break;
     case SchemaType.Choice:
@@ -110,7 +132,11 @@ export function getSpecType(responseSchema: Schema): SpecType {
     reference
   };
 
-  return !!allowedValues ? { ...result, allowedValues } : result;
+  return {
+    ...result,
+    ...(!!allowedValues && { allowedValues }),
+    ...(!!constantProps && { constantProps })
+  };
 }
 
 export function extractSchemaResponses(responses: OperationResponseDetails[]) {
@@ -139,16 +165,27 @@ export function transformOperationRequestParameter(
   parameter: Parameter
 ): OperationRequestParameterDetails {
   const metadata = getLanguageMetadata(parameter.language);
+
   return {
     name: metadata.name,
     description: metadata.description,
     modelType: getTypeForSchema(parameter.schema).typeName,
-    required: parameter.required,
+    required: isParameterRequired(parameter),
     location: parameter.protocol.http
       ? parameter.protocol.http.in
       : ParameterLocation.Body,
-    mapper: getBodyMapperFromSchema(parameter.schema)
+    mapper: getBodyMapperFromSchema(parameter.schema, true)
   };
+}
+
+function isParameterRequired(parameter: Parameter) {
+  const mapper = getBodyMapperFromSchema(
+    parameter.schema,
+    true
+  ) as CompositeMapper;
+
+  // If the parameter contains a default value, it is not required
+  return !!mapper.defaultValue ? false : parameter.required;
 }
 
 export function transformOperationRequest(
@@ -216,12 +253,16 @@ export function transformOperationGroup(
   };
 }
 
-function getBodyMapperFromSchema(responseSchema: Schema): Mapper | string {
-  const responseType = getSpecType(responseSchema);
-  const { reference, ...type } = responseType;
+function getBodyMapperFromSchema(
+  responseSchema: Schema,
+  expand = false
+): Mapper | string {
+  const responseType = getSpecType(responseSchema, expand);
+  const { reference, constantProps, ...type } = responseType;
   return (
     reference || {
-      type: type as MapperType
+      type: type as MapperType,
+      ...(!!constantProps && constantProps)
     }
   );
 }

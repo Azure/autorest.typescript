@@ -205,11 +205,20 @@ function addOperations(
   operationGroupDetails: OperationGroupDetails,
   operationGroupClass: ClassDeclaration
 ) {
-  const primitiveTypes = ["string", "boolean", "number", "any", "Int8Array"];
+  const primitiveTypes = [
+    "string",
+    "boolean",
+    "number",
+    "any",
+    "Int8Array",
+    "Uint8Array"
+  ];
   operationGroupDetails.operations.forEach(operation => {
     const parameters = operation.request.parameters || [];
     const params = parameters
-      .filter(param => param.location === ParameterLocation.Body)
+      .filter(
+        param => param.location === ParameterLocation.Body && param.required
+      )
       .map<ParameterWithDescription>(param => {
         const typeName = param.modelType || "any";
         const type =

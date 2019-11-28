@@ -74,7 +74,7 @@ export class TypescriptGenerator {
       generateRollupConfig(clientDetails, packageDetails, project);
     }
 
-    generateClient(this.codeModel, clientDetails, project);
+    generateClient(clientDetails, project);
     generateClientContext(clientDetails, packageDetails, project);
     generateModels(this.codeModel, project);
     generateMappers(this.codeModel, project);
