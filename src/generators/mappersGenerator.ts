@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { CodeModel } from "@azure-tools/codemodel";
-import { transformMapper } from "../transforms/mapperTransforms";
+import { ClientDetails } from "../models/clientDetails";
 import { Project, VariableDeclarationKind } from "ts-morph";
 
-export function generateMappers(codeModel: CodeModel, project: Project) {
-  const mappers = (codeModel.schemas.objects || []).map(transformMapper);
+export function generateMappers(
+  clientDetails: ClientDetails,
+  project: Project
+) {
   const mappersFile = project.createSourceFile(
     "src/models/mappers.ts",
     undefined,
@@ -18,7 +19,7 @@ export function generateMappers(codeModel: CodeModel, project: Project) {
     moduleSpecifier: "@azure/core-http"
   });
 
-  for (const mapper of mappers) {
+  for (const mapper of clientDetails.mappers) {
     // Generate the mapper definition and replace object key strings
     // with the unquoted name
     const mapperString = JSON.stringify(mapper, undefined, 2).replace(

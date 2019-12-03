@@ -19,6 +19,7 @@ import {
 import { getTypeForSchema } from "../utils/schemaHelpers";
 import { getStringForValue } from "../utils/valueHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
+import { transformMapper } from "./mapperTransforms";
 import { transformOperationGroup } from "./operationTransforms";
 
 export function transformProperty(property: Property): PropertyDetails {
@@ -76,12 +77,9 @@ export function transformCodeModel(codeModel: CodeModel): ClientDetails {
     className,
     description: codeModel.info.description,
     sourceFileName: normalizeName(className, NameType.File),
-    models: codeModel.schemas.objects
-      ? codeModel.schemas.objects.map(transformObject)
-      : [],
-    unions: codeModel.schemas.choices
-      ? codeModel.schemas.choices.map(transformChoice)
-      : [],
+    models: (codeModel.schemas.objects || []).map(transformObject),
+    mappers: (codeModel.schemas.objects || []).map(transformMapper),
+    unions: (codeModel.schemas.choices || []).map(transformChoice),
     operationGroups: codeModel.operationGroups.map(transformOperationGroup)
   };
 }

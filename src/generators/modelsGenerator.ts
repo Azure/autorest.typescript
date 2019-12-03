@@ -1,13 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { CodeModel } from "@azure-tools/codemodel";
-import { transformCodeModel } from "../transforms/transforms";
+import { ClientDetails } from "../models/clientDetails";
 import { Project, PropertySignatureStructure, StructureKind } from "ts-morph";
 
-export function generateModels(codeModel: CodeModel, project: Project) {
-  const clientDetails = transformCodeModel(codeModel);
-
+export function generateModels(clientDetails: ClientDetails, project: Project) {
   const modelsIndexFile = project.createSourceFile(
     "src/models/index.ts",
     undefined,
