@@ -70,8 +70,8 @@ export async function generateTypeScriptLibrary(
 
   generateClient(clientDetails, project);
   generateClientContext(clientDetails, packageDetails, project);
-  generateModels(codeModel, project);
-  generateMappers(codeModel, project);
+  generateModels(clientDetails, project);
+  generateMappers(clientDetails, project);
   generateOperations(clientDetails, project);
 
   // TODO: Get this from the "license-header" setting:
