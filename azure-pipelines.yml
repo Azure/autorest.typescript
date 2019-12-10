@@ -10,10 +10,11 @@ jobs:
     matrix:
       Node10:
         node.version: 10.x
-      Node12:
-        node.version: 12.x
+      # Gulp 3 currently does not run on Node 12, re-enable this
+      # when we've resolved the issue: https://github.com/Azure/autorest.typescript/issues/526
+      # Node12:
+      #   node.version: 12.x
   steps:
-  # Always build with Node.js 10 because Node.js 12 has an incompatibility with Gulp 3 (used by AutoRest)
   - task: NodeTool@0
     displayName: 'Install Node 10'
     inputs:
