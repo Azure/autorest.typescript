@@ -11,11 +11,11 @@
         "start-test-server": "ts-node test/utils/start-server.ts",
         "stop-test-server": "stop-autorest-testserver",
         "debug": "node --inspect-brk ./dist/src/main.js",
-        "generate-bodystring": "npm run build && autorest-beta --typescript  --output-folder=./generated/bodyString --use=. --title=BodyStringClient --input-file=node_modules/@autorest/test-server/__files/swagger/body-string.json --package-name=bodyString --package-version=1.0.0-preview1",
-        "generate-bodycomplex": "npm run build && autorest-beta --typescript --output-folder=./generated/bodyComplex --use=. --title=BodyComplexClient --input-file=node_modules/@autorest/test-server/__files/swagger/body-complex.json --package-name=bodyString --package-version=1.0.0-preview1"
+        "generate-bodystring": "npm run build && autorest-beta --version:3.0.6168 --use:@autorest/modelerfour@4.2.75 --typescript --output-folder=./generated/bodyString --use=. --title=BodyStringClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-string.json --package-name=bodyString --package-version=1.0.0-preview1",
+        "generate-bodycomplex": "npm run build && autorest-beta --version:3.0.6168 --use:@autorest/modelerfour@4.2.75 --typescript --output-folder=./generated/bodyComplex --use=. --title=BodyComplexClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-complex.json --package-name=bodyString --package-version=1.0.0-preview1"
     },
     "dependencies": {
-        "@autorest/autorest": "^3.0.6122",
+        "@autorest/autorest": "^3.0.6146",
         "@azure-tools/async-io": "3.0.203",
         "@azure-tools/autorest-extension-base": "3.1.206",
         "@azure-tools/codegen": "2.1.218",
@@ -23,7 +23,9 @@
         "@azure-tools/linq": "3.1.206",
         "@azure-tools/openapi": "3.0.209",
         "@azure/core-http": "^1.0.0",
-        "@microsoft.azure/autorest.testserver": "^2.7.0",
+        "@microsoft.azure/autorest.testserver": "^2.7.1",
+        "@types/lodash": "^4.14.149",
+        "lodash": "^4.17.15",
         "prettier": "^1.19.1",
         "source-map-support": "^0.5.16",
         "ts-morph": "^5.0.0"

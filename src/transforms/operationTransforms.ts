@@ -115,6 +115,7 @@ export function getSpecType(responseSchema: Schema, expand = false): SpecType {
       typeName = "String";
       break;
     case SchemaType.Choice:
+    case SchemaType.SealedChoice:
       const choiceSchema = responseSchema as ChoiceSchema;
       typeName = "Enum";
       allowedValues = choiceSchema.choices.map(choice => choice.value);

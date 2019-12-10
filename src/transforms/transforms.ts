@@ -9,7 +9,8 @@ import {
   CodeModel,
   ObjectSchema,
   Property,
-  ChoiceSchema
+  ChoiceSchema,
+  SealedChoiceSchema
 } from "@azure-tools/codemodel";
 import {
   normalizeName,
@@ -42,7 +43,9 @@ export function transformProperty(property: Property): PropertyDetails {
   };
 }
 
-export function transformChoice(choice: ChoiceSchema): UnionDetails {
+export function transformChoice(
+  choice: ChoiceSchema | SealedChoiceSchema
+): UnionDetails {
   const metadata = getLanguageMetadata(choice.language);
   let name = guardReservedNames(metadata.name);
 
@@ -79,7 +82,10 @@ export function transformCodeModel(codeModel: CodeModel): ClientDetails {
     sourceFileName: normalizeName(className, NameType.File),
     models: (codeModel.schemas.objects || []).map(transformObject),
     mappers: (codeModel.schemas.objects || []).map(transformMapper),
-    unions: (codeModel.schemas.choices || []).map(transformChoice),
+    unions: [
+      ...(codeModel.schemas.choices || []),
+      ...(codeModel.schemas.sealedChoices || [])
+    ].map(transformChoice),
     operationGroups: codeModel.operationGroups.map(transformOperationGroup)
   };
 }

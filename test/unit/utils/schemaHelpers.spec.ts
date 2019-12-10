@@ -17,8 +17,7 @@ describe("SchemaHelpers", () => {
 
       assert.deepEqual(typeDetails, {
         typeName: "string",
-        isConstant: false,
-        defaultValue: undefined
+        isConstant: false
       });
     });
 
@@ -34,8 +33,7 @@ describe("SchemaHelpers", () => {
 
       assert.deepEqual(typeDetails, {
         typeName: "number",
-        isConstant: false,
-        defaultValue: undefined
+        isConstant: false
       });
     });
 
@@ -51,8 +49,7 @@ describe("SchemaHelpers", () => {
 
       assert.deepEqual(typeDetails, {
         typeName: "number",
-        isConstant: false,
-        defaultValue: undefined
+        isConstant: false
       });
     });
 

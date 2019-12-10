@@ -32,7 +32,7 @@ export function transformMapper(obj: ObjectSchema): CompositeMapper {
       serializedName,
       required,
       isConstant,
-      defaultValue,
+      ...(defaultValue && { defaultValue }),
       type: getMapperType(type)
     });
   });

@@ -27,7 +27,7 @@ More information about these can be found [here](https://github.com/Azure/autore
 
 ```yaml
 use-extension:
-  "@autorest/modelerfour": "4.0.52"
+  "@autorest/modelerfour": "4.2.75"
 
 pipeline:
   typescript: # <- name of plugin
