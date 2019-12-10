@@ -10,9 +10,13 @@ jobs:
     matrix:
       Node10:
         node.version: 10.x
-      Node11:
-        node.version: 11.x
+      Node12:
+        node.version: 12.x
   steps:
+  - task: NodeTool@0
+    displayName: 'Install Node $(node.version)'
+    inputs:
+      versionSpec: $(node.version)
   - script: npm install
   - task: Npm@1
     displayName: 'Run npm pack'
@@ -33,10 +37,6 @@ jobs:
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: $(Build.SourcesDirectory)/drop
-  - task: NodeTool@0
-    displayName: 'Install Node $(node.version)'
-    inputs:
-      versionSpec: $(node.version)
   - task: gulp@0
     displayName: 'gulp testci'
     inputs:
@@ -66,4 +66,4 @@ jobs:
     inputs:
       command: custom
       verbose: false
-      customCommand: run check:everything -- --azure-devops 
+      customCommand: run check:everything -- --azure-devops
