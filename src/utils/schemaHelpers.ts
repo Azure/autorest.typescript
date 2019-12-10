@@ -42,6 +42,6 @@ export function getTypeForSchema(schema: Schema): PropertyTypeDetails {
   return {
     typeName,
     isConstant: schema.type === SchemaType.Constant,
-    defaultValue
+    ...(defaultValue && { defaultValue })
   };
 }
