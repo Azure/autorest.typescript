@@ -13,10 +13,11 @@ jobs:
       Node12:
         node.version: 12.x
   steps:
+  # Always build with Node.js 10 because Node.js 12 has an incompatibility with Gulp 3 (used by AutoRest)
   - task: NodeTool@0
-    displayName: 'Install Node $(node.version)'
+    displayName: 'Install Node 10'
     inputs:
-      versionSpec: $(node.version)
+      versionSpec: 10.x
   - script: npm install
   - task: Npm@1
     displayName: 'Run npm pack'
@@ -37,6 +38,10 @@ jobs:
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: $(Build.SourcesDirectory)/drop
+  - task: NodeTool@0
+    displayName: 'Install Node $(node.version)'
+    inputs:
+      versionSpec: $(node.version)
   - task: gulp@0
     displayName: 'gulp testci'
     inputs:
@@ -55,6 +60,10 @@ jobs:
   pool:
     vmImage: 'Ubuntu 16.04'
   steps:
+  - task: NodeTool@0
+    displayName: 'Install Node 10'
+    inputs:
+      versionSpec: 10.x
   - task: Npm@1
     displayName: 'npm install'
     inputs:
