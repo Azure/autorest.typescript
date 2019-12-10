@@ -10,9 +10,15 @@ jobs:
     matrix:
       Node10:
         node.version: 10.x
-      Node11:
-        node.version: 11.x
+      # Gulp 3 currently does not run on Node 12, re-enable this
+      # when we've resolved the issue: https://github.com/Azure/autorest.typescript/issues/526
+      # Node12:
+      #   node.version: 12.x
   steps:
+  - task: NodeTool@0
+    displayName: 'Install Node 10'
+    inputs:
+      versionSpec: 10.x
   - script: npm install
   - task: Npm@1
     displayName: 'Run npm pack'
@@ -55,6 +61,10 @@ jobs:
   pool:
     vmImage: 'Ubuntu 16.04'
   steps:
+  - task: NodeTool@0
+    displayName: 'Install Node 10'
+    inputs:
+      versionSpec: 10.x
   - task: Npm@1
     displayName: 'npm install'
     inputs:
@@ -66,4 +76,4 @@ jobs:
     inputs:
       command: custom
       verbose: false
-      customCommand: run check:everything -- --azure-devops 
+      customCommand: run check:everything -- --azure-devops
