@@ -11,8 +11,8 @@
         "start-test-server": "ts-node test/utils/start-server.ts",
         "stop-test-server": "stop-autorest-testserver",
         "debug": "node --inspect-brk ./dist/src/main.js",
-        "generate-bodystring": "npm run build && autorest-beta --version:3.0.6168 --use:@autorest/modelerfour@4.2.75 --typescript --output-folder=./generated/bodyString --use=. --title=BodyStringClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-string.json --package-name=bodyString --package-version=1.0.0-preview1",
-        "generate-bodycomplex": "npm run build && autorest-beta --version:3.0.6168 --use:@autorest/modelerfour@4.2.75 --typescript --output-folder=./generated/bodyComplex --use=. --title=BodyComplexClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-complex.json --package-name=bodyString --package-version=1.0.0-preview1"
+        "generate-bodystring": "npm run build && autorest-beta --version:3.0.6168 --use:@autorest/modelerfour@4.2.75 --typescript --output-folder=./test/integration/generated/bodyString --use=. --title=BodyStringClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-string.json --package-name=bodyString --package-version=1.0.0-preview1",
+        "generate-bodycomplex": "npm run build && autorest-beta --version:3.0.6168 --use:@autorest/modelerfour@4.2.75 --typescript --output-folder=./test/integration/generated/bodyComplex --use=. --title=BodyComplexClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-complex.json --package-name=bodyString --package-version=1.0.0-preview1"
     },
     "dependencies": {
         "@autorest/autorest": "^3.0.6146",

@@ -12,11 +12,12 @@ import {
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
 import { transformOperationSpec } from "../transforms/operationTransforms";
-import { Mapper } from "@azure/core-http";
+import { Mapper, MapperType } from "@azure/core-http";
 import {
   OperationGroupDetails,
   OperationSpecDetails
 } from "../models/operationDetails";
+import { isString } from "util";
 
 /**
  * Function that writes the code for all the operations.
@@ -119,16 +120,24 @@ function buildResponses({ responses }: OperationSpecDetails): string[] {
   let parsedResponses: string[] = [];
   responseCodes.forEach(code => {
     // Check whether we have an actual mapper or a string reference
-    if (
-      responses[code] &&
-      responses[code].bodyMapper &&
-      (responses[code].bodyMapper as Mapper).type
-    ) {
+    const bodyMapper = responses[code].bodyMapper;
+    const isCompositeMapper =
+      bodyMapper &&
+      !isString(bodyMapper) &&
+      bodyMapper.type.name === MapperType.Composite;
+
+    if (bodyMapper && isCompositeMapper) {
       parsedResponses.push(`${code}: ${JSON.stringify(responses[code])}`);
     } else {
       // Mapper is a refference to an existing mapper in the Mappers file
+      const bodyMapper = responses[code].bodyMapper;
+      const bodyMapperString = bodyMapper
+        ? `bodyMapper: ${
+            isString(bodyMapper) ? bodyMapper : JSON.stringify(bodyMapper)
+          }`
+        : "";
       parsedResponses.push(`${code}: {
-        bodyMapper: ${responses[code].bodyMapper}
+        ${bodyMapperString}
       }`);
     }
   });

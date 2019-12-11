@@ -81,7 +81,9 @@ export function transformCodeModel(codeModel: CodeModel): ClientDetails {
     description: codeModel.info.description,
     sourceFileName: normalizeName(className, NameType.File),
     models: (codeModel.schemas.objects || []).map(transformObject),
-    mappers: (codeModel.schemas.objects || []).map(transformMapper),
+    mappers: (codeModel.schemas.objects || []).map(schema =>
+      transformMapper({ schema })
+    ),
     unions: [
       ...(codeModel.schemas.choices || []),
       ...(codeModel.schemas.sealedChoices || [])

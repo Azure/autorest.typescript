@@ -1,16 +1,565 @@
 import * as assert from "assert";
 import { transformMapper } from "../../../src/transforms/mapperTransforms";
 import {
-  ObjectSchema,
-  Property,
+  NumberSchema,
+  SchemaType,
   StringSchema,
   ConstantSchema,
-  NumberSchema,
+  Schema,
   ConstantValue,
-  SchemaType
+  DateSchema,
+  DateTimeSchema,
+  UnixTimeSchema,
+  ChoiceSchema,
+  SealedChoiceSchema,
+  BooleanSchema,
+  CharSchema,
+  ByteArraySchema,
+  ObjectSchema,
+  Property,
+  ArraySchema,
+  ChoiceValue
 } from "@azure-tools/codemodel";
-import { MapperType, Mapper } from "@azure/core-http";
-import { stringLiteral } from "babel-types";
+import {
+  BaseMapper,
+  EnumMapper,
+  MapperType,
+  CompositeMapper,
+  Mapper
+} from "@azure/core-http";
+
+const numberSchemaName = "mockNumberSchema";
+const getNumberSchema = (name = "", options: any = {}) =>
+  new NumberSchema(
+    name || numberSchemaName,
+    "Number Schema for testing",
+    SchemaType.Integer,
+    32,
+    options
+  );
+
+const getDateSchema = (name: string, options: any = {}) =>
+  new DateSchema(name, "Date Schema for testing", options);
+
+const getDateTimeSchema = (name: string, options: any = {}) =>
+  new DateTimeSchema(name, "DateTime Schema for testing", options);
+
+const getUnixTimeSchema = (name: string, options: any = {}) =>
+  new UnixTimeSchema(name, "UnixTime Schema for testing", options);
+
+const stringSchemaName = "mockStringSchema";
+const getStringSchema = (name = "", options: any = {}) =>
+  new StringSchema(
+    name || stringSchemaName,
+    "String schema for testing",
+    options
+  );
+
+const getConstantSchema = (
+  name: string,
+  valueType: Schema,
+  value: ConstantValue
+) =>
+  new ConstantSchema(name, "", {
+    valueType,
+    value
+  });
+
+const getBooleanSchema = (name: string, options: any = {}) =>
+  new BooleanSchema(name, "");
+
+const getCharSchema = (name: string, options: any = {}) =>
+  new CharSchema(name, "");
+
+const getChoiceSchema = (name: string, options: any = {}) =>
+  new ChoiceSchema(name, "", options);
+
+const getSealedChoiceSchema = (name: string, options: any = {}) =>
+  new SealedChoiceSchema(name, "", options);
+
+const getByteArraySchema = (name: string, options: any = {}) =>
+  new ByteArraySchema(name, "", options);
+
+const getObjectSchema = (name: string, options: any = {}) =>
+  new ObjectSchema(name, "", options);
+
+describe("transformObjectMapper", () => {
+  it("Gets a mapper for a simple Object Schema", () => {
+    const objectName = "mockObjectName";
+    const stringPropName = "stringProp";
+    const stringSchema = getStringSchema("stringSchema");
+    const schema = getObjectSchema(objectName, {
+      properties: [
+        new Property(stringPropName, "", stringSchema, { required: true })
+      ]
+    });
+
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: objectName,
+      type: {
+        name: MapperType.Composite,
+        modelProperties: {
+          stringProp: {
+            serializedName: "stringProp",
+            required: true,
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    } as CompositeMapper);
+  });
+
+  it("Gets a mapper for a Object Schema with a constant property", () => {
+    const objectName = "mockObjectName";
+    const propName = "constantProp";
+    const constantValue = "TheValue!";
+    const constantSchema = getConstantSchema(
+      "mockConstant",
+      getStringSchema("constString"),
+      new ConstantValue(constantValue)
+    );
+    const schema = getObjectSchema(objectName, {
+      properties: [new Property(propName, "", constantSchema)]
+    });
+
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: objectName,
+      type: {
+        name: MapperType.Composite,
+        modelProperties: {
+          constantProp: {
+            serializedName: "constantProp",
+            defaultValue: constantValue,
+            isConstant: true,
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
+    } as CompositeMapper);
+  });
+
+  it("Gets a mapper for a Object Schema with a choice property", () => {
+    const objectName = "mockObjectName";
+    const propName = "choiceProp";
+    const choices = [
+      new ChoiceValue("", "", "one"),
+      new ChoiceValue("", "", "2"),
+      new ChoiceValue("", "", "three")
+    ];
+    const choiceSchema = getChoiceSchema("mockChoice", {
+      choiceType: SchemaType.String,
+      choices
+    });
+    const schema = getObjectSchema(objectName, {
+      properties: [new Property(propName, "", choiceSchema)]
+    });
+
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: objectName,
+      type: {
+        name: MapperType.Composite,
+        modelProperties: {
+          choiceProp: {
+            serializedName: "choiceProp",
+            type: {
+              name: "Enum",
+              allowedValues: choices.map(c => c.value)
+            }
+          } as EnumMapper
+        }
+      }
+    } as CompositeMapper);
+  });
+
+  it("Gets mapper for complex schema", () => {
+    const fish = new ObjectSchema("fish", "");
+    const properties = [
+      new Property("fishtype", "", new StringSchema("Fish-Type", ""), {
+        serializedName: "fishtype"
+      }),
+      new Property("species", "", new StringSchema("Fish-Species", "")),
+      new Property(
+        "length",
+        "",
+        new NumberSchema("typeForlength", "", SchemaType.Number, 32)
+      ),
+      new Property("siblings", "", new ArraySchema("Fish-siblings", "", fish))
+    ];
+    fish.properties = properties;
+
+    const mapper = transformMapper({ schema: fish });
+
+    assert.deepEqual(mapper, {
+      serializedName: "fish",
+      type: {
+        modelProperties: {
+          fishtype: {
+            serializedName: "fishtype",
+            type: { name: "String" }
+          },
+          length: {
+            serializedName: "length",
+            type: {
+              name: "Number"
+            }
+          },
+          siblings: {
+            serializedName: "siblings",
+            type: {
+              element: {
+                type: {
+                  className: "Fish",
+                  name: "Composite"
+                }
+              },
+              name: "Sequence"
+            }
+          },
+          species: {
+            serializedName: "species",
+            type: {
+              name: "String"
+            }
+          }
+        },
+        name: "Composite"
+      }
+    });
+  });
+
+  it("Gets a mapper for a Object Schema with an Object property", () => {
+    const parentObjectName = "mockObjectParentName";
+    const propName = "objectProp";
+    const childObjectProp = "childObjectProp";
+    const childObject = getObjectSchema("mockChildObject", {
+      properties: [new Property(childObjectProp, "", getStringSchema("foo"))]
+    });
+    const schema = getObjectSchema(parentObjectName, {
+      properties: [new Property(propName, "", childObject)]
+    });
+
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: parentObjectName,
+      type: {
+        name: MapperType.Composite,
+        modelProperties: {
+          objectProp: {
+            serializedName: "objectProp",
+            type: {
+              name: "Composite",
+              className: "MockChildObject"
+            }
+          } as CompositeMapper
+        }
+      }
+    } as CompositeMapper);
+  });
+});
+
+describe("transformPrimitiveMapper", () => {
+  it("Gets a mapper for a ByteArray Schema", () => {
+    const byteArrayName = "mockByteArray";
+    const schema = getByteArraySchema(byteArrayName);
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: byteArrayName,
+      type: {
+        name: MapperType.ByteArray
+      }
+    });
+  });
+
+  it("Gets a mapper for a ByteArray Schema with base64url format", () => {
+    const byteArrayName = "mockByteArray";
+    const schema = getByteArraySchema(byteArrayName, { format: "base64url" });
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: byteArrayName,
+      type: {
+        name: MapperType.Base64Url
+      }
+    });
+  });
+});
+
+describe("transformPrimitiveMapper", () => {
+  it("Gets a mapper for a Boolean Schema", () => {
+    const booleanSchemaName = "mockBoolean";
+    const schema = getBooleanSchema(booleanSchemaName);
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: booleanSchemaName,
+      type: {
+        name: MapperType.Boolean
+      }
+    } as BaseMapper);
+  });
+
+  it("Gets a mapper for a Char Schema", () => {
+    const charSchemaName = "mockChar";
+    const schema = getCharSchema(charSchemaName);
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: charSchemaName,
+      type: {
+        name: MapperType.String
+      }
+    } as BaseMapper);
+  });
+});
+
+describe("transformChoiceMapper", () => {
+  it("Gets a mapper for a Choice schema", () => {
+    const choiceSchemaName = "mockChoice";
+    const choices = [
+      new ChoiceValue("", "", "red color"),
+      new ChoiceValue("", "", "green-color"),
+      new ChoiceValue("", "", "blue_color")
+    ];
+    const schema = getChoiceSchema(choiceSchemaName, {
+      choiceType: SchemaType.String,
+      choices
+    });
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: choiceSchemaName,
+      type: {
+        name: MapperType.Enum,
+        allowedValues: choices.map(c => c.value)
+      }
+    } as EnumMapper);
+  });
+
+  it("Gets a mapper for a SealedChoice schema", () => {
+    const choiceSchemaName = "mockSealedChoice";
+    const choices = [
+      new ChoiceValue("", "", 1),
+      new ChoiceValue("", "", 2),
+      new ChoiceValue("", "", 3),
+      new ChoiceValue("", "", 4)
+    ];
+    const schema = getSealedChoiceSchema(choiceSchemaName, {
+      choiceType: SchemaType.String,
+      choices
+    });
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: choiceSchemaName,
+      type: {
+        name: MapperType.Enum,
+        allowedValues: choices.map(choice => choice.value)
+      }
+    } as EnumMapper);
+  });
+});
+
+describe("transformDateMapper", () => {
+  it("Gets a mapper for a Date", () => {
+    const dateSchemaName = "mockDate";
+    const schema = getDateSchema(dateSchemaName);
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: dateSchemaName,
+      type: { name: "Date" }
+    });
+  });
+
+  it("Gets a mapper for a DateTime", () => {
+    const dateSchemaName = "mockDateTime";
+    const schema = getDateTimeSchema(dateSchemaName);
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: dateSchemaName,
+      type: { name: "DateTime" }
+    });
+  });
+
+  it("Gets a mapper for a UnixTime", () => {
+    const dateSchemaName = "mockDateTime";
+    const schema = getUnixTimeSchema(dateSchemaName);
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: dateSchemaName,
+      type: { name: "UnixTime" }
+    });
+  });
+});
+
+describe("transformConstantMapper", () => {
+  it("Gets a mapper for a string constant", () => {
+    const constantName = "stringConstant";
+    const testValue = "testValue";
+    const valueType = getStringSchema();
+    const value = new ConstantValue(testValue);
+    const schema = getConstantSchema(constantName, valueType, value);
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: constantName,
+      type: {
+        name: "String"
+      },
+      defaultValue: testValue,
+      isConstant: true
+    });
+  });
+
+  it("Gets a mapper for a numeric constant", () => {
+    const constantName = "numberConstant";
+    const testValue = 3;
+    const valueType = getNumberSchema();
+    const value = new ConstantValue(testValue);
+    const schema = getConstantSchema(constantName, valueType, value);
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: constantName,
+      type: {
+        name: "Number"
+      },
+      defaultValue: testValue,
+      isConstant: true
+    });
+  });
+
+  it("Gets a mapper for a date constant", () => {
+    const constantName = "dateConstant";
+    const testValue = new Date(2019, 12, 9);
+    const valueType = getDateSchema("", testValue);
+    const value = new ConstantValue(testValue);
+    const schema = getConstantSchema(constantName, valueType, value);
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: constantName,
+      type: {
+        name: "Date"
+      },
+      defaultValue: testValue,
+      isConstant: true
+    });
+  });
+
+  it("Gets a mapper for a dateTime constant", () => {
+    const constantName = "dateTimeConstant";
+    const testValue = new Date(2019, 12, 9, 4, 44);
+    const valueType = getDateTimeSchema("", testValue);
+    const value = new ConstantValue(testValue);
+    const schema = getConstantSchema(constantName, valueType, value);
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: constantName,
+      type: {
+        name: "DateTime"
+      },
+      defaultValue: testValue,
+      isConstant: true
+    });
+  });
+
+  it("Gets a mapper for a dateTime constant", () => {
+    const constantName = "dateTimeConstant";
+    const testValue = new Date(2019, 12, 9, 4, 44).getTime();
+    const valueType = getUnixTimeSchema("", testValue);
+    const value = new ConstantValue(testValue);
+    const schema = getConstantSchema(constantName, valueType, value);
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: constantName,
+      type: {
+        name: "UnixTime"
+      },
+      defaultValue: testValue,
+      isConstant: true
+    });
+  });
+});
+
+describe("transformStringMapper", () => {
+  it("Gets a mapper for a simple string schema", () => {
+    const schema = getStringSchema();
+    const mapper = transformMapper({ schema });
+
+    assert.deepEqual(mapper, {
+      serializedName: stringSchemaName,
+      type: { name: "String" }
+    });
+  });
+
+  it("Gets a mapper for a string schema with constraints", () => {
+    const constraints = { maxLength: 1, minLength: 2, pattern: /[a-zA-Z0-9]+/ };
+    const schema = getStringSchema(undefined, constraints);
+    const mapper = transformMapper({ schema, options: { required: true } });
+
+    assert.deepEqual(mapper, {
+      serializedName: stringSchemaName,
+      type: { name: "String" },
+      required: true,
+      constraints: {
+        MaxLength: constraints.maxLength,
+        MinLength: constraints.minLength,
+        Pattern: constraints.pattern
+      }
+    } as BaseMapper);
+  });
+});
+
+describe("transformNumberMapper", () => {
+  it("Gets a mapper from a non required NumberSchema", () => {
+    const mapper = transformMapper({ schema: getNumberSchema() });
+    assert.deepEqual(mapper, {
+      serializedName: numberSchemaName,
+      type: { name: "Number" }
+    });
+  });
+
+  it("Gets a mapper from a NumberSchema with constrains", () => {
+    const mapper = transformMapper({ schema: getNumberSchema() });
+    assert.deepEqual(mapper, {
+      serializedName: numberSchemaName,
+      type: { name: "Number" }
+    });
+  });
+
+  it("Gets a mapper from a required NumberSchema", () => {
+    const constraints = { maximum: 2, minimum: 1, multipleOf: 2 };
+    const mapper = transformMapper({
+      schema: getNumberSchema(undefined, constraints)
+    });
+    assert.deepEqual(mapper, {
+      serializedName: numberSchemaName,
+      type: { name: "Number" },
+      constraints: {
+        InclusiveMaximum: constraints.maximum,
+        InclusiveMinimum: constraints.minimum,
+        MultipleOf: constraints.multipleOf
+      }
+    });
+  });
+});
 
 const basicSchema = new ObjectSchema("basic", "A Basic Schema for testing", {
   properties: [
@@ -78,12 +627,13 @@ const errorSchema = new ObjectSchema("Error", "Test Error schema", {
 
 describe("Mapper Transforms", () => {
   it("should generate a Color mapper", () => {
-    const mapper = transformMapper(refColorSchema);
+    const mapper = transformMapper({
+      schema: refColorSchema
+    }) as CompositeMapper;
     const modelPropertiesKeys = Object.keys(mapper.type.modelProperties || {});
 
     assert.strictEqual(mapper.serializedName, "RefColorConstant");
     assert.strictEqual(mapper.type.name, MapperType.Composite);
-    assert.strictEqual(mapper.type.className, "RefColorConstant");
     assert.strictEqual(modelPropertiesKeys.length, 2);
 
     assert.ok(
@@ -98,9 +648,11 @@ describe("Mapper Transforms", () => {
     const colorConstantProp =
       (mapper.type.modelProperties || {}).colorConstant ||
       ({ type: {} } as Mapper);
+
+    // Constant props are not required
     assert.strictEqual(
-      colorConstantProp.required,
-      true,
+      !!colorConstantProp.required,
+      false,
       `Unexpected prop required value ${JSON.stringify(colorConstantProp)}`
     );
     assert.strictEqual(colorConstantProp.isConstant, true),
@@ -123,7 +675,7 @@ describe("Mapper Transforms", () => {
   });
 
   it("should generate a Basic mapper", () => {
-    const mapper = transformMapper(basicSchema);
+    const mapper = transformMapper({ schema: basicSchema }) as CompositeMapper;
     const modelPropertiesKeys = Object.keys(mapper.type.modelProperties || {});
 
     assert.strictEqual(
@@ -136,7 +688,6 @@ describe("Mapper Transforms", () => {
       MapperType.Composite,
       "unexpected mapper type"
     );
-    assert.strictEqual(mapper.type.className, "Basic", "Unexpected class name");
     assert.strictEqual(
       modelPropertiesKeys.length,
       3,
@@ -157,7 +708,7 @@ describe("Mapper Transforms", () => {
   });
 
   it("should generate an Error mapper", () => {
-    const mapper = transformMapper(errorSchema);
+    const mapper = transformMapper({ schema: errorSchema }) as CompositeMapper;
     const modelPropertiesKeys = Object.keys(mapper.type.modelProperties || {});
 
     assert.strictEqual(
@@ -169,11 +720,6 @@ describe("Mapper Transforms", () => {
       mapper.type.name,
       MapperType.Composite,
       `Expected  ${MapperType.Composite} but got ${mapper.type.name}`
-    );
-    assert.strictEqual(
-      mapper.type.className,
-      "ErrorModel",
-      `Expected  ErrorModel but got ${mapper.type.className}`
     );
     assert.strictEqual(
       modelPropertiesKeys.length,
