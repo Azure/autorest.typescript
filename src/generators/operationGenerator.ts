@@ -128,9 +128,8 @@ function buildResponses({ responses }: OperationSpecDetails): string[] {
 
     if (bodyMapper && isCompositeMapper) {
       parsedResponses.push(`${code}: ${JSON.stringify(responses[code])}`);
-    } else {
-      // Mapper is a refference to an existing mapper in the Mappers file
-      const bodyMapper = responses[code].bodyMapper;
+    } else if (bodyMapper) {
+      // Mapper is a reference to an existing mapper in the Mappers file
       const bodyMapperString = bodyMapper
         ? `bodyMapper: ${
             isString(bodyMapper) ? bodyMapper : JSON.stringify(bodyMapper)
