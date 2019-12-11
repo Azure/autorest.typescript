@@ -45,7 +45,7 @@
     "@azure/ms-rest-azure-js": "^2.0.1",
     "@azure/ms-rest-js": "^2.0.4",
     "@microsoft.azure/autorest.modeler": "^2.3.47",
-    "@microsoft.azure/autorest.testserver": "^2.6.1",
+    "@microsoft.azure/autorest.testserver": "^2.7.1",
     "@ts-common/azure-js-dev-tools": "^0.7.1",
     "@types/assert": "1.4.0",
     "@types/chai": "^4.1.7",
