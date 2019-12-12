@@ -3,35 +3,37 @@
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
-  "configurations": [{
-      "type": "coreclr",
+  "configurations": [
+    {
+      "type": "node",
       "request": "attach",
-      "name": ".NET Core Attach",
-      "processId": "${command:pickProcess}"
+      "name": "Attach",
+      "port": 9229
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Mocha Tests",
-      "args": [],
-      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
-      "internalConsoleOptions": "openOnSessionStart",
-      "smartStep": true
+      "name": "Launch Program",
+      "program": "${workspaceFolder}\\dist\\src\\main.js",
+      "preLaunchTask": "tsc: build - tsconfig.json",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "autorest.typescript testserver",
-      "runtimeArgs": [
-        "-r", "ts-node/register"
+      "name": "UnitTests",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "args": [
+        "-r",
+        "ts-node/register",
+        "--timeout",
+        "999999",
+        "--colors",
+        "${workspaceFolder}/test/unit/**/*.spec.ts"
       ],
-      "args": ["${workspaceRoot}/testserver/index.ts"]
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch npm run local",
-      "program": "${workspaceFolder}/node_modules/@ts-common/azure-js-dev-tools/dist/dependencies/local.js"
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "protocol": "inspector"
     }
   ]
 }
