@@ -126,15 +126,14 @@ function buildResponses({ responses }: OperationSpecDetails): string[] {
       !isString(bodyMapper) &&
       bodyMapper.type.name === MapperType.Composite;
 
-    if (bodyMapper && isCompositeMapper) {
+    if (isCompositeMapper) {
       parsedResponses.push(`${code}: ${JSON.stringify(responses[code])}`);
     } else if (bodyMapper) {
       // Mapper is a reference to an existing mapper in the Mappers file
-      const bodyMapperString = bodyMapper
-        ? `bodyMapper: ${
-            isString(bodyMapper) ? bodyMapper : JSON.stringify(bodyMapper)
-          }`
-        : "";
+      const bodyMapperString = `bodyMapper: ${
+        isString(bodyMapper) ? bodyMapper : JSON.stringify(bodyMapper)
+      }`;
+
       parsedResponses.push(`${code}: {
         ${bodyMapperString}
       }`);

@@ -16,11 +16,7 @@ import {
   BaseMapper,
   Mapper,
   MapperType,
-  MapperConstraints,
-  EnumMapper,
-  SimpleMapperType,
-  CompositeMapper,
-  SequenceMapper
+  MapperConstraints
 } from "@azure/core-http";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { isNil } from "lodash";
@@ -39,6 +35,17 @@ const primitiveSchemaTypes = [
   SchemaType.Duration
 ];
 
+/**
+ * Function that runs a set of functions as a pipeline
+ * if any function processed the input, remaining ones will skip
+ * @param fns functions in the pipeline
+ */
+const pipe = (
+  ...fns: Array<(pipelineValue: PipelineValue) => PipelineValue>
+) => (x: PipelineValue) => fns.reduce((v, f) => (!v.isHandled ? f(v) : v), x);
+
+type ModelProperties = { [propertyName: string]: Mapper };
+
 export interface EntityOptions {
   serializedName?: string;
   required?: boolean;
@@ -50,10 +57,10 @@ export interface MapperInput {
   options?: EntityOptions;
 }
 
-const pipe = (
-  ...fns: Array<(pipelineValue: PipelineValue) => PipelineValue>
-) => (x: PipelineValue) => fns.reduce((v, f) => f(v), x);
-
+/**
+ * Transform a schema into a Mapper
+ * @param mapperInput An object consisting of a schema and EntityOptions
+ */
 export function transformMapper({ schema, options }: MapperInput) {
   const processMapper = pipe(
     transformStringMapper,
@@ -76,6 +83,10 @@ export function transformMapper({ schema, options }: MapperInput) {
   return mapper;
 }
 
+/**
+ * Gets a className from a schema
+ * @param schema Schema to get the className from
+ */
 export function getMapperClassName(schema: Schema): string {
   return normalizeName(
     getLanguageMetadata(schema.language).name,
@@ -83,28 +94,73 @@ export function getMapperClassName(schema: Schema): string {
   );
 }
 
-function transformPrimitiveMapper(pipelineValue: PipelineValue) {
-  const { schema, options, isHandled } = pipelineValue;
+interface PartialMapperType {
+  name: string;
+  allowedValues?: any[];
+  element?: Mapper;
+  modelProperties?: ModelProperties;
+}
 
-  if (isHandled || !primitiveSchemaTypes.includes(schema.type)) {
-    return pipelineValue;
-  }
-
+function buildMapper(
+  schema: Schema,
+  type: PartialMapperType,
+  options?: EntityOptions
+): Mapper {
   const required = !!options && !!options.required;
   const serializedName =
     (options && options.serializedName) ||
     getLanguageMetadata(schema.language).name;
+  const arraySchema = schema as ArraySchema;
+  arraySchema.elementType;
+  const stringSchema = schema as StringSchema;
+  const numberSchema = schema as NumberSchema;
 
-  const mapper: BaseMapper = {
+  const hasConstraints =
+    !isNil(arraySchema.maxItems) ||
+    !isNil(arraySchema.minItems) ||
+    !isNil(arraySchema.uniqueItems) ||
+    !isNil(stringSchema.maxLength) ||
+    !isNil(stringSchema.minLength) ||
+    !isNil(stringSchema.pattern) ||
+    !isNil(numberSchema.multipleOf) ||
+    !isNil(numberSchema.maximum) ||
+    !isNil(numberSchema.minimum);
+
+  const constraints: MapperConstraints = {
+    ...(arraySchema.minItems && { MinItems: arraySchema.minItems }),
+    ...(arraySchema.maxItems && { MaxItems: arraySchema.maxItems }),
+    ...(arraySchema.uniqueItems && { UniqueItems: arraySchema.uniqueItems }),
+    ...(stringSchema.maxLength && { MaxLength: stringSchema.maxLength }),
+    ...(stringSchema.minLength && { MinLength: stringSchema.minLength }),
+    ...(stringSchema.pattern && { Pattern: new RegExp(stringSchema.pattern) }),
+    ...(numberSchema.maximum && { InclusiveMaximum: numberSchema.maximum }),
+    ...(numberSchema.minimum && { InclusiveMinimum: numberSchema.minimum }),
+    // TODO: Handle number exclusive min and max
+    ...(numberSchema.multipleOf && { MultipleOf: numberSchema.multipleOf })
+  };
+
+  const mappeType = type as MapperType;
+  return {
+    ...{ type: mappeType },
     ...(serializedName && { serializedName }),
-    type: {
-      name: getMapperTypeFromSchema(schema.type)
-    } as SimpleMapperType,
     ...(!!schema.defaultValue && {
       defaultValue: schema.defaultValue
     }),
-    ...(required && { required })
+    ...(required && { required }),
+    ...(hasConstraints && { constraints })
   };
+}
+
+function transformPrimitiveMapper(pipelineValue: PipelineValue) {
+  const { schema, options } = pipelineValue;
+
+  if (!isSchemaType(primitiveSchemaTypes, schema)) {
+    return pipelineValue;
+  }
+  const type = {
+    name: getMapperTypeFromSchema(schema.type)
+  };
+  const mapper = buildMapper(schema, type, options) as BaseMapper;
 
   return {
     schema,
@@ -114,29 +170,19 @@ function transformPrimitiveMapper(pipelineValue: PipelineValue) {
 }
 
 function transformObjectMapper(pipelineValue: PipelineValue) {
-  const { schema, options, isHandled } = pipelineValue;
+  const { schema, options } = pipelineValue;
 
-  if (isHandled || schema.type !== SchemaType.Object) {
+  if (!isSchemaType([SchemaType.Object], schema)) {
     return pipelineValue;
   }
-
-  const required = !!options && !!options.required;
-  const serializedName =
-    (options && options.serializedName) ||
-    getLanguageMetadata(schema.language).name;
   const objectSchema = schema as ObjectSchema;
+  const modelProperties = processProperties(objectSchema.properties);
 
-  const mapper: CompositeMapper = {
-    ...(serializedName && { serializedName }),
-    ...(required && { required }),
-    ...(!!schema.defaultValue && {
-      defaultValue: schema.defaultValue
-    }),
-    type: {
-      name: MapperType.Composite,
-      modelProperties: processProperties(objectSchema.properties)
-    }
-  };
+  const mapper = buildMapper(
+    schema,
+    { name: MapperType.Composite, modelProperties },
+    options
+  );
 
   return {
     schema,
@@ -145,77 +191,20 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
   };
 }
 
-function processProperties(properties: Property[] = []) {
-  let modelProperties: ModelProperties = {};
-  properties.forEach(prop => {
-    const name = normalizeName(prop.serializedName, NameType.Property);
-    modelProperties[name] = extractObjectPropertyMapper(prop);
-  });
-
-  return modelProperties;
-}
-
-type ModelProperties = { [propertyName: string]: Mapper };
-
-function extractObjectPropertyMapper({
-  serializedName,
-  schema,
-  required,
-  readOnly
-}: Property): Mapper {
-  return getMapperOrRef(schema, serializedName, {
-    required,
-    readOnly,
-    serializedName
-  });
-}
-
-function getMapperOrRef(
-  schema: Schema,
-  serializedName?: string,
-  options?: EntityOptions
-) {
-  if (schema.type === SchemaType.Object) {
-    return {
-      ...(serializedName && { serializedName }),
-      type: {
-        name: MapperType.Composite,
-        className: getMapperClassName(schema)
-      }
-    };
-  }
-
-  return transformMapper({
-    schema,
-    options
-  });
-}
-
 function transformDictionaryMapper(pipelineValue: PipelineValue) {
-  const { schema, options, isHandled } = pipelineValue;
+  const { schema, options } = pipelineValue;
 
-  if (isHandled || schema.type !== SchemaType.Dictionary) {
+  if (!isSchemaType([SchemaType.Dictionary], schema)) {
     return pipelineValue;
   }
 
-  const required = !!options && !!options.required;
-  const serializedName =
-    (options && options.serializedName) ||
-    getLanguageMetadata(schema.language).name;
-
   const dictionarySchema = schema as DictionarySchema;
   const elementSchema = dictionarySchema.elementType;
-  const mapper: Mapper = {
-    ...(serializedName && { serializedName }),
-    type: {
-      name: MapperType.Sequence,
-      element: getMapperOrRef(elementSchema)
-    },
-    ...(!!schema.defaultValue && {
-      defaultValue: schema.defaultValue
-    }),
-    ...(required && { required })
-  };
+  const mapper = buildMapper(
+    schema,
+    { name: MapperType.Sequence, element: getMapperOrRef(elementSchema) },
+    options
+  );
 
   return {
     schema,
@@ -225,43 +214,23 @@ function transformDictionaryMapper(pipelineValue: PipelineValue) {
 }
 
 function transformArrayMapper(pipelineValue: PipelineValue) {
-  const { schema, options, isHandled } = pipelineValue;
+  const { schema, options } = pipelineValue;
 
-  if (isHandled || schema.type !== SchemaType.Array) {
+  if (!isSchemaType([SchemaType.Array], schema)) {
     return pipelineValue;
   }
 
   const arraySchema = schema as ArraySchema;
-  arraySchema.elementType;
-  const required = !!options && !!options.required;
-  const serializedName =
-    (options && options.serializedName) ||
-    getLanguageMetadata(schema.language).name;
-
-  const hasConstraints =
-    !isNil(arraySchema.maxItems) ||
-    !isNil(arraySchema.minItems) ||
-    !isNil(arraySchema.uniqueItems);
-
-  const constraints: MapperConstraints = {
-    MinItems: arraySchema.minItems,
-    MaxItems: arraySchema.maxItems,
-    UniqueItems: arraySchema.uniqueItems ? true : undefined
-  };
 
   const elementSchema = arraySchema.elementType;
-  const mapper: SequenceMapper = {
-    ...(hasConstraints && { constraints }),
-    ...(serializedName && { serializedName }),
-    type: {
+  const mapper = buildMapper(
+    schema,
+    {
       name: MapperType.Sequence,
       element: getMapperOrRef(elementSchema)
     },
-    ...(!!schema.defaultValue && {
-      defaultValue: schema.defaultValue
-    }),
-    ...(required && { required })
-  };
+    options
+  );
 
   return {
     schema,
@@ -271,9 +240,9 @@ function transformArrayMapper(pipelineValue: PipelineValue) {
 }
 
 function transformByteArrayMapper(pipelineValue: PipelineValue) {
-  const { schema, options, isHandled } = pipelineValue;
+  const { schema, options } = pipelineValue;
 
-  if (isHandled || schema.type !== SchemaType.ByteArray) {
+  if (!isSchemaType([SchemaType.ByteArray], schema)) {
     return pipelineValue;
   }
 
@@ -283,21 +252,13 @@ function transformByteArrayMapper(pipelineValue: PipelineValue) {
       ? MapperType.Base64Url
       : MapperType.ByteArray;
 
-  const required = !!options && !!options.required;
-  const serializedName =
-    (options && options.serializedName) ||
-    getLanguageMetadata(schema.language).name;
-
-  const mapper: Mapper = {
-    ...(serializedName && { serializedName }),
-    type: {
+  const mapper = buildMapper(
+    schema,
+    {
       name: schemaType
     },
-    ...(!!schema.defaultValue && {
-      defaultValue: schema.defaultValue
-    }),
-    ...(required && { required })
-  };
+    options
+  );
 
   return {
     schema,
@@ -307,33 +268,22 @@ function transformByteArrayMapper(pipelineValue: PipelineValue) {
 }
 
 function transformChoiceMapper(pipelineValue: PipelineValue) {
-  const { schema, options, isHandled } = pipelineValue;
+  const { schema, options } = pipelineValue;
 
-  if (
-    isHandled ||
-    ![SchemaType.Choice, SchemaType.SealedChoice].includes(schema.type)
-  ) {
+  if (!isSchemaType([SchemaType.Choice, SchemaType.SealedChoice], schema)) {
     return pipelineValue;
   }
 
   const choiceSchema = schema as ChoiceSchema;
 
-  const required = !!options && !!options.required;
-  const serializedName =
-    (options && options.serializedName) ||
-    getLanguageMetadata(schema.language).name;
-
-  const mapper: EnumMapper = {
-    ...(serializedName && { serializedName }),
-    type: {
+  const mapper = buildMapper(
+    schema,
+    {
       name: MapperType.Enum,
       allowedValues: choiceSchema.choices.map(choice => choice.value)
     },
-    ...(!!schema.defaultValue && {
-      defaultValue: schema.defaultValue
-    }),
-    ...(required && { required })
-  };
+    options
+  );
 
   return {
     schema,
@@ -343,30 +293,22 @@ function transformChoiceMapper(pipelineValue: PipelineValue) {
 }
 
 function transformDateMapper(pipelineValue: PipelineValue) {
-  const { schema, options, isHandled } = pipelineValue;
+  const { schema, options } = pipelineValue;
 
   if (
-    isHandled ||
-    ![SchemaType.Date, SchemaType.DateTime, SchemaType.UnixTime].includes(
-      schema.type
+    !isSchemaType(
+      [SchemaType.Date, SchemaType.DateTime, SchemaType.UnixTime],
+      schema
     )
   ) {
     return pipelineValue;
   }
 
-  const required = !!options && !!options.required;
-  const serializedName =
-    (options && options.serializedName) ||
-    getLanguageMetadata(schema.language).name;
-
-  const mapper: BaseMapper = {
-    ...(serializedName && { serializedName }),
-    type: { name: getMapperTypeFromSchema(schema.type) } as SimpleMapperType,
-    ...(required && { required }),
-    ...(!!schema.defaultValue && {
-      defaultValue: schema.defaultValue
-    })
-  };
+  const mapper = buildMapper(
+    schema,
+    { name: getMapperTypeFromSchema(schema.type) },
+    options
+  );
 
   return {
     schema,
@@ -376,39 +318,13 @@ function transformDateMapper(pipelineValue: PipelineValue) {
 }
 
 function transformStringMapper(pipelineValue: PipelineValue) {
-  const { schema, options, isHandled } = pipelineValue;
+  const { schema, options } = pipelineValue;
 
-  if (isHandled || schema.type !== SchemaType.String) {
+  if (!isSchemaType([SchemaType.String], schema)) {
     return pipelineValue;
   }
 
-  const required = !!options && !!options.required;
-  const stringSchema = schema as StringSchema;
-  const serializedName =
-    (options && options.serializedName) ||
-    getLanguageMetadata(schema.language || { default: { name: "" } }).name;
-  const hasConstraints =
-    !isNil(stringSchema.maxLength) ||
-    !isNil(stringSchema.minLength) ||
-    !isNil(stringSchema.pattern);
-
-  const constraints: MapperConstraints = {
-    MaxLength: stringSchema.maxLength,
-    MinLength: stringSchema.minLength,
-    Pattern: !!stringSchema.pattern
-      ? new RegExp(stringSchema.pattern)
-      : undefined
-  };
-
-  const mapper: BaseMapper = {
-    type: { name: MapperType.String },
-    ...(serializedName && { serializedName }),
-    ...(required && { required }),
-    ...(!!stringSchema.defaultValue && {
-      defaultValue: stringSchema.defaultValue
-    }),
-    ...(hasConstraints && { constraints })
-  };
+  const mapper = buildMapper(schema, { name: MapperType.String }, options);
 
   return {
     schema,
@@ -418,9 +334,9 @@ function transformStringMapper(pipelineValue: PipelineValue) {
 }
 
 function transformConstantMapper(pipelineValue: PipelineValue): PipelineValue {
-  const { schema, options, isHandled } = pipelineValue;
+  const { schema, options } = pipelineValue;
 
-  if (isHandled || schema.type !== SchemaType.Constant) {
+  if (!isSchemaType([SchemaType.Constant], schema)) {
     return pipelineValue;
   }
   const serializedName =
@@ -443,42 +359,71 @@ function transformConstantMapper(pipelineValue: PipelineValue): PipelineValue {
 }
 
 function transformNumberMapper(pipelineValue: PipelineValue): PipelineValue {
-  const { schema, options, isHandled } = pipelineValue;
+  const { schema, options } = pipelineValue;
 
-  if (isHandled || !isNumberSchema(schema)) {
+  if (!isNumberSchema(schema)) {
     return pipelineValue;
   }
 
-  const required = !!options && !!options.required;
-  const serializedName =
-    (options && options.serializedName) ||
-    getLanguageMetadata(schema.language).name;
-  const numberSchema = schema as NumberSchema;
-
-  const hasConstraints =
-    !isNil(numberSchema.multipleOf) ||
-    !isNil(numberSchema.maximum) ||
-    !isNil(numberSchema.minimum);
-
-  const constraints: MapperConstraints = {
-    InclusiveMaximum: numberSchema.maximum,
-    InclusiveMinimum: numberSchema.minimum,
-    // TODO: Handle exclusive min and max
-    MultipleOf: numberSchema.multipleOf
-  };
-
-  const mapper: BaseMapper = {
-    ...(serializedName && { serializedName }),
-    type: { name: MapperType.Number },
-    ...(required && { required }),
-    ...(hasConstraints && { constraints })
-  };
+  const mapper: BaseMapper = buildMapper(
+    schema,
+    { name: MapperType.Number },
+    options
+  );
 
   return {
     schema,
     mapper,
     isHandled: true
   };
+}
+
+function processProperties(properties: Property[] = []) {
+  let modelProperties: ModelProperties = {};
+  properties.forEach(prop => {
+    const name = normalizeName(prop.serializedName, NameType.Property);
+    modelProperties[name] = extractObjectPropertyMapper(prop);
+  });
+
+  return modelProperties;
+}
+
+function extractObjectPropertyMapper({
+  serializedName,
+  schema,
+  required,
+  readOnly
+}: Property): Mapper {
+  return getMapperOrRef(schema, serializedName, {
+    required,
+    readOnly,
+    serializedName
+  });
+}
+
+function getMapperOrRef(
+  schema: Schema,
+  serializedName?: string,
+  options?: EntityOptions
+): Mapper {
+  if (isSchemaType([SchemaType.Object], schema)) {
+    return {
+      ...(serializedName && { serializedName }),
+      type: {
+        name: MapperType.Composite,
+        className: getMapperClassName(schema)
+      }
+    };
+  }
+
+  return transformMapper({
+    schema,
+    options
+  });
+}
+
+function isSchemaType(matchSchemas: SchemaType[], { type }: Schema) {
+  return matchSchemas.includes(type);
 }
 
 function getMapperTypeFromSchema(type: SchemaType) {
