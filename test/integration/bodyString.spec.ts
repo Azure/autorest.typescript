@@ -2,7 +2,7 @@ import { equal, fail, ok, deepStrictEqual, throws, strictEqual } from "assert";
 import {
   BodyStringClient,
   BodyStringModels
-} from "../../generated/bodyString/src/bodyStringClient";
+} from "./generated/bodyString/src/bodyStringClient";
 
 describe("Integration tests for BodyString", () => {
   let client: BodyStringClient;

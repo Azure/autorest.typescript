@@ -3,6 +3,8 @@
 
 import { ClientDetails } from "../models/clientDetails";
 import { Project, VariableDeclarationKind } from "ts-morph";
+import { NameType, normalizeName } from "../utils/nameUtils";
+import { MapperType } from "@azure/core-http";
 
 export function generateMappers(
   clientDetails: ClientDetails,
@@ -27,12 +29,12 @@ export function generateMappers(
       "$1:"
     );
 
-    if (mapper.type.className) {
+    if (mapper.type.name === MapperType.Composite && mapper.serializedName) {
       mappersFile.addVariableStatement({
         isExported: true,
         declarations: [
           {
-            name: mapper.type.className,
+            name: normalizeName(mapper.serializedName, NameType.Class),
             type: "coreHttp.CompositeMapper",
             initializer: mapperString
           }
