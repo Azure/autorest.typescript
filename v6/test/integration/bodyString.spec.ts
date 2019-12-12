@@ -1,0 +1,137 @@
+import { equal, fail, ok, deepStrictEqual, throws, strictEqual } from "assert";
+import {
+  BodyStringClient,
+  BodyStringModels
+} from "./generated/bodyString/src/bodyStringClient";
+
+describe("Integration tests for BodyString", () => {
+  let client: BodyStringClient;
+
+  beforeEach(() => {
+    client = new BodyStringClient();
+  });
+
+  describe("Acceptance tests", () => {
+    it("should support valid null value", async function() {
+      const result = await client.string.getNull();
+      deepStrictEqual(result, { body: undefined });
+
+      await client.string.putNull(null as any);
+    });
+
+    it("should support valid empty string value", async function() {
+      await client.string.putEmpty(null as any);
+      const result = await client.string.getEmpty();
+      deepStrictEqual(result, { body: "" });
+    });
+
+    it("should support whitespace string value", async function() {
+      await client.string.putWhitespace();
+      const result = await client.string.getWhitespace();
+      deepStrictEqual(result, {
+        body:
+          "    Now is the time for all good men to come to the aid of their country    "
+      });
+    });
+
+    it("should support not provided value", async function() {
+      const result = await client.string.getNotProvided();
+      deepStrictEqual(result, { body: undefined });
+    });
+
+    it("should support valid enum valid value", async function() {
+      const result = await client.enum.getNotExpandable();
+      deepStrictEqual(result, { body: "red color" });
+      await client.enum.putNotExpandable("red color");
+    });
+
+    it("should correctly handle invalid values for enum", async function() {
+      try {
+        await client.enum.putNotExpandable(
+          "orange color" as BodyStringModels.Colors
+        );
+        fail("should have thrown error 'is not a valid value'");
+      } catch (error) {
+        ok(error.message.match(/.*is not a valid value.*/gi));
+      }
+    });
+
+    it("should correctly deserialize base64 encoded string", async function() {
+      const result = await client.string.getBase64Encoded();
+      ok(!!result);
+      ok(!!result.body);
+
+      const expected = "a string that gets encoded with base64";
+      strictEqual((result.body as Buffer).toString("utf8"), expected);
+    });
+
+    it("should correctly handle null base64url encoded string", function(done) {
+      client.string.getNullBase64UrlEncoded(function(error, result) {
+        ok(!error, "response should not contain errors");
+        ok(!result, "response should not contain result");
+        done();
+      });
+    });
+
+    // TODO: Reenable after investigating why the following error is thrown:
+    // test/utils/stringToByteArray.ts:6:16 - error TS2304: Cannot find name 'TextEncoder'.
+    it("should correctly serialize and deserialize base64url encoded string", function(done) {
+      client.string.getBase64UrlEncoded(function(error, result) {
+        ok(!error, "response should not contain errors");
+        ok(!!result, "response should contain a result");
+
+        const decodedString = "a string that gets encoded with base64url";
+        strictEqual((result as Buffer).toString("utf8"), decodedString);
+        client.string.putBase64UrlEncoded(
+          Buffer.from(decodedString, "utf-8"),
+          function(error, result) {
+            ok(!error, "response should not contain errors");
+            ok(!result, "response should not contain result");
+            done();
+          }
+        );
+      });
+    });
+
+    it("should getEnumReferenced", async function() {
+      const { body } = await client.enum.getReferenced();
+      equal(body, "red color");
+    });
+
+    it("should putEnumReferenced", async function() {
+      await client.enum.putReferenced("red color");
+    });
+
+    it("should getEnumReferencedConstant", async function() {
+      const { field1 } = await client.enum.getReferencedConstant();
+      equal(field1, "Sample String");
+    });
+
+    it("should putEnumReferencedConstant", async function() {
+      await client.enum.putReferencedConstant({ field1: "" });
+    });
+  });
+
+  describe("Mbcs", () => {
+    it("should receive an UTF8 string in the response body", async () => {
+      try {
+        const result = await client.string.getMbcs();
+        equal(
+          result.body,
+          "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
+        );
+      } catch (error) {
+        fail(error);
+      }
+    });
+
+    it("should send an UTF8 string in the request body", async () => {
+      try {
+        await client.string.putMbcs();
+        ok(true, "Operation executed with no errors");
+      } catch (error) {
+        fail(error);
+      }
+    });
+  }).timeout(5000);
+});
