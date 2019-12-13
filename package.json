@@ -6,7 +6,7 @@
         "start": "node ./dist/src/main.js",
         "test": "npm-run-all unit-test integration-test",
         "unit-test": "mocha -r ts-node/register './test/unit/**/*spec.ts'",
-        "integration-test": "npm-run-all start-test-server generate-bodystring integration-test:alone stop-test-server",
+        "integration-test": "npm-run-all start-test-server -p generate-bodystring generate-bodycomplex -s integration-test:alone stop-test-server",
         "integration-test:alone": "mocha -r ts-node/register './test/integration/**/*spec.ts'",
         "start-test-server": "ts-node test/utils/start-server.ts",
         "stop-test-server": "stop-autorest-testserver",

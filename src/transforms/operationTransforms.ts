@@ -2,7 +2,8 @@ import {
   HttpMethods,
   Mapper,
   MapperType,
-  CompositeMapper
+  CompositeMapper,
+  OperationQueryParameter
 } from "@azure/core-http";
 import {
   Operation,
@@ -35,11 +36,14 @@ export function transformOperationSpec(
   operationDetails: OperationDetails
 ): OperationSpecDetails {
   // Extract protocol information
+  const requestSpec = extractSpecRequest(operationDetails);
   const httpInfo = extractHttpDetails(operationDetails.request);
+  const queryParameters = requestSpec && requestSpec.queryParameters;
   return {
     ...httpInfo,
     responses: extractSpecResponses(operationDetails),
-    requestBody: extractSpecRequest(operationDetails)
+    requestBody: requestSpec,
+    ...(queryParameters && queryParameters.length && { queryParameters })
   };
 }
 
@@ -70,11 +74,16 @@ export function extractSpecRequest(
     p => p.location === ParameterLocation.Body
   );
 
+  const queryParams = (operationDetails.request.parameters || []).filter(
+    p => p.location === ParameterLocation.Query
+  );
+
   if (parameters.length < 1) {
     return undefined;
   }
 
   return {
+    queryParameters: queryParams.map(extractQueryParam),
     parameterPath: parameters.map(p => p.name)[0],
     mapper: parameters[0].mapper
   };
@@ -175,7 +184,8 @@ export function transformOperationRequestParameter(
     location: parameter.protocol.http
       ? parameter.protocol.http.in
       : ParameterLocation.Body,
-    mapper: getBodyMapperFromSchema(parameter.schema, true)
+    mapper: getBodyMapperFromSchema(parameter.schema, true),
+    serializedName: metadata.serializedName
   };
 }
 
@@ -286,4 +296,16 @@ function mergeResponsesAndExceptions(operation: Operation) {
   }
 
   return responses;
+}
+
+function extractQueryParam(
+  parameter: OperationRequestParameterDetails
+): OperationQueryParameter {
+  return {
+    parameterPath: parameter.name,
+    mapper: {
+      ...(parameter.mapper as Mapper),
+      serializedName: parameter.serializedName
+    }
+  };
 }

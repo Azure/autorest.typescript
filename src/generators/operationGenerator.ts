@@ -81,12 +81,14 @@ function generateOperation(
 function buildSpec(spec: OperationSpecDetails): string {
   const responses = buildResponses(spec);
   const requestBody = buildRequestBody(spec);
-  return `{
-        path: "${spec.path}",
-        httpMethod: "${spec.httpMethod}",
-        responses: {${responses.join(", ")}},
-        ${requestBody}
-        serializer
+  const queryParams = spec.queryParameters
+    ? `queryParameters: ${JSON.stringify(spec.queryParameters)},`
+    : "";
+  return `{ path: "${spec.path}", httpMethod: "${
+    spec.httpMethod
+  }", responses: {${responses.join(
+    ", "
+  )}},${requestBody}${queryParams}serializer
     }`;
 }
 
@@ -231,7 +233,7 @@ function addOperations(
         const type =
           primitiveTypes.indexOf(typeName) > -1
             ? typeName
-            : `Models.${typeName}`;
+            : `Models.${normalizeName(typeName, NameType.Class)}`;
         return {
           name: param.name,
           description: param.description,

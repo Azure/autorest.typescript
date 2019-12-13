@@ -36,7 +36,8 @@ export function getTypeForSchema(schema: Schema): PropertyTypeDetails {
       typeName = name;
       break;
     default:
-      throw new Error(`Unsupported schema type: ${schema.type}`);
+      typeName = "any";
+      break;
   }
 
   return {
