@@ -5,7 +5,8 @@ import {
   BodyComplexClient,
   BodyComplexModels
 } from "./generated/bodyComplex/src/bodyComplexClient";
-import { Shark } from "./generated/bodyComplex/src/models";
+import { Sawshark } from "./generated/bodyComplex/src/models";
+import { RestError } from "@azure/core-http";
 
 const clientOptions = {
   baseUri: "http://localhost:3000"
@@ -366,9 +367,14 @@ describe("typescript", function() {
         testClient = new BodyComplexClient(clientOptions);
       });
       it("should get and put complex types with readonly properties", function(done) {
-        testClient.readonlyproperty.getValid(function(error, result) {
+        testClient.readonlyproperty.getValid(function(
+          error,
+          result: any /** TODO: Wire types */
+        ) {
           assert.equal(error, undefined);
-          testClient.readonlyproperty.putValid(result, function(error, result) {
+          testClient.readonlyproperty.putValid(result, function(
+            error: Error | RestError
+          ) {
             assert.equal(error, undefined);
             done();
           });
@@ -627,15 +633,18 @@ describe("typescript", function() {
       it("should get and put valid basic type properties", async function() {
         const result = await testClient.polymorphicrecursive.getValid();
 
-        function checkSawshark(sawshark) {
+        function checkSawshark(sawshark: Sawshark) {
           const actualBytes = sawshark.picture;
-          assert.equal(!!actualBytes, true);
-          assert.equal(actualBytes.length, 5);
-          assert.equal(actualBytes[0], 255);
-          assert.equal(actualBytes[1], 255);
-          assert.equal(actualBytes[2], 255);
-          assert.equal(actualBytes[3], 255);
-          assert.equal(actualBytes[4], 254);
+          if (actualBytes === undefined) {
+            assert.fail("Expected actualBytes to be defined");
+          }
+
+          assert.equal(actualBytes!.length, 5);
+          assert.equal(actualBytes![0], 255);
+          assert.equal(actualBytes![1], 255);
+          assert.equal(actualBytes![2], 255);
+          assert.equal(actualBytes![3], 255);
+          assert.equal(actualBytes![4], 254);
           delete sawshark.picture;
         }
 
