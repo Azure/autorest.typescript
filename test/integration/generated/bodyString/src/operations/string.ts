@@ -90,35 +90,23 @@ export class String {
 
   /**
    * Set string value empty ''
-   * @param stringBody
    * @param options The options parameters.
    */
-  putEmpty(stringBody: string, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putEmpty(options?: coreHttp.RequestOptionsBase): Promise<any>;
   /**
-   * @param stringBody
    * @param callback The callback.
    */
-  putEmpty(stringBody: string, callback: coreHttp.ServiceCallback<any>): void;
+  putEmpty(callback: coreHttp.ServiceCallback<any>): void;
   /**
-   * @param stringBody
    * @param options The options parameters.
    * @param callback The callback.
    */
+  putEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
   putEmpty(
-    stringBody: string,
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  putEmpty(
-    stringBody: string,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest(
-      { stringBody, options },
-      putEmptyOperationSpec,
-      callback
-    );
+    return this.client.sendOperationRequest({ options }, putEmptyOperationSpec, callback);
   }
 
   /**
@@ -375,7 +363,7 @@ const putNullOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: {
     parameterPath: "stringBody",
-    mapper: { type: { name: "String" }, isConstant: true, defaultValue: "" }
+    mapper: { type: { name: "String" }, isConstant: true, defaultValue: null }
   },
   serializer
 };

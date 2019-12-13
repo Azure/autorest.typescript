@@ -16,11 +16,11 @@ describe("Integration tests for BodyString", () => {
       const result = await client.string.getNull();
       deepStrictEqual(result, { body: undefined });
 
-      await client.string.putNull(null as any);
+      await client.string.putNull();
     });
 
     it("should support valid empty string value", async function() {
-      await client.string.putEmpty(null as any);
+      await client.string.putEmpty();
       const result = await client.string.getEmpty();
       deepStrictEqual(result, { body: "" });
     });
