@@ -64,7 +64,7 @@ function toCasing(value: string, casing: CasingConvention): string {
 }
 
 function getNameParts(name: string) {
-  let parts = name.split(/[-_ ]+/);
+  let parts = name.split(/[-._ ]+/);
 
   return parts.length > 0 ? parts : [name];
 }

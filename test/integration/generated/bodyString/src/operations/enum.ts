@@ -223,7 +223,6 @@ const getNotExpandableOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-
   serializer
 };
 const putNotExpandableOperationSpec: coreHttp.OperationSpec = {
@@ -253,7 +252,6 @@ const getReferencedOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-
   serializer
 };
 const putReferencedOperationSpec: coreHttp.OperationSpec = {
@@ -281,7 +279,6 @@ const getReferencedConstantOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-
   serializer
 };
 const putReferencedConstantOperationSpec: coreHttp.OperationSpec = {

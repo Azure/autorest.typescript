@@ -363,7 +363,6 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-
   serializer
 };
 const putNullOperationSpec: coreHttp.OperationSpec = {
@@ -391,7 +390,6 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-
   serializer
 };
 const putEmptyOperationSpec: coreHttp.OperationSpec = {
@@ -419,7 +417,6 @@ const getMbcsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-
   serializer
 };
 const putMbcsOperationSpec: coreHttp.OperationSpec = {
@@ -452,7 +449,6 @@ const getWhitespaceOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-
   serializer
 };
 const putWhitespaceOperationSpec: coreHttp.OperationSpec = {
@@ -484,7 +480,6 @@ const getNotProvidedOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-
   serializer
 };
 const getBase64EncodedOperationSpec: coreHttp.OperationSpec = {
@@ -498,7 +493,6 @@ const getBase64EncodedOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-
   serializer
 };
 const getBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
@@ -512,7 +506,6 @@ const getBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-
   serializer
 };
 const putBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
@@ -540,6 +533,5 @@ const getNullBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-
   serializer
 };
