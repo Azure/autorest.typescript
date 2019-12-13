@@ -116,7 +116,7 @@ export function getSpecType(responseSchema: Schema, expand = false): SpecType {
       constantProps = expand
         ? {
             isConstant: true,
-            defaultValue: constantSchema.value.value || ""
+            defaultValue: constantSchema.value.value
           }
         : undefined;
       break;
@@ -196,7 +196,7 @@ function isParameterRequired(parameter: Parameter) {
   ) as CompositeMapper;
 
   // If the parameter contains a default value, it is not required
-  return !!mapper.defaultValue ? false : parameter.required;
+  return mapper.isConstant ? false : parameter.required;
 }
 
 export function transformOperationRequest(
