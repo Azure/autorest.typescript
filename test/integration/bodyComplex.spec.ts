@@ -7,14 +7,17 @@ import {
 } from "./generated/bodyComplex/src/bodyComplexClient";
 import { Shark } from "./generated/bodyComplex/src/models";
 
-var clientOptions = {
+const clientOptions = {
   baseUri: "http://localhost:3000"
 };
 
 describe("typescript", function() {
   describe("Swagger Complex Type BAT", function() {
     describe("Basic Types Operations", function() {
-      var testClient = new BodyComplexClient(clientOptions);
+      let testClient: BodyComplexClient;
+      beforeEach(() => {
+        testClient = new BodyComplexClient(clientOptions);
+      });
       it("should get and put valid basic type properties", async function() {
         const result = await testClient.basic.getValid();
         assert.equal(result.id, 2);
@@ -60,7 +63,10 @@ describe("typescript", function() {
     });
 
     describe("Primitive Types Operations", function() {
-      var testClient = new BodyComplexClient(clientOptions);
+      let testClient: BodyComplexClient;
+      beforeEach(() => {
+        testClient = new BodyComplexClient(clientOptions);
+      });
       it("should get and put valid int properties", function(done) {
         testClient.primitive.getInt(function(error, result) {
           assert.equal(error, undefined);
@@ -106,31 +112,11 @@ describe("typescript", function() {
         });
       });
 
-      it("should get and put valid double properties", function(done) {
-        testClient.primitive.getDouble(function(error, result) {
-          assert.equal(error, undefined);
-          assert.equal(result.field1, 3e-100);
-          result.field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose.should.equal(
-            -0.000000000000000000000000000000000000000000000000000000005
-          );
-          testClient.primitive.putDouble(
-            {
-              field1: 3e-100,
-              field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose: -0.000000000000000000000000000000000000000000000000000000005
-            },
-            function(error, result) {
-              assert.equal(error, undefined);
-              done();
-            }
-          );
-        });
-      });
-
       it("should get and put valid bool properties", function(done) {
         testClient.primitive.getBool(function(error, result) {
           assert.equal(error, undefined);
-          result.fieldTrue.should.equal(true);
-          result.fieldFalse.should.equal(false);
+          assert.equal(result.fieldTrue, true);
+          assert.equal(result.fieldFalse, false);
           testClient.primitive.putBool(
             { fieldTrue: true, fieldFalse: false },
             function(error, result) {
@@ -144,8 +130,8 @@ describe("typescript", function() {
       it("should get and put valid string properties", function(done) {
         testClient.primitive.getString(function(error, result) {
           assert.equal(error, undefined);
-          result.field.should.equal("goodrequest");
-          result.empty.should.equal("");
+          assert.equal(result.field, "goodrequest");
+          assert.equal(result.empty, "");
           assert.equal(result["nullProperty"], undefined);
           testClient.primitive.putString(
             { field: "goodrequest", empty: "" },
@@ -162,7 +148,7 @@ describe("typescript", function() {
           assert.equal(error, undefined);
           assert.deepEqual(result.field, new Date("0001-01-01"));
           assert.deepEqual(result.leap, new Date("2016-02-29"));
-          var complexBody = <BodyComplexModels.DateWrapper>{
+          const complexBody = <BodyComplexModels.DateWrapper>{
             field: new Date("0001-01-01"),
             leap: new Date("2016-02-29")
           };
@@ -190,24 +176,19 @@ describe("typescript", function() {
         });
       });
 
-      it("should get and put valid date-time-rfc1123 properties", function(done) {
-        var timeStringOne = "Mon, 01 Jan 0001 00:00:00 GMT";
-        var timeStringTwo = "Mon, 18 May 2015 11:38:00 GMT";
-        testClient.primitive.getDateTimeRfc1123(function(error, result) {
-          assert.equal(error, undefined);
-          assert.deepEqual(result.field, new Date(timeStringOne));
-          assert.deepEqual(result.now, new Date(timeStringTwo));
-          var dateFormat = "ddd, DD MMM YYYY HH:mm:ss";
+      it("should get and put valid date-time-rfc1123 properties", async () => {
+        const timeStringOne = "Mon, 01 Jan 0001 00:00:00 GMT";
+        const timeStringTwo = "Mon, 18 May 2015 11:38:00 GMT";
 
-          //Have to use moment.js to construct the date object because NodeJS default Date constructor doesn't parse "old" RFC dates right
-          var fieldDate = moment.utc(timeStringOne, dateFormat).toDate();
-          testClient.primitive.putDateTimeRfc1123(
-            { field: fieldDate, now: new Date(timeStringTwo) },
-            function(error, result) {
-              assert.equal(error, undefined);
-              done();
-            }
-          );
+        const result = await testClient.primitive.getDateTimeRfc1123();
+        assert.deepEqual(result.field, new Date(timeStringOne));
+        assert.deepEqual(result.now, new Date(timeStringTwo));
+
+        const dateFormat = "ddd, DD MMM YYYY HH:mm:ss";
+        const fieldDate = moment.utc(timeStringOne, dateFormat).toDate();
+        await testClient.primitive.putDateTimeRfc1123({
+          field: fieldDate,
+          now: new Date(timeStringTwo)
         });
       });
 
@@ -219,7 +200,7 @@ describe("typescript", function() {
       });
 
       it("should get and put valid byte properties", function(done) {
-        var byteBuffer = new Uint8Array([
+        const byteBuffer = new Uint8Array([
           255,
           254,
           253,
@@ -249,9 +230,12 @@ describe("typescript", function() {
     });
 
     describe("Array Types Operations", function() {
-      var testClient = new BodyComplexClient(clientOptions);
+      let testClient: BodyComplexClient;
+      beforeEach(() => {
+        testClient = new BodyComplexClient(clientOptions);
+      });
       it("should get valid array type properties", function(done) {
-        var testArray = [
+        const testArray = [
           "1, 2, 3, 4",
           "",
           null,
@@ -260,7 +244,7 @@ describe("typescript", function() {
         ];
         testClient.array.getValid(function(error, result) {
           assert.equal(error, undefined);
-          assert.deepEqual(result.arrayProperty, testArray);
+          assert.deepEqual(result.array, testArray);
           testClient.array.putValid({ array: testArray }, function(
             error,
             result
@@ -269,12 +253,12 @@ describe("typescript", function() {
             done();
           });
         });
-      });
+      }).timeout(20000);
 
       it("should get and put empty array type properties", function(done) {
         testClient.array.getEmpty(function(error, result) {
           assert.equal(error, undefined);
-          assert.deepEqual(result.arrayProperty, []);
+          assert.deepEqual(result.array, []);
           testClient.array.putEmpty({ array: [] }, function(error, result) {
             assert.equal(error, undefined);
             done();
@@ -285,16 +269,20 @@ describe("typescript", function() {
       it("should get array type properties when the payload is empty", function(done) {
         testClient.array.getNotProvided(function(error, result) {
           assert.equal(error, undefined);
-          assert.equal(result.arrayProperty, undefined);
+          assert.equal(result.array, undefined);
           done();
         });
       });
     });
 
     describe("Dictionary Types Operations", function() {
-      var testClient = new BodyComplexClient(clientOptions);
+      let testClient: BodyComplexClient;
+      beforeEach(() => {
+        testClient = new BodyComplexClient(clientOptions);
+      });
+
       it("should get and put valid dictionary type properties", function(done) {
-        var testDictionary: { [propertyName: string]: any } = {
+        const testDictionary: { [propertyName: string]: any } = {
           txt: "notepad",
           bmp: "mspaint",
           xls: "excel",
@@ -346,7 +334,7 @@ describe("typescript", function() {
     });
 
     describe("Complex Types with Inheritance Operations", function() {
-      var siamese = {
+      const siamese = {
         breed: "persian",
         color: "green",
         hates: [
@@ -356,7 +344,10 @@ describe("typescript", function() {
         id: 2,
         name: "Siameeee"
       };
-      var testClient = new BodyComplexClient(clientOptions);
+      let testClient: BodyComplexClient;
+      beforeEach(() => {
+        testClient = new BodyComplexClient(clientOptions);
+      });
       it("should get valid basic type properties", function(done) {
         testClient.inheritance.getValid(function(error, result) {
           assert.equal(error, undefined);
@@ -370,7 +361,10 @@ describe("typescript", function() {
     });
 
     describe("Complex Types with ReadOnly Properties", function() {
-      var testClient = new BodyComplexClient(clientOptions);
+      let testClient: BodyComplexClient;
+      beforeEach(() => {
+        testClient = new BodyComplexClient(clientOptions);
+      });
       it("should get and put complex types with readonly properties", function(done) {
         testClient.readonlyproperty.getValid(function(error, result) {
           assert.equal(error, undefined);
@@ -383,7 +377,7 @@ describe("typescript", function() {
     });
 
     describe("Complex Types with Polymorphism Operations", function() {
-      var getFish = () => ({
+      const getFish = () => ({
         fishtype: "salmon",
         location: "alaska",
         iswild: true,
@@ -416,7 +410,10 @@ describe("typescript", function() {
           }
         ]
       });
-      var testClient = new BodyComplexClient(clientOptions);
+      let testClient: BodyComplexClient;
+      beforeEach(() => {
+        testClient = new BodyComplexClient(clientOptions);
+      });
       it("should get valid polymorphic properties", async function() {
         const getResult = await testClient.polymorphism.getValid();
 
@@ -437,7 +434,7 @@ describe("typescript", function() {
 
         await testClient.polymorphism.putValid(getFish());
       });
-      var getBadfish = () => ({
+      const getBadfish = () => ({
         fishtype: "sawshark",
         species: "snaggle toothed",
         length: 18.5,
@@ -473,7 +470,7 @@ describe("typescript", function() {
         }
       });
 
-      var getRawSalmon = () => ({
+      const getRawSalmon = () => ({
         fishtype: "smart_salmon",
         location: "alaska",
         iswild: true,
@@ -563,7 +560,7 @@ describe("typescript", function() {
     });
 
     describe("Complex Types with recursive definitions", function() {
-      var getBigfish = () => ({
+      const getBigfish = () => ({
         fishtype: "salmon",
         location: "alaska",
         iswild: true,
@@ -623,14 +620,17 @@ describe("typescript", function() {
           }
         ]
       });
-      var testClient = new BodyComplexClient(clientOptions);
+      let testClient: BodyComplexClient;
+      beforeEach(() => {
+        testClient = new BodyComplexClient(clientOptions);
+      });
       it("should get and put valid basic type properties", async function() {
         const result = await testClient.polymorphicrecursive.getValid();
 
         function checkSawshark(sawshark) {
           const actualBytes = sawshark.picture;
-          actualBytes.should.exist;
-          actualBytes.length.should.equal(5);
+          assert.equal(!!actualBytes, true);
+          assert.equal(actualBytes.length, 5);
           assert.equal(actualBytes[0], 255);
           assert.equal(actualBytes[1], 255);
           assert.equal(actualBytes[2], 255);
