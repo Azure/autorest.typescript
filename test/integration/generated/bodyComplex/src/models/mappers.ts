@@ -310,8 +310,8 @@ export const DictionaryWrapper: coreHttp.CompositeMapper = {
     modelProperties: {
       defaultProgram: {
         type: {
-          name: "Sequence",
-          element: {
+          name: "Dictionary",
+          value: {
             type: {
               name: "String"
             },

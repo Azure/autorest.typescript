@@ -99,6 +99,7 @@ interface PartialMapperType {
   name: string;
   allowedValues?: any[];
   element?: Mapper;
+  value?: Mapper;
   modelProperties?: ModelProperties;
 }
 
@@ -203,7 +204,7 @@ function transformDictionaryMapper(pipelineValue: PipelineValue) {
   const elementSchema = dictionarySchema.elementType;
   const mapper = buildMapper(
     schema,
-    { name: MapperType.Sequence, element: getMapperOrRef(elementSchema) },
+    { name: MapperType.Dictionary, value: getMapperOrRef(elementSchema) },
     options
   );
 
