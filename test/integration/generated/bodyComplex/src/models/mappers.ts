@@ -238,13 +238,13 @@ export const Datetimerfc1123Wrapper: coreHttp.CompositeMapper = {
     modelProperties: {
       field: {
         type: {
-          name: "DateTime"
+          name: "DateTimeRfc1123"
         },
         serializedName: "field"
       },
       now: {
         type: {
-          name: "DateTime"
+          name: "DateTimeRfc1123"
         },
         serializedName: "now"
       }

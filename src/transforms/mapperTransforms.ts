@@ -10,7 +10,8 @@ import {
   ByteArraySchema,
   Property,
   ArraySchema,
-  DictionarySchema
+  DictionarySchema,
+  DateTimeSchema
 } from "@azure-tools/codemodel";
 import {
   BaseMapper,
@@ -304,9 +305,10 @@ function transformDateMapper(pipelineValue: PipelineValue) {
     return pipelineValue;
   }
 
+  const { format } = schema as DateTimeSchema;
   const mapper = buildMapper(
     schema,
-    { name: getMapperTypeFromSchema(schema.type) },
+    { name: getMapperTypeFromSchema(schema.type, format) },
     options
   );
 
@@ -426,7 +428,7 @@ function isSchemaType(matchSchemas: SchemaType[], { type }: Schema) {
   return matchSchemas.includes(type);
 }
 
-function getMapperTypeFromSchema(type: SchemaType) {
+function getMapperTypeFromSchema(type: SchemaType, format?: string) {
   switch (type) {
     case SchemaType.Boolean:
       return MapperType.Boolean;
@@ -441,7 +443,9 @@ function getMapperTypeFromSchema(type: SchemaType) {
     case SchemaType.Duration:
       return MapperType.TimeSpan;
     case SchemaType.DateTime:
-      return MapperType.DateTime;
+      return format === "date-time-rfc1123"
+        ? MapperType.DateTimeRfc1123
+        : MapperType.DateTime;
     case SchemaType.UnixTime:
       return MapperType.UnixTime;
     case SchemaType.Date:
