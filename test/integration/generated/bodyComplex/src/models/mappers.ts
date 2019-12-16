@@ -9,712 +9,469 @@
 import * as coreHttp from "@azure/core-http";
 
 export const Basic: coreHttp.CompositeMapper = {
+  serializedName: "basic",
   type: {
     name: "Composite",
+    className: "Basic",
     modelProperties: {
-      id: {
-        type: {
-          name: "Number"
-        },
-        serializedName: "id"
-      },
-      name: {
-        type: {
-          name: "String"
-        },
-        serializedName: "name"
-      },
+      id: { type: { name: "Number" }, serializedName: "id" },
+      name: { type: { name: "String" }, serializedName: "name" },
       color: {
-        type: {
-          name: "Enum",
-          allowedValues: ["cyan", "Magenta", "YELLOW", "blacK"]
-        },
+        type: { name: "Enum", allowedValues: ["cyan", "Magenta", "YELLOW", "blacK"] },
         serializedName: "color"
       }
     }
-  },
-  serializedName: "basic"
+  }
 };
 
 export const ErrorModel: coreHttp.CompositeMapper = {
+  serializedName: "Error",
   type: {
     name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
-      status: {
-        type: {
-          name: "Number"
-        },
-        serializedName: "status"
-      },
-      message: {
-        type: {
-          name: "String"
-        },
-        serializedName: "message"
-      }
+      status: { type: { name: "Number" }, serializedName: "status" },
+      message: { type: { name: "String" }, serializedName: "message" }
     }
-  },
-  serializedName: "Error"
+  }
 };
 
 export const IntWrapper: coreHttp.CompositeMapper = {
+  serializedName: "int-wrapper",
   type: {
     name: "Composite",
+    className: "IntWrapper",
     modelProperties: {
-      field1: {
-        type: {
-          name: "Number"
-        },
-        serializedName: "field1"
-      },
-      field2: {
-        type: {
-          name: "Number"
-        },
-        serializedName: "field2"
-      }
+      field1: { type: { name: "Number" }, serializedName: "field1" },
+      field2: { type: { name: "Number" }, serializedName: "field2" }
     }
-  },
-  serializedName: "int-wrapper"
+  }
 };
 
 export const LongWrapper: coreHttp.CompositeMapper = {
+  serializedName: "long-wrapper",
   type: {
     name: "Composite",
+    className: "LongWrapper",
     modelProperties: {
-      field1: {
-        type: {
-          name: "Number"
-        },
-        serializedName: "field1"
-      },
-      field2: {
-        type: {
-          name: "Number"
-        },
-        serializedName: "field2"
-      }
+      field1: { type: { name: "Number" }, serializedName: "field1" },
+      field2: { type: { name: "Number" }, serializedName: "field2" }
     }
-  },
-  serializedName: "long-wrapper"
+  }
 };
 
 export const FloatWrapper: coreHttp.CompositeMapper = {
+  serializedName: "float-wrapper",
   type: {
     name: "Composite",
+    className: "FloatWrapper",
     modelProperties: {
-      field1: {
-        type: {
-          name: "Number"
-        },
-        serializedName: "field1"
-      },
-      field2: {
-        type: {
-          name: "Number"
-        },
-        serializedName: "field2"
-      }
+      field1: { type: { name: "Number" }, serializedName: "field1" },
+      field2: { type: { name: "Number" }, serializedName: "field2" }
     }
-  },
-  serializedName: "float-wrapper"
+  }
 };
 
 export const DoubleWrapper: coreHttp.CompositeMapper = {
+  serializedName: "double-wrapper",
   type: {
     name: "Composite",
+    className: "DoubleWrapper",
     modelProperties: {
-      field1: {
-        type: {
-          name: "Number"
-        },
-        serializedName: "field1"
-      },
+      field1: { type: { name: "Number" }, serializedName: "field1" },
       field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose: {
-        type: {
-          name: "Number"
-        },
+        type: { name: "Number" },
         serializedName:
           "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose"
       }
     }
-  },
-  serializedName: "double-wrapper"
+  }
 };
 
 export const BooleanWrapper: coreHttp.CompositeMapper = {
+  serializedName: "boolean-wrapper",
   type: {
     name: "Composite",
+    className: "BooleanWrapper",
     modelProperties: {
-      fieldTrue: {
-        type: {
-          name: "Boolean"
-        },
-        serializedName: "field_true"
-      },
-      fieldFalse: {
-        type: {
-          name: "Boolean"
-        },
-        serializedName: "field_false"
-      }
+      fieldTrue: { type: { name: "Boolean" }, serializedName: "field_true" },
+      fieldFalse: { type: { name: "Boolean" }, serializedName: "field_false" }
     }
-  },
-  serializedName: "boolean-wrapper"
+  }
 };
 
 export const StringWrapper: coreHttp.CompositeMapper = {
+  serializedName: "string-wrapper",
   type: {
     name: "Composite",
+    className: "StringWrapper",
     modelProperties: {
-      field: {
-        type: {
-          name: "String"
-        },
-        serializedName: "field"
-      },
-      empty: {
-        type: {
-          name: "String"
-        },
-        serializedName: "empty"
-      },
-      null: {
-        type: {
-          name: "String"
-        },
-        serializedName: "null"
-      }
+      field: { type: { name: "String" }, serializedName: "field" },
+      empty: { type: { name: "String" }, serializedName: "empty" },
+      null: { type: { name: "String" }, serializedName: "null" }
     }
-  },
-  serializedName: "string-wrapper"
+  }
 };
 
 export const DateWrapper: coreHttp.CompositeMapper = {
+  serializedName: "date-wrapper",
   type: {
     name: "Composite",
+    className: "DateWrapper",
     modelProperties: {
-      field: {
-        type: {
-          name: "Date"
-        },
-        serializedName: "field"
-      },
-      leap: {
-        type: {
-          name: "Date"
-        },
-        serializedName: "leap"
-      }
+      field: { type: { name: "Date" }, serializedName: "field" },
+      leap: { type: { name: "Date" }, serializedName: "leap" }
     }
-  },
-  serializedName: "date-wrapper"
+  }
 };
 
 export const DatetimeWrapper: coreHttp.CompositeMapper = {
+  serializedName: "datetime-wrapper",
   type: {
     name: "Composite",
+    className: "DatetimeWrapper",
     modelProperties: {
-      field: {
-        type: {
-          name: "DateTime"
-        },
-        serializedName: "field"
-      },
-      now: {
-        type: {
-          name: "DateTime"
-        },
-        serializedName: "now"
-      }
+      field: { type: { name: "DateTime" }, serializedName: "field" },
+      now: { type: { name: "DateTime" }, serializedName: "now" }
     }
-  },
-  serializedName: "datetime-wrapper"
+  }
 };
 
 export const Datetimerfc1123Wrapper: coreHttp.CompositeMapper = {
+  serializedName: "datetimerfc1123-wrapper",
   type: {
     name: "Composite",
+    className: "Datetimerfc1123Wrapper",
     modelProperties: {
-      field: {
-        type: {
-          name: "DateTimeRfc1123"
-        },
-        serializedName: "field"
-      },
-      now: {
-        type: {
-          name: "DateTimeRfc1123"
-        },
-        serializedName: "now"
-      }
+      field: { type: { name: "DateTimeRfc1123" }, serializedName: "field" },
+      now: { type: { name: "DateTimeRfc1123" }, serializedName: "now" }
     }
-  },
-  serializedName: "datetimerfc1123-wrapper"
+  }
 };
 
 export const DurationWrapper: coreHttp.CompositeMapper = {
+  serializedName: "duration-wrapper",
   type: {
     name: "Composite",
+    className: "DurationWrapper",
     modelProperties: {
-      field: {
-        type: {
-          name: "TimeSpan"
-        },
-        serializedName: "field"
-      }
+      field: { type: { name: "TimeSpan" }, serializedName: "field" }
     }
-  },
-  serializedName: "duration-wrapper"
+  }
 };
 
 export const ByteWrapper: coreHttp.CompositeMapper = {
+  serializedName: "byte-wrapper",
   type: {
     name: "Composite",
+    className: "ByteWrapper",
     modelProperties: {
-      field: {
-        type: {
-          name: "ByteArray"
-        },
-        serializedName: "field"
-      }
+      field: { type: { name: "ByteArray" }, serializedName: "field" }
     }
-  },
-  serializedName: "byte-wrapper"
+  }
 };
 
 export const ArrayWrapper: coreHttp.CompositeMapper = {
+  serializedName: "array-wrapper",
   type: {
     name: "Composite",
+    className: "ArrayWrapper",
     modelProperties: {
       array: {
         type: {
           name: "Sequence",
-          element: {
-            type: {
-              name: "String"
-            },
-            serializedName: "array-wrapper-arrayItem"
-          }
+          element: { type: { name: "String" }, serializedName: "array-wrapper-arrayItem" }
         },
         serializedName: "array"
       }
     }
-  },
-  serializedName: "array-wrapper"
+  }
 };
 
 export const DictionaryWrapper: coreHttp.CompositeMapper = {
+  serializedName: "dictionary-wrapper",
   type: {
     name: "Composite",
+    className: "DictionaryWrapper",
     modelProperties: {
       defaultProgram: {
-        type: {
-          name: "Dictionary",
-          value: {
-            type: {
-              name: "String"
-            },
-            serializedName: "string"
-          }
-        },
+        type: { name: "Dictionary", value: { type: { name: "String" }, serializedName: "string" } },
         serializedName: "defaultProgram"
       }
     }
-  },
-  serializedName: "dictionary-wrapper"
+  }
 };
 
 export const Pet: coreHttp.CompositeMapper = {
+  serializedName: "pet",
   type: {
     name: "Composite",
+    className: "Pet",
     modelProperties: {
-      id: {
-        type: {
-          name: "Number"
-        },
-        serializedName: "id"
-      },
-      name: {
-        type: {
-          name: "String"
-        },
-        serializedName: "name"
-      }
+      id: { type: { name: "Number" }, serializedName: "id" },
+      name: { type: { name: "String" }, serializedName: "name" }
     }
-  },
-  serializedName: "pet"
+  }
 };
 
 export const Cat: coreHttp.CompositeMapper = {
+  serializedName: "cat",
   type: {
     name: "Composite",
+    className: "Cat",
     modelProperties: {
-      color: {
-        type: {
-          name: "String"
-        },
-        serializedName: "color"
-      },
+      ...Pet.type.modelProperties,
+      color: { type: { name: "String" }, serializedName: "color" },
       hates: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Composite",
-              className: "Dog"
-            }
-          }
-        },
+        type: { name: "Sequence", element: { type: { name: "Composite", className: "Dog" } } },
         serializedName: "hates"
       }
     }
-  },
-  serializedName: "cat"
+  }
 };
 
 export const Dog: coreHttp.CompositeMapper = {
+  serializedName: "dog",
   type: {
     name: "Composite",
+    className: "Dog",
     modelProperties: {
-      food: {
-        type: {
-          name: "String"
-        },
-        serializedName: "food"
-      }
+      ...Pet.type.modelProperties,
+      food: { type: { name: "String" }, serializedName: "food" }
     }
-  },
-  serializedName: "dog"
+  }
 };
 
 export const Siamese: coreHttp.CompositeMapper = {
+  serializedName: "siamese",
   type: {
     name: "Composite",
+    className: "Siamese",
     modelProperties: {
-      breed: {
-        type: {
-          name: "String"
-        },
-        serializedName: "breed"
-      }
+      ...Cat.type.modelProperties,
+      breed: { type: { name: "String" }, serializedName: "breed" }
     }
-  },
-  serializedName: "siamese"
+  }
 };
 
 export const Fish: coreHttp.CompositeMapper = {
+  serializedName: "Fish",
   type: {
     name: "Composite",
+    className: "Fish",
+    uberParent: "Fish",
+    polymorphicDiscriminator: { serializedName: "fishtype", clientName: "fishtype" },
     modelProperties: {
-      fishtype: {
-        type: {
-          name: "String"
-        },
-        serializedName: "fishtype",
-        required: true
-      },
-      species: {
-        type: {
-          name: "String"
-        },
-        serializedName: "species"
-      },
-      length: {
-        type: {
-          name: "Number"
-        },
-        serializedName: "length",
-        required: true
-      },
+      fishtype: { type: { name: "String" }, serializedName: "fishtype", required: true },
+      species: { type: { name: "String" }, serializedName: "species" },
+      length: { type: { name: "Number" }, serializedName: "length", required: true },
       siblings: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Composite",
-              className: "Fish"
-            }
-          }
-        },
+        type: { name: "Sequence", element: { type: { name: "Composite", className: "Fish" } } },
         serializedName: "siblings"
       }
     }
-  },
-  serializedName: "Fish"
+  }
 };
 
 export const DotFish: coreHttp.CompositeMapper = {
+  serializedName: "DotFish",
   type: {
     name: "Composite",
+    className: "DotFish",
+    uberParent: "DotFish",
+    polymorphicDiscriminator: { serializedName: "fish.type", clientName: "fish.type" },
     modelProperties: {
-      fishType: {
-        type: {
-          name: "String"
-        },
-        serializedName: "fish.type",
-        required: true
-      },
-      species: {
-        type: {
-          name: "String"
-        },
-        serializedName: "species"
-      }
+      fishType: { type: { name: "String" }, serializedName: "fish.type", required: true },
+      species: { type: { name: "String" }, serializedName: "species" }
     }
-  },
-  serializedName: "DotFish"
+  }
 };
 
 export const DotFishMarket: coreHttp.CompositeMapper = {
+  serializedName: "DotFishMarket",
   type: {
     name: "Composite",
+    className: "DotFishMarket",
     modelProperties: {
       sampleSalmon: {
         serializedName: "sampleSalmon",
-        type: {
-          name: "Composite",
-          className: "DotSalmon"
-        }
+        type: { name: "Composite", className: "DotSalmon" }
       },
       salmons: {
         type: {
           name: "Sequence",
-          element: {
-            type: {
-              name: "Composite",
-              className: "DotSalmon"
-            }
-          }
+          element: { type: { name: "Composite", className: "DotSalmon" } }
         },
         serializedName: "salmons"
       },
       sampleFish: {
         serializedName: "sampleFish",
-        type: {
-          name: "Composite",
-          className: "DotFish"
-        }
+        type: { name: "Composite", className: "DotFish" }
       },
       fishes: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Composite",
-              className: "DotFish"
-            }
-          }
-        },
+        type: { name: "Sequence", element: { type: { name: "Composite", className: "DotFish" } } },
         serializedName: "fishes"
       }
     }
-  },
-  serializedName: "DotFishMarket"
+  }
 };
 
 export const DotSalmon: coreHttp.CompositeMapper = {
+  serializedName: "DotSalmon",
   type: {
     name: "Composite",
+    className: "DotSalmon",
     modelProperties: {
-      location: {
-        type: {
-          name: "String"
-        },
-        serializedName: "location"
-      },
-      iswild: {
-        type: {
-          name: "Boolean"
-        },
-        serializedName: "iswild"
-      }
+      ...DotFish.type.modelProperties,
+      location: { type: { name: "String" }, serializedName: "location" },
+      iswild: { type: { name: "Boolean" }, serializedName: "iswild" }
     }
-  },
-  serializedName: "DotSalmon"
+  }
 };
 
 export const Salmon: coreHttp.CompositeMapper = {
+  serializedName: "salmon",
   type: {
     name: "Composite",
+    className: "Salmon",
+    uberParent: "Fish",
+    polymorphicDiscriminator: { serializedName: "fishtype", clientName: "fishtype" },
     modelProperties: {
-      location: {
-        type: {
-          name: "String"
-        },
-        serializedName: "location"
-      },
-      iswild: {
-        type: {
-          name: "Boolean"
-        },
-        serializedName: "iswild"
-      }
+      ...Fish.type.modelProperties,
+      location: { type: { name: "String" }, serializedName: "location" },
+      iswild: { type: { name: "Boolean" }, serializedName: "iswild" }
     }
-  },
-  serializedName: "salmon"
+  }
 };
 
 export const ReadonlyObj: coreHttp.CompositeMapper = {
+  serializedName: "readonly-obj",
   type: {
     name: "Composite",
+    className: "ReadonlyObj",
     modelProperties: {
-      id: {
-        type: {
-          name: "String"
-        },
-        serializedName: "id"
-      },
-      size: {
-        type: {
-          name: "Number"
-        },
-        serializedName: "size"
-      }
+      id: { type: { name: "String" }, serializedName: "id", readOnly: true },
+      size: { type: { name: "Number" }, serializedName: "size" }
     }
-  },
-  serializedName: "readonly-obj"
+  }
 };
 
 export const MyBaseType: coreHttp.CompositeMapper = {
+  serializedName: "MyBaseType",
   type: {
     name: "Composite",
+    className: "MyBaseType",
+    uberParent: "MyBaseType",
+    polymorphicDiscriminator: { serializedName: "kind", clientName: "kind" },
     modelProperties: {
       kind: {
-        type: {
-          name: "String"
-        },
+        type: { name: "String" },
         serializedName: "kind",
         defaultValue: "Kind1",
         isConstant: true
       },
-      propB1: {
-        type: {
-          name: "String"
-        },
-        serializedName: "propB1"
-      },
+      propB1: { type: { name: "String" }, serializedName: "propB1" },
       helper: {
         serializedName: "helper",
-        type: {
-          name: "Composite",
-          className: "MyBaseHelperType"
-        }
+        type: { name: "Composite", className: "MyBaseHelperType" }
       }
     }
-  },
-  serializedName: "MyBaseType"
+  }
 };
 
 export const MyBaseHelperType: coreHttp.CompositeMapper = {
+  serializedName: "MyBaseHelperType",
   type: {
     name: "Composite",
+    className: "MyBaseHelperType",
     modelProperties: {
-      propBH1: {
-        type: {
-          name: "String"
-        },
-        serializedName: "propBH1"
-      }
+      propBH1: { type: { name: "String" }, serializedName: "propBH1" }
     }
-  },
-  serializedName: "MyBaseHelperType"
+  }
 };
 
 export const SmartSalmon: coreHttp.CompositeMapper = {
+  serializedName: "smart_salmon",
   type: {
     name: "Composite",
+    className: "SmartSalmon",
     modelProperties: {
-      collegeDegree: {
-        type: {
-          name: "String"
-        },
-        serializedName: "college_degree"
-      }
+      ...Salmon.type.modelProperties,
+      collegeDegree: { type: { name: "String" }, serializedName: "college_degree" }
     }
-  },
-  serializedName: "smart_salmon"
+  }
 };
 
 export const Shark: coreHttp.CompositeMapper = {
+  serializedName: "shark",
   type: {
     name: "Composite",
+    className: "Shark",
+    uberParent: "Fish",
+    polymorphicDiscriminator: { serializedName: "fishtype", clientName: "fishtype" },
     modelProperties: {
-      age: {
-        type: {
-          name: "Number"
-        },
-        serializedName: "age"
-      },
-      birthday: {
-        type: {
-          name: "DateTime"
-        },
-        serializedName: "birthday",
-        required: true
-      }
+      ...Fish.type.modelProperties,
+      age: { type: { name: "Number" }, serializedName: "age" },
+      birthday: { type: { name: "DateTime" }, serializedName: "birthday", required: true }
     }
-  },
-  serializedName: "shark"
+  }
 };
 
 export const Sawshark: coreHttp.CompositeMapper = {
+  serializedName: "sawshark",
   type: {
     name: "Composite",
+    className: "Sawshark",
     modelProperties: {
-      picture: {
-        type: {
-          name: "ByteArray"
-        },
-        serializedName: "picture"
-      }
+      ...Shark.type.modelProperties,
+      picture: { type: { name: "ByteArray" }, serializedName: "picture" }
     }
-  },
-  serializedName: "sawshark"
+  }
 };
 
 export const Goblinshark: coreHttp.CompositeMapper = {
+  serializedName: "goblinshark",
   type: {
     name: "Composite",
+    className: "Goblinshark",
     modelProperties: {
-      jawsize: {
-        type: {
-          name: "Number"
-        },
-        serializedName: "jawsize"
-      },
+      ...Shark.type.modelProperties,
+      jawsize: { type: { name: "Number" }, serializedName: "jawsize" },
       color: {
-        type: {
-          name: "Enum",
-          allowedValues: ["pink", "gray", "brown"]
-        },
+        type: { name: "Enum", allowedValues: ["pink", "gray", "brown"] },
         serializedName: "color",
         defaultValue: "gray"
       }
     }
-  },
-  serializedName: "goblinshark"
+  }
 };
 
 export const Cookiecuttershark: coreHttp.CompositeMapper = {
+  serializedName: "cookiecuttershark",
   type: {
     name: "Composite",
-    modelProperties: {}
-  },
-  serializedName: "cookiecuttershark"
+    className: "Cookiecuttershark",
+    modelProperties: {
+      ...Shark.type.modelProperties
+    }
+  }
 };
 
 export const MyDerivedType: coreHttp.CompositeMapper = {
+  serializedName: "MyDerivedType",
   type: {
     name: "Composite",
+    className: "MyDerivedType",
     modelProperties: {
-      propD1: {
-        type: {
-          name: "String"
-        },
-        serializedName: "propD1"
-      }
+      ...MyBaseType.type.modelProperties,
+      propD1: { type: { name: "String" }, serializedName: "propD1" }
     }
-  },
-  serializedName: "MyDerivedType"
+  }
+};
+export let discriminators = {
+  Fish: Fish,
+  DotFish: DotFish,
+  "Fish.salmon": Salmon,
+  MyBaseType: MyBaseType,
+  "Fish.shark": Shark
 };

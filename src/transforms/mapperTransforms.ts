@@ -11,17 +11,20 @@ import {
   Property,
   ArraySchema,
   DictionarySchema,
-  DateTimeSchema
+  DateTimeSchema,
+  ComplexSchema
 } from "@azure-tools/codemodel";
 import {
   BaseMapper,
   Mapper,
   MapperType,
-  MapperConstraints
+  MapperConstraints,
+  PolymorphicDiscriminator
 } from "@azure/core-http";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { isNil } from "lodash";
 import { normalizeName, NameType } from "../utils/nameUtils";
+import { isEqual } from "lodash";
 
 interface PipelineValue {
   schema: Schema;
@@ -45,7 +48,7 @@ const pipe = (
   ...fns: Array<(pipelineValue: PipelineValue) => PipelineValue>
 ) => (x: PipelineValue) => fns.reduce((v, f) => (!v.isHandled ? f(v) : v), x);
 
-type ModelProperties = { [propertyName: string]: Mapper };
+export type ModelProperties = { [propertyName: string]: Mapper | string[] };
 
 export interface EntityOptions {
   serializedName?: string;
@@ -97,10 +100,13 @@ export function getMapperClassName(schema: Schema): string {
 
 interface PartialMapperType {
   name: string;
+  className?: string;
   allowedValues?: any[];
   element?: Mapper;
   value?: Mapper;
   modelProperties?: ModelProperties;
+  polymorphicDiscriminator?: PolymorphicDiscriminator;
+  uberParent?: string;
 }
 
 function buildMapper(
@@ -109,6 +115,7 @@ function buildMapper(
   options?: EntityOptions
 ): Mapper {
   const required = !!options && !!options.required;
+  const readOnly = !!options && !!options.readOnly;
   const serializedName =
     (options && options.serializedName) ||
     getLanguageMetadata(schema.language).name;
@@ -149,6 +156,7 @@ function buildMapper(
       defaultValue: schema.defaultValue
     }),
     ...(required && { required }),
+    ...(readOnly && { readOnly }),
     ...(hasConstraints && { constraints })
   };
 }
@@ -177,12 +185,39 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
   if (!isSchemaType([SchemaType.Object], schema)) {
     return pipelineValue;
   }
+  const className = getMapperClassName(schema);
   const objectSchema = schema as ObjectSchema;
-  const modelProperties = processProperties(objectSchema.properties);
+  const discriminator = objectSchema.discriminator;
+
+  let modelProperties = processProperties(objectSchema.properties);
+  const parents = objectSchema.parents ? objectSchema.parents.immediate : [];
+  const parentsRefs = parents
+    .map(p => getMapperClassName(p))
+    .filter(p => p !== className);
+
+  modelProperties = {
+    ...modelProperties,
+    ...(parentsRefs && parentsRefs.length && { parentsRefs })
+  };
+
+  // TODO: We may need to find the highest common ancestor
 
   const mapper = buildMapper(
     schema,
-    { name: MapperType.Composite, modelProperties },
+    {
+      name: MapperType.Composite,
+      className,
+      modelProperties,
+      ...(discriminator && {
+        // TODO need to handle uber parent in a more appropiate way
+        // need to consider multiple levels of inheritance
+        uberParent: parentsRefs[0] || className,
+        polymorphicDiscriminator: {
+          serializedName: discriminator!.property.serializedName,
+          clientName: discriminator!.property.serializedName
+        }
+      })
+    },
     options
   );
 
