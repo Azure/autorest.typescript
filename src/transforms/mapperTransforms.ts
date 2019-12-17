@@ -11,8 +11,7 @@ import {
   Property,
   ArraySchema,
   DictionarySchema,
-  DateTimeSchema,
-  ComplexSchema
+  DateTimeSchema
 } from "@azure-tools/codemodel";
 import {
   BaseMapper,
@@ -24,7 +23,6 @@ import {
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { isNil } from "lodash";
 import { normalizeName, NameType } from "../utils/nameUtils";
-import { isEqual } from "lodash";
 
 interface PipelineValue {
   schema: Schema;
@@ -109,6 +107,7 @@ interface PartialMapperType {
   modelProperties?: ModelProperties;
   polymorphicDiscriminator?: PolymorphicDiscriminator | string;
   uberParent?: string;
+  additionalProperties?: Mapper;
 }
 
 function buildMapper(
@@ -186,6 +185,19 @@ function transformPrimitiveMapper(pipelineValue: PipelineValue) {
   };
 }
 
+// TODO: Make sure this is the correct way to handle additionalProperties
+function getAdditionalProperties(
+  immediateParents: Schema[]
+): Mapper | undefined {
+  return immediateParents.some(p => p.type === SchemaType.Dictionary)
+    ? {
+        type: {
+          name: MapperType.Object
+        }
+      }
+    : undefined;
+}
+
 function transformObjectMapper(pipelineValue: PipelineValue) {
   const { schema, options } = pipelineValue;
 
@@ -204,6 +216,8 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
   const parentsRefs = immediateParents
     .map(p => getMapperClassName(p))
     .filter(p => p !== className);
+
+  const additionalProperties = getAdditionalProperties(immediateParents);
 
   modelProperties = {
     ...modelProperties,
@@ -237,7 +251,8 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
           serializedName: discriminator!.property.serializedName,
           clientName: discriminator!.property.serializedName
         }
-      })
+      }),
+      ...(additionalProperties && { additionalProperties })
     },
     options
   );

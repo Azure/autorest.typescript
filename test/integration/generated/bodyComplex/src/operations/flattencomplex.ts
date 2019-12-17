@@ -38,12 +38,19 @@ export class Flattencomplex {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getValid(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getValid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getValidOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getValidOperationSpec,
+      callback
+    );
   }
 }
 // Operation Specifications

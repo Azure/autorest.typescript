@@ -38,12 +38,19 @@ export class Basic {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getValid(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getValid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getValidOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getValidOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -51,12 +58,18 @@ export class Basic {
    * @param complexBody Please put {id: 2, name: 'abc', color: 'Magenta'}
    * @param options The options parameters.
    */
-  putValid(complexBody: Models.Basic, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putValid(
+    complexBody: Models.Basic,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param complexBody Please put {id: 2, name: 'abc', color: 'Magenta'}
    * @param callback The callback.
    */
-  putValid(complexBody: Models.Basic, callback: coreHttp.ServiceCallback<any>): void;
+  putValid(
+    complexBody: Models.Basic,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody Please put {id: 2, name: 'abc', color: 'Magenta'}
    * @param options The options parameters.
@@ -92,12 +105,19 @@ export class Basic {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getInvalid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getInvalid(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getInvalid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getInvalidOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getInvalidOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -113,12 +133,19 @@ export class Basic {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getEmpty(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getEmpty(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getEmptyOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getEmptyOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -134,12 +161,19 @@ export class Basic {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getNull(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getNull(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getNullOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getNullOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -163,7 +197,11 @@ export class Basic {
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getNotProvidedOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getNotProvidedOperationSpec,
+      callback
+    );
   }
 }
 // Operation Specifications

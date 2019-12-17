@@ -434,6 +434,7 @@ export const SmartSalmon: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "SmartSalmon",
     uberParent: "Fish",
+    additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
     modelProperties: {
       ...Salmon.type.modelProperties,

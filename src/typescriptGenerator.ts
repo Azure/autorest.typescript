@@ -24,7 +24,7 @@ const prettierTypeScriptOptions: prettier.Options = {
   arrowParens: "always",
   bracketSpacing: true,
   endOfLine: "lf",
-  printWidth: 100,
+  printWidth: 80,
   semi: true,
   singleQuote: false,
   tabWidth: 2

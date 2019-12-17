@@ -38,12 +38,19 @@ export class Readonlyproperty {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getValid(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getValid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getValidOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getValidOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -51,12 +58,18 @@ export class Readonlyproperty {
    * @param complexBody
    * @param options The options parameters.
    */
-  putValid(complexBody: Models.ReadonlyObj, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putValid(
+    complexBody: Models.ReadonlyObj,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param complexBody
    * @param callback The callback.
    */
-  putValid(complexBody: Models.ReadonlyObj, callback: coreHttp.ServiceCallback<any>): void;
+  putValid(
+    complexBody: Models.ReadonlyObj,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody
    * @param options The options parameters.
