@@ -11,7 +11,7 @@ import {
   CompositeMapperType
 } from "@azure/core-http";
 import { ModelProperties } from "../transforms/mapperTransforms";
-import { keys, isEmpty } from "lodash";
+import { keys, isEmpty, isString } from "lodash";
 
 export function generateMappers(
   clientDetails: ClientDetails,
@@ -53,7 +53,10 @@ export function generateMappers(
         isExported: true,
         declarations: [
           {
-            name: normalizeName(mapper.serializedName, NameType.Class),
+            name: normalizeName(
+              compositeMapper.type.className || "",
+              NameType.Class
+            ),
             type: "coreHttp.CompositeMapper",
             initializer: writer => writeMapper(writer, mapper)
           }
@@ -89,17 +92,36 @@ export function generateMappers(
 const writeMapper = (writer: CodeBlockWriter, mapper: Mapper) => {
   const parents = extractParents(mapper);
   const { type, ...restMapper } = mapper;
-  const { modelProperties, ...restType } = type as CompositeMapperType;
+  const {
+    modelProperties,
+    polymorphicDiscriminator,
+    ...restType
+  } = type as CompositeMapperType;
+  const isReferenceDicriminator = isString(polymorphicDiscriminator);
   writer.block(() => {
     writeObjectProps(restMapper, writer)
       .write("type:")
       .block(() => {
         writeObjectProps(restType, writer)
-          .write("modelProperties:")
-          .block(() => {
-            writeParentMappers(parents, writer);
-            writeObjectProps(modelProperties, writer);
-          });
+          .conditionalWrite(
+            !!polymorphicDiscriminator,
+            "polymorphicDiscriminator:"
+          )
+          .conditionalWrite(
+            polymorphicDiscriminator && isReferenceDicriminator,
+            `${polymorphicDiscriminator as any},`
+          );
+        !isReferenceDicriminator &&
+          polymorphicDiscriminator &&
+          writer
+            .block(() => {
+              writeObjectProps(polymorphicDiscriminator, writer);
+            })
+            .write(",");
+        writer.write("modelProperties:").block(() => {
+          writeParentMappers(parents, writer);
+          writeObjectProps(modelProperties, writer);
+        });
       });
   });
 };

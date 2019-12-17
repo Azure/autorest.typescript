@@ -16,10 +16,7 @@ export const Basic: coreHttp.CompositeMapper = {
     modelProperties: {
       id: { type: { name: "Number" }, serializedName: "id" },
       name: { type: { name: "String" }, serializedName: "name" },
-      color: {
-        type: { name: "Enum", allowedValues: ["cyan", "Magenta", "YELLOW", "blacK"] },
-        serializedName: "color"
-      }
+      color: { type: { name: "String" }, serializedName: "color" }
     }
   }
 };
@@ -180,7 +177,10 @@ export const ArrayWrapper: coreHttp.CompositeMapper = {
       array: {
         type: {
           name: "Sequence",
-          element: { type: { name: "String" }, serializedName: "array-wrapper-arrayItem" }
+          element: {
+            type: { name: "String" },
+            serializedName: "array-wrapper-arrayItem"
+          }
         },
         serializedName: "array"
       }
@@ -195,7 +195,10 @@ export const DictionaryWrapper: coreHttp.CompositeMapper = {
     className: "DictionaryWrapper",
     modelProperties: {
       defaultProgram: {
-        type: { name: "Dictionary", value: { type: { name: "String" }, serializedName: "string" } },
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" }, serializedName: "string" }
+        },
         serializedName: "defaultProgram"
       }
     }
@@ -223,7 +226,10 @@ export const Cat: coreHttp.CompositeMapper = {
       ...Pet.type.modelProperties,
       color: { type: { name: "String" }, serializedName: "color" },
       hates: {
-        type: { name: "Sequence", element: { type: { name: "Composite", className: "Dog" } } },
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Dog" } }
+        },
         serializedName: "hates"
       }
     }
@@ -260,13 +266,27 @@ export const Fish: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Fish",
     uberParent: "Fish",
-    polymorphicDiscriminator: { serializedName: "fishtype", clientName: "fishtype" },
+    polymorphicDiscriminator: {
+      serializedName: "fishtype",
+      clientName: "fishtype"
+    },
     modelProperties: {
-      fishtype: { type: { name: "String" }, serializedName: "fishtype", required: true },
+      fishtype: {
+        type: { name: "String" },
+        serializedName: "fishtype",
+        required: true
+      },
       species: { type: { name: "String" }, serializedName: "species" },
-      length: { type: { name: "Number" }, serializedName: "length", required: true },
+      length: {
+        type: { name: "Number" },
+        serializedName: "length",
+        required: true
+      },
       siblings: {
-        type: { name: "Sequence", element: { type: { name: "Composite", className: "Fish" } } },
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Fish" } }
+        },
         serializedName: "siblings"
       }
     }
@@ -279,9 +299,16 @@ export const DotFish: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "DotFish",
     uberParent: "DotFish",
-    polymorphicDiscriminator: { serializedName: "fish.type", clientName: "fish.type" },
+    polymorphicDiscriminator: {
+      serializedName: "fish.type",
+      clientName: "fish.type"
+    },
     modelProperties: {
-      fishType: { type: { name: "String" }, serializedName: "fish.type", required: true },
+      fishType: {
+        type: { name: "String" },
+        serializedName: "fish.type",
+        required: true
+      },
       species: { type: { name: "String" }, serializedName: "species" }
     }
   }
@@ -309,7 +336,10 @@ export const DotFishMarket: coreHttp.CompositeMapper = {
         type: { name: "Composite", className: "DotFish" }
       },
       fishes: {
-        type: { name: "Sequence", element: { type: { name: "Composite", className: "DotFish" } } },
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "DotFish" } }
+        },
         serializedName: "fishes"
       }
     }
@@ -321,6 +351,8 @@ export const DotSalmon: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DotSalmon",
+    uberParent: "DotFish",
+    polymorphicDiscriminator: DotFish.type.polymorphicDiscriminator,
     modelProperties: {
       ...DotFish.type.modelProperties,
       location: { type: { name: "String" }, serializedName: "location" },
@@ -335,7 +367,10 @@ export const Salmon: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Salmon",
     uberParent: "Fish",
-    polymorphicDiscriminator: { serializedName: "fishtype", clientName: "fishtype" },
+    polymorphicDiscriminator: {
+      serializedName: "fishtype",
+      clientName: "fishtype"
+    },
     modelProperties: {
       ...Fish.type.modelProperties,
       location: { type: { name: "String" }, serializedName: "location" },
@@ -362,7 +397,10 @@ export const MyBaseType: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "MyBaseType",
     uberParent: "MyBaseType",
-    polymorphicDiscriminator: { serializedName: "kind", clientName: "kind" },
+    polymorphicDiscriminator: {
+      serializedName: "kind",
+      clientName: "kind"
+    },
     modelProperties: {
       kind: {
         type: { name: "String" },
@@ -395,9 +433,14 @@ export const SmartSalmon: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SmartSalmon",
+    uberParent: "Fish",
+    polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
     modelProperties: {
       ...Salmon.type.modelProperties,
-      collegeDegree: { type: { name: "String" }, serializedName: "college_degree" }
+      collegeDegree: {
+        type: { name: "String" },
+        serializedName: "college_degree"
+      }
     }
   }
 };
@@ -408,11 +451,18 @@ export const Shark: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Shark",
     uberParent: "Fish",
-    polymorphicDiscriminator: { serializedName: "fishtype", clientName: "fishtype" },
+    polymorphicDiscriminator: {
+      serializedName: "fishtype",
+      clientName: "fishtype"
+    },
     modelProperties: {
       ...Fish.type.modelProperties,
       age: { type: { name: "Number" }, serializedName: "age" },
-      birthday: { type: { name: "DateTime" }, serializedName: "birthday", required: true }
+      birthday: {
+        type: { name: "DateTime" },
+        serializedName: "birthday",
+        required: true
+      }
     }
   }
 };
@@ -422,6 +472,8 @@ export const Sawshark: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Sawshark",
+    uberParent: "Fish",
+    polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
     modelProperties: {
       ...Shark.type.modelProperties,
       picture: { type: { name: "ByteArray" }, serializedName: "picture" }
@@ -430,15 +482,17 @@ export const Sawshark: coreHttp.CompositeMapper = {
 };
 
 export const Goblinshark: coreHttp.CompositeMapper = {
-  serializedName: "goblinshark",
+  serializedName: "goblin",
   type: {
     name: "Composite",
     className: "Goblinshark",
+    uberParent: "Fish",
+    polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
     modelProperties: {
       ...Shark.type.modelProperties,
       jawsize: { type: { name: "Number" }, serializedName: "jawsize" },
       color: {
-        type: { name: "Enum", allowedValues: ["pink", "gray", "brown"] },
+        type: { name: "String" },
         serializedName: "color",
         defaultValue: "gray"
       }
@@ -451,6 +505,8 @@ export const Cookiecuttershark: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Cookiecuttershark",
+    uberParent: "Fish",
+    polymorphicDiscriminator: Fish.type.polymorphicDiscriminator,
     modelProperties: {
       ...Shark.type.modelProperties
     }
@@ -458,10 +514,12 @@ export const Cookiecuttershark: coreHttp.CompositeMapper = {
 };
 
 export const MyDerivedType: coreHttp.CompositeMapper = {
-  serializedName: "MyDerivedType",
+  serializedName: "Kind1",
   type: {
     name: "Composite",
     className: "MyDerivedType",
+    uberParent: "MyBaseType",
+    polymorphicDiscriminator: MyBaseType.type.polymorphicDiscriminator,
     modelProperties: {
       ...MyBaseType.type.modelProperties,
       propD1: { type: { name: "String" }, serializedName: "propD1" }
@@ -471,7 +529,13 @@ export const MyDerivedType: coreHttp.CompositeMapper = {
 export let discriminators = {
   Fish: Fish,
   DotFish: DotFish,
+  "DotFish.DotSalmon": DotSalmon,
   "Fish.salmon": Salmon,
   MyBaseType: MyBaseType,
-  "Fish.shark": Shark
+  "Fish.smart_salmon": SmartSalmon,
+  "Fish.shark": Shark,
+  "Fish.sawshark": Sawshark,
+  "Fish.goblin": Goblinshark,
+  "Fish.cookiecuttershark": Cookiecuttershark,
+  "MyBaseType.Kind1": MyDerivedType
 };

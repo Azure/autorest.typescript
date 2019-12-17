@@ -48,6 +48,8 @@ const pipe = (
   ...fns: Array<(pipelineValue: PipelineValue) => PipelineValue>
 ) => (x: PipelineValue) => fns.reduce((v, f) => (!v.isHandled ? f(v) : v), x);
 
+let uberParents: string[] = [];
+
 export type ModelProperties = { [propertyName: string]: Mapper | string[] };
 
 export interface EntityOptions {
@@ -105,7 +107,7 @@ interface PartialMapperType {
   element?: Mapper;
   value?: Mapper;
   modelProperties?: ModelProperties;
-  polymorphicDiscriminator?: PolymorphicDiscriminator;
+  polymorphicDiscriminator?: PolymorphicDiscriminator | string;
   uberParent?: string;
 }
 
@@ -116,7 +118,12 @@ function buildMapper(
 ): Mapper {
   const required = !!options && !!options.required;
   const readOnly = !!options && !!options.readOnly;
+  // Handle x-ms-discriminator-value Extension. More info:
+  // https://github.com/Azure/autorest/tree/master/docs/extensions/swagger-extensions-examples/x-ms-discriminator-value
+  const msDiscriminatorValue =
+    schema.extensions && schema.extensions["x-ms-discriminator-value"];
   const serializedName =
+    msDiscriminatorValue ||
     (options && options.serializedName) ||
     getLanguageMetadata(schema.language).name;
   const arraySchema = schema as ArraySchema;
@@ -187,11 +194,14 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
   }
   const className = getMapperClassName(schema);
   const objectSchema = schema as ObjectSchema;
-  const discriminator = objectSchema.discriminator;
+  const { discriminator, discriminatorValue } = objectSchema;
 
   let modelProperties = processProperties(objectSchema.properties);
-  const parents = objectSchema.parents ? objectSchema.parents.immediate : [];
-  const parentsRefs = parents
+  const parents = objectSchema.parents ? objectSchema.parents.all : [];
+  const immediateParents = objectSchema.parents
+    ? objectSchema.parents.immediate
+    : [];
+  const parentsRefs = immediateParents
     .map(p => getMapperClassName(p))
     .filter(p => p !== className);
 
@@ -200,7 +210,14 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
     ...(parentsRefs && parentsRefs.length && { parentsRefs })
   };
 
-  // TODO: We may need to find the highest common ancestor
+  // This is an uber parent
+  if (discriminator && !objectSchema.parents) {
+    uberParents.push(className);
+  }
+
+  const uberParent = getMapperClassName(
+    parents.find(p => uberParents.includes(getMapperClassName(p))) || schema
+  );
 
   const mapper = buildMapper(
     schema,
@@ -208,10 +225,14 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
       name: MapperType.Composite,
       className,
       modelProperties,
+      ...(discriminatorValue && {
+        uberParent,
+        polymorphicDiscriminator: `${uberParent}.type.polymorphicDiscriminator`
+      }),
       ...(discriminator && {
         // TODO need to handle uber parent in a more appropiate way
         // need to consider multiple levels of inheritance
-        uberParent: parentsRefs[0] || className,
+        uberParent,
         polymorphicDiscriminator: {
           serializedName: discriminator!.property.serializedName,
           clientName: discriminator!.property.serializedName
@@ -307,7 +328,7 @@ function transformByteArrayMapper(pipelineValue: PipelineValue) {
 function transformChoiceMapper(pipelineValue: PipelineValue) {
   const { schema, options } = pipelineValue;
 
-  if (!isSchemaType([SchemaType.Choice, SchemaType.SealedChoice], schema)) {
+  if (!isSchemaType([SchemaType.SealedChoice], schema)) {
     return pipelineValue;
   }
 
@@ -358,7 +379,7 @@ function transformDateMapper(pipelineValue: PipelineValue) {
 function transformStringMapper(pipelineValue: PipelineValue) {
   const { schema, options } = pipelineValue;
 
-  if (!isSchemaType([SchemaType.String], schema)) {
+  if (!isSchemaType([SchemaType.String, SchemaType.Choice], schema)) {
     return pipelineValue;
   }
 
@@ -474,6 +495,7 @@ function getMapperTypeFromSchema(type: SchemaType, format?: string) {
     case SchemaType.String:
       return MapperType.String;
     case SchemaType.Choice:
+      return MapperType.String;
     case SchemaType.SealedChoice:
       return MapperType.Enum;
     case SchemaType.Duration:
