@@ -38,12 +38,19 @@ export class String {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getNull(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getNull(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getNullOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getNullOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -59,12 +66,19 @@ export class String {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  putNull(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  putNull(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   putNull(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, putNullOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      putNullOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -80,12 +94,19 @@ export class String {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getEmpty(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getEmpty(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getEmptyOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getEmptyOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -101,12 +122,19 @@ export class String {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  putEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  putEmpty(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   putEmpty(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, putEmptyOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      putEmptyOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -122,12 +150,19 @@ export class String {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getMbcs(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getMbcs(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getMbcs(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getMbcsOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getMbcsOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -143,12 +178,19 @@ export class String {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  putMbcs(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  putMbcs(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   putMbcs(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, putMbcsOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      putMbcsOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -172,7 +214,11 @@ export class String {
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getWhitespaceOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getWhitespaceOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -196,7 +242,11 @@ export class String {
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, putWhitespaceOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      putWhitespaceOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -220,7 +270,11 @@ export class String {
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getNotProvidedOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getNotProvidedOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -244,7 +298,11 @@ export class String {
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getBase64EncodedOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getBase64EncodedOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -280,12 +338,18 @@ export class String {
    * @param stringBody
    * @param options The options parameters.
    */
-  putBase64UrlEncoded(stringBody: Uint8Array, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putBase64UrlEncoded(
+    stringBody: Uint8Array,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param stringBody
    * @param callback The callback.
    */
-  putBase64UrlEncoded(stringBody: Uint8Array, callback: coreHttp.ServiceCallback<any>): void;
+  putBase64UrlEncoded(
+    stringBody: Uint8Array,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param stringBody
    * @param options The options parameters.
@@ -452,7 +516,8 @@ const putWhitespaceOperationSpec: coreHttp.OperationSpec = {
     mapper: {
       type: { name: "String" },
       isConstant: true,
-      defaultValue: "    Now is the time for all good men to come to the aid of their country    "
+      defaultValue:
+        "    Now is the time for all good men to come to the aid of their country    "
     }
   },
   serializer

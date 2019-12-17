@@ -1,5 +1,8 @@
 import * as assert from "assert";
-import { transformMapper } from "../../../src/transforms/mapperTransforms";
+import {
+  transformMapper,
+  getMapperClassName
+} from "../../../src/transforms/mapperTransforms";
 import {
   NumberSchema,
   SchemaType,
@@ -99,6 +102,7 @@ describe("transformObjectMapper", () => {
     assert.deepEqual(mapper, {
       serializedName: objectName,
       type: {
+        className: getMapperClassName(schema),
         name: MapperType.Composite,
         modelProperties: {
           stringProp: {
@@ -132,6 +136,7 @@ describe("transformObjectMapper", () => {
       serializedName: objectName,
       type: {
         name: MapperType.Composite,
+        className: getMapperClassName(schema),
         modelProperties: {
           constantProp: {
             serializedName: "constantProp",
@@ -168,14 +173,14 @@ describe("transformObjectMapper", () => {
       serializedName: objectName,
       type: {
         name: MapperType.Composite,
+        className: getMapperClassName(schema),
         modelProperties: {
           choiceProp: {
             serializedName: "choiceProp",
             type: {
-              name: "Enum",
-              allowedValues: choices.map(c => c.value)
+              name: "String"
             }
-          } as EnumMapper
+          } as Mapper
         }
       }
     } as CompositeMapper);
@@ -202,6 +207,7 @@ describe("transformObjectMapper", () => {
     assert.deepEqual(mapper, {
       serializedName: "fish",
       type: {
+        className: getMapperClassName(fish),
         modelProperties: {
           fishtype: {
             serializedName: "fishtype",
@@ -253,6 +259,7 @@ describe("transformObjectMapper", () => {
     assert.deepEqual(mapper, {
       serializedName: parentObjectName,
       type: {
+        className: getMapperClassName(schema),
         name: MapperType.Composite,
         modelProperties: {
           objectProp: {
@@ -341,10 +348,9 @@ describe("transformChoiceMapper", () => {
     assert.deepEqual(mapper, {
       serializedName: choiceSchemaName,
       type: {
-        name: MapperType.Enum,
-        allowedValues: choices.map(c => c.value)
+        name: MapperType.String
       }
-    } as EnumMapper);
+    } as Mapper);
   });
 
   it("Gets a mapper for a SealedChoice schema", () => {

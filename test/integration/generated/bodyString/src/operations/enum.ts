@@ -46,7 +46,11 @@ export class Enum {
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getNotExpandableOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getNotExpandableOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -54,12 +58,18 @@ export class Enum {
    * @param stringBody
    * @param options The options parameters.
    */
-  putNotExpandable(stringBody: Models.Colors, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putNotExpandable(
+    stringBody: Models.Colors,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param stringBody
    * @param callback The callback.
    */
-  putNotExpandable(stringBody: Models.Colors, callback: coreHttp.ServiceCallback<any>): void;
+  putNotExpandable(
+    stringBody: Models.Colors,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param stringBody
    * @param options The options parameters.
@@ -103,7 +113,11 @@ export class Enum {
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getReferencedOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getReferencedOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -111,12 +125,18 @@ export class Enum {
    * @param enumStringBody
    * @param options The options parameters.
    */
-  putReferenced(enumStringBody: Models.Colors, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putReferenced(
+    enumStringBody: Models.Colors,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param enumStringBody
    * @param callback The callback.
    */
-  putReferenced(enumStringBody: Models.Colors, callback: coreHttp.ServiceCallback<any>): void;
+  putReferenced(
+    enumStringBody: Models.Colors,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param enumStringBody
    * @param options The options parameters.
@@ -216,7 +236,10 @@ const getNotExpandableOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Enum", allowedValues: ["red color", "green-color", "blue_color"] }
+        type: {
+          name: "Enum",
+          allowedValues: ["red color", "green-color", "blue_color"]
+        }
       }
     },
     default: {
@@ -235,7 +258,12 @@ const putNotExpandableOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: {
     parameterPath: "stringBody",
-    mapper: { type: { name: "Enum", allowedValues: ["red color", "green-color", "blue_color"] } }
+    mapper: {
+      type: {
+        name: "Enum",
+        allowedValues: ["red color", "green-color", "blue_color"]
+      }
+    }
   },
   serializer
 };
@@ -245,7 +273,10 @@ const getReferencedOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Enum", allowedValues: ["red color", "green-color", "blue_color"] }
+        type: {
+          name: "Enum",
+          allowedValues: ["red color", "green-color", "blue_color"]
+        }
       }
     },
     default: {
@@ -264,7 +295,12 @@ const putReferencedOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: {
     parameterPath: "enumStringBody",
-    mapper: { type: { name: "Enum", allowedValues: ["red color", "green-color", "blue_color"] } }
+    mapper: {
+      type: {
+        name: "Enum",
+        allowedValues: ["red color", "green-color", "blue_color"]
+      }
+    }
   },
   serializer
 };
