@@ -89,7 +89,7 @@ export function generateMappers(
     });
 }
 
-const writeMapper = (writer: CodeBlockWriter, mapper: Mapper) => {
+function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
   const parents = extractParents(mapper);
   const { type, ...restMapper } = mapper;
   const {
@@ -124,24 +124,24 @@ const writeMapper = (writer: CodeBlockWriter, mapper: Mapper) => {
         });
       });
   });
-};
+}
 
-const writeParentMappers = (parents: string[], writer: CodeBlockWriter) => {
+function writeParentMappers(parents: string[], writer: CodeBlockWriter) {
   (parents || []).forEach(parent => {
     writer.write(`...${parent}.type.modelProperties,`);
   });
-};
+}
 
-const writeObjectProps = (obj: any, writer: CodeBlockWriter) => {
+function writeObjectProps(obj: any, writer: CodeBlockWriter) {
   let currentPos = writer;
   keys(obj).map(key => {
     currentPos = currentPos.writeLine(`${key}: ${JSON.stringify(obj[key])},`);
   });
 
   return currentPos;
-};
+}
 
-const extractParents = (mapper: Mapper) => {
+function extractParents(mapper: Mapper) {
   // TODO: We may need to create a MapperDetails of some sort which containes
   // the mapper itself and a property with its parents for easier manipulation
   // and avoid the side effect of this function mutating the mapper
@@ -156,4 +156,4 @@ const extractParents = (mapper: Mapper) => {
     };
   }
   return parents;
-};
+}

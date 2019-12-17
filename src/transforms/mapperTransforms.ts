@@ -198,6 +198,22 @@ function getAdditionalProperties(
     : undefined;
 }
 
+function checkUberParent(objectSchema: ObjectSchema) {
+  const { discriminator, parents, children } = objectSchema;
+  const className = getMapperClassName(objectSchema);
+  const isUberParent =
+    discriminator &&
+    !parents &&
+    children &&
+    children.all &&
+    children.all.length;
+
+  if (uberParents.indexOf(className) < 0 && isUberParent) {
+    uberParents.push(className);
+    return;
+  }
+}
+
 function transformObjectMapper(pipelineValue: PipelineValue) {
   const { schema, options } = pipelineValue;
 
@@ -224,11 +240,10 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
     ...(parentsRefs && parentsRefs.length && { parentsRefs })
   };
 
-  // This is an uber parent
-  if (discriminator && !objectSchema.parents) {
-    uberParents.push(className);
-  }
+  checkUberParent(objectSchema);
 
+  // If any of the parents is present in uberParents we know it
+  // is its uber parent
   const uberParent = getMapperClassName(
     parents.find(p => uberParents.includes(getMapperClassName(p))) || schema
   );
@@ -244,8 +259,6 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
         polymorphicDiscriminator: `${uberParent}.type.polymorphicDiscriminator`
       }),
       ...(discriminator && {
-        // TODO need to handle uber parent in a more appropiate way
-        // need to consider multiple levels of inheritance
         uberParent,
         polymorphicDiscriminator: {
           serializedName: discriminator!.property.serializedName,
@@ -500,8 +513,10 @@ function isSchemaType(matchSchemas: SchemaType[], { type }: Schema) {
   return matchSchemas.includes(type);
 }
 
-function getMapperTypeFromSchema(type: SchemaType, format?: string) {
+export function getMapperTypeFromSchema(type: SchemaType, format?: string) {
   switch (type) {
+    case SchemaType.Array:
+      return MapperType.Sequence;
     case SchemaType.Boolean:
       return MapperType.Boolean;
     case SchemaType.ByteArray:
