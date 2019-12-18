@@ -31,28 +31,28 @@ export class Explicit {
    * request is sent.
    * @param bodyParameter
    * @param [options] The optional parameters
-   * @returns Promise<Models.ExplicitPostRequiredIntegerParameterResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postRequiredIntegerParameter(bodyParameter: number, options?: coreHttp.RequestOptionsBase): Promise<Models.ExplicitPostRequiredIntegerParameterResponse>;
+  postRequiredIntegerParameter(bodyParameter: number, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param bodyParameter
    * @param callback The callback
    */
-  postRequiredIntegerParameter(bodyParameter: number, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  postRequiredIntegerParameter(bodyParameter: number, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param bodyParameter
    * @param options The optional parameters
    * @param callback The callback
    */
-  postRequiredIntegerParameter(bodyParameter: number, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredIntegerParameter(bodyParameter: number, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ExplicitPostRequiredIntegerParameterResponse> {
+  postRequiredIntegerParameter(bodyParameter: number, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  postRequiredIntegerParameter(bodyParameter: number, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         bodyParameter,
         options
       },
       postRequiredIntegerParameterOperationSpec,
-      callback) as Promise<Models.ExplicitPostRequiredIntegerParameterResponse>;
+      callback);
   }
 
   /**
@@ -84,28 +84,28 @@ export class Explicit {
    * client library should throw before the request is sent.
    * @param value
    * @param [options] The optional parameters
-   * @returns Promise<Models.ExplicitPostRequiredIntegerPropertyResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postRequiredIntegerProperty(value: number, options?: coreHttp.RequestOptionsBase): Promise<Models.ExplicitPostRequiredIntegerPropertyResponse>;
+  postRequiredIntegerProperty(value: number, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param value
    * @param callback The callback
    */
-  postRequiredIntegerProperty(value: number, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  postRequiredIntegerProperty(value: number, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param value
    * @param options The optional parameters
    * @param callback The callback
    */
-  postRequiredIntegerProperty(value: number, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredIntegerProperty(value: number, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ExplicitPostRequiredIntegerPropertyResponse> {
+  postRequiredIntegerProperty(value: number, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  postRequiredIntegerProperty(value: number, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         value,
         options
       },
       postRequiredIntegerPropertyOperationSpec,
-      callback) as Promise<Models.ExplicitPostRequiredIntegerPropertyResponse>;
+      callback);
   }
 
   /**
@@ -137,28 +137,28 @@ export class Explicit {
    * library should throw before the request is sent.
    * @param headerParameter
    * @param [options] The optional parameters
-   * @returns Promise<Models.ExplicitPostRequiredIntegerHeaderResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postRequiredIntegerHeader(headerParameter: number, options?: coreHttp.RequestOptionsBase): Promise<Models.ExplicitPostRequiredIntegerHeaderResponse>;
+  postRequiredIntegerHeader(headerParameter: number, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param headerParameter
    * @param callback The callback
    */
-  postRequiredIntegerHeader(headerParameter: number, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  postRequiredIntegerHeader(headerParameter: number, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param headerParameter
    * @param options The optional parameters
    * @param callback The callback
    */
-  postRequiredIntegerHeader(headerParameter: number, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredIntegerHeader(headerParameter: number, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ExplicitPostRequiredIntegerHeaderResponse> {
+  postRequiredIntegerHeader(headerParameter: number, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  postRequiredIntegerHeader(headerParameter: number, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         headerParameter,
         options
       },
       postRequiredIntegerHeaderOperationSpec,
-      callback) as Promise<Models.ExplicitPostRequiredIntegerHeaderResponse>;
+      callback);
   }
 
   /**
@@ -190,28 +190,28 @@ export class Explicit {
    * request is sent.
    * @param bodyParameter
    * @param [options] The optional parameters
-   * @returns Promise<Models.ExplicitPostRequiredStringParameterResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postRequiredStringParameter(bodyParameter: string, options?: coreHttp.RequestOptionsBase): Promise<Models.ExplicitPostRequiredStringParameterResponse>;
+  postRequiredStringParameter(bodyParameter: string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param bodyParameter
    * @param callback The callback
    */
-  postRequiredStringParameter(bodyParameter: string, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  postRequiredStringParameter(bodyParameter: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param bodyParameter
    * @param options The optional parameters
    * @param callback The callback
    */
-  postRequiredStringParameter(bodyParameter: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredStringParameter(bodyParameter: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ExplicitPostRequiredStringParameterResponse> {
+  postRequiredStringParameter(bodyParameter: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  postRequiredStringParameter(bodyParameter: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         bodyParameter,
         options
       },
       postRequiredStringParameterOperationSpec,
-      callback) as Promise<Models.ExplicitPostRequiredStringParameterResponse>;
+      callback);
   }
 
   /**
@@ -243,28 +243,28 @@ export class Explicit {
    * client library should throw before the request is sent.
    * @param value
    * @param [options] The optional parameters
-   * @returns Promise<Models.ExplicitPostRequiredStringPropertyResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postRequiredStringProperty(value: string, options?: coreHttp.RequestOptionsBase): Promise<Models.ExplicitPostRequiredStringPropertyResponse>;
+  postRequiredStringProperty(value: string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param value
    * @param callback The callback
    */
-  postRequiredStringProperty(value: string, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  postRequiredStringProperty(value: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param value
    * @param options The optional parameters
    * @param callback The callback
    */
-  postRequiredStringProperty(value: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredStringProperty(value: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ExplicitPostRequiredStringPropertyResponse> {
+  postRequiredStringProperty(value: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  postRequiredStringProperty(value: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         value,
         options
       },
       postRequiredStringPropertyOperationSpec,
-      callback) as Promise<Models.ExplicitPostRequiredStringPropertyResponse>;
+      callback);
   }
 
   /**
@@ -296,28 +296,28 @@ export class Explicit {
    * library should throw before the request is sent.
    * @param headerParameter
    * @param [options] The optional parameters
-   * @returns Promise<Models.ExplicitPostRequiredStringHeaderResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postRequiredStringHeader(headerParameter: string, options?: coreHttp.RequestOptionsBase): Promise<Models.ExplicitPostRequiredStringHeaderResponse>;
+  postRequiredStringHeader(headerParameter: string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param headerParameter
    * @param callback The callback
    */
-  postRequiredStringHeader(headerParameter: string, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  postRequiredStringHeader(headerParameter: string, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param headerParameter
    * @param options The optional parameters
    * @param callback The callback
    */
-  postRequiredStringHeader(headerParameter: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredStringHeader(headerParameter: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ExplicitPostRequiredStringHeaderResponse> {
+  postRequiredStringHeader(headerParameter: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  postRequiredStringHeader(headerParameter: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         headerParameter,
         options
       },
       postRequiredStringHeaderOperationSpec,
-      callback) as Promise<Models.ExplicitPostRequiredStringHeaderResponse>;
+      callback);
   }
 
   /**
@@ -349,28 +349,28 @@ export class Explicit {
    * before the request is sent.
    * @param bodyParameter
    * @param [options] The optional parameters
-   * @returns Promise<Models.ExplicitPostRequiredClassParameterResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postRequiredClassParameter(bodyParameter: Models.Product, options?: coreHttp.RequestOptionsBase): Promise<Models.ExplicitPostRequiredClassParameterResponse>;
+  postRequiredClassParameter(bodyParameter: Models.Product, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param bodyParameter
    * @param callback The callback
    */
-  postRequiredClassParameter(bodyParameter: Models.Product, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  postRequiredClassParameter(bodyParameter: Models.Product, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param bodyParameter
    * @param options The optional parameters
    * @param callback The callback
    */
-  postRequiredClassParameter(bodyParameter: Models.Product, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredClassParameter(bodyParameter: Models.Product, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ExplicitPostRequiredClassParameterResponse> {
+  postRequiredClassParameter(bodyParameter: Models.Product, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  postRequiredClassParameter(bodyParameter: Models.Product, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         bodyParameter,
         options
       },
       postRequiredClassParameterOperationSpec,
-      callback) as Promise<Models.ExplicitPostRequiredClassParameterResponse>;
+      callback);
   }
 
   /**
@@ -402,28 +402,28 @@ export class Explicit {
    * and the client library should throw before the request is sent.
    * @param value
    * @param [options] The optional parameters
-   * @returns Promise<Models.ExplicitPostRequiredClassPropertyResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postRequiredClassProperty(value: Models.Product, options?: coreHttp.RequestOptionsBase): Promise<Models.ExplicitPostRequiredClassPropertyResponse>;
+  postRequiredClassProperty(value: Models.Product, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param value
    * @param callback The callback
    */
-  postRequiredClassProperty(value: Models.Product, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  postRequiredClassProperty(value: Models.Product, callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param value
    * @param options The optional parameters
    * @param callback The callback
    */
-  postRequiredClassProperty(value: Models.Product, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredClassProperty(value: Models.Product, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ExplicitPostRequiredClassPropertyResponse> {
+  postRequiredClassProperty(value: Models.Product, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  postRequiredClassProperty(value: Models.Product, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         value,
         options
       },
       postRequiredClassPropertyOperationSpec,
-      callback) as Promise<Models.ExplicitPostRequiredClassPropertyResponse>;
+      callback);
   }
 
   /**
@@ -455,28 +455,28 @@ export class Explicit {
    * request is sent.
    * @param bodyParameter
    * @param [options] The optional parameters
-   * @returns Promise<Models.ExplicitPostRequiredArrayParameterResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postRequiredArrayParameter(bodyParameter: string[], options?: coreHttp.RequestOptionsBase): Promise<Models.ExplicitPostRequiredArrayParameterResponse>;
+  postRequiredArrayParameter(bodyParameter: string[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param bodyParameter
    * @param callback The callback
    */
-  postRequiredArrayParameter(bodyParameter: string[], callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  postRequiredArrayParameter(bodyParameter: string[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param bodyParameter
    * @param options The optional parameters
    * @param callback The callback
    */
-  postRequiredArrayParameter(bodyParameter: string[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredArrayParameter(bodyParameter: string[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ExplicitPostRequiredArrayParameterResponse> {
+  postRequiredArrayParameter(bodyParameter: string[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  postRequiredArrayParameter(bodyParameter: string[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         bodyParameter,
         options
       },
       postRequiredArrayParameterOperationSpec,
-      callback) as Promise<Models.ExplicitPostRequiredArrayParameterResponse>;
+      callback);
   }
 
   /**
@@ -508,28 +508,28 @@ export class Explicit {
    * client library should throw before the request is sent.
    * @param value
    * @param [options] The optional parameters
-   * @returns Promise<Models.ExplicitPostRequiredArrayPropertyResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postRequiredArrayProperty(value: string[], options?: coreHttp.RequestOptionsBase): Promise<Models.ExplicitPostRequiredArrayPropertyResponse>;
+  postRequiredArrayProperty(value: string[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param value
    * @param callback The callback
    */
-  postRequiredArrayProperty(value: string[], callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  postRequiredArrayProperty(value: string[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param value
    * @param options The optional parameters
    * @param callback The callback
    */
-  postRequiredArrayProperty(value: string[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredArrayProperty(value: string[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ExplicitPostRequiredArrayPropertyResponse> {
+  postRequiredArrayProperty(value: string[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  postRequiredArrayProperty(value: string[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         value,
         options
       },
       postRequiredArrayPropertyOperationSpec,
-      callback) as Promise<Models.ExplicitPostRequiredArrayPropertyResponse>;
+      callback);
   }
 
   /**
@@ -561,28 +561,28 @@ export class Explicit {
    * library should throw before the request is sent.
    * @param headerParameter
    * @param [options] The optional parameters
-   * @returns Promise<Models.ExplicitPostRequiredArrayHeaderResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  postRequiredArrayHeader(headerParameter: string[], options?: coreHttp.RequestOptionsBase): Promise<Models.ExplicitPostRequiredArrayHeaderResponse>;
+  postRequiredArrayHeader(headerParameter: string[], options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param headerParameter
    * @param callback The callback
    */
-  postRequiredArrayHeader(headerParameter: string[], callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  postRequiredArrayHeader(headerParameter: string[], callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param headerParameter
    * @param options The optional parameters
    * @param callback The callback
    */
-  postRequiredArrayHeader(headerParameter: string[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
-  postRequiredArrayHeader(headerParameter: string[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ExplicitPostRequiredArrayHeaderResponse> {
+  postRequiredArrayHeader(headerParameter: string[], options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  postRequiredArrayHeader(headerParameter: string[], options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         headerParameter,
         options
       },
       postRequiredArrayHeaderOperationSpec,
-      callback) as Promise<Models.ExplicitPostRequiredArrayHeaderResponse>;
+      callback);
   }
 
   /**
@@ -626,6 +626,7 @@ const postRequiredIntegerParameterOperationSpec: coreHttp.OperationSpec = {
     }
   },
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -670,6 +671,7 @@ const postRequiredIntegerPropertyOperationSpec: coreHttp.OperationSpec = {
     }
   },
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -705,6 +707,7 @@ const postRequiredIntegerHeaderOperationSpec: coreHttp.OperationSpec = {
     Parameters.headerParameter0
   ],
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -741,6 +744,7 @@ const postRequiredStringParameterOperationSpec: coreHttp.OperationSpec = {
     }
   },
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -785,6 +789,7 @@ const postRequiredStringPropertyOperationSpec: coreHttp.OperationSpec = {
     }
   },
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -820,6 +825,7 @@ const postRequiredStringHeaderOperationSpec: coreHttp.OperationSpec = {
     Parameters.headerParameter2
   ],
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -853,6 +859,7 @@ const postRequiredClassParameterOperationSpec: coreHttp.OperationSpec = {
     }
   },
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -892,6 +899,7 @@ const postRequiredClassPropertyOperationSpec: coreHttp.OperationSpec = {
     }
   },
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -939,6 +947,7 @@ const postRequiredArrayParameterOperationSpec: coreHttp.OperationSpec = {
     }
   },
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -988,6 +997,7 @@ const postRequiredArrayPropertyOperationSpec: coreHttp.OperationSpec = {
     }
   },
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -1023,6 +1033,7 @@ const postRequiredArrayHeaderOperationSpec: coreHttp.OperationSpec = {
     Parameters.headerParameter3
   ],
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
