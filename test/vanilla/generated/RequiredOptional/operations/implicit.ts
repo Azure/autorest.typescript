@@ -57,73 +57,73 @@ export class Implicit {
   /**
    * Test implicitly optional query parameter
    * @param [options] The optional parameters
-   * @returns Promise<Models.ImplicitPutOptionalQueryResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putOptionalQuery(options?: Models.ImplicitPutOptionalQueryOptionalParams): Promise<Models.ImplicitPutOptionalQueryResponse>;
+  putOptionalQuery(options?: Models.ImplicitPutOptionalQueryOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  putOptionalQuery(callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  putOptionalQuery(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  putOptionalQuery(options: Models.ImplicitPutOptionalQueryOptionalParams, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
-  putOptionalQuery(options?: Models.ImplicitPutOptionalQueryOptionalParams | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ImplicitPutOptionalQueryResponse> {
+  putOptionalQuery(options: Models.ImplicitPutOptionalQueryOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  putOptionalQuery(options?: Models.ImplicitPutOptionalQueryOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
       putOptionalQueryOperationSpec,
-      callback) as Promise<Models.ImplicitPutOptionalQueryResponse>;
+      callback);
   }
 
   /**
    * Test implicitly optional header parameter
    * @param [options] The optional parameters
-   * @returns Promise<Models.ImplicitPutOptionalHeaderResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putOptionalHeader(options?: Models.ImplicitPutOptionalHeaderOptionalParams): Promise<Models.ImplicitPutOptionalHeaderResponse>;
+  putOptionalHeader(options?: Models.ImplicitPutOptionalHeaderOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  putOptionalHeader(callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  putOptionalHeader(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  putOptionalHeader(options: Models.ImplicitPutOptionalHeaderOptionalParams, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
-  putOptionalHeader(options?: Models.ImplicitPutOptionalHeaderOptionalParams | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ImplicitPutOptionalHeaderResponse> {
+  putOptionalHeader(options: Models.ImplicitPutOptionalHeaderOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  putOptionalHeader(options?: Models.ImplicitPutOptionalHeaderOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
       putOptionalHeaderOperationSpec,
-      callback) as Promise<Models.ImplicitPutOptionalHeaderResponse>;
+      callback);
   }
 
   /**
    * Test implicitly optional body parameter
    * @param [options] The optional parameters
-   * @returns Promise<Models.ImplicitPutOptionalBodyResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  putOptionalBody(options?: Models.ImplicitPutOptionalBodyOptionalParams): Promise<Models.ImplicitPutOptionalBodyResponse>;
+  putOptionalBody(options?: Models.ImplicitPutOptionalBodyOptionalParams): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  putOptionalBody(callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  putOptionalBody(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  putOptionalBody(options: Models.ImplicitPutOptionalBodyOptionalParams, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
-  putOptionalBody(options?: Models.ImplicitPutOptionalBodyOptionalParams | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ImplicitPutOptionalBodyResponse> {
+  putOptionalBody(options: Models.ImplicitPutOptionalBodyOptionalParams, callback: coreHttp.ServiceCallback<void>): void;
+  putOptionalBody(options?: Models.ImplicitPutOptionalBodyOptionalParams | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
       putOptionalBodyOperationSpec,
-      callback) as Promise<Models.ImplicitPutOptionalBodyResponse>;
+      callback);
   }
 
   /**
@@ -222,6 +222,7 @@ const putOptionalQueryOperationSpec: coreHttp.OperationSpec = {
     Parameters.queryParameter
   ],
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -236,6 +237,7 @@ const putOptionalHeaderOperationSpec: coreHttp.OperationSpec = {
     Parameters.queryParameter
   ],
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -259,6 +261,7 @@ const putOptionalBodyOperationSpec: coreHttp.OperationSpec = {
     }
   },
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }

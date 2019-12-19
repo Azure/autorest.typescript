@@ -45,7 +45,7 @@
     "@azure/core-arm": "^1.0.0-preview.1",
     "@azure/core-http": "^1.0.2",
     "@microsoft.azure/autorest.modeler": "^2.3.47",
-    "@microsoft.azure/autorest.testserver": "^2.7.1",
+    "@microsoft.azure/autorest.testserver": "2.7.0",
     "@ts-common/azure-js-dev-tools": "^0.7.1",
     "@types/assert": "1.4.0",
     "@types/chai": "^4.1.7",
