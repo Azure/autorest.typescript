@@ -590,7 +590,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual void PackageDependencies(JSONObject dependencies)
         {
-            dependencies.StringProperty("@azure/core-http", "^1.0.0");
+            dependencies.StringProperty("@azure/core-http", "^1.0.0-preview.1");
             dependencies.StringProperty("tslib", "^1.9.3");
             if (Settings.MultiapiLatest)
             {

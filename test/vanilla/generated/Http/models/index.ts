@@ -1918,6 +1918,46 @@ export type MultipleResponsesGetDefaultModelA200NoneResponse = A & {
 };
 
 /**
+ * Contains response data for the getDefaultModelA400Valid operation.
+ */
+export type MultipleResponsesGetDefaultModelA400ValidResponse = A & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
+
+/**
+ * Contains response data for the getDefaultModelA400None operation.
+ */
+export type MultipleResponsesGetDefaultModelA400NoneResponse = A & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: A;
+    };
+};
+
+/**
  * Contains response data for the get200ModelA200None operation.
  */
 export type MultipleResponsesGet200ModelA200NoneResponse = A & {

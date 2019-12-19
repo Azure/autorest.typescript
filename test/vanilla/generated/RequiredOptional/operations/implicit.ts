@@ -30,28 +30,28 @@ export class Implicit {
    * Test implicitly required path parameter
    * @param pathParameter
    * @param [options] The optional parameters
-   * @returns Promise<coreHttp.RestResponse>
+   * @returns Promise<Models.ImplicitGetRequiredPathResponse>
    */
-  getRequiredPath(pathParameter: string, options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
+  getRequiredPath(pathParameter: string, options?: coreHttp.RequestOptionsBase): Promise<Models.ImplicitGetRequiredPathResponse>;
   /**
    * @param pathParameter
    * @param callback The callback
    */
-  getRequiredPath(pathParameter: string, callback: coreHttp.ServiceCallback<void>): void;
+  getRequiredPath(pathParameter: string, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
   /**
    * @param pathParameter
    * @param options The optional parameters
    * @param callback The callback
    */
-  getRequiredPath(pathParameter: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
-  getRequiredPath(pathParameter: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
+  getRequiredPath(pathParameter: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  getRequiredPath(pathParameter: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ImplicitGetRequiredPathResponse> {
     return this.client.sendOperationRequest(
       {
         pathParameter,
         options
       },
       getRequiredPathOperationSpec,
-      callback);
+      callback) as Promise<Models.ImplicitGetRequiredPathResponse>;
   }
 
   /**
@@ -129,73 +129,73 @@ export class Implicit {
   /**
    * Test implicitly required path parameter
    * @param [options] The optional parameters
-   * @returns Promise<coreHttp.RestResponse>
+   * @returns Promise<Models.ImplicitGetRequiredGlobalPathResponse>
    */
-  getRequiredGlobalPath(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
+  getRequiredGlobalPath(options?: coreHttp.RequestOptionsBase): Promise<Models.ImplicitGetRequiredGlobalPathResponse>;
   /**
    * @param callback The callback
    */
-  getRequiredGlobalPath(callback: coreHttp.ServiceCallback<void>): void;
+  getRequiredGlobalPath(callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getRequiredGlobalPath(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
-  getRequiredGlobalPath(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
+  getRequiredGlobalPath(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  getRequiredGlobalPath(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ImplicitGetRequiredGlobalPathResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
       getRequiredGlobalPathOperationSpec,
-      callback);
+      callback) as Promise<Models.ImplicitGetRequiredGlobalPathResponse>;
   }
 
   /**
    * Test implicitly required query parameter
    * @param [options] The optional parameters
-   * @returns Promise<coreHttp.RestResponse>
+   * @returns Promise<Models.ImplicitGetRequiredGlobalQueryResponse>
    */
-  getRequiredGlobalQuery(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
+  getRequiredGlobalQuery(options?: coreHttp.RequestOptionsBase): Promise<Models.ImplicitGetRequiredGlobalQueryResponse>;
   /**
    * @param callback The callback
    */
-  getRequiredGlobalQuery(callback: coreHttp.ServiceCallback<void>): void;
+  getRequiredGlobalQuery(callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getRequiredGlobalQuery(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
-  getRequiredGlobalQuery(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
+  getRequiredGlobalQuery(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  getRequiredGlobalQuery(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ImplicitGetRequiredGlobalQueryResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
       getRequiredGlobalQueryOperationSpec,
-      callback);
+      callback) as Promise<Models.ImplicitGetRequiredGlobalQueryResponse>;
   }
 
   /**
    * Test implicitly optional query parameter
    * @param [options] The optional parameters
-   * @returns Promise<coreHttp.RestResponse>
+   * @returns Promise<Models.ImplicitGetOptionalGlobalQueryResponse>
    */
-  getOptionalGlobalQuery(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
+  getOptionalGlobalQuery(options?: coreHttp.RequestOptionsBase): Promise<Models.ImplicitGetOptionalGlobalQueryResponse>;
   /**
    * @param callback The callback
    */
-  getOptionalGlobalQuery(callback: coreHttp.ServiceCallback<void>): void;
+  getOptionalGlobalQuery(callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getOptionalGlobalQuery(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
-  getOptionalGlobalQuery(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
+  getOptionalGlobalQuery(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ErrorModel>): void;
+  getOptionalGlobalQuery(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ErrorModel>, callback?: coreHttp.ServiceCallback<Models.ErrorModel>): Promise<Models.ImplicitGetOptionalGlobalQueryResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
       getOptionalGlobalQueryOperationSpec,
-      callback);
+      callback) as Promise<Models.ImplicitGetOptionalGlobalQueryResponse>;
   }
 }
 
@@ -208,7 +208,6 @@ const getRequiredPathOperationSpec: coreHttp.OperationSpec = {
     Parameters.pathParameter
   ],
   responses: {
-    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -277,7 +276,6 @@ const getRequiredGlobalPathOperationSpec: coreHttp.OperationSpec = {
     Parameters.requiredGlobalPath
   ],
   responses: {
-    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -292,7 +290,6 @@ const getRequiredGlobalQueryOperationSpec: coreHttp.OperationSpec = {
     Parameters.requiredGlobalQuery
   ],
   responses: {
-    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -307,7 +304,6 @@ const getOptionalGlobalQueryOperationSpec: coreHttp.OperationSpec = {
     Parameters.optionalGlobalQuery
   ],
   responses: {
-    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }

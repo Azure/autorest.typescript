@@ -4,7 +4,7 @@
   "description": "AutoRestSwaggerBATService Library with typescript type definitions for node.js and browser.",
   "version": "",
   "dependencies": {
-    "@azure/core-http": "^1.0.0",
+    "@azure/core-http": "^1.0.0-preview.1",
     "tslib": "^1.9.3"
   },
   "keywords": [

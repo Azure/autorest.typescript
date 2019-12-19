@@ -28,54 +28,6 @@ export class Paging {
   }
 
   /**
-   * A paging operation that must return result of the default 'value' node.
-   * @param [options] The optional parameters
-   * @returns Promise<Models.PagingGetNoItemNamePagesResponse>
-   */
-  getNoItemNamePages(options?: coreHttp.RequestOptionsBase): Promise<Models.PagingGetNoItemNamePagesResponse>;
-  /**
-   * @param callback The callback
-   */
-  getNoItemNamePages(callback: coreHttp.ServiceCallback<Models.ProductResultValue>): void;
-  /**
-   * @param options The optional parameters
-   * @param callback The callback
-   */
-  getNoItemNamePages(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ProductResultValue>): void;
-  getNoItemNamePages(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ProductResultValue>, callback?: coreHttp.ServiceCallback<Models.ProductResultValue>): Promise<Models.PagingGetNoItemNamePagesResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNoItemNamePagesOperationSpec,
-      callback) as Promise<Models.PagingGetNoItemNamePagesResponse>;
-  }
-
-  /**
-   * A paging operation that must ignore any kind of nextLink, and stop after page 1.
-   * @param [options] The optional parameters
-   * @returns Promise<Models.PagingGetNullNextLinkNamePagesResponse>
-   */
-  getNullNextLinkNamePages(options?: coreHttp.RequestOptionsBase): Promise<Models.PagingGetNullNextLinkNamePagesResponse>;
-  /**
-   * @param callback The callback
-   */
-  getNullNextLinkNamePages(callback: coreHttp.ServiceCallback<Models.ProductResult>): void;
-  /**
-   * @param options The optional parameters
-   * @param callback The callback
-   */
-  getNullNextLinkNamePages(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ProductResult>): void;
-  getNullNextLinkNamePages(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ProductResult>, callback?: coreHttp.ServiceCallback<Models.ProductResult>): Promise<Models.PagingGetNullNextLinkNamePagesResponse> {
-    return this.client.sendOperationRequest(
-      {
-        options
-      },
-      getNullNextLinkNamePagesOperationSpec,
-      callback) as Promise<Models.PagingGetNullNextLinkNamePagesResponse>;
-  }
-
-  /**
    * A paging operation that finishes on the first call without a nextlink
    * @param [options] The optional parameters
    * @returns Promise<Models.PagingGetSinglePagesResponse>
@@ -450,34 +402,6 @@ export class Paging {
   }
 
   /**
-   * A paging operation that must return result of the default 'value' node.
-   * @param nextPageLink The NextLink from the previous successful call to List operation.
-   * @param [options] The optional parameters
-   * @returns Promise<Models.PagingGetNoItemNamePagesNextResponse>
-   */
-  getNoItemNamePagesNext(nextPageLink: string, options?: coreHttp.RequestOptionsBase): Promise<Models.PagingGetNoItemNamePagesNextResponse>;
-  /**
-   * @param nextPageLink The NextLink from the previous successful call to List operation.
-   * @param callback The callback
-   */
-  getNoItemNamePagesNext(nextPageLink: string, callback: coreHttp.ServiceCallback<Models.ProductResultValue>): void;
-  /**
-   * @param nextPageLink The NextLink from the previous successful call to List operation.
-   * @param options The optional parameters
-   * @param callback The callback
-   */
-  getNoItemNamePagesNext(nextPageLink: string, options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.ProductResultValue>): void;
-  getNoItemNamePagesNext(nextPageLink: string, options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.ProductResultValue>, callback?: coreHttp.ServiceCallback<Models.ProductResultValue>): Promise<Models.PagingGetNoItemNamePagesNextResponse> {
-    return this.client.sendOperationRequest(
-      {
-        nextPageLink,
-        options
-      },
-      getNoItemNamePagesNextOperationSpec,
-      callback) as Promise<Models.PagingGetNoItemNamePagesNextResponse>;
-  }
-
-  /**
    * A paging operation that finishes on the first call without a nextlink
    * @param nextPageLink The NextLink from the previous successful call to List operation.
    * @param [options] The optional parameters
@@ -761,40 +685,6 @@ export class Paging {
 
 // Operation Specifications
 const serializer = new coreHttp.Serializer(Mappers);
-const getNoItemNamePagesOperationSpec: coreHttp.OperationSpec = {
-  httpMethod: "GET",
-  path: "paging/noitemname",
-  headerParameters: [
-    Parameters.acceptLanguage
-  ],
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProductResultValue
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  serializer
-};
-
-const getNullNextLinkNamePagesOperationSpec: coreHttp.OperationSpec = {
-  httpMethod: "GET",
-  path: "paging/nullnextlink",
-  headerParameters: [
-    Parameters.acceptLanguage
-  ],
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProductResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  serializer
-};
-
 const getSinglePagesOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "paging/single",
@@ -1066,27 +956,6 @@ const beginGetMultiplePagesLROOperationSpec: coreHttp.OperationSpec = {
   responses: {
     202: {
       bodyMapper: Mappers.ProductResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  serializer
-};
-
-const getNoItemNamePagesNextOperationSpec: coreHttp.OperationSpec = {
-  httpMethod: "GET",
-  baseUrl: "http://localhost:3000",
-  path: "{nextLink}",
-  urlParameters: [
-    Parameters.nextPageLink
-  ],
-  headerParameters: [
-    Parameters.acceptLanguage
-  ],
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProductResultValue
     },
     default: {
       bodyMapper: Mappers.CloudError

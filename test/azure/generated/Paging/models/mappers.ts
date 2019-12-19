@@ -194,34 +194,6 @@ export const PagingGetMultiplePagesWithOffsetNextOptions: coreHttp.CompositeMapp
   }
 };
 
-export const ProductResultValue: coreHttp.CompositeMapper = {
-  serializedName: "ProductResultValue",
-  type: {
-    name: "Composite",
-    className: "ProductResultValue",
-    modelProperties: {
-      value: {
-        serializedName: "",
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Composite",
-              className: "Product"
-            }
-          }
-        }
-      },
-      nextLink: {
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const ProductResult: coreHttp.CompositeMapper = {
   serializedName: "ProductResult",
   type: {
@@ -238,6 +210,12 @@ export const ProductResult: coreHttp.CompositeMapper = {
               className: "Product"
             }
           }
+        }
+      },
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
         }
       }
     }

@@ -246,15 +246,6 @@ export interface AutoRestPagingTestServiceOptions extends AzureServiceClientOpti
 
 /**
  * @interface
- * An interface representing the ProductResultValue.
- * @extends Array<Product>
- */
-export interface ProductResultValue extends Array<Product> {
-  nextLink?: string;
-}
-
-/**
- * @interface
  * An interface representing the ProductResult.
  * @extends Array<Product>
  */
@@ -279,46 +270,6 @@ export interface OdataProductResult extends Array<Product> {
  * @enum {string}
  */
 export type Status = 'Succeeded' | 'Failed' | 'canceled' | 'Accepted' | 'Creating' | 'Created' | 'Updating' | 'Updated' | 'Deleting' | 'Deleted' | 'OK';
-
-/**
- * Contains response data for the getNoItemNamePages operation.
- */
-export type PagingGetNoItemNamePagesResponse = ProductResultValue & {
-  /**
-   * The underlying HTTP response.
-   */
-  _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
-      bodyAsText: string;
-
-      /**
-       * The response body as parsed JSON or XML
-       */
-      parsedBody: ProductResultValue;
-    };
-};
-
-/**
- * Contains response data for the getNullNextLinkNamePages operation.
- */
-export type PagingGetNullNextLinkNamePagesResponse = ProductResult & {
-  /**
-   * The underlying HTTP response.
-   */
-  _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
-      bodyAsText: string;
-
-      /**
-       * The response body as parsed JSON or XML
-       */
-      parsedBody: ProductResult;
-    };
-};
 
 /**
  * Contains response data for the getSinglePages operation.
@@ -617,26 +568,6 @@ export type PagingBeginGetMultiplePagesLROResponse = ProductResult & {
        * The response body as parsed JSON or XML
        */
       parsedBody: ProductResult;
-    };
-};
-
-/**
- * Contains response data for the getNoItemNamePagesNext operation.
- */
-export type PagingGetNoItemNamePagesNextResponse = ProductResultValue & {
-  /**
-   * The underlying HTTP response.
-   */
-  _response: coreHttp.HttpResponse & {
-      /**
-       * The response body as text (string format)
-       */
-      bodyAsText: string;
-
-      /**
-       * The response body as parsed JSON or XML
-       */
-      parsedBody: ProductResultValue;
     };
 };
 
