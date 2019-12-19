@@ -189,3 +189,583 @@ export interface ExplicitPostOptionalArrayPropertyOptionalParams extends coreHtt
 export interface ExplicitPostOptionalArrayHeaderOptionalParams extends coreHttp.RequestOptionsBase {
   headerParameter?: string[];
 }
+
+/**
+ * Contains response data for the getRequiredPath operation.
+ */
+export type ImplicitGetRequiredPathResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the putOptionalQuery operation.
+ */
+export type ImplicitPutOptionalQueryResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the putOptionalHeader operation.
+ */
+export type ImplicitPutOptionalHeaderResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the putOptionalBody operation.
+ */
+export type ImplicitPutOptionalBodyResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the getRequiredGlobalPath operation.
+ */
+export type ImplicitGetRequiredGlobalPathResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the getRequiredGlobalQuery operation.
+ */
+export type ImplicitGetRequiredGlobalQueryResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the getOptionalGlobalQuery operation.
+ */
+export type ImplicitGetOptionalGlobalQueryResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postRequiredIntegerParameter operation.
+ */
+export type ExplicitPostRequiredIntegerParameterResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postOptionalIntegerParameter operation.
+ */
+export type ExplicitPostOptionalIntegerParameterResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postRequiredIntegerProperty operation.
+ */
+export type ExplicitPostRequiredIntegerPropertyResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postOptionalIntegerProperty operation.
+ */
+export type ExplicitPostOptionalIntegerPropertyResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postRequiredIntegerHeader operation.
+ */
+export type ExplicitPostRequiredIntegerHeaderResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postOptionalIntegerHeader operation.
+ */
+export type ExplicitPostOptionalIntegerHeaderResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postRequiredStringParameter operation.
+ */
+export type ExplicitPostRequiredStringParameterResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postOptionalStringParameter operation.
+ */
+export type ExplicitPostOptionalStringParameterResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postRequiredStringProperty operation.
+ */
+export type ExplicitPostRequiredStringPropertyResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postOptionalStringProperty operation.
+ */
+export type ExplicitPostOptionalStringPropertyResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postRequiredStringHeader operation.
+ */
+export type ExplicitPostRequiredStringHeaderResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postOptionalStringHeader operation.
+ */
+export type ExplicitPostOptionalStringHeaderResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postRequiredClassParameter operation.
+ */
+export type ExplicitPostRequiredClassParameterResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postOptionalClassParameter operation.
+ */
+export type ExplicitPostOptionalClassParameterResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postRequiredClassProperty operation.
+ */
+export type ExplicitPostRequiredClassPropertyResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postOptionalClassProperty operation.
+ */
+export type ExplicitPostOptionalClassPropertyResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postRequiredArrayParameter operation.
+ */
+export type ExplicitPostRequiredArrayParameterResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postOptionalArrayParameter operation.
+ */
+export type ExplicitPostOptionalArrayParameterResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postRequiredArrayProperty operation.
+ */
+export type ExplicitPostRequiredArrayPropertyResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postOptionalArrayProperty operation.
+ */
+export type ExplicitPostOptionalArrayPropertyResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postRequiredArrayHeader operation.
+ */
+export type ExplicitPostRequiredArrayHeaderResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
+
+/**
+ * Contains response data for the postOptionalArrayHeader operation.
+ */
+export type ExplicitPostOptionalArrayHeaderResponse = ErrorModel & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ErrorModel;
+    };
+};
