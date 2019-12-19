@@ -536,49 +536,49 @@ export class MultipleResponses {
   /**
    * Send a 400 response with valid payload: {'statusCode': '400'}
    * @param [options] The optional parameters
-   * @returns Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getDefaultModelA400Valid(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse>;
+  getDefaultModelA400Valid(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getDefaultModelA400Valid(callback: coreHttp.ServiceCallback<Models.A>): void;
+  getDefaultModelA400Valid(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDefaultModelA400Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
-  getDefaultModelA400Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse> {
+  getDefaultModelA400Valid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getDefaultModelA400Valid(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
       getDefaultModelA400ValidOperationSpec,
-      callback) as Promise<Models.MultipleResponsesGetDefaultModelA400ValidResponse>;
+      callback);
   }
 
   /**
    * Send a 400 response with no payload
    * @param [options] The optional parameters
-   * @returns Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse>
+   * @returns Promise<coreHttp.RestResponse>
    */
-  getDefaultModelA400None(options?: coreHttp.RequestOptionsBase): Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse>;
+  getDefaultModelA400None(options?: coreHttp.RequestOptionsBase): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback
    */
-  getDefaultModelA400None(callback: coreHttp.ServiceCallback<Models.A>): void;
+  getDefaultModelA400None(callback: coreHttp.ServiceCallback<void>): void;
   /**
    * @param options The optional parameters
    * @param callback The callback
    */
-  getDefaultModelA400None(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<Models.A>): void;
-  getDefaultModelA400None(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<Models.A>, callback?: coreHttp.ServiceCallback<Models.A>): Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse> {
+  getDefaultModelA400None(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<void>): void;
+  getDefaultModelA400None(options?: coreHttp.RequestOptionsBase | coreHttp.ServiceCallback<void>, callback?: coreHttp.ServiceCallback<void>): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
       getDefaultModelA400NoneOperationSpec,
-      callback) as Promise<Models.MultipleResponsesGetDefaultModelA400NoneResponse>;
+      callback);
   }
 
   /**
@@ -1142,9 +1142,10 @@ const getDefaultModelA200ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/A/response/200/valid",
   responses: {
-    default: {
+    200: {
       bodyMapper: Mappers.A
-    }
+    },
+    default: {}
   },
   serializer
 };
@@ -1153,9 +1154,10 @@ const getDefaultModelA200NoneOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/A/response/200/none",
   responses: {
-    default: {
+    200: {
       bodyMapper: Mappers.A
-    }
+    },
+    default: {}
   },
   serializer
 };
@@ -1164,6 +1166,7 @@ const getDefaultModelA400ValidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/A/response/400/valid",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.A
     }
@@ -1175,6 +1178,7 @@ const getDefaultModelA400NoneOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/A/response/400/none",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.A
     }
@@ -1186,6 +1190,7 @@ const getDefaultNone200InvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/none/response/200/invalid",
   responses: {
+    200: {},
     default: {}
   },
   serializer
@@ -1195,6 +1200,7 @@ const getDefaultNone200NoneOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/none/response/200/none",
   responses: {
+    200: {},
     default: {}
   },
   serializer
@@ -1204,6 +1210,7 @@ const getDefaultNone400InvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/none/response/400/invalid",
   responses: {
+    200: {},
     default: {}
   },
   serializer
@@ -1213,6 +1220,7 @@ const getDefaultNone400NoneOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   path: "http/payloads/default/none/response/400/none",
   responses: {
+    200: {},
     default: {}
   },
   serializer

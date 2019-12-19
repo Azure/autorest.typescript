@@ -11,5 +11,6 @@ export {
   OdataProductResult,
   Product,
   ProductProperties,
-  ProductResult
+  ProductResult,
+  ProductResultValue
 } from "../models/mappers";
