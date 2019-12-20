@@ -10,7 +10,7 @@ npm install -g autorest
 This AutoRest extension generates TypeScript code that is compatible with:
 ```
 "@azure/core-arm": "^1.0.0-preview.1",
-"@azure/core-http": "^1.0.0"
+"@azure/core-http": "^1.0.0-preview.1"
 ```
 
 # Usage
