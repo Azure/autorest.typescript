@@ -28,11 +28,20 @@ export function generateMappers(
     moduleSpecifier: "@azure/core-http"
   });
 
+  /**
+   * discriminator will be the name of the property that decides which schema definition validates the structure of the model
+   * For more info: http://spec.openapis.org/oas/v3.0.2#composition-and-inheritance-polymorphism
+   */
   let discriminators: { [key: string]: string } = {};
 
   for (const mapper of clientDetails.mappers) {
-    if (mapper.type.name === MapperType.Composite && mapper.serializedName) {
+    const serializedName = mapper.serializedName;
+    if (mapper.type.name === MapperType.Composite && serializedName) {
       const compositeMapper = mapper as CompositeMapper;
+
+      if (!compositeMapper.type.className) {
+        throw new Error("Composite mapper type does not have a class name");
+      }
 
       if (compositeMapper.type.polymorphicDiscriminator) {
         const { uberParent, className } = compositeMapper.type;
@@ -43,9 +52,9 @@ export function generateMappers(
         }
 
         if (uberParent === className) {
-          discriminators[className] = className;
+          discriminators[serializedName] = className;
         } else {
-          discriminators[`${uberParent}.${mapper.serializedName}`] = className;
+          discriminators[`${uberParent}.${serializedName}`] = className;
         }
       }
 
@@ -53,10 +62,7 @@ export function generateMappers(
         isExported: true,
         declarations: [
           {
-            name: normalizeName(
-              compositeMapper.type.className || "",
-              NameType.Class
-            ),
+            name: normalizeName(compositeMapper.type.className, NameType.Class),
             type: "coreHttp.CompositeMapper",
             initializer: writer => writeMapper(writer, mapper)
           }
@@ -134,7 +140,7 @@ function writeParentMappers(parents: string[], writer: CodeBlockWriter) {
 
 function writeObjectProps(obj: any, writer: CodeBlockWriter) {
   let currentPos = writer;
-  keys(obj).map(key => {
+  keys(obj).forEach(key => {
     currentPos = currentPos.writeLine(`${key}: ${JSON.stringify(obj[key])},`);
   });
 
@@ -142,8 +148,8 @@ function writeObjectProps(obj: any, writer: CodeBlockWriter) {
 }
 
 function extractParents(mapper: Mapper) {
-  // TODO: We may need to create a MapperDetails of some sort which containes
-  // the mapper itself and a property with its parents for easier manipulation
+  // TODO(#538): We may need to create a MapperDetails of some sort which contains
+  // the mapper itself and property with its parents for easier manipulation
   // and avoid the side effect of this function mutating the mapper
   let parents: string[] = [];
   if (mapper.type.name === MapperType.Composite) {

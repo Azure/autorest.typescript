@@ -136,7 +136,7 @@ describe("transformObjectMapper", () => {
       serializedName: objectName,
       type: {
         name: MapperType.Composite,
-        className: getMapperClassName(schema),
+        className: "MockObjectName",
         modelProperties: {
           constantProp: {
             serializedName: "constantProp",

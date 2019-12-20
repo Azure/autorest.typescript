@@ -198,20 +198,11 @@ function getAdditionalProperties(
     : undefined;
 }
 
-function checkUberParent(objectSchema: ObjectSchema) {
+function isUberParent(objectSchema: ObjectSchema) {
   const { discriminator, parents, children } = objectSchema;
-  const className = getMapperClassName(objectSchema);
-  const isUberParent =
-    discriminator &&
-    !parents &&
-    children &&
-    children.all &&
-    children.all.length;
-
-  if (uberParents.indexOf(className) < 0 && isUberParent) {
-    uberParents.push(className);
-    return;
-  }
+  return (
+    discriminator && !parents && children && children.all && children.all.length
+  );
 }
 
 function transformObjectMapper(pipelineValue: PipelineValue) {
@@ -240,7 +231,10 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
     ...(parentsRefs && parentsRefs.length && { parentsRefs })
   };
 
-  checkUberParent(objectSchema);
+  // If we find a new uber parent, store it
+  if (uberParents.indexOf(className) < 0 && isUberParent(objectSchema)) {
+    uberParents.push(className);
+  }
 
   // If any of the parents is present in uberParents we know it
   // is its uber parent
