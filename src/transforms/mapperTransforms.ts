@@ -10,13 +10,15 @@ import {
   ByteArraySchema,
   Property,
   ArraySchema,
-  DictionarySchema
+  DictionarySchema,
+  DateTimeSchema
 } from "@azure-tools/codemodel";
 import {
   BaseMapper,
   Mapper,
   MapperType,
-  MapperConstraints
+  MapperConstraints,
+  PolymorphicDiscriminator
 } from "@azure/core-http";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { isNil } from "lodash";
@@ -44,7 +46,9 @@ const pipe = (
   ...fns: Array<(pipelineValue: PipelineValue) => PipelineValue>
 ) => (x: PipelineValue) => fns.reduce((v, f) => (!v.isHandled ? f(v) : v), x);
 
-type ModelProperties = { [propertyName: string]: Mapper };
+let uberParents: string[] = [];
+
+export type ModelProperties = { [propertyName: string]: Mapper | string[] };
 
 export interface EntityOptions {
   serializedName?: string;
@@ -96,9 +100,14 @@ export function getMapperClassName(schema: Schema): string {
 
 interface PartialMapperType {
   name: string;
+  className?: string;
   allowedValues?: any[];
   element?: Mapper;
+  value?: Mapper;
   modelProperties?: ModelProperties;
+  polymorphicDiscriminator?: PolymorphicDiscriminator | string;
+  uberParent?: string;
+  additionalProperties?: Mapper;
 }
 
 function buildMapper(
@@ -107,7 +116,13 @@ function buildMapper(
   options?: EntityOptions
 ): Mapper {
   const required = !!options && !!options.required;
+  const readOnly = !!options && !!options.readOnly;
+  // Handle x-ms-discriminator-value Extension. More info:
+  // https://github.com/Azure/autorest/tree/master/docs/extensions/swagger-extensions-examples/x-ms-discriminator-value
+  const msDiscriminatorValue =
+    schema.extensions && schema.extensions["x-ms-discriminator-value"];
   const serializedName =
+    msDiscriminatorValue ||
     (options && options.serializedName) ||
     getLanguageMetadata(schema.language).name;
   const arraySchema = schema as ArraySchema;
@@ -147,6 +162,7 @@ function buildMapper(
       defaultValue: schema.defaultValue
     }),
     ...(required && { required }),
+    ...(readOnly && { readOnly }),
     ...(hasConstraints && { constraints })
   };
 }
@@ -169,18 +185,82 @@ function transformPrimitiveMapper(pipelineValue: PipelineValue) {
   };
 }
 
+// TODO: Make sure this is the correct way to handle additionalProperties
+function getAdditionalProperties(
+  immediateParents: Schema[]
+): Mapper | undefined {
+  return immediateParents.some(p => p.type === SchemaType.Dictionary)
+    ? {
+        type: {
+          name: MapperType.Object
+        }
+      }
+    : undefined;
+}
+
+function isUberParent(objectSchema: ObjectSchema) {
+  const { discriminator, parents, children } = objectSchema;
+  return (
+    discriminator && !parents && children && children.all && children.all.length
+  );
+}
+
 function transformObjectMapper(pipelineValue: PipelineValue) {
   const { schema, options } = pipelineValue;
 
   if (!isSchemaType([SchemaType.Object], schema)) {
     return pipelineValue;
   }
+  const className = getMapperClassName(schema);
   const objectSchema = schema as ObjectSchema;
-  const modelProperties = processProperties(objectSchema.properties);
+  const { discriminator, discriminatorValue } = objectSchema;
+
+  let modelProperties = processProperties(objectSchema.properties);
+  const parents = objectSchema.parents ? objectSchema.parents.all : [];
+  const immediateParents = objectSchema.parents
+    ? objectSchema.parents.immediate
+    : [];
+  const parentsRefs = immediateParents
+    .map(p => getMapperClassName(p))
+    .filter(p => p !== className);
+
+  const additionalProperties = getAdditionalProperties(immediateParents);
+
+  modelProperties = {
+    ...modelProperties,
+    ...(parentsRefs && parentsRefs.length && { parentsRefs })
+  };
+
+  // If we find a new uber parent, store it
+  if (uberParents.indexOf(className) < 0 && isUberParent(objectSchema)) {
+    uberParents.push(className);
+  }
+
+  // If any of the parents is present in uberParents we know it
+  // is its uber parent
+  const uberParent = getMapperClassName(
+    parents.find(p => uberParents.includes(getMapperClassName(p))) || schema
+  );
 
   const mapper = buildMapper(
     schema,
-    { name: MapperType.Composite, modelProperties },
+    {
+      name: MapperType.Composite,
+      className,
+      modelProperties,
+      ...(discriminatorValue && {
+        uberParent,
+        polymorphicDiscriminator: `${uberParent}.type.polymorphicDiscriminator`
+      }),
+      ...(discriminator && {
+        uberParent,
+        polymorphicDiscriminator: {
+          serializedName: discriminator!.property.serializedName,
+          clientName: discriminator!.property.serializedName
+        }
+      }),
+      ...(additionalProperties && { additionalProperties })
+    },
     options
   );
 
@@ -202,7 +282,7 @@ function transformDictionaryMapper(pipelineValue: PipelineValue) {
   const elementSchema = dictionarySchema.elementType;
   const mapper = buildMapper(
     schema,
-    { name: MapperType.Sequence, element: getMapperOrRef(elementSchema) },
+    { name: MapperType.Dictionary, value: getMapperOrRef(elementSchema) },
     options
   );
 
@@ -270,7 +350,7 @@ function transformByteArrayMapper(pipelineValue: PipelineValue) {
 function transformChoiceMapper(pipelineValue: PipelineValue) {
   const { schema, options } = pipelineValue;
 
-  if (!isSchemaType([SchemaType.Choice, SchemaType.SealedChoice], schema)) {
+  if (!isSchemaType([SchemaType.SealedChoice], schema)) {
     return pipelineValue;
   }
 
@@ -304,9 +384,10 @@ function transformDateMapper(pipelineValue: PipelineValue) {
     return pipelineValue;
   }
 
+  const { format } = schema as DateTimeSchema;
   const mapper = buildMapper(
     schema,
-    { name: getMapperTypeFromSchema(schema.type) },
+    { name: getMapperTypeFromSchema(schema.type, format) },
     options
   );
 
@@ -320,7 +401,7 @@ function transformDateMapper(pipelineValue: PipelineValue) {
 function transformStringMapper(pipelineValue: PipelineValue) {
   const { schema, options } = pipelineValue;
 
-  if (!isSchemaType([SchemaType.String], schema)) {
+  if (!isSchemaType([SchemaType.String, SchemaType.Choice], schema)) {
     return pipelineValue;
   }
 
@@ -426,8 +507,10 @@ function isSchemaType(matchSchemas: SchemaType[], { type }: Schema) {
   return matchSchemas.includes(type);
 }
 
-function getMapperTypeFromSchema(type: SchemaType) {
+export function getMapperTypeFromSchema(type: SchemaType, format?: string) {
   switch (type) {
+    case SchemaType.Array:
+      return MapperType.Sequence;
     case SchemaType.Boolean:
       return MapperType.Boolean;
     case SchemaType.ByteArray:
@@ -436,12 +519,15 @@ function getMapperTypeFromSchema(type: SchemaType) {
     case SchemaType.String:
       return MapperType.String;
     case SchemaType.Choice:
+      return MapperType.String;
     case SchemaType.SealedChoice:
       return MapperType.Enum;
     case SchemaType.Duration:
       return MapperType.TimeSpan;
     case SchemaType.DateTime:
-      return MapperType.DateTime;
+      return format === "date-time-rfc1123"
+        ? MapperType.DateTimeRfc1123
+        : MapperType.DateTime;
     case SchemaType.UnixTime:
       return MapperType.UnixTime;
     case SchemaType.Date:

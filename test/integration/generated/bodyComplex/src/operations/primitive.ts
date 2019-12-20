@@ -38,12 +38,19 @@ export class Primitive {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getInt(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getInt(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getInt(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getIntOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getIntOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -51,12 +58,18 @@ export class Primitive {
    * @param complexBody Please put -1 and 2
    * @param options The options parameters.
    */
-  putInt(complexBody: Models.IntWrapper, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putInt(
+    complexBody: Models.IntWrapper,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param complexBody Please put -1 and 2
    * @param callback The callback.
    */
-  putInt(complexBody: Models.IntWrapper, callback: coreHttp.ServiceCallback<any>): void;
+  putInt(
+    complexBody: Models.IntWrapper,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody Please put -1 and 2
    * @param options The options parameters.
@@ -92,12 +105,19 @@ export class Primitive {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getLong(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getLong(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getLong(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getLongOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getLongOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -105,12 +125,18 @@ export class Primitive {
    * @param complexBody Please put 1099511627775 and -999511627788
    * @param options The options parameters.
    */
-  putLong(complexBody: Models.LongWrapper, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putLong(
+    complexBody: Models.LongWrapper,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param complexBody Please put 1099511627775 and -999511627788
    * @param callback The callback.
    */
-  putLong(complexBody: Models.LongWrapper, callback: coreHttp.ServiceCallback<any>): void;
+  putLong(
+    complexBody: Models.LongWrapper,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody Please put 1099511627775 and -999511627788
    * @param options The options parameters.
@@ -146,12 +172,19 @@ export class Primitive {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getFloat(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getFloat(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getFloat(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getFloatOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getFloatOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -159,12 +192,18 @@ export class Primitive {
    * @param complexBody Please put 1.05 and -0.003
    * @param options The options parameters.
    */
-  putFloat(complexBody: Models.FloatWrapper, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putFloat(
+    complexBody: Models.FloatWrapper,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param complexBody Please put 1.05 and -0.003
    * @param callback The callback.
    */
-  putFloat(complexBody: Models.FloatWrapper, callback: coreHttp.ServiceCallback<any>): void;
+  putFloat(
+    complexBody: Models.FloatWrapper,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody Please put 1.05 and -0.003
    * @param options The options parameters.
@@ -200,12 +239,19 @@ export class Primitive {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getDouble(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getDouble(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getDouble(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getDoubleOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getDoubleOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -213,12 +259,18 @@ export class Primitive {
    * @param complexBody Please put 3e-100 and -0.000000000000000000000000000000000000000000000000000000005
    * @param options The options parameters.
    */
-  putDouble(complexBody: Models.DoubleWrapper, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putDouble(
+    complexBody: Models.DoubleWrapper,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param complexBody Please put 3e-100 and -0.000000000000000000000000000000000000000000000000000000005
    * @param callback The callback.
    */
-  putDouble(complexBody: Models.DoubleWrapper, callback: coreHttp.ServiceCallback<any>): void;
+  putDouble(
+    complexBody: Models.DoubleWrapper,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody Please put 3e-100 and -0.000000000000000000000000000000000000000000000000000000005
    * @param options The options parameters.
@@ -254,12 +306,19 @@ export class Primitive {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getBool(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getBool(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getBool(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getBoolOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getBoolOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -267,12 +326,18 @@ export class Primitive {
    * @param complexBody Please put true and false
    * @param options The options parameters.
    */
-  putBool(complexBody: Models.BooleanWrapper, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putBool(
+    complexBody: Models.BooleanWrapper,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param complexBody Please put true and false
    * @param callback The callback.
    */
-  putBool(complexBody: Models.BooleanWrapper, callback: coreHttp.ServiceCallback<any>): void;
+  putBool(
+    complexBody: Models.BooleanWrapper,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody Please put true and false
    * @param options The options parameters.
@@ -308,12 +373,19 @@ export class Primitive {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getString(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getString(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getString(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getStringOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getStringOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -321,12 +393,18 @@ export class Primitive {
    * @param complexBody Please put 'goodrequest', '', and null
    * @param options The options parameters.
    */
-  putString(complexBody: Models.StringWrapper, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putString(
+    complexBody: Models.StringWrapper,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param complexBody Please put 'goodrequest', '', and null
    * @param callback The callback.
    */
-  putString(complexBody: Models.StringWrapper, callback: coreHttp.ServiceCallback<any>): void;
+  putString(
+    complexBody: Models.StringWrapper,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody Please put 'goodrequest', '', and null
    * @param options The options parameters.
@@ -362,12 +440,19 @@ export class Primitive {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getDate(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getDate(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getDate(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getDateOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getDateOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -375,12 +460,18 @@ export class Primitive {
    * @param complexBody Please put '0001-01-01' and '2016-02-29'
    * @param options The options parameters.
    */
-  putDate(complexBody: Models.DateWrapper, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putDate(
+    complexBody: Models.DateWrapper,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param complexBody Please put '0001-01-01' and '2016-02-29'
    * @param callback The callback.
    */
-  putDate(complexBody: Models.DateWrapper, callback: coreHttp.ServiceCallback<any>): void;
+  putDate(
+    complexBody: Models.DateWrapper,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody Please put '0001-01-01' and '2016-02-29'
    * @param options The options parameters.
@@ -416,12 +507,19 @@ export class Primitive {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getDateTime(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getDateTime(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getDateTime(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getDateTimeOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getDateTimeOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -437,7 +535,10 @@ export class Primitive {
    * @param complexBody Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'
    * @param callback The callback.
    */
-  putDateTime(complexBody: Models.DatetimeWrapper, callback: coreHttp.ServiceCallback<any>): void;
+  putDateTime(
+    complexBody: Models.DatetimeWrapper,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'
    * @param options The options parameters.
@@ -481,7 +582,11 @@ export class Primitive {
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getDateTimeRfc1123OperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getDateTimeRfc1123OperationSpec,
+      callback
+    );
   }
 
   /**
@@ -536,12 +641,19 @@ export class Primitive {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getDuration(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getDuration(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getDuration(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getDurationOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getDurationOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -557,7 +669,10 @@ export class Primitive {
    * @param complexBody Please put 'P123DT22H14M12.011S'
    * @param callback The callback.
    */
-  putDuration(complexBody: Models.DurationWrapper, callback: coreHttp.ServiceCallback<any>): void;
+  putDuration(
+    complexBody: Models.DurationWrapper,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody Please put 'P123DT22H14M12.011S'
    * @param options The options parameters.
@@ -593,12 +708,19 @@ export class Primitive {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getByte(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getByte(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getByte(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getByteOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getByteOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -606,12 +728,18 @@ export class Primitive {
    * @param complexBody Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6)
    * @param options The options parameters.
    */
-  putByte(complexBody: Models.ByteWrapper, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putByte(
+    complexBody: Models.ByteWrapper,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param complexBody Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6)
    * @param callback The callback.
    */
-  putByte(complexBody: Models.ByteWrapper, callback: coreHttp.ServiceCallback<any>): void;
+  putByte(
+    complexBody: Models.ByteWrapper,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6)
    * @param options The options parameters.

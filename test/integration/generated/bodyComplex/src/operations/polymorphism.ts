@@ -38,12 +38,19 @@ export class Polymorphism {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getValid(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getValid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getValidOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getValidOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -83,7 +90,10 @@ export class Polymorphism {
    *       };
    * @param options The options parameters.
    */
-  putValid(complexBody: Models.Fish, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putValid(
+    complexBody: Models.Fish,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param complexBody Please put a salmon that looks like this:
    * {
@@ -120,7 +130,10 @@ export class Polymorphism {
    *       };
    * @param callback The callback.
    */
-  putValid(complexBody: Models.Fish, callback: coreHttp.ServiceCallback<any>): void;
+  putValid(
+    complexBody: Models.Fish,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody Please put a salmon that looks like this:
    * {
@@ -188,19 +201,28 @@ export class Polymorphism {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getDotSyntax(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getDotSyntax(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getDotSyntax(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getDotSyntaxOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getDotSyntaxOperationSpec,
+      callback
+    );
   }
 
   /**
    * Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire.
    * @param options The options parameters.
    */
-  getComposedWithDiscriminator(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getComposedWithDiscriminator(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -228,11 +250,15 @@ export class Polymorphism {
    * Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property.
    * @param options The options parameters.
    */
-  getComposedWithoutDiscriminator(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getComposedWithoutDiscriminator(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param callback The callback.
    */
-  getComposedWithoutDiscriminator(callback: coreHttp.ServiceCallback<any>): void;
+  getComposedWithoutDiscriminator(
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param options The options parameters.
    * @param callback The callback.
@@ -273,7 +299,11 @@ export class Polymorphism {
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getComplicatedOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getComplicatedOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -281,12 +311,18 @@ export class Polymorphism {
    * @param complexBody
    * @param options The options parameters.
    */
-  putComplicated(complexBody: Models.Salmon, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putComplicated(
+    complexBody: Models.Salmon,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param complexBody
    * @param callback The callback.
    */
-  putComplicated(complexBody: Models.Salmon, callback: coreHttp.ServiceCallback<any>): void;
+  putComplicated(
+    complexBody: Models.Salmon,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody
    * @param options The options parameters.
@@ -425,7 +461,10 @@ export class Polymorphism {
    *       };
    * @param callback The callback.
    */
-  putValidMissingRequired(complexBody: Models.Fish, callback: coreHttp.ServiceCallback<any>): void;
+  putValidMissingRequired(
+    complexBody: Models.Fish,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody Please put a salmon that looks like this:
    * {

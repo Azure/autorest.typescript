@@ -38,12 +38,19 @@ export class Array {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getValid(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getValid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getValidOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getValidOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -51,12 +58,18 @@ export class Array {
    * @param complexBody Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The quick brown fox jumps over the lazy dog"
    * @param options The options parameters.
    */
-  putValid(complexBody: Models.ArrayWrapper, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putValid(
+    complexBody: Models.ArrayWrapper,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param complexBody Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The quick brown fox jumps over the lazy dog"
    * @param callback The callback.
    */
-  putValid(complexBody: Models.ArrayWrapper, callback: coreHttp.ServiceCallback<any>): void;
+  putValid(
+    complexBody: Models.ArrayWrapper,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The quick brown fox jumps over the lazy dog"
    * @param options The options parameters.
@@ -92,12 +105,19 @@ export class Array {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getEmpty(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getEmpty(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getEmpty(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getEmptyOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getEmptyOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -105,12 +125,18 @@ export class Array {
    * @param complexBody Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The quick brown fox jumps over the lazy dog"
    * @param options The options parameters.
    */
-  putEmpty(complexBody: Models.ArrayWrapper, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putEmpty(
+    complexBody: Models.ArrayWrapper,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param complexBody Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The quick brown fox jumps over the lazy dog"
    * @param callback The callback.
    */
-  putEmpty(complexBody: Models.ArrayWrapper, callback: coreHttp.ServiceCallback<any>): void;
+  putEmpty(
+    complexBody: Models.ArrayWrapper,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The quick brown fox jumps over the lazy dog"
    * @param options The options parameters.
@@ -154,7 +180,11 @@ export class Array {
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getNotProvidedOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getNotProvidedOperationSpec,
+      callback
+    );
   }
 }
 // Operation Specifications

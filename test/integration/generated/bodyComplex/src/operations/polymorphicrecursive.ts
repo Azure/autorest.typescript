@@ -38,12 +38,19 @@ export class Polymorphicrecursive {
    * @param options The options parameters.
    * @param callback The callback.
    */
-  getValid(options: coreHttp.RequestOptionsBase, callback: coreHttp.ServiceCallback<any>): void;
+  getValid(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   getValid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
-    return this.client.sendOperationRequest({ options }, getValidOperationSpec, callback);
+    return this.client.sendOperationRequest(
+      { options },
+      getValidOperationSpec,
+      callback
+    );
   }
 
   /**
@@ -83,7 +90,10 @@ export class Polymorphicrecursive {
    *       };
    * @param options The options parameters.
    */
-  putValid(complexBody: Models.Fish, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putValid(
+    complexBody: Models.Fish,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param complexBody Please put a salmon that looks like this:
    * {
@@ -120,7 +130,10 @@ export class Polymorphicrecursive {
    *       };
    * @param callback The callback.
    */
-  putValid(complexBody: Models.Fish, callback: coreHttp.ServiceCallback<any>): void;
+  putValid(
+    complexBody: Models.Fish,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param complexBody Please put a salmon that looks like this:
    * {

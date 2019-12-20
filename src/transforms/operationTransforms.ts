@@ -31,6 +31,7 @@ import {
 } from "../models/operationDetails";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getTypeForSchema } from "../utils/schemaHelpers";
+import { getMapperTypeFromSchema } from "./mapperTransforms";
 
 export function transformOperationSpec(
   operationDetails: OperationDetails
@@ -134,7 +135,8 @@ export function getSpecType(responseSchema: Schema, expand = false): SpecType {
       reference = `Mappers.${normalizeName(name, NameType.Class)}`;
       break;
     default:
-      throw new Error(`Unsupported Spec Type ${responseSchema.type}`);
+      typeName = getMapperTypeFromSchema(responseSchema.type);
+      break;
   }
 
   let result = {
