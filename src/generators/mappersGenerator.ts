@@ -38,7 +38,7 @@ export function generateMappers(
         const { uberParent, className } = compositeMapper.type;
         if (!uberParent || !className) {
           throw new Error(
-            `Expected CompositeMapper with polymorphicDiscriminator to specify uberParent property uberParent: ${uberParent} className: ${className}`
+            `Expected CompositeMapper with polymorphicDiscriminator to specify uberParent property (uberParent: ${uberParent}, className: ${className})`
           );
         }
 
