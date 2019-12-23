@@ -22,6 +22,7 @@ import { getStringForValue } from "../utils/valueHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { transformMapper } from "./mapperTransforms";
 import { transformOperationGroup } from "./operationTransforms";
+import { transformParameters } from "./parameterTransforms";
 
 export function transformProperty(property: Property): PropertyDetails {
   const metadata = getLanguageMetadata(property.language);
@@ -88,6 +89,7 @@ export function transformCodeModel(codeModel: CodeModel): ClientDetails {
       ...(codeModel.schemas.choices || []),
       ...(codeModel.schemas.sealedChoices || [])
     ].map(transformChoice),
-    operationGroups: codeModel.operationGroups.map(transformOperationGroup)
+    operationGroups: codeModel.operationGroups.map(transformOperationGroup),
+    parameters: transformParameters(codeModel)
   };
 }
