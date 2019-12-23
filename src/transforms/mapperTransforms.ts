@@ -482,7 +482,7 @@ function extractObjectPropertyMapper({
   });
 }
 
-function getMapperOrRef(
+export function getMapperOrRef(
   schema: Schema,
   serializedName?: string,
   options?: EntityOptions

@@ -10,10 +10,8 @@ export function getStringForValue(
       return quotedStrings ? `"${value}"` : `${value}`;
     case SchemaType.Number:
     case SchemaType.Integer:
-      return value.toString();
     case SchemaType.Boolean:
-      return value.toString();
     default:
-      throw new Error(`Unexpected value type: ${valueType.type}`);
+      return value.toString();
   }
 }

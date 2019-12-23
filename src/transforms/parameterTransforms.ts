@@ -1,27 +1,26 @@
-import { CodeModel, Parameter, codeModelSchema } from "@azure-tools/codemodel";
+import {
+  CodeModel,
+  Parameter,
+  ParameterLocation
+} from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { normalizeName, NameType } from "../utils/nameUtils";
-import { ModelParameters, ParameterDetails } from "../models/parameterDetails";
+import { ParameterDetails } from "../models/parameterDetails";
+import { getMapperOrRef } from "./mapperTransforms";
+import { isEqual, isNil } from "lodash";
 
 interface OperationParameterDetails {
   parameter: Parameter;
   operationName: string;
 }
 
-export function transformParameters(codeModel: CodeModel): ModelParameters {
-  let modelParameters: ModelParameters = {
-    globalParameters: extractGlobalParameters(codeModel),
-    operationParameters: []
-  };
+export function transformParameters(codeModel: CodeModel): ParameterDetails[] {
+  let parameters: ParameterDetails[] = [];
   extractOperationParameters(codeModel).forEach(p =>
-    populateOperationParameters(
-      p.parameter,
-      modelParameters.operationParameters,
-      p.operationName
-    )
+    populateOperationParameters(p.parameter, parameters, p.operationName)
   );
 
-  return modelParameters;
+  return parameters;
 }
 
 const extractGlobalParameters = (codeModel: CodeModel) =>
@@ -69,6 +68,14 @@ export function populateOperationParameters(
       nameRef: normalizeName(parameterSerializedName, NameType.Property),
       serializedName: parameterSerializedName,
       operationsIn: [operationName],
+      location: getParameterLocation(parameter),
+      required: parameter.required,
+      parameterPath: getParameterPath(parameter),
+      mapper: getMapperOrRef(parameter.schema, parameterSerializedName, {
+        required: parameter.required,
+        serializedName: parameterSerializedName
+      }),
+      isGlobal: getIsGlobal(parameter),
       parameter
     };
     operationParameters.push(paramDetails);
@@ -85,6 +92,25 @@ export function populateOperationParameters(
   );
 }
 
+function getIsGlobal(parameter: Parameter) {
+  return parameter.extensions
+    ? !isNil(parameter.extensions["x-ms-priority"])
+    : false;
+}
+
+function getParameterPath(parameter: Parameter) {
+  const serializedName = getLanguageMetadata(parameter.language).serializedName;
+  return parameter.required ? serializedName : ["options", serializedName];
+}
+
+function getParameterLocation(parameter: Parameter): ParameterLocation {
+  if (!parameter.protocol.http) {
+    throw new Error("Expected parameter to contain HTTP Protocol information");
+  }
+
+  return parameter.protocol.http.in;
+}
+
 export function desambiguateParameter(
   parameter: Parameter,
   operationParameters: ParameterDetails[],
@@ -92,7 +118,9 @@ export function desambiguateParameter(
   sameNameParams: ParameterDetails[],
   operationName: string
 ) {
-  const existingParam = sameNameParams.find(p => p.parameter === parameter); // May need to do a deep comparison
+  const existingParam = sameNameParams.find(p =>
+    isEqual(p.parameter, parameter)
+  );
 
   if (existingParam) {
     if (existingParam.operationsIn) {
@@ -106,10 +134,19 @@ export function desambiguateParameter(
     const nameRef = `${normalizeName(serializedName, NameType.Property)}${
       sameNameParams.length
     }`;
+
     operationParameters.push({
       nameRef,
       serializedName,
       operationsIn: [operationName],
+      required: parameter.required,
+      parameterPath: getParameterPath(parameter),
+      location: getParameterLocation(parameter),
+      mapper: getMapperOrRef(parameter.schema, serializedName, {
+        required: parameter.required,
+        serializedName
+      }),
+      isGlobal: getIsGlobal(parameter),
       parameter
     });
   }
