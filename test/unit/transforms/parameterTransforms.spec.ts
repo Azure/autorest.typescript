@@ -7,63 +7,81 @@ import {
   SchemaType,
   Languages,
   OperationGroup,
-  Request
+  Request,
+  ParameterLocation
 } from "@azure-tools/codemodel";
 import { transformParameters } from "../../../src/transforms/parameterTransforms";
-import {
-  ParameterDetails,
-  ModelParameters
-} from "../../../src/models/parameterDetails";
+import { ParameterDetails } from "../../../src/models/parameterDetails";
 describe("parameterTransforms", () => {
+  const getCodeModelWithOneParam = (paramOptions?: {
+    location?: ParameterLocation;
+    extensions?: { [key: string]: any };
+  }) => {
+    const location = paramOptions && paramOptions.location;
+    const extensions = paramOptions && paramOptions.extensions;
+    const codeModel = new CodeModel("testCodeModel");
+    const param1 = new Parameter(
+      "mockParam1",
+      "",
+      new StringSchema("mockStringSchema", ""),
+      {
+        language: {
+          default: { name: "mockParam", serializedName: "Mock-Param" }
+        },
+        protocol: {
+          http: {
+            in: location || ParameterLocation.Path
+          }
+        },
+        ...(extensions && { extensions })
+      }
+    );
+    const request = { parameters: [param1] } as Request;
+    const op1 = new OperationGroup("Operation1", {
+      operations: [
+        {
+          request,
+          language: {
+            default: {
+              name: "operation1",
+              serializedName: "Mock_Operation1"
+            }
+          }
+        }
+      ]
+    });
+
+    codeModel.operationGroups = [op1];
+    return codeModel;
+  };
   describe("transformParameters", () => {
+    it("should set the correct parameter location", () => {
+      const codeModel = getCodeModelWithOneParam({
+        location: ParameterLocation.Path
+      });
+      const params = transformParameters(codeModel);
+      assert.equal(params[0] && params[0].location, ParameterLocation.Path);
+    });
+
+    it("should mark as global parameter when x-ms-priority exists", () => {
+      const codeModel = getCodeModelWithOneParam({
+        extensions: { "x-ms-priority": 0 }
+      });
+      const params = transformParameters(codeModel);
+      assert.equal(params[0] && params[0].isGlobal, true);
+    });
+
+    it("shouldn ot mark as global parameter when x-ms-priority does not exist", () => {
+      const codeModel = getCodeModelWithOneParam();
+      const params = transformParameters(codeModel);
+      assert.equal(params[0] && params[0].isGlobal, false);
+    });
+
     it("should return an empty set of global an operation parameters", () => {
       const codeModel = new CodeModel("testCodeModel");
       const parameters = transformParameters(codeModel);
 
-      assert.deepEqual(parameters, {
-        operationParameters: [],
-        globalParameters: []
-      } as ModelParameters);
-    });
-
-    it("should extract all global parameters", () => {
-      const codeModel = new CodeModel("testCodeModel");
-      const param1 = new Parameter(
-        "mockParam1",
-        "",
-        new StringSchema("mockStringSchema", ""),
-        {
-          language: {
-            default: { name: "mockParam1", serializedName: "Mock-Param1" }
-          }
-        }
-      );
-      const param2 = new Parameter(
-        "mockParam2",
-        "",
-        new NumberSchema("mockIntSchema", "", SchemaType.Integer, 32),
-        {
-          language: {
-            default: { name: "mockParam2", serializedName: "Mock_Param2" }
-          }
-        }
-      );
-
-      const globalParameters = [param1, param2];
-
-      codeModel.globalParameters = globalParameters;
-      const parameters = transformParameters(codeModel);
-
-      assert.equal(parameters.globalParameters.length, 2);
-      assert.deepEqual(
-        parameters.globalParameters.map(p => p.nameRef),
-        ["mockParam1", "mockParam2"]
-      );
-
-      assert.deepEqual(
-        parameters.globalParameters.map(p => p.parameter),
-        globalParameters
-      );
+      assert.deepEqual(parameters, []);
     });
 
     it("should extract all operation parameters, 2 different parameters same name", () => {
@@ -75,6 +93,11 @@ describe("parameterTransforms", () => {
         {
           language: {
             default: { name: "mockParam", serializedName: "Mock-Param" }
+          },
+          protocol: {
+            http: {
+              in: ParameterLocation.Body
+            }
           }
         }
       );
@@ -86,6 +109,11 @@ describe("parameterTransforms", () => {
         {
           language: {
             default: { name: "mockParam", serializedName: "Mock-Param" }
+          },
+          protocol: {
+            http: {
+              in: ParameterLocation.Body
+            }
           }
         }
       );
@@ -124,17 +152,17 @@ describe("parameterTransforms", () => {
       codeModel.operationGroups = [op1, op2];
       const parameters = transformParameters(codeModel);
 
-      assert.equal(parameters.operationParameters.length, 2);
+      assert.equal(parameters.length, 2);
       assert.deepEqual(
-        parameters.operationParameters.map(p => p.nameRef),
+        parameters.map(p => p.nameRef),
         ["mockParam", "mockParam1"]
       );
 
-      const p1: ParameterDetails = parameters.operationParameters.find(
+      const p1: ParameterDetails = parameters.find(
         p => p.nameRef === "mockParam"
       )!;
 
-      const p2: ParameterDetails = parameters.operationParameters.find(
+      const p2: ParameterDetails = parameters.find(
         p => p.nameRef === "mockParam1"
       )!;
 
@@ -153,6 +181,11 @@ describe("parameterTransforms", () => {
         {
           language: {
             default: { name: "mockParam1", serializedName: "Mock-Param1" }
+          },
+          protocol: {
+            http: {
+              in: ParameterLocation.Body
+            }
           }
         }
       );
@@ -191,13 +224,13 @@ describe("parameterTransforms", () => {
       codeModel.operationGroups = [op1, op2];
       const parameters = transformParameters(codeModel);
 
-      assert.equal(parameters.operationParameters.length, 1);
+      assert.equal(parameters.length, 1);
       assert.deepEqual(
-        parameters.operationParameters.map(p => p.nameRef),
+        parameters.map(p => p.nameRef),
         ["mockParam1"]
       );
 
-      const p1: ParameterDetails = parameters.operationParameters.find(
+      const p1: ParameterDetails = parameters.find(
         p => p.nameRef === "mockParam1"
       )!;
 
@@ -214,6 +247,11 @@ describe("parameterTransforms", () => {
         {
           language: {
             default: { name: "mockParam1", serializedName: "Mock-Param1" }
+          },
+          protocol: {
+            http: {
+              in: ParameterLocation.Body
+            }
           }
         }
       );
@@ -224,6 +262,11 @@ describe("parameterTransforms", () => {
         {
           language: {
             default: { name: "mockParam2", serializedName: "Mock_Param2" }
+          },
+          protocol: {
+            http: {
+              in: ParameterLocation.Body
+            }
           }
         }
       );
@@ -248,16 +291,16 @@ describe("parameterTransforms", () => {
       ];
       const parameters = transformParameters(codeModel);
 
-      assert.equal(parameters.operationParameters.length, 2);
+      assert.equal(parameters.length, 2);
       assert.deepEqual(
-        parameters.operationParameters.map(p => p.nameRef),
+        parameters.map(p => p.nameRef),
         ["mockParam1", "mockParam2"]
       );
 
-      const p1: ParameterDetails = parameters.operationParameters.find(
+      const p1: ParameterDetails = parameters.find(
         p => p.nameRef === "mockParam1"
       )!;
-      const p2: ParameterDetails = parameters.operationParameters.find(
+      const p2: ParameterDetails = parameters.find(
         p => p.nameRef === "mockParam2"
       )!;
 

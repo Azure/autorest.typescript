@@ -57,8 +57,13 @@ export function populateOperationParameters(
   operationParameters: ParameterDetails[],
   operationName: string
 ): void {
-  const parameterSerializedName = getLanguageMetadata(parameter.language)
-    .serializedName;
+  const parameterSerializedName = getParameterName(parameter);
+
+  if (!parameterSerializedName) {
+    throw new Error(
+      `Couldn't get parameter serializedName for operation: ${operationName}`
+    );
+  }
   const sameNameParams = operationParameters.filter(
     p => p.serializedName === parameterSerializedName
   );
@@ -109,6 +114,15 @@ function getParameterLocation(parameter: Parameter): ParameterLocation {
   }
 
   return parameter.protocol.http.in;
+}
+
+function getParameterName(parameter: Parameter) {
+  const fromExtension =
+    parameter.extensions && parameter.extensions["x-ms-requestBody-name"];
+  const parameterSerializedName = getLanguageMetadata(parameter.language)
+    .serializedName;
+
+  return fromExtension || parameterSerializedName;
 }
 
 export function desambiguateParameter(
