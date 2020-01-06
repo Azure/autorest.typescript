@@ -40,6 +40,9 @@ namespace AutoRest.TypeScript.Model
         private string _optionalParameterTypeForClientConstructor;
 
         [JsonIgnore]
+        public new string Name => base.Name.ToPascalCase();
+
+        [JsonIgnore]
         public string ContextName => Name + "Context";
 
         [JsonIgnore]
@@ -1208,10 +1211,12 @@ namespace AutoRest.TypeScript.Model
                     devDependencies.StringProperty("rollup-plugin-node-resolve", "^5.2.0");
                     devDependencies.StringProperty("rollup-plugin-sourcemaps", "^0.4.2");
                     devDependencies.StringProperty("uglify-js", "^3.6.0");
-                    if (!String.IsNullOrEmpty(Settings.Test)) {
+                    if (!String.IsNullOrEmpty(Settings.Test))
+                    {
                         devDependencies.StringProperty("mocha", "^6.2.0");
 
-                        if (!String.IsNullOrEmpty(Settings.TestDependencies)) {
+                        if (!String.IsNullOrEmpty(Settings.TestDependencies))
+                        {
                             string[] testDependencies = Settings.TestDependencies.Split(',', ';').Select(dep => dep.Trim()).ToArray();
                             foreach (string testDependency in testDependencies)
                             {
@@ -1256,13 +1261,15 @@ namespace AutoRest.TypeScript.Model
                     scripts.StringProperty("minify", $"\"uglifyjs -c -m --comments --source-map \\\"content='./dist/{bundleFileName}.js.map'\\\" -o ./dist/{bundleFileName}.min.js ./dist/{bundleFileName}.js\"");
 
                     string prepackCommand = "npm install && npm run build";
-                    if (HasTests) {
+                    if (HasTests)
+                    {
                         prepackCommand += " && npm run test";
                     }
 
                     scripts.StringProperty("prepack", prepackCommand);
 
-                    if (HasTests) {
+                    if (HasTests)
+                    {
                         scripts.StringProperty("test", TestCommand);
                     }
                 });
