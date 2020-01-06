@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { PropertyTypeDetails } from "../models/modelDetails";
 
 import { Schema, SchemaType, ConstantSchema } from "@azure-tools/codemodel";

@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { ParameterLocation } from "@azure-tools/codemodel";
 import {
   Project,

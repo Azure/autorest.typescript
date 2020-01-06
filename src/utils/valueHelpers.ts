@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { ValueSchema, SchemaType } from "@azure-tools/codemodel";
 
 export function getStringForValue(
