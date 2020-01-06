@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import {
   Schema,
   NumberSchema,
@@ -482,7 +485,7 @@ function extractObjectPropertyMapper({
   });
 }
 
-function getMapperOrRef(
+export function getMapperOrRef(
   schema: Schema,
   serializedName?: string,
   options?: EntityOptions
@@ -503,7 +506,7 @@ function getMapperOrRef(
   });
 }
 
-function isSchemaType(matchSchemas: SchemaType[], { type }: Schema) {
+export function isSchemaType(matchSchemas: SchemaType[], { type }: Schema) {
   return matchSchemas.includes(type);
 }
 
