@@ -14,7 +14,12 @@ export function getStringForValue(
     case SchemaType.Number:
     case SchemaType.Integer:
     case SchemaType.Boolean:
-    default:
+    case SchemaType.ByteArray:
+    case SchemaType.Date:
+    case SchemaType.DateTime:
+    case SchemaType.Duration:
       return value.toString();
+    default:
+      throw new Error(`Unexpected value type: ${valueType.type}`);
   }
 }
