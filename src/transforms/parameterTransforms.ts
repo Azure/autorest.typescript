@@ -32,17 +32,6 @@ export function transformParameters(codeModel: CodeModel): ParameterDetails[] {
   return parameters;
 }
 
-const extractGlobalParameters = (codeModel: CodeModel) =>
-  (codeModel.globalParameters || []).map(p => {
-    const serializedName = getLanguageMetadata(p.language).serializedName;
-    const nameRef = normalizeName(serializedName, NameType.Property);
-    return {
-      nameRef,
-      serializedName,
-      parameter: p
-    } as ParameterDetails;
-  });
-
 const extractOperationParameters = (codeModel: CodeModel) =>
   codeModel.operationGroups.reduce<OperationParameterDetails[]>(
     (acc, og) => [
