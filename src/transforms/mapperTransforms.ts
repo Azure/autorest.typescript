@@ -506,7 +506,7 @@ export function getMapperOrRef(
   });
 }
 
-function isSchemaType(matchSchemas: SchemaType[], { type }: Schema) {
+export function isSchemaType(matchSchemas: SchemaType[], { type }: Schema) {
   return matchSchemas.includes(type);
 }
 

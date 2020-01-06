@@ -5,6 +5,8 @@ import { ParameterLocation } from "@azure-tools/codemodel";
 import { Project, VariableDeclarationKind } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
 import { ParameterDetails } from "../models/parameterDetails";
+import { isString } from "util";
+import { Mapper } from "@azure/core-http";
 
 export function generateParameters(
   clientDetails: ClientDetails,
@@ -19,6 +21,11 @@ export function generateParameters(
   parametersFile.addImportDeclaration({
     namespaceImport: "coreHttp",
     moduleSpecifier: "@azure/core-http"
+  });
+
+  parametersFile.addImportDeclaration({
+    namespaceImport: "Mappers",
+    moduleSpecifier: "../models/mappers"
   });
 
   clientDetails.parameters.forEach(param => {
@@ -38,15 +45,28 @@ function buildParameterInitializer({
   location
 }: ParameterDetails) {
   const type = getParameterType(location);
-  const initializer = JSON.stringify({
-    parameterPath,
-    mapper
-  });
+  const initializer = getParameterInitializer(parameterPath, mapper);
   return {
     name: nameRef,
     type,
     initializer
   };
+}
+
+function getParameterInitializer(
+  parameterPath: string | string[],
+  mapper: string | Mapper
+) {
+  if (!isString(mapper)) {
+    return JSON.stringify({
+      parameterPath,
+      mapper: isString(mapper) ? `Mappers.${mapper}` : mapper
+    });
+  }
+
+  return `{parameterPath: ${JSON.stringify(
+    parameterPath
+  )}, mapper: Mappers.${mapper}}`;
 }
 
 function getParameterType(location: ParameterLocation) {

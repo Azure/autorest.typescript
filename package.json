@@ -16,7 +16,7 @@
         "debug": "node --inspect-brk ./dist/src/main.js",
         "generate-bodystring": "npm run build && autorest-beta --version:3.0.6179 --use:@autorest/modelerfour@4.2.99 --typescript --output-folder=./test/integration/generated/bodyString --use=. --title=BodyStringClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-string.json --package-name=bodyString --package-version=1.0.0-preview1",
         "generate-bodycomplex": "npm run build && autorest-beta --version:3.0.6179 --use:@autorest/modelerfour@4.2.99 --typescript --output-folder=./test/integration/generated/bodyComplex --use=. --title=BodyComplexClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-complex.json --package-name=bodyString --package-version=1.0.0-preview1",
-        "generate-url": "npm run build && autorest-beta --version:3.0.6179 --use:@autorest/modelerfour@4.2.99 --typescript --output-folder=./test/integration/generated/url --use=. --title=UrlClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/url.json --package-name=url --package-version=1.0.0-preview1"    
+        "generate-url": "npm run build && autorest-beta --version:3.0.6179 --use:@autorest/modelerfour@4.2.99 --typescript --output-folder=./test/integration/generated/url --use=. --title=UrlClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/url.json --package-name=url --package-version=1.0.0-preview1"
     },
     "dependencies": {
         "@autorest/autorest": "^3.0.6146",

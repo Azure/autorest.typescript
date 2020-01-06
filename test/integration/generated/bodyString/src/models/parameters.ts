@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import * as Mappers from "../models/mappers";
 
 export const $host: coreHttp.OperationParameter = {
   parameterPath: "$host",
@@ -14,7 +15,7 @@ export const $host: coreHttp.OperationParameter = {
 };
 
 export const stringBody: coreHttp.OperationParameter = {
-  parameterPath: ["options", null],
+  parameterPath: ["options", "stringBody"],
   mapper: {
     type: { name: "String" },
     serializedName: "stringBody",
@@ -24,6 +25,7 @@ export const stringBody: coreHttp.OperationParameter = {
 };
 
 export const stringBody1: coreHttp.OperationParameter = {
+  parameterPath: "stringBody",
   mapper: {
     type: { name: "String" },
     serializedName: "stringBody",
@@ -33,6 +35,7 @@ export const stringBody1: coreHttp.OperationParameter = {
 };
 
 export const stringBody2: coreHttp.OperationParameter = {
+  parameterPath: "stringBody",
   mapper: {
     type: { name: "String" },
     serializedName: "stringBody",
@@ -43,6 +46,7 @@ export const stringBody2: coreHttp.OperationParameter = {
 };
 
 export const stringBody3: coreHttp.OperationParameter = {
+  parameterPath: "stringBody",
   mapper: {
     type: { name: "String" },
     serializedName: "stringBody",
@@ -53,6 +57,7 @@ export const stringBody3: coreHttp.OperationParameter = {
 };
 
 export const stringBody4: coreHttp.OperationParameter = {
+  parameterPath: "stringBody",
   mapper: {
     type: { name: "Base64Url" },
     serializedName: "stringBody",
@@ -61,6 +66,7 @@ export const stringBody4: coreHttp.OperationParameter = {
 };
 
 export const stringBody5: coreHttp.OperationParameter = {
+  parameterPath: "stringBody",
   mapper: {
     type: {
       name: "Enum",
@@ -72,6 +78,7 @@ export const stringBody5: coreHttp.OperationParameter = {
 };
 
 export const enumStringBody: coreHttp.OperationParameter = {
+  parameterPath: "enumStringBody",
   mapper: {
     type: {
       name: "Enum",
@@ -83,8 +90,6 @@ export const enumStringBody: coreHttp.OperationParameter = {
 };
 
 export const enumStringBody1: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "enumStringBody",
-    type: { name: "Composite", className: "RefColorConstant" }
-  }
+  parameterPath: "enumStringBody",
+  mapper: Mappers.RefColorConstant
 };

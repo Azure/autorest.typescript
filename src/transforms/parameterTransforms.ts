@@ -4,12 +4,18 @@
 import {
   CodeModel,
   Parameter,
-  ParameterLocation
+  ParameterLocation,
+  SchemaType,
+  Schema
 } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { ParameterDetails } from "../models/parameterDetails";
-import { getMapperOrRef } from "./mapperTransforms";
+import {
+  isSchemaType,
+  getMapperClassName,
+  transformMapper
+} from "./mapperTransforms";
 import { isEqual, isNil } from "lodash";
 
 interface OperationParameterDetails {
@@ -79,10 +85,11 @@ export function populateOperationParameters(
       location: getParameterLocation(parameter),
       required: parameter.required,
       parameterPath: getParameterPath(parameter),
-      mapper: getMapperOrRef(parameter.schema, parameterSerializedName, {
-        required: parameter.required,
-        serializedName: parameterSerializedName
-      }),
+      mapper: getMapperOrRef(
+        parameter.schema,
+        parameterSerializedName,
+        parameter.required
+      ),
       isGlobal: getIsGlobal(parameter),
       parameter
     };
@@ -90,8 +97,8 @@ export function populateOperationParameters(
     return;
   }
 
-  //Desambiguate parameter
-  desambiguateParameter(
+  //Disambiguate parameter
+  disambiguateParameter(
     parameter,
     operationParameters,
     parameterSerializedName,
@@ -107,7 +114,8 @@ function getIsGlobal(parameter: Parameter) {
 }
 
 function getParameterPath(parameter: Parameter) {
-  const serializedName = getLanguageMetadata(parameter.language).serializedName;
+  const metadata = getLanguageMetadata(parameter.language);
+  const serializedName = metadata.serializedName || metadata.name;
   return parameter.required ? serializedName : ["options", serializedName];
 }
 
@@ -128,7 +136,7 @@ function getParameterName(parameter: Parameter) {
   return fromExtension || parameterSerializedName;
 }
 
-export function desambiguateParameter(
+export function disambiguateParameter(
   parameter: Parameter,
   operationParameters: ParameterDetails[],
   serializedName: string,
@@ -159,12 +167,26 @@ export function desambiguateParameter(
       required: parameter.required,
       parameterPath: getParameterPath(parameter),
       location: getParameterLocation(parameter),
-      mapper: getMapperOrRef(parameter.schema, serializedName, {
-        required: parameter.required,
-        serializedName
-      }),
+      mapper: getMapperOrRef(
+        parameter.schema,
+        serializedName,
+        parameter.required
+      ),
       isGlobal: getIsGlobal(parameter),
       parameter
     });
   }
+}
+
+function getMapperOrRef(
+  schema: Schema,
+  serializedName: string,
+  required?: boolean
+) {
+  if (isSchemaType([SchemaType.Object], schema)) {
+    const className = getMapperClassName(schema);
+    return className;
+  }
+
+  return transformMapper({ schema, options: { serializedName, required } });
 }

@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import * as Mappers from "../models/mappers";
 
 export const $host: coreHttp.OperationParameter = {
   parameterPath: "$host",
@@ -24,127 +25,91 @@ export const apiVersion: coreHttp.OperationQueryParameter = {
 };
 
 export const complexBody: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "Basic" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.Basic
 };
 
 export const complexBody1: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "IntWrapper" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.IntWrapper
 };
 
 export const complexBody2: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "LongWrapper" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.LongWrapper
 };
 
 export const complexBody3: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "FloatWrapper" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.FloatWrapper
 };
 
 export const complexBody4: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "DoubleWrapper" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.DoubleWrapper
 };
 
 export const complexBody5: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "BooleanWrapper" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.BooleanWrapper
 };
 
 export const complexBody6: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "StringWrapper" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.StringWrapper
 };
 
 export const complexBody7: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "DateWrapper" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.DateWrapper
 };
 
 export const complexBody8: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "DatetimeWrapper" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.DatetimeWrapper
 };
 
 export const complexBody9: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "Datetimerfc1123Wrapper" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.Datetimerfc1123Wrapper
 };
 
 export const complexBody10: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "DurationWrapper" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.DurationWrapper
 };
 
 export const complexBody11: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "ByteWrapper" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.ByteWrapper
 };
 
 export const complexBody12: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "ArrayWrapper" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.ArrayWrapper
 };
 
 export const complexBody13: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "DictionaryWrapper" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.DictionaryWrapper
 };
 
 export const complexBody14: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "Siamese" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.Siamese
 };
 
 export const complexBody15: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "Fish" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.Fish
 };
 
 export const complexBody16: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "Salmon" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.Salmon
 };
 
 export const complexBody17: coreHttp.OperationParameter = {
-  mapper: {
-    serializedName: "complexBody",
-    type: { name: "Composite", className: "ReadonlyObj" }
-  }
+  parameterPath: "complexBody",
+  mapper: Mappers.ReadonlyObj
 };
