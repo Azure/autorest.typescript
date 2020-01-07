@@ -15,7 +15,9 @@ import {
   ObjectSchema,
   ParameterLocation,
   ConstantSchema,
-  ConstantValue
+  ConstantValue,
+  Parameter,
+  StringSchema
 } from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { Mapper } from "@azure/core-http";
@@ -117,10 +119,13 @@ describe("OperationTransforms", () => {
         return response;
       };
 
-      const getOperation = (responseSchema?: SchemaResponse) => {
+      const getOperation = (
+        responseSchema?: SchemaResponse,
+        parameters: Parameter[] = []
+      ) => {
         return new Operation("", "", {
           request: {
-            parameters: [],
+            parameters,
             protocol: {
               http: {
                 path: operationPath,
@@ -159,24 +164,65 @@ describe("OperationTransforms", () => {
       it("should create an operation spec  with correct http details", () => {
         const okResponseSchema = get200ResponseSchema(constantSchema);
         const mockOperation = getOperation(okResponseSchema);
-        const operationDetails = transformOperation(mockOperation);
-        const operationSpec = transformOperationSpec(operationDetails);
+        const operationDetails = transformOperation(
+          mockOperation,
+          "MockOperationGroup"
+        );
+        const operationSpec = transformOperationSpec(operationDetails, []);
         checkHttpMethodAndPath(operationSpec);
       });
 
       it("should create an operation spec with correct responses from a basic response", () => {
         const mockOperation = getOperation();
-        const operationDetails = transformOperation(mockOperation);
-        const operationSpec = transformOperationSpec(operationDetails);
+        const operationDetails = transformOperation(
+          mockOperation,
+          "MockOperationGroup"
+        );
+        const operationSpec = transformOperationSpec(operationDetails, []);
         checkHttpMethodAndPath(operationSpec);
         assert.deepEqual(operationSpec.responses[200], {});
+      });
+
+      it("should create an operation spec with correct parameters", () => {
+        const parameter = new Parameter(
+          "mockParam",
+          "",
+          new StringSchema("stringSchema", ""),
+          {
+            language: { default: { serializedName: "mockParameter" } },
+            protocol: { http: { in: "body", style: "json" } }
+          }
+        );
+
+        const mockOperation = getOperation(undefined, [parameter]);
+        const operationDetails = transformOperation(
+          mockOperation,
+          "MockOperationGroup"
+        );
+        const operationSpec = transformOperationSpec(operationDetails, [
+          {
+            nameRef: "MockOperation",
+            operationsIn: ["MockOperationGroup_getNull"],
+            parameterPath: "mockOperation",
+            isGlobal: false,
+            mapper: "",
+            location: ParameterLocation.Body,
+            serializedName: "",
+            parameter
+          }
+        ]);
+        checkHttpMethodAndPath(operationSpec);
+        assert.deepEqual(operationSpec.requestBody!.nameRef, "MockOperation");
       });
 
       it("should create an operation spec with correct responses spec and cosntant schema response", () => {
         const okResponseSchema = get200ResponseSchema(constantSchema);
         const mockOperation = getOperation(okResponseSchema);
-        const operationDetails = transformOperation(mockOperation);
-        const operationSpec = transformOperationSpec(operationDetails);
+        const operationDetails = transformOperation(
+          mockOperation,
+          "MockOperationGroup"
+        );
+        const operationSpec = transformOperationSpec(operationDetails, []);
         checkHttpMethodAndPath(operationSpec);
         const okResponse = operationSpec.responses[200];
         assert.deepEqual((okResponse.bodyMapper as Mapper).type, {
@@ -191,8 +237,11 @@ describe("OperationTransforms", () => {
       it("should create an operation spec with correct responses spec and choice schema response", () => {
         const okResponseSchema = get200ResponseSchema(choice);
         const mockOperation = getOperation(okResponseSchema);
-        const operationDetails = transformOperation(mockOperation);
-        const operationSpec = transformOperationSpec(operationDetails);
+        const operationDetails = transformOperation(
+          mockOperation,
+          "MockOperationGroup"
+        );
+        const operationSpec = transformOperationSpec(operationDetails, []);
         checkHttpMethodAndPath(operationSpec);
         const okResponse = operationSpec.responses[200];
         assert.deepEqual((okResponse.bodyMapper as Mapper).type, {
