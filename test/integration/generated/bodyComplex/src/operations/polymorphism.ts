@@ -9,6 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
 import { BodyComplexClient } from "../bodyComplexClient";
 
 /**
@@ -544,10 +545,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.Fish
-  },
+  requestBody: Parameters.complexBody15,
   serializer
 };
 const getDotSyntaxOperationSpec: coreHttp.OperationSpec = {
@@ -610,10 +608,7 @@ const putComplicatedOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.Salmon
-  },
+  requestBody: Parameters.complexBody16,
   serializer
 };
 const putMissingDiscriminatorOperationSpec: coreHttp.OperationSpec = {
@@ -627,10 +622,7 @@ const putMissingDiscriminatorOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.Salmon
-  },
+  requestBody: Parameters.complexBody16,
   serializer
 };
 const putValidMissingRequiredOperationSpec: coreHttp.OperationSpec = {
@@ -641,9 +633,6 @@ const putValidMissingRequiredOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.Fish
-  },
+  requestBody: Parameters.complexBody15,
   serializer
 };

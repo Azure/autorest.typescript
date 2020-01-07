@@ -9,6 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
 import { BodyStringClient } from "../bodyStringClient";
 
 /**
@@ -256,15 +257,7 @@ const putNotExpandableOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "stringBody",
-    mapper: {
-      type: {
-        name: "Enum",
-        allowedValues: ["red color", "green-color", "blue_color"]
-      }
-    }
-  },
+  requestBody: Parameters.stringBody5,
   serializer
 };
 const getReferencedOperationSpec: coreHttp.OperationSpec = {
@@ -293,15 +286,7 @@ const putReferencedOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "enumStringBody",
-    mapper: {
-      type: {
-        name: "Enum",
-        allowedValues: ["red color", "green-color", "blue_color"]
-      }
-    }
-  },
+  requestBody: Parameters.enumStringBody,
   serializer
 };
 const getReferencedConstantOperationSpec: coreHttp.OperationSpec = {
@@ -325,9 +310,6 @@ const putReferencedConstantOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "enumStringBody",
-    mapper: Mappers.RefColorConstant
-  },
+  requestBody: Parameters.enumStringBody1,
   serializer
 };

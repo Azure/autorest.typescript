@@ -9,6 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
 import { BodyComplexClient } from "../bodyComplexClient";
 
 /**
@@ -229,10 +230,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.Basic
-  },
+  requestBody: Parameters.complexBody,
   queryParameters: [
     {
       parameterPath: "ApiVersion",

@@ -33,12 +33,14 @@ export function transformParameters(codeModel: CodeModel): ParameterDetails[] {
 }
 
 const extractOperationParameters = (codeModel: CodeModel) =>
-  codeModel.operationGroups.reduce<OperationParameterDetails[]>(
-    (acc, og) => [
+  codeModel.operationGroups.reduce<OperationParameterDetails[]>((acc, og) => {
+    const groupName = getLanguageMetadata(og.language).name;
+    return [
       ...acc,
       ...og.operations.reduce<OperationParameterDetails[]>(
         (operations, operation) => {
-          const operationName = getLanguageMetadata(operation.language).name;
+          const opName = getLanguageMetadata(operation.language).name;
+          const operationName = `${groupName}_${opName}`;
           const operationParams: OperationParameterDetails[] = (
             operation.request.parameters || []
           ).map(p => ({ parameter: p, operationName }));
@@ -46,9 +48,8 @@ const extractOperationParameters = (codeModel: CodeModel) =>
         },
         []
       )
-    ],
-    []
-  );
+    ];
+  }, []);
 
 export function populateOperationParameters(
   parameter: Parameter,

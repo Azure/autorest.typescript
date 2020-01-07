@@ -9,6 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
 import { BodyComplexClient } from "../bodyComplexClient";
 
 /**
@@ -240,10 +241,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.DictionaryWrapper
-  },
+  requestBody: Parameters.complexBody13,
   serializer
 };
 const getEmptyOperationSpec: coreHttp.OperationSpec = {
@@ -267,10 +265,7 @@ const putEmptyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.DictionaryWrapper
-  },
+  requestBody: Parameters.complexBody13,
   serializer
 };
 const getNullOperationSpec: coreHttp.OperationSpec = {

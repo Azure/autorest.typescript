@@ -4,6 +4,7 @@
 import { ParameterLocation, HttpMethod } from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { Mapper, OperationQueryParameter } from "@azure/core-http";
+import { ParameterDetails } from "./parameterDetails";
 
 /**
  * Details of an operation request parameter, transformed from Request.
@@ -43,6 +44,7 @@ export interface OperationResponseDetails {
  */
 export interface OperationDetails {
   name: string;
+  fullName: string;
   description: string;
   apiVersions: string[];
   request: OperationRequestDetails;
@@ -56,7 +58,7 @@ export interface OperationSpecDetails {
   path: string;
   httpMethod: string;
   responses: OperationSpecResponses;
-  requestBody?: OperationSpecRequest;
+  requestBody?: ParameterDetails;
   queryParameters?: OperationQueryParameter[];
 }
 

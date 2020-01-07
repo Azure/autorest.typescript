@@ -6,5 +6,161 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+const parameters = [
+  {
+    nameRef: "$host",
+    serializedName: "$host",
+    operationsIn: [
+      "string_getNull",
+      "string_putNull",
+      "string_getEmpty",
+      "string_putEmpty",
+      "string_getMbcs",
+      "string_putMbcs",
+      "string_getWhitespace",
+      "string_putWhitespace",
+      "string_getNotProvided",
+      "string_getBase64Encoded",
+      "string_getBase64UrlEncoded",
+      "string_putBase64UrlEncoded",
+      "string_getNullBase64UrlEncoded",
+      "enum_getNotExpandable",
+      "enum_putNotExpandable",
+      "enum_getReferenced",
+      "enum_putReferenced",
+      "enum_getReferencedConstant",
+      "enum_putReferencedConstant"
+    ],
+    location: "uri",
+    required: true,
+    parameterPath: "$host",
+    mapper: {
+      type: { name: "String" },
+      serializedName: "$host",
+      required: true
+    },
+    isGlobal: false
+  },
+  {
+    nameRef: "stringBody",
+    serializedName: "stringBody",
+    operationsIn: ["string_putNull"],
+    location: "body",
+    parameterPath: ["options", "stringBody"],
+    mapper: {
+      type: { name: "String" },
+      serializedName: "stringBody",
+      defaultValue: null,
+      isConstant: true
+    },
+    isGlobal: false
+  },
+  {
+    nameRef: "stringBody1",
+    serializedName: "stringBody",
+    operationsIn: ["string_putEmpty"],
+    required: true,
+    parameterPath: "stringBody",
+    location: "body",
+    mapper: {
+      type: { name: "String" },
+      serializedName: "stringBody",
+      defaultValue: "",
+      isConstant: true
+    },
+    isGlobal: false
+  },
+  {
+    nameRef: "stringBody2",
+    serializedName: "stringBody",
+    operationsIn: ["string_putMbcs"],
+    required: true,
+    parameterPath: "stringBody",
+    location: "body",
+    mapper: {
+      type: { name: "String" },
+      serializedName: "stringBody",
+      defaultValue:
+        "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€",
+      isConstant: true
+    },
+    isGlobal: false
+  },
+  {
+    nameRef: "stringBody3",
+    serializedName: "stringBody",
+    operationsIn: ["string_putWhitespace"],
+    required: true,
+    parameterPath: "stringBody",
+    location: "body",
+    mapper: {
+      type: { name: "String" },
+      serializedName: "stringBody",
+      defaultValue:
+        "    Now is the time for all good men to come to the aid of their country    ",
+      isConstant: true
+    },
+    isGlobal: false
+  },
+  {
+    nameRef: "stringBody4",
+    serializedName: "stringBody",
+    operationsIn: ["string_putBase64UrlEncoded"],
+    required: true,
+    parameterPath: "stringBody",
+    location: "body",
+    mapper: {
+      type: { name: "Base64Url" },
+      serializedName: "stringBody",
+      required: true
+    },
+    isGlobal: false
+  },
+  {
+    nameRef: "stringBody5",
+    serializedName: "stringBody",
+    operationsIn: ["enum_putNotExpandable"],
+    required: true,
+    parameterPath: "stringBody",
+    location: "body",
+    mapper: {
+      type: {
+        name: "Enum",
+        allowedValues: ["red color", "green-color", "blue_color"]
+      },
+      serializedName: "stringBody",
+      required: true
+    },
+    isGlobal: false
+  },
+  {
+    nameRef: "enumStringBody",
+    serializedName: "enumStringBody",
+    operationsIn: ["enum_putReferenced"],
+    location: "body",
+    required: true,
+    parameterPath: "enumStringBody",
+    mapper: {
+      type: {
+        name: "Enum",
+        allowedValues: ["red color", "green-color", "blue_color"]
+      },
+      serializedName: "enumStringBody",
+      required: true
+    },
+    isGlobal: false
+  },
+  {
+    nameRef: "enumStringBody1",
+    serializedName: "enumStringBody",
+    operationsIn: ["enum_putReferencedConstant"],
+    required: true,
+    parameterPath: "enumStringBody",
+    location: "body",
+    mapper: "RefColorConstant",
+    isGlobal: false
+  }
+];
+
 export * from "./string";
 export * from "./enum";

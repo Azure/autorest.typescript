@@ -35,18 +35,26 @@ import {
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getTypeForSchema } from "../utils/schemaHelpers";
 import { getMapperTypeFromSchema } from "./mapperTransforms";
+import { ParameterDetails } from "../models/parameterDetails";
 
 export function transformOperationSpec(
-  operationDetails: OperationDetails
+  operationDetails: OperationDetails,
+  parameters: ParameterDetails[]
 ): OperationSpecDetails {
   // Extract protocol information
   const requestSpec = extractSpecRequest(operationDetails);
   const httpInfo = extractHttpDetails(operationDetails.request);
   const queryParameters = requestSpec && requestSpec.queryParameters;
+  const requestBody = parameters
+    .filter(p => p.location === ParameterLocation.Body)
+    .find(
+      p =>
+        p.operationsIn && p.operationsIn.indexOf(operationDetails.fullName) > -1
+    );
   return {
     ...httpInfo,
     responses: extractSpecResponses(operationDetails),
-    requestBody: requestSpec,
+    requestBody: requestBody,
     ...(queryParameters && queryParameters.length && { queryParameters })
   };
 }
@@ -245,10 +253,15 @@ export function transformOperationResponse(
   }
 }
 
-export function transformOperation(operation: Operation): OperationDetails {
+export function transformOperation(
+  operation: Operation,
+  operationGroupName: string
+): OperationDetails {
   const metadata = getLanguageMetadata(operation.language);
+  const name = normalizeName(metadata.name, NameType.Property);
   return {
-    name: normalizeName(metadata.name, NameType.Property),
+    name,
+    fullName: `${operationGroupName}_${name}`,
     apiVersions: operation.apiVersions
       ? operation.apiVersions.map(v => v.version)
       : [],
@@ -262,10 +275,13 @@ export function transformOperationGroup(
   operationGroup: OperationGroup
 ): OperationGroupDetails {
   const metadata = getLanguageMetadata(operationGroup.language);
+  const name = normalizeName(metadata.name, NameType.Property);
   return {
-    name: normalizeName(metadata.name, NameType.Property),
+    name,
     key: operationGroup.$key,
-    operations: operationGroup.operations.map(transformOperation)
+    operations: operationGroup.operations.map(operation =>
+      transformOperation(operation, name)
+    )
   };
 }
 

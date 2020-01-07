@@ -15,12 +15,13 @@ import {
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
 import { transformOperationSpec } from "../transforms/operationTransforms";
-import { Mapper, MapperType } from "@azure/core-http";
+import { MapperType } from "@azure/core-http";
 import {
   OperationGroupDetails,
   OperationSpecDetails
 } from "../models/operationDetails";
 import { isString } from "util";
+import { ParameterDetails } from "../models/parameterDetails";
 
 /**
  * Function that writes the code for all the operations.
@@ -46,6 +47,20 @@ export function generateOperations(
     undefined,
     { overwrite: true }
   );
+
+  operationIndexFile.addVariableStatement({
+    declarationKind: VariableDeclarationKind.Const,
+    declarations: [
+      {
+        name: "parameters",
+        initializer: JSON.stringify(
+          clientDetails.parameters.map(({ parameter, ...rest }) => ({
+            ...rest
+          }))
+        )
+      }
+    ]
+  });
 
   operationIndexFile.addExportDeclarations(
     fileNames.map(fileName => {
@@ -74,7 +89,11 @@ function generateOperation(
 
   addImports(operationGroupFile, clientDetails);
   addClass(operationGroupFile, operationGroupDetails, clientDetails);
-  addOperationSpecs(operationGroupDetails, operationGroupFile);
+  addOperationSpecs(
+    operationGroupDetails,
+    operationGroupFile,
+    clientDetails.parameters
+  );
 }
 
 /**
@@ -99,21 +118,15 @@ function buildSpec(spec: OperationSpecDetails): string {
  * This function transforms the requestBody of OperationSpecDetails into its string representation
  * to insert in generated files
  */
-function buildRequestBody({ requestBody }: OperationSpecDetails): string {
-  if (!requestBody) {
+function buildRequestBody({
+  requestBody,
+  httpMethod
+}: OperationSpecDetails): string {
+  if (!requestBody || httpMethod === "GET") {
     return "";
   }
 
-  // If requestBody mapper is a string it is just a reference to an existing mapper in
-  // the generated mappers file, so just use the string, otherwise stringify the actual mapper
-  const mapper = !(requestBody.mapper as Mapper).type
-    ? requestBody.mapper
-    : JSON.stringify(requestBody.mapper);
-
-  return `requestBody: {
-      parameterPath: "${requestBody.parameterPath}",
-      mapper: ${mapper}
-    },`;
+  return `requestBody: Parameters.${requestBody.nameRef},`;
 }
 
 /**
@@ -315,7 +328,8 @@ function generateOperationJSDoc(
  */
 function addOperationSpecs(
   operationGroupDetails: OperationGroupDetails,
-  file: SourceFile
+  file: SourceFile,
+  parameters: ParameterDetails[]
 ): void {
   file.addStatements("// Operation Specifications");
   file.addVariableStatement({
@@ -330,7 +344,7 @@ function addOperationSpecs(
 
   operationGroupDetails.operations.forEach(operation => {
     const operationName = normalizeName(operation.name, NameType.Property);
-    const operationSpec = transformOperationSpec(operation);
+    const operationSpec = transformOperationSpec(operation, parameters);
     file.addVariableStatement({
       declarationKind: VariableDeclarationKind.Const,
       declarations: [
@@ -364,6 +378,11 @@ function addImports(
   operationGroupFile.addImportDeclaration({
     namespaceImport: "Mappers",
     moduleSpecifier: "../models/mappers"
+  });
+
+  operationGroupFile.addImportDeclaration({
+    namespaceImport: "Parameters",
+    moduleSpecifier: "../models/parameters"
   });
 
   operationGroupFile.addImportDeclaration({
