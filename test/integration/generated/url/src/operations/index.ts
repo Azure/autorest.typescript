@@ -6,5 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./string";
-export * from "./enum";
+export * from "./paths";
+export * from "./queries";
+export * from "./pathItems";

@@ -42,20 +42,19 @@ export function transformOperationSpec(
   parameters: ParameterDetails[]
 ): OperationSpecDetails {
   // Extract protocol information
-  const requestSpec = extractSpecRequest(operationDetails);
+  const operationFullName = operationDetails.fullName;
   const httpInfo = extractHttpDetails(operationDetails.request);
-  const queryParameters = requestSpec && requestSpec.queryParameters;
-  const requestBody = parameters
-    .filter(p => p.location === ParameterLocation.Body)
-    .find(
-      p =>
-        p.operationsIn && p.operationsIn.indexOf(operationDetails.fullName) > -1
-    );
+  const { requestBody, queryParameters, urlParameters } = getGroupedParameters(
+    parameters,
+    operationFullName
+  );
+
   return {
     ...httpInfo,
     responses: extractSpecResponses(operationDetails),
-    requestBody: requestBody,
-    ...(queryParameters && queryParameters.length && { queryParameters })
+    requestBody,
+    ...(queryParameters && queryParameters.length && { queryParameters }),
+    ...(urlParameters && urlParameters.length && { urlParameters })
   };
 }
 
@@ -261,7 +260,7 @@ export function transformOperation(
   const name = normalizeName(metadata.name, NameType.Property);
   return {
     name,
-    fullName: `${operationGroupName}_${name}`,
+    fullName: `${operationGroupName}_${name}`.toLowerCase(),
     apiVersions: operation.apiVersions
       ? operation.apiVersions.map(v => v.version)
       : [],
@@ -282,6 +281,34 @@ export function transformOperationGroup(
     operations: operationGroup.operations.map(operation =>
       transformOperation(operation, name)
     )
+  };
+}
+
+function getGroupedParameters(
+  parameters: ParameterDetails[],
+  operationFullname: string
+) {
+  return {
+    requestBody: parameters
+      .filter(p => p.location === ParameterLocation.Body)
+      .find(
+        p => p.operationsIn && p.operationsIn.indexOf(operationFullname) > -1
+      ),
+    queryParameters: parameters.filter(
+      p =>
+        p.location === ParameterLocation.Query &&
+        p.operationsIn &&
+        p.operationsIn.indexOf(operationFullname) > -1
+    ),
+    urlParameters: parameters.filter(
+      p =>
+        p.location === ParameterLocation.Path &&
+        p.operationsIn &&
+        p.operationsIn.indexOf(operationFullname) > -1
+    ),
+    header: parameters.filter(p => p.location === ParameterLocation.Header),
+    cookie: parameters.filter(p => p.location === ParameterLocation.Cookie),
+    uri: parameters.filter(p => p.location === ParameterLocation.Uri)
   };
 }
 

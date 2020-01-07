@@ -40,7 +40,7 @@ const extractOperationParameters = (codeModel: CodeModel) =>
       ...og.operations.reduce<OperationParameterDetails[]>(
         (operations, operation) => {
           const opName = getLanguageMetadata(operation.language).name;
-          const operationName = `${groupName}_${opName}`;
+          const operationName = `${groupName}_${opName}`.toLowerCase();
           const operationParams: OperationParameterDetails[] = (
             operation.request.parameters || []
           ).map(p => ({ parameter: p, operationName }));

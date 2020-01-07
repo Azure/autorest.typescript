@@ -166,8 +166,8 @@ describe("parameterTransforms", () => {
         p => p.nameRef === "mockParam1"
       )!;
 
-      assert.deepEqual(p1.operationsIn, ["OperationGroup1_operation1"]);
-      assert.deepEqual(p2.operationsIn, ["OperationGroup2_operation2"]);
+      assert.deepEqual(p1.operationsIn, ["operationgroup1_operation1"]);
+      assert.deepEqual(p2.operationsIn, ["operationgroup2_operation2"]);
       assert.equal(p1.parameter, param1);
       assert.equal(p2.parameter, param2);
     });
@@ -235,8 +235,8 @@ describe("parameterTransforms", () => {
       )!;
 
       assert.deepEqual(p1.operationsIn, [
-        "OperationGroup1_operation1",
-        "OperationGroup2_operation2"
+        "operationgroup1_operation1",
+        "operationgroup2_operation2"
       ]);
       assert.equal(p1.parameter, param1);
     });
@@ -307,8 +307,8 @@ describe("parameterTransforms", () => {
         p => p.nameRef === "mockParam2"
       )!;
 
-      assert.deepEqual(p1.operationsIn, ["OperationGroup1_operation1"]);
-      assert.deepEqual(p2.operationsIn, ["OperationGroup1_operation1"]);
+      assert.deepEqual(p1.operationsIn, ["operationgroup1_operation1"]);
+      assert.deepEqual(p2.operationsIn, ["operationgroup1_operation1"]);
 
       assert.equal(p1.parameter, param1);
       assert.equal(p2.parameter, param2);

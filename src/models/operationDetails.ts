@@ -59,7 +59,8 @@ export interface OperationSpecDetails {
   httpMethod: string;
   responses: OperationSpecResponses;
   requestBody?: ParameterDetails;
-  queryParameters?: OperationQueryParameter[];
+  queryParameters?: ParameterDetails[];
+  urlParameters?: ParameterDetails[];
 }
 
 /**

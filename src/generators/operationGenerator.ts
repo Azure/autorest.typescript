@@ -48,19 +48,19 @@ export function generateOperations(
     { overwrite: true }
   );
 
-  operationIndexFile.addVariableStatement({
-    declarationKind: VariableDeclarationKind.Const,
-    declarations: [
-      {
-        name: "parameters",
-        initializer: JSON.stringify(
-          clientDetails.parameters.map(({ parameter, ...rest }) => ({
-            ...rest
-          }))
-        )
-      }
-    ]
-  });
+  // operationIndexFile.addVariableStatement({
+  //   declarationKind: VariableDeclarationKind.Const,
+  //   declarations: [
+  //     {
+  //       name: "parameters",
+  //       initializer: JSON.stringify(
+  //         clientDetails.parameters.map(({ parameter, ...rest }) => ({
+  //           ...rest
+  //         }))
+  //       )
+  //     }
+  //   ]
+  // });
 
   operationIndexFile.addExportDeclarations(
     fileNames.map(fileName => {
@@ -103,14 +103,13 @@ function generateOperation(
 function buildSpec(spec: OperationSpecDetails): string {
   const responses = buildResponses(spec);
   const requestBody = buildRequestBody(spec);
-  const queryParams = spec.queryParameters
-    ? `queryParameters: ${JSON.stringify(spec.queryParameters)},`
-    : "";
+  const queryParams = buildParameters(spec, "queryParameters");
+  const urlParams = buildParameters(spec, "urlParameters");
   return `{ path: "${spec.path}", httpMethod: "${
     spec.httpMethod
   }", responses: {${responses.join(
     ", "
-  )}},${requestBody}${queryParams}serializer
+  )}},${requestBody}${queryParams}${urlParams}serializer
     }`;
 }
 
@@ -127,6 +126,22 @@ function buildRequestBody({
   }
 
   return `requestBody: Parameters.${requestBody.nameRef},`;
+}
+
+function buildParameters(
+  operationSpec: OperationSpecDetails,
+  parameterGroupName: string
+): string {
+  const parameterGroup: ParameterDetails[] | undefined = (operationSpec as any)[
+    parameterGroupName
+  ];
+  if (!parameterGroup || !parameterGroup.length) {
+    return "";
+  }
+
+  const parameters = parameterGroup.map(param => `Parameters.${param.nameRef}`);
+
+  return `${parameterGroupName}: [${parameters.join()}],`;
 }
 
 /**

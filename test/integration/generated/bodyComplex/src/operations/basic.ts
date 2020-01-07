@@ -231,17 +231,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody,
-  queryParameters: [
-    {
-      parameterPath: "ApiVersion",
-      mapper: {
-        type: { name: "String" },
-        isConstant: true,
-        defaultValue: "2016-02-29",
-        serializedName: "api-version"
-      }
-    }
-  ],
+  queryParameters: [Parameters.apiVersion],
   serializer
 };
 const getInvalidOperationSpec: coreHttp.OperationSpec = {

@@ -202,7 +202,7 @@ describe("OperationTransforms", () => {
         const operationSpec = transformOperationSpec(operationDetails, [
           {
             nameRef: "MockOperation",
-            operationsIn: ["MockOperationGroup_getNull"],
+            operationsIn: ["mockoperationgroup_getnull"],
             parameterPath: "mockOperation",
             isGlobal: false,
             mapper: "",
