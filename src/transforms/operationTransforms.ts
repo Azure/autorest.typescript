@@ -288,27 +288,26 @@ function getGroupedParameters(
   parameters: ParameterDetails[],
   operationFullname: string
 ) {
+  const operationParams = parameters.filter(
+    p => p.operationsIn && p.operationsIn.indexOf(operationFullname) > -1
+  );
   return {
-    requestBody: parameters
-      .filter(p => p.location === ParameterLocation.Body)
-      .find(
-        p => p.operationsIn && p.operationsIn.indexOf(operationFullname) > -1
-      ),
-    queryParameters: parameters.filter(
-      p =>
-        p.location === ParameterLocation.Query &&
-        p.operationsIn &&
-        p.operationsIn.indexOf(operationFullname) > -1
+    requestBody: operationParams.find(
+      p => p.location === ParameterLocation.Body
     ),
-    urlParameters: parameters.filter(
-      p =>
-        p.location === ParameterLocation.Path &&
-        p.operationsIn &&
-        p.operationsIn.indexOf(operationFullname) > -1
+    queryParameters: operationParams.filter(
+      p => p.location === ParameterLocation.Query
     ),
-    header: parameters.filter(p => p.location === ParameterLocation.Header),
-    cookie: parameters.filter(p => p.location === ParameterLocation.Cookie),
-    uri: parameters.filter(p => p.location === ParameterLocation.Uri)
+    urlParameters: operationParams.filter(
+      p => p.location === ParameterLocation.Path
+    ),
+    header: operationParams.filter(
+      p => p.location === ParameterLocation.Header
+    ),
+    cookie: operationParams.filter(
+      p => p.location === ParameterLocation.Cookie
+    ),
+    uri: operationParams.filter(p => p.location === ParameterLocation.Uri)
   };
 }
 
