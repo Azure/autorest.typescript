@@ -363,6 +363,34 @@ export class Paths {
   }
 
   /**
+   * Get 'begin!*'();:@&=+$,end
+   * @param options The options parameters.
+   */
+  stringUrlNonEncoded(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  /**
+   * @param callback The callback.
+   */
+  stringUrlNonEncoded(callback: coreHttp.ServiceCallback<any>): void;
+  /**
+   * @param options The options parameters.
+   * @param callback The callback.
+   */
+  stringUrlNonEncoded(
+    options: coreHttp.RequestOptionsBase,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
+  stringUrlNonEncoded(
+    options?: coreHttp.RequestOptionsBase,
+    callback?: coreHttp.ServiceCallback<any>
+  ): Promise<any> {
+    return this.client.sendOperationRequest(
+      { options },
+      stringUrlNonEncodedOperationSpec,
+      callback
+    );
+  }
+
+  /**
    * Get ''
    * @param options The options parameters.
    */
@@ -986,6 +1014,17 @@ const stringUrlEncodedOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.stringPath1],
   serializer
 };
+const stringUrlNonEncodedOperationSpec: coreHttp.OperationSpec = {
+  path: "/paths/string/begin!*'();:@&=+$,end/{stringPath}",
+  httpMethod: "GET",
+  responses: {
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.stringPath2],
+  serializer
+};
 const stringEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/string/empty/{stringPath}",
   httpMethod: "GET",
@@ -994,7 +1033,7 @@ const stringEmptyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.stringPath2],
+  urlParameters: [Parameters.stringPath3],
   serializer
 };
 const stringNullOperationSpec: coreHttp.OperationSpec = {
@@ -1005,7 +1044,7 @@ const stringNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.stringPath3],
+  urlParameters: [Parameters.stringPath4],
   serializer
 };
 const enumValidOperationSpec: coreHttp.OperationSpec = {

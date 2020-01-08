@@ -284,4 +284,4 @@ export type CMYKColors = "cyan" | "Magenta" | "YELLOW" | "blacK";
 /**
  * Defines values for GoblinSharkColor.
  */
-export type GoblinSharkColor = "pink" | "gray" | "brown";
+export type GoblinSharkColor = "pink" | "gray" | "brown" | "RED" | "red";

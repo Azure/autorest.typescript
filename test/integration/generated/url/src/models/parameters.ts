@@ -144,11 +144,21 @@ export const stringPath2: coreHttp.OperationURLParameter = {
     type: { name: "String" },
     serializedName: "stringPath",
     isConstant: true,
-    defaultValue: ""
+    defaultValue: "begin!*'();:@&=+$,end"
   }
 };
 
 export const stringPath3: coreHttp.OperationURLParameter = {
+  parameterPath: "stringPath",
+  mapper: {
+    type: { name: "String" },
+    serializedName: "stringPath",
+    isConstant: true,
+    defaultValue: ""
+  }
+};
+
+export const stringPath4: coreHttp.OperationURLParameter = {
   parameterPath: "stringPath",
   mapper: {
     type: { name: "String" },
@@ -507,7 +517,8 @@ export const arrayQuery: coreHttp.OperationQueryParameter = {
       element: { type: { name: "String" }, serializedName: "string" }
     },
     serializedName: "arrayQuery"
-  }
+  },
+  collectionFormat: coreHttp.QueryCollectionFormat.Csv
 };
 
 export const arrayQuery1: coreHttp.OperationQueryParameter = {
@@ -518,7 +529,8 @@ export const arrayQuery1: coreHttp.OperationQueryParameter = {
       element: { type: { name: "String" }, serializedName: "string" }
     },
     serializedName: "arrayQuery"
-  }
+  },
+  collectionFormat: coreHttp.QueryCollectionFormat.Ssv
 };
 
 export const arrayQuery2: coreHttp.OperationQueryParameter = {
@@ -529,7 +541,8 @@ export const arrayQuery2: coreHttp.OperationQueryParameter = {
       element: { type: { name: "String" }, serializedName: "string" }
     },
     serializedName: "arrayQuery"
-  }
+  },
+  collectionFormat: coreHttp.QueryCollectionFormat.Tsv
 };
 
 export const arrayQuery3: coreHttp.OperationQueryParameter = {
@@ -540,7 +553,8 @@ export const arrayQuery3: coreHttp.OperationQueryParameter = {
       element: { type: { name: "String" }, serializedName: "string" }
     },
     serializedName: "arrayQuery"
-  }
+  },
+  collectionFormat: coreHttp.QueryCollectionFormat.Pipes
 };
 
 export const pathItemStringPath: coreHttp.OperationURLParameter = {
@@ -570,7 +584,7 @@ export const globalStringPath: coreHttp.OperationURLParameter = {
 };
 
 export const globalStringQuery: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "globalStringQuery"],
+  parameterPath: "globalStringQuery",
   mapper: {
     type: { name: "String" },
     serializedName: "globalStringQuery"

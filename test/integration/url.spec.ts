@@ -5,7 +5,11 @@ describe("Integration tests for Url", () => {
   let client: UrlClient;
 
   beforeEach(() => {
-    client = new UrlClient();
+    const clientOptions = {
+      noRetryPolicy: true,
+      baseUri: "http://localhost:3000"
+    };
+    client = new UrlClient("globalStringPath", clientOptions);
   });
 
   describe("paths", () => {
@@ -20,7 +24,7 @@ describe("Integration tests for Url", () => {
 
     it("should work when path has  multi-byte byte values", async () => {
       //TODO: Check browser compatibility
-      const byteArray = Buffer.from("啊齄丂狛狜隣郎隣兀﨩", "utf-8");
+      const byteArray = stringToByteArray("啊齄丂狛狜隣郎隣兀﨩");
       const result = await client.paths.byteMultiByte(byteArray);
       assert.notEqual(result, undefined);
     });
@@ -34,7 +38,7 @@ describe("Integration tests for Url", () => {
 
     it("should work when path has base64url encoded string", async () => {
       //TODO: Check browser compatibility
-      const byteArray = Buffer.from("lorem", "utf-8");
+      const byteArray = stringToByteArray("lorem");
       await client.paths.base64Url(byteArray);
     });
 
@@ -107,22 +111,140 @@ describe("Integration tests for Url", () => {
     });
   });
 
-  describe.skip("pathItems", () => {
-    it("should work when use values in different portion of url", async function() {
-      var optionalParams = {
+  describe("pathItems", () => {
+    it("getAllWithValues should work when use values in different portion of url", async function() {
+      client.globalStringQuery = "globalStringQuery";
+      const optionalParams = {
         localStringQuery: "localStringQuery",
         pathItemStringQuery: "pathItemStringQuery"
       };
 
       await client.pathItems.getAllWithValues(
-        "localStringPath",
         "pathItemStringPath",
+        "localStringPath",
+        optionalParams
+      );
+      assert.ok("Call succeeded");
+    });
+
+    it("getGlobalAndLocalQueryNull should work when use null values in different portion of url", async function() {
+      client.globalStringQuery = null;
+      const optionalParams = {
+        localStringQuery: null,
+        pathItemStringQuery: "pathItemStringQuery"
+      };
+
+      await client.pathItems.getGlobalAndLocalQueryNull(
+        "pathItemStringPath",
+        "localStringPath",
+        optionalParams
+      );
+      assert.ok("Call succeeded");
+    });
+
+    it("getGlobalQueryNull should work when use null values in different portion of url", async function() {
+      // INVESTIGATE
+      client.globalStringQuery = null;
+      const optionalParams = {
+        localStringQuery: "localStringQuery",
+        pathItemStringQuery: "pathItemStringQuery"
+      };
+
+      await client.pathItems.getGlobalQueryNull(
+        "pathItemStringPath",
+        "localStringPath",
+        optionalParams
+      );
+      assert.ok("Call succeeded");
+    });
+
+    it("getLocalPathItemQueryNull should work when use null values in different portion of url", async function() {
+      client.globalStringQuery = "globalStringQuery";
+      const optionalParams = {
+        localStringQuery: null,
+        pathItemStringQuery: null
+      };
+
+      await client.pathItems.getLocalPathItemQueryNull(
+        "pathItemStringPath",
+        "localStringPath",
         optionalParams
       );
       assert.ok("Call succeeded");
     });
   });
+  describe("queries", () => {
+    it("should work when query has bool", async function() {
+      await client.queries.getBooleanTrue();
+      await client.queries.getBooleanFalse();
+      assert.ok("Call succeeded");
+    });
+
+    it("should work when query has float values", async function() {
+      await client.queries.floatScientificNegative();
+      await client.queries.floatScientificPositive();
+      assert.ok("Call succeeded");
+    });
+
+    it("should work when query has int values", async function() {
+      await client.queries.getIntNegativeOneMillion();
+      await client.queries.getIntOneMillion();
+      assert.ok("Call succeeded");
+    });
+
+    it("should work when query has billion values", async () => {
+      await client.queries.getNegativeTenBillion();
+      await client.queries.getTenBillion();
+      assert.ok("Call succeeded");
+    });
+
+    it("should work when query has string values", async () => {
+      await client.queries.stringEmpty();
+      await client.queries.stringUrlEncoded();
+      assert.ok("Call succeeded");
+    });
+
+    it("should work when query has datetime", async () => {
+      await client.queries.dateTimeValid();
+      assert.ok("Call succeeded");
+    });
+
+    it("should work when query has byte values", async function() {
+      await client.queries.byteEmpty();
+      await client.queries.byteMultiByte({
+        byteQuery: stringToByteArray("啊齄丂狛狜隣郎隣兀﨩")
+      });
+    });
+
+    it("should work when query has enum values", async function() {
+      await shouldThrow(() =>
+        client.queries.enumValid({ enumQuery: <UrlModels.UriColor>"" })
+      );
+      await client.queries.enumNull({ enumQuery: null });
+      await client.queries.enumValid({ enumQuery: "green color" });
+      assert.ok("Call succeeded");
+    });
+
+    it("should work when query has string array values", async function() {
+      const testArray = [
+        "ArrayQuery1",
+        "begin!*'();:@ &=+$,/?#[]end",
+        null,
+        ""
+      ];
+      await client.queries.arrayStringCsvEmpty({ arrayQuery: [] });
+      await client.queries.arrayStringCsvValid({ arrayQuery: testArray });
+      await client.queries.arrayStringPipesValid({ arrayQuery: testArray });
+      await client.queries.arrayStringSsvValid({ arrayQuery: testArray });
+      await client.queries.arrayStringTsvValid({ arrayQuery: testArray });
+    });
+  });
 });
+
+function stringToByteArray(str: string) {
+  // TODO make this work for browser
+  return Buffer.from(str, "utf-8");
+}
 
 async function shouldThrow(fn: () => Promise<any>) {
   let threw = false;

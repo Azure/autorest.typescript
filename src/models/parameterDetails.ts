@@ -17,4 +17,5 @@ export interface ParameterDetails {
   parameter: Parameter;
   operationsIn?: string[];
   modelType: string;
+  collectionFormat?: string;
 }

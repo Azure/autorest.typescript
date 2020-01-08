@@ -43,10 +43,15 @@ function buildParameterInitializer({
   parameterPath,
   nameRef,
   mapper,
+  collectionFormat,
   location
 }: ParameterDetails) {
   const type = getParameterType(location);
-  const initializer = getParameterInitializer(parameterPath, mapper);
+  const initializer = getParameterInitializer(
+    parameterPath,
+    mapper,
+    collectionFormat
+  );
   return {
     name: nameRef,
     type,
@@ -87,14 +92,24 @@ function getMapperDefaultValue(mapper: Mapper) {
   }
 }
 
+function getCollectionFormatSourceCode(collectionFormat?: string) {
+  return !collectionFormat
+    ? ""
+    : `collectionFormat: coreHttp.QueryCollectionFormat.${collectionFormat}`;
+}
+
 function getParameterInitializer(
   parameterPath: string | string[],
-  mapper: string | Mapper
+  mapper: string | Mapper,
+  collectionFormat?: string
 ) {
   const mapperSourceCode = getMapperSourceCode(mapper);
+  const collectionFormatSourceCode = getCollectionFormatSourceCode(
+    collectionFormat
+  );
   return `{parameterPath: ${JSON.stringify(
     parameterPath
-  )}, ${mapperSourceCode}}`;
+  )}, ${mapperSourceCode}${collectionFormatSourceCode}}`;
 }
 
 function getParameterType(location: ParameterLocation) {

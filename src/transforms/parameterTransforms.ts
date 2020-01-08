@@ -6,8 +6,11 @@ import {
   Parameter,
   ParameterLocation,
   SchemaType,
-  Schema
+  Schema,
+  ImplementationLocation,
+  SerializationStyle
 } from "@azure-tools/codemodel";
+import { QueryCollectionFormat } from "@azure/core-http";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { ParameterDetails } from "../models/parameterDetails";
@@ -71,6 +74,7 @@ export function populateOperationParameters(
 
   if (!sameNameParams.length) {
     const name = normalizeName(parameterSerializedName, NameType.Property);
+    const collectionFormat = getCollectionFormat(parameter);
     const paramDetails: ParameterDetails = {
       nameRef: name,
       description,
@@ -87,7 +91,8 @@ export function populateOperationParameters(
         parameter.required
       ),
       isGlobal: getIsGlobal(parameter),
-      parameter
+      parameter,
+      collectionFormat
     };
     operationParameters.push(paramDetails);
     return;
@@ -113,8 +118,13 @@ function getParameterPath(parameter: Parameter) {
   const metadata = getLanguageMetadata(parameter.language);
   const serializedName =
     metadata.serializedName || normalizeName(metadata.name, NameType.Property);
-  return parameter.required ? serializedName : ["options", serializedName];
+  return isClientImplementation(parameter) || parameter.required
+    ? serializedName
+    : ["options", serializedName];
 }
+
+const isClientImplementation = (parameter: Parameter) =>
+  parameter.implementation === ImplementationLocation.Client;
 
 function getParameterLocation(parameter: Parameter): ParameterLocation {
   if (!parameter.protocol.http) {
@@ -122,6 +132,56 @@ function getParameterLocation(parameter: Parameter): ParameterLocation {
   }
 
   return parameter.protocol.http.in;
+}
+
+/**
+ * Serialization styles used by ModelerFour but not present in SerializationStyle
+ */
+enum AdditionalStyles {
+  TabDelimited = "tabDelimited"
+}
+
+const AllSerializationStyles = { ...SerializationStyle, ...AdditionalStyles };
+
+function getCollectionFormat(parameter: Parameter): string | undefined {
+  if (!parameter.protocol.http) {
+    throw new Error("Expected parameter to contain HTTP Protocol information");
+  }
+
+  const style = parameter.protocol.http.style;
+
+  if (parameter.protocol.http.in !== ParameterLocation.Query || !style) {
+    return undefined;
+  }
+
+  const getStyle = (value: QueryCollectionFormat) =>
+    Object.keys(QueryCollectionFormat).find(
+      key => (QueryCollectionFormat as any)[key] === value
+    );
+
+  let queryCollectionFormat: QueryCollectionFormat;
+  switch (style) {
+    case AllSerializationStyles.SpaceDelimited:
+      queryCollectionFormat = QueryCollectionFormat.Ssv;
+      break;
+    case AllSerializationStyles.Form:
+      queryCollectionFormat = QueryCollectionFormat.Csv;
+      break;
+    case AllSerializationStyles.TabDelimited:
+      queryCollectionFormat = QueryCollectionFormat.Tsv;
+      break;
+    case AllSerializationStyles.PipeDelimited:
+      queryCollectionFormat = QueryCollectionFormat.Pipes;
+      break;
+    case AllSerializationStyles.Simple:
+      return undefined;
+    default:
+      throw new Error(
+        `Handling query parameter format: ${style} hasn't bee implemented yet`
+      );
+  }
+
+  return getStyle(queryCollectionFormat);
 }
 
 function getParameterName(parameter: Parameter) {
@@ -155,6 +215,7 @@ export function disambiguateParameter(
     // Since there is already a parameter with the same name, we need to ad a sufix
     const name = normalizeName(serializedName, NameType.Property);
     const nameRef = `${name}${sameNameParams.length}`;
+    const collectionFormat = getCollectionFormat(parameter);
     const description = getLanguageMetadata(parameter.language).description;
 
     operationParameters.push({
@@ -173,7 +234,8 @@ export function disambiguateParameter(
       ),
       modelType: getTypeForSchema(parameter.schema).typeName,
       isGlobal: getIsGlobal(parameter),
-      parameter
+      parameter,
+      collectionFormat
     });
   }
 }

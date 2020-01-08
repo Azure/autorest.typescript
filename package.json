@@ -8,15 +8,15 @@
         "unit-test": "mocha -r ts-node/register './test/unit/**/*spec.ts'",
         "integration-test": "start-server-and-test start-test-server:v1 http://localhost:3000 generate-and-test",
         "integration-test:new": "npm-run-all start-test-server -p generate-bodystring generate-bodycomplex -s integration-test:alone stop-test-server",
-        "generate-and-test": "npm-run-all -p generate-bodystring generate-bodycomplex generate-url -s integration-test:alone",
+        "generate-and-test": "npm-run-all -s build -p generate-bodystring generate-bodycomplex generate-url -s integration-test:alone",
         "integration-test:alone": "mocha -r ts-node/register './test/integration/**/*spec.ts'",
         "start-test-server": "ts-node test/utils/start-server.ts",
         "start-test-server:v1": "ts-node test/integration/testserver-v1/index.ts",
         "stop-test-server": "stop-autorest-testserver",
         "debug": "node --inspect-brk ./dist/src/main.js",
-        "generate-bodystring": "npm run build && autorest-beta --version:3.0.6179 --use:@autorest/modelerfour@4.2.99 --typescript --output-folder=./test/integration/generated/bodyString --use=. --title=BodyStringClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-string.json --package-name=bodyString --package-version=1.0.0-preview1",
-        "generate-bodycomplex": "npm run build && autorest-beta --version:3.0.6179 --use:@autorest/modelerfour@4.2.99 --typescript --output-folder=./test/integration/generated/bodyComplex --use=. --title=BodyComplexClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-complex.json --package-name=bodyString --package-version=1.0.0-preview1",
-        "generate-url": "npm run build && autorest-beta --version:3.0.6179 --use:@autorest/modelerfour@4.2.99 --typescript --output-folder=./test/integration/generated/url --use=. --title=UrlClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/url.json --package-name=url --package-version=1.0.0-preview1"
+        "generate-bodystring": "autorest-beta --version:3.0.6179 --use:@autorest/modelerfour@4.2.99 --typescript --output-folder=./test/integration/generated/bodyString --use=. --title=BodyStringClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-string.json --package-name=bodyString --package-version=1.0.0-preview1",
+        "generate-bodycomplex": "autorest-beta --version:3.0.6179 --use:@autorest/modelerfour@4.2.99 --typescript --output-folder=./test/integration/generated/bodyComplex --use=. --title=BodyComplexClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-complex.json --package-name=bodyString --package-version=1.0.0-preview1",
+        "generate-url": "autorest-beta --version:3.0.6179 --use:@autorest/modelerfour@4.2.99 --typescript --output-folder=./test/integration/generated/url --use=. --title=UrlClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/url.json --package-name=url --package-version=1.0.0-preview1"
     },
     "dependencies": {
         "@autorest/autorest": "^3.0.6146",
@@ -27,7 +27,7 @@
         "@azure-tools/linq": "3.1.206",
         "@azure-tools/openapi": "3.0.209",
         "@azure/core-http": "^1.0.0",
-        "@microsoft.azure/autorest.testserver": "^2.7.1",
+        "@microsoft.azure/autorest.testserver": "^2.10.3",
         "@types/lodash": "^4.14.149",
         "lodash": "^4.17.15",
         "prettier": "^1.19.1",
