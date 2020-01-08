@@ -7,26 +7,12 @@ import { Mapper, OperationQueryParameter } from "@azure/core-http";
 import { ParameterDetails } from "./parameterDetails";
 
 /**
- * Details of an operation request parameter, transformed from Request.
- */
-export interface OperationRequestParameterDetails {
-  name: string;
-  description: string;
-  required?: boolean;
-  modelType?: string; // Could be a primitive or actual model type
-  mapper: Mapper | string;
-  location: ParameterLocation;
-  serializedName?: string;
-}
-
-/**
  * Details of an operation request, transformed from Request.
  */
 export interface OperationRequestDetails {
   path: string;
   method: HttpMethod;
   mediaType?: KnownMediaType;
-  parameters?: OperationRequestParameterDetails[];
 }
 
 /**
@@ -78,10 +64,4 @@ export interface OperationSpecResponse {
 
 export type OperationSpecResponses = {
   [responseCode: string]: OperationSpecResponse;
-};
-
-export type OperationSpecRequest = {
-  queryParameters: OperationQueryParameter[];
-  parameterPath: string;
-  mapper: Mapper | string;
 };

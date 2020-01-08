@@ -2,8 +2,7 @@ import * as assert from "assert";
 import {
   transformOperationSpec,
   getSpecType,
-  transformOperation,
-  extractSpecRequest
+  transformOperation
 } from "../../../src/transforms/operationTransforms";
 import {
   Operation,
@@ -208,7 +207,10 @@ describe("OperationTransforms", () => {
             mapper: "",
             location: ParameterLocation.Body,
             serializedName: "",
-            parameter
+            parameter,
+            modelType: "string",
+            name: "MockOperation",
+            description: ""
           }
         ]);
         checkHttpMethodAndPath(operationSpec);
@@ -253,17 +255,6 @@ describe("OperationTransforms", () => {
           "Mappers.ErrorModel"
         );
       });
-    });
-  });
-
-  describe("extractSpecRequest", () => {
-    it("should extract request with expected parameterPath", () => {
-      const request = extractSpecRequest({
-        request: {
-          parameters: [{ location: ParameterLocation.Body, name: "stringBody" }]
-        }
-      } as any);
-      assert.deepEqual(request!.parameterPath, "stringBody");
     });
   });
 });

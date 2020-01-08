@@ -27,10 +27,8 @@ import {
   OperationDetails,
   OperationResponseDetails,
   OperationRequestDetails,
-  OperationRequestParameterDetails,
   OperationSpecDetails,
-  OperationSpecResponses,
-  OperationSpecRequest
+  OperationSpecResponses
 } from "../models/operationDetails";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getTypeForSchema } from "../utils/schemaHelpers";
@@ -76,28 +74,6 @@ export function extractSpecResponses({
 
   const schemaResponses = extractSchemaResponses(responses);
   return schemaResponses;
-}
-
-export function extractSpecRequest(
-  operationDetails: OperationDetails
-): OperationSpecRequest | undefined {
-  const parameters = (operationDetails.request.parameters || []).filter(
-    p => p.location === ParameterLocation.Body
-  );
-
-  const queryParams = (operationDetails.request.parameters || []).filter(
-    p => p.location === ParameterLocation.Query
-  );
-
-  if (parameters.length < 1) {
-    return undefined;
-  }
-
-  return {
-    queryParameters: queryParams.map(extractQueryParam),
-    parameterPath: parameters.map(p => p.name)[0],
-    mapper: parameters[0].mapper
-  };
 }
 
 export interface SpecType {
@@ -183,34 +159,6 @@ export function extractSchemaResponses(responses: OperationResponseDetails[]) {
   );
 }
 
-export function transformOperationRequestParameter(
-  parameter: Parameter
-): OperationRequestParameterDetails {
-  const metadata = getLanguageMetadata(parameter.language);
-
-  return {
-    name: metadata.name,
-    description: metadata.description,
-    modelType: getTypeForSchema(parameter.schema).typeName,
-    required: isParameterRequired(parameter),
-    location: parameter.protocol.http
-      ? parameter.protocol.http.in
-      : ParameterLocation.Body,
-    mapper: getBodyMapperFromSchema(parameter.schema, true),
-    serializedName: metadata.serializedName
-  };
-}
-
-function isParameterRequired(parameter: Parameter) {
-  const mapper = getBodyMapperFromSchema(
-    parameter.schema,
-    true
-  ) as CompositeMapper;
-
-  // If the parameter contains a default value, it is not required
-  return mapper.isConstant ? false : parameter.required;
-}
-
 export function transformOperationRequest(
   request: Request
 ): OperationRequestDetails {
@@ -218,10 +166,7 @@ export function transformOperationRequest(
     return {
       // TODO: Revisit how we should handle {$host}
       path: request.protocol.http.path.replace("{$host}/", ""),
-      method: request.protocol.http.method,
-      parameters: request.parameters
-        ? request.parameters.map(transformOperationRequestParameter)
-        : undefined
+      method: request.protocol.http.method
     };
   } else {
     throw new Error("Operation does not specify HTTP request details.");
@@ -343,16 +288,4 @@ function mergeResponsesAndExceptions(operation: Operation) {
   }
 
   return responses;
-}
-
-function extractQueryParam(
-  parameter: OperationRequestParameterDetails
-): OperationQueryParameter {
-  return {
-    parameterPath: parameter.name,
-    mapper: {
-      ...(parameter.mapper as Mapper),
-      serializedName: parameter.serializedName
-    }
-  };
 }

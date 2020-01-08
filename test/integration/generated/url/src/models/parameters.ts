@@ -11,7 +11,11 @@ import * as Mappers from "../models/mappers";
 
 export const $host: coreHttp.OperationParameter = {
   parameterPath: "$host",
-  mapper: { type: { name: "String" }, serializedName: "$host", required: true }
+  mapper: {
+    type: { name: "String" },
+    serializedName: "$host",
+    required: true
+  }
 };
 
 export const boolPath: coreHttp.OperationURLParameter = {
@@ -19,8 +23,8 @@ export const boolPath: coreHttp.OperationURLParameter = {
   mapper: {
     type: { name: "Boolean" },
     serializedName: "boolPath",
-    defaultValue: true,
-    isConstant: true
+    isConstant: true,
+    defaultValue: true
   }
 };
 
@@ -29,8 +33,8 @@ export const boolPath1: coreHttp.OperationURLParameter = {
   mapper: {
     type: { name: "Boolean" },
     serializedName: "boolPath",
-    defaultValue: false,
-    isConstant: true
+    isConstant: true,
+    defaultValue: false
   }
 };
 
@@ -39,8 +43,8 @@ export const intPath: coreHttp.OperationURLParameter = {
   mapper: {
     type: { name: "Number" },
     serializedName: "intPath",
-    defaultValue: 1000000,
-    isConstant: true
+    isConstant: true,
+    defaultValue: 1000000
   }
 };
 
@@ -49,8 +53,8 @@ export const intPath1: coreHttp.OperationURLParameter = {
   mapper: {
     type: { name: "Number" },
     serializedName: "intPath",
-    defaultValue: -1000000,
-    isConstant: true
+    isConstant: true,
+    defaultValue: -1000000
   }
 };
 
@@ -59,8 +63,8 @@ export const longPath: coreHttp.OperationURLParameter = {
   mapper: {
     type: { name: "Number" },
     serializedName: "longPath",
-    defaultValue: 10000000000,
-    isConstant: true
+    isConstant: true,
+    defaultValue: 10000000000
   }
 };
 
@@ -69,8 +73,8 @@ export const longPath1: coreHttp.OperationURLParameter = {
   mapper: {
     type: { name: "Number" },
     serializedName: "longPath",
-    defaultValue: -10000000000,
-    isConstant: true
+    isConstant: true,
+    defaultValue: -10000000000
   }
 };
 
@@ -79,8 +83,8 @@ export const floatPath: coreHttp.OperationURLParameter = {
   mapper: {
     type: { name: "Number" },
     serializedName: "floatPath",
-    defaultValue: 103400000000000000000,
-    isConstant: true
+    isConstant: true,
+    defaultValue: 103400000000000000000
   }
 };
 
@@ -89,8 +93,8 @@ export const floatPath1: coreHttp.OperationURLParameter = {
   mapper: {
     type: { name: "Number" },
     serializedName: "floatPath",
-    defaultValue: -1.034e-20,
-    isConstant: true
+    isConstant: true,
+    defaultValue: -1.034e-20
   }
 };
 
@@ -99,8 +103,8 @@ export const doublePath: coreHttp.OperationURLParameter = {
   mapper: {
     type: { name: "Number" },
     serializedName: "doublePath",
-    defaultValue: 9999999.999,
-    isConstant: true
+    isConstant: true,
+    defaultValue: 9999999.999
   }
 };
 
@@ -109,8 +113,8 @@ export const doublePath1: coreHttp.OperationURLParameter = {
   mapper: {
     type: { name: "Number" },
     serializedName: "doublePath",
-    defaultValue: -9999999.999,
-    isConstant: true
+    isConstant: true,
+    defaultValue: -9999999.999
   }
 };
 
@@ -119,8 +123,8 @@ export const stringPath: coreHttp.OperationURLParameter = {
   mapper: {
     type: { name: "String" },
     serializedName: "stringPath",
-    defaultValue: "啊齄丂狛狜隣郎隣兀﨩",
-    isConstant: true
+    isConstant: true,
+    defaultValue: "啊齄丂狛狜隣郎隣兀﨩"
   }
 };
 
@@ -129,8 +133,8 @@ export const stringPath1: coreHttp.OperationURLParameter = {
   mapper: {
     type: { name: "String" },
     serializedName: "stringPath",
-    defaultValue: "begin!*'();:@ &=+$,/?#[]end",
-    isConstant: true
+    isConstant: true,
+    defaultValue: "begin!*'();:@ &=+$,/?#[]end"
   }
 };
 
@@ -139,8 +143,8 @@ export const stringPath2: coreHttp.OperationURLParameter = {
   mapper: {
     type: { name: "String" },
     serializedName: "stringPath",
-    defaultValue: "",
-    isConstant: true
+    isConstant: true,
+    defaultValue: ""
   }
 };
 
@@ -179,8 +183,8 @@ export const bytePath1: coreHttp.OperationURLParameter = {
   mapper: {
     type: { name: "ByteArray" },
     serializedName: "bytePath",
-    defaultValue: "",
-    isConstant: true
+    isConstant: true,
+    defaultValue: new Uint8Array(0)
   }
 };
 
@@ -189,14 +193,18 @@ export const datePath: coreHttp.OperationURLParameter = {
   mapper: {
     type: { name: "Date" },
     serializedName: "datePath",
-    defaultValue: "2012-01-01",
-    isConstant: true
+    isConstant: true,
+    defaultValue: "2012-01-01"
   }
 };
 
 export const datePath1: coreHttp.OperationURLParameter = {
   parameterPath: "datePath",
-  mapper: { type: { name: "Date" }, serializedName: "datePath", required: true }
+  mapper: {
+    type: { name: "Date" },
+    serializedName: "datePath",
+    required: true
+  }
 };
 
 export const dateTimePath: coreHttp.OperationURLParameter = {
@@ -204,8 +212,8 @@ export const dateTimePath: coreHttp.OperationURLParameter = {
   mapper: {
     type: { name: "DateTime" },
     serializedName: "dateTimePath",
-    defaultValue: "2012-01-01T01:01:01Z",
-    isConstant: true
+    isConstant: true,
+    defaultValue: "2012-01-01T01:01:01Z"
   }
 };
 
@@ -253,8 +261,8 @@ export const boolQuery: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "Boolean" },
     serializedName: "boolQuery",
-    defaultValue: true,
-    isConstant: true
+    isConstant: true,
+    defaultValue: true
   }
 };
 
@@ -263,14 +271,17 @@ export const boolQuery1: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "Boolean" },
     serializedName: "boolQuery",
-    defaultValue: false,
-    isConstant: true
+    isConstant: true,
+    defaultValue: false
   }
 };
 
 export const boolQuery2: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "boolQuery"],
-  mapper: { type: { name: "Boolean" }, serializedName: "boolQuery" }
+  mapper: {
+    type: { name: "Boolean" },
+    serializedName: "boolQuery"
+  }
 };
 
 export const intQuery: coreHttp.OperationQueryParameter = {
@@ -278,8 +289,8 @@ export const intQuery: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "Number" },
     serializedName: "intQuery",
-    defaultValue: 1000000,
-    isConstant: true
+    isConstant: true,
+    defaultValue: 1000000
   }
 };
 
@@ -288,14 +299,17 @@ export const intQuery1: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "Number" },
     serializedName: "intQuery",
-    defaultValue: -1000000,
-    isConstant: true
+    isConstant: true,
+    defaultValue: -1000000
   }
 };
 
 export const intQuery2: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "intQuery"],
-  mapper: { type: { name: "Number" }, serializedName: "intQuery" }
+  mapper: {
+    type: { name: "Number" },
+    serializedName: "intQuery"
+  }
 };
 
 export const longQuery: coreHttp.OperationQueryParameter = {
@@ -303,8 +317,8 @@ export const longQuery: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "Number" },
     serializedName: "longQuery",
-    defaultValue: 10000000000,
-    isConstant: true
+    isConstant: true,
+    defaultValue: 10000000000
   }
 };
 
@@ -313,14 +327,17 @@ export const longQuery1: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "Number" },
     serializedName: "longQuery",
-    defaultValue: -10000000000,
-    isConstant: true
+    isConstant: true,
+    defaultValue: -10000000000
   }
 };
 
 export const longQuery2: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "longQuery"],
-  mapper: { type: { name: "Number" }, serializedName: "longQuery" }
+  mapper: {
+    type: { name: "Number" },
+    serializedName: "longQuery"
+  }
 };
 
 export const floatQuery: coreHttp.OperationQueryParameter = {
@@ -328,8 +345,8 @@ export const floatQuery: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "Number" },
     serializedName: "floatQuery",
-    defaultValue: 103400000000000000000,
-    isConstant: true
+    isConstant: true,
+    defaultValue: 103400000000000000000
   }
 };
 
@@ -338,14 +355,17 @@ export const floatQuery1: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "Number" },
     serializedName: "floatQuery",
-    defaultValue: -1.034e-20,
-    isConstant: true
+    isConstant: true,
+    defaultValue: -1.034e-20
   }
 };
 
 export const floatQuery2: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "floatQuery"],
-  mapper: { type: { name: "Number" }, serializedName: "floatQuery" }
+  mapper: {
+    type: { name: "Number" },
+    serializedName: "floatQuery"
+  }
 };
 
 export const doubleQuery: coreHttp.OperationQueryParameter = {
@@ -353,8 +373,8 @@ export const doubleQuery: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "Number" },
     serializedName: "doubleQuery",
-    defaultValue: 9999999.999,
-    isConstant: true
+    isConstant: true,
+    defaultValue: 9999999.999
   }
 };
 
@@ -363,14 +383,17 @@ export const doubleQuery1: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "Number" },
     serializedName: "doubleQuery",
-    defaultValue: -9999999.999,
-    isConstant: true
+    isConstant: true,
+    defaultValue: -9999999.999
   }
 };
 
 export const doubleQuery2: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "doubleQuery"],
-  mapper: { type: { name: "Number" }, serializedName: "doubleQuery" }
+  mapper: {
+    type: { name: "Number" },
+    serializedName: "doubleQuery"
+  }
 };
 
 export const stringQuery: coreHttp.OperationQueryParameter = {
@@ -378,8 +401,8 @@ export const stringQuery: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "String" },
     serializedName: "stringQuery",
-    defaultValue: "啊齄丂狛狜隣郎隣兀﨩",
-    isConstant: true
+    isConstant: true,
+    defaultValue: "啊齄丂狛狜隣郎隣兀﨩"
   }
 };
 
@@ -388,8 +411,8 @@ export const stringQuery1: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "String" },
     serializedName: "stringQuery",
-    defaultValue: "begin!*'();:@ &=+$,/?#[]end",
-    isConstant: true
+    isConstant: true,
+    defaultValue: "begin!*'();:@ &=+$,/?#[]end"
   }
 };
 
@@ -398,14 +421,17 @@ export const stringQuery2: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "String" },
     serializedName: "stringQuery",
-    defaultValue: "",
-    isConstant: true
+    isConstant: true,
+    defaultValue: ""
   }
 };
 
 export const stringQuery3: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "stringQuery"],
-  mapper: { type: { name: "String" }, serializedName: "stringQuery" }
+  mapper: {
+    type: { name: "String" },
+    serializedName: "stringQuery"
+  }
 };
 
 export const enumQuery: coreHttp.OperationQueryParameter = {
@@ -421,7 +447,10 @@ export const enumQuery: coreHttp.OperationQueryParameter = {
 
 export const byteQuery: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "byteQuery"],
-  mapper: { type: { name: "ByteArray" }, serializedName: "byteQuery" }
+  mapper: {
+    type: { name: "ByteArray" },
+    serializedName: "byteQuery"
+  }
 };
 
 export const byteQuery1: coreHttp.OperationQueryParameter = {
@@ -429,8 +458,8 @@ export const byteQuery1: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "ByteArray" },
     serializedName: "byteQuery",
-    defaultValue: "",
-    isConstant: true
+    isConstant: true,
+    defaultValue: new Uint8Array(0)
   }
 };
 
@@ -439,14 +468,17 @@ export const dateQuery: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "Date" },
     serializedName: "dateQuery",
-    defaultValue: "2012-01-01",
-    isConstant: true
+    isConstant: true,
+    defaultValue: "2012-01-01"
   }
 };
 
 export const dateQuery1: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "dateQuery"],
-  mapper: { type: { name: "Date" }, serializedName: "dateQuery" }
+  mapper: {
+    type: { name: "Date" },
+    serializedName: "dateQuery"
+  }
 };
 
 export const dateTimeQuery: coreHttp.OperationQueryParameter = {
@@ -454,14 +486,17 @@ export const dateTimeQuery: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "DateTime" },
     serializedName: "dateTimeQuery",
-    defaultValue: "2012-01-01T01:01:01Z",
-    isConstant: true
+    isConstant: true,
+    defaultValue: "2012-01-01T01:01:01Z"
   }
 };
 
 export const dateTimeQuery1: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "dateTimeQuery"],
-  mapper: { type: { name: "DateTime" }, serializedName: "dateTimeQuery" }
+  mapper: {
+    type: { name: "DateTime" },
+    serializedName: "dateTimeQuery"
+  }
 };
 
 export const arrayQuery: coreHttp.OperationQueryParameter = {
@@ -519,7 +554,10 @@ export const pathItemStringPath: coreHttp.OperationURLParameter = {
 
 export const pathItemStringQuery: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "pathItemStringQuery"],
-  mapper: { type: { name: "String" }, serializedName: "pathItemStringQuery" }
+  mapper: {
+    type: { name: "String" },
+    serializedName: "pathItemStringQuery"
+  }
 };
 
 export const globalStringPath: coreHttp.OperationURLParameter = {
@@ -533,7 +571,10 @@ export const globalStringPath: coreHttp.OperationURLParameter = {
 
 export const globalStringQuery: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "globalStringQuery"],
-  mapper: { type: { name: "String" }, serializedName: "globalStringQuery" }
+  mapper: {
+    type: { name: "String" },
+    serializedName: "globalStringQuery"
+  }
 };
 
 export const localStringPath: coreHttp.OperationURLParameter = {
@@ -547,5 +588,8 @@ export const localStringPath: coreHttp.OperationURLParameter = {
 
 export const localStringQuery: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "localStringQuery"],
-  mapper: { type: { name: "String" }, serializedName: "localStringQuery" }
+  mapper: {
+    type: { name: "String" },
+    serializedName: "localStringQuery"
+  }
 };

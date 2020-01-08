@@ -28,27 +28,45 @@ export class PathItems {
 
   /**
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param options The options parameters.
    */
-  getAllWithValues(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getAllWithValues(
+    pathItemStringPath: string,
+    localStringPath: string,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param callback The callback.
    */
-  getAllWithValues(callback: coreHttp.ServiceCallback<any>): void;
+  getAllWithValues(
+    pathItemStringPath: string,
+    localStringPath: string,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param options The options parameters.
    * @param callback The callback.
    */
   getAllWithValues(
+    pathItemStringPath: string,
+    localStringPath: string,
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   getAllWithValues(
+    pathItemStringPath: string,
+    localStringPath: string,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
     return this.client.sendOperationRequest(
-      { options },
+      { pathItemStringPath, localStringPath, options },
       getAllWithValuesOperationSpec,
       callback
     );
@@ -56,27 +74,45 @@ export class PathItems {
 
   /**
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param options The options parameters.
    */
-  getGlobalQueryNull(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getGlobalQueryNull(
+    pathItemStringPath: string,
+    localStringPath: string,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param callback The callback.
    */
-  getGlobalQueryNull(callback: coreHttp.ServiceCallback<any>): void;
+  getGlobalQueryNull(
+    pathItemStringPath: string,
+    localStringPath: string,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param options The options parameters.
    * @param callback The callback.
    */
   getGlobalQueryNull(
+    pathItemStringPath: string,
+    localStringPath: string,
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   getGlobalQueryNull(
+    pathItemStringPath: string,
+    localStringPath: string,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
     return this.client.sendOperationRequest(
-      { options },
+      { pathItemStringPath, localStringPath, options },
       getGlobalQueryNullOperationSpec,
       callback
     );
@@ -84,29 +120,45 @@ export class PathItems {
 
   /**
    * send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param options The options parameters.
    */
   getGlobalAndLocalQueryNull(
+    pathItemStringPath: string,
+    localStringPath: string,
     options?: coreHttp.RequestOptionsBase
   ): Promise<any>;
   /**
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param callback The callback.
    */
-  getGlobalAndLocalQueryNull(callback: coreHttp.ServiceCallback<any>): void;
+  getGlobalAndLocalQueryNull(
+    pathItemStringPath: string,
+    localStringPath: string,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param options The options parameters.
    * @param callback The callback.
    */
   getGlobalAndLocalQueryNull(
+    pathItemStringPath: string,
+    localStringPath: string,
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   getGlobalAndLocalQueryNull(
+    pathItemStringPath: string,
+    localStringPath: string,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
     return this.client.sendOperationRequest(
-      { options },
+      { pathItemStringPath, localStringPath, options },
       getGlobalAndLocalQueryNullOperationSpec,
       callback
     );
@@ -114,29 +166,45 @@ export class PathItems {
 
   /**
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param options The options parameters.
    */
   getLocalPathItemQueryNull(
+    pathItemStringPath: string,
+    localStringPath: string,
     options?: coreHttp.RequestOptionsBase
   ): Promise<any>;
   /**
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param callback The callback.
    */
-  getLocalPathItemQueryNull(callback: coreHttp.ServiceCallback<any>): void;
+  getLocalPathItemQueryNull(
+    pathItemStringPath: string,
+    localStringPath: string,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param options The options parameters.
    * @param callback The callback.
    */
   getLocalPathItemQueryNull(
+    pathItemStringPath: string,
+    localStringPath: string,
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   getLocalPathItemQueryNull(
+    pathItemStringPath: string,
+    localStringPath: string,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
     return this.client.sendOperationRequest(
-      { options },
+      { pathItemStringPath, localStringPath, options },
       getLocalPathItemQueryNullOperationSpec,
       callback
     );

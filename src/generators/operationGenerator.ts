@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ParameterLocation } from "@azure-tools/codemodel";
+import { ParameterLocation, SchemaType } from "@azure-tools/codemodel";
 import {
   Project,
   SourceFile,
@@ -18,7 +18,8 @@ import { transformOperationSpec } from "../transforms/operationTransforms";
 import { MapperType } from "@azure/core-http";
 import {
   OperationGroupDetails,
-  OperationSpecDetails
+  OperationSpecDetails,
+  OperationDetails
 } from "../models/operationDetails";
 import { isString } from "util";
 import { ParameterDetails } from "../models/parameterDetails";
@@ -47,20 +48,6 @@ export function generateOperations(
     undefined,
     { overwrite: true }
   );
-
-  // operationIndexFile.addVariableStatement({
-  //   declarationKind: VariableDeclarationKind.Const,
-  //   declarations: [
-  //     {
-  //       name: "parameters",
-  //       initializer: JSON.stringify(
-  //         clientDetails.parameters.map(({ parameter, ...rest }) => ({
-  //           ...rest
-  //         }))
-  //       )
-  //     }
-  //   ]
-  // });
 
   operationIndexFile.addExportDeclarations(
     fileNames.map(fileName => {
@@ -230,12 +217,31 @@ function addClass(
   });
 
   constructorDefinition.addStatements(["this.client = client"]);
-  addOperations(operationGroupDetails, operationGroupClass);
+  addOperations(
+    operationGroupDetails,
+    operationGroupClass,
+    clientDetails.parameters
+  );
 }
 
 type ParameterWithDescription = OptionalKind<
   ParameterDeclarationStructure & { description: string }
 >;
+
+function filterOperationParameters(
+  parameters: ParameterDetails[],
+  operation: OperationDetails
+) {
+  return parameters.filter(
+    param =>
+      !param.isGlobal &&
+      param.operationsIn &&
+      param.operationsIn.includes(operation.fullName) &&
+      param.location !== ParameterLocation.Uri &&
+      param.required &&
+      param.parameter.schema.type !== SchemaType.Constant
+  );
+}
 
 /**
  * Add all the required operations  whith their overloads,
@@ -243,7 +249,8 @@ type ParameterWithDescription = OptionalKind<
  */
 function addOperations(
   operationGroupDetails: OperationGroupDetails,
-  operationGroupClass: ClassDeclaration
+  operationGroupClass: ClassDeclaration,
+  parameters: ParameterDetails[]
 ) {
   const primitiveTypes = [
     "string",
@@ -254,24 +261,22 @@ function addOperations(
     "Uint8Array"
   ];
   operationGroupDetails.operations.forEach(operation => {
-    const parameters = operation.request.parameters || [];
-    const params = parameters
-      .filter(
-        param => param.location === ParameterLocation.Body && param.required
-      )
-      .map<ParameterWithDescription>(param => {
-        const typeName = param.modelType || "any";
-        const type =
-          primitiveTypes.indexOf(typeName) > -1
-            ? typeName
-            : `Models.${normalizeName(typeName, NameType.Class)}`;
-        return {
-          name: param.name,
-          description: param.description,
-          type,
-          hasQuestionToken: !param.required
-        };
-      });
+    const params = filterOperationParameters(parameters, operation).map<
+      ParameterWithDescription
+    >(param => {
+      const typeName = param.modelType || "any";
+      const type =
+        primitiveTypes.indexOf(typeName) > -1
+          ? typeName
+          : `Models.${normalizeName(typeName, NameType.Class)}`;
+
+      return {
+        name: param.name,
+        description: param.description,
+        type,
+        hasQuestionToken: !param.required
+      };
+    });
 
     const allParams = [
       ...params,

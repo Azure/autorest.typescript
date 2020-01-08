@@ -17,6 +17,7 @@ import {
   transformMapper
 } from "./mapperTransforms";
 import { isEqual, isNil } from "lodash";
+import { getTypeForSchema } from "../utils/schemaHelpers";
 
 interface OperationParameterDetails {
   parameter: Parameter;
@@ -57,6 +58,7 @@ export function populateOperationParameters(
   operationName: string
 ): void {
   const parameterSerializedName = getParameterName(parameter);
+  const description = getLanguageMetadata(parameter.language).description;
 
   if (!parameterSerializedName) {
     throw new Error(
@@ -68,13 +70,17 @@ export function populateOperationParameters(
   );
 
   if (!sameNameParams.length) {
+    const name = normalizeName(parameterSerializedName, NameType.Property);
     const paramDetails: ParameterDetails = {
-      nameRef: normalizeName(parameterSerializedName, NameType.Property),
+      nameRef: name,
+      description,
+      name,
       serializedName: parameterSerializedName,
       operationsIn: [operationName],
       location: getParameterLocation(parameter),
       required: parameter.required,
       parameterPath: getParameterPath(parameter),
+      modelType: getTypeForSchema(parameter.schema).typeName,
       mapper: getMapperOrRef(
         parameter.schema,
         parameterSerializedName,
@@ -147,12 +153,14 @@ export function disambiguateParameter(
     return;
   } else {
     // Since there is already a parameter with the same name, we need to ad a sufix
-    const nameRef = `${normalizeName(serializedName, NameType.Property)}${
-      sameNameParams.length
-    }`;
+    const name = normalizeName(serializedName, NameType.Property);
+    const nameRef = `${name}${sameNameParams.length}`;
+    const description = getLanguageMetadata(parameter.language).description;
 
     operationParameters.push({
       nameRef,
+      name,
+      description,
       serializedName,
       operationsIn: [operationName],
       required: parameter.required,
@@ -163,6 +171,7 @@ export function disambiguateParameter(
         serializedName,
         parameter.required
       ),
+      modelType: getTypeForSchema(parameter.schema).typeName,
       isGlobal: getIsGlobal(parameter),
       parameter
     });
