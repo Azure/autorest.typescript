@@ -237,6 +237,31 @@ describe("Integration tests for Url", () => {
       await client.queries.arrayStringPipesValid({ arrayQuery: testArray });
       await client.queries.arrayStringSsvValid({ arrayQuery: testArray });
       await client.queries.arrayStringTsvValid({ arrayQuery: testArray });
+      assert.ok("Calls succeeded");
+    });
+
+    it("should work when path has string array values", async function() {
+      await client.paths.arrayCsvInPath([
+        "ArrayPath1",
+        "begin!*'();:@ &=+$,/?#[]end",
+        null,
+        ""
+      ]);
+      assert.ok("Call succeeded");
+    });
+
+    it("should work when use null values in url query", async function() {
+      await client.queries.byteNull({ byteQuery: null });
+      await client.queries.dateNull({ dateQuery: null });
+      await client.queries.dateTimeNull({ dateTimeQuery: null });
+      await client.queries.doubleNull({ doubleQuery: null });
+      await client.queries.floatNull({ floatQuery: null });
+      await client.queries.getBooleanNull({ boolQuery: null });
+      await client.queries.getIntNull({ intQuery: null });
+      await client.queries.getLongNull({ longQuery: null });
+      await client.queries.stringNull({ stringQuery: null });
+      await client.queries.arrayStringCsvNull({ arrayQuery: null });
+      assert.ok("Calls succeeded");
     });
   });
 });
