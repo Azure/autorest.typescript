@@ -6,6 +6,8 @@ import { Mapper } from "@azure/core-http";
 
 export interface ParameterDetails {
   nameRef: string;
+  description: string;
+  name: string;
   serializedName: string;
   location: ParameterLocation;
   required?: boolean;
@@ -14,4 +16,6 @@ export interface ParameterDetails {
   isGlobal: boolean;
   parameter: Parameter;
   operationsIn?: string[];
+  modelType: string;
+  collectionFormat?: string;
 }

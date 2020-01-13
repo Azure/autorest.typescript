@@ -11,7 +11,11 @@ import * as Mappers from "../models/mappers";
 
 export const $host: coreHttp.OperationParameter = {
   parameterPath: "$host",
-  mapper: { type: { name: "String" }, serializedName: "$host", required: true }
+  mapper: {
+    type: { name: "String" },
+    serializedName: "$host",
+    required: true
+  }
 };
 
 export const apiVersion: coreHttp.OperationQueryParameter = {
@@ -19,8 +23,8 @@ export const apiVersion: coreHttp.OperationQueryParameter = {
   mapper: {
     type: { name: "String" },
     serializedName: "api-version",
-    defaultValue: "2016-02-29",
-    isConstant: true
+    isConstant: true,
+    defaultValue: "2016-02-29"
   }
 };
 

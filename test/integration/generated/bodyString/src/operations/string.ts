@@ -9,6 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
 import { BodyStringClient } from "../bodyStringClient";
 
 /**
@@ -425,10 +426,7 @@ const putNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "stringBody",
-    mapper: { type: { name: "String" }, isConstant: true, defaultValue: null }
-  },
+  requestBody: Parameters.stringBody,
   serializer
 };
 const getEmptyOperationSpec: coreHttp.OperationSpec = {
@@ -452,10 +450,7 @@ const putEmptyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "stringBody",
-    mapper: { type: { name: "String" }, isConstant: true, defaultValue: "" }
-  },
+  requestBody: Parameters.stringBody1,
   serializer
 };
 const getMbcsOperationSpec: coreHttp.OperationSpec = {
@@ -479,15 +474,7 @@ const putMbcsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "stringBody",
-    mapper: {
-      type: { name: "String" },
-      isConstant: true,
-      defaultValue:
-        "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
-    }
-  },
+  requestBody: Parameters.stringBody2,
   serializer
 };
 const getWhitespaceOperationSpec: coreHttp.OperationSpec = {
@@ -511,15 +498,7 @@ const putWhitespaceOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "stringBody",
-    mapper: {
-      type: { name: "String" },
-      isConstant: true,
-      defaultValue:
-        "    Now is the time for all good men to come to the aid of their country    "
-    }
-  },
+  requestBody: Parameters.stringBody3,
   serializer
 };
 const getNotProvidedOperationSpec: coreHttp.OperationSpec = {
@@ -569,10 +548,7 @@ const putBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "stringBody",
-    mapper: { type: { name: "Base64Url" } }
-  },
+  requestBody: Parameters.stringBody4,
   serializer
 };
 const getNullBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {

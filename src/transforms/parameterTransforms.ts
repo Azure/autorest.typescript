@@ -6,8 +6,11 @@ import {
   Parameter,
   ParameterLocation,
   SchemaType,
-  Schema
+  Schema,
+  ImplementationLocation,
+  SerializationStyle
 } from "@azure-tools/codemodel";
+import { QueryCollectionFormat } from "@azure/core-http";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { ParameterDetails } from "../models/parameterDetails";
@@ -17,6 +20,7 @@ import {
   transformMapper
 } from "./mapperTransforms";
 import { isEqual, isNil } from "lodash";
+import { getTypeForSchema } from "../utils/schemaHelpers";
 
 interface OperationParameterDetails {
   parameter: Parameter;
@@ -33,12 +37,14 @@ export function transformParameters(codeModel: CodeModel): ParameterDetails[] {
 }
 
 const extractOperationParameters = (codeModel: CodeModel) =>
-  codeModel.operationGroups.reduce<OperationParameterDetails[]>(
-    (acc, og) => [
+  codeModel.operationGroups.reduce<OperationParameterDetails[]>((acc, og) => {
+    const groupName = getLanguageMetadata(og.language).name;
+    return [
       ...acc,
       ...og.operations.reduce<OperationParameterDetails[]>(
         (operations, operation) => {
-          const operationName = getLanguageMetadata(operation.language).name;
+          const opName = getLanguageMetadata(operation.language).name;
+          const operationName = `${groupName}_${opName}`.toLowerCase();
           const operationParams: OperationParameterDetails[] = (
             operation.request.parameters || []
           ).map(p => ({ parameter: p, operationName }));
@@ -46,9 +52,8 @@ const extractOperationParameters = (codeModel: CodeModel) =>
         },
         []
       )
-    ],
-    []
-  );
+    ];
+  }, []);
 
 export function populateOperationParameters(
   parameter: Parameter,
@@ -56,6 +61,7 @@ export function populateOperationParameters(
   operationName: string
 ): void {
   const parameterSerializedName = getParameterName(parameter);
+  const description = getLanguageMetadata(parameter.language).description;
 
   if (!parameterSerializedName) {
     throw new Error(
@@ -67,20 +73,26 @@ export function populateOperationParameters(
   );
 
   if (!sameNameParams.length) {
+    const name = normalizeName(parameterSerializedName, NameType.Property);
+    const collectionFormat = getCollectionFormat(parameter);
     const paramDetails: ParameterDetails = {
-      nameRef: normalizeName(parameterSerializedName, NameType.Property),
+      nameRef: name,
+      description,
+      name,
       serializedName: parameterSerializedName,
       operationsIn: [operationName],
       location: getParameterLocation(parameter),
       required: parameter.required,
       parameterPath: getParameterPath(parameter),
+      modelType: getTypeForSchema(parameter.schema).typeName,
       mapper: getMapperOrRef(
         parameter.schema,
         parameterSerializedName,
         parameter.required
       ),
       isGlobal: getIsGlobal(parameter),
-      parameter
+      parameter,
+      collectionFormat
     };
     operationParameters.push(paramDetails);
     return;
@@ -106,8 +118,13 @@ function getParameterPath(parameter: Parameter) {
   const metadata = getLanguageMetadata(parameter.language);
   const serializedName =
     metadata.serializedName || normalizeName(metadata.name, NameType.Property);
-  return parameter.required ? serializedName : ["options", serializedName];
+  return isClientImplementation(parameter) || parameter.required
+    ? serializedName
+    : ["options", serializedName];
 }
+
+const isClientImplementation = (parameter: Parameter) =>
+  parameter.implementation === ImplementationLocation.Client;
 
 function getParameterLocation(parameter: Parameter): ParameterLocation {
   if (!parameter.protocol.http) {
@@ -115,6 +132,56 @@ function getParameterLocation(parameter: Parameter): ParameterLocation {
   }
 
   return parameter.protocol.http.in;
+}
+
+/**
+ * Serialization styles used by ModelerFour but not present in SerializationStyle
+ */
+enum AdditionalStyles {
+  TabDelimited = "tabDelimited"
+}
+
+const AllSerializationStyles = { ...SerializationStyle, ...AdditionalStyles };
+
+function getCollectionFormat(parameter: Parameter): string | undefined {
+  if (!parameter.protocol.http) {
+    throw new Error("Expected parameter to contain HTTP Protocol information");
+  }
+
+  const style = parameter.protocol.http.style;
+
+  if (parameter.protocol.http.in !== ParameterLocation.Query || !style) {
+    return undefined;
+  }
+
+  const getStyle = (value: QueryCollectionFormat) =>
+    Object.keys(QueryCollectionFormat).find(
+      key => (QueryCollectionFormat as any)[key] === value
+    );
+
+  let queryCollectionFormat: QueryCollectionFormat;
+  switch (style) {
+    case AllSerializationStyles.SpaceDelimited:
+      queryCollectionFormat = QueryCollectionFormat.Ssv;
+      break;
+    case AllSerializationStyles.Form:
+      queryCollectionFormat = QueryCollectionFormat.Csv;
+      break;
+    case AllSerializationStyles.TabDelimited:
+      queryCollectionFormat = QueryCollectionFormat.Tsv;
+      break;
+    case AllSerializationStyles.PipeDelimited:
+      queryCollectionFormat = QueryCollectionFormat.Pipes;
+      break;
+    case AllSerializationStyles.Simple:
+      return undefined;
+    default:
+      throw new Error(
+        `Handling query parameter format: ${style} hasn't bee implemented yet`
+      );
+  }
+
+  return getStyle(queryCollectionFormat);
 }
 
 function getParameterName(parameter: Parameter) {
@@ -146,12 +213,15 @@ export function disambiguateParameter(
     return;
   } else {
     // Since there is already a parameter with the same name, we need to ad a sufix
-    const nameRef = `${normalizeName(serializedName, NameType.Property)}${
-      sameNameParams.length
-    }`;
+    const name = normalizeName(serializedName, NameType.Property);
+    const nameRef = `${name}${sameNameParams.length}`;
+    const collectionFormat = getCollectionFormat(parameter);
+    const description = getLanguageMetadata(parameter.language).description;
 
     operationParameters.push({
       nameRef,
+      name,
+      description,
       serializedName,
       operationsIn: [operationName],
       required: parameter.required,
@@ -162,8 +232,10 @@ export function disambiguateParameter(
         serializedName,
         parameter.required
       ),
+      modelType: getTypeForSchema(parameter.schema).typeName,
       isGlobal: getIsGlobal(parameter),
-      parameter
+      parameter,
+      collectionFormat
     });
   }
 }

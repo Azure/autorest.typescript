@@ -5,6 +5,7 @@ import { Project } from "ts-morph";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
 import { PackageDetails } from "../models/packageDetails";
+import { ParameterDetails } from "../models/parameterDetails";
 
 export function generateClientContext(
   clientDetails: ClientDetails,
@@ -47,12 +48,27 @@ export function generateClientContext(
     isExported: true
   });
 
+  const globalParams = clientDetails.parameters.filter(param => param.isGlobal);
+  const requiredGlobals = globalParams.filter(p => p.required);
+  const optionalGlobals = globalParams.filter(p => !p.required);
+
+  contextClass.addProperties(
+    globalParams.map(param => {
+      return {
+        name: param.name,
+        type: "any", // TODO use actual type
+        hasQuestionToken: !param.required
+      };
+    })
+  );
+
   const classConstructor = contextClass.addConstructor({
     docs: [
       `Initializes a new instance of the ${clientContextClassName} class.\n
 @param options The parameter options`
     ],
     parameters: [
+      ...requiredGlobals.map(p => ({ name: p.name, type: "any" })), //TODO: Use actual type
       {
         name: "options",
         hasQuestionToken: true,
@@ -64,6 +80,7 @@ export function generateClientContext(
   // This could all be expressed as one string template, but we may need to
   // optionally skip some segments based on generation options
   classConstructor.addStatements([
+    ...getRequiredParamChecks(requiredGlobals),
     `if (!options) {
        options = {};
      }`,
@@ -73,6 +90,32 @@ export function generateClientContext(
      }\n`,
     `super(undefined, options);\n\n`,
     `this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
-     this.requestContentType = "application/json; charset=utf-8";`
+     this.requestContentType = "application/json; charset=utf-8";`,
+    ...getRequiredParamAssignments(requiredGlobals),
+    ...getOptionalParameterAssignments(optionalGlobals)
   ]);
+}
+
+function getRequiredParamChecks(requiredParameters: ParameterDetails[]) {
+  return requiredParameters.map(
+    ({ name }) => `if(${name} === undefined) {
+    throw new Error("'${name}' cannot be null");
+  }`
+  );
+}
+
+function getOptionalParameterAssignments(
+  optionalParameters: ParameterDetails[]
+) {
+  return optionalParameters.map(
+    ({
+      name
+    }) => `if(options.${name} !== null && options.${name} !== undefined) {
+      this.${name} = options.${name};
+  }`
+  );
+}
+
+function getRequiredParamAssignments(requiredParameters: ParameterDetails[]) {
+  return requiredParameters.map(({ name }) => `this.${name} = ${name};`);
 }

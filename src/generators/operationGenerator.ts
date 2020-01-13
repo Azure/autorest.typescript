@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ParameterLocation } from "@azure-tools/codemodel";
+import { ParameterLocation, SchemaType } from "@azure-tools/codemodel";
 import {
   Project,
   SourceFile,
@@ -15,12 +15,14 @@ import {
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
 import { transformOperationSpec } from "../transforms/operationTransforms";
-import { Mapper, MapperType } from "@azure/core-http";
+import { MapperType } from "@azure/core-http";
 import {
   OperationGroupDetails,
-  OperationSpecDetails
+  OperationSpecDetails,
+  OperationDetails
 } from "../models/operationDetails";
 import { isString } from "util";
+import { ParameterDetails } from "../models/parameterDetails";
 
 /**
  * Function that writes the code for all the operations.
@@ -74,7 +76,11 @@ function generateOperation(
 
   addImports(operationGroupFile, clientDetails);
   addClass(operationGroupFile, operationGroupDetails, clientDetails);
-  addOperationSpecs(operationGroupDetails, operationGroupFile);
+  addOperationSpecs(
+    operationGroupDetails,
+    operationGroupFile,
+    clientDetails.parameters
+  );
 }
 
 /**
@@ -84,14 +90,13 @@ function generateOperation(
 function buildSpec(spec: OperationSpecDetails): string {
   const responses = buildResponses(spec);
   const requestBody = buildRequestBody(spec);
-  const queryParams = spec.queryParameters
-    ? `queryParameters: ${JSON.stringify(spec.queryParameters)},`
-    : "";
+  const queryParams = buildParameters(spec, "queryParameters");
+  const urlParams = buildParameters(spec, "urlParameters");
   return `{ path: "${spec.path}", httpMethod: "${
     spec.httpMethod
   }", responses: {${responses.join(
     ", "
-  )}},${requestBody}${queryParams}serializer
+  )}},${requestBody}${queryParams}${urlParams}serializer
     }`;
 }
 
@@ -99,21 +104,31 @@ function buildSpec(spec: OperationSpecDetails): string {
  * This function transforms the requestBody of OperationSpecDetails into its string representation
  * to insert in generated files
  */
-function buildRequestBody({ requestBody }: OperationSpecDetails): string {
-  if (!requestBody) {
+function buildRequestBody({
+  requestBody,
+  httpMethod
+}: OperationSpecDetails): string {
+  if (!requestBody || httpMethod === "GET") {
     return "";
   }
 
-  // If requestBody mapper is a string it is just a reference to an existing mapper in
-  // the generated mappers file, so just use the string, otherwise stringify the actual mapper
-  const mapper = !(requestBody.mapper as Mapper).type
-    ? requestBody.mapper
-    : JSON.stringify(requestBody.mapper);
+  return `requestBody: Parameters.${requestBody.nameRef},`;
+}
 
-  return `requestBody: {
-      parameterPath: "${requestBody.parameterPath}",
-      mapper: ${mapper}
-    },`;
+function buildParameters(
+  operationSpec: OperationSpecDetails,
+  parameterGroupName: string
+): string {
+  const parameterGroup: ParameterDetails[] | undefined = (operationSpec as any)[
+    parameterGroupName
+  ];
+  if (!parameterGroup || !parameterGroup.length) {
+    return "";
+  }
+
+  const parameters = parameterGroup.map(param => `Parameters.${param.nameRef}`);
+
+  return `${parameterGroupName}: [${parameters.join()}],`;
 }
 
 /**
@@ -202,12 +217,31 @@ function addClass(
   });
 
   constructorDefinition.addStatements(["this.client = client"]);
-  addOperations(operationGroupDetails, operationGroupClass);
+  addOperations(
+    operationGroupDetails,
+    operationGroupClass,
+    clientDetails.parameters
+  );
 }
 
 type ParameterWithDescription = OptionalKind<
   ParameterDeclarationStructure & { description: string }
 >;
+
+function filterOperationParameters(
+  parameters: ParameterDetails[],
+  operation: OperationDetails
+) {
+  return parameters.filter(
+    param =>
+      !param.isGlobal &&
+      param.operationsIn &&
+      param.operationsIn.includes(operation.fullName) &&
+      param.location !== ParameterLocation.Uri &&
+      param.required &&
+      param.parameter.schema.type !== SchemaType.Constant
+  );
+}
 
 /**
  * Add all the required operations  whith their overloads,
@@ -215,7 +249,8 @@ type ParameterWithDescription = OptionalKind<
  */
 function addOperations(
   operationGroupDetails: OperationGroupDetails,
-  operationGroupClass: ClassDeclaration
+  operationGroupClass: ClassDeclaration,
+  parameters: ParameterDetails[]
 ) {
   const primitiveTypes = [
     "string",
@@ -226,24 +261,22 @@ function addOperations(
     "Uint8Array"
   ];
   operationGroupDetails.operations.forEach(operation => {
-    const parameters = operation.request.parameters || [];
-    const params = parameters
-      .filter(
-        param => param.location === ParameterLocation.Body && param.required
-      )
-      .map<ParameterWithDescription>(param => {
-        const typeName = param.modelType || "any";
-        const type =
-          primitiveTypes.indexOf(typeName) > -1
-            ? typeName
-            : `Models.${normalizeName(typeName, NameType.Class)}`;
-        return {
-          name: param.name,
-          description: param.description,
-          type,
-          hasQuestionToken: !param.required
-        };
-      });
+    const params = filterOperationParameters(parameters, operation).map<
+      ParameterWithDescription
+    >(param => {
+      const typeName = param.modelType || "any";
+      const type =
+        primitiveTypes.indexOf(typeName) > -1
+          ? typeName
+          : `Models.${normalizeName(typeName, NameType.Class)}`;
+
+      return {
+        name: param.name,
+        description: param.description,
+        type,
+        hasQuestionToken: !param.required
+      };
+    });
 
     const allParams = [
       ...params,
@@ -315,7 +348,8 @@ function generateOperationJSDoc(
  */
 function addOperationSpecs(
   operationGroupDetails: OperationGroupDetails,
-  file: SourceFile
+  file: SourceFile,
+  parameters: ParameterDetails[]
 ): void {
   file.addStatements("// Operation Specifications");
   file.addVariableStatement({
@@ -330,7 +364,7 @@ function addOperationSpecs(
 
   operationGroupDetails.operations.forEach(operation => {
     const operationName = normalizeName(operation.name, NameType.Property);
-    const operationSpec = transformOperationSpec(operation);
+    const operationSpec = transformOperationSpec(operation, parameters);
     file.addVariableStatement({
       declarationKind: VariableDeclarationKind.Const,
       declarations: [
@@ -364,6 +398,11 @@ function addImports(
   operationGroupFile.addImportDeclaration({
     namespaceImport: "Mappers",
     moduleSpecifier: "../models/mappers"
+  });
+
+  operationGroupFile.addImportDeclaration({
+    namespaceImport: "Parameters",
+    moduleSpecifier: "../models/parameters"
   });
 
   operationGroupFile.addImportDeclaration({

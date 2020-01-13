@@ -11,7 +11,11 @@ import * as Mappers from "../models/mappers";
 
 export const $host: coreHttp.OperationParameter = {
   parameterPath: "$host",
-  mapper: { type: { name: "String" }, serializedName: "$host", required: true }
+  mapper: {
+    type: { name: "String" },
+    serializedName: "$host",
+    required: true
+  }
 };
 
 export const stringBody: coreHttp.OperationParameter = {
@@ -19,7 +23,6 @@ export const stringBody: coreHttp.OperationParameter = {
   mapper: {
     type: { name: "String" },
     serializedName: "stringBody",
-    defaultValue: null,
     isConstant: true
   }
 };
@@ -29,8 +32,8 @@ export const stringBody1: coreHttp.OperationParameter = {
   mapper: {
     type: { name: "String" },
     serializedName: "stringBody",
-    defaultValue: "",
-    isConstant: true
+    isConstant: true,
+    defaultValue: ""
   }
 };
 
@@ -39,9 +42,9 @@ export const stringBody2: coreHttp.OperationParameter = {
   mapper: {
     type: { name: "String" },
     serializedName: "stringBody",
+    isConstant: true,
     defaultValue:
-      "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€",
-    isConstant: true
+      "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
   }
 };
 
@@ -50,9 +53,9 @@ export const stringBody3: coreHttp.OperationParameter = {
   mapper: {
     type: { name: "String" },
     serializedName: "stringBody",
+    isConstant: true,
     defaultValue:
-      "    Now is the time for all good men to come to the aid of their country    ",
-    isConstant: true
+      "    Now is the time for all good men to come to the aid of their country    "
   }
 };
 

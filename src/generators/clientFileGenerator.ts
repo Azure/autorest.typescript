@@ -9,6 +9,7 @@ import {
   normalizeName,
   NameType
 } from "../utils/nameUtils";
+import { ParameterDetails } from "../models/parameterDetails";
 
 export function generateClient(clientDetails: ClientDetails, project: Project) {
   const modelsName = getModelsName(clientDetails.className);
@@ -64,6 +65,10 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     })
   );
 
+  const requiredParams = clientDetails.parameters
+    .filter(param => param.isGlobal)
+    .filter(p => p.required);
+
   const clientConstructor = clientClass.addConstructor({
     docs: [
       // TODO: Parameter list will need to be generated based on real
@@ -72,6 +77,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
 @param options The parameter options`
     ],
     parameters: [
+      ...requiredParams.map(p => ({ name: p.name, type: "any" })), // TODO Use the right type
       {
         name: "options",
         hasQuestionToken: true,
@@ -81,7 +87,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   });
 
   clientConstructor.addStatements([
-    "super(options);",
+    `super(${getSuperParams(requiredParams)});`,
     ...operations.map(
       ({ name, typeName }) => `this.${name} = new ${typeName}(this)`
     )
@@ -101,4 +107,13 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   clientFile.addExportDeclaration({
     moduleSpecifier: "./operations"
   });
+}
+
+function getSuperParams(requiredParams: ParameterDetails[]) {
+  let allParams = ["options"];
+  requiredParams.forEach(p => {
+    allParams = [p.name, ...allParams];
+  });
+
+  return allParams.join();
 }

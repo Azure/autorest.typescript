@@ -37,7 +37,7 @@ describe("parameterTransforms", () => {
       }
     );
     const request = { parameters: [param1] } as Request;
-    const op1 = new OperationGroup("Operation1", {
+    const op1 = new OperationGroup("OperationGroup1", {
       operations: [
         {
           request,
@@ -121,7 +121,7 @@ describe("parameterTransforms", () => {
       const request = { parameters: [param1] } as Request;
       const request2 = { parameters: [param2] } as Request;
 
-      const op1 = new OperationGroup("Operation1", {
+      const op1 = new OperationGroup("OperationGroup1", {
         operations: [
           {
             request,
@@ -135,7 +135,7 @@ describe("parameterTransforms", () => {
         ]
       });
 
-      const op2 = new OperationGroup("Operation2", {
+      const op2 = new OperationGroup("OperationGroup2", {
         operations: [
           {
             request: request2,
@@ -166,8 +166,8 @@ describe("parameterTransforms", () => {
         p => p.nameRef === "mockParam1"
       )!;
 
-      assert.deepEqual(p1.operationsIn, ["operation1"]);
-      assert.deepEqual(p2.operationsIn, ["operation2"]);
+      assert.deepEqual(p1.operationsIn, ["operationgroup1_operation1"]);
+      assert.deepEqual(p2.operationsIn, ["operationgroup2_operation2"]);
       assert.equal(p1.parameter, param1);
       assert.equal(p2.parameter, param2);
     });
@@ -193,7 +193,7 @@ describe("parameterTransforms", () => {
       const request = { parameters: operationParameters } as Request;
       const request2 = { parameters: operationParameters } as Request;
 
-      const op1 = new OperationGroup("Operation1", {
+      const op1 = new OperationGroup("OperationGroup1", {
         operations: [
           {
             request,
@@ -207,7 +207,7 @@ describe("parameterTransforms", () => {
         ]
       });
 
-      const op2 = new OperationGroup("Operation2", {
+      const op2 = new OperationGroup("OperationGroup2", {
         operations: [
           {
             request: request2,
@@ -234,7 +234,10 @@ describe("parameterTransforms", () => {
         p => p.nameRef === "mockParam1"
       )!;
 
-      assert.deepEqual(p1.operationsIn, ["operation1", "operation2"]);
+      assert.deepEqual(p1.operationsIn, [
+        "operationgroup1_operation1",
+        "operationgroup2_operation2"
+      ]);
       assert.equal(p1.parameter, param1);
     });
 
@@ -275,7 +278,7 @@ describe("parameterTransforms", () => {
       const request = { parameters: operationParameters } as Request;
 
       codeModel.operationGroups = [
-        new OperationGroup("Operation1", {
+        new OperationGroup("OperationGroup1", {
           operations: [
             {
               request,
@@ -304,8 +307,8 @@ describe("parameterTransforms", () => {
         p => p.nameRef === "mockParam2"
       )!;
 
-      assert.deepEqual(p1.operationsIn, ["operation1"]);
-      assert.deepEqual(p2.operationsIn, ["operation1"]);
+      assert.deepEqual(p1.operationsIn, ["operationgroup1_operation1"]);
+      assert.deepEqual(p2.operationsIn, ["operationgroup1_operation1"]);
 
       assert.equal(p1.parameter, param1);
       assert.equal(p2.parameter, param2);

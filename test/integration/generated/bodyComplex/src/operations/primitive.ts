@@ -9,6 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
 import { BodyComplexClient } from "../bodyComplexClient";
 
 /**
@@ -787,10 +788,7 @@ const putIntOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.IntWrapper
-  },
+  requestBody: Parameters.complexBody1,
   serializer
 };
 const getLongOperationSpec: coreHttp.OperationSpec = {
@@ -814,10 +812,7 @@ const putLongOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.LongWrapper
-  },
+  requestBody: Parameters.complexBody2,
   serializer
 };
 const getFloatOperationSpec: coreHttp.OperationSpec = {
@@ -841,10 +836,7 @@ const putFloatOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.FloatWrapper
-  },
+  requestBody: Parameters.complexBody3,
   serializer
 };
 const getDoubleOperationSpec: coreHttp.OperationSpec = {
@@ -868,10 +860,7 @@ const putDoubleOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.DoubleWrapper
-  },
+  requestBody: Parameters.complexBody4,
   serializer
 };
 const getBoolOperationSpec: coreHttp.OperationSpec = {
@@ -895,10 +884,7 @@ const putBoolOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.BooleanWrapper
-  },
+  requestBody: Parameters.complexBody5,
   serializer
 };
 const getStringOperationSpec: coreHttp.OperationSpec = {
@@ -922,10 +908,7 @@ const putStringOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.StringWrapper
-  },
+  requestBody: Parameters.complexBody6,
   serializer
 };
 const getDateOperationSpec: coreHttp.OperationSpec = {
@@ -949,10 +932,7 @@ const putDateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.DateWrapper
-  },
+  requestBody: Parameters.complexBody7,
   serializer
 };
 const getDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -976,10 +956,7 @@ const putDateTimeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.DatetimeWrapper
-  },
+  requestBody: Parameters.complexBody8,
   serializer
 };
 const getDateTimeRfc1123OperationSpec: coreHttp.OperationSpec = {
@@ -1003,10 +980,7 @@ const putDateTimeRfc1123OperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.Datetimerfc1123Wrapper
-  },
+  requestBody: Parameters.complexBody9,
   serializer
 };
 const getDurationOperationSpec: coreHttp.OperationSpec = {
@@ -1030,10 +1004,7 @@ const putDurationOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.DurationWrapper
-  },
+  requestBody: Parameters.complexBody10,
   serializer
 };
 const getByteOperationSpec: coreHttp.OperationSpec = {
@@ -1057,9 +1028,6 @@ const putByteOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: {
-    parameterPath: "complexBody",
-    mapper: Mappers.ByteWrapper
-  },
+  requestBody: Parameters.complexBody11,
   serializer
 };

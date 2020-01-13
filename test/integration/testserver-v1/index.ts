@@ -12,7 +12,7 @@ app.post("/fileupload", function(req, res) {
   req.pipe(res);
 });
 
-app.use(require("@microsoft.azure/autorest.testserver/app"));
+app.use(require("@microsoft.azure/autorest.testserver/legacy/app"));
 
 app.listen(port, function() {
   console.log(`autorest.typescript testserver listening on port ${port}...`);
