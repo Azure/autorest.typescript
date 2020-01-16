@@ -1,7 +1,8 @@
 # Publishes a development release of @autorest/typescript for
 # any commit to the master branch.
 
-trigger: master
+trigger:
+  - v6
 
 pool:
   vmImage: 'ubuntu-latest'
