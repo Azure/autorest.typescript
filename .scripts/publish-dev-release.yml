@@ -1,0 +1,28 @@
+# Publishes a development release of @autorest/typescript for
+# any commit to the master branch.
+
+# NOTE: This is only used for the v6 branch, not master!
+
+trigger:
+  - v6
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'npm install and build'
+
+- script: |
+    export DEV_VERSION= $(node -p -e "require('./package.json').version")-dev.$BUILD_BUILD_NUMBER
+    npm version --no-git-tag-version $(node -p -e "require('./package.json').version")-dev.$BUILD_BUILD_NUMBER
+    npm pack
+    npx publish-release --token $(Github-azuresdkci-personalaccesstoken) --repo autorest.typescript --owner azure --name v$DEV_VERSION --tag v$DEV_VERSION --notes='prerelease build' --prerelease --editRelease false --assets autorest-typescript-$DEV_VERSION.tgz --target_commitish $(Build.SourceBranchName)
+  displayName: 'Publish to GitHub'
