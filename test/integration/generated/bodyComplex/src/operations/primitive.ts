@@ -46,7 +46,7 @@ export class Primitive {
   getInt(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PrimitiveGetIntResponse> {
     return this.client.sendOperationRequest(
       { options },
       getIntOperationSpec,
@@ -85,7 +85,7 @@ export class Primitive {
     complexBody: Models.IntWrapper,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putIntOperationSpec,
@@ -113,7 +113,7 @@ export class Primitive {
   getLong(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PrimitiveGetLongResponse> {
     return this.client.sendOperationRequest(
       { options },
       getLongOperationSpec,
@@ -152,7 +152,7 @@ export class Primitive {
     complexBody: Models.LongWrapper,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putLongOperationSpec,
@@ -180,7 +180,7 @@ export class Primitive {
   getFloat(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PrimitiveGetFloatResponse> {
     return this.client.sendOperationRequest(
       { options },
       getFloatOperationSpec,
@@ -219,7 +219,7 @@ export class Primitive {
     complexBody: Models.FloatWrapper,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putFloatOperationSpec,
@@ -247,7 +247,7 @@ export class Primitive {
   getDouble(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PrimitiveGetDoubleResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDoubleOperationSpec,
@@ -286,7 +286,7 @@ export class Primitive {
     complexBody: Models.DoubleWrapper,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putDoubleOperationSpec,
@@ -314,7 +314,7 @@ export class Primitive {
   getBool(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PrimitiveGetBoolResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBoolOperationSpec,
@@ -353,7 +353,7 @@ export class Primitive {
     complexBody: Models.BooleanWrapper,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putBoolOperationSpec,
@@ -381,7 +381,7 @@ export class Primitive {
   getString(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PrimitiveGetStringResponse> {
     return this.client.sendOperationRequest(
       { options },
       getStringOperationSpec,
@@ -420,7 +420,7 @@ export class Primitive {
     complexBody: Models.StringWrapper,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putStringOperationSpec,
@@ -448,7 +448,7 @@ export class Primitive {
   getDate(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PrimitiveGetDateResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateOperationSpec,
@@ -487,7 +487,7 @@ export class Primitive {
     complexBody: Models.DateWrapper,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putDateOperationSpec,
@@ -515,7 +515,7 @@ export class Primitive {
   getDateTime(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PrimitiveGetDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateTimeOperationSpec,
@@ -554,7 +554,7 @@ export class Primitive {
     complexBody: Models.DatetimeWrapper,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putDateTimeOperationSpec,
@@ -582,7 +582,7 @@ export class Primitive {
   getDateTimeRfc1123(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PrimitiveGetDateTimeRfc1123Response> {
     return this.client.sendOperationRequest(
       { options },
       getDateTimeRfc1123OperationSpec,
@@ -621,7 +621,7 @@ export class Primitive {
     complexBody: Models.Datetimerfc1123Wrapper,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putDateTimeRfc1123OperationSpec,
@@ -649,7 +649,7 @@ export class Primitive {
   getDuration(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PrimitiveGetDurationResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDurationOperationSpec,
@@ -688,7 +688,7 @@ export class Primitive {
     complexBody: Models.DurationWrapper,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putDurationOperationSpec,
@@ -716,7 +716,7 @@ export class Primitive {
   getByte(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PrimitiveGetByteResponse> {
     return this.client.sendOperationRequest(
       { options },
       getByteOperationSpec,
@@ -755,7 +755,7 @@ export class Primitive {
     complexBody: Models.ByteWrapper,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putByteOperationSpec,

@@ -5,6 +5,7 @@ import { ParameterLocation, HttpMethod } from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { Mapper, OperationQueryParameter } from "@azure/core-http";
 import { ParameterDetails } from "./parameterDetails";
+import { TypeDetails } from "./modelDetails";
 
 /**
  * Details of an operation request, transformed from Request.
@@ -20,9 +21,9 @@ export interface OperationRequestDetails {
  */
 export interface OperationResponseDetails {
   statusCodes: string[]; // Can be a status code number or "default"
-  modelType?: string; // Could be a primitive or actual model type
   mediaType?: KnownMediaType;
   bodyMapper?: Mapper | string;
+  typeDetails: TypeDetails;
 }
 
 /**
@@ -35,6 +36,7 @@ export interface OperationDetails {
   apiVersions: string[];
   request: OperationRequestDetails;
   responses: OperationResponseDetails[];
+  typeDetails: TypeDetails;
 }
 
 /**

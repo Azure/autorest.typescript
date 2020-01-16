@@ -46,7 +46,7 @@ export class Polymorphism {
   getValid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PolymorphismGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getValidOperationSpec,
@@ -181,7 +181,7 @@ export class Polymorphism {
     complexBody: Models.FishUnion,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putValidOperationSpec,
@@ -209,7 +209,7 @@ export class Polymorphism {
   getDotSyntax(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PolymorphismGetDotSyntaxResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDotSyntaxOperationSpec,
@@ -239,7 +239,7 @@ export class Polymorphism {
   getComposedWithDiscriminator(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PolymorphismGetComposedWithDiscriminatorResponse> {
     return this.client.sendOperationRequest(
       { options },
       getComposedWithDiscriminatorOperationSpec,
@@ -271,7 +271,7 @@ export class Polymorphism {
   getComposedWithoutDiscriminator(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PolymorphismGetComposedWithoutDiscriminatorResponse> {
     return this.client.sendOperationRequest(
       { options },
       getComposedWithoutDiscriminatorOperationSpec,
@@ -299,7 +299,7 @@ export class Polymorphism {
   getComplicated(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PolymorphismGetComplicatedResponse> {
     return this.client.sendOperationRequest(
       { options },
       getComplicatedOperationSpec,
@@ -338,7 +338,7 @@ export class Polymorphism {
     complexBody: Models.SalmonUnion,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putComplicatedOperationSpec,
@@ -377,7 +377,7 @@ export class Polymorphism {
     complexBody: Models.SalmonUnion,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PolymorphismPutMissingDiscriminatorResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putMissingDiscriminatorOperationSpec,
@@ -512,7 +512,7 @@ export class Polymorphism {
     complexBody: Models.FishUnion,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putValidMissingRequiredOperationSpec,

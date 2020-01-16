@@ -35,7 +35,7 @@ export class PathItems {
   getAllWithValues(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: coreHttp.RequestOptionsBase
+    options?: Models.PathItemsGetAllWithValuesOptionalParams
   ): Promise<any>;
   /**
    * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
@@ -56,15 +56,15 @@ export class PathItems {
   getAllWithValues(
     pathItemStringPath: string,
     localStringPath: string,
-    options: coreHttp.RequestOptionsBase,
+    options: Models.PathItemsGetAllWithValuesOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   getAllWithValues(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.PathItemsGetAllWithValuesOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { pathItemStringPath, localStringPath, options },
       getAllWithValuesOperationSpec,
@@ -81,7 +81,7 @@ export class PathItems {
   getGlobalQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: coreHttp.RequestOptionsBase
+    options?: Models.PathItemsGetGlobalQueryNullOptionalParams
   ): Promise<any>;
   /**
    * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
@@ -102,15 +102,15 @@ export class PathItems {
   getGlobalQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options: coreHttp.RequestOptionsBase,
+    options: Models.PathItemsGetGlobalQueryNullOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   getGlobalQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.PathItemsGetGlobalQueryNullOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { pathItemStringPath, localStringPath, options },
       getGlobalQueryNullOperationSpec,
@@ -127,7 +127,7 @@ export class PathItems {
   getGlobalAndLocalQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: coreHttp.RequestOptionsBase
+    options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams
   ): Promise<any>;
   /**
    * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
@@ -148,15 +148,15 @@ export class PathItems {
   getGlobalAndLocalQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options: coreHttp.RequestOptionsBase,
+    options: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   getGlobalAndLocalQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { pathItemStringPath, localStringPath, options },
       getGlobalAndLocalQueryNullOperationSpec,
@@ -173,7 +173,7 @@ export class PathItems {
   getLocalPathItemQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: coreHttp.RequestOptionsBase
+    options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams
   ): Promise<any>;
   /**
    * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
@@ -194,15 +194,15 @@ export class PathItems {
   getLocalPathItemQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options: coreHttp.RequestOptionsBase,
+    options: Models.PathItemsGetLocalPathItemQueryNullOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   getLocalPathItemQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { pathItemStringPath, localStringPath, options },
       getLocalPathItemQueryNullOperationSpec,

@@ -12,15 +12,16 @@ export interface PropertyDetails {
   type: string;
   required: boolean;
   readOnly: boolean;
-  isConstant: boolean;
+  isConstant?: boolean;
+  typeDetails: TypeDetails;
 }
 
 /**
  * Details of a property's type
  */
-export interface PropertyTypeDetails {
+export interface TypeDetails {
   typeName: string;
-  isConstant: boolean;
+  isConstant?: boolean;
   defaultValue?: string;
   kind: PropertyKind;
 }

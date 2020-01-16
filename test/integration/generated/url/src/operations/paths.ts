@@ -46,7 +46,7 @@ export class Paths {
   getBooleanTrue(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBooleanTrueOperationSpec,
@@ -74,7 +74,7 @@ export class Paths {
   getBooleanFalse(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBooleanFalseOperationSpec,
@@ -102,7 +102,7 @@ export class Paths {
   getIntOneMillion(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       getIntOneMillionOperationSpec,
@@ -130,7 +130,7 @@ export class Paths {
   getIntNegativeOneMillion(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       getIntNegativeOneMillionOperationSpec,
@@ -158,7 +158,7 @@ export class Paths {
   getTenBillion(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       getTenBillionOperationSpec,
@@ -186,7 +186,7 @@ export class Paths {
   getNegativeTenBillion(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNegativeTenBillionOperationSpec,
@@ -214,7 +214,7 @@ export class Paths {
   floatScientificPositive(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       floatScientificPositiveOperationSpec,
@@ -242,7 +242,7 @@ export class Paths {
   floatScientificNegative(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       floatScientificNegativeOperationSpec,
@@ -270,7 +270,7 @@ export class Paths {
   doubleDecimalPositive(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       doubleDecimalPositiveOperationSpec,
@@ -298,7 +298,7 @@ export class Paths {
   doubleDecimalNegative(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       doubleDecimalNegativeOperationSpec,
@@ -326,7 +326,7 @@ export class Paths {
   stringUnicode(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       stringUnicodeOperationSpec,
@@ -354,7 +354,7 @@ export class Paths {
   stringUrlEncoded(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       stringUrlEncodedOperationSpec,
@@ -382,7 +382,7 @@ export class Paths {
   stringUrlNonEncoded(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       stringUrlNonEncodedOperationSpec,
@@ -410,7 +410,7 @@ export class Paths {
   stringEmpty(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       stringEmptyOperationSpec,
@@ -446,7 +446,7 @@ export class Paths {
     stringPath: string,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { stringPath, options },
       stringNullOperationSpec,
@@ -485,7 +485,7 @@ export class Paths {
     enumPath: Models.UriColor,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { enumPath, options },
       enumValidOperationSpec,
@@ -524,7 +524,7 @@ export class Paths {
     enumPath: Models.UriColor,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { enumPath, options },
       enumNullOperationSpec,
@@ -563,7 +563,7 @@ export class Paths {
     bytePath: Uint8Array,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { bytePath, options },
       byteMultiByteOperationSpec,
@@ -591,7 +591,7 @@ export class Paths {
   byteEmpty(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       byteEmptyOperationSpec,
@@ -627,7 +627,7 @@ export class Paths {
     bytePath: Uint8Array,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { bytePath, options },
       byteNullOperationSpec,
@@ -655,7 +655,7 @@ export class Paths {
   dateValid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       dateValidOperationSpec,
@@ -668,33 +668,27 @@ export class Paths {
    * @param datePath null as date (should throw)
    * @param options The options parameters.
    */
-  dateNull(
-    datePath: Models.Date,
-    options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  dateNull(datePath: Date, options?: coreHttp.RequestOptionsBase): Promise<any>;
   /**
    * @param datePath null as date (should throw)
    * @param callback The callback.
    */
-  dateNull(
-    datePath: Models.Date,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
+  dateNull(datePath: Date, callback: coreHttp.ServiceCallback<any>): void;
   /**
    * @param datePath null as date (should throw)
    * @param options The options parameters.
    * @param callback The callback.
    */
   dateNull(
-    datePath: Models.Date,
+    datePath: Date,
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   dateNull(
-    datePath: Models.Date,
+    datePath: Date,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { datePath, options },
       dateNullOperationSpec,
@@ -722,7 +716,7 @@ export class Paths {
   dateTimeValid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       dateTimeValidOperationSpec,
@@ -736,7 +730,7 @@ export class Paths {
    * @param options The options parameters.
    */
   dateTimeNull(
-    dateTimePath: Models.Date,
+    dateTimePath: Date,
     options?: coreHttp.RequestOptionsBase
   ): Promise<any>;
   /**
@@ -744,7 +738,7 @@ export class Paths {
    * @param callback The callback.
    */
   dateTimeNull(
-    dateTimePath: Models.Date,
+    dateTimePath: Date,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   /**
@@ -753,15 +747,15 @@ export class Paths {
    * @param callback The callback.
    */
   dateTimeNull(
-    dateTimePath: Models.Date,
+    dateTimePath: Date,
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   dateTimeNull(
-    dateTimePath: Models.Date,
+    dateTimePath: Date,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { dateTimePath, options },
       dateTimeNullOperationSpec,
@@ -800,7 +794,7 @@ export class Paths {
     base64UrlPath: Uint8Array,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { base64UrlPath, options },
       base64UrlOperationSpec,
@@ -814,7 +808,7 @@ export class Paths {
    * @param options The options parameters.
    */
   arrayCsvInPath(
-    arrayPath: Models.String[],
+    arrayPath: string[],
     options?: coreHttp.RequestOptionsBase
   ): Promise<any>;
   /**
@@ -822,7 +816,7 @@ export class Paths {
    * @param callback The callback.
    */
   arrayCsvInPath(
-    arrayPath: Models.String[],
+    arrayPath: string[],
     callback: coreHttp.ServiceCallback<any>
   ): void;
   /**
@@ -831,15 +825,15 @@ export class Paths {
    * @param callback The callback.
    */
   arrayCsvInPath(
-    arrayPath: Models.String[],
+    arrayPath: string[],
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   arrayCsvInPath(
-    arrayPath: Models.String[],
+    arrayPath: string[],
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { arrayPath, options },
       arrayCsvInPathOperationSpec,
@@ -853,7 +847,7 @@ export class Paths {
    * @param options The options parameters.
    */
   unixTimeUrl(
-    unixTimeUrlPath: Models.Date,
+    unixTimeUrlPath: Date,
     options?: coreHttp.RequestOptionsBase
   ): Promise<any>;
   /**
@@ -861,7 +855,7 @@ export class Paths {
    * @param callback The callback.
    */
   unixTimeUrl(
-    unixTimeUrlPath: Models.Date,
+    unixTimeUrlPath: Date,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   /**
@@ -870,15 +864,15 @@ export class Paths {
    * @param callback The callback.
    */
   unixTimeUrl(
-    unixTimeUrlPath: Models.Date,
+    unixTimeUrlPath: Date,
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   unixTimeUrl(
-    unixTimeUrlPath: Models.Date,
+    unixTimeUrlPath: Date,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { unixTimeUrlPath, options },
       unixTimeUrlOperationSpec,

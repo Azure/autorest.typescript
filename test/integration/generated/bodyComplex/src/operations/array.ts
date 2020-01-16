@@ -46,7 +46,7 @@ export class Array {
   getValid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.ArrayGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getValidOperationSpec,
@@ -85,7 +85,7 @@ export class Array {
     complexBody: Models.ArrayWrapper,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putValidOperationSpec,
@@ -113,7 +113,7 @@ export class Array {
   getEmpty(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.ArrayGetEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getEmptyOperationSpec,
@@ -152,7 +152,7 @@ export class Array {
     complexBody: Models.ArrayWrapper,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putEmptyOperationSpec,
@@ -180,7 +180,7 @@ export class Array {
   getNotProvided(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.ArrayGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNotProvidedOperationSpec,

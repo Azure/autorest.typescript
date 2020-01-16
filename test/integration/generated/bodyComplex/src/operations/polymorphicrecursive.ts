@@ -46,7 +46,7 @@ export class Polymorphicrecursive {
   getValid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PolymorphicrecursiveGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getValidOperationSpec,
@@ -181,7 +181,7 @@ export class Polymorphicrecursive {
     complexBody: Models.FishUnion,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putValidOperationSpec,

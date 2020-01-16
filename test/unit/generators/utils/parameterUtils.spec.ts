@@ -9,6 +9,7 @@ import {
   SchemaType,
   ImplementationLocation
 } from "@azure-tools/codemodel";
+import { PropertyKind } from "../../../../src/models/modelDetails";
 
 describe("parameterUtils", () => {
   describe("filterParameters", () => {
@@ -157,7 +158,7 @@ const getParameter = ({
   parameterPath,
   mapper,
   collectionFormat,
-  modelType,
+  typeDetails,
   schemaType,
   sufix = "",
   isGlobal = false,
@@ -177,7 +178,10 @@ const getParameter = ({
   location: location || ParameterLocation.Body,
   parameterPath: parameterPath || `MockParameter${sufix}`,
   mapper: mapper || "MockMapper",
-  modelType: modelType || "MockModel",
+  typeDetails: typeDetails || {
+    typeName: "MockModel",
+    kind: PropertyKind.Composite
+  },
   schemaType: schemaType || SchemaType.String,
   parameter,
   isGlobal,

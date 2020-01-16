@@ -46,7 +46,7 @@ export class Basic {
   getValid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.BasicGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getValidOperationSpec,
@@ -85,7 +85,7 @@ export class Basic {
     complexBody: Models.Basic,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putValidOperationSpec,
@@ -113,7 +113,7 @@ export class Basic {
   getInvalid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.BasicGetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getInvalidOperationSpec,
@@ -141,7 +141,7 @@ export class Basic {
   getEmpty(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.BasicGetEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getEmptyOperationSpec,
@@ -169,7 +169,7 @@ export class Basic {
   getNull(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.BasicGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec,
@@ -197,7 +197,7 @@ export class Basic {
   getNotProvided(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.BasicGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNotProvidedOperationSpec,

@@ -29,6 +29,7 @@ export function transformProperty(property: Property): PropertyDetails {
   const { typeName, isConstant, defaultValue } = getTypeForSchema(
     property.schema
   );
+  const typeDetails = getTypeForSchema(property.schema);
 
   return {
     name: normalizeName(metadata.name, NameType.Property),
@@ -40,7 +41,8 @@ export function transformProperty(property: Property): PropertyDetails {
     required: !!property.required,
     readOnly: !!property.readOnly,
     isConstant,
-    defaultValue
+    defaultValue,
+    typeDetails
   };
 }
 

@@ -75,6 +75,7 @@ export function populateOperationParameters(
   if (!sameNameParams.length) {
     const name = normalizeName(parameterSerializedName, NameType.Property);
     const collectionFormat = getCollectionFormat(parameter);
+    const typeDetails = getTypeForSchema(parameter.schema);
     const paramDetails: ParameterDetails = {
       nameRef: name,
       description,
@@ -85,7 +86,6 @@ export function populateOperationParameters(
       required: parameter.required,
       schemaType: parameter.schema.type,
       parameterPath: getParameterPath(parameter),
-      modelType: getTypeForSchema(parameter.schema).typeName,
       mapper: getMapperOrRef(
         parameter.schema,
         parameterSerializedName,
@@ -94,7 +94,8 @@ export function populateOperationParameters(
       isGlobal: getIsGlobal(parameter),
       parameter,
       collectionFormat,
-      implementationLocation: parameter.implementation
+      implementationLocation: parameter.implementation,
+      typeDetails
     };
     operationParameters.push(paramDetails);
 
@@ -220,6 +221,7 @@ export function disambiguateParameter(
     const nameRef = `${name}${sameNameParams.length}`;
     const collectionFormat = getCollectionFormat(parameter);
     const description = getLanguageMetadata(parameter.language).description;
+    const typeDetails = getTypeForSchema(parameter.schema);
 
     operationParameters.push({
       nameRef,
@@ -236,7 +238,7 @@ export function disambiguateParameter(
         serializedName,
         parameter.required
       ),
-      modelType: getTypeForSchema(parameter.schema).typeName,
+      typeDetails,
       isGlobal: getIsGlobal(parameter),
       parameter,
       collectionFormat,

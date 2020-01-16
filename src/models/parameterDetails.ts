@@ -5,9 +5,11 @@ import {
   Parameter,
   ParameterLocation,
   AllSchemaTypes,
-  ImplementationLocation
+  ImplementationLocation,
+  SchemaType
 } from "@azure-tools/codemodel";
 import { Mapper } from "@azure/core-http";
+import { TypeDetails } from "./modelDetails";
 
 export interface ParameterDetails {
   nameRef: string;
@@ -21,8 +23,8 @@ export interface ParameterDetails {
   isGlobal: boolean;
   parameter: Parameter;
   operationsIn?: string[];
-  modelType: string;
   collectionFormat?: string;
   schemaType: AllSchemaTypes;
   implementationLocation?: ImplementationLocation;
+  typeDetails: TypeDetails;
 }

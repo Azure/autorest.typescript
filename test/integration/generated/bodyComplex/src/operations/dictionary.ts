@@ -46,7 +46,7 @@ export class Dictionary {
   getValid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.DictionaryGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getValidOperationSpec,
@@ -85,7 +85,7 @@ export class Dictionary {
     complexBody: Models.DictionaryWrapper,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putValidOperationSpec,
@@ -113,7 +113,7 @@ export class Dictionary {
   getEmpty(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.DictionaryGetEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getEmptyOperationSpec,
@@ -152,7 +152,7 @@ export class Dictionary {
     complexBody: Models.DictionaryWrapper,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
       putEmptyOperationSpec,
@@ -180,7 +180,7 @@ export class Dictionary {
   getNull(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.DictionaryGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec,
@@ -208,7 +208,7 @@ export class Dictionary {
   getNotProvided(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.DictionaryGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNotProvidedOperationSpec,

@@ -27,7 +27,7 @@ import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getTypeForSchema } from "../utils/schemaHelpers";
 import { getMapperTypeFromSchema } from "./mapperTransforms";
 import { ParameterDetails } from "../models/parameterDetails";
-import { PropertyTypeDetails, PropertyKind } from "../models/modelDetails";
+import { PropertyKind, TypeDetails } from "../models/modelDetails";
 
 export function transformOperationSpec(
   operationDetails: OperationDetails,
@@ -168,24 +168,45 @@ export function transformOperationRequest(
 }
 
 export function transformOperationResponse(
-  response: Response | SchemaResponse
+  operationGroupName: string | undefined,
+  operationName: string,
+  response: SchemaResponse
 ): OperationResponseDetails {
-  let modelTypeName: string | undefined = undefined;
-  let responseType: PropertyTypeDetails | undefined = undefined;
-  let bodyMapper: Mapper | string | undefined = undefined;
+  if (!response.schema) {
+    const schemalessResponse = response as Response;
+    return {
+      statusCodes: schemalessResponse.protocol.http!.statusCodes,
+      typeDetails: {
+        typeName: "",
+        isConstant: false,
+        kind: PropertyKind.Primitive
+      }
+    };
+  }
 
-  if ((response as SchemaResponse).schema) {
-    const schemaResponse = response as SchemaResponse;
-    responseType = getTypeForSchema(schemaResponse.schema);
-    bodyMapper = getBodyMapperFromSchema(schemaResponse.schema);
+  const schemaResponse = response as SchemaResponse;
+  const typeDetails = getTypeForSchema(schemaResponse.schema);
+  const bodyMapper = getBodyMapperFromSchema(schemaResponse.schema);
+
+  if (!typeDetails) {
+    throw new Error(
+      `Unable to extract responseType for ${schemaResponse.schema.type}`
+    );
+  }
+
+  if (typeDetails.kind !== PropertyKind.Primitive) {
+    typeDetails.typeName = `${normalizeName(
+      operationGroupName || "",
+      NameType.Class
+    )}${normalizeName(operationName, NameType.Class)}Response`;
   }
 
   if (response.protocol.http) {
     return {
       statusCodes: response.protocol.http.statusCodes,
       mediaType: response.protocol.http.knownMediaType,
-      modelType: modelTypeName,
-      bodyMapper
+      bodyMapper,
+      typeDetails
     };
   } else {
     throw new Error("Operation does not specify HTTP response details.");
@@ -198,15 +219,34 @@ export function transformOperation(
 ): OperationDetails {
   const metadata = getLanguageMetadata(operation.language);
   const name = normalizeName(metadata.name, NameType.Property);
+  const responses = [
+    ...(operation.responses || []),
+    ...(operation.exceptions || [])
+  ];
+  const typeDetails: TypeDetails = {
+    typeName: `${normalizeName(
+      operationGroupName,
+      NameType.Interface
+    )}${normalizeName(metadata.name, NameType.Interface)}`,
+    kind: PropertyKind.Composite
+  };
+
   return {
     name,
+    typeDetails,
     fullName: `${operationGroupName}_${name}`.toLowerCase(),
     apiVersions: operation.apiVersions
       ? operation.apiVersions.map(v => v.version)
       : [],
     description: metadata.description,
     request: transformOperationRequest(operation.request),
-    responses: mergeResponsesAndExceptions(operation)
+    responses: responses.map(response =>
+      transformOperationResponse(
+        operationGroupName,
+        name,
+        response as SchemaResponse
+      )
+    )
   };
 }
 
@@ -263,24 +303,4 @@ function getBodyMapperFromSchema(
       ...(!!constantProps && constantProps)
     }
   );
-}
-
-function mergeResponsesAndExceptions(operation: Operation) {
-  let responses: OperationResponseDetails[] = [];
-
-  if (operation.responses) {
-    responses = [
-      ...responses,
-      ...operation.responses.map(transformOperationResponse)
-    ];
-  }
-
-  if (operation.exceptions) {
-    responses = [
-      ...responses,
-      ...operation.exceptions.map(transformOperationResponse)
-    ];
-  }
-
-  return responses;
 }

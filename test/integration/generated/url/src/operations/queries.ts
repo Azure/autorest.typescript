@@ -46,7 +46,7 @@ export class Queries {
   getBooleanTrue(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBooleanTrueOperationSpec,
@@ -74,7 +74,7 @@ export class Queries {
   getBooleanFalse(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBooleanFalseOperationSpec,
@@ -86,7 +86,9 @@ export class Queries {
    * Get null Boolean value on query (query string should be absent)
    * @param options The options parameters.
    */
-  getBooleanNull(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getBooleanNull(
+    options?: Models.QueriesGetBooleanNullOptionalParams
+  ): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -96,13 +98,13 @@ export class Queries {
    * @param callback The callback.
    */
   getBooleanNull(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesGetBooleanNullOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   getBooleanNull(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesGetBooleanNullOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBooleanNullOperationSpec,
@@ -130,7 +132,7 @@ export class Queries {
   getIntOneMillion(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       getIntOneMillionOperationSpec,
@@ -158,7 +160,7 @@ export class Queries {
   getIntNegativeOneMillion(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       getIntNegativeOneMillionOperationSpec,
@@ -170,7 +172,7 @@ export class Queries {
    * Get null integer value (no query parameter)
    * @param options The options parameters.
    */
-  getIntNull(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getIntNull(options?: Models.QueriesGetIntNullOptionalParams): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -180,13 +182,13 @@ export class Queries {
    * @param callback The callback.
    */
   getIntNull(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesGetIntNullOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   getIntNull(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesGetIntNullOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       getIntNullOperationSpec,
@@ -214,7 +216,7 @@ export class Queries {
   getTenBillion(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       getTenBillionOperationSpec,
@@ -242,7 +244,7 @@ export class Queries {
   getNegativeTenBillion(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNegativeTenBillionOperationSpec,
@@ -254,7 +256,7 @@ export class Queries {
    * Get 'null 64 bit integer value (no query param in uri)
    * @param options The options parameters.
    */
-  getLongNull(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getLongNull(options?: Models.QueriesGetLongNullOptionalParams): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -264,13 +266,13 @@ export class Queries {
    * @param callback The callback.
    */
   getLongNull(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesGetLongNullOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   getLongNull(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesGetLongNullOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       getLongNullOperationSpec,
@@ -298,7 +300,7 @@ export class Queries {
   floatScientificPositive(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       floatScientificPositiveOperationSpec,
@@ -326,7 +328,7 @@ export class Queries {
   floatScientificNegative(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       floatScientificNegativeOperationSpec,
@@ -338,7 +340,7 @@ export class Queries {
    * Get null numeric value (no query parameter)
    * @param options The options parameters.
    */
-  floatNull(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  floatNull(options?: Models.QueriesFloatNullOptionalParams): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -348,13 +350,13 @@ export class Queries {
    * @param callback The callback.
    */
   floatNull(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesFloatNullOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   floatNull(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesFloatNullOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       floatNullOperationSpec,
@@ -382,7 +384,7 @@ export class Queries {
   doubleDecimalPositive(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       doubleDecimalPositiveOperationSpec,
@@ -410,7 +412,7 @@ export class Queries {
   doubleDecimalNegative(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       doubleDecimalNegativeOperationSpec,
@@ -422,7 +424,7 @@ export class Queries {
    * Get null numeric value (no query parameter)
    * @param options The options parameters.
    */
-  doubleNull(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  doubleNull(options?: Models.QueriesDoubleNullOptionalParams): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -432,13 +434,13 @@ export class Queries {
    * @param callback The callback.
    */
   doubleNull(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesDoubleNullOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   doubleNull(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesDoubleNullOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       doubleNullOperationSpec,
@@ -466,7 +468,7 @@ export class Queries {
   stringUnicode(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       stringUnicodeOperationSpec,
@@ -494,7 +496,7 @@ export class Queries {
   stringUrlEncoded(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       stringUrlEncodedOperationSpec,
@@ -522,7 +524,7 @@ export class Queries {
   stringEmpty(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       stringEmptyOperationSpec,
@@ -534,7 +536,7 @@ export class Queries {
    * Get null (no query parameter in url)
    * @param options The options parameters.
    */
-  stringNull(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  stringNull(options?: Models.QueriesStringNullOptionalParams): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -544,13 +546,13 @@ export class Queries {
    * @param callback The callback.
    */
   stringNull(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesStringNullOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   stringNull(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesStringNullOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       stringNullOperationSpec,
@@ -562,7 +564,7 @@ export class Queries {
    * Get using uri with query parameter 'green color'
    * @param options The options parameters.
    */
-  enumValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  enumValid(options?: Models.QueriesEnumValidOptionalParams): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -572,13 +574,13 @@ export class Queries {
    * @param callback The callback.
    */
   enumValid(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesEnumValidOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   enumValid(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesEnumValidOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       enumValidOperationSpec,
@@ -590,7 +592,7 @@ export class Queries {
    * Get null (no query parameter in url)
    * @param options The options parameters.
    */
-  enumNull(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  enumNull(options?: Models.QueriesEnumNullOptionalParams): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -600,13 +602,13 @@ export class Queries {
    * @param callback The callback.
    */
   enumNull(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesEnumNullOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   enumNull(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesEnumNullOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       enumNullOperationSpec,
@@ -618,7 +620,9 @@ export class Queries {
    * Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    * @param options The options parameters.
    */
-  byteMultiByte(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  byteMultiByte(
+    options?: Models.QueriesByteMultiByteOptionalParams
+  ): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -628,13 +632,13 @@ export class Queries {
    * @param callback The callback.
    */
   byteMultiByte(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesByteMultiByteOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   byteMultiByte(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesByteMultiByteOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       byteMultiByteOperationSpec,
@@ -662,7 +666,7 @@ export class Queries {
   byteEmpty(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       byteEmptyOperationSpec,
@@ -674,7 +678,7 @@ export class Queries {
    * Get null as byte array (no query parameters in uri)
    * @param options The options parameters.
    */
-  byteNull(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  byteNull(options?: Models.QueriesByteNullOptionalParams): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -684,13 +688,13 @@ export class Queries {
    * @param callback The callback.
    */
   byteNull(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesByteNullOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   byteNull(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesByteNullOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       byteNullOperationSpec,
@@ -718,7 +722,7 @@ export class Queries {
   dateValid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       dateValidOperationSpec,
@@ -730,7 +734,7 @@ export class Queries {
    * Get null as date - this should result in no query parameters in uri
    * @param options The options parameters.
    */
-  dateNull(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  dateNull(options?: Models.QueriesDateNullOptionalParams): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -740,13 +744,13 @@ export class Queries {
    * @param callback The callback.
    */
   dateNull(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesDateNullOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   dateNull(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesDateNullOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       dateNullOperationSpec,
@@ -774,7 +778,7 @@ export class Queries {
   dateTimeValid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       dateTimeValidOperationSpec,
@@ -786,7 +790,9 @@ export class Queries {
    * Get null as date-time, should result in no query parameters in uri
    * @param options The options parameters.
    */
-  dateTimeNull(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  dateTimeNull(
+    options?: Models.QueriesDateTimeNullOptionalParams
+  ): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -796,13 +802,13 @@ export class Queries {
    * @param callback The callback.
    */
   dateTimeNull(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesDateTimeNullOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   dateTimeNull(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesDateTimeNullOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       dateTimeNullOperationSpec,
@@ -814,7 +820,9 @@ export class Queries {
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
    * @param options The options parameters.
    */
-  arrayStringCsvValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  arrayStringCsvValid(
+    options?: Models.QueriesArrayStringCsvValidOptionalParams
+  ): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -824,13 +832,13 @@ export class Queries {
    * @param callback The callback.
    */
   arrayStringCsvValid(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesArrayStringCsvValidOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   arrayStringCsvValid(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesArrayStringCsvValidOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       arrayStringCsvValidOperationSpec,
@@ -842,7 +850,9 @@ export class Queries {
    * Get a null array of string using the csv-array format
    * @param options The options parameters.
    */
-  arrayStringCsvNull(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  arrayStringCsvNull(
+    options?: Models.QueriesArrayStringCsvNullOptionalParams
+  ): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -852,13 +862,13 @@ export class Queries {
    * @param callback The callback.
    */
   arrayStringCsvNull(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesArrayStringCsvNullOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   arrayStringCsvNull(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesArrayStringCsvNullOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       arrayStringCsvNullOperationSpec,
@@ -870,7 +880,9 @@ export class Queries {
    * Get an empty array [] of string using the csv-array format
    * @param options The options parameters.
    */
-  arrayStringCsvEmpty(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  arrayStringCsvEmpty(
+    options?: Models.QueriesArrayStringCsvEmptyOptionalParams
+  ): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -880,13 +892,13 @@ export class Queries {
    * @param callback The callback.
    */
   arrayStringCsvEmpty(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesArrayStringCsvEmptyOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   arrayStringCsvEmpty(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesArrayStringCsvEmptyOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       arrayStringCsvEmptyOperationSpec,
@@ -898,7 +910,9 @@ export class Queries {
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format
    * @param options The options parameters.
    */
-  arrayStringSsvValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  arrayStringSsvValid(
+    options?: Models.QueriesArrayStringSsvValidOptionalParams
+  ): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -908,13 +922,13 @@ export class Queries {
    * @param callback The callback.
    */
   arrayStringSsvValid(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesArrayStringSsvValidOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   arrayStringSsvValid(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesArrayStringSsvValidOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       arrayStringSsvValidOperationSpec,
@@ -926,7 +940,9 @@ export class Queries {
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format
    * @param options The options parameters.
    */
-  arrayStringTsvValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  arrayStringTsvValid(
+    options?: Models.QueriesArrayStringTsvValidOptionalParams
+  ): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -936,13 +952,13 @@ export class Queries {
    * @param callback The callback.
    */
   arrayStringTsvValid(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesArrayStringTsvValidOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   arrayStringTsvValid(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesArrayStringTsvValidOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       arrayStringTsvValidOperationSpec,
@@ -954,7 +970,9 @@ export class Queries {
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format
    * @param options The options parameters.
    */
-  arrayStringPipesValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  arrayStringPipesValid(
+    options?: Models.QueriesArrayStringPipesValidOptionalParams
+  ): Promise<any>;
   /**
    * @param callback The callback.
    */
@@ -964,13 +982,13 @@ export class Queries {
    * @param callback The callback.
    */
   arrayStringPipesValid(
-    options: coreHttp.RequestOptionsBase,
+    options: Models.QueriesArrayStringPipesValidOptionalParams,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   arrayStringPipesValid(
-    options?: coreHttp.RequestOptionsBase,
+    options?: Models.QueriesArrayStringPipesValidOptionalParams,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       arrayStringPipesValidOperationSpec,

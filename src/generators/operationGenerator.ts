@@ -24,6 +24,7 @@ import {
 import { isString } from "util";
 import { ParameterDetails } from "../models/parameterDetails";
 import { filterOperationParameters } from "./utils/parameterUtils";
+import { PropertyKind } from "../models/modelDetails";
 
 /**
  * Function that writes the code for all the operations.
@@ -164,16 +165,28 @@ function buildResponses({ responses }: OperationSpecDetails): string[] {
   return parsedResponses;
 }
 
-function getOptionsParameter(isOptional = false): ParameterWithDescription {
+function getOptionsParameter(
+  operation: OperationDetails,
+  parameters: ParameterDetails[],
+  { isOptional = true } = {}
+): ParameterWithDescription {
+  const type = filterOperationParameters(parameters, operation, {
+    includeOptional: true
+  }).some(p => !p.required)
+    ? `Models.${operation.typeDetails.typeName}OptionalParams`
+    : "coreHttp.RequestOptionsBase";
+
   return {
     name: "options",
-    type: "coreHttp.RequestOptionsBase",
+    type,
     hasQuestionToken: isOptional,
     description: "The options parameters."
   };
 }
 
-function getCallbackParameter(isOptional = false): ParameterWithDescription {
+function getCallbackParameter({
+  isOptional = true
+} = {}): ParameterWithDescription {
   return {
     name: "callback",
     type: "coreHttp.ServiceCallback<any>", // TODO get the real type for callback
@@ -218,7 +231,7 @@ function addClass(
   });
 
   constructorDefinition.addStatements(["this.client = client"]);
-  addOperations(
+  writeOperationOverrides(
     operationGroupDetails,
     operationGroupClass,
     clientDetails.parameters
@@ -233,24 +246,19 @@ type ParameterWithDescription = OptionalKind<
  * Add all the required operations  whith their overloads,
  * extracted from OperationGroupDetails, to the generated file
  */
-function addOperations(
+function writeOperationOverrides(
   operationGroupDetails: OperationGroupDetails,
   operationGroupClass: ClassDeclaration,
   parameters: ParameterDetails[]
 ) {
-  const primitiveTypes = [
-    "string",
-    "boolean",
-    "number",
-    "any",
-    "Int8Array",
-    "Uint8Array"
-  ];
   operationGroupDetails.operations.forEach(operation => {
-    const params = filterOperationParameters(parameters, operation).map<ParameterWithDescription>(param => {
-      const typeName = param.modelType || "any";
+    const paramDeclarations = filterOperationParameters(
+      parameters,
+      operation
+    ).map<ParameterWithDescription>(param => {
+      const { typeName, kind } = param.typeDetails;
       const type =
-        primitiveTypes.indexOf(typeName) > -1
+        kind === PropertyKind.Primitive
           ? typeName
           : `Models.${normalizeName(typeName, NameType.Class)}`;
 
@@ -262,26 +270,28 @@ function addOperations(
       };
     });
 
-    const allParams = [
-      ...params,
-      getOptionsParameter(true),
-      getCallbackParameter(true)
-    ];
+    const optionalOptions = getOptionsParameter(operation, parameters);
+    const requiredCallback = getCallbackParameter({ isOptional: false });
 
-    const optionalOptionsParams = [...params, getOptionsParameter(true)];
-    const requiredCallbackParams = [...params, getCallbackParameter(false)];
+    const optionalOptionsParams = [...paramDeclarations, optionalOptions];
+    const allParams = [
+      ...paramDeclarations,
+      optionalOptions,
+      getCallbackParameter({ isOptional: true })
+    ];
+    const requiredCallbackParams = [...paramDeclarations, requiredCallback];
     const requiredOptionsAndCallbackParams = [
-      ...params,
-      getOptionsParameter(false),
-      getCallbackParameter(false)
+      ...paramDeclarations,
+      getOptionsParameter(operation, parameters, { isOptional: false }),
+      requiredCallback
     ];
     const operationMethod = operationGroupClass.addMethod({
       name: normalizeName(operation.name, NameType.Property),
       parameters: allParams,
-      returnType: "Promise<any>" // TODO: Add correct return type
+      returnType: `Promise<${getResponseType(operation)}>`
     });
 
-    const sendParams = params.map(p => p.name).join(",");
+    const sendParams = paramDeclarations.map(p => p.name).join(",");
     operationMethod.addStatements(
       `return this.client.sendOperationRequest({${sendParams}${
         !!sendParams ? "," : ""
@@ -308,6 +318,21 @@ function addOperations(
       }
     ]);
   });
+}
+
+function getResponseType(operation: OperationDetails) {
+  //TODO: Does this need to be updated to handle other success codes?
+  // Maybe just finding something that is not default and does not have
+  // x-ms-error-response extension?
+  const successResponse = operation.responses.find(
+    r => r.statusCodes.indexOf("200") > -1
+  );
+
+  const responseName = successResponse && successResponse.typeDetails.typeName;
+
+  return !!responseName
+    ? `Models.${normalizeName(responseName, NameType.Interface)}`
+    : "coreHttp.RestResponse";
 }
 
 function generateOperationJSDoc(

@@ -46,7 +46,7 @@ export class String {
   getNull(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.String> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec,
@@ -74,7 +74,7 @@ export class String {
   putNull(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       putNullOperationSpec,
@@ -102,7 +102,7 @@ export class String {
   getEmpty(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.String> {
     return this.client.sendOperationRequest(
       { options },
       getEmptyOperationSpec,
@@ -130,7 +130,7 @@ export class String {
   putEmpty(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       putEmptyOperationSpec,
@@ -158,7 +158,7 @@ export class String {
   getMbcs(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.String> {
     return this.client.sendOperationRequest(
       { options },
       getMbcsOperationSpec,
@@ -186,7 +186,7 @@ export class String {
   putMbcs(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       putMbcsOperationSpec,
@@ -214,7 +214,7 @@ export class String {
   getWhitespace(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.String> {
     return this.client.sendOperationRequest(
       { options },
       getWhitespaceOperationSpec,
@@ -242,7 +242,7 @@ export class String {
   putWhitespace(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       putWhitespaceOperationSpec,
@@ -270,7 +270,7 @@ export class String {
   getNotProvided(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.String> {
     return this.client.sendOperationRequest(
       { options },
       getNotProvidedOperationSpec,
@@ -298,7 +298,7 @@ export class String {
   getBase64Encoded(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.Uint8Array> {
     return this.client.sendOperationRequest(
       { options },
       getBase64EncodedOperationSpec,
@@ -326,7 +326,7 @@ export class String {
   getBase64UrlEncoded(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.Uint8Array> {
     return this.client.sendOperationRequest(
       { options },
       getBase64UrlEncodedOperationSpec,
@@ -365,7 +365,7 @@ export class String {
     stringBody: Uint8Array,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { stringBody, options },
       putBase64UrlEncodedOperationSpec,
@@ -393,7 +393,7 @@ export class String {
   getNullBase64UrlEncoded(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.Uint8Array> {
     return this.client.sendOperationRequest(
       { options },
       getNullBase64UrlEncodedOperationSpec,

@@ -46,7 +46,7 @@ export class Flattencomplex {
   getValid(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.FlattencomplexGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getValidOperationSpec,
