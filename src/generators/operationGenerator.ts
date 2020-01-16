@@ -247,9 +247,7 @@ function addOperations(
     "Uint8Array"
   ];
   operationGroupDetails.operations.forEach(operation => {
-    const params = filterOperationParameters(parameters, operation, {
-      includeOptional: true
-    }).map<ParameterWithDescription>(param => {
+    const params = filterOperationParameters(parameters, operation).map<ParameterWithDescription>(param => {
       const typeName = param.modelType || "any";
       const type =
         primitiveTypes.indexOf(typeName) > -1
