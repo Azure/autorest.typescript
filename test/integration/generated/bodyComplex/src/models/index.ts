@@ -67,8 +67,8 @@ export interface DoubleWrapper {
  * An interface representing boolean-wrapper.
  */
 export interface BooleanWrapper {
-  fieldTrue?: any;
-  fieldFalse?: any;
+  fieldTrue?: boolean;
+  fieldFalse?: boolean;
 }
 
 /**
@@ -84,31 +84,31 @@ export interface StringWrapper {
  * An interface representing date-wrapper.
  */
 export interface DateWrapper {
-  field?: any;
-  leap?: any;
+  field?: Date;
+  leap?: Date;
 }
 
 /**
  * An interface representing datetime-wrapper.
  */
 export interface DatetimeWrapper {
-  field?: any;
-  now?: any;
+  field?: Date;
+  now?: Date;
 }
 
 /**
  * An interface representing datetimerfc1123-wrapper.
  */
 export interface Datetimerfc1123Wrapper {
-  field?: any;
-  now?: any;
+  field?: Date;
+  now?: Date;
 }
 
 /**
  * An interface representing duration-wrapper.
  */
 export interface DurationWrapper {
-  field?: any;
+  field?: string;
 }
 
 /**
@@ -122,7 +122,7 @@ export interface ByteWrapper {
  * An interface representing array-wrapper.
  */
 export interface ArrayWrapper {
-  array?: any;
+  array?: string[];
 }
 
 /**
@@ -132,7 +132,7 @@ export interface DictionaryWrapper {
   /**
    * Dictionary of <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>
    */
-  defaultProgram?: any;
+  defaultProgram?: { [propertyName: string]: string };
 }
 
 /**
@@ -148,7 +148,7 @@ export interface Pet {
  */
 export interface Cat {
   color?: string;
-  hates?: any;
+  hates?: Dog[];
 }
 
 /**
@@ -172,7 +172,7 @@ export interface Fish {
   fishtype: string;
   species?: string;
   length: number;
-  siblings?: any;
+  siblings?: FishUnion[];
 }
 
 /**
@@ -188,9 +188,9 @@ export interface DotFish {
  */
 export interface DotFishMarket {
   sampleSalmon?: DotSalmon;
-  salmons?: any;
-  sampleFish?: DotFish;
-  fishes?: any;
+  salmons?: DotSalmon[];
+  sampleFish?: DotFishUnion;
+  fishes?: DotFishUnion[];
 }
 
 /**
@@ -198,7 +198,7 @@ export interface DotFishMarket {
  */
 export interface DotSalmon {
   location?: string;
-  iswild?: any;
+  iswild?: boolean;
 }
 
 /**
@@ -206,7 +206,7 @@ export interface DotSalmon {
  */
 export interface Salmon {
   location?: string;
-  iswild?: any;
+  iswild?: boolean;
 }
 
 /**
@@ -244,7 +244,7 @@ export interface SmartSalmon {
  */
 export interface Shark {
   age?: number;
-  birthday: any;
+  birthday: Date;
 }
 
 /**

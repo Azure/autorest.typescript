@@ -1,13 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  HttpMethods,
-  Mapper,
-  MapperType,
-  CompositeMapper,
-  OperationQueryParameter
-} from "@azure/core-http";
+import { HttpMethods, Mapper, MapperType } from "@azure/core-http";
 import {
   Operation,
   Request,
@@ -18,7 +12,6 @@ import {
   ChoiceSchema,
   OperationGroup,
   ParameterLocation,
-  Parameter,
   ConstantSchema
 } from "@azure-tools/codemodel";
 import { normalizeName, NameType } from "../utils/nameUtils";
@@ -34,6 +27,7 @@ import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getTypeForSchema } from "../utils/schemaHelpers";
 import { getMapperTypeFromSchema } from "./mapperTransforms";
 import { ParameterDetails } from "../models/parameterDetails";
+import { PropertyTypeDetails, PropertyKind } from "../models/modelDetails";
 
 export function transformOperationSpec(
   operationDetails: OperationDetails,
@@ -176,12 +170,13 @@ export function transformOperationRequest(
 export function transformOperationResponse(
   response: Response | SchemaResponse
 ): OperationResponseDetails {
-  let modelType: string | undefined = undefined;
+  let modelTypeName: string | undefined = undefined;
+  let responseType: PropertyTypeDetails | undefined = undefined;
   let bodyMapper: Mapper | string | undefined = undefined;
 
   if ((response as SchemaResponse).schema) {
     const schemaResponse = response as SchemaResponse;
-    modelType = getTypeForSchema(schemaResponse.schema).typeName;
+    responseType = getTypeForSchema(schemaResponse.schema);
     bodyMapper = getBodyMapperFromSchema(schemaResponse.schema);
   }
 
@@ -189,7 +184,7 @@ export function transformOperationResponse(
     return {
       statusCodes: response.protocol.http.statusCodes,
       mediaType: response.protocol.http.knownMediaType,
-      modelType,
+      modelType: modelTypeName,
       bodyMapper
     };
   } else {

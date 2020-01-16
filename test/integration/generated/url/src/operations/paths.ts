@@ -668,24 +668,30 @@ export class Paths {
    * @param datePath null as date (should throw)
    * @param options The options parameters.
    */
-  dateNull(datePath: any, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  dateNull(
+    datePath: Models.Date,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<any>;
   /**
    * @param datePath null as date (should throw)
    * @param callback The callback.
    */
-  dateNull(datePath: any, callback: coreHttp.ServiceCallback<any>): void;
+  dateNull(
+    datePath: Models.Date,
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param datePath null as date (should throw)
    * @param options The options parameters.
    * @param callback The callback.
    */
   dateNull(
-    datePath: any,
+    datePath: Models.Date,
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   dateNull(
-    datePath: any,
+    datePath: Models.Date,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
@@ -730,7 +736,7 @@ export class Paths {
    * @param options The options parameters.
    */
   dateTimeNull(
-    dateTimePath: any,
+    dateTimePath: Models.Date,
     options?: coreHttp.RequestOptionsBase
   ): Promise<any>;
   /**
@@ -738,7 +744,7 @@ export class Paths {
    * @param callback The callback.
    */
   dateTimeNull(
-    dateTimePath: any,
+    dateTimePath: Models.Date,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   /**
@@ -747,12 +753,12 @@ export class Paths {
    * @param callback The callback.
    */
   dateTimeNull(
-    dateTimePath: any,
+    dateTimePath: Models.Date,
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   dateTimeNull(
-    dateTimePath: any,
+    dateTimePath: Models.Date,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
@@ -808,26 +814,29 @@ export class Paths {
    * @param options The options parameters.
    */
   arrayCsvInPath(
-    arrayPath: any,
+    arrayPath: Models.String[],
     options?: coreHttp.RequestOptionsBase
   ): Promise<any>;
   /**
    * @param arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
    * @param callback The callback.
    */
-  arrayCsvInPath(arrayPath: any, callback: coreHttp.ServiceCallback<any>): void;
+  arrayCsvInPath(
+    arrayPath: Models.String[],
+    callback: coreHttp.ServiceCallback<any>
+  ): void;
   /**
    * @param arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
    * @param options The options parameters.
    * @param callback The callback.
    */
   arrayCsvInPath(
-    arrayPath: any,
+    arrayPath: Models.String[],
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   arrayCsvInPath(
-    arrayPath: any,
+    arrayPath: Models.String[],
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
@@ -844,7 +853,7 @@ export class Paths {
    * @param options The options parameters.
    */
   unixTimeUrl(
-    unixTimeUrlPath: any,
+    unixTimeUrlPath: Models.Date,
     options?: coreHttp.RequestOptionsBase
   ): Promise<any>;
   /**
@@ -852,7 +861,7 @@ export class Paths {
    * @param callback The callback.
    */
   unixTimeUrl(
-    unixTimeUrlPath: any,
+    unixTimeUrlPath: Models.Date,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   /**
@@ -861,12 +870,12 @@ export class Paths {
    * @param callback The callback.
    */
   unixTimeUrl(
-    unixTimeUrlPath: any,
+    unixTimeUrlPath: Models.Date,
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   unixTimeUrl(
-    unixTimeUrlPath: any,
+    unixTimeUrlPath: Models.Date,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {

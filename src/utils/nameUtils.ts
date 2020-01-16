@@ -9,8 +9,9 @@ export enum CasingConvention {
 
 export enum NameType {
   Class,
-  Property,
-  File
+  File,
+  Interface,
+  Property
 }
 
 export function guardReservedNames(name: string): string {
@@ -44,6 +45,7 @@ export function getMappersName(title: string): string {
 function getCasingConvention(nameType: NameType) {
   switch (nameType) {
     case NameType.Class:
+    case NameType.Interface:
       return CasingConvention.Pascal;
     case NameType.File:
     case NameType.Property:

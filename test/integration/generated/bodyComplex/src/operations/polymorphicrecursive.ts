@@ -92,7 +92,7 @@ export class Polymorphicrecursive {
    * @param options The options parameters.
    */
   putValid(
-    complexBody: Models.Fish,
+    complexBody: Models.FishUnion,
     options?: coreHttp.RequestOptionsBase
   ): Promise<any>;
   /**
@@ -132,7 +132,7 @@ export class Polymorphicrecursive {
    * @param callback The callback.
    */
   putValid(
-    complexBody: Models.Fish,
+    complexBody: Models.FishUnion,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   /**
@@ -173,12 +173,12 @@ export class Polymorphicrecursive {
    * @param callback The callback.
    */
   putValid(
-    complexBody: Models.Fish,
+    complexBody: Models.FishUnion,
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   putValid(
-    complexBody: Models.Fish,
+    complexBody: Models.FishUnion,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {

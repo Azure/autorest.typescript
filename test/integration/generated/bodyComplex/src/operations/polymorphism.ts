@@ -92,7 +92,7 @@ export class Polymorphism {
    * @param options The options parameters.
    */
   putValid(
-    complexBody: Models.Fish,
+    complexBody: Models.FishUnion,
     options?: coreHttp.RequestOptionsBase
   ): Promise<any>;
   /**
@@ -132,7 +132,7 @@ export class Polymorphism {
    * @param callback The callback.
    */
   putValid(
-    complexBody: Models.Fish,
+    complexBody: Models.FishUnion,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   /**
@@ -173,12 +173,12 @@ export class Polymorphism {
    * @param callback The callback.
    */
   putValid(
-    complexBody: Models.Fish,
+    complexBody: Models.FishUnion,
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   putValid(
-    complexBody: Models.Fish,
+    complexBody: Models.FishUnion,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
@@ -313,7 +313,7 @@ export class Polymorphism {
    * @param options The options parameters.
    */
   putComplicated(
-    complexBody: Models.Salmon,
+    complexBody: Models.SalmonUnion,
     options?: coreHttp.RequestOptionsBase
   ): Promise<any>;
   /**
@@ -321,7 +321,7 @@ export class Polymorphism {
    * @param callback The callback.
    */
   putComplicated(
-    complexBody: Models.Salmon,
+    complexBody: Models.SalmonUnion,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   /**
@@ -330,12 +330,12 @@ export class Polymorphism {
    * @param callback The callback.
    */
   putComplicated(
-    complexBody: Models.Salmon,
+    complexBody: Models.SalmonUnion,
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   putComplicated(
-    complexBody: Models.Salmon,
+    complexBody: Models.SalmonUnion,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
@@ -352,7 +352,7 @@ export class Polymorphism {
    * @param options The options parameters.
    */
   putMissingDiscriminator(
-    complexBody: Models.Salmon,
+    complexBody: Models.SalmonUnion,
     options?: coreHttp.RequestOptionsBase
   ): Promise<any>;
   /**
@@ -360,7 +360,7 @@ export class Polymorphism {
    * @param callback The callback.
    */
   putMissingDiscriminator(
-    complexBody: Models.Salmon,
+    complexBody: Models.SalmonUnion,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   /**
@@ -369,12 +369,12 @@ export class Polymorphism {
    * @param callback The callback.
    */
   putMissingDiscriminator(
-    complexBody: Models.Salmon,
+    complexBody: Models.SalmonUnion,
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   putMissingDiscriminator(
-    complexBody: Models.Salmon,
+    complexBody: Models.SalmonUnion,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {
@@ -423,7 +423,7 @@ export class Polymorphism {
    * @param options The options parameters.
    */
   putValidMissingRequired(
-    complexBody: Models.Fish,
+    complexBody: Models.FishUnion,
     options?: coreHttp.RequestOptionsBase
   ): Promise<any>;
   /**
@@ -463,7 +463,7 @@ export class Polymorphism {
    * @param callback The callback.
    */
   putValidMissingRequired(
-    complexBody: Models.Fish,
+    complexBody: Models.FishUnion,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   /**
@@ -504,12 +504,12 @@ export class Polymorphism {
    * @param callback The callback.
    */
   putValidMissingRequired(
-    complexBody: Models.Fish,
+    complexBody: Models.FishUnion,
     options: coreHttp.RequestOptionsBase,
     callback: coreHttp.ServiceCallback<any>
   ): void;
   putValidMissingRequired(
-    complexBody: Models.Fish,
+    complexBody: Models.FishUnion,
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
   ): Promise<any> {

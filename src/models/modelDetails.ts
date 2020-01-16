@@ -22,6 +22,7 @@ export interface PropertyTypeDetails {
   typeName: string;
   isConstant: boolean;
   defaultValue?: string;
+  kind: PropertyKind;
 }
 
 /**
@@ -32,4 +33,13 @@ export interface ModelDetails {
   description: string;
   serializedName: string;
   properties: PropertyDetails[];
+}
+
+/**
+ * Details what the kind of property for handling
+ */
+export enum PropertyKind {
+  Primitive,
+  Enum,
+  Composite
 }
