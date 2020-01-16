@@ -15,6 +15,10 @@ import { getStringForValue } from "./valueHelpers";
 import { getLanguageMetadata } from "./languageHelpers";
 import { normalizeName, NameType } from "./nameUtils";
 
+/**
+ * Helper function which given a schema returns type information for useful for generating Typescript code
+ * @param schema schema to extract type information from
+ */
 export function getTypeForSchema(schema: Schema): PropertyTypeDetails {
   let typeName: string = "";
   let defaultValue: string = "";
