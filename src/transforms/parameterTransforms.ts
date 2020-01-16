@@ -83,6 +83,7 @@ export function populateOperationParameters(
       operationsIn: [operationName],
       location: getParameterLocation(parameter),
       required: parameter.required,
+      schemaType: parameter.schema.type,
       parameterPath: getParameterPath(parameter),
       modelType: getTypeForSchema(parameter.schema).typeName,
       mapper: getMapperOrRef(
@@ -92,9 +93,11 @@ export function populateOperationParameters(
       ),
       isGlobal: getIsGlobal(parameter),
       parameter,
-      collectionFormat
+      collectionFormat,
+      implementationLocation: parameter.implementation
     };
     operationParameters.push(paramDetails);
+
     return;
   }
 
@@ -225,6 +228,7 @@ export function disambiguateParameter(
       serializedName,
       operationsIn: [operationName],
       required: parameter.required,
+      schemaType: parameter.schema.type,
       parameterPath: getParameterPath(parameter),
       location: getParameterLocation(parameter),
       mapper: getMapperOrRef(
@@ -235,7 +239,8 @@ export function disambiguateParameter(
       modelType: getTypeForSchema(parameter.schema).typeName,
       isGlobal: getIsGlobal(parameter),
       parameter,
-      collectionFormat
+      collectionFormat,
+      implementationLocation: parameter.implementation
     });
   }
 }

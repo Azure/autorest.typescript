@@ -16,7 +16,8 @@ import {
   ConstantSchema,
   ConstantValue,
   Parameter,
-  StringSchema
+  StringSchema,
+  ImplementationLocation
 } from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { Mapper } from "@azure/core-http";
@@ -210,7 +211,9 @@ describe("OperationTransforms", () => {
             parameter,
             modelType: "string",
             name: "MockOperation",
-            description: ""
+            description: "",
+            schemaType: SchemaType.String,
+            implementationLocation: ImplementationLocation.Method
           }
         ]);
         checkHttpMethodAndPath(operationSpec);

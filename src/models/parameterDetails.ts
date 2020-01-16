@@ -1,7 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Parameter, ParameterLocation } from "@azure-tools/codemodel";
+import {
+  Parameter,
+  ParameterLocation,
+  AllSchemaTypes,
+  ImplementationLocation
+} from "@azure-tools/codemodel";
 import { Mapper } from "@azure/core-http";
 
 export interface ParameterDetails {
@@ -18,4 +23,6 @@ export interface ParameterDetails {
   operationsIn?: string[];
   modelType: string;
   collectionFormat?: string;
+  schemaType: AllSchemaTypes;
+  implementationLocation?: ImplementationLocation;
 }

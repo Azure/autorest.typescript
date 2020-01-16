@@ -23,6 +23,7 @@ import {
 } from "../models/operationDetails";
 import { isString } from "util";
 import { ParameterDetails } from "../models/parameterDetails";
+import { filterOperationParameters } from "./utils/parameterUtils";
 
 /**
  * Function that writes the code for all the operations.
@@ -228,21 +229,6 @@ type ParameterWithDescription = OptionalKind<
   ParameterDeclarationStructure & { description: string }
 >;
 
-function filterOperationParameters(
-  parameters: ParameterDetails[],
-  operation: OperationDetails
-) {
-  return parameters.filter(
-    param =>
-      !param.isGlobal &&
-      param.operationsIn &&
-      param.operationsIn.includes(operation.fullName) &&
-      param.location !== ParameterLocation.Uri &&
-      param.required &&
-      param.parameter.schema.type !== SchemaType.Constant
-  );
-}
-
 /**
  * Add all the required operations  whith their overloads,
  * extracted from OperationGroupDetails, to the generated file
@@ -261,9 +247,9 @@ function addOperations(
     "Uint8Array"
   ];
   operationGroupDetails.operations.forEach(operation => {
-    const params = filterOperationParameters(parameters, operation).map<
-      ParameterWithDescription
-    >(param => {
+    const params = filterOperationParameters(parameters, operation, {
+      includeOptional: true
+    }).map<ParameterWithDescription>(param => {
       const typeName = param.modelType || "any";
       const type =
         primitiveTypes.indexOf(typeName) > -1
