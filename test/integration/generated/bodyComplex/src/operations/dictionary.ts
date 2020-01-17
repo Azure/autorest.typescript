@@ -32,27 +32,10 @@ export class Dictionary {
    */
   getValid(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<Models.DictionaryGetValidResponse>;
-  /**
-   * @param callback The callback.
-   */
-  getValid(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getValid(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getValid(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<Models.DictionaryGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getValidOperationSpec,
-      callback
+      getValidOperationSpec
     ) as Promise<Models.DictionaryGetValidResponse>;
   }
 
@@ -64,34 +47,10 @@ export class Dictionary {
   putValid(
     complexBody: Models.DictionaryWrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<coreHttp.RestResponse>;
-  /**
-   * @param complexBody Please put a dictionary with 5 key-value pairs: "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null
-   * @param callback The callback.
-   */
-  putValid(
-    complexBody: Models.DictionaryWrapper,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param complexBody Please put a dictionary with 5 key-value pairs: "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  putValid(
-    complexBody: Models.DictionaryWrapper,
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  putValid(
-    complexBody: Models.DictionaryWrapper,
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
-      putValidOperationSpec,
-      callback
+      putValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
@@ -101,27 +60,10 @@ export class Dictionary {
    */
   getEmpty(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<Models.DictionaryGetEmptyResponse>;
-  /**
-   * @param callback The callback.
-   */
-  getEmpty(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getEmpty(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getEmpty(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<Models.DictionaryGetEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getEmptyOperationSpec,
-      callback
+      getEmptyOperationSpec
     ) as Promise<Models.DictionaryGetEmptyResponse>;
   }
 
@@ -133,34 +75,10 @@ export class Dictionary {
   putEmpty(
     complexBody: Models.DictionaryWrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<coreHttp.RestResponse>;
-  /**
-   * @param complexBody Please put a dictionary with 5 key-value pairs: "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null
-   * @param callback The callback.
-   */
-  putEmpty(
-    complexBody: Models.DictionaryWrapper,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param complexBody Please put a dictionary with 5 key-value pairs: "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  putEmpty(
-    complexBody: Models.DictionaryWrapper,
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  putEmpty(
-    complexBody: Models.DictionaryWrapper,
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
-      putEmptyOperationSpec,
-      callback
+      putEmptyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
@@ -170,27 +88,10 @@ export class Dictionary {
    */
   getNull(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<Models.DictionaryGetNullResponse>;
-  /**
-   * @param callback The callback.
-   */
-  getNull(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getNull(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getNull(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<Models.DictionaryGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getNullOperationSpec,
-      callback
+      getNullOperationSpec
     ) as Promise<Models.DictionaryGetNullResponse>;
   }
 
@@ -200,27 +101,10 @@ export class Dictionary {
    */
   getNotProvided(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<Models.DictionaryGetNotProvidedResponse>;
-  /**
-   * @param callback The callback.
-   */
-  getNotProvided(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getNotProvided(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getNotProvided(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<Models.DictionaryGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getNotProvidedOperationSpec,
-      callback
+      getNotProvidedOperationSpec
     ) as Promise<Models.DictionaryGetNotProvidedResponse>;
   }
 }

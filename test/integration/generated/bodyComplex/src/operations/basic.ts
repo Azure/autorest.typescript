@@ -32,27 +32,10 @@ export class Basic {
    */
   getValid(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<Models.BasicGetValidResponse>;
-  /**
-   * @param callback The callback.
-   */
-  getValid(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getValid(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getValid(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<Models.BasicGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getValidOperationSpec,
-      callback
+      getValidOperationSpec
     ) as Promise<Models.BasicGetValidResponse>;
   }
 
@@ -64,34 +47,10 @@ export class Basic {
   putValid(
     complexBody: Models.Basic,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<coreHttp.RestResponse>;
-  /**
-   * @param complexBody Please put {id: 2, name: 'abc', color: 'Magenta'}
-   * @param callback The callback.
-   */
-  putValid(
-    complexBody: Models.Basic,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param complexBody Please put {id: 2, name: 'abc', color: 'Magenta'}
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  putValid(
-    complexBody: Models.Basic,
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  putValid(
-    complexBody: Models.Basic,
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
-      putValidOperationSpec,
-      callback
+      putValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
@@ -101,27 +60,10 @@ export class Basic {
    */
   getInvalid(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<Models.BasicGetInvalidResponse>;
-  /**
-   * @param callback The callback.
-   */
-  getInvalid(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getInvalid(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getInvalid(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<Models.BasicGetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getInvalidOperationSpec,
-      callback
+      getInvalidOperationSpec
     ) as Promise<Models.BasicGetInvalidResponse>;
   }
 
@@ -131,27 +73,10 @@ export class Basic {
    */
   getEmpty(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<Models.BasicGetEmptyResponse>;
-  /**
-   * @param callback The callback.
-   */
-  getEmpty(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getEmpty(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getEmpty(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<Models.BasicGetEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getEmptyOperationSpec,
-      callback
+      getEmptyOperationSpec
     ) as Promise<Models.BasicGetEmptyResponse>;
   }
 
@@ -161,27 +86,10 @@ export class Basic {
    */
   getNull(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<Models.BasicGetNullResponse>;
-  /**
-   * @param callback The callback.
-   */
-  getNull(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getNull(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getNull(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<Models.BasicGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getNullOperationSpec,
-      callback
+      getNullOperationSpec
     ) as Promise<Models.BasicGetNullResponse>;
   }
 
@@ -191,27 +99,10 @@ export class Basic {
    */
   getNotProvided(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<Models.BasicGetNotProvidedResponse>;
-  /**
-   * @param callback The callback.
-   */
-  getNotProvided(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getNotProvided(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getNotProvided(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<Models.BasicGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getNotProvidedOperationSpec,
-      callback
+      getNotProvidedOperationSpec
     ) as Promise<Models.BasicGetNotProvidedResponse>;
   }
 }

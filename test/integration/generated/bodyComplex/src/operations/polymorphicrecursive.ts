@@ -32,27 +32,10 @@ export class Polymorphicrecursive {
    */
   getValid(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<Models.PolymorphicrecursiveGetValidResponse>;
-  /**
-   * @param callback The callback.
-   */
-  getValid(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getValid(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getValid(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<Models.PolymorphicrecursiveGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getValidOperationSpec,
-      callback
+      getValidOperationSpec
     ) as Promise<Models.PolymorphicrecursiveGetValidResponse>;
   }
 
@@ -96,98 +79,10 @@ export class Polymorphicrecursive {
   putValid(
     complexBody: Models.FishUnion,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<coreHttp.RestResponse>;
-  /**
-   * @param complexBody Please put a salmon that looks like this:
-   * {
-   *         'fishtype':'Salmon',
-   *         'location':'alaska',
-   *         'iswild':true,
-   *         'species':'king',
-   *         'length':1.0,
-   *         'siblings':[
-   *           {
-   *             'fishtype':'Shark',
-   *             'age':6,
-   *             'birthday': '2012-01-05T01:00:00Z',
-   *             'length':20.0,
-   *             'species':'predator',
-   *           },
-   *           {
-   *             'fishtype':'Sawshark',
-   *             'age':105,
-   *             'birthday': '1900-01-05T01:00:00Z',
-   *             'length':10.0,
-   *             'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-   *             'species':'dangerous',
-   *           },
-   *           {
-   *             'fishtype': 'goblin',
-   *             'age': 1,
-   *             'birthday': '2015-08-08T00:00:00Z',
-   *             'length': 30.0,
-   *             'species': 'scary',
-   *             'jawsize': 5
-   *           }
-   *         ]
-   *       };
-   * @param callback The callback.
-   */
-  putValid(
-    complexBody: Models.FishUnion,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param complexBody Please put a salmon that looks like this:
-   * {
-   *         'fishtype':'Salmon',
-   *         'location':'alaska',
-   *         'iswild':true,
-   *         'species':'king',
-   *         'length':1.0,
-   *         'siblings':[
-   *           {
-   *             'fishtype':'Shark',
-   *             'age':6,
-   *             'birthday': '2012-01-05T01:00:00Z',
-   *             'length':20.0,
-   *             'species':'predator',
-   *           },
-   *           {
-   *             'fishtype':'Sawshark',
-   *             'age':105,
-   *             'birthday': '1900-01-05T01:00:00Z',
-   *             'length':10.0,
-   *             'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-   *             'species':'dangerous',
-   *           },
-   *           {
-   *             'fishtype': 'goblin',
-   *             'age': 1,
-   *             'birthday': '2015-08-08T00:00:00Z',
-   *             'length': 30.0,
-   *             'species': 'scary',
-   *             'jawsize': 5
-   *           }
-   *         ]
-   *       };
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  putValid(
-    complexBody: Models.FishUnion,
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  putValid(
-    complexBody: Models.FishUnion,
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
-      putValidOperationSpec,
-      callback
+      putValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 }

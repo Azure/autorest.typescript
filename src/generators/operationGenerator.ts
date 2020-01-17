@@ -183,17 +183,6 @@ function getOptionsParameter(
   };
 }
 
-function getCallbackParameter({
-  isOptional = true
-} = {}): ParameterWithDescription {
-  return {
-    name: "callback",
-    type: "coreHttp.ServiceCallback<any>", // TODO get the real type for callback
-    hasQuestionToken: isOptional,
-    description: "The callback."
-  };
-}
-
 /**
  * Adds an Operation group class to the generated file
  */
@@ -270,55 +259,24 @@ function writeOperationOverrides(
       };
     });
 
-    const optionalOptions = getOptionsParameter(operation, parameters);
-    const requiredCallback = getCallbackParameter({ isOptional: false });
-
-    const optionalOptionsParams = [...paramDeclarations, optionalOptions];
     const allParams = [
       ...paramDeclarations,
-      optionalOptions,
-      getCallbackParameter({ isOptional: true })
+      getOptionsParameter(operation, parameters)
     ];
-    const requiredCallbackParams = [...paramDeclarations, requiredCallback];
-    const requiredOptionsAndCallbackParams = [
-      ...paramDeclarations,
-      getOptionsParameter(operation, parameters, { isOptional: false }),
-      requiredCallback
-    ];
+
     const operationMethod = operationGroupClass.addMethod({
       name: normalizeName(operation.name, NameType.Property),
       parameters: allParams,
-      returnType: `Promise<${responseName}>`
+      returnType: `Promise<${responseName}>`,
+      docs: [generateOperationJSDoc(allParams, operation.description)]
     });
 
     const sendParams = paramDeclarations.map(p => p.name).join(",");
     operationMethod.addStatements(
       `return this.client.sendOperationRequest({${sendParams}${
         !!sendParams ? "," : ""
-      } options}, ${
-        operation.name
-      }OperationSpec, callback) as Promise<${responseName}>`
+      } options}, ${operation.name}OperationSpec) as Promise<${responseName}>`
     );
-
-    operationMethod.addOverloads([
-      {
-        parameters: optionalOptionsParams,
-        docs: [
-          generateOperationJSDoc(optionalOptionsParams, operation.description)
-        ],
-        returnType: `Promise<${responseName}>`
-      },
-      {
-        parameters: requiredCallbackParams,
-        docs: [generateOperationJSDoc(requiredCallbackParams)],
-        returnType: "void"
-      },
-      {
-        parameters: requiredOptionsAndCallbackParams,
-        docs: [generateOperationJSDoc(requiredOptionsAndCallbackParams)],
-        returnType: "void"
-      }
-    ]);
   });
 }
 

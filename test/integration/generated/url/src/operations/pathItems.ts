@@ -36,39 +36,10 @@ export class PathItems {
     pathItemStringPath: string,
     localStringPath: string,
     options?: Models.PathItemsGetAllWithValuesOptionalParams
-  ): Promise<coreHttp.RestResponse>;
-  /**
-   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
-   * @param localStringPath should contain value 'localStringPath'
-   * @param callback The callback.
-   */
-  getAllWithValues(
-    pathItemStringPath: string,
-    localStringPath: string,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
-   * @param localStringPath should contain value 'localStringPath'
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getAllWithValues(
-    pathItemStringPath: string,
-    localStringPath: string,
-    options: Models.PathItemsGetAllWithValuesOptionalParams,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getAllWithValues(
-    pathItemStringPath: string,
-    localStringPath: string,
-    options?: Models.PathItemsGetAllWithValuesOptionalParams,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { pathItemStringPath, localStringPath, options },
-      getAllWithValuesOperationSpec,
-      callback
+      getAllWithValuesOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
@@ -82,39 +53,10 @@ export class PathItems {
     pathItemStringPath: string,
     localStringPath: string,
     options?: Models.PathItemsGetGlobalQueryNullOptionalParams
-  ): Promise<coreHttp.RestResponse>;
-  /**
-   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
-   * @param localStringPath should contain value 'localStringPath'
-   * @param callback The callback.
-   */
-  getGlobalQueryNull(
-    pathItemStringPath: string,
-    localStringPath: string,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
-   * @param localStringPath should contain value 'localStringPath'
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getGlobalQueryNull(
-    pathItemStringPath: string,
-    localStringPath: string,
-    options: Models.PathItemsGetGlobalQueryNullOptionalParams,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getGlobalQueryNull(
-    pathItemStringPath: string,
-    localStringPath: string,
-    options?: Models.PathItemsGetGlobalQueryNullOptionalParams,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { pathItemStringPath, localStringPath, options },
-      getGlobalQueryNullOperationSpec,
-      callback
+      getGlobalQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
@@ -128,39 +70,10 @@ export class PathItems {
     pathItemStringPath: string,
     localStringPath: string,
     options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams
-  ): Promise<coreHttp.RestResponse>;
-  /**
-   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
-   * @param localStringPath should contain value 'localStringPath'
-   * @param callback The callback.
-   */
-  getGlobalAndLocalQueryNull(
-    pathItemStringPath: string,
-    localStringPath: string,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
-   * @param localStringPath should contain value 'localStringPath'
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getGlobalAndLocalQueryNull(
-    pathItemStringPath: string,
-    localStringPath: string,
-    options: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getGlobalAndLocalQueryNull(
-    pathItemStringPath: string,
-    localStringPath: string,
-    options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { pathItemStringPath, localStringPath, options },
-      getGlobalAndLocalQueryNullOperationSpec,
-      callback
+      getGlobalAndLocalQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
@@ -174,39 +87,10 @@ export class PathItems {
     pathItemStringPath: string,
     localStringPath: string,
     options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams
-  ): Promise<coreHttp.RestResponse>;
-  /**
-   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
-   * @param localStringPath should contain value 'localStringPath'
-   * @param callback The callback.
-   */
-  getLocalPathItemQueryNull(
-    pathItemStringPath: string,
-    localStringPath: string,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
-   * @param localStringPath should contain value 'localStringPath'
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getLocalPathItemQueryNull(
-    pathItemStringPath: string,
-    localStringPath: string,
-    options: Models.PathItemsGetLocalPathItemQueryNullOptionalParams,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getLocalPathItemQueryNull(
-    pathItemStringPath: string,
-    localStringPath: string,
-    options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { pathItemStringPath, localStringPath, options },
-      getLocalPathItemQueryNullOperationSpec,
-      callback
+      getLocalPathItemQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 }

@@ -32,27 +32,10 @@ export class Inheritance {
    */
   getValid(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<Models.InheritanceGetValidResponse>;
-  /**
-   * @param callback The callback.
-   */
-  getValid(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getValid(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getValid(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<Models.InheritanceGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getValidOperationSpec,
-      callback
+      getValidOperationSpec
     ) as Promise<Models.InheritanceGetValidResponse>;
   }
 
@@ -64,34 +47,10 @@ export class Inheritance {
   putValid(
     complexBody: Models.Siamese,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<coreHttp.RestResponse>;
-  /**
-   * @param complexBody Please put a siamese with id=2, name="Siameee", color=green, breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one named "Tomato" with id=-1 and food="french fries".
-   * @param callback The callback.
-   */
-  putValid(
-    complexBody: Models.Siamese,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param complexBody Please put a siamese with id=2, name="Siameee", color=green, breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one named "Tomato" with id=-1 and food="french fries".
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  putValid(
-    complexBody: Models.Siamese,
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  putValid(
-    complexBody: Models.Siamese,
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
-      putValidOperationSpec,
-      callback
+      putValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 }
