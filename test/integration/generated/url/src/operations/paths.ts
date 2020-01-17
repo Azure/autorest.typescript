@@ -30,7 +30,9 @@ export class Paths {
    * Get true Boolean value on path
    * @param options The options parameters.
    */
-  getBooleanTrue(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getBooleanTrue(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -51,14 +53,16 @@ export class Paths {
       { options },
       getBooleanTrueOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get false Boolean value on path
    * @param options The options parameters.
    */
-  getBooleanFalse(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getBooleanFalse(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -79,14 +83,16 @@ export class Paths {
       { options },
       getBooleanFalseOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '1000000' integer value
    * @param options The options parameters.
    */
-  getIntOneMillion(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getIntOneMillion(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -107,14 +113,16 @@ export class Paths {
       { options },
       getIntOneMillionOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '-1000000' integer value
    * @param options The options parameters.
    */
-  getIntNegativeOneMillion(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getIntNegativeOneMillion(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -135,14 +143,16 @@ export class Paths {
       { options },
       getIntNegativeOneMillionOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '10000000000' 64 bit integer value
    * @param options The options parameters.
    */
-  getTenBillion(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getTenBillion(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -163,14 +173,16 @@ export class Paths {
       { options },
       getTenBillionOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '-10000000000' 64 bit integer value
    * @param options The options parameters.
    */
-  getNegativeTenBillion(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getNegativeTenBillion(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -191,14 +203,16 @@ export class Paths {
       { options },
       getNegativeTenBillionOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '1.034E+20' numeric value
    * @param options The options parameters.
    */
-  floatScientificPositive(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  floatScientificPositive(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -219,14 +233,16 @@ export class Paths {
       { options },
       floatScientificPositiveOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '-1.034E-20' numeric value
    * @param options The options parameters.
    */
-  floatScientificNegative(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  floatScientificNegative(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -247,14 +263,16 @@ export class Paths {
       { options },
       floatScientificNegativeOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '9999999.999' numeric value
    * @param options The options parameters.
    */
-  doubleDecimalPositive(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  doubleDecimalPositive(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -275,14 +293,16 @@ export class Paths {
       { options },
       doubleDecimalPositiveOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '-9999999.999' numeric value
    * @param options The options parameters.
    */
-  doubleDecimalNegative(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  doubleDecimalNegative(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -303,14 +323,16 @@ export class Paths {
       { options },
       doubleDecimalNegativeOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value
    * @param options The options parameters.
    */
-  stringUnicode(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  stringUnicode(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -331,14 +353,16 @@ export class Paths {
       { options },
       stringUnicodeOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get 'begin!*'();:@ &=+$,/?#[]end
    * @param options The options parameters.
    */
-  stringUrlEncoded(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  stringUrlEncoded(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -359,14 +383,16 @@ export class Paths {
       { options },
       stringUrlEncodedOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get 'begin!*'();:@&=+$,end
    * @param options The options parameters.
    */
-  stringUrlNonEncoded(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  stringUrlNonEncoded(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -387,14 +413,16 @@ export class Paths {
       { options },
       stringUrlNonEncodedOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get ''
    * @param options The options parameters.
    */
-  stringEmpty(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  stringEmpty(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -415,7 +443,7 @@ export class Paths {
       { options },
       stringEmptyOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -426,7 +454,7 @@ export class Paths {
   stringNull(
     stringPath: string,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param stringPath null string value
    * @param callback The callback.
@@ -451,7 +479,7 @@ export class Paths {
       { stringPath, options },
       stringNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -462,7 +490,7 @@ export class Paths {
   enumValid(
     enumPath: Models.UriColor,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param enumPath send the value green
    * @param callback The callback.
@@ -490,7 +518,7 @@ export class Paths {
       { enumPath, options },
       enumValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -501,7 +529,7 @@ export class Paths {
   enumNull(
     enumPath: Models.UriColor,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param enumPath send the value green
    * @param callback The callback.
@@ -529,7 +557,7 @@ export class Paths {
       { enumPath, options },
       enumNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -540,7 +568,7 @@ export class Paths {
   byteMultiByte(
     bytePath: Uint8Array,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    * @param callback The callback.
@@ -568,14 +596,16 @@ export class Paths {
       { bytePath, options },
       byteMultiByteOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '' as byte array
    * @param options The options parameters.
    */
-  byteEmpty(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  byteEmpty(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -596,7 +626,7 @@ export class Paths {
       { options },
       byteEmptyOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -607,7 +637,7 @@ export class Paths {
   byteNull(
     bytePath: Uint8Array,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    * @param callback The callback.
@@ -632,14 +662,16 @@ export class Paths {
       { bytePath, options },
       byteNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '2012-01-01' as date
    * @param options The options parameters.
    */
-  dateValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  dateValid(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -660,7 +692,7 @@ export class Paths {
       { options },
       dateValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -668,7 +700,10 @@ export class Paths {
    * @param datePath null as date (should throw)
    * @param options The options parameters.
    */
-  dateNull(datePath: Date, options?: coreHttp.RequestOptionsBase): Promise<any>;
+  dateNull(
+    datePath: Date,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param datePath null as date (should throw)
    * @param callback The callback.
@@ -693,14 +728,16 @@ export class Paths {
       { datePath, options },
       dateNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '2012-01-01T01:01:01Z' as date-time
    * @param options The options parameters.
    */
-  dateTimeValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  dateTimeValid(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -721,7 +758,7 @@ export class Paths {
       { options },
       dateTimeValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -732,7 +769,7 @@ export class Paths {
   dateTimeNull(
     dateTimePath: Date,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param dateTimePath null as date-time
    * @param callback The callback.
@@ -760,7 +797,7 @@ export class Paths {
       { dateTimePath, options },
       dateTimeNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -771,7 +808,7 @@ export class Paths {
   base64Url(
     base64UrlPath: Uint8Array,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param base64UrlPath base64url encoded value
    * @param callback The callback.
@@ -799,7 +836,7 @@ export class Paths {
       { base64UrlPath, options },
       base64UrlOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -810,7 +847,7 @@ export class Paths {
   arrayCsvInPath(
     arrayPath: string[],
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
    * @param callback The callback.
@@ -838,7 +875,7 @@ export class Paths {
       { arrayPath, options },
       arrayCsvInPathOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -849,7 +886,7 @@ export class Paths {
   unixTimeUrl(
     unixTimeUrlPath: Date,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param unixTimeUrlPath Unix time encoded value
    * @param callback The callback.
@@ -877,7 +914,7 @@ export class Paths {
       { unixTimeUrlPath, options },
       unixTimeUrlOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications

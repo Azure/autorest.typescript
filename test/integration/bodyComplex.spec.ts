@@ -5,7 +5,14 @@ import {
   BodyComplexClient,
   BodyComplexModels
 } from "./generated/bodyComplex/src/bodyComplexClient";
-import { Sawshark } from "./generated/bodyComplex/src/models";
+import {
+  Sawshark,
+  Salmon,
+  ArrayWrapper,
+  Shark,
+  Goblinshark,
+  FishUnion
+} from "./generated/bodyComplex/src/models";
 import { RestError } from "@azure/core-http";
 
 const clientOptions = {
@@ -74,8 +81,7 @@ describe("typescript", function() {
           assert.equal(result.field1, -1);
           assert.equal(result.field2, 2);
           testClient.primitive.putInt({ field1: -1, field2: 2 }, function(
-            error,
-            result
+            error
           ) {
             assert.equal(error, undefined);
             done();
@@ -90,7 +96,7 @@ describe("typescript", function() {
           assert.equal(result.field2, -999511627788);
           testClient.primitive.putLong(
             { field1: 1099511627775, field2: -999511627788 },
-            function(error, result) {
+            function(error) {
               assert.equal(error, undefined);
               done();
             }
@@ -105,7 +111,7 @@ describe("typescript", function() {
           assert.equal(result.field2, -0.003);
           testClient.primitive.putFloat(
             { field1: 1.05, field2: -0.003 },
-            function(error, result) {
+            function(error) {
               assert.equal(error, undefined);
               done();
             }
@@ -120,7 +126,7 @@ describe("typescript", function() {
           assert.equal(result.fieldFalse, false);
           testClient.primitive.putBool(
             { fieldTrue: true, fieldFalse: false },
-            function(error, result) {
+            function(error) {
               assert.equal(error, undefined);
               done();
             }
@@ -136,7 +142,7 @@ describe("typescript", function() {
           assert.equal(result["nullProperty"], undefined);
           testClient.primitive.putString(
             { field: "goodrequest", empty: "" },
-            function(error, result) {
+            function(error) {
               assert.equal(error, undefined);
               done();
             }
@@ -153,7 +159,7 @@ describe("typescript", function() {
             field: new Date("0001-01-01"),
             leap: new Date("2016-02-29")
           };
-          testClient.primitive.putDate(complexBody, function(error, result) {
+          testClient.primitive.putDate(complexBody, function(error) {
             assert.equal(error, undefined);
             done();
           });
@@ -169,7 +175,7 @@ describe("typescript", function() {
               field: new Date("0001-01-01T00:00:00Z"),
               now: new Date("2015-05-18T18:38:00Z")
             },
-            function(error, result) {
+            function(error) {
               assert.equal(error, undefined);
               done();
             }
@@ -219,10 +225,7 @@ describe("typescript", function() {
             [].slice.apply(result.field),
             [].slice.apply(byteBuffer)
           );
-          testClient.primitive.putByte({ field: byteBuffer }, function(
-            error,
-            result
-          ) {
+          testClient.primitive.putByte({ field: byteBuffer }, function(error) {
             assert.equal(error, undefined);
             done();
           });
@@ -236,20 +239,18 @@ describe("typescript", function() {
         testClient = new BodyComplexClient(clientOptions);
       });
       it("should get valid array type properties", function(done) {
-        const testArray = [
+        const testArray: string[] = [
           "1, 2, 3, 4",
           "",
-          null,
+          null as any,
           "&S#$(*Y",
           "The quick brown fox jumps over the lazy dog"
         ];
+        const wrapper: ArrayWrapper = { array: testArray };
         testClient.array.getValid(function(error, result) {
           assert.equal(error, undefined);
           assert.deepEqual(result.array, testArray);
-          testClient.array.putValid({ array: testArray }, function(
-            error,
-            result
-          ) {
+          testClient.array.putValid(wrapper, function(error) {
             assert.equal(error, undefined);
             done();
           });
@@ -260,7 +261,7 @@ describe("typescript", function() {
         testClient.array.getEmpty(function(error, result) {
           assert.equal(error, undefined);
           assert.deepEqual(result.array, []);
-          testClient.array.putEmpty({ array: [] }, function(error, result) {
+          testClient.array.putEmpty({ array: [] }, function(error) {
             assert.equal(error, undefined);
             done();
           });
@@ -295,7 +296,7 @@ describe("typescript", function() {
           assert.deepEqual(result.defaultProgram, testDictionary);
           testClient.dictionary.putValid(
             { defaultProgram: testDictionary },
-            function(error, result) {
+            function(error: Error) {
               assert.equal(error, undefined);
               done();
             }
@@ -308,8 +309,7 @@ describe("typescript", function() {
           assert.equal(error, undefined);
           assert.deepEqual(result.defaultProgram, {});
           testClient.dictionary.putEmpty({ defaultProgram: {} }, function(
-            error,
-            result
+            error
           ) {
             assert.equal(error, undefined);
             done();
@@ -353,7 +353,7 @@ describe("typescript", function() {
         testClient.inheritance.getValid(function(error, result) {
           assert.equal(error, undefined);
           assert.deepEqual(result, siamese);
-          testClient.inheritance.putValid(siamese, function(error, result) {
+          testClient.inheritance.putValid(siamese, function(error) {
             assert.equal(error, undefined);
             done();
           });
@@ -383,7 +383,7 @@ describe("typescript", function() {
     });
 
     describe("Complex Types with Polymorphism Operations", function() {
-      const getFish = () => ({
+      const getFish = (): Salmon => ({
         fishtype: "salmon",
         location: "alaska",
         iswild: true,
@@ -396,7 +396,7 @@ describe("typescript", function() {
             birthday: new Date("2012-01-05T01:00:00Z"),
             length: 20.0,
             species: "predator"
-          },
+          } as Shark,
           {
             fishtype: "sawshark",
             age: 105,
@@ -404,7 +404,7 @@ describe("typescript", function() {
             length: 10.0,
             picture: new Uint8Array([255, 255, 255, 255, 254]),
             species: "dangerous"
-          },
+          } as Sawshark,
           {
             fishtype: "goblin",
             color: "pinkish-gray" as BodyComplexModels.GoblinSharkColor,
@@ -413,7 +413,7 @@ describe("typescript", function() {
             species: "scary",
             birthday: new Date("2015-08-08T00:00:00Z"),
             jawsize: 5
-          }
+          } as Goblinshark
         ]
       });
       let testClient: BodyComplexClient;
@@ -422,25 +422,25 @@ describe("typescript", function() {
       });
       it("should get valid polymorphic properties", async function() {
         const getResult = await testClient.polymorphism.getValid();
-
-        const actualBytes = getResult.siblings[1].picture;
+        const actualBytes = (getResult.siblings![1] as Sawshark)!.picture;
         assert.equal(!!actualBytes, true);
-        assert.equal(actualBytes.length, 5);
-        assert.equal(actualBytes[0], 255);
-        assert.equal(actualBytes[1], 255);
-        assert.equal(actualBytes[2], 255);
-        assert.equal(actualBytes[3], 255);
-        assert.equal(actualBytes[4], 254);
+        assert.equal(actualBytes!.length, 5);
+        assert.equal(actualBytes![0], 255);
+        assert.equal(actualBytes![1], 255);
+        assert.equal(actualBytes![2], 255);
+        assert.equal(actualBytes![3], 255);
+        assert.equal(actualBytes![4], 254);
 
         // Working around the fact that Uint8Array doesn't work with deepEqual
-        delete (getResult.siblings[1] as BodyComplexModels.Sawshark).picture;
+        delete (getResult.siblings![1] as BodyComplexModels.Sawshark).picture;
         const expectedFish = getFish();
-        delete (expectedFish.siblings[1] as BodyComplexModels.Sawshark).picture;
+        delete (expectedFish.siblings![1] as BodyComplexModels.Sawshark)
+          .picture;
         assert.deepEqual(getResult, expectedFish);
 
         await testClient.polymorphism.putValid(getFish());
       });
-      const getBadfish = () => ({
+      const getBadfish = (): FishUnion => ({
         fishtype: "sawshark",
         species: "snaggle toothed",
         length: 18.5,
@@ -455,14 +455,14 @@ describe("typescript", function() {
             birthday: new Date("2012-01-05T01:00:00Z"),
             length: 20,
             age: 6
-          },
+          } as Shark,
           {
             fishtype: "sawshark",
             species: "dangerous",
             picture: new Uint8Array([255, 255, 255, 255, 254]),
             length: 10,
             age: 105
-          }
+          } as Sawshark
         ]
       });
       it("should throw when required fields are omitted from polymorphic types", async function() {
@@ -476,7 +476,8 @@ describe("typescript", function() {
         }
       });
 
-      const getRawSalmon = () => ({
+      // TODO: Handle additionalProperties
+      const getRawSalmon = (): any => ({
         fishtype: "smart_salmon",
         location: "alaska",
         iswild: true,
@@ -517,9 +518,8 @@ describe("typescript", function() {
 
       it("should get complicated polymorphic types", async function() {
         const result = await testClient.polymorphism.getComplicated();
-
         const picture =
-          (result.siblings[1] as BodyComplexModels.Sawshark).picture || [];
+          (result.siblings![1] as BodyComplexModels.Sawshark)!.picture || [];
         assert.equal(!!picture, true);
         assert.equal(picture.length, 5);
         assert.equal(picture[0], 255);
@@ -527,10 +527,10 @@ describe("typescript", function() {
         assert.equal(picture[2], 255);
         assert.equal(picture[3], 255);
         assert.equal(picture[4], 254);
-        delete (result.siblings[1] as BodyComplexModels.Sawshark).picture;
+        delete (result.siblings![1] as BodyComplexModels.Sawshark).picture;
 
         const rawSalmon = getRawSalmon();
-        delete (rawSalmon.siblings[1] as BodyComplexModels.Sawshark).picture;
+        delete (rawSalmon.siblings![1] as BodyComplexModels.Sawshark).picture;
 
         assert.deepEqual(result, rawSalmon);
       });
@@ -548,8 +548,8 @@ describe("typescript", function() {
         );
 
         const picture =
-          (response.siblings[1] as BodyComplexModels.Sawshark).picture || [];
-        delete (response.siblings[1] as BodyComplexModels.Sawshark).picture;
+          (response.siblings![1] as BodyComplexModels.Sawshark).picture || [];
+        delete (response.siblings![1] as BodyComplexModels.Sawshark).picture;
         assert.equal(!!picture, true);
         assert.equal(picture.length, 5);
         assert.equal(picture[0], 255);
@@ -559,14 +559,14 @@ describe("typescript", function() {
         assert.equal(picture[4], 254);
 
         const expected = getFish();
-        delete (expected.siblings[1] as BodyComplexModels.Sawshark).picture;
+        delete (expected.siblings![1] as BodyComplexModels.Sawshark).picture;
 
         assert.deepStrictEqual(response, expected);
       });
     });
 
     describe("Complex Types with recursive definitions", function() {
-      const getBigfish = () => ({
+      const getBigfish = (): FishUnion => ({
         fishtype: "salmon",
         location: "alaska",
         iswild: true,
@@ -648,16 +648,18 @@ describe("typescript", function() {
           delete sawshark.picture;
         }
 
-        checkSawshark(result.siblings[0].siblings[0].siblings[1]);
-        checkSawshark(result.siblings[0].siblings[1]);
-        checkSawshark(result.siblings[1]);
+        checkSawshark(
+          result.siblings![0].siblings![0].siblings![1] as Sawshark
+        );
+        checkSawshark(result.siblings![0].siblings![1] as Sawshark);
+        checkSawshark(result.siblings![1] as Sawshark);
 
         const bigfish = getBigfish();
-        delete ((bigfish.siblings[0] as any).siblings[0]
+        delete ((bigfish.siblings![0] as any).siblings[0]
           .siblings[1] as BodyComplexModels.Sawshark).picture;
-        delete ((bigfish.siblings[0] as any)
+        delete ((bigfish.siblings![0] as any)
           .siblings[1] as BodyComplexModels.Sawshark).picture;
-        delete (bigfish.siblings[1] as BodyComplexModels.Sawshark).picture;
+        delete (bigfish.siblings![1] as BodyComplexModels.Sawshark).picture;
 
         assert.deepEqual(result, bigfish);
         await testClient.polymorphicrecursive.putValid(getBigfish());

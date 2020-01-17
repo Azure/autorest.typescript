@@ -30,7 +30,9 @@ export class Polymorphicrecursive {
    * Get complex types that are polymorphic and have recursive references
    * @param options The options parameters.
    */
-  getValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getValid(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PolymorphicrecursiveGetValidResponse>;
   /**
    * @param callback The callback.
    */
@@ -51,7 +53,7 @@ export class Polymorphicrecursive {
       { options },
       getValidOperationSpec,
       callback
-    );
+    ) as Promise<Models.PolymorphicrecursiveGetValidResponse>;
   }
 
   /**
@@ -94,7 +96,7 @@ export class Polymorphicrecursive {
   putValid(
     complexBody: Models.FishUnion,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put a salmon that looks like this:
    * {
@@ -186,7 +188,7 @@ export class Polymorphicrecursive {
       { complexBody, options },
       putValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications

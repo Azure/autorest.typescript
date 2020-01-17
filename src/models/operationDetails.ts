@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ParameterLocation, HttpMethod } from "@azure-tools/codemodel";
+import { HttpMethod } from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
-import { Mapper, OperationQueryParameter } from "@azure/core-http";
+import { Mapper } from "@azure/core-http";
 import { ParameterDetails } from "./parameterDetails";
 import { TypeDetails } from "./modelDetails";
 
@@ -24,6 +24,7 @@ export interface OperationResponseDetails {
   mediaType?: KnownMediaType;
   bodyMapper?: Mapper | string;
   typeDetails: TypeDetails;
+  isError?: boolean;
 }
 
 /**

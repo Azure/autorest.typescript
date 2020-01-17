@@ -168,10 +168,11 @@ export function transformOperationRequest(
 }
 
 export function transformOperationResponse(
-  operationGroupName: string | undefined,
-  operationName: string,
   response: SchemaResponse
 ): OperationResponseDetails {
+  let isError =
+    !!response.extensions && !!response.extensions["x-ms-error-response"];
+
   if (!response.schema) {
     const schemalessResponse = response as Response;
     return {
@@ -179,34 +180,30 @@ export function transformOperationResponse(
       typeDetails: {
         typeName: "",
         isConstant: false,
-        kind: PropertyKind.Primitive
+        kind: PropertyKind.Primitive,
+        isError
       }
-    };
+    } as OperationResponseDetails;
   }
 
   const schemaResponse = response as SchemaResponse;
   const typeDetails = getTypeForSchema(schemaResponse.schema);
   const bodyMapper = getBodyMapperFromSchema(schemaResponse.schema);
-
   if (!typeDetails) {
     throw new Error(
       `Unable to extract responseType for ${schemaResponse.schema.type}`
     );
   }
 
-  if (typeDetails.kind !== PropertyKind.Primitive) {
-    typeDetails.typeName = `${normalizeName(
-      operationGroupName || "",
-      NameType.Class
-    )}${normalizeName(operationName, NameType.Class)}Response`;
-  }
-
-  if (response.protocol.http) {
+  const httpInfo = response.protocol.http;
+  if (httpInfo) {
+    const isDefault = httpInfo.statusCodes.indexOf("default") > -1;
     return {
-      statusCodes: response.protocol.http.statusCodes,
-      mediaType: response.protocol.http.knownMediaType,
+      statusCodes: httpInfo.statusCodes,
+      mediaType: httpInfo.knownMediaType,
       bodyMapper,
-      typeDetails
+      typeDetails,
+      isError: isDefault || isError
     };
   } else {
     throw new Error("Operation does not specify HTTP response details.");
@@ -241,11 +238,7 @@ export function transformOperation(
     description: metadata.description,
     request: transformOperationRequest(operation.request),
     responses: responses.map(response =>
-      transformOperationResponse(
-        operationGroupName,
-        name,
-        response as SchemaResponse
-      )
+      transformOperationResponse(response as SchemaResponse)
     )
   };
 }

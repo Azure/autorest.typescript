@@ -30,7 +30,9 @@ export class Array {
    * Get complex types with array property
    * @param options The options parameters.
    */
-  getValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getValid(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.ArrayGetValidResponse>;
   /**
    * @param callback The callback.
    */
@@ -51,7 +53,7 @@ export class Array {
       { options },
       getValidOperationSpec,
       callback
-    );
+    ) as Promise<Models.ArrayGetValidResponse>;
   }
 
   /**
@@ -62,7 +64,7 @@ export class Array {
   putValid(
     complexBody: Models.ArrayWrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The quick brown fox jumps over the lazy dog"
    * @param callback The callback.
@@ -90,14 +92,16 @@ export class Array {
       { complexBody, options },
       putValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get complex types with array property which is empty
    * @param options The options parameters.
    */
-  getEmpty(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getEmpty(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.ArrayGetEmptyResponse>;
   /**
    * @param callback The callback.
    */
@@ -118,7 +122,7 @@ export class Array {
       { options },
       getEmptyOperationSpec,
       callback
-    );
+    ) as Promise<Models.ArrayGetEmptyResponse>;
   }
 
   /**
@@ -129,7 +133,7 @@ export class Array {
   putEmpty(
     complexBody: Models.ArrayWrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The quick brown fox jumps over the lazy dog"
    * @param callback The callback.
@@ -157,14 +161,16 @@ export class Array {
       { complexBody, options },
       putEmptyOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get complex types with array property while server doesn't provide a response payload
    * @param options The options parameters.
    */
-  getNotProvided(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getNotProvided(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.ArrayGetNotProvidedResponse>;
   /**
    * @param callback The callback.
    */
@@ -185,7 +191,7 @@ export class Array {
       { options },
       getNotProvidedOperationSpec,
       callback
-    );
+    ) as Promise<Models.ArrayGetNotProvidedResponse>;
   }
 }
 // Operation Specifications

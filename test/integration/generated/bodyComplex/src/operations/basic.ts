@@ -30,7 +30,9 @@ export class Basic {
    * Get complex type {id: 2, name: 'abc', color: 'YELLOW'}
    * @param options The options parameters.
    */
-  getValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getValid(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.BasicGetValidResponse>;
   /**
    * @param callback The callback.
    */
@@ -51,7 +53,7 @@ export class Basic {
       { options },
       getValidOperationSpec,
       callback
-    );
+    ) as Promise<Models.BasicGetValidResponse>;
   }
 
   /**
@@ -62,7 +64,7 @@ export class Basic {
   putValid(
     complexBody: Models.Basic,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put {id: 2, name: 'abc', color: 'Magenta'}
    * @param callback The callback.
@@ -90,14 +92,16 @@ export class Basic {
       { complexBody, options },
       putValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get a basic complex type that is invalid for the local strong type
    * @param options The options parameters.
    */
-  getInvalid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getInvalid(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.BasicGetInvalidResponse>;
   /**
    * @param callback The callback.
    */
@@ -118,14 +122,16 @@ export class Basic {
       { options },
       getInvalidOperationSpec,
       callback
-    );
+    ) as Promise<Models.BasicGetInvalidResponse>;
   }
 
   /**
    * Get a basic complex type that is empty
    * @param options The options parameters.
    */
-  getEmpty(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getEmpty(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.BasicGetEmptyResponse>;
   /**
    * @param callback The callback.
    */
@@ -146,14 +152,16 @@ export class Basic {
       { options },
       getEmptyOperationSpec,
       callback
-    );
+    ) as Promise<Models.BasicGetEmptyResponse>;
   }
 
   /**
    * Get a basic complex type whose properties are null
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getNull(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.BasicGetNullResponse>;
   /**
    * @param callback The callback.
    */
@@ -174,14 +182,16 @@ export class Basic {
       { options },
       getNullOperationSpec,
       callback
-    );
+    ) as Promise<Models.BasicGetNullResponse>;
   }
 
   /**
    * Get a basic complex type while the server doesn't provide a response payload
    * @param options The options parameters.
    */
-  getNotProvided(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getNotProvided(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.BasicGetNotProvidedResponse>;
   /**
    * @param callback The callback.
    */
@@ -202,7 +212,7 @@ export class Basic {
       { options },
       getNotProvidedOperationSpec,
       callback
-    );
+    ) as Promise<Models.BasicGetNotProvidedResponse>;
   }
 }
 // Operation Specifications

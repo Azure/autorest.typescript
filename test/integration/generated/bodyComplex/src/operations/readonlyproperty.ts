@@ -30,7 +30,9 @@ export class Readonlyproperty {
    * Get complex types that have readonly properties
    * @param options The options parameters.
    */
-  getValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getValid(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.ReadonlypropertyGetValidResponse>;
   /**
    * @param callback The callback.
    */
@@ -51,7 +53,7 @@ export class Readonlyproperty {
       { options },
       getValidOperationSpec,
       callback
-    );
+    ) as Promise<Models.ReadonlypropertyGetValidResponse>;
   }
 
   /**
@@ -62,7 +64,7 @@ export class Readonlyproperty {
   putValid(
     complexBody: Models.ReadonlyObj,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody
    * @param callback The callback.
@@ -90,7 +92,7 @@ export class Readonlyproperty {
       { complexBody, options },
       putValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications

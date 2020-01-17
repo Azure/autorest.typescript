@@ -1,6 +1,59 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { ObjectSchema } from "@azure-tools/codemodel";
+
+export type ObjectDetails =
+  | BasicObjectDetails
+  | ComposedObjectDetails
+  | PolymorphicObjectDetails;
+
+export enum ObjectKind {
+  Basic,
+  Extended,
+  Polymorphic
+}
+
+/**
+ * Details of a model, transformed from ObjectSchema.
+ */
+export interface BasicObjectDetails {
+  name: string;
+  description: string;
+  serializedName: string;
+  properties: PropertyDetails[];
+  kind: ObjectKind;
+  children: ObjectDetails[];
+  parents: ObjectDetails[];
+  schema: ObjectSchema;
+  hasAdditionalProperties: boolean;
+}
+
+/**
+ * Type that represents an object which inherits
+ */
+export type ComposedObjectDetails = BasicObjectDetails & {
+  /**
+   * Parents from which the object inherits properties
+   */
+  parentNames: string[];
+};
+
+/**
+ * Type for representing polymorphism of an Object
+ */
+export type PolymorphicObjectDetails = BasicObjectDetails & {
+  /**
+   * Polymorphic discriminator
+   */
+  discriminator: { [key: string]: string[] };
+  /**
+   * Name of the union type which represents
+   * the polymorphic options
+   */
+  unionName: string;
+};
+
 /**
  * Details of a model's property, transformed from Property.
  */
@@ -14,6 +67,7 @@ export interface PropertyDetails {
   readOnly: boolean;
   isConstant?: boolean;
   typeDetails: TypeDetails;
+  isDiscriminator: boolean;
 }
 
 /**
@@ -24,16 +78,6 @@ export interface TypeDetails {
   isConstant?: boolean;
   defaultValue?: string;
   kind: PropertyKind;
-}
-
-/**
- * Details of a model, transformed from ObjectSchema.
- */
-export interface ModelDetails {
-  name: string;
-  description: string;
-  serializedName: string;
-  properties: PropertyDetails[];
 }
 
 /**

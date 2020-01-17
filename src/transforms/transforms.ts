@@ -3,12 +3,9 @@
 
 import { ClientDetails } from "../models/clientDetails";
 import { UnionDetails } from "../models/unionDetails";
-import { ModelDetails, PropertyDetails } from "../models/modelDetails";
 
 import {
   CodeModel,
-  ObjectSchema,
-  Property,
   ChoiceSchema,
   SealedChoiceSchema
 } from "@azure-tools/codemodel";
@@ -17,34 +14,13 @@ import {
   NameType,
   guardReservedNames
 } from "../utils/nameUtils";
-import { getTypeForSchema } from "../utils/schemaHelpers";
 import { getStringForValue } from "../utils/valueHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { transformMapper } from "./mapperTransforms";
 import { transformOperationGroup } from "./operationTransforms";
 import { transformParameters } from "./parameterTransforms";
-
-export function transformProperty(property: Property): PropertyDetails {
-  const metadata = getLanguageMetadata(property.language);
-  const { typeName, isConstant, defaultValue } = getTypeForSchema(
-    property.schema
-  );
-  const typeDetails = getTypeForSchema(property.schema);
-
-  return {
-    name: normalizeName(metadata.name, NameType.Property),
-    description: !metadata.description.startsWith("MISSING")
-      ? metadata.description
-      : undefined,
-    serializedName: property.serializedName,
-    type: typeName,
-    required: !!property.required,
-    readOnly: !!property.readOnly,
-    isConstant,
-    defaultValue,
-    typeDetails
-  };
-}
+import { transformObjects, transformObject } from "./objectTransforms";
+import { ObjectDetails } from "../models/modelDetails";
 
 export function transformChoice(
   choice: ChoiceSchema | SealedChoiceSchema
@@ -62,28 +38,15 @@ export function transformChoice(
   };
 }
 
-export function transformObject(obj: ObjectSchema): ModelDetails {
-  const metadata = getLanguageMetadata(obj.language);
-  let name = normalizeName(guardReservedNames(metadata.name), NameType.Class);
-
-  return {
-    name,
-    description: `An interface representing ${metadata.name}.`,
-    serializedName: metadata.name,
-    properties: obj.properties
-      ? obj.properties.map(prop => transformProperty(prop))
-      : []
-  };
-}
-
 export function transformCodeModel(codeModel: CodeModel): ClientDetails {
   const className = normalizeName(codeModel.info.title, NameType.Class);
+  const uberParents = getUberParents(codeModel);
   return {
     name: codeModel.info.title,
     className,
     description: codeModel.info.description,
     sourceFileName: normalizeName(className, NameType.File),
-    models: (codeModel.schemas.objects || []).map(transformObject),
+    objects: transformObjects(codeModel, uberParents),
     mappers: (codeModel.schemas.objects || []).map(schema =>
       transformMapper({ schema })
     ),
@@ -94,4 +57,30 @@ export function transformCodeModel(codeModel: CodeModel): ClientDetails {
     operationGroups: codeModel.operationGroups.map(transformOperationGroup),
     parameters: transformParameters(codeModel)
   };
+}
+
+/**
+ * This function gets all top level objects with children, aka UberParents
+ * @param codeModel CodeModel
+ */
+function getUberParents(codeModel: CodeModel): ObjectDetails[] {
+  if (!codeModel.schemas.objects) {
+    return [];
+  }
+
+  let uberParents: ObjectDetails[] = [];
+
+  codeModel.schemas.objects.forEach(object => {
+    const name = getLanguageMetadata(object.language).name;
+    const isPresent = uberParents.some(up => up.name === name);
+    const hasChildren = object.children && object.children.all.length;
+    const hasParents = object.parents && object.parents.all.length;
+
+    if (hasChildren && !hasParents && !isPresent) {
+      const baseObject = transformObject(object, uberParents);
+      uberParents.push(baseObject);
+    }
+  });
+
+  return uberParents;
 }

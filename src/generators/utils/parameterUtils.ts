@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { ParameterDetails } from "../../models/parameterDetails";
 import { OperationDetails } from "../../models/operationDetails";
 import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";

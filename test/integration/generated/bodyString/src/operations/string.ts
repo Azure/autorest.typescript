@@ -30,7 +30,9 @@ export class String {
    * Get null string value value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getNull(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.StringGetNullResponse>;
   /**
    * @param callback The callback.
    */
@@ -46,19 +48,21 @@ export class String {
   getNull(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<Models.String> {
+  ): Promise<Models.StringGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec,
       callback
-    );
+    ) as Promise<Models.StringGetNullResponse>;
   }
 
   /**
    * Set string value null
    * @param options The options parameters.
    */
-  putNull(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putNull(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -79,14 +83,16 @@ export class String {
       { options },
       putNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get empty string value value ''
    * @param options The options parameters.
    */
-  getEmpty(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getEmpty(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.StringGetEmptyResponse>;
   /**
    * @param callback The callback.
    */
@@ -102,19 +108,21 @@ export class String {
   getEmpty(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<Models.String> {
+  ): Promise<Models.StringGetEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getEmptyOperationSpec,
       callback
-    );
+    ) as Promise<Models.StringGetEmptyResponse>;
   }
 
   /**
    * Set string value empty ''
    * @param options The options parameters.
    */
-  putEmpty(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putEmpty(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -135,14 +143,16 @@ export class String {
       { options },
       putEmptyOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    * @param options The options parameters.
    */
-  getMbcs(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getMbcs(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.StringGetMbcsResponse>;
   /**
    * @param callback The callback.
    */
@@ -158,19 +168,21 @@ export class String {
   getMbcs(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<Models.String> {
+  ): Promise<Models.StringGetMbcsResponse> {
     return this.client.sendOperationRequest(
       { options },
       getMbcsOperationSpec,
       callback
-    );
+    ) as Promise<Models.StringGetMbcsResponse>;
   }
 
   /**
    * Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    * @param options The options parameters.
    */
-  putMbcs(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putMbcs(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -191,14 +203,16 @@ export class String {
       { options },
       putMbcsOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get string value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>'
    * @param options The options parameters.
    */
-  getWhitespace(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getWhitespace(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.StringGetWhitespaceResponse>;
   /**
    * @param callback The callback.
    */
@@ -214,19 +228,21 @@ export class String {
   getWhitespace(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<Models.String> {
+  ): Promise<Models.StringGetWhitespaceResponse> {
     return this.client.sendOperationRequest(
       { options },
       getWhitespaceOperationSpec,
       callback
-    );
+    ) as Promise<Models.StringGetWhitespaceResponse>;
   }
 
   /**
    * Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>'
    * @param options The options parameters.
    */
-  putWhitespace(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  putWhitespace(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -247,14 +263,16 @@ export class String {
       { options },
       putWhitespaceOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get String value when no string value is sent in response payload
    * @param options The options parameters.
    */
-  getNotProvided(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getNotProvided(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.StringGetNotProvidedResponse>;
   /**
    * @param callback The callback.
    */
@@ -270,19 +288,21 @@ export class String {
   getNotProvided(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<Models.String> {
+  ): Promise<Models.StringGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNotProvidedOperationSpec,
       callback
-    );
+    ) as Promise<Models.StringGetNotProvidedResponse>;
   }
 
   /**
    * Get value that is base64 encoded
    * @param options The options parameters.
    */
-  getBase64Encoded(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getBase64Encoded(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.StringGetBase64EncodedResponse>;
   /**
    * @param callback The callback.
    */
@@ -298,19 +318,21 @@ export class String {
   getBase64Encoded(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<Models.Uint8Array> {
+  ): Promise<Models.StringGetBase64EncodedResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBase64EncodedOperationSpec,
       callback
-    );
+    ) as Promise<Models.StringGetBase64EncodedResponse>;
   }
 
   /**
    * Get value that is base64url encoded
    * @param options The options parameters.
    */
-  getBase64UrlEncoded(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getBase64UrlEncoded(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.StringGetBase64UrlEncodedResponse>;
   /**
    * @param callback The callback.
    */
@@ -326,12 +348,12 @@ export class String {
   getBase64UrlEncoded(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<Models.Uint8Array> {
+  ): Promise<Models.StringGetBase64UrlEncodedResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBase64UrlEncodedOperationSpec,
       callback
-    );
+    ) as Promise<Models.StringGetBase64UrlEncodedResponse>;
   }
 
   /**
@@ -342,7 +364,7 @@ export class String {
   putBase64UrlEncoded(
     stringBody: Uint8Array,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param stringBody
    * @param callback The callback.
@@ -370,14 +392,16 @@ export class String {
       { stringBody, options },
       putBase64UrlEncodedOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get null value that is expected to be base64url encoded
    * @param options The options parameters.
    */
-  getNullBase64UrlEncoded(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getNullBase64UrlEncoded(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.StringGetNullBase64UrlEncodedResponse>;
   /**
    * @param callback The callback.
    */
@@ -393,12 +417,12 @@ export class String {
   getNullBase64UrlEncoded(
     options?: coreHttp.RequestOptionsBase,
     callback?: coreHttp.ServiceCallback<any>
-  ): Promise<Models.Uint8Array> {
+  ): Promise<Models.StringGetNullBase64UrlEncodedResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullBase64UrlEncodedOperationSpec,
       callback
-    );
+    ) as Promise<Models.StringGetNullBase64UrlEncodedResponse>;
   }
 }
 // Operation Specifications

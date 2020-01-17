@@ -30,7 +30,9 @@ export class Primitive {
    * Get complex types with integer properties
    * @param options The options parameters.
    */
-  getInt(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getInt(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PrimitiveGetIntResponse>;
   /**
    * @param callback The callback.
    */
@@ -51,7 +53,7 @@ export class Primitive {
       { options },
       getIntOperationSpec,
       callback
-    );
+    ) as Promise<Models.PrimitiveGetIntResponse>;
   }
 
   /**
@@ -62,7 +64,7 @@ export class Primitive {
   putInt(
     complexBody: Models.IntWrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put -1 and 2
    * @param callback The callback.
@@ -90,14 +92,16 @@ export class Primitive {
       { complexBody, options },
       putIntOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get complex types with long properties
    * @param options The options parameters.
    */
-  getLong(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getLong(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PrimitiveGetLongResponse>;
   /**
    * @param callback The callback.
    */
@@ -118,7 +122,7 @@ export class Primitive {
       { options },
       getLongOperationSpec,
       callback
-    );
+    ) as Promise<Models.PrimitiveGetLongResponse>;
   }
 
   /**
@@ -129,7 +133,7 @@ export class Primitive {
   putLong(
     complexBody: Models.LongWrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put 1099511627775 and -999511627788
    * @param callback The callback.
@@ -157,14 +161,16 @@ export class Primitive {
       { complexBody, options },
       putLongOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get complex types with float properties
    * @param options The options parameters.
    */
-  getFloat(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getFloat(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PrimitiveGetFloatResponse>;
   /**
    * @param callback The callback.
    */
@@ -185,7 +191,7 @@ export class Primitive {
       { options },
       getFloatOperationSpec,
       callback
-    );
+    ) as Promise<Models.PrimitiveGetFloatResponse>;
   }
 
   /**
@@ -196,7 +202,7 @@ export class Primitive {
   putFloat(
     complexBody: Models.FloatWrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put 1.05 and -0.003
    * @param callback The callback.
@@ -224,14 +230,16 @@ export class Primitive {
       { complexBody, options },
       putFloatOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get complex types with double properties
    * @param options The options parameters.
    */
-  getDouble(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getDouble(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PrimitiveGetDoubleResponse>;
   /**
    * @param callback The callback.
    */
@@ -252,7 +260,7 @@ export class Primitive {
       { options },
       getDoubleOperationSpec,
       callback
-    );
+    ) as Promise<Models.PrimitiveGetDoubleResponse>;
   }
 
   /**
@@ -263,7 +271,7 @@ export class Primitive {
   putDouble(
     complexBody: Models.DoubleWrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put 3e-100 and -0.000000000000000000000000000000000000000000000000000000005
    * @param callback The callback.
@@ -291,14 +299,16 @@ export class Primitive {
       { complexBody, options },
       putDoubleOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get complex types with bool properties
    * @param options The options parameters.
    */
-  getBool(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getBool(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PrimitiveGetBoolResponse>;
   /**
    * @param callback The callback.
    */
@@ -319,7 +329,7 @@ export class Primitive {
       { options },
       getBoolOperationSpec,
       callback
-    );
+    ) as Promise<Models.PrimitiveGetBoolResponse>;
   }
 
   /**
@@ -330,7 +340,7 @@ export class Primitive {
   putBool(
     complexBody: Models.BooleanWrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put true and false
    * @param callback The callback.
@@ -358,14 +368,16 @@ export class Primitive {
       { complexBody, options },
       putBoolOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get complex types with string properties
    * @param options The options parameters.
    */
-  getString(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getString(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PrimitiveGetStringResponse>;
   /**
    * @param callback The callback.
    */
@@ -386,7 +398,7 @@ export class Primitive {
       { options },
       getStringOperationSpec,
       callback
-    );
+    ) as Promise<Models.PrimitiveGetStringResponse>;
   }
 
   /**
@@ -397,7 +409,7 @@ export class Primitive {
   putString(
     complexBody: Models.StringWrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put 'goodrequest', '', and null
    * @param callback The callback.
@@ -425,14 +437,16 @@ export class Primitive {
       { complexBody, options },
       putStringOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get complex types with date properties
    * @param options The options parameters.
    */
-  getDate(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getDate(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PrimitiveGetDateResponse>;
   /**
    * @param callback The callback.
    */
@@ -453,7 +467,7 @@ export class Primitive {
       { options },
       getDateOperationSpec,
       callback
-    );
+    ) as Promise<Models.PrimitiveGetDateResponse>;
   }
 
   /**
@@ -464,7 +478,7 @@ export class Primitive {
   putDate(
     complexBody: Models.DateWrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put '0001-01-01' and '2016-02-29'
    * @param callback The callback.
@@ -492,14 +506,16 @@ export class Primitive {
       { complexBody, options },
       putDateOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get complex types with datetime properties
    * @param options The options parameters.
    */
-  getDateTime(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getDateTime(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PrimitiveGetDateTimeResponse>;
   /**
    * @param callback The callback.
    */
@@ -520,7 +536,7 @@ export class Primitive {
       { options },
       getDateTimeOperationSpec,
       callback
-    );
+    ) as Promise<Models.PrimitiveGetDateTimeResponse>;
   }
 
   /**
@@ -531,7 +547,7 @@ export class Primitive {
   putDateTime(
     complexBody: Models.DatetimeWrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'
    * @param callback The callback.
@@ -559,14 +575,16 @@ export class Primitive {
       { complexBody, options },
       putDateTimeOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get complex types with datetimeRfc1123 properties
    * @param options The options parameters.
    */
-  getDateTimeRfc1123(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getDateTimeRfc1123(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PrimitiveGetDateTimeRfc1123Response>;
   /**
    * @param callback The callback.
    */
@@ -587,7 +605,7 @@ export class Primitive {
       { options },
       getDateTimeRfc1123OperationSpec,
       callback
-    );
+    ) as Promise<Models.PrimitiveGetDateTimeRfc1123Response>;
   }
 
   /**
@@ -598,7 +616,7 @@ export class Primitive {
   putDateTimeRfc1123(
     complexBody: Models.Datetimerfc1123Wrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00 GMT'
    * @param callback The callback.
@@ -626,14 +644,16 @@ export class Primitive {
       { complexBody, options },
       putDateTimeRfc1123OperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get complex types with duration properties
    * @param options The options parameters.
    */
-  getDuration(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getDuration(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PrimitiveGetDurationResponse>;
   /**
    * @param callback The callback.
    */
@@ -654,7 +674,7 @@ export class Primitive {
       { options },
       getDurationOperationSpec,
       callback
-    );
+    ) as Promise<Models.PrimitiveGetDurationResponse>;
   }
 
   /**
@@ -665,7 +685,7 @@ export class Primitive {
   putDuration(
     complexBody: Models.DurationWrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put 'P123DT22H14M12.011S'
    * @param callback The callback.
@@ -693,14 +713,16 @@ export class Primitive {
       { complexBody, options },
       putDurationOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get complex types with byte properties
    * @param options The options parameters.
    */
-  getByte(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getByte(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PrimitiveGetByteResponse>;
   /**
    * @param callback The callback.
    */
@@ -721,7 +743,7 @@ export class Primitive {
       { options },
       getByteOperationSpec,
       callback
-    );
+    ) as Promise<Models.PrimitiveGetByteResponse>;
   }
 
   /**
@@ -732,7 +754,7 @@ export class Primitive {
   putByte(
     complexBody: Models.ByteWrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6)
    * @param callback The callback.
@@ -760,7 +782,7 @@ export class Primitive {
       { complexBody, options },
       putByteOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications

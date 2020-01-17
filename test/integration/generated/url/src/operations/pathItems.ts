@@ -36,7 +36,7 @@ export class PathItems {
     pathItemStringPath: string,
     localStringPath: string,
     options?: Models.PathItemsGetAllWithValuesOptionalParams
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    * @param localStringPath should contain value 'localStringPath'
@@ -69,7 +69,7 @@ export class PathItems {
       { pathItemStringPath, localStringPath, options },
       getAllWithValuesOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -82,7 +82,7 @@ export class PathItems {
     pathItemStringPath: string,
     localStringPath: string,
     options?: Models.PathItemsGetGlobalQueryNullOptionalParams
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    * @param localStringPath should contain value 'localStringPath'
@@ -115,7 +115,7 @@ export class PathItems {
       { pathItemStringPath, localStringPath, options },
       getGlobalQueryNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -128,7 +128,7 @@ export class PathItems {
     pathItemStringPath: string,
     localStringPath: string,
     options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    * @param localStringPath should contain value 'localStringPath'
@@ -161,7 +161,7 @@ export class PathItems {
       { pathItemStringPath, localStringPath, options },
       getGlobalAndLocalQueryNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -174,7 +174,7 @@ export class PathItems {
     pathItemStringPath: string,
     localStringPath: string,
     options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    * @param localStringPath should contain value 'localStringPath'
@@ -207,7 +207,7 @@ export class PathItems {
       { pathItemStringPath, localStringPath, options },
       getLocalPathItemQueryNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications

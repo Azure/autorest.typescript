@@ -30,7 +30,9 @@ export class Flattencomplex {
    * MISSING·OPERATION-DESCRIPTION
    * @param options The options parameters.
    */
-  getValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getValid(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.FlattencomplexGetValidResponse>;
   /**
    * @param callback The callback.
    */
@@ -51,7 +53,7 @@ export class Flattencomplex {
       { options },
       getValidOperationSpec,
       callback
-    );
+    ) as Promise<Models.FlattencomplexGetValidResponse>;
   }
 }
 // Operation Specifications

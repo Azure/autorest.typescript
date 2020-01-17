@@ -30,7 +30,9 @@ export class Queries {
    * Get true Boolean value on path
    * @param options The options parameters.
    */
-  getBooleanTrue(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getBooleanTrue(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -51,14 +53,16 @@ export class Queries {
       { options },
       getBooleanTrueOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get false Boolean value on path
    * @param options The options parameters.
    */
-  getBooleanFalse(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getBooleanFalse(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -79,7 +83,7 @@ export class Queries {
       { options },
       getBooleanFalseOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -88,7 +92,7 @@ export class Queries {
    */
   getBooleanNull(
     options?: Models.QueriesGetBooleanNullOptionalParams
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -109,14 +113,16 @@ export class Queries {
       { options },
       getBooleanNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '1000000' integer value
    * @param options The options parameters.
    */
-  getIntOneMillion(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getIntOneMillion(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -137,14 +143,16 @@ export class Queries {
       { options },
       getIntOneMillionOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '-1000000' integer value
    * @param options The options parameters.
    */
-  getIntNegativeOneMillion(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getIntNegativeOneMillion(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -165,14 +173,16 @@ export class Queries {
       { options },
       getIntNegativeOneMillionOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get null integer value (no query parameter)
    * @param options The options parameters.
    */
-  getIntNull(options?: Models.QueriesGetIntNullOptionalParams): Promise<any>;
+  getIntNull(
+    options?: Models.QueriesGetIntNullOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -193,14 +203,16 @@ export class Queries {
       { options },
       getIntNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '10000000000' 64 bit integer value
    * @param options The options parameters.
    */
-  getTenBillion(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getTenBillion(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -221,14 +233,16 @@ export class Queries {
       { options },
       getTenBillionOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '-10000000000' 64 bit integer value
    * @param options The options parameters.
    */
-  getNegativeTenBillion(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getNegativeTenBillion(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -249,14 +263,16 @@ export class Queries {
       { options },
       getNegativeTenBillionOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get 'null 64 bit integer value (no query param in uri)
    * @param options The options parameters.
    */
-  getLongNull(options?: Models.QueriesGetLongNullOptionalParams): Promise<any>;
+  getLongNull(
+    options?: Models.QueriesGetLongNullOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -277,14 +293,16 @@ export class Queries {
       { options },
       getLongNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '1.034E+20' numeric value
    * @param options The options parameters.
    */
-  floatScientificPositive(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  floatScientificPositive(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -305,14 +323,16 @@ export class Queries {
       { options },
       floatScientificPositiveOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '-1.034E-20' numeric value
    * @param options The options parameters.
    */
-  floatScientificNegative(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  floatScientificNegative(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -333,14 +353,16 @@ export class Queries {
       { options },
       floatScientificNegativeOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get null numeric value (no query parameter)
    * @param options The options parameters.
    */
-  floatNull(options?: Models.QueriesFloatNullOptionalParams): Promise<any>;
+  floatNull(
+    options?: Models.QueriesFloatNullOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -361,14 +383,16 @@ export class Queries {
       { options },
       floatNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '9999999.999' numeric value
    * @param options The options parameters.
    */
-  doubleDecimalPositive(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  doubleDecimalPositive(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -389,14 +413,16 @@ export class Queries {
       { options },
       doubleDecimalPositiveOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '-9999999.999' numeric value
    * @param options The options parameters.
    */
-  doubleDecimalNegative(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  doubleDecimalNegative(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -417,14 +443,16 @@ export class Queries {
       { options },
       doubleDecimalNegativeOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get null numeric value (no query parameter)
    * @param options The options parameters.
    */
-  doubleNull(options?: Models.QueriesDoubleNullOptionalParams): Promise<any>;
+  doubleNull(
+    options?: Models.QueriesDoubleNullOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -445,14 +473,16 @@ export class Queries {
       { options },
       doubleNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value
    * @param options The options parameters.
    */
-  stringUnicode(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  stringUnicode(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -473,14 +503,16 @@ export class Queries {
       { options },
       stringUnicodeOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get 'begin!*'();:@ &=+$,/?#[]end
    * @param options The options parameters.
    */
-  stringUrlEncoded(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  stringUrlEncoded(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -501,14 +533,16 @@ export class Queries {
       { options },
       stringUrlEncodedOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get ''
    * @param options The options parameters.
    */
-  stringEmpty(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  stringEmpty(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -529,14 +563,16 @@ export class Queries {
       { options },
       stringEmptyOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get null (no query parameter in url)
    * @param options The options parameters.
    */
-  stringNull(options?: Models.QueriesStringNullOptionalParams): Promise<any>;
+  stringNull(
+    options?: Models.QueriesStringNullOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -557,14 +593,16 @@ export class Queries {
       { options },
       stringNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get using uri with query parameter 'green color'
    * @param options The options parameters.
    */
-  enumValid(options?: Models.QueriesEnumValidOptionalParams): Promise<any>;
+  enumValid(
+    options?: Models.QueriesEnumValidOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -585,14 +623,16 @@ export class Queries {
       { options },
       enumValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get null (no query parameter in url)
    * @param options The options parameters.
    */
-  enumNull(options?: Models.QueriesEnumNullOptionalParams): Promise<any>;
+  enumNull(
+    options?: Models.QueriesEnumNullOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -613,7 +653,7 @@ export class Queries {
       { options },
       enumNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -622,7 +662,7 @@ export class Queries {
    */
   byteMultiByte(
     options?: Models.QueriesByteMultiByteOptionalParams
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -643,14 +683,16 @@ export class Queries {
       { options },
       byteMultiByteOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '' as byte array
    * @param options The options parameters.
    */
-  byteEmpty(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  byteEmpty(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -671,14 +713,16 @@ export class Queries {
       { options },
       byteEmptyOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get null as byte array (no query parameters in uri)
    * @param options The options parameters.
    */
-  byteNull(options?: Models.QueriesByteNullOptionalParams): Promise<any>;
+  byteNull(
+    options?: Models.QueriesByteNullOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -699,14 +743,16 @@ export class Queries {
       { options },
       byteNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '2012-01-01' as date
    * @param options The options parameters.
    */
-  dateValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  dateValid(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -727,14 +773,16 @@ export class Queries {
       { options },
       dateValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get null as date - this should result in no query parameters in uri
    * @param options The options parameters.
    */
-  dateNull(options?: Models.QueriesDateNullOptionalParams): Promise<any>;
+  dateNull(
+    options?: Models.QueriesDateNullOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -755,14 +803,16 @@ export class Queries {
       { options },
       dateNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get '2012-01-01T01:01:01Z' as date-time
    * @param options The options parameters.
    */
-  dateTimeValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  dateTimeValid(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -783,7 +833,7 @@ export class Queries {
       { options },
       dateTimeValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -792,7 +842,7 @@ export class Queries {
    */
   dateTimeNull(
     options?: Models.QueriesDateTimeNullOptionalParams
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -813,7 +863,7 @@ export class Queries {
       { options },
       dateTimeNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -822,7 +872,7 @@ export class Queries {
    */
   arrayStringCsvValid(
     options?: Models.QueriesArrayStringCsvValidOptionalParams
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -843,7 +893,7 @@ export class Queries {
       { options },
       arrayStringCsvValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -852,7 +902,7 @@ export class Queries {
    */
   arrayStringCsvNull(
     options?: Models.QueriesArrayStringCsvNullOptionalParams
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -873,7 +923,7 @@ export class Queries {
       { options },
       arrayStringCsvNullOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -882,7 +932,7 @@ export class Queries {
    */
   arrayStringCsvEmpty(
     options?: Models.QueriesArrayStringCsvEmptyOptionalParams
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -903,7 +953,7 @@ export class Queries {
       { options },
       arrayStringCsvEmptyOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -912,7 +962,7 @@ export class Queries {
    */
   arrayStringSsvValid(
     options?: Models.QueriesArrayStringSsvValidOptionalParams
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -933,7 +983,7 @@ export class Queries {
       { options },
       arrayStringSsvValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -942,7 +992,7 @@ export class Queries {
    */
   arrayStringTsvValid(
     options?: Models.QueriesArrayStringTsvValidOptionalParams
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -963,7 +1013,7 @@ export class Queries {
       { options },
       arrayStringTsvValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -972,7 +1022,7 @@ export class Queries {
    */
   arrayStringPipesValid(
     options?: Models.QueriesArrayStringPipesValidOptionalParams
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param callback The callback.
    */
@@ -993,7 +1043,7 @@ export class Queries {
       { options },
       arrayStringPipesValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications

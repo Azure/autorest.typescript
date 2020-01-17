@@ -30,7 +30,9 @@ export class Dictionary {
    * Get complex types with dictionary property
    * @param options The options parameters.
    */
-  getValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getValid(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.DictionaryGetValidResponse>;
   /**
    * @param callback The callback.
    */
@@ -51,7 +53,7 @@ export class Dictionary {
       { options },
       getValidOperationSpec,
       callback
-    );
+    ) as Promise<Models.DictionaryGetValidResponse>;
   }
 
   /**
@@ -62,7 +64,7 @@ export class Dictionary {
   putValid(
     complexBody: Models.DictionaryWrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put a dictionary with 5 key-value pairs: "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null
    * @param callback The callback.
@@ -90,14 +92,16 @@ export class Dictionary {
       { complexBody, options },
       putValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get complex types with dictionary property which is empty
    * @param options The options parameters.
    */
-  getEmpty(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getEmpty(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.DictionaryGetEmptyResponse>;
   /**
    * @param callback The callback.
    */
@@ -118,7 +122,7 @@ export class Dictionary {
       { options },
       getEmptyOperationSpec,
       callback
-    );
+    ) as Promise<Models.DictionaryGetEmptyResponse>;
   }
 
   /**
@@ -129,7 +133,7 @@ export class Dictionary {
   putEmpty(
     complexBody: Models.DictionaryWrapper,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put a dictionary with 5 key-value pairs: "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null
    * @param callback The callback.
@@ -157,14 +161,16 @@ export class Dictionary {
       { complexBody, options },
       putEmptyOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get complex types with dictionary property which is null
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getNull(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.DictionaryGetNullResponse>;
   /**
    * @param callback The callback.
    */
@@ -185,14 +191,16 @@ export class Dictionary {
       { options },
       getNullOperationSpec,
       callback
-    );
+    ) as Promise<Models.DictionaryGetNullResponse>;
   }
 
   /**
    * Get complex types with dictionary property while server doesn't provide a response payload
    * @param options The options parameters.
    */
-  getNotProvided(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getNotProvided(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.DictionaryGetNotProvidedResponse>;
   /**
    * @param callback The callback.
    */
@@ -213,7 +221,7 @@ export class Dictionary {
       { options },
       getNotProvidedOperationSpec,
       callback
-    );
+    ) as Promise<Models.DictionaryGetNotProvidedResponse>;
   }
 }
 // Operation Specifications

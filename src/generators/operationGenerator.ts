@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ParameterLocation, SchemaType } from "@azure-tools/codemodel";
 import {
   Project,
   SourceFile,
@@ -252,6 +251,7 @@ function writeOperationOverrides(
   parameters: ParameterDetails[]
 ) {
   operationGroupDetails.operations.forEach(operation => {
+    const responseName = getResponseType(operation);
     const paramDeclarations = filterOperationParameters(
       parameters,
       operation
@@ -288,14 +288,16 @@ function writeOperationOverrides(
     const operationMethod = operationGroupClass.addMethod({
       name: normalizeName(operation.name, NameType.Property),
       parameters: allParams,
-      returnType: `Promise<${getResponseType(operation)}>`
+      returnType: `Promise<${responseName}>`
     });
 
     const sendParams = paramDeclarations.map(p => p.name).join(",");
     operationMethod.addStatements(
       `return this.client.sendOperationRequest({${sendParams}${
         !!sendParams ? "," : ""
-      } options}, ${operation.name}OperationSpec, callback)`
+      } options}, ${
+        operation.name
+      }OperationSpec, callback) as Promise<${responseName}>`
     );
 
     operationMethod.addOverloads([
@@ -304,7 +306,7 @@ function writeOperationOverrides(
         docs: [
           generateOperationJSDoc(optionalOptionsParams, operation.description)
         ],
-        returnType: "Promise<any>" // TODO: Add correct return type
+        returnType: `Promise<${responseName}>`
       },
       {
         parameters: requiredCallbackParams,
@@ -321,17 +323,14 @@ function writeOperationOverrides(
 }
 
 function getResponseType(operation: OperationDetails) {
-  //TODO: Does this need to be updated to handle other success codes?
-  // Maybe just finding something that is not default and does not have
-  // x-ms-error-response extension?
-  const successResponse = operation.responses.find(
-    r => r.statusCodes.indexOf("200") > -1
+  const hasSuccessResponse = operation.responses.some(
+    r => !r.isError && !!r.bodyMapper
   );
 
-  const responseName = successResponse && successResponse.typeDetails.typeName;
+  const responseName = hasSuccessResponse ? operation.typeDetails.typeName : "";
 
   return !!responseName
-    ? `Models.${normalizeName(responseName, NameType.Interface)}`
+    ? `Models.${normalizeName(responseName, NameType.Interface)}Response`
     : "coreHttp.RestResponse";
 }
 

@@ -30,7 +30,9 @@ export class Inheritance {
    * Get complex types that extend others
    * @param options The options parameters.
    */
-  getValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getValid(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.InheritanceGetValidResponse>;
   /**
    * @param callback The callback.
    */
@@ -51,7 +53,7 @@ export class Inheritance {
       { options },
       getValidOperationSpec,
       callback
-    );
+    ) as Promise<Models.InheritanceGetValidResponse>;
   }
 
   /**
@@ -62,7 +64,7 @@ export class Inheritance {
   putValid(
     complexBody: Models.Siamese,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put a siamese with id=2, name="Siameee", color=green, breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one named "Tomato" with id=-1 and food="french fries".
    * @param callback The callback.
@@ -90,7 +92,7 @@ export class Inheritance {
       { complexBody, options },
       putValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications

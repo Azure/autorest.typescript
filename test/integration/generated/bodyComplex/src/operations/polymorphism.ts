@@ -30,7 +30,9 @@ export class Polymorphism {
    * Get complex types that are polymorphic
    * @param options The options parameters.
    */
-  getValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getValid(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PolymorphismGetValidResponse>;
   /**
    * @param callback The callback.
    */
@@ -51,7 +53,7 @@ export class Polymorphism {
       { options },
       getValidOperationSpec,
       callback
-    );
+    ) as Promise<Models.PolymorphismGetValidResponse>;
   }
 
   /**
@@ -94,7 +96,7 @@ export class Polymorphism {
   putValid(
     complexBody: Models.FishUnion,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put a salmon that looks like this:
    * {
@@ -186,14 +188,16 @@ export class Polymorphism {
       { complexBody, options },
       putValidOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get complex types that are polymorphic, JSON key contains a dot
    * @param options The options parameters.
    */
-  getDotSyntax(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getDotSyntax(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PolymorphismGetDotSyntaxResponse>;
   /**
    * @param callback The callback.
    */
@@ -214,7 +218,7 @@ export class Polymorphism {
       { options },
       getDotSyntaxOperationSpec,
       callback
-    );
+    ) as Promise<Models.PolymorphismGetDotSyntaxResponse>;
   }
 
   /**
@@ -223,7 +227,7 @@ export class Polymorphism {
    */
   getComposedWithDiscriminator(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<Models.PolymorphismGetComposedWithDiscriminatorResponse>;
   /**
    * @param callback The callback.
    */
@@ -244,7 +248,7 @@ export class Polymorphism {
       { options },
       getComposedWithDiscriminatorOperationSpec,
       callback
-    );
+    ) as Promise<Models.PolymorphismGetComposedWithDiscriminatorResponse>;
   }
 
   /**
@@ -253,7 +257,7 @@ export class Polymorphism {
    */
   getComposedWithoutDiscriminator(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<Models.PolymorphismGetComposedWithoutDiscriminatorResponse>;
   /**
    * @param callback The callback.
    */
@@ -276,14 +280,16 @@ export class Polymorphism {
       { options },
       getComposedWithoutDiscriminatorOperationSpec,
       callback
-    );
+    ) as Promise<Models.PolymorphismGetComposedWithoutDiscriminatorResponse>;
   }
 
   /**
    * Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties
    * @param options The options parameters.
    */
-  getComplicated(options?: coreHttp.RequestOptionsBase): Promise<any>;
+  getComplicated(
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PolymorphismGetComplicatedResponse>;
   /**
    * @param callback The callback.
    */
@@ -304,7 +310,7 @@ export class Polymorphism {
       { options },
       getComplicatedOperationSpec,
       callback
-    );
+    ) as Promise<Models.PolymorphismGetComplicatedResponse>;
   }
 
   /**
@@ -315,7 +321,7 @@ export class Polymorphism {
   putComplicated(
     complexBody: Models.SalmonUnion,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody
    * @param callback The callback.
@@ -343,7 +349,7 @@ export class Polymorphism {
       { complexBody, options },
       putComplicatedOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -354,7 +360,7 @@ export class Polymorphism {
   putMissingDiscriminator(
     complexBody: Models.SalmonUnion,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<Models.PolymorphismPutMissingDiscriminatorResponse>;
   /**
    * @param complexBody
    * @param callback The callback.
@@ -382,7 +388,7 @@ export class Polymorphism {
       { complexBody, options },
       putMissingDiscriminatorOperationSpec,
       callback
-    );
+    ) as Promise<Models.PolymorphismPutMissingDiscriminatorResponse>;
   }
 
   /**
@@ -425,7 +431,7 @@ export class Polymorphism {
   putValidMissingRequired(
     complexBody: Models.FishUnion,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * @param complexBody Please put a salmon that looks like this:
    * {
@@ -517,7 +523,7 @@ export class Polymorphism {
       { complexBody, options },
       putValidMissingRequiredOperationSpec,
       callback
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications

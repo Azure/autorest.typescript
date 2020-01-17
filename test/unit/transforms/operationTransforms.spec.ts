@@ -176,7 +176,7 @@ describe("OperationTransforms", () => {
         checkHttpMethodAndPath(operationSpec);
       });
 
-      it.skip("should create an operation spec with correct responses from a basic response", () => {
+      it("should create an operation spec with correct responses from a basic response", () => {
         const mockOperation = getOperation();
         const operationDetails = transformOperation(
           mockOperation,
@@ -184,7 +184,7 @@ describe("OperationTransforms", () => {
         );
         const operationSpec = transformOperationSpec(operationDetails, []);
         checkHttpMethodAndPath(operationSpec);
-        assert.deepEqual(operationSpec.responses[200], {});
+        assert.notEqual(operationSpec.responses[200], undefined);
       });
 
       it("should create an operation spec with correct parameters", () => {

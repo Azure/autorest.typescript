@@ -130,7 +130,7 @@ describe("Integration tests for Url", () => {
     it("getGlobalAndLocalQueryNull should work when use null values in different portion of url", async function() {
       client.globalStringQuery = null;
       const optionalParams = {
-        localStringQuery: null,
+        localStringQuery: null as any,
         pathItemStringQuery: "pathItemStringQuery"
       };
 
@@ -161,8 +161,8 @@ describe("Integration tests for Url", () => {
     it("getLocalPathItemQueryNull should work when use null values in different portion of url", async function() {
       client.globalStringQuery = "globalStringQuery";
       const optionalParams = {
-        localStringQuery: null,
-        pathItemStringQuery: null
+        localStringQuery: null as any,
+        pathItemStringQuery: null as any
       };
 
       await client.pathItems.getLocalPathItemQueryNull(
@@ -220,7 +220,7 @@ describe("Integration tests for Url", () => {
       await shouldThrow(() =>
         client.queries.enumValid({ enumQuery: <UrlModels.UriColor>"" })
       );
-      await client.queries.enumNull({ enumQuery: null });
+      await client.queries.enumNull({ enumQuery: null as any });
       await client.queries.enumValid({ enumQuery: "green color" });
       assert.ok("Call succeeded");
     });
@@ -229,9 +229,9 @@ describe("Integration tests for Url", () => {
       const testArray = [
         "ArrayQuery1",
         "begin!*'();:@ &=+$,/?#[]end",
-        null,
+        null as any,
         ""
-      ];
+      ] as string[];
       await client.queries.arrayStringCsvEmpty({ arrayQuery: [] });
       await client.queries.arrayStringCsvValid({ arrayQuery: testArray });
       await client.queries.arrayStringPipesValid({ arrayQuery: testArray });
@@ -244,23 +244,23 @@ describe("Integration tests for Url", () => {
       await client.paths.arrayCsvInPath([
         "ArrayPath1",
         "begin!*'();:@ &=+$,/?#[]end",
-        null,
+        null as any,
         ""
-      ]);
+      ] as string[]);
       assert.ok("Call succeeded");
     });
 
     it("should work when use null values in url query", async function() {
-      await client.queries.byteNull({ byteQuery: null });
-      await client.queries.dateNull({ dateQuery: null });
-      await client.queries.dateTimeNull({ dateTimeQuery: null });
-      await client.queries.doubleNull({ doubleQuery: null });
-      await client.queries.floatNull({ floatQuery: null });
-      await client.queries.getBooleanNull({ boolQuery: null });
-      await client.queries.getIntNull({ intQuery: null });
-      await client.queries.getLongNull({ longQuery: null });
-      await client.queries.stringNull({ stringQuery: null });
-      await client.queries.arrayStringCsvNull({ arrayQuery: null });
+      await client.queries.byteNull({ byteQuery: null as any });
+      await client.queries.dateNull({ dateQuery: null as any });
+      await client.queries.dateTimeNull({ dateTimeQuery: null as any });
+      await client.queries.doubleNull({ doubleQuery: null as any });
+      await client.queries.floatNull({ floatQuery: null as any });
+      await client.queries.getBooleanNull({ boolQuery: null as any });
+      await client.queries.getIntNull({ intQuery: null as any });
+      await client.queries.getLongNull({ longQuery: null as any });
+      await client.queries.stringNull({ stringQuery: null as any });
+      await client.queries.arrayStringCsvNull({ arrayQuery: null as any });
       assert.ok("Calls succeeded");
     });
   });

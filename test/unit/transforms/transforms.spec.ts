@@ -1,10 +1,6 @@
 import * as assert from "assert";
 
-import {
-  transformObject,
-  transformProperty,
-  transformChoice
-} from "../../../src/transforms/transforms";
+import { transformChoice } from "../../../src/transforms/transforms";
 
 import {
   CodeModel,
@@ -19,6 +15,10 @@ import {
   ChoiceValue,
   BooleanSchema
 } from "@azure-tools/codemodel";
+import {
+  transformProperty,
+  transformObject
+} from "../../../src/transforms/objectTransforms";
 
 const appleSchema = new ObjectSchema("Apple", "An apple.", {
   properties: [
@@ -76,7 +76,7 @@ describe("Transforms", () => {
 
   describe("ObjectSchema to ModelDetails", () => {
     it("retains basic details and contains properties", () => {
-      const model = transformObject(appleSchema);
+      const model = transformObject(appleSchema, []);
       assert.strictEqual(model.name, "Apple");
       assert.strictEqual(model.properties.length, 3);
       assert.strictEqual(model.properties[0].name, "color");
