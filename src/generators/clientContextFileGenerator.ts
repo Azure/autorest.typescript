@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Project } from "ts-morph";
+import { Project, PropertyDeclarationStructure } from "ts-morph";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
 import { PackageDetails } from "../models/packageDetails";
 import { ParameterDetails } from "../models/parameterDetails";
-import { ImplementationLocation } from "@azure-tools/codemodel";
+import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
 import {
   getCredentialsCheck,
   getCredentialsParameter
@@ -53,19 +53,25 @@ export function generateClientContext(
     isExported: true
   });
 
-  const globalParams = clientDetails.parameters.filter(
+  const clientParams = clientDetails.parameters.filter(
     param => param.implementationLocation === ImplementationLocation.Client
   );
-  const requiredGlobals = globalParams.filter(p => p.required);
-  const optionalGlobals = globalParams.filter(p => !p.required);
+
+  const constructorParams = clientParams.filter(
+    param => !param.defaultValue && param.schemaType !== SchemaType.Constant
+  );
+
+  const requiredGlobals = constructorParams.filter(p => p.required);
+  const optionalGlobals = constructorParams.filter(p => !p.required);
 
   contextClass.addProperties(
-    globalParams.map(param => {
+    clientParams.map(param => {
       return {
         name: param.name,
         type: param.typeDetails.typeName,
-        hasQuestionToken: !param.required
-      };
+        hasQuestionToken: !param.required,
+        initializer: param.defaultValue
+      } as PropertyDeclarationStructure;
     })
   );
   const hasCredentials = !!clientDetails.options.addCredentials;
@@ -83,7 +89,7 @@ export function generateClientContext(
       {
         name: "options",
         hasQuestionToken: true,
-        type: `coreHttp.ServiceClientOptions`
+        type: `any`
       }
     ]
   });
@@ -92,6 +98,7 @@ export function generateClientContext(
   // optionally skip some segments based on generation options
   classConstructor.addStatements([
     getCredentialsCheck(hasCredentials),
+    `super(${hasCredentials ? "credentials" : `undefined`}, options);\n\n`,
     ...getRequiredParamChecks(requiredGlobals),
     `if (!options) {
        options = {};
@@ -100,7 +107,6 @@ export function generateClientContext(
        const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
        options.userAgent = \`\${packageName}/\${packageVersion} \${defaultUserAgent}\`;
      }\n`,
-    `super(undefined, options);\n\n`,
     `this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
      this.requestContentType = "application/json; charset=utf-8";`,
     ...getRequiredParamAssignments(requiredGlobals),

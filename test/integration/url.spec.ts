@@ -128,7 +128,7 @@ describe("Integration tests for Url", () => {
     });
 
     it("getGlobalAndLocalQueryNull should work when use null values in different portion of url", async function() {
-      client.globalStringQuery = null;
+      client.globalStringQuery = null as any;
       const optionalParams = {
         localStringQuery: null as any,
         pathItemStringQuery: "pathItemStringQuery"
@@ -143,8 +143,7 @@ describe("Integration tests for Url", () => {
     });
 
     it("getGlobalQueryNull should work when use null values in different portion of url", async function() {
-      // INVESTIGATE
-      client.globalStringQuery = null;
+      client.globalStringQuery = null as any;
       const optionalParams = {
         localStringQuery: "localStringQuery",
         pathItemStringQuery: "pathItemStringQuery"

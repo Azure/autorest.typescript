@@ -13,6 +13,7 @@ import { TypeDetails } from "./modelDetails";
 
 export interface ParameterDetails {
   nameRef: string;
+  defaultValue?: any;
   description: string;
   name: string;
   serializedName: string;

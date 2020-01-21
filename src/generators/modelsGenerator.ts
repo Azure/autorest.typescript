@@ -229,7 +229,7 @@ const writeObjectSignature = (modelsIndexFile: SourceFile) => (
 };
 
 /**
- * This function writes all UnionTypes, these types represent the optios a request can use for a Polymorphic parameter
+ * This function writes all UnionTypes, these types represent the options a request can use for a Polymorphic parameter
  */
 function writeUniontypes({ objects }: ClientDetails, modelsFile: SourceFile) {
   objects
@@ -273,7 +273,7 @@ function writeOptionalParameters(
     properties: optionalParams.map<PropertySignatureStructure>(p => ({
       name: p.name,
       hasQuestionToken: !p.required,
-      type: p.typeDetails.typeName || "TODO NO TYPE",
+      type: p.typeDetails.typeName,
       docs: p.description ? [p.description] : undefined,
       kind: StructureKind.PropertySignature
     }))
@@ -321,7 +321,9 @@ function withDiscriminator(
 
   const discProps = keys(discriminator).map<PropertySignatureStructure>(
     key => ({
-      docs: [`Polymorphic discriminator`],
+      docs: [
+        `Polymorphic discriminator, which specifies the different types this object can be`
+      ],
       name: key,
       type: discriminator[key].map(disc => `"${disc}"`).join(" | "),
       kind: StructureKind.PropertySignature

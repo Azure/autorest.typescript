@@ -10,7 +10,7 @@ import {
   NameType
 } from "../utils/nameUtils";
 import { ParameterDetails } from "../models/parameterDetails";
-import { ImplementationLocation } from "@azure-tools/codemodel";
+import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
 import { getCredentialsParameter } from "./utils/parameterUtils";
 
 export function generateClient(clientDetails: ClientDetails, project: Project) {
@@ -73,7 +73,11 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   );
   const hasCredentials = !!clientDetails.options.addCredentials;
   const requiredParams = clientDetails.parameters.filter(
-    param => param.implementationLocation === ImplementationLocation.Client
+    param =>
+      param.required &&
+      param.implementationLocation === ImplementationLocation.Client &&
+      !param.defaultValue &&
+      param.schemaType !== SchemaType.Constant
   );
 
   const clientConstructor = clientClass.addConstructor({
@@ -91,7 +95,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       {
         name: "options",
         hasQuestionToken: true,
-        type: `coreHttp.ServiceClientOptions`
+        type: `any`
       }
     ]
   });

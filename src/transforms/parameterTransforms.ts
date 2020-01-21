@@ -8,7 +8,8 @@ import {
   SchemaType,
   Schema,
   ImplementationLocation,
-  SerializationStyle
+  SerializationStyle,
+  ConstantSchema
 } from "@azure-tools/codemodel";
 import { QueryCollectionFormat } from "@azure/core-http";
 import { getLanguageMetadata } from "../utils/languageHelpers";
@@ -21,6 +22,7 @@ import {
 } from "./mapperTransforms";
 import { isEqual, isNil } from "lodash";
 import { getTypeForSchema } from "../utils/schemaHelpers";
+import { getStringForValue } from "../utils/valueHelpers";
 
 interface OperationParameterDetails {
   parameter: Parameter;
@@ -55,6 +57,22 @@ const extractOperationParameters = (codeModel: CodeModel) =>
       )
     ];
   }, []);
+
+function getDefaultValue(parameter: Parameter) {
+  if (!!parameter.clientDefaultValue) {
+    return getStringForValue(parameter.clientDefaultValue, parameter.schema);
+  }
+
+  if (parameter.schema.type === SchemaType.Constant) {
+    const constantSchema = parameter.schema as ConstantSchema;
+    return (
+      constantSchema.defaultValue ||
+      getStringForValue(constantSchema.value.value, constantSchema.valueType)
+    );
+  }
+
+  return undefined;
+}
 
 export function populateOperationParameters(
   parameter: Parameter,
@@ -96,7 +114,8 @@ export function populateOperationParameters(
       parameter,
       collectionFormat,
       implementationLocation: parameter.implementation,
-      typeDetails
+      typeDetails,
+      defaultValue: getDefaultValue(parameter)
     };
     operationParameters.push(paramDetails);
 
@@ -243,7 +262,8 @@ export function disambiguateParameter(
       isGlobal: getIsGlobal(parameter),
       parameter,
       collectionFormat,
-      implementationLocation: parameter.implementation
+      implementationLocation: parameter.implementation,
+      defaultValue: getDefaultValue(parameter)
     });
   }
 }
