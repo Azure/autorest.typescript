@@ -14,7 +14,8 @@ import {
   Property,
   ArraySchema,
   DictionarySchema,
-  DateTimeSchema
+  DateTimeSchema,
+  CodeModel
 } from "@azure-tools/codemodel";
 import {
   BaseMapper,
@@ -62,6 +63,18 @@ export interface EntityOptions {
 export interface MapperInput {
   schema: Schema;
   options?: EntityOptions;
+}
+
+export async function transformMappers(
+  codeModel: CodeModel
+): Promise<Mapper[]> {
+  if (!codeModel.schemas.objects) {
+    return [];
+  }
+
+  return codeModel.schemas.objects.map(objectSchema =>
+    transformMapper({ schema: objectSchema })
+  );
 }
 
 /**

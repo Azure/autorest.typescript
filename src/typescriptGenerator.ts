@@ -49,7 +49,7 @@ export async function generateTypeScriptLibrary(
     }
   });
 
-  const clientDetails = transformCodeModel(codeModel);
+  const clientDetails = await transformCodeModel(codeModel, host);
   const packageName = await host.GetValue("package-name");
   const packageNameParts = packageName.match(/(^@(.*)\/)?(.*)/);
   const packageDetails: PackageDetails = {

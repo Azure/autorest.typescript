@@ -16,11 +16,22 @@ import {
 } from "../utils/nameUtils";
 import { getStringForValue } from "../utils/valueHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
-import { transformMapper } from "./mapperTransforms";
-import { transformOperationGroup } from "./operationTransforms";
+import { transformMappers } from "./mapperTransforms";
+import { transformOperationGroups } from "./operationTransforms";
+import { transformOptions } from "./optionsTransforms";
 import { transformParameters } from "./parameterTransforms";
 import { transformObjects, transformObject } from "./objectTransforms";
 import { ObjectDetails } from "../models/modelDetails";
+import { Host } from "@azure-tools/autorest-extension-base";
+
+export async function transformChoices(codeModel: CodeModel) {
+  const choices = [
+    ...(codeModel.schemas.choices || []),
+    ...(codeModel.schemas.sealedChoices || [])
+  ];
+
+  return choices.map(transformChoice);
+}
 
 export function transformChoice(
   choice: ChoiceSchema | SealedChoiceSchema
@@ -38,24 +49,40 @@ export function transformChoice(
   };
 }
 
-export function transformCodeModel(codeModel: CodeModel): ClientDetails {
+export async function transformCodeModel(
+  codeModel: CodeModel,
+  host: Host
+): Promise<ClientDetails> {
   const className = normalizeName(codeModel.info.title, NameType.Class);
-  const uberParents = getUberParents(codeModel);
+  const uberParents = await getUberParents(codeModel);
+
+  const [
+    objects,
+    mappers,
+    unions,
+    operationGroups,
+    parameters,
+    options
+  ] = await Promise.all([
+    transformObjects(codeModel, uberParents),
+    transformMappers(codeModel),
+    transformChoices(codeModel),
+    transformOperationGroups(codeModel),
+    transformParameters(codeModel),
+    transformOptions(host)
+  ]);
+
   return {
     name: codeModel.info.title,
     className,
     description: codeModel.info.description,
     sourceFileName: normalizeName(className, NameType.File),
-    objects: transformObjects(codeModel, uberParents),
-    mappers: (codeModel.schemas.objects || []).map(schema =>
-      transformMapper({ schema })
-    ),
-    unions: [
-      ...(codeModel.schemas.choices || []),
-      ...(codeModel.schemas.sealedChoices || [])
-    ].map(transformChoice),
-    operationGroups: codeModel.operationGroups.map(transformOperationGroup),
-    parameters: transformParameters(codeModel)
+    objects,
+    mappers,
+    unions,
+    operationGroups,
+    parameters,
+    options
   };
 }
 
@@ -63,7 +90,7 @@ export function transformCodeModel(codeModel: CodeModel): ClientDetails {
  * This function gets all top level objects with children, aka UberParents
  * @param codeModel CodeModel
  */
-function getUberParents(codeModel: CodeModel): ObjectDetails[] {
+async function getUberParents(codeModel: CodeModel): Promise<ObjectDetails[]> {
   if (!codeModel.schemas.objects) {
     return [];
   }

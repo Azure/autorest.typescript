@@ -4,6 +4,7 @@
 import { ParameterDetails } from "../../models/parameterDetails";
 import { OperationDetails } from "../../models/operationDetails";
 import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
+import { StructureKind, ParameterDeclarationStructure } from "ts-morph";
 
 interface ParameterFilterOptions {
   includeOptional?: boolean;
@@ -56,4 +57,26 @@ export function filterOperationParameters(
       constantFilter(param) &&
       clientParamFilter(param)
   );
+}
+
+export function getCredentialsParameter(
+  hasCredentials: boolean
+): ParameterDeclarationStructure[] {
+  return hasCredentials
+    ? [
+        {
+          name: "credentials",
+          type: `coreHttp.TokenCredential | coreHttp.ServiceClientCredentials`,
+          kind: StructureKind.Parameter
+        }
+      ]
+    : [];
+}
+
+export function getCredentialsCheck(hasCredentials: boolean): string {
+  return hasCredentials
+    ? `if (credentials == undefined) {
+    throw new Error("'credentials' cannot be null.");
+  }`
+    : ``;
 }

@@ -7,6 +7,10 @@ import { ClientDetails } from "../models/clientDetails";
 import { PackageDetails } from "../models/packageDetails";
 import { ParameterDetails } from "../models/parameterDetails";
 import { ImplementationLocation } from "@azure-tools/codemodel";
+import {
+  getCredentialsCheck,
+  getCredentialsParameter
+} from "./utils/parameterUtils";
 
 export function generateClientContext(
   clientDetails: ClientDetails,
@@ -64,13 +68,14 @@ export function generateClientContext(
       };
     })
   );
-
+  const hasCredentials = !!clientDetails.options.addCredentials;
   const classConstructor = contextClass.addConstructor({
     docs: [
       `Initializes a new instance of the ${clientContextClassName} class.\n
 @param options The parameter options`
     ],
     parameters: [
+      ...getCredentialsParameter(hasCredentials),
       ...requiredGlobals.map(p => ({
         name: p.name,
         type: p.typeDetails.typeName
@@ -86,6 +91,7 @@ export function generateClientContext(
   // This could all be expressed as one string template, but we may need to
   // optionally skip some segments based on generation options
   classConstructor.addStatements([
+    getCredentialsCheck(hasCredentials),
     ...getRequiredParamChecks(requiredGlobals),
     `if (!options) {
        options = {};

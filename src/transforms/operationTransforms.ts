@@ -12,7 +12,8 @@ import {
   ChoiceSchema,
   OperationGroup,
   ParameterLocation,
-  ConstantSchema
+  ConstantSchema,
+  CodeModel
 } from "@azure-tools/codemodel";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import {
@@ -241,6 +242,10 @@ export function transformOperation(
       transformOperationResponse(response as SchemaResponse)
     )
   };
+}
+
+export async function transformOperationGroups(codeModel: CodeModel) {
+  return codeModel.operationGroups.map(transformOperationGroup);
 }
 
 export function transformOperationGroup(

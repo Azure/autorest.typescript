@@ -7,6 +7,11 @@ import { Mapper } from "@azure/core-http";
 import { ParameterDetails } from "./parameterDetails";
 import { ObjectDetails } from "./modelDetails";
 
+export interface ClientOptions {
+  azureArm?: boolean;
+  addCredentials?: boolean;
+}
+
 export interface ClientDetails {
   name: string;
   className: string;
@@ -17,4 +22,5 @@ export interface ClientDetails {
   unions: UnionDetails[];
   operationGroups: OperationGroupDetails[];
   parameters: ParameterDetails[];
+  options: ClientOptions;
 }
