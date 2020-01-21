@@ -38,7 +38,8 @@ export function transformParameters(codeModel: CodeModel): ParameterDetails[] {
 
 const extractOperationParameters = (codeModel: CodeModel) =>
   codeModel.operationGroups.reduce<OperationParameterDetails[]>((acc, og) => {
-    const groupName = getLanguageMetadata(og.language).name;
+    // TODO: Probably want to inline operations in client when there is only one operation group (#551)
+    const groupName = getLanguageMetadata(og.language).name || "operations";
     return [
       ...acc,
       ...og.operations.reduce<OperationParameterDetails[]>(

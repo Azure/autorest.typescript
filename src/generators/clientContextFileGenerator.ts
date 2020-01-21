@@ -6,6 +6,7 @@ import { normalizeName, NameType } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
 import { PackageDetails } from "../models/packageDetails";
 import { ParameterDetails } from "../models/parameterDetails";
+import { ImplementationLocation } from "@azure-tools/codemodel";
 
 export function generateClientContext(
   clientDetails: ClientDetails,
@@ -48,7 +49,9 @@ export function generateClientContext(
     isExported: true
   });
 
-  const globalParams = clientDetails.parameters.filter(param => param.isGlobal);
+  const globalParams = clientDetails.parameters.filter(
+    param => param.implementationLocation === ImplementationLocation.Client
+  );
   const requiredGlobals = globalParams.filter(p => p.required);
   const optionalGlobals = globalParams.filter(p => !p.required);
 
@@ -56,7 +59,7 @@ export function generateClientContext(
     globalParams.map(param => {
       return {
         name: param.name,
-        type: "any", // TODO use actual type
+        type: param.typeDetails.typeName,
         hasQuestionToken: !param.required
       };
     })
@@ -68,11 +71,14 @@ export function generateClientContext(
 @param options The parameter options`
     ],
     parameters: [
-      ...requiredGlobals.map(p => ({ name: p.name, type: "any" })), //TODO: Use actual type
+      ...requiredGlobals.map(p => ({
+        name: p.name,
+        type: p.typeDetails.typeName
+      })),
       {
         name: "options",
         hasQuestionToken: true,
-        type: "any" // TODO: Use the correct type from models `Models.${clientDetails.className}Options`
+        type: `coreHttp.ServiceClientOptions`
       }
     ]
   });

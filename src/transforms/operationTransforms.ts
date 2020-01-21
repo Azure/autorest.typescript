@@ -247,7 +247,8 @@ export function transformOperationGroup(
   operationGroup: OperationGroup
 ): OperationGroupDetails {
   const metadata = getLanguageMetadata(operationGroup.language);
-  const name = normalizeName(metadata.name, NameType.Property);
+  // TODO: Probably want to inline operations in client when there is only one operation group (#551)
+  const name = normalizeName(metadata.name || "operations", NameType.Property);
   return {
     name,
     key: operationGroup.$key,

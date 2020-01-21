@@ -10,6 +10,7 @@ import {
   NameType
 } from "../utils/nameUtils";
 import { ParameterDetails } from "../models/parameterDetails";
+import { ImplementationLocation } from "@azure-tools/codemodel";
 
 export function generateClient(clientDetails: ClientDetails, project: Project) {
   const modelsName = getModelsName(clientDetails.className);
@@ -40,6 +41,11 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   });
 
   clientFile.addImportDeclaration({
+    namespaceImport: "coreHttp",
+    moduleSpecifier: "@azure/core-http"
+  });
+
+  clientFile.addImportDeclaration({
     namedImports: [clientContextClassName],
     moduleSpecifier: `./${clientDetails.sourceFileName}Context`
   });
@@ -65,23 +71,25 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     })
   );
 
-  const requiredParams = clientDetails.parameters
-    .filter(param => param.isGlobal)
-    .filter(p => p.required);
+  const requiredParams = clientDetails.parameters.filter(
+    param => param.implementationLocation === ImplementationLocation.Client
+  );
 
   const clientConstructor = clientClass.addConstructor({
     docs: [
-      // TODO: Parameter list will need to be generated based on real
-      // client parameter list.
       `Initializes a new instance of the ${clientDetails.className} class.
 @param options The parameter options`
     ],
     parameters: [
-      ...requiredParams.map(p => ({ name: p.name, type: "any" })), // TODO Use the right type
+      ...requiredParams.map(p => ({
+        name: p.name,
+        hasQuestionToken: !p.required,
+        type: p.typeDetails.typeName
+      })),
       {
         name: "options",
         hasQuestionToken: true,
-        type: "any" // TODO Use the right type `Models.${clientDetails.className}Options`
+        type: `coreHttp.ServiceClientOptions`
       }
     ]
   });
