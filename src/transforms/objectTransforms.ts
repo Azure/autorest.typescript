@@ -225,9 +225,8 @@ function transformPolymorphicObject(
   let discriminator: { [key: string]: string[] } = {};
 
   if (schema === uberParent && schema.children) {
-    const discriminatorProperty = getLanguageMetadata(
-      uberParent.discriminator!.property.language
-    ).name;
+    const discriminatorProperty = uberParent.discriminator!.property
+      .serializedName;
 
     const children = schema.children.all;
     const childDiscriminators = children

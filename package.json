@@ -15,9 +15,9 @@
         "start-test-server:v1": "ts-node test/integration/testserver-v1/index.ts",
         "stop-test-server": "stop-autorest-testserver",
         "debug": "node --inspect-brk ./dist/src/main.js",
-        "generate-bodystring": "autorest-beta --typescript --output-folder=./test/integration/generated/bodyString --use=. --title=BodyStringClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-string.json --package-name=bodyString --package-version=1.0.0-preview1",
-        "generate-bodycomplex": "autorest-beta --typescript --output-folder=./test/integration/generated/bodyComplex --use=. --title=BodyComplexClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-complex.json --package-name=bodyString --package-version=1.0.0-preview1",
-        "generate-url": "autorest-beta --typescript --output-folder=./test/integration/generated/url --use=. --title=UrlClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/url.json --package-name=url --package-version=1.0.0-preview1"
+        "generate-bodystring": "autorest-beta --pipeline-model:v3 --typescript --output-folder=./test/integration/generated/bodyString --use=. --title=BodyStringClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-string.json --package-name=bodyString --package-version=1.0.0-preview1",
+        "generate-bodycomplex": "autorest-beta --pipeline-model:v3 --typescript --output-folder=./test/integration/generated/bodyComplex --use=. --title=BodyComplexClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-complex.json --package-name=bodyString --package-version=1.0.0-preview1",
+        "generate-url": "autorest-beta --pipeline-model:v3 --typescript --output-folder=./test/integration/generated/url --use=. --title=UrlClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/url.json --package-name=url --package-version=1.0.0-preview1"
     },
     "files": [
         "dist/**",
@@ -41,7 +41,7 @@
     },
     "devDependencies": {
         "@autorest/test-server": "^3.0.26",
-        "@microsoft.azure/autorest.testserver": "^2.10.7",
+        "@microsoft.azure/autorest.testserver": "^2.10.9",
         "@types/express": "^4.17.2",
         "@types/js-yaml": "3.12.1",
         "@types/mocha": "5.2.7",
