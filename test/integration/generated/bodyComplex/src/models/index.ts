@@ -176,7 +176,7 @@ export type Siamese = Cat & {
  */
 export interface Fish {
   /**
-   * Polymorphic discriminator
+   * Polymorphic discriminator, which specifies the different types this object can be
    */
   fishtype:
     | "salmon"
@@ -195,7 +195,7 @@ export interface Fish {
  */
 export interface DotFish {
   /**
-   * Polymorphic discriminator
+   * Polymorphic discriminator, which specifies the different types this object can be
    */
   "fish.type": "DotSalmon";
   fishType: string;
@@ -241,7 +241,7 @@ export interface ReadonlyObj {
  */
 export interface MyBaseType {
   /**
-   * Polymorphic discriminator
+   * Polymorphic discriminator, which specifies the different types this object can be
    */
   kind: "Kind1";
   propB1?: string;

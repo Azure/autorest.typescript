@@ -6,7 +6,11 @@ import { normalizeName, NameType } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
 import { PackageDetails } from "../models/packageDetails";
 import { ParameterDetails } from "../models/parameterDetails";
-import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
+import {
+  ImplementationLocation,
+  SchemaType,
+  ConstantSchema
+} from "@azure-tools/codemodel";
 import {
   getCredentialsCheck,
   getCredentialsParameter
@@ -69,8 +73,7 @@ export function generateClientContext(
       return {
         name: param.name,
         type: param.typeDetails.typeName,
-        hasQuestionToken: !param.required,
-        initializer: param.defaultValue
+        hasQuestionToken: !param.required
       } as PropertyDeclarationStructure;
     })
   );
@@ -98,7 +101,6 @@ export function generateClientContext(
   // optionally skip some segments based on generation options
   classConstructor.addStatements([
     getCredentialsCheck(hasCredentials),
-    `super(${hasCredentials ? "credentials" : `undefined`}, options);\n\n`,
     ...getRequiredParamChecks(requiredGlobals),
     `if (!options) {
        options = {};
@@ -107,11 +109,21 @@ export function generateClientContext(
        const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
        options.userAgent = \`\${packageName}/\${packageVersion} \${defaultUserAgent}\`;
      }\n`,
+    `super(${hasCredentials ? "credentials" : `undefined`}, options);\n\n`,
     `this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
      this.requestContentType = "application/json; charset=utf-8";`,
     ...getRequiredParamAssignments(requiredGlobals),
-    ...getOptionalParameterAssignments(optionalGlobals)
+    ...getOptionalParameterAssignments(optionalGlobals),
+    ...getConstantClientParamAssignments(clientParams)
   ]);
+}
+
+function getConstantClientParamAssignments(
+  clientParameters: ParameterDetails[]
+) {
+  return clientParameters
+    .filter(p => !!p.defaultValue || p.schemaType === SchemaType.Constant)
+    .map(({ name, defaultValue }) => `this.${name} = ${defaultValue}`);
 }
 
 function getRequiredParamChecks(requiredParameters: ParameterDetails[]) {

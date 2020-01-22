@@ -13,15 +13,16 @@ const packageName = "url";
 const packageVersion = "1.0.0-preview1";
 
 export class UrlClientContext extends coreHttp.ServiceClient {
-  globalStringPath: any;
-  globalStringQuery?: any;
+  $host: string;
+  globalStringPath: string;
+  globalStringQuery?: string;
 
   /**
    * Initializes a new instance of the UrlClientContext class.
    *
    * @param options The parameter options
    */
-  constructor(globalStringPath: any, options?: any) {
+  constructor(globalStringPath: string, options?: any) {
     if (globalStringPath === undefined) {
       throw new Error("'globalStringPath' cannot be null");
     }
@@ -46,5 +47,7 @@ export class UrlClientContext extends coreHttp.ServiceClient {
     ) {
       this.globalStringQuery = options.globalStringQuery;
     }
+
+    this.$host = "http://localhost:3000";
   }
 }

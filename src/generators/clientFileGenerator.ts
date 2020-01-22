@@ -42,11 +42,6 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   });
 
   clientFile.addImportDeclaration({
-    namespaceImport: "coreHttp",
-    moduleSpecifier: "@azure/core-http"
-  });
-
-  clientFile.addImportDeclaration({
     namedImports: [clientContextClassName],
     moduleSpecifier: `./${clientDetails.sourceFileName}Context`
   });

@@ -20,7 +20,7 @@ class UrlClient extends UrlClientContext {
    * Initializes a new instance of the UrlClient class.
    * @param options The parameter options
    */
-  constructor(globalStringPath: any, options?: any) {
+  constructor(globalStringPath: string, options?: any) {
     super(globalStringPath, options);
     this.paths = new operations.Paths(this);
     this.queries = new operations.Queries(this);
