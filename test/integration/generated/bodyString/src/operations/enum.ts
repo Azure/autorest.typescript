@@ -30,28 +30,13 @@ export class Enum {
    * Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
    * @param options The options parameters.
    */
-  getNotExpandable(options?: coreHttp.RequestOptionsBase): Promise<any>;
-  /**
-   * @param callback The callback.
-   */
-  getNotExpandable(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
   getNotExpandable(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getNotExpandable(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.EnumGetNotExpandableResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getNotExpandableOperationSpec,
-      callback
-    );
+      getNotExpandableOperationSpec
+    ) as Promise<Models.EnumGetNotExpandableResponse>;
   }
 
   /**
@@ -62,63 +47,24 @@ export class Enum {
   putNotExpandable(
     stringBody: Models.Colors,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
-  /**
-   * @param stringBody
-   * @param callback The callback.
-   */
-  putNotExpandable(
-    stringBody: Models.Colors,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param stringBody
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  putNotExpandable(
-    stringBody: Models.Colors,
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  putNotExpandable(
-    stringBody: Models.Colors,
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { stringBody, options },
-      putNotExpandableOperationSpec,
-      callback
-    );
+      putNotExpandableOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
    * @param options The options parameters.
    */
-  getReferenced(options?: coreHttp.RequestOptionsBase): Promise<any>;
-  /**
-   * @param callback The callback.
-   */
-  getReferenced(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
   getReferenced(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getReferenced(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.EnumGetReferencedResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getReferencedOperationSpec,
-      callback
-    );
+      getReferencedOperationSpec
+    ) as Promise<Models.EnumGetReferencedResponse>;
   }
 
   /**
@@ -129,63 +75,24 @@ export class Enum {
   putReferenced(
     enumStringBody: Models.Colors,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
-  /**
-   * @param enumStringBody
-   * @param callback The callback.
-   */
-  putReferenced(
-    enumStringBody: Models.Colors,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param enumStringBody
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  putReferenced(
-    enumStringBody: Models.Colors,
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  putReferenced(
-    enumStringBody: Models.Colors,
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { enumStringBody, options },
-      putReferencedOperationSpec,
-      callback
-    );
+      putReferencedOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get value 'green-color' from the constant.
    * @param options The options parameters.
    */
-  getReferencedConstant(options?: coreHttp.RequestOptionsBase): Promise<any>;
-  /**
-   * @param callback The callback.
-   */
-  getReferencedConstant(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
   getReferencedConstant(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getReferencedConstant(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.EnumGetReferencedConstantResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getReferencedConstantOperationSpec,
-      callback
-    );
+      getReferencedConstantOperationSpec
+    ) as Promise<Models.EnumGetReferencedConstantResponse>;
   }
 
   /**
@@ -196,35 +103,11 @@ export class Enum {
   putReferencedConstant(
     enumStringBody: Models.RefColorConstant,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
-  /**
-   * @param enumStringBody
-   * @param callback The callback.
-   */
-  putReferencedConstant(
-    enumStringBody: Models.RefColorConstant,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param enumStringBody
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  putReferencedConstant(
-    enumStringBody: Models.RefColorConstant,
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  putReferencedConstant(
-    enumStringBody: Models.RefColorConstant,
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { enumStringBody, options },
-      putReferencedConstantOperationSpec,
-      callback
-    );
+      putReferencedConstantOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications

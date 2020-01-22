@@ -30,28 +30,13 @@ export class Polymorphism {
    * Get complex types that are polymorphic
    * @param options The options parameters.
    */
-  getValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
-  /**
-   * @param callback The callback.
-   */
-  getValid(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
   getValid(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getValid(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PolymorphismGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getValidOperationSpec,
-      callback
-    );
+      getValidOperationSpec
+    ) as Promise<Models.PolymorphismGetValidResponse>;
   }
 
   /**
@@ -92,129 +77,26 @@ export class Polymorphism {
    * @param options The options parameters.
    */
   putValid(
-    complexBody: Models.Fish,
+    complexBody: Models.FishUnion,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
-  /**
-   * @param complexBody Please put a salmon that looks like this:
-   * {
-   *         'fishtype':'Salmon',
-   *         'location':'alaska',
-   *         'iswild':true,
-   *         'species':'king',
-   *         'length':1.0,
-   *         'siblings':[
-   *           {
-   *             'fishtype':'Shark',
-   *             'age':6,
-   *             'birthday': '2012-01-05T01:00:00Z',
-   *             'length':20.0,
-   *             'species':'predator',
-   *           },
-   *           {
-   *             'fishtype':'Sawshark',
-   *             'age':105,
-   *             'birthday': '1900-01-05T01:00:00Z',
-   *             'length':10.0,
-   *             'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-   *             'species':'dangerous',
-   *           },
-   *           {
-   *             'fishtype': 'goblin',
-   *             'age': 1,
-   *             'birthday': '2015-08-08T00:00:00Z',
-   *             'length': 30.0,
-   *             'species': 'scary',
-   *             'jawsize': 5
-   *           }
-   *         ]
-   *       };
-   * @param callback The callback.
-   */
-  putValid(
-    complexBody: Models.Fish,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param complexBody Please put a salmon that looks like this:
-   * {
-   *         'fishtype':'Salmon',
-   *         'location':'alaska',
-   *         'iswild':true,
-   *         'species':'king',
-   *         'length':1.0,
-   *         'siblings':[
-   *           {
-   *             'fishtype':'Shark',
-   *             'age':6,
-   *             'birthday': '2012-01-05T01:00:00Z',
-   *             'length':20.0,
-   *             'species':'predator',
-   *           },
-   *           {
-   *             'fishtype':'Sawshark',
-   *             'age':105,
-   *             'birthday': '1900-01-05T01:00:00Z',
-   *             'length':10.0,
-   *             'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-   *             'species':'dangerous',
-   *           },
-   *           {
-   *             'fishtype': 'goblin',
-   *             'age': 1,
-   *             'birthday': '2015-08-08T00:00:00Z',
-   *             'length': 30.0,
-   *             'species': 'scary',
-   *             'jawsize': 5
-   *           }
-   *         ]
-   *       };
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  putValid(
-    complexBody: Models.Fish,
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  putValid(
-    complexBody: Models.Fish,
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
-      putValidOperationSpec,
-      callback
-    );
+      putValidOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get complex types that are polymorphic, JSON key contains a dot
    * @param options The options parameters.
    */
-  getDotSyntax(options?: coreHttp.RequestOptionsBase): Promise<any>;
-  /**
-   * @param callback The callback.
-   */
-  getDotSyntax(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
   getDotSyntax(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getDotSyntax(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PolymorphismGetDotSyntaxResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDotSyntaxOperationSpec,
-      callback
-    );
+      getDotSyntaxOperationSpec
+    ) as Promise<Models.PolymorphismGetDotSyntaxResponse>;
   }
 
   /**
@@ -223,28 +105,11 @@ export class Polymorphism {
    */
   getComposedWithDiscriminator(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
-  /**
-   * @param callback The callback.
-   */
-  getComposedWithDiscriminator(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getComposedWithDiscriminator(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getComposedWithDiscriminator(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PolymorphismGetComposedWithDiscriminatorResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getComposedWithDiscriminatorOperationSpec,
-      callback
-    );
+      getComposedWithDiscriminatorOperationSpec
+    ) as Promise<Models.PolymorphismGetComposedWithDiscriminatorResponse>;
   }
 
   /**
@@ -253,58 +118,24 @@ export class Polymorphism {
    */
   getComposedWithoutDiscriminator(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
-  /**
-   * @param callback The callback.
-   */
-  getComposedWithoutDiscriminator(
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  getComposedWithoutDiscriminator(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getComposedWithoutDiscriminator(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PolymorphismGetComposedWithoutDiscriminatorResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getComposedWithoutDiscriminatorOperationSpec,
-      callback
-    );
+      getComposedWithoutDiscriminatorOperationSpec
+    ) as Promise<Models.PolymorphismGetComposedWithoutDiscriminatorResponse>;
   }
 
   /**
    * Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties
    * @param options The options parameters.
    */
-  getComplicated(options?: coreHttp.RequestOptionsBase): Promise<any>;
-  /**
-   * @param callback The callback.
-   */
-  getComplicated(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
   getComplicated(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getComplicated(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PolymorphismGetComplicatedResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getComplicatedOperationSpec,
-      callback
-    );
+      getComplicatedOperationSpec
+    ) as Promise<Models.PolymorphismGetComplicatedResponse>;
   }
 
   /**
@@ -313,37 +144,13 @@ export class Polymorphism {
    * @param options The options parameters.
    */
   putComplicated(
-    complexBody: Models.Salmon,
+    complexBody: Models.SalmonUnion,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
-  /**
-   * @param complexBody
-   * @param callback The callback.
-   */
-  putComplicated(
-    complexBody: Models.Salmon,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param complexBody
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  putComplicated(
-    complexBody: Models.Salmon,
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  putComplicated(
-    complexBody: Models.Salmon,
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
-      putComplicatedOperationSpec,
-      callback
-    );
+      putComplicatedOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -352,37 +159,13 @@ export class Polymorphism {
    * @param options The options parameters.
    */
   putMissingDiscriminator(
-    complexBody: Models.Salmon,
+    complexBody: Models.SalmonUnion,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
-  /**
-   * @param complexBody
-   * @param callback The callback.
-   */
-  putMissingDiscriminator(
-    complexBody: Models.Salmon,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param complexBody
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  putMissingDiscriminator(
-    complexBody: Models.Salmon,
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  putMissingDiscriminator(
-    complexBody: Models.Salmon,
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<Models.PolymorphismPutMissingDiscriminatorResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
-      putMissingDiscriminatorOperationSpec,
-      callback
-    );
+      putMissingDiscriminatorOperationSpec
+    ) as Promise<Models.PolymorphismPutMissingDiscriminatorResponse>;
   }
 
   /**
@@ -423,101 +206,13 @@ export class Polymorphism {
    * @param options The options parameters.
    */
   putValidMissingRequired(
-    complexBody: Models.Fish,
+    complexBody: Models.FishUnion,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
-  /**
-   * @param complexBody Please put a salmon that looks like this:
-   * {
-   *         'fishtype':'Salmon',
-   *         'location':'alaska',
-   *         'iswild':true,
-   *         'species':'king',
-   *         'length':1.0,
-   *         'siblings':[
-   *           {
-   *             'fishtype':'Shark',
-   *             'age':6,
-   *             'birthday': '2012-01-05T01:00:00Z',
-   *             'length':20.0,
-   *             'species':'predator',
-   *           },
-   *           {
-   *             'fishtype':'Sawshark',
-   *             'age':105,
-   *             'birthday': '1900-01-05T01:00:00Z',
-   *             'length':10.0,
-   *             'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-   *             'species':'dangerous',
-   *           },
-   *           {
-   *             'fishtype': 'goblin',
-   *             'age': 1,
-   *             'birthday': '2015-08-08T00:00:00Z',
-   *             'length': 30.0,
-   *             'species': 'scary',
-   *             'jawsize': 5
-   *           }
-   *         ]
-   *       };
-   * @param callback The callback.
-   */
-  putValidMissingRequired(
-    complexBody: Models.Fish,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param complexBody Please put a salmon that looks like this:
-   * {
-   *         'fishtype':'Salmon',
-   *         'location':'alaska',
-   *         'iswild':true,
-   *         'species':'king',
-   *         'length':1.0,
-   *         'siblings':[
-   *           {
-   *             'fishtype':'Shark',
-   *             'age':6,
-   *             'birthday': '2012-01-05T01:00:00Z',
-   *             'length':20.0,
-   *             'species':'predator',
-   *           },
-   *           {
-   *             'fishtype':'Sawshark',
-   *             'age':105,
-   *             'birthday': '1900-01-05T01:00:00Z',
-   *             'length':10.0,
-   *             'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-   *             'species':'dangerous',
-   *           },
-   *           {
-   *             'fishtype': 'goblin',
-   *             'age': 1,
-   *             'birthday': '2015-08-08T00:00:00Z',
-   *             'length': 30.0,
-   *             'species': 'scary',
-   *             'jawsize': 5
-   *           }
-   *         ]
-   *       };
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  putValidMissingRequired(
-    complexBody: Models.Fish,
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  putValidMissingRequired(
-    complexBody: Models.Fish,
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
-      putValidMissingRequiredOperationSpec,
-      callback
-    );
+      putValidMissingRequiredOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications

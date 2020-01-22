@@ -30,28 +30,13 @@ export class Readonlyproperty {
    * Get complex types that have readonly properties
    * @param options The options parameters.
    */
-  getValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
-  /**
-   * @param callback The callback.
-   */
-  getValid(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
   getValid(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getValid(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.ReadonlypropertyGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getValidOperationSpec,
-      callback
-    );
+      getValidOperationSpec
+    ) as Promise<Models.ReadonlypropertyGetValidResponse>;
   }
 
   /**
@@ -62,35 +47,11 @@ export class Readonlyproperty {
   putValid(
     complexBody: Models.ReadonlyObj,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
-  /**
-   * @param complexBody
-   * @param callback The callback.
-   */
-  putValid(
-    complexBody: Models.ReadonlyObj,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param complexBody
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  putValid(
-    complexBody: Models.ReadonlyObj,
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  putValid(
-    complexBody: Models.ReadonlyObj,
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
-      putValidOperationSpec,
-      callback
-    );
+      putValidOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications

@@ -13,6 +13,8 @@ const packageName = "bodyString";
 const packageVersion = "1.0.0-preview1";
 
 export class BodyStringClientContext extends coreHttp.ServiceClient {
+  $host: string;
+
   /**
    * Initializes a new instance of the BodyStringClientContext class.
    *
@@ -32,5 +34,6 @@ export class BodyStringClientContext extends coreHttp.ServiceClient {
 
     this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
+    this.$host = "http://localhost:3000";
   }
 }

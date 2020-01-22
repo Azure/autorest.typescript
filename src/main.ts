@@ -16,8 +16,9 @@ export async function processRequest(host: Host) {
       undefined,
       codeModelSchema
     );
-
+    const start = Date.now();
     await generateTypeScriptLibrary(session.model, host);
+    session.log(`Autorest.Typescript took ${Date.now() - start}ms`, "");
   } catch (err) {
     console.error("An error was encountered while handling a request:", err);
     throw err;

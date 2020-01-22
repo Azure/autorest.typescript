@@ -8,7 +8,8 @@ import {
   SchemaType,
   Schema,
   ImplementationLocation,
-  SerializationStyle
+  SerializationStyle,
+  ConstantSchema
 } from "@azure-tools/codemodel";
 import { QueryCollectionFormat } from "@azure/core-http";
 import { getLanguageMetadata } from "../utils/languageHelpers";
@@ -21,6 +22,7 @@ import {
 } from "./mapperTransforms";
 import { isEqual, isNil } from "lodash";
 import { getTypeForSchema } from "../utils/schemaHelpers";
+import { getStringForValue } from "../utils/valueHelpers";
 
 interface OperationParameterDetails {
   parameter: Parameter;
@@ -38,7 +40,8 @@ export function transformParameters(codeModel: CodeModel): ParameterDetails[] {
 
 const extractOperationParameters = (codeModel: CodeModel) =>
   codeModel.operationGroups.reduce<OperationParameterDetails[]>((acc, og) => {
-    const groupName = getLanguageMetadata(og.language).name;
+    // TODO: Probably want to inline operations in client when there is only one operation group (#551)
+    const groupName = getLanguageMetadata(og.language).name || "operations";
     return [
       ...acc,
       ...og.operations.reduce<OperationParameterDetails[]>(
@@ -54,6 +57,22 @@ const extractOperationParameters = (codeModel: CodeModel) =>
       )
     ];
   }, []);
+
+function getDefaultValue(parameter: Parameter) {
+  if (!!parameter.clientDefaultValue) {
+    return getStringForValue(parameter.clientDefaultValue, parameter.schema);
+  }
+
+  if (parameter.schema.type === SchemaType.Constant) {
+    const constantSchema = parameter.schema as ConstantSchema;
+    return (
+      constantSchema.defaultValue ||
+      getStringForValue(constantSchema.value.value, constantSchema.valueType)
+    );
+  }
+
+  return undefined;
+}
 
 export function populateOperationParameters(
   parameter: Parameter,
@@ -75,6 +94,7 @@ export function populateOperationParameters(
   if (!sameNameParams.length) {
     const name = normalizeName(parameterSerializedName, NameType.Property);
     const collectionFormat = getCollectionFormat(parameter);
+    const typeDetails = getTypeForSchema(parameter.schema);
     const paramDetails: ParameterDetails = {
       nameRef: name,
       description,
@@ -83,8 +103,8 @@ export function populateOperationParameters(
       operationsIn: [operationName],
       location: getParameterLocation(parameter),
       required: parameter.required,
+      schemaType: parameter.schema.type,
       parameterPath: getParameterPath(parameter),
-      modelType: getTypeForSchema(parameter.schema).typeName,
       mapper: getMapperOrRef(
         parameter.schema,
         parameterSerializedName,
@@ -92,9 +112,13 @@ export function populateOperationParameters(
       ),
       isGlobal: getIsGlobal(parameter),
       parameter,
-      collectionFormat
+      collectionFormat,
+      implementationLocation: parameter.implementation,
+      typeDetails,
+      defaultValue: getDefaultValue(parameter)
     };
     operationParameters.push(paramDetails);
+
     return;
   }
 
@@ -217,6 +241,7 @@ export function disambiguateParameter(
     const nameRef = `${name}${sameNameParams.length}`;
     const collectionFormat = getCollectionFormat(parameter);
     const description = getLanguageMetadata(parameter.language).description;
+    const typeDetails = getTypeForSchema(parameter.schema);
 
     operationParameters.push({
       nameRef,
@@ -225,6 +250,7 @@ export function disambiguateParameter(
       serializedName,
       operationsIn: [operationName],
       required: parameter.required,
+      schemaType: parameter.schema.type,
       parameterPath: getParameterPath(parameter),
       location: getParameterLocation(parameter),
       mapper: getMapperOrRef(
@@ -232,10 +258,12 @@ export function disambiguateParameter(
         serializedName,
         parameter.required
       ),
-      modelType: getTypeForSchema(parameter.schema).typeName,
+      typeDetails,
       isGlobal: getIsGlobal(parameter),
       parameter,
-      collectionFormat
+      collectionFormat,
+      implementationLocation: parameter.implementation,
+      defaultValue: getDefaultValue(parameter)
     });
   }
 }

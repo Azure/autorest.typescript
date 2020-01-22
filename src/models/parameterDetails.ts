@@ -1,11 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Parameter, ParameterLocation } from "@azure-tools/codemodel";
+import {
+  Parameter,
+  ParameterLocation,
+  AllSchemaTypes,
+  ImplementationLocation,
+  SchemaType
+} from "@azure-tools/codemodel";
 import { Mapper } from "@azure/core-http";
+import { TypeDetails } from "./modelDetails";
 
 export interface ParameterDetails {
   nameRef: string;
+  defaultValue?: any;
   description: string;
   name: string;
   serializedName: string;
@@ -16,6 +24,8 @@ export interface ParameterDetails {
   isGlobal: boolean;
   parameter: Parameter;
   operationsIn?: string[];
-  modelType: string;
   collectionFormat?: string;
+  schemaType: AllSchemaTypes;
+  implementationLocation?: ImplementationLocation;
+  typeDetails: TypeDetails;
 }

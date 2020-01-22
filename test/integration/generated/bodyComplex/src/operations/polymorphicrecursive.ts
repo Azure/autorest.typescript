@@ -30,28 +30,13 @@ export class Polymorphicrecursive {
    * Get complex types that are polymorphic and have recursive references
    * @param options The options parameters.
    */
-  getValid(options?: coreHttp.RequestOptionsBase): Promise<any>;
-  /**
-   * @param callback The callback.
-   */
-  getValid(callback: coreHttp.ServiceCallback<any>): void;
-  /**
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
   getValid(
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  getValid(
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PolymorphicrecursiveGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getValidOperationSpec,
-      callback
-    );
+      getValidOperationSpec
+    ) as Promise<Models.PolymorphicrecursiveGetValidResponse>;
   }
 
   /**
@@ -92,101 +77,13 @@ export class Polymorphicrecursive {
    * @param options The options parameters.
    */
   putValid(
-    complexBody: Models.Fish,
+    complexBody: Models.FishUnion,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<any>;
-  /**
-   * @param complexBody Please put a salmon that looks like this:
-   * {
-   *         'fishtype':'Salmon',
-   *         'location':'alaska',
-   *         'iswild':true,
-   *         'species':'king',
-   *         'length':1.0,
-   *         'siblings':[
-   *           {
-   *             'fishtype':'Shark',
-   *             'age':6,
-   *             'birthday': '2012-01-05T01:00:00Z',
-   *             'length':20.0,
-   *             'species':'predator',
-   *           },
-   *           {
-   *             'fishtype':'Sawshark',
-   *             'age':105,
-   *             'birthday': '1900-01-05T01:00:00Z',
-   *             'length':10.0,
-   *             'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-   *             'species':'dangerous',
-   *           },
-   *           {
-   *             'fishtype': 'goblin',
-   *             'age': 1,
-   *             'birthday': '2015-08-08T00:00:00Z',
-   *             'length': 30.0,
-   *             'species': 'scary',
-   *             'jawsize': 5
-   *           }
-   *         ]
-   *       };
-   * @param callback The callback.
-   */
-  putValid(
-    complexBody: Models.Fish,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  /**
-   * @param complexBody Please put a salmon that looks like this:
-   * {
-   *         'fishtype':'Salmon',
-   *         'location':'alaska',
-   *         'iswild':true,
-   *         'species':'king',
-   *         'length':1.0,
-   *         'siblings':[
-   *           {
-   *             'fishtype':'Shark',
-   *             'age':6,
-   *             'birthday': '2012-01-05T01:00:00Z',
-   *             'length':20.0,
-   *             'species':'predator',
-   *           },
-   *           {
-   *             'fishtype':'Sawshark',
-   *             'age':105,
-   *             'birthday': '1900-01-05T01:00:00Z',
-   *             'length':10.0,
-   *             'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-   *             'species':'dangerous',
-   *           },
-   *           {
-   *             'fishtype': 'goblin',
-   *             'age': 1,
-   *             'birthday': '2015-08-08T00:00:00Z',
-   *             'length': 30.0,
-   *             'species': 'scary',
-   *             'jawsize': 5
-   *           }
-   *         ]
-   *       };
-   * @param options The options parameters.
-   * @param callback The callback.
-   */
-  putValid(
-    complexBody: Models.Fish,
-    options: coreHttp.RequestOptionsBase,
-    callback: coreHttp.ServiceCallback<any>
-  ): void;
-  putValid(
-    complexBody: Models.Fish,
-    options?: coreHttp.RequestOptionsBase,
-    callback?: coreHttp.ServiceCallback<any>
-  ): Promise<any> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
-      putValidOperationSpec,
-      callback
-    );
+      putValidOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications

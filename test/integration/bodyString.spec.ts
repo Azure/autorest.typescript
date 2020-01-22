@@ -58,39 +58,28 @@ describe("Integration tests for BodyString", () => {
 
     it("should correctly deserialize base64 encoded string", async function() {
       const result = await client.string.getBase64Encoded();
-      ok(!!result);
       ok(!!result.body);
 
       const expected = "a string that gets encoded with base64";
       strictEqual((result.body as Buffer).toString("utf8"), expected);
     });
 
-    it("should correctly handle null base64url encoded string", function(done) {
-      client.string.getNullBase64UrlEncoded(function(error, result) {
-        ok(!error, "response should not contain errors");
-        ok(!result, "response should not contain result");
-        done();
-      });
+    it("should correctly handle null base64url encoded string", async () => {
+      const result = await client.string.getNullBase64UrlEncoded();
+      ok(!result.body, "response should not contain result");
     });
 
-    // TODO: Reenable after investigating why the following error is thrown:
-    // test/utils/stringToByteArray.ts:6:16 - error TS2304: Cannot find name 'TextEncoder'.
-    it("should correctly serialize and deserialize base64url encoded string", function(done) {
-      client.string.getBase64UrlEncoded(function(error, result) {
-        ok(!error, "response should not contain errors");
-        ok(!!result, "response should contain a result");
+    it("should correctly serialize and deserialize base64url encoded string", async () => {
+      const result = await client.string.getBase64UrlEncoded();
+      ok(!!result.body, "response should contain a result");
 
-        const decodedString = "a string that gets encoded with base64url";
-        strictEqual((result as Buffer).toString("utf8"), decodedString);
-        client.string.putBase64UrlEncoded(
-          Buffer.from(decodedString, "utf-8"),
-          function(error, result) {
-            ok(!error, "response should not contain errors");
-            ok(!result, "response should not contain result");
-            done();
-          }
-        );
-      });
+      const decodedString = "a string that gets encoded with base64url";
+      strictEqual((result.body as Buffer).toString("utf8"), decodedString);
+      const result2 = await client.string.putBase64UrlEncoded(
+        Buffer.from(decodedString, "utf-8")
+      );
+
+      ok(!result2.body, "response should not contain result");
     });
 
     it("should getEnumReferenced", async function() {

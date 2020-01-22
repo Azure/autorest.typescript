@@ -10,6 +10,8 @@ import {
   NameType
 } from "../utils/nameUtils";
 import { ParameterDetails } from "../models/parameterDetails";
+import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
+import { getCredentialsParameter } from "./utils/parameterUtils";
 
 export function generateClient(clientDetails: ClientDetails, project: Project) {
   const modelsName = getModelsName(clientDetails.className);
@@ -64,30 +66,37 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       } as PropertyDeclarationStructure;
     })
   );
-
-  const requiredParams = clientDetails.parameters
-    .filter(param => param.isGlobal)
-    .filter(p => p.required);
+  const hasCredentials = !!clientDetails.options.addCredentials;
+  const requiredParams = clientDetails.parameters.filter(
+    param =>
+      param.required &&
+      param.implementationLocation === ImplementationLocation.Client &&
+      !param.defaultValue &&
+      param.schemaType !== SchemaType.Constant
+  );
 
   const clientConstructor = clientClass.addConstructor({
     docs: [
-      // TODO: Parameter list will need to be generated based on real
-      // client parameter list.
       `Initializes a new instance of the ${clientDetails.className} class.
 @param options The parameter options`
     ],
     parameters: [
-      ...requiredParams.map(p => ({ name: p.name, type: "any" })), // TODO Use the right type
+      ...getCredentialsParameter(hasCredentials),
+      ...requiredParams.map(p => ({
+        name: p.name,
+        hasQuestionToken: !p.required,
+        type: p.typeDetails.typeName
+      })),
       {
         name: "options",
         hasQuestionToken: true,
-        type: "any" // TODO Use the right type `Models.${clientDetails.className}Options`
+        type: `any`
       }
     ]
   });
 
   clientConstructor.addStatements([
-    `super(${getSuperParams(requiredParams)});`,
+    `super(${getSuperParams(requiredParams, hasCredentials)});`,
     ...operations.map(
       ({ name, typeName }) => `this.${name} = new ${typeName}(this)`
     )
@@ -109,11 +118,18 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   });
 }
 
-function getSuperParams(requiredParams: ParameterDetails[]) {
+function getSuperParams(
+  requiredParams: ParameterDetails[],
+  hasCredentials: boolean
+) {
   let allParams = ["options"];
   requiredParams.forEach(p => {
     allParams = [p.name, ...allParams];
   });
+
+  if (hasCredentials) {
+    allParams.unshift("credentials");
+  }
 
   return allParams.join();
 }

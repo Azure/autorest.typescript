@@ -1,13 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  HttpMethods,
-  Mapper,
-  MapperType,
-  CompositeMapper,
-  OperationQueryParameter
-} from "@azure/core-http";
+import { HttpMethods, Mapper, MapperType } from "@azure/core-http";
 import {
   Operation,
   Request,
@@ -18,8 +12,8 @@ import {
   ChoiceSchema,
   OperationGroup,
   ParameterLocation,
-  Parameter,
-  ConstantSchema
+  ConstantSchema,
+  CodeModel
 } from "@azure-tools/codemodel";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import {
@@ -34,6 +28,7 @@ import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getTypeForSchema } from "../utils/schemaHelpers";
 import { getMapperTypeFromSchema } from "./mapperTransforms";
 import { ParameterDetails } from "../models/parameterDetails";
+import { PropertyKind, TypeDetails } from "../models/modelDetails";
 
 export function transformOperationSpec(
   operationDetails: OperationDetails,
@@ -174,23 +169,42 @@ export function transformOperationRequest(
 }
 
 export function transformOperationResponse(
-  response: Response | SchemaResponse
+  response: SchemaResponse
 ): OperationResponseDetails {
-  let modelType: string | undefined = undefined;
-  let bodyMapper: Mapper | string | undefined = undefined;
+  let isError =
+    !!response.extensions && !!response.extensions["x-ms-error-response"];
 
-  if ((response as SchemaResponse).schema) {
-    const schemaResponse = response as SchemaResponse;
-    modelType = getTypeForSchema(schemaResponse.schema).typeName;
-    bodyMapper = getBodyMapperFromSchema(schemaResponse.schema);
+  if (!response.schema) {
+    const schemalessResponse = response as Response;
+    return {
+      statusCodes: schemalessResponse.protocol.http!.statusCodes,
+      typeDetails: {
+        typeName: "",
+        isConstant: false,
+        kind: PropertyKind.Primitive,
+        isError
+      }
+    } as OperationResponseDetails;
   }
 
-  if (response.protocol.http) {
+  const schemaResponse = response as SchemaResponse;
+  const typeDetails = getTypeForSchema(schemaResponse.schema);
+  const bodyMapper = getBodyMapperFromSchema(schemaResponse.schema);
+  if (!typeDetails) {
+    throw new Error(
+      `Unable to extract responseType for ${schemaResponse.schema.type}`
+    );
+  }
+
+  const httpInfo = response.protocol.http;
+  if (httpInfo) {
+    const isDefault = httpInfo.statusCodes.indexOf("default") > -1;
     return {
-      statusCodes: response.protocol.http.statusCodes,
-      mediaType: response.protocol.http.knownMediaType,
-      modelType,
-      bodyMapper
+      statusCodes: httpInfo.statusCodes,
+      mediaType: httpInfo.knownMediaType,
+      bodyMapper,
+      typeDetails,
+      isError: isDefault || isError
     };
   } else {
     throw new Error("Operation does not specify HTTP response details.");
@@ -203,23 +217,43 @@ export function transformOperation(
 ): OperationDetails {
   const metadata = getLanguageMetadata(operation.language);
   const name = normalizeName(metadata.name, NameType.Property);
+  const responses = [
+    ...(operation.responses || []),
+    ...(operation.exceptions || [])
+  ];
+  const typeDetails: TypeDetails = {
+    typeName: `${normalizeName(
+      operationGroupName,
+      NameType.Interface
+    )}${normalizeName(metadata.name, NameType.Interface)}`,
+    kind: PropertyKind.Composite
+  };
+
   return {
     name,
+    typeDetails,
     fullName: `${operationGroupName}_${name}`.toLowerCase(),
     apiVersions: operation.apiVersions
       ? operation.apiVersions.map(v => v.version)
       : [],
     description: metadata.description,
     request: transformOperationRequest(operation.request),
-    responses: mergeResponsesAndExceptions(operation)
+    responses: responses.map(response =>
+      transformOperationResponse(response as SchemaResponse)
+    )
   };
+}
+
+export async function transformOperationGroups(codeModel: CodeModel) {
+  return codeModel.operationGroups.map(transformOperationGroup);
 }
 
 export function transformOperationGroup(
   operationGroup: OperationGroup
 ): OperationGroupDetails {
   const metadata = getLanguageMetadata(operationGroup.language);
-  const name = normalizeName(metadata.name, NameType.Property);
+  // TODO: Probably want to inline operations in client when there is only one operation group (#551)
+  const name = normalizeName(metadata.name || "operations", NameType.Property);
   return {
     name,
     key: operationGroup.$key,
@@ -268,24 +302,4 @@ function getBodyMapperFromSchema(
       ...(!!constantProps && constantProps)
     }
   );
-}
-
-function mergeResponsesAndExceptions(operation: Operation) {
-  let responses: OperationResponseDetails[] = [];
-
-  if (operation.responses) {
-    responses = [
-      ...responses,
-      ...operation.responses.map(transformOperationResponse)
-    ];
-  }
-
-  if (operation.exceptions) {
-    responses = [
-      ...responses,
-      ...operation.exceptions.map(transformOperationResponse)
-    ];
-  }
-
-  return responses;
 }

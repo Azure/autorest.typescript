@@ -3,12 +3,9 @@
 
 import { ClientDetails } from "../models/clientDetails";
 import { UnionDetails } from "../models/unionDetails";
-import { ModelDetails, PropertyDetails } from "../models/modelDetails";
 
 import {
   CodeModel,
-  ObjectSchema,
-  Property,
   ChoiceSchema,
   SealedChoiceSchema
 } from "@azure-tools/codemodel";
@@ -17,31 +14,23 @@ import {
   NameType,
   guardReservedNames
 } from "../utils/nameUtils";
-import { getTypeForSchema } from "../utils/schemaHelpers";
 import { getStringForValue } from "../utils/valueHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
-import { transformMapper } from "./mapperTransforms";
-import { transformOperationGroup } from "./operationTransforms";
+import { transformMappers } from "./mapperTransforms";
+import { transformOperationGroups } from "./operationTransforms";
+import { transformOptions } from "./optionsTransforms";
 import { transformParameters } from "./parameterTransforms";
+import { transformObjects, transformObject } from "./objectTransforms";
+import { ObjectDetails } from "../models/modelDetails";
+import { Host } from "@azure-tools/autorest-extension-base";
 
-export function transformProperty(property: Property): PropertyDetails {
-  const metadata = getLanguageMetadata(property.language);
-  const { typeName, isConstant, defaultValue } = getTypeForSchema(
-    property.schema
-  );
+export async function transformChoices(codeModel: CodeModel) {
+  const choices = [
+    ...(codeModel.schemas.choices || []),
+    ...(codeModel.schemas.sealedChoices || [])
+  ];
 
-  return {
-    name: normalizeName(metadata.name, NameType.Property),
-    description: !metadata.description.startsWith("MISSING")
-      ? metadata.description
-      : undefined,
-    serializedName: property.serializedName,
-    type: typeName,
-    required: !!property.required,
-    readOnly: !!property.readOnly,
-    isConstant,
-    defaultValue
-  };
+  return choices.map(transformChoice);
 }
 
 export function transformChoice(
@@ -60,36 +49,65 @@ export function transformChoice(
   };
 }
 
-export function transformObject(obj: ObjectSchema): ModelDetails {
-  const metadata = getLanguageMetadata(obj.language);
-  let name = normalizeName(guardReservedNames(metadata.name), NameType.Class);
-
-  return {
-    name,
-    description: `An interface representing ${metadata.name}.`,
-    serializedName: metadata.name,
-    properties: obj.properties
-      ? obj.properties.map(prop => transformProperty(prop))
-      : []
-  };
-}
-
-export function transformCodeModel(codeModel: CodeModel): ClientDetails {
+export async function transformCodeModel(
+  codeModel: CodeModel,
+  host: Host
+): Promise<ClientDetails> {
   const className = normalizeName(codeModel.info.title, NameType.Class);
+  const uberParents = await getUberParents(codeModel);
+
+  const [
+    objects,
+    mappers,
+    unions,
+    operationGroups,
+    parameters,
+    options
+  ] = await Promise.all([
+    transformObjects(codeModel, uberParents),
+    transformMappers(codeModel),
+    transformChoices(codeModel),
+    transformOperationGroups(codeModel),
+    transformParameters(codeModel),
+    transformOptions(host)
+  ]);
+
   return {
     name: codeModel.info.title,
     className,
     description: codeModel.info.description,
     sourceFileName: normalizeName(className, NameType.File),
-    models: (codeModel.schemas.objects || []).map(transformObject),
-    mappers: (codeModel.schemas.objects || []).map(schema =>
-      transformMapper({ schema })
-    ),
-    unions: [
-      ...(codeModel.schemas.choices || []),
-      ...(codeModel.schemas.sealedChoices || [])
-    ].map(transformChoice),
-    operationGroups: codeModel.operationGroups.map(transformOperationGroup),
-    parameters: transformParameters(codeModel)
+    objects,
+    mappers,
+    unions,
+    operationGroups,
+    parameters,
+    options
   };
+}
+
+/**
+ * This function gets all top level objects with children, aka UberParents
+ * @param codeModel CodeModel
+ */
+async function getUberParents(codeModel: CodeModel): Promise<ObjectDetails[]> {
+  if (!codeModel.schemas.objects) {
+    return [];
+  }
+
+  let uberParents: ObjectDetails[] = [];
+
+  codeModel.schemas.objects.forEach(object => {
+    const name = getLanguageMetadata(object.language).name;
+    const isPresent = uberParents.some(up => up.name === name);
+    const hasChildren = object.children && object.children.all.length;
+    const hasParents = object.parents && object.parents.all.length;
+
+    if (hasChildren && !hasParents && !isPresent) {
+      const baseObject = transformObject(object, uberParents);
+      uberParents.push(baseObject);
+    }
+  });
+
+  return uberParents;
 }

@@ -16,11 +16,13 @@ import {
   ConstantSchema,
   ConstantValue,
   Parameter,
-  StringSchema
+  StringSchema,
+  ImplementationLocation
 } from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { Mapper } from "@azure/core-http";
 import { OperationSpecDetails } from "../../../src/models/operationDetails";
+import { PropertyKind } from "../../../src/models/modelDetails";
 
 const choice = new ChoiceSchema("mockChoice", "", {
   choices: [
@@ -134,7 +136,10 @@ describe("OperationTransforms", () => {
             }
           },
           responses: [
-            responseSchema || { protocol: { http: { statusCodes: ["200"] } } }
+            responseSchema ||
+              new SchemaResponse(new StringSchema("string", ""), {
+                protocol: { http: { statusCodes: ["200"] } }
+              })
           ],
           exceptions: [getErrorResponseSchema()],
           language: {
@@ -179,7 +184,7 @@ describe("OperationTransforms", () => {
         );
         const operationSpec = transformOperationSpec(operationDetails, []);
         checkHttpMethodAndPath(operationSpec);
-        assert.deepEqual(operationSpec.responses[200], {});
+        assert.notEqual(operationSpec.responses[200], undefined);
       });
 
       it("should create an operation spec with correct parameters", () => {
@@ -208,9 +213,11 @@ describe("OperationTransforms", () => {
             location: ParameterLocation.Body,
             serializedName: "",
             parameter,
-            modelType: "string",
+            typeDetails: { typeName: "string", kind: PropertyKind.Primitive },
             name: "MockOperation",
-            description: ""
+            description: "",
+            schemaType: SchemaType.String,
+            implementationLocation: ImplementationLocation.Method
           }
         ]);
         checkHttpMethodAndPath(operationSpec);

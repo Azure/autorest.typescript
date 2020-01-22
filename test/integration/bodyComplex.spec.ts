@@ -5,7 +5,14 @@ import {
   BodyComplexClient,
   BodyComplexModels
 } from "./generated/bodyComplex/src/bodyComplexClient";
-import { Sawshark } from "./generated/bodyComplex/src/models";
+import {
+  Sawshark,
+  Salmon,
+  ArrayWrapper,
+  Shark,
+  Goblinshark,
+  FishUnion
+} from "./generated/bodyComplex/src/models";
 import { RestError } from "@azure/core-http";
 
 const clientOptions = {
@@ -24,11 +31,14 @@ describe("typescript", function() {
         assert.equal(result.id, 2);
         assert.equal(result.name, "abc");
         assert.equal(result.color, "YELLOW");
-        await testClient.basic.putValid({
+
+        const putResult = await testClient.basic.putValid({
           id: 2,
           name: "abc",
           color: "Magenta"
         });
+
+        assert.equal(putResult._response.status, 200);
       });
 
       it("should get null basic type properties", async function() {
@@ -37,29 +47,21 @@ describe("typescript", function() {
         assert.equal(null, result.name);
       });
 
-      it("should get empty basic type properties", function(done) {
-        testClient.basic.getEmpty(function(error, result) {
-          assert.equal(error, undefined);
-          assert.equal(result.id, undefined);
-          assert.equal(result.name, undefined);
-          done();
-        });
+      it("should get empty basic type properties", async () => {
+        const result = await testClient.basic.getEmpty();
+        assert.equal(result.id, undefined);
+        assert.equal(result.name, undefined);
       });
 
-      it("should get basic type properties when the payload is empty", function(done) {
-        testClient.basic.getNotProvided(function(error, result) {
-          assert.equal(error, undefined);
-          assert.equal(result, undefined);
-          done();
-        });
+      it("should get basic type properties when the payload is empty", async () => {
+        await testClient.basic.getNotProvided();
+        assert.ok("Request succeeded with no errors");
       });
 
-      it("should deserialize invalid basic types without throwing", function(done) {
-        testClient.basic.getInvalid(function(error, result) {
-          assert.equal(error, undefined);
-          assert.equal(!!result, true);
-          done();
-        });
+      it("should deserialize invalid basic types without throwing", async () => {
+        // TODO double check
+        const result = await testClient.basic.getInvalid();
+        assert.ok("Deserialized invalid basic types without throwing");
       });
     });
 
@@ -68,113 +70,91 @@ describe("typescript", function() {
       beforeEach(() => {
         testClient = new BodyComplexClient(clientOptions);
       });
-      it("should get and put valid int properties", function(done) {
-        testClient.primitive.getInt(function(error, result) {
-          assert.equal(error, undefined);
-          assert.equal(result.field1, -1);
-          assert.equal(result.field2, 2);
-          testClient.primitive.putInt({ field1: -1, field2: 2 }, function(
-            error,
-            result
-          ) {
-            assert.equal(error, undefined);
-            done();
-          });
+      it("should get and put valid int properties", async () => {
+        const result = await testClient.primitive.getInt();
+        assert.equal(result.field1, -1);
+        assert.equal(result.field2, 2);
+
+        const putResult = await testClient.primitive.putInt({
+          field1: -1,
+          field2: 2
         });
+        assert.equal(putResult._response.status, 200);
       });
 
-      it("should get and put valid long properties", function(done) {
-        testClient.primitive.getLong(function(error, result) {
-          assert.equal(error, undefined);
-          assert.equal(result.field1, 1099511627775);
-          assert.equal(result.field2, -999511627788);
-          testClient.primitive.putLong(
-            { field1: 1099511627775, field2: -999511627788 },
-            function(error, result) {
-              assert.equal(error, undefined);
-              done();
-            }
-          );
+      it("should get and put valid long properties", async () => {
+        const result = await testClient.primitive.getLong();
+        assert.equal(result.field1, 1099511627775);
+        assert.equal(result.field2, -999511627788);
+
+        const putResult = await testClient.primitive.putLong({
+          field1: 1099511627775,
+          field2: -999511627788
         });
+        assert.equal(putResult._response.status, 200);
       });
 
-      it("should get and put valid float properties", function(done) {
-        testClient.primitive.getFloat(function(error, result) {
-          assert.equal(error, undefined);
-          assert.equal(result.field1, 1.05);
-          assert.equal(result.field2, -0.003);
-          testClient.primitive.putFloat(
-            { field1: 1.05, field2: -0.003 },
-            function(error, result) {
-              assert.equal(error, undefined);
-              done();
-            }
-          );
+      it("should get and put valid float properties", async () => {
+        const result = await testClient.primitive.getFloat();
+        assert.equal(result.field1, 1.05);
+        assert.equal(result.field2, -0.003);
+
+        const putResult = await testClient.primitive.putFloat({
+          field1: 1.05,
+          field2: -0.003
         });
+        assert.equal(putResult._response.status, 200);
       });
 
-      it("should get and put valid bool properties", function(done) {
-        testClient.primitive.getBool(function(error, result) {
-          assert.equal(error, undefined);
-          assert.equal(result.fieldTrue, true);
-          assert.equal(result.fieldFalse, false);
-          testClient.primitive.putBool(
-            { fieldTrue: true, fieldFalse: false },
-            function(error, result) {
-              assert.equal(error, undefined);
-              done();
-            }
-          );
+      it("should get and put valid bool properties", async () => {
+        const result = await testClient.primitive.getBool();
+        assert.equal(result.fieldTrue, true);
+        assert.equal(result.fieldFalse, false);
+
+        const putResult = await testClient.primitive.putBool({
+          fieldTrue: true,
+          fieldFalse: false
         });
+        assert.equal(putResult._response.status, 200);
       });
 
-      it("should get and put valid string properties", function(done) {
-        testClient.primitive.getString(function(error, result) {
-          assert.equal(error, undefined);
-          assert.equal(result.field, "goodrequest");
-          assert.equal(result.empty, "");
-          assert.equal(result["nullProperty"], undefined);
-          testClient.primitive.putString(
-            { field: "goodrequest", empty: "" },
-            function(error, result) {
-              assert.equal(error, undefined);
-              done();
-            }
-          );
+      it("should get and put valid string properties", async () => {
+        const result = await testClient.primitive.getString();
+        assert.equal(result.field, "goodrequest");
+        assert.equal(result.empty, "");
+        assert.equal((result as any)["nullProperty"], undefined);
+
+        const putResult = await testClient.primitive.putString({
+          field: "goodrequest",
+          empty: ""
         });
+        assert.equal(putResult._response.status, 200);
       });
 
-      it("should get and put valid date properties", function(done) {
-        testClient.primitive.getDate(function(error, result) {
-          assert.equal(error, undefined);
-          assert.deepEqual(result.field, new Date("0001-01-01"));
-          assert.deepEqual(result.leap, new Date("2016-02-29"));
-          const complexBody = <BodyComplexModels.DateWrapper>{
-            field: new Date("0001-01-01"),
-            leap: new Date("2016-02-29")
-          };
-          testClient.primitive.putDate(complexBody, function(error, result) {
-            assert.equal(error, undefined);
-            done();
-          });
-        });
+      it("should get and put valid date properties", async () => {
+        const result = await testClient.primitive.getDate();
+        assert.deepEqual(result.field, new Date("0001-01-01"));
+        assert.deepEqual(result.leap, new Date("2016-02-29"));
+
+        const complexBody = <BodyComplexModels.DateWrapper>{
+          field: new Date("0001-01-01"),
+          leap: new Date("2016-02-29")
+        };
+
+        const putResult = await testClient.primitive.putDate(complexBody);
+        assert.equal(putResult._response.status, 200);
       });
-      it("should get and put valid date-time properties", function(done) {
-        testClient.primitive.getDateTime(function(error, result) {
-          assert.equal(error, undefined);
-          assert.deepEqual(result.field, new Date("0001-01-01T00:00:00Z"));
-          assert.deepEqual(result.now, new Date("2015-05-18T18:38:00Z"));
-          testClient.primitive.putDateTime(
-            {
-              field: new Date("0001-01-01T00:00:00Z"),
-              now: new Date("2015-05-18T18:38:00Z")
-            },
-            function(error, result) {
-              assert.equal(error, undefined);
-              done();
-            }
-          );
+
+      it("should get and put valid date-time properties", async () => {
+        const result = await testClient.primitive.getDateTime();
+        assert.deepEqual(result.field, new Date("0001-01-01T00:00:00Z"));
+        assert.deepEqual(result.now, new Date("2015-05-18T18:38:00Z"));
+
+        const putResult = await testClient.primitive.putDateTime({
+          field: new Date("0001-01-01T00:00:00Z"),
+          now: new Date("2015-05-18T18:38:00Z")
         });
+        assert.equal(putResult._response.status, 200);
       });
 
       it("should get and put valid date-time-rfc1123 properties", async () => {
@@ -187,20 +167,26 @@ describe("typescript", function() {
 
         const dateFormat = "ddd, DD MMM YYYY HH:mm:ss";
         const fieldDate = moment.utc(timeStringOne, dateFormat).toDate();
-        await testClient.primitive.putDateTimeRfc1123({
+        const putResult = await testClient.primitive.putDateTimeRfc1123({
           field: fieldDate,
           now: new Date(timeStringTwo)
         });
+
+        assert.equal(putResult._response.status, 200);
       });
 
       it("should get and put valid duration properties", async function() {
         const durationString = "P123DT22H14M12.011S";
         const result = await testClient.primitive.getDuration();
         assert.equal(result.field, durationString);
-        await testClient.primitive.putDuration({ field: durationString });
+
+        const putResult = await testClient.primitive.putDuration({
+          field: durationString
+        });
+        assert.equal(putResult._response.status, 200);
       });
 
-      it("should get and put valid byte properties", function(done) {
+      it("should get and put valid byte properties", async () => {
         const byteBuffer = new Uint8Array([
           255,
           254,
@@ -213,20 +199,16 @@ describe("typescript", function() {
           247,
           246
         ]);
-        testClient.primitive.getByte(function(error, result) {
-          assert.equal(error, undefined);
-          assert.deepEqual(
-            [].slice.apply(result.field),
-            [].slice.apply(byteBuffer)
-          );
-          testClient.primitive.putByte({ field: byteBuffer }, function(
-            error,
-            result
-          ) {
-            assert.equal(error, undefined);
-            done();
-          });
+        const result = await testClient.primitive.getByte();
+        assert.deepEqual(
+          [].slice.apply(result.field),
+          [].slice.apply(byteBuffer)
+        );
+
+        const putResult = await testClient.primitive.putByte({
+          field: byteBuffer
         });
+        assert.equal(putResult._response.status, 200);
       });
     });
 
@@ -235,44 +217,32 @@ describe("typescript", function() {
       beforeEach(() => {
         testClient = new BodyComplexClient(clientOptions);
       });
-      it("should get valid array type properties", function(done) {
-        const testArray = [
+      it("should get valid array type properties", async () => {
+        const testArray: string[] = [
           "1, 2, 3, 4",
           "",
-          null,
+          null as any,
           "&S#$(*Y",
           "The quick brown fox jumps over the lazy dog"
         ];
-        testClient.array.getValid(function(error, result) {
-          assert.equal(error, undefined);
-          assert.deepEqual(result.array, testArray);
-          testClient.array.putValid({ array: testArray }, function(
-            error,
-            result
-          ) {
-            assert.equal(error, undefined);
-            done();
-          });
-        });
-      }).timeout(20000);
+        const wrapper: ArrayWrapper = { array: testArray };
+        const result = await testClient.array.getValid();
+        assert.deepEqual(result.array, testArray);
 
-      it("should get and put empty array type properties", function(done) {
-        testClient.array.getEmpty(function(error, result) {
-          assert.equal(error, undefined);
-          assert.deepEqual(result.array, []);
-          testClient.array.putEmpty({ array: [] }, function(error, result) {
-            assert.equal(error, undefined);
-            done();
-          });
-        });
+        const putResult = await testClient.array.putValid(wrapper);
+        assert.equal(putResult._response.status, 200);
       });
 
-      it("should get array type properties when the payload is empty", function(done) {
-        testClient.array.getNotProvided(function(error, result) {
-          assert.equal(error, undefined);
-          assert.equal(result.array, undefined);
-          done();
-        });
+      it("should get and put empty array type properties", async () => {
+        const result = await testClient.array.getEmpty();
+        assert.deepEqual(result.array, []);
+        await testClient.array.putEmpty({ array: [] });
+        assert.ok("putEmpty succeeded");
+      });
+
+      it("should get array type properties when the payload is empty", async () => {
+        const result = await testClient.array.getNotProvided();
+        assert.equal(result.array, undefined);
       });
     });
 
@@ -282,7 +252,7 @@ describe("typescript", function() {
         testClient = new BodyComplexClient(clientOptions);
       });
 
-      it("should get and put valid dictionary type properties", function(done) {
+      it("should get and put valid dictionary type properties", async () => {
         const testDictionary: { [propertyName: string]: any } = {
           txt: "notepad",
           bmp: "mspaint",
@@ -290,47 +260,31 @@ describe("typescript", function() {
           exe: "",
           "": null
         };
-        testClient.dictionary.getValid(function(error, result) {
-          assert.equal(error, undefined);
-          assert.deepEqual(result.defaultProgram, testDictionary);
-          testClient.dictionary.putValid(
-            { defaultProgram: testDictionary },
-            function(error, result) {
-              assert.equal(error, undefined);
-              done();
-            }
-          );
+        const result = await testClient.dictionary.getValid();
+        assert.deepEqual(result.defaultProgram, testDictionary);
+
+        await testClient.dictionary.putValid({
+          defaultProgram: testDictionary
         });
+
+        assert.ok("putValid succeeded");
       });
 
-      it("should get and put empty dictionary type properties", function(done) {
-        testClient.dictionary.getEmpty(function(error, result) {
-          assert.equal(error, undefined);
-          assert.deepEqual(result.defaultProgram, {});
-          testClient.dictionary.putEmpty({ defaultProgram: {} }, function(
-            error,
-            result
-          ) {
-            assert.equal(error, undefined);
-            done();
-          });
-        });
+      it("should get and put empty dictionary type properties", async () => {
+        const result = await testClient.dictionary.getEmpty();
+        assert.deepEqual(result.defaultProgram, {});
+        await testClient.dictionary.putEmpty({ defaultProgram: {} });
+        assert.ok("putEmpty Dictionary succeeded");
       });
 
-      it("should get null dictionary type properties", function(done) {
-        testClient.dictionary.getNull(function(error, result) {
-          assert.equal(error, undefined);
-          assert.equal(result.defaultProgram, undefined);
-          done();
-        });
+      it("should get null dictionary type properties", async () => {
+        const result = await testClient.dictionary.getNull();
+        assert.equal(result.defaultProgram, undefined);
       });
 
-      it("should get dictionary type properties when the payload is empty", function(done) {
-        testClient.dictionary.getNotProvided(function(error, result) {
-          assert.equal(error, undefined);
-          assert.equal(result.defaultProgram, undefined);
-          done();
-        });
+      it("should get dictionary type properties when the payload is empty", async () => {
+        const result = await testClient.dictionary.getNotProvided();
+        assert.equal(result.defaultProgram, undefined);
       });
     });
 
@@ -346,18 +300,16 @@ describe("typescript", function() {
         name: "Siameeee"
       };
       let testClient: BodyComplexClient;
+
       beforeEach(() => {
         testClient = new BodyComplexClient(clientOptions);
       });
-      it("should get valid basic type properties", function(done) {
-        testClient.inheritance.getValid(function(error, result) {
-          assert.equal(error, undefined);
-          assert.deepEqual(result, siamese);
-          testClient.inheritance.putValid(siamese, function(error, result) {
-            assert.equal(error, undefined);
-            done();
-          });
-        });
+
+      it("should get valid basic type properties", async () => {
+        const result = await testClient.inheritance.getValid();
+        assert.deepEqual(result, siamese);
+        await testClient.inheritance.putValid(siamese);
+        assert.ok("putValid succeeded");
       });
     });
 
@@ -366,24 +318,16 @@ describe("typescript", function() {
       beforeEach(() => {
         testClient = new BodyComplexClient(clientOptions);
       });
-      it("should get and put complex types with readonly properties", function(done) {
-        testClient.readonlyproperty.getValid(function(
-          error,
-          result: any /** TODO: Wire types */
-        ) {
-          assert.equal(error, undefined);
-          testClient.readonlyproperty.putValid(result, function(
-            error: Error | RestError
-          ) {
-            assert.equal(error, undefined);
-            done();
-          });
-        });
+      it("should get and put complex types with readonly properties", async () => {
+        const result = await testClient.readonlyproperty.getValid();
+        // TODO verify result properties?
+        await testClient.readonlyproperty.putValid(result);
+        assert.ok("putComplex succeeded");
       });
     });
 
     describe("Complex Types with Polymorphism Operations", function() {
-      const getFish = () => ({
+      const getFish = (): Salmon => ({
         fishtype: "salmon",
         location: "alaska",
         iswild: true,
@@ -396,7 +340,7 @@ describe("typescript", function() {
             birthday: new Date("2012-01-05T01:00:00Z"),
             length: 20.0,
             species: "predator"
-          },
+          } as Shark,
           {
             fishtype: "sawshark",
             age: 105,
@@ -404,7 +348,7 @@ describe("typescript", function() {
             length: 10.0,
             picture: new Uint8Array([255, 255, 255, 255, 254]),
             species: "dangerous"
-          },
+          } as Sawshark,
           {
             fishtype: "goblin",
             color: "pinkish-gray" as BodyComplexModels.GoblinSharkColor,
@@ -413,7 +357,7 @@ describe("typescript", function() {
             species: "scary",
             birthday: new Date("2015-08-08T00:00:00Z"),
             jawsize: 5
-          }
+          } as Goblinshark
         ]
       });
       let testClient: BodyComplexClient;
@@ -422,25 +366,25 @@ describe("typescript", function() {
       });
       it("should get valid polymorphic properties", async function() {
         const getResult = await testClient.polymorphism.getValid();
-
-        const actualBytes = getResult.siblings[1].picture;
+        const actualBytes = (getResult.siblings![1] as Sawshark)!.picture;
         assert.equal(!!actualBytes, true);
-        assert.equal(actualBytes.length, 5);
-        assert.equal(actualBytes[0], 255);
-        assert.equal(actualBytes[1], 255);
-        assert.equal(actualBytes[2], 255);
-        assert.equal(actualBytes[3], 255);
-        assert.equal(actualBytes[4], 254);
+        assert.equal(actualBytes!.length, 5);
+        assert.equal(actualBytes![0], 255);
+        assert.equal(actualBytes![1], 255);
+        assert.equal(actualBytes![2], 255);
+        assert.equal(actualBytes![3], 255);
+        assert.equal(actualBytes![4], 254);
 
         // Working around the fact that Uint8Array doesn't work with deepEqual
-        delete (getResult.siblings[1] as BodyComplexModels.Sawshark).picture;
+        delete (getResult.siblings![1] as BodyComplexModels.Sawshark).picture;
         const expectedFish = getFish();
-        delete (expectedFish.siblings[1] as BodyComplexModels.Sawshark).picture;
+        delete (expectedFish.siblings![1] as BodyComplexModels.Sawshark)
+          .picture;
         assert.deepEqual(getResult, expectedFish);
 
         await testClient.polymorphism.putValid(getFish());
       });
-      const getBadfish = () => ({
+      const getBadfish = (): FishUnion => ({
         fishtype: "sawshark",
         species: "snaggle toothed",
         length: 18.5,
@@ -455,14 +399,14 @@ describe("typescript", function() {
             birthday: new Date("2012-01-05T01:00:00Z"),
             length: 20,
             age: 6
-          },
+          } as Shark,
           {
             fishtype: "sawshark",
             species: "dangerous",
             picture: new Uint8Array([255, 255, 255, 255, 254]),
             length: 10,
             age: 105
-          }
+          } as Sawshark
         ]
       });
       it("should throw when required fields are omitted from polymorphic types", async function() {
@@ -476,7 +420,8 @@ describe("typescript", function() {
         }
       });
 
-      const getRawSalmon = () => ({
+      // TODO: Handle additionalProperties
+      const getRawSalmon = (): any => ({
         fishtype: "smart_salmon",
         location: "alaska",
         iswild: true,
@@ -517,9 +462,8 @@ describe("typescript", function() {
 
       it("should get complicated polymorphic types", async function() {
         const result = await testClient.polymorphism.getComplicated();
-
         const picture =
-          (result.siblings[1] as BodyComplexModels.Sawshark).picture || [];
+          (result.siblings![1] as BodyComplexModels.Sawshark)!.picture || [];
         assert.equal(!!picture, true);
         assert.equal(picture.length, 5);
         assert.equal(picture[0], 255);
@@ -527,10 +471,10 @@ describe("typescript", function() {
         assert.equal(picture[2], 255);
         assert.equal(picture[3], 255);
         assert.equal(picture[4], 254);
-        delete (result.siblings[1] as BodyComplexModels.Sawshark).picture;
+        delete (result.siblings![1] as BodyComplexModels.Sawshark).picture;
 
         const rawSalmon = getRawSalmon();
-        delete (rawSalmon.siblings[1] as BodyComplexModels.Sawshark).picture;
+        delete (rawSalmon.siblings![1] as BodyComplexModels.Sawshark).picture;
 
         assert.deepEqual(result, rawSalmon);
       });
@@ -548,8 +492,8 @@ describe("typescript", function() {
         );
 
         const picture =
-          (response.siblings[1] as BodyComplexModels.Sawshark).picture || [];
-        delete (response.siblings[1] as BodyComplexModels.Sawshark).picture;
+          (response.siblings![1] as BodyComplexModels.Sawshark).picture || [];
+        delete (response.siblings![1] as BodyComplexModels.Sawshark).picture;
         assert.equal(!!picture, true);
         assert.equal(picture.length, 5);
         assert.equal(picture[0], 255);
@@ -559,14 +503,14 @@ describe("typescript", function() {
         assert.equal(picture[4], 254);
 
         const expected = getFish();
-        delete (expected.siblings[1] as BodyComplexModels.Sawshark).picture;
+        delete (expected.siblings![1] as BodyComplexModels.Sawshark).picture;
 
         assert.deepStrictEqual(response, expected);
       });
     });
 
     describe("Complex Types with recursive definitions", function() {
-      const getBigfish = () => ({
+      const getBigfish = (): FishUnion => ({
         fishtype: "salmon",
         location: "alaska",
         iswild: true,
@@ -648,16 +592,18 @@ describe("typescript", function() {
           delete sawshark.picture;
         }
 
-        checkSawshark(result.siblings[0].siblings[0].siblings[1]);
-        checkSawshark(result.siblings[0].siblings[1]);
-        checkSawshark(result.siblings[1]);
+        checkSawshark(
+          result.siblings![0].siblings![0].siblings![1] as Sawshark
+        );
+        checkSawshark(result.siblings![0].siblings![1] as Sawshark);
+        checkSawshark(result.siblings![1] as Sawshark);
 
         const bigfish = getBigfish();
-        delete ((bigfish.siblings[0] as any).siblings[0]
+        delete ((bigfish.siblings![0] as any).siblings[0]
           .siblings[1] as BodyComplexModels.Sawshark).picture;
-        delete ((bigfish.siblings[0] as any)
+        delete ((bigfish.siblings![0] as any)
           .siblings[1] as BodyComplexModels.Sawshark).picture;
-        delete (bigfish.siblings[1] as BodyComplexModels.Sawshark).picture;
+        delete (bigfish.siblings![1] as BodyComplexModels.Sawshark).picture;
 
         assert.deepEqual(result, bigfish);
         await testClient.polymorphicrecursive.putValid(getBigfish());
