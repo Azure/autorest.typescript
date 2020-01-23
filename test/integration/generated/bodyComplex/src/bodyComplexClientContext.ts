@@ -33,9 +33,12 @@ export class BodyComplexClientContext extends coreHttp.ServiceClient {
 
     super(undefined, options);
 
-    this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
     this.$host = "http://localhost:3000";
     this.apiVersion = "2016-02-29";
+    this.baseUri = this.$host;
+    if (options.$host !== null && options.$host !== undefined) {
+      this.$host = options.$host;
+    }
   }
 }

@@ -62,12 +62,16 @@ export function generateClientContext(
     param => param.implementationLocation === ImplementationLocation.Client
   );
 
-  const constructorParams = clientParams.filter(
-    param => !param.defaultValue && param.schemaType !== SchemaType.Constant
+  const requiredGlobals = clientParams.filter(p => {
+    return (
+      !p.defaultValue && p.schemaType !== SchemaType.Constant && p.required
+    );
+  });
+  const optionalGlobals = clientParams.filter(
+    p =>
+      !p.required ||
+      (p.required && !!p.defaultValue && p.schemaType !== SchemaType.Constant)
   );
-
-  const requiredGlobals = constructorParams.filter(p => p.required);
-  const optionalGlobals = constructorParams.filter(p => !p.required);
 
   contextClass.addProperties(
     clientParams.map(param => {
@@ -113,9 +117,9 @@ export function generateClientContext(
     `super(${hasCredentials ? "credentials" : `undefined`}, options);\n\n`,
     `this.requestContentType = "application/json; charset=utf-8";`,
     ...getRequiredParamAssignments(requiredGlobals),
-    ...getOptionalParameterAssignments(optionalGlobals),
     ...getConstantClientParamAssignments(clientParams),
-    getBaseUriStatement(clientDetails.baseUrl, clientParams)
+    getBaseUriStatement(clientDetails.baseUrl, clientParams),
+    ...getOptionalParameterAssignments(optionalGlobals)
   ]);
 }
 

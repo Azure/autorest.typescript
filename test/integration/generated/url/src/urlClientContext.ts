@@ -38,16 +38,19 @@ export class UrlClientContext extends coreHttp.ServiceClient {
 
     super(undefined, options);
 
-    this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
     this.globalStringPath = globalStringPath;
+    this.$host = "http://localhost:3000";
+    this.baseUri = this.$host;
+    if (options.$host !== null && options.$host !== undefined) {
+      this.$host = options.$host;
+    }
+
     if (
       options.globalStringQuery !== null &&
       options.globalStringQuery !== undefined
     ) {
       this.globalStringQuery = options.globalStringQuery;
     }
-
-    this.$host = "http://localhost:3000";
   }
 }

@@ -39,19 +39,10 @@ export function generateParameters(
   });
 }
 
-function buildParameterInitializer({
-  parameterPath,
-  nameRef,
-  mapper,
-  collectionFormat,
-  location
-}: ParameterDetails) {
+function buildParameterInitializer(parameter: ParameterDetails) {
+  const { nameRef, location } = parameter;
   const type = getParameterType(location);
-  const initializer = getParameterInitializer(
-    parameterPath,
-    mapper,
-    collectionFormat
-  );
+  const initializer = getParameterInitializer(parameter);
   return {
     name: nameRef,
     type,
@@ -95,21 +86,27 @@ function getMapperDefaultValue(mapper: Mapper) {
 function getCollectionFormatSourceCode(collectionFormat?: string) {
   return !collectionFormat
     ? ""
-    : `collectionFormat: coreHttp.QueryCollectionFormat.${collectionFormat}`;
+    : `collectionFormat: coreHttp.QueryCollectionFormat.${collectionFormat},`;
 }
 
-function getParameterInitializer(
-  parameterPath: string | string[],
-  mapper: string | Mapper,
-  collectionFormat?: string
-) {
+function getSkipEncoding(skipEncoding?: boolean) {
+  return skipEncoding ? `skipEncoding: true,` : "";
+}
+
+function getParameterInitializer({
+  parameterPath,
+  mapper,
+  collectionFormat,
+  skipEncoding
+}: ParameterDetails) {
   const mapperSourceCode = getMapperSourceCode(mapper);
   const collectionFormatSourceCode = getCollectionFormatSourceCode(
     collectionFormat
   );
+  const skipEncodingCode = getSkipEncoding(skipEncoding);
   return `{parameterPath: ${JSON.stringify(
     parameterPath
-  )}, ${mapperSourceCode}${collectionFormatSourceCode}}`;
+  )}, ${mapperSourceCode}${collectionFormatSourceCode}${skipEncodingCode}}`;
 }
 
 function getParameterType(location: ParameterLocation) {
@@ -117,6 +114,7 @@ function getParameterType(location: ParameterLocation) {
     case ParameterLocation.Path:
       return "coreHttp.OperationURLParameter";
     case ParameterLocation.Query:
+    case ParameterLocation.Uri:
       return "coreHttp.OperationQueryParameter";
     default:
       return "coreHttp.OperationParameter";

@@ -9,13 +9,14 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 
-export const $host: coreHttp.OperationParameter = {
+export const $host: coreHttp.OperationQueryParameter = {
   parameterPath: "$host",
   mapper: {
     type: { name: "String" },
     serializedName: "$host",
     required: true
-  }
+  },
+  skipEncoding: true
 };
 
 export const boolPath: coreHttp.OperationURLParameter = {
@@ -145,7 +146,8 @@ export const stringPath2: coreHttp.OperationURLParameter = {
     serializedName: "stringPath",
     isConstant: true,
     defaultValue: "begin!*'();:@&=+$,end"
-  }
+  },
+  skipEncoding: true
 };
 
 export const stringPath3: coreHttp.OperationURLParameter = {
