@@ -15,6 +15,7 @@ import {
   getCredentialsCheck,
   getCredentialsParameter
 } from "./utils/parameterUtils";
+import { BaseUrlDetails } from "../transforms/urlTransforms";
 
 export function generateClientContext(
   clientDetails: ClientDetails,
@@ -110,12 +111,24 @@ export function generateClientContext(
        options.userAgent = \`\${packageName}/\${packageVersion} \${defaultUserAgent}\`;
      }\n`,
     `super(${hasCredentials ? "credentials" : `undefined`}, options);\n\n`,
-    `this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
-     this.requestContentType = "application/json; charset=utf-8";`,
+    `this.requestContentType = "application/json; charset=utf-8";`,
     ...getRequiredParamAssignments(requiredGlobals),
     ...getOptionalParameterAssignments(optionalGlobals),
-    ...getConstantClientParamAssignments(clientParams)
+    ...getConstantClientParamAssignments(clientParams),
+    getBaseUriStatement(clientDetails.baseUrl, clientParams)
   ]);
+}
+
+function getBaseUriStatement(
+  baseUrl: BaseUrlDetails,
+  clientParams: ParameterDetails[]
+) {
+  if (!baseUrl.baseUrl) {
+    return `this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";`;
+  }
+  return clientParams.find(p => p.name === "$host")
+    ? `this.baseUri = this.$host;`
+    : `this.baseUri = "${baseUrl.baseUrl}";`;
 }
 
 function getConstantClientParamAssignments(

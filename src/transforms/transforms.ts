@@ -23,6 +23,7 @@ import { transformParameters } from "./parameterTransforms";
 import { transformObjects, transformObject } from "./objectTransforms";
 import { ObjectDetails } from "../models/modelDetails";
 import { Host } from "@azure-tools/autorest-extension-base";
+import { transformBaseUrl } from "./urlTransforms";
 
 export async function transformChoices(codeModel: CodeModel) {
   const choices = [
@@ -62,14 +63,16 @@ export async function transformCodeModel(
     unions,
     operationGroups,
     parameters,
-    options
+    options,
+    baseUrl
   ] = await Promise.all([
     transformObjects(codeModel, uberParents),
     transformMappers(codeModel),
     transformChoices(codeModel),
     transformOperationGroups(codeModel),
     transformParameters(codeModel),
-    transformOptions(host)
+    transformOptions(host),
+    transformBaseUrl(codeModel)
   ]);
 
   return {
@@ -82,7 +85,8 @@ export async function transformCodeModel(
     unions,
     operationGroups,
     parameters,
-    options
+    options,
+    baseUrl
   };
 }
 

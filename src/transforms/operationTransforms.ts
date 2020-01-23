@@ -54,7 +54,7 @@ export function transformOperationSpec(
 export function extractHttpDetails({ path, method }: OperationRequestDetails) {
   return {
     // TODO: Revisit how we should handle {$host}
-    path: path.replace("{$host}/", ""),
+    path,
     httpMethod: method.toUpperCase() as HttpMethods
   };
 }
@@ -160,7 +160,7 @@ export function transformOperationRequest(
   if (request.protocol.http) {
     return {
       // TODO: Revisit how we should handle {$host}
-      path: request.protocol.http.path.replace("{$host}/", ""),
+      path: request.protocol.http.path,
       method: request.protocol.http.method
     };
   } else {

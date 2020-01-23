@@ -6,6 +6,7 @@ import { OperationGroupDetails } from "./operationDetails";
 import { Mapper } from "@azure/core-http";
 import { ParameterDetails } from "./parameterDetails";
 import { ObjectDetails } from "./modelDetails";
+import { BaseUrlDetails } from "../transforms/urlTransforms";
 
 export interface ClientOptions {
   azureArm?: boolean;
@@ -23,4 +24,5 @@ export interface ClientDetails {
   operationGroups: OperationGroupDetails[];
   parameters: ParameterDetails[];
   options: ClientOptions;
+  baseUrl: BaseUrlDetails;
 }
