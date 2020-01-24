@@ -130,6 +130,7 @@ const getNotExpandableOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
   serializer
 };
 const putNotExpandableOperationSpec: coreHttp.OperationSpec = {
@@ -141,6 +142,7 @@ const putNotExpandableOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.stringBody5,
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getReferencedOperationSpec: coreHttp.OperationSpec = {
@@ -159,6 +161,7 @@ const getReferencedOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
   serializer
 };
 const putReferencedOperationSpec: coreHttp.OperationSpec = {
@@ -170,6 +173,7 @@ const putReferencedOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.enumStringBody,
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getReferencedConstantOperationSpec: coreHttp.OperationSpec = {
@@ -183,6 +187,7 @@ const getReferencedConstantOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
   serializer
 };
 const putReferencedConstantOperationSpec: coreHttp.OperationSpec = {
@@ -194,5 +199,6 @@ const putReferencedConstantOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.enumStringBody1,
+  urlParameters: [Parameters.$host],
   serializer
 };

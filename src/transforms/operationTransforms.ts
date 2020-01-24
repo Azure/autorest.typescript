@@ -278,15 +278,14 @@ function getGroupedParameters(
       p => p.location === ParameterLocation.Query
     ),
     urlParameters: operationParams.filter(
-      p => p.location === ParameterLocation.Path
+      p =>
+        p.location === ParameterLocation.Path ||
+        p.location === ParameterLocation.Uri
     ),
     header: operationParams.filter(
       p => p.location === ParameterLocation.Header
     ),
-    cookie: operationParams.filter(
-      p => p.location === ParameterLocation.Cookie
-    ),
-    uri: operationParams.filter(p => p.location === ParameterLocation.Uri)
+    cookie: operationParams.filter(p => p.location === ParameterLocation.Cookie)
   };
 }
 

@@ -21,6 +21,7 @@ export class BodyStringClientContext extends coreHttp.ServiceClient {
    * @param options The parameter options
    */
   constructor(options?: any) {
+    // Initializing default values for options
     if (!options) {
       options = {};
     }
@@ -33,8 +34,13 @@ export class BodyStringClientContext extends coreHttp.ServiceClient {
     super(undefined, options);
 
     this.requestContentType = "application/json; charset=utf-8";
+
+    // Assigning values to Constant parameters
     this.$host = "http://localhost:3000";
-    this.baseUri = this.$host;
+
+    this.baseUri = options.baseUri || this.baseUri || "{$host}";
+
+    // Overriding values provided in the options parameters, if provided
     if (options.$host !== null && options.$host !== undefined) {
       this.$host = options.$host;
     }
