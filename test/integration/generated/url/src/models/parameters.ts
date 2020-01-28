@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 
-export const $host: coreHttp.OperationQueryParameter = {
+export const $host: coreHttp.OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     type: { name: "String" },

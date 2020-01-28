@@ -18,6 +18,7 @@ export async function transformBaseUrl(
   });
 
   if (!$host) {
+    // No support yet for multi-baseUrl yet Issue #553
     const { request } = codeModel.operationGroups[0].operations[0];
     isCustom = true;
     baseUrl = request.protocol.http!.uri;
@@ -30,5 +31,3 @@ export async function transformBaseUrl(
     isCustom
   };
 }
-
-export async function customBaseUrlTransform(codeModel: CodeModel) {}

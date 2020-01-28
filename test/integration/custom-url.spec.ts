@@ -9,7 +9,7 @@ describe("Custom BaseUri", () => {
     client = new CustomUrlClient(clientOptions);
   });
 
-  it("shoudl return 200", async () => {
+  it("should return 200", async () => {
     const response = await client.paths.getEmpty("local");
     assert.equal(response._response.status, 200);
   });

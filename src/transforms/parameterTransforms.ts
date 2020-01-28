@@ -165,7 +165,7 @@ const isClientImplementation = (parameter: Parameter) =>
   parameter.implementation === ImplementationLocation.Client;
 
 function getParameterLocation(parameter: Parameter): ParameterLocation {
-  const originalLocaltion = (parameter.protocol.http || { in: undefined }).in;
+  const originalLocaltion = parameter.protocol.http?.in;
   const locationExtension =
     parameter.extensions && parameter.extensions["x-in"];
   if (!originalLocaltion && !locationExtension) {

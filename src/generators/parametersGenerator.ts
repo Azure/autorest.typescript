@@ -112,9 +112,9 @@ function getParameterInitializer({
 function getParameterType(location: ParameterLocation) {
   switch (location) {
     case ParameterLocation.Path:
+    case ParameterLocation.Uri:
       return "coreHttp.OperationURLParameter";
     case ParameterLocation.Query:
-    case ParameterLocation.Uri:
       return "coreHttp.OperationQueryParameter";
     default:
       return "coreHttp.OperationParameter";

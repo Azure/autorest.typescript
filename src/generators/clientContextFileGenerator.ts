@@ -133,7 +133,7 @@ function writeConstructorBody(
     writeStatements(constantParameters, addBlankLine),
     writeStatement(getBaseUriStatement(clientDetails.baseUrl), addBlankLine),
     optionalParameters
-      ? "// Overriding values provided in the options parameters, if provided"
+      ? "// Replacing parameter defaults with user-provided parameters."
       : "",
     writeStatements(optionalParameters)
   ]);

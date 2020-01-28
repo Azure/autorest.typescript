@@ -93,11 +93,12 @@ function buildSpec(spec: OperationSpecDetails): string {
   const requestBody = buildRequestBody(spec);
   const queryParams = buildParameters(spec, "queryParameters");
   const urlParams = buildParameters(spec, "urlParameters");
+  const headerParams = buildParameters(spec, "headerParameters");
   return `{ path: "${spec.path}", httpMethod: "${
     spec.httpMethod
   }", responses: {${responses.join(
     ", "
-  )}},${requestBody}${queryParams}${urlParams}serializer
+  )}},${requestBody}${queryParams}${urlParams}${headerParams}serializer
     }`;
 }
 

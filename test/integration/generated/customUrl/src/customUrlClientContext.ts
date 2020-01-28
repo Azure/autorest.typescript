@@ -41,7 +41,7 @@ export class CustomUrlClientContext extends coreHttp.ServiceClient {
     this.baseUri =
       options.baseUri || this.baseUri || "http://{accountName}{host}";
 
-    // Overriding values provided in the options parameters, if provided
+    // Replacing parameter defaults with user-provided parameters.
     if (options.host !== null && options.host !== undefined) {
       this.host = options.host;
     }
