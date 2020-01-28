@@ -7,7 +7,6 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
 
 const packageName = "custom-url";
 const packageVersion = "1.0.0-preview1";
