@@ -37,7 +37,7 @@ export function generateClientContext(
   );
 
   const sourceFile = project.createSourceFile(
-    `src/${clientContextFileName}.ts`,
+    `${clientDetails.srcPath}/${clientContextFileName}.ts`,
     undefined,
     {
       overwrite: true
@@ -75,11 +75,6 @@ function writeImports(sourceFile: SourceFile) {
   sourceFile.addImportDeclaration({
     namespaceImport: "coreHttp",
     moduleSpecifier: "@azure/core-http"
-  });
-
-  sourceFile.addImportDeclaration({
-    namespaceImport: "Models",
-    moduleSpecifier: "./models"
   });
 }
 

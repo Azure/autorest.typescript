@@ -51,7 +51,7 @@ export function generatePackageJson(
       "esm/**/*.js.map",
       "esm/**/*.d.ts",
       "esm/**/*.d.ts.map",
-      "src/**/*.ts",
+      `${clientDetails.srcPath}/**/*.ts`,
       "README.md",
       "rollup.config.js",
       "tsconfig.json"

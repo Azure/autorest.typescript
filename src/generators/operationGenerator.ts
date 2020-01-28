@@ -38,6 +38,12 @@ export function generateOperations(
   clientDetails: ClientDetails,
   project: Project
 ): void {
+  if (clientDetails.operationGroups.length === 1) {
+    // When there is only one operationGroup, we want to add the operations to the Client Class.
+    // Skip and let Client generator handle operations
+    return;
+  }
+
   let fileNames: string[] = [];
   clientDetails.operationGroups.forEach(operationDetails => {
     fileNames.push(normalizeName(operationDetails.name, NameType.File));
@@ -45,7 +51,7 @@ export function generateOperations(
   });
 
   const operationIndexFile = project.createSourceFile(
-    "src/operations/index.ts",
+    `${clientDetails.srcPath}/operations/index.ts`,
     undefined,
     { overwrite: true }
   );
@@ -70,7 +76,7 @@ function generateOperation(
   const name = normalizeName(operationGroupDetails.name, NameType.File);
 
   const operationGroupFile = project.createSourceFile(
-    `src/operations/${name}.ts`,
+    `${clientDetails.srcPath}/operations/${name}.ts`,
     undefined,
     { overwrite: true }
   );
@@ -220,7 +226,7 @@ function addClass(
   });
 
   constructorDefinition.addStatements(["this.client = client"]);
-  writeOperationOverrides(
+  writeOperations(
     operationGroupDetails,
     operationGroupClass,
     clientDetails.parameters
@@ -232,13 +238,13 @@ type ParameterWithDescription = OptionalKind<
 >;
 
 /**
- * Add all the required operations  whith their overloads,
- * extracted from OperationGroupDetails, to the generated file
+ * Write operations implementation, extracted from OperationGroupDetails, to the generated file
  */
-function writeOperationOverrides(
+export function writeOperations(
   operationGroupDetails: OperationGroupDetails,
   operationGroupClass: ClassDeclaration,
-  parameters: ParameterDetails[]
+  parameters: ParameterDetails[],
+  isInline = false
 ) {
   operationGroupDetails.operations.forEach(operation => {
     const responseName = getResponseType(operation);
@@ -274,7 +280,9 @@ function writeOperationOverrides(
 
     const sendParams = paramDeclarations.map(p => p.name).join(",");
     operationMethod.addStatements(
-      `return this.client.sendOperationRequest({${sendParams}${
+      `return this${
+        isInline ? "" : ".client"
+      }.sendOperationRequest({${sendParams}${
         !!sendParams ? "," : ""
       } options}, ${operation.name}OperationSpec) as Promise<${responseName}>`
     );
@@ -313,7 +321,7 @@ function generateOperationJSDoc(
  * Generates and inserts into the file the operation specs
  * for a given operation group
  */
-function addOperationSpecs(
+export function addOperationSpecs(
   operationGroupDetails: OperationGroupDetails,
   file: SourceFile,
   parameters: ParameterDetails[]

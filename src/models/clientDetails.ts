@@ -25,4 +25,5 @@ export interface ClientDetails {
   parameters: ParameterDetails[];
   options: ClientOptions;
   baseUrl: BaseUrlDetails;
+  srcPath?: string;
 }

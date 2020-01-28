@@ -49,7 +49,12 @@ export async function generateTypeScriptLibrary(
     }
   });
 
+  const srcPath =
+    ((await host.GetValue("source-code-folder-path")) as string) || "src";
+
   const clientDetails = await transformCodeModel(codeModel, host);
+  clientDetails.srcPath = srcPath;
+
   const packageName = await host.GetValue("package-name");
   const packageNameParts = packageName.match(/(^@(.*)\/)?(.*)/);
   const packageDetails: PackageDetails = {
