@@ -27,6 +27,7 @@ export class UrlClientContext extends coreHttp.ServiceClient {
       throw new Error("'globalStringPath' cannot be null");
     }
 
+    // Initializing default values for options
     if (!options) {
       options = {};
     }
@@ -38,16 +39,25 @@ export class UrlClientContext extends coreHttp.ServiceClient {
 
     super(undefined, options);
 
-    this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
+
+    // Parameter assignments
     this.globalStringPath = globalStringPath;
+
+    // Assigning values to Constant parameters
+    this.$host = "http://localhost:3000";
+
+    this.baseUri = options.baseUri || this.baseUri || "{$host}";
+
+    // Replacing parameter defaults with user-provided parameters.
+    if (options.$host !== null && options.$host !== undefined) {
+      this.$host = options.$host;
+    }
     if (
       options.globalStringQuery !== null &&
       options.globalStringQuery !== undefined
     ) {
       this.globalStringQuery = options.globalStringQuery;
     }
-
-    this.$host = "http://localhost:3000";
   }
 }

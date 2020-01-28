@@ -230,6 +230,7 @@ const getValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
   serializer
 };
 const putValidOperationSpec: coreHttp.OperationSpec = {
@@ -241,6 +242,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody15,
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getDotSyntaxOperationSpec: coreHttp.OperationSpec = {
@@ -254,6 +256,7 @@ const getDotSyntaxOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getComposedWithDiscriminatorOperationSpec: coreHttp.OperationSpec = {
@@ -267,6 +270,7 @@ const getComposedWithDiscriminatorOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getComposedWithoutDiscriminatorOperationSpec: coreHttp.OperationSpec = {
@@ -280,6 +284,7 @@ const getComposedWithoutDiscriminatorOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getComplicatedOperationSpec: coreHttp.OperationSpec = {
@@ -293,6 +298,7 @@ const getComplicatedOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
   serializer
 };
 const putComplicatedOperationSpec: coreHttp.OperationSpec = {
@@ -304,6 +310,7 @@ const putComplicatedOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody16,
+  urlParameters: [Parameters.$host],
   serializer
 };
 const putMissingDiscriminatorOperationSpec: coreHttp.OperationSpec = {
@@ -318,6 +325,7 @@ const putMissingDiscriminatorOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody16,
+  urlParameters: [Parameters.$host],
   serializer
 };
 const putValidMissingRequiredOperationSpec: coreHttp.OperationSpec = {
@@ -329,5 +337,6 @@ const putValidMissingRequiredOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody15,
+  urlParameters: [Parameters.$host],
   serializer
 };

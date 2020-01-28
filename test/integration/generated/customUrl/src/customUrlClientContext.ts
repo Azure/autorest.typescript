@@ -9,14 +9,14 @@
 import * as coreHttp from "@azure/core-http";
 import * as Models from "./models";
 
-const packageName = "bodyString";
+const packageName = "custom-url";
 const packageVersion = "1.0.0-preview1";
 
-export class BodyStringClientContext extends coreHttp.ServiceClient {
-  $host: string;
+export class CustomUrlClientContext extends coreHttp.ServiceClient {
+  host: string;
 
   /**
-   * Initializes a new instance of the BodyStringClientContext class.
+   * Initializes a new instance of the CustomUrlClientContext class.
    *
    * @param options The parameter options
    */
@@ -36,13 +36,14 @@ export class BodyStringClientContext extends coreHttp.ServiceClient {
     this.requestContentType = "application/json; charset=utf-8";
 
     // Assigning values to Constant parameters
-    this.$host = "http://localhost:3000";
+    this.host = "host";
 
-    this.baseUri = options.baseUri || this.baseUri || "{$host}";
+    this.baseUri =
+      options.baseUri || this.baseUri || "http://{accountName}{host}";
 
     // Replacing parameter defaults with user-provided parameters.
-    if (options.$host !== null && options.$host !== undefined) {
-      this.$host = options.$host;
+    if (options.host !== null && options.host !== undefined) {
+      this.host = options.host;
     }
   }
 }

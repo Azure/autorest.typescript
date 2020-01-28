@@ -10,47 +10,49 @@ import * as coreHttp from "@azure/core-http";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyComplexClient } from "../bodyComplexClient";
+import { CustomUrlClient } from "../customUrlClient";
 
 /**
- * Class representing a Flattencomplex.
+ * Class representing a Paths.
  */
-export class Flattencomplex {
-  private readonly client: BodyComplexClient;
+export class Paths {
+  private readonly client: CustomUrlClient;
 
   /**
-   * Initialize a new instance of the class Flattencomplex class.
+   * Initialize a new instance of the class Paths class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyComplexClient) {
+  constructor(client: CustomUrlClient) {
     this.client = client;
   }
 
   /**
-   * MISSING·OPERATION-DESCRIPTION
+   * Get a 200 to test a valid base uri
+   * @param accountName Account Name
    * @param options The options parameters.
    */
-  getValid(
+  getEmpty(
+    accountName: string,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<Models.FlattencomplexGetValidResponse> {
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
-      getValidOperationSpec
-    ) as Promise<Models.FlattencomplexGetValidResponse>;
+      { accountName, options },
+      getEmptyOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications
 
 const serializer = new coreHttp.Serializer(Mappers);
 
-const getValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/complex/flatten/valid",
+const getEmptyOperationSpec: coreHttp.OperationSpec = {
+  path: "/customuri",
   httpMethod: "GET",
   responses: {
-    200: {
-      bodyMapper: Mappers.MyBaseType
+    default: {
+      bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.accountName, Parameters.host],
   serializer
 };

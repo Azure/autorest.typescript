@@ -9,15 +9,16 @@
         "unit-test": "mocha -r ts-node/register './test/unit/**/*spec.ts'",
         "integration-test": "start-server-and-test start-test-server:v1 http://localhost:3000 generate-and-test",
         "integration-test:new": "npm-run-all start-test-server -p generate-bodystring generate-bodycomplex -s integration-test:alone stop-test-server",
-        "generate-and-test": "npm-run-all -s build -p generate-bodystring generate-bodycomplex generate-url -s integration-test:alone",
+        "generate-and-test": "npm-run-all -s build -p generate-bodystring generate-bodycomplex generate-url generate-customurl -s integration-test:alone",
         "integration-test:alone": "mocha -r ts-node/register './test/integration/**/*spec.ts'",
         "start-test-server": "ts-node test/utils/start-server.ts",
         "start-test-server:v1": "ts-node test/integration/testserver-v1/index.ts",
         "stop-test-server": "stop-autorest-testserver",
         "debug": "node --inspect-brk ./dist/src/main.js",
-        "generate-bodystring": "autorest-beta --pipeline-model:v3 --typescript --output-folder=./test/integration/generated/bodyString --use=. --title=BodyStringClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-string.json --package-name=bodyString --package-version=1.0.0-preview1",
-        "generate-bodycomplex": "autorest-beta --pipeline-model:v3 --typescript --output-folder=./test/integration/generated/bodyComplex --use=. --title=BodyComplexClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-complex.json --package-name=bodyString --package-version=1.0.0-preview1",
-        "generate-url": "autorest-beta --pipeline-model:v3 --typescript --output-folder=./test/integration/generated/url --use=. --title=UrlClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/url.json --package-name=url --package-version=1.0.0-preview1"
+        "generate-bodystring": "autorest-beta --add-credentials=false --typescript --output-folder=./test/integration/generated/bodyString --use=. --title=BodyStringClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-string.json --package-name=bodyString --package-version=1.0.0-preview1",
+        "generate-bodycomplex": "autorest-beta --add-credentials=false --typescript --output-folder=./test/integration/generated/bodyComplex --use=. --title=BodyComplexClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-complex.json --package-name=bodyString --package-version=1.0.0-preview1",
+        "generate-url": "autorest-beta --add-credentials=false --typescript --output-folder=./test/integration/generated/url --use=. --title=UrlClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/url.json --package-name=url --package-version=1.0.0-preview1",
+        "generate-customurl": "autorest-beta --add-credentials=false --typescript --output-folder=./test/integration/generated/customUrl --use=. --title=CustomUrlClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/custom-baseUrl.json --package-name=custom-url --package-version=1.0.0-preview1"
     },
     "files": [
         "dist/**",
@@ -59,7 +60,7 @@
         "npm-run-all": "^4.1.5",
         "start-server-and-test": "^1.10.6",
         "ts-node": "^8.5.2",
-        "typescript": "~3.6.2",
+        "typescript": "^3.7.5",
         "wait-port": "^0.2.6"
     }
 }

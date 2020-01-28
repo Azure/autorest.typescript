@@ -102,7 +102,7 @@ export function populateOperationParameters(
       serializedName: parameterSerializedName,
       operationsIn: [operationName],
       location: getParameterLocation(parameter),
-      required: parameter.required,
+      required: getParameterRequired(parameter),
       schemaType: parameter.schema.type,
       parameterPath: getParameterPath(parameter),
       mapper: getMapperOrRef(
@@ -115,7 +115,8 @@ export function populateOperationParameters(
       collectionFormat,
       implementationLocation: parameter.implementation,
       typeDetails,
-      defaultValue: getDefaultValue(parameter)
+      defaultValue: getDefaultValue(parameter),
+      skipEncoding: getSkipEncoding(parameter)
     };
     operationParameters.push(paramDetails);
 
@@ -130,6 +131,19 @@ export function populateOperationParameters(
     sameNameParams,
     operationName
   );
+}
+
+function getSkipEncoding(parameter: Parameter) {
+  return parameter.extensions && parameter.extensions["x-ms-skip-url-encoding"];
+}
+
+function getParameterRequired(parameter: Parameter) {
+  const requiredExtension = (parameter.extensions || {})["x-required"];
+  if (!isNil(requiredExtension)) {
+    return requiredExtension;
+  }
+
+  return parameter.required;
 }
 
 function getIsGlobal(parameter: Parameter) {
@@ -151,11 +165,14 @@ const isClientImplementation = (parameter: Parameter) =>
   parameter.implementation === ImplementationLocation.Client;
 
 function getParameterLocation(parameter: Parameter): ParameterLocation {
-  if (!parameter.protocol.http) {
+  const originalLocaltion = parameter.protocol.http?.in;
+  const locationExtension =
+    parameter.extensions && parameter.extensions["x-in"];
+  if (!originalLocaltion && !locationExtension) {
     throw new Error("Expected parameter to contain HTTP Protocol information");
   }
 
-  return parameter.protocol.http.in;
+  return locationExtension || originalLocaltion;
 }
 
 /**
@@ -263,7 +280,8 @@ export function disambiguateParameter(
       parameter,
       collectionFormat,
       implementationLocation: parameter.implementation,
-      defaultValue: getDefaultValue(parameter)
+      defaultValue: getDefaultValue(parameter),
+      skipEncoding: getSkipEncoding(parameter)
     });
   }
 }

@@ -22,6 +22,7 @@ export class BodyComplexClientContext extends coreHttp.ServiceClient {
    * @param options The parameter options
    */
   constructor(options?: any) {
+    // Initializing default values for options
     if (!options) {
       options = {};
     }
@@ -33,9 +34,20 @@ export class BodyComplexClientContext extends coreHttp.ServiceClient {
 
     super(undefined, options);
 
-    this.baseUri = options.baseUri || this.baseUri || "http://localhost:3000";
     this.requestContentType = "application/json; charset=utf-8";
+
+    // Assigning values to Constant parameters
     this.$host = "http://localhost:3000";
     this.apiVersion = "2016-02-29";
+
+    this.baseUri = options.baseUri || this.baseUri || "{$host}";
+
+    // Replacing parameter defaults with user-provided parameters.
+    if (options.$host !== null && options.$host !== undefined) {
+      this.$host = options.$host;
+    }
+    if (options.apiVersion !== null && options.apiVersion !== undefined) {
+      this.apiVersion = options.apiVersion;
+    }
   }
 }

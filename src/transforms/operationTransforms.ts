@@ -37,24 +37,29 @@ export function transformOperationSpec(
   // Extract protocol information
   const operationFullName = operationDetails.fullName;
   const httpInfo = extractHttpDetails(operationDetails.request);
-  const { requestBody, queryParameters, urlParameters } = getGroupedParameters(
-    parameters,
-    operationFullName
-  );
+  const {
+    requestBody,
+    queryParameters,
+    urlParameters,
+    headerParameters
+  } = getGroupedParameters(parameters, operationFullName);
 
+  if (headerParameters && headerParameters.length) {
+    throw new Error(`${JSON.stringify(headerParameters)}`);
+  }
   return {
     ...httpInfo,
     responses: extractSpecResponses(operationDetails),
     requestBody,
     ...(queryParameters && queryParameters.length && { queryParameters }),
-    ...(urlParameters && urlParameters.length && { urlParameters })
+    ...(urlParameters && urlParameters.length && { urlParameters }),
+    ...(headerParameters && headerParameters.length && { headerParameters })
   };
 }
 
 export function extractHttpDetails({ path, method }: OperationRequestDetails) {
   return {
-    // TODO: Revisit how we should handle {$host}
-    path: path.replace("{$host}/", ""),
+    path,
     httpMethod: method.toUpperCase() as HttpMethods
   };
 }
@@ -159,8 +164,7 @@ export function transformOperationRequest(
 ): OperationRequestDetails {
   if (request.protocol.http) {
     return {
-      // TODO: Revisit how we should handle {$host}
-      path: request.protocol.http.path.replace("{$host}/", ""),
+      path: request.protocol.http.path,
       method: request.protocol.http.method
     };
   } else {
@@ -278,15 +282,14 @@ function getGroupedParameters(
       p => p.location === ParameterLocation.Query
     ),
     urlParameters: operationParams.filter(
-      p => p.location === ParameterLocation.Path
+      p =>
+        p.location === ParameterLocation.Path ||
+        p.location === ParameterLocation.Uri
     ),
-    header: operationParams.filter(
+    headerParameters: operationParams.filter(
       p => p.location === ParameterLocation.Header
     ),
-    cookie: operationParams.filter(
-      p => p.location === ParameterLocation.Cookie
-    ),
-    uri: operationParams.filter(p => p.location === ParameterLocation.Uri)
+    cookie: operationParams.filter(p => p.location === ParameterLocation.Cookie)
   };
 }
 

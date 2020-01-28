@@ -28,4 +28,5 @@ export interface ParameterDetails {
   schemaType: AllSchemaTypes;
   implementationLocation?: ImplementationLocation;
   typeDetails: TypeDetails;
+  skipEncoding?: boolean;
 }
