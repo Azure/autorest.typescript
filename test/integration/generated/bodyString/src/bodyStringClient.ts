@@ -12,9 +12,6 @@ import * as Mappers from "./models/mappers";
 import { BodyStringClientContext } from "./bodyStringClientContext";
 
 class BodyStringClient extends BodyStringClientContext {
-  string: operations.String;
-  enum: operations.Enum;
-
   /**
    * Initializes a new instance of the BodyStringClient class.
    * @param options The parameter options
@@ -24,6 +21,9 @@ class BodyStringClient extends BodyStringClientContext {
     this.string = new operations.String(this);
     this.enum = new operations.Enum(this);
   }
+
+  string: operations.String;
+  enum: operations.Enum;
 }
 
 // Operation Specifications

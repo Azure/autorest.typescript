@@ -12,16 +12,6 @@ import * as Mappers from "./models/mappers";
 import { BodyComplexClientContext } from "./bodyComplexClientContext";
 
 class BodyComplexClient extends BodyComplexClientContext {
-  basic: operations.Basic;
-  primitive: operations.Primitive;
-  array: operations.Array;
-  dictionary: operations.Dictionary;
-  inheritance: operations.Inheritance;
-  polymorphism: operations.Polymorphism;
-  polymorphicrecursive: operations.Polymorphicrecursive;
-  readonlyproperty: operations.Readonlyproperty;
-  flattencomplex: operations.Flattencomplex;
-
   /**
    * Initializes a new instance of the BodyComplexClient class.
    * @param options The parameter options
@@ -38,6 +28,16 @@ class BodyComplexClient extends BodyComplexClientContext {
     this.readonlyproperty = new operations.Readonlyproperty(this);
     this.flattencomplex = new operations.Flattencomplex(this);
   }
+
+  basic: operations.Basic;
+  primitive: operations.Primitive;
+  array: operations.Array;
+  dictionary: operations.Dictionary;
+  inheritance: operations.Inheritance;
+  polymorphism: operations.Polymorphism;
+  polymorphicrecursive: operations.Polymorphicrecursive;
+  readonlyproperty: operations.Readonlyproperty;
+  flattencomplex: operations.Flattencomplex;
 }
 
 // Operation Specifications

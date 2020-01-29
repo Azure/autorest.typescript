@@ -10,7 +10,7 @@ describe("Custom BaseUri", () => {
   });
 
   it("should return 200", async () => {
-    const response = await client.getEmpty("local");
+    const response = await client.paths.getEmpty("local");
     assert.equal(response._response.status, 200);
   });
 });

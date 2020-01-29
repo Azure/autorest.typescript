@@ -59,6 +59,7 @@ export interface OperationGroupDetails {
   key: string;
   name: string;
   operations: OperationDetails[];
+  isTopLevel: boolean;
 }
 
 export interface OperationSpecResponse {

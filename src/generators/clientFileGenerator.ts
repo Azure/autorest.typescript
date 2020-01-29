@@ -18,6 +18,9 @@ import {
 import { ParameterDetails } from "../models/parameterDetails";
 import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
 import { getCredentialsParameter } from "./utils/parameterUtils";
+import { OperationGroupDetails } from "../models/operationDetails";
+
+type OperationDeclarationDetails = { name: string; typeName: string };
 
 export function generateClient(clientDetails: ClientDetails, project: Project) {
   const modelsName = getModelsName(clientDetails.className);
@@ -25,7 +28,10 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   const clientContextClassName = `${clientDetails.className}Context`;
 
   // A client has inline operations when there is only one operation group
-  const hasInlineOperations = clientDetails.operationGroups.length === 1;
+  const hasInlineOperations = clientDetails.operationGroups.some(
+    og => og.isTopLevel
+  );
+
   const hasCredentials = !!clientDetails.options.addCredentials;
 
   const clientFile = project.createSourceFile(
@@ -72,15 +78,31 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     extends: clientContextClassName
   });
 
-  const operations = clientDetails.operationGroups.map(og => {
-    return {
-      name: normalizeName(og.name, NameType.Property),
-      typeName: `operations.${normalizeName(og.name, NameType.Class)}`
-    };
+  writeConstructor(clientDetails, clientClass, hasCredentials);
+  writeClientOperations(clientFile, clientClass, clientDetails);
+
+  clientFile.addExportDeclaration({
+    leadingTrivia: (writer: any) =>
+      writer.write("// Operation Specifications\n\n"),
+    namedExports: [
+      { name: clientDetails.className },
+      { name: clientContextClassName },
+      { name: "Models", alias: modelsName },
+      { name: "Mappers", alias: mappersName }
+    ]
   });
 
-  writeClientOperations(clientFile, clientClass, clientDetails, operations);
+  clientDetails.operationGroups.some(og => !og.isTopLevel) &&
+    clientFile.addExportDeclaration({
+      moduleSpecifier: "./operations"
+    });
+}
 
+function writeConstructor(
+  clientDetails: ClientDetails,
+  classDeclaration: ClassDeclaration,
+  hasCredentials: boolean
+) {
   const requiredParams = clientDetails.parameters.filter(
     param =>
       param.required &&
@@ -89,7 +111,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       param.schemaType !== SchemaType.Constant
   );
 
-  const clientConstructor = clientClass.addConstructor({
+  const clientConstructor = classDeclaration.addConstructor({
     docs: [
       `Initializes a new instance of the ${clientDetails.className} class.
 @param options The parameter options`
@@ -113,54 +135,54 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     `super(${getSuperParams(requiredParams, hasCredentials)});`
   ]);
 
-  if (!hasInlineOperations) {
-    clientConstructor.addStatements([
-      ...operations.map(
-        ({ name, typeName }) => `this.${name} = new ${typeName}(this)`
-      )
-    ]);
-  }
+  const operationDeclarationDetails: OperationDeclarationDetails[] = getOperationGroupsDeclarationDetails(
+    clientDetails.operationGroups.filter(og => !og.isTopLevel)
+  );
 
-  clientFile.addExportDeclaration({
-    leadingTrivia: (writer: any) =>
-      writer.write("// Operation Specifications\n\n"),
-    namedExports: [
-      { name: clientDetails.className },
-      { name: clientContextClassName },
-      { name: "Models", alias: modelsName },
-      { name: "Mappers", alias: mappersName }
-    ]
+  clientConstructor.addStatements([
+    ...operationDeclarationDetails.map(
+      ({ name, typeName }) => `this.${name} = new ${typeName}(this)`
+    )
+  ]);
+}
+
+function getOperationGroupsDeclarationDetails(
+  operationGroups: OperationGroupDetails[]
+) {
+  return operationGroups.map(og => {
+    return {
+      name: normalizeName(og.name, NameType.Property),
+      typeName: `operations.${normalizeName(og.name, NameType.Class)}`
+    };
   });
-
-  !hasInlineOperations &&
-    clientFile.addExportDeclaration({
-      moduleSpecifier: "./operations"
-    });
 }
 
 function writeClientOperations(
   file: SourceFile,
   classDeclaration: ClassDeclaration,
-  clientDetails: ClientDetails,
-  operations: { name: string; typeName: string }[]
+  clientDetails: ClientDetails
 ) {
-  // When there is a single operationGroup, add the operations as methods in the client class
-  if (clientDetails.operationGroups.length === 1) {
-    const operationGroup = clientDetails.operationGroups[0];
+  const topLevelGroup = clientDetails.operationGroups.find(og => og.isTopLevel);
+
+  // Add top level operation groups as client properties
+  if (!!topLevelGroup) {
     writeOperations(
-      operationGroup,
+      topLevelGroup,
       classDeclaration,
       clientDetails.parameters,
       true // isInline
     );
-    addOperationSpecs(operationGroup, file, clientDetails.parameters);
-    return;
+    addOperationSpecs(topLevelGroup, file, clientDetails.parameters);
   }
 
-  // If there are more than one operation group, each group will have its class
+  const operationsDeclarationDetails = getOperationGroupsDeclarationDetails(
+    clientDetails.operationGroups.filter(og => !og.isTopLevel)
+  );
+
+  // Each operation group will have its class
   // and the client class will have each group as properties
   classDeclaration.addProperties(
-    operations.map(op => {
+    operationsDeclarationDetails.map(op => {
       return {
         name: op.name,
         type: op.typeName

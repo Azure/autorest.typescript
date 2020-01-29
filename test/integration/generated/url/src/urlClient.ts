@@ -12,10 +12,6 @@ import * as Mappers from "./models/mappers";
 import { UrlClientContext } from "./urlClientContext";
 
 class UrlClient extends UrlClientContext {
-  paths: operations.Paths;
-  queries: operations.Queries;
-  pathItems: operations.PathItems;
-
   /**
    * Initializes a new instance of the UrlClient class.
    * @param options The parameter options
@@ -26,6 +22,10 @@ class UrlClient extends UrlClientContext {
     this.queries = new operations.Queries(this);
     this.pathItems = new operations.PathItems(this);
   }
+
+  paths: operations.Paths;
+  queries: operations.Queries;
+  pathItems: operations.PathItems;
 }
 
 // Operation Specifications

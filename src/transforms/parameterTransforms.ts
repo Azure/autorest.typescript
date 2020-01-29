@@ -23,6 +23,7 @@ import {
 import { isEqual, isNil } from "lodash";
 import { getTypeForSchema } from "../utils/schemaHelpers";
 import { getStringForValue } from "../utils/valueHelpers";
+import { TOPLEVEL_OPERATIONGROUP } from "./constants";
 
 interface OperationParameterDetails {
   parameter: Parameter;
@@ -41,7 +42,8 @@ export function transformParameters(codeModel: CodeModel): ParameterDetails[] {
 const extractOperationParameters = (codeModel: CodeModel) =>
   codeModel.operationGroups.reduce<OperationParameterDetails[]>((acc, og) => {
     // TODO: Probably want to inline operations in client when there is only one operation group (#551)
-    const groupName = getLanguageMetadata(og.language).name || "operations";
+    const groupName =
+      getLanguageMetadata(og.language).name || TOPLEVEL_OPERATIONGROUP;
     return [
       ...acc,
       ...og.operations.reduce<OperationParameterDetails[]>(
