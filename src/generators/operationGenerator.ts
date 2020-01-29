@@ -38,17 +38,15 @@ export function generateOperations(
   clientDetails: ClientDetails,
   project: Project
 ): void {
-  if (clientDetails.operationGroups.length === 1) {
-    // When there is only one operationGroup, we want to add the operations to the Client Class.
-    // Skip and let Client generator handle operations
-    return;
-  }
-
   let fileNames: string[] = [];
-  clientDetails.operationGroups.forEach(operationDetails => {
-    fileNames.push(normalizeName(operationDetails.name, NameType.File));
-    generateOperation(operationDetails, clientDetails, project);
-  });
+
+  clientDetails.operationGroups
+    // Toplevel operations are inlined in the client
+    .filter(og => !og.isTopLevel)
+    .forEach(operationDetails => {
+      fileNames.push(normalizeName(operationDetails.name, NameType.File));
+      generateOperation(operationDetails, clientDetails, project);
+    });
 
   const operationIndexFile = project.createSourceFile(
     `${clientDetails.srcPath}/operations/index.ts`,

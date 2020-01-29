@@ -27,7 +27,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   const mappersName = getMappersName(clientDetails.className);
   const clientContextClassName = `${clientDetails.className}Context`;
 
-  // A client has inline operations when there is only one operation group
+  // A client has inline operations when it has a toplevel operation group
   const hasInlineOperations = clientDetails.operationGroups.some(
     og => og.isTopLevel
   );
