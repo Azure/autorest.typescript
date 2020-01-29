@@ -37,7 +37,7 @@ export function generateClientContext(
   );
 
   const sourceFile = project.createSourceFile(
-    `src/${clientContextFileName}.ts`,
+    `${clientDetails.srcPath}/${clientContextFileName}.ts`,
     undefined,
     {
       overwrite: true
@@ -75,11 +75,6 @@ function writeImports(sourceFile: SourceFile) {
   sourceFile.addImportDeclaration({
     namespaceImport: "coreHttp",
     moduleSpecifier: "@azure/core-http"
-  });
-
-  sourceFile.addImportDeclaration({
-    namespaceImport: "Models",
-    moduleSpecifier: "./models"
   });
 }
 
@@ -129,10 +124,12 @@ function writeConstructorBody(
     writeStatement(writeDefaultOptions(hasCredentials)),
     requiredParameters.length ? "// Parameter assignments" : "",
     writeStatements(getRequiredParamAssignments(requiredPaams), addBlankLine),
-    constantParameters ? "// Assigning values to Constant parameters" : "",
+    constantParameters.length
+      ? "// Assigning values to Constant parameters"
+      : "",
     writeStatements(constantParameters, addBlankLine),
     writeStatement(getBaseUriStatement(clientDetails.baseUrl), addBlankLine),
-    optionalParameters
+    optionalParameters.length
       ? "// Replacing parameter defaults with user-provided parameters."
       : "",
     writeStatements(optionalParameters)

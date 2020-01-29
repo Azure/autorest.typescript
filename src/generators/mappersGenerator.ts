@@ -18,7 +18,7 @@ export function generateMappers(
   project: Project
 ) {
   const mappersFile = project.createSourceFile(
-    "src/models/mappers.ts",
+    `${clientDetails.srcPath}/models/mappers.ts`,
     undefined,
     { overwrite: true }
   );

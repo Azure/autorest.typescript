@@ -27,7 +27,7 @@ import { ParameterDetails } from "../models/parameterDetails";
 
 export function generateModels(clientDetails: ClientDetails, project: Project) {
   const modelsIndexFile = project.createSourceFile(
-    "src/models/index.ts",
+    `${clientDetails.srcPath}/models/index.ts`,
     undefined,
     { overwrite: true }
   );

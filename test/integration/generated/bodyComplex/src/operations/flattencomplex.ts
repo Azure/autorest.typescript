@@ -27,7 +27,6 @@ export class Flattencomplex {
   }
 
   /**
-   * MISSING·OPERATION-DESCRIPTION
    * @param options The options parameters.
    */
   getValid(

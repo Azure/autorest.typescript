@@ -14,7 +14,7 @@ export function generateParameters(
   project: Project
 ): void {
   const parametersFile = project.createSourceFile(
-    "src/models/parameters.ts",
+    `${clientDetails.srcPath}/models/parameters.ts`,
     undefined,
     { overwrite: true }
   );

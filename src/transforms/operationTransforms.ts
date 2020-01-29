@@ -29,6 +29,7 @@ import { getTypeForSchema } from "../utils/schemaHelpers";
 import { getMapperTypeFromSchema } from "./mapperTransforms";
 import { ParameterDetails } from "../models/parameterDetails";
 import { PropertyKind, TypeDetails } from "../models/modelDetails";
+import { TOPLEVEL_OPERATIONGROUP } from "./constants";
 
 export function transformOperationSpec(
   operationDetails: OperationDetails,
@@ -256,14 +257,18 @@ export function transformOperationGroup(
   operationGroup: OperationGroup
 ): OperationGroupDetails {
   const metadata = getLanguageMetadata(operationGroup.language);
-  // TODO: Probably want to inline operations in client when there is only one operation group (#551)
-  const name = normalizeName(metadata.name || "operations", NameType.Property);
+  const isTopLevel = !metadata.name;
+  const name = normalizeName(
+    metadata.name || TOPLEVEL_OPERATIONGROUP,
+    NameType.Property
+  );
   return {
     name,
     key: operationGroup.$key,
     operations: operationGroup.operations.map(operation =>
       transformOperation(operation, name)
-    )
+    ),
+    isTopLevel
   };
 }
 
