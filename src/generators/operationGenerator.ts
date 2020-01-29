@@ -40,27 +40,31 @@ export function generateOperations(
 ): void {
   let fileNames: string[] = [];
 
-  clientDetails.operationGroups
-    // Toplevel operations are inlined in the client
-    .filter(og => !og.isTopLevel)
-    .forEach(operationDetails => {
-      fileNames.push(normalizeName(operationDetails.name, NameType.File));
-      generateOperation(operationDetails, clientDetails, project);
-    });
-
-  const operationIndexFile = project.createSourceFile(
-    `${clientDetails.srcPath}/operations/index.ts`,
-    undefined,
-    { overwrite: true }
+  // Toplevel operations are inlined in the client
+  const operationGroups = clientDetails.operationGroups.filter(
+    og => !og.isTopLevel
   );
 
-  operationIndexFile.addExportDeclarations(
-    fileNames.map(fileName => {
-      return {
-        moduleSpecifier: `./${fileName}`
-      } as ExportDeclarationStructure;
-    })
-  );
+  operationGroups.forEach(operationDetails => {
+    fileNames.push(normalizeName(operationDetails.name, NameType.File));
+    generateOperation(operationDetails, clientDetails, project);
+  });
+
+  if (operationGroups.length) {
+    const operationIndexFile = project.createSourceFile(
+      `${clientDetails.srcPath}/operations/index.ts`,
+      undefined,
+      { overwrite: true }
+    );
+
+    operationIndexFile.addExportDeclarations(
+      fileNames.map(fileName => {
+        return {
+          moduleSpecifier: `./${fileName}`
+        } as ExportDeclarationStructure;
+      })
+    );
+  }
 }
 
 /**

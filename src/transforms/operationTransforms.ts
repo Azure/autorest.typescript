@@ -29,7 +29,6 @@ import { getTypeForSchema } from "../utils/schemaHelpers";
 import { getMapperTypeFromSchema } from "./mapperTransforms";
 import { ParameterDetails } from "../models/parameterDetails";
 import { PropertyKind, TypeDetails } from "../models/modelDetails";
-import { isNil } from "lodash";
 import { TOPLEVEL_OPERATIONGROUP } from "./constants";
 
 export function transformOperationSpec(
@@ -258,7 +257,7 @@ export function transformOperationGroup(
   operationGroup: OperationGroup
 ): OperationGroupDetails {
   const metadata = getLanguageMetadata(operationGroup.language);
-  const isTopLevel = isNil(metadata.name);
+  const isTopLevel = !metadata.name;
   const name = normalizeName(
     metadata.name || TOPLEVEL_OPERATIONGROUP,
     NameType.Property

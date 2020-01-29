@@ -124,10 +124,12 @@ function writeConstructorBody(
     writeStatement(writeDefaultOptions(hasCredentials)),
     requiredParameters.length ? "// Parameter assignments" : "",
     writeStatements(getRequiredParamAssignments(requiredPaams), addBlankLine),
-    constantParameters ? "// Assigning values to Constant parameters" : "",
+    constantParameters.length
+      ? "// Assigning values to Constant parameters"
+      : "",
     writeStatements(constantParameters, addBlankLine),
     writeStatement(getBaseUriStatement(clientDetails.baseUrl), addBlankLine),
-    optionalParameters
+    optionalParameters.length
       ? "// Replacing parameter defaults with user-provided parameters."
       : "",
     writeStatements(optionalParameters)
