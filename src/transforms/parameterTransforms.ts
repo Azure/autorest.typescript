@@ -63,6 +63,8 @@ export function transformParameters(
     populateOperationParameters(p.parameter, parameters, p.operationName)
   );
 
+  // Adding credentials parameter as a Synthetic parameter, this is to treat this as any another parameter
+  // during generation and remove the need of special handling it.
   if (options.addCredentials) {
     const creds = buildCredentialsParameter();
     parameters.unshift(creds);
