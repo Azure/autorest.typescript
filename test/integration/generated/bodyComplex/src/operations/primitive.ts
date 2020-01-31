@@ -125,7 +125,8 @@ export class Primitive {
 
   /**
    * Put complex types with double properties
-   * @param complexBody Please put 3e-100 and -0.000000000000000000000000000000000000000000000000000000005
+   * @param complexBody Please put 3e-100 and
+   * -0.000000000000000000000000000000000000000000000000000000005
    * @param options The options parameters.
    */
   putDouble(

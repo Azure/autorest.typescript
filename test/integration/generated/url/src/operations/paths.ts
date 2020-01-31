@@ -310,7 +310,8 @@ export class Paths {
   }
 
   /**
-   * Get null as date - this should throw or be unusable on the client side, depending on date representation
+   * Get null as date - this should throw or be unusable on the client side, depending on date
+   * representation
    * @param datePath null as date (should throw)
    * @param options The options parameters.
    */
@@ -368,8 +369,10 @@ export class Paths {
   }
 
   /**
-   * Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
-   * @param arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
+   * Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array
+   * format
+   * @param arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using
+   * the csv-array format
    * @param options The options parameters.
    */
   arrayCsvInPath(

@@ -18,7 +18,7 @@ export class UrlClientContext extends coreHttp.ServiceClient {
 
   /**
    * Initializes a new instance of the UrlClientContext class.
-   *
+   * @param globalStringPath A string value 'globalItemStringPath' that appears in the path
    * @param options The parameter options
    */
   constructor(globalStringPath: string, options?: any) {
@@ -40,23 +40,12 @@ export class UrlClientContext extends coreHttp.ServiceClient {
 
     this.requestContentType = "application/json; charset=utf-8";
 
+    this.baseUri = options.baseUri || "{$host}";
+
     // Parameter assignments
     this.globalStringPath = globalStringPath;
 
     // Assigning values to Constant parameters
-    this.$host = "http://localhost:3000";
-
-    this.baseUri = options.baseUri || this.baseUri || "{$host}";
-
-    // Replacing parameter defaults with user-provided parameters.
-    if (options.$host !== null && options.$host !== undefined) {
-      this.$host = options.$host;
-    }
-    if (
-      options.globalStringQuery !== null &&
-      options.globalStringQuery !== undefined
-    ) {
-      this.globalStringQuery = options.globalStringQuery;
-    }
+    this.$host = options.$host || "http://localhost:3000";
   }
 }

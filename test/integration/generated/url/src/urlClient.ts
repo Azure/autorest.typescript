@@ -14,6 +14,7 @@ import { UrlClientContext } from "./urlClientContext";
 class UrlClient extends UrlClientContext {
   /**
    * Initializes a new instance of the UrlClient class.
+   * @param globalStringPath A string value 'globalItemStringPath' that appears in the path
    * @param options The parameter options
    */
   constructor(globalStringPath: string, options?: any) {

@@ -391,7 +391,8 @@ export class Queries {
   }
 
   /**
-   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
+   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array
+   * format
    * @param options The options parameters.
    */
   arrayStringCsvValid(
@@ -430,7 +431,8 @@ export class Queries {
   }
 
   /**
-   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format
+   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array
+   * format
    * @param options The options parameters.
    */
   arrayStringSsvValid(
@@ -443,7 +445,8 @@ export class Queries {
   }
 
   /**
-   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format
+   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array
+   * format
    * @param options The options parameters.
    */
   arrayStringTsvValid(
@@ -456,7 +459,8 @@ export class Queries {
   }
 
   /**
-   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format
+   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+   * pipes-array format
    * @param options The options parameters.
    */
   arrayStringPipesValid(

@@ -58,25 +58,3 @@ export function filterOperationParameters(
       clientParamFilter(param)
   );
 }
-
-export function getCredentialsParameter(
-  hasCredentials: boolean
-): ParameterDeclarationStructure[] {
-  return hasCredentials
-    ? [
-        {
-          name: "credentials",
-          type: `coreHttp.TokenCredential | coreHttp.ServiceClientCredentials`,
-          kind: StructureKind.Parameter
-        }
-      ]
-    : [];
-}
-
-export function getCredentialsCheck(hasCredentials: boolean): string {
-  return hasCredentials
-    ? `if (credentials == undefined) {
-    throw new Error("'credentials' cannot be null.");
-  }`
-    : ``;
-}

@@ -24,17 +24,49 @@ import { isEqual, isNil } from "lodash";
 import { getTypeForSchema } from "../utils/schemaHelpers";
 import { getStringForValue } from "../utils/valueHelpers";
 import { TOPLEVEL_OPERATIONGROUP } from "./constants";
+import { ClientOptions } from "../models/clientDetails";
+import { PropertyKind } from "../models/modelDetails";
 
 interface OperationParameterDetails {
   parameter: Parameter;
   operationName: string;
 }
 
-export function transformParameters(codeModel: CodeModel): ParameterDetails[] {
+const buildCredentialsParameter = (): ParameterDetails => ({
+  nameRef: "credentials",
+  description:
+    "Subscription credentials which uniquely identify client subscription.",
+  name: "credentials",
+  serializedName: "credentials",
+  location: ParameterLocation.None,
+  required: true,
+  parameterPath: "credentials",
+  mapper: "any",
+  isGlobal: true,
+  //parameter: new Parameter("credentials", "Subscription credentials which uniquely identify client subscription.", new ObjectSchema("credentials", ""))
+  parameter: {} as Parameter,
+  implementationLocation: ImplementationLocation.Client,
+  typeDetails: {
+    typeName: "coreHttp.TokenCredential | coreHttp.ServiceClientCredentials",
+    kind: PropertyKind.Primitive
+  },
+  isSynthetic: true,
+  schemaType: SchemaType.Object
+});
+
+export function transformParameters(
+  codeModel: CodeModel,
+  options: ClientOptions = {}
+): ParameterDetails[] {
   let parameters: ParameterDetails[] = [];
   extractOperationParameters(codeModel).forEach(p =>
     populateOperationParameters(p.parameter, parameters, p.operationName)
   );
+
+  if (options.addCredentials) {
+    const creds = buildCredentialsParameter();
+    parameters.unshift(creds);
+  }
 
   return parameters;
 }

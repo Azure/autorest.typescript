@@ -41,7 +41,8 @@ export class Array {
 
   /**
    * Put complex types with array property
-   * @param complexBody Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The quick brown fox jumps over the lazy dog"
+   * @param complexBody Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The quick
+   * brown fox jumps over the lazy dog"
    * @param options The options parameters.
    */
   putValid(
@@ -69,7 +70,8 @@ export class Array {
 
   /**
    * Put complex types with array property which is empty
-   * @param complexBody Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The quick brown fox jumps over the lazy dog"
+   * @param complexBody Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The quick
+   * brown fox jumps over the lazy dog"
    * @param options The options parameters.
    */
   putEmpty(

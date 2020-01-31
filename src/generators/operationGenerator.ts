@@ -24,6 +24,7 @@ import { isString } from "util";
 import { ParameterDetails } from "../models/parameterDetails";
 import { filterOperationParameters } from "./utils/parameterUtils";
 import { PropertyKind } from "../models/modelDetails";
+import { wrapString } from "./utils/stringUtils";
 
 /**
  * Function that writes the code for all the operations.
@@ -312,11 +313,13 @@ function generateOperationJSDoc(
       ? ""
       : params
           .map(param => {
-            return `@param ${param.name} ${param.description}`;
+            return wrapString(`@param ${param.name} ${param.description}`);
           })
           .join("\n");
 
-  return `${description ? description + "\n" : description}${paramJSDoc}`;
+  return `${
+    description ? wrapString(description, 100) + "\n" : description
+  }${paramJSDoc}`;
 }
 
 /**
