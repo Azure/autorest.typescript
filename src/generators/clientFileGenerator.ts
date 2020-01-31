@@ -15,10 +15,9 @@ import {
   normalizeName,
   NameType
 } from "../utils/nameUtils";
-import { ParameterDetails } from "../models/parameterDetails";
 import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
 import { OperationGroupDetails } from "../models/operationDetails";
-import { wrapString } from "./utils/stringUtils";
+import { formatJsDocParam } from "./utils/parameterUtils";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
@@ -112,7 +111,7 @@ function writeConstructor(
 
   const docs = [
     `Initializes a new instance of the ${clientDetails.className} class.`,
-    ...requiredParams.map(p => wrapString(`@param ${p.name} ${p.description}`)),
+    ...formatJsDocParam(requiredParams),
     `@param options The parameter options`
   ]
     .filter(d => !!d)

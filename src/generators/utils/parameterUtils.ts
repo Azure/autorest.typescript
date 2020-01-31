@@ -4,7 +4,7 @@
 import { ParameterDetails } from "../../models/parameterDetails";
 import { OperationDetails } from "../../models/operationDetails";
 import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
-import { StructureKind, ParameterDeclarationStructure } from "ts-morph";
+import { wrapString, IndentationType } from "./stringUtils";
 
 interface ParameterFilterOptions {
   includeOptional?: boolean;
@@ -56,5 +56,14 @@ export function filterOperationParameters(
       optionalFilter(param) &&
       constantFilter(param) &&
       clientParamFilter(param)
+  );
+}
+
+export function formatJsDocParam(parameters: Partial<ParameterDetails>[]) {
+  return parameters.map(p =>
+    wrapString(`@param ${p.name} ${p.description}`, {
+      indentationType: IndentationType.JSDocParam,
+      paramNameLength: p.name?.length
+    })
   );
 }

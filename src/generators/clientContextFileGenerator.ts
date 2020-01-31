@@ -15,7 +15,7 @@ import { PackageDetails } from "../models/packageDetails";
 import { ParameterDetails } from "../models/parameterDetails";
 import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
 import { BaseUrlDetails } from "../transforms/urlTransforms";
-import { wrapString } from "./utils/stringUtils";
+import { formatJsDocParam } from "./utils/parameterUtils";
 
 export function generateClientContext(
   clientDetails: ClientDetails,
@@ -172,7 +172,7 @@ function buildConstructor(
 ) {
   const docs = [
     `Initializes a new instance of the ${clientContextClassName} class.`,
-    ...requiredParams.map(p => wrapString(`@param ${p.name} ${p.description}`)),
+    ...formatJsDocParam(requiredParams),
     `@param options The parameter options`
   ]
     .filter(d => !!d)
@@ -192,16 +192,6 @@ function buildConstructor(
       }
     ]
   });
-}
-
-function getOptionalParameters(parameters: ParameterDetails[]) {
-  /**
-   * Getting parameters that are not marked as required, and the ones that are not marked as required
-   * but are constants or have a defaultValue
-   */
-  return parameters.filter(
-    p => !p.required || p.defaultValue || p.schemaType === SchemaType.Constant
-  );
 }
 
 function getRequiredParameters(parameters: ParameterDetails[]) {

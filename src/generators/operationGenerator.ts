@@ -22,7 +22,10 @@ import {
 } from "../models/operationDetails";
 import { isString } from "util";
 import { ParameterDetails } from "../models/parameterDetails";
-import { filterOperationParameters } from "./utils/parameterUtils";
+import {
+  filterOperationParameters,
+  formatJsDocParam
+} from "./utils/parameterUtils";
 import { PropertyKind } from "../models/modelDetails";
 import { wrapString } from "./utils/stringUtils";
 
@@ -309,16 +312,10 @@ function generateOperationJSDoc(
   description: string = ""
 ): string {
   const paramJSDoc =
-    !params || !params.length
-      ? ""
-      : params
-          .map(param => {
-            return wrapString(`@param ${param.name} ${param.description}`);
-          })
-          .join("\n");
+    !params || !params.length ? "" : formatJsDocParam(params).join("\n");
 
   return `${
-    description ? wrapString(description, 100) + "\n" : description
+    description ? wrapString(description) + "\n" : description
   }${paramJSDoc}`;
 }
 

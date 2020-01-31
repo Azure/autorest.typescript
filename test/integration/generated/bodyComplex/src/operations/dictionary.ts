@@ -42,7 +42,7 @@ export class Dictionary {
   /**
    * Put complex types with dictionary property
    * @param complexBody Please put a dictionary with 5 key-value pairs: "txt":"notepad", "bmp":"mspaint",
-   * "xls":"excel", "exe":"", "":null
+   *                    "xls":"excel", "exe":"", "":null
    * @param options The options parameters.
    */
   putValid(
@@ -71,7 +71,7 @@ export class Dictionary {
   /**
    * Put complex types with dictionary property which is empty
    * @param complexBody Please put a dictionary with 5 key-value pairs: "txt":"notepad", "bmp":"mspaint",
-   * "xls":"excel", "exe":"", "":null
+   *                    "xls":"excel", "exe":"", "":null
    * @param options The options parameters.
    */
   putEmpty(

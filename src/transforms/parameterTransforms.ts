@@ -43,7 +43,6 @@ const buildCredentialsParameter = (): ParameterDetails => ({
   parameterPath: "credentials",
   mapper: "any",
   isGlobal: true,
-  //parameter: new Parameter("credentials", "Subscription credentials which uniquely identify client subscription.", new ObjectSchema("credentials", ""))
   parameter: {} as Parameter,
   implementationLocation: ImplementationLocation.Client,
   typeDetails: {

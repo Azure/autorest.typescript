@@ -42,38 +42,38 @@ export class Polymorphism {
   /**
    * Put complex types that are polymorphic
    * @param complexBody Please put a salmon that looks like this:
-   * {
-   *         'fishtype':'Salmon',
-   *         'location':'alaska',
-   *         'iswild':true,
-   *         'species':'king',
-   *         'length':1.0,
-   *         'siblings':[
-   *           {
-   *             'fishtype':'Shark',
-   *             'age':6,
-   *             'birthday': '2012-01-05T01:00:00Z',
-   *             'length':20.0,
-   *             'species':'predator',
-   *           },
-   *           {
-   *             'fishtype':'Sawshark',
-   *             'age':105,
-   *             'birthday': '1900-01-05T01:00:00Z',
-   *             'length':10.0,
-   *             'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-   *             'species':'dangerous',
-   *           },
-   *           {
-   *             'fishtype': 'goblin',
-   *             'age': 1,
-   *             'birthday': '2015-08-08T00:00:00Z',
-   *             'length': 30.0,
-   *             'species': 'scary',
-   *             'jawsize': 5
-   *           }
-   *         ]
-   *       };
+   *                    {
+   *                            'fishtype':'Salmon',
+   *                            'location':'alaska',
+   *                            'iswild':true,
+   *                            'species':'king',
+   *                            'length':1.0,
+   *                            'siblings':[
+   *                              {
+   *                                'fishtype':'Shark',
+   *                                'age':6,
+   *                                'birthday': '2012-01-05T01:00:00Z',
+   *                                'length':20.0,
+   *                                'species':'predator',
+   *                              },
+   *                              {
+   *                                'fishtype':'Sawshark',
+   *                                'age':105,
+   *                                'birthday': '1900-01-05T01:00:00Z',
+   *                                'length':10.0,
+   *                                'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
+   *                                'species':'dangerous',
+   *                              },
+   *                              {
+   *                                'fishtype': 'goblin',
+   *                                'age': 1,
+   *                                'birthday': '2015-08-08T00:00:00Z',
+   *                                'length': 30.0,
+   *                                'species': 'scary',
+   *                                'jawsize': 5
+   *                              }
+   *                            ]
+   *                          };
    * @param options The options parameters.
    */
   putValid(
@@ -178,38 +178,38 @@ export class Polymorphism {
    * Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request
    * should not be allowed from the client
    * @param complexBody Please put a salmon that looks like this:
-   * {
-   *         'fishtype':'Salmon',
-   *         'location':'alaska',
-   *         'iswild':true,
-   *         'species':'king',
-   *         'length':1.0,
-   *         'siblings':[
-   *           {
-   *             'fishtype':'Shark',
-   *             'age':6,
-   *             'birthday': '2012-01-05T01:00:00Z',
-   *             'length':20.0,
-   *             'species':'predator',
-   *           },
-   *           {
-   *             'fishtype':'Sawshark',
-   *             'age':105,
-   *             'birthday': '1900-01-05T01:00:00Z',
-   *             'length':10.0,
-   *             'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-   *             'species':'dangerous',
-   *           },
-   *           {
-   *             'fishtype': 'goblin',
-   *             'age': 1,
-   *             'birthday': '2015-08-08T00:00:00Z',
-   *             'length': 30.0,
-   *             'species': 'scary',
-   *             'jawsize': 5
-   *           }
-   *         ]
-   *       };
+   *                    {
+   *                            'fishtype':'Salmon',
+   *                            'location':'alaska',
+   *                            'iswild':true,
+   *                            'species':'king',
+   *                            'length':1.0,
+   *                            'siblings':[
+   *                              {
+   *                                'fishtype':'Shark',
+   *                                'age':6,
+   *                                'birthday': '2012-01-05T01:00:00Z',
+   *                                'length':20.0,
+   *                                'species':'predator',
+   *                              },
+   *                              {
+   *                                'fishtype':'Sawshark',
+   *                                'age':105,
+   *                                'birthday': '1900-01-05T01:00:00Z',
+   *                                'length':10.0,
+   *                                'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
+   *                                'species':'dangerous',
+   *                              },
+   *                              {
+   *                                'fishtype': 'goblin',
+   *                                'age': 1,
+   *                                'birthday': '2015-08-08T00:00:00Z',
+   *                                'length': 30.0,
+   *                                'species': 'scary',
+   *                                'jawsize': 5
+   *                              }
+   *                            ]
+   *                          };
    * @param options The options parameters.
    */
   putValidMissingRequired(

@@ -28,8 +28,7 @@ const prettierTypeScriptOptions: prettier.Options = {
   printWidth: 80,
   semi: true,
   singleQuote: false,
-  tabWidth: 2,
-  proseWrap: "always"
+  tabWidth: 2
 };
 
 const prettierJSONOptions: prettier.Options = {

@@ -372,7 +372,7 @@ export class Paths {
    * Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array
    * format
    * @param arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using
-   * the csv-array format
+   *                  the csv-array format
    * @param options The options parameters.
    */
   arrayCsvInPath(
