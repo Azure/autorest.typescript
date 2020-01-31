@@ -105,7 +105,8 @@ export class String {
   }
 
   /**
-   * Get string value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>'
+   * Get string value with leading and trailing whitespace '<tab><space><space>Now is the time for all
+   * good men to come to the aid of their country<tab><space><space>'
    * @param options The options parameters.
    */
   getWhitespace(
@@ -118,7 +119,8 @@ export class String {
   }
 
   /**
-   * Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>'
+   * Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all
+   * good men to come to the aid of their country<tab><space><space>'
    * @param options The options parameters.
    */
   putWhitespace(

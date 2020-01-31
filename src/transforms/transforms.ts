@@ -56,6 +56,7 @@ export async function transformCodeModel(
 ): Promise<ClientDetails> {
   const className = normalizeName(codeModel.info.title, NameType.Class);
   const uberParents = await getUberParents(codeModel);
+  const options = await transformOptions(host);
 
   const [
     objects,
@@ -63,15 +64,13 @@ export async function transformCodeModel(
     unions,
     operationGroups,
     parameters,
-    options,
     baseUrl
   ] = await Promise.all([
     transformObjects(codeModel, uberParents),
     transformMappers(codeModel),
     transformChoices(codeModel),
     transformOperationGroups(codeModel),
-    transformParameters(codeModel),
-    transformOptions(host),
+    transformParameters(codeModel, options),
     transformBaseUrl(codeModel)
   ]);
 

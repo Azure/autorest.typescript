@@ -29,14 +29,16 @@ export function generateParameters(
     moduleSpecifier: "../models/mappers"
   });
 
-  clientDetails.parameters.forEach(param => {
-    parametersFile.addVariableStatement({
-      isExported: true,
-      declarations: [buildParameterInitializer(param)],
-      declarationKind: VariableDeclarationKind.Const,
-      leadingTrivia: writer => writer.blankLine()
+  clientDetails.parameters
+    .filter(p => !p.isSynthetic)
+    .forEach(param => {
+      parametersFile.addVariableStatement({
+        isExported: true,
+        declarations: [buildParameterInitializer(param)],
+        declarationKind: VariableDeclarationKind.Const,
+        leadingTrivia: writer => writer.blankLine()
+      });
     });
-  });
 }
 
 function buildParameterInitializer(parameter: ParameterDetails) {

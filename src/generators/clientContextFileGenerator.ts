@@ -14,11 +14,8 @@ import { ClientDetails } from "../models/clientDetails";
 import { PackageDetails } from "../models/packageDetails";
 import { ParameterDetails } from "../models/parameterDetails";
 import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
-import {
-  getCredentialsCheck,
-  getCredentialsParameter
-} from "./utils/parameterUtils";
 import { BaseUrlDetails } from "../transforms/urlTransforms";
+import { formatJsDocParam } from "./utils/parameterUtils";
 
 export function generateClientContext(
   clientDetails: ClientDetails,
@@ -29,7 +26,6 @@ export function generateClientContext(
     param => param.implementationLocation === ImplementationLocation.Client
   );
   const requiredParams = getRequiredParameters(clientParams);
-  const hasCredentials = !!clientDetails.options.addCredentials;
   const clientContextClassName = `${clientDetails.className}Context`;
   const clientContextFileName = normalizeName(
     clientContextClassName,
@@ -52,20 +48,17 @@ export function generateClientContext(
 
   const classConstructor = buildConstructor(contextClass, {
     clientContextClassName,
-    hasCredentials,
     requiredParams
   });
 
   writeConstructorBody(classConstructor, {
     clientParams,
-    hasCredentials,
     clientDetails,
     requiredPaams: requiredParams
   });
 }
 
 interface WriteConstructorBodyParameters {
-  hasCredentials: boolean;
   requiredPaams: ParameterDetails[];
   clientParams: ParameterDetails[];
   clientDetails: ClientDetails;
@@ -84,8 +77,8 @@ function writePackageInfo(
 ) {
   sourceFile.addStatements([
     `\n\n`,
-    `const packageName = "${packageDetails.name}";`,
-    `const packageVersion = "${packageDetails.version}";`
+    `const packageName = "${packageDetails.name || ""}";`,
+    `const packageVersion = "${packageDetails.version || ""}";`
   ]);
 }
 
@@ -106,33 +99,23 @@ function writeClassProperties(
 
 function writeConstructorBody(
   classConstructor: ConstructorDeclaration,
-  {
-    clientParams,
-    hasCredentials,
-    requiredPaams,
-    clientDetails
-  }: WriteConstructorBodyParameters
+  { clientParams, requiredPaams, clientDetails }: WriteConstructorBodyParameters
 ) {
-  const optionalParams = getOptionalParameters(clientParams);
   const addBlankLine = true;
   const requiredParameters = getRequiredParamAssignments(requiredPaams);
   const constantParameters = getConstantClientParamAssignments(clientParams);
-  const optionalParameters = getOptionalParameterAssignments(optionalParams);
   classConstructor.addStatements([
-    writeStatement(getCredentialsCheck(hasCredentials)),
     writeStatements(getRequiredParamChecks(requiredPaams), addBlankLine),
-    writeStatement(writeDefaultOptions(hasCredentials)),
+    writeStatement(
+      writeDefaultOptions(clientParams.some(p => p.name === "credentials"))
+    ),
+    writeStatement(getBaseUriStatement(clientDetails.baseUrl), addBlankLine),
     requiredParameters.length ? "// Parameter assignments" : "",
     writeStatements(getRequiredParamAssignments(requiredPaams), addBlankLine),
     constantParameters.length
       ? "// Assigning values to Constant parameters"
       : "",
-    writeStatements(constantParameters, addBlankLine),
-    writeStatement(getBaseUriStatement(clientDetails.baseUrl), addBlankLine),
-    optionalParameters.length
-      ? "// Replacing parameter defaults with user-provided parameters."
-      : "",
-    writeStatements(optionalParameters)
+    writeStatements(constantParameters, addBlankLine)
   ]);
 }
 
@@ -180,25 +163,24 @@ function buildClass(sourceFile: SourceFile, clientContextClassName: string) {
 
 interface BuildContructorParams {
   clientContextClassName: string;
-  hasCredentials: boolean;
   requiredParams: ParameterDetails[];
 }
 
 function buildConstructor(
   contextClass: ClassDeclaration,
-  {
-    clientContextClassName,
-    hasCredentials,
-    requiredParams
-  }: BuildContructorParams
+  { clientContextClassName, requiredParams }: BuildContructorParams
 ) {
+  const docs = [
+    `Initializes a new instance of the ${clientContextClassName} class.`,
+    ...formatJsDocParam(requiredParams),
+    `@param options The parameter options`
+  ]
+    .filter(d => !!d)
+    .join("\n");
+
   return contextClass.addConstructor({
-    docs: [
-      `Initializes a new instance of the ${clientContextClassName} class.\n
-@param options The parameter options`
-    ],
+    docs: [docs],
     parameters: [
-      ...getCredentialsParameter(hasCredentials),
       ...requiredParams.map(p => ({
         name: p.name,
         type: p.typeDetails.typeName
@@ -210,16 +192,6 @@ function buildConstructor(
       }
     ]
   });
-}
-
-function getOptionalParameters(parameters: ParameterDetails[]) {
-  /**
-   * Getting parameters that are not marked as required, and the ones that are not marked as required
-   * but are constants or have a defaultValue
-   */
-  return parameters.filter(
-    p => !p.required || p.defaultValue || p.schemaType === SchemaType.Constant
-  );
 }
 
 function getRequiredParameters(parameters: ParameterDetails[]) {
@@ -234,9 +206,7 @@ function getRequiredParameters(parameters: ParameterDetails[]) {
 
 function getBaseUriStatement(baseUrl: BaseUrlDetails) {
   const uri = baseUrl.baseUrl;
-  return `this.baseUri = options.baseUri || this.baseUri ${
-    uri ? ` || "${uri}"` : ""
-  };`;
+  return `this.baseUri = options.baseUri ${uri ? ` || "${uri}"` : ""};`;
 }
 
 function getConstantClientParamAssignments(
@@ -244,25 +214,16 @@ function getConstantClientParamAssignments(
 ) {
   return clientParameters
     .filter(p => !!p.defaultValue || p.schemaType === SchemaType.Constant)
-    .map(({ name, defaultValue }) => `this.${name} = ${defaultValue}`);
+    .map(
+      ({ name, defaultValue }) =>
+        `this.${name} = options.${name} ||  ${defaultValue}`
+    );
 }
 
 function getRequiredParamChecks(requiredParameters: ParameterDetails[]) {
   return requiredParameters.map(
     ({ name }) => `if(${name} === undefined) {
     throw new Error("'${name}' cannot be null");
-  }`
-  );
-}
-
-function getOptionalParameterAssignments(
-  optionalParameters: ParameterDetails[]
-) {
-  return optionalParameters.map(
-    ({
-      name
-    }) => `if(options.${name} !== null && options.${name} !== undefined) {
-      this.${name} = options.${name};
   }`
   );
 }

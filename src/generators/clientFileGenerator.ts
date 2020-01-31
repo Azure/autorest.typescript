@@ -15,10 +15,9 @@ import {
   normalizeName,
   NameType
 } from "../utils/nameUtils";
-import { ParameterDetails } from "../models/parameterDetails";
 import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
-import { getCredentialsParameter } from "./utils/parameterUtils";
 import { OperationGroupDetails } from "../models/operationDetails";
+import { formatJsDocParam } from "./utils/parameterUtils";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
@@ -78,7 +77,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     extends: clientContextClassName
   });
 
-  writeConstructor(clientDetails, clientClass, hasCredentials);
+  writeConstructor(clientDetails, clientClass);
   writeClientOperations(clientFile, clientClass, clientDetails);
 
   clientFile.addExportDeclaration({
@@ -100,8 +99,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
 
 function writeConstructor(
   clientDetails: ClientDetails,
-  classDeclaration: ClassDeclaration,
-  hasCredentials: boolean
+  classDeclaration: ClassDeclaration
 ) {
   const requiredParams = clientDetails.parameters.filter(
     param =>
@@ -111,13 +109,17 @@ function writeConstructor(
       param.schemaType !== SchemaType.Constant
   );
 
+  const docs = [
+    `Initializes a new instance of the ${clientDetails.className} class.`,
+    ...formatJsDocParam(requiredParams),
+    `@param options The parameter options`
+  ]
+    .filter(d => !!d)
+    .join("\n");
+
   const clientConstructor = classDeclaration.addConstructor({
-    docs: [
-      `Initializes a new instance of the ${clientDetails.className} class.
-@param options The parameter options`
-    ],
+    docs: [docs],
     parameters: [
-      ...getCredentialsParameter(hasCredentials),
       ...requiredParams.map(p => ({
         name: p.name,
         hasQuestionToken: !p.required,
@@ -132,7 +134,7 @@ function writeConstructor(
   });
 
   clientConstructor.addStatements([
-    `super(${getSuperParams(requiredParams, hasCredentials)});`
+    `super(${[...requiredParams.map(p => p.name), "options"].join()});`
   ]);
 
   const operationDeclarationDetails: OperationDeclarationDetails[] = getOperationGroupsDeclarationDetails(
@@ -189,20 +191,4 @@ function writeClientOperations(
       } as PropertyDeclarationStructure;
     })
   );
-}
-
-function getSuperParams(
-  requiredParams: ParameterDetails[],
-  hasCredentials: boolean
-) {
-  let allParams = ["options"];
-  requiredParams.forEach(p => {
-    allParams = [p.name, ...allParams];
-  });
-
-  if (hasCredentials) {
-    allParams.unshift("credentials");
-  }
-
-  return allParams.join();
 }

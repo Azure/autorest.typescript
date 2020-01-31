@@ -4,7 +4,7 @@
 import { ParameterDetails } from "../../models/parameterDetails";
 import { OperationDetails } from "../../models/operationDetails";
 import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
-import { StructureKind, ParameterDeclarationStructure } from "ts-morph";
+import { wrapString, IndentationType } from "./stringUtils";
 
 interface ParameterFilterOptions {
   includeOptional?: boolean;
@@ -59,24 +59,11 @@ export function filterOperationParameters(
   );
 }
 
-export function getCredentialsParameter(
-  hasCredentials: boolean
-): ParameterDeclarationStructure[] {
-  return hasCredentials
-    ? [
-        {
-          name: "credentials",
-          type: `coreHttp.TokenCredential | coreHttp.ServiceClientCredentials`,
-          kind: StructureKind.Parameter
-        }
-      ]
-    : [];
-}
-
-export function getCredentialsCheck(hasCredentials: boolean): string {
-  return hasCredentials
-    ? `if (credentials == undefined) {
-    throw new Error("'credentials' cannot be null.");
-  }`
-    : ``;
+export function formatJsDocParam(parameters: Partial<ParameterDetails>[]) {
+  return parameters.map(p =>
+    wrapString(`@param ${p.name} ${p.description}`, {
+      indentationType: IndentationType.JSDocParam,
+      paramNameLength: p.name?.length
+    })
+  );
 }

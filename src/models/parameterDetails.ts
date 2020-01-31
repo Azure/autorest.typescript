@@ -5,8 +5,7 @@ import {
   Parameter,
   ParameterLocation,
   AllSchemaTypes,
-  ImplementationLocation,
-  SchemaType
+  ImplementationLocation
 } from "@azure-tools/codemodel";
 import { Mapper } from "@azure/core-http";
 import { TypeDetails } from "./modelDetails";
@@ -29,4 +28,5 @@ export interface ParameterDetails {
   implementationLocation?: ImplementationLocation;
   typeDetails: TypeDetails;
   skipEncoding?: boolean;
+  isSynthetic?: boolean;
 }

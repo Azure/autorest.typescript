@@ -16,7 +16,6 @@ export class CustomUrlClientContext extends coreHttp.ServiceClient {
 
   /**
    * Initializes a new instance of the CustomUrlClientContext class.
-   *
    * @param options The parameter options
    */
   constructor(options?: any) {
@@ -34,15 +33,9 @@ export class CustomUrlClientContext extends coreHttp.ServiceClient {
 
     this.requestContentType = "application/json; charset=utf-8";
 
+    this.baseUri = options.baseUri || "http://{accountName}{host}";
+
     // Assigning values to Constant parameters
-    this.host = "host";
-
-    this.baseUri =
-      options.baseUri || this.baseUri || "http://{accountName}{host}";
-
-    // Replacing parameter defaults with user-provided parameters.
-    if (options.host !== null && options.host !== undefined) {
-      this.host = options.host;
-    }
+    this.host = options.host || "host";
   }
 }

@@ -22,8 +22,12 @@ import {
 } from "../models/operationDetails";
 import { isString } from "util";
 import { ParameterDetails } from "../models/parameterDetails";
-import { filterOperationParameters } from "./utils/parameterUtils";
+import {
+  filterOperationParameters,
+  formatJsDocParam
+} from "./utils/parameterUtils";
 import { PropertyKind } from "../models/modelDetails";
+import { wrapString } from "./utils/stringUtils";
 
 /**
  * Function that writes the code for all the operations.
@@ -308,15 +312,11 @@ function generateOperationJSDoc(
   description: string = ""
 ): string {
   const paramJSDoc =
-    !params || !params.length
-      ? ""
-      : params
-          .map(param => {
-            return `@param ${param.name} ${param.description}`;
-          })
-          .join("\n");
+    !params || !params.length ? "" : formatJsDocParam(params).join("\n");
 
-  return `${description ? description + "\n" : description}${paramJSDoc}`;
+  return `${
+    description ? wrapString(description) + "\n" : description
+  }${paramJSDoc}`;
 }
 
 /**
