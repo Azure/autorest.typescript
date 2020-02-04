@@ -194,7 +194,6 @@ export function transformOperationResponse(
 
   const schemaResponse = response as SchemaResponse;
   const typeDetails = getTypeForSchema(schemaResponse.schema);
-  const bodyMapper = getBodyMapperFromSchema(schemaResponse.schema);
   if (!typeDetails) {
     throw new Error(
       `Unable to extract responseType for ${schemaResponse.schema.type}`
@@ -204,9 +203,14 @@ export function transformOperationResponse(
   const httpInfo = response.protocol.http;
   if (httpInfo) {
     const isDefault = httpInfo.statusCodes.indexOf("default") > -1;
+    const mediaType: KnownMediaType = httpInfo.knownMediaType;
+    const bodyMapper = getBodyMapperFromSchema(
+      schemaResponse.schema,
+      mediaType
+    );
     return {
       statusCodes: httpInfo.statusCodes,
-      mediaType: httpInfo.knownMediaType,
+      mediaType,
       bodyMapper,
       typeDetails,
       isError: isDefault || isError
@@ -239,7 +243,7 @@ export async function transformOperation(
     transformOperationResponse(response as SchemaResponse)
   );
 
-  const mediaTypes = await getMediaTypes(request, responses);
+  const mediaTypes = await getOperationMediaTypes(request, responses);
 
   return {
     name,
@@ -255,7 +259,9 @@ export async function transformOperation(
   };
 }
 
-export async function transformOperationGroups(codeModel: CodeModel) {
+export async function transformOperationGroups(
+  codeModel: CodeModel
+): Promise<OperationGroupDetails[]> {
   return await Promise.all(
     codeModel.operationGroups.map(transformOperationGroup)
   );
@@ -276,16 +282,24 @@ export async function transformOperationGroup(
       async operation => await transformOperation(operation, name)
     )
   );
+  const serializationStyles = getOperationGroupMediaTypes(operations);
 
   return {
     name,
     key: operationGroup.$key,
     operations,
-    isTopLevel
+    isTopLevel,
+    serializationStyles
   };
 }
 
-async function getMediaTypes(
+function getOperationGroupMediaTypes(operationDetails: OperationDetails[]) {
+  return operationDetails.reduce((acc, op) => {
+    return new Set<KnownMediaType>(...acc.entries(), ...op.mediaTypes);
+  }, new Set<KnownMediaType>());
+}
+
+async function getOperationMediaTypes(
   { mediaType }: OperationRequestDetails,
   responses: OperationResponseDetails[]
 ) {
@@ -325,9 +339,16 @@ function getGroupedParameters(
 
 function getBodyMapperFromSchema(
   responseSchema: Schema,
+  mediaType?: KnownMediaType,
   expand = false
 ): Mapper | string {
   const responseType = getSpecType(responseSchema, expand);
   const { reference } = responseType;
-  return reference || transformMapper({ schema: responseSchema });
+  return (
+    reference ||
+    transformMapper({
+      schema: responseSchema,
+      options: { hasXmlMetadata: mediaType === KnownMediaType.Xml }
+    })
+  );
 }

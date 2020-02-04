@@ -28,6 +28,7 @@ import { getLanguageMetadata } from "../utils/languageHelpers";
 import { isNil } from "lodash";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { extractHeaders } from "../utils/extractHeaders";
+import { KnownMediaType } from "@azure-tools/codegen";
 
 interface PipelineValue {
   schema: Schema;
@@ -59,6 +60,7 @@ export interface EntityOptions {
   serializedName?: string;
   required?: boolean;
   readOnly?: boolean;
+  hasXmlMetadata?: boolean;
 }
 
 export interface MapperInput {
@@ -67,16 +69,20 @@ export interface MapperInput {
 }
 
 export async function transformMappers(
-  codeModel: CodeModel
+  codeModel: CodeModel,
+  serializationStyles: Set<KnownMediaType>
 ): Promise<Mapper[]> {
   if (!codeModel.schemas.objects) {
     return [];
   }
 
+  const hasXmlMetadata = serializationStyles.has(KnownMediaType.Xml);
   return [
     ...codeModel.schemas.objects,
     ...extractHeaders(codeModel.operationGroups)
-  ].map(objectSchema => transformMapper({ schema: objectSchema }));
+  ].map(objectSchema =>
+    transformMapper({ schema: objectSchema, options: { hasXmlMetadata } })
+  );
 }
 
 /**
@@ -233,7 +239,7 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
   const objectSchema = schema as ObjectSchema;
   const { discriminator, discriminatorValue } = objectSchema;
 
-  let modelProperties = processProperties(objectSchema.properties);
+  let modelProperties = processProperties(objectSchema.properties, options);
   const parents = objectSchema.parents ? objectSchema.parents.all : [];
   const immediateParents = objectSchema.parents
     ? objectSchema.parents.immediate
@@ -477,27 +483,22 @@ function transformNumberMapper(pipelineValue: PipelineValue): PipelineValue {
   };
 }
 
-function processProperties(properties: Property[] = []) {
+function processProperties(
+  properties: Property[] = [],
+  options: EntityOptions = {}
+) {
   let modelProperties: ModelProperties = {};
   properties.forEach(prop => {
     const name = normalizeName(prop.serializedName, NameType.Property);
-    modelProperties[name] = extractObjectPropertyMapper(prop);
+    modelProperties[name] = getMapperOrRef(prop.schema, prop.serializedName, {
+      ...options,
+      required: prop.required,
+      readOnly: prop.readOnly,
+      serializedName: prop.serializedName
+    });
   });
 
   return modelProperties;
-}
-
-function extractObjectPropertyMapper({
-  serializedName,
-  schema,
-  required,
-  readOnly
-}: Property): Mapper {
-  return getMapperOrRef(schema, serializedName, {
-    required,
-    readOnly,
-    serializedName
-  });
 }
 
 export function getMapperOrRef(

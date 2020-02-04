@@ -61,6 +61,7 @@ export interface OperationGroupDetails {
   key: string;
   name: string;
   operations: OperationDetails[];
+  serializationStyles: Set<KnownMediaType>;
   isTopLevel: boolean;
 }
 

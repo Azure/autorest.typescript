@@ -24,6 +24,8 @@ import { transformObjects, transformObject } from "./objectTransforms";
 import { ObjectDetails } from "../models/modelDetails";
 import { Host } from "@azure-tools/autorest-extension-base";
 import { transformBaseUrl } from "./urlTransforms";
+import { KnownMediaType } from "@azure-tools/codegen";
+import { OperationGroupDetails } from "../models/operationDetails";
 
 export async function transformChoices(codeModel: CodeModel) {
   const choices = [
@@ -55,21 +57,18 @@ export async function transformCodeModel(
   host: Host
 ): Promise<ClientDetails> {
   const className = normalizeName(codeModel.info.title, NameType.Class);
-  const uberParents = await getUberParents(codeModel);
-  const options = await transformOptions(host);
 
-  const [
-    objects,
-    mappers,
-    unions,
-    operationGroups,
-    parameters,
-    baseUrl
-  ] = await Promise.all([
+  const [uberParents, options, operationGroups] = await Promise.all([
+    getUberParents(codeModel),
+    transformOptions(host),
+    transformOperationGroups(codeModel)
+  ]);
+
+  const serializationStyles = getSerializationStyles(operationGroups);
+  const [objects, mappers, unions, parameters, baseUrl] = await Promise.all([
     transformObjects(codeModel, uberParents),
-    transformMappers(codeModel),
+    transformMappers(codeModel, serializationStyles),
     transformChoices(codeModel),
-    transformOperationGroups(codeModel),
     transformParameters(codeModel, options),
     transformBaseUrl(codeModel)
   ]);
@@ -87,6 +86,21 @@ export async function transformCodeModel(
     options,
     baseUrl
   };
+}
+
+/**
+ * Gets the SerializationStyles based on the different mediaTypes found in a set of operation groups
+ * @param operationGroups
+ */
+function getSerializationStyles(operationGroups: OperationGroupDetails[]) {
+  return operationGroups.reduce(
+    (styles, op) =>
+      new Set<KnownMediaType>(
+        ...styles.entries(),
+        ...op.serializationStyles.entries()
+      ),
+    new Set<KnownMediaType>()
+  );
 }
 
 /**
