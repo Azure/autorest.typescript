@@ -40,7 +40,7 @@ export class Flattencomplex {
 }
 // Operation Specifications
 
-const serializer = new coreHttp.Serializer(Mappers);
+const serializer = new coreHttp.Serializer(Mappers, false);
 
 const getValidOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/flatten/valid",

@@ -104,7 +104,7 @@ export class PathItems {
 }
 // Operation Specifications
 
-const serializer = new coreHttp.Serializer(Mappers);
+const serializer = new coreHttp.Serializer(Mappers, false);
 
 const getAllWithValuesOperationSpec: coreHttp.OperationSpec = {
   path:

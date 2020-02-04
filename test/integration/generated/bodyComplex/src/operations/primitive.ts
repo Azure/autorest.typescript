@@ -337,7 +337,7 @@ export class Primitive {
 }
 // Operation Specifications
 
-const serializer = new coreHttp.Serializer(Mappers);
+const serializer = new coreHttp.Serializer(Mappers, false);
 
 const getIntOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/primitive/integer",

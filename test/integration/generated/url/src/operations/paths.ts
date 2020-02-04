@@ -402,7 +402,7 @@ export class Paths {
 }
 // Operation Specifications
 
-const serializer = new coreHttp.Serializer(Mappers);
+const serializer = new coreHttp.Serializer(Mappers, false);
 
 const getBooleanTrueOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/bool/true/{boolPath}",

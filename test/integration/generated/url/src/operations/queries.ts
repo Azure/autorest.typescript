@@ -474,7 +474,7 @@ export class Queries {
 }
 // Operation Specifications
 
-const serializer = new coreHttp.Serializer(Mappers);
+const serializer = new coreHttp.Serializer(Mappers, false);
 
 const getBooleanTrueOperationSpec: coreHttp.OperationSpec = {
   path: "/queries/bool/true",

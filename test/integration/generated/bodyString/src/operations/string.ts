@@ -201,14 +201,14 @@ export class String {
 }
 // Operation Specifications
 
-const serializer = new coreHttp.Serializer(Mappers);
+const serializer = new coreHttp.Serializer(Mappers, false);
 
 const getNullOperationSpec: coreHttp.OperationSpec = {
   path: "/string/null",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
+      bodyMapper: { type: { name: "String" }, serializedName: "string" }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -234,7 +234,7 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
+      bodyMapper: { type: { name: "String" }, serializedName: "string" }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -260,7 +260,7 @@ const getMbcsOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
+      bodyMapper: { type: { name: "String" }, serializedName: "string" }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -286,7 +286,7 @@ const getWhitespaceOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
+      bodyMapper: { type: { name: "String" }, serializedName: "string" }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -312,7 +312,7 @@ const getNotProvidedOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
+      bodyMapper: { type: { name: "String" }, serializedName: "string" }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -326,7 +326,7 @@ const getBase64EncodedOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Base64Url" } }
+      bodyMapper: { type: { name: "Base64Url" }, serializedName: "byte-array" }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -340,7 +340,7 @@ const getBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Base64Url" } }
+      bodyMapper: { type: { name: "Base64Url" }, serializedName: "byte-array" }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -366,7 +366,7 @@ const getNullBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Base64Url" } }
+      bodyMapper: { type: { name: "Base64Url" }, serializedName: "byte-array" }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
