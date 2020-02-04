@@ -37,7 +37,7 @@ const constantSchema = new ConstantSchema(
   "",
   {
     value: new ConstantValue("Some constant value"),
-    valueType: { type: SchemaType.String }
+    valueType: new StringSchema("string", "")
   }
 );
 
@@ -48,7 +48,7 @@ describe("OperationTransforms", () => {
   describe("getSpecType", () => {
     it("should return string when type is string", () => {
       assert.strictEqual(
-        getSpecType({ type: SchemaType.String } as any).name,
+        getSpecType(new StringSchema("string", "")).name,
         "String",
         "string"
       );
@@ -57,7 +57,7 @@ describe("OperationTransforms", () => {
       const constantType = getSpecType(
         {
           type: SchemaType.Constant,
-          valueType: { type: SchemaType.String } as any,
+          valueType: new StringSchema("string", ""),
           value: { value: "constantValue" }
         } as any,
         true
@@ -257,8 +257,7 @@ describe("OperationTransforms", () => {
         checkHttpMethodAndPath(operationSpec);
         const okResponse = operationSpec.responses[200];
         assert.deepEqual((okResponse.bodyMapper as Mapper).type, {
-          name: "Enum",
-          allowedValues: ["red color", "green-color", "blue_color"]
+          name: "String"
         });
         assert.deepEqual(
           operationSpec.responses.default.bodyMapper,

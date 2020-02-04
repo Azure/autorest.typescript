@@ -26,7 +26,7 @@ import {
 } from "../models/operationDetails";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getTypeForSchema } from "../utils/schemaHelpers";
-import { getMapperTypeFromSchema } from "./mapperTransforms";
+import { getMapperTypeFromSchema, transformMapper } from "./mapperTransforms";
 import { ParameterDetails } from "../models/parameterDetails";
 import { PropertyKind, TypeDetails } from "../models/modelDetails";
 import { TOPLEVEL_OPERATIONGROUP } from "./constants";
@@ -328,11 +328,6 @@ function getBodyMapperFromSchema(
   expand = false
 ): Mapper | string {
   const responseType = getSpecType(responseSchema, expand);
-  const { reference, constantProps, ...type } = responseType;
-  return (
-    reference || {
-      type: type as MapperType,
-      ...(!!constantProps && constantProps)
-    }
-  );
+  const { reference } = responseType;
+  return reference || transformMapper({ schema: responseSchema });
 }
