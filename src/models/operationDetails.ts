@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { HttpMethod } from "@azure-tools/codemodel";
+import { HttpMethod, SerializationStyle } from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { Mapper } from "@azure/core-http";
 import { ParameterDetails } from "./parameterDetails";
@@ -38,6 +38,7 @@ export interface OperationDetails {
   request: OperationRequestDetails;
   responses: OperationResponseDetails[];
   typeDetails: TypeDetails;
+  mediaTypes: Set<KnownMediaType>;
 }
 
 /**
@@ -50,6 +51,7 @@ export interface OperationSpecDetails {
   requestBody?: ParameterDetails;
   queryParameters?: ParameterDetails[];
   urlParameters?: ParameterDetails[];
+  isXML?: boolean;
 }
 
 /**

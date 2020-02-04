@@ -165,10 +165,10 @@ describe("OperationTransforms", () => {
         );
       };
 
-      it("should create an operation spec  with correct http details", () => {
+      it("should create an operation spec  with correct http details", async () => {
         const okResponseSchema = get200ResponseSchema(constantSchema);
         const mockOperation = getOperation(okResponseSchema);
-        const operationDetails = transformOperation(
+        const operationDetails = await transformOperation(
           mockOperation,
           "MockOperationGroup"
         );
@@ -176,18 +176,21 @@ describe("OperationTransforms", () => {
         checkHttpMethodAndPath(operationSpec);
       });
 
-      it("should create an operation spec with correct responses from a basic response", () => {
+      it("should create an operation spec with correct responses from a basic response", async () => {
         const mockOperation = getOperation();
         const operationDetails = transformOperation(
           mockOperation,
           "MockOperationGroup"
         );
-        const operationSpec = transformOperationSpec(operationDetails, []);
+        const operationSpec = transformOperationSpec(
+          await operationDetails,
+          []
+        );
         checkHttpMethodAndPath(operationSpec);
         assert.notEqual(operationSpec.responses[200], undefined);
       });
 
-      it("should create an operation spec with correct parameters", () => {
+      it("should create an operation spec with correct parameters", async () => {
         const parameter = new Parameter(
           "mockParam",
           "",
@@ -203,7 +206,7 @@ describe("OperationTransforms", () => {
           mockOperation,
           "MockOperationGroup"
         );
-        const operationSpec = transformOperationSpec(operationDetails, [
+        const operationSpec = transformOperationSpec(await operationDetails, [
           {
             nameRef: "MockOperation",
             operationsIn: ["mockoperationgroup_getnull"],
@@ -224,10 +227,10 @@ describe("OperationTransforms", () => {
         assert.deepEqual(operationSpec.requestBody!.nameRef, "MockOperation");
       });
 
-      it("should create an operation spec with correct responses spec and cosntant schema response", () => {
+      it("should create an operation spec with correct responses spec and cosntant schema response", async () => {
         const okResponseSchema = get200ResponseSchema(constantSchema);
         const mockOperation = getOperation(okResponseSchema);
-        const operationDetails = transformOperation(
+        const operationDetails = await transformOperation(
           mockOperation,
           "MockOperationGroup"
         );
@@ -243,10 +246,10 @@ describe("OperationTransforms", () => {
         );
       });
 
-      it("should create an operation spec with correct responses spec and choice schema response", () => {
+      it("should create an operation spec with correct responses spec and choice schema response", async () => {
         const okResponseSchema = get200ResponseSchema(choice);
         const mockOperation = getOperation(okResponseSchema);
-        const operationDetails = transformOperation(
+        const operationDetails = await transformOperation(
           mockOperation,
           "MockOperationGroup"
         );
