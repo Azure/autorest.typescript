@@ -244,7 +244,6 @@ export async function transformOperation(
   );
 
   const mediaTypes = await getOperationMediaTypes(request, responses);
-
   return {
     name,
     typeDetails,
@@ -295,7 +294,7 @@ export async function transformOperationGroup(
 
 function getOperationGroupMediaTypes(operationDetails: OperationDetails[]) {
   return operationDetails.reduce((acc, op) => {
-    return new Set<KnownMediaType>(...acc.entries(), ...op.mediaTypes);
+    return new Set<KnownMediaType>([...acc, ...op.mediaTypes]);
   }, new Set<KnownMediaType>());
 }
 
@@ -304,7 +303,9 @@ async function getOperationMediaTypes(
   responses: OperationResponseDetails[]
 ) {
   const mediaTypes = new Set<KnownMediaType>();
-  mediaType && mediaTypes.add(mediaType);
+  if (mediaType) {
+    mediaTypes.add(mediaType);
+  }
 
   responses.forEach(r => r.mediaType && mediaTypes.add(r.mediaType));
 

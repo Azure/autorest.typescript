@@ -137,18 +137,20 @@ interface PartialMapperType {
 function buildMapper(
   schema: Schema,
   type: PartialMapperType,
-  options?: EntityOptions
+  options: EntityOptions = {}
 ): Mapper {
-  const required = !!options && !!options.required;
-  const readOnly = !!options && !!options.readOnly;
+  const required = !!options.required;
+  const readOnly = !!options.readOnly;
   // Handle x-ms-discriminator-value Extension. More info:
   // https://github.com/Azure/autorest/tree/master/docs/extensions/swagger-extensions-examples/x-ms-discriminator-value
   const msDiscriminatorValue =
     schema.extensions && schema.extensions["x-ms-discriminator-value"];
+
   const serializedName =
     msDiscriminatorValue ||
-    (options && options.serializedName) ||
+    options.serializedName ||
     getLanguageMetadata(schema.language).name;
+
   const arraySchema = schema as ArraySchema;
   arraySchema.elementType;
   const stringSchema = schema as StringSchema;
@@ -178,6 +180,8 @@ function buildMapper(
     ...(numberSchema.multipleOf && { MultipleOf: numberSchema.multipleOf })
   };
 
+  const xmlMetadata = getXmlMetadata(schema, options);
+
   const mappeType = type as MapperType;
   return {
     ...{ type: mappeType },
@@ -187,7 +191,8 @@ function buildMapper(
     }),
     ...(required && { required }),
     ...(readOnly && { readOnly }),
-    ...(hasConstraints && { constraints })
+    ...(hasConstraints && { constraints }),
+    ...xmlMetadata
   };
 }
 
@@ -206,6 +211,40 @@ function transformPrimitiveMapper(pipelineValue: PipelineValue) {
     schema,
     mapper,
     isHandled: true
+  };
+}
+
+function getXmlMetadata(
+  schema: Schema,
+  { hasXmlMetadata, serializedName }: EntityOptions
+) {
+  if (!hasXmlMetadata) {
+    return {};
+  }
+
+  // This is to handle ArraySchemas
+  const elementSchema = (schema as ArraySchema).elementType;
+  let xmlElementName: string | undefined = undefined;
+  if (elementSchema) {
+    const elementDefaultName =
+      serializedName ||
+      getLanguageMetadata(elementSchema.language).serializedName;
+    xmlElementName =
+      elementSchema.serialization?.xml?.name || elementDefaultName;
+  }
+
+  const defaultName =
+    serializedName || getLanguageMetadata(schema.language).serializedName;
+  const { name, attribute: xmlIsAttribute, wrapped: xmlIsWrapped } =
+    schema.serialization?.xml || {};
+
+  const xmlName = name || defaultName;
+
+  return {
+    ...(xmlName && { xmlName }),
+    ...(xmlIsAttribute && { xmlIsAttribute }),
+    ...(xmlIsWrapped && { xmlIsWrapped }),
+    ...(xmlElementName && { xmlElementName })
   };
 }
 
@@ -325,7 +364,6 @@ function transformArrayMapper(pipelineValue: PipelineValue) {
   }
 
   const arraySchema = schema as ArraySchema;
-
   const elementSchema = arraySchema.elementType;
   const mapper = buildMapper(
     schema,
@@ -504,11 +542,15 @@ function processProperties(
 export function getMapperOrRef(
   schema: Schema,
   serializedName?: string,
-  options?: EntityOptions
+  options: EntityOptions = {}
 ): Mapper {
   if (isSchemaType([SchemaType.Object], schema)) {
+    // When the property is an object, we just need to reference the class
+    // instead of building a mapper.
+    const xmlMetadata = getXmlMetadata(schema, options);
     return {
       ...(serializedName && { serializedName }),
+      ...xmlMetadata,
       type: {
         name: MapperType.Composite,
         className: getMapperClassName(schema)

@@ -95,10 +95,7 @@ export async function transformCodeModel(
 function getSerializationStyles(operationGroups: OperationGroupDetails[]) {
   return operationGroups.reduce(
     (styles, op) =>
-      new Set<KnownMediaType>(
-        ...styles.entries(),
-        ...op.serializationStyles.entries()
-      ),
+      new Set<KnownMediaType>([...styles, ...op.serializationStyles]),
     new Set<KnownMediaType>()
   );
 }
