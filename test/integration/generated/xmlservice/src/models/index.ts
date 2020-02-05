@@ -29,7 +29,7 @@ export interface ComplexTypeNoMeta {
   /**
    * The id of the res
    */
-  iD?: string;
+  id?: string;
 }
 
 /**
@@ -53,7 +53,7 @@ export interface ComplexTypeWithMeta {
   /**
    * The id of the res
    */
-  iD?: string;
+  id?: string;
 }
 
 /**

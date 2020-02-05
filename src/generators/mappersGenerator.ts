@@ -11,7 +11,8 @@ import {
   CompositeMapperType
 } from "@azure/core-http";
 import { ModelProperties } from "../transforms/mapperTransforms";
-import { keys, isEmpty, isString } from "lodash";
+import { keys, isEmpty, isString, isNil } from "lodash";
+import { getStringForValue } from "../utils/valueHelpers";
 
 export function generateMappers(
   clientDetails: ClientDetails,
@@ -95,7 +96,7 @@ export function generateMappers(
     });
 }
 
-function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
+export function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
   const parents = extractParents(mapper);
   const { type, ...restMapper } = mapper;
   const {
@@ -105,7 +106,9 @@ function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
   } = type as CompositeMapperType;
   const isReferenceDicriminator = isString(polymorphicDiscriminator);
   writer.block(() => {
-    writeObjectProps(restMapper, writer)
+    const { defaultValue, ...mapperProps } = restMapper;
+    writeDefaultValue(writer, defaultValue, restType);
+    writeObjectProps(mapperProps, writer)
       .write("type:")
       .block(() => {
         writeObjectProps(restType, writer)
@@ -124,12 +127,32 @@ function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
               writeObjectProps(polymorphicDiscriminator, writer);
             })
             .write(",");
-        writer.write("modelProperties:").block(() => {
-          writeParentMappers(parents, writer);
-          writeObjectProps(modelProperties, writer);
-        });
+
+        const hasParents = !!parents && !!parents.length;
+        const hasModelPropertoes =
+          !!modelProperties && !isEmpty(modelProperties);
+        if (hasParents || hasModelPropertoes) {
+          writer.write("modelProperties:").block(() => {
+            writeParentMappers(parents, writer);
+            writeObjectProps(modelProperties, writer);
+          });
+        }
       });
   });
+}
+
+function writeDefaultValue(
+  writer: CodeBlockWriter,
+  defaultValue: any,
+  mapperType: MapperType
+) {
+  if (!isNil(defaultValue)) {
+    return writer.write(
+      `defaultValue: ${getStringForValue(defaultValue, mapperType.name)},`
+    );
+  }
+
+  return writer;
 }
 
 function writeParentMappers(parents: string[], writer: CodeBlockWriter) {

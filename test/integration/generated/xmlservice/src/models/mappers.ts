@@ -34,7 +34,7 @@ export const ComplexTypeNoMeta: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ComplexTypeNoMeta",
     modelProperties: {
-      iD: { type: { name: "String" }, serializedName: "ID", xmlName: "ID" }
+      id: { type: { name: "String" }, serializedName: "ID", xmlName: "ID" }
     }
   }
 };
@@ -66,7 +66,7 @@ export const ComplexTypeWithMeta: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ComplexTypeWithMeta",
     modelProperties: {
-      iD: { type: { name: "String" }, serializedName: "ID", xmlName: "ID" }
+      id: { type: { name: "String" }, serializedName: "ID", xmlName: "ID" }
     }
   }
 };
@@ -264,7 +264,7 @@ export const ListContainersResponse: coreHttp.CompositeMapper = {
         serializedName: "Containers",
         xmlName: "Containers",
         xmlIsWrapped: true,
-        xmlElementName: "Containers"
+        xmlElementName: "Container"
       },
       nextMarker: {
         type: { name: "String" },
@@ -300,7 +300,7 @@ export const Container: coreHttp.CompositeMapper = {
         },
         serializedName: "Metadata",
         xmlName: "Metadata",
-        xmlElementName: "Metadata"
+        xmlElementName: "string"
       }
     }
   }
@@ -727,7 +727,7 @@ export const Blob: coreHttp.CompositeMapper = {
         },
         serializedName: "Metadata",
         xmlName: "Metadata",
-        xmlElementName: "Metadata"
+        xmlElementName: "string"
       }
     }
   }
@@ -771,7 +771,7 @@ export const BlobProperties: coreHttp.CompositeMapper = {
         serializedName: "Content-Language",
         xmlName: "Content-Language"
       },
-      contentMD5: {
+      contentMd5: {
         type: { name: "String" },
         serializedName: "Content-MD5",
         xmlName: "Content-MD5"

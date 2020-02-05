@@ -12,9 +12,12 @@ import * as Mappers from "../models/mappers";
 export const $host: coreHttp.OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
-    type: { name: "String" },
     serializedName: "$host",
-    required: true
+    required: true,
+    xmlName: "$host",
+    type: {
+      name: "String"
+    }
   },
   skipEncoding: true
 };
@@ -47,12 +50,15 @@ export const appleBarrel: coreHttp.OperationParameter = {
 export const bananas: coreHttp.OperationParameter = {
   parameterPath: "bananas",
   mapper: {
+    serializedName: "bananas",
+    required: true,
+    xmlName: "bananas",
+    xmlIsWrapped: true,
+    xmlElementName: "banana",
     type: {
       name: "Sequence",
       element: { type: { name: "Composite", className: "Banana" } }
-    },
-    serializedName: "bananas",
-    required: true
+    }
   }
 };
 
@@ -64,30 +70,36 @@ export const banana: coreHttp.OperationParameter = {
 export const comp: coreHttp.OperationQueryParameter = {
   parameterPath: "comp",
   mapper: {
-    type: { name: "String" },
+    defaultValue: "list",
     serializedName: "comp",
     isConstant: true,
-    defaultValue: "list"
+    type: {
+      name: "String"
+    }
   }
 };
 
 export const comp1: coreHttp.OperationQueryParameter = {
   parameterPath: "comp",
   mapper: {
-    type: { name: "String" },
+    defaultValue: "properties",
     serializedName: "comp",
     isConstant: true,
-    defaultValue: "properties"
+    type: {
+      name: "String"
+    }
   }
 };
 
 export const restype: coreHttp.OperationQueryParameter = {
   parameterPath: "restype",
   mapper: {
-    type: { name: "String" },
+    defaultValue: "service",
     serializedName: "restype",
     isConstant: true,
-    defaultValue: "service"
+    type: {
+      name: "String"
+    }
   }
 };
 
@@ -99,32 +111,39 @@ export const properties: coreHttp.OperationParameter = {
 export const comp2: coreHttp.OperationQueryParameter = {
   parameterPath: "comp",
   mapper: {
-    type: { name: "String" },
+    defaultValue: "acl",
     serializedName: "comp",
     isConstant: true,
-    defaultValue: "acl"
+    type: {
+      name: "String"
+    }
   }
 };
 
 export const restype1: coreHttp.OperationQueryParameter = {
   parameterPath: "restype",
   mapper: {
-    type: { name: "String" },
+    defaultValue: "container",
     serializedName: "restype",
     isConstant: true,
-    defaultValue: "container"
+    type: {
+      name: "String"
+    }
   }
 };
 
 export const properties1: coreHttp.OperationParameter = {
   parameterPath: "properties",
   mapper: {
+    serializedName: "properties",
+    required: true,
+    xmlName: "SignedIdentifiers",
+    xmlIsWrapped: true,
+    xmlElementName: "SignedIdentifier",
     type: {
       name: "Sequence",
       element: { type: { name: "Composite", className: "SignedIdentifier" } }
-    },
-    serializedName: "properties",
-    required: true
+    }
   }
 };
 

@@ -453,6 +453,7 @@ const putComplexTypeRefNoMetaOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.model,
   urlParameters: [Parameters.$host],
   isXML: true,
+  contentType: "application/xml; charset=utf-8",
   serializer
 };
 const getComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
@@ -474,6 +475,7 @@ const putComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.model1,
   urlParameters: [Parameters.$host],
   isXML: true,
+  contentType: "application/xml; charset=utf-8",
   serializer
 };
 const getSimpleOperationSpec: coreHttp.OperationSpec = {
@@ -502,6 +504,7 @@ const putSimpleOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.slideshow,
   urlParameters: [Parameters.$host],
   isXML: true,
+  contentType: "application/xml; charset=utf-8",
   serializer
 };
 const getWrappedListsOperationSpec: coreHttp.OperationSpec = {
@@ -527,6 +530,7 @@ const putWrappedListsOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.wrappedLists,
   urlParameters: [Parameters.$host],
   isXML: true,
+  contentType: "application/xml; charset=utf-8",
   serializer
 };
 const getHeadersOperationSpec: coreHttp.OperationSpec = {
@@ -555,6 +559,7 @@ const putEmptyListOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.slideshow,
   urlParameters: [Parameters.$host],
   isXML: true,
+  contentType: "application/xml; charset=utf-8",
   serializer
 };
 const getEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
@@ -576,6 +581,7 @@ const putEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.appleBarrel,
   urlParameters: [Parameters.$host],
   isXML: true,
+  contentType: "application/xml; charset=utf-8",
   serializer
 };
 const getRootListOperationSpec: coreHttp.OperationSpec = {
@@ -605,6 +611,7 @@ const putRootListOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.bananas,
   urlParameters: [Parameters.$host],
   isXML: true,
+  contentType: "application/xml; charset=utf-8",
   serializer
 };
 const getRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
@@ -634,6 +641,7 @@ const putRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.bananas,
   urlParameters: [Parameters.$host],
   isXML: true,
+  contentType: "application/xml; charset=utf-8",
   serializer
 };
 const getEmptyRootListOperationSpec: coreHttp.OperationSpec = {
@@ -663,6 +671,7 @@ const putEmptyRootListOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.bananas,
   urlParameters: [Parameters.$host],
   isXML: true,
+  contentType: "application/xml; charset=utf-8",
   serializer
 };
 const getEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
@@ -684,6 +693,7 @@ const putEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.banana,
   urlParameters: [Parameters.$host],
   isXML: true,
+  contentType: "application/xml; charset=utf-8",
   serializer
 };
 const listContainersOperationSpec: coreHttp.OperationSpec = {
@@ -720,6 +730,7 @@ const putServicePropertiesOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.comp1, Parameters.restype],
   urlParameters: [Parameters.$host],
   isXML: true,
+  contentType: "application/xml; charset=utf-8",
   serializer
 };
 const getAclsOperationSpec: coreHttp.OperationSpec = {
@@ -754,6 +765,7 @@ const putAclsOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.comp2, Parameters.restype1],
   urlParameters: [Parameters.$host],
   isXML: true,
+  contentType: "application/xml; charset=utf-8",
   serializer
 };
 const listBlobsOperationSpec: coreHttp.OperationSpec = {

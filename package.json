@@ -44,6 +44,7 @@
     },
     "devDependencies": {
         "@autorest/test-server": "^3.0.26",
+        "@azure/abort-controller": "^1.0.1",
         "@microsoft.azure/autorest.testserver": "^2.10.9",
         "@types/chai": "^4.2.8",
         "@types/express": "^4.17.2",

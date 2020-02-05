@@ -47,7 +47,7 @@ export function transformChoice(
     description: `Defines values for ${metadata.name}.`,
     serializedName: metadata.name,
     values: choice.choices.map(c =>
-      getStringForValue(c.value, choice.choiceType)
+      getStringForValue(c.value, choice.choiceType.type)
     )
   };
 }
@@ -58,16 +58,17 @@ export async function transformCodeModel(
 ): Promise<ClientDetails> {
   const className = normalizeName(codeModel.info.title, NameType.Class);
 
-  const [uberParents, options, operationGroups] = await Promise.all([
+  const [uberParents, operationGroups] = await Promise.all([
     getUberParents(codeModel),
-    transformOptions(host),
+
     transformOperationGroups(codeModel)
   ]);
 
-  const serializationStyles = getSerializationStyles(operationGroups);
+  const options = await transformOptions(host, operationGroups);
+
   const [objects, mappers, unions, parameters, baseUrl] = await Promise.all([
     transformObjects(codeModel, uberParents),
-    transformMappers(codeModel, serializationStyles),
+    transformMappers(codeModel, options),
     transformChoices(codeModel),
     transformParameters(codeModel, options),
     transformBaseUrl(codeModel)
@@ -86,18 +87,6 @@ export async function transformCodeModel(
     options,
     baseUrl
   };
-}
-
-/**
- * Gets the SerializationStyles based on the different mediaTypes found in a set of operation groups
- * @param operationGroups
- */
-function getSerializationStyles(operationGroups: OperationGroupDetails[]) {
-  return operationGroups.reduce(
-    (styles, op) =>
-      new Set<KnownMediaType>([...styles, ...op.serializationStyles]),
-    new Set<KnownMediaType>()
-  );
 }
 
 /**

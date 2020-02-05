@@ -12,6 +12,8 @@ import {
 } from "@azure-tools/codemodel";
 import { transformParameters } from "../../../src/transforms/parameterTransforms";
 import { ParameterDetails } from "../../../src/models/parameterDetails";
+import { EntityOptions } from "../../../src/transforms/mapperTransforms";
+import { ClientOptions } from "../../../src/models/clientDetails";
 describe("parameterTransforms", () => {
   const getCodeModelWithOneParam = (paramOptions?: {
     location?: ParameterLocation;
@@ -55,11 +57,16 @@ describe("parameterTransforms", () => {
     return codeModel;
   };
   describe("transformParameters", () => {
+    let clientOptions: ClientOptions;
+    beforeEach(() => {
+      clientOptions = { serializationStyles: new Set() };
+    });
+
     it("should set the correct parameter location", () => {
       const codeModel = getCodeModelWithOneParam({
         location: ParameterLocation.Path
       });
-      const params = transformParameters(codeModel);
+      const params = transformParameters(codeModel, clientOptions);
       assert.equal(params[0] && params[0].location, ParameterLocation.Path);
     });
 
@@ -67,19 +74,19 @@ describe("parameterTransforms", () => {
       const codeModel = getCodeModelWithOneParam({
         extensions: { "x-ms-priority": 0 }
       });
-      const params = transformParameters(codeModel);
+      const params = transformParameters(codeModel, clientOptions);
       assert.equal(params[0] && params[0].isGlobal, true);
     });
 
     it("shouldn ot mark as global parameter when x-ms-priority does not exist", () => {
       const codeModel = getCodeModelWithOneParam();
-      const params = transformParameters(codeModel);
+      const params = transformParameters(codeModel, clientOptions);
       assert.equal(params[0] && params[0].isGlobal, false);
     });
 
     it("should return an empty set of global an operation parameters", () => {
       const codeModel = new CodeModel("testCodeModel");
-      const parameters = transformParameters(codeModel);
+      const parameters = transformParameters(codeModel, clientOptions);
 
       assert.deepEqual(parameters, []);
     });
@@ -150,7 +157,7 @@ describe("parameterTransforms", () => {
       });
 
       codeModel.operationGroups = [op1, op2];
-      const parameters = transformParameters(codeModel);
+      const parameters = transformParameters(codeModel, clientOptions);
 
       assert.equal(parameters.length, 2);
       assert.deepEqual(
@@ -222,7 +229,7 @@ describe("parameterTransforms", () => {
       });
 
       codeModel.operationGroups = [op1, op2];
-      const parameters = transformParameters(codeModel);
+      const parameters = transformParameters(codeModel, clientOptions);
 
       assert.equal(parameters.length, 1);
       assert.deepEqual(
@@ -292,7 +299,7 @@ describe("parameterTransforms", () => {
           ]
         })
       ];
-      const parameters = transformParameters(codeModel);
+      const parameters = transformParameters(codeModel, clientOptions);
 
       assert.equal(parameters.length, 2);
       assert.deepEqual(

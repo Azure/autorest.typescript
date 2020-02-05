@@ -26,6 +26,7 @@ import { getStringForValue } from "../utils/valueHelpers";
 import { TOPLEVEL_OPERATIONGROUP } from "./constants";
 import { ClientOptions } from "../models/clientDetails";
 import { PropertyKind } from "../models/modelDetails";
+import { KnownMediaType } from "@azure-tools/codegen";
 
 interface OperationParameterDetails {
   parameter: Parameter;
@@ -55,11 +56,17 @@ const buildCredentialsParameter = (): ParameterDetails => ({
 
 export function transformParameters(
   codeModel: CodeModel,
-  options: ClientOptions = {}
+  options: ClientOptions
 ): ParameterDetails[] {
   let parameters: ParameterDetails[] = [];
+  const hasXml = !!options.serializationStyles?.has(KnownMediaType.Xml);
   extractOperationParameters(codeModel).forEach(p =>
-    populateOperationParameters(p.parameter, parameters, p.operationName)
+    populateOperationParameters(
+      p.parameter,
+      parameters,
+      p.operationName,
+      hasXml
+    )
   );
 
   // Adding credentials parameter as a Synthetic parameter, this is to treat this as any another parameter
@@ -94,14 +101,20 @@ const extractOperationParameters = (codeModel: CodeModel) =>
 
 function getDefaultValue(parameter: Parameter) {
   if (!!parameter.clientDefaultValue) {
-    return getStringForValue(parameter.clientDefaultValue, parameter.schema);
+    return getStringForValue(
+      parameter.clientDefaultValue,
+      parameter.schema.type
+    );
   }
 
   if (parameter.schema.type === SchemaType.Constant) {
     const constantSchema = parameter.schema as ConstantSchema;
     return (
       constantSchema.defaultValue ||
-      getStringForValue(constantSchema.value.value, constantSchema.valueType)
+      getStringForValue(
+        constantSchema.value.value,
+        constantSchema.valueType.type
+      )
     );
   }
 
@@ -111,7 +124,8 @@ function getDefaultValue(parameter: Parameter) {
 export function populateOperationParameters(
   parameter: Parameter,
   operationParameters: ParameterDetails[],
-  operationName: string
+  operationName: string,
+  hasXml: boolean
 ): void {
   const parameterSerializedName = getParameterName(parameter);
   const description = getLanguageMetadata(parameter.language).description;
@@ -142,7 +156,8 @@ export function populateOperationParameters(
       mapper: getMapperOrRef(
         parameter.schema,
         parameterSerializedName,
-        parameter.required
+        parameter.required,
+        hasXml
       ),
       isGlobal: getIsGlobal(parameter),
       parameter,
@@ -163,7 +178,8 @@ export function populateOperationParameters(
     operationParameters,
     parameterSerializedName,
     sameNameParams,
-    operationName
+    operationName,
+    hasXml
   );
 }
 
@@ -273,7 +289,8 @@ export function disambiguateParameter(
   operationParameters: ParameterDetails[],
   serializedName: string,
   sameNameParams: ParameterDetails[],
-  operationName: string
+  operationName: string,
+  hasXml: boolean
 ) {
   const existingParam = sameNameParams.find(p =>
     isEqual(p.parameter, parameter)
@@ -307,7 +324,8 @@ export function disambiguateParameter(
       mapper: getMapperOrRef(
         parameter.schema,
         serializedName,
-        parameter.required
+        parameter.required,
+        hasXml
       ),
       typeDetails,
       isGlobal: getIsGlobal(parameter),
@@ -323,12 +341,16 @@ export function disambiguateParameter(
 function getMapperOrRef(
   schema: Schema,
   serializedName: string,
-  required?: boolean
+  required?: boolean,
+  hasXmlMetadata = false
 ) {
   if (isSchemaType([SchemaType.Object], schema)) {
     const className = getMapperClassName(schema);
     return className;
   }
 
-  return transformMapper({ schema, options: { serializedName, required } });
+  return transformMapper({
+    schema,
+    options: { serializedName, required, hasXmlMetadata }
+  });
 }

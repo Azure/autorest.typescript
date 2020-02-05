@@ -51,7 +51,7 @@ export function getTypeForSchema(schema: Schema): TypeDetails {
       kind = constantType.kind;
       defaultValue = getStringForValue(
         constantSchema.value.value,
-        constantSchema.valueType,
+        constantSchema.valueType.type,
         false
       );
       break;

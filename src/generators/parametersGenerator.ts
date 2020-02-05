@@ -2,12 +2,17 @@
 // Licensed under the MIT License.
 
 import { ParameterLocation } from "@azure-tools/codemodel";
-import { Project, VariableDeclarationKind } from "ts-morph";
+import {
+  Project,
+  VariableDeclarationKind,
+  VariableDeclarationStructure,
+  StructureKind,
+  CodeBlockWriter
+} from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
 import { ParameterDetails } from "../models/parameterDetails";
 import { isString } from "util";
-import { Mapper, MapperType } from "@azure/core-http";
-import { keys, isNil } from "lodash";
+import { writeMapper } from "./mappersGenerator";
 
 export function generateParameters(
   clientDetails: ClientDetails,
@@ -41,74 +46,63 @@ export function generateParameters(
     });
 }
 
-function buildParameterInitializer(parameter: ParameterDetails) {
+function buildParameterInitializer(
+  parameter: ParameterDetails
+): VariableDeclarationStructure {
   const { nameRef, location } = parameter;
   const type = getParameterType(location);
-  const initializer = getParameterInitializer(parameter);
   return {
     name: nameRef,
     type,
-    initializer
+    initializer: writer => {
+      writer.block(() => {
+        writeParameterPath(writer, parameter);
+        writeParameterMapper(writer, parameter);
+        writeParameterCollectionFormat(writer, parameter);
+        writeParameterSkipEncoding(writer, parameter);
+      });
+    },
+    kind: StructureKind.VariableDeclaration
   };
 }
 
-// We may want to move this to a common place to potentially be reused by mappersGenerator
-function getMapperSourceCode(mapper: string | Mapper) {
-  if (isString(mapper)) {
-    return `mapper: Mappers.${mapper},`;
-  }
-
-  const { defaultValue, ...mapperRest } = mapper;
-  const defaultValueString = isNil(defaultValue)
-    ? ""
-    : `defaultValue: ${getMapperDefaultValue(mapper)}`;
-
-  return `mapper: {
-      ${keys(mapperRest)
-        .map(key => `${key}: ${JSON.stringify((mapper as any)[key])}`)
-        .join()},${defaultValueString}
-    },`;
-}
-
-function getMapperDefaultValue(mapper: Mapper) {
-  switch (mapper.type.name) {
-    case MapperType.Boolean:
-      return mapper.defaultValue as boolean;
-    case MapperType.Number:
-      return mapper.defaultValue as number;
-    case MapperType.ByteArray:
-      // TODO: Encode defaultValue for non-empty array in a platform agnostic way
-      // previous autorest version doesn't seem to support non-empty here
-      return `new Uint8Array(0)`;
-    default:
-      return `"${mapper.defaultValue.toString()}"`;
-  }
-}
-
-function getCollectionFormatSourceCode(collectionFormat?: string) {
-  return !collectionFormat
-    ? ""
-    : `collectionFormat: coreHttp.QueryCollectionFormat.${collectionFormat},`;
-}
-
-function getSkipEncoding(skipEncoding?: boolean) {
-  return skipEncoding ? `skipEncoding: true,` : "";
-}
-
-function getParameterInitializer({
-  parameterPath,
-  mapper,
-  collectionFormat,
-  skipEncoding
-}: ParameterDetails) {
-  const mapperSourceCode = getMapperSourceCode(mapper);
-  const collectionFormatSourceCode = getCollectionFormatSourceCode(
-    collectionFormat
+function writeParameterCollectionFormat(
+  writer: CodeBlockWriter,
+  { collectionFormat }: ParameterDetails
+) {
+  return writer.conditionalWrite(
+    !!collectionFormat,
+    () =>
+      `collectionFormat: coreHttp.QueryCollectionFormat.${collectionFormat},`
   );
-  const skipEncodingCode = getSkipEncoding(skipEncoding);
-  return `{parameterPath: ${JSON.stringify(
-    parameterPath
-  )}, ${mapperSourceCode}${collectionFormatSourceCode}${skipEncodingCode}}`;
+}
+
+function writeParameterSkipEncoding(
+  writer: CodeBlockWriter,
+  { skipEncoding }: ParameterDetails
+) {
+  return writer.conditionalWrite(!!skipEncoding, () => `skipEncoding: true,`);
+}
+
+function writeParameterPath(
+  writer: CodeBlockWriter,
+  { parameterPath }: ParameterDetails
+) {
+  return writer.write(`parameterPath: ${JSON.stringify(parameterPath)},`);
+}
+
+// We may want to move this to a common place to potentially be reused by mappersGenerator
+function writeParameterMapper(
+  writer: CodeBlockWriter,
+  { mapper }: ParameterDetails
+) {
+  if (isString(mapper)) {
+    return writer.write(`mapper: Mappers.${mapper},`);
+  }
+
+  writer.write("mapper: ");
+  writeMapper(writer, mapper);
+  return writer.write(",");
 }
 
 function getParameterType(location: ParameterLocation) {

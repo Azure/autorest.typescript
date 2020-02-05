@@ -7,10 +7,12 @@ import { Mapper } from "@azure/core-http";
 import { ParameterDetails } from "./parameterDetails";
 import { ObjectDetails } from "./modelDetails";
 import { BaseUrlDetails } from "../transforms/urlTransforms";
+import { KnownMediaType } from "@azure-tools/codegen";
 
 export interface ClientOptions {
   azureArm?: boolean;
   addCredentials?: boolean;
+  serializationStyles?: Set<KnownMediaType>;
 }
 
 export interface ClientDetails {

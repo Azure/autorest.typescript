@@ -108,11 +108,15 @@ function buildSpec(spec: OperationSpecDetails): string {
   const urlParams = buildParameters(spec, "urlParameters");
   const headerParams = buildParameters(spec, "headerParameters");
   const isXML = spec.isXML ? "isXML: true," : "";
+  const contentType =
+    spec.requestBody && isXML
+      ? "contentType: 'application/xml; charset=utf-8',"
+      : "";
   return `{ path: "${spec.path}", httpMethod: "${
     spec.httpMethod
   }", responses: {${responses.join(
     ", "
-  )}},${requestBody}${queryParams}${urlParams}${headerParams}${isXML}serializer
+  )}},${requestBody}${queryParams}${urlParams}${headerParams}${isXML}${contentType}serializer
     }`;
 }
 
