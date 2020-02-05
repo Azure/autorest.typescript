@@ -8,8 +8,8 @@
         "test": "npm-run-all unit-test integration-test",
         "unit-test": "mocha -r ts-node/register './test/unit/**/*spec.ts'",
         "integration-test": "start-server-and-test start-test-server:v1 http://localhost:3000 generate-and-test",
-        "integration-test:new": "npm-run-all start-test-server -p generate-bodystring generate-bodycomplex -s integration-test:alone stop-test-server",
-        "generate-and-test": "npm-run-all -s build -p generate-bodystring generate-bodycomplex generate-url generate-customurl -s integration-test:alone",
+        "integration-test:new": "npm-run-all start-test-server generate-and-test integration-test:alone stop-test-server",
+        "generate-and-test": "npm-run-all -s build -p generate-bodystring generate-bodycomplex generate-url generate-customurl generate-xmlservice -s integration-test:alone",
         "integration-test:alone": "mocha -r ts-node/register './test/integration/**/*spec.ts'",
         "start-test-server": "ts-node test/utils/start-server.ts",
         "start-test-server:v1": "ts-node test/integration/testserver-v1/index.ts",
@@ -19,7 +19,8 @@
         "generate-bodycomplex": "autorest-beta --add-credentials=false --typescript --output-folder=./test/integration/generated/bodyComplex --use=. --title=BodyComplexClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-complex.json --package-name=bodyString --package-version=1.0.0-preview1",
         "generate-url": "autorest-beta --add-credentials=false --typescript --output-folder=./test/integration/generated/url --use=. --title=UrlClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/url.json --package-name=url --package-version=1.0.0-preview1",
         "generate-customurl": "autorest-beta --add-credentials=false --typescript --output-folder=./test/integration/generated/customUrl --use=. --title=CustomUrlClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/custom-baseUrl.json --package-name=custom-url --package-version=1.0.0-preview1",
-        "generate-header": "autorest-beta --add-credentials=false --typescript --output-folder=./test/integration/generated/header --use=. --title=HeaderClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/header.json --package-name=header --package-version=1.0.0-preview1"
+        "generate-header": "autorest-beta --add-credentials=false --typescript --output-folder=./test/integration/generated/header --use=. --title=HeaderClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/header.json --package-name=header --package-version=1.0.0-preview1",
+        "generate-xmlservice": "autorest-beta --add-credentials=false --typescript --output-folder=./test/integration/generated/xmlservice --use=. --title=XmlServiceClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/xml-service.json --package-name=xmlservice --package-version=1.0.0-preview1"
     },
     "files": [
         "dist/**",
@@ -44,14 +45,16 @@
     "devDependencies": {
         "@autorest/test-server": "^3.0.26",
         "@microsoft.azure/autorest.testserver": "^2.10.9",
+        "@types/chai": "^4.2.8",
         "@types/express": "^4.17.2",
         "@types/js-yaml": "3.12.1",
-        "@types/mocha": "5.2.7",
+        "@types/mocha": "^5.2.7",
         "@types/node": "12.7.12",
         "@types/prettier": "^1.18.4",
         "@types/xmlbuilder": "0.0.34",
         "@typescript-eslint/eslint-plugin": "~2.0.0",
         "@typescript-eslint/parser": "~2.0.0",
+        "chai": "^4.2.0",
         "eslint": "~6.2.2",
         "express": "^4.17.1",
         "mocha": "6.2.1",
