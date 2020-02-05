@@ -1,28 +1,60 @@
-import { XmlServiceClient } from "./generated/xmlservice/src/xmlServiceClient";
-import { should } from "chai";
+import * as assert from "assert";
+import { normalizeName, NameType } from "../../../src/utils/nameUtils";
 
-should();
+describe("NameUtils", () => {
+  describe("normalizeName", () => {
+    describe("to Class", () => {
+      it("should generate property name with PascalCase from all lowercase", () => {
+        assert.strictEqual(normalizeName("test", NameType.Class), "Test");
+      });
 
-describe("XML client", function() {
-  let testClient = new XmlServiceClient();
-  it("should correctly deserialize a simple XML document", async function() {
-    const slideshow = await testClient.xml.getSimple();
+      it("should generate property name with PascalCase from underscore separated", () => {
+        assert.strictEqual(
+          normalizeName("test_code", NameType.Class),
+          "TestCode"
+        );
+      });
 
-    slideshow.author!.should!.equal("Yours Truly");
-    slideshow.date!.should!.equal("Date of publication");
+      it("should generate property name with PascalCase from dash separated", () => {
+        assert.strictEqual(
+          normalizeName("test-code", NameType.Class),
+          "TestCode"
+        );
+      });
 
-    slideshow.title!.should!.equal("Sample Slide Show");
+      it("should generate property name with PascalCase from space separated", () => {
+        assert.strictEqual(
+          normalizeName("test code", NameType.Class),
+          "TestCode"
+        );
+      });
+    });
 
-    slideshow.slides!.length.should.equal(2);
+    describe("to Property", () => {
+      it("should generate property name with camelCase from all lowercase", () => {
+        assert.strictEqual(normalizeName("test", NameType.Property), "test");
+      });
 
-    slideshow.slides![0].title!.should.equal("Wake up to WonderWidgets!");
-    slideshow.slides![0].type!.should.equal("all");
-    slideshow.slides![0].items!.length.should.equal(0);
-    !slideshow.slides![1].title!.should.equal("Overview");
-    slideshow.slides![1].type!.should.equal("all");
-    slideshow.slides![1].items!.length.should.equal(3);
-    slideshow.slides![1].items![0].should.equal("Why WonderWidgets are great");
-    slideshow.slides![1].items![1].should.equal("");
-    slideshow.slides![1].items![2].should.equal("Who buys WonderWidgets");
+      it("should generate property name with camelCase from underscore separated", () => {
+        assert.strictEqual(
+          normalizeName("test_code", NameType.Property),
+          "testCode"
+        );
+      });
+
+      it("should generate property name with camelCase from dash separated", () => {
+        assert.strictEqual(
+          normalizeName("test-code", NameType.Property),
+          "testCode"
+        );
+
+        it("should generate property name with camelCase from space separated", () => {
+          assert.strictEqual(
+            normalizeName("test code", NameType.Property),
+            "testCode"
+          );
+        });
+      });
+    });
   });
 });
