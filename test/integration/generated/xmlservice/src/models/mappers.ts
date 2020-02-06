@@ -299,8 +299,7 @@ export const Container: coreHttp.CompositeMapper = {
           value: { type: { name: "String" }, serializedName: "string" }
         },
         serializedName: "Metadata",
-        xmlName: "Metadata",
-        xmlElementName: "string"
+        xmlName: "Metadata"
       }
     }
   }
@@ -726,8 +725,7 @@ export const Blob: coreHttp.CompositeMapper = {
           value: { type: { name: "String" }, serializedName: "string" }
         },
         serializedName: "Metadata",
-        xmlName: "Metadata",
-        xmlElementName: "string"
+        xmlName: "Metadata"
       }
     }
   }

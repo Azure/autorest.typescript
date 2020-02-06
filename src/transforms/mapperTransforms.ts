@@ -223,10 +223,9 @@ function getXmlMetadata(
     return {};
   }
 
-  // This is to handle ArraySchemas
-  const elementSchema = (schema as ArraySchema).elementType;
   let xmlElementName: string | undefined = undefined;
-  if (elementSchema) {
+  if (schema.type === SchemaType.Array) {
+    const elementSchema = (schema as ArraySchema).elementType;
     const languageMetadata = getLanguageMetadata(elementSchema.language);
     xmlElementName =
       elementSchema.serialization?.xml?.name ||
