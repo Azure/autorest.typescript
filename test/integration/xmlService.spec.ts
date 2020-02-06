@@ -430,7 +430,7 @@ describe("typescript", function() {
       );
     });
 
-    // TODO: Need to support extracting headerMappers in responses. WIP
+    // TODO: Need to support response headers. Issue #512
     it.skip("should deserialize custom headers in an XML client", async function() {
       const headersResponse = await testClient.xml.getHeaders();
       headersResponse.customHeader.should.equal("custom-value");
