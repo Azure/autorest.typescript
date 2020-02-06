@@ -129,9 +129,9 @@ export function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
             .write(",");
 
         const hasParents = !!parents && !!parents.length;
-        const hasModelPropertoes =
+        const hasModelProperties =
           !!modelProperties && !isEmpty(modelProperties);
-        if (hasParents || hasModelPropertoes) {
+        if (hasParents || hasModelProperties) {
           writer.write("modelProperties:").block(() => {
             writeParentMappers(parents, writer);
             writeObjectProps(modelProperties, writer);

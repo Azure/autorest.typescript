@@ -59,7 +59,7 @@ describe("parameterTransforms", () => {
   describe("transformParameters", () => {
     let clientOptions: ClientOptions;
     beforeEach(() => {
-      clientOptions = { serializationStyles: new Set() };
+      clientOptions = { mediaTypes: new Set() };
     });
 
     it("should set the correct parameter location", () => {

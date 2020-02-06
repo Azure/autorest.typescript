@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { HttpMethod, SerializationStyle } from "@azure-tools/codemodel";
+import { HttpMethod } from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { Mapper } from "@azure/core-http";
 import { ParameterDetails } from "./parameterDetails";
@@ -61,7 +61,7 @@ export interface OperationGroupDetails {
   key: string;
   name: string;
   operations: OperationDetails[];
-  serializationStyles: Set<KnownMediaType>;
+  mediaTypes: Set<KnownMediaType>;
   isTopLevel: boolean;
 }
 

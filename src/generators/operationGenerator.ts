@@ -107,17 +107,21 @@ function buildSpec(spec: OperationSpecDetails): string {
   const queryParams = buildParameters(spec, "queryParameters");
   const urlParams = buildParameters(spec, "urlParameters");
   const headerParams = buildParameters(spec, "headerParameters");
+  const contentType = buildContentType(spec);
   const isXML = spec.isXML ? "isXML: true," : "";
-  const contentType =
-    spec.requestBody && isXML
-      ? "contentType: 'application/xml; charset=utf-8',"
-      : "";
+
   return `{ path: "${spec.path}", httpMethod: "${
     spec.httpMethod
   }", responses: {${responses.join(
     ", "
   )}},${requestBody}${queryParams}${urlParams}${headerParams}${isXML}${contentType}serializer
     }`;
+}
+
+function buildContentType({ requestBody, isXML }: OperationSpecDetails) {
+  return requestBody && isXML
+    ? "contentType: 'application/xml; charset=utf-8',"
+    : "";
 }
 
 /**

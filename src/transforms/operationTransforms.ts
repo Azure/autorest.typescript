@@ -281,14 +281,14 @@ export async function transformOperationGroup(
       async operation => await transformOperation(operation, name)
     )
   );
-  const serializationStyles = getOperationGroupMediaTypes(operations);
+  const mediaTypes = getOperationGroupMediaTypes(operations);
 
   return {
     name,
     key: operationGroup.$key,
     operations,
     isTopLevel,
-    serializationStyles
+    mediaTypes
   };
 }
 

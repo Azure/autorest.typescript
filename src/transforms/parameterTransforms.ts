@@ -59,13 +59,13 @@ export function transformParameters(
   options: ClientOptions
 ): ParameterDetails[] {
   let parameters: ParameterDetails[] = [];
-  const hasXml = !!options.serializationStyles?.has(KnownMediaType.Xml);
+  const hasXmlMetadata = !!options.mediaTypes?.has(KnownMediaType.Xml);
   extractOperationParameters(codeModel).forEach(p =>
     populateOperationParameters(
       p.parameter,
       parameters,
       p.operationName,
-      hasXml
+      hasXmlMetadata
     )
   );
 
@@ -125,7 +125,7 @@ export function populateOperationParameters(
   parameter: Parameter,
   operationParameters: ParameterDetails[],
   operationName: string,
-  hasXml: boolean
+  hasXmlMetadata: boolean
 ): void {
   const parameterSerializedName = getParameterName(parameter);
   const description = getLanguageMetadata(parameter.language).description;
@@ -157,7 +157,7 @@ export function populateOperationParameters(
         parameter.schema,
         parameterSerializedName,
         parameter.required,
-        hasXml
+        hasXmlMetadata
       ),
       isGlobal: getIsGlobal(parameter),
       parameter,
@@ -179,7 +179,7 @@ export function populateOperationParameters(
     parameterSerializedName,
     sameNameParams,
     operationName,
-    hasXml
+    hasXmlMetadata
   );
 }
 
@@ -290,7 +290,7 @@ export function disambiguateParameter(
   serializedName: string,
   sameNameParams: ParameterDetails[],
   operationName: string,
-  hasXml: boolean
+  hasXmlMetadata: boolean
 ) {
   const existingParam = sameNameParams.find(p =>
     isEqual(p.parameter, parameter)
@@ -325,7 +325,7 @@ export function disambiguateParameter(
         parameter.schema,
         serializedName,
         parameter.required,
-        hasXml
+        hasXmlMetadata
       ),
       typeDetails,
       isGlobal: getIsGlobal(parameter),

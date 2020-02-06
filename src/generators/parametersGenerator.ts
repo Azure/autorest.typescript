@@ -96,12 +96,13 @@ function writeParameterMapper(
   writer: CodeBlockWriter,
   { mapper }: ParameterDetails
 ) {
+  writer.write("mapper: ");
   if (isString(mapper)) {
-    return writer.write(`mapper: Mappers.${mapper},`);
+    writer.write(`Mappers.${mapper}`);
+  } else {
+    writeMapper(writer, mapper);
   }
 
-  writer.write("mapper: ");
-  writeMapper(writer, mapper);
   return writer.write(",");
 }
 

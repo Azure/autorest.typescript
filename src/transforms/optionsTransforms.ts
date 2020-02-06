@@ -7,23 +7,23 @@ export async function transformOptions(
   host: Host,
   operationGroups: OperationGroupDetails[]
 ): Promise<ClientOptions> {
-  const serializationStyles = getSerializationStyles(operationGroups);
+  const mediaTypes = getMediaTypesStyles(operationGroups);
   const addCredentials = !((await host.GetValue("add-credentials")) === false);
 
   return {
     addCredentials,
-    serializationStyles
+    mediaTypes
   };
 }
 
 /**
- * Gets the SerializationStyles based on the different mediaTypes found in a set of operation groups
+ * Gets the MediaTypes based on the different mediaTypes found in a set of operation groups
  * @param operationGroups
  */
-function getSerializationStyles(operationGroups: OperationGroupDetails[]) {
+function getMediaTypesStyles(operationGroups: OperationGroupDetails[]) {
   return operationGroups.reduce(
-    (styles, op) =>
-      new Set<KnownMediaType>([...styles, ...op.serializationStyles]),
+    (mediaTypes, operationGroup) =>
+      new Set<KnownMediaType>([...mediaTypes, ...operationGroup.mediaTypes]),
     new Set<KnownMediaType>()
   );
 }
