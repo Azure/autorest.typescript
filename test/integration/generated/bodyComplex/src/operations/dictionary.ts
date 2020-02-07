@@ -112,7 +112,7 @@ export class Dictionary {
 }
 // Operation Specifications
 
-const serializer = new coreHttp.Serializer(Mappers, false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getValidOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/dictionary/typed/valid",

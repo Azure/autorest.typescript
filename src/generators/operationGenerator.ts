@@ -347,7 +347,7 @@ export function addOperationSpecs(
     declarations: [
       {
         name: "serializer",
-        initializer: `new coreHttp.Serializer(Mappers, ${isXml});`
+        initializer: `new coreHttp.Serializer(Mappers, /* isXml */ ${isXml});`
       }
     ]
   });

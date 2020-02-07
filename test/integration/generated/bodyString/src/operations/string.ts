@@ -201,7 +201,7 @@ export class String {
 }
 // Operation Specifications
 
-const serializer = new coreHttp.Serializer(Mappers, false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getNullOperationSpec: coreHttp.OperationSpec = {
   path: "/string/null",

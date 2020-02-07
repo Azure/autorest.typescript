@@ -25,7 +25,7 @@ import {
   OperationSpecResponses
 } from "../models/operationDetails";
 import { getLanguageMetadata } from "../utils/languageHelpers";
-import { getTypeForSchema } from "../utils/schemaHelpers";
+import { getTypeForSchema, isSchemaResponse } from "../utils/schemaHelpers";
 import { getMapperTypeFromSchema, transformMapper } from "./mapperTransforms";
 import { ParameterDetails } from "../models/parameterDetails";
 import { PropertyKind, TypeDetails } from "../models/modelDetails";
@@ -179,7 +179,7 @@ export function transformOperationResponse(
   let isError =
     !!response.extensions && !!response.extensions["x-ms-error-response"];
 
-  if (!(response as SchemaResponse).schema) {
+  if (!isSchemaResponse(response)) {
     const schemalessResponse = response as Response;
     return {
       statusCodes: schemalessResponse.protocol.http!.statusCodes,
@@ -258,12 +258,10 @@ export async function transformOperation(
   };
 }
 
-export async function transformOperationGroups(
+export function transformOperationGroups(
   codeModel: CodeModel
 ): Promise<OperationGroupDetails[]> {
-  return await Promise.all(
-    codeModel.operationGroups.map(transformOperationGroup)
-  );
+  return Promise.all(codeModel.operationGroups.map(transformOperationGroup));
 }
 
 export async function transformOperationGroup(

@@ -112,7 +112,7 @@ export class Enum {
 }
 // Operation Specifications
 
-const serializer = new coreHttp.Serializer(Mappers, false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getNotExpandableOperationSpec: coreHttp.OperationSpec = {
   path: "/string/enum/notExpandable",

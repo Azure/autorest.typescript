@@ -9,7 +9,8 @@ import {
   ConstantSchema,
   ObjectSchema,
   ArraySchema,
-  DictionarySchema
+  DictionarySchema,
+  SchemaResponse
 } from "@azure-tools/codemodel";
 import { getStringForValue } from "./valueHelpers";
 import { getLanguageMetadata } from "./languageHelpers";
@@ -107,4 +108,9 @@ function getElementTypeName(elementType: TypeDetails) {
   return elementType.kind === PropertyKind.Primitive
     ? elementType.typeName
     : normalizeName(elementType.typeName, NameType.Interface);
+}
+
+export function isSchemaResponse(response: any): response is SchemaResponse {
+  // check fields that should exist to determine if this is a SchemaResponse
+  return typeof response.schema !== "undefined";
 }
