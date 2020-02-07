@@ -12,9 +12,11 @@ import * as Mappers from "../models/mappers";
 export const $host: coreHttp.OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
-    type: { name: "String" },
     serializedName: "$host",
-    required: true
+    required: true,
+    type: {
+      name: "String"
+    }
   },
   skipEncoding: true
 };
@@ -22,74 +24,84 @@ export const $host: coreHttp.OperationURLParameter = {
 export const stringBody: coreHttp.OperationParameter = {
   parameterPath: ["options", "stringBody"],
   mapper: {
-    type: { name: "String" },
     serializedName: "stringBody",
-    isConstant: true
+    isConstant: true,
+    type: {
+      name: "String"
+    }
   }
 };
 
 export const stringBody1: coreHttp.OperationParameter = {
   parameterPath: "stringBody",
   mapper: {
-    type: { name: "String" },
+    defaultValue: "",
     serializedName: "stringBody",
     isConstant: true,
-    defaultValue: ""
+    type: {
+      name: "String"
+    }
   }
 };
 
 export const stringBody2: coreHttp.OperationParameter = {
   parameterPath: "stringBody",
   mapper: {
-    type: { name: "String" },
+    defaultValue:
+      "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€",
     serializedName: "stringBody",
     isConstant: true,
-    defaultValue:
-      "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
+    type: {
+      name: "String"
+    }
   }
 };
 
 export const stringBody3: coreHttp.OperationParameter = {
   parameterPath: "stringBody",
   mapper: {
-    type: { name: "String" },
+    defaultValue:
+      "    Now is the time for all good men to come to the aid of their country    ",
     serializedName: "stringBody",
     isConstant: true,
-    defaultValue:
-      "    Now is the time for all good men to come to the aid of their country    "
+    type: {
+      name: "String"
+    }
   }
 };
 
 export const stringBody4: coreHttp.OperationParameter = {
   parameterPath: "stringBody",
   mapper: {
-    type: { name: "Base64Url" },
     serializedName: "stringBody",
-    required: true
+    required: true,
+    type: {
+      name: "Base64Url"
+    }
   }
 };
 
 export const stringBody5: coreHttp.OperationParameter = {
   parameterPath: "stringBody",
   mapper: {
+    serializedName: "stringBody",
+    required: true,
     type: {
       name: "Enum",
       allowedValues: ["red color", "green-color", "blue_color"]
-    },
-    serializedName: "stringBody",
-    required: true
+    }
   }
 };
 
 export const enumStringBody: coreHttp.OperationParameter = {
   parameterPath: "enumStringBody",
   mapper: {
+    serializedName: "enumStringBody",
+    required: true,
     type: {
       name: "Enum",
       allowedValues: ["red color", "green-color", "blue_color"]
-    },
-    serializedName: "enumStringBody",
-    required: true
+    }
   }
 };
 

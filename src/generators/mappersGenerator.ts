@@ -8,10 +8,12 @@ import {
   MapperType,
   Mapper,
   CompositeMapper,
-  CompositeMapperType
+  CompositeMapperType,
+  PolymorphicDiscriminator
 } from "@azure/core-http";
 import { ModelProperties } from "../transforms/mapperTransforms";
-import { keys, isEmpty, isString } from "lodash";
+import { keys, isEmpty, isString, isNil } from "lodash";
+import { getStringForValue } from "../utils/valueHelpers";
 
 export function generateMappers(
   clientDetails: ClientDetails,
@@ -95,41 +97,103 @@ export function generateMappers(
     });
 }
 
-function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
+type ModelPropertiesType =
+  | {
+      [propertyName: string]: Mapper;
+    }
+  | undefined;
+
+export function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
   const parents = extractParents(mapper);
-  const { type, ...restMapper } = mapper;
+
+  // We want to handle modelProperties and polimorphicDiscriminator
+  // so we extract them from the type object. The remaining of the type
+  // object we'll just write all its properties as they are using writeObjectProps
+  const { type, defaultValue, ...restMapper } = mapper;
   const {
     modelProperties,
     polymorphicDiscriminator,
     ...restType
   } = type as CompositeMapperType;
-  const isReferenceDicriminator = isString(polymorphicDiscriminator);
   writer.block(() => {
+    // we need to handle default value differently, since some types need to be
+    // converted, such as ByteAttay, hence extracting it from the props
+    writeDefaultValue(writer, defaultValue, restType);
+    // Writing the rest of the props
     writeObjectProps(restMapper, writer)
       .write("type:")
       .block(() => {
-        writeObjectProps(restType, writer)
-          .conditionalWrite(
-            !!polymorphicDiscriminator,
-            "polymorphicDiscriminator:"
-          )
-          .conditionalWrite(
-            polymorphicDiscriminator && isReferenceDicriminator,
-            `${polymorphicDiscriminator as any},`
-          );
-        !isReferenceDicriminator &&
-          polymorphicDiscriminator &&
-          writer
-            .block(() => {
-              writeObjectProps(polymorphicDiscriminator, writer);
-            })
-            .write(",");
-        writer.write("modelProperties:").block(() => {
-          writeParentMappers(parents, writer);
-          writeObjectProps(modelProperties, writer);
-        });
+        // Write all type properties that don't need special handling
+        writeObjectProps(restType, writer);
+        // Write ptype roperties that need special handling
+        writePolymorphicDiscrimitator(writer, polymorphicDiscriminator);
+        writeModelProperties(writer, parents, modelProperties);
       });
   });
+}
+
+function writeModelProperties(
+  writer: CodeBlockWriter,
+  parents: string[] = [],
+  modelProperties: ModelPropertiesType = {}
+) {
+  if (isEmpty(parents) && isEmpty(modelProperties)) {
+    return writer;
+  }
+
+  return writer.write("modelProperties:").block(() => {
+    // We'll first inherit from the parents and then write
+    // its own mappers, it will look like this when generated
+    // modelProperties: {
+    //  ...Mappers.Parent,
+    //  color: { type: { name: "String" }, serializedName: "color" }
+    // }
+    writeParentMappers(parents, writer);
+    writeObjectProps(modelProperties, writer);
+  });
+}
+
+function writePolymorphicDiscrimitator(
+  writer: CodeBlockWriter,
+  polymorphicDiscriminator?: PolymorphicDiscriminator
+) {
+  if (!polymorphicDiscriminator) {
+    return writer;
+  }
+
+  // When the discriminator is a string, we know it is a reference.
+  const isReferenceDicriminator = isString(polymorphicDiscriminator);
+
+  writer.write("polymorphicDiscriminator:");
+
+  if (isReferenceDicriminator) {
+    // If the polymorphic discriminator is a reference, we just need to
+    // to assign polymorphicDiscriminator to the string we got
+    // example polymorphicDiscriminator: Mappers.SomeObject
+    writer.write(`${polymorphicDiscriminator}`);
+  } else {
+    // Since the discriminator is not a reference, we need to inline it,
+    // so we need to write its properties within a block  i.e. polymorphicDiscriminator: {...}
+    writer.block(() => {
+      writeObjectProps(polymorphicDiscriminator, writer);
+    });
+  }
+
+  return writer.write(",");
+}
+
+function writeDefaultValue(
+  writer: CodeBlockWriter,
+  defaultValue: any,
+  mapperType: MapperType
+) {
+  if (!isNil(defaultValue)) {
+    return writer.write(
+      `defaultValue: ${getStringForValue(defaultValue, mapperType.name)},`
+    );
+  }
+
+  return writer;
 }
 
 function writeParentMappers(parents: string[], writer: CodeBlockWriter) {

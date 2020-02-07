@@ -59,9 +59,15 @@ function getCasingConvention(nameType: NameType) {
 
 /**
  * TODO: Improve this function to handle cases such as TEST -> test. Current basic implementation
- * results in TEST -> tEST
+ * results in TEST -> test or Test (depending on the CasingConvention). We should switch to relay
+ * on Modeler four namer for this once it is stable
  */
-function toCasing(value: string, casing: CasingConvention): string {
+function toCasing(str: string, casing: CasingConvention): string {
+  let value = str;
+  if (value === value.toUpperCase()) {
+    value = str.toLowerCase();
+  }
+
   const firstChar =
     casing === CasingConvention.Pascal
       ? value.charAt(0).toUpperCase()

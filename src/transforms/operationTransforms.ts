@@ -25,11 +25,12 @@ import {
   OperationSpecResponses
 } from "../models/operationDetails";
 import { getLanguageMetadata } from "../utils/languageHelpers";
-import { getTypeForSchema } from "../utils/schemaHelpers";
-import { getMapperTypeFromSchema } from "./mapperTransforms";
+import { getTypeForSchema, isSchemaResponse } from "../utils/schemaHelpers";
+import { getMapperTypeFromSchema, transformMapper } from "./mapperTransforms";
 import { ParameterDetails } from "../models/parameterDetails";
 import { PropertyKind, TypeDetails } from "../models/modelDetails";
 import { TOPLEVEL_OPERATIONGROUP } from "./constants";
+import { KnownMediaType } from "@azure-tools/codegen";
 
 export function transformOperationSpec(
   operationDetails: OperationDetails,
@@ -37,6 +38,7 @@ export function transformOperationSpec(
 ): OperationSpecDetails {
   // Extract protocol information
   const operationFullName = operationDetails.fullName;
+  const isXML = operationDetails.mediaTypes.has(KnownMediaType.Xml);
   const httpInfo = extractHttpDetails(operationDetails.request);
   const {
     requestBody,
@@ -51,7 +53,8 @@ export function transformOperationSpec(
     requestBody,
     ...(queryParameters && queryParameters.length && { queryParameters }),
     ...(urlParameters && urlParameters.length && { urlParameters }),
-    ...(headerParameters && headerParameters.length && { headerParameters })
+    ...(headerParameters && headerParameters.length && { headerParameters }),
+    ...(isXML && { isXML })
   };
 }
 
@@ -160,23 +163,23 @@ export function extractSchemaResponses(responses: OperationResponseDetails[]) {
 export function transformOperationRequest(
   request: Request
 ): OperationRequestDetails {
-  if (request.protocol.http) {
-    return {
-      path: request.protocol.http.path,
-      method: request.protocol.http.method
-    };
-  } else {
+  if (!request.protocol.http) {
     throw new Error("Operation does not specify HTTP request details.");
   }
+  return {
+    path: request.protocol.http.path,
+    method: request.protocol.http.method,
+    mediaType: request.protocol.http.knownMediaType
+  };
 }
 
 export function transformOperationResponse(
-  response: SchemaResponse
+  response: SchemaResponse | Response
 ): OperationResponseDetails {
   let isError =
     !!response.extensions && !!response.extensions["x-ms-error-response"];
 
-  if (!response.schema) {
+  if (!isSchemaResponse(response)) {
     const schemalessResponse = response as Response;
     return {
       statusCodes: schemalessResponse.protocol.http!.statusCodes,
@@ -191,7 +194,6 @@ export function transformOperationResponse(
 
   const schemaResponse = response as SchemaResponse;
   const typeDetails = getTypeForSchema(schemaResponse.schema);
-  const bodyMapper = getBodyMapperFromSchema(schemaResponse.schema);
   if (!typeDetails) {
     throw new Error(
       `Unable to extract responseType for ${schemaResponse.schema.type}`
@@ -201,9 +203,14 @@ export function transformOperationResponse(
   const httpInfo = response.protocol.http;
   if (httpInfo) {
     const isDefault = httpInfo.statusCodes.indexOf("default") > -1;
+    const mediaType: KnownMediaType = httpInfo.knownMediaType;
+    const bodyMapper = getBodyMapperFromSchema(
+      schemaResponse.schema,
+      mediaType
+    );
     return {
       statusCodes: httpInfo.statusCodes,
-      mediaType: httpInfo.knownMediaType,
+      mediaType,
       bodyMapper,
       typeDetails,
       isError: isDefault || isError
@@ -213,13 +220,13 @@ export function transformOperationResponse(
   }
 }
 
-export function transformOperation(
+export async function transformOperation(
   operation: Operation,
   operationGroupName: string
-): OperationDetails {
+): Promise<OperationDetails> {
   const metadata = getLanguageMetadata(operation.language);
   const name = normalizeName(metadata.name, NameType.Property);
-  const responses = [
+  const responsesAndErrors = [
     ...(operation.responses || []),
     ...(operation.exceptions || [])
   ];
@@ -231,6 +238,12 @@ export function transformOperation(
     kind: PropertyKind.Composite
   };
 
+  const request = transformOperationRequest(operation.request);
+  const responses = responsesAndErrors.map(response =>
+    transformOperationResponse(response as SchemaResponse)
+  );
+
+  const mediaTypes = await getOperationMediaTypes(request, responses);
   return {
     name,
     typeDetails,
@@ -239,34 +252,62 @@ export function transformOperation(
       ? operation.apiVersions.map(v => v.version)
       : [],
     description: metadata.description,
-    request: transformOperationRequest(operation.request),
-    responses: responses.map(response =>
-      transformOperationResponse(response as SchemaResponse)
-    )
+    request,
+    responses,
+    mediaTypes
   };
 }
 
-export async function transformOperationGroups(codeModel: CodeModel) {
-  return codeModel.operationGroups.map(transformOperationGroup);
+export function transformOperationGroups(
+  codeModel: CodeModel
+): Promise<OperationGroupDetails[]> {
+  return Promise.all(codeModel.operationGroups.map(transformOperationGroup));
 }
 
-export function transformOperationGroup(
+export async function transformOperationGroup(
   operationGroup: OperationGroup
-): OperationGroupDetails {
+): Promise<OperationGroupDetails> {
   const metadata = getLanguageMetadata(operationGroup.language);
   const isTopLevel = !metadata.name;
   const name = normalizeName(
     metadata.name || TOPLEVEL_OPERATIONGROUP,
     NameType.Property
   );
+
+  const operations = await Promise.all(
+    operationGroup.operations.map(operation =>
+      transformOperation(operation, name)
+    )
+  );
+  const mediaTypes = getOperationGroupMediaTypes(operations);
+
   return {
     name,
     key: operationGroup.$key,
-    operations: operationGroup.operations.map(operation =>
-      transformOperation(operation, name)
-    ),
-    isTopLevel
+    operations,
+    isTopLevel,
+    mediaTypes
   };
+}
+
+function getOperationGroupMediaTypes(operationDetails: OperationDetails[]) {
+  return operationDetails.reduce((acc, op) => {
+    return new Set<KnownMediaType>([...acc, ...op.mediaTypes]);
+  }, new Set<KnownMediaType>());
+}
+
+async function getOperationMediaTypes(
+  { mediaType }: OperationRequestDetails,
+  responses: OperationResponseDetails[]
+) {
+  const mediaTypes = new Set<KnownMediaType>();
+  if (mediaType) {
+    mediaTypes.add(mediaType);
+  }
+
+  responses.forEach(r => r.mediaType && mediaTypes.add(r.mediaType));
+
+  return mediaTypes;
 }
 
 function getGroupedParameters(
@@ -297,14 +338,16 @@ function getGroupedParameters(
 
 function getBodyMapperFromSchema(
   responseSchema: Schema,
+  mediaType?: KnownMediaType,
   expand = false
 ): Mapper | string {
   const responseType = getSpecType(responseSchema, expand);
-  const { reference, constantProps, ...type } = responseType;
+  const { reference } = responseType;
   return (
-    reference || {
-      type: type as MapperType,
-      ...(!!constantProps && constantProps)
-    }
+    reference ||
+    transformMapper({
+      schema: responseSchema,
+      options: { hasXmlMetadata: mediaType === KnownMediaType.Xml }
+    })
   );
 }

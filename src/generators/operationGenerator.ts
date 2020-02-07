@@ -28,6 +28,7 @@ import {
 } from "./utils/parameterUtils";
 import { PropertyKind } from "../models/modelDetails";
 import { wrapString } from "./utils/stringUtils";
+import { KnownMediaType } from "@azure-tools/codegen";
 
 /**
  * Function that writes the code for all the operations.
@@ -106,12 +107,21 @@ function buildSpec(spec: OperationSpecDetails): string {
   const queryParams = buildParameters(spec, "queryParameters");
   const urlParams = buildParameters(spec, "urlParameters");
   const headerParams = buildParameters(spec, "headerParameters");
+  const contentType = buildContentType(spec);
+  const isXML = spec.isXML ? "isXML: true," : "";
+
   return `{ path: "${spec.path}", httpMethod: "${
     spec.httpMethod
   }", responses: {${responses.join(
     ", "
-  )}},${requestBody}${queryParams}${urlParams}${headerParams}serializer
+  )}},${requestBody}${queryParams}${urlParams}${headerParams}${isXML}${contentType}serializer
     }`;
+}
+
+function buildContentType({ requestBody, isXML }: OperationSpecDetails) {
+  return requestBody && isXML
+    ? "contentType: 'application/xml; charset=utf-8',"
+    : "";
 }
 
 /**
@@ -328,13 +338,16 @@ export function addOperationSpecs(
   file: SourceFile,
   parameters: ParameterDetails[]
 ): void {
+  const isXml = operationGroupDetails.operations.some(o =>
+    o.mediaTypes.has(KnownMediaType.Xml)
+  );
   file.addStatements("// Operation Specifications");
   file.addVariableStatement({
     declarationKind: VariableDeclarationKind.Const,
     declarations: [
       {
         name: "serializer",
-        initializer: "new coreHttp.Serializer(Mappers);"
+        initializer: `new coreHttp.Serializer(Mappers, /* isXml */ ${isXml});`
       }
     ]
   });

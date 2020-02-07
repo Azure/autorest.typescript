@@ -38,6 +38,7 @@ export interface OperationDetails {
   request: OperationRequestDetails;
   responses: OperationResponseDetails[];
   typeDetails: TypeDetails;
+  mediaTypes: Set<KnownMediaType>;
 }
 
 /**
@@ -50,6 +51,7 @@ export interface OperationSpecDetails {
   requestBody?: ParameterDetails;
   queryParameters?: ParameterDetails[];
   urlParameters?: ParameterDetails[];
+  isXML?: boolean;
 }
 
 /**
@@ -59,6 +61,7 @@ export interface OperationGroupDetails {
   key: string;
   name: string;
   operations: OperationDetails[];
+  mediaTypes: Set<KnownMediaType>;
   isTopLevel: boolean;
 }
 
