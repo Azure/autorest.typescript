@@ -48,7 +48,8 @@ export function transformObject(
     kind,
     name,
     serializedName: metadata.serializedName,
-    description: `An interface representing ${metadata.name}.`,
+    description:
+      metadata.description || `An interface representing ${metadata.name}.`,
     schema,
     properties: schema.properties
       ? schema.properties.map(prop => transformProperty(prop))

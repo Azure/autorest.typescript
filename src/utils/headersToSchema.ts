@@ -9,7 +9,10 @@ export function headersToSchema(
     return undefined;
   }
 
-  const headersSchema = new ObjectSchema(`${operationFullName}Headers`, "");
+  const headersSchema = new ObjectSchema(
+    `${operationFullName}Headers`,
+    `Defines headers for ${operationFullName} operation.`
+  );
 
   headers.forEach(({ header, schema }) => {
     if (!headersSchema.properties) {

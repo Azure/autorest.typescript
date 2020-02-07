@@ -17,98 +17,98 @@ export interface ErrorModel {
 }
 
 /**
- * An interface representing header_responseExistingKeyHeaders.
+ * Defines headers for header_responseExistingKey operation.
  */
 export interface HeaderResponseExistingKeyHeaders {
   userAgent?: string;
 }
 
 /**
- * An interface representing header_responseProtectedKeyHeaders.
+ * Defines headers for header_responseProtectedKey operation.
  */
 export interface HeaderResponseProtectedKeyHeaders {
   contentType?: string;
 }
 
 /**
- * An interface representing header_responseIntegerHeaders.
+ * Defines headers for header_responseInteger operation.
  */
 export interface HeaderResponseIntegerHeaders {
   value?: number;
 }
 
 /**
- * An interface representing header_responseLongHeaders.
+ * Defines headers for header_responseLong operation.
  */
 export interface HeaderResponseLongHeaders {
   value?: number;
 }
 
 /**
- * An interface representing header_responseFloatHeaders.
+ * Defines headers for header_responseFloat operation.
  */
 export interface HeaderResponseFloatHeaders {
   value?: number;
 }
 
 /**
- * An interface representing header_responseDoubleHeaders.
+ * Defines headers for header_responseDouble operation.
  */
 export interface HeaderResponseDoubleHeaders {
   value?: number;
 }
 
 /**
- * An interface representing header_responseBoolHeaders.
+ * Defines headers for header_responseBool operation.
  */
 export interface HeaderResponseBoolHeaders {
   value?: boolean;
 }
 
 /**
- * An interface representing header_responseStringHeaders.
+ * Defines headers for header_responseString operation.
  */
 export interface HeaderResponseStringHeaders {
   value?: string;
 }
 
 /**
- * An interface representing header_responseDateHeaders.
+ * Defines headers for header_responseDate operation.
  */
 export interface HeaderResponseDateHeaders {
   value?: Date;
 }
 
 /**
- * An interface representing header_responseDatetimeHeaders.
+ * Defines headers for header_responseDatetime operation.
  */
 export interface HeaderResponseDatetimeHeaders {
   value?: Date;
 }
 
 /**
- * An interface representing header_responseDatetimeRfc1123Headers.
+ * Defines headers for header_responseDatetimeRfc1123 operation.
  */
 export interface HeaderResponseDatetimeRfc1123Headers {
   value?: Date;
 }
 
 /**
- * An interface representing header_responseDurationHeaders.
+ * Defines headers for header_responseDuration operation.
  */
 export interface HeaderResponseDurationHeaders {
   value?: string;
 }
 
 /**
- * An interface representing header_responseByteHeaders.
+ * Defines headers for header_responseByte operation.
  */
 export interface HeaderResponseByteHeaders {
   value?: Uint8Array;
 }
 
 /**
- * An interface representing header_responseEnumHeaders.
+ * Defines headers for header_responseEnum operation.
  */
 export interface HeaderResponseEnumHeaders {
   value?: GreyscaleColors;
