@@ -919,3 +919,18 @@ export const JSONOutput: coreHttp.CompositeMapper = {
     }
   }
 };
+
+export const XmlGetHeadersHeaders: coreHttp.CompositeMapper = {
+  serializedName: "xml_getHeadersHeaders",
+  type: {
+    name: "Composite",
+    className: "XmlGetHeadersHeaders",
+    modelProperties: {
+      customHeader: {
+        type: { name: "String" },
+        serializedName: "Custom-Header",
+        xmlName: "Custom-Header"
+      }
+    }
+  }
+};

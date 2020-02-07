@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 
 /**
- * An interface representing RootWithRefAndNoMeta.
+ * I am root, and I ref a model with no meta
  */
 export interface RootWithRefAndNoMeta {
   /**
@@ -23,7 +23,7 @@ export interface RootWithRefAndNoMeta {
 }
 
 /**
- * An interface representing ComplexTypeNoMeta.
+ * I am a complex type with no XML node
  */
 export interface ComplexTypeNoMeta {
   /**
@@ -33,7 +33,7 @@ export interface ComplexTypeNoMeta {
 }
 
 /**
- * An interface representing RootWithRefAndMeta.
+ * I am root, and I ref a model WITH meta
  */
 export interface RootWithRefAndMeta {
   /**
@@ -47,7 +47,7 @@ export interface RootWithRefAndMeta {
 }
 
 /**
- * An interface representing ComplexTypeWithMeta.
+ * I am a complex type with XML node
  */
 export interface ComplexTypeWithMeta {
   /**
@@ -57,7 +57,7 @@ export interface ComplexTypeWithMeta {
 }
 
 /**
- * An interface representing Slideshow.
+ * Data about a slideshow
  */
 export interface Slideshow {
   title?: string;
@@ -67,7 +67,7 @@ export interface Slideshow {
 }
 
 /**
- * An interface representing Slide.
+ * A slide in a slideshow
  */
 export interface Slide {
   type?: string;
@@ -84,7 +84,7 @@ export interface ErrorModel {
 }
 
 /**
- * An interface representing AppleBarrel.
+ * A barrel of apples.
  */
 export interface AppleBarrel {
   goodApples?: string[];
@@ -92,7 +92,7 @@ export interface AppleBarrel {
 }
 
 /**
- * An interface representing Banana.
+ * A banana.
  */
 export interface Banana {
   name?: string;
@@ -104,7 +104,7 @@ export interface Banana {
 }
 
 /**
- * An interface representing ListContainersResponse.
+ * An enumeration of containers
  */
 export interface ListContainersResponse {
   serviceEndpoint: string;
@@ -116,7 +116,7 @@ export interface ListContainersResponse {
 }
 
 /**
- * An interface representing Container.
+ * An Azure Storage container
  */
 export interface Container {
   name: string;
@@ -131,7 +131,7 @@ export interface Container {
 }
 
 /**
- * An interface representing ContainerProperties.
+ * Properties of a container
  */
 export interface ContainerProperties {
   lastModified: Date;
@@ -143,7 +143,7 @@ export interface ContainerProperties {
 }
 
 /**
- * An interface representing StorageServiceProperties.
+ * Storage Service Properties.
  */
 export interface StorageServiceProperties {
   /**
@@ -167,7 +167,7 @@ export interface StorageServiceProperties {
 }
 
 /**
- * An interface representing Logging.
+ * Azure Analytics Logging settings.
  */
 export interface Logging {
   /**
@@ -193,7 +193,7 @@ export interface Logging {
 }
 
 /**
- * An interface representing RetentionPolicy.
+ * the retention policy
  */
 export interface RetentionPolicy {
   /**
@@ -229,7 +229,7 @@ export interface Metrics {
 }
 
 /**
- * An interface representing CorsRule.
+ * CORS is an HTTP feature that enables a web application running under one domain to access resources in another domain. Web browsers implement a security restriction known as same-origin policy that prevents a web page from calling APIs in a different domain; CORS provides a secure way to allow one domain (the origin domain) to call APIs in another domain
  */
 export interface CorsRule {
   /**
@@ -255,7 +255,7 @@ export interface CorsRule {
 }
 
 /**
- * An interface representing SignedIdentifier.
+ * signed identifier
  */
 export interface SignedIdentifier {
   /**
@@ -269,7 +269,7 @@ export interface SignedIdentifier {
 }
 
 /**
- * An interface representing AccessPolicy.
+ * An Access policy
  */
 export interface AccessPolicy {
   /**
@@ -287,7 +287,7 @@ export interface AccessPolicy {
 }
 
 /**
- * An interface representing ListBlobsResponse.
+ * An enumeration of blobs
  */
 export interface ListBlobsResponse {
   serviceEndpoint: string;
@@ -316,7 +316,7 @@ export interface BlobPrefix {
 }
 
 /**
- * An interface representing Blob.
+ * An Azure Storage blob
  */
 export interface Blob {
   name: string;
@@ -333,7 +333,7 @@ export interface Blob {
 }
 
 /**
- * An interface representing BlobProperties.
+ * Properties of a blob
  */
 export interface BlobProperties {
   lastModified: Date;
@@ -381,6 +381,13 @@ export interface JSONInput {
  */
 export interface JSONOutput {
   id?: number;
+}
+
+/**
+ * Defines headers for xml_getHeaders operation.
+ */
+export interface XmlGetHeadersHeaders {
+  customHeader?: string;
 }
 
 /**
