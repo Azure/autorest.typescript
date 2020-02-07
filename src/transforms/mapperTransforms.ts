@@ -27,6 +27,7 @@ import {
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { isNil } from "lodash";
 import { normalizeName, NameType } from "../utils/nameUtils";
+import { extractHeaders } from "../utils/extractHeaders";
 
 interface PipelineValue {
   schema: Schema;
@@ -72,9 +73,10 @@ export async function transformMappers(
     return [];
   }
 
-  return codeModel.schemas.objects.map(objectSchema =>
-    transformMapper({ schema: objectSchema })
-  );
+  return [
+    ...codeModel.schemas.objects,
+    ...extractHeaders(codeModel.operationGroups)
+  ].map(objectSchema => transformMapper({ schema: objectSchema }));
 }
 
 /**

@@ -45,9 +45,6 @@ export function transformOperationSpec(
     headerParameters
   } = getGroupedParameters(parameters, operationFullName);
 
-  if (headerParameters && headerParameters.length) {
-    throw new Error(`${JSON.stringify(headerParameters)}`);
-  }
   return {
     ...httpInfo,
     responses: extractSpecResponses(operationDetails),

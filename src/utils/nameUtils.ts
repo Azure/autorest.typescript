@@ -1,5 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
+import { Operation, OperationGroup } from "@azure-tools/codemodel";
+import { getLanguageMetadata } from "./languageHelpers";
+import { TOPLEVEL_OPERATIONGROUP } from "../transforms/constants";
+
 const ReservedModelNames = ["Error"];
 
 export enum CasingConvention {
@@ -69,4 +73,21 @@ function getNameParts(name: string) {
   let parts = name.split(/[-._ ]+/);
 
   return parts.length > 0 ? parts : [name];
+}
+
+export function getOperationFullName(
+  operationGroup: OperationGroup,
+  operation: Operation
+) {
+  const groupName = normalizeName(
+    getLanguageMetadata(operationGroup.language).name ||
+      TOPLEVEL_OPERATIONGROUP,
+    NameType.Property
+  );
+  const operationName = normalizeName(
+    getLanguageMetadata(operation.language).name,
+    NameType.Property
+  );
+
+  return `${groupName}_${operationName}`;
 }

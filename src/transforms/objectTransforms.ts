@@ -18,12 +18,15 @@ import { getLanguageMetadata } from "../utils/languageHelpers";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { PropertyDetails } from "../models/modelDetails";
 import { getTypeForSchema } from "../utils/schemaHelpers";
+import { extractHeaders } from "../utils/extractHeaders";
 
 export function transformObjects(
   codeModel: CodeModel,
   uberParents: ObjectDetails[]
 ): ObjectDetails[] {
-  const objectDetails = (codeModel.schemas.objects || []).map(object =>
+  const objectSchemas = codeModel.schemas.objects || [];
+  const headersSchemas = extractHeaders(codeModel.operationGroups);
+  const objectDetails = [...objectSchemas, ...headersSchemas].map(object =>
     transformObject(object, uberParents)
   );
 
@@ -45,7 +48,8 @@ export function transformObject(
     kind,
     name,
     serializedName: metadata.serializedName,
-    description: `An interface representing ${metadata.name}.`,
+    description:
+      metadata.description || `An interface representing ${metadata.name}.`,
     schema,
     properties: schema.properties
       ? schema.properties.map(prop => transformProperty(prop))
