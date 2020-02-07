@@ -275,8 +275,8 @@ export async function transformOperationGroup(
   );
 
   const operations = await Promise.all(
-    operationGroup.operations.map(
-      async operation => await transformOperation(operation, name)
+    operationGroup.operations.map(operation =>
+      transformOperation(operation, name)
     )
   );
   const mediaTypes = getOperationGroupMediaTypes(operations);
