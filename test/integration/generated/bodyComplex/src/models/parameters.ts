@@ -22,7 +22,7 @@ export const $host: coreHttp.OperationURLParameter = {
 };
 
 export const apiVersion: coreHttp.OperationQueryParameter = {
-  parameterPath: "api-version",
+  parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2016-02-29",
     serializedName: "api-version",

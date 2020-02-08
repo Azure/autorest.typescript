@@ -22,7 +22,7 @@ export const $host: coreHttp.OperationURLParameter = {
 };
 
 export const userAgent: coreHttp.OperationParameter = {
-  parameterPath: "User-Agent",
+  parameterPath: "userAgent",
   mapper: {
     serializedName: "User-Agent",
     required: true,
@@ -33,7 +33,7 @@ export const userAgent: coreHttp.OperationParameter = {
 };
 
 export const contentType: coreHttp.OperationParameter = {
-  parameterPath: "Content-Type",
+  parameterPath: "contentType",
   mapper: {
     serializedName: "Content-Type",
     required: true,
