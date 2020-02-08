@@ -38,7 +38,7 @@ export type StringGetNullResponse = {
   /**
    * The parsed response body.
    */
-  body: String;
+  body: string;
 
   /**
    * The underlying HTTP response.
@@ -52,7 +52,7 @@ export type StringGetNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: String;
+    parsedBody: string;
   };
 };
 
@@ -63,7 +63,7 @@ export type StringGetEmptyResponse = {
   /**
    * The parsed response body.
    */
-  body: String;
+  body: string;
 
   /**
    * The underlying HTTP response.
@@ -77,7 +77,7 @@ export type StringGetEmptyResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: String;
+    parsedBody: string;
   };
 };
 
@@ -88,7 +88,7 @@ export type StringGetMbcsResponse = {
   /**
    * The parsed response body.
    */
-  body: String;
+  body: string;
 
   /**
    * The underlying HTTP response.
@@ -102,7 +102,7 @@ export type StringGetMbcsResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: String;
+    parsedBody: string;
   };
 };
 
@@ -113,7 +113,7 @@ export type StringGetWhitespaceResponse = {
   /**
    * The parsed response body.
    */
-  body: String;
+  body: string;
 
   /**
    * The underlying HTTP response.
@@ -127,7 +127,7 @@ export type StringGetWhitespaceResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: String;
+    parsedBody: string;
   };
 };
 
@@ -138,7 +138,7 @@ export type StringGetNotProvidedResponse = {
   /**
    * The parsed response body.
    */
-  body: String;
+  body: string;
 
   /**
    * The underlying HTTP response.
@@ -152,7 +152,7 @@ export type StringGetNotProvidedResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: String;
+    parsedBody: string;
   };
 };
 

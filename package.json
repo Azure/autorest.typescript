@@ -9,7 +9,7 @@
         "unit-test": "mocha -r ts-node/register './test/unit/**/*spec.ts'",
         "integration-test": "start-server-and-test start-test-server:v1 http://localhost:3000 generate-and-test",
         "integration-test:new": "npm-run-all start-test-server generate-and-test integration-test:alone stop-test-server",
-        "generate-and-test": "npm-run-all -s build -p generate-bodystring generate-bodycomplex generate-url generate-customurl generate-xmlservice -s integration-test:alone",
+        "generate-and-test": "npm-run-all -s build -p generate-bodystring generate-bodycomplex generate-url generate-customurl generate-xmlservice generate-header -s integration-test:alone",
         "integration-test:alone": "mocha -r ts-node/register './test/integration/**/*spec.ts'",
         "start-test-server": "ts-node test/utils/start-server.ts",
         "start-test-server:v1": "ts-node test/integration/testserver-v1/index.ts",

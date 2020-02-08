@@ -16,14 +16,34 @@ export interface OperationRequestDetails {
   mediaType?: KnownMediaType;
 }
 
+export type OperationResponseMapper = Mapper | string;
+
+/**
+ * Contains all the mappers related to an operation response
+ */
+export interface OperationResponseMappers {
+  bodyMapper?: OperationResponseMapper;
+  headersMapper?: OperationResponseMapper;
+}
+
+/**
+ * Contains the type information about each part of the response
+ * these types will be used to generate the ResponseType by
+ * combining these types as needed.
+ */
+export interface OperationResponseTypes {
+  bodyType?: TypeDetails;
+  headersType?: TypeDetails;
+}
+
 /**
  * Details of an operation response, transformed from Response or SchemaResponse.
  */
 export interface OperationResponseDetails {
   statusCodes: string[]; // Can be a status code number or "default"
   mediaType?: KnownMediaType;
-  bodyMapper?: Mapper | string;
-  typeDetails: TypeDetails;
+  mappers: OperationResponseMappers;
+  types: OperationResponseTypes;
   isError?: boolean;
 }
 
@@ -70,5 +90,5 @@ export interface OperationSpecResponse {
 }
 
 export type OperationSpecResponses = {
-  [responseCode: string]: OperationSpecResponse;
+  [responseCode: string]: OperationResponseMappers;
 };

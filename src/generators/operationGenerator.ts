@@ -163,6 +163,7 @@ function buildResponses({ responses }: OperationSpecDetails): string[] {
   const responseCodes = Object.keys(responses);
   let parsedResponses: string[] = [];
   responseCodes.forEach(code => {
+    // TODO: Need to handle headers there too!
     // Check whether we have an actual mapper or a string reference
     const bodyMapper = responses[code].bodyMapper;
     const isCompositeMapper =
@@ -307,7 +308,8 @@ export function writeOperations(
 
 function getResponseType(operation: OperationDetails) {
   const hasSuccessResponse = operation.responses.some(
-    r => !r.isError && !!r.bodyMapper
+    ({ isError, mappers }) =>
+      !isError && (!!mappers.bodyMapper || !!mappers.headersMapper)
   );
 
   const responseName = hasSuccessResponse ? operation.typeDetails.typeName : "";

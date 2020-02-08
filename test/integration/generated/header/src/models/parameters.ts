@@ -12,9 +12,11 @@ import * as Mappers from "../models/mappers";
 export const $host: coreHttp.OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
-    type: { name: "String" },
     serializedName: "$host",
-    required: true
+    required: true,
+    type: {
+      name: "String"
+    }
   },
   skipEncoding: true
 };
@@ -22,131 +24,162 @@ export const $host: coreHttp.OperationURLParameter = {
 export const userAgent: coreHttp.OperationParameter = {
   parameterPath: "User-Agent",
   mapper: {
-    type: { name: "String" },
     serializedName: "User-Agent",
-    required: true
+    required: true,
+    type: {
+      name: "String"
+    }
   }
 };
 
 export const contentType: coreHttp.OperationParameter = {
   parameterPath: "Content-Type",
   mapper: {
-    type: { name: "String" },
     serializedName: "Content-Type",
-    required: true
+    required: true,
+    type: {
+      name: "String"
+    }
   }
 };
 
 export const scenario: coreHttp.OperationParameter = {
   parameterPath: "scenario",
   mapper: {
-    type: { name: "String" },
     serializedName: "scenario",
-    required: true
+    required: true,
+    type: {
+      name: "String"
+    }
   }
 };
 
 export const value: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
-    type: { name: "Number" },
     serializedName: "value",
-    required: true
+    required: true,
+    type: {
+      name: "Number"
+    }
   }
 };
 
 export const value1: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
-    type: { name: "Number" },
     serializedName: "value",
-    required: true
+    required: true,
+    type: {
+      name: "Number"
+    }
   }
 };
 
 export const value2: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
-    type: { name: "Number" },
     serializedName: "value",
-    required: true
+    required: true,
+    type: {
+      name: "Number"
+    }
   }
 };
 
 export const value3: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
-    type: { name: "Number" },
     serializedName: "value",
-    required: true
+    required: true,
+    type: {
+      name: "Number"
+    }
   }
 };
 
 export const value4: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
-    type: { name: "Boolean" },
     serializedName: "value",
-    required: true
+    required: true,
+    type: {
+      name: "Boolean"
+    }
   }
 };
 
 export const value5: coreHttp.OperationParameter = {
   parameterPath: ["options", "value"],
   mapper: {
-    type: { name: "String" },
-    serializedName: "value"
+    serializedName: "value",
+    type: {
+      name: "String"
+    }
   }
 };
 
 export const value6: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
-    type: { name: "Date" },
     serializedName: "value",
-    required: true
+    required: true,
+    type: {
+      name: "Date"
+    }
   }
 };
 
 export const value7: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
-    type: { name: "DateTime" },
     serializedName: "value",
-    required: true
+    required: true,
+    type: {
+      name: "DateTime"
+    }
   }
 };
 
 export const value8: coreHttp.OperationParameter = {
   parameterPath: ["options", "value"],
   mapper: {
-    type: { name: "DateTimeRfc1123" },
-    serializedName: "value"
+    serializedName: "value",
+    type: {
+      name: "DateTimeRfc1123"
+    }
   }
 };
 
 export const value9: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
-    type: { name: "TimeSpan" },
     serializedName: "value",
-    required: true
+    required: true,
+    type: {
+      name: "TimeSpan"
+    }
   }
 };
 
 export const value10: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
-    type: { name: "ByteArray" },
     serializedName: "value",
-    required: true
+    required: true,
+    type: {
+      name: "ByteArray"
+    }
   }
 };
 
 export const value11: coreHttp.OperationParameter = {
   parameterPath: ["options", "value"],
   mapper: {
-    type: { name: "Enum", allowedValues: ["White", "black", "GREY"] },
-    serializedName: "value"
+    serializedName: "value",
+    type: {
+      name: "Enum",
+      allowedValues: ["White", "black", "GREY"]
+    }
   }
 };

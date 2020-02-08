@@ -521,6 +521,21 @@ export type XmlGetWrappedListsResponse = AppleBarrel & {
 };
 
 /**
+ * Contains response data for the getHeaders operation.
+ */
+export type XmlGetHeadersResponse = XmlGetHeadersHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: XmlGetHeadersHeaders;
+  };
+};
+
+/**
  * Contains response data for the getEmptyList operation.
  */
 export type XmlGetEmptyListResponse = Slideshow & {
