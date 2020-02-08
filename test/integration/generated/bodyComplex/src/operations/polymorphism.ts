@@ -244,6 +244,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/polymorphism/valid",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -312,6 +313,7 @@ const putComplicatedOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/polymorphism/complicated",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -339,6 +341,7 @@ const putValidMissingRequiredOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/polymorphism/missingrequired/invalid",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }

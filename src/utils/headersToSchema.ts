@@ -20,8 +20,12 @@ export function headersToSchema(
     }
 
     const { description } = getLanguageMetadata(schema.language);
-
-    headersSchema.properties.push(new Property(header, description, schema));
+    headersSchema.properties.push(
+      new Property(header, description, schema, {
+        // core-http serializer requires Header serialized names to be lowercase
+        serializedName: header.toLocaleLowerCase()
+      })
+    );
   });
 
   return headersSchema;

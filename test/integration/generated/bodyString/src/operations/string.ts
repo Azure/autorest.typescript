@@ -221,6 +221,7 @@ const putNullOperationSpec: coreHttp.OperationSpec = {
   path: "/string/null",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -247,6 +248,7 @@ const putEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/string/empty",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -273,6 +275,7 @@ const putMbcsOperationSpec: coreHttp.OperationSpec = {
   path: "/string/mbcs",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -299,6 +302,7 @@ const putWhitespaceOperationSpec: coreHttp.OperationSpec = {
   path: "/string/whitespace",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -353,6 +357,7 @@ const putBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
   path: "/string/base64UrlEncoding",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }

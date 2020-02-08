@@ -138,6 +138,7 @@ const putNotExpandableOperationSpec: coreHttp.OperationSpec = {
   path: "/string/enum/notExpandable",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -170,6 +171,7 @@ const putReferencedOperationSpec: coreHttp.OperationSpec = {
   path: "/string/enum/Referenced",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -196,6 +198,7 @@ const putReferencedConstantOperationSpec: coreHttp.OperationSpec = {
   path: "/string/enum/ReferencedConstant",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }

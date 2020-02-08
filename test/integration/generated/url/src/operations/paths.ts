@@ -408,6 +408,7 @@ const getBooleanTrueOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/bool/true/{boolPath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -419,6 +420,7 @@ const getBooleanFalseOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/bool/false/{boolPath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -430,6 +432,7 @@ const getIntOneMillionOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/int/1000000/{intPath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -441,6 +444,7 @@ const getIntNegativeOneMillionOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/int/-1000000/{intPath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -452,6 +456,7 @@ const getTenBillionOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/long/10000000000/{longPath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -463,6 +468,7 @@ const getNegativeTenBillionOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/long/-10000000000/{longPath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -474,6 +480,7 @@ const floatScientificPositiveOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/float/1.034E+20/{floatPath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -485,6 +492,7 @@ const floatScientificNegativeOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/float/-1.034E-20/{floatPath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -496,6 +504,7 @@ const doubleDecimalPositiveOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/double/9999999.999/{doublePath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -507,6 +516,7 @@ const doubleDecimalNegativeOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/double/-9999999.999/{doublePath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -518,6 +528,7 @@ const stringUnicodeOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/string/unicode/{stringPath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -530,6 +541,7 @@ const stringUrlEncodedOperationSpec: coreHttp.OperationSpec = {
     "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -541,6 +553,7 @@ const stringUrlNonEncodedOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/string/begin!*'();:@&=+$,end/{stringPath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -552,6 +565,7 @@ const stringEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/string/empty/{stringPath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -563,6 +577,7 @@ const stringNullOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/string/null/{stringPath}",
   httpMethod: "GET",
   responses: {
+    400: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -574,6 +589,7 @@ const enumValidOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/enum/green%20color/{enumPath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -585,6 +601,7 @@ const enumNullOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/string/null/{enumPath}",
   httpMethod: "GET",
   responses: {
+    400: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -596,6 +613,7 @@ const byteMultiByteOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/byte/multibyte/{bytePath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -607,6 +625,7 @@ const byteEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/byte/empty/{bytePath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -618,6 +637,7 @@ const byteNullOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/byte/null/{bytePath}",
   httpMethod: "GET",
   responses: {
+    400: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -629,6 +649,7 @@ const dateValidOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/date/2012-01-01/{datePath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -640,6 +661,7 @@ const dateNullOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/date/null/{datePath}",
   httpMethod: "GET",
   responses: {
+    400: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -651,6 +673,7 @@ const dateTimeValidOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -662,6 +685,7 @@ const dateTimeNullOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/datetime/null/{dateTimePath}",
   httpMethod: "GET",
   responses: {
+    400: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -673,6 +697,7 @@ const base64UrlOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/string/bG9yZW0/{base64UrlPath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -685,6 +710,7 @@ const arrayCsvInPathOperationSpec: coreHttp.OperationSpec = {
     "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -696,6 +722,7 @@ const unixTimeUrlOperationSpec: coreHttp.OperationSpec = {
   path: "/paths/int/1460505600/{unixTimeUrlPath}",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }

@@ -491,6 +491,7 @@ const paramExistingKeyOperationSpec: coreHttp.OperationSpec = {
   path: "/header/param/existingkey",
   httpMethod: "POST",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -503,6 +504,9 @@ const responseExistingKeyOperationSpec: coreHttp.OperationSpec = {
   path: "/header/response/existingkey",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseExistingKeyHeaders
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -514,6 +518,7 @@ const paramProtectedKeyOperationSpec: coreHttp.OperationSpec = {
   path: "/header/param/protectedkey",
   httpMethod: "POST",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -526,6 +531,9 @@ const responseProtectedKeyOperationSpec: coreHttp.OperationSpec = {
   path: "/header/response/protectedkey",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseProtectedKeyHeaders
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -537,6 +545,7 @@ const paramIntegerOperationSpec: coreHttp.OperationSpec = {
   path: "/header/param/prim/integer",
   httpMethod: "POST",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -549,6 +558,9 @@ const responseIntegerOperationSpec: coreHttp.OperationSpec = {
   path: "/header/response/prim/integer",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseIntegerHeaders
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -561,6 +573,7 @@ const paramLongOperationSpec: coreHttp.OperationSpec = {
   path: "/header/param/prim/long",
   httpMethod: "POST",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -573,6 +586,9 @@ const responseLongOperationSpec: coreHttp.OperationSpec = {
   path: "/header/response/prim/long",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseLongHeaders
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -585,6 +601,7 @@ const paramFloatOperationSpec: coreHttp.OperationSpec = {
   path: "/header/param/prim/float",
   httpMethod: "POST",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -597,6 +614,9 @@ const responseFloatOperationSpec: coreHttp.OperationSpec = {
   path: "/header/response/prim/float",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseFloatHeaders
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -609,6 +629,7 @@ const paramDoubleOperationSpec: coreHttp.OperationSpec = {
   path: "/header/param/prim/double",
   httpMethod: "POST",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -621,6 +642,9 @@ const responseDoubleOperationSpec: coreHttp.OperationSpec = {
   path: "/header/response/prim/double",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseDoubleHeaders
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -633,6 +657,7 @@ const paramBoolOperationSpec: coreHttp.OperationSpec = {
   path: "/header/param/prim/bool",
   httpMethod: "POST",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -645,6 +670,9 @@ const responseBoolOperationSpec: coreHttp.OperationSpec = {
   path: "/header/response/prim/bool",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseBoolHeaders
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -657,6 +685,7 @@ const paramStringOperationSpec: coreHttp.OperationSpec = {
   path: "/header/param/prim/string",
   httpMethod: "POST",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -669,6 +698,9 @@ const responseStringOperationSpec: coreHttp.OperationSpec = {
   path: "/header/response/prim/string",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseStringHeaders
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -681,6 +713,7 @@ const paramDateOperationSpec: coreHttp.OperationSpec = {
   path: "/header/param/prim/date",
   httpMethod: "POST",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -693,6 +726,9 @@ const responseDateOperationSpec: coreHttp.OperationSpec = {
   path: "/header/response/prim/date",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseDateHeaders
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -705,6 +741,7 @@ const paramDatetimeOperationSpec: coreHttp.OperationSpec = {
   path: "/header/param/prim/datetime",
   httpMethod: "POST",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -717,6 +754,9 @@ const responseDatetimeOperationSpec: coreHttp.OperationSpec = {
   path: "/header/response/prim/datetime",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseDatetimeHeaders
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -729,6 +769,7 @@ const paramDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
   path: "/header/param/prim/datetimerfc1123",
   httpMethod: "POST",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -741,6 +782,9 @@ const responseDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
   path: "/header/response/prim/datetimerfc1123",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseDatetimeRfc1123Headers
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -753,6 +797,7 @@ const paramDurationOperationSpec: coreHttp.OperationSpec = {
   path: "/header/param/prim/duration",
   httpMethod: "POST",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -765,6 +810,9 @@ const responseDurationOperationSpec: coreHttp.OperationSpec = {
   path: "/header/response/prim/duration",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseDurationHeaders
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -777,6 +825,7 @@ const paramByteOperationSpec: coreHttp.OperationSpec = {
   path: "/header/param/prim/byte",
   httpMethod: "POST",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -789,6 +838,9 @@ const responseByteOperationSpec: coreHttp.OperationSpec = {
   path: "/header/response/prim/byte",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseByteHeaders
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -801,6 +853,7 @@ const paramEnumOperationSpec: coreHttp.OperationSpec = {
   path: "/header/param/prim/enum",
   httpMethod: "POST",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -813,6 +866,9 @@ const responseEnumOperationSpec: coreHttp.OperationSpec = {
   path: "/header/response/prim/enum",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.HeaderResponseEnumHeaders
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -826,6 +882,7 @@ const customRequestIdOperationSpec: coreHttp.OperationSpec = {
     "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0",
   httpMethod: "POST",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }

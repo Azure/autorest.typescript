@@ -18,7 +18,8 @@ import { MapperType } from "@azure/core-http";
 import {
   OperationGroupDetails,
   OperationSpecDetails,
-  OperationDetails
+  OperationDetails,
+  OperationResponseMapper
 } from "../models/operationDetails";
 import { isString } from "util";
 import { ParameterDetails } from "../models/parameterDetails";
@@ -163,29 +164,30 @@ function buildResponses({ responses }: OperationSpecDetails): string[] {
   const responseCodes = Object.keys(responses);
   let parsedResponses: string[] = [];
   responseCodes.forEach(code => {
-    // TODO: Need to handle headers there too!
     // Check whether we have an actual mapper or a string reference
-    const bodyMapper = responses[code].bodyMapper;
-    const isCompositeMapper =
-      bodyMapper &&
-      !isString(bodyMapper) &&
-      bodyMapper.type.name === MapperType.Composite;
-
-    if (isCompositeMapper) {
-      parsedResponses.push(`${code}: ${JSON.stringify(responses[code])}`);
-    } else if (bodyMapper) {
-      // Mapper is a reference to an existing mapper in the Mappers file
-      const bodyMapperString = `bodyMapper: ${
-        isString(bodyMapper) ? bodyMapper : JSON.stringify(bodyMapper)
-      }`;
-
-      parsedResponses.push(`${code}: {
-        ${bodyMapperString}
+    const { bodyMapper, headersMapper } = responses[code];
+    const bodyMapperString = buildMapper(bodyMapper, "bodyMapper");
+    const headersMapperString = buildMapper(headersMapper, "headersMapper");
+    parsedResponses.push(`${code}: {
+        ${bodyMapperString}${headersMapperString}
       }`);
-    }
   });
 
   return parsedResponses;
+}
+
+function buildMapper(
+  mapper: OperationResponseMapper | undefined,
+  mapperName: string
+) {
+  if (!mapper) {
+    return "";
+  }
+
+  // When mapper is a reference (string) we don't need to stringify the object
+  let mapperString = isString(mapper) ? mapper : JSON.stringify(mapper);
+
+  return `${mapperName}: ${mapperString},`;
 }
 
 function getOptionsParameter(

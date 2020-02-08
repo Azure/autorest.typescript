@@ -484,7 +484,8 @@ function transformConstantMapper(pipelineValue: PipelineValue): PipelineValue {
   }
   const serializedName =
     (options && options.serializedName) ||
-    getLanguageMetadata(schema.language).name;
+    getLanguageMetadata(schema.language).serializedName;
+
   const constantSchema = schema as ConstantSchema;
 
   const mapper: Mapper = {

@@ -28,7 +28,7 @@
         "LICENSE"
     ],
     "dependencies": {
-        "@autorest/autorest": "^3.0.6146",
+        "@autorest/autorest": "^3.0.6168",
         "@azure-tools/async-io": "3.0.203",
         "@azure-tools/autorest-extension-base": "3.1.206",
         "@azure-tools/codegen": "2.1.218",

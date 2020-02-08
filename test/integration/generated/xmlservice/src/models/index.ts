@@ -125,7 +125,7 @@ export interface Container {
    */
   properties: ContainerProperties;
   /**
-   * Dictionary of <paths·xml-headers·get·responses·200·headers·custom_header·schema>
+   * Dictionary of <string>
    */
   metadata?: { [propertyName: string]: string };
 }
@@ -327,7 +327,7 @@ export interface Blob {
    */
   properties: BlobProperties;
   /**
-   * Dictionary of <paths·xml-headers·get·responses·200·headers·custom_header·schema>
+   * Dictionary of <string>
    */
   metadata?: { [propertyName: string]: string };
 }

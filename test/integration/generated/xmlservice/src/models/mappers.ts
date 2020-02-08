@@ -928,8 +928,8 @@ export const XmlGetHeadersHeaders: coreHttp.CompositeMapper = {
     modelProperties: {
       customHeader: {
         type: { name: "String" },
-        serializedName: "Custom-Header",
-        xmlName: "Custom-Header"
+        serializedName: "custom-header",
+        xmlName: "custom-header"
       }
     }
   }

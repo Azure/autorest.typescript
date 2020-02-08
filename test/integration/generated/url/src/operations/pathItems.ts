@@ -111,6 +111,7 @@ const getAllWithValuesOperationSpec: coreHttp.OperationSpec = {
     "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -133,6 +134,7 @@ const getGlobalQueryNullOperationSpec: coreHttp.OperationSpec = {
     "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -155,6 +157,7 @@ const getGlobalAndLocalQueryNullOperationSpec: coreHttp.OperationSpec = {
     "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -177,6 +180,7 @@ const getLocalPathItemQueryNullOperationSpec: coreHttp.OperationSpec = {
     "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
