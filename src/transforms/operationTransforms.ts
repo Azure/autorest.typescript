@@ -171,6 +171,10 @@ export function transformOperationRequest(
   };
 }
 
+/**
+ * Build OperationResponseDetails by extracting body and header information
+ * from the response
+ */
 export function transformOperationResponse(
   response: SchemaResponse | Response,
   operationFullName: string
@@ -183,8 +187,10 @@ export function transformOperationResponse(
     throw new Error("Operation does not specify HTTP response details.");
   }
 
+  // Transform Headers to am ObjectSchema to represent headers as an object
   const headersSchema = headersToSchema(httpInfo.headers, operationFullName);
   const mediaType = httpInfo.knownMediaType;
+
   const mappers: OperationResponseMappers = {
     bodyMapper: isSchemaResponse(response)
       ? getMapperForSchema(response.schema, mediaType)
@@ -200,7 +206,9 @@ export function transformOperationResponse(
       : undefined,
     headersType: headersSchema ? getTypeForSchema(headersSchema) : undefined
   };
+
   const isDefault = httpInfo.statusCodes.indexOf("default") > -1;
+
   return {
     statusCodes: httpInfo.statusCodes,
     mediaType: httpInfo.knownMediaType,

@@ -204,7 +204,7 @@ function getIsGlobal(parameter: Parameter) {
 
 function getParameterPath(parameter: Parameter) {
   const metadata = getLanguageMetadata(parameter.language);
-  // Parameter path needs to match the name of the parameter for correct serialization
+  // ParameterPath has to include the name we used for the parameter, not the serializedName
   const name = normalizeName(metadata.name, NameType.Property);
   return isClientImplementation(parameter) || parameter.required
     ? name

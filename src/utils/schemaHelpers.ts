@@ -77,7 +77,10 @@ export function getTypeForSchema(schema: Schema): TypeDetails {
 
     case SchemaType.Object:
       const objSchema = schema as ObjectSchema;
-      const { name } = getLanguageMetadata(schema.language);
+      const name = normalizeName(
+        getLanguageMetadata(schema.language).name,
+        NameType.Interface
+      );
 
       // Polymorphic objects with children will get a union type as type
       // since they can take different shapes

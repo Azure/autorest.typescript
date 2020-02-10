@@ -9,7 +9,8 @@ import {
   SourceFile,
   Writers,
   WriterFunction,
-  OptionalKind
+  OptionalKind,
+  WriterFunctionOrValue
 } from "ts-morph";
 import { keys } from "lodash";
 import {
@@ -26,6 +27,7 @@ import {
   OperationResponseDetails
 } from "../models/operationDetails";
 import { ParameterDetails } from "../models/parameterDetails";
+import { type } from "os";
 
 export function generateModels(clientDetails: ClientDetails, project: Project) {
   const modelsIndexFile = project.createSourceFile(
@@ -73,6 +75,10 @@ const writeOperationModels = (
     });
   });
 
+/**
+ * This function takes an operation and gets its return type based on
+ * the response body and headers
+ */
 function writeResponseTypes(
   { responses, name, typeDetails: operationType }: OperationDetails,
   modelsIndexFile: SourceFile
@@ -80,64 +86,37 @@ function writeResponseTypes(
   const responseName = `${operationType.typeName}Response`;
 
   responses
+    // Filter responses that are not marked as errors and that have either body or headers
     .filter(
       ({ isError, mappers }) =>
         !isError && (!!mappers.bodyMapper || !!mappers.headersMapper)
     )
     .forEach(operation => {
       // Define possible values for response
-      const responseType = operation.types.bodyType || {
-        typeName: "string",
-        kind: PropertyKind.Primitive
-      };
-
-      const responseValueType = responseType.typeName;
-
-      if (responseType.isConstant) {
-        if (responseType.defaultValue === undefined) {
-          throw new Error(
-            `OperationResponse type does not have a defaultValue (operation: ${name})`
-          );
-        }
-
-        if (responseType.typeName === undefined) {
-          throw new Error(
-            `OperationResponse type does not have a modelTypeName (operation: ${name})`
-          );
-        }
-
-        let defaultValue = responseType.defaultValue;
-
-        // Get quoted value for string
-        if (responseType.typeName === "string" && defaultValue !== "null") {
-          defaultValue = `"${defaultValue}"`;
-        }
-
-        modelsIndexFile.addTypeAlias({
-          name: responseValueType,
-          docs: [`Defines values for ${responseType.typeName}.`],
-          isExported: true,
-          type: defaultValue,
-          leadingTrivia: writer => writer.blankLine()
-        });
-      }
-
       modelsIndexFile.addTypeAlias({
         name: responseName,
         docs: [`Contains response data for the ${name} operation.`],
         isExported: true,
-        type: generateResponseType(operation),
+        type: buildResponseType(operation),
         leadingTrivia: writer => writer.blankLine()
       });
     });
 }
 
+/**
+ * Interface to store necessary data about a part of the response (headers or body) to generate
+ * the response type
+ */
 interface GeneratedResponseDetails {
   typeName: string;
   mainProperties?: OptionalKind<PropertySignatureStructure>[];
   internalResponseProperties: OptionalKind<PropertySignatureStructure>[];
+  intersectionType?: string;
 }
 
+/**
+ * Extracts the necessary data from the response body to generate a response type
+ */
 function getBodyProperties({
   types: { bodyType }
 }: OperationResponseDetails): GeneratedResponseDetails | undefined {
@@ -145,24 +124,25 @@ function getBodyProperties({
     return;
   }
 
-  const isPrimitive = bodyType.kind === PropertyKind.Primitive;
   const isComposite = bodyType.kind === PropertyKind.Composite;
 
-  const typeName = isPrimitive
-    ? bodyType.typeName
-    : normalizeName(bodyType.typeName, NameType.Interface);
-
   return {
-    typeName,
+    typeName: bodyType.typeName,
+    // mainProperties will be used only when the body type is not primitive
+    // adding to the response type a property named body, of the expected type
     mainProperties: !isComposite
       ? [
           {
             name: "body", // Is there any extension that overrides this?
-            type: typeName,
+            type: bodyType.typeName,
             docs: ["The parsed response body."]
           }
         ]
       : [],
+    // intersectionType is used when the body is Composite, this means that there is a model
+    // representing this object and the response type will need to be an intersection.
+    ...(isComposite && { intersectionType: bodyType.typeName }),
+    // These are the additional default properties to add under the _response property in the response type
     internalResponseProperties: [
       {
         name: "bodyAsText",
@@ -173,24 +153,27 @@ function getBodyProperties({
       {
         name: "parsedBody",
         docs: ["The response body as parsed JSON or XML"],
-        type: typeName,
+        type: bodyType.typeName,
         leadingTrivia: writer => writer.blankLine()
       }
     ]
   };
 }
 
+/**
+ * Extracts the necessary data from the response headers to generate a response type
+ */
 function getHeadersProperties({
   types: { headersType }
 }: OperationResponseDetails): GeneratedResponseDetails | undefined {
   if (!headersType) {
     return;
   }
-
-  const typeName = normalizeName(headersType.typeName, NameType.Interface);
+  const { typeName } = headersType;
 
   return {
     typeName,
+    // These are the additional default properties to add under the _response property in the response type
     internalResponseProperties: [
       {
         name: "parsedHeaders",
@@ -198,17 +181,29 @@ function getHeadersProperties({
         type: typeName
       }
     ],
-    mainProperties: []
+    // Headers are always represented as Composite, so we will never need to add a headers property to the response type.
+    mainProperties: [],
+    // Headers are always represented as Composite, so its type will always be added as an intersection to the response type.
+    intersectionType: typeName
   };
 }
 
-function generateResponseType(
+type IntersectionTypeParameters = [
+  WriterFunctionOrValue,
+  WriterFunctionOrValue,
+  ...WriterFunctionOrValue[]
+];
+
+/**
+ * This function vuilds the type to represent an Operation response, taking the response headers and body
+ * to create a type that contains all the properties that a response may include
+ */
+function buildResponseType(
   operationResponse: OperationResponseDetails
 ): WriterFunction {
+  // First we get the response Headers and Body details
   const headersProperties = getHeadersProperties(operationResponse);
   const bodyProperties = getBodyProperties(operationResponse);
-  const isBodyComposite =
-    operationResponse.types.bodyType?.kind === PropertyKind.Composite;
 
   const innerTypeWriter = Writers.objectType({
     properties: [
@@ -230,14 +225,42 @@ function generateResponseType(
     ]
   });
 
-  const parameters = [
-    (isBodyComposite && bodyProperties?.typeName) || "",
-    headersProperties?.typeName || "",
-    innerTypeWriter
-  ].filter(p => p !== "") as any;
+  let intersectionTypes: WriterFunctionOrValue[] = [innerTypeWriter];
+  bodyProperties?.intersectionType &&
+    intersectionTypes.unshift(bodyProperties.intersectionType);
+  headersProperties?.intersectionType &&
+    intersectionTypes.unshift(headersProperties.intersectionType);
 
-  return parameters.length > 1
-    ? Writers.intersectionType.apply(Writers, parameters)
+  /**
+   * Here we define our response type:
+   *    When we have either a Body or Header intersection type, the Response type will be
+   *    an intersection with them i.e.
+   *    type OperationResponse = BodyType & HeadersType & {
+   *       _response: {
+   *         bodyAsText: string,
+   *         parsedBody: BodyType,
+   *         parsedHeaders: HeadersType
+   *      }
+   *    }
+   *
+   *    When we don't have any intersection types, the response type will just be the innerType i.e
+   *    type OperationResponse = {
+   *       body: number
+   *       _response: {
+   *         bodyAsText: string,
+   *         parsedBody: number
+   *      }
+   *    }
+   */
+  return intersectionTypes.length > 1
+    ? // Using apply instead of calling the method directly to be able to conditionally pass
+      // parameters, this way we don't have to have a nested if/else tree to decide which parameters
+      // to pass, we will pass any intersectionTypes availabe plus the innerType. When there are no intersection types
+      // we just return innerType
+      Writers.intersectionType.apply(
+        Writers,
+        intersectionTypes as IntersectionTypeParameters
+      )
     : innerTypeWriter;
 }
 
