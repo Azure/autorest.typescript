@@ -89,7 +89,7 @@ function writeResponseTypes(
     // Filter responses that are not marked as errors and that have either body or headers
     .filter(
       ({ isError, mappers }) =>
-        !isError && (!!mappers.bodyMapper || !!mappers.headersMapper)
+        !isError && (mappers.bodyMapper || mappers.headersMapper)
     )
     .forEach(operation => {
       // Define possible values for response
