@@ -26,7 +26,7 @@ export const HeaderResponseExistingKeyHeaders: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "HeaderResponseExistingKeyHeaders",
     modelProperties: {
-      userAgent: { type: { name: "String" }, serializedName: "User-Agent" }
+      userAgent: { type: { name: "String" }, serializedName: "user-agent" }
     }
   }
 };
@@ -37,7 +37,7 @@ export const HeaderResponseProtectedKeyHeaders: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "HeaderResponseProtectedKeyHeaders",
     modelProperties: {
-      contentType: { type: { name: "String" }, serializedName: "Content-Type" }
+      contentType: { type: { name: "String" }, serializedName: "content-type" }
     }
   }
 };

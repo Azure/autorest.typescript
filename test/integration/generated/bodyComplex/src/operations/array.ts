@@ -119,6 +119,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/array/valid",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -145,6 +146,7 @@ const putEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/array/empty",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }

@@ -132,6 +132,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/dictionary/typed/valid",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -158,6 +159,7 @@ const putEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/dictionary/typed/empty",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }

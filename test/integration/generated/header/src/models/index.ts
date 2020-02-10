@@ -120,6 +120,111 @@ export interface HeaderResponseEnumHeaders {
 export type GreyscaleColors = "White" | "black" | "GREY";
 
 /**
+ * Contains response data for the responseExistingKey operation.
+ */
+export type HeaderResponseExistingKeyResponse = HeaderResponseExistingKeyHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: HeaderResponseExistingKeyHeaders;
+  };
+};
+
+/**
+ * Contains response data for the responseProtectedKey operation.
+ */
+export type HeaderResponseProtectedKeyResponse = HeaderResponseProtectedKeyHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: HeaderResponseProtectedKeyHeaders;
+  };
+};
+
+/**
+ * Contains response data for the responseInteger operation.
+ */
+export type HeaderResponseIntegerResponse = HeaderResponseIntegerHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: HeaderResponseIntegerHeaders;
+  };
+};
+
+/**
+ * Contains response data for the responseLong operation.
+ */
+export type HeaderResponseLongResponse = HeaderResponseLongHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: HeaderResponseLongHeaders;
+  };
+};
+
+/**
+ * Contains response data for the responseFloat operation.
+ */
+export type HeaderResponseFloatResponse = HeaderResponseFloatHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: HeaderResponseFloatHeaders;
+  };
+};
+
+/**
+ * Contains response data for the responseDouble operation.
+ */
+export type HeaderResponseDoubleResponse = HeaderResponseDoubleHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: HeaderResponseDoubleHeaders;
+  };
+};
+
+/**
+ * Contains response data for the responseBool operation.
+ */
+export type HeaderResponseBoolResponse = HeaderResponseBoolHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: HeaderResponseBoolHeaders;
+  };
+};
+
+/**
  * Optional parameters.
  */
 export interface HeaderParamStringOptionalParams
@@ -129,6 +234,51 @@ export interface HeaderParamStringOptionalParams
    */
   value?: string;
 }
+
+/**
+ * Contains response data for the responseString operation.
+ */
+export type HeaderResponseStringResponse = HeaderResponseStringHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: HeaderResponseStringHeaders;
+  };
+};
+
+/**
+ * Contains response data for the responseDate operation.
+ */
+export type HeaderResponseDateResponse = HeaderResponseDateHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: HeaderResponseDateHeaders;
+  };
+};
+
+/**
+ * Contains response data for the responseDatetime operation.
+ */
+export type HeaderResponseDatetimeResponse = HeaderResponseDatetimeHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: HeaderResponseDatetimeHeaders;
+  };
+};
 
 /**
  * Optional parameters.
@@ -142,6 +292,51 @@ export interface HeaderParamDatetimeRfc1123OptionalParams
 }
 
 /**
+ * Contains response data for the responseDatetimeRfc1123 operation.
+ */
+export type HeaderResponseDatetimeRfc1123Response = HeaderResponseDatetimeRfc1123Headers & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: HeaderResponseDatetimeRfc1123Headers;
+  };
+};
+
+/**
+ * Contains response data for the responseDuration operation.
+ */
+export type HeaderResponseDurationResponse = HeaderResponseDurationHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: HeaderResponseDurationHeaders;
+  };
+};
+
+/**
+ * Contains response data for the responseByte operation.
+ */
+export type HeaderResponseByteResponse = HeaderResponseByteHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: HeaderResponseByteHeaders;
+  };
+};
+
+/**
  * Optional parameters.
  */
 export interface HeaderParamEnumOptionalParams
@@ -151,3 +346,18 @@ export interface HeaderParamEnumOptionalParams
    */
   value?: GreyscaleColors;
 }
+
+/**
+ * Contains response data for the responseEnum operation.
+ */
+export type HeaderResponseEnumResponse = HeaderResponseEnumHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: HeaderResponseEnumHeaders;
+  };
+};

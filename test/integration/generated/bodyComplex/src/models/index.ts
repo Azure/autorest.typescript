@@ -136,7 +136,7 @@ export interface ArrayWrapper {
  */
 export interface DictionaryWrapper {
   /**
-   * Dictionary of <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>
+   * Dictionary of <string>
    */
   defaultProgram?: { [propertyName: string]: string };
 }

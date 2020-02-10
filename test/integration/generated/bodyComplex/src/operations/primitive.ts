@@ -357,6 +357,7 @@ const putIntOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/primitive/integer",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -383,6 +384,7 @@ const putLongOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/primitive/long",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -409,6 +411,7 @@ const putFloatOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/primitive/float",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -435,6 +438,7 @@ const putDoubleOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/primitive/double",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -461,6 +465,7 @@ const putBoolOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/primitive/bool",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -487,6 +492,7 @@ const putStringOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/primitive/string",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -513,6 +519,7 @@ const putDateOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/primitive/date",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -539,6 +546,7 @@ const putDateTimeOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/primitive/datetime",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -565,6 +573,7 @@ const putDateTimeRfc1123OperationSpec: coreHttp.OperationSpec = {
   path: "/complex/primitive/datetimerfc1123",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -591,6 +600,7 @@ const putDurationOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/primitive/duration",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -617,6 +627,7 @@ const putByteOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/primitive/byte",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }

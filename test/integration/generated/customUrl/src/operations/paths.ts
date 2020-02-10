@@ -49,6 +49,7 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/customuri",
   httpMethod: "GET",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }

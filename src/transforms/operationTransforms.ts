@@ -22,7 +22,9 @@ import {
   OperationResponseDetails,
   OperationRequestDetails,
   OperationSpecDetails,
-  OperationSpecResponses
+  OperationSpecResponses,
+  OperationResponseMappers,
+  OperationResponseTypes
 } from "../models/operationDetails";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getTypeForSchema, isSchemaResponse } from "../utils/schemaHelpers";
@@ -31,6 +33,7 @@ import { ParameterDetails } from "../models/parameterDetails";
 import { PropertyKind, TypeDetails } from "../models/modelDetails";
 import { TOPLEVEL_OPERATIONGROUP } from "./constants";
 import { KnownMediaType } from "@azure-tools/codegen";
+import { headersToSchema } from "../utils/headersToSchema";
 
 export function transformOperationSpec(
   operationDetails: OperationDetails,
@@ -73,8 +76,7 @@ export function extractSpecResponses({
     throw new Error(`The operation ${name} contains no responses`);
   }
 
-  const schemaResponses = extractSchemaResponses(responses);
-  return schemaResponses;
+  return extractSchemaResponses(responses);
 }
 
 export interface SpecType {
@@ -140,20 +142,16 @@ export function getSpecType(responseSchema: Schema, expand = false): SpecType {
 
 export function extractSchemaResponses(responses: OperationResponseDetails[]) {
   return responses.reduce(
-    (result: OperationSpecResponses, response: OperationResponseDetails) => {
-      const statusCodes = response.statusCodes;
-
+    (
+      result: OperationSpecResponses,
+      { statusCodes, mappers }: OperationResponseDetails
+    ) => {
       if (!statusCodes || !statusCodes.length) {
         return result;
       }
 
       const statusCode = statusCodes[0];
-      result[statusCode] = {};
-      if (response.bodyMapper) {
-        result[statusCode] = {
-          bodyMapper: response.bodyMapper
-        };
-      }
+      result[statusCode] = mappers;
       return result;
     },
     {}
@@ -173,51 +171,51 @@ export function transformOperationRequest(
   };
 }
 
+/**
+ * Build OperationResponseDetails by extracting body and header information
+ * from the response
+ */
 export function transformOperationResponse(
-  response: SchemaResponse | Response
+  response: SchemaResponse | Response,
+  operationFullName: string
 ): OperationResponseDetails {
-  let isError =
+  const httpInfo = response.protocol.http;
+  const isError =
     !!response.extensions && !!response.extensions["x-ms-error-response"];
 
-  if (!isSchemaResponse(response)) {
-    const schemalessResponse = response as Response;
-    return {
-      statusCodes: schemalessResponse.protocol.http!.statusCodes,
-      typeDetails: {
-        typeName: "",
-        isConstant: false,
-        kind: PropertyKind.Primitive,
-        isError
-      }
-    } as OperationResponseDetails;
-  }
-
-  const schemaResponse = response as SchemaResponse;
-  const typeDetails = getTypeForSchema(schemaResponse.schema);
-  if (!typeDetails) {
-    throw new Error(
-      `Unable to extract responseType for ${schemaResponse.schema.type}`
-    );
-  }
-
-  const httpInfo = response.protocol.http;
-  if (httpInfo) {
-    const isDefault = httpInfo.statusCodes.indexOf("default") > -1;
-    const mediaType: KnownMediaType = httpInfo.knownMediaType;
-    const bodyMapper = getBodyMapperFromSchema(
-      schemaResponse.schema,
-      mediaType
-    );
-    return {
-      statusCodes: httpInfo.statusCodes,
-      mediaType,
-      bodyMapper,
-      typeDetails,
-      isError: isDefault || isError
-    };
-  } else {
+  if (!httpInfo) {
     throw new Error("Operation does not specify HTTP response details.");
   }
+
+  // Transform Headers to am ObjectSchema to represent headers as an object
+  const headersSchema = headersToSchema(httpInfo.headers, operationFullName);
+  const mediaType = httpInfo.knownMediaType;
+
+  const mappers: OperationResponseMappers = {
+    bodyMapper: isSchemaResponse(response)
+      ? getMapperForSchema(response.schema, mediaType)
+      : undefined,
+    headersMapper: headersSchema
+      ? getMapperForSchema(headersSchema, mediaType)
+      : undefined
+  };
+
+  const types: OperationResponseTypes = {
+    bodyType: isSchemaResponse(response)
+      ? getTypeForSchema(response.schema)
+      : undefined,
+    headersType: headersSchema ? getTypeForSchema(headersSchema) : undefined
+  };
+
+  const isDefault = httpInfo.statusCodes.indexOf("default") > -1;
+
+  return {
+    statusCodes: httpInfo.statusCodes,
+    mediaType: httpInfo.knownMediaType,
+    mappers,
+    types,
+    isError: isDefault || isError
+  };
 }
 
 export async function transformOperation(
@@ -226,6 +224,7 @@ export async function transformOperation(
 ): Promise<OperationDetails> {
   const metadata = getLanguageMetadata(operation.language);
   const name = normalizeName(metadata.name, NameType.Property);
+  const operationFullName = `${operationGroupName}_${name}`;
   const responsesAndErrors = [
     ...(operation.responses || []),
     ...(operation.exceptions || [])
@@ -240,14 +239,14 @@ export async function transformOperation(
 
   const request = transformOperationRequest(operation.request);
   const responses = responsesAndErrors.map(response =>
-    transformOperationResponse(response as SchemaResponse)
+    transformOperationResponse(response, operationFullName)
   );
-
   const mediaTypes = await getOperationMediaTypes(request, responses);
+
   return {
     name,
     typeDetails,
-    fullName: `${operationGroupName}_${name}`.toLowerCase(),
+    fullName: operationFullName.toLowerCase(),
     apiVersions: operation.apiVersions
       ? operation.apiVersions.map(v => v.version)
       : [],
@@ -336,7 +335,7 @@ function getGroupedParameters(
   };
 }
 
-function getBodyMapperFromSchema(
+function getMapperForSchema(
   responseSchema: Schema,
   mediaType?: KnownMediaType,
   expand = false

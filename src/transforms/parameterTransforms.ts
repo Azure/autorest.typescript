@@ -204,11 +204,11 @@ function getIsGlobal(parameter: Parameter) {
 
 function getParameterPath(parameter: Parameter) {
   const metadata = getLanguageMetadata(parameter.language);
-  const serializedName =
-    metadata.serializedName || normalizeName(metadata.name, NameType.Property);
+  // ParameterPath has to include the name we used for the parameter, not the serializedName
+  const name = normalizeName(metadata.name, NameType.Property);
   return isClientImplementation(parameter) || parameter.required
-    ? serializedName
-    : ["options", serializedName];
+    ? name
+    : ["options", name];
 }
 
 const isClientImplementation = (parameter: Parameter) =>

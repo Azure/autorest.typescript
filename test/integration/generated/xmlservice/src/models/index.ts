@@ -125,7 +125,7 @@ export interface Container {
    */
   properties: ContainerProperties;
   /**
-   * Dictionary of <paths·xml-headers·get·responses·200·headers·custom_header·schema>
+   * Dictionary of <string>
    */
   metadata?: { [propertyName: string]: string };
 }
@@ -327,7 +327,7 @@ export interface Blob {
    */
   properties: BlobProperties;
   /**
-   * Dictionary of <paths·xml-headers·get·responses·200·headers·custom_header·schema>
+   * Dictionary of <string>
    */
   metadata?: { [propertyName: string]: string };
 }
@@ -517,6 +517,21 @@ export type XmlGetWrappedListsResponse = AppleBarrel & {
      * The response body as parsed JSON or XML
      */
     parsedBody: AppleBarrel;
+  };
+};
+
+/**
+ * Contains response data for the getHeaders operation.
+ */
+export type XmlGetHeadersResponse = XmlGetHeadersHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: XmlGetHeadersHeaders;
   };
 };
 

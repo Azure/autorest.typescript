@@ -108,6 +108,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/polymorphicrecursive/valid",
   httpMethod: "PUT",
   responses: {
+    200: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }

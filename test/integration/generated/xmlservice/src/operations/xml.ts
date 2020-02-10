@@ -144,11 +144,11 @@ export class Xml {
    */
   getHeaders(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<Models.XmlGetHeadersResponse> {
     return this.client.sendOperationRequest(
       { options },
       getHeadersOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    ) as Promise<Models.XmlGetHeadersResponse>;
   }
 
   /**
@@ -449,7 +449,7 @@ const getComplexTypeRefNoMetaOperationSpec: coreHttp.OperationSpec = {
 const putComplexTypeRefNoMetaOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/complex-type-ref-no-meta",
   httpMethod: "PUT",
-  responses: {},
+  responses: { 201: {} },
   requestBody: Parameters.model,
   urlParameters: [Parameters.$host],
   isXML: true,
@@ -471,7 +471,7 @@ const getComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
 const putComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/complex-type-ref-with-meta",
   httpMethod: "PUT",
-  responses: {},
+  responses: { 201: {} },
   requestBody: Parameters.model1,
   urlParameters: [Parameters.$host],
   isXML: true,
@@ -497,6 +497,7 @@ const putSimpleOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/simple",
   httpMethod: "PUT",
   responses: {
+    201: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -523,6 +524,7 @@ const putWrappedListsOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/wrapped-lists",
   httpMethod: "PUT",
   responses: {
+    201: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -536,7 +538,11 @@ const putWrappedListsOperationSpec: coreHttp.OperationSpec = {
 const getHeadersOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/headers",
   httpMethod: "GET",
-  responses: {},
+  responses: {
+    200: {
+      headersMapper: Mappers.XmlGetHeadersHeaders
+    }
+  },
   urlParameters: [Parameters.$host],
   serializer
 };
@@ -555,7 +561,7 @@ const getEmptyListOperationSpec: coreHttp.OperationSpec = {
 const putEmptyListOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/empty-list",
   httpMethod: "PUT",
-  responses: {},
+  responses: { 201: {} },
   requestBody: Parameters.slideshow,
   urlParameters: [Parameters.$host],
   isXML: true,
@@ -577,7 +583,7 @@ const getEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
 const putEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/empty-wrapped-lists",
   httpMethod: "PUT",
-  responses: {},
+  responses: { 201: {} },
   requestBody: Parameters.appleBarrel,
   urlParameters: [Parameters.$host],
   isXML: true,
@@ -607,7 +613,7 @@ const getRootListOperationSpec: coreHttp.OperationSpec = {
 const putRootListOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/root-list",
   httpMethod: "PUT",
-  responses: {},
+  responses: { 201: {} },
   requestBody: Parameters.bananas,
   urlParameters: [Parameters.$host],
   isXML: true,
@@ -637,7 +643,7 @@ const getRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
 const putRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/root-list-single-item",
   httpMethod: "PUT",
-  responses: {},
+  responses: { 201: {} },
   requestBody: Parameters.bananas,
   urlParameters: [Parameters.$host],
   isXML: true,
@@ -667,7 +673,7 @@ const getEmptyRootListOperationSpec: coreHttp.OperationSpec = {
 const putEmptyRootListOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/empty-root-list",
   httpMethod: "PUT",
-  responses: {},
+  responses: { 201: {} },
   requestBody: Parameters.bananas,
   urlParameters: [Parameters.$host],
   isXML: true,
@@ -689,7 +695,7 @@ const getEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
 const putEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/empty-child-element",
   httpMethod: "PUT",
-  responses: {},
+  responses: { 201: {} },
   requestBody: Parameters.banana,
   urlParameters: [Parameters.$host],
   isXML: true,
@@ -725,7 +731,7 @@ const getServicePropertiesOperationSpec: coreHttp.OperationSpec = {
 const putServicePropertiesOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/",
   httpMethod: "PUT",
-  responses: {},
+  responses: { 201: {} },
   requestBody: Parameters.properties,
   queryParameters: [Parameters.comp1, Parameters.restype],
   urlParameters: [Parameters.$host],
@@ -760,7 +766,7 @@ const getAclsOperationSpec: coreHttp.OperationSpec = {
 const putAclsOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/mycontainer",
   httpMethod: "PUT",
-  responses: {},
+  responses: { 201: {} },
   requestBody: Parameters.properties1,
   queryParameters: [Parameters.comp2, Parameters.restype1],
   urlParameters: [Parameters.$host],
@@ -784,7 +790,7 @@ const listBlobsOperationSpec: coreHttp.OperationSpec = {
 const jsonInputOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/jsoninput",
   httpMethod: "PUT",
-  responses: {},
+  responses: { 200: {} },
   requestBody: Parameters.properties2,
   urlParameters: [Parameters.$host],
   serializer
