@@ -27,7 +27,6 @@ import {
   OperationResponseDetails
 } from "../models/operationDetails";
 import { ParameterDetails } from "../models/parameterDetails";
-import { type } from "os";
 
 export function generateModels(clientDetails: ClientDetails, project: Project) {
   const modelsIndexFile = project.createSourceFile(
