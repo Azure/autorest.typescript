@@ -195,7 +195,7 @@ type IntersectionTypeParameters = [
 ];
 
 /**
- * This function vuilds the type to represent an Operation response, taking the response headers and body
+ * This function builds the type to represent an Operation response, taking the response headers and body
  * to create a type that contains all the properties that a response may include
  */
 function buildResponseType(
