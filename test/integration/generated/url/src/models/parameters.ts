@@ -300,7 +300,7 @@ export const arrayPath: coreHttp.OperationURLParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "String" }, serializedName: "get-0-itemsItem" }
+      element: { type: { name: "String" }, serializedName: "Get0ItemsItem" }
     }
   }
 };
@@ -615,7 +615,7 @@ export const arrayQuery: coreHttp.OperationQueryParameter = {
     serializedName: "arrayQuery",
     type: {
       name: "Sequence",
-      element: { type: { name: "String" }, serializedName: "string" }
+      element: { type: { name: "String" }, serializedName: "String" }
     }
   },
   collectionFormat: coreHttp.QueryCollectionFormat.Csv
@@ -627,7 +627,7 @@ export const arrayQuery1: coreHttp.OperationQueryParameter = {
     serializedName: "arrayQuery",
     type: {
       name: "Sequence",
-      element: { type: { name: "String" }, serializedName: "string" }
+      element: { type: { name: "String" }, serializedName: "String" }
     }
   },
   collectionFormat: coreHttp.QueryCollectionFormat.Ssv
@@ -639,7 +639,7 @@ export const arrayQuery2: coreHttp.OperationQueryParameter = {
     serializedName: "arrayQuery",
     type: {
       name: "Sequence",
-      element: { type: { name: "String" }, serializedName: "string" }
+      element: { type: { name: "String" }, serializedName: "String" }
     }
   },
   collectionFormat: coreHttp.QueryCollectionFormat.Tsv
@@ -651,7 +651,7 @@ export const arrayQuery3: coreHttp.OperationQueryParameter = {
     serializedName: "arrayQuery",
     type: {
       name: "Sequence",
-      element: { type: { name: "String" }, serializedName: "string" }
+      element: { type: { name: "String" }, serializedName: "String" }
     }
   },
   collectionFormat: coreHttp.QueryCollectionFormat.Pipes

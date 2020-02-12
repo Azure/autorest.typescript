@@ -226,9 +226,15 @@ function transformPolymorphicObject(
   const uberParentName = getLanguageMetadata(uberParent.language).name;
   const unionName = `${normalizeName(uberParentName, NameType.Interface)}Union`;
 
-  let discriminator: { [key: string]: string[] } = {};
+  // Discriminator path is used to build a mapping between Discriminators and Mappers
+  // this mapping is used by core-http during serialization.
+  // Discriminator path is in the form <UberParent>.<discriminatorValue>
+  let discriminatorPath: string | undefined;
+  let discriminatorValues: { [key: string]: string[] } = {};
 
   if (schema === uberParent && schema.children) {
+    // When the object is a top level parent, its discriminatorPath is itself
+    discriminatorPath = `${uberParentName}`;
     const discriminatorProperty = uberParent.discriminator!.property
       .serializedName;
 
@@ -245,13 +251,16 @@ function transformPolymorphicObject(
       propertyToMark.isDiscriminator = true;
     }
 
-    discriminator = !childDiscriminators.length
+    discriminatorValues = !childDiscriminators.length
       ? {}
       : { [`"${discriminatorProperty}"`]: childDiscriminators };
+  } else {
+    discriminatorPath = `${uberParentName}.${schema.discriminatorValue}`;
   }
 
   return {
-    discriminator,
+    discriminatorValues,
+    discriminatorPath,
     unionName,
     ...objectDetails
   } as PolymorphicObjectDetails;

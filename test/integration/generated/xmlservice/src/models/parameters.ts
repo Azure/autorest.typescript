@@ -149,5 +149,5 @@ export const properties1: coreHttp.OperationParameter = {
 
 export const properties2: coreHttp.OperationParameter = {
   parameterPath: "properties",
-  mapper: Mappers.JSONInput
+  mapper: Mappers.JsonInput
 };

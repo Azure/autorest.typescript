@@ -345,7 +345,7 @@ export interface BlobProperties {
   contentType?: string;
   contentEncoding?: string;
   contentLanguage?: string;
-  contentMd5?: string;
+  contentMD5?: string;
   contentDisposition?: string;
   cacheControl?: string;
   blobSequenceNumber?: number;
@@ -370,16 +370,16 @@ export interface BlobProperties {
 }
 
 /**
- * An interface representing JSONInput.
+ * An interface representing JsonInput.
  */
-export interface JSONInput {
+export interface JsonInput {
   id?: number;
 }
 
 /**
- * An interface representing JSONOutput.
+ * An interface representing JsonOutput.
  */
-export interface JSONOutput {
+export interface JsonOutput {
   id?: number;
 }
 
@@ -738,7 +738,7 @@ export type XmlListBlobsResponse = ListBlobsResponse & {
 /**
  * Contains response data for the jsonOutput operation.
  */
-export type XmlJsonOutputResponse = JSONOutput & {
+export type XmlJsonOutputResponse = JsonOutput & {
   /**
    * The underlying HTTP response.
    */
@@ -751,6 +751,6 @@ export type XmlJsonOutputResponse = JSONOutput & {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: JSONOutput;
+    parsedBody: JsonOutput;
   };
 };

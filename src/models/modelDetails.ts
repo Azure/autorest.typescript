@@ -46,7 +46,12 @@ export type PolymorphicObjectDetails = BasicObjectDetails & {
   /**
    * Polymorphic discriminator
    */
-  discriminator: { [key: string]: string[] };
+  discriminatorValues: { [key: string]: string[] };
+  /**
+   * This is the discriminator path to be used during serialization
+   * which is composed of <ParentName>.<DiscriminatorValue>
+   */
+  discriminatorPath: string;
   /**
    * Name of the union type which represents
    * the polymorphic options

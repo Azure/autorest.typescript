@@ -36,6 +36,7 @@
         "@azure-tools/linq": "3.1.206",
         "@azure-tools/openapi": "3.0.209",
         "@azure/core-http": "^1.0.0",
+        "@azure/logger": "^1.0.0",
         "@types/lodash": "^4.14.149",
         "lodash": "^4.17.15",
         "prettier": "^1.19.1",

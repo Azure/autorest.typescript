@@ -408,7 +408,7 @@ export class Xml {
    * @param options The options parameters.
    */
   jsonInput(
-    properties: Models.JSONInput,
+    properties: Models.JsonInput,
     options?: coreHttp.RequestOptionsBase
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -600,7 +600,7 @@ const getRootListOperationSpec: coreHttp.OperationSpec = {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Banana" } }
         },
-        serializedName: "Array of Banana",
+        serializedName: "ArrayOfBanana",
         xmlName: "bananas",
         xmlElementName: "banana"
       }
@@ -630,7 +630,7 @@ const getRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Banana" } }
         },
-        serializedName: "Array of Banana",
+        serializedName: "ArrayOfBanana",
         xmlName: "bananas",
         xmlElementName: "banana"
       }
@@ -660,7 +660,7 @@ const getEmptyRootListOperationSpec: coreHttp.OperationSpec = {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Banana" } }
         },
-        serializedName: "Array of Banana",
+        serializedName: "ArrayOfBanana",
         xmlName: "bananas",
         xmlElementName: "banana"
       }
@@ -800,7 +800,7 @@ const jsonOutputOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.JSONOutput
+      bodyMapper: Mappers.JsonOutput
     }
   },
   urlParameters: [Parameters.$host],
