@@ -396,18 +396,19 @@ function withDiscriminator(
   model: ObjectDetails,
   properties: PropertySignatureStructure[]
 ): PropertySignatureStructure[] {
-  const discriminator = (model as PolymorphicObjectDetails).discriminator;
-  if (!discriminator) {
+  const discriminatorValues = (model as PolymorphicObjectDetails)
+    .discriminatorValues;
+  if (!discriminatorValues) {
     return properties;
   }
 
-  const discProps = keys(discriminator).map<PropertySignatureStructure>(
+  const discProps = keys(discriminatorValues).map<PropertySignatureStructure>(
     key => ({
       docs: [
         `Polymorphic discriminator, which specifies the different types this object can be`
       ],
       name: key,
-      type: discriminator[key].map(disc => `"${disc}"`).join(" | "),
+      type: discriminatorValues[key].map(disc => `"${disc}"`).join(" | "),
       kind: StructureKind.PropertySignature
     })
   );

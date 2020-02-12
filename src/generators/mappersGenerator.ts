@@ -2,7 +2,12 @@
 // Licensed under the MIT License.
 
 import { ClientDetails } from "../models/clientDetails";
-import { Project, VariableDeclarationKind, CodeBlockWriter } from "ts-morph";
+import {
+  Project,
+  VariableDeclarationKind,
+  CodeBlockWriter,
+  SourceFile
+} from "ts-morph";
 import { NameType, normalizeName } from "../utils/nameUtils";
 import {
   MapperType,
@@ -13,7 +18,9 @@ import {
 } from "@azure/core-http";
 import { ModelProperties } from "../transforms/mapperTransforms";
 import { keys, isEmpty, isString, isNil } from "lodash";
-import { getStringForValue } from "../utils/valueHelpers";
+import { getStringForValue, MapperTypes } from "../utils/valueHelpers";
+import { PolymorphicObjectDetails, ObjectKind } from "../models/modelDetails";
+import { logger } from "../utils/logger";
 
 export function generateMappers(
   clientDetails: ClientDetails,
@@ -25,76 +32,87 @@ export function generateMappers(
     { overwrite: true }
   );
 
+  writeMappers(mappersFile, clientDetails);
+  writeDiscriminatorsMapping(mappersFile, clientDetails);
+
   mappersFile.addImportDeclaration({
     namespaceImport: "coreHttp",
     moduleSpecifier: "@azure/core-http"
   });
+}
 
-  /**
-   * discriminator will be the name of the property that decides which schema definition validates the structure of the model
-   * For more info: http://spec.openapis.org/oas/v3.0.2#composition-and-inheritance-polymorphism
-   */
-  let discriminators: { [key: string]: string } = {};
-
-  for (const mapper of clientDetails.mappers) {
-    const serializedName = mapper.serializedName;
-    if (mapper.type.name === MapperType.Composite && serializedName) {
-      const compositeMapper = mapper as CompositeMapper;
-
-      if (!compositeMapper.type.className) {
-        throw new Error("Composite mapper type does not have a class name");
-      }
-
-      if (compositeMapper.type.polymorphicDiscriminator) {
-        const { uberParent, className } = compositeMapper.type;
-        if (!uberParent || !className) {
-          throw new Error(
-            `Expected CompositeMapper with polymorphicDiscriminator to specify uberParent property (uberParent: ${uberParent}, className: ${className})`
-          );
-        }
-
-        if (uberParent === className) {
-          discriminators[serializedName] = className;
-        } else {
-          discriminators[`${uberParent}.${serializedName}`] = className;
-        }
-      }
-
-      mappersFile.addVariableStatement({
-        isExported: true,
-        declarations: [
-          {
-            name: normalizeName(compositeMapper.type.className, NameType.Class),
-            type: "coreHttp.CompositeMapper",
-            initializer: writer => writeMapper(writer, mapper)
-          }
-        ],
-        declarationKind: VariableDeclarationKind.Const,
-        leadingTrivia: writer => writer.blankLine()
-      });
-    } else {
-      throw new Error(
-        `Don't know how to create a mapper for type ${mapper.type.name}`
-      );
+/**
+ * This function writes to the mappers.ts file all the mappers to be used by @azure/core-http for serialization
+ */
+function writeMappers(sourceFile: SourceFile, { mappers }: ClientDetails) {
+  mappers.forEach(mapper => {
+    if (!(mapper as CompositeMapper).type.className) {
+      logger.warning(`Expected a mapper with a className, skipping generation`);
+      logger.verbose(JSON.stringify(mapper));
+      return;
     }
-  }
 
-  !isEmpty(discriminators) &&
-    mappersFile.addVariableStatement({
+    sourceFile.addVariableStatement({
+      isExported: true,
+      declarations: [
+        {
+          name: normalizeName(
+            (mapper as CompositeMapper).type.className || "MISSING_MAPPER",
+            NameType.Class
+          ),
+          type: "coreHttp.CompositeMapper",
+          initializer: writer => writeMapper(writer, mapper)
+        }
+      ],
+      declarationKind: VariableDeclarationKind.Const,
+      leadingTrivia: writer => writer.blankLine()
+    });
+  });
+}
+
+function getAllPolymorphicObjects({
+  objects
+}: ClientDetails): PolymorphicObjectDetails[] {
+  return objects
+    .filter(object => object.kind === ObjectKind.Polymorphic)
+    .map(object => object as PolymorphicObjectDetails);
+}
+
+/**
+ * This function generates a mapping which is used by @azure/core-http for serializing
+ * polymorphic objects. This is a mapping tells core-http which mapper to use, given a
+ * discriminator value.
+ */
+function writeDiscriminatorsMapping(
+  sourceFile: SourceFile,
+  clientDetails: ClientDetails
+) {
+  let discriminatorMappers: { [discriminator: string]: string } = {};
+
+  // Populate discriminatorMappers
+  getAllPolymorphicObjects(clientDetails).forEach(object => {
+    const { name: mapperName, discriminatorPath } = object;
+    discriminatorMappers[discriminatorPath] = mapperName;
+  });
+
+  if (!isEmpty(discriminatorMappers)) {
+    sourceFile.addVariableStatement({
       isExported: true,
       declarations: [
         {
           name: "discriminators",
           initializer: writer => {
             writer.block(() => {
-              keys(discriminators).forEach(key => {
-                writer.write(`'${key}': ${discriminators[key]},`);
+              keys(discriminatorMappers).forEach(key => {
+                writer.write(`'${key}': ${discriminatorMappers[key]},`);
               });
             });
           }
         }
-      ]
+      ],
+      leadingTrivia: writer => writer.blankLine()
     });
+  }
 }
 
 type ModelPropertiesType =

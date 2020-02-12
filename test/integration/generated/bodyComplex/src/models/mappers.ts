@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 
 export const Basic: coreHttp.CompositeMapper = {
-  serializedName: "basic",
+  serializedName: "Basic",
   type: {
     name: "Composite",
     className: "Basic",
@@ -34,7 +34,7 @@ export const ErrorModel: coreHttp.CompositeMapper = {
 };
 
 export const IntWrapper: coreHttp.CompositeMapper = {
-  serializedName: "int-wrapper",
+  serializedName: "IntWrapper",
   type: {
     name: "Composite",
     className: "IntWrapper",
@@ -46,7 +46,7 @@ export const IntWrapper: coreHttp.CompositeMapper = {
 };
 
 export const LongWrapper: coreHttp.CompositeMapper = {
-  serializedName: "long-wrapper",
+  serializedName: "LongWrapper",
   type: {
     name: "Composite",
     className: "LongWrapper",
@@ -58,7 +58,7 @@ export const LongWrapper: coreHttp.CompositeMapper = {
 };
 
 export const FloatWrapper: coreHttp.CompositeMapper = {
-  serializedName: "float-wrapper",
+  serializedName: "FloatWrapper",
   type: {
     name: "Composite",
     className: "FloatWrapper",
@@ -70,7 +70,7 @@ export const FloatWrapper: coreHttp.CompositeMapper = {
 };
 
 export const DoubleWrapper: coreHttp.CompositeMapper = {
-  serializedName: "double-wrapper",
+  serializedName: "DoubleWrapper",
   type: {
     name: "Composite",
     className: "DoubleWrapper",
@@ -86,7 +86,7 @@ export const DoubleWrapper: coreHttp.CompositeMapper = {
 };
 
 export const BooleanWrapper: coreHttp.CompositeMapper = {
-  serializedName: "boolean-wrapper",
+  serializedName: "BooleanWrapper",
   type: {
     name: "Composite",
     className: "BooleanWrapper",
@@ -98,7 +98,7 @@ export const BooleanWrapper: coreHttp.CompositeMapper = {
 };
 
 export const StringWrapper: coreHttp.CompositeMapper = {
-  serializedName: "string-wrapper",
+  serializedName: "StringWrapper",
   type: {
     name: "Composite",
     className: "StringWrapper",
@@ -111,7 +111,7 @@ export const StringWrapper: coreHttp.CompositeMapper = {
 };
 
 export const DateWrapper: coreHttp.CompositeMapper = {
-  serializedName: "date-wrapper",
+  serializedName: "DateWrapper",
   type: {
     name: "Composite",
     className: "DateWrapper",
@@ -123,7 +123,7 @@ export const DateWrapper: coreHttp.CompositeMapper = {
 };
 
 export const DatetimeWrapper: coreHttp.CompositeMapper = {
-  serializedName: "datetime-wrapper",
+  serializedName: "DatetimeWrapper",
   type: {
     name: "Composite",
     className: "DatetimeWrapper",
@@ -135,7 +135,7 @@ export const DatetimeWrapper: coreHttp.CompositeMapper = {
 };
 
 export const Datetimerfc1123Wrapper: coreHttp.CompositeMapper = {
-  serializedName: "datetimerfc1123-wrapper",
+  serializedName: "Datetimerfc1123Wrapper",
   type: {
     name: "Composite",
     className: "Datetimerfc1123Wrapper",
@@ -147,7 +147,7 @@ export const Datetimerfc1123Wrapper: coreHttp.CompositeMapper = {
 };
 
 export const DurationWrapper: coreHttp.CompositeMapper = {
-  serializedName: "duration-wrapper",
+  serializedName: "DurationWrapper",
   type: {
     name: "Composite",
     className: "DurationWrapper",
@@ -158,7 +158,7 @@ export const DurationWrapper: coreHttp.CompositeMapper = {
 };
 
 export const ByteWrapper: coreHttp.CompositeMapper = {
-  serializedName: "byte-wrapper",
+  serializedName: "ByteWrapper",
   type: {
     name: "Composite",
     className: "ByteWrapper",
@@ -169,7 +169,7 @@ export const ByteWrapper: coreHttp.CompositeMapper = {
 };
 
 export const ArrayWrapper: coreHttp.CompositeMapper = {
-  serializedName: "array-wrapper",
+  serializedName: "ArrayWrapper",
   type: {
     name: "Composite",
     className: "ArrayWrapper",
@@ -179,7 +179,7 @@ export const ArrayWrapper: coreHttp.CompositeMapper = {
           name: "Sequence",
           element: {
             type: { name: "String" },
-            serializedName: "array-wrapper-arrayItem"
+            serializedName: "ArrayWrapperArrayItem"
           }
         },
         serializedName: "array"
@@ -189,7 +189,7 @@ export const ArrayWrapper: coreHttp.CompositeMapper = {
 };
 
 export const DictionaryWrapper: coreHttp.CompositeMapper = {
-  serializedName: "dictionary-wrapper",
+  serializedName: "DictionaryWrapper",
   type: {
     name: "Composite",
     className: "DictionaryWrapper",
@@ -197,7 +197,7 @@ export const DictionaryWrapper: coreHttp.CompositeMapper = {
       defaultProgram: {
         type: {
           name: "Dictionary",
-          value: { type: { name: "String" }, serializedName: "string" }
+          value: { type: { name: "String" }, serializedName: "String" }
         },
         serializedName: "defaultProgram"
       }
@@ -206,7 +206,7 @@ export const DictionaryWrapper: coreHttp.CompositeMapper = {
 };
 
 export const Pet: coreHttp.CompositeMapper = {
-  serializedName: "pet",
+  serializedName: "Pet",
   type: {
     name: "Composite",
     className: "Pet",
@@ -218,7 +218,7 @@ export const Pet: coreHttp.CompositeMapper = {
 };
 
 export const Cat: coreHttp.CompositeMapper = {
-  serializedName: "cat",
+  serializedName: "Cat",
   type: {
     name: "Composite",
     className: "Cat",
@@ -237,7 +237,7 @@ export const Cat: coreHttp.CompositeMapper = {
 };
 
 export const Dog: coreHttp.CompositeMapper = {
-  serializedName: "dog",
+  serializedName: "Dog",
   type: {
     name: "Composite",
     className: "Dog",
@@ -249,7 +249,7 @@ export const Dog: coreHttp.CompositeMapper = {
 };
 
 export const Siamese: coreHttp.CompositeMapper = {
-  serializedName: "siamese",
+  serializedName: "Siamese",
   type: {
     name: "Composite",
     className: "Siamese",
@@ -380,7 +380,7 @@ export const Salmon: coreHttp.CompositeMapper = {
 };
 
 export const ReadonlyObj: coreHttp.CompositeMapper = {
-  serializedName: "readonly-obj",
+  serializedName: "ReadonlyObj",
   type: {
     name: "Composite",
     className: "ReadonlyObj",
@@ -527,6 +527,7 @@ export const MyDerivedType: coreHttp.CompositeMapper = {
     }
   }
 };
+
 export let discriminators = {
   Fish: Fish,
   DotFish: DotFish,

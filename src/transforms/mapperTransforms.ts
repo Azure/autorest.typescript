@@ -144,11 +144,8 @@ function buildMapper(
   const readOnly = !!options.readOnly;
   // Handle x-ms-discriminator-value Extension. More info:
   // https://github.com/Azure/autorest/tree/master/docs/extensions/swagger-extensions-examples/x-ms-discriminator-value
-  const msDiscriminatorValue =
-    schema.extensions && schema.extensions["x-ms-discriminator-value"];
-
   const serializedName =
-    msDiscriminatorValue ||
+    getDiscriminatorValue(schema) ||
     options.serializedName ||
     getLanguageMetadata(schema.language).name;
 
@@ -539,6 +536,17 @@ function processProperties(
   });
 
   return modelProperties;
+}
+
+/**
+ * Gets the discriminator value
+ * The extension x-ms-discriminator-value can be used to override
+ */
+function getDiscriminatorValue(schema: ObjectSchema | Schema) {
+  return (
+    (schema.extensions && schema.extensions["x-ms-discriminator-value"]) ||
+    (schema as ObjectSchema).discriminatorValue
+  );
 }
 
 export function getMapperOrRef(

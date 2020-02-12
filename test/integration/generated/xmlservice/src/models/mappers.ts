@@ -132,7 +132,7 @@ export const Slide: coreHttp.CompositeMapper = {
           name: "Sequence",
           element: {
             type: { name: "String" },
-            serializedName: "Slide-itemsItem"
+            serializedName: "SlideItemsItem"
           }
         },
         serializedName: "items",
@@ -174,7 +174,7 @@ export const AppleBarrel: coreHttp.CompositeMapper = {
           name: "Sequence",
           element: {
             type: { name: "String" },
-            serializedName: "AppleBarrel-GoodApplesItem"
+            serializedName: "AppleBarrelGoodApplesItem"
           }
         },
         serializedName: "GoodApples",
@@ -187,7 +187,7 @@ export const AppleBarrel: coreHttp.CompositeMapper = {
           name: "Sequence",
           element: {
             type: { name: "String" },
-            serializedName: "AppleBarrel-BadApplesItem"
+            serializedName: "AppleBarrelBadApplesItem"
           }
         },
         serializedName: "BadApples",
@@ -296,7 +296,7 @@ export const Container: coreHttp.CompositeMapper = {
       metadata: {
         type: {
           name: "Dictionary",
-          value: { type: { name: "String" }, serializedName: "string" }
+          value: { type: { name: "String" }, serializedName: "String" }
         },
         serializedName: "Metadata",
         xmlName: "Metadata"
@@ -722,7 +722,7 @@ export const Blob: coreHttp.CompositeMapper = {
       metadata: {
         type: {
           name: "Dictionary",
-          value: { type: { name: "String" }, serializedName: "string" }
+          value: { type: { name: "String" }, serializedName: "String" }
         },
         serializedName: "Metadata",
         xmlName: "Metadata"
@@ -898,22 +898,22 @@ export const BlobProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const JSONInput: coreHttp.CompositeMapper = {
-  serializedName: "JSONInput",
+export const JsonInput: coreHttp.CompositeMapper = {
+  serializedName: "JsonInput",
   type: {
     name: "Composite",
-    className: "JSONInput",
+    className: "JsonInput",
     modelProperties: {
       id: { type: { name: "Number" }, serializedName: "id", xmlName: "id" }
     }
   }
 };
 
-export const JSONOutput: coreHttp.CompositeMapper = {
-  serializedName: "JSONOutput",
+export const JsonOutput: coreHttp.CompositeMapper = {
+  serializedName: "JsonOutput",
   type: {
     name: "Composite",
-    className: "JSONOutput",
+    className: "JsonOutput",
     modelProperties: {
       id: { type: { name: "Number" }, serializedName: "id", xmlName: "id" }
     }

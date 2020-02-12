@@ -15,7 +15,7 @@ export type MyBaseTypeUnion = MyBaseType | MyDerivedType;
 export type SharkUnion = Shark | Sawshark | Goblinshark | Cookiecuttershark;
 
 /**
- * An interface representing basic.
+ * An interface representing Basic.
  */
 export interface Basic {
   /**
@@ -38,7 +38,7 @@ export interface ErrorModel {
 }
 
 /**
- * An interface representing int-wrapper.
+ * An interface representing IntWrapper.
  */
 export interface IntWrapper {
   field1?: number;
@@ -46,7 +46,7 @@ export interface IntWrapper {
 }
 
 /**
- * An interface representing long-wrapper.
+ * An interface representing LongWrapper.
  */
 export interface LongWrapper {
   field1?: number;
@@ -54,7 +54,7 @@ export interface LongWrapper {
 }
 
 /**
- * An interface representing float-wrapper.
+ * An interface representing FloatWrapper.
  */
 export interface FloatWrapper {
   field1?: number;
@@ -62,7 +62,7 @@ export interface FloatWrapper {
 }
 
 /**
- * An interface representing double-wrapper.
+ * An interface representing DoubleWrapper.
  */
 export interface DoubleWrapper {
   field1?: number;
@@ -70,7 +70,7 @@ export interface DoubleWrapper {
 }
 
 /**
- * An interface representing boolean-wrapper.
+ * An interface representing BooleanWrapper.
  */
 export interface BooleanWrapper {
   fieldTrue?: boolean;
@@ -78,7 +78,7 @@ export interface BooleanWrapper {
 }
 
 /**
- * An interface representing string-wrapper.
+ * An interface representing StringWrapper.
  */
 export interface StringWrapper {
   field?: string;
@@ -87,7 +87,7 @@ export interface StringWrapper {
 }
 
 /**
- * An interface representing date-wrapper.
+ * An interface representing DateWrapper.
  */
 export interface DateWrapper {
   field?: Date;
@@ -95,7 +95,7 @@ export interface DateWrapper {
 }
 
 /**
- * An interface representing datetime-wrapper.
+ * An interface representing DatetimeWrapper.
  */
 export interface DatetimeWrapper {
   field?: Date;
@@ -103,7 +103,7 @@ export interface DatetimeWrapper {
 }
 
 /**
- * An interface representing datetimerfc1123-wrapper.
+ * An interface representing Datetimerfc1123Wrapper.
  */
 export interface Datetimerfc1123Wrapper {
   field?: Date;
@@ -111,28 +111,28 @@ export interface Datetimerfc1123Wrapper {
 }
 
 /**
- * An interface representing duration-wrapper.
+ * An interface representing DurationWrapper.
  */
 export interface DurationWrapper {
   field?: string;
 }
 
 /**
- * An interface representing byte-wrapper.
+ * An interface representing ByteWrapper.
  */
 export interface ByteWrapper {
   field?: Uint8Array;
 }
 
 /**
- * An interface representing array-wrapper.
+ * An interface representing ArrayWrapper.
  */
 export interface ArrayWrapper {
   array?: string[];
 }
 
 /**
- * An interface representing dictionary-wrapper.
+ * An interface representing DictionaryWrapper.
  */
 export interface DictionaryWrapper {
   /**
@@ -142,7 +142,7 @@ export interface DictionaryWrapper {
 }
 
 /**
- * An interface representing pet.
+ * An interface representing Pet.
  */
 export interface Pet {
   id?: number;
@@ -150,7 +150,7 @@ export interface Pet {
 }
 
 /**
- * An interface representing cat.
+ * An interface representing Cat.
  */
 export type Cat = Pet & {
   color?: string;
@@ -158,14 +158,14 @@ export type Cat = Pet & {
 };
 
 /**
- * An interface representing dog.
+ * An interface representing Dog.
  */
 export type Dog = Pet & {
   food?: string;
 };
 
 /**
- * An interface representing siamese.
+ * An interface representing Siamese.
  */
 export type Siamese = Cat & {
   breed?: string;
@@ -221,7 +221,7 @@ export type DotSalmon = DotFish & {
 };
 
 /**
- * An interface representing salmon.
+ * An interface representing Salmon.
  */
 export type Salmon = Fish & {
   location?: string;
@@ -229,7 +229,7 @@ export type Salmon = Fish & {
 };
 
 /**
- * An interface representing readonly-obj.
+ * An interface representing ReadonlyObj.
  */
 export interface ReadonlyObj {
   readonly id?: string;
@@ -256,7 +256,7 @@ export interface MyBaseHelperType {
 }
 
 /**
- * An interface representing smart_salmon.
+ * An interface representing SmartSalmon.
  */
 export type SmartSalmon = Salmon & {
   /**
@@ -267,7 +267,7 @@ export type SmartSalmon = Salmon & {
 };
 
 /**
- * An interface representing shark.
+ * An interface representing Shark.
  */
 export type Shark = Fish & {
   age?: number;
@@ -275,14 +275,14 @@ export type Shark = Fish & {
 };
 
 /**
- * An interface representing sawshark.
+ * An interface representing Sawshark.
  */
 export type Sawshark = Shark & {
   picture?: Uint8Array;
 };
 
 /**
- * An interface representing goblinshark.
+ * An interface representing Goblinshark.
  */
 export type Goblinshark = Shark & {
   jawsize?: number;
@@ -293,7 +293,7 @@ export type Goblinshark = Shark & {
 };
 
 /**
- * An interface representing cookiecuttershark.
+ * An interface representing Cookiecuttershark.
  */
 export type Cookiecuttershark = Shark & {};
 
