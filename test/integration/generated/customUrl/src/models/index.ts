@@ -15,3 +15,18 @@ export interface ErrorModel {
   status?: number;
   message?: string;
 }
+
+/**
+ * Optional parameters.
+ */
+export interface CustomUrlClientOptionalParams
+  extends coreHttp.ServiceClientOptions {
+  /**
+   * A string value that is used as a global part of the parameterized host
+   */
+  host?: string;
+  /**
+   * Overrides request baseUri.
+   */
+  baseUri?: string;
+}

@@ -54,14 +54,16 @@ const writeClientModels = (
 ) => {
   let clientOptionalParams = clientDetails.parameters.filter(
     p =>
-      !p.required && p.implementationLocation === ImplementationLocation.Client
+      (!p.required || p.defaultValue) &&
+      p.implementationLocation === ImplementationLocation.Client
   );
 
   writeOptionalParameters(
     clientDetails.name,
     "",
     clientOptionalParams,
-    modelsIndexFile
+    modelsIndexFile,
+    "coreHttp.ServiceClientOptions"
   );
 };
 
@@ -360,7 +362,8 @@ function writeOptionalParameters(
   operationGroupName: string,
   operationName: string,
   optionalParams: ParameterDetails[],
-  modelsIndexFile: SourceFile
+  modelsIndexFile: SourceFile,
+  baseClass?: string
 ) {
   if (!optionalParams || !optionalParams.length) {
     return;
@@ -370,10 +373,10 @@ function writeOptionalParameters(
     name: `${operationGroupName}${operationName}OptionalParams`,
     docs: ["Optional parameters."],
     isExported: true,
-    extends: ["coreHttp.RequestOptionsBase"],
+    extends: [baseClass || "coreHttp.RequestOptionsBase"],
     properties: optionalParams.map<PropertySignatureStructure>(p => ({
       name: p.name,
-      hasQuestionToken: !p.required,
+      hasQuestionToken: true,
       type: p.typeDetails.typeName,
       docs: p.description ? [p.description] : undefined,
       kind: StructureKind.PropertySignature

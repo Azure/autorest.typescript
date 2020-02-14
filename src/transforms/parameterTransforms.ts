@@ -54,6 +54,26 @@ const buildCredentialsParameter = (): ParameterDetails => ({
   schemaType: SchemaType.Object
 });
 
+const buildBaseUriParameter = (): ParameterDetails => ({
+  nameRef: "baseUri",
+  description: "Overrides request baseUri.",
+  name: "baseUri",
+  serializedName: "baseUri",
+  location: ParameterLocation.None,
+  required: false,
+  parameterPath: "baseUri",
+  mapper: "any",
+  isGlobal: true,
+  parameter: {} as Parameter,
+  implementationLocation: ImplementationLocation.Client,
+  typeDetails: {
+    typeName: "string",
+    kind: PropertyKind.Primitive
+  },
+  isSynthetic: true,
+  schemaType: SchemaType.String
+});
+
 export function transformParameters(
   codeModel: CodeModel,
   options: ClientOptions
@@ -75,6 +95,8 @@ export function transformParameters(
     const creds = buildCredentialsParameter();
     parameters.unshift(creds);
   }
+
+  parameters.push(buildBaseUriParameter());
 
   return parameters;
 }

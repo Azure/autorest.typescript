@@ -278,3 +278,21 @@ export interface PathItemsGetLocalPathItemQueryNullOptionalParams
    */
   localStringQuery?: string;
 }
+
+/**
+ * Optional parameters.
+ */
+export interface UrlClientOptionalParams extends coreHttp.ServiceClientOptions {
+  /**
+   * server parameter
+   */
+  $host?: string;
+  /**
+   * should contain value null
+   */
+  globalStringQuery?: string;
+  /**
+   * Overrides request baseUri.
+   */
+  baseUri?: string;
+}

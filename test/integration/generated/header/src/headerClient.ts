@@ -16,7 +16,7 @@ class HeaderClient extends HeaderClientContext {
    * Initializes a new instance of the HeaderClient class.
    * @param options The parameter options
    */
-  constructor(options?: any) {
+  constructor(options?: Models.HeaderClientOptionalParams) {
     super(options);
     this.header = new operations.Header(this);
   }

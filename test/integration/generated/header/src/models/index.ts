@@ -361,3 +361,18 @@ export type HeaderResponseEnumResponse = HeaderResponseEnumHeaders & {
     parsedHeaders: HeaderResponseEnumHeaders;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface HeaderClientOptionalParams
+  extends coreHttp.ServiceClientOptions {
+  /**
+   * server parameter
+   */
+  $host?: string;
+  /**
+   * Overrides request baseUri.
+   */
+  baseUri?: string;
+}

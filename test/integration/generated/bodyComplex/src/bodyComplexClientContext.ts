@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import * as Models from "./models";
 
 const packageName = "bodyString";
 const packageVersion = "1.0.0-preview1";
@@ -14,12 +15,13 @@ const packageVersion = "1.0.0-preview1";
 export class BodyComplexClientContext extends coreHttp.ServiceClient {
   $host: string;
   apiVersion: string;
+  baseUri?: string;
 
   /**
    * Initializes a new instance of the BodyComplexClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: any) {
+  constructor(options?: Models.BodyComplexClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};

@@ -300,3 +300,18 @@ export type EnumGetReferencedConstantResponse = RefColorConstant & {
     parsedBody: RefColorConstant;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface BodyStringClientOptionalParams
+  extends coreHttp.ServiceClientOptions {
+  /**
+   * server parameter
+   */
+  $host?: string;
+  /**
+   * Overrides request baseUri.
+   */
+  baseUri?: string;
+}

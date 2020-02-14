@@ -754,3 +754,18 @@ export type XmlJsonOutputResponse = JsonOutput & {
     parsedBody: JsonOutput;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface XmlServiceClientOptionalParams
+  extends coreHttp.ServiceClientOptions {
+  /**
+   * server parameter
+   */
+  $host?: string;
+  /**
+   * Overrides request baseUri.
+   */
+  baseUri?: string;
+}

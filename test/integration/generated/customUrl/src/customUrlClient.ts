@@ -16,7 +16,7 @@ class CustomUrlClient extends CustomUrlClientContext {
    * Initializes a new instance of the CustomUrlClient class.
    * @param options The parameter options
    */
-  constructor(options?: any) {
+  constructor(options?: Models.CustomUrlClientOptionalParams) {
     super(options);
     this.paths = new operations.Paths(this);
   }
