@@ -24,8 +24,9 @@ export function transformObjects(
   codeModel: CodeModel,
   uberParents: ObjectDetails[]
 ): ObjectDetails[] {
+  const clientName = getLanguageMetadata(codeModel.language).name;
   const objectSchemas = codeModel.schemas.objects || [];
-  const headersSchemas = extractHeaders(codeModel.operationGroups);
+  const headersSchemas = extractHeaders(codeModel.operationGroups, clientName);
   const objectDetails = [...objectSchemas, ...headersSchemas].map(object =>
     transformObject(object, uberParents)
   );

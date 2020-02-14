@@ -73,6 +73,8 @@ export async function transformMappers(
   codeModel: CodeModel,
   { mediaTypes }: ClientOptions
 ): Promise<Mapper[]> {
+  const clientName = getLanguageMetadata(codeModel.language).name;
+
   if (!codeModel.schemas.objects) {
     return [];
   }
@@ -80,7 +82,7 @@ export async function transformMappers(
   const hasXmlMetadata = mediaTypes?.has(KnownMediaType.Xml);
   return [
     ...codeModel.schemas.objects,
-    ...extractHeaders(codeModel.operationGroups)
+    ...extractHeaders(codeModel.operationGroups, clientName)
   ].map(objectSchema =>
     transformMapper({ schema: objectSchema, options: { hasXmlMetadata } })
   );

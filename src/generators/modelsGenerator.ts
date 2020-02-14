@@ -27,6 +27,7 @@ import {
   OperationResponseDetails
 } from "../models/operationDetails";
 import { ParameterDetails } from "../models/parameterDetails";
+import { ImplementationLocation } from "@azure-tools/codemodel";
 
 export function generateModels(clientDetails: ClientDetails, project: Project) {
   const modelsIndexFile = project.createSourceFile(
@@ -44,7 +45,25 @@ export function generateModels(clientDetails: ClientDetails, project: Project) {
   writeObjects(clientDetails, modelsIndexFile);
   writeChoices(clientDetails, modelsIndexFile);
   writeOperationModels(clientDetails, modelsIndexFile);
+  writeClientModels(clientDetails, modelsIndexFile);
 }
+
+const writeClientModels = (
+  clientDetails: ClientDetails,
+  modelsIndexFile: SourceFile
+) => {
+  let clientOptionalParams = clientDetails.parameters.filter(
+    p =>
+      !p.required && p.implementationLocation === ImplementationLocation.Client
+  );
+
+  writeOptionalParameters(
+    clientDetails.name,
+    "",
+    clientOptionalParams,
+    modelsIndexFile
+  );
+};
 
 const writeOperationModels = (
   clientDetails: ClientDetails,

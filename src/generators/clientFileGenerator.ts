@@ -5,7 +5,8 @@ import {
   Project,
   PropertyDeclarationStructure,
   ClassDeclaration,
-  SourceFile
+  SourceFile,
+  CodeBlockWriter
 } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
 import { addOperationSpecs, writeOperations } from "./operationGenerator";
@@ -32,6 +33,10 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   );
 
   const hasCredentials = !!clientDetails.options.addCredentials;
+  const hasClientOptionalParams = clientDetails.parameters.some(
+    p =>
+      !p.required && p.implementationLocation === ImplementationLocation.Client
+  );
 
   const clientFile = project.createSourceFile(
     `${clientDetails.srcPath}/${clientDetails.sourceFileName}.ts`,
@@ -41,7 +46,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     }
   );
 
-  (hasCredentials || hasInlineOperations) &&
+  (hasCredentials || hasInlineOperations || !hasClientOptionalParams) &&
     clientFile.addImportDeclaration({
       namespaceImport: "coreHttp",
       moduleSpecifier: "@azure/core-http"
@@ -81,7 +86,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   writeClientOperations(clientFile, clientClass, clientDetails);
 
   clientFile.addExportDeclaration({
-    leadingTrivia: (writer: any) =>
+    leadingTrivia: (writer: CodeBlockWriter) =>
       writer.write("// Operation Specifications\n\n"),
     namedExports: [
       { name: clientDetails.className },
@@ -109,6 +114,12 @@ function writeConstructor(
       param.schemaType !== SchemaType.Constant
   );
 
+  const hasClientOptionalParameters = clientDetails.parameters.some(
+    param =>
+      !param.required &&
+      param.implementationLocation === ImplementationLocation.Client
+  );
+
   const docs = [
     `Initializes a new instance of the ${clientDetails.className} class.`,
     ...formatJsDocParam(requiredParams),
@@ -117,6 +128,9 @@ function writeConstructor(
     .filter(d => !!d)
     .join("\n");
 
+  const optionsParameterType = hasClientOptionalParameters
+    ? `Models.${clientDetails.className}OptionalParams`
+    : "coreHttp.ServiceClientOptions";
   const clientConstructor = classDeclaration.addConstructor({
     docs: [docs],
     parameters: [
@@ -128,7 +142,7 @@ function writeConstructor(
       {
         name: "options",
         hasQuestionToken: true,
-        type: `any`
+        type: optionsParameterType
       }
     ]
   });

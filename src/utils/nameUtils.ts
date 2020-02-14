@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { Operation, OperationGroup } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "./languageHelpers";
-import { TOPLEVEL_OPERATIONGROUP } from "../transforms/constants";
 
 const ReservedModelNames = ["Error"];
 
@@ -83,11 +82,11 @@ function getNameParts(name: string) {
 
 export function getOperationFullName(
   operationGroup: OperationGroup,
-  operation: Operation
+  operation: Operation,
+  clientName: string
 ) {
   const groupName = normalizeName(
-    getLanguageMetadata(operationGroup.language).name ||
-      TOPLEVEL_OPERATIONGROUP,
+    getLanguageMetadata(operationGroup.language).name || clientName,
     NameType.Property
   );
   const operationName = normalizeName(
