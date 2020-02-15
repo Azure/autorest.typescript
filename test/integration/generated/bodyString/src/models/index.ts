@@ -8,17 +8,11 @@
 
 import * as coreHttp from "@azure/core-http";
 
-/**
- * An interface representing Error.
- */
 export interface ErrorModel {
   status?: number;
   message?: string;
 }
 
-/**
- * An interface representing RefColorConstant.
- */
 export interface RefColorConstant {
   /**
    * Sample string.

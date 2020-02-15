@@ -312,7 +312,7 @@ const writeObjectSignature = (modelsIndexFile: SourceFile) => (
   if (parents) {
     modelsIndexFile.addTypeAlias({
       name: model.name,
-      docs: [model.description],
+      docs: model.description ? [model.description] : [],
       isExported: true,
       type: Writers.intersectionType(
         parents,
@@ -323,7 +323,7 @@ const writeObjectSignature = (modelsIndexFile: SourceFile) => (
   } else {
     modelsIndexFile.addInterface({
       name: model.name,
-      docs: [model.description],
+      docs: model.description ? [model.description] : [],
       isExported: true,
       properties,
       leadingTrivia: writer => writer.blankLine()
