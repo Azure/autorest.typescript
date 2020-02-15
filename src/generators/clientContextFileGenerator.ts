@@ -14,7 +14,7 @@ import { ClientDetails } from "../models/clientDetails";
 import { PackageDetails } from "../models/packageDetails";
 import { ParameterDetails } from "../models/parameterDetails";
 import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
-import { BaseUrlDetails } from "../transforms/urlTransforms";
+import { EndpointDetails } from "../transforms/urlTransforms";
 import { formatJsDocParam } from "./utils/parameterUtils";
 
 export function generateClientContext(
@@ -90,13 +90,15 @@ function writeClassProperties(
   clientParams: ParameterDetails[]
 ) {
   contextClass.addProperties(
-    clientParams.map(param => {
-      return {
-        name: param.name,
-        type: param.typeDetails.typeName,
-        hasQuestionToken: !param.required
-      } as PropertyDeclarationStructure;
-    })
+    clientParams
+      .filter(p => !p.isSynthetic)
+      .map(param => {
+        return {
+          name: param.name,
+          type: param.typeDetails.typeName,
+          hasQuestionToken: !param.required
+        } as PropertyDeclarationStructure;
+      })
   );
 }
 
@@ -113,7 +115,7 @@ function writeConstructorBody(
     writeStatement(
       writeDefaultOptions(clientParams.some(p => p.name === "credentials"))
     ),
-    writeStatement(getBaseUriStatement(clientDetails.baseUrl), addBlankLine),
+    writeStatement(getEndpointStatement(clientDetails.endpoint), addBlankLine),
     requiredParameters.length ? "// Parameter assignments" : "",
     writeStatements(getRequiredParamAssignments(requiredParams), addBlankLine),
     constantParameters.length
@@ -218,9 +220,10 @@ function getRequiredParameters(parameters: ParameterDetails[]) {
   );
 }
 
-function getBaseUriStatement(baseUrl: BaseUrlDetails) {
-  const uri = baseUrl.baseUrl;
-  return `this.baseUri = options.baseUri ${uri ? ` || "${uri}"` : ""};`;
+function getEndpointStatement({ endpoint }: EndpointDetails) {
+  return `this.baseUri = options.endpoint ${
+    endpoint ? ` || "${endpoint}"` : ""
+  };`;
 }
 
 function getConstantClientParamAssignments(

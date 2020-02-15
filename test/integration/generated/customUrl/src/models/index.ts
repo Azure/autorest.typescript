@@ -26,7 +26,7 @@ export interface CustomUrlClientOptionalParams
    */
   host?: string;
   /**
-   * Overrides request baseUri.
+   * Overrides client endpoint.
    */
-  baseUri?: string;
+  endpoint?: string;
 }

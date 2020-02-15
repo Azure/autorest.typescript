@@ -30,7 +30,7 @@ export class Flattencomplex {
    * @param options The options parameters.
    */
   getValid(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.FlattencomplexGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },

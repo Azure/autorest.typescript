@@ -23,7 +23,6 @@ import {
 import { isEqual, isNil } from "lodash";
 import { getTypeForSchema } from "../utils/schemaHelpers";
 import { getStringForValue } from "../utils/valueHelpers";
-import { TOPLEVEL_OPERATIONGROUP } from "./constants";
 import { ClientOptions } from "../models/clientDetails";
 import { PropertyKind } from "../models/modelDetails";
 import { KnownMediaType } from "@azure-tools/codegen";
@@ -54,14 +53,14 @@ const buildCredentialsParameter = (): ParameterDetails => ({
   schemaType: SchemaType.Object
 });
 
-const buildBaseUriParameter = (): ParameterDetails => ({
-  nameRef: "baseUri",
-  description: "Overrides request baseUri.",
-  name: "baseUri",
-  serializedName: "baseUri",
+const buildEndpointParameter = (): ParameterDetails => ({
+  nameRef: "endpoint",
+  description: "Overrides client endpoint.",
+  name: "endpoint",
+  serializedName: "endpoint",
   location: ParameterLocation.None,
   required: false,
-  parameterPath: "baseUri",
+  parameterPath: "endpoint",
   mapper: "any",
   isGlobal: true,
   parameter: {} as Parameter,
@@ -96,15 +95,15 @@ export function transformParameters(
     parameters.unshift(creds);
   }
 
-  parameters.push(buildBaseUriParameter());
+  parameters.push(buildEndpointParameter());
 
   return parameters;
 }
 
 const extractOperationParameters = (codeModel: CodeModel) =>
   codeModel.operationGroups.reduce<OperationParameterDetails[]>((acc, og) => {
-    const groupName =
-      getLanguageMetadata(og.language).name || TOPLEVEL_OPERATIONGROUP;
+    const clientName = getLanguageMetadata(codeModel.language).name;
+    const groupName = getLanguageMetadata(og.language).name || clientName;
     return [
       ...acc,
       ...og.operations.reduce<OperationParameterDetails[]>(

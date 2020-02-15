@@ -765,7 +765,7 @@ export interface XmlServiceClientOptionalParams
    */
   $host?: string;
   /**
-   * Overrides request baseUri.
+   * Overrides client endpoint.
    */
-  baseUri?: string;
+  endpoint?: string;
 }

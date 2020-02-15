@@ -9,7 +9,7 @@ import {
 } from "./generated/xmlservice/src/xmlServiceClient";
 should();
 const testClient = new XmlServiceClient({
-  baseUri: "http://localhost:3000"
+  endpoint: "http://localhost:3000"
 });
 
 function getAbortController() {

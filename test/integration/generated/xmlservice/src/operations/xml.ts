@@ -31,7 +31,7 @@ export class Xml {
    * @param options The options parameters.
    */
   getComplexTypeRefNoMeta(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.XmlGetComplexTypeRefNoMetaResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -46,7 +46,7 @@ export class Xml {
    */
   putComplexTypeRefNoMeta(
     model: Models.RootWithRefAndNoMeta,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { model, options },
@@ -59,7 +59,7 @@ export class Xml {
    * @param options The options parameters.
    */
   getComplexTypeRefWithMeta(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.XmlGetComplexTypeRefWithMetaResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -74,7 +74,7 @@ export class Xml {
    */
   putComplexTypeRefWithMeta(
     model: Models.RootWithRefAndMeta,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { model, options },
@@ -87,7 +87,7 @@ export class Xml {
    * @param options The options parameters.
    */
   getSimple(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.XmlGetSimpleResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -102,7 +102,7 @@ export class Xml {
    */
   putSimple(
     slideshow: Models.Slideshow,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { slideshow, options },
@@ -115,7 +115,7 @@ export class Xml {
    * @param options The options parameters.
    */
   getWrappedLists(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.XmlGetWrappedListsResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -130,7 +130,7 @@ export class Xml {
    */
   putWrappedLists(
     wrappedLists: Models.AppleBarrel,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { wrappedLists, options },
@@ -143,7 +143,7 @@ export class Xml {
    * @param options The options parameters.
    */
   getHeaders(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.XmlGetHeadersResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -156,7 +156,7 @@ export class Xml {
    * @param options The options parameters.
    */
   getEmptyList(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.XmlGetEmptyListResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -171,7 +171,7 @@ export class Xml {
    */
   putEmptyList(
     slideshow: Models.Slideshow,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { slideshow, options },
@@ -184,7 +184,7 @@ export class Xml {
    * @param options The options parameters.
    */
   getEmptyWrappedLists(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.XmlGetEmptyWrappedListsResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -199,7 +199,7 @@ export class Xml {
    */
   putEmptyWrappedLists(
     appleBarrel: Models.AppleBarrel,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { appleBarrel, options },
@@ -212,7 +212,7 @@ export class Xml {
    * @param options The options parameters.
    */
   getRootList(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.XmlGetRootListResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -227,7 +227,7 @@ export class Xml {
    */
   putRootList(
     bananas: Models.Banana[],
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { bananas, options },
@@ -240,7 +240,7 @@ export class Xml {
    * @param options The options parameters.
    */
   getRootListSingleItem(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.XmlGetRootListSingleItemResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -255,7 +255,7 @@ export class Xml {
    */
   putRootListSingleItem(
     bananas: Models.Banana[],
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { bananas, options },
@@ -268,7 +268,7 @@ export class Xml {
    * @param options The options parameters.
    */
   getEmptyRootList(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.XmlGetEmptyRootListResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -283,7 +283,7 @@ export class Xml {
    */
   putEmptyRootList(
     bananas: Models.Banana[],
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { bananas, options },
@@ -296,7 +296,7 @@ export class Xml {
    * @param options The options parameters.
    */
   getEmptyChildElement(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.XmlGetEmptyChildElementResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -311,7 +311,7 @@ export class Xml {
    */
   putEmptyChildElement(
     banana: Models.Banana,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { banana, options },
@@ -324,7 +324,7 @@ export class Xml {
    * @param options The options parameters.
    */
   listContainers(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.XmlListContainersResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -337,7 +337,7 @@ export class Xml {
    * @param options The options parameters.
    */
   getServiceProperties(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.XmlGetServicePropertiesResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -352,7 +352,7 @@ export class Xml {
    */
   putServiceProperties(
     properties: Models.StorageServiceProperties,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { properties, options },
@@ -365,7 +365,7 @@ export class Xml {
    * @param options The options parameters.
    */
   getAcls(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.XmlGetAclsResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -380,7 +380,7 @@ export class Xml {
    */
   putAcls(
     properties: Models.SignedIdentifier[],
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { properties, options },
@@ -393,7 +393,7 @@ export class Xml {
    * @param options The options parameters.
    */
   listBlobs(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.XmlListBlobsResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -409,7 +409,7 @@ export class Xml {
    */
   jsonInput(
     properties: Models.JsonInput,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { properties, options },
@@ -422,7 +422,7 @@ export class Xml {
    * @param options The options parameters.
    */
   jsonOutput(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.XmlJsonOutputResponse> {
     return this.client.sendOperationRequest(
       { options },

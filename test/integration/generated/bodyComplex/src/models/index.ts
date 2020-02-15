@@ -986,7 +986,7 @@ export interface BodyComplexClientOptionalParams
    */
   apiVersion?: string;
   /**
-   * Overrides request baseUri.
+   * Overrides client endpoint.
    */
-  baseUri?: string;
+  endpoint?: string;
 }

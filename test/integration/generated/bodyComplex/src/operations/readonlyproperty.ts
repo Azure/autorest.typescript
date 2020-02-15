@@ -31,7 +31,7 @@ export class Readonlyproperty {
    * @param options The options parameters.
    */
   getValid(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.ReadonlypropertyGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -46,7 +46,7 @@ export class Readonlyproperty {
    */
   putValid(
     complexBody: Models.ReadonlyObj,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },

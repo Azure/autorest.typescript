@@ -311,7 +311,7 @@ export interface BodyStringClientOptionalParams
    */
   $host?: string;
   /**
-   * Overrides request baseUri.
+   * Overrides client endpoint.
    */
-  baseUri?: string;
+  endpoint?: string;
 }

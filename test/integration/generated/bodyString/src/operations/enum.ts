@@ -31,7 +31,7 @@ export class Enum {
    * @param options The options parameters.
    */
   getNotExpandable(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.EnumGetNotExpandableResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -46,7 +46,7 @@ export class Enum {
    */
   putNotExpandable(
     stringBody: Models.Colors,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { stringBody, options },
@@ -59,7 +59,7 @@ export class Enum {
    * @param options The options parameters.
    */
   getReferenced(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.EnumGetReferencedResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -74,7 +74,7 @@ export class Enum {
    */
   putReferenced(
     enumStringBody: Models.Colors,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { enumStringBody, options },
@@ -87,7 +87,7 @@ export class Enum {
    * @param options The options parameters.
    */
   getReferencedConstant(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.EnumGetReferencedConstantResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -102,7 +102,7 @@ export class Enum {
    */
   putReferencedConstant(
     enumStringBody: Models.RefColorConstant,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { enumStringBody, options },

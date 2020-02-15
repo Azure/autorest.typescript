@@ -31,7 +31,7 @@ export class Polymorphicrecursive {
    * @param options The options parameters.
    */
   getValid(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.PolymorphicrecursiveGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -78,7 +78,7 @@ export class Polymorphicrecursive {
    */
   putValid(
     complexBody: Models.FishUnion,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },

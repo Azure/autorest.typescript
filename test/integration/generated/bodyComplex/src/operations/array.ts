@@ -31,7 +31,7 @@ export class Array {
    * @param options The options parameters.
    */
   getValid(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.ArrayGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -47,7 +47,7 @@ export class Array {
    */
   putValid(
     complexBody: Models.ArrayWrapper,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
@@ -60,7 +60,7 @@ export class Array {
    * @param options The options parameters.
    */
   getEmpty(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.ArrayGetEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -76,7 +76,7 @@ export class Array {
    */
   putEmpty(
     complexBody: Models.ArrayWrapper,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
@@ -89,7 +89,7 @@ export class Array {
    * @param options The options parameters.
    */
   getNotProvided(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.ArrayGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       { options },

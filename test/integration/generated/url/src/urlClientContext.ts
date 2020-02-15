@@ -16,7 +16,6 @@ export class UrlClientContext extends coreHttp.ServiceClient {
   $host: string;
   globalStringPath: string;
   globalStringQuery?: string;
-  baseUri?: string;
 
   /**
    * Initializes a new instance of the UrlClientContext class.
@@ -45,7 +44,7 @@ export class UrlClientContext extends coreHttp.ServiceClient {
 
     this.requestContentType = "application/json; charset=utf-8";
 
-    this.baseUri = options.baseUri || "{$host}";
+    this.baseUri = options.endpoint || "{$host}";
 
     // Parameter assignments
     this.globalStringPath = globalStringPath;

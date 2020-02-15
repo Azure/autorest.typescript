@@ -33,7 +33,7 @@ export class Paths {
    */
   getEmpty(
     accountName: string,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { accountName, options },

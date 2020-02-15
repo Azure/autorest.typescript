@@ -88,7 +88,7 @@ describe("parameterTransforms", () => {
       const codeModel = new CodeModel("testCodeModel");
       const parameters = transformParameters(codeModel, clientOptions);
 
-      assert.deepEqual(parameters[0].name, "baseUri");
+      assert.deepEqual(parameters[0].name, "endpoint");
     });
 
     it("should extract all operation parameters, 2 different parameters same name", () => {
@@ -162,7 +162,7 @@ describe("parameterTransforms", () => {
       assert.equal(parameters.length, 3);
       assert.deepEqual(
         parameters.map(p => p.nameRef),
-        ["mockParam", "mockParam1", "baseUri"]
+        ["mockParam", "mockParam1", "endpoint"]
       );
 
       const p1: ParameterDetails = parameters.find(
@@ -234,7 +234,7 @@ describe("parameterTransforms", () => {
       assert.equal(parameters.length, 2);
       assert.deepEqual(
         parameters.map(p => p.nameRef),
-        ["mockParam1", "baseUri"]
+        ["mockParam1", "endpoint"]
       );
 
       const p1: ParameterDetails = parameters.find(
@@ -304,7 +304,7 @@ describe("parameterTransforms", () => {
       assert.equal(parameters.length, 3);
       assert.deepEqual(
         parameters.map(p => p.nameRef),
-        ["mockParam1", "mockParam2", "baseUri"]
+        ["mockParam1", "mockParam2", "endpoint"]
       );
 
       const p1: ParameterDetails = parameters.find(

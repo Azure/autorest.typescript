@@ -373,7 +373,7 @@ function writeOptionalParameters(
     name: `${operationGroupName}${operationName}OptionalParams`,
     docs: ["Optional parameters."],
     isExported: true,
-    extends: [baseClass || "coreHttp.RequestOptionsBase"],
+    extends: [baseClass || "coreHttp.OperationOptions"],
     properties: optionalParams.map<PropertySignatureStructure>(p => ({
       name: p.name,
       hasQuestionToken: true,

@@ -16,7 +16,7 @@ import {
 import { RestError } from "@azure/core-http";
 
 const clientOptions = {
-  baseUri: "http://localhost:3000"
+  endpoint: "http://localhost:3000"
 };
 
 describe("typescript", function() {

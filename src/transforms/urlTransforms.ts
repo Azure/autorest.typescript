@@ -1,15 +1,15 @@
 import { CodeModel } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 
-export interface BaseUrlDetails {
+export interface EndpointDetails {
   isCustom: boolean;
-  baseUrl?: string;
+  endpoint?: string;
 }
 
 export async function transformBaseUrl(
   codeModel: CodeModel
-): Promise<BaseUrlDetails> {
-  let baseUrl: string | undefined = "";
+): Promise<EndpointDetails> {
+  let endpoint: string | undefined = "";
   let isCustom = false;
 
   const $host = (codeModel.globalParameters || []).find(p => {
@@ -21,13 +21,13 @@ export async function transformBaseUrl(
     // No support yet for multi-baseUrl yet Issue #553
     const { request } = codeModel.operationGroups[0].operations[0];
     isCustom = true;
-    baseUrl = request.protocol.http!.uri;
+    endpoint = request.protocol.http!.uri;
   } else {
-    baseUrl = $host.clientDefaultValue;
+    endpoint = $host.clientDefaultValue;
   }
 
   return {
-    baseUrl,
+    endpoint: endpoint,
     isCustom
   };
 }

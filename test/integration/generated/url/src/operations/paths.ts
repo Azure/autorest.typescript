@@ -31,7 +31,7 @@ export class Paths {
    * @param options The options parameters.
    */
   getBooleanTrue(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -44,7 +44,7 @@ export class Paths {
    * @param options The options parameters.
    */
   getBooleanFalse(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -57,7 +57,7 @@ export class Paths {
    * @param options The options parameters.
    */
   getIntOneMillion(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -70,7 +70,7 @@ export class Paths {
    * @param options The options parameters.
    */
   getIntNegativeOneMillion(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -83,7 +83,7 @@ export class Paths {
    * @param options The options parameters.
    */
   getTenBillion(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -96,7 +96,7 @@ export class Paths {
    * @param options The options parameters.
    */
   getNegativeTenBillion(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -109,7 +109,7 @@ export class Paths {
    * @param options The options parameters.
    */
   floatScientificPositive(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -122,7 +122,7 @@ export class Paths {
    * @param options The options parameters.
    */
   floatScientificNegative(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -135,7 +135,7 @@ export class Paths {
    * @param options The options parameters.
    */
   doubleDecimalPositive(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -148,7 +148,7 @@ export class Paths {
    * @param options The options parameters.
    */
   doubleDecimalNegative(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -161,7 +161,7 @@ export class Paths {
    * @param options The options parameters.
    */
   stringUnicode(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -174,7 +174,7 @@ export class Paths {
    * @param options The options parameters.
    */
   stringUrlEncoded(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -187,7 +187,7 @@ export class Paths {
    * @param options The options parameters.
    */
   stringUrlNonEncoded(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -200,7 +200,7 @@ export class Paths {
    * @param options The options parameters.
    */
   stringEmpty(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -215,7 +215,7 @@ export class Paths {
    */
   stringNull(
     stringPath: string,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { stringPath, options },
@@ -230,7 +230,7 @@ export class Paths {
    */
   enumValid(
     enumPath: Models.UriColor,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { enumPath, options },
@@ -245,7 +245,7 @@ export class Paths {
    */
   enumNull(
     enumPath: Models.UriColor,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { enumPath, options },
@@ -260,7 +260,7 @@ export class Paths {
    */
   byteMultiByte(
     bytePath: Uint8Array,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { bytePath, options },
@@ -273,7 +273,7 @@ export class Paths {
    * @param options The options parameters.
    */
   byteEmpty(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -288,7 +288,7 @@ export class Paths {
    */
   byteNull(
     bytePath: Uint8Array,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { bytePath, options },
@@ -301,7 +301,7 @@ export class Paths {
    * @param options The options parameters.
    */
   dateValid(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -317,7 +317,7 @@ export class Paths {
    */
   dateNull(
     datePath: Date,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { datePath, options },
@@ -330,7 +330,7 @@ export class Paths {
    * @param options The options parameters.
    */
   dateTimeValid(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -345,7 +345,7 @@ export class Paths {
    */
   dateTimeNull(
     dateTimePath: Date,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { dateTimePath, options },
@@ -360,7 +360,7 @@ export class Paths {
    */
   base64Url(
     base64UrlPath: Uint8Array,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { base64UrlPath, options },
@@ -377,7 +377,7 @@ export class Paths {
    */
   arrayCsvInPath(
     arrayPath: string[],
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { arrayPath, options },
@@ -392,7 +392,7 @@ export class Paths {
    */
   unixTimeUrl(
     unixTimeUrlPath: Date,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { unixTimeUrlPath, options },

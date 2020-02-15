@@ -7,7 +7,7 @@ describe("Integration tests for Url", () => {
   beforeEach(() => {
     const clientOptions = {
       noRetryPolicy: true,
-      baseUri: "http://localhost:3000"
+      endpoint: "http://localhost:3000"
     };
     client = new UrlClient("globalStringPath", clientOptions);
   });
