@@ -344,18 +344,15 @@ export const complexBody: coreHttp.OperationParameter = {
 1.  Model Transforms
 
     1.  Object Transforms
-
         - Currently we extract models from 2 parts of the CodeModel (1) Object Schemas (2) Headers which are converted as Objects
         - Returns a collection of ObjectDetails that contain information for generating the interfaces
 
     2.  Choice Transforms
-
         - This is responsible for transforming Enums
 
 2.  Model Generation
 
     1.  Union Types
-
         - This part of the generator is responsible for generating Union types, these are the Types that can have different shapes. This is used for polymorphic objects. An union type will contain the parent plus all its children
         - An example of a multi level hierarchy
 ```ts 
@@ -365,12 +362,9 @@ export type SharkUnion = Shark | Sawshark | Goblinshark | Cookiecuttershark;
 ```
 
     2.  Objects
-
         -   These are the definition of all the objects found in Operations as Responses. There are 2 ways we represent this
-
             1.  When an Object has a parent, we create an intersection type of the parent plus the current Object's properties.
             2.  Otherwise we just create any interface with the object itself
-
 
 ```typescript
 export interface Fish {
