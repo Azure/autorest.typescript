@@ -133,7 +133,7 @@ Project structure
     - The generated class has each operation group as property, form which consumers can access each operation
 
       - There are also operations that don't belong to any operation group and belong to the clientFileGenerator
-
+```ts
       const client = new ServiceNameClient();
 
       // Calling an operation which is part of an operation group. Where paths is the operation group
@@ -142,6 +142,7 @@ Project structure
 
       // Calling a client operation
       const paths = await client.getConfig();
+```
 
 <a id="orgd9f217c"></a>
 
@@ -204,8 +205,6 @@ Project structure
       }
     }
     ```
-
-````
 
 <a id="orgff54626"></a>
 
@@ -361,8 +360,7 @@ export const complexBody: coreHttp.OperationParameter = {
 
         - This part of the generator is responsible for generating Union types, these are the Types that can have different shapes. This is used for polymorphic objects. An union type will contain the parent plus all its children
         - An example of a multi level hierarchy
-
-```typescript
+```ts 
 export type FishUnion = Fish | SalmonUnion | SharkUnion;
 export type SalmonUnion = Salmon | SmartSalmon;
 export type SharkUnion = Shark | Sawshark | Goblinshark | Cookiecuttershark;
@@ -426,7 +424,7 @@ export type Goblinshark = Shark & {
 export type Cookiecuttershark = Shark & {};
 ```
 
-        -   Note that the "fishtype" property is known as the polymorphicDiscriminator, this is helpful to specify that an Object and be of many shapes but during serialization being able to produce the right shape.
+ -   Note that the "fishtype" property is known as the polymorphicDiscriminator, this is helpful to specify that an Object and be of many shapes but during serialization being able to produce the right shape.
 
     3.  Operation Models
 
