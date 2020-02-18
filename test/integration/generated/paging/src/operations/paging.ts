@@ -46,7 +46,17 @@ export class Paging {
    */
   getNoItemNamePages(
     options?: coreHttp.RequestOptionsBase
-  ): PagedAsyncIterableIterator<Models.Product[]> {}
+  ): PagedAsyncIterableIterator<Models.Product[]> {
+    async function* fetchGetNoItemNamePagesIterator(options: any) {
+      let response;
+      this.fetchGetNoItemNamePages(options);
+    }
+    return {
+      next() {
+        return iterator.next;
+      }
+    };
+  }
 
   /**
    * A paging operation that must ignore any kind of nextLink, and stop after page 1.
@@ -68,7 +78,15 @@ export class Paging {
   getNullNextLinkNamePages(
     options?: coreHttp.RequestOptionsBase
   ): PagedAsyncIterableIterator<Models.Product[]> {
-    const iterator = this.fetchGetNullNextLinkNamePages(options);
+    async function* fetchGetNullNextLinkNamePagesIterator(options: any) {
+      let response;
+      this.fetchGetNullNextLinkNamePages(options);
+    }
+    return {
+      next() {
+        return iterator.next;
+      }
+    };
   }
 
   /**
@@ -90,7 +108,17 @@ export class Paging {
    */
   getSinglePages(
     options?: coreHttp.RequestOptionsBase
-  ): PagedAsyncIterableIterator<Models.Product[]> {}
+  ): PagedAsyncIterableIterator<Models.Product[]> {
+    async function* fetchGetSinglePagesIterator(options: any) {
+      let response;
+      this.fetchGetSinglePages(options);
+    }
+    return {
+      next() {
+        return iterator.next;
+      }
+    };
+  }
 
   /**
    * A paging operation that includes a nextLink that has 10 pages
@@ -111,7 +139,17 @@ export class Paging {
    */
   getMultiplePages(
     options?: Models.PagingGetMultiplePagesOptionalParams
-  ): PagedAsyncIterableIterator<Models.Product[]> {}
+  ): PagedAsyncIterableIterator<Models.Product[]> {
+    async function* fetchGetMultiplePagesIterator(options: any) {
+      let response;
+      this.fetchGetMultiplePages(options);
+    }
+    return {
+      next() {
+        return iterator.next;
+      }
+    };
+  }
 
   /**
    * A paging operation that includes a nextLink in odata format that has 10 pages
@@ -132,7 +170,17 @@ export class Paging {
    */
   getOdataMultiplePages(
     options?: Models.PagingGetOdataMultiplePagesOptionalParams
-  ): PagedAsyncIterableIterator<Models.Product[]> {}
+  ): PagedAsyncIterableIterator<Models.Product[]> {
+    async function* fetchGetOdataMultiplePagesIterator(options: any) {
+      let response;
+      this.fetchGetOdataMultiplePages(options);
+    }
+    return {
+      next() {
+        return iterator.next;
+      }
+    };
+  }
 
   /**
    * A paging operation that includes a nextLink that has 10 pages
@@ -157,7 +205,17 @@ export class Paging {
   getMultiplePagesWithOffset(
     offset: number,
     options?: Models.PagingGetMultiplePagesWithOffsetOptionalParams
-  ): PagedAsyncIterableIterator<Models.Product[]> {}
+  ): PagedAsyncIterableIterator<Models.Product[]> {
+    async function* fetchGetMultiplePagesWithOffsetIterator(options: any) {
+      let response;
+      this.fetchGetMultiplePagesWithOffset(offsetoptions);
+    }
+    return {
+      next() {
+        return iterator.next;
+      }
+    };
+  }
 
   /**
    * A paging operation that fails on the first call with 500 and then retries and then get a response
@@ -180,7 +238,17 @@ export class Paging {
    */
   getMultiplePagesRetryFirst(
     options?: coreHttp.RequestOptionsBase
-  ): PagedAsyncIterableIterator<Models.Product[]> {}
+  ): PagedAsyncIterableIterator<Models.Product[]> {
+    async function* fetchGetMultiplePagesRetryFirstIterator(options: any) {
+      let response;
+      this.fetchGetMultiplePagesRetryFirst(options);
+    }
+    return {
+      next() {
+        return iterator.next;
+      }
+    };
+  }
 
   /**
    * A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first
@@ -203,7 +271,17 @@ export class Paging {
    */
   getMultiplePagesRetrySecond(
     options?: coreHttp.RequestOptionsBase
-  ): PagedAsyncIterableIterator<Models.Product[]> {}
+  ): PagedAsyncIterableIterator<Models.Product[]> {
+    async function* fetchGetMultiplePagesRetrySecondIterator(options: any) {
+      let response;
+      this.fetchGetMultiplePagesRetrySecond(options);
+    }
+    return {
+      next() {
+        return iterator.next;
+      }
+    };
+  }
 
   /**
    * A paging operation that receives a 400 on the first call
@@ -224,7 +302,17 @@ export class Paging {
    */
   getSinglePagesFailure(
     options?: coreHttp.RequestOptionsBase
-  ): PagedAsyncIterableIterator<Models.Product[]> {}
+  ): PagedAsyncIterableIterator<Models.Product[]> {
+    async function* fetchGetSinglePagesFailureIterator(options: any) {
+      let response;
+      this.fetchGetSinglePagesFailure(options);
+    }
+    return {
+      next() {
+        return iterator.next;
+      }
+    };
+  }
 
   /**
    * A paging operation that receives a 400 on the second call
@@ -245,7 +333,17 @@ export class Paging {
    */
   getMultiplePagesFailure(
     options?: coreHttp.RequestOptionsBase
-  ): PagedAsyncIterableIterator<Models.Product[]> {}
+  ): PagedAsyncIterableIterator<Models.Product[]> {
+    async function* fetchGetMultiplePagesFailureIterator(options: any) {
+      let response;
+      this.fetchGetMultiplePagesFailure(options);
+    }
+    return {
+      next() {
+        return iterator.next;
+      }
+    };
+  }
 
   /**
    * A paging operation that receives an invalid nextLink
@@ -266,7 +364,17 @@ export class Paging {
    */
   getMultiplePagesFailureUri(
     options?: coreHttp.RequestOptionsBase
-  ): PagedAsyncIterableIterator<Models.Product[]> {}
+  ): PagedAsyncIterableIterator<Models.Product[]> {
+    async function* fetchGetMultiplePagesFailureUriIterator(options: any) {
+      let response;
+      this.fetchGetMultiplePagesFailureUri(options);
+    }
+    return {
+      next() {
+        return iterator.next;
+      }
+    };
+  }
 
   /**
    * A paging operation that doesn't return a full URL, just a fragment
@@ -295,7 +403,19 @@ export class Paging {
     apiVersion: string,
     tenant: string,
     options?: coreHttp.RequestOptionsBase
-  ): PagedAsyncIterableIterator<Models.Product[]> {}
+  ): PagedAsyncIterableIterator<Models.Product[]> {
+    async function* fetchGetMultiplePagesFragmentNextLinkIterator(
+      options: any
+    ) {
+      let response;
+      this.fetchGetMultiplePagesFragmentNextLink(apiVersion, tenantoptions);
+    }
+    return {
+      next() {
+        return iterator.next;
+      }
+    };
+  }
 
   /**
    * A paging operation that doesn't return a full URL, just a fragment with parameters grouped
@@ -328,7 +448,22 @@ export class Paging {
     apiVersion: string,
     tenant: string,
     options?: coreHttp.RequestOptionsBase
-  ): PagedAsyncIterableIterator<Models.Product[]> {}
+  ): PagedAsyncIterableIterator<Models.Product[]> {
+    async function* fetchGetMultiplePagesFragmentWithGroupingNextLinkIterator(
+      options: any
+    ) {
+      let response;
+      this.fetchGetMultiplePagesFragmentWithGroupingNextLink(
+        apiVersion,
+        tenantoptions
+      );
+    }
+    return {
+      next() {
+        return iterator.next;
+      }
+    };
+  }
 
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
@@ -349,7 +484,17 @@ export class Paging {
    */
   getMultiplePagesLRO(
     options?: Models.PagingGetMultiplePagesLROOptionalParams
-  ): PagedAsyncIterableIterator<Models.Product[]> {}
+  ): PagedAsyncIterableIterator<Models.Product[]> {
+    async function* fetchGetMultiplePagesLROIterator(options: any) {
+      let response;
+      this.fetchGetMultiplePagesLRO(options);
+    }
+    return {
+      next() {
+        return iterator.next;
+      }
+    };
+  }
 
   /**
    * A paging operation that doesn't return a full URL, just a fragment
@@ -382,7 +527,17 @@ export class Paging {
     tenant: string,
     nextLink: string,
     options?: coreHttp.RequestOptionsBase
-  ): PagedAsyncIterableIterator<Models.Product[]> {}
+  ): PagedAsyncIterableIterator<Models.Product[]> {
+    async function* fetchNextFragmentIterator(options: any) {
+      let response;
+      this.fetchNextFragment(apiVersion, tenant, nextLinkoptions);
+    }
+    return {
+      next() {
+        return iterator.next;
+      }
+    };
+  }
 
   /**
    * A paging operation that doesn't return a full URL, just a fragment
@@ -415,7 +570,17 @@ export class Paging {
     tenant: string,
     nextLink: string,
     options?: coreHttp.RequestOptionsBase
-  ): PagedAsyncIterableIterator<Models.Product[]> {}
+  ): PagedAsyncIterableIterator<Models.Product[]> {
+    async function* fetchNextFragmentWithGroupingIterator(options: any) {
+      let response;
+      this.fetchNextFragmentWithGrouping(apiVersion, tenant, nextLinkoptions);
+    }
+    return {
+      next() {
+        return iterator.next;
+      }
+    };
+  }
 }
 // Operation Specifications
 

@@ -9,7 +9,6 @@ import { NameType, normalizeName } from "../../utils/nameUtils";
 import { TypeDetails, PropertyKind } from "../../models/modelDetails";
 import { CodeBlockWriter } from "ts-morph";
 import { OperationDetails } from "../../models/operationDetails";
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { isEmpty } from "lodash";
 import { ParameterDetails } from "../../models/parameterDetails";
 import { filterOperationParameters } from "./parameterUtils";
@@ -73,15 +72,23 @@ function writeAsycIteratorStatement(
   }
 
   const fetchMethodName = normalizeName(`fetch_${name}`, NameType.Property);
+  const requiredParameters = filterOperationParameters(parameters, operation);
+  writer
+    .writeLine(`async function *${fetchMethodName}Iterator (options: any)`)
+    .block(() => {
+      writer.write(`let response;`);
+      writer.write(
+        `this.${fetchMethodName}(${requiredParameters
+          .map(p => p.name)
+          .join(", ")}options)`
+      );
+    });
 
-  if (!paging.nextLinkName || isEmpty(paging.nextLinkName)) {
-    const requiredParameters = filterOperationParameters(parameters, operation);
-    writer.writeLine(
-      `const iterator = this.${fetchMethodName}(${requiredParameters
-        .map(p => p.name)
-        .join(", ")}options)`
-    );
-  }
+  writer.write(`return`).block(() => {
+    writer.writeLine("next ()").block(() => {
+      writer.writeLine(`return iterator.next`);
+    });
+  });
 }
 /**
  * This function is responsible for generating the private functions that will be used to fetch the data from a pageable
