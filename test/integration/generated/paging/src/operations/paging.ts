@@ -67,7 +67,9 @@ export class Paging {
    */
   getNullNextLinkNamePages(
     options?: coreHttp.RequestOptionsBase
-  ): PagedAsyncIterableIterator<Models.Product[]> {}
+  ): PagedAsyncIterableIterator<Models.Product[]> {
+    const iterator = this.fetchGetNullNextLinkNamePages(options);
+  }
 
   /**
    * A paging operation that finishes on the first call without a nextlink

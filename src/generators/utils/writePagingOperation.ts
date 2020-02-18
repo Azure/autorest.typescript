@@ -2,10 +2,17 @@ import {
   writeOperation,
   GenerateOperationParameters,
   getAllParameters,
-  generateOperationJSDoc
+  generateOperationJSDoc,
+  ParameterWithDescription
 } from "./writeOperation";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { TypeDetails, PropertyKind } from "../../models/modelDetails";
+import { CodeBlockWriter } from "ts-morph";
+import { OperationDetails } from "../../models/operationDetails";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { isEmpty } from "lodash";
+import { ParameterDetails } from "../../models/parameterDetails";
+import { filterOperationParameters } from "./parameterUtils";
 
 /**
  * This function is responsible for generating a Paging operation using the Async Iterator pattern.
@@ -25,24 +32,57 @@ export function writePagingOperation(params: GenerateOperationParameters) {
 function writeGeneratorFunction({
   operationGroupClass,
   operation,
-  parameters: params
+  parameters: operationParameters
 }: GenerateOperationParameters) {
   const { paging, name } = operation;
   if (!paging) {
     throw new Error(`Expected paging metadata for operation ${name}`);
   }
 
-  const parameters = getAllParameters(params, operation);
-  operationGroupClass.addMethod({
+  const parametersDeclaration = getAllParameters(
+    operationParameters,
+    operation
+  );
+
+  const operationMethod = operationGroupClass.addMethod({
     name: `${normalizeName(name, NameType.Property)}`,
-    parameters,
+    parameters: parametersDeclaration,
     returnType: `PagedAsyncIterableIterator<${getValueTypes(
       paging.valueTypes
     )}>`,
-    docs: [generateOperationJSDoc(parameters, operation.description)]
+    docs: [generateOperationJSDoc(parametersDeclaration, operation.description)]
+  });
+
+  operationMethod.addStatements(writer => {
+    writeAsycIteratorStatement(writer, operation, operationParameters);
   });
 }
 
+/**
+ * This function generates the body for the following scenarios
+ * 1. The request defines a nextLink = null. In this case we just call the service once and return the results on next with done = true
+ */
+function writeAsycIteratorStatement(
+  writer: CodeBlockWriter,
+  operation: OperationDetails,
+  parameters: ParameterDetails[]
+) {
+  const { paging, name } = operation;
+  if (!paging) {
+    throw new Error(`Expected paging metadata for operation ${name}`);
+  }
+
+  const fetchMethodName = normalizeName(`fetch_${name}`, NameType.Property);
+
+  if (!paging.nextLinkName || isEmpty(paging.nextLinkName)) {
+    const requiredParameters = filterOperationParameters(parameters, operation);
+    writer.writeLine(
+      `const iterator = this.${fetchMethodName}(${requiredParameters
+        .map(p => p.name)
+        .join(", ")}options)`
+    );
+  }
+}
 /**
  * This function is responsible for generating the private functions that will be used to fetch the data from a pageable
  * service. These generated functions will not be exposed in order to abstract paging details from the consumers

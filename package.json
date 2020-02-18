@@ -21,8 +21,7 @@
         "generate-customurl": "autorest-beta --add-credentials=false --typescript --output-folder=./test/integration/generated/customUrl --use=. --title=CustomUrlClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/custom-baseUrl.json --package-name=custom-url --package-version=1.0.0-preview1",
         "generate-header": "autorest-beta --add-credentials=false --typescript --output-folder=./test/integration/generated/header --use=. --title=HeaderClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/header.json --package-name=header --package-version=1.0.0-preview1",
         "generate-xmlservice": "autorest-beta --add-credentials=false --typescript --output-folder=./test/integration/generated/xmlservice --use=. --title=XmlServiceClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/xml-service.json --package-name=xmlservice --package-version=1.0.0-preview1",
-        "generate-paging": "autorest-beta --add-credentials=false --typescript --output-folder=./test/integration/generated/paging --use=. --title=PagingClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/paging.json --package-name=pagingservice --package-version=1.0.0-preview1"
-
+        "generate-paging": "autorest-beta --typescript --add-credentials=false --output-folder=./test/integration/generated/paging --use=. --title=PagingClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/paging.json --package-name=pagingservice --package-version=1.0.0-preview1"
     },
     "files": [
         "dist/**",
@@ -38,6 +37,7 @@
         "@azure-tools/linq": "3.1.206",
         "@azure-tools/openapi": "3.0.209",
         "@azure/core-http": "^1.0.0",
+        "@azure/core-paging": "^1.0.0",
         "@azure/logger": "^1.0.0",
         "@types/lodash": "^4.14.149",
         "lodash": "^4.17.15",

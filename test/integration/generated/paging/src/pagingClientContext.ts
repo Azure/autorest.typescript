@@ -12,13 +12,22 @@ const packageName = "pagingservice";
 const packageVersion = "1.0.0-preview1";
 
 export class PagingClientContext extends coreHttp.ServiceClient {
+  credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials;
   $host: string;
 
   /**
    * Initializes a new instance of the PagingClientContext class.
+   * @param credentials Subscription credentials which uniquely identify client subscription.
    * @param options The parameter options
    */
-  constructor(options?: any) {
+  constructor(
+    credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
+    options?: any
+  ) {
+    if (credentials === undefined) {
+      throw new Error("'credentials' cannot be null");
+    }
+
     // Initializing default values for options
     if (!options) {
       options = {};
@@ -29,11 +38,14 @@ export class PagingClientContext extends coreHttp.ServiceClient {
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
 
-    super(undefined, options);
+    super(credentials, options);
 
     this.requestContentType = "application/json; charset=utf-8";
 
     this.baseUri = options.baseUri || "{$host}";
+
+    // Parameter assignments
+    this.credentials = credentials;
 
     // Assigning values to Constant parameters
     this.$host = options.$host || "http://localhost:3000";
