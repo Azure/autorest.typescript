@@ -34,6 +34,7 @@ import { PropertyKind, TypeDetails } from "../models/modelDetails";
 import { TOPLEVEL_OPERATIONGROUP } from "./constants";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { headersToSchema } from "../utils/headersToSchema";
+import { transformPagingOperation } from "./utils/teansforPagingOperation";
 
 export function transformOperationSpec(
   operationDetails: OperationDetails,
@@ -223,6 +224,7 @@ export async function transformOperation(
   operationGroupName: string
 ): Promise<OperationDetails> {
   const metadata = getLanguageMetadata(operation.language);
+  const paging = transformPagingOperation(operation);
   const name = normalizeName(metadata.name, NameType.Property);
   const operationFullName = `${operationGroupName}_${name}`;
   const responsesAndErrors = [
@@ -253,7 +255,8 @@ export async function transformOperation(
     description: metadata.description,
     request,
     responses,
-    mediaTypes
+    mediaTypes,
+    ...(paging && { paging })
   };
 }
 

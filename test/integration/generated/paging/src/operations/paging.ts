@@ -11,6 +11,7 @@ import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { PagingClient } from "../pagingClient";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 
 /**
  * Class representing a Paging.
@@ -30,7 +31,7 @@ export class Paging {
    * A paging operation that must return result of the default 'value' node.
    * @param options The options parameters.
    */
-  getNoItemNamePages(
+  private fetchGetNoItemNamePages(
     options?: coreHttp.RequestOptionsBase
   ): Promise<Models.PagingGetNoItemNamePagesResponse> {
     return this.client.sendOperationRequest(
@@ -40,10 +41,18 @@ export class Paging {
   }
 
   /**
+   * A paging operation that must return result of the default 'value' node.
+   * @param options The options parameters.
+   */
+  getNoItemNamePages(
+    options?: coreHttp.RequestOptionsBase
+  ): PagedAsyncIterableIterator<Models.Product[]> {}
+
+  /**
    * A paging operation that must ignore any kind of nextLink, and stop after page 1.
    * @param options The options parameters.
    */
-  getNullNextLinkNamePages(
+  private fetchGetNullNextLinkNamePages(
     options?: coreHttp.RequestOptionsBase
   ): Promise<Models.PagingGetNullNextLinkNamePagesResponse> {
     return this.client.sendOperationRequest(
@@ -53,10 +62,18 @@ export class Paging {
   }
 
   /**
+   * A paging operation that must ignore any kind of nextLink, and stop after page 1.
+   * @param options The options parameters.
+   */
+  getNullNextLinkNamePages(
+    options?: coreHttp.RequestOptionsBase
+  ): PagedAsyncIterableIterator<Models.Product[]> {}
+
+  /**
    * A paging operation that finishes on the first call without a nextlink
    * @param options The options parameters.
    */
-  getSinglePages(
+  private fetchGetSinglePages(
     options?: coreHttp.RequestOptionsBase
   ): Promise<Models.PagingGetSinglePagesResponse> {
     return this.client.sendOperationRequest(
@@ -66,10 +83,18 @@ export class Paging {
   }
 
   /**
+   * A paging operation that finishes on the first call without a nextlink
+   * @param options The options parameters.
+   */
+  getSinglePages(
+    options?: coreHttp.RequestOptionsBase
+  ): PagedAsyncIterableIterator<Models.Product[]> {}
+
+  /**
    * A paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  getMultiplePages(
+  private fetchGetMultiplePages(
     options?: Models.PagingGetMultiplePagesOptionalParams
   ): Promise<Models.PagingGetMultiplePagesResponse> {
     return this.client.sendOperationRequest(
@@ -79,10 +104,18 @@ export class Paging {
   }
 
   /**
+   * A paging operation that includes a nextLink that has 10 pages
+   * @param options The options parameters.
+   */
+  getMultiplePages(
+    options?: Models.PagingGetMultiplePagesOptionalParams
+  ): PagedAsyncIterableIterator<Models.Product[]> {}
+
+  /**
    * A paging operation that includes a nextLink in odata format that has 10 pages
    * @param options The options parameters.
    */
-  getOdataMultiplePages(
+  private fetchGetOdataMultiplePages(
     options?: Models.PagingGetOdataMultiplePagesOptionalParams
   ): Promise<Models.PagingGetOdataMultiplePagesResponse> {
     return this.client.sendOperationRequest(
@@ -92,11 +125,19 @@ export class Paging {
   }
 
   /**
+   * A paging operation that includes a nextLink in odata format that has 10 pages
+   * @param options The options parameters.
+   */
+  getOdataMultiplePages(
+    options?: Models.PagingGetOdataMultiplePagesOptionalParams
+  ): PagedAsyncIterableIterator<Models.Product[]> {}
+
+  /**
    * A paging operation that includes a nextLink that has 10 pages
    * @param offset Offset of return value
    * @param options The options parameters.
    */
-  getMultiplePagesWithOffset(
+  private fetchGetMultiplePagesWithOffset(
     offset: number,
     options?: Models.PagingGetMultiplePagesWithOffsetOptionalParams
   ): Promise<Models.PagingGetMultiplePagesWithOffsetResponse> {
@@ -107,11 +148,21 @@ export class Paging {
   }
 
   /**
+   * A paging operation that includes a nextLink that has 10 pages
+   * @param offset Offset of return value
+   * @param options The options parameters.
+   */
+  getMultiplePagesWithOffset(
+    offset: number,
+    options?: Models.PagingGetMultiplePagesWithOffsetOptionalParams
+  ): PagedAsyncIterableIterator<Models.Product[]> {}
+
+  /**
    * A paging operation that fails on the first call with 500 and then retries and then get a response
    * including a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  getMultiplePagesRetryFirst(
+  private fetchGetMultiplePagesRetryFirst(
     options?: coreHttp.RequestOptionsBase
   ): Promise<Models.PagingGetMultiplePagesRetryFirstResponse> {
     return this.client.sendOperationRequest(
@@ -121,11 +172,20 @@ export class Paging {
   }
 
   /**
+   * A paging operation that fails on the first call with 500 and then retries and then get a response
+   * including a nextLink that has 10 pages
+   * @param options The options parameters.
+   */
+  getMultiplePagesRetryFirst(
+    options?: coreHttp.RequestOptionsBase
+  ): PagedAsyncIterableIterator<Models.Product[]> {}
+
+  /**
    * A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first
    * with 500. The client should retry and finish all 10 pages eventually.
    * @param options The options parameters.
    */
-  getMultiplePagesRetrySecond(
+  private fetchGetMultiplePagesRetrySecond(
     options?: coreHttp.RequestOptionsBase
   ): Promise<Models.PagingGetMultiplePagesRetrySecondResponse> {
     return this.client.sendOperationRequest(
@@ -135,10 +195,19 @@ export class Paging {
   }
 
   /**
+   * A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first
+   * with 500. The client should retry and finish all 10 pages eventually.
+   * @param options The options parameters.
+   */
+  getMultiplePagesRetrySecond(
+    options?: coreHttp.RequestOptionsBase
+  ): PagedAsyncIterableIterator<Models.Product[]> {}
+
+  /**
    * A paging operation that receives a 400 on the first call
    * @param options The options parameters.
    */
-  getSinglePagesFailure(
+  private fetchGetSinglePagesFailure(
     options?: coreHttp.RequestOptionsBase
   ): Promise<Models.PagingGetSinglePagesFailureResponse> {
     return this.client.sendOperationRequest(
@@ -148,10 +217,18 @@ export class Paging {
   }
 
   /**
+   * A paging operation that receives a 400 on the first call
+   * @param options The options parameters.
+   */
+  getSinglePagesFailure(
+    options?: coreHttp.RequestOptionsBase
+  ): PagedAsyncIterableIterator<Models.Product[]> {}
+
+  /**
    * A paging operation that receives a 400 on the second call
    * @param options The options parameters.
    */
-  getMultiplePagesFailure(
+  private fetchGetMultiplePagesFailure(
     options?: coreHttp.RequestOptionsBase
   ): Promise<Models.PagingGetMultiplePagesFailureResponse> {
     return this.client.sendOperationRequest(
@@ -161,16 +238,49 @@ export class Paging {
   }
 
   /**
+   * A paging operation that receives a 400 on the second call
+   * @param options The options parameters.
+   */
+  getMultiplePagesFailure(
+    options?: coreHttp.RequestOptionsBase
+  ): PagedAsyncIterableIterator<Models.Product[]> {}
+
+  /**
    * A paging operation that receives an invalid nextLink
    * @param options The options parameters.
    */
-  getMultiplePagesFailureUri(
+  private fetchGetMultiplePagesFailureUri(
     options?: coreHttp.RequestOptionsBase
   ): Promise<Models.PagingGetMultiplePagesFailureUriResponse> {
     return this.client.sendOperationRequest(
       { options },
       getMultiplePagesFailureUriOperationSpec
     ) as Promise<Models.PagingGetMultiplePagesFailureUriResponse>;
+  }
+
+  /**
+   * A paging operation that receives an invalid nextLink
+   * @param options The options parameters.
+   */
+  getMultiplePagesFailureUri(
+    options?: coreHttp.RequestOptionsBase
+  ): PagedAsyncIterableIterator<Models.Product[]> {}
+
+  /**
+   * A paging operation that doesn't return a full URL, just a fragment
+   * @param apiVersion Sets the api version to use.
+   * @param tenant Sets the tenant to use.
+   * @param options The options parameters.
+   */
+  private fetchGetMultiplePagesFragmentNextLink(
+    apiVersion: string,
+    tenant: string,
+    options?: coreHttp.RequestOptionsBase
+  ): Promise<Models.PagingGetMultiplePagesFragmentNextLinkResponse> {
+    return this.client.sendOperationRequest(
+      { apiVersion, tenant, options },
+      getMultiplePagesFragmentNextLinkOperationSpec
+    ) as Promise<Models.PagingGetMultiplePagesFragmentNextLinkResponse>;
   }
 
   /**
@@ -183,12 +293,7 @@ export class Paging {
     apiVersion: string,
     tenant: string,
     options?: coreHttp.RequestOptionsBase
-  ): Promise<Models.PagingGetMultiplePagesFragmentNextLinkResponse> {
-    return this.client.sendOperationRequest(
-      { apiVersion, tenant, options },
-      getMultiplePagesFragmentNextLinkOperationSpec
-    ) as Promise<Models.PagingGetMultiplePagesFragmentNextLinkResponse>;
-  }
+  ): PagedAsyncIterableIterator<Models.Product[]> {}
 
   /**
    * A paging operation that doesn't return a full URL, just a fragment with parameters grouped
@@ -196,7 +301,7 @@ export class Paging {
    * @param tenant Sets the tenant to use.
    * @param options The options parameters.
    */
-  getMultiplePagesFragmentWithGroupingNextLink(
+  private fetchGetMultiplePagesFragmentWithGroupingNextLink(
     apiVersion: string,
     tenant: string,
     options?: coreHttp.RequestOptionsBase
@@ -212,10 +317,22 @@ export class Paging {
   }
 
   /**
+   * A paging operation that doesn't return a full URL, just a fragment with parameters grouped
+   * @param apiVersion Sets the api version to use.
+   * @param tenant Sets the tenant to use.
+   * @param options The options parameters.
+   */
+  getMultiplePagesFragmentWithGroupingNextLink(
+    apiVersion: string,
+    tenant: string,
+    options?: coreHttp.RequestOptionsBase
+  ): PagedAsyncIterableIterator<Models.Product[]> {}
+
+  /**
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  getMultiplePagesLRO(
+  private fetchGetMultiplePagesLRO(
     options?: Models.PagingGetMultiplePagesLROOptionalParams
   ): Promise<Models.PagingGetMultiplePagesLROResponse> {
     return this.client.sendOperationRequest(
@@ -225,13 +342,21 @@ export class Paging {
   }
 
   /**
+   * A long-running paging operation that includes a nextLink that has 10 pages
+   * @param options The options parameters.
+   */
+  getMultiplePagesLRO(
+    options?: Models.PagingGetMultiplePagesLROOptionalParams
+  ): PagedAsyncIterableIterator<Models.Product[]> {}
+
+  /**
    * A paging operation that doesn't return a full URL, just a fragment
    * @param apiVersion Sets the api version to use.
    * @param tenant Sets the tenant to use.
    * @param nextLink Next link for list operation.
    * @param options The options parameters.
    */
-  nextFragment(
+  private fetchNextFragment(
     apiVersion: string,
     tenant: string,
     nextLink: string,
@@ -250,7 +375,21 @@ export class Paging {
    * @param nextLink Next link for list operation.
    * @param options The options parameters.
    */
-  nextFragmentWithGrouping(
+  nextFragment(
+    apiVersion: string,
+    tenant: string,
+    nextLink: string,
+    options?: coreHttp.RequestOptionsBase
+  ): PagedAsyncIterableIterator<Models.Product[]> {}
+
+  /**
+   * A paging operation that doesn't return a full URL, just a fragment
+   * @param apiVersion Sets the api version to use.
+   * @param tenant Sets the tenant to use.
+   * @param nextLink Next link for list operation.
+   * @param options The options parameters.
+   */
+  private fetchNextFragmentWithGrouping(
     apiVersion: string,
     tenant: string,
     nextLink: string,
@@ -261,6 +400,20 @@ export class Paging {
       nextFragmentWithGroupingOperationSpec
     ) as Promise<Models.PagingNextFragmentWithGroupingResponse>;
   }
+
+  /**
+   * A paging operation that doesn't return a full URL, just a fragment
+   * @param apiVersion Sets the api version to use.
+   * @param tenant Sets the tenant to use.
+   * @param nextLink Next link for list operation.
+   * @param options The options parameters.
+   */
+  nextFragmentWithGrouping(
+    apiVersion: string,
+    tenant: string,
+    nextLink: string,
+    options?: coreHttp.RequestOptionsBase
+  ): PagedAsyncIterableIterator<Models.Product[]> {}
 }
 // Operation Specifications
 

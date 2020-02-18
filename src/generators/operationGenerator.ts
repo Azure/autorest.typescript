@@ -7,29 +7,20 @@ import {
   VariableDeclarationKind,
   Scope,
   ClassDeclaration,
-  ParameterDeclarationStructure,
-  OptionalKind,
   ExportDeclarationStructure
 } from "ts-morph";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
 import { transformOperationSpec } from "../transforms/operationTransforms";
-import { MapperType } from "@azure/core-http";
 import {
   OperationGroupDetails,
   OperationSpecDetails,
-  OperationDetails,
   OperationResponseMapper
 } from "../models/operationDetails";
 import { isString } from "util";
 import { ParameterDetails } from "../models/parameterDetails";
-import {
-  filterOperationParameters,
-  formatJsDocParam
-} from "./utils/parameterUtils";
-import { PropertyKind } from "../models/modelDetails";
-import { wrapString } from "./utils/stringUtils";
 import { KnownMediaType } from "@azure-tools/codegen";
+import { writeOperation, writePagingOperation } from "./utils";
 
 /**
  * Function that writes the code for all the operations.
@@ -46,7 +37,7 @@ export function generateOperations(
 ): void {
   let fileNames: string[] = [];
 
-  // Toplevel operations are inlined in the client
+  // Client operations are inlined in the client
   const operationGroups = clientDetails.operationGroups.filter(
     og => !og.isTopLevel
   );
@@ -89,7 +80,10 @@ function generateOperation(
     { overwrite: true }
   );
 
-  addImports(operationGroupFile, clientDetails);
+  const hasPageableOperation = clientDetails.operationGroups.some(og =>
+    og.operations.some(op => op.paging)
+  );
+  addImports(operationGroupFile, clientDetails, hasPageableOperation);
   addClass(operationGroupFile, operationGroupDetails, clientDetails);
   addOperationSpecs(
     operationGroupDetails,
@@ -190,25 +184,6 @@ function buildMapper(
   return `${mapperName}: ${mapperString},`;
 }
 
-function getOptionsParameter(
-  operation: OperationDetails,
-  parameters: ParameterDetails[],
-  { isOptional = true } = {}
-): ParameterWithDescription {
-  const type = filterOperationParameters(parameters, operation, {
-    includeOptional: true
-  }).some(p => !p.required)
-    ? `Models.${operation.typeDetails.typeName}OptionalParams`
-    : "coreHttp.RequestOptionsBase";
-
-  return {
-    name: "options",
-    type,
-    hasQuestionToken: isOptional,
-    description: "The options parameters."
-  };
-}
-
 /**
  * Adds an Operation group class to the generated file
  */
@@ -252,10 +227,6 @@ function addClass(
   );
 }
 
-type ParameterWithDescription = OptionalKind<
-  ParameterDeclarationStructure & { description: string }
->;
-
 /**
  * Write operations implementation, extracted from OperationGroupDetails, to the generated file
  */
@@ -263,74 +234,28 @@ export function writeOperations(
   operationGroupDetails: OperationGroupDetails,
   operationGroupClass: ClassDeclaration,
   parameters: ParameterDetails[],
-  isInline = false
+  isClientOperation = false
 ) {
   operationGroupDetails.operations.forEach(operation => {
-    const responseName = getResponseType(operation);
-    const paramDeclarations = filterOperationParameters(
+    if (operation.paging) {
+      writePagingOperation({
+        operation,
+        operationGroupClass,
+        parameters,
+        options: { isClientOperation }
+      });
+      return;
+    }
+
+    writeOperation({
+      operationGroupClass,
+      operation,
       parameters,
-      operation
-    ).map<ParameterWithDescription>(param => {
-      const { typeName, kind } = param.typeDetails;
-      const type =
-        kind === PropertyKind.Primitive
-          ? typeName
-          : `Models.${normalizeName(typeName, NameType.Class)}`;
-
-      return {
-        name: param.name,
-        description: param.description,
-        type,
-        hasQuestionToken: !param.required
-      };
+      options: {
+        isClientOperation
+      }
     });
-
-    const allParams = [
-      ...paramDeclarations,
-      getOptionsParameter(operation, parameters)
-    ];
-
-    const operationMethod = operationGroupClass.addMethod({
-      name: normalizeName(operation.name, NameType.Property),
-      parameters: allParams,
-      returnType: `Promise<${responseName}>`,
-      docs: [generateOperationJSDoc(allParams, operation.description)]
-    });
-
-    const sendParams = paramDeclarations.map(p => p.name).join(",");
-    operationMethod.addStatements(
-      `return this${
-        isInline ? "" : ".client"
-      }.sendOperationRequest({${sendParams}${
-        !!sendParams ? "," : ""
-      } options}, ${operation.name}OperationSpec) as Promise<${responseName}>`
-    );
   });
-}
-
-function getResponseType(operation: OperationDetails) {
-  const hasSuccessResponse = operation.responses.some(
-    ({ isError, mappers }) =>
-      !isError && (!!mappers.bodyMapper || !!mappers.headersMapper)
-  );
-
-  const responseName = hasSuccessResponse ? operation.typeDetails.typeName : "";
-
-  return !!responseName
-    ? `Models.${normalizeName(responseName, NameType.Interface)}Response`
-    : "coreHttp.RestResponse";
-}
-
-function generateOperationJSDoc(
-  params: ParameterWithDescription[] = [],
-  description: string = ""
-): string {
-  const paramJSDoc =
-    !params || !params.length ? "" : formatJsDocParam(params).join("\n");
-
-  return `${
-    description ? wrapString(description) + "\n" : description
-  }${paramJSDoc}`;
 }
 
 /**
@@ -377,7 +302,8 @@ export function addOperationSpecs(
  */
 function addImports(
   operationGroupFile: SourceFile,
-  { className, sourceFileName }: ClientDetails
+  { className, sourceFileName }: ClientDetails,
+  hasPageableOperation: boolean
 ) {
   operationGroupFile.addImportDeclaration({
     namespaceImport: "coreHttp",
@@ -403,4 +329,11 @@ function addImports(
     namedImports: [className],
     moduleSpecifier: `../${sourceFileName}`
   });
+
+  if (hasPageableOperation) {
+    operationGroupFile.addImportDeclaration({
+      namedImports: ["PagedAsyncIterableIterator"],
+      moduleSpecifier: "@azure/core-paging"
+    });
+  }
 }

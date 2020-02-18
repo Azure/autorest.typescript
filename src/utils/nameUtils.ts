@@ -15,7 +15,8 @@ export enum NameType {
   Class,
   File,
   Interface,
-  Property
+  Property,
+  Enum
 }
 
 export function guardReservedNames(name: string): string {
@@ -50,6 +51,7 @@ function getCasingConvention(nameType: NameType) {
   switch (nameType) {
     case NameType.Class:
     case NameType.Interface:
+    case NameType.Enum:
       return CasingConvention.Pascal;
     case NameType.File:
     case NameType.Property:
