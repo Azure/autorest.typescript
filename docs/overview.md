@@ -1,7 +1,7 @@
 # Table of Contents
 
-1.  [Autorest.Typescript](# Autorest.Typescript)
-    1.  [Overview](# Overview)
+1.  [Autorest.Typescript](#org89a3068)
+    1.  [Overview](#org89a3069)
         1.  [What is Autorest (core)](#org89a3066)
         2.  [What is Autorest.Typescript](#org9b5d6b1)
         3.  [Why writing a new version of Autorest](#org47f1d3e)
@@ -16,8 +16,10 @@
         6.  [Mappers](#org5efb54d)
         7.  [Models](#orge55796f)
 
+<a id="org89a3068"></a>
 # Autorest.Typescript
 
+<a id="org89a3069"></a>
 ## Overview
 
 <a id="org89a3066"></a>
