@@ -46,23 +46,42 @@ export class Paging {
    */
   getNoItemNamePages(
     options?: coreHttp.RequestOptionsBase
-  ): PagedAsyncIterableIterator<Models.Product[]> {
-    async function* fetchGetNoItemNamePagesIterator(options: any) {
-      let response;
-      this.fetchGetNoItemNamePages(options);
-    }
+  ): AsyncIterableIterator<Models.Product[]> {
+    const iterator = this.fetchGetNoItemNamePagesIterator(undefined, options);
     return {
-      next() {
-        return iterator.next;
+      async next() {
+        const item = (await iterator.next()).value;
+        return item
+          ? { done: false, value: item }
+          : { done: true, value: undefined };
+      },
+      [Symbol.asyncIterator]() {
+        return this;
       }
     };
+  }
+
+  private async *fetchGetNoItemNamePagesIterator(
+    nextLink?: string,
+    options?: any
+  ): AsyncIterableIterator<Models.Product[]> {
+    {
+      let response;
+      if (nextLink !== null) {
+        do {
+          response = await this.fetchGetNoItemNamePages(options);
+          nextLink = response.nextLink;
+          yield response.value || [];
+        } while (nextLink);
+      }
+    }
   }
 
   /**
    * A paging operation that must ignore any kind of nextLink, and stop after page 1.
    * @param options The options parameters.
    */
-  private fetchGetNullNextLinkNamePages(
+  private async fetchGetNullNextLinkNamePages(
     options?: coreHttp.RequestOptionsBase
   ): Promise<Models.PagingGetNullNextLinkNamePagesResponse> {
     return this.client.sendOperationRequest(
