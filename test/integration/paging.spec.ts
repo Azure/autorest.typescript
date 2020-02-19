@@ -13,6 +13,13 @@ describe.only("Paging", () => {
     for await (let page of client.paging.getNoItemNamePages()) {
       results = [...results, ...page];
     }
-    expect(results).to.deep.equal([]);
+    expect(results).to.deep.equal([
+      {
+        properties: {
+          id: 1,
+          name: "Product"
+        }
+      }
+    ]);
   });
 });
