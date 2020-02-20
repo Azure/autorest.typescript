@@ -118,3 +118,16 @@ export const nextLink: coreHttp.OperationURLParameter = {
   },
   skipEncoding: true
 };
+
+export const path: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "path"],
+  mapper: {
+    serializedName: "path",
+    required: true,
+    defaultValue: "http://localhost:3000/paging/multiple",
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};

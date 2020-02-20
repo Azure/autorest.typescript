@@ -161,14 +161,11 @@ export class Paging {
   }
 
   private fetchGetMultiplePages(
-    nextLink?: string,
     options?: Models.PagingGetMultiplePagesOptionalParams
   ): Promise<Models.PagingGetMultiplePagesResponse> {
     return this.client.sendOperationRequest(
-      { nextLink, options },
-      nextLink
-        ? getMultiplePagesOperationSpecNext
-        : getMultiplePagesOperationSpec
+      { options },
+      getMultiplePagesOperationSpec
     ) as Promise<Models.PagingGetMultiplePagesResponse>;
   }
 
@@ -180,7 +177,10 @@ export class Paging {
       let response;
       if (nextLink !== null) {
         do {
-          response = await this.fetchGetMultiplePages(nextLink, options);
+          response = await this.fetchGetMultiplePages({
+            ...options,
+            ...(nextLink && { path: nextLink })
+          });
           nextLink = response.nextLink;
           yield response.values || [];
         } while (nextLink);
@@ -678,7 +678,7 @@ const getSinglePagesOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getMultiplePagesOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/multiple",
+  path: "{path}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -686,7 +686,7 @@ const getMultiplePagesOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.$host, Parameters.path],
   headerParameters: [
     Parameters.clientRequestId,
     Parameters.maxresults,
