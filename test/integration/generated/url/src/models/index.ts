@@ -8,9 +8,6 @@
 
 import * as coreHttp from "@azure/core-http";
 
-/**
- * An interface representing Error.
- */
 export interface ErrorModel {
   status?: number;
   message?: string;
@@ -25,7 +22,7 @@ export type UriColor = "red color" | "green color" | "blue color";
  * Optional parameters.
  */
 export interface QueriesGetBooleanNullOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * null boolean value
    */
@@ -36,7 +33,7 @@ export interface QueriesGetBooleanNullOptionalParams
  * Optional parameters.
  */
 export interface QueriesGetIntNullOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * null integer value
    */
@@ -47,7 +44,7 @@ export interface QueriesGetIntNullOptionalParams
  * Optional parameters.
  */
 export interface QueriesGetLongNullOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * null 64 bit integer value
    */
@@ -58,7 +55,7 @@ export interface QueriesGetLongNullOptionalParams
  * Optional parameters.
  */
 export interface QueriesFloatNullOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * null numeric value
    */
@@ -69,7 +66,7 @@ export interface QueriesFloatNullOptionalParams
  * Optional parameters.
  */
 export interface QueriesDoubleNullOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * null numeric value
    */
@@ -80,7 +77,7 @@ export interface QueriesDoubleNullOptionalParams
  * Optional parameters.
  */
 export interface QueriesStringNullOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * null string value
    */
@@ -91,7 +88,7 @@ export interface QueriesStringNullOptionalParams
  * Optional parameters.
  */
 export interface QueriesEnumValidOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * 'green color' enum value
    */
@@ -102,7 +99,7 @@ export interface QueriesEnumValidOptionalParams
  * Optional parameters.
  */
 export interface QueriesEnumNullOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * 'green color' enum value
    */
@@ -113,7 +110,7 @@ export interface QueriesEnumNullOptionalParams
  * Optional parameters.
  */
 export interface QueriesByteMultiByteOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    */
@@ -124,7 +121,7 @@ export interface QueriesByteMultiByteOptionalParams
  * Optional parameters.
  */
 export interface QueriesByteNullOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    */
@@ -135,7 +132,7 @@ export interface QueriesByteNullOptionalParams
  * Optional parameters.
  */
 export interface QueriesDateNullOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * null as date (no query parameters in uri)
    */
@@ -146,7 +143,7 @@ export interface QueriesDateNullOptionalParams
  * Optional parameters.
  */
 export interface QueriesDateTimeNullOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * null as date-time (no query parameters)
    */
@@ -157,7 +154,7 @@ export interface QueriesDateTimeNullOptionalParams
  * Optional parameters.
  */
 export interface QueriesArrayStringCsvValidOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
    */
@@ -168,7 +165,7 @@ export interface QueriesArrayStringCsvValidOptionalParams
  * Optional parameters.
  */
 export interface QueriesArrayStringCsvNullOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
    */
@@ -179,7 +176,7 @@ export interface QueriesArrayStringCsvNullOptionalParams
  * Optional parameters.
  */
 export interface QueriesArrayStringCsvEmptyOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
    */
@@ -190,7 +187,7 @@ export interface QueriesArrayStringCsvEmptyOptionalParams
  * Optional parameters.
  */
 export interface QueriesArrayStringSsvValidOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format
    */
@@ -201,7 +198,7 @@ export interface QueriesArrayStringSsvValidOptionalParams
  * Optional parameters.
  */
 export interface QueriesArrayStringTsvValidOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format
    */
@@ -212,7 +209,7 @@ export interface QueriesArrayStringTsvValidOptionalParams
  * Optional parameters.
  */
 export interface QueriesArrayStringPipesValidOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format
    */
@@ -223,7 +220,7 @@ export interface QueriesArrayStringPipesValidOptionalParams
  * Optional parameters.
  */
 export interface PathItemsGetAllWithValuesOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * A string value 'pathItemStringQuery' that appears as a query parameter
    */
@@ -238,7 +235,7 @@ export interface PathItemsGetAllWithValuesOptionalParams
  * Optional parameters.
  */
 export interface PathItemsGetGlobalQueryNullOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * A string value 'pathItemStringQuery' that appears as a query parameter
    */
@@ -253,7 +250,7 @@ export interface PathItemsGetGlobalQueryNullOptionalParams
  * Optional parameters.
  */
 export interface PathItemsGetGlobalAndLocalQueryNullOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * A string value 'pathItemStringQuery' that appears as a query parameter
    */
@@ -268,7 +265,7 @@ export interface PathItemsGetGlobalAndLocalQueryNullOptionalParams
  * Optional parameters.
  */
 export interface PathItemsGetLocalPathItemQueryNullOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * A string value 'pathItemStringQuery' that appears as a query parameter
    */
@@ -277,4 +274,22 @@ export interface PathItemsGetLocalPathItemQueryNullOptionalParams
    * should contain value 'localStringQuery'
    */
   localStringQuery?: string;
+}
+
+/**
+ * Optional parameters.
+ */
+export interface UrlClientOptionalParams extends coreHttp.ServiceClientOptions {
+  /**
+   * server parameter
+   */
+  $host?: string;
+  /**
+   * should contain value null
+   */
+  globalStringQuery?: string;
+  /**
+   * Overrides client endpoint.
+   */
+  endpoint?: string;
 }

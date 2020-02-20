@@ -16,7 +16,7 @@ class BodyComplexClient extends BodyComplexClientContext {
    * Initializes a new instance of the BodyComplexClient class.
    * @param options The parameter options
    */
-  constructor(options?: any) {
+  constructor(options?: Models.BodyComplexClientOptionalParams) {
     super(options);
     this.basic = new operations.Basic(this);
     this.primitive = new operations.Primitive(this);

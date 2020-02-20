@@ -85,7 +85,7 @@ export async function transformCodeModel(
     operationGroups,
     parameters,
     options,
-    baseUrl
+    endpoint: baseUrl
   };
 }
 

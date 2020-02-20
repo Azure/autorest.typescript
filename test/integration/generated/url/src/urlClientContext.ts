@@ -7,6 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
+import * as Models from "./models";
 
 const packageName = "url";
 const packageVersion = "1.0.0-preview1";
@@ -21,7 +22,10 @@ export class UrlClientContext extends coreHttp.ServiceClient {
    * @param globalStringPath A string value 'globalItemStringPath' that appears in the path
    * @param options The parameter options
    */
-  constructor(globalStringPath: string, options?: any) {
+  constructor(
+    globalStringPath: string,
+    options?: Models.UrlClientOptionalParams
+  ) {
     if (globalStringPath === undefined) {
       throw new Error("'globalStringPath' cannot be null");
     }
@@ -40,7 +44,7 @@ export class UrlClientContext extends coreHttp.ServiceClient {
 
     this.requestContentType = "application/json; charset=utf-8";
 
-    this.baseUri = options.baseUri || "{$host}";
+    this.baseUri = options.endpoint || "{$host}";
 
     // Parameter assignments
     this.globalStringPath = globalStringPath;

@@ -19,7 +19,7 @@ export enum ObjectKind {
  */
 export interface BasicObjectDetails {
   name: string;
-  description: string;
+  description?: string;
   serializedName: string;
   properties: PropertyDetails[];
   kind: ObjectKind;

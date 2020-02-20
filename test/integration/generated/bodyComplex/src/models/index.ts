@@ -14,9 +14,6 @@ export type SalmonUnion = Salmon | SmartSalmon;
 export type MyBaseTypeUnion = MyBaseType | MyDerivedType;
 export type SharkUnion = Shark | Sawshark | Goblinshark | Cookiecuttershark;
 
-/**
- * An interface representing Basic.
- */
 export interface Basic {
   /**
    * Basic Id
@@ -29,111 +26,69 @@ export interface Basic {
   color?: CMYKColors;
 }
 
-/**
- * An interface representing Error.
- */
 export interface ErrorModel {
   status?: number;
   message?: string;
 }
 
-/**
- * An interface representing IntWrapper.
- */
 export interface IntWrapper {
   field1?: number;
   field2?: number;
 }
 
-/**
- * An interface representing LongWrapper.
- */
 export interface LongWrapper {
   field1?: number;
   field2?: number;
 }
 
-/**
- * An interface representing FloatWrapper.
- */
 export interface FloatWrapper {
   field1?: number;
   field2?: number;
 }
 
-/**
- * An interface representing DoubleWrapper.
- */
 export interface DoubleWrapper {
   field1?: number;
   field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose?: number;
 }
 
-/**
- * An interface representing BooleanWrapper.
- */
 export interface BooleanWrapper {
   fieldTrue?: boolean;
   fieldFalse?: boolean;
 }
 
-/**
- * An interface representing StringWrapper.
- */
 export interface StringWrapper {
   field?: string;
   empty?: string;
   null?: string;
 }
 
-/**
- * An interface representing DateWrapper.
- */
 export interface DateWrapper {
   field?: Date;
   leap?: Date;
 }
 
-/**
- * An interface representing DatetimeWrapper.
- */
 export interface DatetimeWrapper {
   field?: Date;
   now?: Date;
 }
 
-/**
- * An interface representing Datetimerfc1123Wrapper.
- */
 export interface Datetimerfc1123Wrapper {
   field?: Date;
   now?: Date;
 }
 
-/**
- * An interface representing DurationWrapper.
- */
 export interface DurationWrapper {
   field?: string;
 }
 
-/**
- * An interface representing ByteWrapper.
- */
 export interface ByteWrapper {
   field?: Uint8Array;
 }
 
-/**
- * An interface representing ArrayWrapper.
- */
 export interface ArrayWrapper {
   array?: string[];
 }
 
-/**
- * An interface representing DictionaryWrapper.
- */
 export interface DictionaryWrapper {
   /**
    * Dictionary of <string>
@@ -141,39 +96,24 @@ export interface DictionaryWrapper {
   defaultProgram?: { [propertyName: string]: string };
 }
 
-/**
- * An interface representing Pet.
- */
 export interface Pet {
   id?: number;
   name?: string;
 }
 
-/**
- * An interface representing Cat.
- */
 export type Cat = Pet & {
   color?: string;
   hates?: Dog[];
 };
 
-/**
- * An interface representing Dog.
- */
 export type Dog = Pet & {
   food?: string;
 };
 
-/**
- * An interface representing Siamese.
- */
 export type Siamese = Cat & {
   breed?: string;
 };
 
-/**
- * An interface representing Fish.
- */
 export interface Fish {
   /**
    * Polymorphic discriminator, which specifies the different types this object can be
@@ -190,9 +130,6 @@ export interface Fish {
   siblings?: FishUnion[];
 }
 
-/**
- * An interface representing DotFish.
- */
 export interface DotFish {
   /**
    * Polymorphic discriminator, which specifies the different types this object can be
@@ -202,9 +139,6 @@ export interface DotFish {
   species?: string;
 }
 
-/**
- * An interface representing DotFishMarket.
- */
 export interface DotFishMarket {
   sampleSalmon?: DotSalmon;
   salmons?: DotSalmon[];
@@ -212,33 +146,21 @@ export interface DotFishMarket {
   fishes?: DotFishUnion[];
 }
 
-/**
- * An interface representing DotSalmon.
- */
 export type DotSalmon = DotFish & {
   location?: string;
   iswild?: boolean;
 };
 
-/**
- * An interface representing Salmon.
- */
 export type Salmon = Fish & {
   location?: string;
   iswild?: boolean;
 };
 
-/**
- * An interface representing ReadonlyObj.
- */
 export interface ReadonlyObj {
   readonly id?: string;
   size?: number;
 }
 
-/**
- * An interface representing MyBaseType.
- */
 export interface MyBaseType {
   /**
    * Polymorphic discriminator, which specifies the different types this object can be
@@ -248,16 +170,10 @@ export interface MyBaseType {
   helper?: MyBaseHelperType;
 }
 
-/**
- * An interface representing MyBaseHelperType.
- */
 export interface MyBaseHelperType {
   propBH1?: string;
 }
 
-/**
- * An interface representing SmartSalmon.
- */
 export type SmartSalmon = Salmon & {
   /**
    * Describes unknown properties. The value of an unknown property can be of "any" type.
@@ -266,24 +182,15 @@ export type SmartSalmon = Salmon & {
   collegeDegree?: string;
 };
 
-/**
- * An interface representing Shark.
- */
 export type Shark = Fish & {
   age?: number;
   birthday: Date;
 };
 
-/**
- * An interface representing Sawshark.
- */
 export type Sawshark = Shark & {
   picture?: Uint8Array;
 };
 
-/**
- * An interface representing Goblinshark.
- */
 export type Goblinshark = Shark & {
   jawsize?: number;
   /**
@@ -292,14 +199,8 @@ export type Goblinshark = Shark & {
   color?: GoblinSharkColor;
 };
 
-/**
- * An interface representing Cookiecuttershark.
- */
 export type Cookiecuttershark = Shark & {};
 
-/**
- * An interface representing MyDerivedType.
- */
 export type MyDerivedType = MyBaseType & {
   propD1?: string;
 };
@@ -971,3 +872,22 @@ export type FlattencomplexGetValidResponse = MyBaseTypeUnion & {
     parsedBody: MyBaseTypeUnion;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface BodyComplexClientOptionalParams
+  extends coreHttp.ServiceClientOptions {
+  /**
+   * server parameter
+   */
+  $host?: string;
+  /**
+   * Api Version
+   */
+  apiVersion?: string;
+  /**
+   * Overrides client endpoint.
+   */
+  endpoint?: string;
+}

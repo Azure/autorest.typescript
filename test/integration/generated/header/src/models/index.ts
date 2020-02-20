@@ -8,9 +8,6 @@
 
 import * as coreHttp from "@azure/core-http";
 
-/**
- * An interface representing Error.
- */
 export interface ErrorModel {
   status?: number;
   message?: string;
@@ -228,7 +225,7 @@ export type HeaderResponseBoolResponse = HeaderResponseBoolHeaders & {
  * Optional parameters.
  */
 export interface HeaderParamStringOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * Send a post request with header values "The quick brown fox jumps over the lazy dog" or null or ""
    */
@@ -284,7 +281,7 @@ export type HeaderResponseDatetimeResponse = HeaderResponseDatetimeHeaders & {
  * Optional parameters.
  */
 export interface HeaderParamDatetimeRfc1123OptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
    */
@@ -340,7 +337,7 @@ export type HeaderResponseByteResponse = HeaderResponseByteHeaders & {
  * Optional parameters.
  */
 export interface HeaderParamEnumOptionalParams
-  extends coreHttp.RequestOptionsBase {
+  extends coreHttp.OperationOptions {
   /**
    * Send a post request with header values 'GREY'
    */
@@ -361,3 +358,18 @@ export type HeaderResponseEnumResponse = HeaderResponseEnumHeaders & {
     parsedHeaders: HeaderResponseEnumHeaders;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface HeaderClientOptionalParams
+  extends coreHttp.ServiceClientOptions {
+  /**
+   * server parameter
+   */
+  $host?: string;
+  /**
+   * Overrides client endpoint.
+   */
+  endpoint?: string;
+}

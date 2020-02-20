@@ -14,7 +14,7 @@ import { ClientDetails } from "../models/clientDetails";
 import { PackageDetails } from "../models/packageDetails";
 import { ParameterDetails } from "../models/parameterDetails";
 import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
-import { BaseUrlDetails } from "../transforms/urlTransforms";
+import { EndpointDetails } from "../transforms/urlTransforms";
 import { formatJsDocParam } from "./utils/parameterUtils";
 
 export function generateClientContext(
@@ -25,7 +25,6 @@ export function generateClientContext(
   const clientParams = clientDetails.parameters.filter(
     param => param.implementationLocation === ImplementationLocation.Client
   );
-  const requiredParams = getRequiredParameters(clientParams);
   const clientContextClassName = `${clientDetails.className}Context`;
   const clientContextFileName = normalizeName(
     clientContextClassName,
@@ -48,18 +47,17 @@ export function generateClientContext(
 
   const classConstructor = buildConstructor(contextClass, {
     clientContextClassName,
-    requiredParams
+    clientClassName: clientDetails.className,
+    clientParams
   });
 
   writeConstructorBody(classConstructor, {
     clientParams,
-    clientDetails,
-    requiredPaams: requiredParams
+    clientDetails
   });
 }
 
 interface WriteConstructorBodyParameters {
-  requiredPaams: ParameterDetails[];
   clientParams: ParameterDetails[];
   clientDetails: ClientDetails;
 }
@@ -68,6 +66,11 @@ function writeImports(sourceFile: SourceFile) {
   sourceFile.addImportDeclaration({
     namespaceImport: "coreHttp",
     moduleSpecifier: "@azure/core-http"
+  });
+
+  sourceFile.addImportDeclaration({
+    namespaceImport: "Models",
+    moduleSpecifier: "./models"
   });
 }
 
@@ -87,31 +90,34 @@ function writeClassProperties(
   clientParams: ParameterDetails[]
 ) {
   contextClass.addProperties(
-    clientParams.map(param => {
-      return {
-        name: param.name,
-        type: param.typeDetails.typeName,
-        hasQuestionToken: !param.required
-      } as PropertyDeclarationStructure;
-    })
+    clientParams
+      .filter(p => !p.isSynthetic)
+      .map(param => {
+        return {
+          name: param.name,
+          type: param.typeDetails.typeName,
+          hasQuestionToken: !param.required
+        } as PropertyDeclarationStructure;
+      })
   );
 }
 
 function writeConstructorBody(
   classConstructor: ConstructorDeclaration,
-  { clientParams, requiredPaams, clientDetails }: WriteConstructorBodyParameters
+  { clientParams, clientDetails }: WriteConstructorBodyParameters
 ) {
+  const requiredParams = getRequiredParameters(clientParams);
   const addBlankLine = true;
-  const requiredParameters = getRequiredParamAssignments(requiredPaams);
+  const requiredParameters = getRequiredParamAssignments(requiredParams);
   const constantParameters = getConstantClientParamAssignments(clientParams);
   classConstructor.addStatements([
-    writeStatements(getRequiredParamChecks(requiredPaams), addBlankLine),
+    writeStatements(getRequiredParamChecks(requiredParams), addBlankLine),
     writeStatement(
       writeDefaultOptions(clientParams.some(p => p.name === "credentials"))
     ),
-    writeStatement(getBaseUriStatement(clientDetails.baseUrl), addBlankLine),
+    writeStatement(getEndpointStatement(clientDetails.endpoint), addBlankLine),
     requiredParameters.length ? "// Parameter assignments" : "",
-    writeStatements(getRequiredParamAssignments(requiredPaams), addBlankLine),
+    writeStatements(getRequiredParamAssignments(requiredParams), addBlankLine),
     constantParameters.length
       ? "// Assigning values to Constant parameters"
       : "",
@@ -163,13 +169,20 @@ function buildClass(sourceFile: SourceFile, clientContextClassName: string) {
 
 interface BuildContructorParams {
   clientContextClassName: string;
-  requiredParams: ParameterDetails[];
+  clientClassName: string;
+  clientParams: ParameterDetails[];
 }
 
 function buildConstructor(
   contextClass: ClassDeclaration,
-  { clientContextClassName, requiredParams }: BuildContructorParams
+  {
+    clientContextClassName,
+    clientParams,
+    clientClassName
+  }: BuildContructorParams
 ) {
+  const requiredParams = getRequiredParameters(clientParams);
+  const hasClientOptionalParams = clientParams.some(p => !p.required);
   const docs = [
     `Initializes a new instance of the ${clientContextClassName} class.`,
     ...formatJsDocParam(requiredParams),
@@ -178,6 +191,9 @@ function buildConstructor(
     .filter(d => !!d)
     .join("\n");
 
+  const clientOptionsParameterType = hasClientOptionalParams
+    ? `Models.${clientClassName}OptionalParams`
+    : "coreHttp.ServiceClientOptions";
   return contextClass.addConstructor({
     docs: [docs],
     parameters: [
@@ -188,7 +204,7 @@ function buildConstructor(
       {
         name: "options",
         hasQuestionToken: true,
-        type: `any`
+        type: clientOptionsParameterType
       }
     ]
   });
@@ -204,9 +220,10 @@ function getRequiredParameters(parameters: ParameterDetails[]) {
   );
 }
 
-function getBaseUriStatement(baseUrl: BaseUrlDetails) {
-  const uri = baseUrl.baseUrl;
-  return `this.baseUri = options.baseUri ${uri ? ` || "${uri}"` : ""};`;
+function getEndpointStatement({ endpoint }: EndpointDetails) {
+  return `this.baseUri = options.endpoint ${
+    endpoint ? ` || "${endpoint}"` : ""
+  };`;
 }
 
 function getConstantClientParamAssignments(

@@ -27,6 +27,7 @@ import {
   OperationResponseDetails
 } from "../models/operationDetails";
 import { ParameterDetails } from "../models/parameterDetails";
+import { ImplementationLocation } from "@azure-tools/codemodel";
 
 export function generateModels(clientDetails: ClientDetails, project: Project) {
   const modelsIndexFile = project.createSourceFile(
@@ -44,7 +45,27 @@ export function generateModels(clientDetails: ClientDetails, project: Project) {
   writeObjects(clientDetails, modelsIndexFile);
   writeChoices(clientDetails, modelsIndexFile);
   writeOperationModels(clientDetails, modelsIndexFile);
+  writeClientModels(clientDetails, modelsIndexFile);
 }
+
+const writeClientModels = (
+  clientDetails: ClientDetails,
+  modelsIndexFile: SourceFile
+) => {
+  let clientOptionalParams = clientDetails.parameters.filter(
+    p =>
+      (!p.required || p.defaultValue) &&
+      p.implementationLocation === ImplementationLocation.Client
+  );
+
+  writeOptionalParameters(
+    clientDetails.name,
+    "",
+    clientOptionalParams,
+    modelsIndexFile,
+    "coreHttp.ServiceClientOptions"
+  );
+};
 
 const writeOperationModels = (
   clientDetails: ClientDetails,
@@ -291,7 +312,7 @@ const writeObjectSignature = (modelsIndexFile: SourceFile) => (
   if (parents) {
     modelsIndexFile.addTypeAlias({
       name: model.name,
-      docs: [model.description],
+      docs: model.description ? [model.description] : [],
       isExported: true,
       type: Writers.intersectionType(
         parents,
@@ -302,7 +323,7 @@ const writeObjectSignature = (modelsIndexFile: SourceFile) => (
   } else {
     modelsIndexFile.addInterface({
       name: model.name,
-      docs: [model.description],
+      docs: model.description ? [model.description] : [],
       isExported: true,
       properties,
       leadingTrivia: writer => writer.blankLine()
@@ -341,7 +362,8 @@ function writeOptionalParameters(
   operationGroupName: string,
   operationName: string,
   optionalParams: ParameterDetails[],
-  modelsIndexFile: SourceFile
+  modelsIndexFile: SourceFile,
+  baseClass?: string
 ) {
   if (!optionalParams || !optionalParams.length) {
     return;
@@ -351,10 +373,10 @@ function writeOptionalParameters(
     name: `${operationGroupName}${operationName}OptionalParams`,
     docs: ["Optional parameters."],
     isExported: true,
-    extends: ["coreHttp.RequestOptionsBase"],
+    extends: [baseClass || "coreHttp.OperationOptions"],
     properties: optionalParams.map<PropertySignatureStructure>(p => ({
       name: p.name,
-      hasQuestionToken: !p.required,
+      hasQuestionToken: true,
       type: p.typeDetails.typeName,
       docs: p.description ? [p.description] : undefined,
       kind: StructureKind.PropertySignature

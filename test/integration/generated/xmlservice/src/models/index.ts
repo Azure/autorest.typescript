@@ -75,9 +75,6 @@ export interface Slide {
   items?: string[];
 }
 
-/**
- * An interface representing Error.
- */
 export interface ErrorModel {
   status?: number;
   message?: string;
@@ -206,9 +203,6 @@ export interface RetentionPolicy {
   days?: number;
 }
 
-/**
- * An interface representing Metrics.
- */
 export interface Metrics {
   /**
    * The version of Storage Analytics to configure.
@@ -300,17 +294,11 @@ export interface ListBlobsResponse {
   nextMarker: string;
 }
 
-/**
- * An interface representing Blobs.
- */
 export interface Blobs {
   blobPrefix?: BlobPrefix[];
   blob?: Blob[];
 }
 
-/**
- * An interface representing BlobPrefix.
- */
 export interface BlobPrefix {
   name: string;
 }
@@ -369,16 +357,10 @@ export interface BlobProperties {
   archiveStatus?: ArchiveStatus;
 }
 
-/**
- * An interface representing JsonInput.
- */
 export interface JsonInput {
   id?: number;
 }
 
-/**
- * An interface representing JsonOutput.
- */
 export interface JsonOutput {
   id?: number;
 }
@@ -754,3 +736,18 @@ export type XmlJsonOutputResponse = JsonOutput & {
     parsedBody: JsonOutput;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface XmlServiceClientOptionalParams
+  extends coreHttp.ServiceClientOptions {
+  /**
+   * server parameter
+   */
+  $host?: string;
+  /**
+   * Overrides client endpoint.
+   */
+  endpoint?: string;
+}

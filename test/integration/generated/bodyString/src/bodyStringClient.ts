@@ -16,7 +16,7 @@ class BodyStringClient extends BodyStringClientContext {
    * Initializes a new instance of the BodyStringClient class.
    * @param options The parameter options
    */
-  constructor(options?: any) {
+  constructor(options?: Models.BodyStringClientOptionalParams) {
     super(options);
     this.string = new operations.String(this);
     this.enum = new operations.Enum(this);

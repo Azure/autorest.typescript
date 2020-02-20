@@ -8,17 +8,11 @@
 
 import * as coreHttp from "@azure/core-http";
 
-/**
- * An interface representing Error.
- */
 export interface ErrorModel {
   status?: number;
   message?: string;
 }
 
-/**
- * An interface representing RefColorConstant.
- */
 export interface RefColorConstant {
   /**
    * Sample string.
@@ -300,3 +294,18 @@ export type EnumGetReferencedConstantResponse = RefColorConstant & {
     parsedBody: RefColorConstant;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface BodyStringClientOptionalParams
+  extends coreHttp.ServiceClientOptions {
+  /**
+   * server parameter
+   */
+  $host?: string;
+  /**
+   * Overrides client endpoint.
+   */
+  endpoint?: string;
+}

@@ -31,7 +31,7 @@ export class String {
    * @param options The options parameters.
    */
   getNull(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.StringGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -43,9 +43,7 @@ export class String {
    * Set string value null
    * @param options The options parameters.
    */
-  putNull(
-    options?: coreHttp.RequestOptionsBase
-  ): Promise<coreHttp.RestResponse> {
+  putNull(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       putNullOperationSpec
@@ -57,7 +55,7 @@ export class String {
    * @param options The options parameters.
    */
   getEmpty(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.StringGetEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -70,7 +68,7 @@ export class String {
    * @param options The options parameters.
    */
   putEmpty(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -83,7 +81,7 @@ export class String {
    * @param options The options parameters.
    */
   getMbcs(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.StringGetMbcsResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -95,9 +93,7 @@ export class String {
    * Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    * @param options The options parameters.
    */
-  putMbcs(
-    options?: coreHttp.RequestOptionsBase
-  ): Promise<coreHttp.RestResponse> {
+  putMbcs(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       putMbcsOperationSpec
@@ -110,7 +106,7 @@ export class String {
    * @param options The options parameters.
    */
   getWhitespace(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.StringGetWhitespaceResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -124,7 +120,7 @@ export class String {
    * @param options The options parameters.
    */
   putWhitespace(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -137,7 +133,7 @@ export class String {
    * @param options The options parameters.
    */
   getNotProvided(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.StringGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -150,7 +146,7 @@ export class String {
    * @param options The options parameters.
    */
   getBase64Encoded(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.StringGetBase64EncodedResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -163,7 +159,7 @@ export class String {
    * @param options The options parameters.
    */
   getBase64UrlEncoded(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.StringGetBase64UrlEncodedResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -178,7 +174,7 @@ export class String {
    */
   putBase64UrlEncoded(
     stringBody: Uint8Array,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { stringBody, options },
@@ -191,7 +187,7 @@ export class String {
    * @param options The options parameters.
    */
   getNullBase64UrlEncoded(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.StringGetNullBase64UrlEncodedResponse> {
     return this.client.sendOperationRequest(
       { options },

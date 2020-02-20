@@ -17,7 +17,10 @@ class UrlClient extends UrlClientContext {
    * @param globalStringPath A string value 'globalItemStringPath' that appears in the path
    * @param options The parameter options
    */
-  constructor(globalStringPath: string, options?: any) {
+  constructor(
+    globalStringPath: string,
+    options?: Models.UrlClientOptionalParams
+  ) {
     super(globalStringPath, options);
     this.paths = new operations.Paths(this);
     this.queries = new operations.Queries(this);

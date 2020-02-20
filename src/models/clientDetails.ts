@@ -6,7 +6,7 @@ import { OperationGroupDetails } from "./operationDetails";
 import { Mapper } from "@azure/core-http";
 import { ParameterDetails } from "./parameterDetails";
 import { ObjectDetails } from "./modelDetails";
-import { BaseUrlDetails } from "../transforms/urlTransforms";
+import { EndpointDetails } from "../transforms/urlTransforms";
 import { KnownMediaType } from "@azure-tools/codegen";
 
 export interface ClientOptions {
@@ -26,6 +26,6 @@ export interface ClientDetails {
   operationGroups: OperationGroupDetails[];
   parameters: ParameterDetails[];
   options: ClientOptions;
-  baseUrl: BaseUrlDetails;
+  endpoint: EndpointDetails;
   srcPath?: string;
 }

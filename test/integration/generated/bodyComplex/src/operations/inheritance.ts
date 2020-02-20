@@ -31,7 +31,7 @@ export class Inheritance {
    * @param options The options parameters.
    */
   getValid(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<Models.InheritanceGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -48,7 +48,7 @@ export class Inheritance {
    */
   putValid(
     complexBody: Models.Siamese,
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },

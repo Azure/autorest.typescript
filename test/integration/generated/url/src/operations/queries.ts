@@ -31,7 +31,7 @@ export class Queries {
    * @param options The options parameters.
    */
   getBooleanTrue(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -44,7 +44,7 @@ export class Queries {
    * @param options The options parameters.
    */
   getBooleanFalse(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -70,7 +70,7 @@ export class Queries {
    * @param options The options parameters.
    */
   getIntOneMillion(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -83,7 +83,7 @@ export class Queries {
    * @param options The options parameters.
    */
   getIntNegativeOneMillion(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -109,7 +109,7 @@ export class Queries {
    * @param options The options parameters.
    */
   getTenBillion(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -122,7 +122,7 @@ export class Queries {
    * @param options The options parameters.
    */
   getNegativeTenBillion(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -148,7 +148,7 @@ export class Queries {
    * @param options The options parameters.
    */
   floatScientificPositive(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -161,7 +161,7 @@ export class Queries {
    * @param options The options parameters.
    */
   floatScientificNegative(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -187,7 +187,7 @@ export class Queries {
    * @param options The options parameters.
    */
   doubleDecimalPositive(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -200,7 +200,7 @@ export class Queries {
    * @param options The options parameters.
    */
   doubleDecimalNegative(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -226,7 +226,7 @@ export class Queries {
    * @param options The options parameters.
    */
   stringUnicode(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -239,7 +239,7 @@ export class Queries {
    * @param options The options parameters.
    */
   stringUrlEncoded(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -252,7 +252,7 @@ export class Queries {
    * @param options The options parameters.
    */
   stringEmpty(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -317,7 +317,7 @@ export class Queries {
    * @param options The options parameters.
    */
   byteEmpty(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -343,7 +343,7 @@ export class Queries {
    * @param options The options parameters.
    */
   dateValid(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -369,7 +369,7 @@ export class Queries {
    * @param options The options parameters.
    */
   dateTimeValid(
-    options?: coreHttp.RequestOptionsBase
+    options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },

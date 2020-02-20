@@ -14,7 +14,6 @@ import {
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
 import { transformOperationSpec } from "../transforms/operationTransforms";
-import { MapperType } from "@azure/core-http";
 import {
   OperationGroupDetails,
   OperationSpecDetails,
@@ -199,7 +198,7 @@ function getOptionsParameter(
     includeOptional: true
   }).some(p => !p.required)
     ? `Models.${operation.typeDetails.typeName}OptionalParams`
-    : "coreHttp.RequestOptionsBase";
+    : "coreHttp.OperationOptions";
 
   return {
     name: "options",

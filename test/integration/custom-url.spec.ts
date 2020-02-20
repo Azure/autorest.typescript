@@ -1,7 +1,7 @@
 import { CustomUrlClient } from "./generated/customUrl/src/customUrlClient";
 import * as assert from "assert";
 
-describe("Custom BaseUri", () => {
+describe("Custom Endpoint", () => {
   let client: CustomUrlClient;
   let clientOptions: any;
   beforeEach(() => {

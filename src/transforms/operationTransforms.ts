@@ -31,7 +31,6 @@ import { getTypeForSchema, isSchemaResponse } from "../utils/schemaHelpers";
 import { getMapperTypeFromSchema, transformMapper } from "./mapperTransforms";
 import { ParameterDetails } from "../models/parameterDetails";
 import { PropertyKind, TypeDetails } from "../models/modelDetails";
-import { TOPLEVEL_OPERATIONGROUP } from "./constants";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { headersToSchema } from "../utils/headersToSchema";
 
@@ -260,18 +259,21 @@ export async function transformOperation(
 export function transformOperationGroups(
   codeModel: CodeModel
 ): Promise<OperationGroupDetails[]> {
-  return Promise.all(codeModel.operationGroups.map(transformOperationGroup));
+  const clientName = getLanguageMetadata(codeModel.language).name;
+  return Promise.all(
+    codeModel.operationGroups.map(operationGroup =>
+      transformOperationGroup(operationGroup, clientName)
+    )
+  );
 }
 
 export async function transformOperationGroup(
-  operationGroup: OperationGroup
+  operationGroup: OperationGroup,
+  clientName: string
 ): Promise<OperationGroupDetails> {
   const metadata = getLanguageMetadata(operationGroup.language);
   const isTopLevel = !metadata.name;
-  const name = normalizeName(
-    metadata.name || TOPLEVEL_OPERATIONGROUP,
-    NameType.Property
-  );
+  const name = normalizeName(metadata.name || clientName, NameType.Property);
 
   const operations = await Promise.all(
     operationGroup.operations.map(operation =>

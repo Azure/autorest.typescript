@@ -16,7 +16,7 @@ class XmlServiceClient extends XmlServiceClientContext {
    * Initializes a new instance of the XmlServiceClient class.
    * @param options The parameter options
    */
-  constructor(options?: any) {
+  constructor(options?: Models.XmlServiceClientOptionalParams) {
     super(options);
     this.xml = new operations.Xml(this);
   }
