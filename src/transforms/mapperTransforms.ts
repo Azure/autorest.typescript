@@ -62,6 +62,7 @@ export interface EntityOptions {
   required?: boolean;
   readOnly?: boolean;
   hasXmlMetadata?: boolean;
+  defaultValue?: any;
 }
 
 export interface MapperInput {
@@ -180,13 +181,12 @@ function buildMapper(
 
   const xmlMetadata = getXmlMetadata(schema, options);
 
+  const defaultValue = options.defaultValue || schema.defaultValue;
   const mappeType = type as MapperType;
   return {
     ...{ type: mappeType },
     ...(serializedName && { serializedName }),
-    ...(!!schema.defaultValue && {
-      defaultValue: schema.defaultValue
-    }),
+    ...(defaultValue && { defaultValue }),
     ...(required && { required }),
     ...(readOnly && { readOnly }),
     ...(hasConstraints && { constraints }),

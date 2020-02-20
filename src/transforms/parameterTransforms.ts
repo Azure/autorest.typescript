@@ -9,11 +9,21 @@ import {
   Schema,
   ImplementationLocation,
   SerializationStyle,
-  ConstantSchema
+  ConstantSchema,
+  AllSchemaTypes,
+  StringSchema,
+  Protocol
 } from "@azure-tools/codemodel";
-import { QueryCollectionFormat } from "@azure/core-http";
+import {
+  QueryCollectionFormat,
+  operationOptionsToRequestOptionsBase
+} from "@azure/core-http";
 import { getLanguageMetadata } from "../utils/languageHelpers";
-import { normalizeName, NameType } from "../utils/nameUtils";
+import {
+  normalizeName,
+  NameType,
+  getOperationFullName
+} from "../utils/nameUtils";
 import { ParameterDetails } from "../models/parameterDetails";
 import {
   isSchemaType,
@@ -25,13 +35,59 @@ import { getTypeForSchema } from "../utils/schemaHelpers";
 import { getStringForValue } from "../utils/valueHelpers";
 import { TOPLEVEL_OPERATIONGROUP } from "./constants";
 import { ClientOptions } from "../models/clientDetails";
-import { PropertyKind } from "../models/modelDetails";
+import { PropertyKind, TypeDetails } from "../models/modelDetails";
 import { KnownMediaType } from "@azure-tools/codegen";
+import { logger } from "../utils/logger";
 
 interface OperationParameterDetails {
   parameter: Parameter;
   operationName: string;
 }
+
+interface BuildSyntheticParameterParams {
+  name: string;
+  description: string;
+  typeDetails: TypeDetails;
+  schemaType: AllSchemaTypes;
+  location?: ParameterLocation;
+  isRequired?: boolean;
+  isClientParameter?: boolean;
+  defaultValue?: any;
+  operationsIn?: string[];
+  skipModel?: boolean;
+}
+
+const buildSyntheticPatameter = ({
+  name,
+  description,
+  location,
+  isRequired,
+  isClientParameter,
+  typeDetails,
+  schemaType,
+  defaultValue,
+  operationsIn,
+  skipModel
+}: BuildSyntheticParameterParams): ParameterDetails => ({
+  nameRef: name,
+  description,
+  name,
+  defaultValue,
+  serializedName: name,
+  location: location || ParameterLocation.None,
+  required: !!isRequired,
+  parameterPath: isRequired ? name : ["options", name],
+  mapper: "any",
+  isGlobal: !!isClientParameter,
+  parameter: {} as Parameter,
+  implementationLocation: isClientParameter
+    ? ImplementationLocation.Client
+    : ImplementationLocation.Method,
+  typeDetails,
+  skipModel,
+  schemaType,
+  operationsIn
+});
 
 const buildCredentialsParameter = (): ParameterDetails => ({
   nameRef: "credentials",
@@ -50,7 +106,7 @@ const buildCredentialsParameter = (): ParameterDetails => ({
     typeName: "coreHttp.TokenCredential | coreHttp.ServiceClientCredentials",
     kind: PropertyKind.Primitive
   },
-  isSynthetic: true,
+  skipModel: true,
   schemaType: SchemaType.Object
 });
 
@@ -59,6 +115,7 @@ export function transformParameters(
   options: ClientOptions
 ): ParameterDetails[] {
   let parameters: ParameterDetails[] = [];
+  injectPagingSyntheticParameters(codeModel);
   const hasXmlMetadata = !!options.mediaTypes?.has(KnownMediaType.Xml);
   extractOperationParameters(codeModel).forEach(p =>
     populateOperationParameters(
@@ -78,6 +135,26 @@ export function transformParameters(
 
   return parameters;
 }
+
+const injectPagingSyntheticParameters = (codeModel: CodeModel) => {
+  codeModel.operationGroups.forEach(og =>
+    og.operations
+      .filter(o => o.language.default.paging)
+      .forEach(o => {
+        const param = new Parameter(
+          "nextPath",
+          "",
+          new StringSchema("string", ""),
+          { clientDefaultValue: o.request.protocol.http?.path }
+        );
+        param.language.default.serializedName = "nextPath";
+        const http = new Protocol();
+        http.in = ParameterLocation.Path;
+        param.protocol.http = http;
+        o.request.parameters?.push(param);
+      })
+  );
+};
 
 const extractOperationParameters = (codeModel: CodeModel) =>
   codeModel.operationGroups.reduce<OperationParameterDetails[]>((acc, og) => {
@@ -157,7 +234,8 @@ export function populateOperationParameters(
         parameter.schema,
         parameterSerializedName,
         parameter.required,
-        hasXmlMetadata
+        hasXmlMetadata,
+        parameter.clientDefaultValue
       ),
       isGlobal: getIsGlobal(parameter),
       parameter,
@@ -325,7 +403,8 @@ export function disambiguateParameter(
         parameter.schema,
         serializedName,
         parameter.required,
-        hasXmlMetadata
+        hasXmlMetadata,
+        parameter.clientDefaultValue
       ),
       typeDetails,
       isGlobal: getIsGlobal(parameter),
@@ -342,7 +421,8 @@ function getMapperOrRef(
   schema: Schema,
   serializedName: string,
   required?: boolean,
-  hasXmlMetadata = false
+  hasXmlMetadata?: boolean,
+  defaultValue?: string
 ) {
   if (isSchemaType([SchemaType.Object], schema)) {
     const className = getMapperClassName(schema);
@@ -351,6 +431,6 @@ function getMapperOrRef(
 
   return transformMapper({
     schema,
-    options: { serializedName, required, hasXmlMetadata }
+    options: { serializedName, required, hasXmlMetadata, defaultValue }
   });
 }
