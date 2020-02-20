@@ -22,4 +22,12 @@ describe.only("Paging", () => {
       }
     ]);
   });
+
+  it("Fetch multiple pages", async () => {
+    let results: Product[] = [];
+    for await (let page of client.paging.getMultiplePages()) {
+      results = [...results, ...page];
+    }
+    expect(results).to.have.lengthOf(10);
+  });
 });

@@ -31,32 +31,19 @@ export class Paging {
    * A paging operation that must return result of the default 'value' node.
    * @param options The options parameters.
    */
-  private fetchGetNoItemNamePages(
-    options?: coreHttp.RequestOptionsBase
-  ): Promise<Models.PagingGetNoItemNamePagesResponse> {
-    return this.client.sendOperationRequest(
-      { options },
-      getNoItemNamePagesOperationSpec
-    ) as Promise<Models.PagingGetNoItemNamePagesResponse>;
-  }
-
-  /**
-   * A paging operation that must return result of the default 'value' node.
-   * @param options The options parameters.
-   */
   getNoItemNamePages(
     options?: coreHttp.RequestOptionsBase
-  ): AsyncIterableIterator<Models.Product[]> {
+  ): PagedAsyncIterableIterator<Models.Product[], Models.Product[]> {
     const iterator = this.fetchGetNoItemNamePagesIterator(undefined, options);
     return {
-      async next() {
-        const item = (await iterator.next()).value;
-        return item
-          ? { done: false, value: item }
-          : { done: true, value: undefined };
+      next() {
+        return iterator.next();
       },
       [Symbol.asyncIterator]() {
         return this;
+      },
+      byPage: () => {
+        return iterator;
       }
     };
   }
@@ -78,19 +65,32 @@ export class Paging {
   }
 
   /**
-   * A paging operation that must ignore any kind of nextLink, and stop after page 1.
+   * A paging operation that must return result of the default 'value' node.
    * @param options The options parameters.
    */
-  private async fetchGetNullNextLinkNamePages(
+  private fetchGetNoItemNamePages(
     options?: coreHttp.RequestOptionsBase
-  ): Promise<Models.PagingGetNullNextLinkNamePagesResponse> {
+  ): Promise<Models.PagingGetNoItemNamePagesResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getNullNextLinkNamePagesOperationSpec
-    ) as Promise<Models.PagingGetNullNextLinkNamePagesResponse>;
+      getNoItemNamePagesOperationSpec
+    ) as Promise<Models.PagingGetNoItemNamePagesResponse>;
   }
 
   // /**
+  //  * A paging operation that must ignore any kind of nextLink, and stop after page 1.
+  //  * @param options The options parameters.
+  //  */
+  // private async fetchGetNullNextLinkNamePages(
+  //   options?: coreHttp.RequestOptionsBase
+  // ): Promise<Models.PagingGetNullNextLinkNamePagesResponse> {
+  //   return this.client.sendOperationRequest(
+  //     { options },
+  //     getNullNextLinkNamePagesOperationSpec
+  //   ) as Promise<Models.PagingGetNullNextLinkNamePagesResponse>;
+  // }
+
+  // // /**
   //  * A paging operation that must ignore any kind of nextLink, and stop after page 1.
   //  * @param options The options parameters.
   //  */
@@ -139,18 +139,54 @@ export class Paging {
   //   };
   // }
 
-  // /**
-  //  * A paging operation that includes a nextLink that has 10 pages
-  //  * @param options The options parameters.
-  //  */
-  // private fetchGetMultiplePages(
-  //   options?: Models.PagingGetMultiplePagesOptionalParams
-  // ): Promise<Models.PagingGetMultiplePagesResponse> {
-  //   return this.client.sendOperationRequest(
-  //     { options },
-  //     getMultiplePagesOperationSpec
-  //   ) as Promise<Models.PagingGetMultiplePagesResponse>;
-  // }
+  /**
+   * A paging operation that includes a nextLink that has 10 pages
+   * @param options The options parameters.
+   */
+  getMultiplePages(
+    options?: coreHttp.RequestOptionsBase
+  ): PagedAsyncIterableIterator<Models.Product[], Models.Product[]> {
+    const iterator = this.fetchGetMultiplePagesIterator(undefined, options);
+    return {
+      next() {
+        return iterator.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return iterator;
+      }
+    };
+  }
+
+  private fetchGetMultiplePages(
+    nextLink?: string,
+    options?: Models.PagingGetMultiplePagesOptionalParams
+  ): Promise<Models.PagingGetMultiplePagesResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      nextLink
+        ? getMultiplePagesOperationSpecNext
+        : getMultiplePagesOperationSpec
+    ) as Promise<Models.PagingGetMultiplePagesResponse>;
+  }
+
+  private async *fetchGetMultiplePagesIterator(
+    nextLink?: string,
+    options?: any
+  ): AsyncIterableIterator<Models.Product[]> {
+    {
+      let response;
+      if (nextLink !== null) {
+        do {
+          response = await this.fetchGetMultiplePages(nextLink, options);
+          nextLink = response.nextLink;
+          yield response.values || [];
+        } while (nextLink);
+      }
+    }
+  }
 
   // /**
   //  * A paging operation that includes a nextLink that has 10 pages
@@ -658,6 +694,15 @@ const getMultiplePagesOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
+const getMultiplePagesOperationSpecNext: coreHttp.OperationSpec = {
+  ...getMultiplePagesOperationSpec,
+  path: "{nextLink}",
+  urlParameters: [
+    ...(getMultiplePagesOperationSpec.urlParameters || []),
+    Parameters.nextLink
+  ]
+};
+
 const getOdataMultiplePagesOperationSpec: coreHttp.OperationSpec = {
   path: "/paging/multiple/odata",
   httpMethod: "GET",
