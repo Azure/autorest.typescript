@@ -12,8 +12,45 @@ import * as Mappers from "../models/mappers";
 export const $host: coreHttp.OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
+    defaultValue: "http://localhost:3000",
     serializedName: "$host",
     required: true,
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
+export const nextPath: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "nextPath"],
+  mapper: {
+    defaultValue: "/paging/noitemname",
+    serializedName: "nextPath",
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
+export const nextPath1: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "nextPath"],
+  mapper: {
+    defaultValue: "/paging/nullnextlink",
+    serializedName: "nextPath",
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
+export const nextPath2: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "nextPath"],
+  mapper: {
+    defaultValue: "/paging/single",
+    serializedName: "nextPath",
     type: {
       name: "String"
     }
@@ -52,6 +89,30 @@ export const timeout: coreHttp.OperationParameter = {
   }
 };
 
+export const nextPath3: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "nextPath"],
+  mapper: {
+    defaultValue: "/paging/multiple",
+    serializedName: "nextPath",
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
+export const nextPath4: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "nextPath"],
+  mapper: {
+    defaultValue: "/paging/multiple/odata",
+    serializedName: "nextPath",
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
 export const offset: coreHttp.OperationURLParameter = {
   parameterPath: "offset",
   mapper: {
@@ -61,6 +122,78 @@ export const offset: coreHttp.OperationURLParameter = {
       name: "Number"
     }
   }
+};
+
+export const nextPath5: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "nextPath"],
+  mapper: {
+    defaultValue: "/paging/multiple/withpath/{offset}",
+    serializedName: "nextPath",
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
+export const nextPath6: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "nextPath"],
+  mapper: {
+    defaultValue: "/paging/multiple/retryfirst",
+    serializedName: "nextPath",
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
+export const nextPath7: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "nextPath"],
+  mapper: {
+    defaultValue: "/paging/multiple/retrysecond",
+    serializedName: "nextPath",
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
+export const nextPath8: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "nextPath"],
+  mapper: {
+    defaultValue: "/paging/single/failure",
+    serializedName: "nextPath",
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
+export const nextPath9: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "nextPath"],
+  mapper: {
+    defaultValue: "/paging/multiple/failure",
+    serializedName: "nextPath",
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
+export const nextPath10: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "nextPath"],
+  mapper: {
+    defaultValue: "/paging/multiple/failureuri",
+    serializedName: "nextPath",
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
 };
 
 export const apiVersion: coreHttp.OperationQueryParameter = {
@@ -85,6 +218,18 @@ export const tenant: coreHttp.OperationURLParameter = {
   }
 };
 
+export const nextPath11: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "nextPath"],
+  mapper: {
+    defaultValue: "/paging/multiple/fragment/{tenant}",
+    serializedName: "nextPath",
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
 export const apiVersion1: coreHttp.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
@@ -107,6 +252,30 @@ export const tenant1: coreHttp.OperationURLParameter = {
   }
 };
 
+export const nextPath12: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "nextPath"],
+  mapper: {
+    defaultValue: "/paging/multiple/fragmentwithgrouping/{tenant}",
+    serializedName: "nextPath",
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
+export const nextPath13: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "nextPath"],
+  mapper: {
+    defaultValue: "/paging/multiple/lro",
+    serializedName: "nextPath",
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
 export const nextLink: coreHttp.OperationURLParameter = {
   parameterPath: "nextLink",
   mapper: {
@@ -119,12 +288,23 @@ export const nextLink: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const path: coreHttp.OperationURLParameter = {
-  parameterPath: ["options", "path"],
+export const nextPath14: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "nextPath"],
   mapper: {
-    serializedName: "path",
-    required: true,
-    defaultValue: "http://localhost:3000/paging/multiple",
+    defaultValue: "/paging/multiple/fragment/{tenant}/{nextLink}",
+    serializedName: "nextPath",
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
+export const nextPath15: coreHttp.OperationURLParameter = {
+  parameterPath: ["options", "nextPath"],
+  mapper: {
+    defaultValue: "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
+    serializedName: "nextPath",
     type: {
       name: "String"
     }

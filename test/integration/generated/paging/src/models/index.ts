@@ -74,6 +74,14 @@ export type OperationResultStatus =
   | "OK";
 
 /**
+ * Optional parameters.
+ */
+export interface PagingGetNoItemNamePagesOptionalParams
+  extends coreHttp.RequestOptionsBase {
+  nextPath?: string;
+}
+
+/**
  * Contains response data for the getNoItemNamePages operation.
  */
 export type PagingGetNoItemNamePagesResponse = ProductResultValue & {
@@ -94,6 +102,14 @@ export type PagingGetNoItemNamePagesResponse = ProductResultValue & {
 };
 
 /**
+ * Optional parameters.
+ */
+export interface PagingGetNullNextLinkNamePagesOptionalParams
+  extends coreHttp.RequestOptionsBase {
+  nextPath?: string;
+}
+
+/**
  * Contains response data for the getNullNextLinkNamePages operation.
  */
 export type PagingGetNullNextLinkNamePagesResponse = ProductResult & {
@@ -112,6 +128,14 @@ export type PagingGetNullNextLinkNamePagesResponse = ProductResult & {
     parsedBody: ProductResult;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface PagingGetSinglePagesOptionalParams
+  extends coreHttp.RequestOptionsBase {
+  nextPath?: string;
+}
 
 /**
  * Contains response data for the getSinglePages operation.
@@ -147,6 +171,7 @@ export interface PagingGetMultiplePagesOptionalParams
    * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
    */
   timeout?: number;
+  nextPath?: string;
 }
 
 /**
@@ -183,6 +208,7 @@ export interface PagingGetOdataMultiplePagesOptionalParams
    * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
    */
   timeout?: number;
+  nextPath?: string;
 }
 
 /**
@@ -219,6 +245,7 @@ export interface PagingGetMultiplePagesWithOffsetOptionalParams
    * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
    */
   timeout?: number;
+  nextPath?: string;
 }
 
 /**
@@ -242,6 +269,14 @@ export type PagingGetMultiplePagesWithOffsetResponse = ProductResult & {
 };
 
 /**
+ * Optional parameters.
+ */
+export interface PagingGetMultiplePagesRetryFirstOptionalParams
+  extends coreHttp.RequestOptionsBase {
+  nextPath?: string;
+}
+
+/**
  * Contains response data for the getMultiplePagesRetryFirst operation.
  */
 export type PagingGetMultiplePagesRetryFirstResponse = ProductResult & {
@@ -260,6 +295,14 @@ export type PagingGetMultiplePagesRetryFirstResponse = ProductResult & {
     parsedBody: ProductResult;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface PagingGetMultiplePagesRetrySecondOptionalParams
+  extends coreHttp.RequestOptionsBase {
+  nextPath?: string;
+}
 
 /**
  * Contains response data for the getMultiplePagesRetrySecond operation.
@@ -282,6 +325,14 @@ export type PagingGetMultiplePagesRetrySecondResponse = ProductResult & {
 };
 
 /**
+ * Optional parameters.
+ */
+export interface PagingGetSinglePagesFailureOptionalParams
+  extends coreHttp.RequestOptionsBase {
+  nextPath?: string;
+}
+
+/**
  * Contains response data for the getSinglePagesFailure operation.
  */
 export type PagingGetSinglePagesFailureResponse = ProductResult & {
@@ -300,6 +351,14 @@ export type PagingGetSinglePagesFailureResponse = ProductResult & {
     parsedBody: ProductResult;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface PagingGetMultiplePagesFailureOptionalParams
+  extends coreHttp.RequestOptionsBase {
+  nextPath?: string;
+}
 
 /**
  * Contains response data for the getMultiplePagesFailure operation.
@@ -322,6 +381,14 @@ export type PagingGetMultiplePagesFailureResponse = ProductResult & {
 };
 
 /**
+ * Optional parameters.
+ */
+export interface PagingGetMultiplePagesFailureUriOptionalParams
+  extends coreHttp.RequestOptionsBase {
+  nextPath?: string;
+}
+
+/**
  * Contains response data for the getMultiplePagesFailureUri operation.
  */
 export type PagingGetMultiplePagesFailureUriResponse = ProductResult & {
@@ -342,6 +409,14 @@ export type PagingGetMultiplePagesFailureUriResponse = ProductResult & {
 };
 
 /**
+ * Optional parameters.
+ */
+export interface PagingGetMultiplePagesFragmentNextLinkOptionalParams
+  extends coreHttp.RequestOptionsBase {
+  nextPath?: string;
+}
+
+/**
  * Contains response data for the getMultiplePagesFragmentNextLink operation.
  */
 export type PagingGetMultiplePagesFragmentNextLinkResponse = OdataProductResult & {
@@ -360,6 +435,14 @@ export type PagingGetMultiplePagesFragmentNextLinkResponse = OdataProductResult 
     parsedBody: OdataProductResult;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams
+  extends coreHttp.RequestOptionsBase {
+  nextPath?: string;
+}
 
 /**
  * Contains response data for the getMultiplePagesFragmentWithGroupingNextLink operation.
@@ -395,6 +478,7 @@ export interface PagingGetMultiplePagesLROOptionalParams
    * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
    */
   timeout?: number;
+  nextPath?: string;
 }
 
 /**
@@ -418,6 +502,14 @@ export type PagingGetMultiplePagesLROResponse = ProductResult & {
 };
 
 /**
+ * Optional parameters.
+ */
+export interface PagingNextFragmentOptionalParams
+  extends coreHttp.RequestOptionsBase {
+  nextPath?: string;
+}
+
+/**
  * Contains response data for the nextFragment operation.
  */
 export type PagingNextFragmentResponse = OdataProductResult & {
@@ -436,6 +528,14 @@ export type PagingNextFragmentResponse = OdataProductResult & {
     parsedBody: OdataProductResult;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface PagingNextFragmentWithGroupingOptionalParams
+  extends coreHttp.RequestOptionsBase {
+  nextPath?: string;
+}
 
 /**
  * Contains response data for the nextFragmentWithGrouping operation.

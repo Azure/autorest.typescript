@@ -38,6 +38,7 @@ import { ClientOptions } from "../models/clientDetails";
 import { PropertyKind, TypeDetails } from "../models/modelDetails";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { logger } from "../utils/logger";
+import { Dictionary } from "@azure-tools/linq";
 
 interface OperationParameterDetails {
   parameter: Parameter;
@@ -56,38 +57,6 @@ interface BuildSyntheticParameterParams {
   operationsIn?: string[];
   skipModel?: boolean;
 }
-
-const buildSyntheticPatameter = ({
-  name,
-  description,
-  location,
-  isRequired,
-  isClientParameter,
-  typeDetails,
-  schemaType,
-  defaultValue,
-  operationsIn,
-  skipModel
-}: BuildSyntheticParameterParams): ParameterDetails => ({
-  nameRef: name,
-  description,
-  name,
-  defaultValue,
-  serializedName: name,
-  location: location || ParameterLocation.None,
-  required: !!isRequired,
-  parameterPath: isRequired ? name : ["options", name],
-  mapper: "any",
-  isGlobal: !!isClientParameter,
-  parameter: {} as Parameter,
-  implementationLocation: isClientParameter
-    ? ImplementationLocation.Client
-    : ImplementationLocation.Method,
-  typeDetails,
-  skipModel,
-  schemaType,
-  operationsIn
-});
 
 const buildCredentialsParameter = (): ParameterDetails => ({
   nameRef: "credentials",
@@ -147,6 +116,7 @@ const injectPagingSyntheticParameters = (codeModel: CodeModel) => {
           new StringSchema("string", ""),
           { clientDefaultValue: o.request.protocol.http?.path }
         );
+        param.extensions = { "x-ms-skip-url-encoding": true };
         param.language.default.serializedName = "nextPath";
         const http = new Protocol();
         http.in = ParameterLocation.Path;
