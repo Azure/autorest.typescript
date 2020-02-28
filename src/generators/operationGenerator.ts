@@ -7,8 +7,6 @@ import {
   VariableDeclarationKind,
   Scope,
   ClassDeclaration,
-  ParameterDeclarationStructure,
-  OptionalKind,
   ExportDeclarationStructure
 } from "ts-morph";
 import { normalizeName, NameType } from "../utils/nameUtils";
@@ -17,18 +15,12 @@ import { transformOperationSpec } from "../transforms/operationTransforms";
 import {
   OperationGroupDetails,
   OperationSpecDetails,
-  OperationDetails,
   OperationResponseMapper
 } from "../models/operationDetails";
 import { isString } from "util";
 import { ParameterDetails } from "../models/parameterDetails";
-import {
-  filterOperationParameters,
-  formatJsDocParam
-} from "./utils/parameterUtils";
-import { PropertyKind } from "../models/modelDetails";
-import { wrapString } from "./utils/stringUtils";
 import { KnownMediaType } from "@azure-tools/codegen";
+import { writeOperation } from "./utils/writeOperation";
 
 /**
  * Function that writes the code for all the operations.
@@ -88,7 +80,7 @@ function generateOperation(
     { overwrite: true }
   );
 
-  addImports(operationGroupFile, clientDetails);
+  addImports(operationGroupFile, clientDetails, operationGroupDetails);
   addClass(operationGroupFile, operationGroupDetails, clientDetails);
   addOperationSpecs(
     operationGroupDetails,
@@ -189,24 +181,24 @@ function buildMapper(
   return `${mapperName}: ${mapperString},`;
 }
 
-function getOptionsParameter(
-  operation: OperationDetails,
-  parameters: ParameterDetails[],
-  { isOptional = true } = {}
-): ParameterWithDescription {
-  const type = filterOperationParameters(parameters, operation, {
-    includeOptional: true
-  }).some(p => !p.required)
-    ? `Models.${operation.typeDetails.typeName}OptionalParams`
-    : "coreHttp.OperationOptions";
+// function getOptionsParameter(
+//   operation: OperationDetails,
+//   parameters: ParameterDetails[],
+//   { isOptional = true } = {}
+// ): ParameterWithDescription {
+//   const type = filterOperationParameters(parameters, operation, {
+//     includeOptional: true
+//   }).some(p => !p.required)
+//     ? `Models.${operation.typeDetails.typeName}OptionalParams`
+//     : "coreHttp.OperationOptions";
 
-  return {
-    name: "options",
-    type,
-    hasQuestionToken: isOptional,
-    description: "The options parameters."
-  };
-}
+//   return {
+//     name: "options",
+//     type,
+//     hasQuestionToken: isOptional,
+//     description: "The options parameters."
+//   };
+// }
 
 /**
  * Adds an Operation group class to the generated file
@@ -251,9 +243,9 @@ function addClass(
   );
 }
 
-type ParameterWithDescription = OptionalKind<
-  ParameterDeclarationStructure & { description: string }
->;
+// type ParameterWithDescription = OptionalKind<
+//   ParameterDeclarationStructure & { description: string }
+// >;
 
 /**
  * Write operations implementation, extracted from OperationGroupDetails, to the generated file
@@ -262,75 +254,44 @@ export function writeOperations(
   operationGroupDetails: OperationGroupDetails,
   operationGroupClass: ClassDeclaration,
   parameters: ParameterDetails[],
-  isInline = false
+  isClientOperation = false
 ) {
   operationGroupDetails.operations.forEach(operation => {
-    const responseName = getResponseType(operation);
-    const paramDeclarations = filterOperationParameters(
+    writeOperation({
+      operationGroupClass,
+      operation,
       parameters,
-      operation
-    ).map<ParameterWithDescription>(param => {
-      const { typeName, kind } = param.typeDetails;
-      const type =
-        kind === PropertyKind.Primitive
-          ? typeName
-          : `Models.${normalizeName(typeName, NameType.Class)}`;
-
-      return {
-        name: param.name,
-        description: param.description,
-        type,
-        hasQuestionToken: !param.required
-      };
+      options: {
+        isClientOperation
+      }
     });
-
-    const allParams = [
-      ...paramDeclarations,
-      getOptionsParameter(operation, parameters)
-    ];
-
-    const operationMethod = operationGroupClass.addMethod({
-      name: normalizeName(operation.name, NameType.Property),
-      parameters: allParams,
-      returnType: `Promise<${responseName}>`,
-      docs: [generateOperationJSDoc(allParams, operation.description)]
-    });
-
-    const sendParams = paramDeclarations.map(p => p.name).join(",");
-    operationMethod.addStatements(
-      `return this${
-        isInline ? "" : ".client"
-      }.sendOperationRequest({${sendParams}${
-        !!sendParams ? "," : ""
-      } options}, ${operation.name}OperationSpec) as Promise<${responseName}>`
-    );
   });
 }
 
-function getResponseType(operation: OperationDetails) {
-  const hasSuccessResponse = operation.responses.some(
-    ({ isError, mappers }) =>
-      !isError && (!!mappers.bodyMapper || !!mappers.headersMapper)
-  );
+// function getResponseType(operation: OperationDetails) {
+//   const hasSuccessResponse = operation.responses.some(
+//     ({ isError, mappers }) =>
+//       !isError && (!!mappers.bodyMapper || !!mappers.headersMapper)
+//   );
 
-  const responseName = hasSuccessResponse ? operation.typeDetails.typeName : "";
+//   const responseName = hasSuccessResponse ? operation.typeDetails.typeName : "";
 
-  return !!responseName
-    ? `Models.${normalizeName(responseName, NameType.Interface)}Response`
-    : "coreHttp.RestResponse";
-}
+//   return !!responseName
+//     ? `Models.${normalizeName(responseName, NameType.Interface)}Response`
+//     : "coreHttp.RestResponse";
+// }
 
-function generateOperationJSDoc(
-  params: ParameterWithDescription[] = [],
-  description: string = ""
-): string {
-  const paramJSDoc =
-    !params || !params.length ? "" : formatJsDocParam(params).join("\n");
+// function generateOperationJSDoc(
+//   params: ParameterWithDescription[] = [],
+//   description: string = ""
+// ): string {
+//   const paramJSDoc =
+//     !params || !params.length ? "" : formatJsDocParam(params).join("\n");
 
-  return `${
-    description ? wrapString(description) + "\n" : description
-  }${paramJSDoc}`;
-}
+//   return `${
+//     description ? wrapString(description) + "\n" : description
+//   }${paramJSDoc}`;
+// }
 
 /**
  * Generates and inserts into the file the operation specs
@@ -376,7 +337,8 @@ export function addOperationSpecs(
  */
 function addImports(
   operationGroupFile: SourceFile,
-  { className, sourceFileName }: ClientDetails
+  { className, sourceFileName }: ClientDetails,
+  { operations }: OperationGroupDetails
 ) {
   operationGroupFile.addImportDeclaration({
     namespaceImport: "coreHttp",
@@ -402,4 +364,11 @@ function addImports(
     namedImports: [className],
     moduleSpecifier: `../${sourceFileName}`
   });
+
+  // if (operations.some(operation => Boolean(operation.pagination))) {
+  //   operationGroupFile.addImportDeclaration({
+  //     namedImports: ["PagedAsyncIterableIterator"],
+  //     moduleSpecifier: "@azure/core-paging"
+  //   });
+  // }
 }

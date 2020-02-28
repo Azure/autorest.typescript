@@ -91,7 +91,7 @@ function writeClassProperties(
 ) {
   contextClass.addProperties(
     clientParams
-      .filter(p => !p.isSynthetic)
+      .filter(p => !p.skipModel)
       .map(param => {
         return {
           name: param.name,

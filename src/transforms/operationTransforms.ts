@@ -41,14 +41,25 @@ export function transformOperationSpec(
 ): OperationSpecDetails {
   // Extract protocol information
   const operationFullName = operationDetails.fullName;
+  const operationParameters = getOperationParameters(
+    parameters,
+    operationFullName
+  );
+  const hasParameterizedPath = isParameterizedPath(
+    operationDetails,
+    operationParameters
+  );
   const isXML = operationDetails.mediaTypes.has(KnownMediaType.Xml);
-  const httpInfo = extractHttpDetails(operationDetails.request);
+  const httpInfo = extractHttpDetails(
+    operationDetails.request,
+    hasParameterizedPath
+  );
   const {
     requestBody,
     queryParameters,
     urlParameters,
     headerParameters
-  } = getGroupedParameters(parameters, operationFullName);
+  } = getGroupedParameters(operationParameters);
 
   return {
     ...httpInfo,
@@ -61,7 +72,23 @@ export function transformOperationSpec(
   };
 }
 
-export function extractHttpDetails({ path, method }: OperationRequestDetails) {
+function isParameterizedPath(
+  operation: OperationDetails,
+  parameters: ParameterDetails[]
+) {
+  if (!operation.pagination) {
+    return false;
+  }
+  const nextLinkName = operation.pagination.nextLinkName;
+
+  return !parameters.some(param => param.serializedName === nextLinkName);
+}
+
+export function extractHttpDetails(
+  { path: originalPath, method }: OperationRequestDetails,
+  hasParameterizedPath: boolean
+) {
+  const path = hasParameterizedPath ? "{nextPath}" : originalPath;
   return {
     path,
     httpMethod: method.toUpperCase() as HttpMethods
@@ -314,13 +341,17 @@ async function getOperationMediaTypes(
   return mediaTypes;
 }
 
-function getGroupedParameters(
+function getOperationParameters(
   parameters: ParameterDetails[],
-  operationFullname: string
+  operationFullName: string
 ) {
-  const operationParams = parameters.filter(
-    p => p.operationsIn && p.operationsIn.indexOf(operationFullname) > -1
+  return parameters.filter(
+    param =>
+      param.operationsIn && param.operationsIn.indexOf(operationFullName) > -1
   );
+}
+
+function getGroupedParameters(operationParams: ParameterDetails[]) {
   return {
     requestBody: operationParams.find(
       p => p.location === ParameterLocation.Body

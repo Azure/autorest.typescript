@@ -28,5 +28,5 @@ export interface ParameterDetails {
   implementationLocation?: ImplementationLocation;
   typeDetails: TypeDetails;
   skipEncoding?: boolean;
-  isSynthetic?: boolean;
+  skipModel?: boolean;
 }

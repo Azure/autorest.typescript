@@ -35,7 +35,7 @@ export function generateParameters(
   });
 
   clientDetails.parameters
-    .filter(p => !p.isSynthetic)
+    .filter(p => !p.skipModel)
     .forEach(param => {
       parametersFile.addVariableStatement({
         isExported: true,

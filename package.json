@@ -12,7 +12,7 @@
         "generate-and-test": "npm-run-all -s build -p generate-bodystring generate-bodycomplex generate-url generate-customurl generate-xmlservice generate-header generate-paging -s integration-test:alone",
         "integration-test:alone": "mocha -r ts-node/register './test/integration/**/*spec.ts'",
         "start-test-server": "ts-node test/utils/start-server.ts",
-        "start-test-server:v1": "ts-node test/integration/testserver-v1/index.ts",
+        "start-test-server:v1": "start-autorest-express node",
         "stop-test-server": "stop-autorest-testserver",
         "debug": "node --inspect-brk ./dist/src/main.js",
         "generate-bodystring": "autorest-beta --add-credentials=false --typescript --output-folder=./test/integration/generated/bodyString --use=. --title=BodyStringClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/body-string.json --package-name=bodyString --package-version=1.0.0-preview1",
