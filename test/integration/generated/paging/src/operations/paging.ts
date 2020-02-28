@@ -31,7 +31,7 @@ export class Paging {
    * @param options The options parameters.
    */
   getNoItemNamePages(
-    options?: coreHttp.OperationOptions
+    options?: Models.PagingGetNoItemNamePagesOptionalParams
   ): Promise<Models.PagingGetNoItemNamePagesResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -44,7 +44,7 @@ export class Paging {
    * @param options The options parameters.
    */
   getNullNextLinkNamePages(
-    options?: coreHttp.OperationOptions
+    options?: Models.PagingGetNullNextLinkNamePagesOptionalParams
   ): Promise<Models.PagingGetNullNextLinkNamePagesResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -57,7 +57,7 @@ export class Paging {
    * @param options The options parameters.
    */
   getSinglePages(
-    options?: coreHttp.OperationOptions
+    options?: Models.PagingGetSinglePagesOptionalParams
   ): Promise<Models.PagingGetSinglePagesResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -112,7 +112,7 @@ export class Paging {
    * @param options The options parameters.
    */
   getMultiplePagesRetryFirst(
-    options?: coreHttp.OperationOptions
+    options?: Models.PagingGetMultiplePagesRetryFirstOptionalParams
   ): Promise<Models.PagingGetMultiplePagesRetryFirstResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -126,7 +126,7 @@ export class Paging {
    * @param options The options parameters.
    */
   getMultiplePagesRetrySecond(
-    options?: coreHttp.OperationOptions
+    options?: Models.PagingGetMultiplePagesRetrySecondOptionalParams
   ): Promise<Models.PagingGetMultiplePagesRetrySecondResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -139,7 +139,7 @@ export class Paging {
    * @param options The options parameters.
    */
   getSinglePagesFailure(
-    options?: coreHttp.OperationOptions
+    options?: Models.PagingGetSinglePagesFailureOptionalParams
   ): Promise<Models.PagingGetSinglePagesFailureResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -152,7 +152,7 @@ export class Paging {
    * @param options The options parameters.
    */
   getMultiplePagesFailure(
-    options?: coreHttp.OperationOptions
+    options?: Models.PagingGetMultiplePagesFailureOptionalParams
   ): Promise<Models.PagingGetMultiplePagesFailureResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -165,7 +165,7 @@ export class Paging {
    * @param options The options parameters.
    */
   getMultiplePagesFailureUri(
-    options?: coreHttp.OperationOptions
+    options?: Models.PagingGetMultiplePagesFailureUriOptionalParams
   ): Promise<Models.PagingGetMultiplePagesFailureUriResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -182,7 +182,7 @@ export class Paging {
   getMultiplePagesFragmentNextLink(
     apiVersion: string,
     tenant: string,
-    options?: coreHttp.OperationOptions
+    options?: Models.PagingGetMultiplePagesFragmentNextLinkOptionalParams
   ): Promise<Models.PagingGetMultiplePagesFragmentNextLinkResponse> {
     return this.client.sendOperationRequest(
       { apiVersion, tenant, options },
@@ -199,7 +199,7 @@ export class Paging {
   getMultiplePagesFragmentWithGroupingNextLink(
     apiVersion: string,
     tenant: string,
-    options?: coreHttp.OperationOptions
+    options?: Models.PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams
   ): Promise<
     Models.PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse
   > {
@@ -235,7 +235,7 @@ export class Paging {
     apiVersion: string,
     tenant: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: Models.PagingNextFragmentOptionalParams
   ): Promise<Models.PagingNextFragmentResponse> {
     return this.client.sendOperationRequest(
       { apiVersion, tenant, nextLink, options },
@@ -254,7 +254,7 @@ export class Paging {
     apiVersion: string,
     tenant: string,
     nextLink: string,
-    options?: coreHttp.OperationOptions
+    options?: Models.PagingNextFragmentWithGroupingOptionalParams
   ): Promise<Models.PagingNextFragmentWithGroupingResponse> {
     return this.client.sendOperationRequest(
       { apiVersion, tenant, nextLink, options },
@@ -267,7 +267,7 @@ export class Paging {
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getNoItemNamePagesOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/noitemname",
+  path: "{nextPath}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -275,11 +275,11 @@ const getNoItemNamePagesOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.$host, Parameters.nextPath],
   serializer
 };
 const getNullNextLinkNamePagesOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/nullnextlink",
+  path: "{nextPath}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -287,11 +287,11 @@ const getNullNextLinkNamePagesOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.$host, Parameters.nextPath1],
   serializer
 };
 const getSinglePagesOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/single",
+  path: "{nextPath}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -299,11 +299,11 @@ const getSinglePagesOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.$host, Parameters.nextPath2],
   serializer
 };
 const getMultiplePagesOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/multiple",
+  path: "{nextPath}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -311,7 +311,7 @@ const getMultiplePagesOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.$host, Parameters.nextPath3],
   headerParameters: [
     Parameters.clientRequestId,
     Parameters.maxresults,
@@ -320,7 +320,7 @@ const getMultiplePagesOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getOdataMultiplePagesOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/multiple/odata",
+  path: "{nextPath}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -328,7 +328,7 @@ const getOdataMultiplePagesOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.$host, Parameters.nextPath4],
   headerParameters: [
     Parameters.clientRequestId,
     Parameters.maxresults,
@@ -337,7 +337,7 @@ const getOdataMultiplePagesOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getMultiplePagesWithOffsetOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/multiple/withpath/{offset}",
+  path: "{nextPath}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -345,7 +345,7 @@ const getMultiplePagesWithOffsetOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.offset],
+  urlParameters: [Parameters.$host, Parameters.offset, Parameters.nextPath5],
   headerParameters: [
     Parameters.clientRequestId,
     Parameters.maxresults,
@@ -354,7 +354,7 @@ const getMultiplePagesWithOffsetOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getMultiplePagesRetryFirstOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/multiple/retryfirst",
+  path: "{nextPath}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -362,11 +362,11 @@ const getMultiplePagesRetryFirstOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.$host, Parameters.nextPath6],
   serializer
 };
 const getMultiplePagesRetrySecondOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/multiple/retrysecond",
+  path: "{nextPath}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -374,11 +374,11 @@ const getMultiplePagesRetrySecondOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.$host, Parameters.nextPath7],
   serializer
 };
 const getSinglePagesFailureOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/single/failure",
+  path: "{nextPath}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -386,11 +386,11 @@ const getSinglePagesFailureOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.$host, Parameters.nextPath8],
   serializer
 };
 const getMultiplePagesFailureOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/multiple/failure",
+  path: "{nextPath}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -398,11 +398,11 @@ const getMultiplePagesFailureOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.$host, Parameters.nextPath9],
   serializer
 };
 const getMultiplePagesFailureUriOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/multiple/failureuri",
+  path: "{nextPath}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -410,11 +410,11 @@ const getMultiplePagesFailureUriOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.$host, Parameters.nextPath10],
   serializer
 };
 const getMultiplePagesFragmentNextLinkOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/multiple/fragment/{tenant}",
+  path: "{nextPath}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -423,11 +423,11 @@ const getMultiplePagesFragmentNextLinkOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.tenant],
+  urlParameters: [Parameters.$host, Parameters.tenant, Parameters.nextPath11],
   serializer
 };
 const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/multiple/fragmentwithgrouping/{tenant}",
+  path: "{nextPath}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -436,11 +436,11 @@ const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: coreHttp.Operat
     default: {}
   },
   queryParameters: [Parameters.apiVersion1],
-  urlParameters: [Parameters.$host, Parameters.tenant1],
+  urlParameters: [Parameters.$host, Parameters.tenant1, Parameters.nextPath12],
   serializer
 };
 const getMultiplePagesLROOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/multiple/lro",
+  path: "{nextPath}",
   httpMethod: "POST",
   responses: {
     202: {
@@ -448,7 +448,7 @@ const getMultiplePagesLROOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.$host, Parameters.nextPath13],
   headerParameters: [
     Parameters.clientRequestId,
     Parameters.maxresults,
@@ -457,7 +457,7 @@ const getMultiplePagesLROOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const nextFragmentOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/multiple/fragment/{tenant}/{nextLink}",
+  path: "{nextPath}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -466,11 +466,16 @@ const nextFragmentOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.tenant, Parameters.nextLink],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.tenant,
+    Parameters.nextLink,
+    Parameters.nextPath14
+  ],
   serializer
 };
 const nextFragmentWithGroupingOperationSpec: coreHttp.OperationSpec = {
-  path: "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
+  path: "{nextPath}",
   httpMethod: "GET",
   responses: {
     200: {
@@ -479,6 +484,11 @@ const nextFragmentWithGroupingOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   queryParameters: [Parameters.apiVersion1],
-  urlParameters: [Parameters.$host, Parameters.tenant1, Parameters.nextLink],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.tenant1,
+    Parameters.nextLink,
+    Parameters.nextPath15
+  ],
   serializer
 };
