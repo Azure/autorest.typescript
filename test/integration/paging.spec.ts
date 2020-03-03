@@ -1,6 +1,10 @@
 import { expect } from "chai";
 import { PagingClient } from "./generated/paging/src/pagingClient";
-import { PagingGetMultiplePagesResponse } from "./generated/paging/src/models";
+import {
+  PagingGetMultiplePagesResponse,
+  PagingGetMultiplePagesWithOffsetResponse,
+  PagingGetMultiplePagesFragmentNextLinkResponse
+} from "./generated/paging/src/models";
 
 describe("Integration tests for Paging", () => {
   let client: PagingClient;
@@ -55,6 +59,64 @@ describe("Integration tests for Paging", () => {
         const values = response.values ?? [];
         results.push(...values);
         nextLink = response.nextLink;
+      } while (nextLink);
+
+      expect(results.length).to.equal(
+        10,
+        "Unexpected number of pages received."
+      );
+    });
+  });
+
+  describe("#getMultiplePagesWithOffset", () => {
+    it("succeeds", async () => {
+      const results = [];
+      let nextLink: string | undefined;
+      do {
+        let response: PagingGetMultiplePagesWithOffsetResponse;
+        if (!nextLink) {
+          response = await client.paging.getMultiplePagesWithOffset(100);
+        } else {
+          response = await client.paging.getMultiplePagesWithOffsetNext(
+            100,
+            nextLink
+          );
+        }
+        const values = response.values ?? [];
+        results.push(...values);
+        nextLink = response.nextLink;
+      } while (nextLink);
+
+      expect(results.length).to.equal(
+        10,
+        "Unexpected number of pages received."
+      );
+    });
+  });
+
+  // TODO: https://github.com/Azure/autorest.typescript/issues/574
+  describe.skip("#getMultiplePagesFragmentNextLink", () => {
+    it("succeeds", async () => {
+      const results = [];
+      let nextLink: string | undefined;
+      do {
+        let response: PagingGetMultiplePagesFragmentNextLinkResponse;
+        if (!nextLink) {
+          response = await client.paging.getMultiplePagesFragmentNextLink(
+            "1.6",
+            "test_user",
+            {}
+          );
+        } else {
+          response = await client.paging.nextFragment(
+            "1.6",
+            "test_user",
+            nextLink
+          );
+        }
+        const values = response.values ?? [];
+        results.push(...values);
+        nextLink = response.odataNextLink;
       } while (nextLink);
 
       expect(results.length).to.equal(
