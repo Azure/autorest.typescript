@@ -113,7 +113,6 @@ export interface PaginationDetails {
   nextLinkName?: string;
   /**
    * The name of the operation to call with the nextLink.
-   * If undefined, operation should pass nextLink to iteself.
    */
   nextLinkOperationName?: string;
   /**
@@ -124,4 +123,8 @@ export interface PaginationDetails {
    * The name of the operation that nextLinkOperationName references.
    */
   member?: string;
+  /**
+   * Indicates whether this operation is used by another operation to get pages.
+   */
+  isNextLinkMethod: boolean;
 }

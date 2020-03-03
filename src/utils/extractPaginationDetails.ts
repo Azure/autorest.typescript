@@ -34,6 +34,10 @@ interface PaginationExtension {
    * The name of the operation that nextLinkOperation references.
    */
   member?: string;
+  /**
+   * Indicates whether this operation is used by another operation to get pages.
+   */
+  isNextLinkMethod?: boolean;
 }
 
 /**
@@ -50,22 +54,29 @@ export function extractPaginationDetails(
     return;
   }
 
-  const nextLinkOperationName = paginationExtension.nextLinkOperation
-    ? languageMetadata.name
-    : undefined;
+  const nextLinkName =
+    typeof paginationExtension.nextLinkName === "string"
+      ? paginationExtension.nextLinkName
+      : undefined;
+
+  let nextLinkOperationName =
+    paginationExtension.nextLinkOperation && languageMetadata.name;
+  // When nextLinkOperation is not defined, but nextLinkName is, default to <operationName>Next as the operation name.
+  // Otherwise, since nextLinkName is not defined, we all iterable results are returned in a single page.
+  if (!nextLinkOperationName && nextLinkName) {
+    nextLinkOperationName = `${languageMetadata.name}Next`;
+  }
 
   const itemName = paginationExtension.itemName ?? "value";
 
   return {
     group: paginationExtension.group,
     member: paginationExtension.member,
-    nextLinkName:
-      typeof paginationExtension.nextLinkName === "string"
-        ? paginationExtension.nextLinkName
-        : undefined,
+    nextLinkName,
     itemName,
     itemTypes: getItemTypes(operation, itemName),
-    nextLinkOperationName
+    nextLinkOperationName,
+    isNextLinkMethod: Boolean(paginationExtension.isNextLinkMethod)
   };
 }
 
