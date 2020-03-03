@@ -440,6 +440,290 @@ export type PagingNextFragmentWithGroupingResponse = OdataProductResult & {
 };
 
 /**
+ * Contains response data for the getNoItemNamePagesNext operation.
+ */
+export type PagingGetNoItemNamePagesNextResponse = ProductResultValue & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ProductResultValue;
+  };
+};
+
+/**
+ * Contains response data for the getSinglePagesNext operation.
+ */
+export type PagingGetSinglePagesNextResponse = ProductResult & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ProductResult;
+  };
+};
+
+/**
+ * Optional parameters.
+ */
+export interface PagingGetMultiplePagesNextOptionalParams
+  extends coreHttp.OperationOptions {
+  clientRequestId?: string;
+  /**
+   * Sets the maximum number of items to return in the response.
+   */
+  maxresults?: number;
+  /**
+   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
+   */
+  timeout?: number;
+}
+
+/**
+ * Contains response data for the getMultiplePagesNext operation.
+ */
+export type PagingGetMultiplePagesNextResponse = ProductResult & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ProductResult;
+  };
+};
+
+/**
+ * Optional parameters.
+ */
+export interface PagingGetOdataMultiplePagesNextOptionalParams
+  extends coreHttp.OperationOptions {
+  clientRequestId?: string;
+  /**
+   * Sets the maximum number of items to return in the response.
+   */
+  maxresults?: number;
+  /**
+   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
+   */
+  timeout?: number;
+}
+
+/**
+ * Contains response data for the getOdataMultiplePagesNext operation.
+ */
+export type PagingGetOdataMultiplePagesNextResponse = OdataProductResult & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: OdataProductResult;
+  };
+};
+
+/**
+ * Optional parameters.
+ */
+export interface PagingGetMultiplePagesWithOffsetNextOptionalParams
+  extends coreHttp.OperationOptions {
+  clientRequestId?: string;
+  /**
+   * Sets the maximum number of items to return in the response.
+   */
+  maxresults?: number;
+  /**
+   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
+   */
+  timeout?: number;
+}
+
+/**
+ * Contains response data for the getMultiplePagesWithOffsetNext operation.
+ */
+export type PagingGetMultiplePagesWithOffsetNextResponse = ProductResult & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ProductResult;
+  };
+};
+
+/**
+ * Contains response data for the getMultiplePagesRetryFirstNext operation.
+ */
+export type PagingGetMultiplePagesRetryFirstNextResponse = ProductResult & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ProductResult;
+  };
+};
+
+/**
+ * Contains response data for the getMultiplePagesRetrySecondNext operation.
+ */
+export type PagingGetMultiplePagesRetrySecondNextResponse = ProductResult & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ProductResult;
+  };
+};
+
+/**
+ * Contains response data for the getSinglePagesFailureNext operation.
+ */
+export type PagingGetSinglePagesFailureNextResponse = ProductResult & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ProductResult;
+  };
+};
+
+/**
+ * Contains response data for the getMultiplePagesFailureNext operation.
+ */
+export type PagingGetMultiplePagesFailureNextResponse = ProductResult & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ProductResult;
+  };
+};
+
+/**
+ * Contains response data for the getMultiplePagesFailureUriNext operation.
+ */
+export type PagingGetMultiplePagesFailureUriNextResponse = ProductResult & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ProductResult;
+  };
+};
+
+/**
+ * Optional parameters.
+ */
+export interface PagingGetMultiplePagesLRONextOptionalParams
+  extends coreHttp.OperationOptions {
+  clientRequestId?: string;
+  /**
+   * Sets the maximum number of items to return in the response.
+   */
+  maxresults?: number;
+  /**
+   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
+   */
+  timeout?: number;
+}
+
+/**
+ * Contains response data for the getMultiplePagesLRONext operation.
+ */
+export type PagingGetMultiplePagesLRONextResponse = ProductResult & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ProductResult;
+  };
+};
+
+/**
  * Optional parameters.
  */
 export interface PagingClientOptionalParams

@@ -261,6 +261,178 @@ export class Paging {
       nextFragmentWithGroupingOperationSpec
     ) as Promise<Models.PagingNextFragmentWithGroupingResponse>;
   }
+
+  /**
+   * GetNoItemNamePagesNext
+   * @param nextLink The nextLink from the previous successful call to the GetNoItemNamePages method.
+   * @param options The options parameters.
+   */
+  getNoItemNamePagesNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): Promise<Models.PagingGetNoItemNamePagesNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      getNoItemNamePagesNextOperationSpec
+    ) as Promise<Models.PagingGetNoItemNamePagesNextResponse>;
+  }
+
+  /**
+   * GetSinglePagesNext
+   * @param nextLink The nextLink from the previous successful call to the GetSinglePages method.
+   * @param options The options parameters.
+   */
+  getSinglePagesNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): Promise<Models.PagingGetSinglePagesNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      getSinglePagesNextOperationSpec
+    ) as Promise<Models.PagingGetSinglePagesNextResponse>;
+  }
+
+  /**
+   * GetMultiplePagesNext
+   * @param nextLink The nextLink from the previous successful call to the GetMultiplePages method.
+   * @param options The options parameters.
+   */
+  getMultiplePagesNext(
+    nextLink: string,
+    options?: Models.PagingGetMultiplePagesNextOptionalParams
+  ): Promise<Models.PagingGetMultiplePagesNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      getMultiplePagesNextOperationSpec
+    ) as Promise<Models.PagingGetMultiplePagesNextResponse>;
+  }
+
+  /**
+   * GetOdataMultiplePagesNext
+   * @param nextLink The nextLink from the previous successful call to the GetOdataMultiplePages method.
+   * @param options The options parameters.
+   */
+  getOdataMultiplePagesNext(
+    nextLink: string,
+    options?: Models.PagingGetOdataMultiplePagesNextOptionalParams
+  ): Promise<Models.PagingGetOdataMultiplePagesNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      getOdataMultiplePagesNextOperationSpec
+    ) as Promise<Models.PagingGetOdataMultiplePagesNextResponse>;
+  }
+
+  /**
+   * GetMultiplePagesWithOffsetNext
+   * @param offset Offset of return value
+   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesWithOffset
+   *                 method.
+   * @param options The options parameters.
+   */
+  getMultiplePagesWithOffsetNext(
+    offset: number,
+    nextLink: string,
+    options?: Models.PagingGetMultiplePagesWithOffsetNextOptionalParams
+  ): Promise<Models.PagingGetMultiplePagesWithOffsetNextResponse> {
+    return this.client.sendOperationRequest(
+      { offset, nextLink, options },
+      getMultiplePagesWithOffsetNextOperationSpec
+    ) as Promise<Models.PagingGetMultiplePagesWithOffsetNextResponse>;
+  }
+
+  /**
+   * GetMultiplePagesRetryFirstNext
+   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesRetryFirst
+   *                 method.
+   * @param options The options parameters.
+   */
+  getMultiplePagesRetryFirstNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): Promise<Models.PagingGetMultiplePagesRetryFirstNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      getMultiplePagesRetryFirstNextOperationSpec
+    ) as Promise<Models.PagingGetMultiplePagesRetryFirstNextResponse>;
+  }
+
+  /**
+   * GetMultiplePagesRetrySecondNext
+   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesRetrySecond
+   *                 method.
+   * @param options The options parameters.
+   */
+  getMultiplePagesRetrySecondNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): Promise<Models.PagingGetMultiplePagesRetrySecondNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      getMultiplePagesRetrySecondNextOperationSpec
+    ) as Promise<Models.PagingGetMultiplePagesRetrySecondNextResponse>;
+  }
+
+  /**
+   * GetSinglePagesFailureNext
+   * @param nextLink The nextLink from the previous successful call to the GetSinglePagesFailure method.
+   * @param options The options parameters.
+   */
+  getSinglePagesFailureNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): Promise<Models.PagingGetSinglePagesFailureNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      getSinglePagesFailureNextOperationSpec
+    ) as Promise<Models.PagingGetSinglePagesFailureNextResponse>;
+  }
+
+  /**
+   * GetMultiplePagesFailureNext
+   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesFailure
+   *                 method.
+   * @param options The options parameters.
+   */
+  getMultiplePagesFailureNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): Promise<Models.PagingGetMultiplePagesFailureNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      getMultiplePagesFailureNextOperationSpec
+    ) as Promise<Models.PagingGetMultiplePagesFailureNextResponse>;
+  }
+
+  /**
+   * GetMultiplePagesFailureUriNext
+   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesFailureUri
+   *                 method.
+   * @param options The options parameters.
+   */
+  getMultiplePagesFailureUriNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): Promise<Models.PagingGetMultiplePagesFailureUriNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      getMultiplePagesFailureUriNextOperationSpec
+    ) as Promise<Models.PagingGetMultiplePagesFailureUriNextResponse>;
+  }
+
+  /**
+   * GetMultiplePagesLRONext
+   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesLRO method.
+   * @param options The options parameters.
+   */
+  getMultiplePagesLRONext(
+    nextLink: string,
+    options?: Models.PagingGetMultiplePagesLRONextOptionalParams
+  ): Promise<Models.PagingGetMultiplePagesLRONextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      getMultiplePagesLRONextOperationSpec
+    ) as Promise<Models.PagingGetMultiplePagesLRONextResponse>;
+  }
 }
 // Operation Specifications
 
@@ -480,5 +652,157 @@ const nextFragmentWithGroupingOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.tenant1, Parameters.nextLink],
+  serializer
+};
+const getNoItemNamePagesNextOperationSpec: coreHttp.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResultValue
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink1],
+  serializer
+};
+const getSinglePagesNextOperationSpec: coreHttp.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink2],
+  serializer
+};
+const getMultiplePagesNextOperationSpec: coreHttp.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink3],
+  headerParameters: [
+    Parameters.clientRequestId,
+    Parameters.maxresults,
+    Parameters.timeout
+  ],
+  serializer
+};
+const getOdataMultiplePagesNextOperationSpec: coreHttp.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.OdataProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink4],
+  headerParameters: [
+    Parameters.clientRequestId,
+    Parameters.maxresults,
+    Parameters.timeout
+  ],
+  serializer
+};
+const getMultiplePagesWithOffsetNextOperationSpec: coreHttp.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.offset, Parameters.nextLink5],
+  headerParameters: [
+    Parameters.clientRequestId,
+    Parameters.maxresults,
+    Parameters.timeout
+  ],
+  serializer
+};
+const getMultiplePagesRetryFirstNextOperationSpec: coreHttp.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink6],
+  serializer
+};
+const getMultiplePagesRetrySecondNextOperationSpec: coreHttp.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink7],
+  serializer
+};
+const getSinglePagesFailureNextOperationSpec: coreHttp.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink8],
+  serializer
+};
+const getMultiplePagesFailureNextOperationSpec: coreHttp.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink9],
+  serializer
+};
+const getMultiplePagesFailureUriNextOperationSpec: coreHttp.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink10],
+  serializer
+};
+const getMultiplePagesLRONextOperationSpec: coreHttp.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "POST",
+  responses: {
+    202: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink11],
+  headerParameters: [
+    Parameters.clientRequestId,
+    Parameters.maxresults,
+    Parameters.timeout
+  ],
   serializer
 };
