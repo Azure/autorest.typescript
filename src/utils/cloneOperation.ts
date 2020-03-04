@@ -3,6 +3,7 @@
 
 import { Operation } from "@azure-tools/codemodel";
 import { cloneDeep } from "lodash";
+import { getLanguageMetadata } from "./languageHelpers";
 
 /**
  * Clone an operation and overwrite the operation name and description.
@@ -27,7 +28,9 @@ export function cloneOperation(
     operationDescription,
     operationInitializer
   );
-  newOperation.language.default.name = operationName;
-  newOperation.language.default.description = operationName;
+  const operationMetadata = getLanguageMetadata(newOperation.language);
+  operationMetadata.name = operationName;
+  operationMetadata.description = operationName;
+
   return newOperation;
 }
