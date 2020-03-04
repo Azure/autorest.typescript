@@ -24,8 +24,7 @@ import { transformObjects, transformObject } from "./objectTransforms";
 import { ObjectDetails } from "../models/modelDetails";
 import { Host } from "@azure-tools/autorest-extension-base";
 import { transformBaseUrl } from "./urlTransforms";
-import { KnownMediaType } from "@azure-tools/codegen";
-import { OperationGroupDetails } from "../models/operationDetails";
+import { normalizeModelWithExtensions } from "./extensions";
 
 export async function transformChoices(codeModel: CodeModel) {
   const choices = [
@@ -57,6 +56,7 @@ export async function transformCodeModel(
   host: Host
 ): Promise<ClientDetails> {
   const className = normalizeName(codeModel.info.title, NameType.Class);
+  normalizeModelWithExtensions(codeModel);
 
   const [uberParents, operationGroups] = await Promise.all([
     getUberParents(codeModel),

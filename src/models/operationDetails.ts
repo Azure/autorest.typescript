@@ -59,6 +59,7 @@ export interface OperationDetails {
   responses: OperationResponseDetails[];
   typeDetails: TypeDetails;
   mediaTypes: Set<KnownMediaType>;
+  pagination?: PaginationDetails;
 }
 
 /**
@@ -92,3 +93,38 @@ export interface OperationSpecResponse {
 export type OperationSpecResponses = {
   [responseCode: string]: OperationResponseMappers;
 };
+
+/**
+ * Operation pagination metadata.
+ */
+export interface PaginationDetails {
+  /**
+   * The name of the field in the response that can be paged over.
+   */
+  itemName: string;
+  /**
+   * The possible types for the iterable field.
+   */
+  itemTypes: TypeDetails[];
+  /**
+   * Name of the field containing the nextLink value.
+   * If missing, all results are returned in a single page.
+   */
+  nextLinkName?: string;
+  /**
+   * The name of the operation to call with the nextLink.
+   */
+  nextLinkOperationName?: string;
+  /**
+   * The name of the operationGroup that nextLinkOperationName resides in.
+   */
+  group?: string;
+  /**
+   * The name of the operation that nextLinkOperationName references.
+   */
+  member?: string;
+  /**
+   * Indicates whether this operation is used by another operation to get pages.
+   */
+  isNextLinkMethod: boolean;
+}

@@ -33,6 +33,7 @@ import { ParameterDetails } from "../models/parameterDetails";
 import { PropertyKind, TypeDetails } from "../models/modelDetails";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { headersToSchema } from "../utils/headersToSchema";
+import { extractPaginationDetails } from "../utils/extractPaginationDetails";
 
 export function transformOperationSpec(
   operationDetails: OperationDetails,
@@ -222,6 +223,7 @@ export async function transformOperation(
   operationGroupName: string
 ): Promise<OperationDetails> {
   const metadata = getLanguageMetadata(operation.language);
+  const pagination = extractPaginationDetails(operation);
   const name = normalizeName(metadata.name, NameType.Property);
   const operationFullName = `${operationGroupName}_${name}`;
   const responsesAndErrors = [
@@ -252,7 +254,8 @@ export async function transformOperation(
     description: metadata.description,
     request,
     responses,
-    mediaTypes
+    mediaTypes,
+    pagination
   };
 }
 
