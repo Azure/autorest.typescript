@@ -13,7 +13,7 @@ import * as coreHttp from "@azure/core-http";
  */
 export interface RootWithRefAndNoMeta {
   /**
-   * I am a complex type with no XML node
+   * XML will use RefToModel
    */
   refToModel?: ComplexTypeNoMeta;
   /**
@@ -37,7 +37,7 @@ export interface ComplexTypeNoMeta {
  */
 export interface RootWithRefAndMeta {
   /**
-   * I am a complex type with XML node
+   * XML will use XMLComplexTypeWithMeta
    */
   refToModel?: ComplexTypeWithMeta;
   /**
@@ -144,10 +144,16 @@ export interface ContainerProperties {
  */
 export interface StorageServiceProperties {
   /**
-   * Azure Analytics Logging settings.
+   * Azure Analytics Logging settings
    */
   logging?: Logging;
+  /**
+   * A summary of request statistics grouped by API in hourly aggregates for blobs
+   */
   hourMetrics?: Metrics;
+  /**
+   * a summary of request statistics grouped by API in minute aggregates for blobs
+   */
   minuteMetrics?: Metrics;
   /**
    * The set of CORS rules.
@@ -158,7 +164,7 @@ export interface StorageServiceProperties {
    */
   defaultServiceVersion?: string;
   /**
-   * the retention policy
+   * The Delete Retention Policy for the service
    */
   deleteRetentionPolicy?: RetentionPolicy;
 }
@@ -257,7 +263,7 @@ export interface SignedIdentifier {
    */
   id: string;
   /**
-   * An Access policy
+   * The access policy
    */
   accessPolicy: AccessPolicy;
 }
@@ -742,10 +748,6 @@ export type XmlJsonOutputResponse = JsonOutput & {
  */
 export interface XmlServiceClientOptionalParams
   extends coreHttp.ServiceClientOptions {
-  /**
-   * server parameter
-   */
-  $host?: string;
   /**
    * Overrides client endpoint.
    */

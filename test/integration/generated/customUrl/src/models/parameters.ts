@@ -8,27 +8,3 @@
 
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
-
-export const accountName: coreHttp.OperationURLParameter = {
-  parameterPath: "accountName",
-  mapper: {
-    serializedName: "accountName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const host: coreHttp.OperationURLParameter = {
-  parameterPath: "host",
-  mapper: {
-    serializedName: "host",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};

@@ -9,30 +9,6 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 
-export const $host: coreHttp.OperationURLParameter = {
-  parameterPath: "$host",
-  mapper: {
-    serializedName: "$host",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const apiVersion: coreHttp.OperationQueryParameter = {
-  parameterPath: "apiVersion",
-  mapper: {
-    defaultValue: "2016-02-29",
-    serializedName: "api-version",
-    isConstant: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const complexBody: coreHttp.OperationParameter = {
   parameterPath: "complexBody",
   mapper: Mappers.Basic

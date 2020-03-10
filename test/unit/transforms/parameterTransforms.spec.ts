@@ -42,7 +42,7 @@ describe("parameterTransforms", () => {
     const op1 = new OperationGroup("OperationGroup1", {
       operations: [
         {
-          request,
+          requests: [request],
           language: {
             default: {
               name: "operation1",
@@ -131,7 +131,7 @@ describe("parameterTransforms", () => {
       const op1 = new OperationGroup("OperationGroup1", {
         operations: [
           {
-            request,
+            requests: [request],
             language: {
               default: {
                 name: "operation1",
@@ -145,7 +145,7 @@ describe("parameterTransforms", () => {
       const op2 = new OperationGroup("OperationGroup2", {
         operations: [
           {
-            request: request2,
+            requests: [request2],
             language: {
               default: {
                 name: "operation2",
@@ -203,7 +203,7 @@ describe("parameterTransforms", () => {
       const op1 = new OperationGroup("OperationGroup1", {
         operations: [
           {
-            request,
+            requests: [request],
             language: {
               default: {
                 name: "operation1",
@@ -217,7 +217,7 @@ describe("parameterTransforms", () => {
       const op2 = new OperationGroup("OperationGroup2", {
         operations: [
           {
-            request: request2,
+            requests: [request2],
             language: {
               default: {
                 name: "operation2",
@@ -288,7 +288,7 @@ describe("parameterTransforms", () => {
         new OperationGroup("OperationGroup1", {
           operations: [
             {
-              request,
+              requests: [request],
               language: {
                 default: {
                   name: "operation1",

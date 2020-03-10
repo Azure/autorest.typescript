@@ -301,10 +301,6 @@ export type EnumGetReferencedConstantResponse = RefColorConstant & {
 export interface BodyStringClientOptionalParams
   extends coreHttp.ServiceClientOptions {
   /**
-   * server parameter
-   */
-  $host?: string;
-  /**
    * Overrides client endpoint.
    */
   endpoint?: string;

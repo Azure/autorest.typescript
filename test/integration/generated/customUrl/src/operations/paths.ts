@@ -28,15 +28,13 @@ export class Paths {
 
   /**
    * Get a 200 to test a valid base uri
-   * @param accountName Account Name
    * @param options The options parameters.
    */
   getEmpty(
-    accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { accountName, options },
+      { options },
       getEmptyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -54,6 +52,5 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.accountName, Parameters.host],
   serializer
 };

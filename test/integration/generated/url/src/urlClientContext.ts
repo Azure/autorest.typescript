@@ -13,23 +13,11 @@ const packageName = "url";
 const packageVersion = "1.0.0-preview1";
 
 export class UrlClientContext extends coreHttp.ServiceClient {
-  $host: string;
-  globalStringPath: string;
-  globalStringQuery?: string;
-
   /**
    * Initializes a new instance of the UrlClientContext class.
-   * @param globalStringPath A string value 'globalItemStringPath' that appears in the path
    * @param options The parameter options
    */
-  constructor(
-    globalStringPath: string,
-    options?: Models.UrlClientOptionalParams
-  ) {
-    if (globalStringPath === undefined) {
-      throw new Error("'globalStringPath' cannot be null");
-    }
-
+  constructor(options?: Models.UrlClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};
@@ -45,11 +33,5 @@ export class UrlClientContext extends coreHttp.ServiceClient {
     this.requestContentType = "application/json; charset=utf-8";
 
     this.baseUri = options.endpoint || "{$host}";
-
-    // Parameter assignments
-    this.globalStringPath = globalStringPath;
-
-    // Assigning values to Constant parameters
-    this.$host = options.$host || "http://localhost:3000";
   }
 }

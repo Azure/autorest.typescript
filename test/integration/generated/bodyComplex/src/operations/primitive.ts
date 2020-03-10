@@ -350,7 +350,6 @@ const getIntOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
   serializer
 };
 const putIntOperationSpec: coreHttp.OperationSpec = {
@@ -363,7 +362,6 @@ const putIntOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody1,
-  urlParameters: [Parameters.$host],
   serializer
 };
 const getLongOperationSpec: coreHttp.OperationSpec = {
@@ -377,7 +375,6 @@ const getLongOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
   serializer
 };
 const putLongOperationSpec: coreHttp.OperationSpec = {
@@ -390,7 +387,6 @@ const putLongOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody2,
-  urlParameters: [Parameters.$host],
   serializer
 };
 const getFloatOperationSpec: coreHttp.OperationSpec = {
@@ -404,7 +400,6 @@ const getFloatOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
   serializer
 };
 const putFloatOperationSpec: coreHttp.OperationSpec = {
@@ -417,7 +412,6 @@ const putFloatOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody3,
-  urlParameters: [Parameters.$host],
   serializer
 };
 const getDoubleOperationSpec: coreHttp.OperationSpec = {
@@ -431,7 +425,6 @@ const getDoubleOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
   serializer
 };
 const putDoubleOperationSpec: coreHttp.OperationSpec = {
@@ -444,7 +437,6 @@ const putDoubleOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody4,
-  urlParameters: [Parameters.$host],
   serializer
 };
 const getBoolOperationSpec: coreHttp.OperationSpec = {
@@ -458,7 +450,6 @@ const getBoolOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
   serializer
 };
 const putBoolOperationSpec: coreHttp.OperationSpec = {
@@ -471,7 +462,6 @@ const putBoolOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody5,
-  urlParameters: [Parameters.$host],
   serializer
 };
 const getStringOperationSpec: coreHttp.OperationSpec = {
@@ -485,7 +475,6 @@ const getStringOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
   serializer
 };
 const putStringOperationSpec: coreHttp.OperationSpec = {
@@ -498,7 +487,6 @@ const putStringOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody6,
-  urlParameters: [Parameters.$host],
   serializer
 };
 const getDateOperationSpec: coreHttp.OperationSpec = {
@@ -512,7 +500,6 @@ const getDateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
   serializer
 };
 const putDateOperationSpec: coreHttp.OperationSpec = {
@@ -525,7 +512,6 @@ const putDateOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody7,
-  urlParameters: [Parameters.$host],
   serializer
 };
 const getDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -539,7 +525,6 @@ const getDateTimeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
   serializer
 };
 const putDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -552,7 +537,6 @@ const putDateTimeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody8,
-  urlParameters: [Parameters.$host],
   serializer
 };
 const getDateTimeRfc1123OperationSpec: coreHttp.OperationSpec = {
@@ -566,7 +550,6 @@ const getDateTimeRfc1123OperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
   serializer
 };
 const putDateTimeRfc1123OperationSpec: coreHttp.OperationSpec = {
@@ -579,7 +562,6 @@ const putDateTimeRfc1123OperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody9,
-  urlParameters: [Parameters.$host],
   serializer
 };
 const getDurationOperationSpec: coreHttp.OperationSpec = {
@@ -593,7 +575,6 @@ const getDurationOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
   serializer
 };
 const putDurationOperationSpec: coreHttp.OperationSpec = {
@@ -606,7 +587,6 @@ const putDurationOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody10,
-  urlParameters: [Parameters.$host],
   serializer
 };
 const getByteOperationSpec: coreHttp.OperationSpec = {
@@ -620,7 +600,6 @@ const getByteOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
   serializer
 };
 const putByteOperationSpec: coreHttp.OperationSpec = {
@@ -633,6 +612,5 @@ const putByteOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody11,
-  urlParameters: [Parameters.$host],
   serializer
 };

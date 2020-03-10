@@ -9,19 +9,6 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 
-export const $host: coreHttp.OperationURLParameter = {
-  parameterPath: "$host",
-  mapper: {
-    serializedName: "$host",
-    required: true,
-    xmlName: "$host",
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const model: coreHttp.OperationParameter = {
   parameterPath: "model",
   mapper: Mappers.RootWithRefAndNoMeta
@@ -67,69 +54,9 @@ export const banana: coreHttp.OperationParameter = {
   mapper: Mappers.Banana
 };
 
-export const comp: coreHttp.OperationQueryParameter = {
-  parameterPath: "comp",
-  mapper: {
-    defaultValue: "list",
-    serializedName: "comp",
-    isConstant: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const comp1: coreHttp.OperationQueryParameter = {
-  parameterPath: "comp",
-  mapper: {
-    defaultValue: "properties",
-    serializedName: "comp",
-    isConstant: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const restype: coreHttp.OperationQueryParameter = {
-  parameterPath: "restype",
-  mapper: {
-    defaultValue: "service",
-    serializedName: "restype",
-    isConstant: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const properties: coreHttp.OperationParameter = {
   parameterPath: "properties",
   mapper: Mappers.StorageServiceProperties
-};
-
-export const comp2: coreHttp.OperationQueryParameter = {
-  parameterPath: "comp",
-  mapper: {
-    defaultValue: "acl",
-    serializedName: "comp",
-    isConstant: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const restype1: coreHttp.OperationQueryParameter = {
-  parameterPath: "restype",
-  mapper: {
-    defaultValue: "container",
-    serializedName: "restype",
-    isConstant: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const properties1: coreHttp.OperationParameter = {

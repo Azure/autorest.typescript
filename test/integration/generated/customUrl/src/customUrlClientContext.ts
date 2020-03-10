@@ -13,8 +13,6 @@ const packageName = "custom-url";
 const packageVersion = "1.0.0-preview1";
 
 export class CustomUrlClientContext extends coreHttp.ServiceClient {
-  host: string;
-
   /**
    * Initializes a new instance of the CustomUrlClientContext class.
    * @param options The parameter options
@@ -35,8 +33,5 @@ export class CustomUrlClientContext extends coreHttp.ServiceClient {
     this.requestContentType = "application/json; charset=utf-8";
 
     this.baseUri = options.endpoint || "http://{accountName}{host}";
-
-    // Assigning values to Constant parameters
-    this.host = options.host || "host";
   }
 }

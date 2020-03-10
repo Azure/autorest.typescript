@@ -121,7 +121,6 @@ const getValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
   serializer
 };
 const putValidOperationSpec: coreHttp.OperationSpec = {
@@ -134,8 +133,6 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody,
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host],
   serializer
 };
 const getInvalidOperationSpec: coreHttp.OperationSpec = {
@@ -149,7 +146,6 @@ const getInvalidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
   serializer
 };
 const getEmptyOperationSpec: coreHttp.OperationSpec = {
@@ -163,7 +159,6 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
   serializer
 };
 const getNullOperationSpec: coreHttp.OperationSpec = {
@@ -177,7 +172,6 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
   serializer
 };
 const getNotProvidedOperationSpec: coreHttp.OperationSpec = {
@@ -191,6 +185,5 @@ const getNotProvidedOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
   serializer
 };
