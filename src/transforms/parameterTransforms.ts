@@ -9,7 +9,8 @@ import {
   Schema,
   ImplementationLocation,
   SerializationStyle,
-  ConstantSchema
+  ConstantSchema,
+  Request
 } from "@azure-tools/codemodel";
 import { QueryCollectionFormat } from "@azure/core-http";
 import { getLanguageMetadata } from "../utils/languageHelpers";
@@ -110,8 +111,19 @@ const extractOperationParameters = (codeModel: CodeModel) =>
         (operations, operation) => {
           const opName = getLanguageMetadata(operation.language).name;
           const operationName = `${groupName}_${opName}`.toLowerCase();
+
+          // Look for request in old 'request' property if new 'requests' doesn't exist
+          const request: Request = operation.requests
+            ? operation.requests[0]
+            : (<any>operation).request;
+          if (request === undefined) {
+            throw new Error(
+              `No request object was found for operation: ${operationName}`
+            );
+          }
+
           const operationParams: OperationParameterDetails[] = (
-            operation.request.parameters || []
+            request.parameters || []
           ).map(p => ({ parameter: p, operationName }));
           return [...operations, ...operationParams];
         },
@@ -299,8 +311,7 @@ function getCollectionFormat(parameter: Parameter): string | undefined {
 function getParameterName(parameter: Parameter) {
   const fromExtension =
     parameter.extensions && parameter.extensions["x-ms-requestBody-name"];
-  const parameterSerializedName = getLanguageMetadata(parameter.language)
-    .serializedName;
+  const parameterSerializedName = getLanguageMetadata(parameter.language).name;
 
   return fromExtension || parameterSerializedName;
 }

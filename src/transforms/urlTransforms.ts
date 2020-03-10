@@ -19,9 +19,9 @@ export async function transformBaseUrl(
 
   if (!$host) {
     // No support yet for multi-baseUrl yet Issue #553
-    const { request } = codeModel.operationGroups[0].operations[0];
+    const { requests } = codeModel.operationGroups[0].operations[0];
     isCustom = true;
-    endpoint = request.protocol.http!.uri;
+    endpoint = requests![0].protocol.http!.uri;
   } else {
     endpoint = $host.clientDefaultValue;
   }

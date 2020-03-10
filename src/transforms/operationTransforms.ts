@@ -238,7 +238,17 @@ export async function transformOperation(
     kind: PropertyKind.Composite
   };
 
-  const request = transformOperationRequest(operation.request);
+  // Look for request in old 'request' property if new 'requests' doesn't exist
+  const codeModelRequest = operation.requests
+    ? operation.requests[0]
+    : (<any>operation).request;
+  if (codeModelRequest === undefined) {
+    throw new Error(
+      `No request object was found for operation: ${operationFullName}`
+    );
+  }
+
+  const request = transformOperationRequest(codeModelRequest);
   const responses = responsesAndErrors.map(response =>
     transformOperationResponse(response, operationFullName)
   );
