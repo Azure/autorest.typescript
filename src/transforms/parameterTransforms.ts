@@ -121,11 +121,13 @@ const extractOperationParameters = (codeModel: CodeModel) =>
               `No request object was found for operation: ${operationName}`
             );
           }
-
           const operationParams: OperationParameterDetails[] = (
+            operation.parameters || []
+          ).map(p => ({ parameter: p, operationName }));
+          const requestParams: OperationParameterDetails[] = (
             request.parameters || []
           ).map(p => ({ parameter: p, operationName }));
-          return [...operations, ...operationParams];
+          return [...operations, ...requestParams, ...operationParams];
         },
         []
       )
@@ -168,12 +170,18 @@ export function populateOperationParameters(
       `Couldn't get parameter serializedName for operation: ${operationName}`
     );
   }
+
+  const name = normalizeName(parameterSerializedName, NameType.Property);
+
   const sameNameParams = operationParameters.filter(
-    p => p.serializedName === parameterSerializedName
+    p =>
+      p.serializedName === parameterSerializedName ||
+      p.name === parameterSerializedName ||
+      p.nameRef === name
   );
 
   if (!sameNameParams.length) {
-    const name = normalizeName(parameterSerializedName, NameType.Property);
+    //const name = normalizeName(parameterSerializedName, NameType.Property);
     const collectionFormat = getCollectionFormat(parameter);
     const typeDetails = getTypeForSchema(parameter.schema);
     const paramDetails: ParameterDetails = {
@@ -311,7 +319,8 @@ function getCollectionFormat(parameter: Parameter): string | undefined {
 function getParameterName(parameter: Parameter) {
   const fromExtension =
     parameter.extensions && parameter.extensions["x-ms-requestBody-name"];
-  const parameterSerializedName = getLanguageMetadata(parameter.language).name;
+  const metadata = getLanguageMetadata(parameter.language);
+  const parameterSerializedName = metadata.serializedName || metadata.name;
 
   return fromExtension || parameterSerializedName;
 }
