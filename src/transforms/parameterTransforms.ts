@@ -173,15 +173,9 @@ export function populateOperationParameters(
 
   const name = normalizeName(parameterSerializedName, NameType.Property);
 
-  const sameNameParams = operationParameters.filter(
-    p =>
-      p.serializedName === parameterSerializedName ||
-      p.name === parameterSerializedName ||
-      p.nameRef === name
-  );
+  const sameNameParams = operationParameters.filter(p => p.name === name);
 
   if (!sameNameParams.length) {
-    //const name = normalizeName(parameterSerializedName, NameType.Property);
     const collectionFormat = getCollectionFormat(parameter);
     const typeDetails = getTypeForSchema(parameter.schema);
     const paramDetails: ParameterDetails = {
