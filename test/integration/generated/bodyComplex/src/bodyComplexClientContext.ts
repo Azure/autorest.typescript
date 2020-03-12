@@ -13,6 +13,9 @@ const packageName = "bodyString";
 const packageVersion = "1.0.0-preview1";
 
 export class BodyComplexClientContext extends coreHttp.ServiceClient {
+  $host: string;
+  apiVersion: string;
+
   /**
    * Initializes a new instance of the BodyComplexClientContext class.
    * @param options The parameter options
@@ -33,5 +36,9 @@ export class BodyComplexClientContext extends coreHttp.ServiceClient {
     this.requestContentType = "application/json; charset=utf-8";
 
     this.baseUri = options.endpoint || "{$host}";
+
+    // Assigning values to Constant parameters
+    this.$host = options.$host || "http://localhost:3000";
+    this.apiVersion = options.apiVersion || "2016-02-29";
   }
 }

@@ -222,6 +222,17 @@ export type HeaderResponseBoolResponse = HeaderResponseBoolHeaders & {
 };
 
 /**
+ * Optional parameters.
+ */
+export interface HeaderParamStringOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Send a post request with header values "The quick brown fox jumps over the lazy dog" or null or ""
+   */
+  value?: string;
+}
+
+/**
  * Contains response data for the responseString operation.
  */
 export type HeaderResponseStringResponse = HeaderResponseStringHeaders & {
@@ -265,6 +276,17 @@ export type HeaderResponseDatetimeResponse = HeaderResponseDatetimeHeaders & {
     parsedHeaders: HeaderResponseDatetimeHeaders;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface HeaderParamDatetimeRfc1123OptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
+   */
+  value?: Date;
+}
 
 /**
  * Contains response data for the responseDatetimeRfc1123 operation.
@@ -312,6 +334,17 @@ export type HeaderResponseByteResponse = HeaderResponseByteHeaders & {
 };
 
 /**
+ * Optional parameters.
+ */
+export interface HeaderParamEnumOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Send a post request with header values 'GREY'
+   */
+  value?: GreyscaleColors;
+}
+
+/**
  * Contains response data for the responseEnum operation.
  */
 export type HeaderResponseEnumResponse = HeaderResponseEnumHeaders & {
@@ -331,6 +364,10 @@ export type HeaderResponseEnumResponse = HeaderResponseEnumHeaders & {
  */
 export interface HeaderClientOptionalParams
   extends coreHttp.ServiceClientOptions {
+  /**
+   * server parameter
+   */
+  $host?: string;
   /**
    * Overrides client endpoint.
    */

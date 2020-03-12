@@ -57,7 +57,7 @@ export class Queries {
    * @param options The options parameters.
    */
   getBooleanNull(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesGetBooleanNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -96,7 +96,7 @@ export class Queries {
    * @param options The options parameters.
    */
   getIntNull(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesGetIntNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -135,7 +135,7 @@ export class Queries {
    * @param options The options parameters.
    */
   getLongNull(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesGetLongNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -174,7 +174,7 @@ export class Queries {
    * @param options The options parameters.
    */
   floatNull(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesFloatNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -213,7 +213,7 @@ export class Queries {
    * @param options The options parameters.
    */
   doubleNull(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesDoubleNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -265,7 +265,7 @@ export class Queries {
    * @param options The options parameters.
    */
   stringNull(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesStringNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -278,7 +278,7 @@ export class Queries {
    * @param options The options parameters.
    */
   enumValid(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesEnumValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -291,7 +291,7 @@ export class Queries {
    * @param options The options parameters.
    */
   enumNull(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesEnumNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -304,7 +304,7 @@ export class Queries {
    * @param options The options parameters.
    */
   byteMultiByte(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesByteMultiByteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -330,7 +330,7 @@ export class Queries {
    * @param options The options parameters.
    */
   byteNull(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesByteNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -356,7 +356,7 @@ export class Queries {
    * @param options The options parameters.
    */
   dateNull(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesDateNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -382,7 +382,7 @@ export class Queries {
    * @param options The options parameters.
    */
   dateTimeNull(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesDateTimeNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -396,7 +396,7 @@ export class Queries {
    * @param options The options parameters.
    */
   arrayStringCsvValid(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesArrayStringCsvValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -409,7 +409,7 @@ export class Queries {
    * @param options The options parameters.
    */
   arrayStringCsvNull(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesArrayStringCsvNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -422,7 +422,7 @@ export class Queries {
    * @param options The options parameters.
    */
   arrayStringCsvEmpty(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesArrayStringCsvEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -436,7 +436,7 @@ export class Queries {
    * @param options The options parameters.
    */
   arrayStringSsvValid(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesArrayStringSsvValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -450,7 +450,7 @@ export class Queries {
    * @param options The options parameters.
    */
   arrayStringTsvValid(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesArrayStringTsvValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -464,7 +464,7 @@ export class Queries {
    * @param options The options parameters.
    */
   arrayStringPipesValid(
-    options?: coreHttp.OperationOptions
+    options?: Models.QueriesArrayStringPipesValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -485,6 +485,8 @@ const getBooleanTrueOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.boolQuery],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getBooleanFalseOperationSpec: coreHttp.OperationSpec = {
@@ -496,6 +498,8 @@ const getBooleanFalseOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.boolQuery1],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getBooleanNullOperationSpec: coreHttp.OperationSpec = {
@@ -507,6 +511,8 @@ const getBooleanNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.boolQuery2],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getIntOneMillionOperationSpec: coreHttp.OperationSpec = {
@@ -518,6 +524,8 @@ const getIntOneMillionOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.intQuery],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getIntNegativeOneMillionOperationSpec: coreHttp.OperationSpec = {
@@ -529,6 +537,8 @@ const getIntNegativeOneMillionOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.intQuery1],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getIntNullOperationSpec: coreHttp.OperationSpec = {
@@ -540,6 +550,8 @@ const getIntNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.intQuery2],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getTenBillionOperationSpec: coreHttp.OperationSpec = {
@@ -551,6 +563,8 @@ const getTenBillionOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.longQuery],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getNegativeTenBillionOperationSpec: coreHttp.OperationSpec = {
@@ -562,6 +576,8 @@ const getNegativeTenBillionOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.longQuery1],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getLongNullOperationSpec: coreHttp.OperationSpec = {
@@ -573,6 +589,8 @@ const getLongNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.longQuery2],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const floatScientificPositiveOperationSpec: coreHttp.OperationSpec = {
@@ -584,6 +602,8 @@ const floatScientificPositiveOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.floatQuery],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const floatScientificNegativeOperationSpec: coreHttp.OperationSpec = {
@@ -595,6 +615,8 @@ const floatScientificNegativeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.floatQuery1],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const floatNullOperationSpec: coreHttp.OperationSpec = {
@@ -606,6 +628,8 @@ const floatNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.floatQuery2],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const doubleDecimalPositiveOperationSpec: coreHttp.OperationSpec = {
@@ -617,6 +641,8 @@ const doubleDecimalPositiveOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.doubleQuery],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const doubleDecimalNegativeOperationSpec: coreHttp.OperationSpec = {
@@ -628,6 +654,8 @@ const doubleDecimalNegativeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.doubleQuery1],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const doubleNullOperationSpec: coreHttp.OperationSpec = {
@@ -639,6 +667,8 @@ const doubleNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.doubleQuery2],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const stringUnicodeOperationSpec: coreHttp.OperationSpec = {
@@ -650,6 +680,8 @@ const stringUnicodeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.stringQuery],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const stringUrlEncodedOperationSpec: coreHttp.OperationSpec = {
@@ -662,6 +694,8 @@ const stringUrlEncodedOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.stringQuery1],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const stringEmptyOperationSpec: coreHttp.OperationSpec = {
@@ -673,6 +707,8 @@ const stringEmptyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.stringQuery2],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const stringNullOperationSpec: coreHttp.OperationSpec = {
@@ -684,6 +720,8 @@ const stringNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.stringQuery3],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const enumValidOperationSpec: coreHttp.OperationSpec = {
@@ -695,6 +733,8 @@ const enumValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.enumQuery],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const enumNullOperationSpec: coreHttp.OperationSpec = {
@@ -706,6 +746,8 @@ const enumNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.enumQuery],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const byteMultiByteOperationSpec: coreHttp.OperationSpec = {
@@ -717,6 +759,8 @@ const byteMultiByteOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.byteQuery],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const byteEmptyOperationSpec: coreHttp.OperationSpec = {
@@ -728,6 +772,8 @@ const byteEmptyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.byteQuery1],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const byteNullOperationSpec: coreHttp.OperationSpec = {
@@ -739,6 +785,8 @@ const byteNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.byteQuery],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const dateValidOperationSpec: coreHttp.OperationSpec = {
@@ -750,6 +798,8 @@ const dateValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.dateQuery],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const dateNullOperationSpec: coreHttp.OperationSpec = {
@@ -761,6 +811,8 @@ const dateNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.dateQuery1],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const dateTimeValidOperationSpec: coreHttp.OperationSpec = {
@@ -772,6 +824,8 @@ const dateTimeValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.dateTimeQuery],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const dateTimeNullOperationSpec: coreHttp.OperationSpec = {
@@ -783,6 +837,8 @@ const dateTimeNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.dateTimeQuery1],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const arrayStringCsvValidOperationSpec: coreHttp.OperationSpec = {
@@ -794,6 +850,8 @@ const arrayStringCsvValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.arrayQuery],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const arrayStringCsvNullOperationSpec: coreHttp.OperationSpec = {
@@ -805,6 +863,8 @@ const arrayStringCsvNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.arrayQuery],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const arrayStringCsvEmptyOperationSpec: coreHttp.OperationSpec = {
@@ -816,6 +876,8 @@ const arrayStringCsvEmptyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.arrayQuery],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const arrayStringSsvValidOperationSpec: coreHttp.OperationSpec = {
@@ -827,6 +889,8 @@ const arrayStringSsvValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.arrayQuery1],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const arrayStringTsvValidOperationSpec: coreHttp.OperationSpec = {
@@ -838,6 +902,8 @@ const arrayStringTsvValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.arrayQuery2],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const arrayStringPipesValidOperationSpec: coreHttp.OperationSpec = {
@@ -849,5 +915,7 @@ const arrayStringPipesValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [Parameters.arrayQuery3],
+  urlParameters: [Parameters.$host],
   serializer
 };

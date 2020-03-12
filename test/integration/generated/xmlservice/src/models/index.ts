@@ -749,6 +749,10 @@ export type XmlJsonOutputResponse = JsonOutput & {
 export interface XmlServiceClientOptionalParams
   extends coreHttp.ServiceClientOptions {
   /**
+   * server parameter
+   */
+  $host?: string;
+  /**
    * Overrides client endpoint.
    */
   endpoint?: string;

@@ -30,13 +30,17 @@ export class PathItems {
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery='globalStringQuery',
    * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param options The options parameters.
    */
   getAllWithValues(
-    options?: coreHttp.OperationOptions
+    pathItemStringPath: string,
+    localStringPath: string,
+    options?: Models.PathItemsGetAllWithValuesOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { pathItemStringPath, localStringPath, options },
       getAllWithValuesOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -45,13 +49,17 @@ export class PathItems {
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery=null,
    * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param options The options parameters.
    */
   getGlobalQueryNull(
-    options?: coreHttp.OperationOptions
+    pathItemStringPath: string,
+    localStringPath: string,
+    options?: Models.PathItemsGetGlobalQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { pathItemStringPath, localStringPath, options },
       getGlobalQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -60,13 +68,17 @@ export class PathItems {
    * send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery=null,
    * pathItemStringQuery='pathItemStringQuery', localStringQuery=null
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param options The options parameters.
    */
   getGlobalAndLocalQueryNull(
-    options?: coreHttp.OperationOptions
+    pathItemStringPath: string,
+    localStringPath: string,
+    options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { pathItemStringPath, localStringPath, options },
       getGlobalAndLocalQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -75,13 +87,17 @@ export class PathItems {
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null,
    * localStringQuery=null
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param options The options parameters.
    */
   getLocalPathItemQueryNull(
-    options?: coreHttp.OperationOptions
+    pathItemStringPath: string,
+    localStringPath: string,
+    options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { pathItemStringPath, localStringPath, options },
       getLocalPathItemQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -100,6 +116,17 @@ const getAllWithValuesOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [
+    Parameters.pathItemStringQuery,
+    Parameters.globalStringQuery,
+    Parameters.localStringQuery
+  ],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.pathItemStringPath,
+    Parameters.globalStringPath,
+    Parameters.localStringPath
+  ],
   serializer
 };
 const getGlobalQueryNullOperationSpec: coreHttp.OperationSpec = {
@@ -112,6 +139,17 @@ const getGlobalQueryNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [
+    Parameters.pathItemStringQuery,
+    Parameters.globalStringQuery,
+    Parameters.localStringQuery
+  ],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.pathItemStringPath,
+    Parameters.globalStringPath,
+    Parameters.localStringPath
+  ],
   serializer
 };
 const getGlobalAndLocalQueryNullOperationSpec: coreHttp.OperationSpec = {
@@ -124,6 +162,17 @@ const getGlobalAndLocalQueryNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [
+    Parameters.pathItemStringQuery,
+    Parameters.globalStringQuery,
+    Parameters.localStringQuery
+  ],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.pathItemStringPath,
+    Parameters.globalStringPath,
+    Parameters.localStringPath
+  ],
   serializer
 };
 const getLocalPathItemQueryNullOperationSpec: coreHttp.OperationSpec = {
@@ -136,5 +185,16 @@ const getLocalPathItemQueryNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  queryParameters: [
+    Parameters.pathItemStringQuery,
+    Parameters.globalStringQuery,
+    Parameters.localStringQuery
+  ],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.pathItemStringPath,
+    Parameters.globalStringPath,
+    Parameters.localStringPath
+  ],
   serializer
 };

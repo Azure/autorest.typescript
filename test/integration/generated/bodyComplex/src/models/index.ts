@@ -879,6 +879,14 @@ export type FlattencomplexGetValidResponse = MyBaseTypeUnion & {
 export interface BodyComplexClientOptionalParams
   extends coreHttp.ServiceClientOptions {
   /**
+   * server parameter
+   */
+  $host?: string;
+  /**
+   * Api Version
+   */
+  apiVersion?: string;
+  /**
    * Overrides client endpoint.
    */
   endpoint?: string;

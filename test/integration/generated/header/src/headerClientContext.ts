@@ -13,6 +13,8 @@ const packageName = "header";
 const packageVersion = "1.0.0-preview1";
 
 export class HeaderClientContext extends coreHttp.ServiceClient {
+  $host: string;
+
   /**
    * Initializes a new instance of the HeaderClientContext class.
    * @param options The parameter options
@@ -33,5 +35,8 @@ export class HeaderClientContext extends coreHttp.ServiceClient {
     this.requestContentType = "application/json; charset=utf-8";
 
     this.baseUri = options.endpoint || "{$host}";
+
+    // Assigning values to Constant parameters
+    this.$host = options.$host || "http://localhost:3000";
   }
 }

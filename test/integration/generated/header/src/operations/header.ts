@@ -28,13 +28,15 @@ export class Header {
 
   /**
    * Send a post request with header value "User-Agent": "overwrite"
+   * @param userAgent Send a post request with header value "User-Agent": "overwrite"
    * @param options The options parameters.
    */
   paramExistingKey(
+    userAgent: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { userAgent, options },
       paramExistingKeyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -54,13 +56,15 @@ export class Header {
 
   /**
    * Send a post request with header value "Content-Type": "text/html"
+   * @param contentType Send a post request with header value "Content-Type": "text/html"
    * @param options The options parameters.
    */
   paramProtectedKey(
+    contentType: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { contentType, options },
       paramProtectedKeyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -81,26 +85,32 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative",
    * "value": -2
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param value Send a post request with header values 1 or -2
    * @param options The options parameters.
    */
   paramInteger(
+    scenario: string,
+    value: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, value, options },
       paramIntegerOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get a response with header value "value": 1 or -2
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The options parameters.
    */
   responseInteger(
+    scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<Models.HeaderResponseIntegerResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, options },
       responseIntegerOperationSpec
     ) as Promise<Models.HeaderResponseIntegerResponse>;
   }
@@ -108,26 +118,32 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
    * "negative", "value": -2
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param value Send a post request with header values 105 or -2
    * @param options The options parameters.
    */
   paramLong(
+    scenario: string,
+    value: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, value, options },
       paramLongOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get a response with header value "value": 105 or -2
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The options parameters.
    */
   responseLong(
+    scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<Models.HeaderResponseLongResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, options },
       responseLongOperationSpec
     ) as Promise<Models.HeaderResponseLongResponse>;
   }
@@ -135,26 +151,32 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
    * "negative", "value": -3.0
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param value Send a post request with header values 0.07 or -3.0
    * @param options The options parameters.
    */
   paramFloat(
+    scenario: string,
+    value: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, value, options },
       paramFloatOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get a response with header value "value": 0.07 or -3.0
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The options parameters.
    */
   responseFloat(
+    scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<Models.HeaderResponseFloatResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, options },
       responseFloatOperationSpec
     ) as Promise<Models.HeaderResponseFloatResponse>;
   }
@@ -162,26 +184,32 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
    * "negative", "value": -3.0
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param value Send a post request with header values 7e120 or -3.0
    * @param options The options parameters.
    */
   paramDouble(
+    scenario: string,
+    value: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, value, options },
       paramDoubleOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get a response with header value "value": 7e120 or -3.0
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The options parameters.
    */
   responseDouble(
+    scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<Models.HeaderResponseDoubleResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, options },
       responseDoubleOperationSpec
     ) as Promise<Models.HeaderResponseDoubleResponse>;
   }
@@ -189,26 +217,32 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "true", "value": true or "scenario": "false",
    * "value": false
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param value Send a post request with header values true or false
    * @param options The options parameters.
    */
   paramBool(
+    scenario: string,
+    value: boolean,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, value, options },
       paramBoolOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get a response with header value "value": true or false
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The options parameters.
    */
   responseBool(
+    scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<Models.HeaderResponseBoolResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, options },
       responseBoolOperationSpec
     ) as Promise<Models.HeaderResponseBoolResponse>;
   }
@@ -216,26 +250,30 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps over
    * the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": ""
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The options parameters.
    */
   paramString(
-    options?: coreHttp.OperationOptions
+    scenario: string,
+    options?: Models.HeaderParamStringOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, options },
       paramStringOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get a response with header values "The quick brown fox jumps over the lazy dog" or null or ""
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The options parameters.
    */
   responseString(
+    scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<Models.HeaderResponseStringResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, options },
       responseStringOperationSpec
     ) as Promise<Models.HeaderResponseStringResponse>;
   }
@@ -243,26 +281,32 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario":
    * "min", "value": "0001-01-01"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param value Send a post request with header values "2010-01-01" or "0001-01-01"
    * @param options The options parameters.
    */
   paramDate(
+    scenario: string,
+    value: Date,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, value, options },
       paramDateOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get a response with header values "2010-01-01" or "0001-01-01"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The options parameters.
    */
   responseDate(
+    scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<Models.HeaderResponseDateResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, options },
       responseDateOperationSpec
     ) as Promise<Models.HeaderResponseDateResponse>;
   }
@@ -270,26 +314,32 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
    * "scenario": "min", "value": "0001-01-01T00:00:00Z"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param value Send a post request with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
    * @param options The options parameters.
    */
   paramDatetime(
+    scenario: string,
+    value: Date,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, value, options },
       paramDatetimeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The options parameters.
    */
   responseDatetime(
+    scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<Models.HeaderResponseDatetimeResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, options },
       responseDatetimeOperationSpec
     ) as Promise<Models.HeaderResponseDatetimeResponse>;
   }
@@ -297,78 +347,94 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT"
    * or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The options parameters.
    */
   paramDatetimeRfc1123(
-    options?: coreHttp.OperationOptions
+    scenario: string,
+    options?: Models.HeaderParamDatetimeRfc1123OptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, options },
       paramDatetimeRfc1123OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The options parameters.
    */
   responseDatetimeRfc1123(
+    scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<Models.HeaderResponseDatetimeRfc1123Response> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, options },
       responseDatetimeRfc1123OperationSpec
     ) as Promise<Models.HeaderResponseDatetimeRfc1123Response>;
   }
 
   /**
    * Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param value Send a post request with header values "P123DT22H14M12.011S"
    * @param options The options parameters.
    */
   paramDuration(
+    scenario: string,
+    value: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, value, options },
       paramDurationOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get a response with header values "P123DT22H14M12.011S"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The options parameters.
    */
   responseDuration(
+    scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<Models.HeaderResponseDurationResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, options },
       responseDurationOperationSpec
     ) as Promise<Models.HeaderResponseDurationResponse>;
   }
 
   /**
    * Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param value Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
    * @param options The options parameters.
    */
   paramByte(
+    scenario: string,
+    value: Uint8Array,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, value, options },
       paramByteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get a response with header values "啊齄丂狛狜隣郎隣兀﨩"
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The options parameters.
    */
   responseByte(
+    scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<Models.HeaderResponseByteResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, options },
       responseByteOperationSpec
     ) as Promise<Models.HeaderResponseByteResponse>;
   }
@@ -376,26 +442,30 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario": "null",
    * "value": null
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The options parameters.
    */
   paramEnum(
-    options?: coreHttp.OperationOptions
+    scenario: string,
+    options?: Models.HeaderParamEnumOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, options },
       paramEnumOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get a response with header values "GREY" or null
+   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
    * @param options The options parameters.
    */
   responseEnum(
+    scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<Models.HeaderResponseEnumResponse> {
     return this.client.sendOperationRequest(
-      { options },
+      { scenario, options },
       responseEnumOperationSpec
     ) as Promise<Models.HeaderResponseEnumResponse>;
   }
@@ -426,6 +496,8 @@ const paramExistingKeyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.userAgent],
   serializer
 };
 const responseExistingKeyOperationSpec: coreHttp.OperationSpec = {
@@ -439,6 +511,7 @@ const responseExistingKeyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
   serializer
 };
 const paramProtectedKeyOperationSpec: coreHttp.OperationSpec = {
@@ -450,6 +523,8 @@ const paramProtectedKeyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const responseProtectedKeyOperationSpec: coreHttp.OperationSpec = {
@@ -463,6 +538,7 @@ const responseProtectedKeyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
   serializer
 };
 const paramIntegerOperationSpec: coreHttp.OperationSpec = {
@@ -474,6 +550,8 @@ const paramIntegerOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario, Parameters.value],
   serializer
 };
 const responseIntegerOperationSpec: coreHttp.OperationSpec = {
@@ -487,6 +565,8 @@ const responseIntegerOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario],
   serializer
 };
 const paramLongOperationSpec: coreHttp.OperationSpec = {
@@ -498,6 +578,8 @@ const paramLongOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario, Parameters.value1],
   serializer
 };
 const responseLongOperationSpec: coreHttp.OperationSpec = {
@@ -511,6 +593,8 @@ const responseLongOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario],
   serializer
 };
 const paramFloatOperationSpec: coreHttp.OperationSpec = {
@@ -522,6 +606,8 @@ const paramFloatOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario, Parameters.value2],
   serializer
 };
 const responseFloatOperationSpec: coreHttp.OperationSpec = {
@@ -535,6 +621,8 @@ const responseFloatOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario],
   serializer
 };
 const paramDoubleOperationSpec: coreHttp.OperationSpec = {
@@ -546,6 +634,8 @@ const paramDoubleOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario, Parameters.value3],
   serializer
 };
 const responseDoubleOperationSpec: coreHttp.OperationSpec = {
@@ -559,6 +649,8 @@ const responseDoubleOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario],
   serializer
 };
 const paramBoolOperationSpec: coreHttp.OperationSpec = {
@@ -570,6 +662,8 @@ const paramBoolOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario, Parameters.value4],
   serializer
 };
 const responseBoolOperationSpec: coreHttp.OperationSpec = {
@@ -583,6 +677,8 @@ const responseBoolOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario],
   serializer
 };
 const paramStringOperationSpec: coreHttp.OperationSpec = {
@@ -594,6 +690,8 @@ const paramStringOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario, Parameters.value5],
   serializer
 };
 const responseStringOperationSpec: coreHttp.OperationSpec = {
@@ -607,6 +705,8 @@ const responseStringOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario],
   serializer
 };
 const paramDateOperationSpec: coreHttp.OperationSpec = {
@@ -618,6 +718,8 @@ const paramDateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario, Parameters.value6],
   serializer
 };
 const responseDateOperationSpec: coreHttp.OperationSpec = {
@@ -631,6 +733,8 @@ const responseDateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario],
   serializer
 };
 const paramDatetimeOperationSpec: coreHttp.OperationSpec = {
@@ -642,6 +746,8 @@ const paramDatetimeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario, Parameters.value7],
   serializer
 };
 const responseDatetimeOperationSpec: coreHttp.OperationSpec = {
@@ -655,6 +761,8 @@ const responseDatetimeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario],
   serializer
 };
 const paramDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
@@ -666,6 +774,8 @@ const paramDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario, Parameters.value8],
   serializer
 };
 const responseDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
@@ -679,6 +789,8 @@ const responseDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario],
   serializer
 };
 const paramDurationOperationSpec: coreHttp.OperationSpec = {
@@ -690,6 +802,8 @@ const paramDurationOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario, Parameters.value9],
   serializer
 };
 const responseDurationOperationSpec: coreHttp.OperationSpec = {
@@ -703,6 +817,8 @@ const responseDurationOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario],
   serializer
 };
 const paramByteOperationSpec: coreHttp.OperationSpec = {
@@ -714,6 +830,8 @@ const paramByteOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario, Parameters.value10],
   serializer
 };
 const responseByteOperationSpec: coreHttp.OperationSpec = {
@@ -727,6 +845,8 @@ const responseByteOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario],
   serializer
 };
 const paramEnumOperationSpec: coreHttp.OperationSpec = {
@@ -738,6 +858,8 @@ const paramEnumOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario, Parameters.value11],
   serializer
 };
 const responseEnumOperationSpec: coreHttp.OperationSpec = {
@@ -751,6 +873,8 @@ const responseEnumOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.scenario],
   serializer
 };
 const customRequestIdOperationSpec: coreHttp.OperationSpec = {
@@ -763,5 +887,6 @@ const customRequestIdOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
+  urlParameters: [Parameters.$host],
   serializer
 };

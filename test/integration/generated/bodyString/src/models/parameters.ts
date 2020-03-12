@@ -9,6 +9,18 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 
+export const $host: coreHttp.OperationURLParameter = {
+  parameterPath: "$host",
+  mapper: {
+    serializedName: "$host",
+    required: true,
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
 export const stringBody: coreHttp.OperationParameter = {
   parameterPath: ["options", "stringBody"],
   mapper: {
@@ -58,7 +70,7 @@ export const stringBody3: coreHttp.OperationParameter = {
   }
 };
 
-export const stringBody: coreHttp.OperationParameter = {
+export const stringBody4: coreHttp.OperationParameter = {
   parameterPath: "stringBody",
   mapper: {
     serializedName: "stringBody",
@@ -69,7 +81,7 @@ export const stringBody: coreHttp.OperationParameter = {
   }
 };
 
-export const stringBody1: coreHttp.OperationParameter = {
+export const stringBody5: coreHttp.OperationParameter = {
   parameterPath: "stringBody",
   mapper: {
     serializedName: "stringBody",

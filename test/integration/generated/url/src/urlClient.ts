@@ -14,10 +14,14 @@ import { UrlClientContext } from "./urlClientContext";
 class UrlClient extends UrlClientContext {
   /**
    * Initializes a new instance of the UrlClient class.
+   * @param globalStringPath A string value 'globalItemStringPath' that appears in the path
    * @param options The parameter options
    */
-  constructor(options?: Models.UrlClientOptionalParams) {
-    super(options);
+  constructor(
+    globalStringPath: string,
+    options?: Models.UrlClientOptionalParams
+  ) {
+    super(globalStringPath, options);
     this.paths = new operations.Paths(this);
     this.queries = new operations.Queries(this);
     this.pathItems = new operations.PathItems(this);

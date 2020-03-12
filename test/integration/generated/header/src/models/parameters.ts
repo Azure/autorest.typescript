@@ -8,3 +8,178 @@
 
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
+
+export const $host: coreHttp.OperationURLParameter = {
+  parameterPath: "$host",
+  mapper: {
+    serializedName: "$host",
+    required: true,
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
+export const userAgent: coreHttp.OperationParameter = {
+  parameterPath: "userAgent",
+  mapper: {
+    serializedName: "User-Agent",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const contentType: coreHttp.OperationParameter = {
+  parameterPath: "contentType",
+  mapper: {
+    serializedName: "Content-Type",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const scenario: coreHttp.OperationParameter = {
+  parameterPath: "scenario",
+  mapper: {
+    serializedName: "scenario",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const value: coreHttp.OperationParameter = {
+  parameterPath: "value",
+  mapper: {
+    serializedName: "value",
+    required: true,
+    type: {
+      name: "Number"
+    }
+  }
+};
+
+export const value1: coreHttp.OperationParameter = {
+  parameterPath: "value",
+  mapper: {
+    serializedName: "value",
+    required: true,
+    type: {
+      name: "Number"
+    }
+  }
+};
+
+export const value2: coreHttp.OperationParameter = {
+  parameterPath: "value",
+  mapper: {
+    serializedName: "value",
+    required: true,
+    type: {
+      name: "Number"
+    }
+  }
+};
+
+export const value3: coreHttp.OperationParameter = {
+  parameterPath: "value",
+  mapper: {
+    serializedName: "value",
+    required: true,
+    type: {
+      name: "Number"
+    }
+  }
+};
+
+export const value4: coreHttp.OperationParameter = {
+  parameterPath: "value",
+  mapper: {
+    serializedName: "value",
+    required: true,
+    type: {
+      name: "Boolean"
+    }
+  }
+};
+
+export const value5: coreHttp.OperationParameter = {
+  parameterPath: ["options", "value"],
+  mapper: {
+    serializedName: "value",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const value6: coreHttp.OperationParameter = {
+  parameterPath: "value",
+  mapper: {
+    serializedName: "value",
+    required: true,
+    type: {
+      name: "Date"
+    }
+  }
+};
+
+export const value7: coreHttp.OperationParameter = {
+  parameterPath: "value",
+  mapper: {
+    serializedName: "value",
+    required: true,
+    type: {
+      name: "DateTime"
+    }
+  }
+};
+
+export const value8: coreHttp.OperationParameter = {
+  parameterPath: ["options", "value"],
+  mapper: {
+    serializedName: "value",
+    type: {
+      name: "DateTimeRfc1123"
+    }
+  }
+};
+
+export const value9: coreHttp.OperationParameter = {
+  parameterPath: "value",
+  mapper: {
+    serializedName: "value",
+    required: true,
+    type: {
+      name: "TimeSpan"
+    }
+  }
+};
+
+export const value10: coreHttp.OperationParameter = {
+  parameterPath: "value",
+  mapper: {
+    serializedName: "value",
+    required: true,
+    type: {
+      name: "ByteArray"
+    }
+  }
+};
+
+export const value11: coreHttp.OperationParameter = {
+  parameterPath: ["options", "value"],
+  mapper: {
+    serializedName: "value",
+    type: {
+      name: "Enum",
+      allowedValues: ["White", "black", "GREY"]
+    }
+  }
+};
