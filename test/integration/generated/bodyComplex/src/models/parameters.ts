@@ -21,6 +21,11 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
+export const complexBody: coreHttp.OperationParameter = {
+  parameterPath: "complexBody",
+  mapper: Mappers.Basic
+};
+
 export const apiVersion: coreHttp.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
@@ -31,11 +36,6 @@ export const apiVersion: coreHttp.OperationQueryParameter = {
       name: "String"
     }
   }
-};
-
-export const complexBody: coreHttp.OperationParameter = {
-  parameterPath: "complexBody",
-  mapper: Mappers.Basic
 };
 
 export const complexBody1: coreHttp.OperationParameter = {

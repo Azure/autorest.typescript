@@ -24,7 +24,7 @@ export const $host: coreHttp.OperationURLParameter = {
 export const stringBody: coreHttp.OperationParameter = {
   parameterPath: ["options", "stringBody"],
   mapper: {
-    serializedName: "stringBody",
+    serializedName: "StringBody",
     isConstant: true,
     type: {
       name: "String"
@@ -36,7 +36,7 @@ export const stringBody1: coreHttp.OperationParameter = {
   parameterPath: "stringBody",
   mapper: {
     defaultValue: "",
-    serializedName: "stringBody",
+    serializedName: "StringBody",
     isConstant: true,
     type: {
       name: "String"
@@ -49,7 +49,7 @@ export const stringBody2: coreHttp.OperationParameter = {
   mapper: {
     defaultValue:
       "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€",
-    serializedName: "stringBody",
+    serializedName: "StringBody",
     isConstant: true,
     type: {
       name: "String"
@@ -62,7 +62,7 @@ export const stringBody3: coreHttp.OperationParameter = {
   mapper: {
     defaultValue:
       "    Now is the time for all good men to come to the aid of their country    ",
-    serializedName: "stringBody",
+    serializedName: "StringBody",
     isConstant: true,
     type: {
       name: "String"

@@ -82,7 +82,7 @@ function addPageableMethods(codeModel: CodeModel) {
 
       // Since this is a brand new operation, the nextLink will be a partial or absolute url.
       const nextLinkRequestProtocol =
-        nextLinkMethod.request.protocol.http ?? new Protocol();
+        nextLinkMethod.requests?.[0].protocol.http ?? new Protocol();
       nextLinkRequestProtocol.path = "{nextLink}";
 
       // Create the nextLink parameter.
@@ -108,7 +108,7 @@ function addPageableMethods(codeModel: CodeModel) {
           }
         }
       );
-      nextLinkMethod.request.addParameter(nextLinkParameter);
+      nextLinkMethod.requests?.[0].addParameter(nextLinkParameter);
 
       operationGroup.addOperation(nextLinkMethod);
     }

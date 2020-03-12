@@ -9,7 +9,8 @@ import {
   Schema,
   ImplementationLocation,
   SerializationStyle,
-  ConstantSchema
+  ConstantSchema,
+  Request
 } from "@azure-tools/codemodel";
 import { QueryCollectionFormat } from "@azure/core-http";
 import { getLanguageMetadata } from "../utils/languageHelpers";
@@ -110,10 +111,23 @@ const extractOperationParameters = (codeModel: CodeModel) =>
         (operations, operation) => {
           const opName = getLanguageMetadata(operation.language).name;
           const operationName = `${groupName}_${opName}`.toLowerCase();
+
+          // Look for request in old 'request' property if new 'requests' doesn't exist
+          const request: Request = operation.requests
+            ? operation.requests[0]
+            : (<any>operation).request;
+          if (request === undefined) {
+            throw new Error(
+              `No request object was found for operation: ${operationName}`
+            );
+          }
           const operationParams: OperationParameterDetails[] = (
-            operation.request.parameters || []
+            operation.parameters || []
           ).map(p => ({ parameter: p, operationName }));
-          return [...operations, ...operationParams];
+          const requestParams: OperationParameterDetails[] = (
+            request.parameters || []
+          ).map(p => ({ parameter: p, operationName }));
+          return [...operations, ...requestParams, ...operationParams];
         },
         []
       )
@@ -156,12 +170,12 @@ export function populateOperationParameters(
       `Couldn't get parameter serializedName for operation: ${operationName}`
     );
   }
-  const sameNameParams = operationParameters.filter(
-    p => p.serializedName === parameterSerializedName
-  );
+
+  const name = normalizeName(parameterSerializedName, NameType.Property);
+
+  const sameNameParams = operationParameters.filter(p => p.name === name);
 
   if (!sameNameParams.length) {
-    const name = normalizeName(parameterSerializedName, NameType.Property);
     const collectionFormat = getCollectionFormat(parameter);
     const typeDetails = getTypeForSchema(parameter.schema);
     const paramDetails: ParameterDetails = {
@@ -299,8 +313,8 @@ function getCollectionFormat(parameter: Parameter): string | undefined {
 function getParameterName(parameter: Parameter) {
   const fromExtension =
     parameter.extensions && parameter.extensions["x-ms-requestBody-name"];
-  const parameterSerializedName = getLanguageMetadata(parameter.language)
-    .serializedName;
+  const metadata = getLanguageMetadata(parameter.language);
+  const parameterSerializedName = metadata.serializedName || metadata.name;
 
   return fromExtension || parameterSerializedName;
 }

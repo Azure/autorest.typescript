@@ -125,16 +125,18 @@ describe("OperationTransforms", () => {
         parameters: Parameter[] = []
       ) => {
         return new Operation("", "", {
-          request: {
-            parameters,
-            protocol: {
-              http: {
-                path: operationPath,
-                method: "get",
-                url: "{$host}"
+          requests: [
+            {
+              parameters,
+              protocol: {
+                http: {
+                  path: operationPath,
+                  method: "get",
+                  url: "{$host}"
+                }
               }
             }
-          },
+          ],
           responses: [
             responseSchema ||
               new SchemaResponse(new StringSchema("string", ""), {
