@@ -42,7 +42,8 @@ export function transformOperationSpec(
   // Extract protocol information
   const operationFullName = operationDetails.fullName;
   const isXML = operationDetails.mediaTypes.has(KnownMediaType.Xml);
-  const httpInfo = extractHttpDetails(operationDetails.request);
+  // TODO: Support multiple requests
+  const httpInfo = extractHttpDetails(operationDetails.requests[0]);
   const {
     requestBody,
     queryParameters,
@@ -248,11 +249,11 @@ export async function transformOperation(
     );
   }
 
-  const request = transformOperationRequest(codeModelRequest);
+  const requests = [transformOperationRequest(codeModelRequest)];
   const responses = responsesAndErrors.map(response =>
     transformOperationResponse(response, operationFullName)
   );
-  const mediaTypes = await getOperationMediaTypes(request, responses);
+  const mediaTypes = await getOperationMediaTypes(requests, responses);
 
   return {
     name,
@@ -262,7 +263,7 @@ export async function transformOperation(
       ? operation.apiVersions.map(v => v.version)
       : [],
     description: metadata.description,
-    request,
+    requests,
     responses,
     mediaTypes,
     pagination
@@ -311,14 +312,12 @@ function getOperationGroupMediaTypes(operationDetails: OperationDetails[]) {
 }
 
 async function getOperationMediaTypes(
-  { mediaType }: OperationRequestDetails,
+  requests: OperationRequestDetails[],
   responses: OperationResponseDetails[]
 ) {
   const mediaTypes = new Set<KnownMediaType>();
-  if (mediaType) {
-    mediaTypes.add(mediaType);
-  }
 
+  requests.forEach(r => r.mediaType && mediaTypes.add(r.mediaType));
   responses.forEach(r => r.mediaType && mediaTypes.add(r.mediaType));
 
   return mediaTypes;

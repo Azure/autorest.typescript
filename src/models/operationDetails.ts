@@ -55,7 +55,7 @@ export interface OperationDetails {
   fullName: string;
   description: string;
   apiVersions: string[];
-  request: OperationRequestDetails;
+  requests: OperationRequestDetails[];
   responses: OperationResponseDetails[];
   typeDetails: TypeDetails;
   mediaTypes: Set<KnownMediaType>;

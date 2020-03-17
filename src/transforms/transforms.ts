@@ -7,7 +7,8 @@ import { UnionDetails } from "../models/unionDetails";
 import {
   CodeModel,
   ChoiceSchema,
-  SealedChoiceSchema
+  SealedChoiceSchema,
+  SchemaType
 } from "@azure-tools/codemodel";
 import {
   normalizeName,
@@ -46,7 +47,7 @@ export function transformChoice(
     description: `Defines values for ${metadata.name}.`,
     serializedName: metadata.name,
     values: choice.choices.map(c =>
-      getStringForValue(c.value, choice.choiceType.type)
+      getStringForValue(c.value, choice?.choiceType?.type ?? SchemaType.String)
     )
   };
 }
