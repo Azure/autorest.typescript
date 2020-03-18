@@ -9,7 +9,7 @@
         "unit-test": "mocha -r ts-node/register './test/unit/**/*spec.ts'",
         "integration-test": "start-server-and-test start-test-server:v1 http://localhost:3000 generate-and-test",
         "integration-test:new": "npm-run-all start-test-server generate-and-test integration-test:alone stop-test-server",
-        "generate-and-test": "npm-run-all -s build -p generate-bodystring generate-bodycomplex generate-url generate-customurl generate-xmlservice generate-header generate-paging -s integration-test:alone",
+        "generate-and-test": "npm-run-all -s build -p generate-bodystring generate-bodycomplex generate-url generate-customurl generate-xmlservice generate-header generate-paging generate-mediatypes -s integration-test:alone",
         "integration-test:alone": "mocha -r ts-node/register './test/integration/**/*spec.ts'",
         "start-test-server": "ts-node test/utils/start-server.ts",
         "start-test-server:v1": "start-autorest-express node",
@@ -21,7 +21,9 @@
         "generate-customurl": "autorest --add-credentials=false --typescript --output-folder=./test/integration/generated/customUrl --use=. --title=CustomUrlClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/custom-baseUrl.json --package-name=custom-url --package-version=1.0.0-preview1",
         "generate-header": "autorest --add-credentials=false --typescript --output-folder=./test/integration/generated/header --use=. --title=HeaderClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/header.json --package-name=header --package-version=1.0.0-preview1",
         "generate-xmlservice": "autorest --add-credentials=false --typescript --output-folder=./test/integration/generated/xmlservice --use=. --title=XmlServiceClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/xml-service.json --package-name=xmlservice --package-version=1.0.0-preview1",
-        "generate-paging": "autorest --typescript --add-credentials=false --output-folder=./test/integration/generated/paging --use=. --title=PagingClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/paging.json --package-name=pagingservice --package-version=1.0.0-preview1"
+        "generate-paging": "autorest --typescript --add-credentials=false --output-folder=./test/integration/generated/paging --use=. --title=PagingClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/paging.json --package-name=pagingservice --package-version=1.0.0-preview1",
+        "generate-report": "autorest --typescript --add-credentials=false --output-folder=./test/integration/generated/report --use=. --title=ReportClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/report.json --package-name=zzzReport --package-version=1.0.0-preview1",
+        "generate-mediatypes": "autorest --typescript --add-credentials=false --output-folder=./test/integration/generated/mediaTypes --use=. --title=MediaTypesClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/media_types.json --package-name=media-types-service --package-version=1.0.0-preview1"
     },
     "files": [
         "dist/**",
@@ -31,9 +33,9 @@
     "dependencies": {
         "autorest": "^3.0.6187",
         "@azure-tools/async-io": "3.0.203",
-        "@azure-tools/autorest-extension-base": "3.1.206",
-        "@azure-tools/codegen": "2.1.218",
-        "@azure-tools/codemodel": "3.3.295",
+        "@azure-tools/autorest-extension-base": "3.1.237",
+        "@azure-tools/codegen": "2.4.259",
+        "@azure-tools/codemodel": "3.4.302",
         "@azure-tools/linq": "3.1.206",
         "@azure-tools/openapi": "3.0.209",
         "@azure/core-http": "^1.0.0",
@@ -48,7 +50,7 @@
     "devDependencies": {
         "@autorest/test-server": "^3.0.26",
         "@azure/abort-controller": "^1.0.1",
-        "@microsoft.azure/autorest.testserver": "^2.10.9",
+        "@microsoft.azure/autorest.testserver": "^2.10.10",
         "@types/chai": "^4.2.8",
         "@types/express": "^4.17.2",
         "@types/js-yaml": "3.12.1",

@@ -36,6 +36,9 @@ export function getTypeForSchema(schema: Schema): TypeDetails {
     case SchemaType.Boolean:
       typeName = "boolean";
       break;
+    case SchemaType.Binary:
+      typeName = "coreHttp.HttpRequestBody";
+      break;
     case SchemaType.ByteArray:
       typeName = "Uint8Array";
       break;

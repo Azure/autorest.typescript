@@ -28,6 +28,7 @@ import {
 } from "../models/operationDetails";
 import { ParameterDetails } from "../models/parameterDetails";
 import { ImplementationLocation } from "@azure-tools/codemodel";
+import { KnownMediaType } from "@azure-tools/codegen";
 
 export function generateModels(clientDetails: ClientDetails, project: Project) {
   const modelsIndexFile = project.createSourceFile(
@@ -63,7 +64,7 @@ const writeClientModels = (
     "",
     clientOptionalParams,
     modelsIndexFile,
-    "coreHttp.ServiceClientOptions"
+    { baseClass: "coreHttp.ServiceClientOptions" }
   );
 };
 
@@ -89,7 +90,8 @@ const writeOperationModels = (
         operationGroupName,
         operationName,
         optionalParams,
-        modelsIndexFile
+        modelsIndexFile,
+        { mediaTypes: operation.mediaTypes }
       );
       writeResponseTypes(operation, modelsIndexFile);
     });
@@ -358,30 +360,67 @@ function writeUniontypes({ objects }: ClientDetails, modelsFile: SourceFile) {
     });
 }
 
+interface WriteOptionalParametersOptions {
+  baseClass?: string;
+  mediaTypes?: Set<KnownMediaType>;
+}
+
 function writeOptionalParameters(
   operationGroupName: string,
   operationName: string,
   optionalParams: ParameterDetails[],
   modelsIndexFile: SourceFile,
-  baseClass?: string
+  { baseClass, mediaTypes }: WriteOptionalParametersOptions
 ) {
   if (!optionalParams || !optionalParams.length) {
     return;
   }
 
-  modelsIndexFile.addInterface({
-    name: `${operationGroupName}${operationName}OptionalParams`,
-    docs: ["Optional parameters."],
-    isExported: true,
-    extends: [baseClass || "coreHttp.OperationOptions"],
-    properties: optionalParams.map<PropertySignatureStructure>(p => ({
-      name: p.name,
-      hasQuestionToken: true,
-      type: p.typeDetails.typeName,
-      docs: p.description ? [p.description] : undefined,
-      kind: StructureKind.PropertySignature
-    }))
-  });
+  const mediaTypesCount = mediaTypes?.size ?? 0;
+  if (mediaTypesCount > 1) {
+    // Create an optional params for each media type.
+    const interfaceNames: string[] = [];
+    for (const mediaType of mediaTypes!.values()) {
+      const name = `${operationGroupName}${operationName}$${mediaType}OptionalParams`;
+      interfaceNames.push(name);
+      modelsIndexFile.addInterface({
+        name: name,
+        docs: ["Optional parameters."],
+        isExported: true,
+        extends: [baseClass || "coreHttp.OperationOptions"],
+        properties: optionalParams
+          .filter(p => p.targetMediaType === mediaType)
+          .map<PropertySignatureStructure>(p => ({
+            name: p.name,
+            hasQuestionToken: true,
+            type: p.typeDetails.typeName,
+            docs: p.description ? [p.description] : undefined,
+            kind: StructureKind.PropertySignature
+          }))
+      });
+    }
+
+    modelsIndexFile.addTypeAlias({
+      name: `${operationGroupName}${operationName}OptionalParams`,
+      docs: ["Optional parameters."],
+      isExported: true,
+      type: interfaceNames.join(" | ")
+    });
+  } else {
+    modelsIndexFile.addInterface({
+      name: `${operationGroupName}${operationName}OptionalParams`,
+      docs: ["Optional parameters."],
+      isExported: true,
+      extends: [baseClass || "coreHttp.OperationOptions"],
+      properties: optionalParams.map<PropertySignatureStructure>(p => ({
+        name: p.name,
+        hasQuestionToken: true,
+        type: p.typeDetails.typeName,
+        docs: p.description ? [p.description] : undefined,
+        kind: StructureKind.PropertySignature
+      }))
+    });
+  }
 }
 
 /**

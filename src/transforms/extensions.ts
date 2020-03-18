@@ -21,6 +21,49 @@ import { getLanguageMetadata } from "../utils/languageHelpers";
  */
 export function normalizeModelWithExtensions(codeModel: CodeModel) {
   addPageableMethods(codeModel);
+  normalizeMultipleContentTypes(codeModel);
+}
+
+/**
+ * This updates parameters that should be serialized as a Content-Type header.
+ * This logic should be able to be removed once modelerfour includes
+ * the serializedName and http protocol details:
+ * https://github.com/Azure/autorest.modelerfour/issues/207
+ * @param codeModel
+ */
+function normalizeMultipleContentTypes(codeModel: CodeModel) {
+  const operationGroups = codeModel.operationGroups;
+  for (const operationGroup of operationGroups) {
+    const operations = operationGroup.operations.slice();
+
+    for (const operation of operations) {
+      const requests = operation.requests;
+      if (!requests) {
+        continue;
+      }
+
+      for (const request of requests) {
+        const parameters = request.parameters;
+        if (!parameters) {
+          continue;
+        }
+
+        for (const parameter of parameters) {
+          const parameterMetadata = getLanguageMetadata(parameter.language);
+          if (
+            !parameter.protocol.http &&
+            !parameterMetadata.serializedName &&
+            parameterMetadata.name.toLowerCase() === "contenttype"
+          ) {
+            parameterMetadata.serializedName = "Content-Type";
+            const http = new Protocol();
+            http.in = ParameterLocation.Header;
+            parameter.protocol.http = http;
+          }
+        }
+      }
+    }
+  }
 }
 
 /**

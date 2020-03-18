@@ -101,6 +101,7 @@ export function transformMapper({ schema, options }: MapperInput) {
     transformChoiceMapper,
     transformPrimitiveMapper,
     transformByteArrayMapper,
+    transformBinaryMapper,
     transformObjectMapper,
     transformArrayMapper,
     transformDictionaryMapper
@@ -369,6 +370,30 @@ function transformArrayMapper(pipelineValue: PipelineValue) {
     {
       name: MapperType.Sequence,
       element: getMapperOrRef(elementSchema)
+    },
+    options
+  );
+
+  return {
+    schema,
+    mapper,
+    isHandled: true
+  };
+}
+
+function transformBinaryMapper(pipelineValue: PipelineValue) {
+  const { schema, options } = pipelineValue;
+
+  if (!isSchemaType([SchemaType.Binary], schema)) {
+    return pipelineValue;
+  }
+
+  const schemaType = MapperType.Stream;
+
+  const mapper = buildMapper(
+    schema,
+    {
+      name: schemaType
     },
     options
   );

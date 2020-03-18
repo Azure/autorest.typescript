@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { HttpMethod } from "@azure-tools/codemodel";
+import { HttpMethod, Parameter } from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { Mapper } from "@azure/core-http";
 import { ParameterDetails } from "./parameterDetails";
@@ -14,6 +14,7 @@ export interface OperationRequestDetails {
   path: string;
   method: HttpMethod;
   mediaType?: KnownMediaType;
+  parameters?: Parameter[];
 }
 
 export type OperationResponseMapper = Mapper | string;
@@ -55,7 +56,7 @@ export interface OperationDetails {
   fullName: string;
   description: string;
   apiVersions: string[];
-  request: OperationRequestDetails;
+  requests: OperationRequestDetails[];
   responses: OperationResponseDetails[];
   typeDetails: TypeDetails;
   mediaTypes: Set<KnownMediaType>;
@@ -66,6 +67,10 @@ export interface OperationDetails {
  * Details of an operation spec, transformed from OperationSpec.
  */
 export interface OperationSpecDetails {
+  /**
+   * The name that the OperationSpec will have once generated.
+   */
+  name: string;
   path: string;
   httpMethod: string;
   responses: OperationSpecResponses;
