@@ -35,6 +35,11 @@ export const input: coreHttp.OperationParameter = {
   }
 };
 
+export const input1: coreHttp.OperationParameter = {
+  parameterPath: ["options", "input"],
+  mapper: Mappers.SourcePath
+};
+
 export const $host: coreHttp.OperationURLParameter = {
   parameterPath: "$host",
   mapper: {

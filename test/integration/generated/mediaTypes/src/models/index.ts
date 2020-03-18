@@ -30,7 +30,7 @@ export type ContentType =
 /**
  * Optional parameters.
  */
-export interface MediaTypesClientAnalyzeBodyOptionalParams
+export interface MediaTypesClientAnalyzeBody$binaryOptionalParams
   extends coreHttp.OperationOptions {
   /**
    * Upload file type
@@ -41,6 +41,24 @@ export interface MediaTypesClientAnalyzeBodyOptionalParams
    */
   input?: coreHttp.HttpRequestBody;
 }
+
+/**
+ * Optional parameters.
+ */
+export interface MediaTypesClientAnalyzeBody$jsonOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Input parameter.
+   */
+  input?: SourcePath;
+}
+
+/**
+ * Optional parameters.
+ */
+export type MediaTypesClientAnalyzeBodyOptionalParams =
+  | MediaTypesClientAnalyzeBody$binaryOptionalParams
+  | MediaTypesClientAnalyzeBody$jsonOptionalParams;
 
 /**
  * Contains response data for the analyzeBody operation.
