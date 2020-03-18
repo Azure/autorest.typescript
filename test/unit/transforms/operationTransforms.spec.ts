@@ -174,7 +174,7 @@ describe("OperationTransforms", () => {
           mockOperation,
           "MockOperationGroup"
         );
-        const operationSpec = transformOperationSpec(operationDetails, []);
+        const operationSpec = transformOperationSpec(operationDetails, [])[0];
         checkHttpMethodAndPath(operationSpec);
       });
 
@@ -187,7 +187,7 @@ describe("OperationTransforms", () => {
         const operationSpec = transformOperationSpec(
           await operationDetails,
           []
-        );
+        )[0];
         checkHttpMethodAndPath(operationSpec);
         assert.notEqual(operationSpec.responses[200], undefined);
       });
@@ -224,7 +224,7 @@ describe("OperationTransforms", () => {
             schemaType: SchemaType.String,
             implementationLocation: ImplementationLocation.Method
           }
-        ]);
+        ])[0];
         checkHttpMethodAndPath(operationSpec);
         assert.deepEqual(operationSpec.requestBody!.nameRef, "MockOperation");
       });
@@ -236,7 +236,7 @@ describe("OperationTransforms", () => {
           mockOperation,
           "MockOperationGroup"
         );
-        const operationSpec = transformOperationSpec(operationDetails, []);
+        const operationSpec = transformOperationSpec(operationDetails, [])[0];
         checkHttpMethodAndPath(operationSpec);
         const okResponse = operationSpec.responses[200];
         assert.deepEqual((okResponse.bodyMapper as Mapper).type, {
@@ -255,7 +255,7 @@ describe("OperationTransforms", () => {
           mockOperation,
           "MockOperationGroup"
         );
-        const operationSpec = transformOperationSpec(operationDetails, []);
+        const operationSpec = transformOperationSpec(operationDetails, [])[0];
         checkHttpMethodAndPath(operationSpec);
         const okResponse = operationSpec.responses[200];
         assert.deepEqual((okResponse.bodyMapper as Mapper).type, {

@@ -47,7 +47,9 @@ export function transformOperationSpec(
 
   const hasMultipleRequests = operationDetails.requests.length > 1;
   for (const request of operationDetails.requests) {
-    const isXml = request.mediaType === KnownMediaType.Xml;
+    const isXML = request.mediaType
+      ? request.mediaType === KnownMediaType.Xml
+      : operationDetails.mediaTypes.has(KnownMediaType.Xml);
     const httpInfo = extractHttpDetails(request);
     const {
       requestBody,
@@ -66,7 +68,7 @@ export function transformOperationSpec(
       ...(queryParameters && queryParameters.length && { queryParameters }),
       ...(urlParameters && urlParameters.length && { urlParameters }),
       ...(headerParameters && headerParameters.length && { headerParameters }),
-      ...(isXml && { isXml }),
+      ...(isXML && { isXML }),
       name
     });
   }
