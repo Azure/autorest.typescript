@@ -31,6 +31,11 @@ import { KnownMediaType } from "@azure-tools/codegen";
 interface OperationParameterDetails {
   parameter: Parameter;
   operationName: string;
+  /**
+   * Only specified when an operation has multiple requests.
+   * This is used to identify which request a parameter belongs to.
+   */
+  targetMediaType?: KnownMediaType;
 }
 
 const buildCredentialsParameter = (): ParameterDetails => ({
@@ -85,7 +90,8 @@ export function transformParameters(
       p.parameter,
       parameters,
       p.operationName,
-      hasXmlMetadata
+      hasXmlMetadata,
+      p.targetMediaType
     )
   );
 
@@ -113,10 +119,8 @@ const extractOperationParameters = (codeModel: CodeModel) =>
           const operationName = `${groupName}_${opName}`.toLowerCase();
 
           // Look for request in old 'request' property if new 'requests' doesn't exist
-          const request: Request = operation.requests
-            ? operation.requests[0]
-            : (<any>operation).request;
-          if (request === undefined) {
+          const requests = operation.requests;
+          if (requests === undefined) {
             throw new Error(
               `No request object was found for operation: ${operationName}`
             );
@@ -124,9 +128,23 @@ const extractOperationParameters = (codeModel: CodeModel) =>
           const operationParams: OperationParameterDetails[] = (
             operation.parameters || []
           ).map(p => ({ parameter: p, operationName }));
-          const requestParams: OperationParameterDetails[] = (
-            request.parameters || []
-          ).map(p => ({ parameter: p, operationName }));
+
+          // Operations may have multiple requests, each with their own set of parameters.
+          // This is known to be the case when an operation can consume multiple media types.
+          // We need to ensure that the parameters from each request (method overload) is accounted for.
+          const recordMediaType = requests.length > 1;
+          const requestParams: OperationParameterDetails[] = [];
+          requests.forEach(request => {
+            request.parameters?.forEach(parameter => {
+              requestParams.push({
+                operationName,
+                parameter,
+                targetMediaType: recordMediaType
+                  ? request.protocol.http?.knownMediaType
+                  : undefined
+              });
+            });
+          });
           return [...operations, ...requestParams, ...operationParams];
         },
         []
@@ -160,7 +178,8 @@ export function populateOperationParameters(
   parameter: Parameter,
   operationParameters: ParameterDetails[],
   operationName: string,
-  hasXmlMetadata: boolean
+  hasXmlMetadata: boolean,
+  targetMediaType?: KnownMediaType
 ): void {
   const parameterSerializedName = getParameterName(parameter);
   const description = getLanguageMetadata(parameter.language).description;
@@ -200,7 +219,8 @@ export function populateOperationParameters(
       implementationLocation: parameter.implementation,
       typeDetails,
       defaultValue: getDefaultValue(parameter),
-      skipEncoding: getSkipEncoding(parameter)
+      skipEncoding: getSkipEncoding(parameter),
+      targetMediaType
     };
     operationParameters.push(paramDetails);
 
@@ -214,7 +234,8 @@ export function populateOperationParameters(
     parameterSerializedName,
     sameNameParams,
     operationName,
-    hasXmlMetadata
+    hasXmlMetadata,
+    targetMediaType
   );
 }
 
@@ -325,7 +346,8 @@ export function disambiguateParameter(
   serializedName: string,
   sameNameParams: ParameterDetails[],
   operationName: string,
-  hasXmlMetadata: boolean
+  hasXmlMetadata: boolean,
+  targetMediaType?: KnownMediaType
 ) {
   const existingParam = sameNameParams.find(p =>
     isEqual(p.parameter, parameter)
@@ -368,7 +390,8 @@ export function disambiguateParameter(
       collectionFormat,
       implementationLocation: parameter.implementation,
       defaultValue: getDefaultValue(parameter),
-      skipEncoding: getSkipEncoding(parameter)
+      skipEncoding: getSkipEncoding(parameter),
+      targetMediaType
     });
   }
 }

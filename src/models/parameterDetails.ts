@@ -9,6 +9,7 @@ import {
 } from "@azure-tools/codemodel";
 import { Mapper } from "@azure/core-http";
 import { TypeDetails } from "./modelDetails";
+import { KnownMediaType } from "@azure-tools/codegen";
 
 export interface ParameterDetails {
   nameRef: string;
@@ -29,4 +30,9 @@ export interface ParameterDetails {
   typeDetails: TypeDetails;
   skipEncoding?: boolean;
   isSynthetic?: boolean;
+  /**
+   * Only specified when an operation has multiple requests.
+   * This is used to identify which request a parameter belongs to.
+   */
+  targetMediaType?: KnownMediaType;
 }

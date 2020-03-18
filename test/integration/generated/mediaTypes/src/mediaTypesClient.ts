@@ -28,17 +28,28 @@ class MediaTypesClient extends MediaTypesClientContext {
   analyzeBody(
     options?: Models.MediaTypesClientAnalyzeBodyOptionalParams
   ): Promise<Models.MediaTypesClientAnalyzeBodyResponse> {
-    return this.sendOperationRequest(
-      { options },
-      analyzeBodyOperationSpec
-    ) as Promise<Models.MediaTypesClientAnalyzeBodyResponse>;
+    let operationSpec: coreHttp.OperationSpec;
+    if (
+      options &&
+      "contentType" in options &&
+      ["application/pdf", "image/jpeg", "image/png", "image/tiff"].indexOf(
+        options.contentType ?? ""
+      ) > -1
+    ) {
+      operationSpec = analyzeBody$binaryOperationSpec;
+    } else {
+      operationSpec = analyzeBody$jsonOperationSpec;
+    }
+    return this.sendOperationRequest({ options }, operationSpec) as Promise<
+      Models.MediaTypesClientAnalyzeBodyResponse
+    >;
   }
 }
 // Operation Specifications
 
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const analyzeBodyOperationSpec: coreHttp.OperationSpec = {
+const analyzeBody$binaryOperationSpec: coreHttp.OperationSpec = {
   path: "/mediatypes/analyze",
   httpMethod: "POST",
   responses: {
@@ -49,6 +60,18 @@ const analyzeBodyOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.input,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  serializer
+};
+const analyzeBody$jsonOperationSpec: coreHttp.OperationSpec = {
+  path: "/mediatypes/analyze",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: { type: { name: "String" }, serializedName: "String" }
+    }
+  },
+  requestBody: Parameters.input1,
+  urlParameters: [Parameters.$host],
   serializer
 };
 

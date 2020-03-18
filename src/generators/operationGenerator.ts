@@ -9,7 +9,8 @@ import {
   ClassDeclaration,
   ParameterDeclarationStructure,
   OptionalKind,
-  ExportDeclarationStructure
+  ExportDeclarationStructure,
+  MethodDeclaration
 } from "ts-morph";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
@@ -18,7 +19,8 @@ import {
   OperationGroupDetails,
   OperationSpecDetails,
   OperationDetails,
-  OperationResponseMapper
+  OperationResponseMapper,
+  OperationRequestDetails
 } from "../models/operationDetails";
 import { isString } from "util";
 import { ParameterDetails } from "../models/parameterDetails";
@@ -29,6 +31,13 @@ import {
 import { PropertyKind } from "../models/modelDetails";
 import { wrapString } from "./utils/stringUtils";
 import { KnownMediaType } from "@azure-tools/codegen";
+import {
+  SchemaType,
+  ParameterLocation,
+  ChoiceSchema,
+  SealedChoiceSchema
+} from "@azure-tools/codemodel";
+import { getLanguageMetadata } from "../utils/languageHelpers";
 
 /**
  * Function that writes the code for all the operations.
@@ -297,6 +306,20 @@ export function writeOperations(
     });
 
     const sendParams = paramDeclarations.map(p => p.name).join(",");
+
+    if (operation.mediaTypes.size > 1) {
+      // This condition implies that the user can specify a contentType,
+      // and this contentType can change how the request is serialized.
+      writeMultiMediaTypeOperationBody(
+        operationMethod,
+        operation,
+        sendParams,
+        responseName,
+        isInline
+      );
+      return;
+    }
+
     operationMethod.addStatements(
       `return this${
         isInline ? "" : ".client"
@@ -305,6 +328,82 @@ export function writeOperations(
       } options}, ${operation.name}OperationSpec) as Promise<${responseName}>`
     );
   });
+}
+
+/**
+ * Writes the body of an operation that supports multiple media types.
+ * The body will perform checks based on the user-provided contentType
+ * to determine which OperationSpec to use when sending the request.
+ */
+function writeMultiMediaTypeOperationBody(
+  operationMethod: MethodDeclaration,
+  operation: OperationDetails,
+  sendParams: string,
+  responseName: string,
+  isInline = false
+): void {
+  let statements = `let operationSpec: coreHttp.OperationSpec;`;
+  // We need to use the contentType parameter to determine which spec to use.
+  const conditionals: string[] = [];
+  let hasOptionalContentType = false;
+  for (const request of operation.requests) {
+    const mediaType = request.mediaType!;
+    // check for contentType choice
+    const validContentTypes = getContentTypeValues(request);
+    if (!validContentTypes) {
+      if (hasOptionalContentType) {
+        throw new Error(
+          `Encountered two operation media types that had unspecified values for contentType for operation "${operation.fullName}".`
+        );
+      }
+      hasOptionalContentType = true;
+      // When no value for content-type is present, then we know this is the final 'else' block.
+      conditionals.push(`{
+            operationSpec = ${operation.name}$${mediaType}OperationSpec;
+          }`);
+    } else {
+      conditionals.splice(
+        0,
+        0,
+        `if (
+            options && "contentType" in options &&
+            [${validContentTypes
+              .map(type => `"${type}"`)
+              .join(", ")}].indexOf(options.contentType ?? "") > -1
+          ) {
+            operationSpec = ${operation.name}$${mediaType}OperationSpec;
+          }`
+      );
+    }
+  }
+  statements += conditionals.join(" else ");
+  statements += `return this${
+    isInline ? "" : ".client"
+  }.sendOperationRequest({${sendParams}${
+    !!sendParams ? "," : ""
+  } options}, operationSpec) as Promise<${responseName}>`;
+  operationMethod.addStatements(statements);
+}
+
+function getContentTypeValues(
+  request: OperationRequestDetails
+): string[] | undefined {
+  const parameters = request.parameters ?? [];
+  for (const parameter of parameters) {
+    const parameterMetadata = getLanguageMetadata(parameter.language);
+    const schema = parameter.schema;
+    if (
+      (schema.type === SchemaType.Choice ||
+        schema.type === SchemaType.SealedChoice) &&
+      parameterMetadata.serializedName.toLowerCase() === "content-type" &&
+      parameter.protocol.http?.in === ParameterLocation.Header
+    ) {
+      return (schema as ChoiceSchema | SealedChoiceSchema).choices.map(
+        c => c.value as string
+      );
+    }
+  }
+  return;
 }
 
 function getResponseType(operation: OperationDetails) {
@@ -356,18 +455,20 @@ export function addOperationSpecs(
   });
 
   operationGroupDetails.operations.forEach(operation => {
-    const operationName = normalizeName(operation.name, NameType.Property);
-    const operationSpec = transformOperationSpec(operation, parameters);
-    file.addVariableStatement({
-      declarationKind: VariableDeclarationKind.Const,
-      declarations: [
-        {
-          name: `${operationName}OperationSpec`,
-          type: "coreHttp.OperationSpec",
-          initializer: buildSpec(operationSpec)
-        }
-      ]
-    });
+    const operationSpecs = transformOperationSpec(operation, parameters);
+
+    for (const operationSpec of operationSpecs) {
+      file.addVariableStatement({
+        declarationKind: VariableDeclarationKind.Const,
+        declarations: [
+          {
+            name: operationSpec.name,
+            type: "coreHttp.OperationSpec",
+            initializer: buildSpec(operationSpec)
+          }
+        ]
+      });
+    }
   });
 }
 

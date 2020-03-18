@@ -33,9 +33,9 @@
     "dependencies": {
         "autorest": "^3.0.6187",
         "@azure-tools/async-io": "3.0.203",
-        "@azure-tools/autorest-extension-base": "3.1.206",
-        "@azure-tools/codegen": "2.1.218",
-        "@azure-tools/codemodel": "3.3.295",
+        "@azure-tools/autorest-extension-base": "3.1.237",
+        "@azure-tools/codegen": "2.4.259",
+        "@azure-tools/codemodel": "3.4.302",
         "@azure-tools/linq": "3.1.206",
         "@azure-tools/openapi": "3.0.209",
         "@azure/core-http": "^1.0.0",

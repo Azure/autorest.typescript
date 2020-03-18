@@ -38,28 +38,40 @@ import { extractPaginationDetails } from "../utils/extractPaginationDetails";
 export function transformOperationSpec(
   operationDetails: OperationDetails,
   parameters: ParameterDetails[]
-): OperationSpecDetails {
+): OperationSpecDetails[] {
+  const operationName = normalizeName(operationDetails.name, NameType.Property);
   // Extract protocol information
   const operationFullName = operationDetails.fullName;
-  const isXML = operationDetails.mediaTypes.has(KnownMediaType.Xml);
-  // TODO: Support multiple requests
-  const httpInfo = extractHttpDetails(operationDetails.requests[0]);
-  const {
-    requestBody,
-    queryParameters,
-    urlParameters,
-    headerParameters
-  } = getGroupedParameters(parameters, operationFullName);
 
-  return {
-    ...httpInfo,
-    responses: extractSpecResponses(operationDetails),
-    requestBody,
-    ...(queryParameters && queryParameters.length && { queryParameters }),
-    ...(urlParameters && urlParameters.length && { urlParameters }),
-    ...(headerParameters && headerParameters.length && { headerParameters }),
-    ...(isXML && { isXML })
-  };
+  const operationSpecDetails: OperationSpecDetails[] = [];
+
+  const hasMultipleRequests = operationDetails.requests.length > 1;
+  for (const request of operationDetails.requests) {
+    const isXml = request.mediaType === KnownMediaType.Xml;
+    const httpInfo = extractHttpDetails(request);
+    const {
+      requestBody,
+      queryParameters,
+      urlParameters,
+      headerParameters
+    } = getGroupedParameters(parameters, operationFullName, request.mediaType);
+
+    const name = hasMultipleRequests
+      ? `${operationName}$${request.mediaType}OperationSpec`
+      : `${operationName}OperationSpec`;
+    operationSpecDetails.push({
+      ...httpInfo,
+      responses: extractSpecResponses(operationDetails),
+      requestBody,
+      ...(queryParameters && queryParameters.length && { queryParameters }),
+      ...(urlParameters && urlParameters.length && { urlParameters }),
+      ...(headerParameters && headerParameters.length && { headerParameters }),
+      ...(isXml && { isXml }),
+      name
+    });
+  }
+
+  return operationSpecDetails;
 }
 
 export function extractHttpDetails({ path, method }: OperationRequestDetails) {
@@ -168,7 +180,8 @@ export function transformOperationRequest(
   return {
     path: request.protocol.http.path,
     method: request.protocol.http.method,
-    mediaType: request.protocol.http.knownMediaType
+    mediaType: request.protocol.http.knownMediaType,
+    parameters: request.parameters
   };
 }
 
@@ -239,17 +252,14 @@ export async function transformOperation(
     kind: PropertyKind.Composite
   };
 
-  // Look for request in old 'request' property if new 'requests' doesn't exist
-  const codeModelRequest = operation.requests
-    ? operation.requests[0]
-    : (<any>operation).request;
-  if (codeModelRequest === undefined) {
+  const codeModelRequests = operation.requests;
+  if (codeModelRequests === undefined || !codeModelRequests.length) {
     throw new Error(
       `No request object was found for operation: ${operationFullName}`
     );
   }
 
-  const requests = [transformOperationRequest(codeModelRequest)];
+  const requests = codeModelRequests.map(transformOperationRequest);
   const responses = responsesAndErrors.map(response =>
     transformOperationResponse(response, operationFullName)
   );
@@ -325,11 +335,19 @@ async function getOperationMediaTypes(
 
 function getGroupedParameters(
   parameters: ParameterDetails[],
-  operationFullname: string
+  operationFullname: string,
+  mediaType?: KnownMediaType
 ) {
-  const operationParams = parameters.filter(
-    p => p.operationsIn && p.operationsIn.indexOf(operationFullname) > -1
-  );
+  const operationParams = parameters.filter(p => {
+    // Ensure parameters are specific to the operation.
+    const matchesOperation =
+      p.operationsIn && p.operationsIn.indexOf(operationFullname) > -1;
+    // Consider the media type as a match if none was provided, or they actually match.
+    // This is important when an operation supports multiple media types.
+    const matchesMediaType =
+      !mediaType || !p.targetMediaType || p.targetMediaType === mediaType;
+    return Boolean(matchesOperation && matchesMediaType);
+  });
   return {
     requestBody: operationParams.find(
       p => p.location === ParameterLocation.Body
