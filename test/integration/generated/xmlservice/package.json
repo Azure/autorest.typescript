@@ -1,12 +1,12 @@
 {
-  "name": "xmlservice",
+  "name": "xml-service",
   "author": "Microsoft Corporation",
   "description": "Test Infrastructure for AutoRest Swagger BAT",
   "version": "1.0.0-preview1",
   "dependencies": { "@azure/core-http": "^1.0.4", "tslib": "^1.9.3" },
   "keywords": ["node", "azure", "typescript", "browser", "isomorphic"],
   "license": "MIT",
-  "main": "./dist/xmlservice.js",
+  "main": "./dist/xml-service.js",
   "module": "./esm/xmlServiceClient.js",
   "types": "./esm/xmlServiceClient.d.ts",
   "devDependencies": {
@@ -38,7 +38,7 @@
   ],
   "scripts": {
     "build": "tsc && rollup -c rollup.config.js && npm run minify",
-    "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/xmlservice.js.map'\" -o ./dist/xmlservice.min.js ./dist/xmlservice.js",
+    "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/xml-service.js.map'\" -o ./dist/xml-service.min.js ./dist/xml-service.js",
     "prepack": "npm install && npm run build"
   },
   "sideEffects": false,

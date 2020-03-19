@@ -17,9 +17,9 @@ const config = {
   input: "./esm/bodyComplexClient.js",
   external: ["@azure/core-http", "@azure/core-arm"],
   output: {
-    file: "./dist/bodyString.js",
+    file: "./dist/body-complex.js",
     format: "umd",
-    name: "BodyString",
+    name: "BodyComplex",
     sourcemap: true,
     globals: {
       "@azure/core-http": "coreHttp",

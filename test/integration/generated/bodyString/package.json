@@ -1,12 +1,12 @@
 {
-  "name": "bodyString",
+  "name": "body-string",
   "author": "Microsoft Corporation",
   "description": "Test Infrastructure for AutoRest Swagger BAT",
   "version": "1.0.0-preview1",
   "dependencies": { "@azure/core-http": "^1.0.4", "tslib": "^1.9.3" },
   "keywords": ["node", "azure", "typescript", "browser", "isomorphic"],
   "license": "MIT",
-  "main": "./dist/bodyString.js",
+  "main": "./dist/body-string.js",
   "module": "./esm/bodyStringClient.js",
   "types": "./esm/bodyStringClient.d.ts",
   "devDependencies": {
@@ -38,7 +38,7 @@
   ],
   "scripts": {
     "build": "tsc && rollup -c rollup.config.js && npm run minify",
-    "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/bodyString.js.map'\" -o ./dist/bodyString.min.js ./dist/bodyString.js",
+    "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/body-string.js.map'\" -o ./dist/body-string.min.js ./dist/body-string.js",
     "prepack": "npm install && npm run build"
   },
   "sideEffects": false,

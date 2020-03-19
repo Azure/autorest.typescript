@@ -1,12 +1,12 @@
 {
-  "name": "bodyArary",
+  "name": "body-array",
   "author": "Microsoft Corporation",
   "description": "Test Infrastructure for AutoRest Swagger BAT",
   "version": "1.0.0-preview1",
   "dependencies": { "@azure/core-http": "^1.0.4", "tslib": "^1.9.3" },
   "keywords": ["node", "azure", "typescript", "browser", "isomorphic"],
   "license": "MIT",
-  "main": "./dist/bodyArary.js",
+  "main": "./dist/body-array.js",
   "module": "./esm/bodyArrayClient.js",
   "types": "./esm/bodyArrayClient.d.ts",
   "devDependencies": {
@@ -38,7 +38,7 @@
   ],
   "scripts": {
     "build": "tsc && rollup -c rollup.config.js && npm run minify",
-    "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/bodyArary.js.map'\" -o ./dist/bodyArary.min.js ./dist/bodyArary.js",
+    "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/body-array.js.map'\" -o ./dist/body-array.min.js ./dist/body-array.js",
     "prepack": "npm install && npm run build"
   },
   "sideEffects": false,

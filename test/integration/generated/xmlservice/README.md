@@ -10,7 +10,7 @@ This package contains an isomorphic SDK for XmlServiceClient.
 ### How to Install
 
 ```bash
-npm install xmlservice
+npm install xml-service
 ```
 
 ### How to use

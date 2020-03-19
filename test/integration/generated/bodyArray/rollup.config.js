@@ -17,9 +17,9 @@ const config = {
   input: "./esm/bodyArrayClient.js",
   external: ["@azure/core-http", "@azure/core-arm"],
   output: {
-    file: "./dist/bodyArary.js",
+    file: "./dist/body-array.js",
     format: "umd",
-    name: "BodyArary",
+    name: "BodyArray",
     sourcemap: true,
     globals: {
       "@azure/core-http": "coreHttp",
