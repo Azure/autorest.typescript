@@ -146,6 +146,7 @@ const buildAutorest = () => {
 
       console.log(stdout);
       stderror && console.error(stderror);
+      resolve();
     });
   });
 };
