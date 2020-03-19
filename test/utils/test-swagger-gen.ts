@@ -26,6 +26,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "BodyBooleanClient",
     packageName: "body-boolean"
   },
+  bodyBooleanQuirks: {
+    swagger: "body-boolean.quirks.json",
+    clientName: "BodyBooleanQuirksClient",
+    packageName: "body-boolean-quirks"
+  },
   bodyComplex: {
     swagger: "body-complex.json",
     clientName: "BodyComplexClient",
