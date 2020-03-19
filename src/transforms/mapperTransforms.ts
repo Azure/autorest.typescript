@@ -104,7 +104,8 @@ export function transformMapper({ schema, options }: MapperInput) {
     transformBinaryMapper,
     transformObjectMapper,
     transformArrayMapper,
-    transformDictionaryMapper
+    transformDictionaryMapper,
+    transformUuidMapper
   );
   const { mapper } = processMapper({ schema, options });
 
@@ -539,6 +540,22 @@ function transformNumberMapper(pipelineValue: PipelineValue): PipelineValue {
     { name: MapperType.Number },
     options
   );
+
+  return {
+    schema,
+    mapper,
+    isHandled: true
+  };
+}
+
+function transformUuidMapper(pipelineValue: PipelineValue): PipelineValue {
+  const { schema, options } = pipelineValue;
+
+  if (!isSchemaType([SchemaType.Uuid], schema)) {
+    return pipelineValue;
+  }
+
+  const mapper: BaseMapper = buildMapper(schema, { name: "Uuid" }, options);
 
   return {
     schema,

@@ -18,7 +18,7 @@ export function generatePackageJson(
       `A generated SDK for ${clientDetails.name}.`,
     version: packageDetails.version,
     dependencies: {
-      "@azure/core-http": "^1.0.0",
+      "@azure/core-http": "^1.0.4",
       tslib: "^1.9.3"
     },
     keywords: ["node", "azure", "typescript", "browser", "isomorphic"],

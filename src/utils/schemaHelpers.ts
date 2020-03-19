@@ -96,6 +96,7 @@ export function getTypeForSchema(schema: Schema): TypeDetails {
       kind = PropertyKind.Composite;
       break;
     case SchemaType.String:
+    case SchemaType.Uuid:
       typeName = "string";
       break;
     default:
