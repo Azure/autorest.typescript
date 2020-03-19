@@ -10,7 +10,7 @@ This package contains an isomorphic SDK for BodyArrayClient.
 ### How to Install
 
 ```bash
-npm install bodyArary
+npm install body-array
 ```
 
 ### How to use

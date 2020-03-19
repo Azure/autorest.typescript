@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Models from "./models";
 
-const packageName = "bodyArary";
+const packageName = "body-array";
 const packageVersion = "1.0.0-preview1";
 
 export class BodyArrayClientContext extends coreHttp.ServiceClient {

@@ -34,8 +34,12 @@ describe("Integration tests for Report", () => {
         }
       }
 
+      const percentage = Math.round(
+        (passedTests / (passedTests + failedTests)) * 100
+      );
       console.log(
-        `The test coverage is ${passedTests}/${passedTests + failedTests}.`
+        `The test coverage is ${percentage}% (${passedTests}/${passedTests +
+          failedTests}).`
       );
     }
 

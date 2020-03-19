@@ -11,6 +11,16 @@ const package_version = "1.0.0-preview1";
 let whiteList: string[] = [];
 
 const testSwaggers: { [name: string]: SwaggerConfig } = {
+  azureReport: {
+    swagger: "azure-report.json",
+    clientName: "ReportClient",
+    packageName: "zzzAzureReport"
+  },
+  bodyArray: {
+    swagger: "body-array.json",
+    clientName: "BodyArrayClient",
+    packageName: "body-array"
+  },
   bodyComplex: {
     swagger: "body-complex.json",
     clientName: "BodyComplexClient",
