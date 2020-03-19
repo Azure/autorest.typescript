@@ -41,6 +41,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "BodyComplexClient",
     packageName: "body-complex"
   },
+  bodyDate: {
+    swagger: "body-date.json",
+    clientName: "BodyDateClient",
+    packageName: "body-date"
+  },
   bodyString: {
     swagger: "body-string.json",
     clientName: "BodyStringClient",

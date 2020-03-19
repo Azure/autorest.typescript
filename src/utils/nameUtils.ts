@@ -3,7 +3,7 @@
 import { Operation, OperationGroup } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "./languageHelpers";
 
-const ReservedModelNames = ["Error"];
+const ReservedModelNames = ["Error", "Date"];
 
 export enum CasingConvention {
   Pascal,
