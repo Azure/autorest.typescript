@@ -10,7 +10,7 @@ This package contains an isomorphic SDK for BodyStringClient.
 ### How to Install
 
 ```bash
-npm install bodyString
+npm install body-string
 ```
 
 ### How to use

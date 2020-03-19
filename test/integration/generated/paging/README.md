@@ -10,7 +10,7 @@ This package contains an isomorphic SDK for PagingClient.
 ### How to Install
 
 ```bash
-npm install pagingservice
+npm install paging-service
 ```
 
 ### How to use

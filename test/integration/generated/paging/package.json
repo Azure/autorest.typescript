@@ -1,12 +1,12 @@
 {
-  "name": "pagingservice",
+  "name": "paging-service",
   "author": "Microsoft Corporation",
   "description": "Long-running Operation for AutoRest",
   "version": "1.0.0-preview1",
   "dependencies": { "@azure/core-http": "^1.0.4", "tslib": "^1.9.3" },
   "keywords": ["node", "azure", "typescript", "browser", "isomorphic"],
   "license": "MIT",
-  "main": "./dist/pagingservice.js",
+  "main": "./dist/paging-service.js",
   "module": "./esm/pagingClient.js",
   "types": "./esm/pagingClient.d.ts",
   "devDependencies": {
@@ -38,7 +38,7 @@
   ],
   "scripts": {
     "build": "tsc && rollup -c rollup.config.js && npm run minify",
-    "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/pagingservice.js.map'\" -o ./dist/pagingservice.min.js ./dist/pagingservice.js",
+    "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/paging-service.js.map'\" -o ./dist/paging-service.min.js ./dist/paging-service.js",
     "prepack": "npm install && npm run build"
   },
   "sideEffects": false,

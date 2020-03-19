@@ -17,9 +17,9 @@ const config = {
   input: "./esm/pagingClient.js",
   external: ["@azure/core-http", "@azure/core-arm"],
   output: {
-    file: "./dist/pagingservice.js",
+    file: "./dist/paging-service.js",
     format: "umd",
-    name: "Pagingservice",
+    name: "PagingService",
     sourcemap: true,
     globals: {
       "@azure/core-http": "coreHttp",

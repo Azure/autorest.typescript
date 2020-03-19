@@ -10,7 +10,7 @@ This package contains an isomorphic SDK for BodyComplexClient.
 ### How to Install
 
 ```bash
-npm install bodyString
+npm install body-complex
 ```
 
 ### How to use

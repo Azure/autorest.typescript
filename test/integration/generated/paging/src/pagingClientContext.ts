@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Models from "./models";
 
-const packageName = "pagingservice";
+const packageName = "paging-service";
 const packageVersion = "1.0.0-preview1";
 
 export class PagingClientContext extends coreHttp.ServiceClient {

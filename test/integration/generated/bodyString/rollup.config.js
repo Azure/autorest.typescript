@@ -17,7 +17,7 @@ const config = {
   input: "./esm/bodyStringClient.js",
   external: ["@azure/core-http", "@azure/core-arm"],
   output: {
-    file: "./dist/bodyString.js",
+    file: "./dist/body-string.js",
     format: "umd",
     name: "BodyString",
     sourcemap: true,

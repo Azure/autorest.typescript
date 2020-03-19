@@ -17,9 +17,9 @@ const config = {
   input: "./esm/xmlServiceClient.js",
   external: ["@azure/core-http", "@azure/core-arm"],
   output: {
-    file: "./dist/xmlservice.js",
+    file: "./dist/xml-service.js",
     format: "umd",
-    name: "Xmlservice",
+    name: "XmlService",
     sourcemap: true,
     globals: {
       "@azure/core-http": "coreHttp",
