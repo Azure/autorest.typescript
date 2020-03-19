@@ -9,7 +9,8 @@ interface SwaggerConfig {
 
 const package_version = "1.0.0-preview1";
 let whiteList: string[] = [];
-const test_swaggers: { [name: string]: SwaggerConfig } = {
+
+const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyComplex: {
     swagger: "body-complex.json",
     clientName: "BodyComplexClient",
@@ -56,7 +57,7 @@ const test_swaggers: { [name: string]: SwaggerConfig } = {
 const generateSwaggers = async (whiteList?: string[]) => {
   let generationTasks: Promise<void>[] = [];
 
-  Object.keys(test_swaggers)
+  Object.keys(testSwaggers)
     .filter(name => {
       if (!whiteList || !whiteList.length) {
         return true;
@@ -64,12 +65,9 @@ const generateSwaggers = async (whiteList?: string[]) => {
       return whiteList.includes(name);
     })
     .forEach(name => {
-      const {
-        addCredentials,
-        clientName,
-        swagger,
-        packageName
-      } = test_swaggers[name];
+      const { addCredentials, clientName, swagger, packageName } = testSwaggers[
+        name
+      ];
       const autorestCommand = `autorest --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/${swagger} --package-name=${packageName} --package-version=${package_version}`;
 
       const generationTask = () => {
@@ -115,7 +113,7 @@ const buildWhitelist = () =>
     const swaggers = includesValue.split(",");
 
     swaggers.forEach(swagger => {
-      const validSwaggers = Object.keys(test_swaggers);
+      const validSwaggers = Object.keys(testSwaggers);
       if (!validSwaggers.includes(swagger)) {
         throw new Error(
           `Unknown swagger ${swagger}, valid swaggers: \n ${JSON.stringify(
