@@ -1,11 +1,13 @@
-import { expect } from "chai";
+import { ReportClient as AzureReportClient } from "./generated/azureReport/src/reportClient";
 import { ReportClient } from "./generated/report/src/reportClient";
 
 describe("Integration tests for Report", () => {
-  let client: ReportClient;
+  let reportClient: ReportClient;
+  let azureReportClient: AzureReportClient;
 
   beforeEach(() => {
-    client = new ReportClient();
+    reportClient = new ReportClient();
+    azureReportClient = new AzureReportClient();
   });
 
   describe("#Test Coverage", () => {
@@ -25,7 +27,6 @@ describe("Integration tests for Report", () => {
         } else {
           if (report[feature] === 1) {
             passedTests++;
-            //console.log(`PASSED ${feature}`);
           } else {
             failedTests++;
             console.log(`FAILED to execute ${feature}`);
@@ -41,7 +42,7 @@ describe("Integration tests for Report", () => {
     it("required:", async () => {
       const unsupported: string[] = [];
       const missingFeaturesOrBugs: string[] = [];
-      const report: any = await client.getReport();
+      const report: any = await reportClient.getReport();
 
       printCoverage(report, unsupported, missingFeaturesOrBugs);
     });
@@ -49,7 +50,15 @@ describe("Integration tests for Report", () => {
     it("optional:", async () => {
       const unsupported: string[] = [];
       const missingFeaturesOrBugs: string[] = [];
-      const report: any = await client.getOptionalReport();
+      const report: any = await reportClient.getOptionalReport();
+
+      printCoverage(report, unsupported, missingFeaturesOrBugs);
+    });
+
+    it("azure:", async () => {
+      const unsupported: string[] = [];
+      const missingFeaturesOrBugs: string[] = [];
+      const report: any = await azureReportClient.getReport();
 
       printCoverage(report, unsupported, missingFeaturesOrBugs);
     });
