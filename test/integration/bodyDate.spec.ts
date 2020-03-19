@@ -1,6 +1,6 @@
 import { BodyDateClient } from "./generated/bodyDate/src/bodyDateClient";
 import { expect } from "chai";
-describe("Bool Quirks Client", function() {
+describe("BodyDateClient", function() {
   let testClient: BodyDateClient;
 
   beforeEach(() => {
