@@ -246,8 +246,8 @@ function getRequiredParamChecks(requiredParameters: ParameterDetails[]) {
 }
 
 function getRequiredParamAssignments(requiredParameters: ParameterDetails[]) {
-  const blacklistClientParameters = ["credentials"];
+  const disallowedClientParameters = ["credentials"];
   return requiredParameters
-    .filter(({ name }) => !blacklistClientParameters.includes(name))
+    .filter(({ name }) => !disallowedClientParameters.includes(name))
     .map(({ name }) => `this.${name} = ${name};`);
 }
