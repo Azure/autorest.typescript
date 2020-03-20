@@ -56,6 +56,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "BodyDateTimeRfc1123Client",
     packageName: "body-datetime-rfc1123"
   },
+  bodyDuration: {
+    swagger: "body-duration.json",
+    clientName: "BodyDurationClient",
+    packageName: "body-duration"
+  },
   bodyString: {
     swagger: "body-string.json",
     clientName: "BodyStringClient",
