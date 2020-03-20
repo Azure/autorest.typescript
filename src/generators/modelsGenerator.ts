@@ -146,13 +146,15 @@ function getBodyProperties({
     return;
   }
 
-  const isComposite = bodyType.kind === PropertyKind.Composite;
+  const hasBodyProperty =
+    bodyType.kind !== PropertyKind.Composite &&
+    bodyType.kind !== PropertyKind.Dictionary;
 
   return {
     typeName: bodyType.typeName,
     // mainProperties will be used only when the body type is not primitive
     // adding to the response type a property named body, of the expected type
-    mainProperties: !isComposite
+    mainProperties: hasBodyProperty
       ? [
           {
             name: "body", // Is there any extension that overrides this?
@@ -163,7 +165,7 @@ function getBodyProperties({
       : [],
     // intersectionType is used when the body is Composite, this means that there is a model
     // representing this object and the response type will need to be an intersection.
-    ...(isComposite && { intersectionType: bodyType.typeName }),
+    ...(!hasBodyProperty && { intersectionType: bodyType.typeName }),
     // These are the additional default properties to add under the _response property in the response type
     internalResponseProperties: [
       {

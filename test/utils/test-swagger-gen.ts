@@ -56,6 +56,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "BodyDateTimeRfc1123Client",
     packageName: "body-datetime-rfc1123"
   },
+  bodyDictionary: {
+    swagger: "body-dictionary.json",
+    clientName: "BodyDictionaryClient",
+    packageName: "body-dictionary"
+  },
   bodyDuration: {
     swagger: "body-duration.json",
     clientName: "BodyDurationClient",
@@ -109,7 +114,10 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   }
 };
 
-const generateSwaggers = async (whiteList?: string[]) => {
+const generateSwaggers = async (
+  whiteList?: string[],
+  isDebugging?: boolean
+) => {
   let generationTasks: Promise<void>[] = [];
 
   Object.keys(testSwaggers)
@@ -123,7 +131,11 @@ const generateSwaggers = async (whiteList?: string[]) => {
       const { addCredentials, clientName, swagger, packageName } = testSwaggers[
         name
       ];
-      const autorestCommand = `autorest --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/${swagger} --package-name=${packageName} --package-version=${package_version}`;
+      let autorestCommand = `autorest --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/${swagger} --package-name=${packageName} --package-version=${package_version}`;
+
+      if (isDebugging) {
+        autorestCommand = `${autorestCommand} --typescript.debugger`;
+      }
 
       const generationTask = () => {
         return new Promise<void>((resolve, reject) => {
@@ -207,9 +219,10 @@ const buildAutorest = () => {
 };
 
 const run = async () => {
+  const isDebugging = process.argv.indexOf("--debug") !== -1;
   buildWhitelist();
   await buildAutorest();
-  await generateSwaggers(whiteList);
+  await generateSwaggers(whiteList, isDebugging);
 };
 
 run();

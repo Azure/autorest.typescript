@@ -28,7 +28,7 @@ import {
   filterOperationParameters,
   formatJsDocParam
 } from "./utils/parameterUtils";
-import { PropertyKind } from "../models/modelDetails";
+import { PropertyKind, TypeDetails } from "../models/modelDetails";
 import { wrapString } from "./utils/stringUtils";
 import { KnownMediaType } from "@azure-tools/codegen";
 import {
@@ -201,14 +201,18 @@ function buildMapper(
 function getOptionsParameter(
   operation: OperationDetails,
   parameters: ParameterDetails[],
+  importedModels: string[],
   { isOptional = true } = {}
 ): ParameterWithDescription {
-  const type = filterOperationParameters(parameters, operation, {
-    includeOptional: true
-  }).some(p => !p.required)
-    ? `Models.${operation.typeDetails.typeName}OptionalParams`
-    : "coreHttp.OperationOptions";
-
+  let type: string = "coreHttp.OperationOptions";
+  if (
+    filterOperationParameters(parameters, operation, {
+      includeOptional: true
+    }).some(p => !p.required)
+  ) {
+    type = `${operation.typeDetails.typeName}OptionalParams`;
+    importedModels.push(type);
+  }
   return {
     name: "options",
     type,
@@ -225,6 +229,7 @@ function addClass(
   operationGroupDetails: OperationGroupDetails,
   clientDetails: ClientDetails
 ) {
+  let importedModels: string[] = [];
   const className = normalizeName(operationGroupDetails.name, NameType.Class);
   const operationGroupClass = operationGroupFile.addClass({
     name: className,
@@ -256,8 +261,17 @@ function addClass(
   writeOperations(
     operationGroupDetails,
     operationGroupClass,
+    importedModels,
     clientDetails.parameters
   );
+
+  // Use named import from Models
+  if (importedModels.length) {
+    operationGroupFile.addImportDeclaration({
+      namedImports: importedModels,
+      moduleSpecifier: "../models"
+    });
+  }
 }
 
 type ParameterWithDescription = OptionalKind<
@@ -270,20 +284,22 @@ type ParameterWithDescription = OptionalKind<
 export function writeOperations(
   operationGroupDetails: OperationGroupDetails,
   operationGroupClass: ClassDeclaration,
+  importedModels: string[],
   parameters: ParameterDetails[],
   isInline = false
 ) {
   operationGroupDetails.operations.forEach(operation => {
-    const responseName = getResponseType(operation);
+    const responseName = getResponseType(operation, importedModels);
     const paramDeclarations = filterOperationParameters(
       parameters,
       operation
     ).map<ParameterWithDescription>(param => {
-      const { typeName, kind } = param.typeDetails;
-      const type =
-        kind === PropertyKind.Primitive
-          ? typeName
-          : `Models.${normalizeName(typeName, NameType.Class)}`;
+      const { usedModels } = param.typeDetails;
+      const type = normalizeParameterName(param.typeDetails);
+
+      if (usedModels.length) {
+        importedModels.push(...usedModels);
+      }
 
       return {
         name: param.name,
@@ -295,7 +311,7 @@ export function writeOperations(
 
     const allParams = [
       ...paramDeclarations,
-      getOptionsParameter(operation, parameters)
+      getOptionsParameter(operation, parameters, importedModels)
     ];
 
     const operationMethod = operationGroupClass.addMethod({
@@ -406,7 +422,10 @@ function getContentTypeValues(
   return;
 }
 
-function getResponseType(operation: OperationDetails) {
+function getResponseType(
+  operation: OperationDetails,
+  importedModels: string[]
+) {
   const hasSuccessResponse = operation.responses.some(
     ({ isError, mappers }) =>
       !isError && (!!mappers.bodyMapper || !!mappers.headersMapper)
@@ -414,9 +433,18 @@ function getResponseType(operation: OperationDetails) {
 
   const responseName = hasSuccessResponse ? operation.typeDetails.typeName : "";
 
-  return !!responseName
-    ? `Models.${normalizeName(responseName, NameType.Interface)}Response`
-    : "coreHttp.RestResponse";
+  if (responseName) {
+    const typeName = `${normalizeName(
+      responseName,
+      NameType.Interface
+    )}Response`;
+
+    importedModels.push(typeName);
+
+    return typeName;
+  }
+
+  return "coreHttp.RestResponse";
 }
 
 function generateOperationJSDoc(
@@ -429,6 +457,16 @@ function generateOperationJSDoc(
   return `${
     description ? wrapString(description) + "\n" : description
   }${paramJSDoc}`;
+}
+
+function normalizeParameterName({ kind, typeName }: TypeDetails) {
+  // Only Enum and Composite kinds need normalization
+  if ([PropertyKind.Enum, PropertyKind.Composite].includes(kind)) {
+    return `${normalizeName(typeName, NameType.Class)}`;
+  }
+
+  // Other kinds are already in the form they need to be
+  return typeName;
 }
 
 /**
@@ -482,11 +520,6 @@ function addImports(
   operationGroupFile.addImportDeclaration({
     namespaceImport: "coreHttp",
     moduleSpecifier: "@azure/core-http"
-  });
-
-  operationGroupFile.addImportDeclaration({
-    namespaceImport: "Models",
-    moduleSpecifier: "../models"
   });
 
   operationGroupFile.addImportDeclaration({

@@ -83,6 +83,7 @@ export interface TypeDetails {
   isConstant?: boolean;
   defaultValue?: string;
   kind: PropertyKind;
+  usedModels: string[];
 }
 
 /**
@@ -91,5 +92,6 @@ export interface TypeDetails {
 export enum PropertyKind {
   Primitive,
   Enum,
-  Composite
+  Composite,
+  Dictionary
 }
