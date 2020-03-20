@@ -130,7 +130,7 @@ export const arrayBody8: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "String" }, serializedName: "Enum0" }
+      element: { type: { name: "String" }, serializedName: "Enum1" }
     }
   }
 };

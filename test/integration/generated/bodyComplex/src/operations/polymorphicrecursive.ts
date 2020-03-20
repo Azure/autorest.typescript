@@ -43,37 +43,57 @@ export class Polymorphicrecursive {
    * Put complex types that are polymorphic and have recursive references
    * @param complexBody Please put a salmon that looks like this:
    *                    {
-   *                            'fishtype':'Salmon',
-   *                            'location':'alaska',
-   *                            'iswild':true,
-   *                            'species':'king',
-   *                            'length':1.0,
-   *                            'siblings':[
-   *                              {
-   *                                'fishtype':'Shark',
-   *                                'age':6,
-   *                                'birthday': '2012-01-05T01:00:00Z',
-   *                                'length':20.0,
-   *                                'species':'predator',
-   *                              },
-   *                              {
-   *                                'fishtype':'Sawshark',
-   *                                'age':105,
-   *                                'birthday': '1900-01-05T01:00:00Z',
-   *                                'length':10.0,
-   *                                'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-   *                                'species':'dangerous',
-   *                              },
-   *                              {
-   *                                'fishtype': 'goblin',
-   *                                'age': 1,
-   *                                'birthday': '2015-08-08T00:00:00Z',
-   *                                'length': 30.0,
-   *                                'species': 'scary',
-   *                                'jawsize': 5
-   *                              }
-   *                            ]
-   *                          };
+   *                        "fishtype": "salmon",
+   *                        "species": "king",
+   *                        "length": 1,
+   *                        "age": 1,
+   *                        "location": "alaska",
+   *                        "iswild": true,
+   *                        "siblings": [
+   *                            {
+   *                                "fishtype": "shark",
+   *                                "species": "predator",
+   *                                "length": 20,
+   *                                "age": 6,
+   *                                "siblings": [
+   *                                    {
+   *                                        "fishtype": "salmon",
+   *                                        "species": "coho",
+   *                                        "length": 2,
+   *                                        "age": 2,
+   *                                        "location": "atlantic",
+   *                                        "iswild": true,
+   *                                        "siblings": [
+   *                                            {
+   *                                                "fishtype": "shark",
+   *                                                "species": "predator",
+   *                                                "length": 20,
+   *                                                "age": 6
+   *                                            },
+   *                                            {
+   *                                                "fishtype": "sawshark",
+   *                                                "species": "dangerous",
+   *                                                "length": 10,
+   *                                                "age": 105
+   *                                            }
+   *                                        ]
+   *                                    },
+   *                                    {
+   *                                        "fishtype": "sawshark",
+   *                                        "species": "dangerous",
+   *                                        "length": 10,
+   *                                        "age": 105
+   *                                    }
+   *                                ]
+   *                            },
+   *                            {
+   *                                "fishtype": "sawshark",
+   *                                "species": "dangerous",
+   *                                "length": 10,
+   *                                "age": 105
+   *                            }
+   *                        ]
+   *                    }
    * @param options The options parameters.
    */
   putValid(
@@ -113,7 +133,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.complexBody15,
+  requestBody: Parameters.complexBody20,
   urlParameters: [Parameters.$host],
   serializer
 };

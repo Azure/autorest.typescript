@@ -240,7 +240,7 @@ export class Paths {
 
   /**
    * Get null (should throw on the client before the request is sent on wire)
-   * @param enumPath send the value green
+   * @param enumPath send null should throw
    * @param options The options parameters.
    */
   enumNull(
@@ -283,7 +283,7 @@ export class Paths {
 
   /**
    * Get null as byte array (should throw)
-   * @param bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
+   * @param bytePath null as byte array (should throw)
    * @param options The options parameters.
    */
   byteNull(
@@ -606,7 +606,7 @@ const enumNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.enumPath],
+  urlParameters: [Parameters.$host, Parameters.enumPath1],
   serializer
 };
 const byteMultiByteOperationSpec: coreHttp.OperationSpec = {
@@ -642,7 +642,7 @@ const byteNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.bytePath],
+  urlParameters: [Parameters.$host, Parameters.bytePath2],
   serializer
 };
 const dateValidOperationSpec: coreHttp.OperationSpec = {

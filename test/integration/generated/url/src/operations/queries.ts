@@ -746,7 +746,7 @@ const enumNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.enumQuery],
+  queryParameters: [Parameters.enumQuery1],
   urlParameters: [Parameters.$host],
   serializer
 };
@@ -785,7 +785,7 @@ const byteNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.byteQuery],
+  queryParameters: [Parameters.byteQuery2],
   urlParameters: [Parameters.$host],
   serializer
 };
@@ -863,7 +863,7 @@ const arrayStringCsvNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.arrayQuery],
+  queryParameters: [Parameters.arrayQuery1],
   urlParameters: [Parameters.$host],
   serializer
 };
@@ -876,7 +876,7 @@ const arrayStringCsvEmptyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.arrayQuery],
+  queryParameters: [Parameters.arrayQuery2],
   urlParameters: [Parameters.$host],
   serializer
 };
@@ -889,7 +889,7 @@ const arrayStringSsvValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.arrayQuery1],
+  queryParameters: [Parameters.arrayQuery3],
   urlParameters: [Parameters.$host],
   serializer
 };
@@ -902,7 +902,7 @@ const arrayStringTsvValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.arrayQuery2],
+  queryParameters: [Parameters.arrayQuery4],
   urlParameters: [Parameters.$host],
   serializer
 };
@@ -915,7 +915,7 @@ const arrayStringPipesValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.arrayQuery3],
+  queryParameters: [Parameters.arrayQuery5],
   urlParameters: [Parameters.$host],
   serializer
 };

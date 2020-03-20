@@ -23,6 +23,10 @@ export interface Product {
  */
 export type Enum0 = "foo1" | "foo2" | "foo3";
 /**
+ * Defines values for Enum1.
+ */
+export type Enum1 = "foo1" | "foo2" | "foo3";
+/**
  * Defines values for FooEnum.
  */
 export type FooEnum = "foo1" | "foo2" | "foo3";

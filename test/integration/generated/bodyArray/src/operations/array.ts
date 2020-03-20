@@ -425,7 +425,7 @@ export class Array {
    * @param options The options parameters.
    */
   putStringEnumValid(
-    arrayBody: Models.Enum0[],
+    arrayBody: Models.Enum1[],
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(

@@ -769,7 +769,7 @@ export const BlobProperties: coreHttp.CompositeMapper = {
         serializedName: "Content-Language",
         xmlName: "Content-Language"
       },
-      contentMd5: {
+      contentMD5: {
         type: { name: "String" },
         serializedName: "Content-MD5",
         xmlName: "Content-MD5"
@@ -784,7 +784,7 @@ export const BlobProperties: coreHttp.CompositeMapper = {
         serializedName: "Cache-Control",
         xmlName: "Cache-Control"
       },
-      xMsBlobSequenceNumber: {
+      blobSequenceNumber: {
         type: { name: "Number" },
         serializedName: "x-ms-blob-sequence-number",
         xmlName: "x-ms-blob-sequence-number"
