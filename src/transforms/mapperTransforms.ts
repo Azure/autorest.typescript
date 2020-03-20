@@ -570,7 +570,8 @@ function processProperties(
 ) {
   let modelProperties: ModelProperties = {};
   properties.forEach(prop => {
-    const name = normalizeName(prop.serializedName, NameType.Property);
+    const propName = getLanguageMetadata(prop.language).name;
+    const name = normalizeName(propName, NameType.Property);
     modelProperties[name] = getMapperOrRef(prop.schema, prop.serializedName, {
       ...options,
       required: prop.required,
