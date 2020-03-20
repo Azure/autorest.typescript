@@ -101,7 +101,7 @@ export interface QueriesEnumValidOptionalParams
 export interface QueriesEnumNullOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * 'green color' enum value
+   * null string value
    */
   enumQuery?: UriColor;
 }
@@ -123,7 +123,7 @@ export interface QueriesByteMultiByteOptionalParams
 export interface QueriesByteNullOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
+   * null as byte array (no query parameters in uri)
    */
   byteQuery?: Uint8Array;
 }
@@ -167,7 +167,7 @@ export interface QueriesArrayStringCsvValidOptionalParams
 export interface QueriesArrayStringCsvNullOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
+   * a null array of string using the csv-array format
    */
   arrayQuery?: string[];
 }
@@ -178,7 +178,7 @@ export interface QueriesArrayStringCsvNullOptionalParams
 export interface QueriesArrayStringCsvEmptyOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
+   * an empty array [] of string using the csv-array format
    */
   arrayQuery?: string[];
 }
@@ -256,7 +256,7 @@ export interface PathItemsGetGlobalAndLocalQueryNullOptionalParams
    */
   pathItemStringQuery?: string;
   /**
-   * should contain value 'localStringQuery'
+   * should contain null value
    */
   localStringQuery?: string;
 }
@@ -267,11 +267,11 @@ export interface PathItemsGetGlobalAndLocalQueryNullOptionalParams
 export interface PathItemsGetLocalPathItemQueryNullOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * A string value 'pathItemStringQuery' that appears as a query parameter
+   * should contain value null
    */
   pathItemStringQuery?: string;
   /**
-   * should contain value 'localStringQuery'
+   * should contain value null
    */
   localStringQuery?: string;
 }

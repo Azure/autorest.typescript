@@ -70,8 +70,7 @@ export class Array {
 
   /**
    * Put complex types with array property which is empty
-   * @param complexBody Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The quick
-   *                    brown fox jumps over the lazy dog"
+   * @param complexBody Please put an empty array
    * @param options The options parameters.
    */
   putEmpty(
@@ -151,7 +150,7 @@ const putEmptyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.complexBody12,
+  requestBody: Parameters.complexBody13,
   urlParameters: [Parameters.$host],
   serializer
 };

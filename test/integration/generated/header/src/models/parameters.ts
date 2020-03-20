@@ -98,6 +98,17 @@ export const value3: coreHttp.OperationParameter = {
   }
 };
 
+export const scenario1: coreHttp.OperationParameter = {
+  parameterPath: "scenario",
+  mapper: {
+    serializedName: "scenario",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const value4: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
@@ -109,10 +120,32 @@ export const value4: coreHttp.OperationParameter = {
   }
 };
 
+export const scenario2: coreHttp.OperationParameter = {
+  parameterPath: "scenario",
+  mapper: {
+    serializedName: "scenario",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const value5: coreHttp.OperationParameter = {
   parameterPath: ["options", "value"],
   mapper: {
     serializedName: "value",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const scenario3: coreHttp.OperationParameter = {
+  parameterPath: "scenario",
+  mapper: {
+    serializedName: "scenario",
+    required: true,
     type: {
       name: "String"
     }
@@ -151,6 +184,17 @@ export const value8: coreHttp.OperationParameter = {
   }
 };
 
+export const scenario4: coreHttp.OperationParameter = {
+  parameterPath: "scenario",
+  mapper: {
+    serializedName: "scenario",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const value9: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
@@ -169,6 +213,17 @@ export const value10: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "ByteArray"
+    }
+  }
+};
+
+export const scenario5: coreHttp.OperationParameter = {
+  parameterPath: "scenario",
+  mapper: {
+    serializedName: "scenario",
+    required: true,
+    type: {
+      name: "String"
     }
   }
 };

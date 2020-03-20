@@ -100,25 +100,45 @@ export const complexBody12: coreHttp.OperationParameter = {
 
 export const complexBody13: coreHttp.OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.DictionaryWrapper
+  mapper: Mappers.ArrayWrapper
 };
 
 export const complexBody14: coreHttp.OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.Siamese
+  mapper: Mappers.DictionaryWrapper
 };
 
 export const complexBody15: coreHttp.OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.Fish
+  mapper: Mappers.DictionaryWrapper
 };
 
 export const complexBody16: coreHttp.OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.Salmon
+  mapper: Mappers.Siamese
 };
 
 export const complexBody17: coreHttp.OperationParameter = {
+  parameterPath: "complexBody",
+  mapper: Mappers.Fish
+};
+
+export const complexBody18: coreHttp.OperationParameter = {
+  parameterPath: "complexBody",
+  mapper: Mappers.Salmon
+};
+
+export const complexBody19: coreHttp.OperationParameter = {
+  parameterPath: "complexBody",
+  mapper: Mappers.Fish
+};
+
+export const complexBody20: coreHttp.OperationParameter = {
+  parameterPath: "complexBody",
+  mapper: Mappers.Fish
+};
+
+export const complexBody21: coreHttp.OperationParameter = {
   parameterPath: "complexBody",
   mapper: Mappers.ReadonlyObj
 };

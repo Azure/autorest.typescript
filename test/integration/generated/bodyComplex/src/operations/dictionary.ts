@@ -70,8 +70,7 @@ export class Dictionary {
 
   /**
    * Put complex types with dictionary property which is empty
-   * @param complexBody Please put a dictionary with 5 key-value pairs: "txt":"notepad", "bmp":"mspaint",
-   *                    "xls":"excel", "exe":"", "":null
+   * @param complexBody Please put an empty dictionary
    * @param options The options parameters.
    */
   putEmpty(
@@ -137,7 +136,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.complexBody13,
+  requestBody: Parameters.complexBody14,
   urlParameters: [Parameters.$host],
   serializer
 };
@@ -164,7 +163,7 @@ const putEmptyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.complexBody13,
+  requestBody: Parameters.complexBody15,
   urlParameters: [Parameters.$host],
   serializer
 };

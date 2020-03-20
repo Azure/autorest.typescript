@@ -246,5 +246,8 @@ function getRequiredParamChecks(requiredParameters: ParameterDetails[]) {
 }
 
 function getRequiredParamAssignments(requiredParameters: ParameterDetails[]) {
-  return requiredParameters.map(({ name }) => `this.${name} = ${name};`);
+  const disallowedClientParameters = ["credentials"];
+  return requiredParameters
+    .filter(({ name }) => !disallowedClientParameters.includes(name))
+    .map(({ name }) => `this.${name} = ${name};`);
 }

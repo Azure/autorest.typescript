@@ -217,7 +217,7 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "true", "value": true or "scenario": "false",
    * "value": false
-   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param scenario Send a post request with header values "scenario": "true" or "false"
    * @param value Send a post request with header values true or false
    * @param options The options parameters.
    */
@@ -234,7 +234,7 @@ export class Header {
 
   /**
    * Get a response with header value "value": true or false
-   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param scenario Send a post request with header values "scenario": "true" or "false"
    * @param options The options parameters.
    */
   responseBool(
@@ -250,7 +250,7 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps over
    * the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": ""
-   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    * @param options The options parameters.
    */
   paramString(
@@ -265,7 +265,7 @@ export class Header {
 
   /**
    * Get a response with header values "The quick brown fox jumps over the lazy dog" or null or ""
-   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    * @param options The options parameters.
    */
   responseString(
@@ -281,7 +281,7 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario":
    * "min", "value": "0001-01-01"
-   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param value Send a post request with header values "2010-01-01" or "0001-01-01"
    * @param options The options parameters.
    */
@@ -298,7 +298,7 @@ export class Header {
 
   /**
    * Get a response with header values "2010-01-01" or "0001-01-01"
-   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param options The options parameters.
    */
   responseDate(
@@ -314,7 +314,7 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
    * "scenario": "min", "value": "0001-01-01T00:00:00Z"
-   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param value Send a post request with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
    * @param options The options parameters.
    */
@@ -331,7 +331,7 @@ export class Header {
 
   /**
    * Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
-   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param options The options parameters.
    */
   responseDatetime(
@@ -347,7 +347,7 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT"
    * or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT"
-   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param options The options parameters.
    */
   paramDatetimeRfc1123(
@@ -362,7 +362,7 @@ export class Header {
 
   /**
    * Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
-   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param scenario Send a post request with header values "scenario": "valid" or "min"
    * @param options The options parameters.
    */
   responseDatetimeRfc1123(
@@ -377,7 +377,7 @@ export class Header {
 
   /**
    * Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S"
-   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param scenario Send a post request with header values "scenario": "valid"
    * @param value Send a post request with header values "P123DT22H14M12.011S"
    * @param options The options parameters.
    */
@@ -394,7 +394,7 @@ export class Header {
 
   /**
    * Get a response with header values "P123DT22H14M12.011S"
-   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param scenario Send a post request with header values "scenario": "valid"
    * @param options The options parameters.
    */
   responseDuration(
@@ -409,7 +409,7 @@ export class Header {
 
   /**
    * Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩"
-   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param scenario Send a post request with header values "scenario": "valid"
    * @param value Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
    * @param options The options parameters.
    */
@@ -426,7 +426,7 @@ export class Header {
 
   /**
    * Get a response with header values "啊齄丂狛狜隣郎隣兀﨩"
-   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param scenario Send a post request with header values "scenario": "valid"
    * @param options The options parameters.
    */
   responseByte(
@@ -442,7 +442,7 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario": "null",
    * "value": null
-   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    * @param options The options parameters.
    */
   paramEnum(
@@ -457,7 +457,7 @@ export class Header {
 
   /**
    * Get a response with header values "GREY" or null
-   * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param scenario Send a post request with header values "scenario": "valid" or "null" or "empty"
    * @param options The options parameters.
    */
   responseEnum(
@@ -663,7 +663,7 @@ const paramBoolOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value4],
+  headerParameters: [Parameters.scenario1, Parameters.value4],
   serializer
 };
 const responseBoolOperationSpec: coreHttp.OperationSpec = {
@@ -678,7 +678,7 @@ const responseBoolOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.scenario1],
   serializer
 };
 const paramStringOperationSpec: coreHttp.OperationSpec = {
@@ -691,7 +691,7 @@ const paramStringOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value5],
+  headerParameters: [Parameters.scenario2, Parameters.value5],
   serializer
 };
 const responseStringOperationSpec: coreHttp.OperationSpec = {
@@ -706,7 +706,7 @@ const responseStringOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.scenario2],
   serializer
 };
 const paramDateOperationSpec: coreHttp.OperationSpec = {
@@ -719,7 +719,7 @@ const paramDateOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value6],
+  headerParameters: [Parameters.scenario3, Parameters.value6],
   serializer
 };
 const responseDateOperationSpec: coreHttp.OperationSpec = {
@@ -734,7 +734,7 @@ const responseDateOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.scenario3],
   serializer
 };
 const paramDatetimeOperationSpec: coreHttp.OperationSpec = {
@@ -747,7 +747,7 @@ const paramDatetimeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value7],
+  headerParameters: [Parameters.scenario3, Parameters.value7],
   serializer
 };
 const responseDatetimeOperationSpec: coreHttp.OperationSpec = {
@@ -762,7 +762,7 @@ const responseDatetimeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.scenario3],
   serializer
 };
 const paramDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
@@ -775,7 +775,7 @@ const paramDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value8],
+  headerParameters: [Parameters.scenario3, Parameters.value8],
   serializer
 };
 const responseDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
@@ -790,7 +790,7 @@ const responseDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.scenario3],
   serializer
 };
 const paramDurationOperationSpec: coreHttp.OperationSpec = {
@@ -803,7 +803,7 @@ const paramDurationOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value9],
+  headerParameters: [Parameters.scenario4, Parameters.value9],
   serializer
 };
 const responseDurationOperationSpec: coreHttp.OperationSpec = {
@@ -818,7 +818,7 @@ const responseDurationOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.scenario4],
   serializer
 };
 const paramByteOperationSpec: coreHttp.OperationSpec = {
@@ -831,7 +831,7 @@ const paramByteOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value10],
+  headerParameters: [Parameters.scenario4, Parameters.value10],
   serializer
 };
 const responseByteOperationSpec: coreHttp.OperationSpec = {
@@ -846,7 +846,7 @@ const responseByteOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.scenario4],
   serializer
 };
 const paramEnumOperationSpec: coreHttp.OperationSpec = {
@@ -859,7 +859,7 @@ const paramEnumOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario, Parameters.value11],
+  headerParameters: [Parameters.scenario5, Parameters.value11],
   serializer
 };
 const responseEnumOperationSpec: coreHttp.OperationSpec = {
@@ -874,7 +874,7 @@ const responseEnumOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario],
+  headerParameters: [Parameters.scenario5],
   serializer
 };
 const customRequestIdOperationSpec: coreHttp.OperationSpec = {
