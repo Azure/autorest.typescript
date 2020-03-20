@@ -21,10 +21,55 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "BodyArrayClient",
     packageName: "body-array"
   },
+  bodyBoolean: {
+    swagger: "body-boolean.json",
+    clientName: "BodyBooleanClient",
+    packageName: "body-boolean"
+  },
+  bodyBooleanQuirks: {
+    swagger: "body-boolean.quirks.json",
+    clientName: "BodyBooleanQuirksClient",
+    packageName: "body-boolean-quirks"
+  },
+  bodyByte: {
+    swagger: "body-byte.json",
+    clientName: "BodyByteClient",
+    packageName: "body-byte"
+  },
   bodyComplex: {
     swagger: "body-complex.json",
     clientName: "BodyComplexClient",
     packageName: "body-complex"
+  },
+  bodyDate: {
+    swagger: "body-date.json",
+    clientName: "BodyDateClient",
+    packageName: "body-date"
+  },
+  bodyDateTime: {
+    swagger: "body-datetime.json",
+    clientName: "BodyDateTimeClient",
+    packageName: "body-datetime"
+  },
+  bodyDateTimeRfc1123: {
+    swagger: "body-datetime-rfc1123.json",
+    clientName: "BodyDateTimeRfc1123Client",
+    packageName: "body-datetime-rfc1123"
+  },
+  bodyDuration: {
+    swagger: "body-duration.json",
+    clientName: "BodyDurationClient",
+    packageName: "body-duration"
+  },
+  bodyInteger: {
+    swagger: "body-integer.json",
+    clientName: "BodyIntegerClient",
+    packageName: "body-integer"
+  },
+  bodyNumber: {
+    swagger: "body-number.json",
+    clientName: "BodyNumberClient",
+    packageName: "body-number"
   },
   bodyString: {
     swagger: "body-string.json",
