@@ -218,7 +218,11 @@ describe("OperationTransforms", () => {
             location: ParameterLocation.Body,
             serializedName: "",
             parameter,
-            typeDetails: { typeName: "string", kind: PropertyKind.Primitive },
+            typeDetails: {
+              typeName: "string",
+              kind: PropertyKind.Primitive,
+              usedModels: []
+            },
             name: "MockOperation",
             description: "",
             schemaType: SchemaType.String,
