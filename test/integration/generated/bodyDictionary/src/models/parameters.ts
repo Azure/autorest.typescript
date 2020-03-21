@@ -100,7 +100,7 @@ export const arrayBody6: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "Date" }, serializedName: "Date" }
+      value: { type: { name: "String" }, serializedName: "String" }
     }
   }
 };
@@ -112,7 +112,7 @@ export const arrayBody7: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      value: { type: { name: "Date" }, serializedName: "Date" }
     }
   }
 };
@@ -124,7 +124,7 @@ export const arrayBody8: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "DateTimeRfc1123" }, serializedName: "DateTime" }
+      value: { type: { name: "DateTime" }, serializedName: "DateTime" }
     }
   }
 };
@@ -136,7 +136,7 @@ export const arrayBody9: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "TimeSpan" }, serializedName: "Duration" }
+      value: { type: { name: "DateTimeRfc1123" }, serializedName: "DateTime" }
     }
   }
 };
@@ -148,7 +148,7 @@ export const arrayBody10: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "ByteArray" }, serializedName: "ByteArray" }
+      value: { type: { name: "TimeSpan" }, serializedName: "Duration" }
     }
   }
 };
@@ -160,12 +160,24 @@ export const arrayBody11: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "Composite", className: "Widget" } }
+      value: { type: { name: "ByteArray" }, serializedName: "ByteArray" }
     }
   }
 };
 
 export const arrayBody12: coreHttp.OperationParameter = {
+  parameterPath: "arrayBody",
+  mapper: {
+    serializedName: "arrayBody",
+    required: true,
+    type: {
+      name: "Dictionary",
+      value: { type: { name: "Composite", className: "Widget" } }
+    }
+  }
+};
+
+export const arrayBody13: coreHttp.OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",
@@ -186,7 +198,7 @@ export const arrayBody12: coreHttp.OperationParameter = {
   }
 };
 
-export const arrayBody13: coreHttp.OperationParameter = {
+export const arrayBody14: coreHttp.OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",

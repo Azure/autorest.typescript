@@ -25,7 +25,7 @@ export const boolBody: coreHttp.OperationParameter = {
   parameterPath: "boolBody",
   mapper: {
     defaultValue: true,
-    serializedName: "BoolBody",
+    serializedName: "boolBody",
     isConstant: true,
     type: {
       name: "Boolean"
@@ -37,7 +37,7 @@ export const boolBody1: coreHttp.OperationParameter = {
   parameterPath: "boolBody",
   mapper: {
     defaultValue: false,
-    serializedName: "BoolBody",
+    serializedName: "boolBody",
     isConstant: true,
     type: {
       name: "Boolean"

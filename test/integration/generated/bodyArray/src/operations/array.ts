@@ -33,7 +33,7 @@ import {
   ArrayGetEnumValidResponse,
   FooEnum,
   ArrayGetStringEnumValidResponse,
-  Enum0,
+  Enum1,
   ArrayGetStringWithNullResponse,
   ArrayGetStringWithInvalidResponse,
   ArrayGetUuidValidResponse,
@@ -478,7 +478,7 @@ export class Array {
    * @param options The options parameters.
    */
   putStringEnumValid(
-    arrayBody: Models.Enum1[],
+    arrayBody: Enum1[],
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
