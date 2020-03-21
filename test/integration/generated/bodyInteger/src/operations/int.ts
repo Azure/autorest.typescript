@@ -7,10 +7,20 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyIntegerClient } from "../bodyIntegerClient";
+import {
+  IntGetNullResponse,
+  IntGetInvalidResponse,
+  IntGetOverflowInt32Response,
+  IntGetUnderflowInt32Response,
+  IntGetOverflowInt64Response,
+  IntGetUnderflowInt64Response,
+  IntGetUnixTimeResponse,
+  IntGetInvalidUnixTimeResponse,
+  IntGetNullUnixTimeResponse
+} from "../models";
 
 /**
  * Class representing a Int.
@@ -30,13 +40,11 @@ export class Int {
    * Get null Int value
    * @param options The options parameters.
    */
-  getNull(
-    options?: coreHttp.OperationOptions
-  ): Promise<Models.IntGetNullResponse> {
+  getNull(options?: coreHttp.OperationOptions): Promise<IntGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec
-    ) as Promise<Models.IntGetNullResponse>;
+    ) as Promise<IntGetNullResponse>;
   }
 
   /**
@@ -45,11 +53,11 @@ export class Int {
    */
   getInvalid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.IntGetInvalidResponse> {
+  ): Promise<IntGetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getInvalidOperationSpec
-    ) as Promise<Models.IntGetInvalidResponse>;
+    ) as Promise<IntGetInvalidResponse>;
   }
 
   /**
@@ -58,11 +66,11 @@ export class Int {
    */
   getOverflowInt32(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.IntGetOverflowInt32Response> {
+  ): Promise<IntGetOverflowInt32Response> {
     return this.client.sendOperationRequest(
       { options },
       getOverflowInt32OperationSpec
-    ) as Promise<Models.IntGetOverflowInt32Response>;
+    ) as Promise<IntGetOverflowInt32Response>;
   }
 
   /**
@@ -71,11 +79,11 @@ export class Int {
    */
   getUnderflowInt32(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.IntGetUnderflowInt32Response> {
+  ): Promise<IntGetUnderflowInt32Response> {
     return this.client.sendOperationRequest(
       { options },
       getUnderflowInt32OperationSpec
-    ) as Promise<Models.IntGetUnderflowInt32Response>;
+    ) as Promise<IntGetUnderflowInt32Response>;
   }
 
   /**
@@ -84,11 +92,11 @@ export class Int {
    */
   getOverflowInt64(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.IntGetOverflowInt64Response> {
+  ): Promise<IntGetOverflowInt64Response> {
     return this.client.sendOperationRequest(
       { options },
       getOverflowInt64OperationSpec
-    ) as Promise<Models.IntGetOverflowInt64Response>;
+    ) as Promise<IntGetOverflowInt64Response>;
   }
 
   /**
@@ -97,11 +105,11 @@ export class Int {
    */
   getUnderflowInt64(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.IntGetUnderflowInt64Response> {
+  ): Promise<IntGetUnderflowInt64Response> {
     return this.client.sendOperationRequest(
       { options },
       getUnderflowInt64OperationSpec
-    ) as Promise<Models.IntGetUnderflowInt64Response>;
+    ) as Promise<IntGetUnderflowInt64Response>;
   }
 
   /**
@@ -170,11 +178,11 @@ export class Int {
    */
   getUnixTime(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.IntGetUnixTimeResponse> {
+  ): Promise<IntGetUnixTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getUnixTimeOperationSpec
-    ) as Promise<Models.IntGetUnixTimeResponse>;
+    ) as Promise<IntGetUnixTimeResponse>;
   }
 
   /**
@@ -198,11 +206,11 @@ export class Int {
    */
   getInvalidUnixTime(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.IntGetInvalidUnixTimeResponse> {
+  ): Promise<IntGetInvalidUnixTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getInvalidUnixTimeOperationSpec
-    ) as Promise<Models.IntGetInvalidUnixTimeResponse>;
+    ) as Promise<IntGetInvalidUnixTimeResponse>;
   }
 
   /**
@@ -211,11 +219,11 @@ export class Int {
    */
   getNullUnixTime(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.IntGetNullUnixTimeResponse> {
+  ): Promise<IntGetNullUnixTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullUnixTimeOperationSpec
-    ) as Promise<Models.IntGetNullUnixTimeResponse>;
+    ) as Promise<IntGetNullUnixTimeResponse>;
   }
 }
 // Operation Specifications

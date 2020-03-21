@@ -7,10 +7,25 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyDateTimeClient } from "../bodyDateTimeClient";
+import {
+  DatetimeGetNullResponse,
+  DatetimeGetInvalidResponse,
+  DatetimeGetOverflowResponse,
+  DatetimeGetUnderflowResponse,
+  DatetimeGetUtcLowercaseMaxDateTimeResponse,
+  DatetimeGetUtcUppercaseMaxDateTimeResponse,
+  DatetimeGetUtcUppercaseMaxDateTime7DigitsResponse,
+  DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse,
+  DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse,
+  DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse,
+  DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse,
+  DatetimeGetUtcMinDateTimeResponse,
+  DatetimeGetLocalPositiveOffsetMinDateTimeResponse,
+  DatetimeGetLocalNegativeOffsetMinDateTimeResponse
+} from "../models";
 
 /**
  * Class representing a Datetime.
@@ -32,11 +47,11 @@ export class Datetime {
    */
   getNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DatetimeGetNullResponse> {
+  ): Promise<DatetimeGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec
-    ) as Promise<Models.DatetimeGetNullResponse>;
+    ) as Promise<DatetimeGetNullResponse>;
   }
 
   /**
@@ -45,11 +60,11 @@ export class Datetime {
    */
   getInvalid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DatetimeGetInvalidResponse> {
+  ): Promise<DatetimeGetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getInvalidOperationSpec
-    ) as Promise<Models.DatetimeGetInvalidResponse>;
+    ) as Promise<DatetimeGetInvalidResponse>;
   }
 
   /**
@@ -58,11 +73,11 @@ export class Datetime {
    */
   getOverflow(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DatetimeGetOverflowResponse> {
+  ): Promise<DatetimeGetOverflowResponse> {
     return this.client.sendOperationRequest(
       { options },
       getOverflowOperationSpec
-    ) as Promise<Models.DatetimeGetOverflowResponse>;
+    ) as Promise<DatetimeGetOverflowResponse>;
   }
 
   /**
@@ -71,11 +86,11 @@ export class Datetime {
    */
   getUnderflow(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DatetimeGetUnderflowResponse> {
+  ): Promise<DatetimeGetUnderflowResponse> {
     return this.client.sendOperationRequest(
       { options },
       getUnderflowOperationSpec
-    ) as Promise<Models.DatetimeGetUnderflowResponse>;
+    ) as Promise<DatetimeGetUnderflowResponse>;
   }
 
   /**
@@ -114,11 +129,11 @@ export class Datetime {
    */
   getUtcLowercaseMaxDateTime(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DatetimeGetUtcLowercaseMaxDateTimeResponse> {
+  ): Promise<DatetimeGetUtcLowercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getUtcLowercaseMaxDateTimeOperationSpec
-    ) as Promise<Models.DatetimeGetUtcLowercaseMaxDateTimeResponse>;
+    ) as Promise<DatetimeGetUtcLowercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -127,11 +142,11 @@ export class Datetime {
    */
   getUtcUppercaseMaxDateTime(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DatetimeGetUtcUppercaseMaxDateTimeResponse> {
+  ): Promise<DatetimeGetUtcUppercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getUtcUppercaseMaxDateTimeOperationSpec
-    ) as Promise<Models.DatetimeGetUtcUppercaseMaxDateTimeResponse>;
+    ) as Promise<DatetimeGetUtcUppercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -140,11 +155,11 @@ export class Datetime {
    */
   getUtcUppercaseMaxDateTime7Digits(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DatetimeGetUtcUppercaseMaxDateTime7DigitsResponse> {
+  ): Promise<DatetimeGetUtcUppercaseMaxDateTime7DigitsResponse> {
     return this.client.sendOperationRequest(
       { options },
       getUtcUppercaseMaxDateTime7DigitsOperationSpec
-    ) as Promise<Models.DatetimeGetUtcUppercaseMaxDateTime7DigitsResponse>;
+    ) as Promise<DatetimeGetUtcUppercaseMaxDateTime7DigitsResponse>;
   }
 
   /**
@@ -168,15 +183,11 @@ export class Datetime {
    */
   getLocalPositiveOffsetLowercaseMaxDateTime(
     options?: coreHttp.OperationOptions
-  ): Promise<
-    Models.DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse
-  > {
+  ): Promise<DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec
-    ) as Promise<
-      Models.DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse
-    >;
+    ) as Promise<DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -185,15 +196,11 @@ export class Datetime {
    */
   getLocalPositiveOffsetUppercaseMaxDateTime(
     options?: coreHttp.OperationOptions
-  ): Promise<
-    Models.DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse
-  > {
+  ): Promise<DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec
-    ) as Promise<
-      Models.DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse
-    >;
+    ) as Promise<DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -217,15 +224,11 @@ export class Datetime {
    */
   getLocalNegativeOffsetUppercaseMaxDateTime(
     options?: coreHttp.OperationOptions
-  ): Promise<
-    Models.DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse
-  > {
+  ): Promise<DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec
-    ) as Promise<
-      Models.DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse
-    >;
+    ) as Promise<DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -234,15 +237,11 @@ export class Datetime {
    */
   getLocalNegativeOffsetLowercaseMaxDateTime(
     options?: coreHttp.OperationOptions
-  ): Promise<
-    Models.DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse
-  > {
+  ): Promise<DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec
-    ) as Promise<
-      Models.DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse
-    >;
+    ) as Promise<DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -266,11 +265,11 @@ export class Datetime {
    */
   getUtcMinDateTime(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DatetimeGetUtcMinDateTimeResponse> {
+  ): Promise<DatetimeGetUtcMinDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getUtcMinDateTimeOperationSpec
-    ) as Promise<Models.DatetimeGetUtcMinDateTimeResponse>;
+    ) as Promise<DatetimeGetUtcMinDateTimeResponse>;
   }
 
   /**
@@ -294,11 +293,11 @@ export class Datetime {
    */
   getLocalPositiveOffsetMinDateTime(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DatetimeGetLocalPositiveOffsetMinDateTimeResponse> {
+  ): Promise<DatetimeGetLocalPositiveOffsetMinDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getLocalPositiveOffsetMinDateTimeOperationSpec
-    ) as Promise<Models.DatetimeGetLocalPositiveOffsetMinDateTimeResponse>;
+    ) as Promise<DatetimeGetLocalPositiveOffsetMinDateTimeResponse>;
   }
 
   /**
@@ -322,11 +321,11 @@ export class Datetime {
    */
   getLocalNegativeOffsetMinDateTime(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DatetimeGetLocalNegativeOffsetMinDateTimeResponse> {
+  ): Promise<DatetimeGetLocalNegativeOffsetMinDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getLocalNegativeOffsetMinDateTimeOperationSpec
-    ) as Promise<Models.DatetimeGetLocalNegativeOffsetMinDateTimeResponse>;
+    ) as Promise<DatetimeGetLocalNegativeOffsetMinDateTimeResponse>;
   }
 }
 // Operation Specifications

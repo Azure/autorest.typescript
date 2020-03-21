@@ -14,7 +14,7 @@ import {
 } from "@azure-tools/codemodel";
 import { getStringForValue } from "./valueHelpers";
 import { getLanguageMetadata } from "./languageHelpers";
-import { normalizeName, NameType } from "./nameUtils";
+import { normalizeName, NameType, normalizeTypeName } from "./nameUtils";
 
 /**
  * Helper function which given a schema returns type information for useful for generating Typescript code
@@ -22,7 +22,7 @@ import { normalizeName, NameType } from "./nameUtils";
  */
 export function getTypeForSchema(schema: Schema): TypeDetails {
   let typeName: string = "";
-  let usedModels = [];
+  let usedModels: string[] = [];
   let defaultValue: string = "";
   let kind: PropertyKind = PropertyKind.Primitive;
 
@@ -33,10 +33,10 @@ export function getTypeForSchema(schema: Schema): TypeDetails {
     case SchemaType.Array:
       const arraySchema = schema as ArraySchema;
       const itemsType = getTypeForSchema(arraySchema.elementType);
-      const itemsName = getElementTypeName(itemsType);
+      const itemsName = normalizeTypeName(itemsType);
       kind = itemsType.kind;
       typeName = `${itemsName}[]`;
-      if (kind !== PropertyKind.Primitive) {
+      if (isModelNeeded(itemsType)) {
         usedModels.push(itemsName);
       }
       break;
@@ -61,7 +61,7 @@ export function getTypeForSchema(schema: Schema): TypeDetails {
       const constantType = getTypeForSchema(constantSchema.valueType);
       typeName = constantType.typeName;
       kind = constantType.kind;
-      if (kind !== PropertyKind.Primitive) {
+      if (isModelNeeded(constantType)) {
         usedModels.push(typeName);
       }
       defaultValue = getStringForValue(
@@ -81,10 +81,10 @@ export function getTypeForSchema(schema: Schema): TypeDetails {
     case SchemaType.Dictionary:
       const dictionarySchema = schema as DictionarySchema;
       const elementType = getTypeForSchema(dictionarySchema.elementType);
-      const elementTypeName = getElementTypeName(elementType);
+      const elementTypeName = normalizeTypeName(elementType);
       kind = PropertyKind.Dictionary;
       typeName = `{[propertyName: string]: ${elementTypeName}}`;
-      if (elementType.kind !== PropertyKind.Primitive) {
+      if (isModelNeeded(elementType)) {
         usedModels.push(elementTypeName);
       }
       break;
@@ -128,10 +128,8 @@ export function getTypeForSchema(schema: Schema): TypeDetails {
   };
 }
 
-function getElementTypeName(elementType: TypeDetails) {
-  return elementType.kind === PropertyKind.Primitive
-    ? elementType.typeName
-    : normalizeName(elementType.typeName, NameType.Interface);
+function isModelNeeded({ kind }: TypeDetails) {
+  return [PropertyKind.Composite, PropertyKind.Enum].includes(kind);
 }
 
 export function isSchemaResponse(response: any): response is SchemaResponse {

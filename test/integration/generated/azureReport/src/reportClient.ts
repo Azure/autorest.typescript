@@ -11,6 +11,10 @@ import * as Parameters from "./models/parameters";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { ReportClientContext } from "./reportClientContext";
+import {
+  ReportClientGetReportResponse,
+  ReportClientGetReportOptionalParams
+} from "./models";
 
 class ReportClient extends ReportClientContext {
   /**
@@ -26,12 +30,12 @@ class ReportClient extends ReportClientContext {
    * @param options The options parameters.
    */
   getReport(
-    options?: Models.ReportClientGetReportOptionalParams
-  ): Promise<Models.ReportClientGetReportResponse> {
+    options?: ReportClientGetReportOptionalParams
+  ): Promise<ReportClientGetReportResponse> {
     return this.sendOperationRequest(
       { options },
       getReportOperationSpec
-    ) as Promise<Models.ReportClientGetReportResponse>;
+    ) as Promise<ReportClientGetReportResponse>;
   }
 }
 // Operation Specifications

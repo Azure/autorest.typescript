@@ -7,10 +7,29 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { UrlClient } from "../urlClient";
+import {
+  QueriesGetBooleanNullOptionalParams,
+  QueriesGetIntNullOptionalParams,
+  QueriesGetLongNullOptionalParams,
+  QueriesFloatNullOptionalParams,
+  QueriesDoubleNullOptionalParams,
+  QueriesStringNullOptionalParams,
+  QueriesEnumValidOptionalParams,
+  QueriesEnumNullOptionalParams,
+  QueriesByteMultiByteOptionalParams,
+  QueriesByteNullOptionalParams,
+  QueriesDateNullOptionalParams,
+  QueriesDateTimeNullOptionalParams,
+  QueriesArrayStringCsvValidOptionalParams,
+  QueriesArrayStringCsvNullOptionalParams,
+  QueriesArrayStringCsvEmptyOptionalParams,
+  QueriesArrayStringSsvValidOptionalParams,
+  QueriesArrayStringTsvValidOptionalParams,
+  QueriesArrayStringPipesValidOptionalParams
+} from "../models";
 
 /**
  * Class representing a Queries.
@@ -57,7 +76,7 @@ export class Queries {
    * @param options The options parameters.
    */
   getBooleanNull(
-    options?: Models.QueriesGetBooleanNullOptionalParams
+    options?: QueriesGetBooleanNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -96,7 +115,7 @@ export class Queries {
    * @param options The options parameters.
    */
   getIntNull(
-    options?: Models.QueriesGetIntNullOptionalParams
+    options?: QueriesGetIntNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -135,7 +154,7 @@ export class Queries {
    * @param options The options parameters.
    */
   getLongNull(
-    options?: Models.QueriesGetLongNullOptionalParams
+    options?: QueriesGetLongNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -174,7 +193,7 @@ export class Queries {
    * @param options The options parameters.
    */
   floatNull(
-    options?: Models.QueriesFloatNullOptionalParams
+    options?: QueriesFloatNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -213,7 +232,7 @@ export class Queries {
    * @param options The options parameters.
    */
   doubleNull(
-    options?: Models.QueriesDoubleNullOptionalParams
+    options?: QueriesDoubleNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -265,7 +284,7 @@ export class Queries {
    * @param options The options parameters.
    */
   stringNull(
-    options?: Models.QueriesStringNullOptionalParams
+    options?: QueriesStringNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -278,7 +297,7 @@ export class Queries {
    * @param options The options parameters.
    */
   enumValid(
-    options?: Models.QueriesEnumValidOptionalParams
+    options?: QueriesEnumValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -291,7 +310,7 @@ export class Queries {
    * @param options The options parameters.
    */
   enumNull(
-    options?: Models.QueriesEnumNullOptionalParams
+    options?: QueriesEnumNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -304,7 +323,7 @@ export class Queries {
    * @param options The options parameters.
    */
   byteMultiByte(
-    options?: Models.QueriesByteMultiByteOptionalParams
+    options?: QueriesByteMultiByteOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -330,7 +349,7 @@ export class Queries {
    * @param options The options parameters.
    */
   byteNull(
-    options?: Models.QueriesByteNullOptionalParams
+    options?: QueriesByteNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -356,7 +375,7 @@ export class Queries {
    * @param options The options parameters.
    */
   dateNull(
-    options?: Models.QueriesDateNullOptionalParams
+    options?: QueriesDateNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -382,7 +401,7 @@ export class Queries {
    * @param options The options parameters.
    */
   dateTimeNull(
-    options?: Models.QueriesDateTimeNullOptionalParams
+    options?: QueriesDateTimeNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -396,7 +415,7 @@ export class Queries {
    * @param options The options parameters.
    */
   arrayStringCsvValid(
-    options?: Models.QueriesArrayStringCsvValidOptionalParams
+    options?: QueriesArrayStringCsvValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -409,7 +428,7 @@ export class Queries {
    * @param options The options parameters.
    */
   arrayStringCsvNull(
-    options?: Models.QueriesArrayStringCsvNullOptionalParams
+    options?: QueriesArrayStringCsvNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -422,7 +441,7 @@ export class Queries {
    * @param options The options parameters.
    */
   arrayStringCsvEmpty(
-    options?: Models.QueriesArrayStringCsvEmptyOptionalParams
+    options?: QueriesArrayStringCsvEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -436,7 +455,7 @@ export class Queries {
    * @param options The options parameters.
    */
   arrayStringSsvValid(
-    options?: Models.QueriesArrayStringSsvValidOptionalParams
+    options?: QueriesArrayStringSsvValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -450,7 +469,7 @@ export class Queries {
    * @param options The options parameters.
    */
   arrayStringTsvValid(
-    options?: Models.QueriesArrayStringTsvValidOptionalParams
+    options?: QueriesArrayStringTsvValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
@@ -464,7 +483,7 @@ export class Queries {
    * @param options The options parameters.
    */
   arrayStringPipesValid(
-    options?: Models.QueriesArrayStringPipesValidOptionalParams
+    options?: QueriesArrayStringPipesValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },

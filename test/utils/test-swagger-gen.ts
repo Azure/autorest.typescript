@@ -160,6 +160,7 @@ const generateSwaggers = async (
     await Promise.all(generationTasks);
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 

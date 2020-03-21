@@ -1160,11 +1160,8 @@ export type ArrayGetArrayValidResponse = {
  * Contains response data for the getDictionaryNull operation.
  */
 export type ArrayGetDictionaryNullResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: { [propertyName: string]: string }[];
-
+  [propertyName: string]: string;
+}[] & {
   /**
    * The underlying HTTP response.
    */
@@ -1185,11 +1182,8 @@ export type ArrayGetDictionaryNullResponse = {
  * Contains response data for the getDictionaryEmpty operation.
  */
 export type ArrayGetDictionaryEmptyResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: { [propertyName: string]: string }[];
-
+  [propertyName: string]: string;
+}[] & {
   /**
    * The underlying HTTP response.
    */
@@ -1210,11 +1204,8 @@ export type ArrayGetDictionaryEmptyResponse = {
  * Contains response data for the getDictionaryItemNull operation.
  */
 export type ArrayGetDictionaryItemNullResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: { [propertyName: string]: string }[];
-
+  [propertyName: string]: string;
+}[] & {
   /**
    * The underlying HTTP response.
    */
@@ -1235,11 +1226,8 @@ export type ArrayGetDictionaryItemNullResponse = {
  * Contains response data for the getDictionaryItemEmpty operation.
  */
 export type ArrayGetDictionaryItemEmptyResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: { [propertyName: string]: string }[];
-
+  [propertyName: string]: string;
+}[] & {
   /**
    * The underlying HTTP response.
    */
@@ -1260,11 +1248,8 @@ export type ArrayGetDictionaryItemEmptyResponse = {
  * Contains response data for the getDictionaryValid operation.
  */
 export type ArrayGetDictionaryValidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: { [propertyName: string]: string }[];
-
+  [propertyName: string]: string;
+}[] & {
   /**
    * The underlying HTTP response.
    */

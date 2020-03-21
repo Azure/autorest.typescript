@@ -7,10 +7,10 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClient } from "../bodyComplexClient";
+import { InheritanceGetValidResponse, Siamese } from "../models";
 
 /**
  * Class representing a Inheritance.
@@ -32,11 +32,11 @@ export class Inheritance {
    */
   getValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.InheritanceGetValidResponse> {
+  ): Promise<InheritanceGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getValidOperationSpec
-    ) as Promise<Models.InheritanceGetValidResponse>;
+    ) as Promise<InheritanceGetValidResponse>;
   }
 
   /**
@@ -47,7 +47,7 @@ export class Inheritance {
    * @param options The options parameters.
    */
   putValid(
-    complexBody: Models.Siamese,
+    complexBody: Siamese,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(

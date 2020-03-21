@@ -7,10 +7,15 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClient } from "../bodyComplexClient";
+import {
+  ArrayGetValidResponse,
+  ArrayWrapper,
+  ArrayGetEmptyResponse,
+  ArrayGetNotProvidedResponse
+} from "../models";
 
 /**
  * Class representing a Array.
@@ -32,11 +37,11 @@ export class Array {
    */
   getValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetValidResponse> {
+  ): Promise<ArrayGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getValidOperationSpec
-    ) as Promise<Models.ArrayGetValidResponse>;
+    ) as Promise<ArrayGetValidResponse>;
   }
 
   /**
@@ -46,7 +51,7 @@ export class Array {
    * @param options The options parameters.
    */
   putValid(
-    complexBody: Models.ArrayWrapper,
+    complexBody: ArrayWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -61,11 +66,11 @@ export class Array {
    */
   getEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetEmptyResponse> {
+  ): Promise<ArrayGetEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getEmptyOperationSpec
-    ) as Promise<Models.ArrayGetEmptyResponse>;
+    ) as Promise<ArrayGetEmptyResponse>;
   }
 
   /**
@@ -74,7 +79,7 @@ export class Array {
    * @param options The options parameters.
    */
   putEmpty(
-    complexBody: Models.ArrayWrapper,
+    complexBody: ArrayWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -89,11 +94,11 @@ export class Array {
    */
   getNotProvided(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetNotProvidedResponse> {
+  ): Promise<ArrayGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNotProvidedOperationSpec
-    ) as Promise<Models.ArrayGetNotProvidedResponse>;
+    ) as Promise<ArrayGetNotProvidedResponse>;
   }
 }
 // Operation Specifications

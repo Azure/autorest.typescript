@@ -12,7 +12,7 @@ import {
   ExportDeclarationStructure,
   MethodDeclaration
 } from "ts-morph";
-import { normalizeName, NameType } from "../utils/nameUtils";
+import { normalizeName, NameType, normalizeTypeName } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
 import { transformOperationSpec } from "../transforms/operationTransforms";
 import {
@@ -28,7 +28,6 @@ import {
   filterOperationParameters,
   formatJsDocParam
 } from "./utils/parameterUtils";
-import { PropertyKind, TypeDetails } from "../models/modelDetails";
 import { wrapString } from "./utils/stringUtils";
 import { KnownMediaType } from "@azure-tools/codegen";
 import {
@@ -201,7 +200,7 @@ function buildMapper(
 function getOptionsParameter(
   operation: OperationDetails,
   parameters: ParameterDetails[],
-  importedModels: string[],
+  importedModels: Set<string>,
   { isOptional = true } = {}
 ): ParameterWithDescription {
   let type: string = "coreHttp.OperationOptions";
@@ -211,7 +210,7 @@ function getOptionsParameter(
     }).some(p => !p.required)
   ) {
     type = `${operation.typeDetails.typeName}OptionalParams`;
-    importedModels.push(type);
+    importedModels.add(type);
   }
   return {
     name: "options",
@@ -229,7 +228,7 @@ function addClass(
   operationGroupDetails: OperationGroupDetails,
   clientDetails: ClientDetails
 ) {
-  let importedModels: string[] = [];
+  let importedModels = new Set<string>();
   const className = normalizeName(operationGroupDetails.name, NameType.Class);
   const operationGroupClass = operationGroupFile.addClass({
     name: className,
@@ -266,9 +265,17 @@ function addClass(
   );
 
   // Use named import from Models
-  if (importedModels.length) {
+  if (importedModels.size) {
+    // Add alias to any model that collides with the class name
+    const namedImports = [...importedModels].map(model => {
+      if (model === className) {
+        return `${model} as ${model}Model`;
+      }
+      return model;
+    });
+
     operationGroupFile.addImportDeclaration({
-      namedImports: importedModels,
+      namedImports,
       moduleSpecifier: "../models"
     });
   }
@@ -284,7 +291,7 @@ type ParameterWithDescription = OptionalKind<
 export function writeOperations(
   operationGroupDetails: OperationGroupDetails,
   operationGroupClass: ClassDeclaration,
-  importedModels: string[],
+  importedModels: Set<string>,
   parameters: ParameterDetails[],
   isInline = false
 ) {
@@ -295,16 +302,21 @@ export function writeOperations(
       operation
     ).map<ParameterWithDescription>(param => {
       const { usedModels } = param.typeDetails;
-      const type = normalizeParameterName(param.typeDetails);
+      const type = normalizeTypeName(param.typeDetails);
 
+      // If the type collides with the class name, use the alias
+      const typeName =
+        operationGroupClass.getName() === type ? `${type}Model` : type;
+
+      // If any models are used, add them to the named import list
       if (usedModels.length) {
-        importedModels.push(...usedModels);
+        usedModels.forEach(model => importedModels.add(model));
       }
 
       return {
         name: param.name,
         description: param.description,
-        type,
+        type: typeName,
         hasQuestionToken: !param.required
       };
     });
@@ -424,7 +436,7 @@ function getContentTypeValues(
 
 function getResponseType(
   operation: OperationDetails,
-  importedModels: string[]
+  importedModels: Set<string>
 ) {
   const hasSuccessResponse = operation.responses.some(
     ({ isError, mappers }) =>
@@ -439,7 +451,7 @@ function getResponseType(
       NameType.Interface
     )}Response`;
 
-    importedModels.push(typeName);
+    importedModels.add(typeName);
 
     return typeName;
   }
@@ -457,16 +469,6 @@ function generateOperationJSDoc(
   return `${
     description ? wrapString(description) + "\n" : description
   }${paramJSDoc}`;
-}
-
-function normalizeParameterName({ kind, typeName }: TypeDetails) {
-  // Only Enum and Composite kinds need normalization
-  if ([PropertyKind.Enum, PropertyKind.Composite].includes(kind)) {
-    return `${normalizeName(typeName, NameType.Class)}`;
-  }
-
-  // Other kinds are already in the form they need to be
-  return typeName;
 }
 
 /**

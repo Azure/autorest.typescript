@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { Operation, OperationGroup } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "./languageHelpers";
+import { TypeDetails, PropertyKind } from "../models/modelDetails";
 
 const ReservedModelNames = ["Error", "Date"];
 
@@ -19,6 +20,20 @@ export enum NameType {
 
 export function guardReservedNames(name: string): string {
   return ReservedModelNames.indexOf(name) > -1 ? `${name}Model` : name;
+}
+
+/**
+ * Returns a normalized Type name, this is, the type name capitalized when needed.
+ * Otherwise, return the original typename, for example primitives "string", etc. don' need capitalization
+ */
+export function normalizeTypeName({ kind, typeName }: TypeDetails) {
+  // Only Enum and Composite kinds need normalization
+  if ([PropertyKind.Enum, PropertyKind.Composite].includes(kind)) {
+    return `${normalizeName(typeName, NameType.Interface)}`;
+  }
+
+  // Other kinds are already in the form they need to be
+  return typeName;
 }
 
 export function normalizeName(name: string, nameType: NameType): string {

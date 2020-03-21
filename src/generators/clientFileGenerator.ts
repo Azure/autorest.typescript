@@ -182,7 +182,7 @@ function writeClientOperations(
 
   // Add top level operation groups as client properties
   // TODO: Switch to named model imports in client File
-  const importedModels: string[] = [];
+  const importedModels = new Set<string>();
   if (!!topLevelGroup) {
     writeOperations(
       topLevelGroup,
@@ -192,6 +192,13 @@ function writeClientOperations(
       true // isInline
     );
     addOperationSpecs(topLevelGroup, file, clientDetails.parameters);
+    // Use named import from Models
+    if (importedModels.size) {
+      file.addImportDeclaration({
+        namedImports: [...importedModels],
+        moduleSpecifier: "./models"
+      });
+    }
   }
 
   const operationsDeclarationDetails = getOperationGroupsDeclarationDetails(

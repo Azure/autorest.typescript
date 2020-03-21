@@ -7,10 +7,14 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyDurationClient } from "../bodyDurationClient";
+import {
+  DurationGetNullResponse,
+  DurationGetPositiveDurationResponse,
+  DurationGetInvalidResponse
+} from "../models";
 
 /**
  * Class representing a Duration.
@@ -32,11 +36,11 @@ export class Duration {
    */
   getNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DurationGetNullResponse> {
+  ): Promise<DurationGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec
-    ) as Promise<Models.DurationGetNullResponse>;
+    ) as Promise<DurationGetNullResponse>;
   }
 
   /**
@@ -60,11 +64,11 @@ export class Duration {
    */
   getPositiveDuration(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DurationGetPositiveDurationResponse> {
+  ): Promise<DurationGetPositiveDurationResponse> {
     return this.client.sendOperationRequest(
       { options },
       getPositiveDurationOperationSpec
-    ) as Promise<Models.DurationGetPositiveDurationResponse>;
+    ) as Promise<DurationGetPositiveDurationResponse>;
   }
 
   /**
@@ -73,11 +77,11 @@ export class Duration {
    */
   getInvalid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DurationGetInvalidResponse> {
+  ): Promise<DurationGetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getInvalidOperationSpec
-    ) as Promise<Models.DurationGetInvalidResponse>;
+    ) as Promise<DurationGetInvalidResponse>;
   }
 }
 // Operation Specifications

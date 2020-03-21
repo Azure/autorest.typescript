@@ -7,10 +7,65 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyArrayClient } from "../bodyArrayClient";
+import {
+  ArrayGetNullResponse,
+  ArrayGetInvalidResponse,
+  ArrayGetEmptyResponse,
+  ArrayGetBooleanTfftResponse,
+  ArrayGetBooleanInvalidNullResponse,
+  ArrayGetBooleanInvalidStringResponse,
+  ArrayGetIntegerValidResponse,
+  ArrayGetIntInvalidNullResponse,
+  ArrayGetIntInvalidStringResponse,
+  ArrayGetLongValidResponse,
+  ArrayGetLongInvalidNullResponse,
+  ArrayGetLongInvalidStringResponse,
+  ArrayGetFloatValidResponse,
+  ArrayGetFloatInvalidNullResponse,
+  ArrayGetFloatInvalidStringResponse,
+  ArrayGetDoubleValidResponse,
+  ArrayGetDoubleInvalidNullResponse,
+  ArrayGetDoubleInvalidStringResponse,
+  ArrayGetStringValidResponse,
+  ArrayGetEnumValidResponse,
+  FooEnum,
+  ArrayGetStringEnumValidResponse,
+  Enum0,
+  ArrayGetStringWithNullResponse,
+  ArrayGetStringWithInvalidResponse,
+  ArrayGetUuidValidResponse,
+  ArrayGetUuidInvalidCharsResponse,
+  ArrayGetDateValidResponse,
+  ArrayGetDateInvalidNullResponse,
+  ArrayGetDateInvalidCharsResponse,
+  ArrayGetDateTimeValidResponse,
+  ArrayGetDateTimeInvalidNullResponse,
+  ArrayGetDateTimeInvalidCharsResponse,
+  ArrayGetDateTimeRfc1123ValidResponse,
+  ArrayGetDurationValidResponse,
+  ArrayGetByteValidResponse,
+  ArrayGetByteInvalidNullResponse,
+  ArrayGetBase64UrlResponse,
+  ArrayGetComplexNullResponse,
+  ArrayGetComplexEmptyResponse,
+  ArrayGetComplexItemNullResponse,
+  ArrayGetComplexItemEmptyResponse,
+  ArrayGetComplexValidResponse,
+  Product,
+  ArrayGetArrayNullResponse,
+  ArrayGetArrayEmptyResponse,
+  ArrayGetArrayItemNullResponse,
+  ArrayGetArrayItemEmptyResponse,
+  ArrayGetArrayValidResponse,
+  ArrayGetDictionaryNullResponse,
+  ArrayGetDictionaryEmptyResponse,
+  ArrayGetDictionaryItemNullResponse,
+  ArrayGetDictionaryItemEmptyResponse,
+  ArrayGetDictionaryValidResponse
+} from "../models";
 
 /**
  * Class representing a Array.
@@ -30,13 +85,11 @@ export class Array {
    * Get null array value
    * @param options The options parameters.
    */
-  getNull(
-    options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetNullResponse> {
+  getNull(options?: coreHttp.OperationOptions): Promise<ArrayGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec
-    ) as Promise<Models.ArrayGetNullResponse>;
+    ) as Promise<ArrayGetNullResponse>;
   }
 
   /**
@@ -45,11 +98,11 @@ export class Array {
    */
   getInvalid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetInvalidResponse> {
+  ): Promise<ArrayGetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getInvalidOperationSpec
-    ) as Promise<Models.ArrayGetInvalidResponse>;
+    ) as Promise<ArrayGetInvalidResponse>;
   }
 
   /**
@@ -58,11 +111,11 @@ export class Array {
    */
   getEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetEmptyResponse> {
+  ): Promise<ArrayGetEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getEmptyOperationSpec
-    ) as Promise<Models.ArrayGetEmptyResponse>;
+    ) as Promise<ArrayGetEmptyResponse>;
   }
 
   /**
@@ -86,11 +139,11 @@ export class Array {
    */
   getBooleanTfft(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetBooleanTfftResponse> {
+  ): Promise<ArrayGetBooleanTfftResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBooleanTfftOperationSpec
-    ) as Promise<Models.ArrayGetBooleanTfftResponse>;
+    ) as Promise<ArrayGetBooleanTfftResponse>;
   }
 
   /**
@@ -114,11 +167,11 @@ export class Array {
    */
   getBooleanInvalidNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetBooleanInvalidNullResponse> {
+  ): Promise<ArrayGetBooleanInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBooleanInvalidNullOperationSpec
-    ) as Promise<Models.ArrayGetBooleanInvalidNullResponse>;
+    ) as Promise<ArrayGetBooleanInvalidNullResponse>;
   }
 
   /**
@@ -127,11 +180,11 @@ export class Array {
    */
   getBooleanInvalidString(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetBooleanInvalidStringResponse> {
+  ): Promise<ArrayGetBooleanInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBooleanInvalidStringOperationSpec
-    ) as Promise<Models.ArrayGetBooleanInvalidStringResponse>;
+    ) as Promise<ArrayGetBooleanInvalidStringResponse>;
   }
 
   /**
@@ -140,11 +193,11 @@ export class Array {
    */
   getIntegerValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetIntegerValidResponse> {
+  ): Promise<ArrayGetIntegerValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getIntegerValidOperationSpec
-    ) as Promise<Models.ArrayGetIntegerValidResponse>;
+    ) as Promise<ArrayGetIntegerValidResponse>;
   }
 
   /**
@@ -168,11 +221,11 @@ export class Array {
    */
   getIntInvalidNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetIntInvalidNullResponse> {
+  ): Promise<ArrayGetIntInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getIntInvalidNullOperationSpec
-    ) as Promise<Models.ArrayGetIntInvalidNullResponse>;
+    ) as Promise<ArrayGetIntInvalidNullResponse>;
   }
 
   /**
@@ -181,11 +234,11 @@ export class Array {
    */
   getIntInvalidString(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetIntInvalidStringResponse> {
+  ): Promise<ArrayGetIntInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
       getIntInvalidStringOperationSpec
-    ) as Promise<Models.ArrayGetIntInvalidStringResponse>;
+    ) as Promise<ArrayGetIntInvalidStringResponse>;
   }
 
   /**
@@ -194,11 +247,11 @@ export class Array {
    */
   getLongValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetLongValidResponse> {
+  ): Promise<ArrayGetLongValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getLongValidOperationSpec
-    ) as Promise<Models.ArrayGetLongValidResponse>;
+    ) as Promise<ArrayGetLongValidResponse>;
   }
 
   /**
@@ -222,11 +275,11 @@ export class Array {
    */
   getLongInvalidNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetLongInvalidNullResponse> {
+  ): Promise<ArrayGetLongInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getLongInvalidNullOperationSpec
-    ) as Promise<Models.ArrayGetLongInvalidNullResponse>;
+    ) as Promise<ArrayGetLongInvalidNullResponse>;
   }
 
   /**
@@ -235,11 +288,11 @@ export class Array {
    */
   getLongInvalidString(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetLongInvalidStringResponse> {
+  ): Promise<ArrayGetLongInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
       getLongInvalidStringOperationSpec
-    ) as Promise<Models.ArrayGetLongInvalidStringResponse>;
+    ) as Promise<ArrayGetLongInvalidStringResponse>;
   }
 
   /**
@@ -248,11 +301,11 @@ export class Array {
    */
   getFloatValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetFloatValidResponse> {
+  ): Promise<ArrayGetFloatValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getFloatValidOperationSpec
-    ) as Promise<Models.ArrayGetFloatValidResponse>;
+    ) as Promise<ArrayGetFloatValidResponse>;
   }
 
   /**
@@ -276,11 +329,11 @@ export class Array {
    */
   getFloatInvalidNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetFloatInvalidNullResponse> {
+  ): Promise<ArrayGetFloatInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getFloatInvalidNullOperationSpec
-    ) as Promise<Models.ArrayGetFloatInvalidNullResponse>;
+    ) as Promise<ArrayGetFloatInvalidNullResponse>;
   }
 
   /**
@@ -289,11 +342,11 @@ export class Array {
    */
   getFloatInvalidString(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetFloatInvalidStringResponse> {
+  ): Promise<ArrayGetFloatInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
       getFloatInvalidStringOperationSpec
-    ) as Promise<Models.ArrayGetFloatInvalidStringResponse>;
+    ) as Promise<ArrayGetFloatInvalidStringResponse>;
   }
 
   /**
@@ -302,11 +355,11 @@ export class Array {
    */
   getDoubleValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetDoubleValidResponse> {
+  ): Promise<ArrayGetDoubleValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDoubleValidOperationSpec
-    ) as Promise<Models.ArrayGetDoubleValidResponse>;
+    ) as Promise<ArrayGetDoubleValidResponse>;
   }
 
   /**
@@ -330,11 +383,11 @@ export class Array {
    */
   getDoubleInvalidNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetDoubleInvalidNullResponse> {
+  ): Promise<ArrayGetDoubleInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDoubleInvalidNullOperationSpec
-    ) as Promise<Models.ArrayGetDoubleInvalidNullResponse>;
+    ) as Promise<ArrayGetDoubleInvalidNullResponse>;
   }
 
   /**
@@ -343,11 +396,11 @@ export class Array {
    */
   getDoubleInvalidString(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetDoubleInvalidStringResponse> {
+  ): Promise<ArrayGetDoubleInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDoubleInvalidStringOperationSpec
-    ) as Promise<Models.ArrayGetDoubleInvalidStringResponse>;
+    ) as Promise<ArrayGetDoubleInvalidStringResponse>;
   }
 
   /**
@@ -356,11 +409,11 @@ export class Array {
    */
   getStringValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetStringValidResponse> {
+  ): Promise<ArrayGetStringValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getStringValidOperationSpec
-    ) as Promise<Models.ArrayGetStringValidResponse>;
+    ) as Promise<ArrayGetStringValidResponse>;
   }
 
   /**
@@ -384,11 +437,11 @@ export class Array {
    */
   getEnumValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetEnumValidResponse> {
+  ): Promise<ArrayGetEnumValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getEnumValidOperationSpec
-    ) as Promise<Models.ArrayGetEnumValidResponse>;
+    ) as Promise<ArrayGetEnumValidResponse>;
   }
 
   /**
@@ -397,7 +450,7 @@ export class Array {
    * @param options The options parameters.
    */
   putEnumValid(
-    arrayBody: Models.FooEnum[],
+    arrayBody: FooEnum[],
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -412,11 +465,11 @@ export class Array {
    */
   getStringEnumValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetStringEnumValidResponse> {
+  ): Promise<ArrayGetStringEnumValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getStringEnumValidOperationSpec
-    ) as Promise<Models.ArrayGetStringEnumValidResponse>;
+    ) as Promise<ArrayGetStringEnumValidResponse>;
   }
 
   /**
@@ -440,11 +493,11 @@ export class Array {
    */
   getStringWithNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetStringWithNullResponse> {
+  ): Promise<ArrayGetStringWithNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getStringWithNullOperationSpec
-    ) as Promise<Models.ArrayGetStringWithNullResponse>;
+    ) as Promise<ArrayGetStringWithNullResponse>;
   }
 
   /**
@@ -453,11 +506,11 @@ export class Array {
    */
   getStringWithInvalid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetStringWithInvalidResponse> {
+  ): Promise<ArrayGetStringWithInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getStringWithInvalidOperationSpec
-    ) as Promise<Models.ArrayGetStringWithInvalidResponse>;
+    ) as Promise<ArrayGetStringWithInvalidResponse>;
   }
 
   /**
@@ -467,11 +520,11 @@ export class Array {
    */
   getUuidValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetUuidValidResponse> {
+  ): Promise<ArrayGetUuidValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getUuidValidOperationSpec
-    ) as Promise<Models.ArrayGetUuidValidResponse>;
+    ) as Promise<ArrayGetUuidValidResponse>;
   }
 
   /**
@@ -496,11 +549,11 @@ export class Array {
    */
   getUuidInvalidChars(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetUuidInvalidCharsResponse> {
+  ): Promise<ArrayGetUuidInvalidCharsResponse> {
     return this.client.sendOperationRequest(
       { options },
       getUuidInvalidCharsOperationSpec
-    ) as Promise<Models.ArrayGetUuidInvalidCharsResponse>;
+    ) as Promise<ArrayGetUuidInvalidCharsResponse>;
   }
 
   /**
@@ -509,11 +562,11 @@ export class Array {
    */
   getDateValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetDateValidResponse> {
+  ): Promise<ArrayGetDateValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateValidOperationSpec
-    ) as Promise<Models.ArrayGetDateValidResponse>;
+    ) as Promise<ArrayGetDateValidResponse>;
   }
 
   /**
@@ -537,11 +590,11 @@ export class Array {
    */
   getDateInvalidNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetDateInvalidNullResponse> {
+  ): Promise<ArrayGetDateInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateInvalidNullOperationSpec
-    ) as Promise<Models.ArrayGetDateInvalidNullResponse>;
+    ) as Promise<ArrayGetDateInvalidNullResponse>;
   }
 
   /**
@@ -550,11 +603,11 @@ export class Array {
    */
   getDateInvalidChars(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetDateInvalidCharsResponse> {
+  ): Promise<ArrayGetDateInvalidCharsResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateInvalidCharsOperationSpec
-    ) as Promise<Models.ArrayGetDateInvalidCharsResponse>;
+    ) as Promise<ArrayGetDateInvalidCharsResponse>;
   }
 
   /**
@@ -564,11 +617,11 @@ export class Array {
    */
   getDateTimeValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetDateTimeValidResponse> {
+  ): Promise<ArrayGetDateTimeValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateTimeValidOperationSpec
-    ) as Promise<Models.ArrayGetDateTimeValidResponse>;
+    ) as Promise<ArrayGetDateTimeValidResponse>;
   }
 
   /**
@@ -592,11 +645,11 @@ export class Array {
    */
   getDateTimeInvalidNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetDateTimeInvalidNullResponse> {
+  ): Promise<ArrayGetDateTimeInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateTimeInvalidNullOperationSpec
-    ) as Promise<Models.ArrayGetDateTimeInvalidNullResponse>;
+    ) as Promise<ArrayGetDateTimeInvalidNullResponse>;
   }
 
   /**
@@ -605,11 +658,11 @@ export class Array {
    */
   getDateTimeInvalidChars(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetDateTimeInvalidCharsResponse> {
+  ): Promise<ArrayGetDateTimeInvalidCharsResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateTimeInvalidCharsOperationSpec
-    ) as Promise<Models.ArrayGetDateTimeInvalidCharsResponse>;
+    ) as Promise<ArrayGetDateTimeInvalidCharsResponse>;
   }
 
   /**
@@ -619,11 +672,11 @@ export class Array {
    */
   getDateTimeRfc1123Valid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetDateTimeRfc1123ValidResponse> {
+  ): Promise<ArrayGetDateTimeRfc1123ValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateTimeRfc1123ValidOperationSpec
-    ) as Promise<Models.ArrayGetDateTimeRfc1123ValidResponse>;
+    ) as Promise<ArrayGetDateTimeRfc1123ValidResponse>;
   }
 
   /**
@@ -648,11 +701,11 @@ export class Array {
    */
   getDurationValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetDurationValidResponse> {
+  ): Promise<ArrayGetDurationValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDurationValidOperationSpec
-    ) as Promise<Models.ArrayGetDurationValidResponse>;
+    ) as Promise<ArrayGetDurationValidResponse>;
   }
 
   /**
@@ -677,11 +730,11 @@ export class Array {
    */
   getByteValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetByteValidResponse> {
+  ): Promise<ArrayGetByteValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getByteValidOperationSpec
-    ) as Promise<Models.ArrayGetByteValidResponse>;
+    ) as Promise<ArrayGetByteValidResponse>;
   }
 
   /**
@@ -706,11 +759,11 @@ export class Array {
    */
   getByteInvalidNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetByteInvalidNullResponse> {
+  ): Promise<ArrayGetByteInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getByteInvalidNullOperationSpec
-    ) as Promise<Models.ArrayGetByteInvalidNullResponse>;
+    ) as Promise<ArrayGetByteInvalidNullResponse>;
   }
 
   /**
@@ -720,11 +773,11 @@ export class Array {
    */
   getBase64Url(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetBase64UrlResponse> {
+  ): Promise<ArrayGetBase64UrlResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBase64UrlOperationSpec
-    ) as Promise<Models.ArrayGetBase64UrlResponse>;
+    ) as Promise<ArrayGetBase64UrlResponse>;
   }
 
   /**
@@ -733,11 +786,11 @@ export class Array {
    */
   getComplexNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetComplexNullResponse> {
+  ): Promise<ArrayGetComplexNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getComplexNullOperationSpec
-    ) as Promise<Models.ArrayGetComplexNullResponse>;
+    ) as Promise<ArrayGetComplexNullResponse>;
   }
 
   /**
@@ -746,11 +799,11 @@ export class Array {
    */
   getComplexEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetComplexEmptyResponse> {
+  ): Promise<ArrayGetComplexEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getComplexEmptyOperationSpec
-    ) as Promise<Models.ArrayGetComplexEmptyResponse>;
+    ) as Promise<ArrayGetComplexEmptyResponse>;
   }
 
   /**
@@ -760,11 +813,11 @@ export class Array {
    */
   getComplexItemNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetComplexItemNullResponse> {
+  ): Promise<ArrayGetComplexItemNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getComplexItemNullOperationSpec
-    ) as Promise<Models.ArrayGetComplexItemNullResponse>;
+    ) as Promise<ArrayGetComplexItemNullResponse>;
   }
 
   /**
@@ -774,11 +827,11 @@ export class Array {
    */
   getComplexItemEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetComplexItemEmptyResponse> {
+  ): Promise<ArrayGetComplexItemEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getComplexItemEmptyOperationSpec
-    ) as Promise<Models.ArrayGetComplexItemEmptyResponse>;
+    ) as Promise<ArrayGetComplexItemEmptyResponse>;
   }
 
   /**
@@ -788,11 +841,11 @@ export class Array {
    */
   getComplexValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetComplexValidResponse> {
+  ): Promise<ArrayGetComplexValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getComplexValidOperationSpec
-    ) as Promise<Models.ArrayGetComplexValidResponse>;
+    ) as Promise<ArrayGetComplexValidResponse>;
   }
 
   /**
@@ -802,7 +855,7 @@ export class Array {
    * @param options The options parameters.
    */
   putComplexValid(
-    arrayBody: Models.Product[],
+    arrayBody: Product[],
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -817,11 +870,11 @@ export class Array {
    */
   getArrayNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetArrayNullResponse> {
+  ): Promise<ArrayGetArrayNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getArrayNullOperationSpec
-    ) as Promise<Models.ArrayGetArrayNullResponse>;
+    ) as Promise<ArrayGetArrayNullResponse>;
   }
 
   /**
@@ -830,11 +883,11 @@ export class Array {
    */
   getArrayEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetArrayEmptyResponse> {
+  ): Promise<ArrayGetArrayEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getArrayEmptyOperationSpec
-    ) as Promise<Models.ArrayGetArrayEmptyResponse>;
+    ) as Promise<ArrayGetArrayEmptyResponse>;
   }
 
   /**
@@ -843,11 +896,11 @@ export class Array {
    */
   getArrayItemNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetArrayItemNullResponse> {
+  ): Promise<ArrayGetArrayItemNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getArrayItemNullOperationSpec
-    ) as Promise<Models.ArrayGetArrayItemNullResponse>;
+    ) as Promise<ArrayGetArrayItemNullResponse>;
   }
 
   /**
@@ -856,11 +909,11 @@ export class Array {
    */
   getArrayItemEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetArrayItemEmptyResponse> {
+  ): Promise<ArrayGetArrayItemEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getArrayItemEmptyOperationSpec
-    ) as Promise<Models.ArrayGetArrayItemEmptyResponse>;
+    ) as Promise<ArrayGetArrayItemEmptyResponse>;
   }
 
   /**
@@ -869,11 +922,11 @@ export class Array {
    */
   getArrayValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetArrayValidResponse> {
+  ): Promise<ArrayGetArrayValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getArrayValidOperationSpec
-    ) as Promise<Models.ArrayGetArrayValidResponse>;
+    ) as Promise<ArrayGetArrayValidResponse>;
   }
 
   /**
@@ -897,11 +950,11 @@ export class Array {
    */
   getDictionaryNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetDictionaryNullResponse> {
+  ): Promise<ArrayGetDictionaryNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDictionaryNullOperationSpec
-    ) as Promise<Models.ArrayGetDictionaryNullResponse>;
+    ) as Promise<ArrayGetDictionaryNullResponse>;
   }
 
   /**
@@ -910,11 +963,11 @@ export class Array {
    */
   getDictionaryEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetDictionaryEmptyResponse> {
+  ): Promise<ArrayGetDictionaryEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDictionaryEmptyOperationSpec
-    ) as Promise<Models.ArrayGetDictionaryEmptyResponse>;
+    ) as Promise<ArrayGetDictionaryEmptyResponse>;
   }
 
   /**
@@ -924,11 +977,11 @@ export class Array {
    */
   getDictionaryItemNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetDictionaryItemNullResponse> {
+  ): Promise<ArrayGetDictionaryItemNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDictionaryItemNullOperationSpec
-    ) as Promise<Models.ArrayGetDictionaryItemNullResponse>;
+    ) as Promise<ArrayGetDictionaryItemNullResponse>;
   }
 
   /**
@@ -938,11 +991,11 @@ export class Array {
    */
   getDictionaryItemEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetDictionaryItemEmptyResponse> {
+  ): Promise<ArrayGetDictionaryItemEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDictionaryItemEmptyOperationSpec
-    ) as Promise<Models.ArrayGetDictionaryItemEmptyResponse>;
+    ) as Promise<ArrayGetDictionaryItemEmptyResponse>;
   }
 
   /**
@@ -952,11 +1005,11 @@ export class Array {
    */
   getDictionaryValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ArrayGetDictionaryValidResponse> {
+  ): Promise<ArrayGetDictionaryValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDictionaryValidOperationSpec
-    ) as Promise<Models.ArrayGetDictionaryValidResponse>;
+    ) as Promise<ArrayGetDictionaryValidResponse>;
   }
 
   /**

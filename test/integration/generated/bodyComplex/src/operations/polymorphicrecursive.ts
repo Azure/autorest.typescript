@@ -7,10 +7,10 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClient } from "../bodyComplexClient";
+import { PolymorphicrecursiveGetValidResponse, FishUnion } from "../models";
 
 /**
  * Class representing a Polymorphicrecursive.
@@ -32,11 +32,11 @@ export class Polymorphicrecursive {
    */
   getValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PolymorphicrecursiveGetValidResponse> {
+  ): Promise<PolymorphicrecursiveGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getValidOperationSpec
-    ) as Promise<Models.PolymorphicrecursiveGetValidResponse>;
+    ) as Promise<PolymorphicrecursiveGetValidResponse>;
   }
 
   /**
@@ -97,7 +97,7 @@ export class Polymorphicrecursive {
    * @param options The options parameters.
    */
   putValid(
-    complexBody: Models.FishUnion,
+    complexBody: FishUnion,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(

@@ -7,10 +7,15 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { UrlClient } from "../urlClient";
+import {
+  PathItemsGetAllWithValuesOptionalParams,
+  PathItemsGetGlobalQueryNullOptionalParams,
+  PathItemsGetGlobalAndLocalQueryNullOptionalParams,
+  PathItemsGetLocalPathItemQueryNullOptionalParams
+} from "../models";
 
 /**
  * Class representing a PathItems.
@@ -37,7 +42,7 @@ export class PathItems {
   getAllWithValues(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: Models.PathItemsGetAllWithValuesOptionalParams
+    options?: PathItemsGetAllWithValuesOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { pathItemStringPath, localStringPath, options },
@@ -56,7 +61,7 @@ export class PathItems {
   getGlobalQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: Models.PathItemsGetGlobalQueryNullOptionalParams
+    options?: PathItemsGetGlobalQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { pathItemStringPath, localStringPath, options },
@@ -75,7 +80,7 @@ export class PathItems {
   getGlobalAndLocalQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams
+    options?: PathItemsGetGlobalAndLocalQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { pathItemStringPath, localStringPath, options },
@@ -94,7 +99,7 @@ export class PathItems {
   getLocalPathItemQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams
+    options?: PathItemsGetLocalPathItemQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { pathItemStringPath, localStringPath, options },

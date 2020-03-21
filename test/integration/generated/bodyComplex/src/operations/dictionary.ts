@@ -7,10 +7,16 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClient } from "../bodyComplexClient";
+import {
+  DictionaryGetValidResponse,
+  DictionaryWrapper,
+  DictionaryGetEmptyResponse,
+  DictionaryGetNullResponse,
+  DictionaryGetNotProvidedResponse
+} from "../models";
 
 /**
  * Class representing a Dictionary.
@@ -32,11 +38,11 @@ export class Dictionary {
    */
   getValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DictionaryGetValidResponse> {
+  ): Promise<DictionaryGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getValidOperationSpec
-    ) as Promise<Models.DictionaryGetValidResponse>;
+    ) as Promise<DictionaryGetValidResponse>;
   }
 
   /**
@@ -46,7 +52,7 @@ export class Dictionary {
    * @param options The options parameters.
    */
   putValid(
-    complexBody: Models.DictionaryWrapper,
+    complexBody: DictionaryWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -61,11 +67,11 @@ export class Dictionary {
    */
   getEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DictionaryGetEmptyResponse> {
+  ): Promise<DictionaryGetEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getEmptyOperationSpec
-    ) as Promise<Models.DictionaryGetEmptyResponse>;
+    ) as Promise<DictionaryGetEmptyResponse>;
   }
 
   /**
@@ -74,7 +80,7 @@ export class Dictionary {
    * @param options The options parameters.
    */
   putEmpty(
-    complexBody: Models.DictionaryWrapper,
+    complexBody: DictionaryWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -89,11 +95,11 @@ export class Dictionary {
    */
   getNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DictionaryGetNullResponse> {
+  ): Promise<DictionaryGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec
-    ) as Promise<Models.DictionaryGetNullResponse>;
+    ) as Promise<DictionaryGetNullResponse>;
   }
 
   /**
@@ -102,11 +108,11 @@ export class Dictionary {
    */
   getNotProvided(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DictionaryGetNotProvidedResponse> {
+  ): Promise<DictionaryGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNotProvidedOperationSpec
-    ) as Promise<Models.DictionaryGetNotProvidedResponse>;
+    ) as Promise<DictionaryGetNotProvidedResponse>;
   }
 }
 // Operation Specifications

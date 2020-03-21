@@ -7,10 +7,18 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyDateTimeRfc1123Client } from "../bodyDateTimeRfc1123Client";
+import {
+  Datetimerfc1123GetNullResponse,
+  Datetimerfc1123GetInvalidResponse,
+  Datetimerfc1123GetOverflowResponse,
+  Datetimerfc1123GetUnderflowResponse,
+  Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse,
+  Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse,
+  Datetimerfc1123GetUtcMinDateTimeResponse
+} from "../models";
 
 /**
  * Class representing a Datetimerfc1123.
@@ -32,11 +40,11 @@ export class Datetimerfc1123 {
    */
   getNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.Datetimerfc1123GetNullResponse> {
+  ): Promise<Datetimerfc1123GetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec
-    ) as Promise<Models.Datetimerfc1123GetNullResponse>;
+    ) as Promise<Datetimerfc1123GetNullResponse>;
   }
 
   /**
@@ -45,11 +53,11 @@ export class Datetimerfc1123 {
    */
   getInvalid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.Datetimerfc1123GetInvalidResponse> {
+  ): Promise<Datetimerfc1123GetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getInvalidOperationSpec
-    ) as Promise<Models.Datetimerfc1123GetInvalidResponse>;
+    ) as Promise<Datetimerfc1123GetInvalidResponse>;
   }
 
   /**
@@ -58,11 +66,11 @@ export class Datetimerfc1123 {
    */
   getOverflow(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.Datetimerfc1123GetOverflowResponse> {
+  ): Promise<Datetimerfc1123GetOverflowResponse> {
     return this.client.sendOperationRequest(
       { options },
       getOverflowOperationSpec
-    ) as Promise<Models.Datetimerfc1123GetOverflowResponse>;
+    ) as Promise<Datetimerfc1123GetOverflowResponse>;
   }
 
   /**
@@ -71,11 +79,11 @@ export class Datetimerfc1123 {
    */
   getUnderflow(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.Datetimerfc1123GetUnderflowResponse> {
+  ): Promise<Datetimerfc1123GetUnderflowResponse> {
     return this.client.sendOperationRequest(
       { options },
       getUnderflowOperationSpec
-    ) as Promise<Models.Datetimerfc1123GetUnderflowResponse>;
+    ) as Promise<Datetimerfc1123GetUnderflowResponse>;
   }
 
   /**
@@ -99,11 +107,11 @@ export class Datetimerfc1123 {
    */
   getUtcLowercaseMaxDateTime(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse> {
+  ): Promise<Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getUtcLowercaseMaxDateTimeOperationSpec
-    ) as Promise<Models.Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse>;
+    ) as Promise<Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -112,11 +120,11 @@ export class Datetimerfc1123 {
    */
   getUtcUppercaseMaxDateTime(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse> {
+  ): Promise<Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getUtcUppercaseMaxDateTimeOperationSpec
-    ) as Promise<Models.Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse>;
+    ) as Promise<Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse>;
   }
 
   /**
@@ -140,11 +148,11 @@ export class Datetimerfc1123 {
    */
   getUtcMinDateTime(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.Datetimerfc1123GetUtcMinDateTimeResponse> {
+  ): Promise<Datetimerfc1123GetUtcMinDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getUtcMinDateTimeOperationSpec
-    ) as Promise<Models.Datetimerfc1123GetUtcMinDateTimeResponse>;
+    ) as Promise<Datetimerfc1123GetUtcMinDateTimeResponse>;
   }
 }
 // Operation Specifications

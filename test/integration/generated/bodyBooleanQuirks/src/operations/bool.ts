@@ -7,10 +7,15 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyBooleanQuirksClient } from "../bodyBooleanQuirksClient";
+import {
+  BoolGetTrueResponse,
+  BoolGetFalseResponse,
+  BoolGetNullResponse,
+  BoolGetInvalidResponse
+} from "../models";
 
 /**
  * Class representing a Bool.
@@ -30,13 +35,11 @@ export class Bool {
    * Get true Boolean value
    * @param options The options parameters.
    */
-  getTrue(
-    options?: coreHttp.OperationOptions
-  ): Promise<Models.BoolGetTrueResponse> {
+  getTrue(options?: coreHttp.OperationOptions): Promise<BoolGetTrueResponse> {
     return this.client.sendOperationRequest(
       { options },
       getTrueOperationSpec
-    ) as Promise<Models.BoolGetTrueResponse>;
+    ) as Promise<BoolGetTrueResponse>;
   }
 
   /**
@@ -58,13 +61,11 @@ export class Bool {
    * Get false Boolean value
    * @param options The options parameters.
    */
-  getFalse(
-    options?: coreHttp.OperationOptions
-  ): Promise<Models.BoolGetFalseResponse> {
+  getFalse(options?: coreHttp.OperationOptions): Promise<BoolGetFalseResponse> {
     return this.client.sendOperationRequest(
       { options },
       getFalseOperationSpec
-    ) as Promise<Models.BoolGetFalseResponse>;
+    ) as Promise<BoolGetFalseResponse>;
   }
 
   /**
@@ -86,13 +87,11 @@ export class Bool {
    * Get null Boolean value
    * @param options The options parameters.
    */
-  getNull(
-    options?: coreHttp.OperationOptions
-  ): Promise<Models.BoolGetNullResponse> {
+  getNull(options?: coreHttp.OperationOptions): Promise<BoolGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec
-    ) as Promise<Models.BoolGetNullResponse>;
+    ) as Promise<BoolGetNullResponse>;
   }
 
   /**
@@ -101,11 +100,11 @@ export class Bool {
    */
   getInvalid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.BoolGetInvalidResponse> {
+  ): Promise<BoolGetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getInvalidOperationSpec
-    ) as Promise<Models.BoolGetInvalidResponse>;
+    ) as Promise<BoolGetInvalidResponse>;
   }
 }
 // Operation Specifications
