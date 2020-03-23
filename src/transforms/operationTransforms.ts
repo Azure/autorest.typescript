@@ -159,13 +159,12 @@ export function extractSchemaResponses(responses: OperationResponseDetails[]) {
   return responses.reduce(
     (
       result: OperationSpecResponses,
-      { statusCodes, mappers }: OperationResponseDetails
+      { statusCode, mappers }: OperationResponseDetails
     ) => {
-      if (!statusCodes || !statusCodes.length) {
+      if (!statusCode) {
         return result;
       }
 
-      const statusCode = statusCodes[0];
       result[statusCode] = mappers;
       return result;
     },
@@ -225,8 +224,14 @@ export function transformOperationResponse(
 
   const isDefault = httpInfo.statusCodes.indexOf("default") > -1;
 
+  if (!httpInfo.statusCodes.length) {
+    throw new Error(
+      `Unexpected empty statusCodes in operation ${operationFullName}`
+    );
+  }
+
   return {
-    statusCodes: httpInfo.statusCodes,
+    statusCode: httpInfo.statusCodes[0],
     mediaType: httpInfo.knownMediaType,
     mappers,
     types,

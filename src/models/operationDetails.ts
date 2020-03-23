@@ -41,7 +41,7 @@ export interface OperationResponseTypes {
  * Details of an operation response, transformed from Response or SchemaResponse.
  */
 export interface OperationResponseDetails {
-  statusCodes: string[]; // Can be a status code number or "default"
+  statusCode: string; // Can be a status code number or "default"
   mediaType?: KnownMediaType;
   mappers: OperationResponseMappers;
   types: OperationResponseTypes;

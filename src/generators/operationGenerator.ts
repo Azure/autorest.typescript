@@ -438,25 +438,37 @@ function getResponseType(
   operation: OperationDetails,
   importedModels: Set<string>
 ) {
-  const hasSuccessResponse = operation.responses.some(
-    ({ isError, mappers }) =>
-      !isError && (!!mappers.bodyMapper || !!mappers.headersMapper)
+  const successWithContentResponse = operation.responses.filter(
+    ({ isError }) => !isError
   );
 
-  const responseName = hasSuccessResponse ? operation.typeDetails.typeName : "";
+  const returnTypes = new Set<string>();
 
-  if (responseName) {
-    const typeName = `${normalizeName(
-      responseName,
-      NameType.Interface
-    )}Response`;
+  // Gets the return type from from all the success responses
+  successWithContentResponse.forEach(
+    ({ statusCode, mappers: { headersMapper, bodyMapper } }) => {
+      const hasContent = headersMapper || bodyMapper;
+      const nameSuffix =
+        successWithContentResponse.length > 1 ? statusCode : "";
 
-    importedModels.add(typeName);
+      let typeName = "coreHttp.RestResponse";
 
-    return typeName;
-  }
+      if (hasContent) {
+        typeName = `${normalizeName(
+          operation.typeDetails.typeName,
+          NameType.Interface
+        )}${nameSuffix}Response`;
 
-  return "coreHttp.RestResponse";
+        importedModels.add(typeName);
+      }
+
+      // Only add the type to the result if we haven't added it before
+      return returnTypes.add(typeName);
+    }
+  );
+
+  // If there is more than one, create an union type
+  return [...returnTypes].join(" | ");
 }
 
 function generateOperationJSDoc(

@@ -105,24 +105,28 @@ function writeResponseTypes(
   { responses, name, typeDetails: operationType }: OperationDetails,
   modelsIndexFile: SourceFile
 ) {
-  const responseName = `${operationType.typeName}Response`;
+  const successResponses = responses.filter(({ isError }) => !isError);
+  // Responses that are not marked as errors and that have either body or headers
+  // We just need to generate models for these, responses without content will get
+  // a standard
+  const successResponsesWithContent = successResponses.filter(
+    ({ mappers: { bodyMapper, headersMapper } }) => bodyMapper || headersMapper
+  );
 
-  responses
-    // Filter responses that are not marked as errors and that have either body or headers
-    .filter(
-      ({ isError, mappers }) =>
-        !isError && (mappers.bodyMapper || mappers.headersMapper)
-    )
-    .forEach(operation => {
-      // Define possible values for response
-      modelsIndexFile.addTypeAlias({
-        name: responseName,
-        docs: [`Contains response data for the ${name} operation.`],
-        isExported: true,
-        type: buildResponseType(operation),
-        leadingTrivia: writer => writer.blankLine()
-      });
+  successResponsesWithContent.forEach(operation => {
+    // When an operation defines multiple responses, we need to generate a model for each
+    // otherwise we'll end up with a conflict.
+    const nameSuffix = successResponses.length > 1 ? operation.statusCode : "";
+    const responseName = `${operationType.typeName}${nameSuffix}Response`;
+    // Define possible values for response
+    modelsIndexFile.addTypeAlias({
+      name: responseName,
+      docs: [`Contains response data for the ${name} operation.`],
+      isExported: true,
+      type: buildResponseType(operation),
+      leadingTrivia: writer => writer.blankLine()
     });
+  });
 }
 
 /**
