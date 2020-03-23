@@ -180,7 +180,8 @@ const getParameter = ({
   mapper: mapper || "MockMapper",
   typeDetails: typeDetails || {
     typeName: "MockModel",
-    kind: PropertyKind.Composite
+    kind: PropertyKind.Composite,
+    usedModels: []
   },
   schemaType: schemaType || SchemaType.String,
   parameter,

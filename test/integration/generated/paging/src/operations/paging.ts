@@ -7,10 +7,46 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { PagingClient } from "../pagingClient";
+import {
+  PagingGetNoItemNamePagesResponse,
+  PagingGetNullNextLinkNamePagesResponse,
+  PagingGetSinglePagesResponse,
+  PagingGetMultiplePagesResponse,
+  PagingGetMultiplePagesOptionalParams,
+  PagingGetOdataMultiplePagesResponse,
+  PagingGetOdataMultiplePagesOptionalParams,
+  PagingGetMultiplePagesWithOffsetResponse,
+  PagingGetMultiplePagesWithOffsetOptionalParams,
+  PagingGetMultiplePagesRetryFirstResponse,
+  PagingGetMultiplePagesRetrySecondResponse,
+  PagingGetSinglePagesFailureResponse,
+  PagingGetMultiplePagesFailureResponse,
+  PagingGetMultiplePagesFailureUriResponse,
+  PagingGetMultiplePagesFragmentNextLinkResponse,
+  PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse,
+  PagingGetMultiplePagesLROResponse,
+  PagingGetMultiplePagesLROOptionalParams,
+  PagingNextFragmentResponse,
+  PagingNextFragmentWithGroupingResponse,
+  PagingGetNoItemNamePagesNextResponse,
+  PagingGetSinglePagesNextResponse,
+  PagingGetMultiplePagesNextResponse,
+  PagingGetMultiplePagesNextOptionalParams,
+  PagingGetOdataMultiplePagesNextResponse,
+  PagingGetOdataMultiplePagesNextOptionalParams,
+  PagingGetMultiplePagesWithOffsetNextResponse,
+  PagingGetMultiplePagesWithOffsetNextOptionalParams,
+  PagingGetMultiplePagesRetryFirstNextResponse,
+  PagingGetMultiplePagesRetrySecondNextResponse,
+  PagingGetSinglePagesFailureNextResponse,
+  PagingGetMultiplePagesFailureNextResponse,
+  PagingGetMultiplePagesFailureUriNextResponse,
+  PagingGetMultiplePagesLRONextResponse,
+  PagingGetMultiplePagesLRONextOptionalParams
+} from "../models";
 
 /**
  * Class representing a Paging.
@@ -32,11 +68,11 @@ export class Paging {
    */
   getNoItemNamePages(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingGetNoItemNamePagesResponse> {
+  ): Promise<PagingGetNoItemNamePagesResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNoItemNamePagesOperationSpec
-    ) as Promise<Models.PagingGetNoItemNamePagesResponse>;
+    ) as Promise<PagingGetNoItemNamePagesResponse>;
   }
 
   /**
@@ -45,11 +81,11 @@ export class Paging {
    */
   getNullNextLinkNamePages(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingGetNullNextLinkNamePagesResponse> {
+  ): Promise<PagingGetNullNextLinkNamePagesResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullNextLinkNamePagesOperationSpec
-    ) as Promise<Models.PagingGetNullNextLinkNamePagesResponse>;
+    ) as Promise<PagingGetNullNextLinkNamePagesResponse>;
   }
 
   /**
@@ -58,11 +94,11 @@ export class Paging {
    */
   getSinglePages(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingGetSinglePagesResponse> {
+  ): Promise<PagingGetSinglePagesResponse> {
     return this.client.sendOperationRequest(
       { options },
       getSinglePagesOperationSpec
-    ) as Promise<Models.PagingGetSinglePagesResponse>;
+    ) as Promise<PagingGetSinglePagesResponse>;
   }
 
   /**
@@ -70,12 +106,12 @@ export class Paging {
    * @param options The options parameters.
    */
   getMultiplePages(
-    options?: Models.PagingGetMultiplePagesOptionalParams
-  ): Promise<Models.PagingGetMultiplePagesResponse> {
+    options?: PagingGetMultiplePagesOptionalParams
+  ): Promise<PagingGetMultiplePagesResponse> {
     return this.client.sendOperationRequest(
       { options },
       getMultiplePagesOperationSpec
-    ) as Promise<Models.PagingGetMultiplePagesResponse>;
+    ) as Promise<PagingGetMultiplePagesResponse>;
   }
 
   /**
@@ -83,12 +119,12 @@ export class Paging {
    * @param options The options parameters.
    */
   getOdataMultiplePages(
-    options?: Models.PagingGetOdataMultiplePagesOptionalParams
-  ): Promise<Models.PagingGetOdataMultiplePagesResponse> {
+    options?: PagingGetOdataMultiplePagesOptionalParams
+  ): Promise<PagingGetOdataMultiplePagesResponse> {
     return this.client.sendOperationRequest(
       { options },
       getOdataMultiplePagesOperationSpec
-    ) as Promise<Models.PagingGetOdataMultiplePagesResponse>;
+    ) as Promise<PagingGetOdataMultiplePagesResponse>;
   }
 
   /**
@@ -98,12 +134,12 @@ export class Paging {
    */
   getMultiplePagesWithOffset(
     offset: number,
-    options?: Models.PagingGetMultiplePagesWithOffsetOptionalParams
-  ): Promise<Models.PagingGetMultiplePagesWithOffsetResponse> {
+    options?: PagingGetMultiplePagesWithOffsetOptionalParams
+  ): Promise<PagingGetMultiplePagesWithOffsetResponse> {
     return this.client.sendOperationRequest(
       { offset, options },
       getMultiplePagesWithOffsetOperationSpec
-    ) as Promise<Models.PagingGetMultiplePagesWithOffsetResponse>;
+    ) as Promise<PagingGetMultiplePagesWithOffsetResponse>;
   }
 
   /**
@@ -113,11 +149,11 @@ export class Paging {
    */
   getMultiplePagesRetryFirst(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingGetMultiplePagesRetryFirstResponse> {
+  ): Promise<PagingGetMultiplePagesRetryFirstResponse> {
     return this.client.sendOperationRequest(
       { options },
       getMultiplePagesRetryFirstOperationSpec
-    ) as Promise<Models.PagingGetMultiplePagesRetryFirstResponse>;
+    ) as Promise<PagingGetMultiplePagesRetryFirstResponse>;
   }
 
   /**
@@ -127,11 +163,11 @@ export class Paging {
    */
   getMultiplePagesRetrySecond(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingGetMultiplePagesRetrySecondResponse> {
+  ): Promise<PagingGetMultiplePagesRetrySecondResponse> {
     return this.client.sendOperationRequest(
       { options },
       getMultiplePagesRetrySecondOperationSpec
-    ) as Promise<Models.PagingGetMultiplePagesRetrySecondResponse>;
+    ) as Promise<PagingGetMultiplePagesRetrySecondResponse>;
   }
 
   /**
@@ -140,11 +176,11 @@ export class Paging {
    */
   getSinglePagesFailure(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingGetSinglePagesFailureResponse> {
+  ): Promise<PagingGetSinglePagesFailureResponse> {
     return this.client.sendOperationRequest(
       { options },
       getSinglePagesFailureOperationSpec
-    ) as Promise<Models.PagingGetSinglePagesFailureResponse>;
+    ) as Promise<PagingGetSinglePagesFailureResponse>;
   }
 
   /**
@@ -153,11 +189,11 @@ export class Paging {
    */
   getMultiplePagesFailure(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingGetMultiplePagesFailureResponse> {
+  ): Promise<PagingGetMultiplePagesFailureResponse> {
     return this.client.sendOperationRequest(
       { options },
       getMultiplePagesFailureOperationSpec
-    ) as Promise<Models.PagingGetMultiplePagesFailureResponse>;
+    ) as Promise<PagingGetMultiplePagesFailureResponse>;
   }
 
   /**
@@ -166,11 +202,11 @@ export class Paging {
    */
   getMultiplePagesFailureUri(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingGetMultiplePagesFailureUriResponse> {
+  ): Promise<PagingGetMultiplePagesFailureUriResponse> {
     return this.client.sendOperationRequest(
       { options },
       getMultiplePagesFailureUriOperationSpec
-    ) as Promise<Models.PagingGetMultiplePagesFailureUriResponse>;
+    ) as Promise<PagingGetMultiplePagesFailureUriResponse>;
   }
 
   /**
@@ -183,11 +219,11 @@ export class Paging {
     apiVersion: string,
     tenant: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingGetMultiplePagesFragmentNextLinkResponse> {
+  ): Promise<PagingGetMultiplePagesFragmentNextLinkResponse> {
     return this.client.sendOperationRequest(
       { apiVersion, tenant, options },
       getMultiplePagesFragmentNextLinkOperationSpec
-    ) as Promise<Models.PagingGetMultiplePagesFragmentNextLinkResponse>;
+    ) as Promise<PagingGetMultiplePagesFragmentNextLinkResponse>;
   }
 
   /**
@@ -200,15 +236,11 @@ export class Paging {
     apiVersion: string,
     tenant: string,
     options?: coreHttp.OperationOptions
-  ): Promise<
-    Models.PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse
-  > {
+  ): Promise<PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse> {
     return this.client.sendOperationRequest(
       { apiVersion, tenant, options },
       getMultiplePagesFragmentWithGroupingNextLinkOperationSpec
-    ) as Promise<
-      Models.PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse
-    >;
+    ) as Promise<PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse>;
   }
 
   /**
@@ -216,12 +248,12 @@ export class Paging {
    * @param options The options parameters.
    */
   getMultiplePagesLRO(
-    options?: Models.PagingGetMultiplePagesLROOptionalParams
-  ): Promise<Models.PagingGetMultiplePagesLROResponse> {
+    options?: PagingGetMultiplePagesLROOptionalParams
+  ): Promise<PagingGetMultiplePagesLROResponse> {
     return this.client.sendOperationRequest(
       { options },
       getMultiplePagesLROOperationSpec
-    ) as Promise<Models.PagingGetMultiplePagesLROResponse>;
+    ) as Promise<PagingGetMultiplePagesLROResponse>;
   }
 
   /**
@@ -236,11 +268,11 @@ export class Paging {
     tenant: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingNextFragmentResponse> {
+  ): Promise<PagingNextFragmentResponse> {
     return this.client.sendOperationRequest(
       { apiVersion, tenant, nextLink, options },
       nextFragmentOperationSpec
-    ) as Promise<Models.PagingNextFragmentResponse>;
+    ) as Promise<PagingNextFragmentResponse>;
   }
 
   /**
@@ -255,11 +287,11 @@ export class Paging {
     tenant: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingNextFragmentWithGroupingResponse> {
+  ): Promise<PagingNextFragmentWithGroupingResponse> {
     return this.client.sendOperationRequest(
       { apiVersion, tenant, nextLink, options },
       nextFragmentWithGroupingOperationSpec
-    ) as Promise<Models.PagingNextFragmentWithGroupingResponse>;
+    ) as Promise<PagingNextFragmentWithGroupingResponse>;
   }
 
   /**
@@ -270,11 +302,11 @@ export class Paging {
   getNoItemNamePagesNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingGetNoItemNamePagesNextResponse> {
+  ): Promise<PagingGetNoItemNamePagesNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
       getNoItemNamePagesNextOperationSpec
-    ) as Promise<Models.PagingGetNoItemNamePagesNextResponse>;
+    ) as Promise<PagingGetNoItemNamePagesNextResponse>;
   }
 
   /**
@@ -285,11 +317,11 @@ export class Paging {
   getSinglePagesNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingGetSinglePagesNextResponse> {
+  ): Promise<PagingGetSinglePagesNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
       getSinglePagesNextOperationSpec
-    ) as Promise<Models.PagingGetSinglePagesNextResponse>;
+    ) as Promise<PagingGetSinglePagesNextResponse>;
   }
 
   /**
@@ -299,12 +331,12 @@ export class Paging {
    */
   getMultiplePagesNext(
     nextLink: string,
-    options?: Models.PagingGetMultiplePagesNextOptionalParams
-  ): Promise<Models.PagingGetMultiplePagesNextResponse> {
+    options?: PagingGetMultiplePagesNextOptionalParams
+  ): Promise<PagingGetMultiplePagesNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
       getMultiplePagesNextOperationSpec
-    ) as Promise<Models.PagingGetMultiplePagesNextResponse>;
+    ) as Promise<PagingGetMultiplePagesNextResponse>;
   }
 
   /**
@@ -314,12 +346,12 @@ export class Paging {
    */
   getOdataMultiplePagesNext(
     nextLink: string,
-    options?: Models.PagingGetOdataMultiplePagesNextOptionalParams
-  ): Promise<Models.PagingGetOdataMultiplePagesNextResponse> {
+    options?: PagingGetOdataMultiplePagesNextOptionalParams
+  ): Promise<PagingGetOdataMultiplePagesNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
       getOdataMultiplePagesNextOperationSpec
-    ) as Promise<Models.PagingGetOdataMultiplePagesNextResponse>;
+    ) as Promise<PagingGetOdataMultiplePagesNextResponse>;
   }
 
   /**
@@ -332,12 +364,12 @@ export class Paging {
   getMultiplePagesWithOffsetNext(
     offset: number,
     nextLink: string,
-    options?: Models.PagingGetMultiplePagesWithOffsetNextOptionalParams
-  ): Promise<Models.PagingGetMultiplePagesWithOffsetNextResponse> {
+    options?: PagingGetMultiplePagesWithOffsetNextOptionalParams
+  ): Promise<PagingGetMultiplePagesWithOffsetNextResponse> {
     return this.client.sendOperationRequest(
       { offset, nextLink, options },
       getMultiplePagesWithOffsetNextOperationSpec
-    ) as Promise<Models.PagingGetMultiplePagesWithOffsetNextResponse>;
+    ) as Promise<PagingGetMultiplePagesWithOffsetNextResponse>;
   }
 
   /**
@@ -349,11 +381,11 @@ export class Paging {
   getMultiplePagesRetryFirstNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingGetMultiplePagesRetryFirstNextResponse> {
+  ): Promise<PagingGetMultiplePagesRetryFirstNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
       getMultiplePagesRetryFirstNextOperationSpec
-    ) as Promise<Models.PagingGetMultiplePagesRetryFirstNextResponse>;
+    ) as Promise<PagingGetMultiplePagesRetryFirstNextResponse>;
   }
 
   /**
@@ -365,11 +397,11 @@ export class Paging {
   getMultiplePagesRetrySecondNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingGetMultiplePagesRetrySecondNextResponse> {
+  ): Promise<PagingGetMultiplePagesRetrySecondNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
       getMultiplePagesRetrySecondNextOperationSpec
-    ) as Promise<Models.PagingGetMultiplePagesRetrySecondNextResponse>;
+    ) as Promise<PagingGetMultiplePagesRetrySecondNextResponse>;
   }
 
   /**
@@ -380,11 +412,11 @@ export class Paging {
   getSinglePagesFailureNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingGetSinglePagesFailureNextResponse> {
+  ): Promise<PagingGetSinglePagesFailureNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
       getSinglePagesFailureNextOperationSpec
-    ) as Promise<Models.PagingGetSinglePagesFailureNextResponse>;
+    ) as Promise<PagingGetSinglePagesFailureNextResponse>;
   }
 
   /**
@@ -396,11 +428,11 @@ export class Paging {
   getMultiplePagesFailureNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingGetMultiplePagesFailureNextResponse> {
+  ): Promise<PagingGetMultiplePagesFailureNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
       getMultiplePagesFailureNextOperationSpec
-    ) as Promise<Models.PagingGetMultiplePagesFailureNextResponse>;
+    ) as Promise<PagingGetMultiplePagesFailureNextResponse>;
   }
 
   /**
@@ -412,11 +444,11 @@ export class Paging {
   getMultiplePagesFailureUriNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PagingGetMultiplePagesFailureUriNextResponse> {
+  ): Promise<PagingGetMultiplePagesFailureUriNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
       getMultiplePagesFailureUriNextOperationSpec
-    ) as Promise<Models.PagingGetMultiplePagesFailureUriNextResponse>;
+    ) as Promise<PagingGetMultiplePagesFailureUriNextResponse>;
   }
 
   /**
@@ -426,12 +458,12 @@ export class Paging {
    */
   getMultiplePagesLRONext(
     nextLink: string,
-    options?: Models.PagingGetMultiplePagesLRONextOptionalParams
-  ): Promise<Models.PagingGetMultiplePagesLRONextResponse> {
+    options?: PagingGetMultiplePagesLRONextOptionalParams
+  ): Promise<PagingGetMultiplePagesLRONextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
       getMultiplePagesLRONextOperationSpec
-    ) as Promise<Models.PagingGetMultiplePagesLRONextResponse>;
+    ) as Promise<PagingGetMultiplePagesLRONextResponse>;
   }
 }
 // Operation Specifications

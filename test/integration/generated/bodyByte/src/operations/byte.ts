@@ -7,10 +7,15 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyByteClient } from "../bodyByteClient";
+import {
+  ByteGetNullResponse,
+  ByteGetEmptyResponse,
+  ByteGetNonAsciiResponse,
+  ByteGetInvalidResponse
+} from "../models";
 
 /**
  * Class representing a Byte.
@@ -30,26 +35,22 @@ export class Byte {
    * Get null byte value
    * @param options The options parameters.
    */
-  getNull(
-    options?: coreHttp.OperationOptions
-  ): Promise<Models.ByteGetNullResponse> {
+  getNull(options?: coreHttp.OperationOptions): Promise<ByteGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec
-    ) as Promise<Models.ByteGetNullResponse>;
+    ) as Promise<ByteGetNullResponse>;
   }
 
   /**
    * Get empty byte value ''
    * @param options The options parameters.
    */
-  getEmpty(
-    options?: coreHttp.OperationOptions
-  ): Promise<Models.ByteGetEmptyResponse> {
+  getEmpty(options?: coreHttp.OperationOptions): Promise<ByteGetEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getEmptyOperationSpec
-    ) as Promise<Models.ByteGetEmptyResponse>;
+    ) as Promise<ByteGetEmptyResponse>;
   }
 
   /**
@@ -58,11 +59,11 @@ export class Byte {
    */
   getNonAscii(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ByteGetNonAsciiResponse> {
+  ): Promise<ByteGetNonAsciiResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNonAsciiOperationSpec
-    ) as Promise<Models.ByteGetNonAsciiResponse>;
+    ) as Promise<ByteGetNonAsciiResponse>;
   }
 
   /**
@@ -86,11 +87,11 @@ export class Byte {
    */
   getInvalid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.ByteGetInvalidResponse> {
+  ): Promise<ByteGetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getInvalidOperationSpec
-    ) as Promise<Models.ByteGetInvalidResponse>;
+    ) as Promise<ByteGetInvalidResponse>;
   }
 }
 // Operation Specifications

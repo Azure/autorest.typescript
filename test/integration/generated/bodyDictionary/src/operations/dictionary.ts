@@ -9,122 +9,108 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyArrayClient } from "../bodyArrayClient";
+import { BodyDictionaryClient } from "../bodyDictionaryClient";
 import {
-  ArrayGetNullResponse,
-  ArrayGetInvalidResponse,
-  ArrayGetEmptyResponse,
-  ArrayGetBooleanTfftResponse,
-  ArrayGetBooleanInvalidNullResponse,
-  ArrayGetBooleanInvalidStringResponse,
-  ArrayGetIntegerValidResponse,
-  ArrayGetIntInvalidNullResponse,
-  ArrayGetIntInvalidStringResponse,
-  ArrayGetLongValidResponse,
-  ArrayGetLongInvalidNullResponse,
-  ArrayGetLongInvalidStringResponse,
-  ArrayGetFloatValidResponse,
-  ArrayGetFloatInvalidNullResponse,
-  ArrayGetFloatInvalidStringResponse,
-  ArrayGetDoubleValidResponse,
-  ArrayGetDoubleInvalidNullResponse,
-  ArrayGetDoubleInvalidStringResponse,
-  ArrayGetStringValidResponse,
-  ArrayGetEnumValidResponse,
-  FooEnum,
-  ArrayGetStringEnumValidResponse,
-  Enum1,
-  ArrayGetStringWithNullResponse,
-  ArrayGetStringWithInvalidResponse,
-  ArrayGetUuidValidResponse,
-  ArrayGetUuidInvalidCharsResponse,
-  ArrayGetDateValidResponse,
-  ArrayGetDateInvalidNullResponse,
-  ArrayGetDateInvalidCharsResponse,
-  ArrayGetDateTimeValidResponse,
-  ArrayGetDateTimeInvalidNullResponse,
-  ArrayGetDateTimeInvalidCharsResponse,
-  ArrayGetDateTimeRfc1123ValidResponse,
-  ArrayGetDurationValidResponse,
-  ArrayGetByteValidResponse,
-  ArrayGetByteInvalidNullResponse,
-  ArrayGetBase64UrlResponse,
-  ArrayGetComplexNullResponse,
-  ArrayGetComplexEmptyResponse,
-  ArrayGetComplexItemNullResponse,
-  ArrayGetComplexItemEmptyResponse,
-  ArrayGetComplexValidResponse,
-  Product,
-  ArrayGetArrayNullResponse,
-  ArrayGetArrayEmptyResponse,
-  ArrayGetArrayItemNullResponse,
-  ArrayGetArrayItemEmptyResponse,
-  ArrayGetArrayValidResponse,
-  ArrayGetDictionaryNullResponse,
-  ArrayGetDictionaryEmptyResponse,
-  ArrayGetDictionaryItemNullResponse,
-  ArrayGetDictionaryItemEmptyResponse,
-  ArrayGetDictionaryValidResponse
+  DictionaryGetNullResponse,
+  DictionaryGetEmptyResponse,
+  DictionaryGetNullValueResponse,
+  DictionaryGetNullKeyResponse,
+  DictionaryGetEmptyStringKeyResponse,
+  DictionaryGetInvalidResponse,
+  DictionaryGetBooleanTfftResponse,
+  DictionaryGetBooleanInvalidNullResponse,
+  DictionaryGetBooleanInvalidStringResponse,
+  DictionaryGetIntegerValidResponse,
+  DictionaryGetIntInvalidNullResponse,
+  DictionaryGetIntInvalidStringResponse,
+  DictionaryGetLongValidResponse,
+  DictionaryGetLongInvalidNullResponse,
+  DictionaryGetLongInvalidStringResponse,
+  DictionaryGetFloatValidResponse,
+  DictionaryGetFloatInvalidNullResponse,
+  DictionaryGetFloatInvalidStringResponse,
+  DictionaryGetDoubleValidResponse,
+  DictionaryGetDoubleInvalidNullResponse,
+  DictionaryGetDoubleInvalidStringResponse,
+  DictionaryGetStringValidResponse,
+  DictionaryGetStringWithNullResponse,
+  DictionaryGetStringWithInvalidResponse,
+  DictionaryGetDateValidResponse,
+  DictionaryGetDateInvalidNullResponse,
+  DictionaryGetDateInvalidCharsResponse,
+  DictionaryGetDateTimeValidResponse,
+  DictionaryGetDateTimeInvalidNullResponse,
+  DictionaryGetDateTimeInvalidCharsResponse,
+  DictionaryGetDateTimeRfc1123ValidResponse,
+  DictionaryGetDurationValidResponse,
+  DictionaryGetByteValidResponse,
+  DictionaryGetByteInvalidNullResponse,
+  DictionaryGetBase64UrlResponse,
+  DictionaryGetComplexNullResponse,
+  DictionaryGetComplexEmptyResponse,
+  DictionaryGetComplexItemNullResponse,
+  DictionaryGetComplexItemEmptyResponse,
+  DictionaryGetComplexValidResponse,
+  Widget,
+  DictionaryGetArrayNullResponse,
+  DictionaryGetArrayEmptyResponse,
+  DictionaryGetArrayItemNullResponse,
+  DictionaryGetArrayItemEmptyResponse,
+  DictionaryGetArrayValidResponse,
+  DictionaryGetDictionaryNullResponse,
+  DictionaryGetDictionaryEmptyResponse,
+  DictionaryGetDictionaryItemNullResponse,
+  DictionaryGetDictionaryItemEmptyResponse,
+  DictionaryGetDictionaryValidResponse
 } from "../models";
 
 /**
- * Class representing a Array.
+ * Class representing a Dictionary.
  */
-export class Array {
-  private readonly client: BodyArrayClient;
+export class Dictionary {
+  private readonly client: BodyDictionaryClient;
 
   /**
-   * Initialize a new instance of the class Array class.
+   * Initialize a new instance of the class Dictionary class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyArrayClient) {
+  constructor(client: BodyDictionaryClient) {
     this.client = client;
   }
 
   /**
-   * Get null array value
+   * Get null dictionary value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<ArrayGetNullResponse> {
+  getNull(
+    options?: coreHttp.OperationOptions
+  ): Promise<DictionaryGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec
-    ) as Promise<ArrayGetNullResponse>;
+    ) as Promise<DictionaryGetNullResponse>;
   }
 
   /**
-   * Get invalid array [1, 2, 3
-   * @param options The options parameters.
-   */
-  getInvalid(
-    options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetInvalidResponse> {
-    return this.client.sendOperationRequest(
-      { options },
-      getInvalidOperationSpec
-    ) as Promise<ArrayGetInvalidResponse>;
-  }
-
-  /**
-   * Get empty array value []
+   * Get empty dictionary value {}
    * @param options The options parameters.
    */
   getEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetEmptyResponse> {
+  ): Promise<DictionaryGetEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getEmptyOperationSpec
-    ) as Promise<ArrayGetEmptyResponse>;
+    ) as Promise<DictionaryGetEmptyResponse>;
   }
 
   /**
-   * Set array value empty []
+   * Set dictionary value empty {}
    * @param arrayBody
    * @param options The options parameters.
    */
   putEmpty(
-    arrayBody: string[],
+    arrayBody: { [propertyName: string]: string },
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -134,25 +120,77 @@ export class Array {
   }
 
   /**
-   * Get boolean array value [true, false, false, true]
+   * Get Dictionary with null value
+   * @param options The options parameters.
+   */
+  getNullValue(
+    options?: coreHttp.OperationOptions
+  ): Promise<DictionaryGetNullValueResponse> {
+    return this.client.sendOperationRequest(
+      { options },
+      getNullValueOperationSpec
+    ) as Promise<DictionaryGetNullValueResponse>;
+  }
+
+  /**
+   * Get Dictionary with null key
+   * @param options The options parameters.
+   */
+  getNullKey(
+    options?: coreHttp.OperationOptions
+  ): Promise<DictionaryGetNullKeyResponse> {
+    return this.client.sendOperationRequest(
+      { options },
+      getNullKeyOperationSpec
+    ) as Promise<DictionaryGetNullKeyResponse>;
+  }
+
+  /**
+   * Get Dictionary with key as empty string
+   * @param options The options parameters.
+   */
+  getEmptyStringKey(
+    options?: coreHttp.OperationOptions
+  ): Promise<DictionaryGetEmptyStringKeyResponse> {
+    return this.client.sendOperationRequest(
+      { options },
+      getEmptyStringKeyOperationSpec
+    ) as Promise<DictionaryGetEmptyStringKeyResponse>;
+  }
+
+  /**
+   * Get invalid Dictionary value
+   * @param options The options parameters.
+   */
+  getInvalid(
+    options?: coreHttp.OperationOptions
+  ): Promise<DictionaryGetInvalidResponse> {
+    return this.client.sendOperationRequest(
+      { options },
+      getInvalidOperationSpec
+    ) as Promise<DictionaryGetInvalidResponse>;
+  }
+
+  /**
+   * Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }
    * @param options The options parameters.
    */
   getBooleanTfft(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetBooleanTfftResponse> {
+  ): Promise<DictionaryGetBooleanTfftResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBooleanTfftOperationSpec
-    ) as Promise<ArrayGetBooleanTfftResponse>;
+    ) as Promise<DictionaryGetBooleanTfftResponse>;
   }
 
   /**
-   * Set array value empty [true, false, false, true]
+   * Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }
    * @param arrayBody
    * @param options The options parameters.
    */
   putBooleanTfft(
-    arrayBody: boolean[],
+    arrayBody: { [propertyName: string]: boolean },
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -162,51 +200,51 @@ export class Array {
   }
 
   /**
-   * Get boolean array value [true, null, false]
+   * Get boolean dictionary value {"0": true, "1": null, "2": false }
    * @param options The options parameters.
    */
   getBooleanInvalidNull(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetBooleanInvalidNullResponse> {
+  ): Promise<DictionaryGetBooleanInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBooleanInvalidNullOperationSpec
-    ) as Promise<ArrayGetBooleanInvalidNullResponse>;
+    ) as Promise<DictionaryGetBooleanInvalidNullResponse>;
   }
 
   /**
-   * Get boolean array value [true, 'boolean', false]
+   * Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'
    * @param options The options parameters.
    */
   getBooleanInvalidString(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetBooleanInvalidStringResponse> {
+  ): Promise<DictionaryGetBooleanInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBooleanInvalidStringOperationSpec
-    ) as Promise<ArrayGetBooleanInvalidStringResponse>;
+    ) as Promise<DictionaryGetBooleanInvalidStringResponse>;
   }
 
   /**
-   * Get integer array value [1, -1, 3, 300]
+   * Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}
    * @param options The options parameters.
    */
   getIntegerValid(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetIntegerValidResponse> {
+  ): Promise<DictionaryGetIntegerValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getIntegerValidOperationSpec
-    ) as Promise<ArrayGetIntegerValidResponse>;
+    ) as Promise<DictionaryGetIntegerValidResponse>;
   }
 
   /**
-   * Set array value empty [1, -1, 3, 300]
+   * Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}
    * @param arrayBody
    * @param options The options parameters.
    */
   putIntegerValid(
-    arrayBody: number[],
+    arrayBody: { [propertyName: string]: number },
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -216,51 +254,51 @@ export class Array {
   }
 
   /**
-   * Get integer array value [1, null, 0]
+   * Get integer dictionary value {"0": 1, "1": null, "2": 0}
    * @param options The options parameters.
    */
   getIntInvalidNull(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetIntInvalidNullResponse> {
+  ): Promise<DictionaryGetIntInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getIntInvalidNullOperationSpec
-    ) as Promise<ArrayGetIntInvalidNullResponse>;
+    ) as Promise<DictionaryGetIntInvalidNullResponse>;
   }
 
   /**
-   * Get integer array value [1, 'integer', 0]
+   * Get integer dictionary value {"0": 1, "1": "integer", "2": 0}
    * @param options The options parameters.
    */
   getIntInvalidString(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetIntInvalidStringResponse> {
+  ): Promise<DictionaryGetIntInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
       getIntInvalidStringOperationSpec
-    ) as Promise<ArrayGetIntInvalidStringResponse>;
+    ) as Promise<DictionaryGetIntInvalidStringResponse>;
   }
 
   /**
-   * Get integer array value [1, -1, 3, 300]
+   * Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}
    * @param options The options parameters.
    */
   getLongValid(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetLongValidResponse> {
+  ): Promise<DictionaryGetLongValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getLongValidOperationSpec
-    ) as Promise<ArrayGetLongValidResponse>;
+    ) as Promise<DictionaryGetLongValidResponse>;
   }
 
   /**
-   * Set array value empty [1, -1, 3, 300]
+   * Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}
    * @param arrayBody
    * @param options The options parameters.
    */
   putLongValid(
-    arrayBody: number[],
+    arrayBody: { [propertyName: string]: number },
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -270,51 +308,51 @@ export class Array {
   }
 
   /**
-   * Get long array value [1, null, 0]
+   * Get long dictionary value {"0": 1, "1": null, "2": 0}
    * @param options The options parameters.
    */
   getLongInvalidNull(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetLongInvalidNullResponse> {
+  ): Promise<DictionaryGetLongInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getLongInvalidNullOperationSpec
-    ) as Promise<ArrayGetLongInvalidNullResponse>;
+    ) as Promise<DictionaryGetLongInvalidNullResponse>;
   }
 
   /**
-   * Get long array value [1, 'integer', 0]
+   * Get long dictionary value {"0": 1, "1": "integer", "2": 0}
    * @param options The options parameters.
    */
   getLongInvalidString(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetLongInvalidStringResponse> {
+  ): Promise<DictionaryGetLongInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
       getLongInvalidStringOperationSpec
-    ) as Promise<ArrayGetLongInvalidStringResponse>;
+    ) as Promise<DictionaryGetLongInvalidStringResponse>;
   }
 
   /**
-   * Get float array value [0, -0.01, 1.2e20]
+   * Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
    * @param options The options parameters.
    */
   getFloatValid(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetFloatValidResponse> {
+  ): Promise<DictionaryGetFloatValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getFloatValidOperationSpec
-    ) as Promise<ArrayGetFloatValidResponse>;
+    ) as Promise<DictionaryGetFloatValidResponse>;
   }
 
   /**
-   * Set array value [0, -0.01, 1.2e20]
+   * Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
    * @param arrayBody
    * @param options The options parameters.
    */
   putFloatValid(
-    arrayBody: number[],
+    arrayBody: { [propertyName: string]: number },
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -324,51 +362,51 @@ export class Array {
   }
 
   /**
-   * Get float array value [0.0, null, -1.2e20]
+   * Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}
    * @param options The options parameters.
    */
   getFloatInvalidNull(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetFloatInvalidNullResponse> {
+  ): Promise<DictionaryGetFloatInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getFloatInvalidNullOperationSpec
-    ) as Promise<ArrayGetFloatInvalidNullResponse>;
+    ) as Promise<DictionaryGetFloatInvalidNullResponse>;
   }
 
   /**
-   * Get boolean array value [1.0, 'number', 0.0]
+   * Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}
    * @param options The options parameters.
    */
   getFloatInvalidString(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetFloatInvalidStringResponse> {
+  ): Promise<DictionaryGetFloatInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
       getFloatInvalidStringOperationSpec
-    ) as Promise<ArrayGetFloatInvalidStringResponse>;
+    ) as Promise<DictionaryGetFloatInvalidStringResponse>;
   }
 
   /**
-   * Get float array value [0, -0.01, 1.2e20]
+   * Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
    * @param options The options parameters.
    */
   getDoubleValid(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetDoubleValidResponse> {
+  ): Promise<DictionaryGetDoubleValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDoubleValidOperationSpec
-    ) as Promise<ArrayGetDoubleValidResponse>;
+    ) as Promise<DictionaryGetDoubleValidResponse>;
   }
 
   /**
-   * Set array value [0, -0.01, 1.2e20]
+   * Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}
    * @param arrayBody
    * @param options The options parameters.
    */
   putDoubleValid(
-    arrayBody: number[],
+    arrayBody: { [propertyName: string]: number },
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -378,51 +416,51 @@ export class Array {
   }
 
   /**
-   * Get float array value [0.0, null, -1.2e20]
+   * Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}
    * @param options The options parameters.
    */
   getDoubleInvalidNull(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetDoubleInvalidNullResponse> {
+  ): Promise<DictionaryGetDoubleInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDoubleInvalidNullOperationSpec
-    ) as Promise<ArrayGetDoubleInvalidNullResponse>;
+    ) as Promise<DictionaryGetDoubleInvalidNullResponse>;
   }
 
   /**
-   * Get boolean array value [1.0, 'number', 0.0]
+   * Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}
    * @param options The options parameters.
    */
   getDoubleInvalidString(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetDoubleInvalidStringResponse> {
+  ): Promise<DictionaryGetDoubleInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDoubleInvalidStringOperationSpec
-    ) as Promise<ArrayGetDoubleInvalidStringResponse>;
+    ) as Promise<DictionaryGetDoubleInvalidStringResponse>;
   }
 
   /**
-   * Get string array value ['foo1', 'foo2', 'foo3']
+   * Get string dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}
    * @param options The options parameters.
    */
   getStringValid(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetStringValidResponse> {
+  ): Promise<DictionaryGetStringValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getStringValidOperationSpec
-    ) as Promise<ArrayGetStringValidResponse>;
+    ) as Promise<DictionaryGetStringValidResponse>;
   }
 
   /**
-   * Set array value ['foo1', 'foo2', 'foo3']
+   * Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}
    * @param arrayBody
    * @param options The options parameters.
    */
   putStringValid(
-    arrayBody: string[],
+    arrayBody: { [propertyName: string]: string },
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -432,150 +470,51 @@ export class Array {
   }
 
   /**
-   * Get enum array value ['foo1', 'foo2', 'foo3']
-   * @param options The options parameters.
-   */
-  getEnumValid(
-    options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetEnumValidResponse> {
-    return this.client.sendOperationRequest(
-      { options },
-      getEnumValidOperationSpec
-    ) as Promise<ArrayGetEnumValidResponse>;
-  }
-
-  /**
-   * Set array value ['foo1', 'foo2', 'foo3']
-   * @param arrayBody
-   * @param options The options parameters.
-   */
-  putEnumValid(
-    arrayBody: FooEnum[],
-    options?: coreHttp.OperationOptions
-  ): Promise<coreHttp.RestResponse> {
-    return this.client.sendOperationRequest(
-      { arrayBody, options },
-      putEnumValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
-  }
-
-  /**
-   * Get enum array value ['foo1', 'foo2', 'foo3']
-   * @param options The options parameters.
-   */
-  getStringEnumValid(
-    options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetStringEnumValidResponse> {
-    return this.client.sendOperationRequest(
-      { options },
-      getStringEnumValidOperationSpec
-    ) as Promise<ArrayGetStringEnumValidResponse>;
-  }
-
-  /**
-   * Set array value ['foo1', 'foo2', 'foo3']
-   * @param arrayBody
-   * @param options The options parameters.
-   */
-  putStringEnumValid(
-    arrayBody: Enum1[],
-    options?: coreHttp.OperationOptions
-  ): Promise<coreHttp.RestResponse> {
-    return this.client.sendOperationRequest(
-      { arrayBody, options },
-      putStringEnumValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
-  }
-
-  /**
-   * Get string array value ['foo', null, 'foo2']
+   * Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}
    * @param options The options parameters.
    */
   getStringWithNull(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetStringWithNullResponse> {
+  ): Promise<DictionaryGetStringWithNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getStringWithNullOperationSpec
-    ) as Promise<ArrayGetStringWithNullResponse>;
+    ) as Promise<DictionaryGetStringWithNullResponse>;
   }
 
   /**
-   * Get string array value ['foo', 123, 'foo2']
+   * Get string dictionary value {"0": "foo", "1": 123, "2": "foo2"}
    * @param options The options parameters.
    */
   getStringWithInvalid(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetStringWithInvalidResponse> {
+  ): Promise<DictionaryGetStringWithInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getStringWithInvalidOperationSpec
-    ) as Promise<ArrayGetStringWithInvalidResponse>;
+    ) as Promise<DictionaryGetStringWithInvalidResponse>;
   }
 
   /**
-   * Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
-   * 'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205']
-   * @param options The options parameters.
-   */
-  getUuidValid(
-    options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetUuidValidResponse> {
-    return this.client.sendOperationRequest(
-      { options },
-      getUuidValidOperationSpec
-    ) as Promise<ArrayGetUuidValidResponse>;
-  }
-
-  /**
-   * Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'd1399005-30f7-40d6-8da6-dd7c89ad34db',
-   * 'f42f6aa1-a5bc-4ddf-907e-5f915de43205']
-   * @param arrayBody
-   * @param options The options parameters.
-   */
-  putUuidValid(
-    arrayBody: string[],
-    options?: coreHttp.OperationOptions
-  ): Promise<coreHttp.RestResponse> {
-    return this.client.sendOperationRequest(
-      { arrayBody, options },
-      putUuidValidOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
-  }
-
-  /**
-   * Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo']
-   * @param options The options parameters.
-   */
-  getUuidInvalidChars(
-    options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetUuidInvalidCharsResponse> {
-    return this.client.sendOperationRequest(
-      { options },
-      getUuidInvalidCharsOperationSpec
-    ) as Promise<ArrayGetUuidInvalidCharsResponse>;
-  }
-
-  /**
-   * Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12']
+   * Get integer dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}
    * @param options The options parameters.
    */
   getDateValid(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetDateValidResponse> {
+  ): Promise<DictionaryGetDateValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateValidOperationSpec
-    ) as Promise<ArrayGetDateValidResponse>;
+    ) as Promise<DictionaryGetDateValidResponse>;
   }
 
   /**
-   * Set array value  ['2000-12-01', '1980-01-02', '1492-10-12']
+   * Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}
    * @param arrayBody
    * @param options The options parameters.
    */
   putDateValid(
-    arrayBody: Date[],
+    arrayBody: { [propertyName: string]: Date },
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -585,52 +524,53 @@ export class Array {
   }
 
   /**
-   * Get date array value ['2012-01-01', null, '1776-07-04']
+   * Get date dictionary value {"0": "2012-01-01", "1": null, "2": "1776-07-04"}
    * @param options The options parameters.
    */
   getDateInvalidNull(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetDateInvalidNullResponse> {
+  ): Promise<DictionaryGetDateInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateInvalidNullOperationSpec
-    ) as Promise<ArrayGetDateInvalidNullResponse>;
+    ) as Promise<DictionaryGetDateInvalidNullResponse>;
   }
 
   /**
-   * Get date array value ['2011-03-22', 'date']
+   * Get date dictionary value {"0": "2011-03-22", "1": "date"}
    * @param options The options parameters.
    */
   getDateInvalidChars(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetDateInvalidCharsResponse> {
+  ): Promise<DictionaryGetDateInvalidCharsResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateInvalidCharsOperationSpec
-    ) as Promise<ArrayGetDateInvalidCharsResponse>;
+    ) as Promise<DictionaryGetDateInvalidCharsResponse>;
   }
 
   /**
-   * Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
-   * '1492-10-12T10:15:01-08:00']
+   * Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
+   * "1492-10-12T10:15:01-08:00"}
    * @param options The options parameters.
    */
   getDateTimeValid(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetDateTimeValidResponse> {
+  ): Promise<DictionaryGetDateTimeValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateTimeValidOperationSpec
-    ) as Promise<ArrayGetDateTimeValidResponse>;
+    ) as Promise<DictionaryGetDateTimeValidResponse>;
   }
 
   /**
-   * Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00', '1492-10-12T10:15:01-08:00']
+   * Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
+   * "1492-10-12T10:15:01-08:00"}
    * @param arrayBody
    * @param options The options parameters.
    */
   putDateTimeValid(
-    arrayBody: Date[],
+    arrayBody: { [propertyName: string]: Date },
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -640,53 +580,53 @@ export class Array {
   }
 
   /**
-   * Get date array value ['2000-12-01t00:00:01z', null]
+   * Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}
    * @param options The options parameters.
    */
   getDateTimeInvalidNull(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetDateTimeInvalidNullResponse> {
+  ): Promise<DictionaryGetDateTimeInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateTimeInvalidNullOperationSpec
-    ) as Promise<ArrayGetDateTimeInvalidNullResponse>;
+    ) as Promise<DictionaryGetDateTimeInvalidNullResponse>;
   }
 
   /**
-   * Get date array value ['2000-12-01t00:00:01z', 'date-time']
+   * Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": "date-time"}
    * @param options The options parameters.
    */
   getDateTimeInvalidChars(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetDateTimeInvalidCharsResponse> {
+  ): Promise<DictionaryGetDateTimeInvalidCharsResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateTimeInvalidCharsOperationSpec
-    ) as Promise<ArrayGetDateTimeInvalidCharsResponse>;
+    ) as Promise<DictionaryGetDateTimeInvalidCharsResponse>;
   }
 
   /**
-   * Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed,
-   * 12 Oct 1492 10:15:01 GMT']
+   * Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
+   * 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}
    * @param options The options parameters.
    */
   getDateTimeRfc1123Valid(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetDateTimeRfc1123ValidResponse> {
+  ): Promise<DictionaryGetDateTimeRfc1123ValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateTimeRfc1123ValidOperationSpec
-    ) as Promise<ArrayGetDateTimeRfc1123ValidResponse>;
+    ) as Promise<DictionaryGetDateTimeRfc1123ValidResponse>;
   }
 
   /**
-   * Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct
-   * 1492 10:15:01 GMT']
+   * Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980 00:11:35
+   * GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}
    * @param arrayBody
    * @param options The options parameters.
    */
   putDateTimeRfc1123Valid(
-    arrayBody: Date[],
+    arrayBody: { [propertyName: string]: Date },
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -696,25 +636,25 @@ export class Array {
   }
 
   /**
-   * Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S']
+   * Get duration dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}
    * @param options The options parameters.
    */
   getDurationValid(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetDurationValidResponse> {
+  ): Promise<DictionaryGetDurationValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDurationValidOperationSpec
-    ) as Promise<ArrayGetDurationValidResponse>;
+    ) as Promise<DictionaryGetDurationValidResponse>;
   }
 
   /**
-   * Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S']
+   * Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}
    * @param arrayBody
    * @param options The options parameters.
    */
   putDurationValid(
-    arrayBody: string[],
+    arrayBody: { [propertyName: string]: string },
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -724,27 +664,27 @@ export class Array {
   }
 
   /**
-   * Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded in
-   * base64
+   * Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with
+   * each item encoded in base64
    * @param options The options parameters.
    */
   getByteValid(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetByteValidResponse> {
+  ): Promise<DictionaryGetByteValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getByteValidOperationSpec
-    ) as Promise<ArrayGetByteValidResponse>;
+    ) as Promise<DictionaryGetByteValidResponse>;
   }
 
   /**
-   * Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each elementencoded in
-   * base 64
+   * Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with
+   * each elementencoded in base 64
    * @param arrayBody
    * @param options The options parameters.
    */
   putByteValid(
-    arrayBody: Uint8Array[],
+    arrayBody: { [propertyName: string]: Uint8Array },
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -754,108 +694,108 @@ export class Array {
   }
 
   /**
-   * Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded
+   * Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64 encoded
    * @param options The options parameters.
    */
   getByteInvalidNull(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetByteInvalidNullResponse> {
+  ): Promise<DictionaryGetByteInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getByteInvalidNullOperationSpec
-    ) as Promise<ArrayGetByteInvalidNullResponse>;
+    ) as Promise<DictionaryGetByteInvalidNullResponse>;
   }
 
   /**
-   * Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with the
-   * items base64url encoded
+   * Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test
+   * string", "2": "Lorem ipsum"}
    * @param options The options parameters.
    */
   getBase64Url(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetBase64UrlResponse> {
+  ): Promise<DictionaryGetBase64UrlResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBase64UrlOperationSpec
-    ) as Promise<ArrayGetBase64UrlResponse>;
+    ) as Promise<DictionaryGetBase64UrlResponse>;
   }
 
   /**
-   * Get array of complex type null value
+   * Get dictionary of complex type null value
    * @param options The options parameters.
    */
   getComplexNull(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetComplexNullResponse> {
+  ): Promise<DictionaryGetComplexNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getComplexNullOperationSpec
-    ) as Promise<ArrayGetComplexNullResponse>;
+    ) as Promise<DictionaryGetComplexNullResponse>;
   }
 
   /**
-   * Get empty array of complex type []
+   * Get empty dictionary of complex type {}
    * @param options The options parameters.
    */
   getComplexEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetComplexEmptyResponse> {
+  ): Promise<DictionaryGetComplexEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getComplexEmptyOperationSpec
-    ) as Promise<ArrayGetComplexEmptyResponse>;
+    ) as Promise<DictionaryGetComplexEmptyResponse>;
   }
 
   /**
-   * Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
-   * 'string': '6'}]
+   * Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null, "2":
+   * {"integer": 5, "string": "6"}}
    * @param options The options parameters.
    */
   getComplexItemNull(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetComplexItemNullResponse> {
+  ): Promise<DictionaryGetComplexItemNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getComplexItemNullOperationSpec
-    ) as Promise<ArrayGetComplexItemNullResponse>;
+    ) as Promise<DictionaryGetComplexItemNullResponse>;
   }
 
   /**
-   * Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
-   * 'string': '6'}]
+   * Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {}, "2":
+   * {"integer": 5, "string": "6"}}
    * @param options The options parameters.
    */
   getComplexItemEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetComplexItemEmptyResponse> {
+  ): Promise<DictionaryGetComplexItemEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getComplexItemEmptyOperationSpec
-    ) as Promise<ArrayGetComplexItemEmptyResponse>;
+    ) as Promise<DictionaryGetComplexItemEmptyResponse>;
   }
 
   /**
-   * Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
-   * {'integer': 5, 'string': '6'}]
+   * Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
+   * "string": "4"}, "2": {"integer": 5, "string": "6"}}
    * @param options The options parameters.
    */
   getComplexValid(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetComplexValidResponse> {
+  ): Promise<DictionaryGetComplexValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getComplexValidOperationSpec
-    ) as Promise<ArrayGetComplexValidResponse>;
+    ) as Promise<DictionaryGetComplexValidResponse>;
   }
 
   /**
-   * Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3, 'string':
-   * '4'}, {'integer': 5, 'string': '6'}]
+   * Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1": {"integer":
+   * 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}
    * @param arrayBody
    * @param options The options parameters.
    */
   putComplexValid(
-    arrayBody: Product[],
+    arrayBody: { [propertyName: string]: Widget },
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -870,72 +810,72 @@ export class Array {
    */
   getArrayNull(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetArrayNullResponse> {
+  ): Promise<DictionaryGetArrayNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getArrayNullOperationSpec
-    ) as Promise<ArrayGetArrayNullResponse>;
+    ) as Promise<DictionaryGetArrayNullResponse>;
   }
 
   /**
-   * Get an empty array []
+   * Get an empty dictionary {}
    * @param options The options parameters.
    */
   getArrayEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetArrayEmptyResponse> {
+  ): Promise<DictionaryGetArrayEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getArrayEmptyOperationSpec
-    ) as Promise<ArrayGetArrayEmptyResponse>;
+    ) as Promise<DictionaryGetArrayEmptyResponse>;
   }
 
   /**
-   * Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']]
+   * Get an dictionary of array of strings {"0": ["1", "2", "3"], "1": null, "2": ["7", "8", "9"]}
    * @param options The options parameters.
    */
   getArrayItemNull(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetArrayItemNullResponse> {
+  ): Promise<DictionaryGetArrayItemNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getArrayItemNullOperationSpec
-    ) as Promise<ArrayGetArrayItemNullResponse>;
+    ) as Promise<DictionaryGetArrayItemNullResponse>;
   }
 
   /**
-   * Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']]
+   * Get an array of array of strings [{"0": ["1", "2", "3"], "1": [], "2": ["7", "8", "9"]}
    * @param options The options parameters.
    */
   getArrayItemEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetArrayItemEmptyResponse> {
+  ): Promise<DictionaryGetArrayItemEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getArrayItemEmptyOperationSpec
-    ) as Promise<ArrayGetArrayItemEmptyResponse>;
+    ) as Promise<DictionaryGetArrayItemEmptyResponse>;
   }
 
   /**
-   * Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
+   * Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8", "9"]}
    * @param options The options parameters.
    */
   getArrayValid(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetArrayValidResponse> {
+  ): Promise<DictionaryGetArrayValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getArrayValidOperationSpec
-    ) as Promise<ArrayGetArrayValidResponse>;
+    ) as Promise<DictionaryGetArrayValidResponse>;
   }
 
   /**
-   * Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
+   * Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8", "9"]}
    * @param arrayBody
    * @param options The options parameters.
    */
   putArrayValid(
-    arrayBody: string[][],
+    arrayBody: { [propertyName: string]: string[] },
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -945,81 +885,83 @@ export class Array {
   }
 
   /**
-   * Get an array of Dictionaries with value null
+   * Get an dictionaries of dictionaries with value null
    * @param options The options parameters.
    */
   getDictionaryNull(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetDictionaryNullResponse> {
+  ): Promise<DictionaryGetDictionaryNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDictionaryNullOperationSpec
-    ) as Promise<ArrayGetDictionaryNullResponse>;
+    ) as Promise<DictionaryGetDictionaryNullResponse>;
   }
 
   /**
-   * Get an array of Dictionaries of type <string, string> with value []
+   * Get an dictionaries of dictionaries of type <string, string> with value {}
    * @param options The options parameters.
    */
   getDictionaryEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetDictionaryEmptyResponse> {
+  ): Promise<DictionaryGetDictionaryEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDictionaryEmptyOperationSpec
-    ) as Promise<ArrayGetDictionaryEmptyResponse>;
+    ) as Promise<DictionaryGetDictionaryEmptyResponse>;
   }
 
   /**
-   * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
-   * 'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}]
+   * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
+   * "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}
    * @param options The options parameters.
    */
   getDictionaryItemNull(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetDictionaryItemNullResponse> {
+  ): Promise<DictionaryGetDictionaryItemNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDictionaryItemNullOperationSpec
-    ) as Promise<ArrayGetDictionaryItemNullResponse>;
+    ) as Promise<DictionaryGetDictionaryItemNullResponse>;
   }
 
   /**
-   * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
-   * 'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}]
+   * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
+   * "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}
    * @param options The options parameters.
    */
   getDictionaryItemEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetDictionaryItemEmptyResponse> {
+  ): Promise<DictionaryGetDictionaryItemEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDictionaryItemEmptyOperationSpec
-    ) as Promise<ArrayGetDictionaryItemEmptyResponse>;
+    ) as Promise<DictionaryGetDictionaryItemEmptyResponse>;
   }
 
   /**
-   * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
-   * 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}]
+   * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
+   * "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8": "eight",
+   * "9": "nine"}}
    * @param options The options parameters.
    */
   getDictionaryValid(
     options?: coreHttp.OperationOptions
-  ): Promise<ArrayGetDictionaryValidResponse> {
+  ): Promise<DictionaryGetDictionaryValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDictionaryValidOperationSpec
-    ) as Promise<ArrayGetDictionaryValidResponse>;
+    ) as Promise<DictionaryGetDictionaryValidResponse>;
   }
 
   /**
-   * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
-   * 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}]
+   * Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
+   * "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8": "eight",
+   * "9": "nine"}}
    * @param arrayBody
    * @param options The options parameters.
    */
   putDictionaryValid(
-    arrayBody: { [propertyName: string]: string }[],
+    arrayBody: { [propertyName: string]: any },
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -1033,39 +975,16 @@ export class Array {
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getNullOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/null",
+  path: "/dictionary/null",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Number" },
-            serializedName: "Get200ApplicationJsonItemsItem"
-          }
+          name: "Dictionary",
+          value: { type: { name: "Number" }, serializedName: "Integer" }
         },
-        serializedName: "ArrayOfGet200ApplicationJsonItemsItem"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const getInvalidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/invalid",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Integer" }
-        },
-        serializedName: "ArrayOfInteger"
+        serializedName: "DictionaryOfInteger"
       }
     },
     default: {
@@ -1076,16 +995,16 @@ const getInvalidOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getEmptyOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/empty",
+  path: "/dictionary/empty",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Integer" }
+          name: "Dictionary",
+          value: { type: { name: "Number" }, serializedName: "Integer" }
         },
-        serializedName: "ArrayOfInteger"
+        serializedName: "DictionaryOfInteger"
       }
     },
     default: {
@@ -1096,7 +1015,7 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const putEmptyOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/empty",
+  path: "/dictionary/empty",
   httpMethod: "PUT",
   responses: {
     200: {},
@@ -1108,17 +1027,97 @@ const putEmptyOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const getBooleanTfftOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/boolean/tfft",
+const getNullValueOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/nullvalue",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Boolean" }, serializedName: "Boolean" }
+          name: "Dictionary",
+          value: { type: { name: "String" }, serializedName: "String" }
         },
-        serializedName: "ArrayOfBoolean"
+        serializedName: "DictionaryOfString"
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const getNullKeyOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/nullkey",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" }, serializedName: "String" }
+        },
+        serializedName: "DictionaryOfString"
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const getEmptyStringKeyOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/keyemptystring",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" }, serializedName: "String" }
+        },
+        serializedName: "DictionaryOfString"
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const getInvalidOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/invalid",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" }, serializedName: "String" }
+        },
+        serializedName: "DictionaryOfString"
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const getBooleanTfftOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/boolean/tfft",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "Boolean" }, serializedName: "Boolean" }
+        },
+        serializedName: "DictionaryOfBoolean"
       }
     },
     default: {
@@ -1129,7 +1128,7 @@ const getBooleanTfftOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const putBooleanTfftOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/boolean/tfft",
+  path: "/dictionary/prim/boolean/tfft",
   httpMethod: "PUT",
   responses: {
     200: {},
@@ -1142,16 +1141,16 @@ const putBooleanTfftOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getBooleanInvalidNullOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/boolean/true.null.false",
+  path: "/dictionary/prim/boolean/true.null.false",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Boolean" }, serializedName: "Boolean" }
+          name: "Dictionary",
+          value: { type: { name: "Boolean" }, serializedName: "Boolean" }
         },
-        serializedName: "ArrayOfBoolean"
+        serializedName: "DictionaryOfBoolean"
       }
     },
     default: {
@@ -1162,16 +1161,16 @@ const getBooleanInvalidNullOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getBooleanInvalidStringOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/boolean/true.boolean.false",
+  path: "/dictionary/prim/boolean/true.boolean.false",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Boolean" }, serializedName: "Boolean" }
+          name: "Dictionary",
+          value: { type: { name: "Boolean" }, serializedName: "Boolean" }
         },
-        serializedName: "ArrayOfBoolean"
+        serializedName: "DictionaryOfBoolean"
       }
     },
     default: {
@@ -1182,16 +1181,16 @@ const getBooleanInvalidStringOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getIntegerValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/integer/1.-1.3.300",
+  path: "/dictionary/prim/integer/1.-1.3.300",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Integer" }
+          name: "Dictionary",
+          value: { type: { name: "Number" }, serializedName: "Integer" }
         },
-        serializedName: "ArrayOfInteger"
+        serializedName: "DictionaryOfInteger"
       }
     },
     default: {
@@ -1202,7 +1201,7 @@ const getIntegerValidOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const putIntegerValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/integer/1.-1.3.300",
+  path: "/dictionary/prim/integer/1.-1.3.300",
   httpMethod: "PUT",
   responses: {
     200: {},
@@ -1215,16 +1214,16 @@ const putIntegerValidOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getIntInvalidNullOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/integer/1.null.zero",
+  path: "/dictionary/prim/integer/1.null.zero",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Integer" }
+          name: "Dictionary",
+          value: { type: { name: "Number" }, serializedName: "Integer" }
         },
-        serializedName: "ArrayOfInteger"
+        serializedName: "DictionaryOfInteger"
       }
     },
     default: {
@@ -1235,16 +1234,16 @@ const getIntInvalidNullOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getIntInvalidStringOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/integer/1.integer.0",
+  path: "/dictionary/prim/integer/1.integer.0",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Integer" }
+          name: "Dictionary",
+          value: { type: { name: "Number" }, serializedName: "Integer" }
         },
-        serializedName: "ArrayOfInteger"
+        serializedName: "DictionaryOfInteger"
       }
     },
     default: {
@@ -1255,16 +1254,16 @@ const getIntInvalidStringOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getLongValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/long/1.-1.3.300",
+  path: "/dictionary/prim/long/1.-1.3.300",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Integer" }
+          name: "Dictionary",
+          value: { type: { name: "Number" }, serializedName: "Integer" }
         },
-        serializedName: "ArrayOfInteger"
+        serializedName: "DictionaryOfInteger"
       }
     },
     default: {
@@ -1275,7 +1274,7 @@ const getLongValidOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const putLongValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/long/1.-1.3.300",
+  path: "/dictionary/prim/long/1.-1.3.300",
   httpMethod: "PUT",
   responses: {
     200: {},
@@ -1288,16 +1287,16 @@ const putLongValidOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getLongInvalidNullOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/long/1.null.zero",
+  path: "/dictionary/prim/long/1.null.zero",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Integer" }
+          name: "Dictionary",
+          value: { type: { name: "Number" }, serializedName: "Integer" }
         },
-        serializedName: "ArrayOfInteger"
+        serializedName: "DictionaryOfInteger"
       }
     },
     default: {
@@ -1308,16 +1307,16 @@ const getLongInvalidNullOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getLongInvalidStringOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/long/1.integer.0",
+  path: "/dictionary/prim/long/1.integer.0",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Integer" }
+          name: "Dictionary",
+          value: { type: { name: "Number" }, serializedName: "Integer" }
         },
-        serializedName: "ArrayOfInteger"
+        serializedName: "DictionaryOfInteger"
       }
     },
     default: {
@@ -1328,16 +1327,16 @@ const getLongInvalidStringOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getFloatValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/float/0--0.01-1.2e20",
+  path: "/dictionary/prim/float/0--0.01-1.2e20",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Number" }
+          name: "Dictionary",
+          value: { type: { name: "Number" }, serializedName: "Number" }
         },
-        serializedName: "ArrayOfNumber"
+        serializedName: "DictionaryOfNumber"
       }
     },
     default: {
@@ -1348,7 +1347,7 @@ const getFloatValidOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const putFloatValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/float/0--0.01-1.2e20",
+  path: "/dictionary/prim/float/0--0.01-1.2e20",
   httpMethod: "PUT",
   responses: {
     200: {},
@@ -1361,16 +1360,16 @@ const putFloatValidOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getFloatInvalidNullOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/float/0.0-null-1.2e20",
+  path: "/dictionary/prim/float/0.0-null-1.2e20",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Number" }
+          name: "Dictionary",
+          value: { type: { name: "Number" }, serializedName: "Number" }
         },
-        serializedName: "ArrayOfNumber"
+        serializedName: "DictionaryOfNumber"
       }
     },
     default: {
@@ -1381,16 +1380,16 @@ const getFloatInvalidNullOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getFloatInvalidStringOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/float/1.number.0",
+  path: "/dictionary/prim/float/1.number.0",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Number" }
+          name: "Dictionary",
+          value: { type: { name: "Number" }, serializedName: "Number" }
         },
-        serializedName: "ArrayOfNumber"
+        serializedName: "DictionaryOfNumber"
       }
     },
     default: {
@@ -1401,16 +1400,16 @@ const getFloatInvalidStringOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getDoubleValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/double/0--0.01-1.2e20",
+  path: "/dictionary/prim/double/0--0.01-1.2e20",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Number" }
+          name: "Dictionary",
+          value: { type: { name: "Number" }, serializedName: "Number" }
         },
-        serializedName: "ArrayOfNumber"
+        serializedName: "DictionaryOfNumber"
       }
     },
     default: {
@@ -1421,7 +1420,7 @@ const getDoubleValidOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const putDoubleValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/double/0--0.01-1.2e20",
+  path: "/dictionary/prim/double/0--0.01-1.2e20",
   httpMethod: "PUT",
   responses: {
     200: {},
@@ -1434,16 +1433,16 @@ const putDoubleValidOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getDoubleInvalidNullOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/double/0.0-null-1.2e20",
+  path: "/dictionary/prim/double/0.0-null-1.2e20",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Number" }
+          name: "Dictionary",
+          value: { type: { name: "Number" }, serializedName: "Number" }
         },
-        serializedName: "ArrayOfNumber"
+        serializedName: "DictionaryOfNumber"
       }
     },
     default: {
@@ -1454,16 +1453,16 @@ const getDoubleInvalidNullOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getDoubleInvalidStringOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/double/1.number.0",
+  path: "/dictionary/prim/double/1.number.0",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Number" }
+          name: "Dictionary",
+          value: { type: { name: "Number" }, serializedName: "Number" }
         },
-        serializedName: "ArrayOfNumber"
+        serializedName: "DictionaryOfNumber"
       }
     },
     default: {
@@ -1474,16 +1473,16 @@ const getDoubleInvalidStringOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getStringValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/string/foo1.foo2.foo3",
+  path: "/dictionary/prim/string/foo1.foo2.foo3",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "String" }, serializedName: "String" }
+          name: "Dictionary",
+          value: { type: { name: "String" }, serializedName: "String" }
         },
-        serializedName: "ArrayOfString"
+        serializedName: "DictionaryOfString"
       }
     },
     default: {
@@ -1494,7 +1493,7 @@ const getStringValidOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const putStringValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/string/foo1.foo2.foo3",
+  path: "/dictionary/prim/string/foo1.foo2.foo3",
   httpMethod: "PUT",
   responses: {
     200: {},
@@ -1506,20 +1505,17 @@ const putStringValidOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const getEnumValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/enum/foo1.foo2.foo3",
+const getStringWithNullOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/string/foo.null.foo2",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Enum", allowedValues: ["foo1", "foo2", "foo3"] },
-            serializedName: "FooEnum"
-          }
+          name: "Dictionary",
+          value: { type: { name: "String" }, serializedName: "String" }
         },
-        serializedName: "ArrayOfFooEnum"
+        serializedName: "DictionaryOfString"
       }
     },
     default: {
@@ -1529,8 +1525,48 @@ const getEnumValidOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const putEnumValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/enum/foo1.foo2.foo3",
+const getStringWithInvalidOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/string/foo.123.foo2",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" }, serializedName: "String" }
+        },
+        serializedName: "DictionaryOfString"
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const getDateValidOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/date/valid",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "Date" }, serializedName: "Date" }
+        },
+        serializedName: "DictionaryOfDate"
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const putDateValidOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/date/valid",
   httpMethod: "PUT",
   responses: {
     200: {},
@@ -1542,17 +1578,17 @@ const putEnumValidOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const getStringEnumValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/string-enum/foo1.foo2.foo3",
+const getDateInvalidNullOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/date/invalidnull",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "String" }, serializedName: "Enum0" }
+          name: "Dictionary",
+          value: { type: { name: "Date" }, serializedName: "Date" }
         },
-        serializedName: "ArrayOfEnum0"
+        serializedName: "DictionaryOfDate"
       }
     },
     default: {
@@ -1562,8 +1598,48 @@ const getStringEnumValidOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const putStringEnumValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/string-enum/foo1.foo2.foo3",
+const getDateInvalidCharsOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/date/invalidchars",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "Date" }, serializedName: "Date" }
+        },
+        serializedName: "DictionaryOfDate"
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const getDateTimeValidOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/date-time/valid",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "DateTime" }, serializedName: "DateTime" }
+        },
+        serializedName: "DictionaryOfDateTime"
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const putDateTimeValidOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/date-time/valid",
   httpMethod: "PUT",
   responses: {
     200: {},
@@ -1575,17 +1651,17 @@ const putStringEnumValidOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const getStringWithNullOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/string/foo.null.foo2",
+const getDateTimeInvalidNullOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/date-time/invalidnull",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "String" }, serializedName: "String" }
+          name: "Dictionary",
+          value: { type: { name: "DateTime" }, serializedName: "DateTime" }
         },
-        serializedName: "ArrayOfString"
+        serializedName: "DictionaryOfDateTime"
       }
     },
     default: {
@@ -1595,17 +1671,17 @@ const getStringWithNullOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const getStringWithInvalidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/string/foo.123.foo2",
+const getDateTimeInvalidCharsOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/date-time/invalidchars",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "String" }, serializedName: "String" }
+          name: "Dictionary",
+          value: { type: { name: "DateTime" }, serializedName: "DateTime" }
         },
-        serializedName: "ArrayOfString"
+        serializedName: "DictionaryOfDateTime"
       }
     },
     default: {
@@ -1615,17 +1691,20 @@ const getStringWithInvalidOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const getUuidValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/uuid/valid",
+const getDateTimeRfc1123ValidOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/date-time-rfc1123/valid",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Uuid" }, serializedName: "Uuid" }
+          name: "Dictionary",
+          value: {
+            type: { name: "DateTimeRfc1123" },
+            serializedName: "DateTime"
+          }
         },
-        serializedName: "ArrayOfUuid"
+        serializedName: "DictionaryOfDateTime"
       }
     },
     default: {
@@ -1635,8 +1714,8 @@ const getUuidValidOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const putUuidValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/uuid/valid",
+const putDateTimeRfc1123ValidOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/date-time-rfc1123/valid",
   httpMethod: "PUT",
   responses: {
     200: {},
@@ -1648,17 +1727,17 @@ const putUuidValidOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const getUuidInvalidCharsOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/uuid/invalidchars",
+const getDurationValidOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/duration/valid",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Uuid" }, serializedName: "Uuid" }
+          name: "Dictionary",
+          value: { type: { name: "TimeSpan" }, serializedName: "Duration" }
         },
-        serializedName: "ArrayOfUuid"
+        serializedName: "DictionaryOfDuration"
       }
     },
     default: {
@@ -1668,28 +1747,8 @@ const getUuidInvalidCharsOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const getDateValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/date/valid",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Date" }, serializedName: "Date" }
-        },
-        serializedName: "ArrayOfDate"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const putDateValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/date/valid",
+const putDurationValidOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/duration/valid",
   httpMethod: "PUT",
   responses: {
     200: {},
@@ -1701,17 +1760,17 @@ const putDateValidOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const getDateInvalidNullOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/date/invalidnull",
+const getByteValidOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/byte/valid",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "Date" }, serializedName: "Date" }
+          name: "Dictionary",
+          value: { type: { name: "ByteArray" }, serializedName: "ByteArray" }
         },
-        serializedName: "ArrayOfDate"
+        serializedName: "DictionaryOfByteArray"
       }
     },
     default: {
@@ -1721,48 +1780,8 @@ const getDateInvalidNullOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const getDateInvalidCharsOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/date/invalidchars",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Date" }, serializedName: "Date" }
-        },
-        serializedName: "ArrayOfDate"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const getDateTimeValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/date-time/valid",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "DateTime" }, serializedName: "DateTime" }
-        },
-        serializedName: "ArrayOfDateTime"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const putDateTimeValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/date-time/valid",
+const putByteValidOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/byte/valid",
   httpMethod: "PUT",
   responses: {
     200: {},
@@ -1774,17 +1793,17 @@ const putDateTimeValidOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const getDateTimeInvalidNullOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/date-time/invalidnull",
+const getByteInvalidNullOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/byte/invalidnull",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "DateTime" }, serializedName: "DateTime" }
+          name: "Dictionary",
+          value: { type: { name: "ByteArray" }, serializedName: "ByteArray" }
         },
-        serializedName: "ArrayOfDateTime"
+        serializedName: "DictionaryOfByteArray"
       }
     },
     default: {
@@ -1794,17 +1813,17 @@ const getDateTimeInvalidNullOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const getDateTimeInvalidCharsOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/date-time/invalidchars",
+const getBase64UrlOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/prim/base64url/valid",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "DateTime" }, serializedName: "DateTime" }
+          name: "Dictionary",
+          value: { type: { name: "Base64Url" }, serializedName: "ByteArray" }
         },
-        serializedName: "ArrayOfDateTime"
+        serializedName: "DictionaryOfByteArray"
       }
     },
     default: {
@@ -1814,20 +1833,17 @@ const getDateTimeInvalidCharsOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const getDateTimeRfc1123ValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/date-time-rfc1123/valid",
+const getComplexNullOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/complex/null",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: {
-            type: { name: "DateTimeRfc1123" },
-            serializedName: "DateTime"
-          }
+          name: "Dictionary",
+          value: { type: { name: "Composite", className: "Widget" } }
         },
-        serializedName: "ArrayOfDateTime"
+        serializedName: "DictionaryOfWidget"
       }
     },
     default: {
@@ -1837,8 +1853,88 @@ const getDateTimeRfc1123ValidOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const putDateTimeRfc1123ValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/date-time-rfc1123/valid",
+const getComplexEmptyOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/complex/empty",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "Composite", className: "Widget" } }
+        },
+        serializedName: "DictionaryOfWidget"
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const getComplexItemNullOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/complex/itemnull",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "Composite", className: "Widget" } }
+        },
+        serializedName: "DictionaryOfWidget"
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const getComplexItemEmptyOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/complex/itemempty",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "Composite", className: "Widget" } }
+        },
+        serializedName: "DictionaryOfWidget"
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const getComplexValidOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/complex/valid",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "Composite", className: "Widget" } }
+        },
+        serializedName: "DictionaryOfWidget"
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const putComplexValidOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/complex/valid",
   httpMethod: "PUT",
   responses: {
     200: {},
@@ -1850,17 +1946,28 @@ const putDateTimeRfc1123ValidOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const getDurationValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/duration/valid",
+const getArrayNullOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/array/null",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: { type: { name: "TimeSpan" }, serializedName: "Duration" }
+          name: "Dictionary",
+          value: {
+            type: {
+              name: "Sequence",
+              element: {
+                type: { name: "String" },
+                serializedName: "Get200ApplicationJsonAdditionalPropertiesItem"
+              }
+            },
+            serializedName:
+              "ArrayOfGet200ApplicationJsonAdditionalPropertiesItem"
+          }
         },
-        serializedName: "ArrayOfDuration"
+        serializedName:
+          "DictionaryOfpaths1Y9Iid6DictionaryArrayNullGetResponses200ContentApplicationJsonSchemaAdditionalproperties"
       }
     },
     default: {
@@ -1870,8 +1977,116 @@ const getDurationValidOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const putDurationValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/duration/valid",
+const getArrayEmptyOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/array/empty",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Dictionary",
+          value: {
+            type: {
+              name: "Sequence",
+              element: { type: { name: "String" }, serializedName: "String" }
+            },
+            serializedName: "ArrayOfString"
+          }
+        },
+        serializedName:
+          "DictionaryOfpathsAfa1HvDictionaryArrayEmptyGetResponses200ContentApplicationJsonSchemaAdditionalproperties"
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const getArrayItemNullOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/array/itemnull",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Dictionary",
+          value: {
+            type: {
+              name: "Sequence",
+              element: { type: { name: "String" }, serializedName: "String" }
+            },
+            serializedName: "ArrayOfString"
+          }
+        },
+        serializedName:
+          "DictionaryOfpaths1Xk9Za9DictionaryArrayItemnullGetResponses200ContentApplicationJsonSchemaAdditionalproperties"
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const getArrayItemEmptyOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/array/itemempty",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Dictionary",
+          value: {
+            type: {
+              name: "Sequence",
+              element: { type: { name: "String" }, serializedName: "String" }
+            },
+            serializedName: "ArrayOfString"
+          }
+        },
+        serializedName:
+          "DictionaryOfpaths3Bo0LmDictionaryArrayItememptyGetResponses200ContentApplicationJsonSchemaAdditionalproperties"
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const getArrayValidOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/array/valid",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Dictionary",
+          value: {
+            type: {
+              name: "Sequence",
+              element: { type: { name: "String" }, serializedName: "String" }
+            },
+            serializedName: "ArrayOfString"
+          }
+        },
+        serializedName:
+          "DictionaryOfpathsEx22ApDictionaryArrayValidGetResponses200ContentApplicationJsonSchemaAdditionalproperties"
+      }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const putArrayValidOperationSpec: coreHttp.OperationSpec = {
+  path: "/dictionary/array/valid",
   httpMethod: "PUT",
   responses: {
     200: {},
@@ -1883,352 +2098,17 @@ const putDurationValidOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
-const getByteValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/byte/valid",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "ByteArray" }, serializedName: "ByteArray" }
-        },
-        serializedName: "ArrayOfByteArray"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const putByteValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/byte/valid",
-  httpMethod: "PUT",
-  responses: {
-    200: {},
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  requestBody: Parameters.arrayBody14,
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const getByteInvalidNullOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/byte/invalidnull",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "ByteArray" }, serializedName: "ByteArray" }
-        },
-        serializedName: "ArrayOfByteArray"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const getBase64UrlOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/prim/base64url/valid",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Base64Url" }, serializedName: "ByteArray" }
-        },
-        serializedName: "ArrayOfByteArray"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const getComplexNullOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/complex/null",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Product" } }
-        },
-        serializedName: "ArrayOfProduct"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const getComplexEmptyOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/complex/empty",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Product" } }
-        },
-        serializedName: "ArrayOfProduct"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const getComplexItemNullOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/complex/itemnull",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Product" } }
-        },
-        serializedName: "ArrayOfProduct"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const getComplexItemEmptyOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/complex/itemempty",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Product" } }
-        },
-        serializedName: "ArrayOfProduct"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const getComplexValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/complex/valid",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Product" } }
-        },
-        serializedName: "ArrayOfProduct"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const putComplexValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/complex/valid",
-  httpMethod: "PUT",
-  responses: {
-    200: {},
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  requestBody: Parameters.arrayBody15,
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const getArrayNullOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/array/null",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Sequence",
-              element: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "ArrayOfString"
-          }
-        },
-        serializedName: "ArrayOfString"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const getArrayEmptyOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/array/empty",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Sequence",
-              element: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "ArrayOfString"
-          }
-        },
-        serializedName: "ArrayOfString"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const getArrayItemNullOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/array/itemnull",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Sequence",
-              element: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "ArrayOfString"
-          }
-        },
-        serializedName: "ArrayOfString"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const getArrayItemEmptyOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/array/itemempty",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Sequence",
-              element: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "ArrayOfString"
-          }
-        },
-        serializedName: "ArrayOfString"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const getArrayValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/array/valid",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Sequence",
-              element: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "ArrayOfString"
-          }
-        },
-        serializedName: "ArrayOfString"
-      }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  serializer
-};
-const putArrayValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/array/valid",
-  httpMethod: "PUT",
-  responses: {
-    200: {},
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  requestBody: Parameters.arrayBody16,
-  urlParameters: [Parameters.$host],
-  serializer
-};
 const getDictionaryNullOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/dictionary/null",
+  path: "/dictionary/dictionary/null",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Dictionary",
-              value: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "DictionaryOfString"
-          }
+          name: "Dictionary",
+          value: { type: { name: "any" }, serializedName: "any" }
         },
-        serializedName: "ArrayOfDictionaryOfString"
+        serializedName: "DictionaryOfany"
       }
     },
     default: {
@@ -2239,22 +2119,16 @@ const getDictionaryNullOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getDictionaryEmptyOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/dictionary/empty",
+  path: "/dictionary/dictionary/empty",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Dictionary",
-              value: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "DictionaryOfString"
-          }
+          name: "Dictionary",
+          value: { type: { name: "any" }, serializedName: "any" }
         },
-        serializedName: "ArrayOfDictionaryOfString"
+        serializedName: "DictionaryOfany"
       }
     },
     default: {
@@ -2265,22 +2139,16 @@ const getDictionaryEmptyOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getDictionaryItemNullOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/dictionary/itemnull",
+  path: "/dictionary/dictionary/itemnull",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Dictionary",
-              value: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "DictionaryOfString"
-          }
+          name: "Dictionary",
+          value: { type: { name: "any" }, serializedName: "any" }
         },
-        serializedName: "ArrayOfDictionaryOfString"
+        serializedName: "DictionaryOfany"
       }
     },
     default: {
@@ -2291,22 +2159,16 @@ const getDictionaryItemNullOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getDictionaryItemEmptyOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/dictionary/itemempty",
+  path: "/dictionary/dictionary/itemempty",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Dictionary",
-              value: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "DictionaryOfString"
-          }
+          name: "Dictionary",
+          value: { type: { name: "any" }, serializedName: "any" }
         },
-        serializedName: "ArrayOfDictionaryOfString"
+        serializedName: "DictionaryOfany"
       }
     },
     default: {
@@ -2317,22 +2179,16 @@ const getDictionaryItemEmptyOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const getDictionaryValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/dictionary/valid",
+  path: "/dictionary/dictionary/valid",
   httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: {
         type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Dictionary",
-              value: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "DictionaryOfString"
-          }
+          name: "Dictionary",
+          value: { type: { name: "any" }, serializedName: "any" }
         },
-        serializedName: "ArrayOfDictionaryOfString"
+        serializedName: "DictionaryOfany"
       }
     },
     default: {
@@ -2343,7 +2199,7 @@ const getDictionaryValidOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const putDictionaryValidOperationSpec: coreHttp.OperationSpec = {
-  path: "/array/dictionary/valid",
+  path: "/dictionary/dictionary/valid",
   httpMethod: "PUT",
   responses: {
     200: {},
@@ -2351,7 +2207,7 @@ const putDictionaryValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.arrayBody17,
+  requestBody: Parameters.arrayBody14,
   urlParameters: [Parameters.$host],
   serializer
 };

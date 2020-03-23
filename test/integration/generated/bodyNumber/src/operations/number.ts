@@ -7,10 +7,25 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyNumberClient } from "../bodyNumberClient";
+import {
+  NumberGetNullResponse,
+  NumberGetInvalidFloatResponse,
+  NumberGetInvalidDoubleResponse,
+  NumberGetInvalidDecimalResponse,
+  NumberGetBigFloatResponse,
+  NumberGetBigDoubleResponse,
+  NumberGetBigDoublePositiveDecimalResponse,
+  NumberGetBigDoubleNegativeDecimalResponse,
+  NumberGetBigDecimalResponse,
+  NumberGetBigDecimalPositiveDecimalResponse,
+  NumberGetBigDecimalNegativeDecimalResponse,
+  NumberGetSmallFloatResponse,
+  NumberGetSmallDoubleResponse,
+  NumberGetSmallDecimalResponse
+} from "../models";
 
 /**
  * Class representing a Number.
@@ -30,13 +45,11 @@ export class Number {
    * Get null Number value
    * @param options The options parameters.
    */
-  getNull(
-    options?: coreHttp.OperationOptions
-  ): Promise<Models.NumberGetNullResponse> {
+  getNull(options?: coreHttp.OperationOptions): Promise<NumberGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec
-    ) as Promise<Models.NumberGetNullResponse>;
+    ) as Promise<NumberGetNullResponse>;
   }
 
   /**
@@ -45,11 +58,11 @@ export class Number {
    */
   getInvalidFloat(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.NumberGetInvalidFloatResponse> {
+  ): Promise<NumberGetInvalidFloatResponse> {
     return this.client.sendOperationRequest(
       { options },
       getInvalidFloatOperationSpec
-    ) as Promise<Models.NumberGetInvalidFloatResponse>;
+    ) as Promise<NumberGetInvalidFloatResponse>;
   }
 
   /**
@@ -58,11 +71,11 @@ export class Number {
    */
   getInvalidDouble(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.NumberGetInvalidDoubleResponse> {
+  ): Promise<NumberGetInvalidDoubleResponse> {
     return this.client.sendOperationRequest(
       { options },
       getInvalidDoubleOperationSpec
-    ) as Promise<Models.NumberGetInvalidDoubleResponse>;
+    ) as Promise<NumberGetInvalidDoubleResponse>;
   }
 
   /**
@@ -71,11 +84,11 @@ export class Number {
    */
   getInvalidDecimal(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.NumberGetInvalidDecimalResponse> {
+  ): Promise<NumberGetInvalidDecimalResponse> {
     return this.client.sendOperationRequest(
       { options },
       getInvalidDecimalOperationSpec
-    ) as Promise<Models.NumberGetInvalidDecimalResponse>;
+    ) as Promise<NumberGetInvalidDecimalResponse>;
   }
 
   /**
@@ -99,11 +112,11 @@ export class Number {
    */
   getBigFloat(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.NumberGetBigFloatResponse> {
+  ): Promise<NumberGetBigFloatResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBigFloatOperationSpec
-    ) as Promise<Models.NumberGetBigFloatResponse>;
+    ) as Promise<NumberGetBigFloatResponse>;
   }
 
   /**
@@ -127,11 +140,11 @@ export class Number {
    */
   getBigDouble(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.NumberGetBigDoubleResponse> {
+  ): Promise<NumberGetBigDoubleResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBigDoubleOperationSpec
-    ) as Promise<Models.NumberGetBigDoubleResponse>;
+    ) as Promise<NumberGetBigDoubleResponse>;
   }
 
   /**
@@ -153,11 +166,11 @@ export class Number {
    */
   getBigDoublePositiveDecimal(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.NumberGetBigDoublePositiveDecimalResponse> {
+  ): Promise<NumberGetBigDoublePositiveDecimalResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBigDoublePositiveDecimalOperationSpec
-    ) as Promise<Models.NumberGetBigDoublePositiveDecimalResponse>;
+    ) as Promise<NumberGetBigDoublePositiveDecimalResponse>;
   }
 
   /**
@@ -179,11 +192,11 @@ export class Number {
    */
   getBigDoubleNegativeDecimal(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.NumberGetBigDoubleNegativeDecimalResponse> {
+  ): Promise<NumberGetBigDoubleNegativeDecimalResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBigDoubleNegativeDecimalOperationSpec
-    ) as Promise<Models.NumberGetBigDoubleNegativeDecimalResponse>;
+    ) as Promise<NumberGetBigDoubleNegativeDecimalResponse>;
   }
 
   /**
@@ -207,11 +220,11 @@ export class Number {
    */
   getBigDecimal(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.NumberGetBigDecimalResponse> {
+  ): Promise<NumberGetBigDecimalResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBigDecimalOperationSpec
-    ) as Promise<Models.NumberGetBigDecimalResponse>;
+    ) as Promise<NumberGetBigDecimalResponse>;
   }
 
   /**
@@ -233,11 +246,11 @@ export class Number {
    */
   getBigDecimalPositiveDecimal(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.NumberGetBigDecimalPositiveDecimalResponse> {
+  ): Promise<NumberGetBigDecimalPositiveDecimalResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBigDecimalPositiveDecimalOperationSpec
-    ) as Promise<Models.NumberGetBigDecimalPositiveDecimalResponse>;
+    ) as Promise<NumberGetBigDecimalPositiveDecimalResponse>;
   }
 
   /**
@@ -259,11 +272,11 @@ export class Number {
    */
   getBigDecimalNegativeDecimal(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.NumberGetBigDecimalNegativeDecimalResponse> {
+  ): Promise<NumberGetBigDecimalNegativeDecimalResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBigDecimalNegativeDecimalOperationSpec
-    ) as Promise<Models.NumberGetBigDecimalNegativeDecimalResponse>;
+    ) as Promise<NumberGetBigDecimalNegativeDecimalResponse>;
   }
 
   /**
@@ -287,11 +300,11 @@ export class Number {
    */
   getSmallFloat(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.NumberGetSmallFloatResponse> {
+  ): Promise<NumberGetSmallFloatResponse> {
     return this.client.sendOperationRequest(
       { options },
       getSmallFloatOperationSpec
-    ) as Promise<Models.NumberGetSmallFloatResponse>;
+    ) as Promise<NumberGetSmallFloatResponse>;
   }
 
   /**
@@ -315,11 +328,11 @@ export class Number {
    */
   getSmallDouble(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.NumberGetSmallDoubleResponse> {
+  ): Promise<NumberGetSmallDoubleResponse> {
     return this.client.sendOperationRequest(
       { options },
       getSmallDoubleOperationSpec
-    ) as Promise<Models.NumberGetSmallDoubleResponse>;
+    ) as Promise<NumberGetSmallDoubleResponse>;
   }
 
   /**
@@ -343,11 +356,11 @@ export class Number {
    */
   getSmallDecimal(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.NumberGetSmallDecimalResponse> {
+  ): Promise<NumberGetSmallDecimalResponse> {
     return this.client.sendOperationRequest(
       { options },
       getSmallDecimalOperationSpec
-    ) as Promise<Models.NumberGetSmallDecimalResponse>;
+    ) as Promise<NumberGetSmallDecimalResponse>;
   }
 }
 // Operation Specifications

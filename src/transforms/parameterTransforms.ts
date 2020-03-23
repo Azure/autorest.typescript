@@ -53,7 +53,8 @@ const buildCredentialsParameter = (): ParameterDetails => ({
   implementationLocation: ImplementationLocation.Client,
   typeDetails: {
     typeName: "coreHttp.TokenCredential | coreHttp.ServiceClientCredentials",
-    kind: PropertyKind.Primitive
+    kind: PropertyKind.Primitive,
+    usedModels: []
   },
   isSynthetic: true,
   schemaType: SchemaType.Object
@@ -73,7 +74,8 @@ const buildEndpointParameter = (): ParameterDetails => ({
   implementationLocation: ImplementationLocation.Client,
   typeDetails: {
     typeName: "string",
-    kind: PropertyKind.Primitive
+    kind: PropertyKind.Primitive,
+    usedModels: []
   },
   isSynthetic: true,
   schemaType: SchemaType.String

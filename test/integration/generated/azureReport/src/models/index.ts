@@ -28,11 +28,8 @@ export interface ReportClientGetReportOptionalParams
  * Contains response data for the getReport operation.
  */
 export type ReportClientGetReportResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: { [propertyName: string]: number };
-
+  [propertyName: string]: number;
+} & {
   /**
    * The underlying HTTP response.
    */

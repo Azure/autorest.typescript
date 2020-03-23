@@ -7,10 +7,10 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { UrlClient } from "../urlClient";
+import { UriColor } from "../models";
 
 /**
  * Class representing a Paths.
@@ -229,7 +229,7 @@ export class Paths {
    * @param options The options parameters.
    */
   enumValid(
-    enumPath: Models.UriColor,
+    enumPath: UriColor,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -244,7 +244,7 @@ export class Paths {
    * @param options The options parameters.
    */
   enumNull(
-    enumPath: Models.UriColor,
+    enumPath: UriColor,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(

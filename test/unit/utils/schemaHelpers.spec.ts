@@ -30,7 +30,8 @@ describe("SchemaHelpers", () => {
       assert.deepEqual(typeDetails, {
         typeName: "string",
         isConstant: false,
-        kind: PropertyKind.Primitive
+        kind: PropertyKind.Primitive,
+        usedModels: []
       });
     });
 
@@ -42,7 +43,8 @@ describe("SchemaHelpers", () => {
       assert.deepEqual(typeDetails, {
         typeName: "boolean",
         isConstant: false,
-        kind: PropertyKind.Primitive
+        kind: PropertyKind.Primitive,
+        usedModels: []
       });
     });
 
@@ -59,7 +61,8 @@ describe("SchemaHelpers", () => {
       assert.deepEqual(typeDetails, {
         typeName: "number",
         isConstant: false,
-        kind: PropertyKind.Primitive
+        kind: PropertyKind.Primitive,
+        usedModels: []
       });
     });
 
@@ -76,7 +79,8 @@ describe("SchemaHelpers", () => {
       assert.deepEqual(typeDetails, {
         typeName: "number",
         isConstant: false,
-        kind: PropertyKind.Primitive
+        kind: PropertyKind.Primitive,
+        usedModels: []
       });
     });
 
@@ -97,7 +101,8 @@ describe("SchemaHelpers", () => {
         typeName: "number",
         isConstant: true,
         kind: PropertyKind.Primitive,
-        defaultValue: 311
+        defaultValue: 311,
+        usedModels: []
       });
     });
 
@@ -116,7 +121,8 @@ describe("SchemaHelpers", () => {
       assert.deepEqual(typeDetails, {
         typeName: "ChoiceSchema",
         isConstant: false,
-        kind: PropertyKind.Enum
+        kind: PropertyKind.Enum,
+        usedModels: ["ChoiceSchema"]
       });
     });
 
@@ -131,7 +137,8 @@ describe("SchemaHelpers", () => {
       assert.deepEqual(typeDetails, {
         typeName: "string[]",
         isConstant: false,
-        kind: PropertyKind.Primitive
+        kind: PropertyKind.Primitive,
+        usedModels: []
       });
     });
 
@@ -146,7 +153,8 @@ describe("SchemaHelpers", () => {
       assert.deepEqual(typeDetails, {
         typeName: "{[propertyName: string]: string}",
         isConstant: false,
-        kind: PropertyKind.Primitive
+        kind: PropertyKind.Dictionary,
+        usedModels: []
       });
     });
 
@@ -155,21 +163,24 @@ describe("SchemaHelpers", () => {
       assert.deepEqual(typeDetails, {
         typeName: "Date",
         isConstant: false,
-        kind: PropertyKind.Primitive
+        kind: PropertyKind.Primitive,
+        usedModels: []
       });
 
       typeDetails = getTypeForSchema(new DateTimeSchema("DateTimeSchema", ""));
       assert.deepEqual(typeDetails, {
         typeName: "Date",
         isConstant: false,
-        kind: PropertyKind.Primitive
+        kind: PropertyKind.Primitive,
+        usedModels: []
       });
 
       typeDetails = getTypeForSchema(new UnixTimeSchema("UnixTimeSchema", ""));
       assert.deepEqual(typeDetails, {
         typeName: "Date",
         isConstant: false,
-        kind: PropertyKind.Primitive
+        kind: PropertyKind.Primitive,
+        usedModels: []
       });
     });
 
@@ -180,7 +191,8 @@ describe("SchemaHelpers", () => {
       assert.deepEqual(typeDetails, {
         typeName: "string",
         isConstant: false,
-        kind: PropertyKind.Primitive
+        kind: PropertyKind.Primitive,
+        usedModels: []
       });
     });
 
@@ -188,10 +200,12 @@ describe("SchemaHelpers", () => {
       const typeDetails = getTypeForSchema(
         new ObjectSchema("ObjectSchema", "")
       );
+      const typeName = "ObjectSchema";
       assert.deepEqual(typeDetails, {
-        typeName: "ObjectSchema",
+        typeName,
         isConstant: false,
-        kind: PropertyKind.Composite
+        kind: PropertyKind.Composite,
+        usedModels: [typeName]
       });
     });
 
@@ -215,10 +229,12 @@ describe("SchemaHelpers", () => {
 
       const typeDetails = getTypeForSchema(parent);
 
+      const typeName = "ParentUnion";
       assert.deepEqual(typeDetails, {
-        typeName: "ParentUnion",
+        typeName,
         isConstant: false,
-        kind: PropertyKind.Composite
+        kind: PropertyKind.Composite,
+        usedModels: [typeName]
       });
     });
   });

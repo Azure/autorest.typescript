@@ -7,10 +7,28 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { HeaderClient } from "../headerClient";
+import {
+  HeaderResponseExistingKeyResponse,
+  HeaderResponseProtectedKeyResponse,
+  HeaderResponseIntegerResponse,
+  HeaderResponseLongResponse,
+  HeaderResponseFloatResponse,
+  HeaderResponseDoubleResponse,
+  HeaderResponseBoolResponse,
+  HeaderParamStringOptionalParams,
+  HeaderResponseStringResponse,
+  HeaderResponseDateResponse,
+  HeaderResponseDatetimeResponse,
+  HeaderParamDatetimeRfc1123OptionalParams,
+  HeaderResponseDatetimeRfc1123Response,
+  HeaderResponseDurationResponse,
+  HeaderResponseByteResponse,
+  HeaderParamEnumOptionalParams,
+  HeaderResponseEnumResponse
+} from "../models";
 
 /**
  * Class representing a Header.
@@ -47,11 +65,11 @@ export class Header {
    */
   responseExistingKey(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.HeaderResponseExistingKeyResponse> {
+  ): Promise<HeaderResponseExistingKeyResponse> {
     return this.client.sendOperationRequest(
       { options },
       responseExistingKeyOperationSpec
-    ) as Promise<Models.HeaderResponseExistingKeyResponse>;
+    ) as Promise<HeaderResponseExistingKeyResponse>;
   }
 
   /**
@@ -75,11 +93,11 @@ export class Header {
    */
   responseProtectedKey(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.HeaderResponseProtectedKeyResponse> {
+  ): Promise<HeaderResponseProtectedKeyResponse> {
     return this.client.sendOperationRequest(
       { options },
       responseProtectedKeyOperationSpec
-    ) as Promise<Models.HeaderResponseProtectedKeyResponse>;
+    ) as Promise<HeaderResponseProtectedKeyResponse>;
   }
 
   /**
@@ -108,11 +126,11 @@ export class Header {
   responseInteger(
     scenario: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.HeaderResponseIntegerResponse> {
+  ): Promise<HeaderResponseIntegerResponse> {
     return this.client.sendOperationRequest(
       { scenario, options },
       responseIntegerOperationSpec
-    ) as Promise<Models.HeaderResponseIntegerResponse>;
+    ) as Promise<HeaderResponseIntegerResponse>;
   }
 
   /**
@@ -141,11 +159,11 @@ export class Header {
   responseLong(
     scenario: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.HeaderResponseLongResponse> {
+  ): Promise<HeaderResponseLongResponse> {
     return this.client.sendOperationRequest(
       { scenario, options },
       responseLongOperationSpec
-    ) as Promise<Models.HeaderResponseLongResponse>;
+    ) as Promise<HeaderResponseLongResponse>;
   }
 
   /**
@@ -174,11 +192,11 @@ export class Header {
   responseFloat(
     scenario: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.HeaderResponseFloatResponse> {
+  ): Promise<HeaderResponseFloatResponse> {
     return this.client.sendOperationRequest(
       { scenario, options },
       responseFloatOperationSpec
-    ) as Promise<Models.HeaderResponseFloatResponse>;
+    ) as Promise<HeaderResponseFloatResponse>;
   }
 
   /**
@@ -207,11 +225,11 @@ export class Header {
   responseDouble(
     scenario: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.HeaderResponseDoubleResponse> {
+  ): Promise<HeaderResponseDoubleResponse> {
     return this.client.sendOperationRequest(
       { scenario, options },
       responseDoubleOperationSpec
-    ) as Promise<Models.HeaderResponseDoubleResponse>;
+    ) as Promise<HeaderResponseDoubleResponse>;
   }
 
   /**
@@ -240,11 +258,11 @@ export class Header {
   responseBool(
     scenario: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.HeaderResponseBoolResponse> {
+  ): Promise<HeaderResponseBoolResponse> {
     return this.client.sendOperationRequest(
       { scenario, options },
       responseBoolOperationSpec
-    ) as Promise<Models.HeaderResponseBoolResponse>;
+    ) as Promise<HeaderResponseBoolResponse>;
   }
 
   /**
@@ -255,7 +273,7 @@ export class Header {
    */
   paramString(
     scenario: string,
-    options?: Models.HeaderParamStringOptionalParams
+    options?: HeaderParamStringOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { scenario, options },
@@ -271,11 +289,11 @@ export class Header {
   responseString(
     scenario: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.HeaderResponseStringResponse> {
+  ): Promise<HeaderResponseStringResponse> {
     return this.client.sendOperationRequest(
       { scenario, options },
       responseStringOperationSpec
-    ) as Promise<Models.HeaderResponseStringResponse>;
+    ) as Promise<HeaderResponseStringResponse>;
   }
 
   /**
@@ -304,11 +322,11 @@ export class Header {
   responseDate(
     scenario: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.HeaderResponseDateResponse> {
+  ): Promise<HeaderResponseDateResponse> {
     return this.client.sendOperationRequest(
       { scenario, options },
       responseDateOperationSpec
-    ) as Promise<Models.HeaderResponseDateResponse>;
+    ) as Promise<HeaderResponseDateResponse>;
   }
 
   /**
@@ -337,11 +355,11 @@ export class Header {
   responseDatetime(
     scenario: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.HeaderResponseDatetimeResponse> {
+  ): Promise<HeaderResponseDatetimeResponse> {
     return this.client.sendOperationRequest(
       { scenario, options },
       responseDatetimeOperationSpec
-    ) as Promise<Models.HeaderResponseDatetimeResponse>;
+    ) as Promise<HeaderResponseDatetimeResponse>;
   }
 
   /**
@@ -352,7 +370,7 @@ export class Header {
    */
   paramDatetimeRfc1123(
     scenario: string,
-    options?: Models.HeaderParamDatetimeRfc1123OptionalParams
+    options?: HeaderParamDatetimeRfc1123OptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { scenario, options },
@@ -368,11 +386,11 @@ export class Header {
   responseDatetimeRfc1123(
     scenario: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.HeaderResponseDatetimeRfc1123Response> {
+  ): Promise<HeaderResponseDatetimeRfc1123Response> {
     return this.client.sendOperationRequest(
       { scenario, options },
       responseDatetimeRfc1123OperationSpec
-    ) as Promise<Models.HeaderResponseDatetimeRfc1123Response>;
+    ) as Promise<HeaderResponseDatetimeRfc1123Response>;
   }
 
   /**
@@ -400,11 +418,11 @@ export class Header {
   responseDuration(
     scenario: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.HeaderResponseDurationResponse> {
+  ): Promise<HeaderResponseDurationResponse> {
     return this.client.sendOperationRequest(
       { scenario, options },
       responseDurationOperationSpec
-    ) as Promise<Models.HeaderResponseDurationResponse>;
+    ) as Promise<HeaderResponseDurationResponse>;
   }
 
   /**
@@ -432,11 +450,11 @@ export class Header {
   responseByte(
     scenario: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.HeaderResponseByteResponse> {
+  ): Promise<HeaderResponseByteResponse> {
     return this.client.sendOperationRequest(
       { scenario, options },
       responseByteOperationSpec
-    ) as Promise<Models.HeaderResponseByteResponse>;
+    ) as Promise<HeaderResponseByteResponse>;
   }
 
   /**
@@ -447,7 +465,7 @@ export class Header {
    */
   paramEnum(
     scenario: string,
-    options?: Models.HeaderParamEnumOptionalParams
+    options?: HeaderParamEnumOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { scenario, options },
@@ -463,11 +481,11 @@ export class Header {
   responseEnum(
     scenario: string,
     options?: coreHttp.OperationOptions
-  ): Promise<Models.HeaderResponseEnumResponse> {
+  ): Promise<HeaderResponseEnumResponse> {
     return this.client.sendOperationRequest(
       { scenario, options },
       responseEnumOperationSpec
-    ) as Promise<Models.HeaderResponseEnumResponse>;
+    ) as Promise<HeaderResponseEnumResponse>;
   }
 
   /**

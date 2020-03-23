@@ -7,10 +7,33 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClient } from "../bodyComplexClient";
+import {
+  PrimitiveGetIntResponse,
+  IntWrapper,
+  PrimitiveGetLongResponse,
+  LongWrapper,
+  PrimitiveGetFloatResponse,
+  FloatWrapper,
+  PrimitiveGetDoubleResponse,
+  DoubleWrapper,
+  PrimitiveGetBoolResponse,
+  BooleanWrapper,
+  PrimitiveGetStringResponse,
+  StringWrapper,
+  PrimitiveGetDateResponse,
+  DateWrapper,
+  PrimitiveGetDateTimeResponse,
+  DatetimeWrapper,
+  PrimitiveGetDateTimeRfc1123Response,
+  Datetimerfc1123Wrapper,
+  PrimitiveGetDurationResponse,
+  DurationWrapper,
+  PrimitiveGetByteResponse,
+  ByteWrapper
+} from "../models";
 
 /**
  * Class representing a Primitive.
@@ -32,11 +55,11 @@ export class Primitive {
    */
   getInt(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PrimitiveGetIntResponse> {
+  ): Promise<PrimitiveGetIntResponse> {
     return this.client.sendOperationRequest(
       { options },
       getIntOperationSpec
-    ) as Promise<Models.PrimitiveGetIntResponse>;
+    ) as Promise<PrimitiveGetIntResponse>;
   }
 
   /**
@@ -45,7 +68,7 @@ export class Primitive {
    * @param options The options parameters.
    */
   putInt(
-    complexBody: Models.IntWrapper,
+    complexBody: IntWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -60,11 +83,11 @@ export class Primitive {
    */
   getLong(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PrimitiveGetLongResponse> {
+  ): Promise<PrimitiveGetLongResponse> {
     return this.client.sendOperationRequest(
       { options },
       getLongOperationSpec
-    ) as Promise<Models.PrimitiveGetLongResponse>;
+    ) as Promise<PrimitiveGetLongResponse>;
   }
 
   /**
@@ -73,7 +96,7 @@ export class Primitive {
    * @param options The options parameters.
    */
   putLong(
-    complexBody: Models.LongWrapper,
+    complexBody: LongWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -88,11 +111,11 @@ export class Primitive {
    */
   getFloat(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PrimitiveGetFloatResponse> {
+  ): Promise<PrimitiveGetFloatResponse> {
     return this.client.sendOperationRequest(
       { options },
       getFloatOperationSpec
-    ) as Promise<Models.PrimitiveGetFloatResponse>;
+    ) as Promise<PrimitiveGetFloatResponse>;
   }
 
   /**
@@ -101,7 +124,7 @@ export class Primitive {
    * @param options The options parameters.
    */
   putFloat(
-    complexBody: Models.FloatWrapper,
+    complexBody: FloatWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -116,11 +139,11 @@ export class Primitive {
    */
   getDouble(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PrimitiveGetDoubleResponse> {
+  ): Promise<PrimitiveGetDoubleResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDoubleOperationSpec
-    ) as Promise<Models.PrimitiveGetDoubleResponse>;
+    ) as Promise<PrimitiveGetDoubleResponse>;
   }
 
   /**
@@ -130,7 +153,7 @@ export class Primitive {
    * @param options The options parameters.
    */
   putDouble(
-    complexBody: Models.DoubleWrapper,
+    complexBody: DoubleWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -145,11 +168,11 @@ export class Primitive {
    */
   getBool(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PrimitiveGetBoolResponse> {
+  ): Promise<PrimitiveGetBoolResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBoolOperationSpec
-    ) as Promise<Models.PrimitiveGetBoolResponse>;
+    ) as Promise<PrimitiveGetBoolResponse>;
   }
 
   /**
@@ -158,7 +181,7 @@ export class Primitive {
    * @param options The options parameters.
    */
   putBool(
-    complexBody: Models.BooleanWrapper,
+    complexBody: BooleanWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -173,11 +196,11 @@ export class Primitive {
    */
   getString(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PrimitiveGetStringResponse> {
+  ): Promise<PrimitiveGetStringResponse> {
     return this.client.sendOperationRequest(
       { options },
       getStringOperationSpec
-    ) as Promise<Models.PrimitiveGetStringResponse>;
+    ) as Promise<PrimitiveGetStringResponse>;
   }
 
   /**
@@ -186,7 +209,7 @@ export class Primitive {
    * @param options The options parameters.
    */
   putString(
-    complexBody: Models.StringWrapper,
+    complexBody: StringWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -201,11 +224,11 @@ export class Primitive {
    */
   getDate(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PrimitiveGetDateResponse> {
+  ): Promise<PrimitiveGetDateResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateOperationSpec
-    ) as Promise<Models.PrimitiveGetDateResponse>;
+    ) as Promise<PrimitiveGetDateResponse>;
   }
 
   /**
@@ -214,7 +237,7 @@ export class Primitive {
    * @param options The options parameters.
    */
   putDate(
-    complexBody: Models.DateWrapper,
+    complexBody: DateWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -229,11 +252,11 @@ export class Primitive {
    */
   getDateTime(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PrimitiveGetDateTimeResponse> {
+  ): Promise<PrimitiveGetDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDateTimeOperationSpec
-    ) as Promise<Models.PrimitiveGetDateTimeResponse>;
+    ) as Promise<PrimitiveGetDateTimeResponse>;
   }
 
   /**
@@ -242,7 +265,7 @@ export class Primitive {
    * @param options The options parameters.
    */
   putDateTime(
-    complexBody: Models.DatetimeWrapper,
+    complexBody: DatetimeWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -257,11 +280,11 @@ export class Primitive {
    */
   getDateTimeRfc1123(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PrimitiveGetDateTimeRfc1123Response> {
+  ): Promise<PrimitiveGetDateTimeRfc1123Response> {
     return this.client.sendOperationRequest(
       { options },
       getDateTimeRfc1123OperationSpec
-    ) as Promise<Models.PrimitiveGetDateTimeRfc1123Response>;
+    ) as Promise<PrimitiveGetDateTimeRfc1123Response>;
   }
 
   /**
@@ -270,7 +293,7 @@ export class Primitive {
    * @param options The options parameters.
    */
   putDateTimeRfc1123(
-    complexBody: Models.Datetimerfc1123Wrapper,
+    complexBody: Datetimerfc1123Wrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -285,11 +308,11 @@ export class Primitive {
    */
   getDuration(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PrimitiveGetDurationResponse> {
+  ): Promise<PrimitiveGetDurationResponse> {
     return this.client.sendOperationRequest(
       { options },
       getDurationOperationSpec
-    ) as Promise<Models.PrimitiveGetDurationResponse>;
+    ) as Promise<PrimitiveGetDurationResponse>;
   }
 
   /**
@@ -298,7 +321,7 @@ export class Primitive {
    * @param options The options parameters.
    */
   putDuration(
-    complexBody: Models.DurationWrapper,
+    complexBody: DurationWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -313,11 +336,11 @@ export class Primitive {
    */
   getByte(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.PrimitiveGetByteResponse> {
+  ): Promise<PrimitiveGetByteResponse> {
     return this.client.sendOperationRequest(
       { options },
       getByteOperationSpec
-    ) as Promise<Models.PrimitiveGetByteResponse>;
+    ) as Promise<PrimitiveGetByteResponse>;
   }
 
   /**
@@ -326,7 +349,7 @@ export class Primitive {
    * @param options The options parameters.
    */
   putByte(
-    complexBody: Models.ByteWrapper,
+    complexBody: ByteWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(

@@ -7,10 +7,10 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClient } from "../bodyComplexClient";
+import { FlattencomplexGetValidResponse } from "../models";
 
 /**
  * Class representing a Flattencomplex.
@@ -31,11 +31,11 @@ export class Flattencomplex {
    */
   getValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.FlattencomplexGetValidResponse> {
+  ): Promise<FlattencomplexGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getValidOperationSpec
-    ) as Promise<Models.FlattencomplexGetValidResponse>;
+    ) as Promise<FlattencomplexGetValidResponse>;
   }
 }
 // Operation Specifications

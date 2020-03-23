@@ -7,10 +7,17 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyDateClient } from "../bodyDateClient";
+import {
+  DateModelGetNullResponse,
+  DateModelGetInvalidDateResponse,
+  DateModelGetOverflowDateResponse,
+  DateModelGetUnderflowDateResponse,
+  DateModelGetMaxDateResponse,
+  DateModelGetMinDateResponse
+} from "../models";
 
 /**
  * Class representing a DateModel.
@@ -32,11 +39,11 @@ export class DateModel {
    */
   getNull(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DateModelGetNullResponse> {
+  ): Promise<DateModelGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec
-    ) as Promise<Models.DateModelGetNullResponse>;
+    ) as Promise<DateModelGetNullResponse>;
   }
 
   /**
@@ -45,11 +52,11 @@ export class DateModel {
    */
   getInvalidDate(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DateModelGetInvalidDateResponse> {
+  ): Promise<DateModelGetInvalidDateResponse> {
     return this.client.sendOperationRequest(
       { options },
       getInvalidDateOperationSpec
-    ) as Promise<Models.DateModelGetInvalidDateResponse>;
+    ) as Promise<DateModelGetInvalidDateResponse>;
   }
 
   /**
@@ -58,11 +65,11 @@ export class DateModel {
    */
   getOverflowDate(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DateModelGetOverflowDateResponse> {
+  ): Promise<DateModelGetOverflowDateResponse> {
     return this.client.sendOperationRequest(
       { options },
       getOverflowDateOperationSpec
-    ) as Promise<Models.DateModelGetOverflowDateResponse>;
+    ) as Promise<DateModelGetOverflowDateResponse>;
   }
 
   /**
@@ -71,11 +78,11 @@ export class DateModel {
    */
   getUnderflowDate(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DateModelGetUnderflowDateResponse> {
+  ): Promise<DateModelGetUnderflowDateResponse> {
     return this.client.sendOperationRequest(
       { options },
       getUnderflowDateOperationSpec
-    ) as Promise<Models.DateModelGetUnderflowDateResponse>;
+    ) as Promise<DateModelGetUnderflowDateResponse>;
   }
 
   /**
@@ -99,11 +106,11 @@ export class DateModel {
    */
   getMaxDate(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DateModelGetMaxDateResponse> {
+  ): Promise<DateModelGetMaxDateResponse> {
     return this.client.sendOperationRequest(
       { options },
       getMaxDateOperationSpec
-    ) as Promise<Models.DateModelGetMaxDateResponse>;
+    ) as Promise<DateModelGetMaxDateResponse>;
   }
 
   /**
@@ -127,11 +134,11 @@ export class DateModel {
    */
   getMinDate(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.DateModelGetMinDateResponse> {
+  ): Promise<DateModelGetMinDateResponse> {
     return this.client.sendOperationRequest(
       { options },
       getMinDateOperationSpec
-    ) as Promise<Models.DateModelGetMinDateResponse>;
+    ) as Promise<DateModelGetMinDateResponse>;
   }
 }
 // Operation Specifications

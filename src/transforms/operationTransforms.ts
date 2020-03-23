@@ -246,12 +246,15 @@ export async function transformOperation(
     ...(operation.responses || []),
     ...(operation.exceptions || [])
   ];
+  const typeName = `${normalizeName(
+    operationGroupName,
+    NameType.Interface
+  )}${normalizeName(metadata.name, NameType.Interface)}`;
+
   const typeDetails: TypeDetails = {
-    typeName: `${normalizeName(
-      operationGroupName,
-      NameType.Interface
-    )}${normalizeName(metadata.name, NameType.Interface)}`,
-    kind: PropertyKind.Composite
+    typeName,
+    kind: PropertyKind.Composite,
+    usedModels: [typeName]
   };
 
   const codeModelRequests = operation.requests;

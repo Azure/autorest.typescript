@@ -7,10 +7,17 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClient } from "../bodyComplexClient";
+import {
+  BasicGetValidResponse,
+  Basic as BasicModel,
+  BasicGetInvalidResponse,
+  BasicGetEmptyResponse,
+  BasicGetNullResponse,
+  BasicGetNotProvidedResponse
+} from "../models";
 
 /**
  * Class representing a Basic.
@@ -32,11 +39,11 @@ export class Basic {
    */
   getValid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.BasicGetValidResponse> {
+  ): Promise<BasicGetValidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getValidOperationSpec
-    ) as Promise<Models.BasicGetValidResponse>;
+    ) as Promise<BasicGetValidResponse>;
   }
 
   /**
@@ -45,7 +52,7 @@ export class Basic {
    * @param options The options parameters.
    */
   putValid(
-    complexBody: Models.Basic,
+    complexBody: BasicModel,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -60,11 +67,11 @@ export class Basic {
    */
   getInvalid(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.BasicGetInvalidResponse> {
+  ): Promise<BasicGetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
       getInvalidOperationSpec
-    ) as Promise<Models.BasicGetInvalidResponse>;
+    ) as Promise<BasicGetInvalidResponse>;
   }
 
   /**
@@ -73,24 +80,22 @@ export class Basic {
    */
   getEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.BasicGetEmptyResponse> {
+  ): Promise<BasicGetEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getEmptyOperationSpec
-    ) as Promise<Models.BasicGetEmptyResponse>;
+    ) as Promise<BasicGetEmptyResponse>;
   }
 
   /**
    * Get a basic complex type whose properties are null
    * @param options The options parameters.
    */
-  getNull(
-    options?: coreHttp.OperationOptions
-  ): Promise<Models.BasicGetNullResponse> {
+  getNull(options?: coreHttp.OperationOptions): Promise<BasicGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec
-    ) as Promise<Models.BasicGetNullResponse>;
+    ) as Promise<BasicGetNullResponse>;
   }
 
   /**
@@ -99,11 +104,11 @@ export class Basic {
    */
   getNotProvided(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.BasicGetNotProvidedResponse> {
+  ): Promise<BasicGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNotProvidedOperationSpec
-    ) as Promise<Models.BasicGetNotProvidedResponse>;
+    ) as Promise<BasicGetNotProvidedResponse>;
   }
 }
 // Operation Specifications

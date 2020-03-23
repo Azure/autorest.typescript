@@ -12,7 +12,7 @@ import {
   ExportDeclarationStructure,
   MethodDeclaration
 } from "ts-morph";
-import { normalizeName, NameType } from "../utils/nameUtils";
+import { normalizeName, NameType, normalizeTypeName } from "../utils/nameUtils";
 import { ClientDetails } from "../models/clientDetails";
 import { transformOperationSpec } from "../transforms/operationTransforms";
 import {
@@ -28,7 +28,6 @@ import {
   filterOperationParameters,
   formatJsDocParam
 } from "./utils/parameterUtils";
-import { PropertyKind } from "../models/modelDetails";
 import { wrapString } from "./utils/stringUtils";
 import { KnownMediaType } from "@azure-tools/codegen";
 import {
@@ -201,14 +200,18 @@ function buildMapper(
 function getOptionsParameter(
   operation: OperationDetails,
   parameters: ParameterDetails[],
+  importedModels: Set<string>,
   { isOptional = true } = {}
 ): ParameterWithDescription {
-  const type = filterOperationParameters(parameters, operation, {
-    includeOptional: true
-  }).some(p => !p.required)
-    ? `Models.${operation.typeDetails.typeName}OptionalParams`
-    : "coreHttp.OperationOptions";
-
+  let type: string = "coreHttp.OperationOptions";
+  if (
+    filterOperationParameters(parameters, operation, {
+      includeOptional: true
+    }).some(p => !p.required)
+  ) {
+    type = `${operation.typeDetails.typeName}OptionalParams`;
+    importedModels.add(type);
+  }
   return {
     name: "options",
     type,
@@ -225,6 +228,7 @@ function addClass(
   operationGroupDetails: OperationGroupDetails,
   clientDetails: ClientDetails
 ) {
+  let importedModels = new Set<string>();
   const className = normalizeName(operationGroupDetails.name, NameType.Class);
   const operationGroupClass = operationGroupFile.addClass({
     name: className,
@@ -256,8 +260,25 @@ function addClass(
   writeOperations(
     operationGroupDetails,
     operationGroupClass,
+    importedModels,
     clientDetails.parameters
   );
+
+  // Use named import from Models
+  if (importedModels.size) {
+    // Add alias to any model that collides with the class name
+    const namedImports = [...importedModels].map(model => {
+      if (model === className) {
+        return `${model} as ${model}Model`;
+      }
+      return model;
+    });
+
+    operationGroupFile.addImportDeclaration({
+      namedImports,
+      moduleSpecifier: "../models"
+    });
+  }
 }
 
 type ParameterWithDescription = OptionalKind<
@@ -270,32 +291,39 @@ type ParameterWithDescription = OptionalKind<
 export function writeOperations(
   operationGroupDetails: OperationGroupDetails,
   operationGroupClass: ClassDeclaration,
+  importedModels: Set<string>,
   parameters: ParameterDetails[],
   isInline = false
 ) {
   operationGroupDetails.operations.forEach(operation => {
-    const responseName = getResponseType(operation);
+    const responseName = getResponseType(operation, importedModels);
     const paramDeclarations = filterOperationParameters(
       parameters,
       operation
     ).map<ParameterWithDescription>(param => {
-      const { typeName, kind } = param.typeDetails;
-      const type =
-        kind === PropertyKind.Primitive
-          ? typeName
-          : `Models.${normalizeName(typeName, NameType.Class)}`;
+      const { usedModels } = param.typeDetails;
+      const type = normalizeTypeName(param.typeDetails);
+
+      // If the type collides with the class name, use the alias
+      const typeName =
+        operationGroupClass.getName() === type ? `${type}Model` : type;
+
+      // If any models are used, add them to the named import list
+      if (usedModels.length) {
+        usedModels.forEach(model => importedModels.add(model));
+      }
 
       return {
         name: param.name,
         description: param.description,
-        type,
+        type: typeName,
         hasQuestionToken: !param.required
       };
     });
 
     const allParams = [
       ...paramDeclarations,
-      getOptionsParameter(operation, parameters)
+      getOptionsParameter(operation, parameters, importedModels)
     ];
 
     const operationMethod = operationGroupClass.addMethod({
@@ -406,7 +434,10 @@ function getContentTypeValues(
   return;
 }
 
-function getResponseType(operation: OperationDetails) {
+function getResponseType(
+  operation: OperationDetails,
+  importedModels: Set<string>
+) {
   const hasSuccessResponse = operation.responses.some(
     ({ isError, mappers }) =>
       !isError && (!!mappers.bodyMapper || !!mappers.headersMapper)
@@ -414,9 +445,18 @@ function getResponseType(operation: OperationDetails) {
 
   const responseName = hasSuccessResponse ? operation.typeDetails.typeName : "";
 
-  return !!responseName
-    ? `Models.${normalizeName(responseName, NameType.Interface)}Response`
-    : "coreHttp.RestResponse";
+  if (responseName) {
+    const typeName = `${normalizeName(
+      responseName,
+      NameType.Interface
+    )}Response`;
+
+    importedModels.add(typeName);
+
+    return typeName;
+  }
+
+  return "coreHttp.RestResponse";
 }
 
 function generateOperationJSDoc(
@@ -482,11 +522,6 @@ function addImports(
   operationGroupFile.addImportDeclaration({
     namespaceImport: "coreHttp",
     moduleSpecifier: "@azure/core-http"
-  });
-
-  operationGroupFile.addImportDeclaration({
-    namespaceImport: "Models",
-    moduleSpecifier: "../models"
   });
 
   operationGroupFile.addImportDeclaration({

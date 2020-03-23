@@ -7,10 +7,19 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyStringClient } from "../bodyStringClient";
+import {
+  StringGetNullResponse,
+  StringGetEmptyResponse,
+  StringGetMbcsResponse,
+  StringGetWhitespaceResponse,
+  StringGetNotProvidedResponse,
+  StringGetBase64EncodedResponse,
+  StringGetBase64UrlEncodedResponse,
+  StringGetNullBase64UrlEncodedResponse
+} from "../models";
 
 /**
  * Class representing a String.
@@ -30,13 +39,11 @@ export class String {
    * Get null string value value
    * @param options The options parameters.
    */
-  getNull(
-    options?: coreHttp.OperationOptions
-  ): Promise<Models.StringGetNullResponse> {
+  getNull(options?: coreHttp.OperationOptions): Promise<StringGetNullResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullOperationSpec
-    ) as Promise<Models.StringGetNullResponse>;
+    ) as Promise<StringGetNullResponse>;
   }
 
   /**
@@ -56,11 +63,11 @@ export class String {
    */
   getEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.StringGetEmptyResponse> {
+  ): Promise<StringGetEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
       getEmptyOperationSpec
-    ) as Promise<Models.StringGetEmptyResponse>;
+    ) as Promise<StringGetEmptyResponse>;
   }
 
   /**
@@ -80,13 +87,11 @@ export class String {
    * Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    * @param options The options parameters.
    */
-  getMbcs(
-    options?: coreHttp.OperationOptions
-  ): Promise<Models.StringGetMbcsResponse> {
+  getMbcs(options?: coreHttp.OperationOptions): Promise<StringGetMbcsResponse> {
     return this.client.sendOperationRequest(
       { options },
       getMbcsOperationSpec
-    ) as Promise<Models.StringGetMbcsResponse>;
+    ) as Promise<StringGetMbcsResponse>;
   }
 
   /**
@@ -107,11 +112,11 @@ export class String {
    */
   getWhitespace(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.StringGetWhitespaceResponse> {
+  ): Promise<StringGetWhitespaceResponse> {
     return this.client.sendOperationRequest(
       { options },
       getWhitespaceOperationSpec
-    ) as Promise<Models.StringGetWhitespaceResponse>;
+    ) as Promise<StringGetWhitespaceResponse>;
   }
 
   /**
@@ -134,11 +139,11 @@ export class String {
    */
   getNotProvided(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.StringGetNotProvidedResponse> {
+  ): Promise<StringGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNotProvidedOperationSpec
-    ) as Promise<Models.StringGetNotProvidedResponse>;
+    ) as Promise<StringGetNotProvidedResponse>;
   }
 
   /**
@@ -147,11 +152,11 @@ export class String {
    */
   getBase64Encoded(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.StringGetBase64EncodedResponse> {
+  ): Promise<StringGetBase64EncodedResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBase64EncodedOperationSpec
-    ) as Promise<Models.StringGetBase64EncodedResponse>;
+    ) as Promise<StringGetBase64EncodedResponse>;
   }
 
   /**
@@ -160,11 +165,11 @@ export class String {
    */
   getBase64UrlEncoded(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.StringGetBase64UrlEncodedResponse> {
+  ): Promise<StringGetBase64UrlEncodedResponse> {
     return this.client.sendOperationRequest(
       { options },
       getBase64UrlEncodedOperationSpec
-    ) as Promise<Models.StringGetBase64UrlEncodedResponse>;
+    ) as Promise<StringGetBase64UrlEncodedResponse>;
   }
 
   /**
@@ -188,11 +193,11 @@ export class String {
    */
   getNullBase64UrlEncoded(
     options?: coreHttp.OperationOptions
-  ): Promise<Models.StringGetNullBase64UrlEncodedResponse> {
+  ): Promise<StringGetNullBase64UrlEncodedResponse> {
     return this.client.sendOperationRequest(
       { options },
       getNullBase64UrlEncodedOperationSpec
-    ) as Promise<Models.StringGetNullBase64UrlEncodedResponse>;
+    ) as Promise<StringGetNullBase64UrlEncodedResponse>;
   }
 }
 // Operation Specifications

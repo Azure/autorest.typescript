@@ -13,33 +13,15 @@ export interface ErrorModel {
   message?: string;
 }
 
-export interface Product {
+export interface Widget {
   integer?: number;
   string?: string;
 }
 
 /**
- * Defines values for Enum0.
- */
-export type Enum0 = "foo1" | "foo2" | "foo3";
-/**
- * Defines values for Enum1.
- */
-export type Enum1 = "foo1" | "foo2" | "foo3";
-/**
- * Defines values for FooEnum.
- */
-export type FooEnum = "foo1" | "foo2" | "foo3";
-
-/**
  * Contains response data for the getNull operation.
  */
-export type ArrayGetNullResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: number[];
-
+export type DictionaryGetNullResponse = { [propertyName: string]: number } & {
   /**
    * The underlying HTTP response.
    */
@@ -52,44 +34,14 @@ export type ArrayGetNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: number[];
-  };
-};
-
-/**
- * Contains response data for the getInvalid operation.
- */
-export type ArrayGetInvalidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: number[];
-
-  /**
-   * The underlying HTTP response.
-   */
-  _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
-    bodyAsText: string;
-
-    /**
-     * The response body as parsed JSON or XML
-     */
-    parsedBody: number[];
+    parsedBody: { [propertyName: string]: number };
   };
 };
 
 /**
  * Contains response data for the getEmpty operation.
  */
-export type ArrayGetEmptyResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: number[];
-
+export type DictionaryGetEmptyResponse = { [propertyName: string]: number } & {
   /**
    * The underlying HTTP response.
    */
@@ -102,19 +54,104 @@ export type ArrayGetEmptyResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: number[];
+    parsedBody: { [propertyName: string]: number };
+  };
+};
+
+/**
+ * Contains response data for the getNullValue operation.
+ */
+export type DictionaryGetNullValueResponse = {
+  [propertyName: string]: string;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: { [propertyName: string]: string };
+  };
+};
+
+/**
+ * Contains response data for the getNullKey operation.
+ */
+export type DictionaryGetNullKeyResponse = {
+  [propertyName: string]: string;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: { [propertyName: string]: string };
+  };
+};
+
+/**
+ * Contains response data for the getEmptyStringKey operation.
+ */
+export type DictionaryGetEmptyStringKeyResponse = {
+  [propertyName: string]: string;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: { [propertyName: string]: string };
+  };
+};
+
+/**
+ * Contains response data for the getInvalid operation.
+ */
+export type DictionaryGetInvalidResponse = {
+  [propertyName: string]: string;
+} & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: { [propertyName: string]: string };
   };
 };
 
 /**
  * Contains response data for the getBooleanTfft operation.
  */
-export type ArrayGetBooleanTfftResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: boolean[];
-
+export type DictionaryGetBooleanTfftResponse = {
+  [propertyName: string]: boolean;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -127,19 +164,16 @@ export type ArrayGetBooleanTfftResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: boolean[];
+    parsedBody: { [propertyName: string]: boolean };
   };
 };
 
 /**
  * Contains response data for the getBooleanInvalidNull operation.
  */
-export type ArrayGetBooleanInvalidNullResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: boolean[];
-
+export type DictionaryGetBooleanInvalidNullResponse = {
+  [propertyName: string]: boolean;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -152,19 +186,16 @@ export type ArrayGetBooleanInvalidNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: boolean[];
+    parsedBody: { [propertyName: string]: boolean };
   };
 };
 
 /**
  * Contains response data for the getBooleanInvalidString operation.
  */
-export type ArrayGetBooleanInvalidStringResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: boolean[];
-
+export type DictionaryGetBooleanInvalidStringResponse = {
+  [propertyName: string]: boolean;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -177,19 +208,16 @@ export type ArrayGetBooleanInvalidStringResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: boolean[];
+    parsedBody: { [propertyName: string]: boolean };
   };
 };
 
 /**
  * Contains response data for the getIntegerValid operation.
  */
-export type ArrayGetIntegerValidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: number[];
-
+export type DictionaryGetIntegerValidResponse = {
+  [propertyName: string]: number;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -202,19 +230,16 @@ export type ArrayGetIntegerValidResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: number[];
+    parsedBody: { [propertyName: string]: number };
   };
 };
 
 /**
  * Contains response data for the getIntInvalidNull operation.
  */
-export type ArrayGetIntInvalidNullResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: number[];
-
+export type DictionaryGetIntInvalidNullResponse = {
+  [propertyName: string]: number;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -227,19 +252,16 @@ export type ArrayGetIntInvalidNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: number[];
+    parsedBody: { [propertyName: string]: number };
   };
 };
 
 /**
  * Contains response data for the getIntInvalidString operation.
  */
-export type ArrayGetIntInvalidStringResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: number[];
-
+export type DictionaryGetIntInvalidStringResponse = {
+  [propertyName: string]: number;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -252,19 +274,16 @@ export type ArrayGetIntInvalidStringResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: number[];
+    parsedBody: { [propertyName: string]: number };
   };
 };
 
 /**
  * Contains response data for the getLongValid operation.
  */
-export type ArrayGetLongValidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: number[];
-
+export type DictionaryGetLongValidResponse = {
+  [propertyName: string]: number;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -277,19 +296,16 @@ export type ArrayGetLongValidResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: number[];
+    parsedBody: { [propertyName: string]: number };
   };
 };
 
 /**
  * Contains response data for the getLongInvalidNull operation.
  */
-export type ArrayGetLongInvalidNullResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: number[];
-
+export type DictionaryGetLongInvalidNullResponse = {
+  [propertyName: string]: number;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -302,19 +318,16 @@ export type ArrayGetLongInvalidNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: number[];
+    parsedBody: { [propertyName: string]: number };
   };
 };
 
 /**
  * Contains response data for the getLongInvalidString operation.
  */
-export type ArrayGetLongInvalidStringResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: number[];
-
+export type DictionaryGetLongInvalidStringResponse = {
+  [propertyName: string]: number;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -327,19 +340,16 @@ export type ArrayGetLongInvalidStringResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: number[];
+    parsedBody: { [propertyName: string]: number };
   };
 };
 
 /**
  * Contains response data for the getFloatValid operation.
  */
-export type ArrayGetFloatValidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: number[];
-
+export type DictionaryGetFloatValidResponse = {
+  [propertyName: string]: number;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -352,19 +362,16 @@ export type ArrayGetFloatValidResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: number[];
+    parsedBody: { [propertyName: string]: number };
   };
 };
 
 /**
  * Contains response data for the getFloatInvalidNull operation.
  */
-export type ArrayGetFloatInvalidNullResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: number[];
-
+export type DictionaryGetFloatInvalidNullResponse = {
+  [propertyName: string]: number;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -377,19 +384,16 @@ export type ArrayGetFloatInvalidNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: number[];
+    parsedBody: { [propertyName: string]: number };
   };
 };
 
 /**
  * Contains response data for the getFloatInvalidString operation.
  */
-export type ArrayGetFloatInvalidStringResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: number[];
-
+export type DictionaryGetFloatInvalidStringResponse = {
+  [propertyName: string]: number;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -402,19 +406,16 @@ export type ArrayGetFloatInvalidStringResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: number[];
+    parsedBody: { [propertyName: string]: number };
   };
 };
 
 /**
  * Contains response data for the getDoubleValid operation.
  */
-export type ArrayGetDoubleValidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: number[];
-
+export type DictionaryGetDoubleValidResponse = {
+  [propertyName: string]: number;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -427,19 +428,16 @@ export type ArrayGetDoubleValidResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: number[];
+    parsedBody: { [propertyName: string]: number };
   };
 };
 
 /**
  * Contains response data for the getDoubleInvalidNull operation.
  */
-export type ArrayGetDoubleInvalidNullResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: number[];
-
+export type DictionaryGetDoubleInvalidNullResponse = {
+  [propertyName: string]: number;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -452,19 +450,16 @@ export type ArrayGetDoubleInvalidNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: number[];
+    parsedBody: { [propertyName: string]: number };
   };
 };
 
 /**
  * Contains response data for the getDoubleInvalidString operation.
  */
-export type ArrayGetDoubleInvalidStringResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: number[];
-
+export type DictionaryGetDoubleInvalidStringResponse = {
+  [propertyName: string]: number;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -477,19 +472,16 @@ export type ArrayGetDoubleInvalidStringResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: number[];
+    parsedBody: { [propertyName: string]: number };
   };
 };
 
 /**
  * Contains response data for the getStringValid operation.
  */
-export type ArrayGetStringValidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: string[];
-
+export type DictionaryGetStringValidResponse = {
+  [propertyName: string]: string;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -502,69 +494,16 @@ export type ArrayGetStringValidResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: string[];
-  };
-};
-
-/**
- * Contains response data for the getEnumValid operation.
- */
-export type ArrayGetEnumValidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: FooEnum[];
-
-  /**
-   * The underlying HTTP response.
-   */
-  _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
-    bodyAsText: string;
-
-    /**
-     * The response body as parsed JSON or XML
-     */
-    parsedBody: FooEnum[];
-  };
-};
-
-/**
- * Contains response data for the getStringEnumValid operation.
- */
-export type ArrayGetStringEnumValidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: Enum0[];
-
-  /**
-   * The underlying HTTP response.
-   */
-  _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
-    bodyAsText: string;
-
-    /**
-     * The response body as parsed JSON or XML
-     */
-    parsedBody: Enum0[];
+    parsedBody: { [propertyName: string]: string };
   };
 };
 
 /**
  * Contains response data for the getStringWithNull operation.
  */
-export type ArrayGetStringWithNullResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: string[];
-
+export type DictionaryGetStringWithNullResponse = {
+  [propertyName: string]: string;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -577,19 +516,16 @@ export type ArrayGetStringWithNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: string[];
+    parsedBody: { [propertyName: string]: string };
   };
 };
 
 /**
  * Contains response data for the getStringWithInvalid operation.
  */
-export type ArrayGetStringWithInvalidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: string[];
-
+export type DictionaryGetStringWithInvalidResponse = {
+  [propertyName: string]: string;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -602,69 +538,16 @@ export type ArrayGetStringWithInvalidResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: string[];
-  };
-};
-
-/**
- * Contains response data for the getUuidValid operation.
- */
-export type ArrayGetUuidValidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: string[];
-
-  /**
-   * The underlying HTTP response.
-   */
-  _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
-    bodyAsText: string;
-
-    /**
-     * The response body as parsed JSON or XML
-     */
-    parsedBody: string[];
-  };
-};
-
-/**
- * Contains response data for the getUuidInvalidChars operation.
- */
-export type ArrayGetUuidInvalidCharsResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: string[];
-
-  /**
-   * The underlying HTTP response.
-   */
-  _response: coreHttp.HttpResponse & {
-    /**
-     * The response body as text (string format)
-     */
-    bodyAsText: string;
-
-    /**
-     * The response body as parsed JSON or XML
-     */
-    parsedBody: string[];
+    parsedBody: { [propertyName: string]: string };
   };
 };
 
 /**
  * Contains response data for the getDateValid operation.
  */
-export type ArrayGetDateValidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: Date[];
-
+export type DictionaryGetDateValidResponse = {
+  [propertyName: string]: Date;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -677,19 +560,16 @@ export type ArrayGetDateValidResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Date[];
+    parsedBody: { [propertyName: string]: Date };
   };
 };
 
 /**
  * Contains response data for the getDateInvalidNull operation.
  */
-export type ArrayGetDateInvalidNullResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: Date[];
-
+export type DictionaryGetDateInvalidNullResponse = {
+  [propertyName: string]: Date;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -702,19 +582,16 @@ export type ArrayGetDateInvalidNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Date[];
+    parsedBody: { [propertyName: string]: Date };
   };
 };
 
 /**
  * Contains response data for the getDateInvalidChars operation.
  */
-export type ArrayGetDateInvalidCharsResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: Date[];
-
+export type DictionaryGetDateInvalidCharsResponse = {
+  [propertyName: string]: Date;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -727,19 +604,16 @@ export type ArrayGetDateInvalidCharsResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Date[];
+    parsedBody: { [propertyName: string]: Date };
   };
 };
 
 /**
  * Contains response data for the getDateTimeValid operation.
  */
-export type ArrayGetDateTimeValidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: Date[];
-
+export type DictionaryGetDateTimeValidResponse = {
+  [propertyName: string]: Date;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -752,19 +626,16 @@ export type ArrayGetDateTimeValidResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Date[];
+    parsedBody: { [propertyName: string]: Date };
   };
 };
 
 /**
  * Contains response data for the getDateTimeInvalidNull operation.
  */
-export type ArrayGetDateTimeInvalidNullResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: Date[];
-
+export type DictionaryGetDateTimeInvalidNullResponse = {
+  [propertyName: string]: Date;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -777,19 +648,16 @@ export type ArrayGetDateTimeInvalidNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Date[];
+    parsedBody: { [propertyName: string]: Date };
   };
 };
 
 /**
  * Contains response data for the getDateTimeInvalidChars operation.
  */
-export type ArrayGetDateTimeInvalidCharsResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: Date[];
-
+export type DictionaryGetDateTimeInvalidCharsResponse = {
+  [propertyName: string]: Date;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -802,19 +670,16 @@ export type ArrayGetDateTimeInvalidCharsResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Date[];
+    parsedBody: { [propertyName: string]: Date };
   };
 };
 
 /**
  * Contains response data for the getDateTimeRfc1123Valid operation.
  */
-export type ArrayGetDateTimeRfc1123ValidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: Date[];
-
+export type DictionaryGetDateTimeRfc1123ValidResponse = {
+  [propertyName: string]: Date;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -827,19 +692,16 @@ export type ArrayGetDateTimeRfc1123ValidResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Date[];
+    parsedBody: { [propertyName: string]: Date };
   };
 };
 
 /**
  * Contains response data for the getDurationValid operation.
  */
-export type ArrayGetDurationValidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: string[];
-
+export type DictionaryGetDurationValidResponse = {
+  [propertyName: string]: string;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -852,19 +714,16 @@ export type ArrayGetDurationValidResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: string[];
+    parsedBody: { [propertyName: string]: string };
   };
 };
 
 /**
  * Contains response data for the getByteValid operation.
  */
-export type ArrayGetByteValidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: Uint8Array[];
-
+export type DictionaryGetByteValidResponse = {
+  [propertyName: string]: Uint8Array;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -877,19 +736,16 @@ export type ArrayGetByteValidResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Uint8Array[];
+    parsedBody: { [propertyName: string]: Uint8Array };
   };
 };
 
 /**
  * Contains response data for the getByteInvalidNull operation.
  */
-export type ArrayGetByteInvalidNullResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: Uint8Array[];
-
+export type DictionaryGetByteInvalidNullResponse = {
+  [propertyName: string]: Uint8Array;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -902,19 +758,16 @@ export type ArrayGetByteInvalidNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Uint8Array[];
+    parsedBody: { [propertyName: string]: Uint8Array };
   };
 };
 
 /**
  * Contains response data for the getBase64Url operation.
  */
-export type ArrayGetBase64UrlResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: Uint8Array[];
-
+export type DictionaryGetBase64UrlResponse = {
+  [propertyName: string]: Uint8Array;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -927,14 +780,16 @@ export type ArrayGetBase64UrlResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Uint8Array[];
+    parsedBody: { [propertyName: string]: Uint8Array };
   };
 };
 
 /**
  * Contains response data for the getComplexNull operation.
  */
-export type ArrayGetComplexNullResponse = Product[] & {
+export type DictionaryGetComplexNullResponse = {
+  [propertyName: string]: Widget;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -947,14 +802,16 @@ export type ArrayGetComplexNullResponse = Product[] & {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Product[];
+    parsedBody: { [propertyName: string]: Widget };
   };
 };
 
 /**
  * Contains response data for the getComplexEmpty operation.
  */
-export type ArrayGetComplexEmptyResponse = Product[] & {
+export type DictionaryGetComplexEmptyResponse = {
+  [propertyName: string]: Widget;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -967,14 +824,16 @@ export type ArrayGetComplexEmptyResponse = Product[] & {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Product[];
+    parsedBody: { [propertyName: string]: Widget };
   };
 };
 
 /**
  * Contains response data for the getComplexItemNull operation.
  */
-export type ArrayGetComplexItemNullResponse = Product[] & {
+export type DictionaryGetComplexItemNullResponse = {
+  [propertyName: string]: Widget;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -987,14 +846,16 @@ export type ArrayGetComplexItemNullResponse = Product[] & {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Product[];
+    parsedBody: { [propertyName: string]: Widget };
   };
 };
 
 /**
  * Contains response data for the getComplexItemEmpty operation.
  */
-export type ArrayGetComplexItemEmptyResponse = Product[] & {
+export type DictionaryGetComplexItemEmptyResponse = {
+  [propertyName: string]: Widget;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -1007,14 +868,16 @@ export type ArrayGetComplexItemEmptyResponse = Product[] & {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Product[];
+    parsedBody: { [propertyName: string]: Widget };
   };
 };
 
 /**
  * Contains response data for the getComplexValid operation.
  */
-export type ArrayGetComplexValidResponse = Product[] & {
+export type DictionaryGetComplexValidResponse = {
+  [propertyName: string]: Widget;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -1027,19 +890,16 @@ export type ArrayGetComplexValidResponse = Product[] & {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: Product[];
+    parsedBody: { [propertyName: string]: Widget };
   };
 };
 
 /**
  * Contains response data for the getArrayNull operation.
  */
-export type ArrayGetArrayNullResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: string[][];
-
+export type DictionaryGetArrayNullResponse = {
+  [propertyName: string]: string[];
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -1052,19 +912,16 @@ export type ArrayGetArrayNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: string[][];
+    parsedBody: { [propertyName: string]: string[] };
   };
 };
 
 /**
  * Contains response data for the getArrayEmpty operation.
  */
-export type ArrayGetArrayEmptyResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: string[][];
-
+export type DictionaryGetArrayEmptyResponse = {
+  [propertyName: string]: string[];
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -1077,19 +934,16 @@ export type ArrayGetArrayEmptyResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: string[][];
+    parsedBody: { [propertyName: string]: string[] };
   };
 };
 
 /**
  * Contains response data for the getArrayItemNull operation.
  */
-export type ArrayGetArrayItemNullResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: string[][];
-
+export type DictionaryGetArrayItemNullResponse = {
+  [propertyName: string]: string[];
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -1102,19 +956,16 @@ export type ArrayGetArrayItemNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: string[][];
+    parsedBody: { [propertyName: string]: string[] };
   };
 };
 
 /**
  * Contains response data for the getArrayItemEmpty operation.
  */
-export type ArrayGetArrayItemEmptyResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: string[][];
-
+export type DictionaryGetArrayItemEmptyResponse = {
+  [propertyName: string]: string[];
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -1127,19 +978,16 @@ export type ArrayGetArrayItemEmptyResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: string[][];
+    parsedBody: { [propertyName: string]: string[] };
   };
 };
 
 /**
  * Contains response data for the getArrayValid operation.
  */
-export type ArrayGetArrayValidResponse = {
-  /**
-   * The parsed response body.
-   */
-  body: string[][];
-
+export type DictionaryGetArrayValidResponse = {
+  [propertyName: string]: string[];
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -1152,16 +1000,16 @@ export type ArrayGetArrayValidResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: string[][];
+    parsedBody: { [propertyName: string]: string[] };
   };
 };
 
 /**
  * Contains response data for the getDictionaryNull operation.
  */
-export type ArrayGetDictionaryNullResponse = {
-  [propertyName: string]: string;
-}[] & {
+export type DictionaryGetDictionaryNullResponse = {
+  [propertyName: string]: any;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -1174,16 +1022,16 @@ export type ArrayGetDictionaryNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: { [propertyName: string]: string }[];
+    parsedBody: { [propertyName: string]: any };
   };
 };
 
 /**
  * Contains response data for the getDictionaryEmpty operation.
  */
-export type ArrayGetDictionaryEmptyResponse = {
-  [propertyName: string]: string;
-}[] & {
+export type DictionaryGetDictionaryEmptyResponse = {
+  [propertyName: string]: any;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -1196,16 +1044,16 @@ export type ArrayGetDictionaryEmptyResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: { [propertyName: string]: string }[];
+    parsedBody: { [propertyName: string]: any };
   };
 };
 
 /**
  * Contains response data for the getDictionaryItemNull operation.
  */
-export type ArrayGetDictionaryItemNullResponse = {
-  [propertyName: string]: string;
-}[] & {
+export type DictionaryGetDictionaryItemNullResponse = {
+  [propertyName: string]: any;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -1218,16 +1066,16 @@ export type ArrayGetDictionaryItemNullResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: { [propertyName: string]: string }[];
+    parsedBody: { [propertyName: string]: any };
   };
 };
 
 /**
  * Contains response data for the getDictionaryItemEmpty operation.
  */
-export type ArrayGetDictionaryItemEmptyResponse = {
-  [propertyName: string]: string;
-}[] & {
+export type DictionaryGetDictionaryItemEmptyResponse = {
+  [propertyName: string]: any;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -1240,16 +1088,16 @@ export type ArrayGetDictionaryItemEmptyResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: { [propertyName: string]: string }[];
+    parsedBody: { [propertyName: string]: any };
   };
 };
 
 /**
  * Contains response data for the getDictionaryValid operation.
  */
-export type ArrayGetDictionaryValidResponse = {
-  [propertyName: string]: string;
-}[] & {
+export type DictionaryGetDictionaryValidResponse = {
+  [propertyName: string]: any;
+} & {
   /**
    * The underlying HTTP response.
    */
@@ -1262,14 +1110,14 @@ export type ArrayGetDictionaryValidResponse = {
     /**
      * The response body as parsed JSON or XML
      */
-    parsedBody: { [propertyName: string]: string }[];
+    parsedBody: { [propertyName: string]: any };
   };
 };
 
 /**
  * Optional parameters.
  */
-export interface BodyArrayClientOptionalParams
+export interface BodyDictionaryClientOptionalParams
   extends coreHttp.ServiceClientOptions {
   /**
    * server parameter

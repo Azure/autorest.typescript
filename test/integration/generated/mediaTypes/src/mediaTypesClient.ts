@@ -11,6 +11,10 @@ import * as Parameters from "./models/parameters";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { MediaTypesClientContext } from "./mediaTypesClientContext";
+import {
+  MediaTypesClientAnalyzeBodyResponse,
+  MediaTypesClientAnalyzeBodyOptionalParams
+} from "./models";
 
 class MediaTypesClient extends MediaTypesClientContext {
   /**
@@ -26,8 +30,8 @@ class MediaTypesClient extends MediaTypesClientContext {
    * @param options The options parameters.
    */
   analyzeBody(
-    options?: Models.MediaTypesClientAnalyzeBodyOptionalParams
-  ): Promise<Models.MediaTypesClientAnalyzeBodyResponse> {
+    options?: MediaTypesClientAnalyzeBodyOptionalParams
+  ): Promise<MediaTypesClientAnalyzeBodyResponse> {
     let operationSpec: coreHttp.OperationSpec;
     if (
       options &&
@@ -41,7 +45,7 @@ class MediaTypesClient extends MediaTypesClientContext {
       operationSpec = analyzeBody$jsonOperationSpec;
     }
     return this.sendOperationRequest({ options }, operationSpec) as Promise<
-      Models.MediaTypesClientAnalyzeBodyResponse
+      MediaTypesClientAnalyzeBodyResponse
     >;
   }
 }
