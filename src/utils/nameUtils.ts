@@ -24,7 +24,7 @@ export function guardReservedNames(name: string): string {
 
 /**
  * Returns a normalized Type name, this is, the type name capitalized when needed.
- * Otherwise, return the original typename, for example primitives "string", etc. don' need capitalization
+ * Otherwise, return the original typename, for example primitives "string", etc. don't need capitalization.
  */
 export function normalizeTypeName({ kind, typeName }: TypeDetails) {
   // Only Enum and Composite kinds need normalization
