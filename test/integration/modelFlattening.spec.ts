@@ -3,7 +3,9 @@ import { ModelFlatteningClient } from "./generated/modelFlattening/src/modelFlat
 import {
   Resource,
   FlattenedProduct,
-  ResourceCollection
+  ResourceCollection,
+  SimpleProduct,
+  ModelFlatteningClientPutSimpleProductResponse
 } from "./generated/modelFlattening/src/models";
 
 describe("ModelFlatteningClient", () => {
@@ -228,5 +230,23 @@ describe("ModelFlatteningClient", () => {
     });
 
     assert.equal(result._response.status, 200);
+  });
+
+  it("should put a simple product", async () => {
+    const simpleBodyProduct: SimpleProduct = {
+      productId: "123",
+      description: "product description",
+      maxProductDisplayName: "max name",
+      odataValue: "http://foo",
+      genericValue: "https://generic"
+    };
+    const expected: SimpleProduct = { ...simpleBodyProduct, capacity: "Large" };
+    const result = await client.putSimpleProduct({ simpleBodyProduct });
+    assert.deepEqual(result, expected);
+  });
+
+  // TODO: Support for parameter grouping
+  it.skip("should put flattened and grouped product", async () => {
+    // const result = await client.putSimpleProductWithGrouping()
   });
 });

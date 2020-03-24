@@ -409,7 +409,7 @@ export const MyBaseType: coreHttp.CompositeMapper = {
         isConstant: true
       },
       propB1: { type: { name: "String" }, serializedName: "propB1" },
-      propBH1: { type: { name: "String" }, serializedName: "propBH1" }
+      propBH1: { type: { name: "String" }, serializedName: "helper.propBH1" }
     }
   }
 };

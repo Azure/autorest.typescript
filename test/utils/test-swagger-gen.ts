@@ -231,4 +231,6 @@ const run = async () => {
   await generateSwaggers(whiteList, isDebugging);
 };
 
-run();
+run().catch(error => {
+  process.exit(-1000);
+});

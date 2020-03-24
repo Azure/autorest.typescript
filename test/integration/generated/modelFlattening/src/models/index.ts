@@ -102,6 +102,10 @@ export type SimpleProduct = BaseProduct & {
    */
   maxProductDisplayName?: string;
   /**
+   * Capacity of product. For example, 4 people.
+   */
+  capacity?: "Large";
+  /**
    * Generic URL value.
    */
   genericValue?: string;
