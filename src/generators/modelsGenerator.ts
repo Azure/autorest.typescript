@@ -29,6 +29,7 @@ import {
 import { ParameterDetails } from "../models/parameterDetails";
 import { ImplementationLocation } from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
+import { getStringForValue } from "../utils/valueHelpers";
 
 export function generateModels(clientDetails: ClientDetails, project: Project) {
   const modelsIndexFile = project.createSourceFile(
@@ -433,13 +434,18 @@ function getProperties(
   objectDetails: ObjectDetails
 ): PropertySignatureStructure[] {
   const { properties } = objectDetails;
-  const getTypename = (property: PropertyDetails) =>
-    property.name === "siblings"
+  const getTypename = (property: PropertyDetails) => {
+    if (property.isConstant) {
+      return getStringForValue(property.defaultValue, property.type);
+    }
+
+    return property.name === "siblings"
       ? `${(objectDetails as PolymorphicObjectDetails).unionName}[]`
       : property.type;
+  };
 
   return properties
-    .filter(property => !property.isConstant && !property.isDiscriminator)
+    .filter(property => !property.isDiscriminator)
     .map<PropertySignatureStructure>(property => ({
       name: property.name,
       hasQuestionToken: !property.required,

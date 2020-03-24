@@ -96,6 +96,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "MediaTypesClient",
     packageName: "media-types-service"
   },
+  modelFlattening: {
+    swagger: "model-flattening.json",
+    clientName: "ModelFlatteningClient",
+    packageName: "model-flattening"
+  },
   paging: {
     swagger: "paging.json",
     clientName: "PagingClient",
@@ -226,4 +231,6 @@ const run = async () => {
   await generateSwaggers(whiteList, isDebugging);
 };
 
-run();
+run().catch(error => {
+  process.exit(-1000);
+});
