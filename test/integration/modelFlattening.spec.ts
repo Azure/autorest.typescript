@@ -1,11 +1,9 @@
 import { assert } from "chai";
 import { ModelFlatteningClient } from "./generated/modelFlattening/src/modelFlatteningClient";
 import {
-  Resource,
   FlattenedProduct,
   ResourceCollection,
-  SimpleProduct,
-  ModelFlatteningClientPutSimpleProductResponse
+  SimpleProduct
 } from "./generated/modelFlattening/src/models";
 
 describe("ModelFlatteningClient", () => {
@@ -243,6 +241,20 @@ describe("ModelFlatteningClient", () => {
     const expected: SimpleProduct = { ...simpleBodyProduct, capacity: "Large" };
     const result = await client.putSimpleProduct({ simpleBodyProduct });
     assert.deepEqual(result, expected);
+  });
+
+  it("should post simple product", async () => {
+    const simpleBodyProduct: SimpleProduct = {
+      productId: "123",
+      description: "product description",
+      maxProductDisplayName: "max name",
+      capacity: "Large",
+      odataValue: "http://foo"
+    };
+    const result = await client.postFlattenedSimpleProduct({
+      simpleBodyProduct
+    });
+    assert.deepEqual(result, simpleBodyProduct);
   });
 
   // TODO: Support for parameter grouping
