@@ -31,7 +31,10 @@ use-extension:
   "@autorest/modelerfour": "4.10.258"
 
 modelerfour:
+  # this runs a pre-namer step to clean up names
   prenamer: true
+  # this will flatten modelers marked with 'x-ms-client-flatten'
+  flatten-models: true
 
 pipeline:
   typescript: # <- name of plugin
