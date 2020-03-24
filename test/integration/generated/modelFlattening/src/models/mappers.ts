@@ -56,16 +56,22 @@ export const FlattenedProduct: coreHttp.CompositeMapper = {
     className: "FlattenedProduct",
     modelProperties: {
       ...Resource.type.modelProperties,
-      pName: { type: { name: "String" }, serializedName: "p.name" },
-      typePropertiesType: { type: { name: "String" }, serializedName: "type" },
+      pName: {
+        type: { name: "String" },
+        serializedName: "properties.p\\.name"
+      },
+      typePropertiesType: {
+        type: { name: "String" },
+        serializedName: "properties.type"
+      },
       provisioningStateValues: {
         type: { name: "String" },
-        serializedName: "provisioningStateValues",
+        serializedName: "properties.provisioningStateValues",
         readOnly: true
       },
       provisioningState: {
         type: { name: "String" },
-        serializedName: "provisioningState"
+        serializedName: "properties.provisioningState"
       }
     }
   }
@@ -88,7 +94,7 @@ export const ProductWrapper: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ProductWrapper",
     modelProperties: {
-      value: { type: { name: "String" }, serializedName: "value" }
+      value: { type: { name: "String" }, serializedName: "property.value" }
     }
   }
 };
@@ -151,19 +157,22 @@ export const SimpleProduct: coreHttp.CompositeMapper = {
       ...BaseProduct.type.modelProperties,
       maxProductDisplayName: {
         type: { name: "String" },
-        serializedName: "max_product_display_name"
+        serializedName: "details.max_product_display_name"
       },
       capacity: {
         type: { name: "String" },
-        serializedName: "max_product_capacity",
+        serializedName: "details.max_product_capacity",
         defaultValue: "Large",
         isConstant: true
       },
       genericValue: {
         type: { name: "String" },
-        serializedName: "generic_value"
+        serializedName: "details.max_product_image.generic_value"
       },
-      odataValue: { type: { name: "String" }, serializedName: "@odata.value" }
+      odataValue: {
+        type: { name: "String" },
+        serializedName: "details.max_product_image.@odata\\.value"
+      }
     }
   }
 };

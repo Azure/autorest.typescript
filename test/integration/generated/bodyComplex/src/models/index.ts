@@ -167,10 +167,6 @@ export interface MyBaseType {
    */
   kind: "Kind1";
   propB1?: string;
-  helper?: MyBaseHelperType;
-}
-
-export interface MyBaseHelperType {
   propBH1?: string;
 }
 

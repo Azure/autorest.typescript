@@ -587,17 +587,37 @@ function processProperties(
 ) {
   let modelProperties: ModelProperties = {};
   properties.forEach(prop => {
+    const serializedName = getPropertySerializedName(prop);
     const propName = getLanguageMetadata(prop.language).name;
     const name = normalizeName(propName, NameType.Property);
     modelProperties[name] = getMapperOrRef(prop.schema, prop.serializedName, {
       ...options,
       required: prop.required,
       readOnly: prop.readOnly,
-      serializedName: prop.serializedName
+      serializedName
     });
   });
 
   return modelProperties;
+}
+
+function getPropertySerializedName({
+  flattenedNames,
+  serializedName
+}: Property) {
+  if (!flattenedNames || !flattenedNames.length) {
+    return serializedName;
+  }
+
+  return flattenedNames
+    .map(name => {
+      // Escaping names
+      ["."].forEach(character => {
+        name = name.replace(character, `\\${character}`);
+      });
+      return name;
+    })
+    .join(".");
 }
 
 /**
