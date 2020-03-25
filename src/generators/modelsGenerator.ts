@@ -75,25 +75,32 @@ const writeOperationModels = (
 ) =>
   clientDetails.operationGroups.forEach(operationGroup => {
     operationGroup.operations.forEach(operation => {
-      // Add interfaces for operation optional parameters
-      const operationGroupName = normalizeName(
-        operationGroup.name,
-        NameType.Interface
-      );
-      const optionalParams = filterOperationParameters(
+      const hasGroupedParams = filterOperationParameters(
         clientDetails.parameters,
         operation,
-        { includeOptional: true }
-      ).filter(p => !p.required);
+        { includeOptional: true, includeGroupedParameters: true }
+      ).some(p => p.parameter.groupedBy);
+      if (!hasGroupedParams) {
+        // Add interfaces for operation optional parameters
+        const operationGroupName = normalizeName(
+          operationGroup.name,
+          NameType.Interface
+        );
+        const optionalParams = filterOperationParameters(
+          clientDetails.parameters,
+          operation,
+          { includeOptional: true }
+        ).filter(p => !p.required);
 
-      const operationName = normalizeName(operation.name, NameType.Interface);
-      writeOptionalParameters(
-        operationGroupName,
-        operationName,
-        optionalParams,
-        modelsIndexFile,
-        { mediaTypes: operation.mediaTypes }
-      );
+        const operationName = normalizeName(operation.name, NameType.Interface);
+        writeOptionalParameters(
+          operationGroupName,
+          operationName,
+          optionalParams,
+          modelsIndexFile,
+          { mediaTypes: operation.mediaTypes }
+        );
+      }
       writeResponseTypes(operation, modelsIndexFile);
     });
   });

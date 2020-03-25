@@ -339,17 +339,6 @@ export type ModelFlatteningClientPostFlattenedSimpleProductResponse = SimpleProd
 };
 
 /**
- * Optional parameters.
- */
-export interface ModelFlatteningClientPutSimpleProductWithGroupingOptionalParams
-  extends coreHttp.OperationOptions {
-  /**
-   * Simple body product to put
-   */
-  simpleBodyProduct?: SimpleProduct;
-}
-
-/**
  * Contains response data for the putSimpleProductWithGrouping operation.
  */
 export type ModelFlatteningClientPutSimpleProductWithGroupingResponse = SimpleProduct & {
