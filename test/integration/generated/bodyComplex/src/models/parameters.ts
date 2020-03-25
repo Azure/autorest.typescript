@@ -21,6 +21,18 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
+export const contentType: coreHttp.OperationParameter = {
+  parameterPath: ["options", "contentType"],
+  mapper: {
+    defaultValue: "application/json",
+    serializedName: "Content-Type",
+    isConstant: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const complexBody: coreHttp.OperationParameter = {
   parameterPath: "complexBody",
   mapper: Mappers.Basic

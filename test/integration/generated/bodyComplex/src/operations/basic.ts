@@ -141,6 +141,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.complexBody,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getInvalidOperationSpec: coreHttp.OperationSpec = {

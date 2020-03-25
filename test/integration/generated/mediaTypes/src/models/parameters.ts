@@ -10,9 +10,10 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 
 export const contentType: coreHttp.OperationParameter = {
-  parameterPath: ["options", "contentType"],
+  parameterPath: "contentType",
   mapper: {
     serializedName: "Content-Type",
+    required: true,
     type: {
       name: "Enum",
       allowedValues: [
@@ -31,6 +32,18 @@ export const input: coreHttp.OperationParameter = {
     serializedName: "input",
     type: {
       name: "Stream"
+    }
+  }
+};
+
+export const contentType1: coreHttp.OperationParameter = {
+  parameterPath: "contentType",
+  mapper: {
+    defaultValue: "application/json",
+    serializedName: "Content-Type",
+    isConstant: true,
+    type: {
+      name: "String"
     }
   }
 };

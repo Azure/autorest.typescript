@@ -1025,6 +1025,7 @@ const putEmptyOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getNullValueOperationSpec: coreHttp.OperationSpec = {
@@ -1138,6 +1139,7 @@ const putBooleanTfftOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody1,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getBooleanInvalidNullOperationSpec: coreHttp.OperationSpec = {
@@ -1211,6 +1213,7 @@ const putIntegerValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody2,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getIntInvalidNullOperationSpec: coreHttp.OperationSpec = {
@@ -1284,6 +1287,7 @@ const putLongValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody3,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getLongInvalidNullOperationSpec: coreHttp.OperationSpec = {
@@ -1357,6 +1361,7 @@ const putFloatValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody4,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getFloatInvalidNullOperationSpec: coreHttp.OperationSpec = {
@@ -1430,6 +1435,7 @@ const putDoubleValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody5,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getDoubleInvalidNullOperationSpec: coreHttp.OperationSpec = {
@@ -1503,6 +1509,7 @@ const putStringValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody6,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getStringWithNullOperationSpec: coreHttp.OperationSpec = {
@@ -1576,6 +1583,7 @@ const putDateValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody7,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getDateInvalidNullOperationSpec: coreHttp.OperationSpec = {
@@ -1649,6 +1657,7 @@ const putDateTimeValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody8,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getDateTimeInvalidNullOperationSpec: coreHttp.OperationSpec = {
@@ -1725,6 +1734,7 @@ const putDateTimeRfc1123ValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody9,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getDurationValidOperationSpec: coreHttp.OperationSpec = {
@@ -1758,6 +1768,7 @@ const putDurationValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody10,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getByteValidOperationSpec: coreHttp.OperationSpec = {
@@ -1791,6 +1802,7 @@ const putByteValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody11,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getByteInvalidNullOperationSpec: coreHttp.OperationSpec = {
@@ -1944,6 +1956,7 @@ const putComplexValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody12,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getArrayNullOperationSpec: coreHttp.OperationSpec = {
@@ -2096,6 +2109,7 @@ const putArrayValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody13,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getDictionaryNullOperationSpec: coreHttp.OperationSpec = {
@@ -2209,5 +2223,6 @@ const putDictionaryValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.arrayBody14,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };

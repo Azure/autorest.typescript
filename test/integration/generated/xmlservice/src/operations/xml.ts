@@ -475,6 +475,7 @@ const putComplexTypeRefNoMetaOperationSpec: coreHttp.OperationSpec = {
   responses: { 201: {} },
   requestBody: Parameters.model,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   serializer
@@ -497,6 +498,7 @@ const putComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
   responses: { 201: {} },
   requestBody: Parameters.model1,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   serializer
@@ -527,6 +529,7 @@ const putSimpleOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.slideshow,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   serializer
@@ -554,6 +557,7 @@ const putWrappedListsOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.wrappedLists,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   serializer
@@ -587,6 +591,7 @@ const putEmptyListOperationSpec: coreHttp.OperationSpec = {
   responses: { 201: {} },
   requestBody: Parameters.slideshow,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   serializer
@@ -609,6 +614,7 @@ const putEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
   responses: { 201: {} },
   requestBody: Parameters.appleBarrel,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   serializer
@@ -639,6 +645,7 @@ const putRootListOperationSpec: coreHttp.OperationSpec = {
   responses: { 201: {} },
   requestBody: Parameters.bananas,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   serializer
@@ -669,6 +676,7 @@ const putRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
   responses: { 201: {} },
   requestBody: Parameters.bananas,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   serializer
@@ -699,6 +707,7 @@ const putEmptyRootListOperationSpec: coreHttp.OperationSpec = {
   responses: { 201: {} },
   requestBody: Parameters.bananas,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   serializer
@@ -721,6 +730,7 @@ const putEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
   responses: { 201: {} },
   requestBody: Parameters.banana,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   serializer
@@ -758,6 +768,7 @@ const putServicePropertiesOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.properties,
   queryParameters: [Parameters.comp1, Parameters.restype],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   serializer
@@ -793,6 +804,7 @@ const putAclsOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.properties1,
   queryParameters: [Parameters.comp2, Parameters.restype1],
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   serializer
@@ -816,6 +828,7 @@ const jsonInputOperationSpec: coreHttp.OperationSpec = {
   responses: { 200: {} },
   requestBody: Parameters.properties2,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType1],
   serializer
 };
 const jsonOutputOperationSpec: coreHttp.OperationSpec = {

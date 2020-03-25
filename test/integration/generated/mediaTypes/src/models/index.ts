@@ -33,10 +33,6 @@ export type ContentType =
 export interface MediaTypesClientAnalyzeBody$binaryOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * Upload file type
-   */
-  contentType?: ContentType;
-  /**
    * Input parameter.
    */
   input?: coreHttp.HttpRequestBody;

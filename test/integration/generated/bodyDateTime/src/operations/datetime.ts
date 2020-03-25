@@ -399,6 +399,7 @@ const putUtcMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const putUtcMaxDateTime7DigitsOperationSpec: coreHttp.OperationSpec = {
@@ -412,6 +413,7 @@ const putUtcMaxDateTime7DigitsOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getUtcLowercaseMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -467,6 +469,7 @@ const putLocalPositiveOffsetMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -508,6 +511,7 @@ const putLocalNegativeOffsetMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -549,6 +553,7 @@ const putUtcMinDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getUtcMinDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -576,6 +581,7 @@ const putLocalPositiveOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getLocalPositiveOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -603,6 +609,7 @@ const putLocalNegativeOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getLocalNegativeOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {

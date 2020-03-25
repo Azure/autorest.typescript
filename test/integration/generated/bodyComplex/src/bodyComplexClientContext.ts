@@ -14,7 +14,7 @@ const packageVersion = "1.0.0-preview1";
 
 export class BodyComplexClientContext extends coreHttp.ServiceClient {
   $host: string;
-  apiVersion: string;
+  apiVersion: "2016-02-29";
 
   /**
    * Initializes a new instance of the BodyComplexClientContext class.

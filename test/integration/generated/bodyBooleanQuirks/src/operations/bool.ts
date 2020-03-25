@@ -136,6 +136,7 @@ const putTrueOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.boolBody,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getFalseOperationSpec: coreHttp.OperationSpec = {
@@ -163,6 +164,7 @@ const putFalseOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.boolBody,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getNullOperationSpec: coreHttp.OperationSpec = {

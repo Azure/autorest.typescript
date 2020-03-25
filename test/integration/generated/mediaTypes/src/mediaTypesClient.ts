@@ -12,8 +12,10 @@ import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { MediaTypesClientContext } from "./mediaTypesClientContext";
 import {
-  MediaTypesClientAnalyzeBodyResponse,
-  MediaTypesClientAnalyzeBodyOptionalParams
+  ContentType,
+  MediaTypesClientAnalyzeBody$binaryOptionalParams,
+  MediaTypesClientAnalyzeBody$jsonOptionalParams,
+  MediaTypesClientAnalyzeBodyResponse
 } from "./models";
 
 class MediaTypesClient extends MediaTypesClientContext {
@@ -27,26 +29,51 @@ class MediaTypesClient extends MediaTypesClientContext {
 
   /**
    * Analyze body, that could be different media types.
+   * @param contentType Upload file type
    * @param options The options parameters.
    */
   analyzeBody(
-    options?: MediaTypesClientAnalyzeBodyOptionalParams
+    contentType: ContentType,
+    options?: MediaTypesClientAnalyzeBody$binaryOptionalParams
+  ): Promise<MediaTypesClientAnalyzeBodyResponse>;
+  /**
+   * Analyze body, that could be different media types.
+   * @param contentType Body Parameter content-type
+   * @param options The options parameters.
+   */
+  analyzeBody(
+    contentType: "application/json",
+    options?: MediaTypesClientAnalyzeBody$jsonOptionalParams
+  ): Promise<MediaTypesClientAnalyzeBodyResponse>;
+  /**
+   * Analyze body, that could be different media types.
+   * @param contentType Upload file type
+   * @param options The options parameters.
+   */
+  analyzeBody(
+    contentType: ContentType | "application/json",
+    options?:
+      | MediaTypesClientAnalyzeBody$binaryOptionalParams
+      | MediaTypesClientAnalyzeBody$jsonOptionalParams
   ): Promise<MediaTypesClientAnalyzeBodyResponse> {
     let operationSpec: coreHttp.OperationSpec;
     if (
-      options &&
-      "contentType" in options &&
       ["application/pdf", "image/jpeg", "image/png", "image/tiff"].indexOf(
-        options.contentType ?? ""
+        contentType
       ) > -1
     ) {
       operationSpec = analyzeBody$binaryOperationSpec;
-    } else {
+    } else if (["application/json"].indexOf(contentType) > -1) {
       operationSpec = analyzeBody$jsonOperationSpec;
+    } else {
+      throw new TypeError(
+        `"contentType" must be a valid value but instead was "${contentType}".`
+      );
     }
-    return this.sendOperationRequest({ options }, operationSpec) as Promise<
-      MediaTypesClientAnalyzeBodyResponse
-    >;
+    return this.sendOperationRequest(
+      { contentType, options },
+      operationSpec
+    ) as Promise<MediaTypesClientAnalyzeBodyResponse>;
   }
 }
 // Operation Specifications
@@ -76,6 +103,7 @@ const analyzeBody$jsonOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.input1,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType1],
   serializer
 };
 

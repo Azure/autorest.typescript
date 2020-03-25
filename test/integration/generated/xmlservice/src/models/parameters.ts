@@ -22,6 +22,18 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
+export const contentType: coreHttp.OperationParameter = {
+  parameterPath: ["options", "contentType"],
+  mapper: {
+    defaultValue: "application/xml",
+    serializedName: "Content-Type",
+    isConstant: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const model: coreHttp.OperationParameter = {
   parameterPath: "model",
   mapper: Mappers.RootWithRefAndNoMeta
@@ -143,6 +155,18 @@ export const properties1: coreHttp.OperationParameter = {
     type: {
       name: "Sequence",
       element: { type: { name: "Composite", className: "SignedIdentifier" } }
+    }
+  }
+};
+
+export const contentType1: coreHttp.OperationParameter = {
+  parameterPath: ["options", "contentType"],
+  mapper: {
+    defaultValue: "application/json",
+    serializedName: "Content-Type",
+    isConstant: true,
+    type: {
+      name: "String"
     }
   }
 };

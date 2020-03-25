@@ -12,10 +12,10 @@ import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { ReportClientContext } from "./reportClientContext";
 import {
-  ReportClientGetReportResponse,
   ReportClientGetReportOptionalParams,
-  ReportClientGetOptionalReportResponse,
-  ReportClientGetOptionalReportOptionalParams
+  ReportClientGetReportResponse,
+  ReportClientGetOptionalReportOptionalParams,
+  ReportClientGetOptionalReportResponse
 } from "./models";
 
 class ReportClient extends ReportClientContext {
