@@ -68,10 +68,7 @@ export function getTypeForSchema(schema: Schema): TypeDetails {
         constantSchema.valueType.type,
         false
       );
-      typeName =
-        constantType.typeName === "string" && defaultValue
-          ? `"${defaultValue}"`
-          : constantType.typeName;
+      typeName = constantType.typeName;
       break;
     case SchemaType.DateTime:
     case SchemaType.Date:

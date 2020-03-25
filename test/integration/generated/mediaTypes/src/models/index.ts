@@ -50,13 +50,6 @@ export interface MediaTypesClientAnalyzeBody$jsonOptionalParams
 }
 
 /**
- * Optional parameters.
- */
-export type MediaTypesClientAnalyzeBodyOptionalParams =
-  | MediaTypesClientAnalyzeBody$binaryOptionalParams
-  | MediaTypesClientAnalyzeBody$jsonOptionalParams;
-
-/**
  * Contains response data for the analyzeBody operation.
  */
 export type MediaTypesClientAnalyzeBodyResponse = {

@@ -306,7 +306,7 @@ function getOperationParameterSignatures(
 
   const operationRequests = operation.requests;
   const overloadParameterDeclarations: ParameterWithDescription[][] = [];
-  const hasMultipleOverloads = Boolean(operationRequests.length);
+  const hasMultipleOverloads = Boolean(operationRequests.length > 1);
 
   for (const request of operationRequests) {
     const requestMediaType = request.mediaType;
@@ -324,7 +324,14 @@ function getOperationParameterSignatures(
       ParameterWithDescription
     >(param => {
       const { usedModels } = param.typeDetails;
-      const type = normalizeTypeName(param.typeDetails);
+      let type = normalizeTypeName(param.typeDetails);
+      if (
+        param.typeDetails.isConstant &&
+        param.typeDetails.typeName === "string" &&
+        param.typeDetails.defaultValue
+      ) {
+        type = `"${param.typeDetails.defaultValue}"`;
+      }
 
       // If the type collides with the class name, use the alias
       const typeName =
