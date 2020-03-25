@@ -310,7 +310,7 @@ function getOperationParameterSignatures(
 
   for (const request of operationRequests) {
     const requestMediaType = request.mediaType;
-    // filter our parameters that belong to a different media type
+    // filter out parameters that belong to a different media type
     const requestParameters = operationParameters.filter(
       ({ targetMediaType }) =>
         !targetMediaType || requestMediaType === targetMediaType
@@ -374,7 +374,7 @@ function getOperationParameterSignatures(
  * in the operation's base signature.
  *
  * If `overloadParameterDeclarations` contains the parameter declarations for
- * just a single overload, then thie return value will be the same as the 1st
+ * just a single overload, then the return value will be the same as the 1st
  * element in `overloadParameterDeclarations`.
  * @param overloadParameterDeclarations
  */
@@ -382,7 +382,7 @@ function getBaseMethodParameterDeclarations(
   overloadParameterDeclarations: ParameterWithDescription[][]
 ): ParameterWithDescription[] {
   const baseMethodParameters: ParameterWithDescription[] = [];
-  // Need to know which overload has the most parameters to set out upper bound.
+  // Need to know which overload has the most parameters to set our upper bound.
   const maxOverloadSize = Math.max(
     ...overloadParameterDeclarations.map(params => params.length)
   );
