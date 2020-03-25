@@ -3,7 +3,11 @@
 
 import { ParameterDetails } from "../../models/parameterDetails";
 import { OperationDetails } from "../../models/operationDetails";
-import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
+import {
+  ImplementationLocation,
+  SchemaType,
+  ParameterLocation
+} from "@azure-tools/codemodel";
 import { wrapString, IndentationType } from "./stringUtils";
 
 interface ParameterFilterOptions {
@@ -12,6 +16,8 @@ interface ParameterFilterOptions {
   includeUriParameters?: boolean;
   includeGlobalParameters?: boolean;
   includeConstantParameters?: boolean;
+  // Whether the contentType parameter should always be included.
+  includeContentType?: boolean;
 }
 
 /**
@@ -28,13 +34,18 @@ export function filterOperationParameters(
     includeOptional,
     includeClientParams,
     includeGlobalParameters,
-    includeConstantParameters
+    includeConstantParameters,
+    includeContentType
   }: ParameterFilterOptions = {}
 ) {
+  const isContentType = (param: ParameterDetails) =>
+    param.name === "contentType" && param.location === ParameterLocation.Header;
+
   const optionalFilter = (param: ParameterDetails) =>
     !!(includeOptional || param.required);
 
   const constantFilter = (param: ParameterDetails) =>
+    (includeContentType && isContentType(param)) ||
     !!(includeConstantParameters || param.schemaType !== SchemaType.Constant);
 
   const clientParamFilter = (param: ParameterDetails) =>

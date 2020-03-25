@@ -9,6 +9,18 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 
+export const contentType: coreHttp.OperationParameter = {
+  parameterPath: ["options", "contentType"],
+  mapper: {
+    defaultValue: "application/json",
+    serializedName: "Content-Type",
+    isConstant: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const resourceArray: coreHttp.OperationParameter = {
   parameterPath: ["options", "resourceArray"],
   mapper: {

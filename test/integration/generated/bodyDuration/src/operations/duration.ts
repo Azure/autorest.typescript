@@ -113,6 +113,7 @@ const putPositiveDurationOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.durationBody,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getPositiveDurationOperationSpec: coreHttp.OperationSpec = {

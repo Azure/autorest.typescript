@@ -25,10 +25,8 @@ export function normalizeModelWithExtensions(codeModel: CodeModel) {
 }
 
 /**
- * This updates parameters that should be serialized as a Content-Type header.
- * This logic should be able to be removed once modelerfour includes
- * the serializedName and http protocol details:
- * https://github.com/Azure/autorest.modelerfour/issues/207
+ * This updates the contentType parameter for operations
+ * that support multiple media types to be required.
  * @param codeModel
  */
 function normalizeMultipleContentTypes(codeModel: CodeModel) {
@@ -38,7 +36,7 @@ function normalizeMultipleContentTypes(codeModel: CodeModel) {
 
     for (const operation of operations) {
       const requests = operation.requests;
-      if (!requests) {
+      if (!requests || requests.length <= 1) {
         continue;
       }
 
@@ -50,15 +48,8 @@ function normalizeMultipleContentTypes(codeModel: CodeModel) {
 
         for (const parameter of parameters) {
           const parameterMetadata = getLanguageMetadata(parameter.language);
-          if (
-            !parameter.protocol.http &&
-            !parameterMetadata.serializedName &&
-            parameterMetadata.name.toLowerCase() === "contenttype"
-          ) {
-            parameterMetadata.serializedName = "Content-Type";
-            const http = new Protocol();
-            http.in = ParameterLocation.Header;
-            parameter.protocol.http = http;
+          if (parameterMetadata.name.toLowerCase() === "contenttype") {
+            parameter.required = true;
           }
         }
       }

@@ -402,13 +402,6 @@ function writeOptionalParameters(
           }))
       });
     }
-
-    modelsIndexFile.addTypeAlias({
-      name: `${operationGroupName}${operationName}OptionalParams`,
-      docs: ["Optional parameters."],
-      isExported: true,
-      type: interfaceNames.join(" | ")
-    });
   } else {
     modelsIndexFile.addInterface({
       name: `${operationGroupName}${operationName}OptionalParams`,

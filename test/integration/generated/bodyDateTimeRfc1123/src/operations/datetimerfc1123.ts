@@ -238,6 +238,7 @@ const putUtcMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getUtcLowercaseMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
@@ -285,6 +286,7 @@ const putUtcMinDateTimeOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getUtcMinDateTimeOperationSpec: coreHttp.OperationSpec = {

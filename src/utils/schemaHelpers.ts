@@ -59,7 +59,6 @@ export function getTypeForSchema(schema: Schema): TypeDetails {
     case SchemaType.Constant:
       const constantSchema = schema as ConstantSchema;
       const constantType = getTypeForSchema(constantSchema.valueType);
-      typeName = constantType.typeName;
       kind = constantType.kind;
       if (isModelNeeded(constantType)) {
         usedModels.push(typeName);
@@ -69,6 +68,7 @@ export function getTypeForSchema(schema: Schema): TypeDetails {
         constantSchema.valueType.type,
         false
       );
+      typeName = constantType.typeName;
       break;
     case SchemaType.DateTime:
     case SchemaType.Date:

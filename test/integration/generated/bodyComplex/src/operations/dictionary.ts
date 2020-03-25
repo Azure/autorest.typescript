@@ -144,6 +144,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody14,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getEmptyOperationSpec: coreHttp.OperationSpec = {
@@ -171,6 +172,7 @@ const putEmptyOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.complexBody15,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getNullOperationSpec: coreHttp.OperationSpec = {

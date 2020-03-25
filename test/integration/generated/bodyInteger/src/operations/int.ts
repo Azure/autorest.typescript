@@ -325,6 +325,7 @@ const putMax32OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.intBody,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const putMax64OperationSpec: coreHttp.OperationSpec = {
@@ -338,6 +339,7 @@ const putMax64OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.intBody1,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const putMin32OperationSpec: coreHttp.OperationSpec = {
@@ -351,6 +353,7 @@ const putMin32OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.intBody,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const putMin64OperationSpec: coreHttp.OperationSpec = {
@@ -364,6 +367,7 @@ const putMin64OperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.intBody1,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getUnixTimeOperationSpec: coreHttp.OperationSpec = {
@@ -391,6 +395,7 @@ const putUnixTimeDateOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.intBody2,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getInvalidUnixTimeOperationSpec: coreHttp.OperationSpec = {

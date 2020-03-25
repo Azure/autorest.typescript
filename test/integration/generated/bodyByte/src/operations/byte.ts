@@ -151,6 +151,7 @@ const putNonAsciiOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.byteBody,
   urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
   serializer
 };
 const getInvalidOperationSpec: coreHttp.OperationSpec = {

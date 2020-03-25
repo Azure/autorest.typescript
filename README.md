@@ -28,13 +28,15 @@ More information about these can be found [here](https://github.com/Azure/autore
 ```yaml
 version: 3.0.6246
 use-extension:
-  "@autorest/modelerfour": "4.10.258"
+  "@autorest/modelerfour": "4.10.268"
 
 modelerfour:
   # this runs a pre-namer step to clean up names
   prenamer: true
   # this will flatten modelers marked with 'x-ms-client-flatten'
   flatten-models: true
+  # this will make the content-type parameter always specified
+  always-create-content-type-parameter: true
 
 pipeline:
   typescript: # <- name of plugin
