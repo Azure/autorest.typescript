@@ -31,8 +31,7 @@ describe("Integration tests for MediaTypes", () => {
 
   describe("#analyzeBody", () => {
     it("works with binary content type", async () => {
-      const response = await client.analyzeBody({
-        contentType: "application/pdf",
+      const response = await client.analyzeBody("application/pdf", {
         input: "PDF"
       });
 
@@ -47,7 +46,7 @@ describe("Integration tests for MediaTypes", () => {
     });
 
     it("works with json content type", async () => {
-      const response = await client.analyzeBody({
+      const response = await client.analyzeBody("application/json", {
         input: { source: "foo" }
       });
 

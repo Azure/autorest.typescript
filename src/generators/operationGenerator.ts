@@ -34,7 +34,8 @@ import {
   SchemaType,
   ParameterLocation,
   ChoiceSchema,
-  SealedChoiceSchema
+  SealedChoiceSchema,
+  ConstantSchema
 } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 
@@ -201,7 +202,10 @@ function getOptionsParameter(
   operation: OperationDetails,
   parameters: ParameterDetails[],
   importedModels: Set<string>,
-  { isOptional = true } = {}
+  {
+    isOptional = true,
+    mediaType
+  }: { isOptional?: boolean; mediaType?: string } = {}
 ): ParameterWithDescription {
   let type: string = "coreHttp.OperationOptions";
   if (
@@ -209,7 +213,8 @@ function getOptionsParameter(
       includeOptional: true
     }).some(p => !p.required)
   ) {
-    type = `${operation.typeDetails.typeName}OptionalParams`;
+    const mediaPrefix = mediaType ? `$${mediaType}` : "";
+    type = `${operation.typeDetails.typeName}${mediaPrefix}OptionalParams`;
     importedModels.add(type);
   }
   return {
@@ -286,21 +291,38 @@ type ParameterWithDescription = OptionalKind<
 >;
 
 /**
- * Write operations implementation, extracted from OperationGroupDetails, to the generated file
+ * Gets a list of parameter declarations for each overload the operation supports,
+ * and the list of parameter declarations for the base operation.
  */
-export function writeOperations(
-  operationGroupDetails: OperationGroupDetails,
-  operationGroupClass: ClassDeclaration,
-  importedModels: Set<string>,
+function getOperationParameterSignatures(
+  operation: OperationDetails,
   parameters: ParameterDetails[],
-  isInline = false
+  importedModels: Set<string>,
+  operationGroupClass: ClassDeclaration
 ) {
-  operationGroupDetails.operations.forEach(operation => {
-    const responseName = getResponseType(operation, importedModels);
-    const paramDeclarations = filterOperationParameters(
-      parameters,
-      operation
-    ).map<ParameterWithDescription>(param => {
+  const operationParameters = filterOperationParameters(parameters, operation, {
+    includeContentType: true
+  });
+
+  const operationRequests = operation.requests;
+  const overloadParameterDeclarations: ParameterWithDescription[][] = [];
+  const hasMultipleOverloads = Boolean(operationRequests.length);
+
+  for (const request of operationRequests) {
+    const requestMediaType = request.mediaType;
+    // filter our parameters that belong to a different media type
+    const requestParameters = operationParameters.filter(param => {
+      if (!param.targetMediaType) {
+        return true;
+      } else {
+        return requestMediaType === param.targetMediaType;
+      }
+    });
+
+    // Convert parameters into TypeScript parameter declarations.
+    const parameterDeclarations = requestParameters.map<
+      ParameterWithDescription
+    >(param => {
       const { usedModels } = param.typeDetails;
       const type = normalizeTypeName(param.typeDetails);
 
@@ -321,39 +343,133 @@ export function writeOperations(
       };
     });
 
-    const allParams = [
-      ...paramDeclarations,
-      getOptionsParameter(operation, parameters, importedModels)
-    ];
+    // add optional parameter
+    const optionalParameter = getOptionsParameter(
+      operation,
+      parameters,
+      importedModels,
+      {
+        mediaType: hasMultipleOverloads ? requestMediaType : undefined
+      }
+    );
+    parameterDeclarations.push(optionalParameter);
+    overloadParameterDeclarations.push(parameterDeclarations);
+  }
+
+  // Create the parameter declarations for the base method signature.
+  const baseMethodParameters = getBaseMethodParameterDeclarations(
+    overloadParameterDeclarations
+  );
+
+  return { overloadParameterDeclarations, baseMethodParameters };
+}
+
+/**
+ * Given a list of operation parameter declarations per overload,
+ * returns a list of the parameter declarations that should appear
+ * in the operation's base signature.
+ *
+ * If `overloadParameterDeclarations` contains the parameter declarations for
+ * just a single overload, then thie return value will be the same as the 1st
+ * element in `overloadParameterDeclarations`.
+ * @param overloadParameterDeclarations
+ */
+function getBaseMethodParameterDeclarations(
+  overloadParameterDeclarations: ParameterWithDescription[][]
+): ParameterWithDescription[] {
+  const baseMethodParameters: ParameterWithDescription[] = [];
+  // Need to know which overload has the most parameters to set out upper bound.
+  const maxOverloadSize = Math.max(
+    ...overloadParameterDeclarations.map(params => params.length)
+  );
+  for (let i = 0; i < maxOverloadSize; i++) {
+    // attempt to combine types
+    const declarations: ParameterWithDescription[] = [];
+    for (const overloadParameterDeclaration of overloadParameterDeclarations) {
+      if (overloadParameterDeclaration[i]) {
+        declarations.push(overloadParameterDeclaration[i]);
+      }
+    }
+    const declaration = declarations.reduce(
+      (prevDeclaration, curDeclaration) => {
+        prevDeclaration = { ...prevDeclaration };
+        if (curDeclaration.name !== prevDeclaration.name) {
+          prevDeclaration.name += `Or${curDeclaration.name}`;
+        }
+        if (curDeclaration.type !== prevDeclaration.type) {
+          prevDeclaration.type += ` | ${curDeclaration.type}`;
+        }
+        // parameters should be optional if any declaration is optional
+        if (!curDeclaration.hasQuestionToken) {
+          prevDeclaration.hasQuestionToken = curDeclaration.hasQuestionToken;
+        }
+        return prevDeclaration;
+      }
+    );
+    baseMethodParameters.push(declaration);
+  }
+  return baseMethodParameters;
+}
+
+/**
+ * Write operations implementation, extracted from OperationGroupDetails, to the generated file
+ */
+export function writeOperations(
+  operationGroupDetails: OperationGroupDetails,
+  operationGroupClass: ClassDeclaration,
+  importedModels: Set<string>,
+  parameters: ParameterDetails[],
+  isInline = false
+) {
+  operationGroupDetails.operations.forEach(operation => {
+    const {
+      baseMethodParameters,
+      overloadParameterDeclarations
+    } = getOperationParameterSignatures(
+      operation,
+      parameters,
+      importedModels,
+      operationGroupClass
+    );
+    const responseName = getResponseType(operation, importedModels);
 
     const operationMethod = operationGroupClass.addMethod({
       name: normalizeName(operation.name, NameType.Property),
-      parameters: allParams,
+      parameters: baseMethodParameters,
       returnType: `Promise<${responseName}>`,
-      docs: [generateOperationJSDoc(allParams, operation.description)]
+      docs: [
+        generateOperationJSDoc(baseMethodParameters, operation.description)
+      ]
     });
 
-    const sendParams = paramDeclarations.map(p => p.name).join(",");
-
-    if (operation.mediaTypes.size > 1) {
-      // This condition implies that the user can specify a contentType,
-      // and this contentType can change how the request is serialized.
-      writeMultiMediaTypeOperationBody(
-        operationMethod,
-        operation,
-        sendParams,
-        responseName,
-        isInline
+    const sendParams = baseMethodParameters.map(p => p.name).join(",");
+    if (overloadParameterDeclarations.length === 1) {
+      operationMethod.addStatements(
+        `return this${
+          isInline ? "" : ".client"
+        }.sendOperationRequest({${sendParams}${!!sendParams ? "," : ""}}, ${
+          operation.name
+        }OperationSpec) as Promise<${responseName}>`
       );
       return;
     }
 
-    operationMethod.addStatements(
-      `return this${
-        isInline ? "" : ".client"
-      }.sendOperationRequest({${sendParams}${
-        !!sendParams ? "," : ""
-      } options}, ${operation.name}OperationSpec) as Promise<${responseName}>`
+    for (const overload of overloadParameterDeclarations) {
+      operationMethod.addOverload({
+        parameters: overload,
+        returnType: `Promise<${responseName}>`,
+        docs: [generateOperationJSDoc(overload, operation.description)]
+      });
+    }
+
+    // This condition implies that the user can specify a contentType,
+    // and this contentType can change how the request is serialized.
+    writeMultiMediaTypeOperationBody(
+      operationMethod,
+      operation,
+      sendParams,
+      responseName,
+      isInline
     );
   });
 }
@@ -373,43 +489,39 @@ function writeMultiMediaTypeOperationBody(
   let statements = `let operationSpec: coreHttp.OperationSpec;`;
   // We need to use the contentType parameter to determine which spec to use.
   const conditionals: string[] = [];
-  let hasOptionalContentType = false;
   for (const request of operation.requests) {
     const mediaType = request.mediaType!;
-    // check for contentType choice
     const validContentTypes = getContentTypeValues(request);
+
+    // Ensure that a contentType exists, otherwise we won't be able to determine which operation spec to use.
     if (!validContentTypes) {
-      if (hasOptionalContentType) {
-        throw new Error(
-          `Encountered two operation media types that had unspecified values for contentType for operation "${operation.fullName}".`
-        );
-      }
-      hasOptionalContentType = true;
-      // When no value for content-type is present, then we know this is the final 'else' block.
-      conditionals.push(`{
-            operationSpec = ${operation.name}$${mediaType}OperationSpec;
-          }`);
-    } else {
-      conditionals.splice(
-        0,
-        0,
-        `if (
-            options && "contentType" in options &&
-            [${validContentTypes
-              .map(type => `"${type}"`)
-              .join(", ")}].indexOf(options.contentType ?? "") > -1
-          ) {
-            operationSpec = ${operation.name}$${mediaType}OperationSpec;
-          }`
+      throw new Error(
+        `Encountered an operation media type that has unspecified values for the contentType for operation "${operation.fullName}".`
       );
     }
+
+    conditionals.push(
+      `if (
+        [${validContentTypes
+          .map(type => `"${type}"`)
+          .join(", ")}].indexOf(contentType) > -1
+        ) {
+          operationSpec = ${operation.name}$${mediaType}OperationSpec;
+      }`
+    );
   }
+
+  // Add an else clause that throws an error. This should never happen as long as a contentType was provided by the user.
+  conditionals.push(`{
+    throw new TypeError(\`"contentType" must be a valid value but instead was "\${contentType}".\`);
+  }`);
+
   statements += conditionals.join(" else ");
   statements += `return this${
     isInline ? "" : ".client"
   }.sendOperationRequest({${sendParams}${
     !!sendParams ? "," : ""
-  } options}, operationSpec) as Promise<${responseName}>`;
+  }}, operationSpec) as Promise<${responseName}>`;
   operationMethod.addStatements(statements);
 }
 
@@ -419,16 +531,25 @@ function getContentTypeValues(
   const parameters = request.parameters ?? [];
   for (const parameter of parameters) {
     const parameterMetadata = getLanguageMetadata(parameter.language);
+    const paramLowerSerializedName = parameterMetadata.serializedName?.toLowerCase();
+    const parameterInHeader =
+      parameter.protocol.http?.in === ParameterLocation.Header;
     const schema = parameter.schema;
     if (
       (schema.type === SchemaType.Choice ||
         schema.type === SchemaType.SealedChoice) &&
-      parameterMetadata.serializedName.toLowerCase() === "content-type" &&
-      parameter.protocol.http?.in === ParameterLocation.Header
+      paramLowerSerializedName === "content-type" &&
+      parameterInHeader
     ) {
       return (schema as ChoiceSchema | SealedChoiceSchema).choices.map(
         c => c.value as string
       );
+    } else if (
+      schema.type === SchemaType.Constant &&
+      paramLowerSerializedName === "content-type" &&
+      parameterInHeader
+    ) {
+      return [(schema as ConstantSchema).value.value];
     }
   }
   return;
