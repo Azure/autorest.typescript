@@ -101,12 +101,14 @@ export class Paging {
   /**
    * A paging operation that includes a nextLink that has 10 pages
    * @param pagingGetMultiplePagesOptions Parameter group
+   * @param options The options parameters.
    */
   getMultiplePages(
-    pagingGetMultiplePagesOptions: PagingGetMultiplePagesOptions
+    pagingGetMultiplePagesOptions: PagingGetMultiplePagesOptions,
+    options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesResponse> {
     return this.client.sendOperationRequest(
-      { pagingGetMultiplePagesOptions },
+      { pagingGetMultiplePagesOptions, options },
       getMultiplePagesOperationSpec
     ) as Promise<PagingGetMultiplePagesResponse>;
   }
@@ -114,12 +116,14 @@ export class Paging {
   /**
    * A paging operation that includes a nextLink in odata format that has 10 pages
    * @param pagingGetOdataMultiplePagesOptions Parameter group
+   * @param options The options parameters.
    */
   getOdataMultiplePages(
-    pagingGetOdataMultiplePagesOptions: PagingGetOdataMultiplePagesOptions
+    pagingGetOdataMultiplePagesOptions: PagingGetOdataMultiplePagesOptions,
+    options?: coreHttp.OperationOptions
   ): Promise<PagingGetOdataMultiplePagesResponse> {
     return this.client.sendOperationRequest(
-      { pagingGetOdataMultiplePagesOptions },
+      { pagingGetOdataMultiplePagesOptions, options },
       getOdataMultiplePagesOperationSpec
     ) as Promise<PagingGetOdataMultiplePagesResponse>;
   }
@@ -127,12 +131,14 @@ export class Paging {
   /**
    * A paging operation that includes a nextLink that has 10 pages
    * @param pagingGetMultiplePagesWithOffsetOptions Parameter group
+   * @param options The options parameters.
    */
   getMultiplePagesWithOffset(
-    pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions
+    pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
+    options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesWithOffsetResponse> {
     return this.client.sendOperationRequest(
-      { pagingGetMultiplePagesWithOffsetOptions },
+      { pagingGetMultiplePagesWithOffsetOptions, options },
       getMultiplePagesWithOffsetOperationSpec
     ) as Promise<PagingGetMultiplePagesWithOffsetResponse>;
   }
@@ -239,12 +245,14 @@ export class Paging {
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param pagingGetMultiplePagesLroOptions Parameter group
+   * @param options The options parameters.
    */
   getMultiplePagesLRO(
-    pagingGetMultiplePagesLroOptions: PagingGetMultiplePagesLroOptions
+    pagingGetMultiplePagesLroOptions: PagingGetMultiplePagesLroOptions,
+    options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesLROResponse> {
     return this.client.sendOperationRequest(
-      { pagingGetMultiplePagesLroOptions },
+      { pagingGetMultiplePagesLroOptions, options },
       getMultiplePagesLROOperationSpec
     ) as Promise<PagingGetMultiplePagesLROResponse>;
   }
@@ -319,13 +327,15 @@ export class Paging {
    * GetMultiplePagesNext
    * @param nextLink The nextLink from the previous successful call to the GetMultiplePages method.
    * @param pagingGetMultiplePagesOptions Parameter group
+   * @param options The options parameters.
    */
   getMultiplePagesNext(
     nextLink: string,
-    pagingGetMultiplePagesOptions: PagingGetMultiplePagesOptions
+    pagingGetMultiplePagesOptions: PagingGetMultiplePagesOptions,
+    options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesNextResponse> {
     return this.client.sendOperationRequest(
-      { nextLink, pagingGetMultiplePagesOptions },
+      { nextLink, pagingGetMultiplePagesOptions, options },
       getMultiplePagesNextOperationSpec
     ) as Promise<PagingGetMultiplePagesNextResponse>;
   }
@@ -334,13 +344,15 @@ export class Paging {
    * GetOdataMultiplePagesNext
    * @param nextLink The nextLink from the previous successful call to the GetOdataMultiplePages method.
    * @param pagingGetOdataMultiplePagesOptions Parameter group
+   * @param options The options parameters.
    */
   getOdataMultiplePagesNext(
     nextLink: string,
-    pagingGetOdataMultiplePagesOptions: PagingGetOdataMultiplePagesOptions
+    pagingGetOdataMultiplePagesOptions: PagingGetOdataMultiplePagesOptions,
+    options?: coreHttp.OperationOptions
   ): Promise<PagingGetOdataMultiplePagesNextResponse> {
     return this.client.sendOperationRequest(
-      { nextLink, pagingGetOdataMultiplePagesOptions },
+      { nextLink, pagingGetOdataMultiplePagesOptions, options },
       getOdataMultiplePagesNextOperationSpec
     ) as Promise<PagingGetOdataMultiplePagesNextResponse>;
   }
@@ -350,13 +362,15 @@ export class Paging {
    * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesWithOffset
    *                 method.
    * @param pagingGetMultiplePagesWithOffsetOptions Parameter group
+   * @param options The options parameters.
    */
   getMultiplePagesWithOffsetNext(
     nextLink: string,
-    pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions
+    pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
+    options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesWithOffsetNextResponse> {
     return this.client.sendOperationRequest(
-      { nextLink, pagingGetMultiplePagesWithOffsetOptions },
+      { nextLink, pagingGetMultiplePagesWithOffsetOptions, options },
       getMultiplePagesWithOffsetNextOperationSpec
     ) as Promise<PagingGetMultiplePagesWithOffsetNextResponse>;
   }
@@ -444,13 +458,15 @@ export class Paging {
    * GetMultiplePagesLRONext
    * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesLRO method.
    * @param pagingGetMultiplePagesLroOptions Parameter group
+   * @param options The options parameters.
    */
   getMultiplePagesLRONext(
     nextLink: string,
-    pagingGetMultiplePagesLroOptions: PagingGetMultiplePagesLroOptions
+    pagingGetMultiplePagesLroOptions: PagingGetMultiplePagesLroOptions,
+    options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesLRONextResponse> {
     return this.client.sendOperationRequest(
-      { nextLink, pagingGetMultiplePagesLroOptions },
+      { nextLink, pagingGetMultiplePagesLroOptions, options },
       getMultiplePagesLRONextOperationSpec
     ) as Promise<PagingGetMultiplePagesLRONextResponse>;
   }
