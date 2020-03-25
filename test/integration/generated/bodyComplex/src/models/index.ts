@@ -881,7 +881,7 @@ export interface BodyComplexClientOptionalParams
   /**
    * Api Version
    */
-  apiVersion?: "2016-02-29";
+  apiVersion?: string;
   /**
    * Overrides client endpoint.
    */
