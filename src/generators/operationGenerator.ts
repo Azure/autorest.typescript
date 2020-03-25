@@ -306,7 +306,7 @@ function getOperationParameterSignatures(
 
   const operationRequests = operation.requests;
   const overloadParameterDeclarations: ParameterWithDescription[][] = [];
-  const hasMultipleOverloads = Boolean(operationRequests.length > 1);
+  const hasMultipleOverloads = operationRequests.length > 1;
 
   for (const request of operationRequests) {
     const requestMediaType = request.mediaType;
