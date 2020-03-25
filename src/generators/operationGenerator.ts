@@ -311,13 +311,10 @@ function getOperationParameterSignatures(
   for (const request of operationRequests) {
     const requestMediaType = request.mediaType;
     // filter our parameters that belong to a different media type
-    const requestParameters = operationParameters.filter(param => {
-      if (!param.targetMediaType) {
-        return true;
-      } else {
-        return requestMediaType === param.targetMediaType;
-      }
-    });
+    const requestParameters = operationParameters.filter(
+      ({ targetMediaType }) =>
+        !targetMediaType || requestMediaType === targetMediaType
+    );
 
     // Convert parameters into TypeScript parameter declarations.
     const parameterDeclarations = requestParameters.map<
@@ -397,11 +394,19 @@ function getBaseMethodParameterDeclarations(
         declarations.push(overloadParameterDeclaration[i]);
       }
     }
+
     const declaration = declarations.reduce(
       (prevDeclaration, curDeclaration) => {
         prevDeclaration = { ...prevDeclaration };
         if (curDeclaration.name !== prevDeclaration.name) {
-          prevDeclaration.name += `Or${curDeclaration.name}`;
+          // Currently we only generate overloads if an operation supports multiple media types.
+          // Since contentType is always required and the 1st parameter, parameter names/ordering
+          // shouldn't change.
+          // In order to support more variance in parameter naming/ordering, we'll need to be able
+          // to construct the OperationArguments separately for each overload.
+          throw new Error(
+            `Operation overloads with different parameter names/ordering not supported.`
+          );
         }
         if (curDeclaration.type !== prevDeclaration.type) {
           prevDeclaration.type += ` | ${curDeclaration.type}`;
