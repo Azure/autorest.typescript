@@ -101,14 +101,16 @@ export class Paging {
   /**
    * A paging operation that includes a nextLink that has 10 pages
    * @param pagingGetMultiplePagesOptions Parameter group
+   * @param clientRequestId
    * @param options The options parameters.
    */
   getMultiplePages(
     pagingGetMultiplePagesOptions: PagingGetMultiplePagesOptions,
+    clientRequestId?: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesResponse> {
     return this.client.sendOperationRequest(
-      { pagingGetMultiplePagesOptions, options },
+      { pagingGetMultiplePagesOptions, clientRequestId, options },
       getMultiplePagesOperationSpec
     ) as Promise<PagingGetMultiplePagesResponse>;
   }
@@ -116,14 +118,16 @@ export class Paging {
   /**
    * A paging operation that includes a nextLink in odata format that has 10 pages
    * @param pagingGetOdataMultiplePagesOptions Parameter group
+   * @param clientRequestId
    * @param options The options parameters.
    */
   getOdataMultiplePages(
     pagingGetOdataMultiplePagesOptions: PagingGetOdataMultiplePagesOptions,
+    clientRequestId?: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetOdataMultiplePagesResponse> {
     return this.client.sendOperationRequest(
-      { pagingGetOdataMultiplePagesOptions, options },
+      { pagingGetOdataMultiplePagesOptions, clientRequestId, options },
       getOdataMultiplePagesOperationSpec
     ) as Promise<PagingGetOdataMultiplePagesResponse>;
   }
@@ -131,14 +135,16 @@ export class Paging {
   /**
    * A paging operation that includes a nextLink that has 10 pages
    * @param pagingGetMultiplePagesWithOffsetOptions Parameter group
+   * @param clientRequestId
    * @param options The options parameters.
    */
   getMultiplePagesWithOffset(
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
+    clientRequestId?: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesWithOffsetResponse> {
     return this.client.sendOperationRequest(
-      { pagingGetMultiplePagesWithOffsetOptions, options },
+      { pagingGetMultiplePagesWithOffsetOptions, clientRequestId, options },
       getMultiplePagesWithOffsetOperationSpec
     ) as Promise<PagingGetMultiplePagesWithOffsetResponse>;
   }
@@ -212,17 +218,17 @@ export class Paging {
 
   /**
    * A paging operation that doesn't return a full URL, just a fragment
-   * @param apiVersion Sets the api version to use.
    * @param tenant Sets the tenant to use.
+   * @param apiVersion Sets the api version to use.
    * @param options The options parameters.
    */
   getMultiplePagesFragmentNextLink(
-    apiVersion: string,
     tenant: string,
+    apiVersion: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesFragmentNextLinkResponse> {
     return this.client.sendOperationRequest(
-      { apiVersion, tenant, options },
+      { tenant, apiVersion, options },
       getMultiplePagesFragmentNextLinkOperationSpec
     ) as Promise<PagingGetMultiplePagesFragmentNextLinkResponse>;
   }
@@ -245,50 +251,52 @@ export class Paging {
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param pagingGetMultiplePagesLroOptions Parameter group
+   * @param clientRequestId
    * @param options The options parameters.
    */
   getMultiplePagesLRO(
     pagingGetMultiplePagesLroOptions: PagingGetMultiplePagesLroOptions,
+    clientRequestId?: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesLROResponse> {
     return this.client.sendOperationRequest(
-      { pagingGetMultiplePagesLroOptions, options },
+      { pagingGetMultiplePagesLroOptions, clientRequestId, options },
       getMultiplePagesLROOperationSpec
     ) as Promise<PagingGetMultiplePagesLROResponse>;
   }
 
   /**
    * A paging operation that doesn't return a full URL, just a fragment
-   * @param apiVersion Sets the api version to use.
-   * @param tenant Sets the tenant to use.
    * @param nextLink Next link for list operation.
+   * @param tenant Sets the tenant to use.
+   * @param apiVersion Sets the api version to use.
    * @param options The options parameters.
    */
   nextFragment(
-    apiVersion: string,
-    tenant: string,
     nextLink: string,
+    tenant: string,
+    apiVersion: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingNextFragmentResponse> {
     return this.client.sendOperationRequest(
-      { apiVersion, tenant, nextLink, options },
+      { nextLink, tenant, apiVersion, options },
       nextFragmentOperationSpec
     ) as Promise<PagingNextFragmentResponse>;
   }
 
   /**
    * A paging operation that doesn't return a full URL, just a fragment
-   * @param nextLink Next link for list operation.
    * @param customParameterGroup Parameter group
+   * @param nextLink Next link for list operation.
    * @param options The options parameters.
    */
   nextFragmentWithGrouping(
-    nextLink: string,
     customParameterGroup: CustomParameterGroup,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingNextFragmentWithGroupingResponse> {
     return this.client.sendOperationRequest(
-      { nextLink, customParameterGroup, options },
+      { customParameterGroup, nextLink, options },
       nextFragmentWithGroupingOperationSpec
     ) as Promise<PagingNextFragmentWithGroupingResponse>;
   }
@@ -325,52 +333,68 @@ export class Paging {
 
   /**
    * GetMultiplePagesNext
-   * @param nextLink The nextLink from the previous successful call to the GetMultiplePages method.
    * @param pagingGetMultiplePagesOptions Parameter group
+   * @param nextLink The nextLink from the previous successful call to the GetMultiplePages method.
+   * @param clientRequestId
    * @param options The options parameters.
    */
   getMultiplePagesNext(
-    nextLink: string,
     pagingGetMultiplePagesOptions: PagingGetMultiplePagesOptions,
+    nextLink: string,
+    clientRequestId?: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesNextResponse> {
     return this.client.sendOperationRequest(
-      { nextLink, pagingGetMultiplePagesOptions, options },
+      { pagingGetMultiplePagesOptions, nextLink, clientRequestId, options },
       getMultiplePagesNextOperationSpec
     ) as Promise<PagingGetMultiplePagesNextResponse>;
   }
 
   /**
    * GetOdataMultiplePagesNext
-   * @param nextLink The nextLink from the previous successful call to the GetOdataMultiplePages method.
    * @param pagingGetOdataMultiplePagesOptions Parameter group
+   * @param nextLink The nextLink from the previous successful call to the GetOdataMultiplePages method.
+   * @param clientRequestId
    * @param options The options parameters.
    */
   getOdataMultiplePagesNext(
-    nextLink: string,
     pagingGetOdataMultiplePagesOptions: PagingGetOdataMultiplePagesOptions,
+    nextLink: string,
+    clientRequestId?: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetOdataMultiplePagesNextResponse> {
     return this.client.sendOperationRequest(
-      { nextLink, pagingGetOdataMultiplePagesOptions, options },
+      {
+        pagingGetOdataMultiplePagesOptions,
+        nextLink,
+        clientRequestId,
+        options
+      },
       getOdataMultiplePagesNextOperationSpec
     ) as Promise<PagingGetOdataMultiplePagesNextResponse>;
   }
 
   /**
    * GetMultiplePagesWithOffsetNext
+   * @param pagingGetMultiplePagesWithOffsetOptions Parameter group
    * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesWithOffset
    *                 method.
-   * @param pagingGetMultiplePagesWithOffsetOptions Parameter group
+   * @param clientRequestId
    * @param options The options parameters.
    */
   getMultiplePagesWithOffsetNext(
-    nextLink: string,
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
+    nextLink: string,
+    clientRequestId?: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesWithOffsetNextResponse> {
     return this.client.sendOperationRequest(
-      { nextLink, pagingGetMultiplePagesWithOffsetOptions, options },
+      {
+        pagingGetMultiplePagesWithOffsetOptions,
+        nextLink,
+        clientRequestId,
+        options
+      },
       getMultiplePagesWithOffsetNextOperationSpec
     ) as Promise<PagingGetMultiplePagesWithOffsetNextResponse>;
   }
@@ -456,17 +480,19 @@ export class Paging {
 
   /**
    * GetMultiplePagesLRONext
-   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesLRO method.
    * @param pagingGetMultiplePagesLroOptions Parameter group
+   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesLRO method.
+   * @param clientRequestId
    * @param options The options parameters.
    */
   getMultiplePagesLRONext(
-    nextLink: string,
     pagingGetMultiplePagesLroOptions: PagingGetMultiplePagesLroOptions,
+    nextLink: string,
+    clientRequestId?: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesLRONextResponse> {
     return this.client.sendOperationRequest(
-      { nextLink, pagingGetMultiplePagesLroOptions, options },
+      { pagingGetMultiplePagesLroOptions, nextLink, clientRequestId, options },
       getMultiplePagesLRONextOperationSpec
     ) as Promise<PagingGetMultiplePagesLRONextResponse>;
   }

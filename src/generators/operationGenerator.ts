@@ -348,8 +348,26 @@ function getOperationParameterSignatures(
   importedModels: Set<string>,
   operationGroupClass: ClassDeclaration
 ) {
+  const operationParametersWithOptionals = filterOperationParameters(
+    parameters,
+    operation,
+    {
+      includeOptional: true,
+      includeGroupedParameters: true
+    }
+  );
+
+  const hasNonGroupedOptionalParams = operationParametersWithOptionals.some(
+    p => !p.required && !p.parameter.groupedBy
+  );
+
+  const hasGroupedParams = operationParametersWithOptionals.some(
+    p => p.parameter.groupedBy
+  );
+
   const operationParameters = filterOperationParameters(parameters, operation, {
-    includeContentType: true
+    includeContentType: true,
+    includeOptional: hasNonGroupedOptionalParams && hasGroupedParams
   });
 
   const operationRequests = operation.requests;
@@ -365,9 +383,9 @@ function getOperationParameterSignatures(
     );
 
     // Convert parameters into TypeScript parameter declarations.
-    const parameterDeclarations = requestParameters.map<
-      ParameterWithDescription
-    >(param => {
+    const parameterDeclarations = requestParameters.reduce<
+      ParameterWithDescription[]
+    >((acc, param) => {
       const { usedModels } = param.typeDetails;
       let type = normalizeTypeName(param.typeDetails);
       if (
@@ -387,28 +405,17 @@ function getOperationParameterSignatures(
         usedModels.forEach(model => importedModels.add(model));
       }
 
-      return {
+      const newParameter = {
         name: param.name,
         description: param.description,
         type: typeName,
         hasQuestionToken: !param.required
       };
-    });
 
-    const operationParametersWithOptionals = filterOperationParameters(
-      parameters,
-      operation,
-      {
-        includeOptional: true,
-        includeGroupedParameters: true
-      }
-    );
-    const hasOptionalParams = operationParametersWithOptionals.some(
-      p => !p.required
-    );
-    const hasGroupedParams = operationParametersWithOptionals.some(
-      p => p.parameter.groupedBy
-    );
+      // Make sure required parameters are added before optional
+      // TODO: Is there a better way to ensure this?
+      return param.required ? [newParameter, ...acc] : [...acc, newParameter];
+    }, []);
 
     if (hasGroupedParams) {
       const groupedParameters = getGroupedParameters(
@@ -416,7 +423,8 @@ function getOperationParameterSignatures(
         parameters,
         importedModels
       );
-      parameterDeclarations.push(...groupedParameters);
+      parameterDeclarations.unshift(...groupedParameters);
+
       parameterDeclarations.push({
         name: "options",
         type: "coreHttp.OperationOptions",

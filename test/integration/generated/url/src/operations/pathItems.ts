@@ -35,17 +35,17 @@ export class PathItems {
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery='globalStringQuery',
    * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
-   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    * @param localStringPath should contain value 'localStringPath'
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    * @param options The options parameters.
    */
   getAllWithValues(
-    pathItemStringPath: string,
     localStringPath: string,
+    pathItemStringPath: string,
     options?: PathItemsGetAllWithValuesOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { pathItemStringPath, localStringPath, options },
+      { localStringPath, pathItemStringPath, options },
       getAllWithValuesOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -54,17 +54,17 @@ export class PathItems {
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery=null,
    * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
-   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    * @param localStringPath should contain value 'localStringPath'
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    * @param options The options parameters.
    */
   getGlobalQueryNull(
-    pathItemStringPath: string,
     localStringPath: string,
+    pathItemStringPath: string,
     options?: PathItemsGetGlobalQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { pathItemStringPath, localStringPath, options },
+      { localStringPath, pathItemStringPath, options },
       getGlobalQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -73,17 +73,17 @@ export class PathItems {
    * send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery=null,
    * pathItemStringQuery='pathItemStringQuery', localStringQuery=null
-   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    * @param localStringPath should contain value 'localStringPath'
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    * @param options The options parameters.
    */
   getGlobalAndLocalQueryNull(
-    pathItemStringPath: string,
     localStringPath: string,
+    pathItemStringPath: string,
     options?: PathItemsGetGlobalAndLocalQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { pathItemStringPath, localStringPath, options },
+      { localStringPath, pathItemStringPath, options },
       getGlobalAndLocalQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -92,17 +92,17 @@ export class PathItems {
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null,
    * localStringQuery=null
-   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    * @param localStringPath should contain value 'localStringPath'
+   * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    * @param options The options parameters.
    */
   getLocalPathItemQueryNull(
-    pathItemStringPath: string,
     localStringPath: string,
+    pathItemStringPath: string,
     options?: PathItemsGetLocalPathItemQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { pathItemStringPath, localStringPath, options },
+      { localStringPath, pathItemStringPath, options },
       getLocalPathItemQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
