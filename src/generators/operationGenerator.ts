@@ -417,13 +417,17 @@ function getOperationParameterSignatures(
         importedModels
       );
       parameterDeclarations.push(...groupedParameters);
+      parameterDeclarations.push({
+        name: "options",
+        type: "coreHttp.OperationOptions",
+        hasQuestionToken: true,
+        description: "The options parameters."
+      });
     }
 
     // Only use our custom optional grouping if the parameter grouping extension
     // is not used in the swagger, if so, respect the regular grouping.
-    // When the operation doesn't have any defined optional parameters, use it as well
-    // to add coreHttp.OperationOptions.
-    if (!hasOptionalParams || !hasGroupedParams) {
+    if (!hasGroupedParams) {
       // add optional parameter
       const optionalParameter = getOptionsParameter(
         operation,
