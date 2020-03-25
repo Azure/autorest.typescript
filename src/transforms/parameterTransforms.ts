@@ -9,8 +9,7 @@ import {
   Schema,
   ImplementationLocation,
   SerializationStyle,
-  ConstantSchema,
-  Request
+  ConstantSchema
 } from "@azure-tools/codemodel";
 import { QueryCollectionFormat } from "@azure/core-http";
 import { getLanguageMetadata } from "../utils/languageHelpers";
@@ -192,6 +191,12 @@ export function populateOperationParameters(
     );
   }
 
+  // Don't track group parameters (yet?)
+  // TODO: REVISIT
+  if (parameter.schema.type === SchemaType.Group) {
+    return;
+  }
+
   const name = normalizeName(parameterSerializedName, NameType.Property);
 
   const sameNameParams = operationParameters.filter(p => p.name === name);
@@ -264,6 +269,13 @@ function getParameterPath(parameter: Parameter) {
   const metadata = getLanguageMetadata(parameter.language);
   // ParameterPath has to include the name we used for the parameter, not the serializedName
   const name = normalizeName(metadata.name, NameType.Property);
+
+  if (parameter.groupedBy) {
+    const groupedByName = getLanguageMetadata(parameter.groupedBy.language)
+      .name;
+    return [normalizeName(groupedByName, NameType.Property), name];
+  }
+
   return isClientImplementation(parameter) || parameter.required
     ? name
     : ["options", name];
