@@ -13,7 +13,8 @@ import { AzureParameterGroupingClient } from "../azureParameterGroupingClient";
 import {
   ParameterGroupingPostRequiredParameters,
   ParameterGroupingPostOptionalParameters,
-  FirstParameterGroup
+  FirstParameterGroup,
+  ParameterGroupingPostMultiParamGroupsSecondParamGroup
 } from "../models";
 
 /**
@@ -63,14 +64,20 @@ export class ParameterGrouping {
   /**
    * Post parameters from multiple different parameter groups
    * @param firstParameterGroup Parameter group
+   * @param parameterGroupingPostMultiParamGroupsSecondParamGroup Parameter group
    * @param options The options parameters.
    */
   postMultiParamGroups(
     firstParameterGroup: FirstParameterGroup,
+    parameterGroupingPostMultiParamGroupsSecondParamGroup: ParameterGroupingPostMultiParamGroupsSecondParamGroup,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { firstParameterGroup, options },
+      {
+        firstParameterGroup,
+        parameterGroupingPostMultiParamGroupsSecondParamGroup,
+        options
+      },
       postMultiParamGroupsOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

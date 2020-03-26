@@ -35,7 +35,8 @@ import {
   ParameterLocation,
   ChoiceSchema,
   SealedChoiceSchema,
-  ConstantSchema
+  ConstantSchema,
+  Parameter
 } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 
@@ -207,36 +208,48 @@ function getGroupedParameters(
   parameters: ParameterDetails[],
   importedModels: Set<string>
 ): ParameterWithDescription[] {
+  let parameterGroups: Parameter[] = [];
   // We get the parameters that are used by this specific operation, including
   // any optional ones.
   // We extract these from the parameters collection to make sure we reuse them
   // when needed, instead of creating duplicate ones.
-  const groupedParams = filterOperationParameters(parameters, operation, {
+  filterOperationParameters(parameters, operation, {
     includeGroupedParameters: true,
     includeOptional: true
   })
     .filter(({ parameter }) => parameter.groupedBy)
-    // Extracting the grouped by property which will always be defined
-    // because of the filter above
-    .map(({ parameter: { groupedBy } }) => groupedBy!);
+    // Get all the grouped properties and store them in parameterGroups
+    .forEach(({ parameter: { groupedBy } }) => {
+      if (!groupedBy) {
+        return;
+      }
 
-  if (!groupedParams.length) {
-    return [];
-  }
+      const gropuName = getLanguageMetadata(groupedBy.language).name;
 
-  const { name, description } = getLanguageMetadata(groupedParams[0].language);
-  const type = normalizeName(name, NameType.Interface);
+      // Make sure we only store the same group once
+      if (
+        parameterGroups.some(
+          p => getLanguageMetadata(p.language).name === gropuName
+        )
+      ) {
+        return;
+      }
+      parameterGroups.push(groupedBy);
+    });
 
-  // Add the model for import
-  importedModels.add(type);
+  return parameterGroups.map(parameterGroup => {
+    const { name, description } = getLanguageMetadata(parameterGroup.language);
+    const type = normalizeName(name, NameType.Interface);
 
-  return [
-    {
+    // Add the model for import
+    importedModels.add(type);
+
+    return {
       name,
       type,
       description
-    }
-  ];
+    };
+  });
 }
 
 /**
