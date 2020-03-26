@@ -52,9 +52,9 @@ describe("Integration tests for Paging", () => {
       do {
         let response: PagingGetMultiplePagesResponse;
         if (!nextLink) {
-          response = await client.paging.getMultiplePages({});
+          response = await client.paging.getMultiplePages();
         } else {
-          response = await client.paging.getMultiplePagesNext(nextLink, {});
+          response = await client.paging.getMultiplePagesNext(nextLink);
         }
         const values = response.values ?? [];
         results.push(...values);
