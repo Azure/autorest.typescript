@@ -24,7 +24,8 @@ import { normalizeName, NameType } from "../utils/nameUtils";
 import { filterOperationParameters } from "./utils/parameterUtils";
 import {
   OperationDetails,
-  OperationResponseDetails
+  OperationResponseDetails,
+  OperationGroupDetails
 } from "../models/operationDetails";
 import { ParameterDetails } from "../models/parameterDetails";
 import { ImplementationLocation } from "@azure-tools/codemodel";
@@ -75,35 +76,61 @@ const writeOperationModels = (
 ) =>
   clientDetails.operationGroups.forEach(operationGroup => {
     operationGroup.operations.forEach(operation => {
-      const hasGroupedParams = filterOperationParameters(
-        clientDetails.parameters,
+      writeOptionsParameterIfNeeded(
+        clientDetails,
+        operationGroup,
         operation,
-        { includeOptional: true, includeGroupedParameters: true }
-      ).some(p => p.parameter.groupedBy);
-      if (!hasGroupedParams) {
-        // Add interfaces for operation optional parameters
-        const operationGroupName = normalizeName(
-          operationGroup.name,
-          NameType.Interface
-        );
-        const optionalParams = filterOperationParameters(
-          clientDetails.parameters,
-          operation,
-          { includeOptional: true }
-        ).filter(p => !p.required);
-
-        const operationName = normalizeName(operation.name, NameType.Interface);
-        writeOptionalParameters(
-          operationGroupName,
-          operationName,
-          optionalParams,
-          modelsIndexFile,
-          { mediaTypes: operation.mediaTypes }
-        );
-      }
+        modelsIndexFile
+      );
       writeResponseTypes(operation, modelsIndexFile);
     });
   });
+
+/**
+ * Decides whether or not to include the Options parameter model.
+ *
+ * We'll only include this model when the operation doesn't have
+ * any grouped parameters through x-ms-parameter-grouping.
+ * When the operation has grouped parameter, we won't do these smarts
+ * and we'll honor the grouping properties in the swagger.
+ * We'll skip this and a coreHttp.OperationOptions parameter will be included directly
+ * in the operation signature.
+ */
+function writeOptionsParameterIfNeeded(
+  clientDetails: ClientDetails,
+  operationGroup: OperationGroupDetails,
+  operation: OperationDetails,
+  sourceFile: SourceFile
+) {
+  const operationParameters = filterOperationParameters(
+    clientDetails.parameters,
+    operation,
+    { includeOptional: true, includeGroupedParameters: true }
+  );
+  const hasGroupedParams = operationParameters.some(p => p.parameter.groupedBy);
+
+  if (hasGroupedParams) {
+    return;
+  }
+
+  const operationGroupName = normalizeName(
+    operationGroup.name,
+    NameType.Interface
+  );
+
+  const optionalParams = operationParameters.filter(
+    ({ required }) => !required
+  );
+
+  const operationName = normalizeName(operation.name, NameType.Interface);
+  writeOptionalParameters(
+    operationGroupName,
+    operationName,
+    optionalParams,
+    sourceFile,
+    { mediaTypes: operation.mediaTypes }
+  );
+}
 
 /**
  * This function takes an operation and gets its return type based on

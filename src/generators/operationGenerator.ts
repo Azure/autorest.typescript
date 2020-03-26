@@ -213,9 +213,9 @@ function getGroupedParameters(
   // any optional ones.
   // We extract these from the parameters collection to make sure we reuse them
   // when needed, instead of creating duplicate ones.
-  filterOperationParameters(parameters, operation, {
-    includeGroupedParameters: true,
-    includeOptional: true
+  const operationParameters = filterOperationParameters(parameters, operation, {
+    includeOptional: true,
+    includeGroupedParameters: true
   })
     .filter(({ parameter }) => parameter.groupedBy)
     // Get all the grouped properties and store them in parameterGroups
@@ -253,11 +253,14 @@ function getGroupedParameters(
 }
 
 /**
- * This function takes care of Typescript generator specific Optional parameters grouping
- * When the parameter grouping is not used in swagger, we by default group optional parameters
- * to provide a simpler interface.
- * When the parameter grouping extension is used, we should honor it instead of using this
- * grouping strategy since the extension would provide metadata about specifics such as expected parameter name
+ * This function takes care of Typescript generator specific Optional parameters grouping.
+ *
+ * In the Typescript generator we always group optional parameters to provide a simpler interface.
+ * This function is responsible for the default optional parameter grouping.
+ *
+ * However, when the parameter grouping extension is used, we should honor it instead of using our
+ * default grouping and honor the extension which provides additional metadata such as expected
+ * parameter name.
  */
 function getOptionsParameter(
   operation: OperationDetails,
@@ -352,14 +355,11 @@ type ParameterWithDescription = OptionalKind<
 >;
 
 /**
- * Gets a list of parameter declarations for each overload the operation supports,
- * and the list of parameter declarations for the base operation.
+ * Gets information about the parameters used by a given operation
  */
-function getOperationParameterSignatures(
+function getGroupedParametersInfo(
   operation: OperationDetails,
-  parameters: ParameterDetails[],
-  importedModels: Set<string>,
-  operationGroupClass: ClassDeclaration
+  parameters: ParameterDetails[]
 ) {
   const operationParametersWithOptionals = filterOperationParameters(
     parameters,
@@ -377,6 +377,23 @@ function getOperationParameterSignatures(
   const hasGroupedParams = operationParametersWithOptionals.some(
     p => p.parameter.groupedBy
   );
+
+  return { hasNonGroupedOptionalParams, hasGroupedParams };
+}
+/**
+ * Gets a list of parameter declarations for each overload the operation supports,
+ * and the list of parameter declarations for the base operation.
+ */
+function getOperationParameterSignatures(
+  operation: OperationDetails,
+  parameters: ParameterDetails[],
+  importedModels: Set<string>,
+  operationGroupClass: ClassDeclaration
+) {
+  const {
+    hasNonGroupedOptionalParams,
+    hasGroupedParams
+  } = getGroupedParametersInfo(operation, parameters);
 
   const operationParameters = filterOperationParameters(parameters, operation, {
     includeContentType: true,
@@ -426,28 +443,18 @@ function getOperationParameterSignatures(
       };
 
       // Make sure required parameters are added before optional
-      // TODO: Is there a better way to ensure this?
       return param.required ? [newParameter, ...acc] : [...acc, newParameter];
     }, []);
 
-    if (hasGroupedParams) {
-      const groupedParameters = getGroupedParameters(
-        operation,
-        parameters,
-        importedModels
-      );
-      parameterDeclarations.unshift(...groupedParameters);
+    trackParameterGroups(
+      operation,
+      parameters,
+      importedModels,
+      parameterDeclarations
+    );
 
-      parameterDeclarations.push({
-        name: "options",
-        type: "coreHttp.OperationOptions",
-        hasQuestionToken: true,
-        description: "The options parameters."
-      });
-    }
-
-    // Only use our custom optional grouping if the parameter grouping extension
-    // is not used in the swagger, if so, respect the regular grouping.
+    // Only use our optional parameter grouping if the parameter grouping extension
+    // is not used in the swagger, if so, honor the extension grouping.
     if (!hasGroupedParams) {
       // add optional parameter
       const optionalParameter = getOptionsParameter(
@@ -470,6 +477,30 @@ function getOperationParameterSignatures(
   );
 
   return { overloadParameterDeclarations, baseMethodParameters };
+}
+
+function trackParameterGroups(
+  operation: OperationDetails,
+  parameters: ParameterDetails[],
+  importedModels: Set<string>,
+  parameterDeclarations: ParameterWithDescription[]
+) {
+  const groupedParameters = getGroupedParameters(
+    operation,
+    parameters,
+    importedModels
+  );
+
+  if (groupedParameters.length) {
+    parameterDeclarations.unshift(...groupedParameters);
+
+    parameterDeclarations.push({
+      name: "options",
+      type: "coreHttp.OperationOptions",
+      hasQuestionToken: true,
+      description: "The options parameters."
+    });
+  }
 }
 
 /**

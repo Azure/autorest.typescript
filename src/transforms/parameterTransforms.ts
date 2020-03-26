@@ -191,8 +191,9 @@ export function populateOperationParameters(
     );
   }
 
-  // Don't track group parameters (yet?)
-  // TODO: REVISIT
+  // Ignore parameters with SchemaType.Group, since these are "virtual".
+  // These are handled separately in GroupTransforms and through
+  // parameter.groupedBy here in parameterTransforms
   if (parameter.schema.type === SchemaType.Group) {
     return;
   }
