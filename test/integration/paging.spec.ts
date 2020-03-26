@@ -52,9 +52,9 @@ describe("Integration tests for Paging", () => {
       do {
         let response: PagingGetMultiplePagesResponse;
         if (!nextLink) {
-          response = await client.paging.getMultiplePages();
+          response = await client.paging.getMultiplePages({});
         } else {
-          response = await client.paging.getMultiplePagesNext(nextLink);
+          response = await client.paging.getMultiplePagesNext({}, nextLink);
         }
         const values = response.values ?? [];
         results.push(...values);
@@ -75,10 +75,12 @@ describe("Integration tests for Paging", () => {
       do {
         let response: PagingGetMultiplePagesWithOffsetResponse;
         if (!nextLink) {
-          response = await client.paging.getMultiplePagesWithOffset(100);
+          response = await client.paging.getMultiplePagesWithOffset({
+            offset: 100
+          });
         } else {
           response = await client.paging.getMultiplePagesWithOffsetNext(
-            100,
+            { offset: 100 },
             nextLink
           );
         }

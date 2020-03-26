@@ -26,6 +26,7 @@ import { ObjectDetails } from "../models/modelDetails";
 import { Host } from "@azure-tools/autorest-extension-base";
 import { transformBaseUrl } from "./urlTransforms";
 import { normalizeModelWithExtensions } from "./extensions";
+import { transformGroups } from "./groupTransforms";
 
 export async function transformChoices(codeModel: CodeModel) {
   const choices = [
@@ -67,8 +68,16 @@ export async function transformCodeModel(
 
   const options = await transformOptions(host, operationGroups);
 
-  const [objects, mappers, unions, parameters, baseUrl] = await Promise.all([
+  const [
+    objects,
+    groups,
+    mappers,
+    unions,
+    parameters,
+    baseUrl
+  ] = await Promise.all([
     transformObjects(codeModel, uberParents),
+    transformGroups(codeModel),
     transformMappers(codeModel, options),
     transformChoices(codeModel),
     transformParameters(codeModel, options),
@@ -80,7 +89,7 @@ export async function transformCodeModel(
     className,
     description: codeModel.info.description,
     sourceFileName: normalizeName(className, NameType.File),
-    objects,
+    objects: [...objects, ...groups],
     mappers,
     unions,
     operationGroups,

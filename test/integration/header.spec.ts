@@ -30,8 +30,8 @@ describe("typescript", function() {
       });
 
       it("should send and receive integer type headers", async function() {
-        await testClient.header.paramInteger("positive", 1);
-        await testClient.header.paramInteger("negative", -2);
+        await testClient.header.paramInteger(1, "positive");
+        await testClient.header.paramInteger(-2, "negative");
 
         const response1 = await testClient.header.responseInteger("positive");
         response1.value!.should.be.deep.equal(1);
@@ -41,8 +41,8 @@ describe("typescript", function() {
       });
 
       it("should send and receive long type headers", async function() {
-        await testClient.header.paramLong("positive", 105);
-        await testClient.header.paramLong("negative", -2);
+        await testClient.header.paramLong(105, "positive");
+        await testClient.header.paramLong(-2, "negative");
 
         const response1 = await testClient.header.responseLong("positive");
         response1.value!.should.be.deep.equal(105);
@@ -52,8 +52,8 @@ describe("typescript", function() {
       });
 
       it("should send and receive float type headers", async function() {
-        await testClient.header.paramFloat("positive", 0.07);
-        await testClient.header.paramFloat("negative", -3.0);
+        await testClient.header.paramFloat(0.07, "positive");
+        await testClient.header.paramFloat(-3.0, "negative");
 
         const response1 = await testClient.header.responseFloat("positive");
         response1.value!.should.be.deep.equal(0.07);
@@ -63,8 +63,8 @@ describe("typescript", function() {
       });
 
       it("should send and receive double type headers", async function() {
-        await testClient.header.paramDouble("positive", 7e120);
-        await testClient.header.paramDouble("negative", -3.0);
+        await testClient.header.paramDouble(7e120, "positive");
+        await testClient.header.paramDouble(-3.0, "negative");
 
         const response1 = await testClient.header.responseDouble("positive");
         response1.value!.should.be.deep.equal(7e120);
@@ -74,8 +74,8 @@ describe("typescript", function() {
       });
 
       it("should send and receive boolean type headers", async function() {
-        await testClient.header.paramBool("true", true);
-        await testClient.header.paramBool("false", false);
+        await testClient.header.paramBool(true, "true");
+        await testClient.header.paramBool(false, "false");
 
         const response1 = await testClient.header.responseBool("true");
         response1.value!.should.be.deep.equal(true);
@@ -116,8 +116,8 @@ describe("typescript", function() {
       });
 
       it("should send and receive date type headers", async function() {
-        await testClient.header.paramDate("valid", new Date("2010-01-01"));
-        await testClient.header.paramDate("min", new Date("0001-01-01"));
+        await testClient.header.paramDate(new Date("2010-01-01"), "valid");
+        await testClient.header.paramDate(new Date("0001-01-01"), "min");
 
         const response1 = await testClient.header.responseDate("valid");
         isEqual(
@@ -133,12 +133,12 @@ describe("typescript", function() {
 
       it("should send and receive datetime type headers", async function() {
         await testClient.header.paramDatetime(
-          "valid",
-          new Date("2010-01-01T12:34:56Z")
+          new Date("2010-01-01T12:34:56Z"),
+          "valid"
         );
         await testClient.header.paramDatetime(
-          "min",
-          new Date("0001-01-01T00:00:00Z")
+          new Date("0001-01-01T00:00:00Z"),
+          "min"
         );
 
         const response1 = await testClient.header.responseDatetime("valid");
@@ -181,7 +181,7 @@ describe("typescript", function() {
 
       it("should send and receive duration type headers", async function() {
         const duration = "P123DT22H14M12.011S";
-        await testClient.header.paramDuration("valid", duration);
+        await testClient.header.paramDuration(duration, "valid");
 
         const response = await testClient.header.responseDuration("valid");
         isEqual(response.value!, "P123DT22H14M12.011S").should.be.deep.equal(
@@ -192,7 +192,7 @@ describe("typescript", function() {
       it("should send and receive byte array type headers", async function() {
         const value = "啊齄丂狛狜隣郎隣兀﨩";
         const bytes = Buffer.from(value, "utf8");
-        await testClient.header.paramByte("valid", bytes);
+        await testClient.header.paramByte(bytes, "valid");
 
         const response = await testClient.header.responseByte("valid");
 

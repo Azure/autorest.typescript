@@ -40,6 +40,80 @@ export interface OperationResult {
 }
 
 /**
+ * Parameter group
+ */
+export interface PagingGetMultiplePagesOptions {
+  /**
+   * Sets the maximum number of items to return in the response.
+   */
+  maxresults?: number;
+  /**
+   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
+   */
+  timeout?: number;
+}
+
+/**
+ * Parameter group
+ */
+export interface PagingGetOdataMultiplePagesOptions {
+  /**
+   * Sets the maximum number of items to return in the response.
+   */
+  maxresults?: number;
+  /**
+   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
+   */
+  timeout?: number;
+}
+
+/**
+ * Parameter group
+ */
+export interface PagingGetMultiplePagesWithOffsetOptions {
+  /**
+   * Sets the maximum number of items to return in the response.
+   */
+  maxresults?: number;
+  /**
+   * Offset of return value
+   */
+  offset: number;
+  /**
+   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
+   */
+  timeout?: number;
+}
+
+/**
+ * Parameter group
+ */
+export interface CustomParameterGroup {
+  /**
+   * Sets the api version to use.
+   */
+  apiVersion: string;
+  /**
+   * Sets the tenant to use.
+   */
+  tenant: string;
+}
+
+/**
+ * Parameter group
+ */
+export interface PagingGetMultiplePagesLroOptions {
+  /**
+   * Sets the maximum number of items to return in the response.
+   */
+  maxresults?: number;
+  /**
+   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
+   */
+  timeout?: number;
+}
+
+/**
  * Defines values for OperationResultStatus.
  */
 export type OperationResultStatus =
