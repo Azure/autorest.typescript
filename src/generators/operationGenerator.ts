@@ -443,7 +443,11 @@ function getOperationParameterSignatures(
       };
 
       // Make sure required parameters are added before optional
-      return param.required ? [newParameter, ...acc] : [...acc, newParameter];
+      const newParameterPosition = param.required
+        ? findLastRequiredParamIndex(acc) + 1
+        : acc.length;
+      acc.splice(newParameterPosition, 0, newParameter);
+      return acc;
     }, []);
 
     trackParameterGroups(
@@ -467,7 +471,7 @@ function getOperationParameterSignatures(
       );
       parameterDeclarations.push(optionalParameter);
     }
-
+    // sortParametersBy(parameterDeclarations, request.parameters);
     overloadParameterDeclarations.push(parameterDeclarations);
   }
 
@@ -477,6 +481,17 @@ function getOperationParameterSignatures(
   );
 
   return { overloadParameterDeclarations, baseMethodParameters };
+}
+
+function findLastRequiredParamIndex(
+  params: ParameterWithDescription[]
+): number {
+  for (let i = params.length; i--; ) {
+    if (!params[i].hasQuestionToken) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 function trackParameterGroups(
@@ -491,8 +506,12 @@ function trackParameterGroups(
     importedModels
   );
 
+  // Make sure required parameters are added before optional
+  const lastRequiredIndex =
+    findLastRequiredParamIndex(parameterDeclarations) + 1;
+
   if (groupedParameters.length) {
-    parameterDeclarations.unshift(...groupedParameters);
+    parameterDeclarations.splice(lastRequiredIndex, 0, ...groupedParameters);
 
     parameterDeclarations.push({
       name: "options",

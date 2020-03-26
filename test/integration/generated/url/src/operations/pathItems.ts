@@ -35,17 +35,17 @@ export class PathItems {
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery='globalStringQuery',
    * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
-   * @param localStringPath should contain value 'localStringPath'
    * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param options The options parameters.
    */
   getAllWithValues(
-    localStringPath: string,
     pathItemStringPath: string,
+    localStringPath: string,
     options?: PathItemsGetAllWithValuesOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { localStringPath, pathItemStringPath, options },
+      { pathItemStringPath, localStringPath, options },
       getAllWithValuesOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -54,17 +54,17 @@ export class PathItems {
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery=null,
    * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
-   * @param localStringPath should contain value 'localStringPath'
    * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param options The options parameters.
    */
   getGlobalQueryNull(
-    localStringPath: string,
     pathItemStringPath: string,
+    localStringPath: string,
     options?: PathItemsGetGlobalQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { localStringPath, pathItemStringPath, options },
+      { pathItemStringPath, localStringPath, options },
       getGlobalQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -73,17 +73,17 @@ export class PathItems {
    * send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery=null,
    * pathItemStringQuery='pathItemStringQuery', localStringQuery=null
-   * @param localStringPath should contain value 'localStringPath'
    * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param options The options parameters.
    */
   getGlobalAndLocalQueryNull(
-    localStringPath: string,
     pathItemStringPath: string,
+    localStringPath: string,
     options?: PathItemsGetGlobalAndLocalQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { localStringPath, pathItemStringPath, options },
+      { pathItemStringPath, localStringPath, options },
       getGlobalAndLocalQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -92,17 +92,17 @@ export class PathItems {
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null,
    * localStringQuery=null
-   * @param localStringPath should contain value 'localStringPath'
    * @param pathItemStringPath A string value 'pathItemStringPath' that appears in the path
+   * @param localStringPath should contain value 'localStringPath'
    * @param options The options parameters.
    */
   getLocalPathItemQueryNull(
-    localStringPath: string,
     pathItemStringPath: string,
+    localStringPath: string,
     options?: PathItemsGetLocalPathItemQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { localStringPath, pathItemStringPath, options },
+      { pathItemStringPath, localStringPath, options },
       getLocalPathItemQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

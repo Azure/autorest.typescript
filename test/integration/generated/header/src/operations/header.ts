@@ -103,17 +103,17 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative",
    * "value": -2
-   * @param value Send a post request with header values 1 or -2
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param value Send a post request with header values 1 or -2
    * @param options The options parameters.
    */
   paramInteger(
-    value: number,
     scenario: string,
+    value: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { value, scenario, options },
+      { scenario, value, options },
       paramIntegerOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -136,17 +136,17 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
    * "negative", "value": -2
-   * @param value Send a post request with header values 105 or -2
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param value Send a post request with header values 105 or -2
    * @param options The options parameters.
    */
   paramLong(
-    value: number,
     scenario: string,
+    value: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { value, scenario, options },
+      { scenario, value, options },
       paramLongOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -169,17 +169,17 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
    * "negative", "value": -3.0
-   * @param value Send a post request with header values 0.07 or -3.0
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param value Send a post request with header values 0.07 or -3.0
    * @param options The options parameters.
    */
   paramFloat(
-    value: number,
     scenario: string,
+    value: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { value, scenario, options },
+      { scenario, value, options },
       paramFloatOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -202,17 +202,17 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
    * "negative", "value": -3.0
-   * @param value Send a post request with header values 7e120 or -3.0
    * @param scenario Send a post request with header values "scenario": "positive" or "negative"
+   * @param value Send a post request with header values 7e120 or -3.0
    * @param options The options parameters.
    */
   paramDouble(
-    value: number,
     scenario: string,
+    value: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { value, scenario, options },
+      { scenario, value, options },
       paramDoubleOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -235,17 +235,17 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "true", "value": true or "scenario": "false",
    * "value": false
-   * @param value Send a post request with header values true or false
    * @param scenario Send a post request with header values "scenario": "true" or "false"
+   * @param value Send a post request with header values true or false
    * @param options The options parameters.
    */
   paramBool(
-    value: boolean,
     scenario: string,
+    value: boolean,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { value, scenario, options },
+      { scenario, value, options },
       paramBoolOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -299,17 +299,17 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario":
    * "min", "value": "0001-01-01"
-   * @param value Send a post request with header values "2010-01-01" or "0001-01-01"
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
+   * @param value Send a post request with header values "2010-01-01" or "0001-01-01"
    * @param options The options parameters.
    */
   paramDate(
-    value: Date,
     scenario: string,
+    value: Date,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { value, scenario, options },
+      { scenario, value, options },
       paramDateOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -332,17 +332,17 @@ export class Header {
   /**
    * Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
    * "scenario": "min", "value": "0001-01-01T00:00:00Z"
-   * @param value Send a post request with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
    * @param scenario Send a post request with header values "scenario": "valid" or "min"
+   * @param value Send a post request with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
    * @param options The options parameters.
    */
   paramDatetime(
-    value: Date,
     scenario: string,
+    value: Date,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { value, scenario, options },
+      { scenario, value, options },
       paramDatetimeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -395,17 +395,17 @@ export class Header {
 
   /**
    * Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S"
-   * @param value Send a post request with header values "P123DT22H14M12.011S"
    * @param scenario Send a post request with header values "scenario": "valid"
+   * @param value Send a post request with header values "P123DT22H14M12.011S"
    * @param options The options parameters.
    */
   paramDuration(
-    value: string,
     scenario: string,
+    value: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { value, scenario, options },
+      { scenario, value, options },
       paramDurationOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -427,17 +427,17 @@ export class Header {
 
   /**
    * Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩"
-   * @param value Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
    * @param scenario Send a post request with header values "scenario": "valid"
+   * @param value Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
    * @param options The options parameters.
    */
   paramByte(
-    value: Uint8Array,
     scenario: string,
+    value: Uint8Array,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { value, scenario, options },
+      { scenario, value, options },
       paramByteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
