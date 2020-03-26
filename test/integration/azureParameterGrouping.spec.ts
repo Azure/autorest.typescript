@@ -2,7 +2,7 @@ import { AzureParameterGroupingClient } from "./generated/azureParameterGrouping
 import { assert } from "chai";
 import { ParameterGroupingPostOptionalParameters } from "./generated/azureParameterGrouping/src/models";
 
-describe.skip("AzureParameterGrouping", () => {
+describe("AzureParameterGrouping", () => {
   let client: AzureParameterGroupingClient;
   const body = 1234;
   const query = 21;
