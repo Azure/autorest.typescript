@@ -12,9 +12,9 @@ import * as Parameters from "../models/parameters";
 import { AzureParameterGroupingClient } from "../azureParameterGroupingClient";
 import {
   ParameterGroupingPostRequiredParameters,
-  ParameterGroupingPostOptionalParameters,
-  FirstParameterGroup,
-  ParameterGroupingPostMultiParamGroupsSecondParamGroup
+  ParameterGroupingPostOptionalOptionalParams,
+  ParameterGroupingPostMultiParamGroupsOptionalParams,
+  ParameterGroupingPostSharedParameterGroupObjectOptionalParams
 } from "../models";
 
 /**
@@ -48,51 +48,39 @@ export class ParameterGrouping {
 
   /**
    * Post a bunch of optional parameters grouped
-   * @param parameterGroupingPostOptionalParameters Parameter group
    * @param options The options parameters.
    */
   postOptional(
-    parameterGroupingPostOptionalParameters?: ParameterGroupingPostOptionalParameters,
-    options?: coreHttp.OperationOptions
+    options?: ParameterGroupingPostOptionalOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { parameterGroupingPostOptionalParameters, options },
+      { options },
       postOptionalOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Post parameters from multiple different parameter groups
-   * @param firstParameterGroup Parameter group
-   * @param parameterGroupingPostMultiParamGroupsSecondParamGroup Parameter group
    * @param options The options parameters.
    */
   postMultiParamGroups(
-    firstParameterGroup?: FirstParameterGroup,
-    parameterGroupingPostMultiParamGroupsSecondParamGroup?: ParameterGroupingPostMultiParamGroupsSecondParamGroup,
-    options?: coreHttp.OperationOptions
+    options?: ParameterGroupingPostMultiParamGroupsOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      {
-        firstParameterGroup,
-        parameterGroupingPostMultiParamGroupsSecondParamGroup,
-        options
-      },
+      { options },
       postMultiParamGroupsOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Post parameters with a shared parameter group object
-   * @param firstParameterGroup Parameter group
    * @param options The options parameters.
    */
   postSharedParameterGroupObject(
-    firstParameterGroup?: FirstParameterGroup,
-    options?: coreHttp.OperationOptions
+    options?: ParameterGroupingPostSharedParameterGroupObjectOptionalParams
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
-      { firstParameterGroup, options },
+      { options },
       postSharedParameterGroupObjectOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

@@ -12,7 +12,7 @@ import {
   OptionalKind,
   WriterFunctionOrValue
 } from "ts-morph";
-import { keys } from "lodash";
+import { keys, pull } from "lodash";
 import {
   ObjectKind,
   PolymorphicObjectDetails,
@@ -28,9 +28,10 @@ import {
   OperationGroupDetails
 } from "../models/operationDetails";
 import { ParameterDetails } from "../models/parameterDetails";
-import { ImplementationLocation } from "@azure-tools/codemodel";
+import { ImplementationLocation, Parameter } from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { getStringForValue } from "../utils/valueHelpers";
+import { getLanguageMetadata } from "../utils/languageHelpers";
 
 export function generateModels(clientDetails: ClientDetails, project: Project) {
   const modelsIndexFile = project.createSourceFile(
@@ -107,11 +108,6 @@ function writeOptionsParameterIfNeeded(
     operation,
     { includeOptional: true, includeGroupedParameters: true }
   );
-  const hasGroupedParams = operationParameters.some(p => p.parameter.groupedBy);
-
-  if (hasGroupedParams) {
-    return;
-  }
 
   const operationGroupName = normalizeName(
     operationGroup.name,
@@ -402,6 +398,39 @@ interface WriteOptionalParametersOptions {
   mediaTypes?: Set<KnownMediaType>;
 }
 
+function getOptionalGroups(
+  optionalParams: ParameterDetails[]
+): PropertySignatureStructure[] {
+  let optionalGroups: Parameter[] = [];
+
+  optionalParams
+    .filter(({ parameter: { groupedBy } }) => groupedBy && !groupedBy.required)
+    .forEach(p => {
+      const { parameter } = p;
+      const groupName = getLanguageMetadata(parameter.groupedBy!.language).name;
+      const isAlreadyTracked = optionalGroups.some(p => {
+        const { name } = getLanguageMetadata(p.language);
+        return name === groupName;
+      });
+
+      if (parameter.groupedBy && !isAlreadyTracked) {
+        optionalGroups.push(parameter.groupedBy);
+      }
+      pull(optionalParams, p);
+    });
+
+  return optionalGroups.map(group => {
+    const { name, description } = getLanguageMetadata(group.language);
+    return {
+      name: name,
+      hasQuestionToken: !group.required,
+      type: normalizeName(name, NameType.Interface),
+      docs: [description],
+      kind: StructureKind.PropertySignature
+    };
+  });
+}
+
 function writeOptionalParameters(
   operationGroupName: string,
   operationName: string,
@@ -412,6 +441,8 @@ function writeOptionalParameters(
   if (!optionalParams || !optionalParams.length) {
     return;
   }
+
+  const optionalGroupDeclarations = getOptionalGroups(optionalParams);
 
   const mediaTypesCount = mediaTypes?.size ?? 0;
   if (mediaTypesCount > 1) {
@@ -425,15 +456,18 @@ function writeOptionalParameters(
         docs: ["Optional parameters."],
         isExported: true,
         extends: [baseClass || "coreHttp.OperationOptions"],
-        properties: optionalParams
-          .filter(p => p.targetMediaType === mediaType)
-          .map<PropertySignatureStructure>(p => ({
-            name: p.name,
-            hasQuestionToken: true,
-            type: p.typeDetails.typeName,
-            docs: p.description ? [p.description] : undefined,
-            kind: StructureKind.PropertySignature
-          }))
+        properties: [
+          ...optionalGroupDeclarations,
+          ...optionalParams
+            .filter(p => p.targetMediaType === mediaType)
+            .map<PropertySignatureStructure>(p => ({
+              name: p.name,
+              hasQuestionToken: true,
+              type: p.typeDetails.typeName,
+              docs: p.description ? [p.description] : undefined,
+              kind: StructureKind.PropertySignature
+            }))
+        ]
       });
     }
   } else {
@@ -442,13 +476,16 @@ function writeOptionalParameters(
       docs: ["Optional parameters."],
       isExported: true,
       extends: [baseClass || "coreHttp.OperationOptions"],
-      properties: optionalParams.map<PropertySignatureStructure>(p => ({
-        name: p.name,
-        hasQuestionToken: true,
-        type: p.typeDetails.typeName,
-        docs: p.description ? [p.description] : undefined,
-        kind: StructureKind.PropertySignature
-      }))
+      properties: [
+        ...optionalGroupDeclarations,
+        ...optionalParams.map<PropertySignatureStructure>(p => ({
+          name: p.name,
+          hasQuestionToken: true,
+          type: p.typeDetails.typeName,
+          docs: p.description ? [p.description] : undefined,
+          kind: StructureKind.PropertySignature
+        }))
+      ]
     });
   }
 }

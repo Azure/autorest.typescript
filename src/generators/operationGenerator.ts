@@ -214,13 +214,12 @@ function getGroupedParameters(
   // We extract these from the parameters collection to make sure we reuse them
   // when needed, instead of creating duplicate ones.
   filterOperationParameters(parameters, operation, {
-    includeOptional: true,
     includeGroupedParameters: true
   })
     .filter(({ parameter }) => parameter.groupedBy)
-    // Get all the grouped properties and store them in parameterGroups
+    // Get optional grouped properties and store them in parameterGroups
     .forEach(({ parameter: { groupedBy } }) => {
-      if (!groupedBy) {
+      if (!groupedBy || !groupedBy.required) {
         return;
       }
 
@@ -237,31 +236,29 @@ function getGroupedParameters(
       parameterGroups.push(groupedBy);
     });
 
-  return parameterGroups.map(({ language, required }) => {
-    const { name, description } = getLanguageMetadata(language);
-    const type = normalizeName(name, NameType.Interface);
+  return parameterGroups
+    .filter(({ required }) => required)
+    .map(({ language }) => {
+      const { name, description } = getLanguageMetadata(language);
+      const type = normalizeName(name, NameType.Interface);
 
-    // Add the model for import
-    importedModels.add(type);
+      // Add the model for import
+      importedModels.add(type);
 
-    return {
-      name,
-      type,
-      description,
-      hasQuestionToken: !required
-    };
-  });
+      return {
+        name,
+        type,
+        description
+      };
+    });
 }
 
 /**
  * This function takes care of Typescript generator specific Optional parameters grouping.
  *
  * In the Typescript generator we always group optional parameters to provide a simpler interface.
- * This function is responsible for the default optional parameter grouping.
- *
- * However, when the parameter grouping extension is used, we should honor it instead of using our
- * default grouping and honor the extension which provides additional metadata such as expected
- * parameter name.
+ * This function is responsible for the default optional parameter grouping, which groups into an
+ * options bag any optional parameter, including optional grouped parameters.
  */
 function getOptionsParameter(
   operation: OperationDetails,
@@ -273,11 +270,19 @@ function getOptionsParameter(
   }: { isOptional?: boolean; mediaType?: string } = {}
 ): ParameterWithDescription {
   let type: string = "coreHttp.OperationOptions";
-  if (
-    filterOperationParameters(parameters, operation, {
-      includeOptional: true
-    }).some(p => !p.required)
-  ) {
+  const operationParameters = filterOperationParameters(parameters, operation, {
+    includeOptional: true,
+    includeGroupedParameters: true
+  });
+
+  const hasOptionalParameters = operationParameters.some(
+    ({ required, parameter: { groupedBy } }) => !groupedBy && !required
+  );
+  const hasOptionalGroups = operationParameters.some(
+    ({ parameter: { groupedBy } }) => groupedBy && !groupedBy.required
+  );
+
+  if (hasOptionalParameters || hasOptionalGroups) {
     const mediaPrefix = mediaType ? `$${mediaType}` : "";
     type = `${operation.typeDetails.typeName}${mediaPrefix}OptionalParams`;
     importedModels.add(type);
@@ -356,32 +361,6 @@ type ParameterWithDescription = OptionalKind<
 >;
 
 /**
- * Gets information about the parameters used by a given operation
- */
-function getGroupedParametersInfo(
-  operation: OperationDetails,
-  parameters: ParameterDetails[]
-) {
-  const operationParametersWithOptionals = filterOperationParameters(
-    parameters,
-    operation,
-    {
-      includeOptional: true,
-      includeGroupedParameters: true
-    }
-  );
-
-  const hasNonGroupedOptionalParams = operationParametersWithOptionals.some(
-    p => !p.required && !p.parameter.groupedBy
-  );
-
-  const hasGroupedParams = operationParametersWithOptionals.some(
-    p => p.parameter.groupedBy
-  );
-
-  return { hasNonGroupedOptionalParams, hasGroupedParams };
-}
-/**
  * Gets a list of parameter declarations for each overload the operation supports,
  * and the list of parameter declarations for the base operation.
  */
@@ -391,14 +370,8 @@ function getOperationParameterSignatures(
   importedModels: Set<string>,
   operationGroupClass: ClassDeclaration
 ) {
-  const {
-    hasNonGroupedOptionalParams,
-    hasGroupedParams
-  } = getGroupedParametersInfo(operation, parameters);
-
   const operationParameters = filterOperationParameters(parameters, operation, {
-    includeContentType: true,
-    includeOptional: hasNonGroupedOptionalParams && hasGroupedParams
+    includeContentType: true
   });
 
   const operationRequests = operation.requests;
@@ -458,21 +431,17 @@ function getOperationParameterSignatures(
       parameterDeclarations
     );
 
-    // Only use our optional parameter grouping if the parameter grouping extension
-    // is not used in the swagger, if so, honor the extension grouping.
-    if (!hasGroupedParams) {
-      // add optional parameter
-      const optionalParameter = getOptionsParameter(
-        operation,
-        parameters,
-        importedModels,
-        {
-          mediaType: hasMultipleOverloads ? requestMediaType : undefined
-        }
-      );
-      parameterDeclarations.push(optionalParameter);
-    }
-    // sortParametersBy(parameterDeclarations, request.parameters);
+    // add optional parameter
+    const optionalParameter = getOptionsParameter(
+      operation,
+      parameters,
+      importedModels,
+      {
+        mediaType: hasMultipleOverloads ? requestMediaType : undefined
+      }
+    );
+    parameterDeclarations.push(optionalParameter);
+
     overloadParameterDeclarations.push(parameterDeclarations);
   }
 
@@ -505,7 +474,7 @@ function trackParameterGroups(
     operation,
     parameters,
     importedModels
-  );
+  ).filter(gp => !gp.hasQuestionToken);
 
   // Make sure required parameters are added before optional
   const lastRequiredIndex =
@@ -513,13 +482,6 @@ function trackParameterGroups(
 
   if (groupedParameters.length) {
     parameterDeclarations.splice(lastRequiredIndex, 0, ...groupedParameters);
-
-    parameterDeclarations.push({
-      name: "options",
-      type: "coreHttp.OperationOptions",
-      hasQuestionToken: true,
-      description: "The options parameters."
-    });
   }
 }
 

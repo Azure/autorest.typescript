@@ -65,6 +65,55 @@ export interface ParameterGroupingPostMultiParamGroupsSecondParamGroup {
 /**
  * Optional parameters.
  */
+export interface ParameterGroupingPostRequiredOptionalParams
+  extends coreHttp.OperationOptions {
+  customHeader?: string;
+  /**
+   * Query parameter with default
+   */
+  query?: number;
+}
+
+/**
+ * Optional parameters.
+ */
+export interface ParameterGroupingPostOptionalOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Parameter group
+   */
+  parameterGroupingPostOptionalParameters?: ParameterGroupingPostOptionalParameters;
+}
+
+/**
+ * Optional parameters.
+ */
+export interface ParameterGroupingPostMultiParamGroupsOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Parameter group
+   */
+  firstParameterGroup?: FirstParameterGroup;
+  /**
+   * Parameter group
+   */
+  parameterGroupingPostMultiParamGroupsSecondParamGroup?: ParameterGroupingPostMultiParamGroupsSecondParamGroup;
+}
+
+/**
+ * Optional parameters.
+ */
+export interface ParameterGroupingPostSharedParameterGroupObjectOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Parameter group
+   */
+  firstParameterGroup?: FirstParameterGroup;
+}
+
+/**
+ * Optional parameters.
+ */
 export interface AzureParameterGroupingClientOptionalParams
   extends coreHttp.ServiceClientOptions {
   /**

@@ -190,6 +190,18 @@ export type PagingGetSinglePagesResponse = ProductResult & {
 };
 
 /**
+ * Optional parameters.
+ */
+export interface PagingGetMultiplePagesOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Parameter group
+   */
+  pagingGetMultiplePagesOptions?: PagingGetMultiplePagesOptions;
+  clientRequestId?: string;
+}
+
+/**
  * Contains response data for the getMultiplePages operation.
  */
 export type PagingGetMultiplePagesResponse = ProductResult & {
@@ -210,6 +222,18 @@ export type PagingGetMultiplePagesResponse = ProductResult & {
 };
 
 /**
+ * Optional parameters.
+ */
+export interface PagingGetOdataMultiplePagesOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Parameter group
+   */
+  pagingGetOdataMultiplePagesOptions?: PagingGetOdataMultiplePagesOptions;
+  clientRequestId?: string;
+}
+
+/**
  * Contains response data for the getOdataMultiplePages operation.
  */
 export type PagingGetOdataMultiplePagesResponse = OdataProductResult & {
@@ -228,6 +252,22 @@ export type PagingGetOdataMultiplePagesResponse = OdataProductResult & {
     parsedBody: OdataProductResult;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface PagingGetMultiplePagesWithOffsetOptionalParams
+  extends coreHttp.OperationOptions {
+  clientRequestId?: string;
+  /**
+   * Sets the maximum number of items to return in the response.
+   */
+  maxresults?: number;
+  /**
+   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
+   */
+  timeout?: number;
+}
 
 /**
  * Contains response data for the getMultiplePagesWithOffset operation.
@@ -390,6 +430,18 @@ export type PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse = OdataPr
 };
 
 /**
+ * Optional parameters.
+ */
+export interface PagingGetMultiplePagesLROOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Parameter group
+   */
+  pagingGetMultiplePagesLroOptions?: PagingGetMultiplePagesLroOptions;
+  clientRequestId?: string;
+}
+
+/**
  * Contains response data for the getMultiplePagesLRO operation.
  */
 export type PagingGetMultiplePagesLROResponse = ProductResult & {
@@ -490,6 +542,18 @@ export type PagingGetSinglePagesNextResponse = ProductResult & {
 };
 
 /**
+ * Optional parameters.
+ */
+export interface PagingGetMultiplePagesNextOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Parameter group
+   */
+  pagingGetMultiplePagesOptions?: PagingGetMultiplePagesOptions;
+  clientRequestId?: string;
+}
+
+/**
  * Contains response data for the getMultiplePagesNext operation.
  */
 export type PagingGetMultiplePagesNextResponse = ProductResult & {
@@ -510,6 +574,18 @@ export type PagingGetMultiplePagesNextResponse = ProductResult & {
 };
 
 /**
+ * Optional parameters.
+ */
+export interface PagingGetOdataMultiplePagesNextOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Parameter group
+   */
+  pagingGetOdataMultiplePagesOptions?: PagingGetOdataMultiplePagesOptions;
+  clientRequestId?: string;
+}
+
+/**
  * Contains response data for the getOdataMultiplePagesNext operation.
  */
 export type PagingGetOdataMultiplePagesNextResponse = OdataProductResult & {
@@ -528,6 +604,22 @@ export type PagingGetOdataMultiplePagesNextResponse = OdataProductResult & {
     parsedBody: OdataProductResult;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface PagingGetMultiplePagesWithOffsetNextOptionalParams
+  extends coreHttp.OperationOptions {
+  clientRequestId?: string;
+  /**
+   * Sets the maximum number of items to return in the response.
+   */
+  maxresults?: number;
+  /**
+   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
+   */
+  timeout?: number;
+}
 
 /**
  * Contains response data for the getMultiplePagesWithOffsetNext operation.
@@ -648,6 +740,18 @@ export type PagingGetMultiplePagesFailureUriNextResponse = ProductResult & {
     parsedBody: ProductResult;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface PagingGetMultiplePagesLRONextOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Parameter group
+   */
+  pagingGetMultiplePagesLroOptions?: PagingGetMultiplePagesLroOptions;
+  clientRequestId?: string;
+}
 
 /**
  * Contains response data for the getMultiplePagesLRONext operation.

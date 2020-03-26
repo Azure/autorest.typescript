@@ -1,6 +1,5 @@
 import { AzureParameterGroupingClient } from "./generated/azureParameterGrouping/src/azureParameterGroupingClient";
 import { assert } from "chai";
-import { ParameterGroupingPostOptionalParameters } from "./generated/azureParameterGrouping/src/models";
 
 describe("AzureParameterGrouping", () => {
   let client: AzureParameterGroupingClient;
@@ -14,16 +13,18 @@ describe("AzureParameterGrouping", () => {
   });
 
   it("should post optional", async () => {
-    const options: ParameterGroupingPostOptionalParameters = {
-      query: query,
-      customHeader: header
+    const options = {
+      parameterGroupingPostOptionalParameters: {
+        query: query,
+        customHeader: header
+      }
     };
     const result = await client.parameterGrouping.postOptional(options);
     assert.equal(result._response.status, 200);
   });
 
   it("should accept empty optional parameters", async () => {
-    const result = await client.parameterGrouping.postOptional({});
+    const result = await client.parameterGrouping.postOptional();
     assert.equal(result._response.status, 200);
   });
 
@@ -47,34 +48,36 @@ describe("AzureParameterGrouping", () => {
 
   it("should allow multiple parameter groups", async () => {
     const firstParameterGroup = { headerOne: header, queryOne: query };
-    const secondParameterGroup = {
+    const parameterGroupingPostMultiParamGroupsSecondParamGroup = {
       headerTwo: "header2",
       queryTwo: 42
     };
 
-    const result = await client.parameterGrouping.postMultiParamGroups(
+    const result = await client.parameterGrouping.postMultiParamGroups({
       firstParameterGroup,
-      secondParameterGroup
-    );
+      parameterGroupingPostMultiParamGroupsSecondParamGroup
+    });
 
     assert.equal(result._response.status, 200);
   });
 
   it("should allow multiple parameter groups with some defaults omitted", async () => {
     const firstParameterGroup = { headerOne: header };
-    const secondParameterGroup = { queryTwo: 42 };
+    const parameterGroupingPostMultiParamGroupsSecondParamGroup = {
+      queryTwo: 42
+    };
 
-    const result = await client.parameterGrouping.postMultiParamGroups(
+    const result = await client.parameterGrouping.postMultiParamGroups({
       firstParameterGroup,
-      secondParameterGroup
-    );
+      parameterGroupingPostMultiParamGroupsSecondParamGroup
+    });
 
     assert.equal(result._response.status, 200);
   });
 
   it("should allow parameter group objects to be shared between operations", async function() {
     const result = await client.parameterGrouping.postSharedParameterGroupObject(
-      { headerOne: header, queryOne: 42 }
+      { firstParameterGroup: { headerOne: header, queryOne: 42 } }
     );
     assert.equal(result._response.status, 200);
   });
