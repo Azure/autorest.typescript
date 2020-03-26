@@ -213,7 +213,7 @@ function getGroupedParameters(
   // any optional ones.
   // We extract these from the parameters collection to make sure we reuse them
   // when needed, instead of creating duplicate ones.
-  const operationParameters = filterOperationParameters(parameters, operation, {
+  filterOperationParameters(parameters, operation, {
     includeOptional: true,
     includeGroupedParameters: true
   })
@@ -237,8 +237,8 @@ function getGroupedParameters(
       parameterGroups.push(groupedBy);
     });
 
-  return parameterGroups.map(parameterGroup => {
-    const { name, description } = getLanguageMetadata(parameterGroup.language);
+  return parameterGroups.map(({ language, required }) => {
+    const { name, description } = getLanguageMetadata(language);
     const type = normalizeName(name, NameType.Interface);
 
     // Add the model for import
@@ -247,7 +247,8 @@ function getGroupedParameters(
     return {
       name,
       type,
-      description
+      description,
+      hasQuestionToken: !required
     };
   });
 }

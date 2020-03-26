@@ -105,7 +105,7 @@ export class Paging {
    * @param options The options parameters.
    */
   getMultiplePages(
-    pagingGetMultiplePagesOptions: PagingGetMultiplePagesOptions,
+    pagingGetMultiplePagesOptions?: PagingGetMultiplePagesOptions,
     clientRequestId?: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesResponse> {
@@ -122,7 +122,7 @@ export class Paging {
    * @param options The options parameters.
    */
   getOdataMultiplePages(
-    pagingGetOdataMultiplePagesOptions: PagingGetOdataMultiplePagesOptions,
+    pagingGetOdataMultiplePagesOptions?: PagingGetOdataMultiplePagesOptions,
     clientRequestId?: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetOdataMultiplePagesResponse> {
@@ -255,7 +255,7 @@ export class Paging {
    * @param options The options parameters.
    */
   getMultiplePagesLRO(
-    pagingGetMultiplePagesLroOptions: PagingGetMultiplePagesLroOptions,
+    pagingGetMultiplePagesLroOptions?: PagingGetMultiplePagesLroOptions,
     clientRequestId?: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesLROResponse> {
@@ -340,7 +340,7 @@ export class Paging {
    */
   getMultiplePagesNext(
     nextLink: string,
-    pagingGetMultiplePagesOptions: PagingGetMultiplePagesOptions,
+    pagingGetMultiplePagesOptions?: PagingGetMultiplePagesOptions,
     clientRequestId?: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesNextResponse> {
@@ -359,7 +359,7 @@ export class Paging {
    */
   getOdataMultiplePagesNext(
     nextLink: string,
-    pagingGetOdataMultiplePagesOptions: PagingGetOdataMultiplePagesOptions,
+    pagingGetOdataMultiplePagesOptions?: PagingGetOdataMultiplePagesOptions,
     clientRequestId?: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetOdataMultiplePagesNextResponse> {
@@ -487,7 +487,7 @@ export class Paging {
    */
   getMultiplePagesLRONext(
     nextLink: string,
-    pagingGetMultiplePagesLroOptions: PagingGetMultiplePagesLroOptions,
+    pagingGetMultiplePagesLroOptions?: PagingGetMultiplePagesLroOptions,
     clientRequestId?: string,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesLRONextResponse> {

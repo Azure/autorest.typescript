@@ -52,7 +52,7 @@ export class ParameterGrouping {
    * @param options The options parameters.
    */
   postOptional(
-    parameterGroupingPostOptionalParameters: ParameterGroupingPostOptionalParameters,
+    parameterGroupingPostOptionalParameters?: ParameterGroupingPostOptionalParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -68,8 +68,8 @@ export class ParameterGrouping {
    * @param options The options parameters.
    */
   postMultiParamGroups(
-    firstParameterGroup: FirstParameterGroup,
-    parameterGroupingPostMultiParamGroupsSecondParamGroup: ParameterGroupingPostMultiParamGroupsSecondParamGroup,
+    firstParameterGroup?: FirstParameterGroup,
+    parameterGroupingPostMultiParamGroupsSecondParamGroup?: ParameterGroupingPostMultiParamGroupsSecondParamGroup,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
@@ -88,7 +88,7 @@ export class ParameterGrouping {
    * @param options The options parameters.
    */
   postSharedParameterGroupObject(
-    firstParameterGroup: FirstParameterGroup,
+    firstParameterGroup?: FirstParameterGroup,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
