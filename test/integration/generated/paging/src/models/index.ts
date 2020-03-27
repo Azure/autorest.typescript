@@ -40,6 +40,80 @@ export interface OperationResult {
 }
 
 /**
+ * Parameter group
+ */
+export interface PagingGetMultiplePagesOptions {
+  /**
+   * Sets the maximum number of items to return in the response.
+   */
+  maxresults?: number;
+  /**
+   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
+   */
+  timeout?: number;
+}
+
+/**
+ * Parameter group
+ */
+export interface PagingGetOdataMultiplePagesOptions {
+  /**
+   * Sets the maximum number of items to return in the response.
+   */
+  maxresults?: number;
+  /**
+   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
+   */
+  timeout?: number;
+}
+
+/**
+ * Parameter group
+ */
+export interface PagingGetMultiplePagesWithOffsetOptions {
+  /**
+   * Sets the maximum number of items to return in the response.
+   */
+  maxresults?: number;
+  /**
+   * Offset of return value
+   */
+  offset: number;
+  /**
+   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
+   */
+  timeout?: number;
+}
+
+/**
+ * Parameter group
+ */
+export interface CustomParameterGroup {
+  /**
+   * Sets the api version to use.
+   */
+  apiVersion: string;
+  /**
+   * Sets the tenant to use.
+   */
+  tenant: string;
+}
+
+/**
+ * Parameter group
+ */
+export interface PagingGetMultiplePagesLroOptions {
+  /**
+   * Sets the maximum number of items to return in the response.
+   */
+  maxresults?: number;
+  /**
+   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
+   */
+  timeout?: number;
+}
+
+/**
  * Defines values for OperationResultStatus.
  */
 export type OperationResultStatus =
@@ -120,15 +194,11 @@ export type PagingGetSinglePagesResponse = ProductResult & {
  */
 export interface PagingGetMultiplePagesOptionalParams
   extends coreHttp.OperationOptions {
+  /**
+   * Parameter group
+   */
+  pagingGetMultiplePagesOptions?: PagingGetMultiplePagesOptions;
   clientRequestId?: string;
-  /**
-   * Sets the maximum number of items to return in the response.
-   */
-  maxresults?: number;
-  /**
-   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
-   */
-  timeout?: number;
 }
 
 /**
@@ -156,15 +226,11 @@ export type PagingGetMultiplePagesResponse = ProductResult & {
  */
 export interface PagingGetOdataMultiplePagesOptionalParams
   extends coreHttp.OperationOptions {
+  /**
+   * Parameter group
+   */
+  pagingGetOdataMultiplePagesOptions?: PagingGetOdataMultiplePagesOptions;
   clientRequestId?: string;
-  /**
-   * Sets the maximum number of items to return in the response.
-   */
-  maxresults?: number;
-  /**
-   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
-   */
-  timeout?: number;
 }
 
 /**
@@ -368,15 +434,11 @@ export type PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse = OdataPr
  */
 export interface PagingGetMultiplePagesLROOptionalParams
   extends coreHttp.OperationOptions {
+  /**
+   * Parameter group
+   */
+  pagingGetMultiplePagesLroOptions?: PagingGetMultiplePagesLroOptions;
   clientRequestId?: string;
-  /**
-   * Sets the maximum number of items to return in the response.
-   */
-  maxresults?: number;
-  /**
-   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
-   */
-  timeout?: number;
 }
 
 /**
@@ -484,15 +546,11 @@ export type PagingGetSinglePagesNextResponse = ProductResult & {
  */
 export interface PagingGetMultiplePagesNextOptionalParams
   extends coreHttp.OperationOptions {
+  /**
+   * Parameter group
+   */
+  pagingGetMultiplePagesOptions?: PagingGetMultiplePagesOptions;
   clientRequestId?: string;
-  /**
-   * Sets the maximum number of items to return in the response.
-   */
-  maxresults?: number;
-  /**
-   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
-   */
-  timeout?: number;
 }
 
 /**
@@ -520,15 +578,11 @@ export type PagingGetMultiplePagesNextResponse = ProductResult & {
  */
 export interface PagingGetOdataMultiplePagesNextOptionalParams
   extends coreHttp.OperationOptions {
+  /**
+   * Parameter group
+   */
+  pagingGetOdataMultiplePagesOptions?: PagingGetOdataMultiplePagesOptions;
   clientRequestId?: string;
-  /**
-   * Sets the maximum number of items to return in the response.
-   */
-  maxresults?: number;
-  /**
-   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
-   */
-  timeout?: number;
 }
 
 /**
@@ -692,15 +746,11 @@ export type PagingGetMultiplePagesFailureUriNextResponse = ProductResult & {
  */
 export interface PagingGetMultiplePagesLRONextOptionalParams
   extends coreHttp.OperationOptions {
+  /**
+   * Parameter group
+   */
+  pagingGetMultiplePagesLroOptions?: PagingGetMultiplePagesLroOptions;
   clientRequestId?: string;
-  /**
-   * Sets the maximum number of items to return in the response.
-   */
-  maxresults?: number;
-  /**
-   * Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
-   */
-  timeout?: number;
 }
 
 /**

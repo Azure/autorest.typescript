@@ -35,7 +35,8 @@ import {
   ParameterLocation,
   ChoiceSchema,
   SealedChoiceSchema,
-  ConstantSchema
+  ConstantSchema,
+  Parameter
 } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 
@@ -198,6 +199,67 @@ function buildMapper(
   return `${mapperName}: ${mapperString},`;
 }
 
+/**
+ * This function gets the parameter groups specified in the swagger
+ * by the parameter grouping extension x-ms-parameter-grouping
+ */
+function getGroupedParameters(
+  operation: OperationDetails,
+  parameters: ParameterDetails[],
+  importedModels: Set<string>
+): ParameterWithDescription[] {
+  const parameterGroups: Parameter[] = [];
+  // We get the parameters that are used by this specific operation, including
+  // any optional ones.
+  // We extract these from the parameters collection to make sure we reuse them
+  // when needed, instead of creating duplicate ones.
+  filterOperationParameters(parameters, operation, {
+    includeGroupedParameters: true
+  })
+    .filter(({ parameter }) => parameter.groupedBy)
+    // Get optional grouped properties and store them in parameterGroups
+    .forEach(({ parameter: { groupedBy } }) => {
+      if (!groupedBy || !groupedBy.required) {
+        return;
+      }
+
+      const groupNAme = getLanguageMetadata(groupedBy.language).name;
+
+      // Make sure we only store the same group once
+      if (
+        parameterGroups.some(
+          p => getLanguageMetadata(p.language).name === groupNAme
+        )
+      ) {
+        return;
+      }
+      parameterGroups.push(groupedBy);
+    });
+
+  return parameterGroups
+    .filter(({ required }) => required)
+    .map(({ language }) => {
+      const { name, description } = getLanguageMetadata(language);
+      const type = normalizeName(name, NameType.Interface);
+
+      // Add the model for import
+      importedModels.add(type);
+
+      return {
+        name,
+        type,
+        description
+      };
+    });
+}
+
+/**
+ * This function takes care of Typescript generator specific Optional parameters grouping.
+ *
+ * In the Typescript generator we always group optional parameters to provide a simpler interface.
+ * This function is responsible for the default optional parameter grouping, which groups into an
+ * options bag any optional parameter, including optional grouped parameters.
+ */
 function getOptionsParameter(
   operation: OperationDetails,
   parameters: ParameterDetails[],
@@ -208,11 +270,19 @@ function getOptionsParameter(
   }: { isOptional?: boolean; mediaType?: string } = {}
 ): ParameterWithDescription {
   let type: string = "coreHttp.OperationOptions";
-  if (
-    filterOperationParameters(parameters, operation, {
-      includeOptional: true
-    }).some(p => !p.required)
-  ) {
+  const operationParameters = filterOperationParameters(parameters, operation, {
+    includeOptional: true,
+    includeGroupedParameters: true
+  });
+
+  const hasOptionalParameters = operationParameters.some(
+    ({ required, parameter: { groupedBy } }) => !groupedBy && !required
+  );
+  const hasOptionalGroups = operationParameters.some(
+    ({ parameter: { groupedBy } }) => groupedBy && !groupedBy.required
+  );
+
+  if (hasOptionalParameters || hasOptionalGroups) {
     const mediaPrefix = mediaType ? `$${mediaType}` : "";
     type = `${operation.typeDetails.typeName}${mediaPrefix}OptionalParams`;
     importedModels.add(type);
@@ -317,9 +387,9 @@ function getOperationParameterSignatures(
     );
 
     // Convert parameters into TypeScript parameter declarations.
-    const parameterDeclarations = requestParameters.map<
-      ParameterWithDescription
-    >(param => {
+    const parameterDeclarations = requestParameters.reduce<
+      ParameterWithDescription[]
+    >((acc, param) => {
       const { usedModels } = param.typeDetails;
       let type = normalizeTypeName(param.typeDetails);
       if (
@@ -339,13 +409,27 @@ function getOperationParameterSignatures(
         usedModels.forEach(model => importedModels.add(model));
       }
 
-      return {
+      const newParameter = {
         name: param.name,
         description: param.description,
         type: typeName,
         hasQuestionToken: !param.required
       };
-    });
+
+      // Make sure required parameters are added before optional
+      const newParameterPosition = param.required
+        ? findLastRequiredParamIndex(acc) + 1
+        : acc.length;
+      acc.splice(newParameterPosition, 0, newParameter);
+      return acc;
+    }, []);
+
+    trackParameterGroups(
+      operation,
+      parameters,
+      importedModels,
+      parameterDeclarations
+    );
 
     // add optional parameter
     const optionalParameter = getOptionsParameter(
@@ -357,6 +441,7 @@ function getOperationParameterSignatures(
       }
     );
     parameterDeclarations.push(optionalParameter);
+
     overloadParameterDeclarations.push(parameterDeclarations);
   }
 
@@ -366,6 +451,38 @@ function getOperationParameterSignatures(
   );
 
   return { overloadParameterDeclarations, baseMethodParameters };
+}
+
+function findLastRequiredParamIndex(
+  params: ParameterWithDescription[]
+): number {
+  for (let i = params.length; i--; ) {
+    if (!params[i].hasQuestionToken) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+function trackParameterGroups(
+  operation: OperationDetails,
+  parameters: ParameterDetails[],
+  importedModels: Set<string>,
+  parameterDeclarations: ParameterWithDescription[]
+) {
+  const groupedParameters = getGroupedParameters(
+    operation,
+    parameters,
+    importedModels
+  ).filter(gp => !gp.hasQuestionToken);
+
+  // Make sure required parameters are added before optional
+  const lastRequiredIndex =
+    findLastRequiredParamIndex(parameterDeclarations) + 1;
+
+  if (groupedParameters.length) {
+    parameterDeclarations.splice(lastRequiredIndex, 0, ...groupedParameters);
+  }
 }
 
 /**

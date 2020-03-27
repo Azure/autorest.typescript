@@ -24,7 +24,7 @@ import {
   ModelFlatteningClientPutSimpleProductResponse,
   ModelFlatteningClientPostFlattenedSimpleProductOptionalParams,
   ModelFlatteningClientPostFlattenedSimpleProductResponse,
-  ModelFlatteningClientPutSimpleProductWithGroupingOptionalParams,
+  FlattenParameterGroup,
   ModelFlatteningClientPutSimpleProductWithGroupingResponse
 } from "./models";
 
@@ -171,15 +171,15 @@ class ModelFlatteningClient extends ModelFlatteningClientContext {
 
   /**
    * Put Simple Product with client flattening true on the model
-   * @param name Product name with value 'groupproduct'
+   * @param flattenParameterGroup Parameter group
    * @param options The options parameters.
    */
   putSimpleProductWithGrouping(
-    name: string,
-    options?: ModelFlatteningClientPutSimpleProductWithGroupingOptionalParams
+    flattenParameterGroup: FlattenParameterGroup,
+    options?: coreHttp.OperationOptions
   ): Promise<ModelFlatteningClientPutSimpleProductWithGroupingResponse> {
     return this.sendOperationRequest(
-      { name, options },
+      { flattenParameterGroup, options },
       putSimpleProductWithGroupingOperationSpec
     ) as Promise<ModelFlatteningClientPutSimpleProductWithGroupingResponse>;
   }

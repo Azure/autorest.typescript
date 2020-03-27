@@ -32,7 +32,7 @@ export const clientRequestId: coreHttp.OperationParameter = {
 };
 
 export const maxresults: coreHttp.OperationParameter = {
-  parameterPath: ["options", "maxresults"],
+  parameterPath: ["pagingGetMultiplePagesOptions", "maxresults"],
   mapper: {
     serializedName: "maxresults",
     type: {
@@ -42,7 +42,7 @@ export const maxresults: coreHttp.OperationParameter = {
 };
 
 export const timeout: coreHttp.OperationParameter = {
-  parameterPath: ["options", "timeout"],
+  parameterPath: ["pagingGetMultiplePagesOptions", "timeout"],
   mapper: {
     defaultValue: 30,
     serializedName: "timeout",
@@ -52,11 +52,53 @@ export const timeout: coreHttp.OperationParameter = {
   }
 };
 
+export const maxresults1: coreHttp.OperationParameter = {
+  parameterPath: ["pagingGetOdataMultiplePagesOptions", "maxresults"],
+  mapper: {
+    serializedName: "maxresults",
+    type: {
+      name: "Number"
+    }
+  }
+};
+
+export const timeout1: coreHttp.OperationParameter = {
+  parameterPath: ["pagingGetOdataMultiplePagesOptions", "timeout"],
+  mapper: {
+    defaultValue: 30,
+    serializedName: "timeout",
+    type: {
+      name: "Number"
+    }
+  }
+};
+
+export const maxresults2: coreHttp.OperationParameter = {
+  parameterPath: ["pagingGetMultiplePagesWithOffsetOptions", "maxresults"],
+  mapper: {
+    serializedName: "maxresults",
+    type: {
+      name: "Number"
+    }
+  }
+};
+
 export const offset: coreHttp.OperationURLParameter = {
-  parameterPath: "offset",
+  parameterPath: ["pagingGetMultiplePagesWithOffsetOptions", "offset"],
   mapper: {
     serializedName: "offset",
     required: true,
+    type: {
+      name: "Number"
+    }
+  }
+};
+
+export const timeout2: coreHttp.OperationParameter = {
+  parameterPath: ["pagingGetMultiplePagesWithOffsetOptions", "timeout"],
+  mapper: {
+    defaultValue: 30,
+    serializedName: "timeout",
     type: {
       name: "Number"
     }
@@ -86,7 +128,7 @@ export const tenant: coreHttp.OperationURLParameter = {
 };
 
 export const apiVersion1: coreHttp.OperationQueryParameter = {
-  parameterPath: "apiVersion",
+  parameterPath: ["customParameterGroup", "apiVersion"],
   mapper: {
     serializedName: "api_version",
     required: true,
@@ -97,12 +139,33 @@ export const apiVersion1: coreHttp.OperationQueryParameter = {
 };
 
 export const tenant1: coreHttp.OperationURLParameter = {
-  parameterPath: "tenant",
+  parameterPath: ["customParameterGroup", "tenant"],
   mapper: {
     serializedName: "tenant",
     required: true,
     type: {
       name: "String"
+    }
+  }
+};
+
+export const maxresults3: coreHttp.OperationParameter = {
+  parameterPath: ["pagingGetMultiplePagesLroOptions", "maxresults"],
+  mapper: {
+    serializedName: "maxresults",
+    type: {
+      name: "Number"
+    }
+  }
+};
+
+export const timeout3: coreHttp.OperationParameter = {
+  parameterPath: ["pagingGetMultiplePagesLroOptions", "timeout"],
+  mapper: {
+    defaultValue: 30,
+    serializedName: "timeout",
+    type: {
+      name: "Number"
     }
   }
 };

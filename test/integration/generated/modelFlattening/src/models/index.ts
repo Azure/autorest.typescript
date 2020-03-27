@@ -134,6 +134,21 @@ export type ProductUrl = GenericUrl & {
    */
   odataValue?: string;
 };
+
+/**
+ * Parameter group
+ */
+export interface FlattenParameterGroup {
+  /**
+   * Product name with value 'groupproduct'
+   */
+  name: string;
+  /**
+   * Simple body product to put
+   */
+  simpleBodyProduct?: SimpleProduct;
+}
+
 /**
  * Defines values for FlattenedProductPropertiesProvisioningStateValues.
  */

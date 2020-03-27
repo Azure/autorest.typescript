@@ -18,6 +18,7 @@ import {
   PagingGetMultiplePagesResponse,
   PagingGetOdataMultiplePagesOptionalParams,
   PagingGetOdataMultiplePagesResponse,
+  PagingGetMultiplePagesWithOffsetOptions,
   PagingGetMultiplePagesWithOffsetOptionalParams,
   PagingGetMultiplePagesWithOffsetResponse,
   PagingGetMultiplePagesRetryFirstResponse,
@@ -26,6 +27,7 @@ import {
   PagingGetMultiplePagesFailureResponse,
   PagingGetMultiplePagesFailureUriResponse,
   PagingGetMultiplePagesFragmentNextLinkResponse,
+  CustomParameterGroup,
   PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse,
   PagingGetMultiplePagesLROOptionalParams,
   PagingGetMultiplePagesLROResponse,
@@ -129,15 +131,15 @@ export class Paging {
 
   /**
    * A paging operation that includes a nextLink that has 10 pages
-   * @param offset Offset of return value
+   * @param pagingGetMultiplePagesWithOffsetOptions Parameter group
    * @param options The options parameters.
    */
   getMultiplePagesWithOffset(
-    offset: number,
+    pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
     options?: PagingGetMultiplePagesWithOffsetOptionalParams
   ): Promise<PagingGetMultiplePagesWithOffsetResponse> {
     return this.client.sendOperationRequest(
-      { offset, options },
+      { pagingGetMultiplePagesWithOffsetOptions, options },
       getMultiplePagesWithOffsetOperationSpec
     ) as Promise<PagingGetMultiplePagesWithOffsetResponse>;
   }
@@ -228,17 +230,15 @@ export class Paging {
 
   /**
    * A paging operation that doesn't return a full URL, just a fragment with parameters grouped
-   * @param apiVersion Sets the api version to use.
-   * @param tenant Sets the tenant to use.
+   * @param customParameterGroup Parameter group
    * @param options The options parameters.
    */
   getMultiplePagesFragmentWithGroupingNextLink(
-    apiVersion: string,
-    tenant: string,
+    customParameterGroup: CustomParameterGroup,
     options?: coreHttp.OperationOptions
   ): Promise<PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse> {
     return this.client.sendOperationRequest(
-      { apiVersion, tenant, options },
+      { customParameterGroup, options },
       getMultiplePagesFragmentWithGroupingNextLinkOperationSpec
     ) as Promise<PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse>;
   }
@@ -277,19 +277,17 @@ export class Paging {
 
   /**
    * A paging operation that doesn't return a full URL, just a fragment
-   * @param apiVersion Sets the api version to use.
-   * @param tenant Sets the tenant to use.
    * @param nextLink Next link for list operation.
+   * @param customParameterGroup Parameter group
    * @param options The options parameters.
    */
   nextFragmentWithGrouping(
-    apiVersion: string,
-    tenant: string,
     nextLink: string,
+    customParameterGroup: CustomParameterGroup,
     options?: coreHttp.OperationOptions
   ): Promise<PagingNextFragmentWithGroupingResponse> {
     return this.client.sendOperationRequest(
-      { apiVersion, tenant, nextLink, options },
+      { nextLink, customParameterGroup, options },
       nextFragmentWithGroupingOperationSpec
     ) as Promise<PagingNextFragmentWithGroupingResponse>;
   }
@@ -356,18 +354,18 @@ export class Paging {
 
   /**
    * GetMultiplePagesWithOffsetNext
-   * @param offset Offset of return value
    * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesWithOffset
    *                 method.
+   * @param pagingGetMultiplePagesWithOffsetOptions Parameter group
    * @param options The options parameters.
    */
   getMultiplePagesWithOffsetNext(
-    offset: number,
     nextLink: string,
+    pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
     options?: PagingGetMultiplePagesWithOffsetNextOptionalParams
   ): Promise<PagingGetMultiplePagesWithOffsetNextResponse> {
     return this.client.sendOperationRequest(
-      { offset, nextLink, options },
+      { nextLink, pagingGetMultiplePagesWithOffsetOptions, options },
       getMultiplePagesWithOffsetNextOperationSpec
     ) as Promise<PagingGetMultiplePagesWithOffsetNextResponse>;
   }
@@ -535,8 +533,8 @@ const getOdataMultiplePagesOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [
     Parameters.clientRequestId,
-    Parameters.maxresults,
-    Parameters.timeout
+    Parameters.maxresults1,
+    Parameters.timeout1
   ],
   serializer
 };
@@ -552,8 +550,8 @@ const getMultiplePagesWithOffsetOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host, Parameters.offset],
   headerParameters: [
     Parameters.clientRequestId,
-    Parameters.maxresults,
-    Parameters.timeout
+    Parameters.maxresults2,
+    Parameters.timeout2
   ],
   serializer
 };
@@ -655,8 +653,8 @@ const getMultiplePagesLROOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [
     Parameters.clientRequestId,
-    Parameters.maxresults,
-    Parameters.timeout
+    Parameters.maxresults3,
+    Parameters.timeout3
   ],
   serializer
 };
@@ -739,8 +737,8 @@ const getOdataMultiplePagesNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host, Parameters.nextLink4],
   headerParameters: [
     Parameters.clientRequestId,
-    Parameters.maxresults,
-    Parameters.timeout
+    Parameters.maxresults1,
+    Parameters.timeout1
   ],
   serializer
 };
@@ -756,8 +754,8 @@ const getMultiplePagesWithOffsetNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host, Parameters.offset, Parameters.nextLink5],
   headerParameters: [
     Parameters.clientRequestId,
-    Parameters.maxresults,
-    Parameters.timeout
+    Parameters.maxresults2,
+    Parameters.timeout2
   ],
   serializer
 };
@@ -833,8 +831,8 @@ const getMultiplePagesLRONextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host, Parameters.nextLink11],
   headerParameters: [
     Parameters.clientRequestId,
-    Parameters.maxresults,
-    Parameters.timeout
+    Parameters.maxresults3,
+    Parameters.timeout3
   ],
   serializer
 };

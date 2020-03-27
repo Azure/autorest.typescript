@@ -37,6 +37,8 @@ modelerfour:
   flatten-models: true
   # this will make the content-type parameter always specified
   always-create-content-type-parameter: true
+  # enables parameter grouping via x-ms-parameter-grouping
+  group-parameters: true
 
 pipeline:
   typescript: # <- name of plugin

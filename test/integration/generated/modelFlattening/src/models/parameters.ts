@@ -82,12 +82,12 @@ export const simpleBodyProduct1: coreHttp.OperationParameter = {
 };
 
 export const simpleBodyProduct2: coreHttp.OperationParameter = {
-  parameterPath: ["options", "simpleBodyProduct"],
+  parameterPath: ["flattenParameterGroup", "simpleBodyProduct"],
   mapper: Mappers.SimpleProduct
 };
 
 export const name: coreHttp.OperationURLParameter = {
-  parameterPath: "name",
+  parameterPath: ["flattenParameterGroup", "name"],
   mapper: {
     serializedName: "name",
     required: true,

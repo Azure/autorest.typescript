@@ -6,7 +6,8 @@ import {
   ObjectSchema,
   ComplexSchema,
   SchemaType,
-  Property
+  Property,
+  GroupProperty
 } from "@azure-tools/codemodel";
 import {
   ObjectDetails,
@@ -59,22 +60,26 @@ export function transformObject(
   return getAdditionalObjectDetails(objectDetails, schema, uberParents);
 }
 
-export function transformProperty(property: Property): PropertyDetails {
-  const metadata = getLanguageMetadata(property.language);
-  const { typeName, isConstant, defaultValue } = getTypeForSchema(
-    property.schema
-  );
-  const typeDetails = getTypeForSchema(property.schema);
+export function transformProperty({
+  language,
+  schema,
+  serializedName,
+  required,
+  readOnly
+}: Property | GroupProperty): PropertyDetails {
+  const metadata = getLanguageMetadata(language);
+  const typeDetails = getTypeForSchema(schema);
+  const { typeName, isConstant, defaultValue } = typeDetails;
 
   return {
     name: normalizeName(metadata.name, NameType.Property),
     description: !metadata.description.startsWith("MISSING")
       ? metadata.description
       : undefined,
-    serializedName: property.serializedName,
+    serializedName: serializedName,
     type: typeName,
-    required: !!property.required,
-    readOnly: !!property.readOnly,
+    required: !!required,
+    readOnly: !!readOnly,
     isConstant,
     defaultValue,
     typeDetails,
