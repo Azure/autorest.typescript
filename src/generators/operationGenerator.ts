@@ -208,7 +208,7 @@ function getGroupedParameters(
   parameters: ParameterDetails[],
   importedModels: Set<string>
 ): ParameterWithDescription[] {
-  let parameterGroups: Parameter[] = [];
+  const parameterGroups: Parameter[] = [];
   // We get the parameters that are used by this specific operation, including
   // any optional ones.
   // We extract these from the parameters collection to make sure we reuse them
@@ -223,12 +223,12 @@ function getGroupedParameters(
         return;
       }
 
-      const gropuName = getLanguageMetadata(groupedBy.language).name;
+      const groupNAme = getLanguageMetadata(groupedBy.language).name;
 
       // Make sure we only store the same group once
       if (
         parameterGroups.some(
-          p => getLanguageMetadata(p.language).name === gropuName
+          p => getLanguageMetadata(p.language).name === groupNAme
         )
       ) {
         return;

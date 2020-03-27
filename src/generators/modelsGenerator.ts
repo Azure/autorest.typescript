@@ -77,7 +77,7 @@ const writeOperationModels = (
 ) =>
   clientDetails.operationGroups.forEach(operationGroup => {
     operationGroup.operations.forEach(operation => {
-      writeOptionsParameterIfNeeded(
+      writeOptionsParameter(
         clientDetails,
         operationGroup,
         operation,
@@ -88,16 +88,9 @@ const writeOperationModels = (
   });
 
 /**
- * Decides whether or not to include the Options parameter model.
- *
- * We'll only include this model when the operation doesn't have
- * any grouped parameters through x-ms-parameter-grouping.
- * When the operation has grouped parameter, we won't do these smarts
- * and we'll honor the grouping properties in the swagger.
- * We'll skip this and a coreHttp.OperationOptions parameter will be included directly
- * in the operation signature.
+ * Writes the options parameter model containing all the optional parameters
  */
-function writeOptionsParameterIfNeeded(
+function writeOptionsParameter(
   clientDetails: ClientDetails,
   operationGroup: OperationGroupDetails,
   operation: OperationDetails,
