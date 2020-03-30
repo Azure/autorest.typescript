@@ -27,9 +27,10 @@ export const contentType: coreHttp.OperationParameter = {
 };
 
 export const input: coreHttp.OperationParameter = {
-  parameterPath: ["options", "input"],
+  parameterPath: "input",
   mapper: {
     serializedName: "input",
+    required: true,
     type: {
       name: "Stream"
     }

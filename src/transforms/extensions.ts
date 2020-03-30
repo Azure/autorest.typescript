@@ -36,7 +36,7 @@ function normalizeMultipleContentTypes(codeModel: CodeModel) {
 
     for (const operation of operations) {
       const requests = operation.requests;
-      if (!requests || requests.length <= 1) {
+      if (!requests || (requests && requests.length > 1)) {
         continue;
       }
 
@@ -49,7 +49,7 @@ function normalizeMultipleContentTypes(codeModel: CodeModel) {
         for (const parameter of parameters) {
           const parameterMetadata = getLanguageMetadata(parameter.language);
           if (parameterMetadata.name.toLowerCase() === "contenttype") {
-            parameter.required = true;
+            parameter.required = false;
           }
         }
       }

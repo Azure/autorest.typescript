@@ -30,10 +30,12 @@ class MediaTypesClient extends MediaTypesClientContext {
   /**
    * Analyze body, that could be different media types.
    * @param contentType Upload file type
+   * @param input Input parameter.
    * @param options The options parameters.
    */
   analyzeBody(
     contentType: ContentType,
+    input: coreHttp.HttpRequestBody,
     options?: MediaTypesClientAnalyzeBody$binaryOptionalParams
   ): Promise<MediaTypesClientAnalyzeBodyResponse>;
   /**
@@ -47,31 +49,44 @@ class MediaTypesClient extends MediaTypesClientContext {
   ): Promise<MediaTypesClientAnalyzeBodyResponse>;
   /**
    * Analyze body, that could be different media types.
-   * @param contentType Upload file type
-   * @param options The options parameters.
+   * @param args Includes all the parameters for this operation.
    */
   analyzeBody(
-    contentType: ContentType | "application/json",
-    options?:
-      | MediaTypesClientAnalyzeBody$binaryOptionalParams
-      | MediaTypesClientAnalyzeBody$jsonOptionalParams
+    ...args:
+      | [
+          ContentType,
+          coreHttp.HttpRequestBody,
+          MediaTypesClientAnalyzeBody$binaryOptionalParams?
+        ]
+      | ["application/json", MediaTypesClientAnalyzeBody$jsonOptionalParams?]
   ): Promise<MediaTypesClientAnalyzeBodyResponse> {
     let operationSpec: coreHttp.OperationSpec;
+    let operationArguments: coreHttp.OperationArguments;
     if (
-      ["application/pdf", "image/jpeg", "image/png", "image/tiff"].indexOf(
-        contentType
-      ) > -1
+      args[0] === "application/pdf" ||
+      args[0] === "image/jpeg" ||
+      args[0] === "image/png" ||
+      args[0] === "image/tiff"
     ) {
       operationSpec = analyzeBody$binaryOperationSpec;
-    } else if (["application/json"].indexOf(contentType) > -1) {
+      operationArguments = {
+        contentType: args[0],
+        input: args[1],
+        options: args[2]
+      };
+    } else if (args[0] === "application/json") {
       operationSpec = analyzeBody$jsonOperationSpec;
+      operationArguments = {
+        contentType: args[0],
+        options: args[1]
+      };
     } else {
       throw new TypeError(
-        `"contentType" must be a valid value but instead was "${contentType}".`
+        `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
     return this.sendOperationRequest(
-      { contentType, options },
+      operationArguments,
       operationSpec
     ) as Promise<MediaTypesClientAnalyzeBodyResponse>;
   }

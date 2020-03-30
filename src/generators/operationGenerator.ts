@@ -498,46 +498,27 @@ function trackParameterGroups(
 function getBaseMethodParameterDeclarations(
   overloadParameterDeclarations: ParameterWithDescription[][]
 ): ParameterWithDescription[] {
-  const baseMethodParameters: ParameterWithDescription[] = [];
-  // Need to know which overload has the most parameters to set our upper bound.
-  const maxOverloadSize = Math.max(
-    ...overloadParameterDeclarations.map(params => params.length)
-  );
-  for (let i = 0; i < maxOverloadSize; i++) {
-    // attempt to combine types
-    const declarations: ParameterWithDescription[] = [];
-    for (const overloadParameterDeclaration of overloadParameterDeclarations) {
-      if (overloadParameterDeclaration[i]) {
-        declarations.push(overloadParameterDeclaration[i]);
-      }
-    }
-
-    const declaration = declarations.reduce(
-      (prevDeclaration, curDeclaration) => {
-        prevDeclaration = { ...prevDeclaration };
-        if (curDeclaration.name !== prevDeclaration.name) {
-          // Currently we only generate overloads if an operation supports multiple media types.
-          // Since contentType is always required and the 1st parameter, parameter names/ordering
-          // shouldn't change.
-          // In order to support more variance in parameter naming/ordering, we'll need to be able
-          // to construct the OperationArguments separately for each overload.
-          throw new Error(
-            `Operation overloads with different parameter names/ordering not supported.`
-          );
-        }
-        if (curDeclaration.type !== prevDeclaration.type) {
-          prevDeclaration.type += ` | ${curDeclaration.type}`;
-        }
-        // parameters should be optional if any declaration is optional
-        if (!curDeclaration.hasQuestionToken) {
-          prevDeclaration.hasQuestionToken = curDeclaration.hasQuestionToken;
-        }
-        return prevDeclaration;
-      }
-    );
-    baseMethodParameters.push(declaration);
+  if (!overloadParameterDeclarations.length) {
+    return [];
   }
-  return baseMethodParameters;
+  if (overloadParameterDeclarations.length === 1) {
+    return [...overloadParameterDeclarations[0]];
+  }
+
+  const baseMethodArg: ParameterWithDescription = {
+    name: "args",
+    isRestParameter: true,
+    description: "Includes all the parameters for this operation.",
+    type: overloadParameterDeclarations
+      .map(overloadParams => {
+        return `[ ${overloadParams
+          .map(p => (p.hasQuestionToken ? `${p.type}?` : p.type))
+          .join(", ")} ]`;
+      })
+      .join(" | ")
+  };
+
+  return [baseMethodArg];
 }
 
 /**
@@ -571,8 +552,10 @@ export function writeOperations(
       ]
     });
 
-    const sendParams = baseMethodParameters.map(p => p.name).join(",");
     if (overloadParameterDeclarations.length === 1) {
+      const sendParams = overloadParameterDeclarations[0]
+        .map(p => p.name)
+        .join(",");
       operationMethod.addStatements(
         `return this${
           isInline ? "" : ".client"
@@ -596,7 +579,7 @@ export function writeOperations(
     writeMultiMediaTypeOperationBody(
       operationMethod,
       operation,
-      sendParams,
+      overloadParameterDeclarations,
       responseName,
       isInline
     );
@@ -611,54 +594,79 @@ export function writeOperations(
 function writeMultiMediaTypeOperationBody(
   operationMethod: MethodDeclaration,
   operation: OperationDetails,
-  sendParams: string,
+  overloadParameterDeclarations: ParameterWithDescription[][],
   responseName: string,
   isInline = false
 ): void {
-  let statements = `let operationSpec: coreHttp.OperationSpec;`;
+  let statements = `
+  let operationSpec: coreHttp.OperationSpec;
+  let operationArguments: coreHttp.OperationArguments;
+  `;
   // We need to use the contentType parameter to determine which spec to use.
   const conditionals: string[] = [];
-  for (const request of operation.requests) {
+  const requests = operation.requests;
+  if (overloadParameterDeclarations.length !== requests.length) {
+    throw new Error(
+      `Expected ${requests.length} overloads, but found generated ${overloadParameterDeclarations.length} for ${operation.name}`
+    );
+  }
+
+  // Since contentType is always added as a synthetic parameter by modelerfour, it should always
+  // be in the same position for all overloads.
+  let contentTypePosition: number = 0;
+  for (let i = 0; i < requests.length; i++) {
+    const request = requests[i];
+    const overloadParameters = overloadParameterDeclarations[i];
     const mediaType = request.mediaType!;
-    const validContentTypes = getContentTypeValues(request);
+    const contentTypeInfo = getContentTypeInfo(request);
 
     // Ensure that a contentType exists, otherwise we won't be able to determine which operation spec to use.
-    if (!validContentTypes) {
+    if (!contentTypeInfo) {
       throw new Error(
         `Encountered an operation media type that has unspecified values for the contentType for operation "${operation.fullName}".`
       );
     }
 
+    contentTypePosition = contentTypeInfo.location;
+
+    const assignments = `
+      operationSpec = ${operation.name}$${mediaType}OperationSpec
+      operationArguments = {
+        ${overloadParameters
+          .map((param, index) => `${param.name}: args[${index}]`)
+          .join(",")}
+      };
+    `;
+
     conditionals.push(
       `if (
-        [${validContentTypes
-          .map(type => `"${type}"`)
-          .join(", ")}].indexOf(contentType) > -1
+        ${contentTypeInfo.values
+          .map(type => `args[${contentTypeInfo.location}] === "${type}"`)
+          .join(" || ")}
         ) {
-          operationSpec = ${operation.name}$${mediaType}OperationSpec;
+          ${assignments}
       }`
     );
   }
 
   // Add an else clause that throws an error. This should never happen as long as a contentType was provided by the user.
   conditionals.push(`{
-    throw new TypeError(\`"contentType" must be a valid value but instead was "\${contentType}".\`);
+    throw new TypeError(\`"contentType" must be a valid value but instead was "\${args[0]}".\`);
   }`);
 
   statements += conditionals.join(" else ");
   statements += `return this${
     isInline ? "" : ".client"
-  }.sendOperationRequest({${sendParams}${
-    !!sendParams ? "," : ""
-  }}, operationSpec) as Promise<${responseName}>`;
+  }.sendOperationRequest(operationArguments, operationSpec) as Promise<${responseName}>`;
   operationMethod.addStatements(statements);
 }
 
-function getContentTypeValues(
+function getContentTypeInfo(
   request: OperationRequestDetails
-): string[] | undefined {
+): { location: number; values: string[] } | undefined {
   const parameters = request.parameters ?? [];
-  for (const parameter of parameters) {
+  for (let i = 0; i < parameters.length; i++) {
+    const parameter = parameters[i];
     const parameterMetadata = getLanguageMetadata(parameter.language);
     const paramLowerSerializedName = parameterMetadata.serializedName?.toLowerCase();
     const parameterInHeader =
@@ -670,15 +678,21 @@ function getContentTypeValues(
       paramLowerSerializedName === "content-type" &&
       parameterInHeader
     ) {
-      return (schema as ChoiceSchema | SealedChoiceSchema).choices.map(
-        c => c.value as string
-      );
+      return {
+        location: i,
+        values: (schema as ChoiceSchema | SealedChoiceSchema).choices.map(
+          c => c.value as string
+        )
+      };
     } else if (
       schema.type === SchemaType.Constant &&
       paramLowerSerializedName === "content-type" &&
       parameterInHeader
     ) {
-      return [(schema as ConstantSchema).value.value];
+      return {
+        location: i,
+        values: [(schema as ConstantSchema).value.value]
+      };
     }
   }
   return;

@@ -31,9 +31,7 @@ describe("Integration tests for MediaTypes", () => {
 
   describe("#analyzeBody", () => {
     it("works with binary content type", async () => {
-      const response = await client.analyzeBody("application/pdf", {
-        input: "PDF"
-      });
+      const response = await client.analyzeBody("application/pdf", "PDF");
 
       expect(response.body).to.equal(
         "Nice job with PDF",
