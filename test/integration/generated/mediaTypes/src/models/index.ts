@@ -31,12 +31,7 @@ export type ContentType =
  * Optional parameters.
  */
 export interface MediaTypesClientAnalyzeBody$binaryOptionalParams
-  extends coreHttp.OperationOptions {
-  /**
-   * Input parameter.
-   */
-  input?: coreHttp.HttpRequestBody;
-}
+  extends coreHttp.OperationOptions {}
 
 /**
  * Optional parameters.
