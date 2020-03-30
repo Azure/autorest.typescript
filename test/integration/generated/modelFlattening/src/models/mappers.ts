@@ -198,7 +198,7 @@ export const ProductUrl: coreHttp.CompositeMapper = {
     className: "ProductUrl",
     modelProperties: {
       ...GenericUrl.type.modelProperties,
-      odataValue: { type: { name: "String" }, serializedName: "@odata.value" }
+      odataValue: { type: { name: "String" }, serializedName: "@odata\\.value" }
     }
   }
 };
