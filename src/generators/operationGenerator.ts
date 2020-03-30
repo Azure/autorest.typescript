@@ -395,9 +395,7 @@ function getBaseMethodParameterDeclarations(
     type: overloadParameterDeclarations
       .map(overloadParams => {
         return `[ ${overloadParams
-          .map(param => {
-            return param.hasQuestionToken ? `${param.type}?` : param.type;
-          })
+          .map(p => (p.hasQuestionToken ? `${p.type}?` : p.type))
           .join(", ")} ]`;
       })
       .join(" | ")
