@@ -250,7 +250,6 @@ function getXmlMetadata(
   };
 }
 
-// TODO: Make sure this is the correct way to handle additionalProperties
 function getAdditionalProperties(allParents: Schema[]): Mapper | undefined {
   return allParents.some(p => p.type === SchemaType.Dictionary)
     ? {
