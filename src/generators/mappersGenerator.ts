@@ -18,7 +18,7 @@ import {
 } from "@azure/core-http";
 import { ModelProperties } from "../transforms/mapperTransforms";
 import { keys, isEmpty, isString, isNil } from "lodash";
-import { getStringForValue, MapperTypes } from "../utils/valueHelpers";
+import { getStringForValue } from "../utils/valueHelpers";
 import { PolymorphicObjectDetails, ObjectKind } from "../models/modelDetails";
 import { logger } from "../utils/logger";
 
@@ -26,6 +26,10 @@ export function generateMappers(
   clientDetails: ClientDetails,
   project: Project
 ) {
+  if (!clientDetails.mappers.length) {
+    logger.info("No mappers in code model, skipping mapper file generation");
+    return;
+  }
   const mappersFile = project.createSourceFile(
     `${clientDetails.srcPath}/models/mappers.ts`,
     undefined,

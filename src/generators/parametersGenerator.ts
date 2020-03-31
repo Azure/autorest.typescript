@@ -13,11 +13,20 @@ import { ClientDetails } from "../models/clientDetails";
 import { ParameterDetails } from "../models/parameterDetails";
 import { isString } from "util";
 import { writeMapper } from "./mappersGenerator";
+import { shouldImportParameters } from "./utils/importUtils";
+import { logger } from "../utils/logger";
 
 export function generateParameters(
   clientDetails: ClientDetails,
   project: Project
 ): void {
+  if (!shouldImportParameters(clientDetails)) {
+    logger.verbose(
+      "There are no parameters to generate, skipping parameters file generation"
+    );
+    return;
+  }
+
   const parametersFile = project.createSourceFile(
     `${clientDetails.srcPath}/models/parameters.ts`,
     undefined,
@@ -29,10 +38,12 @@ export function generateParameters(
     moduleSpecifier: "@azure/core-http"
   });
 
-  parametersFile.addImportDeclaration({
-    namespaceImport: "Mappers",
-    moduleSpecifier: "../models/mappers"
-  });
+  if (clientDetails.mappers.length) {
+    parametersFile.addImportDeclaration({
+      namespaceImport: "Mappers",
+      moduleSpecifier: "../models/mappers"
+    });
+  }
 
   clientDetails.parameters
     .filter(p => !p.isSynthetic)

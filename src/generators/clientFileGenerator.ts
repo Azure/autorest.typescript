@@ -19,6 +19,7 @@ import {
 import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
 import { OperationGroupDetails } from "../models/operationDetails";
 import { formatJsDocParam } from "./utils/parameterUtils";
+import { shouldImportParameters } from "./utils/importUtils";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
@@ -26,6 +27,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   const modelsName = getModelsName(clientDetails.className);
   const mappersName = getMappersName(clientDetails.className);
   const clientContextClassName = `${clientDetails.className}Context`;
+  const hasMappers = !!clientDetails.mappers.length;
 
   // A client has inline operations when it has a toplevel operation group
   const hasInlineOperations = clientDetails.operationGroups.some(
@@ -52,25 +54,30 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       moduleSpecifier: "@azure/core-http"
     });
 
-  hasInlineOperations
-    ? clientFile.addImportDeclaration({
-        namespaceImport: "Parameters",
-        moduleSpecifier: "./models/parameters"
-      })
-    : clientFile.addImportDeclaration({
-        namespaceImport: "operations",
-        moduleSpecifier: "./operations"
-      });
+  if (hasInlineOperations && shouldImportParameters(clientDetails)) {
+    clientFile.addImportDeclaration({
+      namespaceImport: "Parameters",
+      moduleSpecifier: "./models/parameters"
+    });
+  } else if (!hasInlineOperations) {
+    clientFile.addImportDeclaration({
+      namespaceImport: "operations",
+      moduleSpecifier: "./operations"
+    });
+  }
 
   clientFile.addImportDeclaration({
     namespaceImport: "Models",
     moduleSpecifier: "./models"
   });
 
-  clientFile.addImportDeclaration({
-    namespaceImport: "Mappers",
-    moduleSpecifier: "./models/mappers"
-  });
+  // Only import mappers if there are any
+  if (hasMappers) {
+    clientFile.addImportDeclaration({
+      namespaceImport: "Mappers",
+      moduleSpecifier: "./models/mappers"
+    });
+  }
 
   clientFile.addImportDeclaration({
     namedImports: [clientContextClassName],
@@ -92,7 +99,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       { name: clientDetails.className },
       { name: clientContextClassName },
       { name: "Models", alias: modelsName },
-      { name: "Mappers", alias: mappersName }
+      ...(hasMappers ? [{ name: "Mappers", alias: mappersName }] : [])
     ]
   });
 
@@ -179,7 +186,7 @@ function writeClientOperations(
   clientDetails: ClientDetails
 ) {
   const topLevelGroup = clientDetails.operationGroups.find(og => og.isTopLevel);
-
+  const hasMappers = !!clientDetails.mappers.length;
   // Add top level operation groups as client properties
   // TODO: Switch to named model imports in client File
   const importedModels = new Set<string>();
@@ -191,7 +198,14 @@ function writeClientOperations(
       clientDetails.parameters,
       true // isInline
     );
-    addOperationSpecs(topLevelGroup, file, clientDetails.parameters);
+
+    addOperationSpecs(
+      topLevelGroup,
+      file,
+      clientDetails.parameters,
+      hasMappers
+    );
+
     // Use named import from Models
     if (importedModels.size) {
       file.addImportDeclaration({
