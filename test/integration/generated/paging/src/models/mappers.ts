@@ -85,7 +85,7 @@ export const OdataProductResult: coreHttp.CompositeMapper = {
       },
       odataNextLink: {
         type: { name: "String" },
-        serializedName: "odata.nextLink"
+        serializedName: "odata\\.nextLink"
       }
     }
   }

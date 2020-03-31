@@ -250,11 +250,8 @@ function getXmlMetadata(
   };
 }
 
-// TODO: Make sure this is the correct way to handle additionalProperties
-function getAdditionalProperties(
-  immediateParents: Schema[]
-): Mapper | undefined {
-  return immediateParents.some(p => p.type === SchemaType.Dictionary)
+function getAdditionalProperties(allParents: Schema[]): Mapper | undefined {
+  return allParents.some(p => p.type === SchemaType.Dictionary)
     ? {
         type: {
           name: MapperType.Object
@@ -289,7 +286,7 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
     .map(p => getMapperClassName(p))
     .filter(p => p !== className);
 
-  const additionalProperties = getAdditionalProperties(immediateParents);
+  const additionalProperties = getAdditionalProperties(parents);
 
   modelProperties = {
     ...modelProperties,

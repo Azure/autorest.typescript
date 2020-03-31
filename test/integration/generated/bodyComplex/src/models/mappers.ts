@@ -300,13 +300,13 @@ export const DotFish: coreHttp.CompositeMapper = {
     className: "DotFish",
     uberParent: "DotFish",
     polymorphicDiscriminator: {
-      serializedName: "fish.type",
-      clientName: "fish.type"
+      serializedName: "fish\\.type",
+      clientName: "fish\\.type"
     },
     modelProperties: {
       fishType: {
         type: { name: "String" },
-        serializedName: "fish.type",
+        serializedName: "fish\\.type",
         required: true
       },
       species: { type: { name: "String" }, serializedName: "species" }

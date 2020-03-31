@@ -96,8 +96,7 @@ describe("Integration tests for Paging", () => {
     });
   });
 
-  // TODO: https://github.com/Azure/autorest.typescript/issues/574
-  describe.skip("#getMultiplePagesFragmentNextLink", () => {
+  describe("#getMultiplePagesFragmentNextLink", () => {
     it("succeeds", async () => {
       const results = [];
       let nextLink: string | undefined;

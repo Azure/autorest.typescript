@@ -11,6 +11,11 @@ const package_version = "1.0.0-preview1";
 let whiteList: string[] = [];
 
 const testSwaggers: { [name: string]: SwaggerConfig } = {
+  additionalProperties: {
+    swagger: "additionalProperties.json",
+    clientName: "AdditionalPropertiesClient",
+    packageName: "additional-properties"
+  },
   azureParameterGrouping: {
     swagger: "azure-parameter-grouping.json",
     clientName: "AzureParameterGroupingClient",

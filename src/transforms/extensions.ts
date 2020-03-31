@@ -4,7 +4,6 @@
 import {
   CodeModel,
   Operation,
-  SchemaType,
   Parameter,
   StringSchema,
   Protocol,
@@ -20,8 +19,27 @@ import { getLanguageMetadata } from "../utils/languageHelpers";
  * @param codeModel The model that contains all the information required to generate a service API.
  */
 export function normalizeModelWithExtensions(codeModel: CodeModel) {
+  normalizeObjectPropertySerializedNames(codeModel);
   addPageableMethods(codeModel);
   normalizeMultipleContentTypes(codeModel);
+}
+
+/**
+ * This normalizes object property serializedNames that contain periods.
+ * This is necessary for properties with odata.
+ * Example: `@odata.location` -> `@odata\\.location`
+ * @param codeModel
+ */
+function normalizeObjectPropertySerializedNames(codeModel: CodeModel) {
+  const schemas = codeModel.schemas;
+  const objectSchemas = schemas.objects ?? [];
+  for (const objectSchema of objectSchemas) {
+    for (const property of objectSchema.properties ?? []) {
+      if (property.serializedName) {
+        property.serializedName = property.serializedName.replace(".", "\\.");
+      }
+    }
+  }
 }
 
 /**
