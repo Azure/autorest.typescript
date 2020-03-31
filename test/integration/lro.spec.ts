@@ -1,7 +1,7 @@
 import { LroClient } from "./generated/lro/src/lroClient";
 import { assert } from "chai";
 
-describe.only("LRO", () => {
+describe("LRO", () => {
   let client: LroClient;
 
   beforeEach(() => {
@@ -21,7 +21,7 @@ describe.only("LRO", () => {
     assert.deepEqual(result.name, "foo");
   });
 
-  it.only("should handle initial response creating followed by success through an Azure Resource", async () => {
+  it("should handle initial response creating followed by success through an Azure Resource", async () => {
     const poller = await client.lROs.put201CreatingSucceeded200();
     const result = await poller.pollUntilDone();
     assert.deepEqual(result.provisioningState, "Succeeded");
