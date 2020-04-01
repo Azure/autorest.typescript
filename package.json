@@ -23,7 +23,6 @@
         "LICENSE"
     ],
     "dependencies": {
-        "autorest": "^3.0.6187",
         "@azure-tools/async-io": "3.0.203",
         "@azure-tools/autorest-extension-base": "3.1.237",
         "@azure-tools/codegen": "2.4.259",
@@ -31,9 +30,11 @@
         "@azure-tools/linq": "3.1.206",
         "@azure-tools/openapi": "3.0.209",
         "@azure/core-http": "^1.0.4",
+        "@azure/core-lro": "^1.0.1",
         "@azure/core-paging": "^1.0.0",
         "@azure/logger": "^1.0.0",
         "@types/lodash": "^4.14.149",
+        "autorest": "^3.0.6187",
         "lodash": "^4.17.15",
         "prettier": "^1.19.1",
         "source-map-support": "^0.5.16",
