@@ -39,6 +39,7 @@ import {
   Parameter
 } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
+import { shouldImportParameters } from "./utils/importUtils";
 
 /**
  * Function that writes the code for all the operations.
@@ -91,7 +92,7 @@ function generateOperation(
   project: Project
 ): void {
   const name = normalizeName(operationGroupDetails.name, NameType.File);
-
+  const hasMappers = !!clientDetails.mappers.length;
   const operationGroupFile = project.createSourceFile(
     `${clientDetails.srcPath}/operations/${name}.ts`,
     undefined,
@@ -103,7 +104,8 @@ function generateOperation(
   addOperationSpecs(
     operationGroupDetails,
     operationGroupFile,
-    clientDetails.parameters
+    clientDetails.parameters,
+    hasMappers
   );
 }
 
@@ -742,18 +744,20 @@ function generateOperationJSDoc(
 export function addOperationSpecs(
   operationGroupDetails: OperationGroupDetails,
   file: SourceFile,
-  parameters: ParameterDetails[]
+  parameters: ParameterDetails[],
+  hasMappers: boolean
 ): void {
   const isXml = operationGroupDetails.operations.some(o =>
     o.mediaTypes.has(KnownMediaType.Xml)
   );
+  const mappers = hasMappers ? "Mappers" : "{}";
   file.addStatements("// Operation Specifications");
   file.addVariableStatement({
     declarationKind: VariableDeclarationKind.Const,
     declarations: [
       {
         name: "serializer",
-        initializer: `new coreHttp.Serializer(Mappers, /* isXml */ ${isXml});`
+        initializer: `new coreHttp.Serializer(${mappers}, /* isXml */ ${isXml});`
       }
     ]
   });
@@ -781,22 +785,28 @@ export function addOperationSpecs(
  */
 function addImports(
   operationGroupFile: SourceFile,
-  { className, sourceFileName }: ClientDetails
+  clientDetails: ClientDetails
 ) {
+  const { className, sourceFileName, mappers } = clientDetails;
+
   operationGroupFile.addImportDeclaration({
     namespaceImport: "coreHttp",
     moduleSpecifier: "@azure/core-http"
   });
 
-  operationGroupFile.addImportDeclaration({
-    namespaceImport: "Mappers",
-    moduleSpecifier: "../models/mappers"
-  });
+  if (mappers.length) {
+    operationGroupFile.addImportDeclaration({
+      namespaceImport: "Mappers",
+      moduleSpecifier: "../models/mappers"
+    });
+  }
 
-  operationGroupFile.addImportDeclaration({
-    namespaceImport: "Parameters",
-    moduleSpecifier: "../models/parameters"
-  });
+  if (shouldImportParameters(clientDetails)) {
+    operationGroupFile.addImportDeclaration({
+      namespaceImport: "Parameters",
+      moduleSpecifier: "../models/parameters"
+    });
+  }
 
   operationGroupFile.addImportDeclaration({
     namedImports: [className],

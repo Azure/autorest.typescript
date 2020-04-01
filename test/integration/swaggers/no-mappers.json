@@ -1,0 +1,19 @@
+{
+  "swagger": "2.0",
+  "info": { "version": "v1", "title": "My API" },
+  "paths": {
+    "/api/v1/value": {
+      "get": {
+        "tags": ["ValueApi"],
+        "operationId": "ApiV1ValueGet",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": { "description": "Success", "schema": { "type": "string" } }
+        }
+      }
+    }
+  },
+  "definitions": {}
+}

@@ -111,6 +111,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "ModelFlatteningClient",
     packageName: "model-flattening"
   },
+  noMappers: {
+    swagger: "test/integration/swaggers/no-mappers.json",
+    clientName: "NoMappersClient",
+    packageName: "no-mappers"
+  },
   paging: {
     swagger: "paging.json",
     clientName: "PagingClient",
@@ -146,7 +151,15 @@ const generateSwaggers = async (
       const { addCredentials, clientName, swagger, packageName } = testSwaggers[
         name
       ];
-      let autorestCommand = `autorest --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/${swagger} --package-name=${packageName} --package-version=${package_version}`;
+
+      let swaggerPath = swagger;
+
+      if (swagger.split("/").length === 1) {
+        // When given a filename look for it in test server, otherwise use the path
+        swaggerPath = `node_modules/@microsoft.azure/autorest.testserver/swagger/${swagger}`;
+      }
+
+      let autorestCommand = `autorest --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version}`;
 
       if (isDebugging) {
         autorestCommand = `${autorestCommand} --typescript.debugger`;
