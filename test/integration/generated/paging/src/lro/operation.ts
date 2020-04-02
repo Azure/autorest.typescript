@@ -106,10 +106,7 @@ function getStrategyFromResult<TResult extends BaseResult>(
     throw new Error("Location strategy is not yet implemented");
   }
 
-  // TODO: Should we include here other methods like Patch?
-  if (spec.httpMethod === "PUT") {
-    // We should use BodyPolling strategy
-    // Return BodyPolling Strategy
+  if (["PUT", "PATCH"].includes(spec.httpMethod)) {
     return createBodyPollingStrategy(state);
   }
 

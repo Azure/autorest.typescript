@@ -72,7 +72,7 @@ export class LROPoller<TResult extends BaseResult> extends Poller<
   /**
    * The method used by the poller to wait before attempting to update its operation.
    */
-  async delay(): Promise<void> {
-    delay(this.intervalInMs);
+  delay(): Promise<void> {
+    return delay(this.intervalInMs);
   }
 }

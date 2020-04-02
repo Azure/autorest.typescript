@@ -23,6 +23,8 @@ describe("LRO", () => {
 
   it("should handle initial response creating followed by success through an Azure Resource", async () => {
     const poller = await client.lROs.put201CreatingSucceeded200();
+    // To avoid timing out, override the default delay function
+    poller.delay = () => Promise.resolve();
     const result = await poller.pollUntilDone();
     assert.deepEqual(result.provisioningState, "Succeeded");
     assert.deepEqual(result.id, "100");
