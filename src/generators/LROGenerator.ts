@@ -1,7 +1,7 @@
 import { ClientDetails } from "../models/clientDetails";
 import { Project } from "ts-morph";
 import { OperationGroupDetails } from "../models/operationDetails";
-import { readFile } from "fs";
+import { promises } from "fs";
 
 export async function generateLROFiles(
   clientDetails: ClientDetails,
@@ -20,7 +20,7 @@ export async function generateLROFiles(
 
   for (let i = 0; i < lroFiles.length; i++) {
     const { name, file } = lroFiles[i];
-    const fileContent = await getFileContent(file);
+    const fileContent = await promises.readFile(file, "utf-8");
 
     project.createSourceFile(
       `${clientDetails.srcPath}/lro/${name}.ts`,
@@ -28,18 +28,6 @@ export async function generateLROFiles(
       { overwrite: true }
     );
   }
-}
-
-function getFileContent(filePath: string): Promise<string> {
-  return new Promise((resolve, reject) => {
-    readFile(filePath, "utf8", (error, data) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(data);
-      }
-    });
-  });
 }
 
 function hasAnyLRO(operationGroups: OperationGroupDetails[]) {

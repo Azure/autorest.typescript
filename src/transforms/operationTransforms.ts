@@ -257,8 +257,9 @@ export async function transformOperation(
     usedModels: [typeName]
   };
 
-  const isLRO: boolean =
-    operation.extensions && operation.extensions["x-ms-long-running-operation"];
+  const isLRO: boolean = Boolean(
+    operation.extensions && operation.extensions["x-ms-long-running-operation"]
+  );
 
   const codeModelRequests = operation.requests;
   if (codeModelRequests === undefined || !codeModelRequests.length) {
