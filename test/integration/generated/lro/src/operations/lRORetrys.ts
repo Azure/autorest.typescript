@@ -10,6 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClient } from "../lROClient";
+import { LROPoller } from "../lro/lroPoller";
 import {
   LRORetrysPut201CreatingSucceeded200OptionalParams,
   LRORetrysPut201CreatingSucceeded200Response,
@@ -44,13 +45,28 @@ export class LRORetrys {
    * ‘200’ with ProvisioningState=’Succeeded’
    * @param options The options parameters.
    */
-  put201CreatingSucceeded200(
+  async put201CreatingSucceeded200(
     options?: LRORetrysPut201CreatingSucceeded200OptionalParams
-  ): Promise<LRORetrysPut201CreatingSucceeded200Response> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LRORetrysPut201CreatingSucceeded200Response>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LRORetrysPut201CreatingSucceeded200Response
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       put201CreatingSucceeded200OperationSpec
-    ) as Promise<LRORetrysPut201CreatingSucceeded200Response>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: put201CreatingSucceeded200OperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -59,13 +75,28 @@ export class LRORetrys {
    * header for operation status
    * @param options The options parameters.
    */
-  putAsyncRelativeRetrySucceeded(
+  async putAsyncRelativeRetrySucceeded(
     options?: LRORetrysPutAsyncRelativeRetrySucceededOptionalParams
-  ): Promise<LRORetrysPutAsyncRelativeRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LRORetrysPutAsyncRelativeRetrySucceededResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LRORetrysPutAsyncRelativeRetrySucceededResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       putAsyncRelativeRetrySucceededOperationSpec
-    ) as Promise<LRORetrysPutAsyncRelativeRetrySucceededResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: putAsyncRelativeRetrySucceededOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -74,13 +105,30 @@ export class LRORetrys {
    * returns a ‘200’ with ProvisioningState=’Succeeded’
    * @param options The options parameters.
    */
-  deleteProvisioning202Accepted200Succeeded(
+  async deleteProvisioning202Accepted200Succeeded(
     options?: coreHttp.OperationOptions
-  ): Promise<LRORetrysDeleteProvisioning202Accepted200SucceededResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<
+    LROPoller<LRORetrysDeleteProvisioning202Accepted200SucceededResponse>
+  > {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LRORetrysDeleteProvisioning202Accepted200SucceededResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       deleteProvisioning202Accepted200SucceededOperationSpec
-    ) as Promise<LRORetrysDeleteProvisioning202Accepted200SucceededResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: deleteProvisioning202Accepted200SucceededOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -88,13 +136,28 @@ export class LRORetrys {
    * this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’
    * @param options The options parameters.
    */
-  delete202Retry200(
+  async delete202Retry200(
     options?: coreHttp.OperationOptions
-  ): Promise<LRORetrysDelete202Retry200Response> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LRORetrysDelete202Retry200Response>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LRORetrysDelete202Retry200Response
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       delete202Retry200OperationSpec
-    ) as Promise<LRORetrysDelete202Retry200Response>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: delete202Retry200OperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -102,13 +165,28 @@ export class LRORetrys {
    * endpoint indicated in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
-  deleteAsyncRelativeRetrySucceeded(
+  async deleteAsyncRelativeRetrySucceeded(
     options?: coreHttp.OperationOptions
-  ): Promise<LRORetrysDeleteAsyncRelativeRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LRORetrysDeleteAsyncRelativeRetrySucceededResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LRORetrysDeleteAsyncRelativeRetrySucceededResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       deleteAsyncRelativeRetrySucceededOperationSpec
-    ) as Promise<LRORetrysDeleteAsyncRelativeRetrySucceededResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: deleteAsyncRelativeRetrySucceededOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -116,13 +194,28 @@ export class LRORetrys {
    * and 'Retry-After' headers, Polls return a 200 with a response body after success
    * @param options The options parameters.
    */
-  post202Retry200(
+  async post202Retry200(
     options?: LRORetrysPost202Retry200OptionalParams
-  ): Promise<LRORetrysPost202Retry200Response> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LRORetrysPost202Retry200Response>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LRORetrysPost202Retry200Response
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       post202Retry200OperationSpec
-    ) as Promise<LRORetrysPost202Retry200Response>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: post202Retry200OperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -131,13 +224,28 @@ export class LRORetrys {
    * header for operation status
    * @param options The options parameters.
    */
-  postAsyncRelativeRetrySucceeded(
+  async postAsyncRelativeRetrySucceeded(
     options?: LRORetrysPostAsyncRelativeRetrySucceededOptionalParams
-  ): Promise<LRORetrysPostAsyncRelativeRetrySucceededResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LRORetrysPostAsyncRelativeRetrySucceededResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LRORetrysPostAsyncRelativeRetrySucceededResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       postAsyncRelativeRetrySucceededOperationSpec
-    ) as Promise<LRORetrysPostAsyncRelativeRetrySucceededResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: postAsyncRelativeRetrySucceededOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 }
 // Operation Specifications

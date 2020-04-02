@@ -10,6 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClient } from "../lROClient";
+import { LROPoller } from "../lro/lroPoller";
 import {
   LrosaDsPutNonRetry400OptionalParams,
   LrosaDsPutNonRetry400Response,
@@ -74,13 +75,28 @@ export class LrosaDs {
    * Long running put request, service returns a 400 to the initial request
    * @param options The options parameters.
    */
-  putNonRetry400(
+  async putNonRetry400(
     options?: LrosaDsPutNonRetry400OptionalParams
-  ): Promise<LrosaDsPutNonRetry400Response> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsPutNonRetry400Response>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutNonRetry400Response
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       putNonRetry400OperationSpec
-    ) as Promise<LrosaDsPutNonRetry400Response>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: putNonRetry400OperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -88,13 +104,28 @@ export class LrosaDs {
    * response code
    * @param options The options parameters.
    */
-  putNonRetry201Creating400(
+  async putNonRetry201Creating400(
     options?: LrosaDsPutNonRetry201Creating400OptionalParams
-  ): Promise<LrosaDsPutNonRetry201Creating400Response> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsPutNonRetry201Creating400Response>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutNonRetry201Creating400Response
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       putNonRetry201Creating400OperationSpec
-    ) as Promise<LrosaDsPutNonRetry201Creating400Response>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: putNonRetry201Creating400OperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -102,13 +133,28 @@ export class LrosaDs {
    * response code
    * @param options The options parameters.
    */
-  putNonRetry201Creating400InvalidJson(
+  async putNonRetry201Creating400InvalidJson(
     options?: LrosaDsPutNonRetry201Creating400InvalidJsonOptionalParams
-  ): Promise<LrosaDsPutNonRetry201Creating400InvalidJsonResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsPutNonRetry201Creating400InvalidJsonResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutNonRetry201Creating400InvalidJsonResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       putNonRetry201Creating400InvalidJsonOperationSpec
-    ) as Promise<LrosaDsPutNonRetry201Creating400InvalidJsonResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: putNonRetry201Creating400InvalidJsonOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -116,39 +162,84 @@ export class LrosaDs {
    * indicated in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
-  putAsyncRelativeRetry400(
+  async putAsyncRelativeRetry400(
     options?: LrosaDsPutAsyncRelativeRetry400OptionalParams
-  ): Promise<LrosaDsPutAsyncRelativeRetry400Response> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsPutAsyncRelativeRetry400Response>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutAsyncRelativeRetry400Response
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       putAsyncRelativeRetry400OperationSpec
-    ) as Promise<LrosaDsPutAsyncRelativeRetry400Response>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: putAsyncRelativeRetry400OperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
    * Long running delete request, service returns a 400 with an error body
    * @param options The options parameters.
    */
-  deleteNonRetry400(
+  async deleteNonRetry400(
     options?: coreHttp.OperationOptions
-  ): Promise<LrosaDsDeleteNonRetry400Response> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsDeleteNonRetry400Response>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsDeleteNonRetry400Response
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       deleteNonRetry400OperationSpec
-    ) as Promise<LrosaDsDeleteNonRetry400Response>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: deleteNonRetry400OperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
    * Long running delete request, service returns a 202 with a location header
    * @param options The options parameters.
    */
-  delete202NonRetry400(
+  async delete202NonRetry400(
     options?: coreHttp.OperationOptions
-  ): Promise<LrosaDsDelete202NonRetry400Response> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsDelete202NonRetry400Response>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsDelete202NonRetry400Response
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       delete202NonRetry400OperationSpec
-    ) as Promise<LrosaDsDelete202NonRetry400Response>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: delete202NonRetry400OperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -156,39 +247,84 @@ export class LrosaDs {
    * indicated in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
-  deleteAsyncRelativeRetry400(
+  async deleteAsyncRelativeRetry400(
     options?: coreHttp.OperationOptions
-  ): Promise<LrosaDsDeleteAsyncRelativeRetry400Response> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsDeleteAsyncRelativeRetry400Response>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsDeleteAsyncRelativeRetry400Response
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       deleteAsyncRelativeRetry400OperationSpec
-    ) as Promise<LrosaDsDeleteAsyncRelativeRetry400Response>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: deleteAsyncRelativeRetry400OperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
    * Long running post request, service returns a 400 with no error body
    * @param options The options parameters.
    */
-  postNonRetry400(
+  async postNonRetry400(
     options?: LrosaDsPostNonRetry400OptionalParams
-  ): Promise<LrosaDsPostNonRetry400Response> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsPostNonRetry400Response>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPostNonRetry400Response
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       postNonRetry400OperationSpec
-    ) as Promise<LrosaDsPostNonRetry400Response>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: postNonRetry400OperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
    * Long running post request, service returns a 202 with a location header
    * @param options The options parameters.
    */
-  post202NonRetry400(
+  async post202NonRetry400(
     options?: LrosaDsPost202NonRetry400OptionalParams
-  ): Promise<LrosaDsPost202NonRetry400Response> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsPost202NonRetry400Response>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPost202NonRetry400Response
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       post202NonRetry400OperationSpec
-    ) as Promise<LrosaDsPost202NonRetry400Response>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: post202NonRetry400OperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -196,26 +332,56 @@ export class LrosaDs {
    * in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
-  postAsyncRelativeRetry400(
+  async postAsyncRelativeRetry400(
     options?: LrosaDsPostAsyncRelativeRetry400OptionalParams
-  ): Promise<LrosaDsPostAsyncRelativeRetry400Response> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsPostAsyncRelativeRetry400Response>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPostAsyncRelativeRetry400Response
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       postAsyncRelativeRetry400OperationSpec
-    ) as Promise<LrosaDsPostAsyncRelativeRetry400Response>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: postAsyncRelativeRetry400OperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
    * Long running put request, service returns a 201 to the initial request with no payload
    * @param options The options parameters.
    */
-  putError201NoProvisioningStatePayload(
+  async putError201NoProvisioningStatePayload(
     options?: LrosaDsPutError201NoProvisioningStatePayloadOptionalParams
-  ): Promise<LrosaDsPutError201NoProvisioningStatePayloadResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsPutError201NoProvisioningStatePayloadResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutError201NoProvisioningStatePayloadResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       putError201NoProvisioningStatePayloadOperationSpec
-    ) as Promise<LrosaDsPutError201NoProvisioningStatePayloadResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: putError201NoProvisioningStatePayloadOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -224,13 +390,28 @@ export class LrosaDs {
    * operation status
    * @param options The options parameters.
    */
-  putAsyncRelativeRetryNoStatus(
+  async putAsyncRelativeRetryNoStatus(
     options?: LrosaDsPutAsyncRelativeRetryNoStatusOptionalParams
-  ): Promise<LrosaDsPutAsyncRelativeRetryNoStatusResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsPutAsyncRelativeRetryNoStatusResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutAsyncRelativeRetryNoStatusResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       putAsyncRelativeRetryNoStatusOperationSpec
-    ) as Promise<LrosaDsPutAsyncRelativeRetryNoStatusResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: putAsyncRelativeRetryNoStatusOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -239,26 +420,56 @@ export class LrosaDs {
    * operation status
    * @param options The options parameters.
    */
-  putAsyncRelativeRetryNoStatusPayload(
+  async putAsyncRelativeRetryNoStatusPayload(
     options?: LrosaDsPutAsyncRelativeRetryNoStatusPayloadOptionalParams
-  ): Promise<LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       putAsyncRelativeRetryNoStatusPayloadOperationSpec
-    ) as Promise<LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: putAsyncRelativeRetryNoStatusPayloadOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
    * Long running delete request, service returns a 204 to the initial request, indicating success.
    * @param options The options parameters.
    */
-  delete204Succeeded(
+  async delete204Succeeded(
     options?: coreHttp.OperationOptions
-  ): Promise<coreHttp.RestResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<coreHttp.RestResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        coreHttp.RestResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       delete204SucceededOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: delete204SucceededOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -266,26 +477,56 @@ export class LrosaDs {
    * indicated in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
-  deleteAsyncRelativeRetryNoStatus(
+  async deleteAsyncRelativeRetryNoStatus(
     options?: coreHttp.OperationOptions
-  ): Promise<LrosaDsDeleteAsyncRelativeRetryNoStatusResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsDeleteAsyncRelativeRetryNoStatusResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsDeleteAsyncRelativeRetryNoStatusResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       deleteAsyncRelativeRetryNoStatusOperationSpec
-    ) as Promise<LrosaDsDeleteAsyncRelativeRetryNoStatusResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: deleteAsyncRelativeRetryNoStatusOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
    * Long running post request, service returns a 202 to the initial request, without a location header.
    * @param options The options parameters.
    */
-  post202NoLocation(
+  async post202NoLocation(
     options?: LrosaDsPost202NoLocationOptionalParams
-  ): Promise<LrosaDsPost202NoLocationResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsPost202NoLocationResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPost202NoLocationResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       post202NoLocationOperationSpec
-    ) as Promise<LrosaDsPost202NoLocationResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: post202NoLocationOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -294,13 +535,28 @@ export class LrosaDs {
    * header for operation status
    * @param options The options parameters.
    */
-  postAsyncRelativeRetryNoPayload(
+  async postAsyncRelativeRetryNoPayload(
     options?: LrosaDsPostAsyncRelativeRetryNoPayloadOptionalParams
-  ): Promise<LrosaDsPostAsyncRelativeRetryNoPayloadResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsPostAsyncRelativeRetryNoPayloadResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPostAsyncRelativeRetryNoPayloadResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       postAsyncRelativeRetryNoPayloadOperationSpec
-    ) as Promise<LrosaDsPostAsyncRelativeRetryNoPayloadResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: postAsyncRelativeRetryNoPayloadOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -308,13 +564,28 @@ export class LrosaDs {
    * valid json
    * @param options The options parameters.
    */
-  put200InvalidJson(
+  async put200InvalidJson(
     options?: LrosaDsPut200InvalidJsonOptionalParams
-  ): Promise<LrosaDsPut200InvalidJsonResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsPut200InvalidJsonResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPut200InvalidJsonResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       put200InvalidJsonOperationSpec
-    ) as Promise<LrosaDsPut200InvalidJsonResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: put200InvalidJsonOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -322,13 +593,28 @@ export class LrosaDs {
    * ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid.
    * @param options The options parameters.
    */
-  putAsyncRelativeRetryInvalidHeader(
+  async putAsyncRelativeRetryInvalidHeader(
     options?: LrosaDsPutAsyncRelativeRetryInvalidHeaderOptionalParams
-  ): Promise<LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       putAsyncRelativeRetryInvalidHeaderOperationSpec
-    ) as Promise<LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: putAsyncRelativeRetryInvalidHeaderOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -337,13 +623,30 @@ export class LrosaDs {
    * operation status
    * @param options The options parameters.
    */
-  putAsyncRelativeRetryInvalidJsonPolling(
+  async putAsyncRelativeRetryInvalidJsonPolling(
     options?: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams
-  ): Promise<LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<
+    LROPoller<LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse>
+  > {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       putAsyncRelativeRetryInvalidJsonPollingOperationSpec
-    ) as Promise<LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: putAsyncRelativeRetryInvalidJsonPollingOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -351,13 +654,28 @@ export class LrosaDs {
    * invalid 'Location' and 'Retry-After' headers
    * @param options The options parameters.
    */
-  delete202RetryInvalidHeader(
+  async delete202RetryInvalidHeader(
     options?: coreHttp.OperationOptions
-  ): Promise<LrosaDsDelete202RetryInvalidHeaderResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsDelete202RetryInvalidHeaderResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsDelete202RetryInvalidHeaderResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       delete202RetryInvalidHeaderOperationSpec
-    ) as Promise<LrosaDsDelete202RetryInvalidHeaderResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: delete202RetryInvalidHeaderOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -365,13 +683,28 @@ export class LrosaDs {
    * the Azure-AsyncOperation header is invalid
    * @param options The options parameters.
    */
-  deleteAsyncRelativeRetryInvalidHeader(
+  async deleteAsyncRelativeRetryInvalidHeader(
     options?: coreHttp.OperationOptions
-  ): Promise<LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       deleteAsyncRelativeRetryInvalidHeaderOperationSpec
-    ) as Promise<LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: deleteAsyncRelativeRetryInvalidHeaderOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -379,13 +712,30 @@ export class LrosaDs {
    * indicated in the Azure-AsyncOperation header for operation status
    * @param options The options parameters.
    */
-  deleteAsyncRelativeRetryInvalidJsonPolling(
+  async deleteAsyncRelativeRetryInvalidJsonPolling(
     options?: coreHttp.OperationOptions
-  ): Promise<LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<
+    LROPoller<LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse>
+  > {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec
-    ) as Promise<LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -393,13 +743,28 @@ export class LrosaDs {
    * 'Retry-After' headers.
    * @param options The options parameters.
    */
-  post202RetryInvalidHeader(
+  async post202RetryInvalidHeader(
     options?: LrosaDsPost202RetryInvalidHeaderOptionalParams
-  ): Promise<LrosaDsPost202RetryInvalidHeaderResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsPost202RetryInvalidHeaderResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPost202RetryInvalidHeaderResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       post202RetryInvalidHeaderOperationSpec
-    ) as Promise<LrosaDsPost202RetryInvalidHeaderResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: post202RetryInvalidHeaderOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -408,13 +773,28 @@ export class LrosaDs {
    * invalid.
    * @param options The options parameters.
    */
-  postAsyncRelativeRetryInvalidHeader(
+  async postAsyncRelativeRetryInvalidHeader(
     options?: LrosaDsPostAsyncRelativeRetryInvalidHeaderOptionalParams
-  ): Promise<LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       postAsyncRelativeRetryInvalidHeaderOperationSpec
-    ) as Promise<LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: postAsyncRelativeRetryInvalidHeaderOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -423,13 +803,30 @@ export class LrosaDs {
    * header for operation status
    * @param options The options parameters.
    */
-  postAsyncRelativeRetryInvalidJsonPolling(
+  async postAsyncRelativeRetryInvalidJsonPolling(
     options?: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams
-  ): Promise<LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<
+    LROPoller<LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse>
+  > {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       postAsyncRelativeRetryInvalidJsonPollingOperationSpec
-    ) as Promise<LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: postAsyncRelativeRetryInvalidJsonPollingOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 }
 // Operation Specifications

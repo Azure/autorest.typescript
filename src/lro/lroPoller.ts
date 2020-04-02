@@ -3,6 +3,11 @@ import { OperationSpec, OperationArguments, delay } from "@azure/core-http";
 import { BaseResult, LROOperationState } from "./models";
 import { makeOperation } from "./operation";
 
+export type SendOperationFn<TResult extends BaseResult> = (
+  args: OperationArguments,
+  spec: OperationSpec
+) => Promise<TResult>;
+
 export interface LROPollerOptions<TResult extends BaseResult> {
   /**
    * Defines how much time the poller is going to wait before making a new request to the service.
@@ -23,10 +28,7 @@ export interface LROPollerOptions<TResult extends BaseResult> {
   /**
    * Function to execute an operation based on an operation spec and arguments
    */
-  sendOperation: (
-    args: OperationArguments,
-    spec: OperationSpec
-  ) => Promise<TResult>;
+  sendOperation: SendOperationFn<TResult>;
 }
 
 export class LROPoller<TResult extends BaseResult> extends Poller<
@@ -49,7 +51,8 @@ export class LROPoller<TResult extends BaseResult> extends Poller<
         spec: initialOperationSpec,
         result: initialOperationResult
       },
-      sendOperation
+      sendOperation,
+      result: initialOperationResult
     };
 
     const operation = makeOperation(state);
