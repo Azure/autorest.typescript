@@ -101,6 +101,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "HeaderClient",
     packageName: "header"
   },
+  lro: {
+    swagger: "lro.json",
+    clientName: "LROClient",
+    packageName: "lro"
+  },
   mediaTypes: {
     swagger: "media_types.json",
     clientName: "MediaTypesClient",

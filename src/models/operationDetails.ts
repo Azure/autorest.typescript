@@ -61,6 +61,7 @@ export interface OperationDetails {
   typeDetails: TypeDetails;
   mediaTypes: Set<KnownMediaType>;
   pagination?: PaginationDetails;
+  isLRO: boolean;
 }
 
 /**

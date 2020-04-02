@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { HttpMethods, Mapper, MapperType } from "@azure/core-http";
+import { HttpMethods, Mapper } from "@azure/core-http";
 import {
   Operation,
   Request,
@@ -257,6 +257,10 @@ export async function transformOperation(
     usedModels: [typeName]
   };
 
+  const isLRO: boolean = Boolean(
+    operation.extensions && operation.extensions["x-ms-long-running-operation"]
+  );
+
   const codeModelRequests = operation.requests;
   if (codeModelRequests === undefined || !codeModelRequests.length) {
     throw new Error(
@@ -265,9 +269,22 @@ export async function transformOperation(
   }
 
   const requests = codeModelRequests.map(transformOperationRequest);
-  const responses = responsesAndErrors.map(response =>
+  let responses = responsesAndErrors.map(response =>
     transformOperationResponse(response, operationFullName)
   );
+  const hasMultipleResponses = responses.filter(r => !r.isError).length > 1;
+
+  // If this is an LRO operation only consider the success response,
+  // this is because LRO operations swagger defines initial and final operation
+  // responses in the same operation.
+  if (isLRO && hasMultipleResponses) {
+    responses = responses.filter(
+      response =>
+        response.statusCodes.includes("200") ||
+        response.statusCodes.includes("204")
+    );
+  }
+
   const mediaTypes = await getOperationMediaTypes(requests, responses);
 
   return {
@@ -281,7 +298,8 @@ export async function transformOperation(
     requests,
     responses,
     mediaTypes,
-    pagination
+    pagination,
+    isLRO
   };
 }
 

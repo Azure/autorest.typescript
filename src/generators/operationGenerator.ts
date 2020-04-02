@@ -99,7 +99,7 @@ function generateOperation(
     { overwrite: true }
   );
 
-  addImports(operationGroupFile, clientDetails);
+  addImports(operationGroupDetails, operationGroupFile, clientDetails);
   addClass(operationGroupFile, operationGroupDetails, clientDetails);
   addOperationSpecs(
     operationGroupDetails,
@@ -551,19 +551,17 @@ export function writeOperations(
       returnType: `Promise<${responseName}>`,
       docs: [
         generateOperationJSDoc(baseMethodParameters, operation.description)
-      ]
+      ],
+      isAsync: operation.isLRO
     });
 
     if (overloadParameterDeclarations.length === 1) {
-      const sendParams = overloadParameterDeclarations[0]
-        .map(p => p.name)
-        .join(",");
-      operationMethod.addStatements(
-        `return this${
-          isInline ? "" : ".client"
-        }.sendOperationRequest({${sendParams}${!!sendParams ? "," : ""}}, ${
-          operation.name
-        }OperationSpec) as Promise<${responseName}>`
+      writeNoOverloadsOperationBody(
+        operation,
+        responseName,
+        operationMethod,
+        overloadParameterDeclarations[0],
+        isInline
       );
       return;
     }
@@ -586,6 +584,56 @@ export function writeOperations(
       isInline
     );
   });
+}
+
+function writeNoOverloadsOperationBody(
+  operation: OperationDetails,
+  responseName: string,
+  operationMethod: MethodDeclaration,
+  parameterDeclarations: ParameterWithDescription[],
+  isInline: boolean
+): void {
+  const sendParams = parameterDeclarations.map(p => p.name).join(",");
+  const operationSpecName = `${operation.name}OperationSpec`;
+  if (operation.isLRO) {
+    writeLROOperationBody(
+      sendParams,
+      responseName,
+      operationSpecName,
+      operationMethod
+    );
+  } else {
+    operationMethod.addStatements(
+      `return this${
+        isInline ? "" : ".client"
+      }.sendOperationRequest({${sendParams}${
+        !!sendParams ? "," : ""
+      }}, ${operationSpecName}) as Promise<${responseName}>`
+    );
+  }
+}
+
+function writeLROOperationBody(
+  sendParams: string,
+  responseName: string,
+  operationSpecName: string,
+  methodDeclaration: MethodDeclaration
+) {
+  const operationBody = `
+  const args = {${sendParams}};
+  const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>  this.client.sendOperationRequest(args, spec) as Promise<${responseName}>;
+  const initialOperationResult = await sendOperation(args, ${operationSpecName});
+
+  return new LROPoller({
+    initialOperationArguments: args,
+    initialOperationSpec: ${operationSpecName},
+    initialOperationResult,
+    sendOperation
+  });
+  `;
+
+  methodDeclaration.setReturnType(`Promise<LROPoller<${responseName}>>`);
+  methodDeclaration.addStatements(operationBody);
 }
 
 /**
@@ -657,9 +705,25 @@ function writeMultiMediaTypeOperationBody(
   }`);
 
   statements += conditionals.join(" else ");
-  statements += `return this${
-    isInline ? "" : ".client"
-  }.sendOperationRequest(operationArguments, operationSpec) as Promise<${responseName}>`;
+
+  if (!operation.isLRO) {
+    statements += `return this${
+      isInline ? "" : ".client"
+    }.sendOperationRequest(operationArguments, operationSpec) as Promise<${responseName}>`;
+  } else {
+    `
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>  this.client.sendOperationRequest(args, spec) as Promise<${responseName}>;
+    const initialOperationResult = await sendOperation(operationArguments, operationSpec);
+
+    return new LROPoller({
+      initialOperationArguments: operationArguments,
+      initialOperationSpec: operationSpec
+      initialOperationResult,
+      sendOperation
+    });
+    `;
+  }
+
   operationMethod.addStatements(statements);
 }
 
@@ -784,6 +848,7 @@ export function addOperationSpecs(
  * Adds required imports at the top of the file
  */
 function addImports(
+  operationGroupDetails: OperationGroupDetails,
   operationGroupFile: SourceFile,
   clientDetails: ClientDetails
 ) {
@@ -812,4 +877,15 @@ function addImports(
     namedImports: [className],
     moduleSpecifier: `../${sourceFileName}`
   });
+
+  if (hasLROOperation(operationGroupDetails)) {
+    operationGroupFile.addImportDeclaration({
+      namedImports: ["LROPoller"],
+      moduleSpecifier: `../lro/lroPoller`
+    });
+  }
+}
+
+function hasLROOperation(operationGroupDetails: OperationGroupDetails) {
+  return operationGroupDetails.operations.some(o => o.isLRO);
 }
