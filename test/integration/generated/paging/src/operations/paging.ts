@@ -10,6 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { PagingClient } from "../pagingClient";
+import { LROPoller } from "../lro/lroPoller";
 import {
   PagingGetNoItemNamePagesResponse,
   PagingGetNullNextLinkNamePagesResponse,
@@ -247,13 +248,28 @@ export class Paging {
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  getMultiplePagesLRO(
+  async getMultiplePagesLRO(
     options?: PagingGetMultiplePagesLROOptionalParams
-  ): Promise<PagingGetMultiplePagesLROResponse> {
-    return this.client.sendOperationRequest(
-      { options },
+  ): Promise<LROPoller<PagingGetMultiplePagesLROResponse>> {
+    const args = { options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        PagingGetMultiplePagesLROResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       getMultiplePagesLROOperationSpec
-    ) as Promise<PagingGetMultiplePagesLROResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: getMultiplePagesLROOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 
   /**
@@ -454,14 +470,29 @@ export class Paging {
    * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesLRO method.
    * @param options The options parameters.
    */
-  getMultiplePagesLRONext(
+  async getMultiplePagesLRONext(
     nextLink: string,
     options?: PagingGetMultiplePagesLRONextOptionalParams
-  ): Promise<PagingGetMultiplePagesLRONextResponse> {
-    return this.client.sendOperationRequest(
-      { nextLink, options },
+  ): Promise<LROPoller<PagingGetMultiplePagesLRONextResponse>> {
+    const args = { nextLink, options };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        PagingGetMultiplePagesLRONextResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       getMultiplePagesLRONextOperationSpec
-    ) as Promise<PagingGetMultiplePagesLRONextResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: getMultiplePagesLRONextOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
   }
 }
 // Operation Specifications

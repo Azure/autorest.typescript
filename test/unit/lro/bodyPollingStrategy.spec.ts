@@ -92,7 +92,7 @@ describe("BodyPollingStrategy", () => {
       let pollingUrl = "";
       const pollingStrategy = createBodyPollingStrategy({
         lastOperation,
-        sendOperation: (_args: OperationArguments, spec: OperationSpec) => {
+        sendOperation: (args: OperationArguments, spec: OperationSpec) => {
           pollingMethod = spec.httpMethod;
           pollingUrl = spec.path || "";
           return "" as any;
