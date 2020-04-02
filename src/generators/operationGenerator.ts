@@ -705,9 +705,25 @@ function writeMultiMediaTypeOperationBody(
   }`);
 
   statements += conditionals.join(" else ");
-  statements += `return this${
-    isInline ? "" : ".client"
-  }.sendOperationRequest(operationArguments, operationSpec) as Promise<${responseName}>`;
+
+  if (!operation.isLRO) {
+    statements += `return this${
+      isInline ? "" : ".client"
+    }.sendOperationRequest(operationArguments, operationSpec) as Promise<${responseName}>`;
+  } else {
+    `
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>  this.client.sendOperationRequest(args, spec) as Promise<${responseName}>;
+    const initialOperationResult = await sendOperation(operationArguments, operationSpec);
+
+    return new LROPoller({
+      initialOperationArguments: operationArguments,
+      initialOperationSpec: operationSpec
+      initialOperationResult,
+      sendOperation
+    });
+    `;
+  }
+
   operationMethod.addStatements(statements);
 }
 
