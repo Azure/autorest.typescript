@@ -1,13 +1,14 @@
 import { assert } from "chai";
 import { createBodyPollingStrategy } from "../../../src/lro/bodyPollingStrategy";
 import { LastOperation } from "../../../src/lro/models";
+import { OperationSpec, OperationArguments } from "@azure/core-http";
 describe("BodyPollingStrategy", () => {
   const mockSendOperation: any = () => Promise.resolve({});
-  let lastOperation: LastOperation<{}>;
+  let lastOperation: LastOperation<any>;
   beforeEach(() => {
     lastOperation = {
       args: {},
-      spec: { httpMethod: "PUT" } as any,
+      spec: { httpMethod: "PUT", path: "originalPath" } as any,
       result: {}
     };
   });
@@ -87,16 +88,20 @@ describe("BodyPollingStrategy", () => {
 
   describe("poll", () => {
     it("should return polling operation with GET http method", async () => {
+      let pollingMethod = "";
+      let pollingUrl = "";
       const pollingStrategy = createBodyPollingStrategy({
         lastOperation,
-        sendOperation: mockSendOperation
+        sendOperation: (_args: OperationArguments, spec: OperationSpec) => {
+          pollingMethod = spec.httpMethod;
+          pollingUrl = spec.path || "";
+          return "" as any;
+        }
       });
 
-      const result = await pollingStrategy.poll();
-      assert.deepEqual(result.spec, {
-        ...lastOperation.spec,
-        httpMethod: "GET"
-      });
+      await pollingStrategy.poll();
+      assert.equal(pollingMethod, "GET");
+      assert.equal(pollingUrl, lastOperation.spec.path);
     });
   });
 });

@@ -54,6 +54,7 @@ async function update<TResult extends BaseResult>(
   } else {
     const result = await lroStrategy.poll();
     state.lastOperation = result;
+    state.result = state.lastOperation.result;
   }
 
   // Return operation
@@ -97,10 +98,7 @@ function getStrategyFromResult<TResult extends BaseResult>(
     throw new Error("Location strategy is not yet implemented");
   }
 
-  // TODO: Should we include here other methods like Patch?
-  if (spec.httpMethod === "PUT") {
-    // We should use BodyPolling strategy
-    // Return BodyPolling Strategy
+  if (["PUT", "PATCH"].includes(spec.httpMethod)) {
     return createBodyPollingStrategy(state);
   }
 

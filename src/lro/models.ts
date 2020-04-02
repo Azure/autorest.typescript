@@ -1,7 +1,11 @@
-import { OperationArguments, OperationSpec } from "@azure/core-http";
+import {
+  OperationArguments,
+  OperationSpec,
+  RestResponse
+} from "@azure/core-http";
 import { PollOperationState, PollOperation } from "@azure/core-lro";
 
-export interface BaseResult {
+export interface BaseResult extends RestResponse {
   location?: string;
   operationLocation?: string;
   azureAsyncOperation?: string;

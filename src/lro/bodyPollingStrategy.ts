@@ -38,8 +38,7 @@ export function createBodyPollingStrategy<TResult extends BaseResult>({
       // Execute the polling operation
       const result = await sendOperation(lastOperation.args, pollingSpec);
 
-      // Update lastOperation
-      lastOperation.spec = pollingSpec;
+      // Update lastOperation result
       lastOperation.result = result;
       return lastOperation;
     }
