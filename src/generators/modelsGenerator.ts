@@ -112,12 +112,14 @@ function writeOptionsParameter(
   );
 
   const operationName = normalizeName(operation.name, NameType.Interface);
+  const operationRequestMediaTypes = new Set<KnownMediaType>();
+  operation.requests.forEach(r => r.mediaType && operationRequestMediaTypes.add(r.mediaType));
   writeOptionalParameters(
     operationGroupName,
     operationName,
     optionalParams,
     sourceFile,
-    { mediaTypes: operation.mediaTypes }
+    { mediaTypes: operationRequestMediaTypes }
   );
 }
 
