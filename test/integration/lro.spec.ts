@@ -10,12 +10,14 @@ describe("LRO", () => {
 
   it("should handle initial response with terminal state through an Azure Resource", async () => {
     const poller = await client.lROs.put200Succeeded();
+    poller.delay = () => Promise.resolve();
     const result = await poller.pollUntilDone();
     assert.equal(result.provisioningState, "Succeeded");
   });
 
   it("should handle initial response with terminal state without provisioning State", async () => {
     const poller = await client.lROs.put200SucceededNoState();
+    poller.delay = () => Promise.resolve();
     const result = await poller.pollUntilDone();
     assert.deepEqual(result.id, "100");
     assert.deepEqual(result.name, "foo");
