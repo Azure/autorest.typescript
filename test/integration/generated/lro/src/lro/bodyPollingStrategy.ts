@@ -7,9 +7,10 @@
  */
 
 import { LROStrategy, BaseResult, LROOperationStep } from "./models";
-import { OperationSpec } from "@azure/core-http";
+import { OperationSpec, OperationArguments } from "@azure/core-http";
 import { terminalStates } from "./constants";
 import { SendOperationFn } from "./lroPoller";
+import { shouldDeserializeLRO } from "./requestUtils";
 
 /**
  * Creates a polling strategy based on BodyPolling which uses the provisioning state
@@ -19,6 +20,23 @@ export function createBodyPollingStrategy<TResult extends BaseResult>(
   initialOperation: LROOperationStep<TResult>,
   sendOperation: SendOperationFn<TResult>
 ): LROStrategy<TResult> {
+  let operationArgs: OperationArguments;
+  const shouldDeserialize = shouldDeserializeLRO(
+    initialOperation.result._lroData!
+  );
+
+  if (!initialOperation.args) {
+    operationArgs = { options: { shouldDeserialize: shouldDeserialize } };
+  } else {
+    operationArgs = {
+      ...initialOperation.args,
+      options: {
+        ...initialOperation.args.options,
+        shouldDeserialize: shouldDeserialize
+      }
+    };
+  }
+
   return {
     isTerminal: () => {
       // If provisioning state is missing, default to Success
@@ -43,7 +61,7 @@ export function createBodyPollingStrategy<TResult extends BaseResult>(
       };
 
       // Execute the polling operation
-      const result = await sendOperation(initialOperation.args, pollingSpec);
+      const result = await sendOperation(operationArgs, pollingSpec);
 
       // Update lastOperation result
       initialOperation.result = result;
