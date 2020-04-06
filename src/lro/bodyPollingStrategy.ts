@@ -13,8 +13,9 @@ export function createBodyPollingStrategy<TResult extends BaseResult>(
   sendOperation: SendOperationFn<TResult>
 ): LROStrategy<TResult> {
   let operationArgs: OperationArguments;
+
   const shouldDeserialize = shouldDeserializeLRO(
-    initialOperation.result._lroData!
+    initialOperation.result._lroData
   );
 
   if (!initialOperation.args) {
@@ -31,14 +32,16 @@ export function createBodyPollingStrategy<TResult extends BaseResult>(
 
   return {
     isTerminal: () => {
-      // If provisioning state is missing, default to Success
-      const provisioningState = (
-        initialOperation.result.provisioningState ||
-        initialOperation.result.properties?.provisioningState ||
-        "succeeded"
-      ).toLowerCase();
+      if (!initialOperation.result._lroData) {
+        throw new Error("Expected lroData to determine terminal status");
+      }
 
-      return terminalStates.includes(provisioningState);
+      const {
+        provisioningState = "succeeded"
+      } = initialOperation.result._lroData;
+      // If provisioning state is missing, default to Success
+
+      return terminalStates.includes(provisioningState.toLowerCase());
     },
     sendFinalRequest: () => {
       // BodyPolling doesn't require a final get so return the lastOperation
