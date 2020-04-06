@@ -11,19 +11,15 @@ export async function generateLROFiles(
     return;
   }
 
-  const lroFiles = [
-    { name: "bodyPollingStrategy", file: "./src/lro/bodyPollingStrategy.ts" },
-    { name: "lroPoller", file: "./src/lro/lroPoller.ts" },
-    { name: "models", file: "./src/lro/models.ts" },
-    { name: "operation", file: "./src/lro/operation.ts" }
-  ];
+  const lroDir = "./src/lro";
+  const lroFiles = await promises.readdir(lroDir);
 
   for (let i = 0; i < lroFiles.length; i++) {
-    const { name, file } = lroFiles[i];
-    const fileContent = await promises.readFile(file, "utf-8");
+    const file = lroFiles[i];
+    const fileContent = await promises.readFile(`${lroDir}/${file}`, "utf-8");
 
     project.createSourceFile(
-      `${clientDetails.srcPath}/lro/${name}.ts`,
+      `${clientDetails.srcPath}/lro/${file}`,
       fileContent,
       { overwrite: true }
     );
@@ -31,5 +27,5 @@ export async function generateLROFiles(
 }
 
 function hasAnyLRO(operationGroups: OperationGroupDetails[]) {
-  return operationGroups.some(og => og.operations.some(o => o.isLRO));
+  return operationGroups.some((og) => og.operations.some((o) => o.isLRO));
 }

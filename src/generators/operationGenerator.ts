@@ -109,6 +109,30 @@ function generateOperation(
   );
 }
 
+function writeGetOperationOptions(operationGroupClass: ClassDeclaration) {
+  operationGroupClass.addMethod({
+    scope: Scope.Private,
+    name: "getOperationOptions<TOptions extends coreHttp.OperationOptions>",
+    parameters: [
+      { name: "options", type: "TOptions | undefined" },
+      { name: "requestMethod", type: "coreHttp.HttpMethods" },
+      { name: "isLRO", type: "boolean" }
+    ],
+    returnType: `coreHttp.RequestOptionsBase`,
+    statements: `
+    const operationOptions: coreHttp.OperationOptions = options || {};
+    if (isLRO) {
+      operationOptions.requestOptions = {
+        ...operationOptions.requestOptions,
+        shouldDeserialize: shouldDeserializeLRO({ requestMethod }),
+      };
+    }
+
+    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    `
+  });
+}
+
 /**
  * Generates a string representation of an Operation spec
  * the output is to be inserted in the Operation group file
@@ -340,6 +364,8 @@ function addClass(
     importedModels,
     clientDetails.parameters
   );
+
+  writeGetOperationOptions(operationGroupClass);
 
   // Use named import from Models
   if (importedModels.size) {
@@ -593,8 +619,21 @@ function writeNoOverloadsOperationBody(
   parameterDeclarations: ParameterWithDescription[],
   isInline: boolean
 ): void {
-  const sendParams = parameterDeclarations.map(p => p.name).join(",");
+  const sendParams = parameterDeclarations
+    .map(p => (p.name === "options" ? "options: operationOptions" : p.name))
+    .join(",");
+
   const operationSpecName = `${operation.name}OperationSpec`;
+
+  const operationOptions = `
+  const operationOptions: coreHttp.OperationArguments = this.getOperationOptions(
+    options,
+    ${operationSpecName}.httpMethod,
+    ${operation.isLRO}
+  );`;
+
+  operationMethod.addStatements(operationOptions);
+
   if (operation.isLRO) {
     writeLROOperationBody(
       sendParams,
@@ -880,8 +919,8 @@ function addImports(
 
   if (hasLROOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({
-      namedImports: ["LROPoller"],
-      moduleSpecifier: `../lro/lroPoller`
+      namedImports: ["LROPoller", "shouldDeserializeLRO"],
+      moduleSpecifier: `../lro`
     });
   }
 }

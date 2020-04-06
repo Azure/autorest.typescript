@@ -1,7 +1,6 @@
 import { LROStrategy, BaseResult, LROOperationState } from "./models";
 import { OperationSpec } from "@azure/core-http";
-
-const terminalStates = ["succeeded", "failed", "canceled", "cancelled"];
+import { terminalStates } from "./constants";
 
 /**
  * Creates a polling strategy based on BodyPolling which uses the provisioning state
@@ -9,7 +8,7 @@ const terminalStates = ["succeeded", "failed", "canceled", "cancelled"];
  */
 export function createBodyPollingStrategy<TResult extends BaseResult>({
   lastOperation: operation,
-  sendOperation
+  sendOperation,
 }: LROOperationState<TResult>): LROStrategy<TResult> {
   let lastOperation = { ...operation };
   return {
@@ -32,7 +31,7 @@ export function createBodyPollingStrategy<TResult extends BaseResult>({
       // GET http method
       const pollingSpec: OperationSpec = {
         ...lastOperation.spec,
-        httpMethod: "GET"
+        httpMethod: "GET",
       };
 
       // Execute the polling operation
@@ -41,6 +40,6 @@ export function createBodyPollingStrategy<TResult extends BaseResult>({
       // Update lastOperation result
       lastOperation.result = result;
       return lastOperation;
-    }
+    },
   };
 }

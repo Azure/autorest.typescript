@@ -8,8 +8,7 @@
 
 import { LROStrategy, BaseResult, LROOperationState } from "./models";
 import { OperationSpec } from "@azure/core-http";
-
-const terminalStates = ["succeeded", "failed", "canceled", "cancelled"];
+import { terminalStates } from "./constants";
 
 /**
  * Creates a polling strategy based on BodyPolling which uses the provisioning state
