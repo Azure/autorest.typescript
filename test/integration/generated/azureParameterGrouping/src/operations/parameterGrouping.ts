@@ -40,8 +40,11 @@ export class ParameterGrouping {
     parameterGroupingPostRequiredParameters: ParameterGroupingPostRequiredParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { parameterGroupingPostRequiredParameters, options },
+      { parameterGroupingPostRequiredParameters, options: operationOptions },
       postRequiredOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -53,8 +56,11 @@ export class ParameterGrouping {
   postOptional(
     options?: ParameterGroupingPostOptionalOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       postOptionalOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -66,8 +72,11 @@ export class ParameterGrouping {
   postMultiParamGroups(
     options?: ParameterGroupingPostMultiParamGroupsOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       postMultiParamGroupsOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -79,8 +88,11 @@ export class ParameterGrouping {
   postSharedParameterGroupObject(
     options?: ParameterGroupingPostSharedParameterGroupObjectOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       postSharedParameterGroupObjectOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

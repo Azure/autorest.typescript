@@ -44,8 +44,11 @@ export class PathItems {
     localStringPath: string,
     options?: PathItemsGetAllWithValuesOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { pathItemStringPath, localStringPath, options },
+      { pathItemStringPath, localStringPath, options: operationOptions },
       getAllWithValuesOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -63,8 +66,11 @@ export class PathItems {
     localStringPath: string,
     options?: PathItemsGetGlobalQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { pathItemStringPath, localStringPath, options },
+      { pathItemStringPath, localStringPath, options: operationOptions },
       getGlobalQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -82,8 +88,11 @@ export class PathItems {
     localStringPath: string,
     options?: PathItemsGetGlobalAndLocalQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { pathItemStringPath, localStringPath, options },
+      { pathItemStringPath, localStringPath, options: operationOptions },
       getGlobalAndLocalQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -101,8 +110,11 @@ export class PathItems {
     localStringPath: string,
     options?: PathItemsGetLocalPathItemQueryNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { pathItemStringPath, localStringPath, options },
+      { pathItemStringPath, localStringPath, options: operationOptions },
       getLocalPathItemQueryNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

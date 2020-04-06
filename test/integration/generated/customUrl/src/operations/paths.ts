@@ -34,8 +34,11 @@ export class Paths {
     accountName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { accountName, options },
+      { accountName, options: operationOptions },
       getEmptyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

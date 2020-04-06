@@ -50,8 +50,7 @@ export class LRORetrys {
   ): Promise<LROPoller<LRORetrysPut201CreatingSucceeded200Response>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options,
-      put201CreatingSucceeded200OperationSpec.httpMethod,
-      true
+      put201CreatingSucceeded200OperationSpec.httpMethod
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -86,8 +85,7 @@ export class LRORetrys {
   ): Promise<LROPoller<LRORetrysPutAsyncRelativeRetrySucceededResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options,
-      putAsyncRelativeRetrySucceededOperationSpec.httpMethod,
-      true
+      putAsyncRelativeRetrySucceededOperationSpec.httpMethod
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -124,8 +122,7 @@ export class LRORetrys {
   > {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options,
-      deleteProvisioning202Accepted200SucceededOperationSpec.httpMethod,
-      true
+      deleteProvisioning202Accepted200SucceededOperationSpec.httpMethod
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -159,8 +156,7 @@ export class LRORetrys {
   ): Promise<LROPoller<LRORetrysDelete202Retry200Response>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options,
-      delete202Retry200OperationSpec.httpMethod,
-      true
+      delete202Retry200OperationSpec.httpMethod
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -194,8 +190,7 @@ export class LRORetrys {
   ): Promise<LROPoller<LRORetrysDeleteAsyncRelativeRetrySucceededResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options,
-      deleteAsyncRelativeRetrySucceededOperationSpec.httpMethod,
-      true
+      deleteAsyncRelativeRetrySucceededOperationSpec.httpMethod
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -229,8 +224,7 @@ export class LRORetrys {
   ): Promise<LROPoller<LRORetrysPost202Retry200Response>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options,
-      post202Retry200OperationSpec.httpMethod,
-      true
+      post202Retry200OperationSpec.httpMethod
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -265,8 +259,7 @@ export class LRORetrys {
   ): Promise<LROPoller<LRORetrysPostAsyncRelativeRetrySucceededResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options,
-      postAsyncRelativeRetrySucceededOperationSpec.httpMethod,
-      true
+      postAsyncRelativeRetrySucceededOperationSpec.httpMethod
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -292,20 +285,16 @@ export class LRORetrys {
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
     options: TOptions | undefined,
-    initialRequestMethod: coreHttp.HttpMethods,
-    isLRO: boolean
+    initialRequestMethod: coreHttp.HttpMethods
   ): coreHttp.RequestOptionsBase {
     const operationOptions: coreHttp.OperationOptions = options || {};
-    if (isLRO) {
-      operationOptions.requestOptions = {
-        ...operationOptions.requestOptions,
-        shouldDeserialize: shouldDeserializeLRO({
-          initialRequestMethod,
-          isInitialRequest: true
-        })
-      };
-    }
-
+    operationOptions.requestOptions = {
+      ...operationOptions.requestOptions,
+      shouldDeserialize: shouldDeserializeLRO({
+        initialRequestMethod,
+        isInitialRequest: true
+      })
+    };
     return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
   }
 }

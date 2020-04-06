@@ -17,7 +17,7 @@ export interface LROResponseInfo {
 }
 
 export interface BaseResult extends RestResponse {
-  _lroData: LROResponseInfo;
+  _lroData?: LROResponseInfo;
 }
 
 export interface LROOperationStep<TResult extends BaseResult> {

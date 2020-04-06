@@ -115,19 +115,15 @@ function writeGetOperationOptions(operationGroupClass: ClassDeclaration) {
     name: "getOperationOptions<TOptions extends coreHttp.OperationOptions>",
     parameters: [
       { name: "options", type: "TOptions | undefined" },
-      { name: "initialRequestMethod", type: "coreHttp.HttpMethods" },
-      { name: "isLRO", type: "boolean" }
+      { name: "initialRequestMethod", type: "coreHttp.HttpMethods" }
     ],
     returnType: `coreHttp.RequestOptionsBase`,
     statements: `
     const operationOptions: coreHttp.OperationOptions = options || {};
-    if (isLRO) {
-      operationOptions.requestOptions = {
-        ...operationOptions.requestOptions,
-        shouldDeserialize: shouldDeserializeLRO({ initialRequestMethod, isInitialRequest: true }),
-      };
-    }
-
+    operationOptions.requestOptions = {
+      ...operationOptions.requestOptions,
+      shouldDeserialize: shouldDeserializeLRO({ initialRequestMethod, isInitialRequest: true }),
+    };
     return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
     `
   });
@@ -365,7 +361,9 @@ function addClass(
     clientDetails.parameters
   );
 
-  writeGetOperationOptions(operationGroupClass);
+  if (hasLROOperation(operationGroupDetails)) {
+    writeGetOperationOptions(operationGroupClass);
+  }
 
   // Use named import from Models
   if (importedModels.size) {
@@ -625,12 +623,12 @@ function writeNoOverloadsOperationBody(
 
   const operationSpecName = `${operation.name}OperationSpec`;
 
-  const operationOptions = `
-  const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+  const operationOptions = operation.isLRO
+    ? `const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
     options,
-    ${operationSpecName}.httpMethod,
-    ${operation.isLRO}
-  );`;
+    ${operationSpecName}.httpMethod
+  );`
+    : `const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(options || {});`;
 
   operationMethod.addStatements(operationOptions);
 

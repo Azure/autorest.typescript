@@ -42,8 +42,11 @@ export class Polymorphism {
   getValid(
     options?: coreHttp.OperationOptions
   ): Promise<PolymorphismGetValidResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getValidOperationSpec
     ) as Promise<PolymorphismGetValidResponse>;
   }
@@ -89,8 +92,11 @@ export class Polymorphism {
     complexBody: FishUnion,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { complexBody, options },
+      { complexBody, options: operationOptions },
       putValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -102,8 +108,11 @@ export class Polymorphism {
   getDotSyntax(
     options?: coreHttp.OperationOptions
   ): Promise<PolymorphismGetDotSyntaxResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getDotSyntaxOperationSpec
     ) as Promise<PolymorphismGetDotSyntaxResponse>;
   }
@@ -117,8 +126,11 @@ export class Polymorphism {
   getComposedWithDiscriminator(
     options?: coreHttp.OperationOptions
   ): Promise<PolymorphismGetComposedWithDiscriminatorResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getComposedWithDiscriminatorOperationSpec
     ) as Promise<PolymorphismGetComposedWithDiscriminatorResponse>;
   }
@@ -132,8 +144,11 @@ export class Polymorphism {
   getComposedWithoutDiscriminator(
     options?: coreHttp.OperationOptions
   ): Promise<PolymorphismGetComposedWithoutDiscriminatorResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getComposedWithoutDiscriminatorOperationSpec
     ) as Promise<PolymorphismGetComposedWithoutDiscriminatorResponse>;
   }
@@ -146,8 +161,11 @@ export class Polymorphism {
   getComplicated(
     options?: coreHttp.OperationOptions
   ): Promise<PolymorphismGetComplicatedResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getComplicatedOperationSpec
     ) as Promise<PolymorphismGetComplicatedResponse>;
   }
@@ -162,8 +180,11 @@ export class Polymorphism {
     complexBody: SalmonUnion,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { complexBody, options },
+      { complexBody, options: operationOptions },
       putComplicatedOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -177,8 +198,11 @@ export class Polymorphism {
     complexBody: SalmonUnion,
     options?: coreHttp.OperationOptions
   ): Promise<PolymorphismPutMissingDiscriminatorResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { complexBody, options },
+      { complexBody, options: operationOptions },
       putMissingDiscriminatorOperationSpec
     ) as Promise<PolymorphismPutMissingDiscriminatorResponse>;
   }
@@ -219,8 +243,11 @@ export class Polymorphism {
     complexBody: FishUnion,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { complexBody, options },
+      { complexBody, options: operationOptions },
       putValidMissingRequiredOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

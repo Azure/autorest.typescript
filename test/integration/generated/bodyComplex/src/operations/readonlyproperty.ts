@@ -33,8 +33,11 @@ export class Readonlyproperty {
   getValid(
     options?: coreHttp.OperationOptions
   ): Promise<ReadonlypropertyGetValidResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getValidOperationSpec
     ) as Promise<ReadonlypropertyGetValidResponse>;
   }
@@ -48,8 +51,11 @@ export class Readonlyproperty {
     complexBody: ReadonlyObj,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { complexBody, options },
+      { complexBody, options: operationOptions },
       putValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

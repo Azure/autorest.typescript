@@ -44,8 +44,11 @@ class ModelFlatteningClient extends ModelFlatteningClientContext {
   putArray(
     options?: ModelFlatteningClientPutArrayOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       putArrayOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -57,8 +60,11 @@ class ModelFlatteningClient extends ModelFlatteningClientContext {
   getArray(
     options?: coreHttp.OperationOptions
   ): Promise<ModelFlatteningClientGetArrayResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getArrayOperationSpec
     ) as Promise<ModelFlatteningClientGetArrayResponse>;
   }
@@ -71,8 +77,11 @@ class ModelFlatteningClient extends ModelFlatteningClientContext {
   putWrappedArray(
     options?: ModelFlatteningClientPutWrappedArrayOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       putWrappedArrayOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -85,8 +94,11 @@ class ModelFlatteningClient extends ModelFlatteningClientContext {
   getWrappedArray(
     options?: coreHttp.OperationOptions
   ): Promise<ModelFlatteningClientGetWrappedArrayResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getWrappedArrayOperationSpec
     ) as Promise<ModelFlatteningClientGetWrappedArrayResponse>;
   }
@@ -98,8 +110,11 @@ class ModelFlatteningClient extends ModelFlatteningClientContext {
   putDictionary(
     options?: ModelFlatteningClientPutDictionaryOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       putDictionaryOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -111,8 +126,11 @@ class ModelFlatteningClient extends ModelFlatteningClientContext {
   getDictionary(
     options?: coreHttp.OperationOptions
   ): Promise<ModelFlatteningClientGetDictionaryResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getDictionaryOperationSpec
     ) as Promise<ModelFlatteningClientGetDictionaryResponse>;
   }
@@ -124,8 +142,11 @@ class ModelFlatteningClient extends ModelFlatteningClientContext {
   putResourceCollection(
     options?: ModelFlatteningClientPutResourceCollectionOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       putResourceCollectionOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -137,8 +158,11 @@ class ModelFlatteningClient extends ModelFlatteningClientContext {
   getResourceCollection(
     options?: coreHttp.OperationOptions
   ): Promise<ModelFlatteningClientGetResourceCollectionResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getResourceCollectionOperationSpec
     ) as Promise<ModelFlatteningClientGetResourceCollectionResponse>;
   }
@@ -150,8 +174,11 @@ class ModelFlatteningClient extends ModelFlatteningClientContext {
   putSimpleProduct(
     options?: ModelFlatteningClientPutSimpleProductOptionalParams
   ): Promise<ModelFlatteningClientPutSimpleProductResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       putSimpleProductOperationSpec
     ) as Promise<ModelFlatteningClientPutSimpleProductResponse>;
   }
@@ -163,8 +190,11 @@ class ModelFlatteningClient extends ModelFlatteningClientContext {
   postFlattenedSimpleProduct(
     options?: ModelFlatteningClientPostFlattenedSimpleProductOptionalParams
   ): Promise<ModelFlatteningClientPostFlattenedSimpleProductResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       postFlattenedSimpleProductOperationSpec
     ) as Promise<ModelFlatteningClientPostFlattenedSimpleProductResponse>;
   }
@@ -178,8 +208,11 @@ class ModelFlatteningClient extends ModelFlatteningClientContext {
     flattenParameterGroup: FlattenParameterGroup,
     options?: coreHttp.OperationOptions
   ): Promise<ModelFlatteningClientPutSimpleProductWithGroupingResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.sendOperationRequest(
-      { flattenParameterGroup, options },
+      { flattenParameterGroup, options: operationOptions },
       putSimpleProductWithGroupingOperationSpec
     ) as Promise<ModelFlatteningClientPutSimpleProductWithGroupingResponse>;
   }

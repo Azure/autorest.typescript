@@ -36,8 +36,11 @@ export class Bool {
    * @param options The options parameters.
    */
   getTrue(options?: coreHttp.OperationOptions): Promise<BoolGetTrueResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getTrueOperationSpec
     ) as Promise<BoolGetTrueResponse>;
   }
@@ -47,8 +50,11 @@ export class Bool {
    * @param options The options parameters.
    */
   putTrue(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       putTrueOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -58,8 +64,11 @@ export class Bool {
    * @param options The options parameters.
    */
   getFalse(options?: coreHttp.OperationOptions): Promise<BoolGetFalseResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getFalseOperationSpec
     ) as Promise<BoolGetFalseResponse>;
   }
@@ -71,8 +80,11 @@ export class Bool {
   putFalse(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       putFalseOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -82,8 +94,11 @@ export class Bool {
    * @param options The options parameters.
    */
   getNull(options?: coreHttp.OperationOptions): Promise<BoolGetNullResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getNullOperationSpec
     ) as Promise<BoolGetNullResponse>;
   }
@@ -95,8 +110,11 @@ export class Bool {
   getInvalid(
     options?: coreHttp.OperationOptions
   ): Promise<BoolGetInvalidResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getInvalidOperationSpec
     ) as Promise<BoolGetInvalidResponse>;
   }

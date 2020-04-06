@@ -12,6 +12,9 @@ export function createBodyPollingStrategy<TResult extends BaseResult>(
   initialOperation: LROOperationStep<TResult>,
   sendOperation: SendOperationFn<TResult>
 ): LROStrategy<TResult> {
+  if (!initialOperation.result._lroData) {
+    throw new Error("Expected lroData to be defined for BodyPolling strategy");
+  }
   let operationArgs: OperationArguments;
 
   const shouldDeserialize = shouldDeserializeLRO(

@@ -41,8 +41,11 @@ export class Datetimerfc1123 {
   getNull(
     options?: coreHttp.OperationOptions
   ): Promise<Datetimerfc1123GetNullResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getNullOperationSpec
     ) as Promise<Datetimerfc1123GetNullResponse>;
   }
@@ -54,8 +57,11 @@ export class Datetimerfc1123 {
   getInvalid(
     options?: coreHttp.OperationOptions
   ): Promise<Datetimerfc1123GetInvalidResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getInvalidOperationSpec
     ) as Promise<Datetimerfc1123GetInvalidResponse>;
   }
@@ -67,8 +73,11 @@ export class Datetimerfc1123 {
   getOverflow(
     options?: coreHttp.OperationOptions
   ): Promise<Datetimerfc1123GetOverflowResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getOverflowOperationSpec
     ) as Promise<Datetimerfc1123GetOverflowResponse>;
   }
@@ -80,8 +89,11 @@ export class Datetimerfc1123 {
   getUnderflow(
     options?: coreHttp.OperationOptions
   ): Promise<Datetimerfc1123GetUnderflowResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getUnderflowOperationSpec
     ) as Promise<Datetimerfc1123GetUnderflowResponse>;
   }
@@ -95,8 +107,11 @@ export class Datetimerfc1123 {
     datetimeBody: Date,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { datetimeBody, options },
+      { datetimeBody, options: operationOptions },
       putUtcMaxDateTimeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -108,8 +123,11 @@ export class Datetimerfc1123 {
   getUtcLowercaseMaxDateTime(
     options?: coreHttp.OperationOptions
   ): Promise<Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getUtcLowercaseMaxDateTimeOperationSpec
     ) as Promise<Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse>;
   }
@@ -121,8 +139,11 @@ export class Datetimerfc1123 {
   getUtcUppercaseMaxDateTime(
     options?: coreHttp.OperationOptions
   ): Promise<Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getUtcUppercaseMaxDateTimeOperationSpec
     ) as Promise<Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse>;
   }
@@ -136,8 +157,11 @@ export class Datetimerfc1123 {
     datetimeBody: Date,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { datetimeBody, options },
+      { datetimeBody, options: operationOptions },
       putUtcMinDateTimeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -149,8 +173,11 @@ export class Datetimerfc1123 {
   getUtcMinDateTime(
     options?: coreHttp.OperationOptions
   ): Promise<Datetimerfc1123GetUtcMinDateTimeResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getUtcMinDateTimeOperationSpec
     ) as Promise<Datetimerfc1123GetUtcMinDateTimeResponse>;
   }

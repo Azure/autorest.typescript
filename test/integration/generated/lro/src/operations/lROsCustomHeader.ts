@@ -48,8 +48,7 @@ export class LROsCustomHeader {
   ): Promise<LROPoller<LROsCustomHeaderPutAsyncRetrySucceededResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options,
-      putAsyncRetrySucceededOperationSpec.httpMethod,
-      true
+      putAsyncRetrySucceededOperationSpec.httpMethod
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -85,8 +84,7 @@ export class LROsCustomHeader {
   ): Promise<LROPoller<LROsCustomHeaderPut201CreatingSucceeded200Response>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options,
-      put201CreatingSucceeded200OperationSpec.httpMethod,
-      true
+      put201CreatingSucceeded200OperationSpec.httpMethod
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -121,8 +119,7 @@ export class LROsCustomHeader {
   ): Promise<LROPoller<LROsCustomHeaderPost202Retry200Response>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options,
-      post202Retry200OperationSpec.httpMethod,
-      true
+      post202Retry200OperationSpec.httpMethod
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -158,8 +155,7 @@ export class LROsCustomHeader {
   ): Promise<LROPoller<LROsCustomHeaderPostAsyncRetrySucceededResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options,
-      postAsyncRetrySucceededOperationSpec.httpMethod,
-      true
+      postAsyncRetrySucceededOperationSpec.httpMethod
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -185,20 +181,16 @@ export class LROsCustomHeader {
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
     options: TOptions | undefined,
-    initialRequestMethod: coreHttp.HttpMethods,
-    isLRO: boolean
+    initialRequestMethod: coreHttp.HttpMethods
   ): coreHttp.RequestOptionsBase {
     const operationOptions: coreHttp.OperationOptions = options || {};
-    if (isLRO) {
-      operationOptions.requestOptions = {
-        ...operationOptions.requestOptions,
-        shouldDeserialize: shouldDeserializeLRO({
-          initialRequestMethod,
-          isInitialRequest: true
-        })
-      };
-    }
-
+    operationOptions.requestOptions = {
+      ...operationOptions.requestOptions,
+      shouldDeserialize: shouldDeserializeLRO({
+        initialRequestMethod,
+        isInitialRequest: true
+      })
+    };
     return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
   }
 }

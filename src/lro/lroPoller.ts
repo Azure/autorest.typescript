@@ -104,6 +104,12 @@ function getPollingStrategy<TResult extends BaseResult>(
     result: { _lroData: lroData }
   } = initialOperation;
 
+  if (!lroData) {
+    throw new Error(
+      "Expected lroData to be present for PollingStrategy discovery"
+    );
+  }
+
   if (lroData.azureAsyncOperation || lroData.operationLocation) {
     throw new Error("Azure-AsyncOperation strategy is not yet implemented");
   }

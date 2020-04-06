@@ -37,8 +37,11 @@ export class Duration {
   getNull(
     options?: coreHttp.OperationOptions
   ): Promise<DurationGetNullResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getNullOperationSpec
     ) as Promise<DurationGetNullResponse>;
   }
@@ -52,8 +55,11 @@ export class Duration {
     durationBody: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { durationBody, options },
+      { durationBody, options: operationOptions },
       putPositiveDurationOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -65,8 +71,11 @@ export class Duration {
   getPositiveDuration(
     options?: coreHttp.OperationOptions
   ): Promise<DurationGetPositiveDurationResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getPositiveDurationOperationSpec
     ) as Promise<DurationGetPositiveDurationResponse>;
   }
@@ -78,8 +87,11 @@ export class Duration {
   getInvalid(
     options?: coreHttp.OperationOptions
   ): Promise<DurationGetInvalidResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getInvalidOperationSpec
     ) as Promise<DurationGetInvalidResponse>;
   }
