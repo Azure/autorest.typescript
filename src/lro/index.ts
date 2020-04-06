@@ -6,7 +6,7 @@ export { LROPoller, LROPollerOptions, SendOperationFn } from "./lroPoller";
 export {
   LROResponseInfo,
   BaseResult,
-  LastOperation,
+  LROOperationStep,
   LROOperationState,
   LROStrategy,
   LROOperation

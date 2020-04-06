@@ -25,16 +25,10 @@ export interface LROResponseInfo {
 }
 
 export interface BaseResult extends RestResponse {
-  location?: string;
-  operationLocation?: string;
-  azureAsyncOperation?: string;
-  provisioningState?: string;
-  properties?: {
-    provisioningState?: string;
-  };
+  _lroData?: LROResponseInfo;
 }
 
-export interface LastOperation<TResult extends BaseResult> {
+export interface LROOperationStep<TResult extends BaseResult> {
   args: OperationArguments;
   spec: OperationSpec;
   result: TResult;
@@ -42,17 +36,15 @@ export interface LastOperation<TResult extends BaseResult> {
 
 export interface LROOperationState<TResult extends BaseResult>
   extends PollOperationState<TResult> {
-  lastOperation: LastOperation<TResult>;
-  sendOperation: (
-    args: OperationArguments,
-    spec: OperationSpec
-  ) => Promise<TResult>;
+  lastOperation: LROOperationStep<TResult>;
+  initialOperation: LROOperationStep<TResult>;
+  pollingStrategy: LROStrategy<TResult>;
 }
 
 export interface LROStrategy<TResult extends BaseResult> {
   isTerminal: () => boolean;
-  sendFinalRequest: () => Promise<LastOperation<TResult>>;
-  poll: () => Promise<LastOperation<TResult>>;
+  sendFinalRequest: () => Promise<LROOperationStep<TResult>>;
+  poll: () => Promise<LROOperationStep<TResult>>;
 }
 
 export type LROOperation<TResult extends BaseResult> = PollOperation<
