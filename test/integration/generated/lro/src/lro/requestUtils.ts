@@ -14,26 +14,40 @@ import { LROResponseInfo } from "./models";
  * We need to selectively deserialize our responses, only deserializing if we
  * are in a final LRO response, not deserializing any polling non-terminal responses
  */
-export const shouldDeserializeLRO = (originalLROInfo: LROResponseInfo) => (
-  response: HttpOperationResponse
-) => {
-  if (
-    originalLROInfo.azureAsyncOperation ||
-    originalLROInfo.operationLocation
-  ) {
-    return isAsyncOperationFinalResponse(response);
-  }
+export function shouldDeserializeLRO({
+  initialRequestMethod,
+  isInitialRequest
+}: LROResponseInfo) {
+  let initialOperationInfo: LROResponseInfo = {
+    initialRequestMethod
+  };
 
-  if (originalLROInfo.location) {
-    return isLocationFinalResponse(response);
-  }
+  return (response: HttpOperationResponse) => {
+    if (isInitialRequest) {
+      initialOperationInfo = {
+        ...getLROData(response),
+        ...initialOperationInfo
+      };
+    }
 
-  if (originalLROInfo.requestMethod === "PUT") {
-    return isBodyPollingFinalResponse(response);
-  }
+    if (
+      initialOperationInfo.azureAsyncOperation ||
+      initialOperationInfo.operationLocation
+    ) {
+      return !isInitialRequest && isAsyncOperationFinalResponse(response);
+    }
 
-  return true;
-};
+    if (initialOperationInfo.location) {
+      return isLocationFinalResponse(response);
+    }
+
+    if (initialOperationInfo.initialRequestMethod === "PUT") {
+      return isBodyPollingFinalResponse(response);
+    }
+
+    return true;
+  };
+}
 
 function isAsyncOperationFinalResponse(
   response: HttpOperationResponse
@@ -54,4 +68,16 @@ function isBodyPollingFinalResponse(response: HttpOperationResponse): boolean {
   }
 
   return false;
+}
+
+export function getLROData(result: HttpOperationResponse): LROResponseInfo {
+  const { status, properties } = JSON.parse(result.bodyAsText || "{}");
+  return {
+    azureAsyncOperation: result.headers.get("azure-asyncoperation"),
+    operationLocation: result.headers.get("operation-location"),
+    location: result.headers.get("location"),
+    initialRequestMethod: result.request.method,
+    status,
+    provisioningState: properties?.provisioningState
+  };
 }

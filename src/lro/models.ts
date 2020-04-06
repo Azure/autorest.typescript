@@ -2,12 +2,13 @@ import {
   OperationArguments,
   OperationSpec,
   RestResponse,
-  HttpMethods,
+  HttpMethods
 } from "@azure/core-http";
 import { PollOperationState, PollOperation } from "@azure/core-lro";
 
 export interface LROResponseInfo {
-  requestMethod: HttpMethods;
+  initialRequestMethod: HttpMethods;
+  isInitialRequest?: boolean;
   azureAsyncOperation?: string;
   operationLocation?: string;
   location?: string;

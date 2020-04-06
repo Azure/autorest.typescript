@@ -3,15 +3,15 @@ import {
   RequestPolicyOptions,
   BaseRequestPolicy,
   HttpOperationResponse,
-  WebResource,
+  WebResource
 } from "@azure/core-http";
-import { LROResponseInfo } from "./models";
+import { getLROData } from "./requestUtils";
 
 export function lroPolicy() {
   return {
     create: (nextPolicy: RequestPolicy, options: RequestPolicyOptions) => {
       return new LROPolicy(nextPolicy, options);
-    },
+    }
   };
 }
 
@@ -28,16 +28,4 @@ class LROPolicy extends BaseRequestPolicy {
     result.parsedBody = { ...result.parsedBody, _lroData };
     return result;
   }
-}
-
-function getLROData(result: HttpOperationResponse): LROResponseInfo {
-  const { status, properties } = JSON.parse(result.bodyAsText || "{}");
-  return {
-    azureAsyncOperation: result.headers.get("azure-asyncoperation"),
-    operationLocation: result.headers.get("operation-location"),
-    location: result.headers.get("location"),
-    requestMethod: result.request.method,
-    status,
-    provisioningState: properties?.provisioningState,
-  };
 }

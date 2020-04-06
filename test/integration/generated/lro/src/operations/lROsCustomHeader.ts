@@ -46,13 +46,13 @@ export class LROsCustomHeader {
   async putAsyncRetrySucceeded(
     options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
   ): Promise<LROPoller<LROsCustomHeaderPutAsyncRetrySucceededResponse>> {
-    const operationOptions: coreHttp.OperationArguments = this.getOperationOptions(
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options,
       putAsyncRetrySucceededOperationSpec.httpMethod,
       true
     );
 
-    const args = { options: operationOptions };
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -83,13 +83,13 @@ export class LROsCustomHeader {
   async put201CreatingSucceeded200(
     options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
   ): Promise<LROPoller<LROsCustomHeaderPut201CreatingSucceeded200Response>> {
-    const operationOptions: coreHttp.OperationArguments = this.getOperationOptions(
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options,
       put201CreatingSucceeded200OperationSpec.httpMethod,
       true
     );
 
-    const args = { options: operationOptions };
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -119,13 +119,13 @@ export class LROsCustomHeader {
   async post202Retry200(
     options?: LROsCustomHeaderPost202Retry200OptionalParams
   ): Promise<LROPoller<LROsCustomHeaderPost202Retry200Response>> {
-    const operationOptions: coreHttp.OperationArguments = this.getOperationOptions(
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options,
       post202Retry200OperationSpec.httpMethod,
       true
     );
 
-    const args = { options: operationOptions };
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -156,13 +156,13 @@ export class LROsCustomHeader {
   async postAsyncRetrySucceeded(
     options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
   ): Promise<LROPoller<LROsCustomHeaderPostAsyncRetrySucceededResponse>> {
-    const operationOptions: coreHttp.OperationArguments = this.getOperationOptions(
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options,
       postAsyncRetrySucceededOperationSpec.httpMethod,
       true
     );
 
-    const args = { options: operationOptions };
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -185,14 +185,17 @@ export class LROsCustomHeader {
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
     options: TOptions | undefined,
-    requestMethod: coreHttp.HttpMethods,
+    initialRequestMethod: coreHttp.HttpMethods,
     isLRO: boolean
   ): coreHttp.RequestOptionsBase {
     const operationOptions: coreHttp.OperationOptions = options || {};
     if (isLRO) {
       operationOptions.requestOptions = {
         ...operationOptions.requestOptions,
-        shouldDeserialize: shouldDeserializeLRO({ requestMethod })
+        shouldDeserialize: shouldDeserializeLRO({
+          initialRequestMethod,
+          isInitialRequest: true
+        })
       };
     }
 

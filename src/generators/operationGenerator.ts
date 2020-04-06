@@ -115,7 +115,7 @@ function writeGetOperationOptions(operationGroupClass: ClassDeclaration) {
     name: "getOperationOptions<TOptions extends coreHttp.OperationOptions>",
     parameters: [
       { name: "options", type: "TOptions | undefined" },
-      { name: "requestMethod", type: "coreHttp.HttpMethods" },
+      { name: "initialRequestMethod", type: "coreHttp.HttpMethods" },
       { name: "isLRO", type: "boolean" }
     ],
     returnType: `coreHttp.RequestOptionsBase`,
@@ -124,7 +124,7 @@ function writeGetOperationOptions(operationGroupClass: ClassDeclaration) {
     if (isLRO) {
       operationOptions.requestOptions = {
         ...operationOptions.requestOptions,
-        shouldDeserialize: shouldDeserializeLRO({ requestMethod }),
+        shouldDeserialize: shouldDeserializeLRO({ initialRequestMethod, isInitialRequest: true }),
       };
     }
 
@@ -626,7 +626,7 @@ function writeNoOverloadsOperationBody(
   const operationSpecName = `${operation.name}OperationSpec`;
 
   const operationOptions = `
-  const operationOptions: coreHttp.OperationArguments = this.getOperationOptions(
+  const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
     options,
     ${operationSpecName}.httpMethod,
     ${operation.isLRO}
@@ -659,7 +659,7 @@ function writeLROOperationBody(
   methodDeclaration: MethodDeclaration
 ) {
   const operationBody = `
-  const args = {${sendParams}};
+  const args: coreHttp.OperationArguments  = {${sendParams}};
   const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>  this.client.sendOperationRequest(args, spec) as Promise<${responseName}>;
   const initialOperationResult = await sendOperation(args, ${operationSpecName});
 
