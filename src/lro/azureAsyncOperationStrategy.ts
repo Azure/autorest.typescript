@@ -7,7 +7,7 @@ import {
 } from "./models";
 import { OperationSpec, OperationArguments } from "@azure/core-http";
 import { terminalStates } from "./constants";
-import { SendOperationFn, shouldDeserializeLRO } from ".";
+import { SendOperationFn } from ".";
 
 export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
   initialOperation: LROOperationStep<TResult>,
@@ -21,7 +21,6 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
     );
   }
 
-  let operationArgs = getOperationArguments(initialOperation);
   let pollCount = 0;
   let lastKnownPollingUrl =
     lroData.azureAsyncOperation || lroData.operationLocation;
@@ -126,34 +125,6 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
   };
 }
 
-function getOperationArguments<TResult extends BaseResult>(
-  initialOperation: LROOperationStep<TResult>
-): OperationArguments {
-  if (!initialOperation.result._lroData) {
-    throw new Error(
-      "Expected lroData to be defined for Azure-AsyncOperation strategy"
-    );
-  }
-
-  let operationArgs: OperationArguments;
-  const shouldDeserialize = shouldDeserializeLRO(
-    initialOperation.result._lroData
-  );
-
-  if (!initialOperation.args) {
-    operationArgs = { options: { shouldDeserialize } };
-  } else {
-    operationArgs = {
-      ...initialOperation.args,
-      options: {
-        ...initialOperation.args.options,
-        shouldDeserialize
-      }
-    };
-  }
-  return operationArgs;
-}
-
 function shouldPerformFinalGet(
   initialResult: LROResponseInfo,
   currentResult: LROResponseInfo
@@ -192,6 +163,11 @@ async function sendFinalGet<TResult extends BaseResult>(
     ...finalGetSpec,
     ...(path && { path })
   };
+
+  let operationArgs: OperationArguments = initialOperation.args;
+  if (operationArgs.options) {
+    operationArgs.options.shouldDeserialize = true;
+  }
 
   const finalResult = await sendOperationFn(initialOperation.args, spec);
 

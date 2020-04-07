@@ -79,8 +79,7 @@ export class LrosaDs {
     options?: LrosaDsPutNonRetry400OptionalParams
   ): Promise<LROPoller<LrosaDsPutNonRetry400Response>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      putNonRetry400OperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -113,8 +112,7 @@ export class LrosaDs {
     options?: LrosaDsPutNonRetry201Creating400OptionalParams
   ): Promise<LROPoller<LrosaDsPutNonRetry201Creating400Response>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      putNonRetry201Creating400OperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -147,8 +145,7 @@ export class LrosaDs {
     options?: LrosaDsPutNonRetry201Creating400InvalidJsonOptionalParams
   ): Promise<LROPoller<LrosaDsPutNonRetry201Creating400InvalidJsonResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      putNonRetry201Creating400InvalidJsonOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -181,8 +178,7 @@ export class LrosaDs {
     options?: LrosaDsPutAsyncRelativeRetry400OptionalParams
   ): Promise<LROPoller<LrosaDsPutAsyncRelativeRetry400Response>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      putAsyncRelativeRetry400OperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -214,8 +210,7 @@ export class LrosaDs {
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LrosaDsDeleteNonRetry400Response>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      deleteNonRetry400OperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -247,8 +242,7 @@ export class LrosaDs {
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LrosaDsDelete202NonRetry400Response>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      delete202NonRetry400OperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -281,8 +275,7 @@ export class LrosaDs {
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LrosaDsDeleteAsyncRelativeRetry400Response>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      deleteAsyncRelativeRetry400OperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -314,8 +307,7 @@ export class LrosaDs {
     options?: LrosaDsPostNonRetry400OptionalParams
   ): Promise<LROPoller<LrosaDsPostNonRetry400Response>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      postNonRetry400OperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -347,8 +339,7 @@ export class LrosaDs {
     options?: LrosaDsPost202NonRetry400OptionalParams
   ): Promise<LROPoller<LrosaDsPost202NonRetry400Response>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      post202NonRetry400OperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -381,8 +372,7 @@ export class LrosaDs {
     options?: LrosaDsPostAsyncRelativeRetry400OptionalParams
   ): Promise<LROPoller<LrosaDsPostAsyncRelativeRetry400Response>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      postAsyncRelativeRetry400OperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -414,8 +404,7 @@ export class LrosaDs {
     options?: LrosaDsPutError201NoProvisioningStatePayloadOptionalParams
   ): Promise<LROPoller<LrosaDsPutError201NoProvisioningStatePayloadResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      putError201NoProvisioningStatePayloadOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -449,8 +438,7 @@ export class LrosaDs {
     options?: LrosaDsPutAsyncRelativeRetryNoStatusOptionalParams
   ): Promise<LROPoller<LrosaDsPutAsyncRelativeRetryNoStatusResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      putAsyncRelativeRetryNoStatusOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -484,8 +472,7 @@ export class LrosaDs {
     options?: LrosaDsPutAsyncRelativeRetryNoStatusPayloadOptionalParams
   ): Promise<LROPoller<LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      putAsyncRelativeRetryNoStatusPayloadOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -517,8 +504,7 @@ export class LrosaDs {
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      delete204SucceededOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -551,8 +537,7 @@ export class LrosaDs {
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LrosaDsDeleteAsyncRelativeRetryNoStatusResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      deleteAsyncRelativeRetryNoStatusOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -584,8 +569,7 @@ export class LrosaDs {
     options?: LrosaDsPost202NoLocationOptionalParams
   ): Promise<LROPoller<LrosaDsPost202NoLocationResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      post202NoLocationOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -619,8 +603,7 @@ export class LrosaDs {
     options?: LrosaDsPostAsyncRelativeRetryNoPayloadOptionalParams
   ): Promise<LROPoller<LrosaDsPostAsyncRelativeRetryNoPayloadResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      postAsyncRelativeRetryNoPayloadOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -653,8 +636,7 @@ export class LrosaDs {
     options?: LrosaDsPut200InvalidJsonOptionalParams
   ): Promise<LROPoller<LrosaDsPut200InvalidJsonResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      put200InvalidJsonOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -687,8 +669,7 @@ export class LrosaDs {
     options?: LrosaDsPutAsyncRelativeRetryInvalidHeaderOptionalParams
   ): Promise<LROPoller<LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      putAsyncRelativeRetryInvalidHeaderOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -724,8 +705,7 @@ export class LrosaDs {
     LROPoller<LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse>
   > {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      putAsyncRelativeRetryInvalidJsonPollingOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -758,8 +738,7 @@ export class LrosaDs {
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LrosaDsDelete202RetryInvalidHeaderResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      delete202RetryInvalidHeaderOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -792,8 +771,7 @@ export class LrosaDs {
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      deleteAsyncRelativeRetryInvalidHeaderOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -828,8 +806,7 @@ export class LrosaDs {
     LROPoller<LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse>
   > {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -862,8 +839,7 @@ export class LrosaDs {
     options?: LrosaDsPost202RetryInvalidHeaderOptionalParams
   ): Promise<LROPoller<LrosaDsPost202RetryInvalidHeaderResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      post202RetryInvalidHeaderOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -897,8 +873,7 @@ export class LrosaDs {
     options?: LrosaDsPostAsyncRelativeRetryInvalidHeaderOptionalParams
   ): Promise<LROPoller<LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      postAsyncRelativeRetryInvalidHeaderOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -934,8 +909,7 @@ export class LrosaDs {
     LROPoller<LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse>
   > {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      postAsyncRelativeRetryInvalidJsonPollingOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -961,15 +935,12 @@ export class LrosaDs {
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
     options: TOptions | undefined,
-    initialRequestMethod: coreHttp.HttpMethods
+    finalStateVia?: string
   ): coreHttp.RequestOptionsBase {
     const operationOptions: coreHttp.OperationOptions = options || {};
     operationOptions.requestOptions = {
       ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO({
-        initialRequestMethod,
-        isInitialRequest: true
-      })
+      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
     };
     return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
   }

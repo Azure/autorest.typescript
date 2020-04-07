@@ -115,14 +115,14 @@ function writeGetOperationOptions(operationGroupClass: ClassDeclaration) {
     name: "getOperationOptions<TOptions extends coreHttp.OperationOptions>",
     parameters: [
       { name: "options", type: "TOptions | undefined" },
-      { name: "initialRequestMethod", type: "coreHttp.HttpMethods" }
+      { name: "finalStateVia", type: "string", hasQuestionToken: true }
     ],
     returnType: `coreHttp.RequestOptionsBase`,
     statements: `
     const operationOptions: coreHttp.OperationOptions = options || {};
     operationOptions.requestOptions = {
       ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO({ initialRequestMethod, isInitialRequest: true }),
+      shouldDeserialize: shouldDeserializeLRO(finalStateVia),
     };
     return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
     `
@@ -621,20 +621,19 @@ function writeNoOverloadsOperationBody(
     .map(p => (p.name === "options" ? "options: operationOptions" : p.name))
     .join(",");
 
+  const finalStateVia =
+    operation.lroOptions && operation.lroOptions["final-state-via"];
+
   const operationSpecName = `${operation.name}OperationSpec`;
 
   const operationOptions = operation.isLRO
-    ? `const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-    options,
-    ${operationSpecName}.httpMethod
-  );`
+    ? `const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options,
+      ${finalStateVia ? `"${finalStateVia}"` : ""});`
     : `const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(options || {});`;
 
   operationMethod.addStatements(operationOptions);
 
   if (operation.isLRO) {
-    const finalStateVia =
-      operation.lroOptions && operation.lroOptions["final-state-via"];
     writeLROOperationBody(
       sendParams,
       responseName,

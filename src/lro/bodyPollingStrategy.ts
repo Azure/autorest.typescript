@@ -7,7 +7,6 @@ import {
 import { OperationSpec, OperationArguments } from "@azure/core-http";
 import { terminalStates } from "./constants";
 import { SendOperationFn } from "./lroPoller";
-import { shouldDeserializeLRO } from "./requestUtils";
 
 /**
  * Creates a polling strategy based on BodyPolling which uses the provisioning state
@@ -19,23 +18,6 @@ export function createBodyPollingStrategy<TResult extends BaseResult>(
 ): LROStrategy<TResult> {
   if (!initialOperation.result._lroData) {
     throw new Error("Expected lroData to be defined for BodyPolling strategy");
-  }
-  let operationArgs: OperationArguments;
-
-  const shouldDeserialize = shouldDeserializeLRO(
-    initialOperation.result._lroData
-  );
-
-  if (!initialOperation.args) {
-    operationArgs = { options: { shouldDeserialize: shouldDeserialize } };
-  } else {
-    operationArgs = {
-      ...initialOperation.args,
-      options: {
-        ...initialOperation.args.options,
-        shouldDeserialize: shouldDeserialize
-      }
-    };
   }
 
   return {
@@ -64,7 +46,10 @@ export function createBodyPollingStrategy<TResult extends BaseResult>(
       };
 
       // Execute the polling operation
-      initialOperation.result = await sendOperation(operationArgs, pollingSpec);
+      initialOperation.result = await sendOperation(
+        initialOperation.args,
+        pollingSpec
+      );
       return initialOperation;
     }
   };

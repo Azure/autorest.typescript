@@ -6,27 +6,29 @@ import { LROResponseInfo } from "./models";
  * We need to selectively deserialize our responses, only deserializing if we
  * are in a final LRO response, not deserializing any polling non-terminal responses
  */
-export function shouldDeserializeLRO({
-  initialRequestMethod,
-  isInitialRequest
-}: LROResponseInfo) {
-  let initialOperationInfo: LROResponseInfo = {
-    initialRequestMethod
-  };
+export function shouldDeserializeLRO(finalStateVia?: string) {
+  let initialOperationInfo: LROResponseInfo | undefined;
+  let isInitialRequest = true;
 
   return (response: HttpOperationResponse) => {
-    if (isInitialRequest) {
-      initialOperationInfo = {
-        ...getLROData(response),
-        ...initialOperationInfo
-      };
+    if (!initialOperationInfo) {
+      initialOperationInfo = getLROData(response);
+    } else {
+      isInitialRequest = false;
     }
 
     if (
       initialOperationInfo.azureAsyncOperation ||
       initialOperationInfo.operationLocation
     ) {
-      return !isInitialRequest && isAsyncOperationFinalResponse(response);
+      return (
+        !isInitialRequest &&
+        isAsyncOperationFinalResponse(
+          response,
+          initialOperationInfo,
+          finalStateVia
+        )
+      );
     }
 
     if (initialOperationInfo.location) {
@@ -42,9 +44,35 @@ export function shouldDeserializeLRO({
 }
 
 function isAsyncOperationFinalResponse(
-  response: HttpOperationResponse
+  response: HttpOperationResponse,
+  initialOperationInfo: LROResponseInfo,
+  finalStateVia?: string
 ): boolean {
-  return true;
+  const status: string = response.parsedBody.status || "Succeeded";
+  if (!terminalStates.includes(status.toLowerCase())) {
+    return false;
+  }
+
+  if (initialOperationInfo.initialRequestMethod === "DELETE") {
+    return true;
+  }
+
+  if (
+    initialOperationInfo.initialRequestMethod === "PUT" &&
+    finalStateVia &&
+    finalStateVia.toLowerCase() === "azure-asyncOperation"
+  ) {
+    return true;
+  }
+
+  if (
+    initialOperationInfo.initialRequestMethod !== "PUT" &&
+    !initialOperationInfo.location
+  ) {
+    return true;
+  }
+
+  return false;
 }
 
 function isLocationFinalResponse(response: HttpOperationResponse): boolean {
