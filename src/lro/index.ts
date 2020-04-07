@@ -12,3 +12,4 @@ export {
   LROOperation
 } from "./models";
 export { makeOperation } from "./operation";
+export * from "./locationStrategy";

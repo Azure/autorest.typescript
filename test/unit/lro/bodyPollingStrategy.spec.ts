@@ -9,7 +9,8 @@ describe("BodyPollingStrategy", () => {
   let lroData: LROResponseInfo;
   beforeEach(() => {
     lroData = {
-      requestMethod: "PUT"
+      requestMethod: "PUT",
+      statusCode: 200
     };
     lastOperation = {
       args: {},
@@ -25,7 +26,7 @@ describe("BodyPollingStrategy", () => {
         mockSendOperation
       );
 
-      assert.isTrue(pollingStrategy.isTerminal(lroData));
+      assert.isTrue(pollingStrategy.isTerminal());
     });
 
     it("should be terminal state when provisioningState is succeeded", () => {
@@ -38,7 +39,7 @@ describe("BodyPollingStrategy", () => {
         mockSendOperation
       );
 
-      assert.isTrue(pollingStrategy.isTerminal(lroData));
+      assert.isTrue(pollingStrategy.isTerminal());
     });
 
     it("should be terminal state when provisioningState is Failed", () => {
@@ -51,7 +52,7 @@ describe("BodyPollingStrategy", () => {
         mockSendOperation
       );
 
-      assert.isTrue(pollingStrategy.isTerminal(lroData));
+      assert.isTrue(pollingStrategy.isTerminal());
     });
 
     it("should be terminal state when provisioningState is Canceled", () => {
@@ -64,7 +65,7 @@ describe("BodyPollingStrategy", () => {
         mockSendOperation
       );
 
-      assert.isTrue(pollingStrategy.isTerminal(lroData));
+      assert.isTrue(pollingStrategy.isTerminal());
     });
 
     it("should be not terminal state when provisioningState is not a terminal one", () => {
@@ -77,7 +78,7 @@ describe("BodyPollingStrategy", () => {
         mockSendOperation
       );
 
-      assert.isFalse(pollingStrategy.isTerminal(lroData));
+      assert.isFalse(pollingStrategy.isTerminal());
     });
   });
 
@@ -88,7 +89,7 @@ describe("BodyPollingStrategy", () => {
         mockSendOperation
       );
 
-      const result = await pollingStrategy.sendFinalRequest(lastOperation);
+      const result = await pollingStrategy.sendFinalRequest();
       assert.deepEqual(result, lastOperation);
     });
   });
@@ -112,7 +113,7 @@ describe("BodyPollingStrategy", () => {
         sendOperation
       );
 
-      await pollingStrategy.poll(lastOperation);
+      await pollingStrategy.poll();
       assert.equal(pollingMethod, "GET");
       assert.equal(pollingUrl, lastOperation.spec.path);
     });

@@ -21,6 +21,7 @@ export type FinalStateVia =
 
 export interface LROResponseInfo {
   requestMethod: HttpMethods;
+  statusCode: number;
   isInitialRequest?: boolean;
   azureAsyncOperation?: string;
   operationLocation?: string;
@@ -48,13 +49,9 @@ export interface LROOperationState<TResult extends BaseResult>
 }
 
 export interface LROStrategy<TResult extends BaseResult> {
-  isTerminal: (currentResult: LROResponseInfo) => boolean;
-  sendFinalRequest: (
-    currentResult: LROOperationStep<TResult>
-  ) => Promise<LROOperationStep<TResult>>;
-  poll: (
-    currentResult: LROOperationStep<TResult>
-  ) => Promise<LROOperationStep<TResult>>;
+  isTerminal: () => boolean;
+  sendFinalRequest: () => Promise<LROOperationStep<TResult>>;
+  poll: () => Promise<LROOperationStep<TResult>>;
 }
 
 export type LROOperation<TResult extends BaseResult> = PollOperation<

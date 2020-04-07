@@ -12,7 +12,7 @@ import {
   LROOperationStep,
   LROResponseInfo
 } from "./models";
-import { OperationSpec, OperationArguments } from "@azure/core-http";
+import { OperationSpec } from "@azure/core-http";
 import { terminalStates } from "./constants";
 import { SendOperationFn } from "./lroPoller";
 
@@ -28,9 +28,12 @@ export function createBodyPollingStrategy<TResult extends BaseResult>(
     throw new Error("Expected lroData to be defined for BodyPolling strategy");
   }
 
+  let currentOperation = initialOperation;
+
   return {
-    isTerminal: (currentResult: LROResponseInfo) => {
-      if (!initialOperation.result._lroData) {
+    isTerminal: () => {
+      const currentResult = currentOperation.result._lroData;
+      if (!currentResult) {
         throw new Error("Expected lroData to determine terminal status");
       }
 
@@ -39,11 +42,11 @@ export function createBodyPollingStrategy<TResult extends BaseResult>(
 
       return terminalStates.includes(provisioningState.toLowerCase());
     },
-    sendFinalRequest: (currentOperation: LROOperationStep<TResult>) => {
+    sendFinalRequest: () => {
       // BodyPolling doesn't require a final get so return the lastOperation
       return Promise.resolve(currentOperation);
     },
-    poll: async (_currentResult: LROOperationStep<TResult>) => {
+    poll: async () => {
       // When doing BodyPolling, we need to poll to the original url with a
       // GET http method
       const { requestBody, ...restSpec } = initialOperation.spec;

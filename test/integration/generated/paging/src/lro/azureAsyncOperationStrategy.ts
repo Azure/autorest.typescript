@@ -29,17 +29,19 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
     );
   }
 
-  let pollCount = 0;
+  let currentOperation = initialOperation;
   let lastKnownPollingUrl =
     lroData.azureAsyncOperation || lroData.operationLocation;
 
   return {
-    isTerminal: (currentResult: LROResponseInfo) => {
-      if (!initialOperation.result._lroData) {
+    isTerminal: () => {
+      const currentResult = currentOperation.result._lroData;
+
+      if (!currentResult) {
         throw new Error("Expected lroData to determine terminal status");
       }
 
-      if (pollCount === 0) {
+      if (currentOperation === initialOperation) {
         // Azure-AsyncOperations don't need to check for terminal state
         // on originalOperation result, always need to poll
         return false;
@@ -48,7 +50,7 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
       const { status = "succeeded" } = currentResult;
       return terminalStates.includes(status.toLowerCase());
     },
-    sendFinalRequest: async (currentOperation: LROOperationStep<TResult>) => {
+    sendFinalRequest: async () => {
       if (!initialOperation.result._lroData) {
         throw new Error("Expected lroData to determine terminal status");
       }
@@ -67,13 +69,22 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
       }
 
       if (initialOperationResult.requestMethod === "PUT") {
-        return await sendFinalGet(initialOperation, sendOperationFn);
+        currentOperation = await sendFinalGet(
+          initialOperation,
+          sendOperationFn
+        );
+
+        return currentOperation;
       }
 
       if (initialOperationResult.location) {
         switch (finalStateVia) {
           case "original-uri":
-            return await sendFinalGet(initialOperation, sendOperationFn);
+            currentOperation = await sendFinalGet(
+              initialOperation,
+              sendOperationFn
+            );
+            return currentOperation;
 
           case "azure-async-operation":
             return currentOperation;
@@ -98,7 +109,7 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
       // All other cases return the last operation
       return currentOperation;
     },
-    poll: async (currentOperation: LROOperationStep<TResult>) => {
+    poll: async () => {
       if (!lastKnownPollingUrl) {
         throw new Error("Unable to determine polling url");
       }
@@ -112,23 +123,22 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
         path: lastKnownPollingUrl
       };
 
-      // Execute the polling operation
-      pollCount += 1;
-
       const result = await sendOperationFn(pollingArgs, pollingSpec);
 
       // Update latest polling url
       lastKnownPollingUrl =
-        result.azureAsyncOperation ||
-        result.operationLocation ||
+        result._lroData?.azureAsyncOperation ||
+        result._lroData?.operationLocation ||
         lastKnownPollingUrl;
 
       // Update lastOperation result
-      return {
+      currentOperation = {
         args: pollingArgs,
         spec: pollingSpec,
         result
       };
+
+      return currentOperation;
     }
   };
 }

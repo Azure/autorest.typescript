@@ -61,11 +61,11 @@ async function update<TResult extends BaseResult>(
   }
 
   // Check if last result is terminal
-  if (isTerminal(currentLroData)) {
-    state.lastOperation = await sendFinalRequest(currentResponse);
+  if (isTerminal()) {
+    state.lastOperation = await sendFinalRequest();
     state.result = state.lastOperation.result;
   } else {
-    state.lastOperation = await poll(currentResponse);
+    state.lastOperation = await poll();
   }
 
   // Return operation
