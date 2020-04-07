@@ -35,7 +35,7 @@ export function shouldDeserializeLRO(finalStateVia?: string) {
       return isLocationFinalResponse(response);
     }
 
-    if (initialOperationInfo.initialRequestMethod === "PUT") {
+    if (initialOperationInfo.requestMethod === "PUT") {
       return isBodyPollingFinalResponse(response);
     }
 
@@ -53,12 +53,12 @@ function isAsyncOperationFinalResponse(
     return false;
   }
 
-  if (initialOperationInfo.initialRequestMethod === "DELETE") {
+  if (initialOperationInfo.requestMethod === "DELETE") {
     return true;
   }
 
   if (
-    initialOperationInfo.initialRequestMethod === "PUT" &&
+    initialOperationInfo.requestMethod === "PUT" &&
     finalStateVia &&
     finalStateVia.toLowerCase() === "azure-asyncOperation"
   ) {
@@ -66,7 +66,7 @@ function isAsyncOperationFinalResponse(
   }
 
   if (
-    initialOperationInfo.initialRequestMethod !== "PUT" &&
+    initialOperationInfo.requestMethod !== "PUT" &&
     !initialOperationInfo.location
   ) {
     return true;
@@ -91,12 +91,12 @@ function isBodyPollingFinalResponse(response: HttpOperationResponse): boolean {
 }
 
 export function getLROData(result: HttpOperationResponse): LROResponseInfo {
-  const { status, properties } = JSON.parse(result.bodyAsText || "{}");
+  const { status, properties } = result.parsedBody;
   return {
     azureAsyncOperation: result.headers.get("azure-asyncoperation"),
     operationLocation: result.headers.get("operation-location"),
     location: result.headers.get("location"),
-    initialRequestMethod: result.request.method,
+    requestMethod: result.request.method,
     status,
     provisioningState: properties?.provisioningState
   };

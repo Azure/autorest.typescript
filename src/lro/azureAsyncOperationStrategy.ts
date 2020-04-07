@@ -58,7 +58,7 @@ export function createAzureAsyncOperationStrategy<TResult extends BaseResult>(
         return currentOperation;
       }
 
-      if (initialOperationResult.initialRequestMethod === "PUT") {
+      if (initialOperationResult.requestMethod === "PUT") {
         return await sendFinalGet(initialOperation, sendOperationFn);
       }
 
@@ -130,7 +130,7 @@ function shouldPerformFinalGet(
   currentResult: LROResponseInfo
 ) {
   const { status } = currentResult;
-  const { initialRequestMethod, location } = initialResult;
+  const { requestMethod: initialRequestMethod, location } = initialResult;
   if (status && status.toLowerCase() !== "succeeded") {
     return false;
   }

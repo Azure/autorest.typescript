@@ -9,7 +9,7 @@ describe("BodyPollingStrategy", () => {
   let lroData: LROResponseInfo;
   beforeEach(() => {
     lroData = {
-      initialRequestMethod: "PUT"
+      requestMethod: "PUT"
     };
     lastOperation = {
       args: {},

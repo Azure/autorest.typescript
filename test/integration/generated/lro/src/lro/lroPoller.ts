@@ -137,7 +137,7 @@ function getPollingStrategy<TResult extends BaseResult>(
     throw new Error("Location strategy is not yet implemented");
   }
 
-  if (["PUT", "PATCH"].includes(lroData.initialRequestMethod || "")) {
+  if (["PUT", "PATCH"].includes(lroData.requestMethod || "")) {
     return createBodyPollingStrategy(initialOperation, sendOperationFn);
   }
 

@@ -20,7 +20,7 @@ export type FinalStateVia =
   | "original-uri";
 
 export interface LROResponseInfo {
-  initialRequestMethod: HttpMethods;
+  requestMethod: HttpMethods;
   isInitialRequest?: boolean;
   azureAsyncOperation?: string;
   operationLocation?: string;

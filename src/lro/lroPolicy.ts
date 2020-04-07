@@ -7,7 +7,7 @@ import {
   OperationSpec,
   OperationResponse
 } from "@azure/core-http";
-import { getLROData, shouldDeserializeLRO } from "./requestUtils";
+import { getLROData } from "./requestUtils";
 import { isEmpty } from "lodash";
 
 export function lroPolicy() {
@@ -26,7 +26,6 @@ class LROPolicy extends BaseRequestPolicy {
   public async sendRequest(
     webResource: WebResource
   ): Promise<HttpOperationResponse> {
-    webResource.shouldDeserialize;
     webResource.operationSpec = injectMissingResponses(
       webResource.operationSpec
     );
@@ -75,5 +74,8 @@ function injectMissingResponses(
     return { ...responses, [`${status}`]: currentResponse };
   }, {} as { [responseCode: string]: OperationResponse });
 
-  return { ...operationSpec, responses };
+  return {
+    ...operationSpec,
+    responses: { ...operationSpec.responses, ...responses }
+  };
 }
