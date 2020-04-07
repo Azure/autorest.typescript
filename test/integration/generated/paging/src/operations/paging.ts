@@ -291,8 +291,7 @@ export class Paging {
     options?: PagingGetMultiplePagesLROOptionalParams
   ): Promise<LROPoller<PagingGetMultiplePagesLROResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      getMultiplePagesLROOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -559,8 +558,7 @@ export class Paging {
     options?: PagingGetMultiplePagesLRONextOptionalParams
   ): Promise<LROPoller<PagingGetMultiplePagesLRONextResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      getMultiplePagesLRONextOperationSpec.httpMethod
+      options
     );
 
     const args: coreHttp.OperationArguments = {
@@ -589,15 +587,12 @@ export class Paging {
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
     options: TOptions | undefined,
-    initialRequestMethod: coreHttp.HttpMethods
+    finalStateVia?: string
   ): coreHttp.RequestOptionsBase {
     const operationOptions: coreHttp.OperationOptions = options || {};
     operationOptions.requestOptions = {
       ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO({
-        initialRequestMethod,
-        isInitialRequest: true
-      })
+      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
     };
     return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
   }

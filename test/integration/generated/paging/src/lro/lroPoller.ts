@@ -17,10 +17,12 @@ import {
   BaseResult,
   LROOperationState,
   LROStrategy,
-  LROOperationStep
+  LROOperationStep,
+  FinalStateVia
 } from "./models";
 import { makeOperation } from "./operation";
 import { createBodyPollingStrategy } from "./bodyPollingStrategy";
+import { createAzureAsyncOperationStrategy } from "./azureAsyncOperationStrategy";
 
 export type SendOperationFn<TResult extends BaseResult> = (
   args: OperationArguments,
@@ -48,6 +50,10 @@ export interface LROPollerOptions<TResult extends BaseResult> {
    * Function to execute an operation based on an operation spec and arguments
    */
   sendOperation: SendOperationFn<TResult>;
+  /**
+   * Optional information on where to poll. When not defined it defaults to "Location"
+   */
+  finalStateVia?: FinalStateVia;
 }
 
 export class LROPoller<TResult extends BaseResult> extends Poller<
@@ -61,6 +67,7 @@ export class LROPoller<TResult extends BaseResult> extends Poller<
     initialOperationResult,
     initialOperationSpec,
     sendOperation,
+    finalStateVia,
     intervalInMs = 2000
   }: LROPollerOptions<TResult>) {
     const initialOperation = {
@@ -75,7 +82,8 @@ export class LROPoller<TResult extends BaseResult> extends Poller<
       // Initial operation will become the last operation
       initialOperation,
       lastOperation: initialOperation,
-      pollingStrategy
+      pollingStrategy,
+      finalStateVia
     };
 
     const operation = makeOperation(state);
@@ -106,11 +114,10 @@ export class LROPoller<TResult extends BaseResult> extends Poller<
  */
 function getPollingStrategy<TResult extends BaseResult>(
   initialOperation: LROOperationStep<TResult>,
-  sendOperationFn: SendOperationFn<TResult>
+  sendOperationFn: SendOperationFn<TResult>,
+  finalStateVia?: FinalStateVia
 ) {
-  const {
-    result: { _lroData: lroData }
-  } = initialOperation;
+  const lroData = initialOperation.result._lroData;
 
   if (!lroData) {
     throw new Error(
@@ -119,7 +126,11 @@ function getPollingStrategy<TResult extends BaseResult>(
   }
 
   if (lroData.azureAsyncOperation || lroData.operationLocation) {
-    throw new Error("Azure-AsyncOperation strategy is not yet implemented");
+    return createAzureAsyncOperationStrategy(
+      initialOperation,
+      sendOperationFn,
+      finalStateVia
+    );
   }
 
   if (lroData.location) {

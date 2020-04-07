@@ -160,7 +160,7 @@ describe("LRO", () => {
       const result: BaseResult = await poller.pollUntilDone();
       assert.deepEqual(result.status, "Failed");
     });
-    it.only("should handle postAsyncRetrySucceeded", async () => {
+    it("should handle postAsyncRetrySucceeded", async () => {
       const poller = await client.lROs.postAsyncRetrySucceeded({
         product
       });
