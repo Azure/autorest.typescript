@@ -62,6 +62,7 @@ export interface OperationDetails {
   mediaTypes: Set<KnownMediaType>;
   pagination?: PaginationDetails;
   isLRO: boolean;
+  lroOptions?: { "final-state-via": string };
 }
 
 /**

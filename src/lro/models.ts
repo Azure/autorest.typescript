@@ -6,6 +6,11 @@ import {
 } from "@azure/core-http";
 import { PollOperationState, PollOperation } from "@azure/core-lro";
 
+export type FinalStateVia =
+  | "azure-async-operation"
+  | "location"
+  | "original-uri";
+
 export interface LROResponseInfo {
   initialRequestMethod: HttpMethods;
   isInitialRequest?: boolean;
@@ -31,12 +36,17 @@ export interface LROOperationState<TResult extends BaseResult>
   lastOperation: LROOperationStep<TResult>;
   initialOperation: LROOperationStep<TResult>;
   pollingStrategy: LROStrategy<TResult>;
+  finalStateVia?: FinalStateVia;
 }
 
 export interface LROStrategy<TResult extends BaseResult> {
-  isTerminal: () => boolean;
-  sendFinalRequest: () => Promise<LROOperationStep<TResult>>;
-  poll: () => Promise<LROOperationStep<TResult>>;
+  isTerminal: (currentResult: LROResponseInfo) => boolean;
+  sendFinalRequest: (
+    currentResult: LROOperationStep<TResult>
+  ) => Promise<LROOperationStep<TResult>>;
+  poll: (
+    currentResult: LROOperationStep<TResult>
+  ) => Promise<LROOperationStep<TResult>>;
 }
 
 export type LROOperation<TResult extends BaseResult> = PollOperation<

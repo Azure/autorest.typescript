@@ -1,9 +1,4 @@
-import {
-  BaseResult,
-  LROOperationState,
-  LROOperation,
-  LROStrategy
-} from "./models";
+import { BaseResult, LROOperationState, LROOperation } from "./models";
 import { createBodyPollingStrategy } from "./bodyPollingStrategy";
 
 /**
@@ -42,8 +37,15 @@ async function update<TResult extends BaseResult>(
 ): Promise<LROOperation<TResult>> {
   const state = { ...this.state };
 
-  // Get strategy from last operation
-  const lroStrategy: LROStrategy<TResult> = this.state.pollingStrategy;
+  const { sendFinalRequest, poll, isTerminal } = state.pollingStrategy;
+  const currentResponse = state.lastOperation;
+  const currentLroData = currentResponse.result._lroData;
+
+  if (!currentLroData) {
+    throw new Error(
+      "Expected lroData to be defined for updating LRO operation"
+    );
+  }
 
   if (state.result) {
     state.isCompleted = true;
@@ -51,13 +53,11 @@ async function update<TResult extends BaseResult>(
   }
 
   // Check if last result is terminal
-  if (lroStrategy.isTerminal()) {
-    const result = await lroStrategy.sendFinalRequest();
-    state.lastOperation = result;
+  if (isTerminal(currentLroData)) {
+    state.lastOperation = await sendFinalRequest(currentResponse);
     state.result = state.lastOperation.result;
   } else {
-    const result = await lroStrategy.poll();
-    state.lastOperation = result;
+    state.lastOperation = await poll(currentResponse);
   }
 
   // Return operation

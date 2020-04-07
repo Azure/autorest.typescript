@@ -25,67 +25,59 @@ describe("BodyPollingStrategy", () => {
         mockSendOperation
       );
 
-      assert.isTrue(pollingStrategy.isTerminal());
+      assert.isTrue(pollingStrategy.isTerminal(lroData));
     });
 
     it("should be terminal state when provisioningState is succeeded", () => {
+      lroData = { ...lroData, provisioningState: "Succeeded" };
       lastOperation.result = {
-        _lroData: { ...lroData, provisioningState: "Succeeded" }
+        _lroData: lroData
       };
       const pollingStrategy = createBodyPollingStrategy(
         lastOperation,
         mockSendOperation
       );
 
-      assert.isTrue(pollingStrategy.isTerminal());
-    });
-
-    it("should be terminal state when properties.provisioningState is succeeded", () => {
-      lastOperation.result = {
-        _lroData: { ...lroData, provisioningState: "Succeeded" }
-      };
-      const pollingStrategy = createBodyPollingStrategy(
-        lastOperation,
-        mockSendOperation
-      );
-
-      assert.isTrue(pollingStrategy.isTerminal());
+      assert.isTrue(pollingStrategy.isTerminal(lroData));
     });
 
     it("should be terminal state when provisioningState is Failed", () => {
+      lroData = { ...lroData, provisioningState: "Failed" };
       lastOperation.result = {
-        _lroData: { ...lroData, provisioningState: "Failed" }
+        _lroData: lroData
       };
       const pollingStrategy = createBodyPollingStrategy(
         lastOperation,
         mockSendOperation
       );
 
-      assert.isTrue(pollingStrategy.isTerminal());
+      assert.isTrue(pollingStrategy.isTerminal(lroData));
     });
 
     it("should be terminal state when provisioningState is Canceled", () => {
+      lroData = { ...lroData, provisioningState: "Canceled" };
       lastOperation.result = {
-        _lroData: { ...lroData, provisioningState: "Canceled" }
+        _lroData: lroData
       };
       const pollingStrategy = createBodyPollingStrategy(
         lastOperation,
         mockSendOperation
       );
 
-      assert.isTrue(pollingStrategy.isTerminal());
+      assert.isTrue(pollingStrategy.isTerminal(lroData));
     });
 
     it("should be not terminal state when provisioningState is not a terminal one", () => {
+      lroData = { ...lroData, provisioningState: "InProgress" };
       lastOperation.result = {
-        _lroData: { ...lroData, provisioningState: "InProgress" }
+        _lroData: lroData
       };
       const pollingStrategy = createBodyPollingStrategy(
         lastOperation,
         mockSendOperation
       );
 
-      assert.isFalse(pollingStrategy.isTerminal());
+      assert.isFalse(pollingStrategy.isTerminal(lroData));
     });
   });
 
@@ -96,7 +88,7 @@ describe("BodyPollingStrategy", () => {
         mockSendOperation
       );
 
-      const result = await pollingStrategy.sendFinalRequest();
+      const result = await pollingStrategy.sendFinalRequest(lastOperation);
       assert.deepEqual(result, lastOperation);
     });
   });
@@ -120,7 +112,7 @@ describe("BodyPollingStrategy", () => {
         sendOperation
       );
 
-      await pollingStrategy.poll();
+      await pollingStrategy.poll(lastOperation);
       assert.equal(pollingMethod, "GET");
       assert.equal(pollingUrl, lastOperation.spec.path);
     });

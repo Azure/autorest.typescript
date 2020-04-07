@@ -6,7 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { LROStrategy, BaseResult, LROOperationStep } from "./models";
+import {
+  LROStrategy,
+  BaseResult,
+  LROOperationStep,
+  LROResponseInfo
+} from "./models";
 import { OperationSpec, OperationArguments } from "@azure/core-http";
 import { terminalStates } from "./constants";
 import { SendOperationFn } from "./lroPoller";
@@ -42,35 +47,32 @@ export function createBodyPollingStrategy<TResult extends BaseResult>(
   }
 
   return {
-    isTerminal: () => {
+    isTerminal: (currentResult: LROResponseInfo) => {
       if (!initialOperation.result._lroData) {
         throw new Error("Expected lroData to determine terminal status");
       }
 
-      const {
-        provisioningState = "succeeded"
-      } = initialOperation.result._lroData;
+      const { provisioningState = "succeeded" } = currentResult;
       // If provisioning state is missing, default to Success
 
       return terminalStates.includes(provisioningState.toLowerCase());
     },
-    sendFinalRequest: () => {
+    sendFinalRequest: (currentOperation: LROOperationStep<TResult>) => {
       // BodyPolling doesn't require a final get so return the lastOperation
-      return Promise.resolve(initialOperation);
+      return Promise.resolve(currentOperation);
     },
-    poll: async () => {
+    poll: async (_currentResult: LROOperationStep<TResult>) => {
       // When doing BodyPolling, we need to poll to the original url with a
       // GET http method
+      const { requestBody, ...restSpec } = initialOperation.spec;
       const pollingSpec: OperationSpec = {
-        ...initialOperation.spec,
+        // Make sure we don't send any body to the get request
+        ...restSpec,
         httpMethod: "GET"
       };
 
       // Execute the polling operation
-      const result = await sendOperation(operationArgs, pollingSpec);
-
-      // Update lastOperation result
-      initialOperation.result = result;
+      initialOperation.result = await sendOperation(operationArgs, pollingSpec);
       return initialOperation;
     }
   };
