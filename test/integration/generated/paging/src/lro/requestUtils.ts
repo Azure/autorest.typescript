@@ -99,7 +99,7 @@ function isBodyPollingFinalResponse(response: HttpOperationResponse): boolean {
 }
 
 export function getLROData(result: HttpOperationResponse): LROResponseInfo {
-  const { status, properties } = result.parsedBody;
+  const { status, properties } = result.parsedBody || {};
   return {
     azureAsyncOperation: result.headers.get("azure-asyncoperation"),
     operationLocation: result.headers.get("operation-location"),
