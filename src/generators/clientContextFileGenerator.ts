@@ -162,10 +162,14 @@ const writeStatements = (lines: string[], shouldAddBlankLine = false) => (
 };
 
 function writeDefaultOptions(hasCredentials: boolean, hasLRO: boolean) {
-  const policies = ` options = {
-    ...options,
-    requestPolicyFactories: (defaults) => [lroPolicy(), ...defaults],
-  };`;
+  const policies = ` 
+  const defaultPipelines = coreHttp.createPipelineFromOptions(options)
+      .requestPolicyFactories as coreHttp.RequestPolicyFactory[];
+
+  options = {
+      ...options,
+      requestPolicyFactories: [lroPolicy(), ...defaultPipelines]
+    };`;
 
   return `// Initializing default values for options
   if (!options) {

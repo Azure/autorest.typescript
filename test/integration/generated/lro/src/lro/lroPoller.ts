@@ -23,6 +23,8 @@ import {
 import { makeOperation } from "./operation";
 import { createBodyPollingStrategy } from "./bodyPollingStrategy";
 import { createAzureAsyncOperationStrategy } from "./azureAsyncOperationStrategy";
+import { createLocationStrategy } from "./locationStrategy";
+import { createPassthroughStrategy } from "./passthroughStrategy";
 
 export type SendOperationFn<TResult extends BaseResult> = (
   args: OperationArguments,
@@ -76,7 +78,11 @@ export class LROPoller<TResult extends BaseResult> extends Poller<
       result: initialOperationResult
     };
 
-    const pollingStrategy = getPollingStrategy(initialOperation, sendOperation);
+    const pollingStrategy = getPollingStrategy(
+      initialOperation,
+      sendOperation,
+      finalStateVia
+    );
 
     const state: LROOperationState<TResult> = {
       // Initial operation will become the last operation
@@ -134,12 +140,13 @@ function getPollingStrategy<TResult extends BaseResult>(
   }
 
   if (lroData.location) {
-    throw new Error("Location strategy is not yet implemented");
+    return createLocationStrategy(initialOperation, sendOperationFn);
   }
 
   if (["PUT", "PATCH"].includes(lroData.requestMethod || "")) {
     return createBodyPollingStrategy(initialOperation, sendOperationFn);
   }
 
-  throw new Error("Unknown Long Running Operation strategy");
+  // Default strategy is just a passthrough returning the initial operation
+  return createPassthroughStrategy(initialOperation);
 }

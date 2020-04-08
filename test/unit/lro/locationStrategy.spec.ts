@@ -38,11 +38,11 @@ describe("LocationStrategy", () => {
 
       assert.isFalse(isTerminal);
     });
-    it("should be terminal when status code is 202", async () => {
+    it("should be terminal when status code is not 202", async () => {
       locationStrategy = createLocationStrategy(
         dummyInitialOperation,
         (_args, _spec) => {
-          return Promise.resolve({ _lroData: { statusCode: 202 } });
+          return Promise.resolve({ _lroData: { statusCode: 200 } });
         }
       );
 
@@ -52,11 +52,11 @@ describe("LocationStrategy", () => {
       assert.isTrue(isTerminal);
     });
 
-    it("should not be terminal when status code is 200", async () => {
+    it("should not be terminal when status code is 202", async () => {
       locationStrategy = createLocationStrategy(
         dummyInitialOperation,
         (_args, _spec) => {
-          return Promise.resolve({ _lroData: { statusCode: 200 } });
+          return Promise.resolve({ _lroData: { statusCode: 202 } });
         }
       );
 

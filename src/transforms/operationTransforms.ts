@@ -260,6 +260,9 @@ export async function transformOperation(
   const isLRO: boolean = Boolean(
     operation.extensions && operation.extensions["x-ms-long-running-operation"]
   );
+  const lroOptions =
+    operation.extensions &&
+    operation.extensions["x-ms-long-running-operation-options"];
 
   const codeModelRequests = operation.requests;
   if (codeModelRequests === undefined || !codeModelRequests.length) {
@@ -299,7 +302,8 @@ export async function transformOperation(
     responses,
     mediaTypes,
     pagination,
-    isLRO
+    isLRO,
+    lroOptions
   };
 }
 

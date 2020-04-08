@@ -11,6 +11,10 @@ export function shouldDeserializeLRO(finalStateVia?: string) {
   let isInitialRequest = true;
 
   return (response: HttpOperationResponse) => {
+    if (response.status < 200 || response.status >= 300) {
+      return true;
+    }
+
     if (!initialOperationInfo) {
       initialOperationInfo = getLROData(response);
     } else {
@@ -48,7 +52,7 @@ function isAsyncOperationFinalResponse(
   initialOperationInfo: LROResponseInfo,
   finalStateVia?: string
 ): boolean {
-  const status: string = response.parsedBody.status || "Succeeded";
+  const status: string = response.parsedBody?.status || "Succeeded";
   if (!terminalStates.includes(status.toLowerCase())) {
     return false;
   }
@@ -76,12 +80,12 @@ function isAsyncOperationFinalResponse(
 }
 
 function isLocationFinalResponse(response: HttpOperationResponse): boolean {
-  return false;
+  return response.status !== 202;
 }
 
 function isBodyPollingFinalResponse(response: HttpOperationResponse): boolean {
   const provisioningState: string =
-    response.parsedBody.properties?.provisioningState || "Succeeded";
+    response.parsedBody?.properties?.provisioningState || "Succeeded";
 
   if (terminalStates.includes(provisioningState.toLowerCase())) {
     return true;

@@ -1158,7 +1158,8 @@ export class LROs {
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsPostDoubleHeadersFinalLocationGetResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
+      options,
+      "location"
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -1178,7 +1179,8 @@ export class LROs {
       initialOperationArguments: args,
       initialOperationSpec: postDoubleHeadersFinalLocationGetOperationSpec,
       initialOperationResult,
-      sendOperation
+      sendOperation,
+      finalStateVia: "location"
     });
   }
 
@@ -1192,7 +1194,8 @@ export class LROs {
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsPostDoubleHeadersFinalAzureHeaderGetResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
+      options,
+      "azure-async-operation"
     );
 
     const args: coreHttp.OperationArguments = { options: operationOptions };
@@ -1212,7 +1215,8 @@ export class LROs {
       initialOperationArguments: args,
       initialOperationSpec: postDoubleHeadersFinalAzureHeaderGetOperationSpec,
       initialOperationResult,
-      sendOperation
+      sendOperation,
+      finalStateVia: "azure-async-operation"
     });
   }
 
