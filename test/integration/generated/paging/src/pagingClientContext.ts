@@ -31,9 +31,12 @@ export class PagingClientContext extends coreHttp.ServiceClient {
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
 
+    const defaultPipelines = coreHttp.createPipelineFromOptions(options)
+      .requestPolicyFactories as coreHttp.RequestPolicyFactory[];
+
     options = {
       ...options,
-      requestPolicyFactories: (defaults) => [lroPolicy(), ...defaults]
+      requestPolicyFactories: [lroPolicy(), ...defaultPipelines]
     };
 
     super(undefined, options);

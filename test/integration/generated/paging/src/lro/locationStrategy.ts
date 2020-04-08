@@ -36,10 +36,10 @@ export function createLocationStrategy<TResult extends BaseResult>(
       }
 
       if (currentResult.statusCode === 202) {
-        return true;
+        return false;
       }
 
-      return false;
+      return true;
     },
     sendFinalRequest: () => Promise.resolve(currentOperation),
     poll: async () => {
