@@ -208,8 +208,7 @@ describe("LROs", () => {
       assert.equal(result.name, "product");
     });
 
-    // TODO: Update testserver version, behavior changed with PR#147
-    it.skip("should handle postDoubleHeadersFinalAzureHeaderGetDefault", async () => {
+    it("should handle postDoubleHeadersFinalAzureHeaderGetDefault", async () => {
       const poller = await client.lROs.postDoubleHeadersFinalAzureHeaderGetDefault();
       poller.delay = () => Promise.resolve();
       const result = await poller.pollUntilDone();
