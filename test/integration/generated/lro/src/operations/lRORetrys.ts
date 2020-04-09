@@ -298,6 +298,15 @@ const put201CreatingSucceeded200OperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
     }
   },
   requestBody: Parameters.product,
@@ -310,6 +319,18 @@ const putAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     200: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
+    },
+    201: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
+    },
+    202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
+    },
+    204: {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
     },
@@ -328,6 +349,15 @@ const deleteProvisioning202Accepted200SucceededOperationSpec: coreHttp.Operation
   responses: {
     200: {
       bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
     }
   },
   urlParameters: [Parameters.$host],
@@ -337,7 +367,16 @@ const delete202Retry200OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/retryerror/delete/202/retry/200",
   httpMethod: "DELETE",
   responses: {
+    200: {
+      headersMapper: Mappers.LRORetrysDelete202Retry200Headers
+    },
+    201: {
+      headersMapper: Mappers.LRORetrysDelete202Retry200Headers
+    },
     202: {
+      headersMapper: Mappers.LRORetrysDelete202Retry200Headers
+    },
+    204: {
       headersMapper: Mappers.LRORetrysDelete202Retry200Headers
     },
     default: {
@@ -351,7 +390,16 @@ const deleteAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/retryerror/deleteasync/retry/succeeded",
   httpMethod: "DELETE",
   responses: {
+    200: {
+      headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
+    },
+    201: {
+      headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
+    },
     202: {
+      headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
+    },
+    204: {
       headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
     },
     default: {
@@ -365,7 +413,16 @@ const post202Retry200OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/retryerror/post/202/retry/200",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.LRORetrysPost202Retry200Headers
+    },
+    201: {
+      headersMapper: Mappers.LRORetrysPost202Retry200Headers
+    },
     202: {
+      headersMapper: Mappers.LRORetrysPost202Retry200Headers
+    },
+    204: {
       headersMapper: Mappers.LRORetrysPost202Retry200Headers
     },
     default: {
@@ -381,7 +438,16 @@ const postAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/retryerror/postasync/retry/succeeded",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
+    },
+    201: {
+      headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
+    },
     202: {
+      headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
+    },
+    204: {
       headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
     },
     default: {

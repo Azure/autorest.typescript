@@ -199,6 +199,18 @@ const putAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
     },
+    201: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
+    },
+    202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
+    },
+    204: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -214,6 +226,15 @@ const put201CreatingSucceeded200OperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
     }
   },
   requestBody: Parameters.product,
@@ -225,7 +246,16 @@ const post202Retry200OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/customheader/post/202/retry/200",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
+    },
+    201: {
+      headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
+    },
     202: {
+      headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
+    },
+    204: {
       headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
     },
     default: {
@@ -241,7 +271,16 @@ const postAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/customheader/postasync/retry/succeeded",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
+    },
+    201: {
+      headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
+    },
     202: {
+      headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
+    },
+    204: {
       headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
     },
     default: {

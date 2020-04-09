@@ -955,6 +955,15 @@ const putNonRetry400OperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
     }
   },
   requestBody: Parameters.product,
@@ -968,6 +977,15 @@ const putNonRetry201Creating400OperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
     }
   },
   requestBody: Parameters.product,
@@ -980,6 +998,15 @@ const putNonRetry201Creating400InvalidJsonOperationSpec: coreHttp.OperationSpec 
   httpMethod: "PUT",
   responses: {
     200: {
+      bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
       bodyMapper: Mappers.Product
     }
   },
@@ -996,6 +1023,18 @@ const putAsyncRelativeRetry400OperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LrosaDsPutAsyncRelativeRetry400Headers
     },
+    201: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LrosaDsPutAsyncRelativeRetry400Headers
+    },
+    202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LrosaDsPutAsyncRelativeRetry400Headers
+    },
+    204: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LrosaDsPutAsyncRelativeRetry400Headers
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1009,7 +1048,16 @@ const deleteNonRetry400OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/nonretryerror/delete/400",
   httpMethod: "DELETE",
   responses: {
+    200: {
+      headersMapper: Mappers.LrosaDsDeleteNonRetry400Headers
+    },
+    201: {
+      headersMapper: Mappers.LrosaDsDeleteNonRetry400Headers
+    },
     202: {
+      headersMapper: Mappers.LrosaDsDeleteNonRetry400Headers
+    },
+    204: {
       headersMapper: Mappers.LrosaDsDeleteNonRetry400Headers
     },
     default: {
@@ -1023,7 +1071,16 @@ const delete202NonRetry400OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/nonretryerror/delete/202/retry/400",
   httpMethod: "DELETE",
   responses: {
+    200: {
+      headersMapper: Mappers.LrosaDsDelete202NonRetry400Headers
+    },
+    201: {
+      headersMapper: Mappers.LrosaDsDelete202NonRetry400Headers
+    },
     202: {
+      headersMapper: Mappers.LrosaDsDelete202NonRetry400Headers
+    },
+    204: {
       headersMapper: Mappers.LrosaDsDelete202NonRetry400Headers
     },
     default: {
@@ -1037,7 +1094,16 @@ const deleteAsyncRelativeRetry400OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/nonretryerror/deleteasync/retry/400",
   httpMethod: "DELETE",
   responses: {
+    200: {
+      headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetry400Headers
+    },
+    201: {
+      headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetry400Headers
+    },
     202: {
+      headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetry400Headers
+    },
+    204: {
       headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetry400Headers
     },
     default: {
@@ -1051,7 +1117,16 @@ const postNonRetry400OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/nonretryerror/post/400",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.LrosaDsPostNonRetry400Headers
+    },
+    201: {
+      headersMapper: Mappers.LrosaDsPostNonRetry400Headers
+    },
     202: {
+      headersMapper: Mappers.LrosaDsPostNonRetry400Headers
+    },
+    204: {
       headersMapper: Mappers.LrosaDsPostNonRetry400Headers
     },
     default: {
@@ -1067,7 +1142,16 @@ const post202NonRetry400OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/nonretryerror/post/202/retry/400",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.LrosaDsPost202NonRetry400Headers
+    },
+    201: {
+      headersMapper: Mappers.LrosaDsPost202NonRetry400Headers
+    },
     202: {
+      headersMapper: Mappers.LrosaDsPost202NonRetry400Headers
+    },
+    204: {
       headersMapper: Mappers.LrosaDsPost202NonRetry400Headers
     },
     default: {
@@ -1083,7 +1167,16 @@ const postAsyncRelativeRetry400OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/nonretryerror/postasync/retry/400",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.LrosaDsPostAsyncRelativeRetry400Headers
+    },
+    201: {
+      headersMapper: Mappers.LrosaDsPostAsyncRelativeRetry400Headers
+    },
     202: {
+      headersMapper: Mappers.LrosaDsPostAsyncRelativeRetry400Headers
+    },
+    204: {
       headersMapper: Mappers.LrosaDsPostAsyncRelativeRetry400Headers
     },
     default: {
@@ -1101,6 +1194,15 @@ const putError201NoProvisioningStatePayloadOperationSpec: coreHttp.OperationSpec
   responses: {
     200: {
       bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
     }
   },
   requestBody: Parameters.product,
@@ -1113,6 +1215,18 @@ const putAsyncRelativeRetryNoStatusOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     200: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryNoStatusHeaders
+    },
+    201: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryNoStatusHeaders
+    },
+    202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryNoStatusHeaders
+    },
+    204: {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryNoStatusHeaders
     },
@@ -1133,6 +1247,18 @@ const putAsyncRelativeRetryNoStatusPayloadOperationSpec: coreHttp.OperationSpec 
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryNoStatusPayloadHeaders
     },
+    201: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryNoStatusPayloadHeaders
+    },
+    202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryNoStatusPayloadHeaders
+    },
+    204: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryNoStatusPayloadHeaders
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1146,6 +1272,9 @@ const delete204SucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/delete/204/nolocation",
   httpMethod: "DELETE",
   responses: {
+    200: {},
+    201: {},
+    202: {},
     204: {},
     default: {
       bodyMapper: Mappers.CloudError
@@ -1158,7 +1287,16 @@ const deleteAsyncRelativeRetryNoStatusOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/deleteasync/retry/nostatus",
   httpMethod: "DELETE",
   responses: {
+    200: {
+      headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetryNoStatusHeaders
+    },
+    201: {
+      headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetryNoStatusHeaders
+    },
     202: {
+      headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetryNoStatusHeaders
+    },
+    204: {
       headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetryNoStatusHeaders
     },
     default: {
@@ -1172,7 +1310,16 @@ const post202NoLocationOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/post/202/nolocation",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.LrosaDsPost202NoLocationHeaders
+    },
+    201: {
+      headersMapper: Mappers.LrosaDsPost202NoLocationHeaders
+    },
     202: {
+      headersMapper: Mappers.LrosaDsPost202NoLocationHeaders
+    },
+    204: {
       headersMapper: Mappers.LrosaDsPost202NoLocationHeaders
     },
     default: {
@@ -1188,7 +1335,16 @@ const postAsyncRelativeRetryNoPayloadOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/postasync/retry/nopayload",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.LrosaDsPostAsyncRelativeRetryNoPayloadHeaders
+    },
+    201: {
+      headersMapper: Mappers.LrosaDsPostAsyncRelativeRetryNoPayloadHeaders
+    },
     202: {
+      headersMapper: Mappers.LrosaDsPostAsyncRelativeRetryNoPayloadHeaders
+    },
+    204: {
       headersMapper: Mappers.LrosaDsPostAsyncRelativeRetryNoPayloadHeaders
     },
     default: {
@@ -1207,6 +1363,12 @@ const put200InvalidJsonOperationSpec: coreHttp.OperationSpec = {
     200: {
       bodyMapper: Mappers.Product
     },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
     204: {}
   },
   requestBody: Parameters.product,
@@ -1219,6 +1381,18 @@ const putAsyncRelativeRetryInvalidHeaderOperationSpec: coreHttp.OperationSpec = 
   httpMethod: "PUT",
   responses: {
     200: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryInvalidHeaderHeaders
+    },
+    201: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryInvalidHeaderHeaders
+    },
+    202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryInvalidHeaderHeaders
+    },
+    204: {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryInvalidHeaderHeaders
     },
@@ -1240,6 +1414,21 @@ const putAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreHttp.OperationSp
       headersMapper:
         Mappers.LrosaDsPutAsyncRelativeRetryInvalidJsonPollingHeaders
     },
+    201: {
+      bodyMapper: Mappers.Product,
+      headersMapper:
+        Mappers.LrosaDsPutAsyncRelativeRetryInvalidJsonPollingHeaders
+    },
+    202: {
+      bodyMapper: Mappers.Product,
+      headersMapper:
+        Mappers.LrosaDsPutAsyncRelativeRetryInvalidJsonPollingHeaders
+    },
+    204: {
+      bodyMapper: Mappers.Product,
+      headersMapper:
+        Mappers.LrosaDsPutAsyncRelativeRetryInvalidJsonPollingHeaders
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1253,7 +1442,16 @@ const delete202RetryInvalidHeaderOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/delete/202/retry/invalidheader",
   httpMethod: "DELETE",
   responses: {
+    200: {
+      headersMapper: Mappers.LrosaDsDelete202RetryInvalidHeaderHeaders
+    },
+    201: {
+      headersMapper: Mappers.LrosaDsDelete202RetryInvalidHeaderHeaders
+    },
     202: {
+      headersMapper: Mappers.LrosaDsDelete202RetryInvalidHeaderHeaders
+    },
+    204: {
       headersMapper: Mappers.LrosaDsDelete202RetryInvalidHeaderHeaders
     },
     default: {
@@ -1267,7 +1465,16 @@ const deleteAsyncRelativeRetryInvalidHeaderOperationSpec: coreHttp.OperationSpec
   path: "/lro/error/deleteasync/retry/invalidheader",
   httpMethod: "DELETE",
   responses: {
+    200: {
+      headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders
+    },
+    201: {
+      headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders
+    },
     202: {
+      headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders
+    },
+    204: {
       headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders
     },
     default: {
@@ -1281,7 +1488,19 @@ const deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreHttp.Operatio
   path: "/lro/error/deleteasync/retry/invalidjsonpolling",
   httpMethod: "DELETE",
   responses: {
+    200: {
+      headersMapper:
+        Mappers.LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders
+    },
+    201: {
+      headersMapper:
+        Mappers.LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders
+    },
     202: {
+      headersMapper:
+        Mappers.LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders
+    },
+    204: {
       headersMapper:
         Mappers.LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders
     },
@@ -1296,7 +1515,16 @@ const post202RetryInvalidHeaderOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/post/202/retry/invalidheader",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.LrosaDsPost202RetryInvalidHeaderHeaders
+    },
+    201: {
+      headersMapper: Mappers.LrosaDsPost202RetryInvalidHeaderHeaders
+    },
     202: {
+      headersMapper: Mappers.LrosaDsPost202RetryInvalidHeaderHeaders
+    },
+    204: {
       headersMapper: Mappers.LrosaDsPost202RetryInvalidHeaderHeaders
     },
     default: {
@@ -1312,7 +1540,16 @@ const postAsyncRelativeRetryInvalidHeaderOperationSpec: coreHttp.OperationSpec =
   path: "/lro/error/postasync/retry/invalidheader",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.LrosaDsPostAsyncRelativeRetryInvalidHeaderHeaders
+    },
+    201: {
+      headersMapper: Mappers.LrosaDsPostAsyncRelativeRetryInvalidHeaderHeaders
+    },
     202: {
+      headersMapper: Mappers.LrosaDsPostAsyncRelativeRetryInvalidHeaderHeaders
+    },
+    204: {
       headersMapper: Mappers.LrosaDsPostAsyncRelativeRetryInvalidHeaderHeaders
     },
     default: {
@@ -1328,7 +1565,19 @@ const postAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreHttp.OperationS
   path: "/lro/error/postasync/retry/invalidjsonpolling",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper:
+        Mappers.LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders
+    },
+    201: {
+      headersMapper:
+        Mappers.LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders
+    },
     202: {
+      headersMapper:
+        Mappers.LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders
+    },
+    204: {
       headersMapper:
         Mappers.LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders
     },
