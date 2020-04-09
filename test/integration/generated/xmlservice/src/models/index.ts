@@ -290,7 +290,7 @@ export interface AccessPolicy {
  * An enumeration of blobs
  */
 export interface ListBlobsResponse {
-  serviceEndpoint: string;
+  serviceEndpoint?: string;
   containerName: string;
   prefix: string;
   marker: string;

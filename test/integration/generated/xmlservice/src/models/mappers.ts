@@ -595,7 +595,6 @@ export const ListBlobsResponse: coreHttp.CompositeMapper = {
       serviceEndpoint: {
         type: { name: "String" },
         serializedName: "ServiceEndpoint",
-        required: true,
         xmlName: "ServiceEndpoint",
         xmlIsAttribute: true
       },

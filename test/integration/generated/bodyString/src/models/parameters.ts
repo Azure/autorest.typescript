@@ -37,7 +37,6 @@ export const stringBody: coreHttp.OperationParameter = {
   parameterPath: ["options", "stringBody"],
   mapper: {
     serializedName: "stringBody",
-    isConstant: true,
     type: {
       name: "String"
     }

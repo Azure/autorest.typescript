@@ -12,6 +12,7 @@ import * as Parameters from "../models/parameters";
 import { BodyStringClient } from "../bodyStringClient";
 import {
   StringGetNullResponse,
+  StringPutNullOptionalParams,
   StringGetEmptyResponse,
   StringGetMbcsResponse,
   StringGetWhitespaceResponse,
@@ -50,7 +51,9 @@ export class String {
    * Set string value null
    * @param options The options parameters.
    */
-  putNull(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
+  putNull(
+    options?: StringPutNullOptionalParams
+  ): Promise<coreHttp.RestResponse> {
     return this.client.sendOperationRequest(
       { options },
       putNullOperationSpec
