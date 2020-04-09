@@ -11,7 +11,8 @@ import {
   OperationSpec,
   OperationArguments,
   delay,
-  HttpMethods
+  HttpMethods,
+  RestError
 } from "@azure/core-http";
 import {
   BaseResult,
@@ -126,9 +127,12 @@ function getPollingStrategy<TResult extends BaseResult>(
   const lroData = initialOperation.result._lroData;
 
   if (!lroData) {
-    throw new Error(
-      "Expected lroData to be present for PollingStrategy discovery"
+    const error = new RestError(
+      "Service response doesn't include the required LRO data to continue polling"
     );
+    error.statusCode = initialOperation.result._response.status;
+    error.response = initialOperation.result._response;
+    throw error;
   }
 
   if (lroData.azureAsyncOperation || lroData.operationLocation) {

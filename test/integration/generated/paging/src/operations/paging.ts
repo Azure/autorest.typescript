@@ -778,7 +778,16 @@ const getMultiplePagesLROOperationSpec: coreHttp.OperationSpec = {
   path: "/paging/multiple/lro",
   httpMethod: "POST",
   responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    201: {
+      bodyMapper: Mappers.ProductResult
+    },
     202: {
+      bodyMapper: Mappers.ProductResult
+    },
+    204: {
       bodyMapper: Mappers.ProductResult
     },
     default: {}
@@ -956,7 +965,16 @@ const getMultiplePagesLRONextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "POST",
   responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    201: {
+      bodyMapper: Mappers.ProductResult
+    },
     202: {
+      bodyMapper: Mappers.ProductResult
+    },
+    204: {
       bodyMapper: Mappers.ProductResult
     },
     default: {}
