@@ -72,7 +72,7 @@ function isAsyncOperationFinalResponse(
   if (
     initialOperationInfo.requestMethod === "PUT" &&
     finalStateVia &&
-    finalStateVia.toLowerCase() === "azure-asyncOperation"
+    finalStateVia.toLowerCase() === "azure-asyncoperation"
   ) {
     return true;
   }
