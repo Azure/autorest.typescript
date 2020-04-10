@@ -40,6 +40,8 @@ export class Time {
   /**
    * Put time value "08:07:56"
    * @param timeBody Put time value "08:07:56" in parameter to pass testserver
+   *                 This value should be an ISO-8601 formatted string representing time. E.g. "HH:MM:SS" or
+   *                 "HH:MM:SS.mm".
    * @param options The options parameters.
    */
   put(
