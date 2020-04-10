@@ -11,13 +11,11 @@ import {
   OperationSpec,
   OperationArguments,
   delay,
-  HttpMethods,
   RestError
 } from "@azure/core-http";
 import {
   BaseResult,
   LROOperationState,
-  LROStrategy,
   LROOperationStep,
   FinalStateVia
 } from "./models";
