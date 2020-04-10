@@ -8,6 +8,7 @@
 
 import * as coreHttp from "@azure/core-http";
 import * as Models from "./models";
+import { lroPolicy } from "./lro";
 
 const packageName = "lro";
 const packageVersion = "1.0.0-preview1";
@@ -29,6 +30,14 @@ export class LROClientContext extends coreHttp.ServiceClient {
       const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
+
+    const defaultPipelines = coreHttp.createPipelineFromOptions(options)
+      .requestPolicyFactories as coreHttp.RequestPolicyFactory[];
+
+    options = {
+      ...options,
+      requestPolicyFactories: [lroPolicy(), ...defaultPipelines]
+    };
 
     super(undefined, options);
 

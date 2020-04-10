@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { HttpMethods, Mapper } from "@azure/core-http";
+import { HttpMethods, Mapper, OperationSpec } from "@azure/core-http";
 import {
   Operation,
   Request,
@@ -34,6 +34,53 @@ import { PropertyKind, TypeDetails } from "../models/modelDetails";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { headersToSchema } from "../utils/headersToSchema";
 import { extractPaginationDetails } from "../utils/extractPaginationDetails";
+import { isEmpty, isEqual } from "lodash";
+
+/**
+ * SWAGGER doesn't require to define all possible response codes
+ * for the polling operations, since we need to send operation specs
+ * to coreHttp we'll inject possible response codes. The stub responses
+ * will be a clone of the first success response defined
+ */
+function injectMissingResponses(
+  responses: OperationResponseDetails[]
+): OperationResponseDetails[] {
+  const acceptedResponses = ["200", "201", "202", "204"];
+
+  // Use an already defined accepted response as base;
+  const baseResponse = acceptedResponses.reduce((acc, status) => {
+    if (!isEmpty(acc)) {
+      return acc;
+    }
+
+    const response = responses.find(r => r.statusCodes.includes(status));
+    if (response) {
+      acc = response;
+    }
+
+    return acc;
+  }, {} as OperationResponseDetails);
+
+  // Clone the bas response with the accepted response codes
+  const enhancedResponses = acceptedResponses.reduce<
+    OperationResponseDetails[]
+  >((acc, status) => {
+    let current = responses.find(r => r.statusCodes.includes(status));
+
+    if (!current) {
+      current = { ...baseResponse, statusCodes: [status] };
+    }
+
+    return [...acc, current];
+  }, []);
+
+  // Keep the non success responses originally defined
+  const otherResponses = responses.filter(
+    r => !acceptedResponses.some(ar => isEqual([ar], r.statusCodes))
+  );
+
+  return [...enhancedResponses, ...otherResponses];
+}
 
 export function transformOperationSpec(
   operationDetails: OperationDetails,
@@ -85,13 +132,20 @@ export function extractHttpDetails({ path, method }: OperationRequestDetails) {
 
 export function extractSpecResponses({
   name,
-  responses
+  responses,
+  isLRO
 }: OperationDetails): OperationSpecResponses {
   if (!responses || !responses.length) {
     throw new Error(`The operation ${name} contains no responses`);
   }
 
-  return extractSchemaResponses(responses);
+  let enhancedResponses = responses;
+
+  if (isLRO) {
+    enhancedResponses = injectMissingResponses(responses);
+  }
+
+  return extractSchemaResponses(enhancedResponses);
 }
 
 export interface SpecType {
@@ -260,6 +314,9 @@ export async function transformOperation(
   const isLRO: boolean = Boolean(
     operation.extensions && operation.extensions["x-ms-long-running-operation"]
   );
+  const lroOptions =
+    operation.extensions &&
+    operation.extensions["x-ms-long-running-operation-options"];
 
   const codeModelRequests = operation.requests;
   if (codeModelRequests === undefined || !codeModelRequests.length) {
@@ -299,7 +356,8 @@ export async function transformOperation(
     responses,
     mediaTypes,
     pagination,
-    isLRO
+    isLRO,
+    lroOptions
   };
 }
 

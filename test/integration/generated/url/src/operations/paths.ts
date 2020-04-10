@@ -33,8 +33,11 @@ export class Paths {
   getBooleanTrue(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getBooleanTrueOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -46,8 +49,11 @@ export class Paths {
   getBooleanFalse(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getBooleanFalseOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -59,8 +65,11 @@ export class Paths {
   getIntOneMillion(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getIntOneMillionOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -72,8 +81,11 @@ export class Paths {
   getIntNegativeOneMillion(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getIntNegativeOneMillionOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -85,8 +97,11 @@ export class Paths {
   getTenBillion(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getTenBillionOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -98,8 +113,11 @@ export class Paths {
   getNegativeTenBillion(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getNegativeTenBillionOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -111,8 +129,11 @@ export class Paths {
   floatScientificPositive(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       floatScientificPositiveOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -124,8 +145,11 @@ export class Paths {
   floatScientificNegative(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       floatScientificNegativeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -137,8 +161,11 @@ export class Paths {
   doubleDecimalPositive(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       doubleDecimalPositiveOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -150,8 +177,11 @@ export class Paths {
   doubleDecimalNegative(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       doubleDecimalNegativeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -163,8 +193,11 @@ export class Paths {
   stringUnicode(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       stringUnicodeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -176,8 +209,11 @@ export class Paths {
   stringUrlEncoded(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       stringUrlEncodedOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -189,8 +225,11 @@ export class Paths {
   stringUrlNonEncoded(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       stringUrlNonEncodedOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -202,8 +241,11 @@ export class Paths {
   stringEmpty(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       stringEmptyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -217,8 +259,11 @@ export class Paths {
     stringPath: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { stringPath, options },
+      { stringPath, options: operationOptions },
       stringNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -232,8 +277,11 @@ export class Paths {
     enumPath: UriColor,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { enumPath, options },
+      { enumPath, options: operationOptions },
       enumValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -247,8 +295,11 @@ export class Paths {
     enumPath: UriColor,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { enumPath, options },
+      { enumPath, options: operationOptions },
       enumNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -262,8 +313,11 @@ export class Paths {
     bytePath: Uint8Array,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { bytePath, options },
+      { bytePath, options: operationOptions },
       byteMultiByteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -275,8 +329,11 @@ export class Paths {
   byteEmpty(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       byteEmptyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -290,8 +347,11 @@ export class Paths {
     bytePath: Uint8Array,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { bytePath, options },
+      { bytePath, options: operationOptions },
       byteNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -303,8 +363,11 @@ export class Paths {
   dateValid(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       dateValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -319,8 +382,11 @@ export class Paths {
     datePath: Date,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { datePath, options },
+      { datePath, options: operationOptions },
       dateNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -332,8 +398,11 @@ export class Paths {
   dateTimeValid(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       dateTimeValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -347,8 +416,11 @@ export class Paths {
     dateTimePath: Date,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { dateTimePath, options },
+      { dateTimePath, options: operationOptions },
       dateTimeNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -362,8 +434,11 @@ export class Paths {
     base64UrlPath: Uint8Array,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { base64UrlPath, options },
+      { base64UrlPath, options: operationOptions },
       base64UrlOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -379,8 +454,11 @@ export class Paths {
     arrayPath: string[],
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { arrayPath, options },
+      { arrayPath, options: operationOptions },
       arrayCsvInPathOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -394,8 +472,11 @@ export class Paths {
     unixTimeUrlPath: Date,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { unixTimeUrlPath, options },
+      { unixTimeUrlPath, options: operationOptions },
       unixTimeUrlOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

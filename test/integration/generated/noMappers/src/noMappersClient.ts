@@ -28,8 +28,11 @@ class NoMappersClient extends NoMappersClientContext {
   apiV1ValueGet(
     options?: coreHttp.OperationOptions
   ): Promise<NoMappersClientApiV1ValueGetResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       apiV1ValueGetOperationSpec
     ) as Promise<NoMappersClientApiV1ValueGetResponse>;
   }

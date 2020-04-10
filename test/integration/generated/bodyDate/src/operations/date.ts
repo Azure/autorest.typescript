@@ -40,8 +40,11 @@ export class DateModel {
   getNull(
     options?: coreHttp.OperationOptions
   ): Promise<DateModelGetNullResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getNullOperationSpec
     ) as Promise<DateModelGetNullResponse>;
   }
@@ -53,8 +56,11 @@ export class DateModel {
   getInvalidDate(
     options?: coreHttp.OperationOptions
   ): Promise<DateModelGetInvalidDateResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getInvalidDateOperationSpec
     ) as Promise<DateModelGetInvalidDateResponse>;
   }
@@ -66,8 +72,11 @@ export class DateModel {
   getOverflowDate(
     options?: coreHttp.OperationOptions
   ): Promise<DateModelGetOverflowDateResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getOverflowDateOperationSpec
     ) as Promise<DateModelGetOverflowDateResponse>;
   }
@@ -79,8 +88,11 @@ export class DateModel {
   getUnderflowDate(
     options?: coreHttp.OperationOptions
   ): Promise<DateModelGetUnderflowDateResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getUnderflowDateOperationSpec
     ) as Promise<DateModelGetUnderflowDateResponse>;
   }
@@ -94,8 +106,11 @@ export class DateModel {
     dateBody: Date,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { dateBody, options },
+      { dateBody, options: operationOptions },
       putMaxDateOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -107,8 +122,11 @@ export class DateModel {
   getMaxDate(
     options?: coreHttp.OperationOptions
   ): Promise<DateModelGetMaxDateResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getMaxDateOperationSpec
     ) as Promise<DateModelGetMaxDateResponse>;
   }
@@ -122,8 +140,11 @@ export class DateModel {
     dateBody: Date,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { dateBody, options },
+      { dateBody, options: operationOptions },
       putMinDateOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -135,8 +156,11 @@ export class DateModel {
   getMinDate(
     options?: coreHttp.OperationOptions
   ): Promise<DateModelGetMinDateResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getMinDateOperationSpec
     ) as Promise<DateModelGetMinDateResponse>;
   }

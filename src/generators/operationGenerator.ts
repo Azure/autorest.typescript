@@ -109,6 +109,26 @@ function generateOperation(
   );
 }
 
+function writeGetOperationOptions(operationGroupClass: ClassDeclaration) {
+  operationGroupClass.addMethod({
+    scope: Scope.Private,
+    name: "getOperationOptions<TOptions extends coreHttp.OperationOptions>",
+    parameters: [
+      { name: "options", type: "TOptions | undefined" },
+      { name: "finalStateVia", type: "string", hasQuestionToken: true }
+    ],
+    returnType: `coreHttp.RequestOptionsBase`,
+    statements: `
+    const operationOptions: coreHttp.OperationOptions = options || {};
+    operationOptions.requestOptions = {
+      ...operationOptions.requestOptions,
+      shouldDeserialize: shouldDeserializeLRO(finalStateVia),
+    };
+    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    `
+  });
+}
+
 /**
  * Generates a string representation of an Operation spec
  * the output is to be inserted in the Operation group file
@@ -340,6 +360,10 @@ function addClass(
     importedModels,
     clientDetails.parameters
   );
+
+  if (hasLROOperation(operationGroupDetails)) {
+    writeGetOperationOptions(operationGroupClass);
+  }
 
   // Use named import from Models
   if (importedModels.size) {
@@ -593,14 +617,29 @@ function writeNoOverloadsOperationBody(
   parameterDeclarations: ParameterWithDescription[],
   isInline: boolean
 ): void {
-  const sendParams = parameterDeclarations.map(p => p.name).join(",");
+  const sendParams = parameterDeclarations
+    .map(p => (p.name === "options" ? "options: operationOptions" : p.name))
+    .join(",");
+
+  const finalStateVia =
+    operation.lroOptions && operation.lroOptions["final-state-via"];
+
   const operationSpecName = `${operation.name}OperationSpec`;
+
+  const operationOptions = operation.isLRO
+    ? `const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options,
+      ${finalStateVia ? `"${finalStateVia}"` : ""});`
+    : `const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(options || {});`;
+
+  operationMethod.addStatements(operationOptions);
+
   if (operation.isLRO) {
     writeLROOperationBody(
       sendParams,
       responseName,
       operationSpecName,
-      operationMethod
+      operationMethod,
+      finalStateVia
     );
   } else {
     operationMethod.addStatements(
@@ -617,10 +656,15 @@ function writeLROOperationBody(
   sendParams: string,
   responseName: string,
   operationSpecName: string,
-  methodDeclaration: MethodDeclaration
+  methodDeclaration: MethodDeclaration,
+  finalStateVia?: string
 ) {
+  const finalStateStr = finalStateVia
+    ? `finalStateVia: "${finalStateVia.toLowerCase()}"`
+    : "";
+
   const operationBody = `
-  const args = {${sendParams}};
+  const args: coreHttp.OperationArguments  = {${sendParams}};
   const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>  this.client.sendOperationRequest(args, spec) as Promise<${responseName}>;
   const initialOperationResult = await sendOperation(args, ${operationSpecName});
 
@@ -628,7 +672,8 @@ function writeLROOperationBody(
     initialOperationArguments: args,
     initialOperationSpec: ${operationSpecName},
     initialOperationResult,
-    sendOperation
+    sendOperation,
+    ${finalStateStr}
   });
   `;
 
@@ -711,7 +756,14 @@ function writeMultiMediaTypeOperationBody(
       isInline ? "" : ".client"
     }.sendOperationRequest(operationArguments, operationSpec) as Promise<${responseName}>`;
   } else {
-    `
+    const finalStateVia =
+      operation.lroOptions && operation.lroOptions["final-state-via"];
+
+    const finalStateStr = finalStateVia
+      ? `finalStateVia: "${finalStateVia.toLowerCase()}"`
+      : "";
+
+    statements += `
     const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>  this.client.sendOperationRequest(args, spec) as Promise<${responseName}>;
     const initialOperationResult = await sendOperation(operationArguments, operationSpec);
 
@@ -719,7 +771,8 @@ function writeMultiMediaTypeOperationBody(
       initialOperationArguments: operationArguments,
       initialOperationSpec: operationSpec
       initialOperationResult,
-      sendOperation
+      sendOperation,
+      ${finalStateStr}
     });
     `;
   }
@@ -880,8 +933,8 @@ function addImports(
 
   if (hasLROOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({
-      namedImports: ["LROPoller"],
-      moduleSpecifier: `../lro/lroPoller`
+      namedImports: ["LROPoller", "shouldDeserializeLRO"],
+      moduleSpecifier: `../lro`
     });
   }
 }

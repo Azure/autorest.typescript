@@ -25,6 +25,11 @@ export function generateClientContext(
   const clientParams = clientDetails.parameters.filter(
     param => param.implementationLocation === ImplementationLocation.Client
   );
+
+  const hasLRO = clientDetails.operationGroups.some(og =>
+    og.operations.some(o => o.isLRO)
+  );
+
   const clientContextClassName = `${clientDetails.className}Context`;
   const clientContextFileName = normalizeName(
     clientContextClassName,
@@ -39,7 +44,7 @@ export function generateClientContext(
     }
   );
 
-  writeImports(sourceFile);
+  writeImports(sourceFile, hasLRO);
   writePackageInfo(sourceFile, packageDetails);
 
   const contextClass = buildClass(sourceFile, clientContextClassName);
@@ -51,10 +56,14 @@ export function generateClientContext(
     clientParams
   });
 
-  writeConstructorBody(classConstructor, {
-    clientParams,
-    clientDetails
-  });
+  writeConstructorBody(
+    classConstructor,
+    {
+      clientParams,
+      clientDetails
+    },
+    hasLRO
+  );
 }
 
 interface WriteConstructorBodyParameters {
@@ -62,7 +71,7 @@ interface WriteConstructorBodyParameters {
   clientDetails: ClientDetails;
 }
 
-function writeImports(sourceFile: SourceFile) {
+function writeImports(sourceFile: SourceFile, hasLRO: boolean) {
   sourceFile.addImportDeclaration({
     namespaceImport: "coreHttp",
     moduleSpecifier: "@azure/core-http"
@@ -72,6 +81,13 @@ function writeImports(sourceFile: SourceFile) {
     namespaceImport: "Models",
     moduleSpecifier: "./models"
   });
+
+  if (hasLRO) {
+    sourceFile.addImportDeclaration({
+      namedImports: ["lroPolicy"],
+      moduleSpecifier: "./lro"
+    });
+  }
 }
 
 function writePackageInfo(
@@ -104,7 +120,8 @@ function writeClassProperties(
 
 function writeConstructorBody(
   classConstructor: ConstructorDeclaration,
-  { clientParams, clientDetails }: WriteConstructorBodyParameters
+  { clientParams, clientDetails }: WriteConstructorBodyParameters,
+  hasLRO: boolean
 ) {
   const requiredParams = getRequiredParameters(clientParams);
   const addBlankLine = true;
@@ -113,7 +130,10 @@ function writeConstructorBody(
   classConstructor.addStatements([
     writeStatements(getRequiredParamChecks(requiredParams), addBlankLine),
     writeStatement(
-      writeDefaultOptions(clientParams.some(p => p.name === "credentials"))
+      writeDefaultOptions(
+        clientParams.some(p => p.name === "credentials"),
+        hasLRO
+      )
     ),
     writeStatement(getEndpointStatement(clientDetails.endpoint), addBlankLine),
     requiredParameters.length ? "// Parameter assignments" : "",
@@ -141,7 +161,16 @@ const writeStatements = (lines: string[], shouldAddBlankLine = false) => (
   shouldAddBlankLine && writer.blankLine();
 };
 
-function writeDefaultOptions(hasCredentials: boolean) {
+function writeDefaultOptions(hasCredentials: boolean, hasLRO: boolean) {
+  const policies = ` 
+  const defaultPipelines = coreHttp.createPipelineFromOptions(options)
+      .requestPolicyFactories as coreHttp.RequestPolicyFactory[];
+
+  options = {
+      ...options,
+      requestPolicyFactories: [lroPolicy(), ...defaultPipelines]
+    };`;
+
   return `// Initializing default values for options
   if (!options) {
      options = {};
@@ -152,6 +181,8 @@ function writeDefaultOptions(hasCredentials: boolean) {
      options.userAgent = \`\${packageName}/\${packageVersion} \${defaultUserAgent}\`;
    }
   
+   ${hasLRO ? policies : ""}
+
   super(${hasCredentials ? "credentials" : `undefined`}, options);
   
   this.requestContentType = "application/json; charset=utf-8";

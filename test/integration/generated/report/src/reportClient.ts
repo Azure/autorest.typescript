@@ -34,8 +34,11 @@ class ReportClient extends ReportClientContext {
   getReport(
     options?: ReportClientGetReportOptionalParams
   ): Promise<ReportClientGetReportResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getReportOperationSpec
     ) as Promise<ReportClientGetReportResponse>;
   }
@@ -47,8 +50,11 @@ class ReportClient extends ReportClientContext {
   getOptionalReport(
     options?: ReportClientGetOptionalReportOptionalParams
   ): Promise<ReportClientGetOptionalReportResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getOptionalReportOperationSpec
     ) as Promise<ReportClientGetOptionalReportResponse>;
   }

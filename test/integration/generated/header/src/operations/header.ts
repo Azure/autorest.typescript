@@ -53,8 +53,11 @@ export class Header {
     userAgent: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { userAgent, options },
+      { userAgent, options: operationOptions },
       paramExistingKeyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -66,8 +69,11 @@ export class Header {
   responseExistingKey(
     options?: coreHttp.OperationOptions
   ): Promise<HeaderResponseExistingKeyResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       responseExistingKeyOperationSpec
     ) as Promise<HeaderResponseExistingKeyResponse>;
   }
@@ -81,8 +87,11 @@ export class Header {
     contentType: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { contentType, options },
+      { contentType, options: operationOptions },
       paramProtectedKeyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -94,8 +103,11 @@ export class Header {
   responseProtectedKey(
     options?: coreHttp.OperationOptions
   ): Promise<HeaderResponseProtectedKeyResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       responseProtectedKeyOperationSpec
     ) as Promise<HeaderResponseProtectedKeyResponse>;
   }
@@ -112,8 +124,11 @@ export class Header {
     value: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, value, options },
+      { scenario, value, options: operationOptions },
       paramIntegerOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -127,8 +142,11 @@ export class Header {
     scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<HeaderResponseIntegerResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, options },
+      { scenario, options: operationOptions },
       responseIntegerOperationSpec
     ) as Promise<HeaderResponseIntegerResponse>;
   }
@@ -145,8 +163,11 @@ export class Header {
     value: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, value, options },
+      { scenario, value, options: operationOptions },
       paramLongOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -160,8 +181,11 @@ export class Header {
     scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<HeaderResponseLongResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, options },
+      { scenario, options: operationOptions },
       responseLongOperationSpec
     ) as Promise<HeaderResponseLongResponse>;
   }
@@ -178,8 +202,11 @@ export class Header {
     value: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, value, options },
+      { scenario, value, options: operationOptions },
       paramFloatOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -193,8 +220,11 @@ export class Header {
     scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<HeaderResponseFloatResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, options },
+      { scenario, options: operationOptions },
       responseFloatOperationSpec
     ) as Promise<HeaderResponseFloatResponse>;
   }
@@ -211,8 +241,11 @@ export class Header {
     value: number,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, value, options },
+      { scenario, value, options: operationOptions },
       paramDoubleOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -226,8 +259,11 @@ export class Header {
     scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<HeaderResponseDoubleResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, options },
+      { scenario, options: operationOptions },
       responseDoubleOperationSpec
     ) as Promise<HeaderResponseDoubleResponse>;
   }
@@ -244,8 +280,11 @@ export class Header {
     value: boolean,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, value, options },
+      { scenario, value, options: operationOptions },
       paramBoolOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -259,8 +298,11 @@ export class Header {
     scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<HeaderResponseBoolResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, options },
+      { scenario, options: operationOptions },
       responseBoolOperationSpec
     ) as Promise<HeaderResponseBoolResponse>;
   }
@@ -275,8 +317,11 @@ export class Header {
     scenario: string,
     options?: HeaderParamStringOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, options },
+      { scenario, options: operationOptions },
       paramStringOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -290,8 +335,11 @@ export class Header {
     scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<HeaderResponseStringResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, options },
+      { scenario, options: operationOptions },
       responseStringOperationSpec
     ) as Promise<HeaderResponseStringResponse>;
   }
@@ -308,8 +356,11 @@ export class Header {
     value: Date,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, value, options },
+      { scenario, value, options: operationOptions },
       paramDateOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -323,8 +374,11 @@ export class Header {
     scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<HeaderResponseDateResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, options },
+      { scenario, options: operationOptions },
       responseDateOperationSpec
     ) as Promise<HeaderResponseDateResponse>;
   }
@@ -341,8 +395,11 @@ export class Header {
     value: Date,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, value, options },
+      { scenario, value, options: operationOptions },
       paramDatetimeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -356,8 +413,11 @@ export class Header {
     scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<HeaderResponseDatetimeResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, options },
+      { scenario, options: operationOptions },
       responseDatetimeOperationSpec
     ) as Promise<HeaderResponseDatetimeResponse>;
   }
@@ -372,8 +432,11 @@ export class Header {
     scenario: string,
     options?: HeaderParamDatetimeRfc1123OptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, options },
+      { scenario, options: operationOptions },
       paramDatetimeRfc1123OperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -387,8 +450,11 @@ export class Header {
     scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<HeaderResponseDatetimeRfc1123Response> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, options },
+      { scenario, options: operationOptions },
       responseDatetimeRfc1123OperationSpec
     ) as Promise<HeaderResponseDatetimeRfc1123Response>;
   }
@@ -404,8 +470,11 @@ export class Header {
     value: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, value, options },
+      { scenario, value, options: operationOptions },
       paramDurationOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -419,8 +488,11 @@ export class Header {
     scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<HeaderResponseDurationResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, options },
+      { scenario, options: operationOptions },
       responseDurationOperationSpec
     ) as Promise<HeaderResponseDurationResponse>;
   }
@@ -436,8 +508,11 @@ export class Header {
     value: Uint8Array,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, value, options },
+      { scenario, value, options: operationOptions },
       paramByteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -451,8 +526,11 @@ export class Header {
     scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<HeaderResponseByteResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, options },
+      { scenario, options: operationOptions },
       responseByteOperationSpec
     ) as Promise<HeaderResponseByteResponse>;
   }
@@ -467,8 +545,11 @@ export class Header {
     scenario: string,
     options?: HeaderParamEnumOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, options },
+      { scenario, options: operationOptions },
       paramEnumOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -482,8 +563,11 @@ export class Header {
     scenario: string,
     options?: coreHttp.OperationOptions
   ): Promise<HeaderResponseEnumResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { scenario, options },
+      { scenario, options: operationOptions },
       responseEnumOperationSpec
     ) as Promise<HeaderResponseEnumResponse>;
   }
@@ -495,8 +579,11 @@ export class Header {
   customRequestId(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       customRequestIdOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

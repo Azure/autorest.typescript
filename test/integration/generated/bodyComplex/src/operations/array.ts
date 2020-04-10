@@ -38,8 +38,11 @@ export class Array {
   getValid(
     options?: coreHttp.OperationOptions
   ): Promise<ArrayGetValidResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getValidOperationSpec
     ) as Promise<ArrayGetValidResponse>;
   }
@@ -54,8 +57,11 @@ export class Array {
     complexBody: ArrayWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { complexBody, options },
+      { complexBody, options: operationOptions },
       putValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -67,8 +73,11 @@ export class Array {
   getEmpty(
     options?: coreHttp.OperationOptions
   ): Promise<ArrayGetEmptyResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getEmptyOperationSpec
     ) as Promise<ArrayGetEmptyResponse>;
   }
@@ -82,8 +91,11 @@ export class Array {
     complexBody: ArrayWrapper,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { complexBody, options },
+      { complexBody, options: operationOptions },
       putEmptyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -95,8 +107,11 @@ export class Array {
   getNotProvided(
     options?: coreHttp.OperationOptions
   ): Promise<ArrayGetNotProvidedResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getNotProvidedOperationSpec
     ) as Promise<ArrayGetNotProvidedResponse>;
   }

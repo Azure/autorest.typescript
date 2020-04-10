@@ -52,8 +52,11 @@ export class Queries {
   getBooleanTrue(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getBooleanTrueOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -65,8 +68,11 @@ export class Queries {
   getBooleanFalse(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getBooleanFalseOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -78,8 +84,11 @@ export class Queries {
   getBooleanNull(
     options?: QueriesGetBooleanNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getBooleanNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -91,8 +100,11 @@ export class Queries {
   getIntOneMillion(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getIntOneMillionOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -104,8 +116,11 @@ export class Queries {
   getIntNegativeOneMillion(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getIntNegativeOneMillionOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -117,8 +132,11 @@ export class Queries {
   getIntNull(
     options?: QueriesGetIntNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getIntNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -130,8 +148,11 @@ export class Queries {
   getTenBillion(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getTenBillionOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -143,8 +164,11 @@ export class Queries {
   getNegativeTenBillion(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getNegativeTenBillionOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -156,8 +180,11 @@ export class Queries {
   getLongNull(
     options?: QueriesGetLongNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getLongNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -169,8 +196,11 @@ export class Queries {
   floatScientificPositive(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       floatScientificPositiveOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -182,8 +212,11 @@ export class Queries {
   floatScientificNegative(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       floatScientificNegativeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -195,8 +228,11 @@ export class Queries {
   floatNull(
     options?: QueriesFloatNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       floatNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -208,8 +244,11 @@ export class Queries {
   doubleDecimalPositive(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       doubleDecimalPositiveOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -221,8 +260,11 @@ export class Queries {
   doubleDecimalNegative(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       doubleDecimalNegativeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -234,8 +276,11 @@ export class Queries {
   doubleNull(
     options?: QueriesDoubleNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       doubleNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -247,8 +292,11 @@ export class Queries {
   stringUnicode(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       stringUnicodeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -260,8 +308,11 @@ export class Queries {
   stringUrlEncoded(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       stringUrlEncodedOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -273,8 +324,11 @@ export class Queries {
   stringEmpty(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       stringEmptyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -286,8 +340,11 @@ export class Queries {
   stringNull(
     options?: QueriesStringNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       stringNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -299,8 +356,11 @@ export class Queries {
   enumValid(
     options?: QueriesEnumValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       enumValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -312,8 +372,11 @@ export class Queries {
   enumNull(
     options?: QueriesEnumNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       enumNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -325,8 +388,11 @@ export class Queries {
   byteMultiByte(
     options?: QueriesByteMultiByteOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       byteMultiByteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -338,8 +404,11 @@ export class Queries {
   byteEmpty(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       byteEmptyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -351,8 +420,11 @@ export class Queries {
   byteNull(
     options?: QueriesByteNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       byteNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -364,8 +436,11 @@ export class Queries {
   dateValid(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       dateValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -377,8 +452,11 @@ export class Queries {
   dateNull(
     options?: QueriesDateNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       dateNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -390,8 +468,11 @@ export class Queries {
   dateTimeValid(
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       dateTimeValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -403,8 +484,11 @@ export class Queries {
   dateTimeNull(
     options?: QueriesDateTimeNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       dateTimeNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -417,8 +501,11 @@ export class Queries {
   arrayStringCsvValid(
     options?: QueriesArrayStringCsvValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       arrayStringCsvValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -430,8 +517,11 @@ export class Queries {
   arrayStringCsvNull(
     options?: QueriesArrayStringCsvNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       arrayStringCsvNullOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -443,8 +533,11 @@ export class Queries {
   arrayStringCsvEmpty(
     options?: QueriesArrayStringCsvEmptyOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       arrayStringCsvEmptyOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -457,8 +550,11 @@ export class Queries {
   arrayStringSsvValid(
     options?: QueriesArrayStringSsvValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       arrayStringSsvValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -471,8 +567,11 @@ export class Queries {
   arrayStringTsvValid(
     options?: QueriesArrayStringTsvValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       arrayStringTsvValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -485,8 +584,11 @@ export class Queries {
   arrayStringPipesValid(
     options?: QueriesArrayStringPipesValidOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       arrayStringPipesValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

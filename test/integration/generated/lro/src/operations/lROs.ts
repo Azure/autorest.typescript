@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClient } from "../lROClient";
-import { LROPoller } from "../lro/lroPoller";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   LROsPut200SucceededOptionalParams,
   LROsPut200SucceededResponse,
@@ -95,7 +95,11 @@ export class LROs {
   async put200Succeeded(
     options?: LROsPut200SucceededOptionalParams
   ): Promise<LROPoller<LROsPut200SucceededResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -124,7 +128,11 @@ export class LROs {
   async put200SucceededNoState(
     options?: LROsPut200SucceededNoStateOptionalParams
   ): Promise<LROPoller<LROsPut200SucceededNoStateResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -153,7 +161,11 @@ export class LROs {
   async put202Retry200(
     options?: LROsPut202Retry200OptionalParams
   ): Promise<LROPoller<LROsPut202Retry200Response>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -183,7 +195,11 @@ export class LROs {
   async put201CreatingSucceeded200(
     options?: LROsPut201CreatingSucceeded200OptionalParams
   ): Promise<LROPoller<LROsPut201CreatingSucceeded200Response>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -213,7 +229,11 @@ export class LROs {
   async put200UpdatingSucceeded204(
     options?: LROsPut200UpdatingSucceeded204OptionalParams
   ): Promise<LROPoller<LROsPut200UpdatingSucceeded204Response>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -243,7 +263,11 @@ export class LROs {
   async put201CreatingFailed200(
     options?: LROsPut201CreatingFailed200OptionalParams
   ): Promise<LROPoller<LROsPut201CreatingFailed200Response>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -273,7 +297,11 @@ export class LROs {
   async put200Acceptedcanceled200(
     options?: LROsPut200Acceptedcanceled200OptionalParams
   ): Promise<LROPoller<LROsPut200Acceptedcanceled200Response>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -302,7 +330,11 @@ export class LROs {
   async putNoHeaderInRetry(
     options?: LROsPutNoHeaderInRetryOptionalParams
   ): Promise<LROPoller<LROsPutNoHeaderInRetryResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -332,7 +364,11 @@ export class LROs {
   async putAsyncRetrySucceeded(
     options?: LROsPutAsyncRetrySucceededOptionalParams
   ): Promise<LROPoller<LROsPutAsyncRetrySucceededResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -362,7 +398,11 @@ export class LROs {
   async putAsyncNoRetrySucceeded(
     options?: LROsPutAsyncNoRetrySucceededOptionalParams
   ): Promise<LROPoller<LROsPutAsyncNoRetrySucceededResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -392,7 +432,11 @@ export class LROs {
   async putAsyncRetryFailed(
     options?: LROsPutAsyncRetryFailedOptionalParams
   ): Promise<LROPoller<LROsPutAsyncRetryFailedResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -422,7 +466,11 @@ export class LROs {
   async putAsyncNoRetrycanceled(
     options?: LROsPutAsyncNoRetrycanceledOptionalParams
   ): Promise<LROPoller<LROsPutAsyncNoRetrycanceledResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -451,7 +499,11 @@ export class LROs {
   async putAsyncNoHeaderInRetry(
     options?: LROsPutAsyncNoHeaderInRetryOptionalParams
   ): Promise<LROPoller<LROsPutAsyncNoHeaderInRetryResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -479,7 +531,11 @@ export class LROs {
   async putNonResource(
     options?: LROsPutNonResourceOptionalParams
   ): Promise<LROPoller<LROsPutNonResourceResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -507,7 +563,11 @@ export class LROs {
   async putAsyncNonResource(
     options?: LROsPutAsyncNonResourceOptionalParams
   ): Promise<LROPoller<LROsPutAsyncNonResourceResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -535,7 +595,11 @@ export class LROs {
   async putSubResource(
     options?: LROsPutSubResourceOptionalParams
   ): Promise<LROPoller<LROsPutSubResourceResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -563,7 +627,11 @@ export class LROs {
   async putAsyncSubResource(
     options?: LROsPutAsyncSubResourceOptionalParams
   ): Promise<LROPoller<LROsPutAsyncSubResourceResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -593,7 +661,11 @@ export class LROs {
   async deleteProvisioning202Accepted200Succeeded(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDeleteProvisioning202Accepted200SucceededResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -623,7 +695,11 @@ export class LROs {
   async deleteProvisioning202DeletingFailed200(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDeleteProvisioning202DeletingFailed200Response>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -653,7 +729,11 @@ export class LROs {
   async deleteProvisioning202Deletingcanceled200(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDeleteProvisioning202Deletingcanceled200Response>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -681,7 +761,11 @@ export class LROs {
   async delete204Succeeded(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -710,7 +794,11 @@ export class LROs {
   async delete202Retry200(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDelete202Retry200Response>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -739,7 +827,11 @@ export class LROs {
   async delete202NoRetry204(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDelete202NoRetry204Response>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -768,7 +860,11 @@ export class LROs {
   async deleteNoHeaderInRetry(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -797,7 +893,11 @@ export class LROs {
   async deleteAsyncNoHeaderInRetry(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -826,7 +926,11 @@ export class LROs {
   async deleteAsyncRetrySucceeded(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDeleteAsyncRetrySucceededResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -855,7 +959,11 @@ export class LROs {
   async deleteAsyncNoRetrySucceeded(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDeleteAsyncNoRetrySucceededResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -884,7 +992,11 @@ export class LROs {
   async deleteAsyncRetryFailed(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDeleteAsyncRetryFailedResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -913,7 +1025,11 @@ export class LROs {
   async deleteAsyncRetrycanceled(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsDeleteAsyncRetrycanceledResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -942,7 +1058,11 @@ export class LROs {
   async post200WithPayload(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsPost200WithPayloadResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -971,7 +1091,11 @@ export class LROs {
   async post202Retry200(
     options?: LROsPost202Retry200OptionalParams
   ): Promise<LROPoller<LROsPost202Retry200Response>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1000,7 +1124,11 @@ export class LROs {
   async post202NoRetry204(
     options?: LROsPost202NoRetry204OptionalParams
   ): Promise<LROPoller<LROsPost202NoRetry204Response>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1029,7 +1157,12 @@ export class LROs {
   async postDoubleHeadersFinalLocationGet(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsPostDoubleHeadersFinalLocationGetResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options,
+      "location"
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1046,7 +1179,8 @@ export class LROs {
       initialOperationArguments: args,
       initialOperationSpec: postDoubleHeadersFinalLocationGetOperationSpec,
       initialOperationResult,
-      sendOperation
+      sendOperation,
+      finalStateVia: "location"
     });
   }
 
@@ -1059,7 +1193,12 @@ export class LROs {
   async postDoubleHeadersFinalAzureHeaderGet(
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LROsPostDoubleHeadersFinalAzureHeaderGetResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options,
+      "azure-async-operation"
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1076,7 +1215,8 @@ export class LROs {
       initialOperationArguments: args,
       initialOperationSpec: postDoubleHeadersFinalAzureHeaderGetOperationSpec,
       initialOperationResult,
-      sendOperation
+      sendOperation,
+      finalStateVia: "azure-async-operation"
     });
   }
 
@@ -1091,7 +1231,11 @@ export class LROs {
   ): Promise<
     LROPoller<LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse>
   > {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1121,7 +1265,11 @@ export class LROs {
   async postAsyncRetrySucceeded(
     options?: LROsPostAsyncRetrySucceededOptionalParams
   ): Promise<LROPoller<LROsPostAsyncRetrySucceededResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1151,7 +1299,11 @@ export class LROs {
   async postAsyncNoRetrySucceeded(
     options?: LROsPostAsyncNoRetrySucceededOptionalParams
   ): Promise<LROPoller<LROsPostAsyncNoRetrySucceededResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1181,7 +1333,11 @@ export class LROs {
   async postAsyncRetryFailed(
     options?: LROsPostAsyncRetryFailedOptionalParams
   ): Promise<LROPoller<LROsPostAsyncRetryFailedResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1211,7 +1367,11 @@ export class LROs {
   async postAsyncRetrycanceled(
     options?: LROsPostAsyncRetrycanceledOptionalParams
   ): Promise<LROPoller<LROsPostAsyncRetrycanceledResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -1231,6 +1391,18 @@ export class LROs {
       sendOperation
     });
   }
+
+  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
+    options: TOptions | undefined,
+    finalStateVia?: string
+  ): coreHttp.RequestOptionsBase {
+    const operationOptions: coreHttp.OperationOptions = options || {};
+    operationOptions.requestOptions = {
+      ...operationOptions.requestOptions,
+      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
+    };
+    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+  }
 }
 // Operation Specifications
 
@@ -1241,6 +1413,12 @@ const put200SucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     200: {
+      bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
       bodyMapper: Mappers.Product
     },
     204: {}
@@ -1257,6 +1435,15 @@ const put200SucceededNoStateOperationSpec: coreHttp.OperationSpec = {
     200: {
       bodyMapper: Mappers.Product
     },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1270,7 +1457,16 @@ const put202Retry200OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/put/202/retry/200",
   httpMethod: "PUT",
   responses: {
+    200: {
+      bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
     202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -1288,6 +1484,15 @@ const put201CreatingSucceeded200OperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
     }
   },
   requestBody: Parameters.product,
@@ -1300,6 +1505,15 @@ const put200UpdatingSucceeded204OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     200: {
+      bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -1317,6 +1531,15 @@ const put201CreatingFailed200OperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
     }
   },
   requestBody: Parameters.product,
@@ -1329,6 +1552,15 @@ const put200Acceptedcanceled200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     200: {
+      bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -1344,7 +1576,19 @@ const putNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/put/noheader/202/200",
   httpMethod: "PUT",
   responses: {
+    200: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutNoHeaderInRetryHeaders
+    },
+    201: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutNoHeaderInRetryHeaders
+    },
     202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutNoHeaderInRetryHeaders
+    },
+    204: {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsPutNoHeaderInRetryHeaders
     },
@@ -1365,6 +1609,18 @@ const putAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsPutAsyncRetrySucceededHeaders
     },
+    201: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutAsyncRetrySucceededHeaders
+    },
+    202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutAsyncRetrySucceededHeaders
+    },
+    204: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutAsyncRetrySucceededHeaders
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1379,6 +1635,18 @@ const putAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     200: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutAsyncNoRetrySucceededHeaders
+    },
+    201: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutAsyncNoRetrySucceededHeaders
+    },
+    202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutAsyncNoRetrySucceededHeaders
+    },
+    204: {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsPutAsyncNoRetrySucceededHeaders
     },
@@ -1399,6 +1667,18 @@ const putAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsPutAsyncRetryFailedHeaders
     },
+    201: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutAsyncRetryFailedHeaders
+    },
+    202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutAsyncRetryFailedHeaders
+    },
+    204: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutAsyncRetryFailedHeaders
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1416,6 +1696,18 @@ const putAsyncNoRetrycanceledOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsPutAsyncNoRetrycanceledHeaders
     },
+    201: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutAsyncNoRetrycanceledHeaders
+    },
+    202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutAsyncNoRetrycanceledHeaders
+    },
+    204: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutAsyncNoRetrycanceledHeaders
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1429,7 +1721,19 @@ const putAsyncNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/putasync/noheader/201/200",
   httpMethod: "PUT",
   responses: {
+    200: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutAsyncNoHeaderInRetryHeaders
+    },
     201: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutAsyncNoHeaderInRetryHeaders
+    },
+    202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPutAsyncNoHeaderInRetryHeaders
+    },
+    204: {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsPutAsyncNoHeaderInRetryHeaders
     },
@@ -1446,7 +1750,16 @@ const putNonResourceOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/putnonresource/202/200",
   httpMethod: "PUT",
   responses: {
+    200: {
+      bodyMapper: Mappers.Sku
+    },
+    201: {
+      bodyMapper: Mappers.Sku
+    },
     202: {
+      bodyMapper: Mappers.Sku
+    },
+    204: {
       bodyMapper: Mappers.Sku
     },
     default: {
@@ -1462,7 +1775,16 @@ const putAsyncNonResourceOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/putnonresourceasync/202/200",
   httpMethod: "PUT",
   responses: {
+    200: {
+      bodyMapper: Mappers.Sku
+    },
+    201: {
+      bodyMapper: Mappers.Sku
+    },
     202: {
+      bodyMapper: Mappers.Sku
+    },
+    204: {
       bodyMapper: Mappers.Sku
     },
     default: {
@@ -1478,7 +1800,16 @@ const putSubResourceOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/putsubresource/202/200",
   httpMethod: "PUT",
   responses: {
+    200: {
+      bodyMapper: Mappers.SubProduct
+    },
+    201: {
+      bodyMapper: Mappers.SubProduct
+    },
     202: {
+      bodyMapper: Mappers.SubProduct
+    },
+    204: {
       bodyMapper: Mappers.SubProduct
     },
     default: {
@@ -1494,7 +1825,16 @@ const putAsyncSubResourceOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/putsubresourceasync/202/200",
   httpMethod: "PUT",
   responses: {
+    200: {
+      bodyMapper: Mappers.SubProduct
+    },
+    201: {
+      bodyMapper: Mappers.SubProduct
+    },
     202: {
+      bodyMapper: Mappers.SubProduct
+    },
+    204: {
       bodyMapper: Mappers.SubProduct
     },
     default: {
@@ -1512,6 +1852,15 @@ const deleteProvisioning202Accepted200SucceededOperationSpec: coreHttp.Operation
   responses: {
     200: {
       bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
     }
   },
   urlParameters: [Parameters.$host],
@@ -1522,6 +1871,15 @@ const deleteProvisioning202DeletingFailed200OperationSpec: coreHttp.OperationSpe
   httpMethod: "DELETE",
   responses: {
     200: {
+      bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
       bodyMapper: Mappers.Product
     }
   },
@@ -1534,6 +1892,15 @@ const deleteProvisioning202Deletingcanceled200OperationSpec: coreHttp.OperationS
   responses: {
     200: {
       bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
     }
   },
   urlParameters: [Parameters.$host],
@@ -1543,6 +1910,9 @@ const delete204SucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/delete/204/succeeded",
   httpMethod: "DELETE",
   responses: {
+    200: {},
+    201: {},
+    202: {},
     204: {},
     default: {
       bodyMapper: Mappers.CloudError
@@ -1557,6 +1927,15 @@ const delete202Retry200OperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
     }
   },
   urlParameters: [Parameters.$host],
@@ -1568,6 +1947,15 @@ const delete202NoRetry204OperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
     }
   },
   urlParameters: [Parameters.$host],
@@ -1576,14 +1964,14 @@ const delete202NoRetry204OperationSpec: coreHttp.OperationSpec = {
 const deleteNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/delete/noheader",
   httpMethod: "DELETE",
-  responses: { 204: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   urlParameters: [Parameters.$host],
   serializer
 };
 const deleteAsyncNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/deleteasync/noheader/202/204",
   httpMethod: "DELETE",
-  responses: { 204: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   urlParameters: [Parameters.$host],
   serializer
 };
@@ -1591,7 +1979,16 @@ const deleteAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/deleteasync/retry/succeeded",
   httpMethod: "DELETE",
   responses: {
+    200: {
+      headersMapper: Mappers.LROsDeleteAsyncRetrySucceededHeaders
+    },
+    201: {
+      headersMapper: Mappers.LROsDeleteAsyncRetrySucceededHeaders
+    },
     202: {
+      headersMapper: Mappers.LROsDeleteAsyncRetrySucceededHeaders
+    },
+    204: {
       headersMapper: Mappers.LROsDeleteAsyncRetrySucceededHeaders
     },
     default: {
@@ -1605,7 +2002,16 @@ const deleteAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/deleteasync/noretry/succeeded",
   httpMethod: "DELETE",
   responses: {
+    200: {
+      headersMapper: Mappers.LROsDeleteAsyncNoRetrySucceededHeaders
+    },
+    201: {
+      headersMapper: Mappers.LROsDeleteAsyncNoRetrySucceededHeaders
+    },
     202: {
+      headersMapper: Mappers.LROsDeleteAsyncNoRetrySucceededHeaders
+    },
+    204: {
       headersMapper: Mappers.LROsDeleteAsyncNoRetrySucceededHeaders
     },
     default: {
@@ -1619,7 +2025,16 @@ const deleteAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/deleteasync/retry/failed",
   httpMethod: "DELETE",
   responses: {
+    200: {
+      headersMapper: Mappers.LROsDeleteAsyncRetryFailedHeaders
+    },
+    201: {
+      headersMapper: Mappers.LROsDeleteAsyncRetryFailedHeaders
+    },
     202: {
+      headersMapper: Mappers.LROsDeleteAsyncRetryFailedHeaders
+    },
+    204: {
       headersMapper: Mappers.LROsDeleteAsyncRetryFailedHeaders
     },
     default: {
@@ -1633,7 +2048,16 @@ const deleteAsyncRetrycanceledOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/deleteasync/retry/canceled",
   httpMethod: "DELETE",
   responses: {
+    200: {
+      headersMapper: Mappers.LROsDeleteAsyncRetrycanceledHeaders
+    },
+    201: {
+      headersMapper: Mappers.LROsDeleteAsyncRetrycanceledHeaders
+    },
     202: {
+      headersMapper: Mappers.LROsDeleteAsyncRetrycanceledHeaders
+    },
+    204: {
       headersMapper: Mappers.LROsDeleteAsyncRetrycanceledHeaders
     },
     default: {
@@ -1649,6 +2073,15 @@ const post200WithPayloadOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Sku
+    },
+    201: {
+      bodyMapper: Mappers.Sku
+    },
+    202: {
+      bodyMapper: Mappers.Sku
+    },
+    204: {
+      bodyMapper: Mappers.Sku
     }
   },
   urlParameters: [Parameters.$host],
@@ -1658,7 +2091,16 @@ const post202Retry200OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/post/202/retry/200",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.LROsPost202Retry200Headers
+    },
+    201: {
+      headersMapper: Mappers.LROsPost202Retry200Headers
+    },
     202: {
+      headersMapper: Mappers.LROsPost202Retry200Headers
+    },
+    204: {
       headersMapper: Mappers.LROsPost202Retry200Headers
     },
     default: {
@@ -1674,7 +2116,19 @@ const post202NoRetry204OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/post/202/noretry/204",
   httpMethod: "POST",
   responses: {
+    200: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPost202NoRetry204Headers
+    },
+    201: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPost202NoRetry204Headers
+    },
     202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPost202NoRetry204Headers
+    },
+    204: {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsPost202NoRetry204Headers
     },
@@ -1691,7 +2145,16 @@ const postDoubleHeadersFinalLocationGetOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/LROPostDoubleHeadersFinalLocationGet",
   httpMethod: "POST",
   responses: {
+    200: {
+      bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
     202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -1705,7 +2168,16 @@ const postDoubleHeadersFinalAzureHeaderGetOperationSpec: coreHttp.OperationSpec 
   path: "/lro/LROPostDoubleHeadersFinalAzureHeaderGet",
   httpMethod: "POST",
   responses: {
+    200: {
+      bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
     202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -1719,7 +2191,16 @@ const postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: coreHttp.Operati
   path: "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault",
   httpMethod: "POST",
   responses: {
+    200: {
+      bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
     202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -1735,6 +2216,15 @@ const postAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
     }
   },
   requestBody: Parameters.product,
@@ -1748,6 +2238,15 @@ const postAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
     }
   },
   requestBody: Parameters.product,
@@ -1759,7 +2258,16 @@ const postAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/postasync/retry/failed",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.LROsPostAsyncRetryFailedHeaders
+    },
+    201: {
+      headersMapper: Mappers.LROsPostAsyncRetryFailedHeaders
+    },
     202: {
+      headersMapper: Mappers.LROsPostAsyncRetryFailedHeaders
+    },
+    204: {
       headersMapper: Mappers.LROsPostAsyncRetryFailedHeaders
     },
     default: {
@@ -1775,7 +2283,16 @@ const postAsyncRetrycanceledOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/postasync/retry/canceled",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.LROsPostAsyncRetrycanceledHeaders
+    },
+    201: {
+      headersMapper: Mappers.LROsPostAsyncRetrycanceledHeaders
+    },
     202: {
+      headersMapper: Mappers.LROsPostAsyncRetrycanceledHeaders
+    },
+    204: {
       headersMapper: Mappers.LROsPostAsyncRetrycanceledHeaders
     },
     default: {

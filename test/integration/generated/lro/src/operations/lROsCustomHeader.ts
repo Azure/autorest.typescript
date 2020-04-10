@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClient } from "../lROClient";
-import { LROPoller } from "../lro/lroPoller";
+import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   LROsCustomHeaderPutAsyncRetrySucceededOptionalParams,
   LROsCustomHeaderPutAsyncRetrySucceededResponse,
@@ -46,7 +46,11 @@ export class LROsCustomHeader {
   async putAsyncRetrySucceeded(
     options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
   ): Promise<LROPoller<LROsCustomHeaderPutAsyncRetrySucceededResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -77,7 +81,11 @@ export class LROsCustomHeader {
   async put201CreatingSucceeded200(
     options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
   ): Promise<LROPoller<LROsCustomHeaderPut201CreatingSucceeded200Response>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -107,7 +115,11 @@ export class LROsCustomHeader {
   async post202Retry200(
     options?: LROsCustomHeaderPost202Retry200OptionalParams
   ): Promise<LROPoller<LROsCustomHeaderPost202Retry200Response>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -138,7 +150,11 @@ export class LROsCustomHeader {
   async postAsyncRetrySucceeded(
     options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
   ): Promise<LROPoller<LROsCustomHeaderPostAsyncRetrySucceededResponse>> {
-    const args = { options };
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
@@ -158,6 +174,18 @@ export class LROsCustomHeader {
       sendOperation
     });
   }
+
+  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
+    options: TOptions | undefined,
+    finalStateVia?: string
+  ): coreHttp.RequestOptionsBase {
+    const operationOptions: coreHttp.OperationOptions = options || {};
+    operationOptions.requestOptions = {
+      ...operationOptions.requestOptions,
+      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
+    };
+    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+  }
 }
 // Operation Specifications
 
@@ -168,6 +196,18 @@ const putAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     200: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
+    },
+    201: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
+    },
+    202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
+    },
+    204: {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
     },
@@ -186,6 +226,15 @@ const put201CreatingSucceeded200OperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
     }
   },
   requestBody: Parameters.product,
@@ -197,7 +246,16 @@ const post202Retry200OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/customheader/post/202/retry/200",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
+    },
+    201: {
+      headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
+    },
     202: {
+      headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
+    },
+    204: {
       headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
     },
     default: {
@@ -213,7 +271,16 @@ const postAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/customheader/postasync/retry/succeeded",
   httpMethod: "POST",
   responses: {
+    200: {
+      headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
+    },
+    201: {
+      headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
+    },
     202: {
+      headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
+    },
+    204: {
       headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
     },
     default: {

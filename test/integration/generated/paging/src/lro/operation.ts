@@ -6,12 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
-  BaseResult,
-  LROOperationState,
-  LROOperation,
-  LROStrategy
-} from "./models";
+import { BaseResult, LROOperationState, LROOperation } from "./models";
 import { createBodyPollingStrategy } from "./bodyPollingStrategy";
 
 /**
@@ -50,19 +45,27 @@ async function update<TResult extends BaseResult>(
 ): Promise<LROOperation<TResult>> {
   const state = { ...this.state };
 
-  // Get strategy from last operation
-  const lroStrategy: LROStrategy<TResult> = getStrategyFromResult(state);
+  const { sendFinalRequest, poll, isTerminal } = state.pollingStrategy;
+  const currentResponse = state.lastOperation;
+  const currentLroData = currentResponse.result._lroData;
+
+  if (!currentLroData) {
+    throw new Error(
+      "Expected lroData to be defined for updating LRO operation"
+    );
+  }
+
+  if (state.result) {
+    state.isCompleted = true;
+    return makeOperation(state);
+  }
 
   // Check if last result is terminal
-  if (lroStrategy.isTerminal()) {
-    const result = await lroStrategy.sendFinalRequest();
-    state.lastOperation = result;
+  if (isTerminal()) {
+    state.lastOperation = await sendFinalRequest();
     state.result = state.lastOperation.result;
-    state.isCompleted = true;
   } else {
-    const result = await lroStrategy.poll();
-    state.lastOperation = result;
-    state.result = state.lastOperation.result;
+    state.lastOperation = await poll();
   }
 
   // Return operation
@@ -77,38 +80,4 @@ async function cancel<TResult extends BaseResult>(
   this: LROOperation<TResult>
 ): Promise<LROOperation<TResult>> {
   return makeOperation({ ...this.state, isCancelled: true });
-}
-
-/**
- * This function determines which strategy to use based on the response from
- * the last operation executed, this last operation can be an initial operation
- * or a polling operation. The 3 possible strategies are described below:
- *
- * A) Azure-AsyncOperation or Operation-Location
- * B) Location
- * C) BodyPolling (provisioningState)
- *  - This strategy is used when:
- *    - Response doesn't contain any of the following headers Location, Azure-AsyncOperation or Operation-Location
- *    - Last operation method is PUT
- */
-function getStrategyFromResult<TResult extends BaseResult>(
-  state: LROOperationState<TResult>
-): LROStrategy<TResult> {
-  const {
-    lastOperation: { spec, result }
-  } = state;
-
-  if (result.azureAsyncOperation) {
-    throw new Error("Azure-AsyncOperation strategy is not yet implemented");
-  }
-
-  if (result.location) {
-    throw new Error("Location strategy is not yet implemented");
-  }
-
-  if (["PUT", "PATCH"].includes(spec.httpMethod)) {
-    return createBodyPollingStrategy(state);
-  }
-
-  throw new Error("Unknown Long Running Operation strategy");
 }

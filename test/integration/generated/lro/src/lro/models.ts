@@ -9,21 +9,32 @@
 import {
   OperationArguments,
   OperationSpec,
-  RestResponse
+  RestResponse,
+  HttpMethods
 } from "@azure/core-http";
 import { PollOperationState, PollOperation } from "@azure/core-lro";
 
-export interface BaseResult extends RestResponse {
-  location?: string;
-  operationLocation?: string;
+export type FinalStateVia =
+  | "azure-async-operation"
+  | "location"
+  | "original-uri";
+
+export interface LROResponseInfo {
+  requestMethod: HttpMethods;
+  statusCode: number;
+  isInitialRequest?: boolean;
   azureAsyncOperation?: string;
+  operationLocation?: string;
+  location?: string;
   provisioningState?: string;
-  properties?: {
-    provisioningState?: string;
-  };
+  status?: string;
 }
 
-export interface LastOperation<TResult extends BaseResult> {
+export interface BaseResult extends RestResponse {
+  _lroData?: LROResponseInfo;
+}
+
+export interface LROOperationStep<TResult extends BaseResult> {
   args: OperationArguments;
   spec: OperationSpec;
   result: TResult;
@@ -31,17 +42,16 @@ export interface LastOperation<TResult extends BaseResult> {
 
 export interface LROOperationState<TResult extends BaseResult>
   extends PollOperationState<TResult> {
-  lastOperation: LastOperation<TResult>;
-  sendOperation: (
-    args: OperationArguments,
-    spec: OperationSpec
-  ) => Promise<TResult>;
+  lastOperation: LROOperationStep<TResult>;
+  initialOperation: LROOperationStep<TResult>;
+  pollingStrategy: LROStrategy<TResult>;
+  finalStateVia?: FinalStateVia;
 }
 
 export interface LROStrategy<TResult extends BaseResult> {
   isTerminal: () => boolean;
-  sendFinalRequest: () => Promise<LastOperation<TResult>>;
-  poll: () => Promise<LastOperation<TResult>>;
+  sendFinalRequest: () => Promise<LROOperationStep<TResult>>;
+  poll: () => Promise<LROOperationStep<TResult>>;
 }
 
 export type LROOperation<TResult extends BaseResult> = PollOperation<

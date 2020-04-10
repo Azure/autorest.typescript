@@ -33,8 +33,11 @@ export class Inheritance {
   getValid(
     options?: coreHttp.OperationOptions
   ): Promise<InheritanceGetValidResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { options },
+      { options: operationOptions },
       getValidOperationSpec
     ) as Promise<InheritanceGetValidResponse>;
   }
@@ -50,8 +53,11 @@ export class Inheritance {
     complexBody: Siamese,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
-      { complexBody, options },
+      { complexBody, options: operationOptions },
       putValidOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
