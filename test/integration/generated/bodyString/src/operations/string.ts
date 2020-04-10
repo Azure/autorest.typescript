@@ -57,6 +57,9 @@ export class String {
   putNull(
     options?: StringPutNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       putNullOperationSpec
