@@ -66,7 +66,7 @@ export class Xml {
 
   /**
    * Puts a complex type that has a ref to a complex type with no XML node
-   * @param model
+   * @param model I am root, and I ref a model with no meta
    * @param options The options parameters.
    */
   putComplexTypeRefNoMeta(
@@ -94,7 +94,7 @@ export class Xml {
 
   /**
    * Puts a complex type that has a ref to a complex type with XML node
-   * @param model
+   * @param model I am root, and I ref a model WITH meta
    * @param options The options parameters.
    */
   putComplexTypeRefWithMeta(
@@ -122,7 +122,7 @@ export class Xml {
 
   /**
    * Put a simple XML document
-   * @param slideshow
+   * @param slideshow Data about a slideshow
    * @param options The options parameters.
    */
   putSimple(
@@ -150,7 +150,7 @@ export class Xml {
 
   /**
    * Put an XML document with multiple wrapped lists
-   * @param wrappedLists
+   * @param wrappedLists A barrel of apples.
    * @param options The options parameters.
    */
   putWrappedLists(
@@ -191,7 +191,7 @@ export class Xml {
 
   /**
    * Puts an empty list.
-   * @param slideshow
+   * @param slideshow Data about a slideshow
    * @param options The options parameters.
    */
   putEmptyList(
@@ -219,7 +219,7 @@ export class Xml {
 
   /**
    * Puts some empty wrapped lists.
-   * @param appleBarrel
+   * @param appleBarrel A barrel of apples.
    * @param options The options parameters.
    */
   putEmptyWrappedLists(
@@ -247,7 +247,7 @@ export class Xml {
 
   /**
    * Puts a list as the root element.
-   * @param bananas
+   * @param bananas Array of Banana
    * @param options The options parameters.
    */
   putRootList(
@@ -275,7 +275,7 @@ export class Xml {
 
   /**
    * Puts a list with a single item.
-   * @param bananas
+   * @param bananas Array of Banana
    * @param options The options parameters.
    */
   putRootListSingleItem(
@@ -303,7 +303,7 @@ export class Xml {
 
   /**
    * Puts an empty list as the root element.
-   * @param bananas
+   * @param bananas Array of Banana
    * @param options The options parameters.
    */
   putEmptyRootList(
@@ -331,7 +331,7 @@ export class Xml {
 
   /**
    * Puts a value with an empty child element.
-   * @param banana
+   * @param banana A banana.
    * @param options The options parameters.
    */
   putEmptyChildElement(
@@ -372,7 +372,7 @@ export class Xml {
 
   /**
    * Puts storage service properties.
-   * @param properties
+   * @param properties Storage Service Properties.
    * @param options The options parameters.
    */
   putServiceProperties(
@@ -398,7 +398,7 @@ export class Xml {
 
   /**
    * Puts storage ACLs for a container.
-   * @param properties
+   * @param properties a collection of signed identifiers
    * @param options The options parameters.
    */
   putAcls(

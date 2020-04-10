@@ -187,7 +187,7 @@ export class Int {
 
   /**
    * Put datetime encoded as Unix time
-   * @param intBody
+   * @param intBody date in seconds since 1970-01-01T00:00:00Z.
    * @param options The options parameters.
    */
   putUnixTimeDate(

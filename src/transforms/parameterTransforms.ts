@@ -183,7 +183,9 @@ export function populateOperationParameters(
   targetMediaType?: KnownMediaType
 ): void {
   const parameterSerializedName = getParameterName(parameter);
-  const description = getLanguageMetadata(parameter.language).description;
+  let description =
+    getLanguageMetadata(parameter.language).description ||
+    getLanguageMetadata(parameter.schema.language).description;
 
   if (!parameterSerializedName) {
     throw new Error(
@@ -201,6 +203,10 @@ export function populateOperationParameters(
   const name = normalizeName(parameterSerializedName, NameType.Property);
 
   const sameNameParams = operationParameters.filter(p => p.name === name);
+
+  if (parameter.schema.type === SchemaType.Time) {
+    description += `\nThis value should be an ISO-8601 formatted string representing time. E.g. "HH:MM:SS" or "HH:MM:SS.mm".`;
+  }
 
   if (!sameNameParams.length) {
     const collectionFormat = getCollectionFormat(parameter);
@@ -380,7 +386,13 @@ export function disambiguateParameter(
     const name = normalizeName(serializedName, NameType.Property);
     const nameRef = `${name}${sameNameParams.length}`;
     const collectionFormat = getCollectionFormat(parameter);
-    const description = getLanguageMetadata(parameter.language).description;
+    let description =
+      getLanguageMetadata(parameter.language).description ||
+      getLanguageMetadata(parameter.schema.language).description;
+
+    if (parameter.schema.type === SchemaType.Time) {
+      description += `\nThis value should be an ISO-8601 formatted string representing time. E.g. "HH:MM:SS" or "HH:MM:SS.mm".`;
+    }
     const typeDetails = getTypeForSchema(parameter.schema);
 
     operationParameters.push({

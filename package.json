@@ -24,9 +24,9 @@
     ],
     "dependencies": {
         "@azure-tools/async-io": "3.0.203",
-        "@azure-tools/autorest-extension-base": "3.1.237",
-        "@azure-tools/codegen": "2.4.259",
-        "@azure-tools/codemodel": "3.4.302",
+        "@azure-tools/autorest-extension-base": "3.1.246",
+        "@azure-tools/codegen": "2.4.267",
+        "@azure-tools/codemodel": "4.13.317",
         "@azure-tools/linq": "3.1.206",
         "@azure-tools/openapi": "3.0.209",
         "@azure/core-http": "^1.0.4",
@@ -43,7 +43,7 @@
     "devDependencies": {
         "@autorest/test-server": "^3.0.27",
         "@azure/abort-controller": "^1.0.1",
-        "@microsoft.azure/autorest.testserver": "^2.10.14",
+        "@microsoft.azure/autorest.testserver": "^2.10.26",
         "@types/chai": "^4.2.8",
         "@types/express": "^4.17.2",
         "@types/js-yaml": "3.12.1",

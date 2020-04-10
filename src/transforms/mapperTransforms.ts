@@ -98,6 +98,7 @@ export function transformMapper({ schema, options }: MapperInput) {
     transformNumberMapper,
     transformConstantMapper,
     transformDateMapper,
+    transformTimeMapper,
     transformChoiceMapper,
     transformPrimitiveMapper,
     transformByteArrayMapper,
@@ -483,6 +484,26 @@ function transformDateMapper(pipelineValue: PipelineValue) {
   };
 }
 
+function transformTimeMapper(pipelineValue: PipelineValue) {
+  const { schema, options } = pipelineValue;
+
+  if (!isSchemaType([SchemaType.Time], schema)) {
+    return pipelineValue;
+  }
+
+  const mapper = buildMapper(
+    schema,
+    { name: getMapperTypeFromSchema(schema.type) },
+    options
+  );
+
+  return {
+    schema,
+    mapper,
+    isHandled: true
+  };
+}
+
 function transformStringMapper(pipelineValue: PipelineValue) {
   const { schema, options } = pipelineValue;
 
@@ -682,6 +703,8 @@ export function getMapperTypeFromSchema(type: SchemaType, format?: string) {
       return MapperType.UnixTime;
     case SchemaType.Date:
       return MapperType.Date;
+    case SchemaType.Time:
+      return MapperType.String;
     case SchemaType.Dictionary:
       return MapperType.Dictionary;
     case SchemaType.Integer:

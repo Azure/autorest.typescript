@@ -112,6 +112,7 @@ export function getTypeForSchema(schema: Schema): TypeDetails {
       usedModels.push(typeName);
       break;
     case SchemaType.String:
+    case SchemaType.Time:
     case SchemaType.Uuid:
       typeName = "string";
       break;
