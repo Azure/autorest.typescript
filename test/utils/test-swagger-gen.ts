@@ -29,7 +29,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   azureSpecialProperties: {
     swagger: "azure-special-properties.json",
     clientName: "AzureSpecialPropertiesClient",
-    packageName: "azure-special-properties"
+    packageName: "azure-special-properties",
+    addCredentials: true
   },
   bodyArray: {
     swagger: "body-array.json",

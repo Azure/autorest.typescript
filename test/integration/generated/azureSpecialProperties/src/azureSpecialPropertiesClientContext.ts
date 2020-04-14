@@ -19,14 +19,19 @@ export class AzureSpecialPropertiesClientContext extends coreHttp.ServiceClient 
 
   /**
    * Initializes a new instance of the AzureSpecialPropertiesClientContext class.
+   * @param credentials Subscription credentials which uniquely identify client subscription.
    * @param subscriptionId The subscription id, which appears in the path, always modeled in credentials.
    *                       The value is always '1234-5678-9012-3456'
    * @param options The parameter options
    */
   constructor(
+    credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
     options?: Models.AzureSpecialPropertiesClientOptionalParams
   ) {
+    if (credentials === undefined) {
+      throw new Error("'credentials' cannot be null");
+    }
     if (subscriptionId === undefined) {
       throw new Error("'subscriptionId' cannot be null");
     }
@@ -41,7 +46,7 @@ export class AzureSpecialPropertiesClientContext extends coreHttp.ServiceClient 
       options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
     }
 
-    super(undefined, options);
+    super(credentials, options);
 
     this.requestContentType = "application/json; charset=utf-8";
 
