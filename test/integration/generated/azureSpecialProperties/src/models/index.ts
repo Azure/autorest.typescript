@@ -80,15 +80,15 @@ export interface OdataGetWithFilterOptionalParams
   /**
    * The filter parameter with value '$filter=id gt 5 and name eq 'foo''.
    */
-  $filter?: string;
+  filter?: string;
   /**
    * The top parameter with value 10.
    */
-  $top?: number;
+  top?: number;
   /**
    * The orderby parameter with value id.
    */
-  $orderby?: string;
+  orderby?: string;
 }
 
 /**
@@ -139,7 +139,7 @@ export type HeaderCustomNamedRequestIdHeadResponse = HeaderCustomNamedRequestIdH
 /**
  * Optional parameters.
  */
-export interface AzureSpecialPropertiesOptionalParams
+export interface AzureSpecialPropertiesClientOptionalParams
   extends coreHttp.ServiceClientOptions {
   /**
    * server parameter

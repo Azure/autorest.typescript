@@ -194,7 +194,7 @@ export const q12: coreHttp.OperationQueryParameter = {
   skipEncoding: true
 };
 
-export const $filter: coreHttp.OperationQueryParameter = {
+export const filter: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "filter"],
   mapper: {
     serializedName: "$filter",
@@ -204,7 +204,7 @@ export const $filter: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const $top: coreHttp.OperationQueryParameter = {
+export const top: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "top"],
   mapper: {
     serializedName: "$top",
@@ -214,7 +214,7 @@ export const $top: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const $orderby: coreHttp.OperationQueryParameter = {
+export const orderby: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "orderby"],
   mapper: {
     serializedName: "$orderby",

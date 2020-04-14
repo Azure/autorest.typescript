@@ -9,19 +9,19 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureSpecialProperties } from "../azureSpecialProperties";
+import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 
 /**
  * Class representing a ApiVersionDefault.
  */
 export class ApiVersionDefault {
-  private readonly client: AzureSpecialProperties;
+  private readonly client: AzureSpecialPropertiesClient;
 
   /**
    * Initialize a new instance of the class ApiVersionDefault class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureSpecialProperties) {
+  constructor(client: AzureSpecialPropertiesClient) {
     this.client = client;
   }
 

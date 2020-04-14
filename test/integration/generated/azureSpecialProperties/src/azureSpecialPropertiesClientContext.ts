@@ -12,20 +12,20 @@ import * as Models from "./models";
 const packageName = "azure-special-properties";
 const packageVersion = "1.0.0-preview1";
 
-export class AzureSpecialPropertiesContext extends coreHttp.ServiceClient {
+export class AzureSpecialPropertiesClientContext extends coreHttp.ServiceClient {
   $host: string;
   subscriptionId: string;
   apiVersion: string;
 
   /**
-   * Initializes a new instance of the AzureSpecialPropertiesContext class.
+   * Initializes a new instance of the AzureSpecialPropertiesClientContext class.
    * @param subscriptionId The subscription id, which appears in the path, always modeled in credentials.
    *                       The value is always '1234-5678-9012-3456'
    * @param options The parameter options
    */
   constructor(
     subscriptionId: string,
-    options?: Models.AzureSpecialPropertiesOptionalParams
+    options?: Models.AzureSpecialPropertiesClientOptionalParams
   ) {
     if (subscriptionId === undefined) {
       throw new Error("'subscriptionId' cannot be null");

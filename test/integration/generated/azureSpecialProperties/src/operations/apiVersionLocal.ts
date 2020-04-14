@@ -9,20 +9,20 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureSpecialProperties } from "../azureSpecialProperties";
+import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 import { ApiVersionLocalGetMethodLocalNullOptionalParams } from "../models";
 
 /**
  * Class representing a ApiVersionLocal.
  */
 export class ApiVersionLocal {
-  private readonly client: AzureSpecialProperties;
+  private readonly client: AzureSpecialPropertiesClient;
 
   /**
    * Initialize a new instance of the class ApiVersionLocal class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureSpecialProperties) {
+  constructor(client: AzureSpecialPropertiesClient) {
     this.client = client;
   }
 

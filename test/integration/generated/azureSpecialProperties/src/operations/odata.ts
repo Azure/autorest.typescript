@@ -9,20 +9,20 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureSpecialProperties } from "../azureSpecialProperties";
+import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 import { OdataGetWithFilterOptionalParams } from "../models";
 
 /**
  * Class representing a Odata.
  */
 export class Odata {
-  private readonly client: AzureSpecialProperties;
+  private readonly client: AzureSpecialPropertiesClient;
 
   /**
    * Initialize a new instance of the class Odata class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureSpecialProperties) {
+  constructor(client: AzureSpecialPropertiesClient) {
     this.client = client;
   }
 
@@ -55,7 +55,7 @@ const getWithFilterOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.$filter, Parameters.$top, Parameters.$orderby],
+  queryParameters: [Parameters.filter, Parameters.top, Parameters.orderby],
   urlParameters: [Parameters.$host],
   serializer
 };

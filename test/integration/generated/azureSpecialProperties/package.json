@@ -7,8 +7,8 @@
   "keywords": ["node", "azure", "typescript", "browser", "isomorphic"],
   "license": "MIT",
   "main": "./dist/azure-special-properties.js",
-  "module": "./esm/azureSpecialProperties.js",
-  "types": "./esm/azureSpecialProperties.d.ts",
+  "module": "./esm/azureSpecialPropertiesClient.js",
+  "types": "./esm/azureSpecialPropertiesClient.d.ts",
   "devDependencies": {
     "typescript": "^3.1.1",
     "rollup": "^0.66.2",

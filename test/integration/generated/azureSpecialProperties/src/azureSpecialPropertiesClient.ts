@@ -9,18 +9,18 @@
 import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
-import { AzureSpecialPropertiesContext } from "./azureSpecialPropertiesContext";
+import { AzureSpecialPropertiesClientContext } from "./azureSpecialPropertiesClientContext";
 
-class AzureSpecialProperties extends AzureSpecialPropertiesContext {
+class AzureSpecialPropertiesClient extends AzureSpecialPropertiesClientContext {
   /**
-   * Initializes a new instance of the AzureSpecialProperties class.
+   * Initializes a new instance of the AzureSpecialPropertiesClient class.
    * @param subscriptionId The subscription id, which appears in the path, always modeled in credentials.
    *                       The value is always '1234-5678-9012-3456'
    * @param options The parameter options
    */
   constructor(
     subscriptionId: string,
-    options?: Models.AzureSpecialPropertiesOptionalParams
+    options?: Models.AzureSpecialPropertiesClientOptionalParams
   ) {
     super(subscriptionId, options);
     this.xMsClientRequestId = new operations.XMsClientRequestId(this);
@@ -48,8 +48,8 @@ class AzureSpecialProperties extends AzureSpecialPropertiesContext {
 // Operation Specifications
 
 export {
-  AzureSpecialProperties,
-  AzureSpecialPropertiesContext,
+  AzureSpecialPropertiesClient,
+  AzureSpecialPropertiesClientContext,
   Models as AzureSpecialPropertiesModels,
   Mappers as AzureSpecialPropertiesMappers
 };

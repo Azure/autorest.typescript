@@ -14,7 +14,7 @@ import sourcemaps from "rollup-plugin-sourcemaps";
  * @type {rollup.RollupFileOptions}
  */
 const config = {
-  input: "./esm/azureSpecialProperties.js",
+  input: "./esm/azureSpecialPropertiesClient.js",
   external: ["@azure/core-http", "@azure/core-arm"],
   output: {
     file: "./dist/azure-special-properties.js",

@@ -9,20 +9,20 @@
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureSpecialProperties } from "../azureSpecialProperties";
+import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 import { SkipUrlEncodingGetMethodQueryNullOptionalParams } from "../models";
 
 /**
  * Class representing a SkipUrlEncoding.
  */
 export class SkipUrlEncoding {
-  private readonly client: AzureSpecialProperties;
+  private readonly client: AzureSpecialPropertiesClient;
 
   /**
    * Initialize a new instance of the class SkipUrlEncoding class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureSpecialProperties) {
+  constructor(client: AzureSpecialPropertiesClient) {
     this.client = client;
   }
 

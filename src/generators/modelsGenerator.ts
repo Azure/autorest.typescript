@@ -458,7 +458,7 @@ function writeOptionalParameters(
           ...optionalParams
             .filter(p => p.targetMediaType === mediaType)
             .map<PropertySignatureStructure>(p => ({
-              name: p.name,
+              name: normalizeName(p.name, NameType.Property),
               hasQuestionToken: true,
               type: p.typeDetails.typeName,
               docs: p.description ? [p.description] : undefined,

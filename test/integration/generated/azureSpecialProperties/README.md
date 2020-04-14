@@ -1,6 +1,6 @@
-## Azure AzureSpecialProperties SDK for JavaScript
+## Azure AzureSpecialPropertiesClient SDK for JavaScript
 
-This package contains an isomorphic SDK for AzureSpecialProperties.
+This package contains an isomorphic SDK for AzureSpecialPropertiesClient.
 
 ### Currently supported environments
 
