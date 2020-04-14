@@ -58,6 +58,18 @@ namespace AutoRest.TypeScript.Azure.Model
         public override string Generate()
         {
             TSBuilder builder = new TSBuilder();
+            string extends = $"Array{ConstructTSItemTypeName()}";
+
+            if (BaseModelType != null && !BaseIsPolymorphic)
+            {
+                string baseTypeName = BaseModelType.Name;
+                if (baseTypeName == "RequestOptionsBase")
+                {
+                    baseTypeName = $"msRest.{baseTypeName}";
+                }
+
+                extends += $", {baseTypeName}";
+            }
 
             builder.DocumentationComment(comment =>
             {
@@ -69,9 +81,9 @@ namespace AutoRest.TypeScript.Azure.Model
                 }
                 comment.Description(description);
                 comment.Summary(Summary);
-                comment.Extends($"Array{ConstructTSItemTypeName()}");
+                comment.Extends(extends);
             });
-            builder.ExportInterface(Name, $"Array{ConstructTSItemTypeName()}", tsInterface =>
+            builder.ExportInterface(Name, extends, tsInterface =>
             {
                 foreach (Property property in InterfaceProperties)
                 {
