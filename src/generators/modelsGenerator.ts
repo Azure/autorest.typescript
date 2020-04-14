@@ -113,7 +113,9 @@ function writeOptionsParameter(
 
   const operationName = normalizeName(operation.name, NameType.Interface);
   const operationRequestMediaTypes = new Set<KnownMediaType>();
-  operation.requests.forEach(r => r.mediaType && operationRequestMediaTypes.add(r.mediaType));
+  operation.requests.forEach(
+    r => r.mediaType && operationRequestMediaTypes.add(r.mediaType)
+  );
   writeOptionalParameters(
     operationGroupName,
     operationName,
@@ -495,7 +497,12 @@ function getProperties(
   const { properties } = objectDetails;
   const getTypename = (property: PropertyDetails) => {
     if (property.isConstant) {
-      return getStringForValue(property.defaultValue, property.type);
+      const quoted = false;
+      return `"${getStringForValue(
+        property.defaultValue,
+        property.type,
+        quoted
+      )}"`;
     }
 
     return property.name === "siblings"
