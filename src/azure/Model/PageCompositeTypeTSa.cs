@@ -22,7 +22,8 @@ namespace AutoRest.TypeScript.Azure.Model
 
         public string ItemName { get; private set; }
 
-        public IModelType ItemType {
+        public IModelType ItemType
+        {
             get
             {
                 if (Properties == null)
@@ -62,13 +63,7 @@ namespace AutoRest.TypeScript.Azure.Model
 
             if (BaseModelType != null && !BaseIsPolymorphic)
             {
-                string baseTypeName = BaseModelType.Name;
-                if (baseTypeName == "RequestOptionsBase")
-                {
-                    baseTypeName = $"msRest.{baseTypeName}";
-                }
-
-                extends += $", {baseTypeName}";
+                extends += $", {BaseModelType.Name}";
             }
 
             builder.DocumentationComment(comment =>
