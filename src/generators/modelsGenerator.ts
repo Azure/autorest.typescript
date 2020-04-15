@@ -113,9 +113,7 @@ function writeOptionsParameter(
 
   const operationName = normalizeName(operation.name, NameType.Interface);
   const operationRequestMediaTypes = new Set<KnownMediaType>();
-  operation.requests.forEach(
-    r => r.mediaType && operationRequestMediaTypes.add(r.mediaType)
-  );
+  operation.requests.forEach(r => r.mediaType && operationRequestMediaTypes.add(r.mediaType));
   writeOptionalParameters(
     operationGroupName,
     operationName,
@@ -458,7 +456,7 @@ function writeOptionalParameters(
           ...optionalParams
             .filter(p => p.targetMediaType === mediaType)
             .map<PropertySignatureStructure>(p => ({
-              name: normalizeName(p.name, NameType.Property),
+              name: p.name,
               hasQuestionToken: true,
               type: p.typeDetails.typeName,
               docs: p.description ? [p.description] : undefined,
@@ -497,11 +495,10 @@ function getProperties(
   const { properties } = objectDetails;
   const getTypename = (property: PropertyDetails) => {
     if (property.isConstant) {
-      const quoted = false;
       return `"${getStringForValue(
         property.defaultValue,
         property.type,
-        quoted
+        false //quoted
       )}"`;
     }
 
