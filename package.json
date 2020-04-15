@@ -18,6 +18,7 @@
         "generate-swaggers": "ts-node ./test/utils/test-swagger-gen.ts"
     },
     "files": [
+        "src",
         "dist/**",
         "README.md",
         "LICENSE"
