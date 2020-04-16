@@ -495,7 +495,11 @@ function getProperties(
   const { properties } = objectDetails;
   const getTypename = (property: PropertyDetails) => {
     if (property.isConstant) {
-      return getStringForValue(property.defaultValue, property.type);
+      return `"${getStringForValue(
+        property.defaultValue,
+        property.type,
+        false //quoted
+      )}"`;
     }
 
     return property.name === "siblings"

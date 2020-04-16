@@ -26,6 +26,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "ReportClient",
     packageName: "zzzAzureReport"
   },
+  azureSpecialProperties: {
+    swagger: "azure-special-properties.json",
+    clientName: "AzureSpecialPropertiesClient",
+    packageName: "azure-special-properties",
+    addCredentials: true
+  },
   bodyArray: {
     swagger: "body-array.json",
     clientName: "BodyArrayClient",

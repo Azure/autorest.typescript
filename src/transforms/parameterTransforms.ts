@@ -182,12 +182,12 @@ export function populateOperationParameters(
   hasXmlMetadata: boolean,
   targetMediaType?: KnownMediaType
 ): void {
-  const parameterSerializedName = getParameterName(parameter);
+  const parameterName = getParameterName(parameter);
   let description =
     getLanguageMetadata(parameter.language).description ||
     getLanguageMetadata(parameter.schema.language).description;
 
-  if (!parameterSerializedName) {
+  if (!parameterName) {
     throw new Error(
       `Couldn't get parameter serializedName for operation: ${operationName}`
     );
@@ -200,10 +200,10 @@ export function populateOperationParameters(
     return;
   }
 
-  const name = normalizeName(parameterSerializedName, NameType.Property);
-
+  const name = normalizeName(parameterName, NameType.Property);
+  const serializedName =
+    getLanguageMetadata(parameter.language).serializedName || name;
   const sameNameParams = operationParameters.filter(p => p.name === name);
-
   if (parameter.schema.type === SchemaType.Time) {
     description += `\nThis value should be an ISO-8601 formatted string representing time. E.g. "HH:MM:SS" or "HH:MM:SS.mm".`;
   }
@@ -215,7 +215,7 @@ export function populateOperationParameters(
       nameRef: name,
       description,
       name,
-      serializedName: parameterSerializedName,
+      serializedName,
       operationsIn: [operationName],
       location: getParameterLocation(parameter),
       required: getParameterRequired(parameter),
@@ -223,7 +223,7 @@ export function populateOperationParameters(
       parameterPath: getParameterPath(parameter),
       mapper: getMapperOrRef(
         parameter.schema,
-        parameterSerializedName,
+        serializedName,
         parameter.required,
         hasXmlMetadata
       ),
@@ -245,7 +245,7 @@ export function populateOperationParameters(
   disambiguateParameter(
     parameter,
     operationParameters,
-    parameterSerializedName,
+    serializedName,
     sameNameParams,
     operationName,
     hasXmlMetadata,
@@ -356,7 +356,7 @@ function getParameterName(parameter: Parameter) {
   const fromExtension =
     parameter.extensions && parameter.extensions["x-ms-requestBody-name"];
   const metadata = getLanguageMetadata(parameter.language);
-  const parameterSerializedName = metadata.serializedName || metadata.name;
+  const parameterSerializedName = metadata.name || metadata.serializedName;
 
   return fromExtension || parameterSerializedName;
 }
