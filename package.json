@@ -15,7 +15,9 @@
         "start-test-server:v1": "start-autorest-express node",
         "stop-test-server": "stop-autorest-testserver",
         "debug": "node --inspect-brk ./dist/src/main.js",
-        "generate-swaggers": "ts-node ./test/utils/test-swagger-gen.ts"
+        "generate-swaggers": "ts-node ./test/utils/test-swagger-gen.ts --category TestServer",
+        "generate:services": "ts-node ./test/utils/test-swagger-gen.ts --catrgory Services",
+        "check:tree": "ts-node ./test/utils/check-clean-tree.ts"
     },
     "files": [
         "src",
