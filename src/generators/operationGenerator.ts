@@ -383,7 +383,10 @@ function addClass(
 }
 
 type ParameterWithDescription = OptionalKind<
-  ParameterDeclarationStructure & { description: string }
+  ParameterDeclarationStructure & {
+    description: string;
+    isContentType?: boolean;
+  }
 >;
 
 /**
@@ -439,7 +442,10 @@ function getOperationParameterSignatures(
         name: param.name,
         description: param.description,
         type: typeName,
-        hasQuestionToken: !param.required
+        hasQuestionToken: !param.required,
+        isContentType: Boolean(
+          param.serializedName === "Content-Type" && param.location === "header"
+        )
       };
 
       // Make sure required parameters are added before optional
@@ -708,21 +714,26 @@ function writeMultiMediaTypeOperationBody(
 
   // Since contentType is always added as a synthetic parameter by modelerfour, it should always
   // be in the same position for all overloads.
-  let contentTypePosition: number = 0;
+  let contentTypePosition: number = -1;
   for (let i = 0; i < requests.length; i++) {
     const request = requests[i];
     const overloadParameters = overloadParameterDeclarations[i];
     const mediaType = request.mediaType!;
-    const contentTypeInfo = getContentTypeInfo(request);
+    contentTypePosition = overloadParameters.findIndex(param => {
+      return param.isContentType;
+    });
+    const contentTypeValues = getContentTypeInfo(request);
 
     // Ensure that a contentType exists, otherwise we won't be able to determine which operation spec to use.
-    if (!contentTypeInfo) {
+    if (
+      contentTypePosition === -1 ||
+      !contentTypeValues ||
+      !contentTypeValues.length
+    ) {
       throw new Error(
         `Encountered an operation media type that has unspecified values for the contentType for operation "${operation.fullName}".`
       );
     }
-
-    contentTypePosition = contentTypeInfo.location;
 
     const assignments = `
       operationSpec = ${operation.name}$${mediaType}OperationSpec
@@ -735,8 +746,8 @@ function writeMultiMediaTypeOperationBody(
 
     conditionals.push(
       `if (
-        ${contentTypeInfo.values
-          .map(type => `args[${contentTypeInfo.location}] === "${type}"`)
+        ${contentTypeValues
+          .map(type => `args[${contentTypePosition}] === "${type}"`)
           .join(" || ")}
         ) {
           ${assignments}
@@ -746,7 +757,7 @@ function writeMultiMediaTypeOperationBody(
 
   // Add an else clause that throws an error. This should never happen as long as a contentType was provided by the user.
   conditionals.push(`{
-    throw new TypeError(\`"contentType" must be a valid value but instead was "\${args[0]}".\`);
+    throw new TypeError(\`"contentType" must be a valid value but instead was "\${args[${contentTypePosition}]}".\`);
   }`);
 
   statements += conditionals.join(" else ");
@@ -782,7 +793,7 @@ function writeMultiMediaTypeOperationBody(
 
 function getContentTypeInfo(
   request: OperationRequestDetails
-): { location: number; values: string[] } | undefined {
+): string[] | undefined {
   const parameters = request.parameters ?? [];
   for (let i = 0; i < parameters.length; i++) {
     const parameter = parameters[i];
@@ -797,21 +808,15 @@ function getContentTypeInfo(
       paramLowerSerializedName === "content-type" &&
       parameterInHeader
     ) {
-      return {
-        location: i,
-        values: (schema as ChoiceSchema | SealedChoiceSchema).choices.map(
-          c => c.value as string
-        )
-      };
+      return (schema as ChoiceSchema | SealedChoiceSchema).choices.map(
+        c => c.value as string
+      );
     } else if (
       schema.type === SchemaType.Constant &&
       paramLowerSerializedName === "content-type" &&
       parameterInHeader
     ) {
-      return {
-        location: i,
-        values: [(schema as ConstantSchema).value.value]
-      };
+      return [(schema as ConstantSchema).value.value];
     }
   }
   return;
