@@ -273,7 +273,7 @@ const generateSwaggers = async (
         category
       } = testSwaggers[name];
 
-      if (categories.length && !categories.includes(category)) {
+      if (!categories.has(category)) {
         return;
       }
 
@@ -396,7 +396,7 @@ const getCategories = () => {
     });
   });
 
-  return [...categorySet];
+  return categorySet;
 };
 
 const run = async () => {
