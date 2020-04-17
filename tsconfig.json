@@ -22,6 +22,6 @@
     "outDir": "dist",
     "rootDir": "."
   },
-  "include": ["src"],
+  "include": ["src", "test"],
   "exclude": ["dist", "resources", "node_modules", "**/*.d.ts", "generated"]
 }
