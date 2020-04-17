@@ -5,7 +5,7 @@ interface SwaggerConfig {
   swagger: string;
   clientName: string;
   packageName: string;
-  category: Category;
+  category?: Category;
   addCredentials?: boolean;
   outputFolder?: string;
 }
