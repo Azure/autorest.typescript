@@ -9,14 +9,15 @@
         "unit-test": "mocha -r ts-node/register './test/unit/**/*spec.ts'",
         "integration-test": "start-server-and-test start-test-server:v1 http://localhost:3000 generate-and-test",
         "integration-test:new": "npm-run-all start-test-server generate-and-test integration-test:alone stop-test-server",
-        "generate-and-test": "npm-run-all -s build generate-swaggers integration-test:alone",
+        "generate-and-test": "npm-run-all -s build generate:test integration-test:alone",
         "integration-test:alone": "mocha -r ts-node/register './test/integration/**/*spec.ts'",
         "start-test-server": "ts-node test/utils/start-server.ts",
         "start-test-server:v1": "start-autorest-express node",
         "stop-test-server": "stop-autorest-testserver",
         "debug": "node --inspect-brk ./dist/src/main.js",
-        "generate-swaggers": "ts-node ./test/utils/test-swagger-gen.ts --category TestServer",
-        "generate:services": "ts-node ./test/utils/test-swagger-gen.ts --catrgory Services",
+        "generate": "ts-node ./test/utils/test-swagger-gen.ts",
+        "generate:test": "npm run generate --  --category TestServer",
+        "generate:services": "npm run generate --  --category Services ",
         "check:tree": "ts-node ./test/utils/check-clean-tree.ts"
     },
     "files": [

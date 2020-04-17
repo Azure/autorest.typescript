@@ -896,7 +896,6 @@ export const Suppression: coreHttp.CompositeMapper = {
       ActionRuleProperties.type.polymorphicDiscriminator,
     modelProperties: {
       ...ActionRuleProperties.type.modelProperties,
-      ...Any.type.modelProperties,
       suppressionConfig: {
         serializedName: "suppressionConfig",
         type: { name: "Composite", className: "SuppressionConfig" }
@@ -915,7 +914,6 @@ export const ActionGroup: coreHttp.CompositeMapper = {
       ActionRuleProperties.type.polymorphicDiscriminator,
     modelProperties: {
       ...ActionRuleProperties.type.modelProperties,
-      ...Any.type.modelProperties,
       actionGroupId: {
         type: { name: "String" },
         serializedName: "actionGroupId",
@@ -949,7 +947,6 @@ export const MonitorServiceList: coreHttp.CompositeMapper = {
       AlertsMetaDataProperties.type.polymorphicDiscriminator,
     modelProperties: {
       ...AlertsMetaDataProperties.type.modelProperties,
-      ...Any.type.modelProperties,
       data: {
         type: {
           name: "Sequence",

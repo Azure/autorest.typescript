@@ -284,6 +284,7 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
     ? objectSchema.parents.immediate
     : [];
   const parentsRefs = immediateParents
+    .filter(p => p.type !== SchemaType.Any)
     .map(p => getMapperClassName(p))
     .filter(p => p !== className);
 

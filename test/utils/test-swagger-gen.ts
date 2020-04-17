@@ -373,7 +373,7 @@ const getCategories = () => {
   let categorySet: Set<Category> = new Set<Category>();
 
   process.argv.forEach((arg, index) => {
-    if (arg !== "--catrgory" && arg !== "-c") {
+    if (arg !== "--category" && arg !== "-c") {
       return;
     }
 
