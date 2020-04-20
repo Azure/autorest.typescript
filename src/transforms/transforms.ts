@@ -85,7 +85,7 @@ export async function transformCodeModel(
   ]);
 
   return {
-    name: codeModel.info.title,
+    name: normalizeName(codeModel.info.title, NameType.Class),
     className,
     description: codeModel.info.description,
     sourceFileName: normalizeName(className, NameType.File),

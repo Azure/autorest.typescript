@@ -15,7 +15,8 @@
         "start-test-server:v1": "start-autorest-express node",
         "stop-test-server": "stop-autorest-testserver",
         "debug": "node --inspect-brk ./dist/src/main.js",
-        "generate-swaggers": "ts-node ./test/utils/test-swagger-gen.ts"
+        "generate-swaggers": "ts-node ./test/utils/test-swagger-gen.ts",
+        "test-smoke": "ts-node ./test/utils/smoke-test.ts"
     },
     "files": [
         "src",
@@ -55,6 +56,7 @@
         "@typescript-eslint/eslint-plugin": "~2.0.0",
         "@typescript-eslint/parser": "~2.0.0",
         "chai": "^4.2.0",
+        "chalk": "^4.0.0",
         "eslint": "~6.2.2",
         "express": "^4.17.1",
         "mocha": "6.2.1",
