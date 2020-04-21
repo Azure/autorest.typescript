@@ -14,8 +14,18 @@ export const ErrorModel: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ErrorModel",
     modelProperties: {
-      status: { type: { name: "Number" }, serializedName: "status" },
-      message: { type: { name: "String" }, serializedName: "message" }
+      status: {
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
+      message: {
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -27,12 +37,19 @@ export const RefColorConstant: coreHttp.CompositeMapper = {
     className: "RefColorConstant",
     modelProperties: {
       colorConstant: {
-        type: { name: "String" },
-        serializedName: "ColorConstant",
         defaultValue: "green-color",
-        isConstant: true
+        serializedName: "ColorConstant",
+        isConstant: true,
+        type: {
+          name: "String"
+        }
       },
-      field1: { type: { name: "String" }, serializedName: "field1" }
+      field1: {
+        serializedName: "field1",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };

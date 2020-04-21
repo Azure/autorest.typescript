@@ -15,12 +15,25 @@ export const PetAPTrue: coreHttp.CompositeMapper = {
     className: "PetAPTrue",
     additionalProperties: { type: { name: "Object" } },
     modelProperties: {
-      id: { type: { name: "Number" }, serializedName: "id", required: true },
-      name: { type: { name: "String" }, serializedName: "name" },
+      id: {
+        serializedName: "id",
+        required: true,
+        type: {
+          name: "Number"
+        }
+      },
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
       status: {
-        type: { name: "Boolean" },
         serializedName: "status",
-        readOnly: true
+        readOnly: true,
+        type: {
+          name: "Boolean"
+        }
       }
     }
   }
@@ -32,8 +45,18 @@ export const ErrorModel: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ErrorModel",
     modelProperties: {
-      status: { type: { name: "Number" }, serializedName: "status" },
-      message: { type: { name: "String" }, serializedName: "message" }
+      status: {
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
+      message: {
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -46,7 +69,12 @@ export const CatAPTrue: coreHttp.CompositeMapper = {
     additionalProperties: { type: { name: "Object" } },
     modelProperties: {
       ...PetAPTrue.type.modelProperties,
-      friendly: { type: { name: "Boolean" }, serializedName: "friendly" }
+      friendly: {
+        serializedName: "friendly",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -58,12 +86,25 @@ export const PetAPObject: coreHttp.CompositeMapper = {
     className: "PetAPObject",
     additionalProperties: { type: { name: "Object" } },
     modelProperties: {
-      id: { type: { name: "Number" }, serializedName: "id", required: true },
-      name: { type: { name: "String" }, serializedName: "name" },
+      id: {
+        serializedName: "id",
+        required: true,
+        type: {
+          name: "Number"
+        }
+      },
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
       status: {
-        type: { name: "Boolean" },
         serializedName: "status",
-        readOnly: true
+        readOnly: true,
+        type: {
+          name: "Boolean"
+        }
       }
     }
   }
@@ -76,12 +117,25 @@ export const PetAPString: coreHttp.CompositeMapper = {
     className: "PetAPString",
     additionalProperties: { type: { name: "Object" } },
     modelProperties: {
-      id: { type: { name: "Number" }, serializedName: "id", required: true },
-      name: { type: { name: "String" }, serializedName: "name" },
+      id: {
+        serializedName: "id",
+        required: true,
+        type: {
+          name: "Number"
+        }
+      },
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
       status: {
-        type: { name: "Boolean" },
         serializedName: "status",
-        readOnly: true
+        readOnly: true,
+        type: {
+          name: "Boolean"
+        }
       }
     }
   }
@@ -93,19 +147,32 @@ export const PetAPInProperties: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "PetAPInProperties",
     modelProperties: {
-      id: { type: { name: "Number" }, serializedName: "id", required: true },
-      name: { type: { name: "String" }, serializedName: "name" },
+      id: {
+        serializedName: "id",
+        required: true,
+        type: {
+          name: "Number"
+        }
+      },
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
       status: {
-        type: { name: "Boolean" },
         serializedName: "status",
-        readOnly: true
+        readOnly: true,
+        type: {
+          name: "Boolean"
+        }
       },
       additionalProperties: {
+        serializedName: "additionalProperties",
         type: {
           name: "Dictionary",
           value: { type: { name: "Number" }, serializedName: "Number" }
-        },
-        serializedName: "additionalProperties"
+        }
       }
     }
   }
@@ -118,24 +185,39 @@ export const PetAPInPropertiesWithAPString: coreHttp.CompositeMapper = {
     className: "PetAPInPropertiesWithAPString",
     additionalProperties: { type: { name: "Object" } },
     modelProperties: {
-      id: { type: { name: "Number" }, serializedName: "id", required: true },
-      name: { type: { name: "String" }, serializedName: "name" },
+      id: {
+        serializedName: "id",
+        required: true,
+        type: {
+          name: "Number"
+        }
+      },
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
       status: {
-        type: { name: "Boolean" },
         serializedName: "status",
-        readOnly: true
+        readOnly: true,
+        type: {
+          name: "Boolean"
+        }
       },
       odataLocation: {
-        type: { name: "String" },
         serializedName: "@odata\\.location",
-        required: true
+        required: true,
+        type: {
+          name: "String"
+        }
       },
       additionalProperties: {
+        serializedName: "additionalProperties",
         type: {
           name: "Dictionary",
           value: { type: { name: "Number" }, serializedName: "Number" }
-        },
-        serializedName: "additionalProperties"
+        }
       }
     }
   }
