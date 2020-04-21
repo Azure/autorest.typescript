@@ -53,8 +53,6 @@ const pipe = (
   ...fns: Array<(pipelineValue: PipelineValue) => PipelineValue>
 ) => (x: PipelineValue) => fns.reduce((v, f) => (!v.isHandled ? f(v) : v), x);
 
-let uberParents: string[] = [];
-
 export type ModelProperties = { [propertyName: string]: Mapper | string[] };
 
 export interface EntityOptions {
@@ -62,12 +60,26 @@ export interface EntityOptions {
   required?: boolean;
   readOnly?: boolean;
   hasXmlMetadata?: boolean;
+  uberParents?: string[];
 }
 
 export interface MapperInput {
   schema: Schema;
   options?: EntityOptions;
 }
+
+const findUberParents = (objects: ObjectSchema[]) => {
+  let uberParents: string[] = [];
+  objects.forEach(schema => {
+    const className = getMapperClassName(schema);
+    // If we find a new uber parent, store it
+    if (uberParents.indexOf(className) < 0 && isUberParent(schema)) {
+      uberParents.push(className);
+    }
+  });
+
+  return uberParents;
+};
 
 export async function transformMappers(
   codeModel: CodeModel,
@@ -79,12 +91,18 @@ export async function transformMappers(
     return [];
   }
 
+  const objects = codeModel.schemas.objects;
+  const uberParents = findUberParents(objects);
+
   const hasXmlMetadata = mediaTypes?.has(KnownMediaType.Xml);
   return [
-    ...codeModel.schemas.objects,
+    ...objects,
     ...extractHeaders(codeModel.operationGroups, clientName)
   ].map(objectSchema =>
-    transformMapper({ schema: objectSchema, options: { hasXmlMetadata } })
+    transformMapper({
+      schema: objectSchema,
+      options: { hasXmlMetadata, uberParents }
+    })
   );
 }
 
@@ -264,7 +282,7 @@ function getAdditionalProperties(allParents: Schema[]): Mapper | undefined {
 function isUberParent(objectSchema: ObjectSchema) {
   const { discriminator, parents, children } = objectSchema;
   return (
-    discriminator && !parents && children && children.all && children.all.length
+    !parents && children && children.all && children.all.length
   );
 }
 
@@ -277,6 +295,11 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
   const className = getMapperClassName(schema);
   const objectSchema = schema as ObjectSchema;
   const { discriminator, discriminatorValue } = objectSchema;
+
+  let uberParents: string[] = [];
+  if (options && options.uberParents) {
+    uberParents = options.uberParents;
+  }
 
   let modelProperties = processProperties(objectSchema.properties, options);
   const parents = objectSchema.parents ? objectSchema.parents.all : [];
@@ -294,11 +317,6 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
     ...modelProperties,
     ...(parentsRefs && parentsRefs.length && { parentsRefs })
   };
-
-  // If we find a new uber parent, store it
-  if (uberParents.indexOf(className) < 0 && isUberParent(objectSchema)) {
-    uberParents.push(className);
-  }
 
   // If any of the parents is present in uberParents we know it
   // is its uber parent
@@ -712,6 +730,7 @@ export function getMapperTypeFromSchema(type: SchemaType, format?: string) {
     case SchemaType.Number:
       return MapperType.Number;
     case SchemaType.Object:
+    case SchemaType.Any:
       return MapperType.Object;
     default:
       throw new Error(`There is no known Mapper type for schema type ${type}`);

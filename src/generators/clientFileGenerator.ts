@@ -29,9 +29,12 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   const clientContextClassName = `${clientDetails.className}Context`;
   const hasMappers = !!clientDetails.mappers.length;
 
-  // A client has inline operations when it has a toplevel operation group
   const hasInlineOperations = clientDetails.operationGroups.some(
     og => og.isTopLevel
+  );
+
+  const hasImportedOperations = clientDetails.operationGroups.some(
+    og => !og.isTopLevel
   );
 
   const hasCredentials = !!clientDetails.options.addCredentials;
@@ -54,15 +57,17 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       moduleSpecifier: "@azure/core-http"
     });
 
+  if (hasImportedOperations) {
+    clientFile.addImportDeclaration({
+      namespaceImport: "operations",
+      moduleSpecifier: "./operations"
+    });
+  }
+
   if (hasInlineOperations && shouldImportParameters(clientDetails)) {
     clientFile.addImportDeclaration({
       namespaceImport: "Parameters",
       moduleSpecifier: "./models/parameters"
-    });
-  } else if (!hasInlineOperations) {
-    clientFile.addImportDeclaration({
-      namespaceImport: "operations",
-      moduleSpecifier: "./operations"
     });
   }
 
