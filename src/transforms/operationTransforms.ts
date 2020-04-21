@@ -257,6 +257,11 @@ export function transformOperationResponse(
     throw new Error("Operation does not specify HTTP response details.");
   }
 
+  // TODO: Support errors other than default. This may need a change in core-http
+  const isFailedStatus = (httpInfo.statusCodes as string[]).some(
+    s => s === "default" || Number.parseInt(s) >= 400
+  );
+
   // Transform Headers to am ObjectSchema to represent headers as an object
   const headersSchema = headersToSchema(httpInfo.headers, operationFullName);
   const mediaType = httpInfo.knownMediaType;
@@ -276,15 +281,12 @@ export function transformOperationResponse(
       : undefined,
     headersType: headersSchema ? getTypeForSchema(headersSchema) : undefined
   };
-
-  const isDefault = httpInfo.statusCodes.indexOf("default") > -1;
-
   return {
     statusCodes: httpInfo.statusCodes,
     mediaType: httpInfo.knownMediaType,
     mappers,
     types,
-    isError: isDefault || isError
+    isError: isFailedStatus || isError
   };
 }
 

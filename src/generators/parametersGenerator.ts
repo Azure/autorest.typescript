@@ -111,7 +111,9 @@ function writeParameterMapper(
   if (isString(mapper)) {
     writer.write(`Mappers.${mapper}`);
   } else {
-    writeMapper(writer, mapper);
+    writer.block(() => {
+      writeMapper(writer, mapper);
+    });
   }
 
   return writer.write(",");

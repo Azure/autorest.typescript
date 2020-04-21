@@ -183,15 +183,21 @@ export function populateOperationParameters(
   targetMediaType?: KnownMediaType
 ): void {
   const parameterName = getParameterName(parameter);
-  let description =
-    getLanguageMetadata(parameter.language).description ||
-    getLanguageMetadata(parameter.schema.language).description;
+  const patameterMetadata = getLanguageMetadata(parameter.language);
+  const schemaMetadata = getLanguageMetadata(parameter.schema.language);
 
   if (!parameterName) {
     throw new Error(
-      `Couldn't get parameter serializedName for operation: ${operationName}`
+      `Couldn't get parameter name for operation: ${operationName}`
     );
   }
+
+  const serializedName: string =
+    patameterMetadata.serializedName ||
+    schemaMetadata.serializedName ||
+    parameterName;
+
+  let description = patameterMetadata.description || schemaMetadata.description;
 
   // Ignore parameters with SchemaType.Group, since these are "virtual".
   // These are handled separately in GroupTransforms and through
@@ -201,8 +207,6 @@ export function populateOperationParameters(
   }
 
   const name = normalizeName(parameterName, NameType.Property);
-  const serializedName =
-    getLanguageMetadata(parameter.language).serializedName || name;
   const sameNameParams = operationParameters.filter(p => p.name === name);
   if (parameter.schema.type === SchemaType.Time) {
     description += `\nThis value should be an ISO-8601 formatted string representing time. E.g. "HH:MM:SS" or "HH:MM:SS.mm".`;
@@ -246,6 +250,7 @@ export function populateOperationParameters(
     parameter,
     operationParameters,
     serializedName,
+    parameterName,
     sameNameParams,
     operationName,
     hasXmlMetadata,
@@ -353,18 +358,29 @@ function getCollectionFormat(parameter: Parameter): string | undefined {
 }
 
 function getParameterName(parameter: Parameter) {
-  const fromExtension =
+  const fromExtension: string | undefined =
     parameter.extensions && parameter.extensions["x-ms-requestBody-name"];
   const metadata = getLanguageMetadata(parameter.language);
-  const parameterSerializedName = metadata.name || metadata.serializedName;
+  const parameterSerializedName = metadata.name;
 
-  return fromExtension || parameterSerializedName;
+  const name = fromExtension || parameterSerializedName;
+
+  if (!name) {
+    throw new Error(
+      `ParameterTransform: Expected parameter to have a name ${JSON.stringify(
+        metadata
+      )}`
+    );
+  }
+
+  return name;
 }
 
 export function disambiguateParameter(
   parameter: Parameter,
   operationParameters: ParameterDetails[],
   serializedName: string,
+  parameterName: string,
   sameNameParams: ParameterDetails[],
   operationName: string,
   hasXmlMetadata: boolean,
@@ -383,7 +399,7 @@ export function disambiguateParameter(
     return;
   } else {
     // Since there is already a parameter with the same name, we need to ad a sufix
-    const name = normalizeName(serializedName, NameType.Property);
+    const name = normalizeName(parameterName, NameType.Property);
     const nameRef = `${name}${sameNameParams.length}`;
     const collectionFormat = getCollectionFormat(parameter);
     let description =
