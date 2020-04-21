@@ -298,8 +298,12 @@ export async function transformOperation(
   const pagination = extractPaginationDetails(operation);
   const name = normalizeName(metadata.name, NameType.Property);
   const operationFullName = `${operationGroupName}_${name}`;
+
+  // TODO: Handle multiple responses. We may need to have deep equality comparison and union response types
+  const operationResponse = operation.responses ? [operation.responses[0]] : [];
+
   const responsesAndErrors = [
-    ...(operation.responses || []),
+    ...operationResponse,
     ...(operation.exceptions || [])
   ];
   const typeName = `${normalizeName(
@@ -331,18 +335,6 @@ export async function transformOperation(
   let responses = responsesAndErrors.map(response =>
     transformOperationResponse(response, operationFullName)
   );
-  const hasMultipleResponses = responses.filter(r => !r.isError).length > 1;
-
-  // If this is an LRO operation only consider the success response,
-  // this is because LRO operations swagger defines initial and final operation
-  // responses in the same operation.
-  if (isLRO && hasMultipleResponses) {
-    responses = responses.filter(
-      response =>
-        response.statusCodes.includes("200") ||
-        response.statusCodes.includes("204")
-    );
-  }
 
   const mediaTypes = await getOperationMediaTypes(requests, responses);
 

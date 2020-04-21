@@ -51,6 +51,8 @@ import {
   LROsDeleteProvisioning202Deletingcanceled200Response,
   LROsDelete202Retry200Response,
   LROsDelete202NoRetry204Response,
+  LROsDeleteNoHeaderInRetryResponse,
+  LROsDeleteAsyncNoHeaderInRetryResponse,
   LROsDeleteAsyncRetrySucceededResponse,
   LROsDeleteAsyncNoRetrySucceededResponse,
   LROsDeleteAsyncRetryFailedResponse,
@@ -859,7 +861,7 @@ export class LROs {
    */
   async deleteNoHeaderInRetry(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<LROPoller<LROsDeleteNoHeaderInRetryResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options
     );
@@ -870,7 +872,7 @@ export class LROs {
       spec: coreHttp.OperationSpec
     ) =>
       this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
+        LROsDeleteNoHeaderInRetryResponse
       >;
     const initialOperationResult = await sendOperation(
       args,
@@ -892,7 +894,7 @@ export class LROs {
    */
   async deleteAsyncNoHeaderInRetry(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<LROPoller<LROsDeleteAsyncNoHeaderInRetryResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options
     );
@@ -903,7 +905,7 @@ export class LROs {
       spec: coreHttp.OperationSpec
     ) =>
       this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
+        LROsDeleteAsyncNoHeaderInRetryResponse
       >;
     const initialOperationResult = await sendOperation(
       args,
@@ -1421,7 +1423,12 @@ const put200SucceededOperationSpec: coreHttp.OperationSpec = {
     202: {
       bodyMapper: Mappers.Product
     },
-    204: {}
+    204: {
+      bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
@@ -1493,6 +1500,9 @@ const put201CreatingSucceeded200OperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
@@ -1540,6 +1550,9 @@ const put201CreatingFailed200OperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
@@ -1861,6 +1874,9 @@ const deleteProvisioning202Accepted200SucceededOperationSpec: coreHttp.Operation
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   urlParameters: [Parameters.$host],
@@ -1881,6 +1897,9 @@ const deleteProvisioning202DeletingFailed200OperationSpec: coreHttp.OperationSpe
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   urlParameters: [Parameters.$host],
@@ -1901,6 +1920,9 @@ const deleteProvisioning202Deletingcanceled200OperationSpec: coreHttp.OperationS
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   urlParameters: [Parameters.$host],
@@ -1936,6 +1958,9 @@ const delete202Retry200OperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   urlParameters: [Parameters.$host],
@@ -1956,6 +1981,9 @@ const delete202NoRetry204OperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   urlParameters: [Parameters.$host],
@@ -1964,14 +1992,46 @@ const delete202NoRetry204OperationSpec: coreHttp.OperationSpec = {
 const deleteNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/delete/noheader",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {
+      headersMapper: Mappers.LROsDeleteNoHeaderInRetryHeaders
+    },
+    201: {
+      headersMapper: Mappers.LROsDeleteNoHeaderInRetryHeaders
+    },
+    202: {
+      headersMapper: Mappers.LROsDeleteNoHeaderInRetryHeaders
+    },
+    204: {
+      headersMapper: Mappers.LROsDeleteNoHeaderInRetryHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   urlParameters: [Parameters.$host],
   serializer
 };
 const deleteAsyncNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/deleteasync/noheader/202/204",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {
+      headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
+    },
+    201: {
+      headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
+    },
+    202: {
+      headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
+    },
+    204: {
+      headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   urlParameters: [Parameters.$host],
   serializer
 };
@@ -2082,6 +2142,9 @@ const post200WithPayloadOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Sku
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   urlParameters: [Parameters.$host],
@@ -2225,6 +2288,9 @@ const postAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
@@ -2247,6 +2313,9 @@ const postAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,

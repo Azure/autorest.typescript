@@ -338,116 +338,6 @@ export const LROsPutAsyncNoHeaderInRetryHeaders: coreHttp.CompositeMapper = {
   }
 };
 
-export const LROsDeleteProvisioning202Accepted200SucceededHeaders: coreHttp.CompositeMapper = {
-  serializedName: "lROs_deleteProvisioning202Accepted200SucceededHeaders",
-  type: {
-    name: "Composite",
-    className: "LROsDeleteProvisioning202Accepted200SucceededHeaders",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LROsDeleteProvisioning202DeletingFailed200Headers: coreHttp.CompositeMapper = {
-  serializedName: "lROs_deleteProvisioning202DeletingFailed200Headers",
-  type: {
-    name: "Composite",
-    className: "LROsDeleteProvisioning202DeletingFailed200Headers",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LROsDeleteProvisioning202Deletingcanceled200Headers: coreHttp.CompositeMapper = {
-  serializedName: "lROs_deleteProvisioning202Deletingcanceled200Headers",
-  type: {
-    name: "Composite",
-    className: "LROsDeleteProvisioning202Deletingcanceled200Headers",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LROsDelete202Retry200Headers: coreHttp.CompositeMapper = {
-  serializedName: "lROs_delete202Retry200Headers",
-  type: {
-    name: "Composite",
-    className: "LROsDelete202Retry200Headers",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LROsDelete202NoRetry204Headers: coreHttp.CompositeMapper = {
-  serializedName: "lROs_delete202NoRetry204Headers",
-  type: {
-    name: "Composite",
-    className: "LROsDelete202NoRetry204Headers",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
 export const LROsDeleteNoHeaderInRetryHeaders: coreHttp.CompositeMapper = {
   serializedName: "lROs_deleteNoHeaderInRetryHeaders",
   type: {
@@ -636,62 +526,6 @@ export const LROsPost202NoRetry204Headers: coreHttp.CompositeMapper = {
   }
 };
 
-export const LROsPostAsyncRetrySucceededHeaders: coreHttp.CompositeMapper = {
-  serializedName: "lROs_postAsyncRetrySucceededHeaders",
-  type: {
-    name: "Composite",
-    className: "LROsPostAsyncRetrySucceededHeaders",
-    modelProperties: {
-      azureAsyncOperation: {
-        serializedName: "azure-asyncoperation",
-        type: {
-          name: "String"
-        }
-      },
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LROsPostAsyncNoRetrySucceededHeaders: coreHttp.CompositeMapper = {
-  serializedName: "lROs_postAsyncNoRetrySucceededHeaders",
-  type: {
-    name: "Composite",
-    className: "LROsPostAsyncNoRetrySucceededHeaders",
-    modelProperties: {
-      azureAsyncOperation: {
-        serializedName: "azure-asyncoperation",
-        type: {
-          name: "String"
-        }
-      },
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
 export const LROsPostAsyncRetryFailedHeaders: coreHttp.CompositeMapper = {
   serializedName: "lROs_postAsyncRetryFailedHeaders",
   type: {
@@ -760,28 +594,6 @@ export const LRORetrysPutAsyncRelativeRetrySucceededHeaders: coreHttp.CompositeM
           name: "String"
         }
       },
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LRORetrysDeleteProvisioning202Accepted200SucceededHeaders: coreHttp.CompositeMapper = {
-  serializedName: "lRORetrys_deleteProvisioning202Accepted200SucceededHeaders",
-  type: {
-    name: "Composite",
-    className: "LRORetrysDeleteProvisioning202Accepted200SucceededHeaders",
-    modelProperties: {
       location: {
         serializedName: "location",
         type: {

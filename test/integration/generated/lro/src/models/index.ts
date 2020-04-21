@@ -126,46 +126,6 @@ export interface LROsPutAsyncNoHeaderInRetryHeaders {
 }
 
 /**
- * Defines headers for lROs_deleteProvisioning202Accepted200Succeeded operation.
- */
-export interface LROsDeleteProvisioning202Accepted200SucceededHeaders {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lROs_deleteProvisioning202DeletingFailed200 operation.
- */
-export interface LROsDeleteProvisioning202DeletingFailed200Headers {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lROs_deleteProvisioning202Deletingcanceled200 operation.
- */
-export interface LROsDeleteProvisioning202Deletingcanceled200Headers {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lROs_delete202Retry200 operation.
- */
-export interface LROsDelete202Retry200Headers {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lROs_delete202NoRetry204 operation.
- */
-export interface LROsDelete202NoRetry204Headers {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
  * Defines headers for lROs_deleteNoHeaderInRetry operation.
  */
 export interface LROsDeleteNoHeaderInRetryHeaders {
@@ -232,24 +192,6 @@ export interface LROsPost202NoRetry204Headers {
 }
 
 /**
- * Defines headers for lROs_postAsyncRetrySucceeded operation.
- */
-export interface LROsPostAsyncRetrySucceededHeaders {
-  azureAsyncOperation?: string;
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lROs_postAsyncNoRetrySucceeded operation.
- */
-export interface LROsPostAsyncNoRetrySucceededHeaders {
-  azureAsyncOperation?: string;
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
  * Defines headers for lROs_postAsyncRetryFailed operation.
  */
 export interface LROsPostAsyncRetryFailedHeaders {
@@ -272,14 +214,6 @@ export interface LROsPostAsyncRetrycanceledHeaders {
  */
 export interface LRORetrysPutAsyncRelativeRetrySucceededHeaders {
   azureAsyncOperation?: string;
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lRORetrys_deleteProvisioning202Accepted200Succeeded operation.
- */
-export interface LRORetrysDeleteProvisioning202Accepted200SucceededHeaders {
   location?: string;
   retryAfter?: number;
 }
@@ -1217,6 +1151,36 @@ export type LROsDelete202NoRetry204Response = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+  };
+};
+
+/**
+ * Contains response data for the deleteNoHeaderInRetry operation.
+ */
+export type LROsDeleteNoHeaderInRetryResponse = LROsDeleteNoHeaderInRetryHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: LROsDeleteNoHeaderInRetryHeaders;
+  };
+};
+
+/**
+ * Contains response data for the deleteAsyncNoHeaderInRetry operation.
+ */
+export type LROsDeleteAsyncNoHeaderInRetryResponse = LROsDeleteAsyncNoHeaderInRetryHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: LROsDeleteAsyncNoHeaderInRetryHeaders;
   };
 };
 

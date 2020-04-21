@@ -130,7 +130,6 @@ const customNamedRequestIdHeadOperationSpec: coreHttp.OperationSpec = {
     200: {
       headersMapper: Mappers.HeaderCustomNamedRequestIdHeadHeaders
     },
-    404: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
