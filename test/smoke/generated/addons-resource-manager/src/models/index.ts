@@ -73,7 +73,7 @@ export interface CanonicalSupportPlanResponseEnvelope {
   /**
    * Microsoft.Addons/supportProvider
    */
-  readonly type?: string;
+  readonly typeModel?: string;
   /**
    * The provisioning state of the resource.
    */
@@ -143,7 +143,7 @@ export type OperationsListResponse = OperationsDefinition[] & {
 };
 
 /**
- * Contains response data for the get operation.
+ * Contains response data for the getModel operation.
  */
 export type SupportPlanTypesGetResponse = CanonicalSupportPlanResponseEnvelope & {
   /**
@@ -166,6 +166,26 @@ export type SupportPlanTypesGetResponse = CanonicalSupportPlanResponseEnvelope &
  * Contains response data for the createOrUpdate operation.
  */
 export type SupportPlanTypesCreateOrUpdateResponse = CanonicalSupportPlanResponseEnvelope & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: CanonicalSupportPlanResponseEnvelope;
+  };
+};
+
+/**
+ * Contains response data for the deleteModel operation.
+ */
+export type SupportPlanTypesDeleteResponse = CanonicalSupportPlanResponseEnvelope & {
   /**
    * The underlying HTTP response.
    */

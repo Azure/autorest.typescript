@@ -12,9 +12,10 @@ import * as Parameters from "../models/parameters";
 import { AzureAddonsResourceProvider } from "../azureAddonsResourceProvider";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  PlanTypeName,
   SupportPlanTypesGetResponse,
+  PlanTypeName,
   SupportPlanTypesCreateOrUpdateResponse,
+  SupportPlanTypesDeleteResponse,
   SupportPlanTypesListInfoResponse
 } from "../models";
 
@@ -34,21 +35,17 @@ export class SupportPlanTypes {
 
   /**
    * Returns whether or not the canonical support plan of type {type} is enabled for the subscription.
-   * @param providerName The support plan type. For now the only valid type is "canonical".
-   * @param planTypeName The Canonical support plan type.
    * @param options The options parameters.
    */
-  get(
-    providerName: string,
-    planTypeName: PlanTypeName,
+  getModel(
     options?: coreHttp.OperationOptions
   ): Promise<SupportPlanTypesGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { providerName, planTypeName, options: operationOptions },
-      getOperationSpec
+      { options: operationOptions },
+      getModelOperationSpec
     ) as Promise<SupportPlanTypesGetResponse>;
   }
 
@@ -94,39 +91,31 @@ export class SupportPlanTypes {
 
   /**
    * Cancels the Canonical support plan of type {type} for the subscription.
-   * @param providerName The support plan type. For now the only valid type is "canonical".
-   * @param planTypeName The Canonical support plan type.
    * @param options The options parameters.
    */
-  async delete(
-    providerName: string,
-    planTypeName: PlanTypeName,
+  async deleteModel(
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<coreHttp.RestResponse>> {
+  ): Promise<LROPoller<SupportPlanTypesDeleteResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
       options
     );
 
-    const args: coreHttp.OperationArguments = {
-      providerName,
-      planTypeName,
-      options: operationOptions
-    };
+    const args: coreHttp.OperationArguments = { options: operationOptions };
     const sendOperation = (
       args: coreHttp.OperationArguments,
       spec: coreHttp.OperationSpec
     ) =>
       this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
+        SupportPlanTypesDeleteResponse
       >;
     const initialOperationResult = await sendOperation(
       args,
-      deleteOperationSpec
+      deleteModelOperationSpec
     );
 
     return new LROPoller({
       initialOperationArguments: args,
-      initialOperationSpec: deleteOperationSpec,
+      initialOperationSpec: deleteModelOperationSpec,
       initialOperationResult,
       sendOperation
     });
@@ -164,7 +153,7 @@ export class SupportPlanTypes {
 
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getModelOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Addons/supportProviders/{providerName}/supportPlanTypes/{planTypeName}",
   httpMethod: "GET",
@@ -172,18 +161,10 @@ const getOperationSpec: coreHttp.OperationSpec = {
     200: {
       bodyMapper: Mappers.CanonicalSupportPlanResponseEnvelope
     },
-    404: {},
     default: {
       bodyMapper: Mappers.ErrorDefinition
     }
   },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.providerName,
-    Parameters.planTypeName
-  ],
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -202,6 +183,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.CanonicalSupportPlanResponseEnvelope
+    },
+    default: {
+      bodyMapper: Mappers.ErrorDefinition
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -213,18 +197,27 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteModelOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Addons/supportProviders/{providerName}/supportPlanTypes/{planTypeName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.providerName,
-    Parameters.planTypeName
-  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.CanonicalSupportPlanResponseEnvelope
+    },
+    201: {
+      bodyMapper: Mappers.CanonicalSupportPlanResponseEnvelope
+    },
+    202: {
+      bodyMapper: Mappers.CanonicalSupportPlanResponseEnvelope
+    },
+    204: {
+      bodyMapper: Mappers.CanonicalSupportPlanResponseEnvelope
+    },
+    default: {
+      bodyMapper: Mappers.ErrorDefinition
+    }
+  },
   serializer
 };
 const listInfoOperationSpec: coreHttp.OperationSpec = {
@@ -246,7 +239,6 @@ const listInfoOperationSpec: coreHttp.OperationSpec = {
         serializedName: "CanonicalSupportPlanInfo"
       }
     },
-    404: {},
     default: {
       bodyMapper: Mappers.ErrorDefinition
     }

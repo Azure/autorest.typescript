@@ -1,25 +1,46 @@
 trigger:
   - v6
 
-pool:
-  vmImage: 'ubuntu-latest'
+jobs:
+  - job: Build
+    pool:
+      vmImage: "ubuntu-latest"
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: "10.x"
+        displayName: "Install Node.js"
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'Build'
+      - script: |
+          npm install
+          npm run build
+        displayName: "Build"
 
-- script: |
-    npm run test
-  displayName: 'Run Tests'
+      - script: |
+          npm run test
+        displayName: "Run Tests"
 
-- script: |
-    npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
-  workingDirectory: node_modules/@microsoft.azure/autorest.testserver
-  displayName: 'Upload Coverage Report'
+      - script: |
+          npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
+        workingDirectory: node_modules/@microsoft.azure/autorest.testserver
+        displayName: "Upload Coverage Report"
+
+  - job: Smoke-Test-1
+    pool:
+      vmImage: "ubuntu-latest"
+
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: "10.x"
+        displayName: "Install Node.js"
+
+      - script: |
+          npm install
+          npm run build
+        displayName: "Build"
+
+      - script: |
+          npm run test-smoke -- --size 10 --slice 1
+        displayName: "Smoke Test"

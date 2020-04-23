@@ -14,10 +14,18 @@ export const OperationsDefinition: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "OperationsDefinition",
     modelProperties: {
-      name: { type: { name: "String" }, serializedName: "name" },
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
       display: {
         serializedName: "display",
-        type: { name: "Composite", className: "OperationsDisplayDefinition" }
+        type: {
+          name: "Composite",
+          className: "OperationsDisplayDefinition"
+        }
       }
     }
   }
@@ -29,10 +37,30 @@ export const OperationsDisplayDefinition: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "OperationsDisplayDefinition",
     modelProperties: {
-      provider: { type: { name: "String" }, serializedName: "provider" },
-      resource: { type: { name: "String" }, serializedName: "resource" },
-      operation: { type: { name: "String" }, serializedName: "operation" },
-      description: { type: { name: "String" }, serializedName: "description" }
+      provider: {
+        serializedName: "provider",
+        type: {
+          name: "String"
+        }
+      },
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "String"
+        }
+      },
+      operation: {
+        serializedName: "operation",
+        type: {
+          name: "String"
+        }
+      },
+      description: {
+        serializedName: "description",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -44,15 +72,22 @@ export const ErrorDefinition: coreHttp.CompositeMapper = {
     className: "ErrorDefinition",
     modelProperties: {
       message: {
-        type: { name: "String" },
         serializedName: "message",
-        required: true
+        required: true,
+        type: {
+          name: "String"
+        }
       },
       code: {
-        type: { name: "Number" },
+        constraints: {
+          InclusiveMaximum: 600,
+          InclusiveMinimum: 100
+        },
         serializedName: "code",
         required: true,
-        constraints: { InclusiveMaximum: 600, InclusiveMinimum: 100 }
+        type: {
+          name: "Number"
+        }
       }
     }
   }
@@ -64,20 +99,32 @@ export const CanonicalSupportPlanResponseEnvelope: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "CanonicalSupportPlanResponseEnvelope",
     modelProperties: {
-      id: { type: { name: "String" }, serializedName: "id", readOnly: true },
-      name: {
-        type: { name: "String" },
-        serializedName: "name",
-        readOnly: true
+      id: {
+        serializedName: "id",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
       },
-      type: {
-        type: { name: "String" },
+      name: {
+        serializedName: "name",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      typeModel: {
         serializedName: "type",
-        readOnly: true
+        readOnly: true,
+        type: {
+          name: "String"
+        }
       },
       provisioningState: {
-        type: { name: "String" },
-        serializedName: "properties.provisioningState"
+        serializedName: "properties.provisioningState",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -90,13 +137,22 @@ export const CanonicalSupportPlanInfoDefinition: coreHttp.CompositeMapper = {
     className: "CanonicalSupportPlanInfoDefinition",
     modelProperties: {
       supportPlanType: {
-        type: { name: "String" },
-        serializedName: "supportPlanType"
+        serializedName: "supportPlanType",
+        type: {
+          name: "String"
+        }
       },
-      enabled: { type: { name: "Boolean" }, serializedName: "enabled" },
+      enabled: {
+        serializedName: "enabled",
+        type: {
+          name: "Boolean"
+        }
+      },
       oneTimeCharge: {
-        type: { name: "String" },
-        serializedName: "oneTimeCharge"
+        serializedName: "oneTimeCharge",
+        type: {
+          name: "String"
+        }
       }
     }
   }

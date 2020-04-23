@@ -1,0 +1,57 @@
+{
+  "name": "machinelearningcompute-resource-manager",
+  "author": "Microsoft Corporation",
+  "description": "These APIs allow end users to operate on Azure Machine Learning Compute resources. They support the following operations:<ul><li>Create or update a cluster</li><li>Get a cluster</li><li>Patch a cluster</li><li>Delete a cluster</li><li>Get keys for a cluster</li><li>Check if updates are available for system services in a cluster</li><li>Update system services in a cluster</li><li>Get all clusters in a resource group</li><li>Get all clusters in a subscription</li></ul>",
+  "version": null,
+  "dependencies": {
+    "@azure/core-http": "1.1.1-dev.20200410.1",
+    "tslib": "^1.9.3"
+  },
+  "keywords": [
+    "node",
+    "azure",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
+  "license": "MIT",
+  "main": "./dist/machinelearningcompute-resource-manager.js",
+  "module": "./esm/machineLearningComputeManagementClient.js",
+  "types": "./esm/machineLearningComputeManagementClient.d.ts",
+  "devDependencies": {
+    "typescript": "^3.1.1",
+    "rollup": "^0.66.2",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "uglify-js": "^3.4.9"
+  },
+  "homepage": "https://github.com/Azure/azure-sdk-for-js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Azure/azure-sdk-for-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Azure/azure-sdk-for-js/issues"
+  },
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.js.map",
+    "dist/**/*.d.ts",
+    "dist/**/*.d.ts.map",
+    "esm/**/*.js",
+    "esm/**/*.js.map",
+    "esm/**/*.d.ts",
+    "esm/**/*.d.ts.map",
+    "src/**/*.ts",
+    "README.md",
+    "rollup.config.js",
+    "tsconfig.json"
+  ],
+  "scripts": {
+    "build": "tsc && rollup -c rollup.config.js && npm run minify",
+    "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/machinelearningcompute-resource-manager.js.map'\" -o ./dist/machinelearningcompute-resource-manager.min.js ./dist/machinelearningcompute-resource-manager.js",
+    "prepack": "npm install && npm run build"
+  },
+  "sideEffects": false,
+  "autoPublish": true
+}
