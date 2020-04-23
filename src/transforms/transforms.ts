@@ -57,7 +57,11 @@ export async function transformCodeModel(
   codeModel: CodeModel,
   host: Host
 ): Promise<ClientDetails> {
-  const className = normalizeName(codeModel.info.title, NameType.Class);
+  const className = normalizeName(
+    codeModel.info.title,
+    NameType.Class,
+    true /** shouldGuard */
+  );
   normalizeModelWithExtensions(codeModel);
 
   const [uberParents, operationGroups] = await Promise.all([

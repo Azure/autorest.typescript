@@ -13,21 +13,21 @@ describe("Integration tests for BodyString", () => {
 
   describe("Acceptance tests", () => {
     it("should support valid null value", async function() {
-      const result = await client.string.getNull();
+      const result = await client.stringOperations.getNull();
       deepStrictEqual(result, { body: undefined });
 
-      await client.string.putNull();
+      await client.stringOperations.putNull();
     });
 
     it("should support valid empty string value", async function() {
-      await client.string.putEmpty();
-      const result = await client.string.getEmpty();
+      await client.stringOperations.putEmpty();
+      const result = await client.stringOperations.getEmpty();
       deepStrictEqual(result, { body: "" });
     });
 
     it("should support whitespace string value", async function() {
-      await client.string.putWhitespace();
-      const result = await client.string.getWhitespace();
+      await client.stringOperations.putWhitespace();
+      const result = await client.stringOperations.getWhitespace();
       deepStrictEqual(result, {
         body:
           "    Now is the time for all good men to come to the aid of their country    "
@@ -35,19 +35,19 @@ describe("Integration tests for BodyString", () => {
     });
 
     it("should support not provided value", async function() {
-      const result = await client.string.getNotProvided();
+      const result = await client.stringOperations.getNotProvided();
       deepStrictEqual(result, { body: undefined });
     });
 
     it("should support valid enum valid value", async function() {
-      const result = await client.enum.getNotExpandable();
+      const result = await client.enumOperations.getNotExpandable();
       deepStrictEqual(result, { body: "red color" });
-      await client.enum.putNotExpandable("red color");
+      await client.enumOperations.putNotExpandable("red color");
     });
 
     it("should correctly handle invalid values for enum", async function() {
       try {
-        await client.enum.putNotExpandable(
+        await client.enumOperations.putNotExpandable(
           "orange color" as BodyStringModels.Colors
         );
         fail("should have thrown error 'is not a valid value'");
@@ -57,7 +57,7 @@ describe("Integration tests for BodyString", () => {
     });
 
     it("should correctly deserialize base64 encoded string", async function() {
-      const result = await client.string.getBase64Encoded();
+      const result = await client.stringOperations.getBase64Encoded();
       ok(!!result.body);
 
       const expected = "a string that gets encoded with base64";
@@ -65,17 +65,17 @@ describe("Integration tests for BodyString", () => {
     });
 
     it("should correctly handle null base64url encoded string", async () => {
-      const result = await client.string.getNullBase64UrlEncoded();
+      const result = await client.stringOperations.getNullBase64UrlEncoded();
       ok(!result.body, "response should not contain result");
     });
 
     it("should correctly serialize and deserialize base64url encoded string", async () => {
-      const result = await client.string.getBase64UrlEncoded();
+      const result = await client.stringOperations.getBase64UrlEncoded();
       ok(!!result.body, "response should contain a result");
 
       const decodedString = "a string that gets encoded with base64url";
       strictEqual((result.body as Buffer).toString("utf8"), decodedString);
-      const result2 = await client.string.putBase64UrlEncoded(
+      const result2 = await client.stringOperations.putBase64UrlEncoded(
         Buffer.from(decodedString, "utf-8")
       );
 
@@ -83,21 +83,21 @@ describe("Integration tests for BodyString", () => {
     });
 
     it("should getEnumReferenced", async function() {
-      const { body } = await client.enum.getReferenced();
+      const { body } = await client.enumOperations.getReferenced();
       equal(body, "red color");
     });
 
     it("should putEnumReferenced", async function() {
-      await client.enum.putReferenced("red color");
+      await client.enumOperations.putReferenced("red color");
     });
 
     it("should getEnumReferencedConstant", async function() {
-      const { field1 } = await client.enum.getReferencedConstant();
+      const { field1 } = await client.enumOperations.getReferencedConstant();
       equal(field1, "Sample String");
     });
 
     it("should putEnumReferencedConstant", async function() {
-      await client.enum.putReferencedConstant({
+      await client.enumOperations.putReferencedConstant({
         field1: "",
         colorConstant: "green-color"
       });
@@ -107,7 +107,7 @@ describe("Integration tests for BodyString", () => {
   describe("Mbcs", () => {
     it("should receive an UTF8 string in the response body", async () => {
       try {
-        const result = await client.string.getMbcs();
+        const result = await client.stringOperations.getMbcs();
         equal(
           result.body,
           "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
@@ -119,7 +119,7 @@ describe("Integration tests for BodyString", () => {
 
     it("should send an UTF8 string in the request body", async () => {
       try {
-        await client.string.putMbcs();
+        await client.stringOperations.putMbcs();
         ok(true, "Operation executed with no errors");
       } catch (error) {
         fail(error);

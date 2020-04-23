@@ -16,7 +16,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export type NumberGetNullResponse = {
+export type NumberOperationsGetNullResponse = {
   /**
    * The parsed response body.
    */
@@ -41,7 +41,7 @@ export type NumberGetNullResponse = {
 /**
  * Contains response data for the getInvalidFloat operation.
  */
-export type NumberGetInvalidFloatResponse = {
+export type NumberOperationsGetInvalidFloatResponse = {
   /**
    * The parsed response body.
    */
@@ -66,7 +66,7 @@ export type NumberGetInvalidFloatResponse = {
 /**
  * Contains response data for the getInvalidDouble operation.
  */
-export type NumberGetInvalidDoubleResponse = {
+export type NumberOperationsGetInvalidDoubleResponse = {
   /**
    * The parsed response body.
    */
@@ -91,7 +91,7 @@ export type NumberGetInvalidDoubleResponse = {
 /**
  * Contains response data for the getInvalidDecimal operation.
  */
-export type NumberGetInvalidDecimalResponse = {
+export type NumberOperationsGetInvalidDecimalResponse = {
   /**
    * The parsed response body.
    */
@@ -116,7 +116,7 @@ export type NumberGetInvalidDecimalResponse = {
 /**
  * Contains response data for the getBigFloat operation.
  */
-export type NumberGetBigFloatResponse = {
+export type NumberOperationsGetBigFloatResponse = {
   /**
    * The parsed response body.
    */
@@ -141,7 +141,7 @@ export type NumberGetBigFloatResponse = {
 /**
  * Contains response data for the getBigDouble operation.
  */
-export type NumberGetBigDoubleResponse = {
+export type NumberOperationsGetBigDoubleResponse = {
   /**
    * The parsed response body.
    */
@@ -166,7 +166,7 @@ export type NumberGetBigDoubleResponse = {
 /**
  * Contains response data for the getBigDoublePositiveDecimal operation.
  */
-export type NumberGetBigDoublePositiveDecimalResponse = {
+export type NumberOperationsGetBigDoublePositiveDecimalResponse = {
   /**
    * The parsed response body.
    */
@@ -191,7 +191,7 @@ export type NumberGetBigDoublePositiveDecimalResponse = {
 /**
  * Contains response data for the getBigDoubleNegativeDecimal operation.
  */
-export type NumberGetBigDoubleNegativeDecimalResponse = {
+export type NumberOperationsGetBigDoubleNegativeDecimalResponse = {
   /**
    * The parsed response body.
    */
@@ -216,7 +216,7 @@ export type NumberGetBigDoubleNegativeDecimalResponse = {
 /**
  * Contains response data for the getBigDecimal operation.
  */
-export type NumberGetBigDecimalResponse = {
+export type NumberOperationsGetBigDecimalResponse = {
   /**
    * The parsed response body.
    */
@@ -241,7 +241,7 @@ export type NumberGetBigDecimalResponse = {
 /**
  * Contains response data for the getBigDecimalPositiveDecimal operation.
  */
-export type NumberGetBigDecimalPositiveDecimalResponse = {
+export type NumberOperationsGetBigDecimalPositiveDecimalResponse = {
   /**
    * The parsed response body.
    */
@@ -266,7 +266,7 @@ export type NumberGetBigDecimalPositiveDecimalResponse = {
 /**
  * Contains response data for the getBigDecimalNegativeDecimal operation.
  */
-export type NumberGetBigDecimalNegativeDecimalResponse = {
+export type NumberOperationsGetBigDecimalNegativeDecimalResponse = {
   /**
    * The parsed response body.
    */
@@ -291,7 +291,7 @@ export type NumberGetBigDecimalNegativeDecimalResponse = {
 /**
  * Contains response data for the getSmallFloat operation.
  */
-export type NumberGetSmallFloatResponse = {
+export type NumberOperationsGetSmallFloatResponse = {
   /**
    * The parsed response body.
    */
@@ -316,7 +316,7 @@ export type NumberGetSmallFloatResponse = {
 /**
  * Contains response data for the getSmallDouble operation.
  */
-export type NumberGetSmallDoubleResponse = {
+export type NumberOperationsGetSmallDoubleResponse = {
   /**
    * The parsed response body.
    */
@@ -341,7 +341,7 @@ export type NumberGetSmallDoubleResponse = {
 /**
  * Contains response data for the getSmallDecimal operation.
  */
-export type NumberGetSmallDecimalResponse = {
+export type NumberOperationsGetSmallDecimalResponse = {
   /**
    * The parsed response body.
    */

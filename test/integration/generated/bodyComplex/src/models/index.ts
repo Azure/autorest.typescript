@@ -59,7 +59,7 @@ export interface BooleanWrapper {
 export interface StringWrapper {
   field?: string;
   empty?: string;
-  null?: string;
+  nullProperty?: string;
 }
 
 export interface DateWrapper {

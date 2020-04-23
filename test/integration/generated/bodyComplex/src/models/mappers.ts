@@ -105,7 +105,7 @@ export const StringWrapper: coreHttp.CompositeMapper = {
     modelProperties: {
       field: { type: { name: "String" }, serializedName: "field" },
       empty: { type: { name: "String" }, serializedName: "empty" },
-      null: { type: { name: "String" }, serializedName: "null" }
+      nullProperty: { type: { name: "String" }, serializedName: "null" }
     }
   }
 };

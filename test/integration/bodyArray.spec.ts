@@ -509,9 +509,9 @@ describe("Integration tests for BodyArrayClient", () => {
     it("returns a list of objects and null", async () => {
       const response = await client.array.getComplexItemNull();
       expect(response).to.deep.equal([
-        { integer: 1, string: "2" },
+        { integer: 1, stringProperty: "2" },
         null,
-        { integer: 5, string: "6" }
+        { integer: 5, stringProperty: "6" }
       ]);
       expect(response._response.status).to.equal(
         200,
@@ -524,9 +524,9 @@ describe("Integration tests for BodyArrayClient", () => {
     it("returns aa list of objects and an empty object", async () => {
       const response = await client.array.getComplexItemEmpty();
       expect(response).to.deep.equal([
-        { integer: 1, string: "2" },
+        { integer: 1, stringProperty: "2" },
         {},
-        { integer: 5, string: "6" }
+        { integer: 5, stringProperty: "6" }
       ]);
       expect(response._response.status).to.equal(
         200,

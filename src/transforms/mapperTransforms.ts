@@ -125,7 +125,8 @@ export function transformMapper({ schema, options }: MapperInput) {
 export function getMapperClassName(schema: Schema): string {
   return normalizeName(
     getLanguageMetadata(schema.language).name,
-    NameType.Class
+    NameType.Class,
+    true /** shouldGuard */
   );
 }
 
@@ -607,7 +608,11 @@ function processProperties(
   properties.forEach(prop => {
     const serializedName = getPropertySerializedName(prop);
     const propName = getLanguageMetadata(prop.language).name;
-    const name = normalizeName(propName, NameType.Property);
+    const name = normalizeName(
+      propName,
+      NameType.Property,
+      true /** shouldGuard */
+    );
     modelProperties[name] = getMapperOrRef(prop.schema, prop.serializedName, {
       ...options,
       required: prop.required,

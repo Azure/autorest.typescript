@@ -11,25 +11,25 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyStringClient } from "../bodyStringClient";
 import {
-  StringGetNullResponse,
-  StringPutNullOptionalParams,
-  StringGetEmptyResponse,
-  StringGetMbcsResponse,
-  StringGetWhitespaceResponse,
-  StringGetNotProvidedResponse,
-  StringGetBase64EncodedResponse,
-  StringGetBase64UrlEncodedResponse,
-  StringGetNullBase64UrlEncodedResponse
+  StringModelGetNullResponse,
+  StringModelPutNullOptionalParams,
+  StringModelGetEmptyResponse,
+  StringModelGetMbcsResponse,
+  StringModelGetWhitespaceResponse,
+  StringModelGetNotProvidedResponse,
+  StringModelGetBase64EncodedResponse,
+  StringModelGetBase64UrlEncodedResponse,
+  StringModelGetNullBase64UrlEncodedResponse
 } from "../models";
 
 /**
- * Class representing a String.
+ * Class representing a StringModel.
  */
-export class String {
+export class StringModel {
   private readonly client: BodyStringClient;
 
   /**
-   * Initialize a new instance of the class String class.
+   * Initialize a new instance of the class StringModel class.
    * @param client Reference to the service client
    */
   constructor(client: BodyStringClient) {
@@ -40,14 +40,16 @@ export class String {
    * Get null string value value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<StringGetNullResponse> {
+  getNull(
+    options?: coreHttp.OperationOptions
+  ): Promise<StringModelGetNullResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getNullOperationSpec
-    ) as Promise<StringGetNullResponse>;
+    ) as Promise<StringModelGetNullResponse>;
   }
 
   /**
@@ -55,7 +57,7 @@ export class String {
    * @param options The options parameters.
    */
   putNull(
-    options?: StringPutNullOptionalParams
+    options?: StringModelPutNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
@@ -72,14 +74,14 @@ export class String {
    */
   getEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<StringGetEmptyResponse> {
+  ): Promise<StringModelGetEmptyResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getEmptyOperationSpec
-    ) as Promise<StringGetEmptyResponse>;
+    ) as Promise<StringModelGetEmptyResponse>;
   }
 
   /**
@@ -102,14 +104,16 @@ export class String {
    * Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    * @param options The options parameters.
    */
-  getMbcs(options?: coreHttp.OperationOptions): Promise<StringGetMbcsResponse> {
+  getMbcs(
+    options?: coreHttp.OperationOptions
+  ): Promise<StringModelGetMbcsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getMbcsOperationSpec
-    ) as Promise<StringGetMbcsResponse>;
+    ) as Promise<StringModelGetMbcsResponse>;
   }
 
   /**
@@ -133,14 +137,14 @@ export class String {
    */
   getWhitespace(
     options?: coreHttp.OperationOptions
-  ): Promise<StringGetWhitespaceResponse> {
+  ): Promise<StringModelGetWhitespaceResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getWhitespaceOperationSpec
-    ) as Promise<StringGetWhitespaceResponse>;
+    ) as Promise<StringModelGetWhitespaceResponse>;
   }
 
   /**
@@ -166,14 +170,14 @@ export class String {
    */
   getNotProvided(
     options?: coreHttp.OperationOptions
-  ): Promise<StringGetNotProvidedResponse> {
+  ): Promise<StringModelGetNotProvidedResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getNotProvidedOperationSpec
-    ) as Promise<StringGetNotProvidedResponse>;
+    ) as Promise<StringModelGetNotProvidedResponse>;
   }
 
   /**
@@ -182,14 +186,14 @@ export class String {
    */
   getBase64Encoded(
     options?: coreHttp.OperationOptions
-  ): Promise<StringGetBase64EncodedResponse> {
+  ): Promise<StringModelGetBase64EncodedResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getBase64EncodedOperationSpec
-    ) as Promise<StringGetBase64EncodedResponse>;
+    ) as Promise<StringModelGetBase64EncodedResponse>;
   }
 
   /**
@@ -198,14 +202,14 @@ export class String {
    */
   getBase64UrlEncoded(
     options?: coreHttp.OperationOptions
-  ): Promise<StringGetBase64UrlEncodedResponse> {
+  ): Promise<StringModelGetBase64UrlEncodedResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getBase64UrlEncodedOperationSpec
-    ) as Promise<StringGetBase64UrlEncodedResponse>;
+    ) as Promise<StringModelGetBase64UrlEncodedResponse>;
   }
 
   /**
@@ -232,14 +236,14 @@ export class String {
    */
   getNullBase64UrlEncoded(
     options?: coreHttp.OperationOptions
-  ): Promise<StringGetNullBase64UrlEncodedResponse> {
+  ): Promise<StringModelGetNullBase64UrlEncodedResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getNullBase64UrlEncodedOperationSpec
-    ) as Promise<StringGetNullBase64UrlEncodedResponse>;
+    ) as Promise<StringModelGetNullBase64UrlEncodedResponse>;
   }
 }
 // Operation Specifications

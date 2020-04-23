@@ -11,30 +11,30 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyNumberClient } from "../bodyNumberClient";
 import {
-  NumberGetNullResponse,
-  NumberGetInvalidFloatResponse,
-  NumberGetInvalidDoubleResponse,
-  NumberGetInvalidDecimalResponse,
-  NumberGetBigFloatResponse,
-  NumberGetBigDoubleResponse,
-  NumberGetBigDoublePositiveDecimalResponse,
-  NumberGetBigDoubleNegativeDecimalResponse,
-  NumberGetBigDecimalResponse,
-  NumberGetBigDecimalPositiveDecimalResponse,
-  NumberGetBigDecimalNegativeDecimalResponse,
-  NumberGetSmallFloatResponse,
-  NumberGetSmallDoubleResponse,
-  NumberGetSmallDecimalResponse
+  NumberOperationGroupGetNullResponse,
+  NumberOperationGroupGetInvalidFloatResponse,
+  NumberOperationGroupGetInvalidDoubleResponse,
+  NumberOperationGroupGetInvalidDecimalResponse,
+  NumberOperationGroupGetBigFloatResponse,
+  NumberOperationGroupGetBigDoubleResponse,
+  NumberOperationGroupGetBigDoublePositiveDecimalResponse,
+  NumberOperationGroupGetBigDoubleNegativeDecimalResponse,
+  NumberOperationGroupGetBigDecimalResponse,
+  NumberOperationGroupGetBigDecimalPositiveDecimalResponse,
+  NumberOperationGroupGetBigDecimalNegativeDecimalResponse,
+  NumberOperationGroupGetSmallFloatResponse,
+  NumberOperationGroupGetSmallDoubleResponse,
+  NumberOperationGroupGetSmallDecimalResponse
 } from "../models";
 
 /**
- * Class representing a Number.
+ * Class representing a NumberOperationGroup.
  */
-export class Number {
+export class NumberOperationGroup {
   private readonly client: BodyNumberClient;
 
   /**
-   * Initialize a new instance of the class Number class.
+   * Initialize a new instance of the class NumberOperationGroup class.
    * @param client Reference to the service client
    */
   constructor(client: BodyNumberClient) {
@@ -45,14 +45,16 @@ export class Number {
    * Get null Number value
    * @param options The options parameters.
    */
-  getNull(options?: coreHttp.OperationOptions): Promise<NumberGetNullResponse> {
+  getNull(
+    options?: coreHttp.OperationOptions
+  ): Promise<NumberOperationGroupGetNullResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getNullOperationSpec
-    ) as Promise<NumberGetNullResponse>;
+    ) as Promise<NumberOperationGroupGetNullResponse>;
   }
 
   /**
@@ -61,14 +63,14 @@ export class Number {
    */
   getInvalidFloat(
     options?: coreHttp.OperationOptions
-  ): Promise<NumberGetInvalidFloatResponse> {
+  ): Promise<NumberOperationGroupGetInvalidFloatResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getInvalidFloatOperationSpec
-    ) as Promise<NumberGetInvalidFloatResponse>;
+    ) as Promise<NumberOperationGroupGetInvalidFloatResponse>;
   }
 
   /**
@@ -77,14 +79,14 @@ export class Number {
    */
   getInvalidDouble(
     options?: coreHttp.OperationOptions
-  ): Promise<NumberGetInvalidDoubleResponse> {
+  ): Promise<NumberOperationGroupGetInvalidDoubleResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getInvalidDoubleOperationSpec
-    ) as Promise<NumberGetInvalidDoubleResponse>;
+    ) as Promise<NumberOperationGroupGetInvalidDoubleResponse>;
   }
 
   /**
@@ -93,14 +95,14 @@ export class Number {
    */
   getInvalidDecimal(
     options?: coreHttp.OperationOptions
-  ): Promise<NumberGetInvalidDecimalResponse> {
+  ): Promise<NumberOperationGroupGetInvalidDecimalResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getInvalidDecimalOperationSpec
-    ) as Promise<NumberGetInvalidDecimalResponse>;
+    ) as Promise<NumberOperationGroupGetInvalidDecimalResponse>;
   }
 
   /**
@@ -127,14 +129,14 @@ export class Number {
    */
   getBigFloat(
     options?: coreHttp.OperationOptions
-  ): Promise<NumberGetBigFloatResponse> {
+  ): Promise<NumberOperationGroupGetBigFloatResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getBigFloatOperationSpec
-    ) as Promise<NumberGetBigFloatResponse>;
+    ) as Promise<NumberOperationGroupGetBigFloatResponse>;
   }
 
   /**
@@ -161,14 +163,14 @@ export class Number {
    */
   getBigDouble(
     options?: coreHttp.OperationOptions
-  ): Promise<NumberGetBigDoubleResponse> {
+  ): Promise<NumberOperationGroupGetBigDoubleResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getBigDoubleOperationSpec
-    ) as Promise<NumberGetBigDoubleResponse>;
+    ) as Promise<NumberOperationGroupGetBigDoubleResponse>;
   }
 
   /**
@@ -193,14 +195,14 @@ export class Number {
    */
   getBigDoublePositiveDecimal(
     options?: coreHttp.OperationOptions
-  ): Promise<NumberGetBigDoublePositiveDecimalResponse> {
+  ): Promise<NumberOperationGroupGetBigDoublePositiveDecimalResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getBigDoublePositiveDecimalOperationSpec
-    ) as Promise<NumberGetBigDoublePositiveDecimalResponse>;
+    ) as Promise<NumberOperationGroupGetBigDoublePositiveDecimalResponse>;
   }
 
   /**
@@ -225,14 +227,14 @@ export class Number {
    */
   getBigDoubleNegativeDecimal(
     options?: coreHttp.OperationOptions
-  ): Promise<NumberGetBigDoubleNegativeDecimalResponse> {
+  ): Promise<NumberOperationGroupGetBigDoubleNegativeDecimalResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getBigDoubleNegativeDecimalOperationSpec
-    ) as Promise<NumberGetBigDoubleNegativeDecimalResponse>;
+    ) as Promise<NumberOperationGroupGetBigDoubleNegativeDecimalResponse>;
   }
 
   /**
@@ -259,14 +261,14 @@ export class Number {
    */
   getBigDecimal(
     options?: coreHttp.OperationOptions
-  ): Promise<NumberGetBigDecimalResponse> {
+  ): Promise<NumberOperationGroupGetBigDecimalResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getBigDecimalOperationSpec
-    ) as Promise<NumberGetBigDecimalResponse>;
+    ) as Promise<NumberOperationGroupGetBigDecimalResponse>;
   }
 
   /**
@@ -291,14 +293,14 @@ export class Number {
    */
   getBigDecimalPositiveDecimal(
     options?: coreHttp.OperationOptions
-  ): Promise<NumberGetBigDecimalPositiveDecimalResponse> {
+  ): Promise<NumberOperationGroupGetBigDecimalPositiveDecimalResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getBigDecimalPositiveDecimalOperationSpec
-    ) as Promise<NumberGetBigDecimalPositiveDecimalResponse>;
+    ) as Promise<NumberOperationGroupGetBigDecimalPositiveDecimalResponse>;
   }
 
   /**
@@ -323,14 +325,14 @@ export class Number {
    */
   getBigDecimalNegativeDecimal(
     options?: coreHttp.OperationOptions
-  ): Promise<NumberGetBigDecimalNegativeDecimalResponse> {
+  ): Promise<NumberOperationGroupGetBigDecimalNegativeDecimalResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getBigDecimalNegativeDecimalOperationSpec
-    ) as Promise<NumberGetBigDecimalNegativeDecimalResponse>;
+    ) as Promise<NumberOperationGroupGetBigDecimalNegativeDecimalResponse>;
   }
 
   /**
@@ -357,14 +359,14 @@ export class Number {
    */
   getSmallFloat(
     options?: coreHttp.OperationOptions
-  ): Promise<NumberGetSmallFloatResponse> {
+  ): Promise<NumberOperationGroupGetSmallFloatResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getSmallFloatOperationSpec
-    ) as Promise<NumberGetSmallFloatResponse>;
+    ) as Promise<NumberOperationGroupGetSmallFloatResponse>;
   }
 
   /**
@@ -391,14 +393,14 @@ export class Number {
    */
   getSmallDouble(
     options?: coreHttp.OperationOptions
-  ): Promise<NumberGetSmallDoubleResponse> {
+  ): Promise<NumberOperationGroupGetSmallDoubleResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getSmallDoubleOperationSpec
-    ) as Promise<NumberGetSmallDoubleResponse>;
+    ) as Promise<NumberOperationGroupGetSmallDoubleResponse>;
   }
 
   /**
@@ -425,14 +427,14 @@ export class Number {
    */
   getSmallDecimal(
     options?: coreHttp.OperationOptions
-  ): Promise<NumberGetSmallDecimalResponse> {
+  ): Promise<NumberOperationGroupGetSmallDecimalResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getSmallDecimalOperationSpec
-    ) as Promise<NumberGetSmallDecimalResponse>;
+    ) as Promise<NumberOperationGroupGetSmallDecimalResponse>;
   }
 }
 // Operation Specifications

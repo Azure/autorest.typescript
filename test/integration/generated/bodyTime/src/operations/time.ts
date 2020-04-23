@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyTimeClient } from "../bodyTimeClient";
-import { TimeGetResponse, TimePutResponse } from "../models";
+import { TimeGetModelResponse, TimePutResponse } from "../models";
 
 /**
  * Class representing a Time.
@@ -30,14 +30,16 @@ export class Time {
    * Get time value "11:34:56"
    * @param options The options parameters.
    */
-  get(options?: coreHttp.OperationOptions): Promise<TimeGetResponse> {
+  getOperation(
+    options?: coreHttp.OperationOptions
+  ): Promise<TimeGetModelResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
-      getOperationSpec
-    ) as Promise<TimeGetResponse>;
+      getOperationOperationSpec
+    ) as Promise<TimeGetModelResponse>;
   }
 
   /**
@@ -64,7 +66,7 @@ export class Time {
 
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationOperationSpec: coreHttp.OperationSpec = {
   path: "/time/get",
   httpMethod: "GET",
   responses: {

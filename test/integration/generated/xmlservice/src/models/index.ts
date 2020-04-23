@@ -61,7 +61,7 @@ export interface ComplexTypeWithMeta {
  */
 export interface Slideshow {
   title?: string;
-  date?: string;
+  dateProperty?: string;
   author?: string;
   slides?: Slide[];
 }
@@ -70,7 +70,7 @@ export interface Slideshow {
  * A slide in a slideshow
  */
 export interface Slide {
-  type?: string;
+  typeProperty?: string;
   title?: string;
   items?: string[];
 }
@@ -180,7 +180,7 @@ export interface Logging {
   /**
    * Indicates whether all delete requests should be logged.
    */
-  delete: boolean;
+  deleteProperty: boolean;
   /**
    * Indicates whether all read requests should be logged.
    */
@@ -372,9 +372,9 @@ export interface JsonOutput {
 }
 
 /**
- * Defines headers for xml_getHeaders operation.
+ * Defines headers for xml_getheaders operation.
  */
-export interface XmlGetHeadersHeaders {
+export interface XmlGetheadersHeaders {
   customHeader?: string;
 }
 
@@ -511,7 +511,7 @@ export type XmlGetWrappedListsResponse = AppleBarrel & {
 /**
  * Contains response data for the getHeaders operation.
  */
-export type XmlGetHeadersResponse = XmlGetHeadersHeaders & {
+export type XmlGetHeadersResponse = XmlGetheadersHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -519,7 +519,7 @@ export type XmlGetHeadersResponse = XmlGetHeadersHeaders & {
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: XmlGetHeadersHeaders;
+    parsedHeaders: XmlGetheadersHeaders;
   };
 };
 

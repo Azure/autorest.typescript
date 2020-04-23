@@ -40,7 +40,11 @@ export function transformObject(
   uberParents: ObjectDetails[]
 ): ObjectDetails {
   const metadata = getLanguageMetadata(schema.language);
-  let name = normalizeName(metadata.name, NameType.Class);
+  let name = normalizeName(
+    metadata.name,
+    NameType.Class,
+    true /** shouldGuard */
+  );
   const kind = getObjectKind(schema);
 
   let objectDetails: ObjectDetails = {
@@ -72,7 +76,11 @@ export function transformProperty({
   const { typeName, isConstant, defaultValue } = typeDetails;
 
   return {
-    name: normalizeName(metadata.name, NameType.Property),
+    name: normalizeName(
+      metadata.name,
+      NameType.Property,
+      true /** shouldGuard */
+    ),
     description: !metadata.description.startsWith("MISSING")
       ? metadata.description
       : undefined,
@@ -144,7 +152,8 @@ function extractHierarchy(
     .map(r => {
       const relativeName = normalizeName(
         getLanguageMetadata(r.language).name,
-        NameType.Interface
+        NameType.Interface,
+        true /** shouldGuard */
       );
       const relative = objectsDetails.find(o => o.name === relativeName);
 
@@ -188,7 +197,11 @@ function transformComposedObject(
 
   const parentNames = schema.parents.immediate.map(parent => {
     const name = getLanguageMetadata(parent.language).name;
-    return `${normalizeName(name, NameType.Interface)}`;
+    return `${normalizeName(
+      name,
+      NameType.Interface,
+      true /** shouldGuard */
+    )}`;
   });
 
   return {
@@ -209,7 +222,8 @@ function transformPolymorphicObject(
       // TODO: Reconsider names to reduce issues with normalization, can we switch to serialized?
       const name = normalizeName(
         getLanguageMetadata(p.language).name,
-        NameType.Interface
+        NameType.Interface,
+        true /** shouldGuard */
       );
       return uberParents.some(up => up.name === name);
     });

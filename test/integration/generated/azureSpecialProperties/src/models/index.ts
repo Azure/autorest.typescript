@@ -20,23 +20,23 @@ export interface OdataFilter {
 }
 
 /**
- * Defines headers for header_customNamedRequestId operation.
+ * Defines headers for header_customnamedrequestid operation.
  */
-export interface HeaderCustomNamedRequestIdHeaders {
+export interface HeaderCustomnamedrequestidHeaders {
   fooRequestId?: string;
 }
 
 /**
- * Defines headers for header_customNamedRequestIdParamGrouping operation.
+ * Defines headers for header_customnamedrequestidparamgrouping operation.
  */
-export interface HeaderCustomNamedRequestIdParamGroupingHeaders {
+export interface HeaderCustomnamedrequestidparamgroupingHeaders {
   fooRequestId?: string;
 }
 
 /**
- * Defines headers for header_customNamedRequestIdHead operation.
+ * Defines headers for header_customnamedrequestidhead operation.
  */
-export interface HeaderCustomNamedRequestIdHeadHeaders {
+export interface HeaderCustomnamedrequestidheadHeaders {
   fooRequestId?: string;
 }
 
@@ -94,7 +94,7 @@ export interface OdataGetWithFilterOptionalParams
 /**
  * Contains response data for the customNamedRequestId operation.
  */
-export type HeaderCustomNamedRequestIdResponse = HeaderCustomNamedRequestIdHeaders & {
+export type HeaderCustomNamedRequestIdResponse = HeaderCustomnamedrequestidHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -102,14 +102,14 @@ export type HeaderCustomNamedRequestIdResponse = HeaderCustomNamedRequestIdHeade
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderCustomNamedRequestIdHeaders;
+    parsedHeaders: HeaderCustomnamedrequestidHeaders;
   };
 };
 
 /**
  * Contains response data for the customNamedRequestIdParamGrouping operation.
  */
-export type HeaderCustomNamedRequestIdParamGroupingResponse = HeaderCustomNamedRequestIdParamGroupingHeaders & {
+export type HeaderCustomNamedRequestIdParamGroupingResponse = HeaderCustomnamedrequestidparamgroupingHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -117,14 +117,14 @@ export type HeaderCustomNamedRequestIdParamGroupingResponse = HeaderCustomNamedR
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderCustomNamedRequestIdParamGroupingHeaders;
+    parsedHeaders: HeaderCustomnamedrequestidparamgroupingHeaders;
   };
 };
 
 /**
  * Contains response data for the customNamedRequestIdHead operation.
  */
-export type HeaderCustomNamedRequestIdHeadResponse = HeaderCustomNamedRequestIdHeadHeaders & {
+export type HeaderCustomNamedRequestIdHeadResponse = HeaderCustomnamedrequestidheadHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -132,7 +132,7 @@ export type HeaderCustomNamedRequestIdHeadResponse = HeaderCustomNamedRequestIdH
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderCustomNamedRequestIdHeadHeaders;
+    parsedHeaders: HeaderCustomnamedrequestidheadHeaders;
   };
 };
 

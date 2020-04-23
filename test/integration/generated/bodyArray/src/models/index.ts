@@ -15,7 +15,7 @@ export interface ErrorModel {
 
 export interface Product {
   integer?: number;
-  string?: string;
+  stringProperty?: string;
 }
 
 /**

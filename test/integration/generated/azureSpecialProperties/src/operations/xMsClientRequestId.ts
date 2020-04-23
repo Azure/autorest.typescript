@@ -30,13 +30,15 @@ export class XMsClientRequestId {
    * 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    * @param options The options parameters.
    */
-  get(options?: coreHttp.OperationOptions): Promise<coreHttp.RestResponse> {
+  getOperation(
+    options?: coreHttp.OperationOptions
+  ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
-      getOperationSpec
+      getOperationOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
@@ -64,7 +66,7 @@ export class XMsClientRequestId {
 
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/overwrite/x-ms-client-request-id/method/",
   httpMethod: "GET",
   responses: { 200: {}, default: {} },

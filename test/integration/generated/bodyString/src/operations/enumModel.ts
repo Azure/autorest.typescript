@@ -11,21 +11,21 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyStringClient } from "../bodyStringClient";
 import {
-  EnumGetNotExpandableResponse,
+  EnumModelGetNotExpandableResponse,
   Colors,
-  EnumGetReferencedResponse,
-  EnumGetReferencedConstantResponse,
+  EnumModelGetReferencedResponse,
+  EnumModelGetReferencedConstantResponse,
   RefColorConstant
 } from "../models";
 
 /**
- * Class representing a Enum.
+ * Class representing a EnumModel.
  */
-export class Enum {
+export class EnumModel {
   private readonly client: BodyStringClient;
 
   /**
-   * Initialize a new instance of the class Enum class.
+   * Initialize a new instance of the class EnumModel class.
    * @param client Reference to the service client
    */
   constructor(client: BodyStringClient) {
@@ -38,14 +38,14 @@ export class Enum {
    */
   getNotExpandable(
     options?: coreHttp.OperationOptions
-  ): Promise<EnumGetNotExpandableResponse> {
+  ): Promise<EnumModelGetNotExpandableResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getNotExpandableOperationSpec
-    ) as Promise<EnumGetNotExpandableResponse>;
+    ) as Promise<EnumModelGetNotExpandableResponse>;
   }
 
   /**
@@ -72,14 +72,14 @@ export class Enum {
    */
   getReferenced(
     options?: coreHttp.OperationOptions
-  ): Promise<EnumGetReferencedResponse> {
+  ): Promise<EnumModelGetReferencedResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getReferencedOperationSpec
-    ) as Promise<EnumGetReferencedResponse>;
+    ) as Promise<EnumModelGetReferencedResponse>;
   }
 
   /**
@@ -106,14 +106,14 @@ export class Enum {
    */
   getReferencedConstant(
     options?: coreHttp.OperationOptions
-  ): Promise<EnumGetReferencedConstantResponse> {
+  ): Promise<EnumModelGetReferencedConstantResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getReferencedConstantOperationSpec
-    ) as Promise<EnumGetReferencedConstantResponse>;
+    ) as Promise<EnumModelGetReferencedConstantResponse>;
   }
 
   /**

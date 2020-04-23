@@ -320,19 +320,19 @@ const putAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LroretrysPutasyncrelativeretrysucceededHeaders
     },
     201: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LroretrysPutasyncrelativeretrysucceededHeaders
     },
     202: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LroretrysPutasyncrelativeretrysucceededHeaders
     },
     204: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LroretrysPutasyncrelativeretrysucceededHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
@@ -368,16 +368,16 @@ const delete202Retry200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {
-      headersMapper: Mappers.LRORetrysDelete202Retry200Headers
+      headersMapper: Mappers.LroretrysDelete202retry200Headers
     },
     201: {
-      headersMapper: Mappers.LRORetrysDelete202Retry200Headers
+      headersMapper: Mappers.LroretrysDelete202retry200Headers
     },
     202: {
-      headersMapper: Mappers.LRORetrysDelete202Retry200Headers
+      headersMapper: Mappers.LroretrysDelete202retry200Headers
     },
     204: {
-      headersMapper: Mappers.LRORetrysDelete202Retry200Headers
+      headersMapper: Mappers.LroretrysDelete202retry200Headers
     },
     default: {
       bodyMapper: Mappers.CloudError
@@ -391,16 +391,16 @@ const deleteAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {
-      headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LroretrysDeleteasyncrelativeretrysucceededHeaders
     },
     201: {
-      headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LroretrysDeleteasyncrelativeretrysucceededHeaders
     },
     202: {
-      headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LroretrysDeleteasyncrelativeretrysucceededHeaders
     },
     204: {
-      headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LroretrysDeleteasyncrelativeretrysucceededHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
@@ -414,16 +414,16 @@ const post202Retry200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.LRORetrysPost202Retry200Headers
+      headersMapper: Mappers.LroretrysPost202retry200Headers
     },
     201: {
-      headersMapper: Mappers.LRORetrysPost202Retry200Headers
+      headersMapper: Mappers.LroretrysPost202retry200Headers
     },
     202: {
-      headersMapper: Mappers.LRORetrysPost202Retry200Headers
+      headersMapper: Mappers.LroretrysPost202retry200Headers
     },
     204: {
-      headersMapper: Mappers.LRORetrysPost202Retry200Headers
+      headersMapper: Mappers.LroretrysPost202retry200Headers
     },
     default: {
       bodyMapper: Mappers.CloudError
@@ -439,16 +439,16 @@ const postAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LroretrysPostasyncrelativeretrysucceededHeaders
     },
     201: {
-      headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LroretrysPostasyncrelativeretrysucceededHeaders
     },
     202: {
-      headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LroretrysPostasyncrelativeretrysucceededHeaders
     },
     204: {
-      headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LroretrysPostasyncrelativeretrysucceededHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError

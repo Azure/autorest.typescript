@@ -38,11 +38,11 @@ export const OdataFilter: coreHttp.CompositeMapper = {
   }
 };
 
-export const HeaderCustomNamedRequestIdHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_customNamedRequestIdHeaders",
+export const HeaderCustomnamedrequestidHeaders: coreHttp.CompositeMapper = {
+  serializedName: "header_customnamedrequestidHeaders",
   type: {
     name: "Composite",
-    className: "HeaderCustomNamedRequestIdHeaders",
+    className: "HeaderCustomnamedrequestidHeaders",
     modelProperties: {
       fooRequestId: {
         type: { name: "String" },
@@ -52,11 +52,11 @@ export const HeaderCustomNamedRequestIdHeaders: coreHttp.CompositeMapper = {
   }
 };
 
-export const HeaderCustomNamedRequestIdParamGroupingHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_customNamedRequestIdParamGroupingHeaders",
+export const HeaderCustomnamedrequestidparamgroupingHeaders: coreHttp.CompositeMapper = {
+  serializedName: "header_customnamedrequestidparamgroupingHeaders",
   type: {
     name: "Composite",
-    className: "HeaderCustomNamedRequestIdParamGroupingHeaders",
+    className: "HeaderCustomnamedrequestidparamgroupingHeaders",
     modelProperties: {
       fooRequestId: {
         type: { name: "String" },
@@ -66,11 +66,11 @@ export const HeaderCustomNamedRequestIdParamGroupingHeaders: coreHttp.CompositeM
   }
 };
 
-export const HeaderCustomNamedRequestIdHeadHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_customNamedRequestIdHeadHeaders",
+export const HeaderCustomnamedrequestidheadHeaders: coreHttp.CompositeMapper = {
+  serializedName: "header_customnamedrequestidheadHeaders",
   type: {
     name: "Composite",
-    className: "HeaderCustomNamedRequestIdHeadHeaders",
+    className: "HeaderCustomnamedrequestidheadHeaders",
     modelProperties: {
       fooRequestId: {
         type: { name: "String" },

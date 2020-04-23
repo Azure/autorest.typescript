@@ -14,100 +14,100 @@ export interface ErrorModel {
 }
 
 /**
- * Defines headers for header_responseExistingKey operation.
+ * Defines headers for header_responseexistingkey operation.
  */
-export interface HeaderResponseExistingKeyHeaders {
+export interface HeaderResponseexistingkeyHeaders {
   userAgent?: string;
 }
 
 /**
- * Defines headers for header_responseProtectedKey operation.
+ * Defines headers for header_responseprotectedkey operation.
  */
-export interface HeaderResponseProtectedKeyHeaders {
+export interface HeaderResponseprotectedkeyHeaders {
   contentType?: string;
 }
 
 /**
- * Defines headers for header_responseInteger operation.
+ * Defines headers for header_responseinteger operation.
  */
-export interface HeaderResponseIntegerHeaders {
+export interface HeaderResponseintegerHeaders {
   value?: number;
 }
 
 /**
- * Defines headers for header_responseLong operation.
+ * Defines headers for header_responselong operation.
  */
-export interface HeaderResponseLongHeaders {
+export interface HeaderResponselongHeaders {
   value?: number;
 }
 
 /**
- * Defines headers for header_responseFloat operation.
+ * Defines headers for header_responsefloat operation.
  */
-export interface HeaderResponseFloatHeaders {
+export interface HeaderResponsefloatHeaders {
   value?: number;
 }
 
 /**
- * Defines headers for header_responseDouble operation.
+ * Defines headers for header_responsedouble operation.
  */
-export interface HeaderResponseDoubleHeaders {
+export interface HeaderResponsedoubleHeaders {
   value?: number;
 }
 
 /**
- * Defines headers for header_responseBool operation.
+ * Defines headers for header_responsebool operation.
  */
-export interface HeaderResponseBoolHeaders {
+export interface HeaderResponseboolHeaders {
   value?: boolean;
 }
 
 /**
- * Defines headers for header_responseString operation.
+ * Defines headers for header_responsestring operation.
  */
-export interface HeaderResponseStringHeaders {
+export interface HeaderResponsestringHeaders {
   value?: string;
 }
 
 /**
- * Defines headers for header_responseDate operation.
+ * Defines headers for header_responsedate operation.
  */
-export interface HeaderResponseDateHeaders {
+export interface HeaderResponsedateHeaders {
   value?: Date;
 }
 
 /**
- * Defines headers for header_responseDatetime operation.
+ * Defines headers for header_responsedatetime operation.
  */
-export interface HeaderResponseDatetimeHeaders {
+export interface HeaderResponsedatetimeHeaders {
   value?: Date;
 }
 
 /**
- * Defines headers for header_responseDatetimeRfc1123 operation.
+ * Defines headers for header_responsedatetimerfc1123 operation.
  */
-export interface HeaderResponseDatetimeRfc1123Headers {
+export interface HeaderResponsedatetimerfc1123Headers {
   value?: Date;
 }
 
 /**
- * Defines headers for header_responseDuration operation.
+ * Defines headers for header_responseduration operation.
  */
-export interface HeaderResponseDurationHeaders {
+export interface HeaderResponsedurationHeaders {
   value?: string;
 }
 
 /**
- * Defines headers for header_responseByte operation.
+ * Defines headers for header_responsebyte operation.
  */
-export interface HeaderResponseByteHeaders {
+export interface HeaderResponsebyteHeaders {
   value?: Uint8Array;
 }
 
 /**
- * Defines headers for header_responseEnum operation.
+ * Defines headers for header_responseenum operation.
  */
-export interface HeaderResponseEnumHeaders {
+export interface HeaderResponseenumHeaders {
   value?: GreyscaleColors;
 }
 
@@ -119,7 +119,7 @@ export type GreyscaleColors = "White" | "black" | "GREY";
 /**
  * Contains response data for the responseExistingKey operation.
  */
-export type HeaderResponseExistingKeyResponse = HeaderResponseExistingKeyHeaders & {
+export type HeaderResponseExistingKeyResponse = HeaderResponseexistingkeyHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -127,14 +127,14 @@ export type HeaderResponseExistingKeyResponse = HeaderResponseExistingKeyHeaders
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderResponseExistingKeyHeaders;
+    parsedHeaders: HeaderResponseexistingkeyHeaders;
   };
 };
 
 /**
  * Contains response data for the responseProtectedKey operation.
  */
-export type HeaderResponseProtectedKeyResponse = HeaderResponseProtectedKeyHeaders & {
+export type HeaderResponseProtectedKeyResponse = HeaderResponseprotectedkeyHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -142,14 +142,14 @@ export type HeaderResponseProtectedKeyResponse = HeaderResponseProtectedKeyHeade
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderResponseProtectedKeyHeaders;
+    parsedHeaders: HeaderResponseprotectedkeyHeaders;
   };
 };
 
 /**
  * Contains response data for the responseInteger operation.
  */
-export type HeaderResponseIntegerResponse = HeaderResponseIntegerHeaders & {
+export type HeaderResponseIntegerResponse = HeaderResponseintegerHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -157,14 +157,14 @@ export type HeaderResponseIntegerResponse = HeaderResponseIntegerHeaders & {
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderResponseIntegerHeaders;
+    parsedHeaders: HeaderResponseintegerHeaders;
   };
 };
 
 /**
  * Contains response data for the responseLong operation.
  */
-export type HeaderResponseLongResponse = HeaderResponseLongHeaders & {
+export type HeaderResponseLongResponse = HeaderResponselongHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -172,14 +172,14 @@ export type HeaderResponseLongResponse = HeaderResponseLongHeaders & {
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderResponseLongHeaders;
+    parsedHeaders: HeaderResponselongHeaders;
   };
 };
 
 /**
  * Contains response data for the responseFloat operation.
  */
-export type HeaderResponseFloatResponse = HeaderResponseFloatHeaders & {
+export type HeaderResponseFloatResponse = HeaderResponsefloatHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -187,14 +187,14 @@ export type HeaderResponseFloatResponse = HeaderResponseFloatHeaders & {
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderResponseFloatHeaders;
+    parsedHeaders: HeaderResponsefloatHeaders;
   };
 };
 
 /**
  * Contains response data for the responseDouble operation.
  */
-export type HeaderResponseDoubleResponse = HeaderResponseDoubleHeaders & {
+export type HeaderResponseDoubleResponse = HeaderResponsedoubleHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -202,14 +202,14 @@ export type HeaderResponseDoubleResponse = HeaderResponseDoubleHeaders & {
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderResponseDoubleHeaders;
+    parsedHeaders: HeaderResponsedoubleHeaders;
   };
 };
 
 /**
  * Contains response data for the responseBool operation.
  */
-export type HeaderResponseBoolResponse = HeaderResponseBoolHeaders & {
+export type HeaderResponseBoolResponse = HeaderResponseboolHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -217,7 +217,7 @@ export type HeaderResponseBoolResponse = HeaderResponseBoolHeaders & {
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderResponseBoolHeaders;
+    parsedHeaders: HeaderResponseboolHeaders;
   };
 };
 
@@ -235,7 +235,7 @@ export interface HeaderParamStringOptionalParams
 /**
  * Contains response data for the responseString operation.
  */
-export type HeaderResponseStringResponse = HeaderResponseStringHeaders & {
+export type HeaderResponseStringResponse = HeaderResponsestringHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -243,14 +243,14 @@ export type HeaderResponseStringResponse = HeaderResponseStringHeaders & {
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderResponseStringHeaders;
+    parsedHeaders: HeaderResponsestringHeaders;
   };
 };
 
 /**
  * Contains response data for the responseDate operation.
  */
-export type HeaderResponseDateResponse = HeaderResponseDateHeaders & {
+export type HeaderResponseDateResponse = HeaderResponsedateHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -258,14 +258,14 @@ export type HeaderResponseDateResponse = HeaderResponseDateHeaders & {
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderResponseDateHeaders;
+    parsedHeaders: HeaderResponsedateHeaders;
   };
 };
 
 /**
  * Contains response data for the responseDatetime operation.
  */
-export type HeaderResponseDatetimeResponse = HeaderResponseDatetimeHeaders & {
+export type HeaderResponseDatetimeResponse = HeaderResponsedatetimeHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -273,7 +273,7 @@ export type HeaderResponseDatetimeResponse = HeaderResponseDatetimeHeaders & {
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderResponseDatetimeHeaders;
+    parsedHeaders: HeaderResponsedatetimeHeaders;
   };
 };
 
@@ -291,7 +291,7 @@ export interface HeaderParamDatetimeRfc1123OptionalParams
 /**
  * Contains response data for the responseDatetimeRfc1123 operation.
  */
-export type HeaderResponseDatetimeRfc1123Response = HeaderResponseDatetimeRfc1123Headers & {
+export type HeaderResponseDatetimeRfc1123Response = HeaderResponsedatetimerfc1123Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -299,14 +299,14 @@ export type HeaderResponseDatetimeRfc1123Response = HeaderResponseDatetimeRfc112
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderResponseDatetimeRfc1123Headers;
+    parsedHeaders: HeaderResponsedatetimerfc1123Headers;
   };
 };
 
 /**
  * Contains response data for the responseDuration operation.
  */
-export type HeaderResponseDurationResponse = HeaderResponseDurationHeaders & {
+export type HeaderResponseDurationResponse = HeaderResponsedurationHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -314,14 +314,14 @@ export type HeaderResponseDurationResponse = HeaderResponseDurationHeaders & {
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderResponseDurationHeaders;
+    parsedHeaders: HeaderResponsedurationHeaders;
   };
 };
 
 /**
  * Contains response data for the responseByte operation.
  */
-export type HeaderResponseByteResponse = HeaderResponseByteHeaders & {
+export type HeaderResponseByteResponse = HeaderResponsebyteHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -329,7 +329,7 @@ export type HeaderResponseByteResponse = HeaderResponseByteHeaders & {
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderResponseByteHeaders;
+    parsedHeaders: HeaderResponsebyteHeaders;
   };
 };
 
@@ -347,7 +347,7 @@ export interface HeaderParamEnumOptionalParams
 /**
  * Contains response data for the responseEnum operation.
  */
-export type HeaderResponseEnumResponse = HeaderResponseEnumHeaders & {
+export type HeaderResponseEnumResponse = HeaderResponseenumHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -355,7 +355,7 @@ export type HeaderResponseEnumResponse = HeaderResponseEnumHeaders & {
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: HeaderResponseEnumHeaders;
+    parsedHeaders: HeaderResponseenumHeaders;
   };
 };
 

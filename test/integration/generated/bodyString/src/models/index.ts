@@ -32,7 +32,7 @@ export type Colors = "red color" | "green-color" | "blue_color";
 /**
  * Contains response data for the getNull operation.
  */
-export type StringGetNullResponse = {
+export type StringOperationsGetNullResponse = {
   /**
    * The parsed response body.
    */
@@ -57,14 +57,15 @@ export type StringGetNullResponse = {
 /**
  * Optional parameters.
  */
-export interface StringPutNullOptionalParams extends coreHttp.OperationOptions {
+export interface StringOperationsPutNullOptionalParams
+  extends coreHttp.OperationOptions {
   stringBody?: string;
 }
 
 /**
  * Contains response data for the getEmpty operation.
  */
-export type StringGetEmptyResponse = {
+export type StringOperationsGetEmptyResponse = {
   /**
    * The parsed response body.
    */
@@ -89,7 +90,7 @@ export type StringGetEmptyResponse = {
 /**
  * Contains response data for the getMbcs operation.
  */
-export type StringGetMbcsResponse = {
+export type StringOperationsGetMbcsResponse = {
   /**
    * The parsed response body.
    */
@@ -114,7 +115,7 @@ export type StringGetMbcsResponse = {
 /**
  * Contains response data for the getWhitespace operation.
  */
-export type StringGetWhitespaceResponse = {
+export type StringOperationsGetWhitespaceResponse = {
   /**
    * The parsed response body.
    */
@@ -139,7 +140,7 @@ export type StringGetWhitespaceResponse = {
 /**
  * Contains response data for the getNotProvided operation.
  */
-export type StringGetNotProvidedResponse = {
+export type StringOperationsGetNotProvidedResponse = {
   /**
    * The parsed response body.
    */
@@ -164,7 +165,7 @@ export type StringGetNotProvidedResponse = {
 /**
  * Contains response data for the getBase64Encoded operation.
  */
-export type StringGetBase64EncodedResponse = {
+export type StringOperationsGetBase64EncodedResponse = {
   /**
    * The parsed response body.
    */
@@ -189,7 +190,7 @@ export type StringGetBase64EncodedResponse = {
 /**
  * Contains response data for the getBase64UrlEncoded operation.
  */
-export type StringGetBase64UrlEncodedResponse = {
+export type StringOperationsGetBase64UrlEncodedResponse = {
   /**
    * The parsed response body.
    */
@@ -214,7 +215,7 @@ export type StringGetBase64UrlEncodedResponse = {
 /**
  * Contains response data for the getNullBase64UrlEncoded operation.
  */
-export type StringGetNullBase64UrlEncodedResponse = {
+export type StringOperationsGetNullBase64UrlEncodedResponse = {
   /**
    * The parsed response body.
    */
@@ -239,7 +240,7 @@ export type StringGetNullBase64UrlEncodedResponse = {
 /**
  * Contains response data for the getNotExpandable operation.
  */
-export type EnumGetNotExpandableResponse = {
+export type EnumOperationsGetNotExpandableResponse = {
   /**
    * The parsed response body.
    */
@@ -264,7 +265,7 @@ export type EnumGetNotExpandableResponse = {
 /**
  * Contains response data for the getReferenced operation.
  */
-export type EnumGetReferencedResponse = {
+export type EnumOperationsGetReferencedResponse = {
   /**
    * The parsed response body.
    */
@@ -289,7 +290,7 @@ export type EnumGetReferencedResponse = {
 /**
  * Contains response data for the getReferencedConstant operation.
  */
-export type EnumGetReferencedConstantResponse = RefColorConstant & {
+export type EnumOperationsGetReferencedConstantResponse = RefColorConstant & {
   /**
    * The underlying HTTP response.
    */

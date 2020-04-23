@@ -16,7 +16,7 @@ export interface Resource {
   /**
    * Resource Type
    */
-  readonly type?: string;
+  readonly typeProperty?: string;
   /**
    * Dictionary of <string>
    */
@@ -63,7 +63,7 @@ export interface OperationResult {
    * The status of the request
    */
   status?: OperationResultStatus;
-  error?: OperationResultError;
+  errorProperty?: OperationResultError;
 }
 
 export interface OperationResultError {
@@ -78,440 +78,440 @@ export interface OperationResultError {
 }
 
 /**
- * Defines headers for lROs_putNoHeaderInRetry operation.
+ * Defines headers for lros_putnoheaderinretry operation.
  */
-export interface LROsPutNoHeaderInRetryHeaders {
+export interface LrosPutnoheaderinretryHeaders {
   location?: string;
 }
 
 /**
- * Defines headers for lROs_putAsyncRetrySucceeded operation.
+ * Defines headers for lros_putasyncretrysucceeded operation.
  */
-export interface LROsPutAsyncRetrySucceededHeaders {
+export interface LrosPutasyncretrysucceededHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lROs_putAsyncNoRetrySucceeded operation.
+ * Defines headers for lros_putasyncnoretrysucceeded operation.
  */
-export interface LROsPutAsyncNoRetrySucceededHeaders {
+export interface LrosPutasyncnoretrysucceededHeaders {
   azureAsyncOperation?: string;
   location?: string;
 }
 
 /**
- * Defines headers for lROs_putAsyncRetryFailed operation.
+ * Defines headers for lros_putasyncretryfailed operation.
  */
-export interface LROsPutAsyncRetryFailedHeaders {
-  azureAsyncOperation?: string;
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lROs_putAsyncNoRetrycanceled operation.
- */
-export interface LROsPutAsyncNoRetrycanceledHeaders {
-  azureAsyncOperation?: string;
-  location?: string;
-}
-
-/**
- * Defines headers for lROs_putAsyncNoHeaderInRetry operation.
- */
-export interface LROsPutAsyncNoHeaderInRetryHeaders {
-  azureAsyncOperation?: string;
-}
-
-/**
- * Defines headers for lROs_deleteProvisioning202Accepted200Succeeded operation.
- */
-export interface LROsDeleteProvisioning202Accepted200SucceededHeaders {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lROs_deleteProvisioning202DeletingFailed200 operation.
- */
-export interface LROsDeleteProvisioning202DeletingFailed200Headers {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lROs_deleteProvisioning202Deletingcanceled200 operation.
- */
-export interface LROsDeleteProvisioning202Deletingcanceled200Headers {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lROs_delete202Retry200 operation.
- */
-export interface LROsDelete202Retry200Headers {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lROs_delete202NoRetry204 operation.
- */
-export interface LROsDelete202NoRetry204Headers {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lROs_deleteNoHeaderInRetry operation.
- */
-export interface LROsDeleteNoHeaderInRetryHeaders {
-  location?: string;
-}
-
-/**
- * Defines headers for lROs_deleteAsyncNoHeaderInRetry operation.
- */
-export interface LROsDeleteAsyncNoHeaderInRetryHeaders {
-  location?: string;
-}
-
-/**
- * Defines headers for lROs_deleteAsyncRetrySucceeded operation.
- */
-export interface LROsDeleteAsyncRetrySucceededHeaders {
+export interface LrosPutasyncretryfailedHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lROs_deleteAsyncNoRetrySucceeded operation.
+ * Defines headers for lros_putasyncnoretrycanceled operation.
  */
-export interface LROsDeleteAsyncNoRetrySucceededHeaders {
+export interface LrosPutasyncnoretrycanceledHeaders {
+  azureAsyncOperation?: string;
+  location?: string;
+}
+
+/**
+ * Defines headers for lros_putasyncnoheaderinretry operation.
+ */
+export interface LrosPutasyncnoheaderinretryHeaders {
+  azureAsyncOperation?: string;
+}
+
+/**
+ * Defines headers for lros_deleteprovisioning202accepted200succeeded operation.
+ */
+export interface LrosDeleteprovisioning202accepted200succeededHeaders {
+  location?: string;
+  retryAfter?: number;
+}
+
+/**
+ * Defines headers for lros_deleteprovisioning202deletingfailed200 operation.
+ */
+export interface LrosDeleteprovisioning202deletingfailed200Headers {
+  location?: string;
+  retryAfter?: number;
+}
+
+/**
+ * Defines headers for lros_deleteprovisioning202deletingcanceled200 operation.
+ */
+export interface LrosDeleteprovisioning202deletingcanceled200Headers {
+  location?: string;
+  retryAfter?: number;
+}
+
+/**
+ * Defines headers for lros_delete202retry200 operation.
+ */
+export interface LrosDelete202retry200Headers {
+  location?: string;
+  retryAfter?: number;
+}
+
+/**
+ * Defines headers for lros_delete202noretry204 operation.
+ */
+export interface LrosDelete202noretry204Headers {
+  location?: string;
+  retryAfter?: number;
+}
+
+/**
+ * Defines headers for lros_deletenoheaderinretry operation.
+ */
+export interface LrosDeletenoheaderinretryHeaders {
+  location?: string;
+}
+
+/**
+ * Defines headers for lros_deleteasyncnoheaderinretry operation.
+ */
+export interface LrosDeleteasyncnoheaderinretryHeaders {
+  location?: string;
+}
+
+/**
+ * Defines headers for lros_deleteasyncretrysucceeded operation.
+ */
+export interface LrosDeleteasyncretrysucceededHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lROs_deleteAsyncRetryFailed operation.
+ * Defines headers for lros_deleteasyncnoretrysucceeded operation.
  */
-export interface LROsDeleteAsyncRetryFailedHeaders {
+export interface LrosDeleteasyncnoretrysucceededHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lROs_deleteAsyncRetrycanceled operation.
+ * Defines headers for lros_deleteasyncretryfailed operation.
  */
-export interface LROsDeleteAsyncRetrycanceledHeaders {
+export interface LrosDeleteasyncretryfailedHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lROs_post202Retry200 operation.
+ * Defines headers for lros_deleteasyncretrycanceled operation.
  */
-export interface LROsPost202Retry200Headers {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lROs_post202NoRetry204 operation.
- */
-export interface LROsPost202NoRetry204Headers {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lROs_postAsyncRetrySucceeded operation.
- */
-export interface LROsPostAsyncRetrySucceededHeaders {
+export interface LrosDeleteasyncretrycanceledHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lROs_postAsyncNoRetrySucceeded operation.
+ * Defines headers for lros_post202retry200 operation.
  */
-export interface LROsPostAsyncNoRetrySucceededHeaders {
+export interface LrosPost202retry200Headers {
+  location?: string;
+  retryAfter?: number;
+}
+
+/**
+ * Defines headers for lros_post202noretry204 operation.
+ */
+export interface LrosPost202noretry204Headers {
+  location?: string;
+  retryAfter?: number;
+}
+
+/**
+ * Defines headers for lros_postasyncretrysucceeded operation.
+ */
+export interface LrosPostasyncretrysucceededHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lROs_postAsyncRetryFailed operation.
+ * Defines headers for lros_postasyncnoretrysucceeded operation.
  */
-export interface LROsPostAsyncRetryFailedHeaders {
+export interface LrosPostasyncnoretrysucceededHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lROs_postAsyncRetrycanceled operation.
+ * Defines headers for lros_postasyncretryfailed operation.
  */
-export interface LROsPostAsyncRetrycanceledHeaders {
+export interface LrosPostasyncretryfailedHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lRORetrys_putAsyncRelativeRetrySucceeded operation.
+ * Defines headers for lros_postasyncretrycanceled operation.
  */
-export interface LRORetrysPutAsyncRelativeRetrySucceededHeaders {
+export interface LrosPostasyncretrycanceledHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lRORetrys_deleteProvisioning202Accepted200Succeeded operation.
+ * Defines headers for lroretrys_putasyncrelativeretrysucceeded operation.
  */
-export interface LRORetrysDeleteProvisioning202Accepted200SucceededHeaders {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lRORetrys_delete202Retry200 operation.
- */
-export interface LRORetrysDelete202Retry200Headers {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lRORetrys_deleteAsyncRelativeRetrySucceeded operation.
- */
-export interface LRORetrysDeleteAsyncRelativeRetrySucceededHeaders {
+export interface LroretrysPutasyncrelativeretrysucceededHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lRORetrys_post202Retry200 operation.
+ * Defines headers for lroretrys_deleteprovisioning202accepted200succeeded operation.
  */
-export interface LRORetrysPost202Retry200Headers {
+export interface LroretrysDeleteprovisioning202accepted200succeededHeaders {
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lRORetrys_postAsyncRelativeRetrySucceeded operation.
+ * Defines headers for lroretrys_delete202retry200 operation.
  */
-export interface LRORetrysPostAsyncRelativeRetrySucceededHeaders {
+export interface LroretrysDelete202retry200Headers {
+  location?: string;
+  retryAfter?: number;
+}
+
+/**
+ * Defines headers for lroretrys_deleteasyncrelativeretrysucceeded operation.
+ */
+export interface LroretrysDeleteasyncrelativeretrysucceededHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lrosaDs_putAsyncRelativeRetry400 operation.
+ * Defines headers for lroretrys_post202retry200 operation.
  */
-export interface LrosaDsPutAsyncRelativeRetry400Headers {
+export interface LroretrysPost202retry200Headers {
+  location?: string;
+  retryAfter?: number;
+}
+
+/**
+ * Defines headers for lroretrys_postasyncrelativeretrysucceeded operation.
+ */
+export interface LroretrysPostasyncrelativeretrysucceededHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lrosaDs_deleteNonRetry400 operation.
+ * Defines headers for lrosads_putasyncrelativeretry400 operation.
  */
-export interface LrosaDsDeleteNonRetry400Headers {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lrosaDs_delete202NonRetry400 operation.
- */
-export interface LrosaDsDelete202NonRetry400Headers {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lrosaDs_deleteAsyncRelativeRetry400 operation.
- */
-export interface LrosaDsDeleteAsyncRelativeRetry400Headers {
+export interface LrosadsPutasyncrelativeretry400Headers {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lrosaDs_postNonRetry400 operation.
+ * Defines headers for lrosads_deletenonretry400 operation.
  */
-export interface LrosaDsPostNonRetry400Headers {
+export interface LrosadsDeletenonretry400Headers {
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lrosaDs_post202NonRetry400 operation.
+ * Defines headers for lrosads_delete202nonretry400 operation.
  */
-export interface LrosaDsPost202NonRetry400Headers {
+export interface LrosadsDelete202nonretry400Headers {
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lrosaDs_postAsyncRelativeRetry400 operation.
+ * Defines headers for lrosads_deleteasyncrelativeretry400 operation.
  */
-export interface LrosaDsPostAsyncRelativeRetry400Headers {
+export interface LrosadsDeleteasyncrelativeretry400Headers {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lrosaDs_putAsyncRelativeRetryNoStatus operation.
+ * Defines headers for lrosads_postnonretry400 operation.
  */
-export interface LrosaDsPutAsyncRelativeRetryNoStatusHeaders {
+export interface LrosadsPostnonretry400Headers {
+  location?: string;
+  retryAfter?: number;
+}
+
+/**
+ * Defines headers for lrosads_post202nonretry400 operation.
+ */
+export interface LrosadsPost202nonretry400Headers {
+  location?: string;
+  retryAfter?: number;
+}
+
+/**
+ * Defines headers for lrosads_postasyncrelativeretry400 operation.
+ */
+export interface LrosadsPostasyncrelativeretry400Headers {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lrosaDs_putAsyncRelativeRetryNoStatusPayload operation.
+ * Defines headers for lrosads_putasyncrelativeretrynostatus operation.
  */
-export interface LrosaDsPutAsyncRelativeRetryNoStatusPayloadHeaders {
+export interface LrosadsPutasyncrelativeretrynostatusHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lrosaDs_deleteAsyncRelativeRetryNoStatus operation.
+ * Defines headers for lrosads_putasyncrelativeretrynostatuspayload operation.
  */
-export interface LrosaDsDeleteAsyncRelativeRetryNoStatusHeaders {
+export interface LrosadsPutasyncrelativeretrynostatuspayloadHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lrosaDs_post202NoLocation operation.
+ * Defines headers for lrosads_deleteasyncrelativeretrynostatus operation.
  */
-export interface LrosaDsPost202NoLocationHeaders {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lrosaDs_postAsyncRelativeRetryNoPayload operation.
- */
-export interface LrosaDsPostAsyncRelativeRetryNoPayloadHeaders {
+export interface LrosadsDeleteasyncrelativeretrynostatusHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lrosaDs_putAsyncRelativeRetryInvalidHeader operation.
+ * Defines headers for lrosads_post202nolocation operation.
  */
-export interface LrosaDsPutAsyncRelativeRetryInvalidHeaderHeaders {
+export interface LrosadsPost202nolocationHeaders {
+  location?: string;
+  retryAfter?: number;
+}
+
+/**
+ * Defines headers for lrosads_postasyncrelativeretrynopayload operation.
+ */
+export interface LrosadsPostasyncrelativeretrynopayloadHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lrosaDs_putAsyncRelativeRetryInvalidJsonPolling operation.
+ * Defines headers for lrosads_putasyncrelativeretryinvalidheader operation.
  */
-export interface LrosaDsPutAsyncRelativeRetryInvalidJsonPollingHeaders {
+export interface LrosadsPutasyncrelativeretryinvalidheaderHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lrosaDs_delete202RetryInvalidHeader operation.
+ * Defines headers for lrosads_putasyncrelativeretryinvalidjsonpolling operation.
  */
-export interface LrosaDsDelete202RetryInvalidHeaderHeaders {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lrosaDs_deleteAsyncRelativeRetryInvalidHeader operation.
- */
-export interface LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders {
+export interface LrosadsPutasyncrelativeretryinvalidjsonpollingHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lrosaDs_deleteAsyncRelativeRetryInvalidJsonPolling operation.
+ * Defines headers for lrosads_delete202retryinvalidheader operation.
  */
-export interface LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders {
+export interface LrosadsDelete202retryinvalidheaderHeaders {
+  location?: string;
+  retryAfter?: number;
+}
+
+/**
+ * Defines headers for lrosads_deleteasyncrelativeretryinvalidheader operation.
+ */
+export interface LrosadsDeleteasyncrelativeretryinvalidheaderHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lrosaDs_post202RetryInvalidHeader operation.
+ * Defines headers for lrosads_deleteasyncrelativeretryinvalidjsonpolling operation.
  */
-export interface LrosaDsPost202RetryInvalidHeaderHeaders {
-  location?: string;
-  retryAfter?: number;
-}
-
-/**
- * Defines headers for lrosaDs_postAsyncRelativeRetryInvalidHeader operation.
- */
-export interface LrosaDsPostAsyncRelativeRetryInvalidHeaderHeaders {
+export interface LrosadsDeleteasyncrelativeretryinvalidjsonpollingHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lrosaDs_postAsyncRelativeRetryInvalidJsonPolling operation.
+ * Defines headers for lrosads_post202retryinvalidheader operation.
  */
-export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders {
+export interface LrosadsPost202retryinvalidheaderHeaders {
+  location?: string;
+  retryAfter?: number;
+}
+
+/**
+ * Defines headers for lrosads_postasyncrelativeretryinvalidheader operation.
+ */
+export interface LrosadsPostasyncrelativeretryinvalidheaderHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lROsCustomHeader_putAsyncRetrySucceeded operation.
+ * Defines headers for lrosads_postasyncrelativeretryinvalidjsonpolling operation.
  */
-export interface LROsCustomHeaderPutAsyncRetrySucceededHeaders {
+export interface LrosadsPostasyncrelativeretryinvalidjsonpollingHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lROsCustomHeader_post202Retry200 operation.
+ * Defines headers for lroscustomheader_putasyncretrysucceeded operation.
  */
-export interface LROsCustomHeaderPost202Retry200Headers {
+export interface LroscustomheaderPutasyncretrysucceededHeaders {
+  azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
 }
 
 /**
- * Defines headers for lROsCustomHeader_postAsyncRetrySucceeded operation.
+ * Defines headers for lroscustomheader_post202retry200 operation.
  */
-export interface LROsCustomHeaderPostAsyncRetrySucceededHeaders {
+export interface LroscustomheaderPost202retry200Headers {
+  location?: string;
+  retryAfter?: number;
+}
+
+/**
+ * Defines headers for lroscustomheader_postasyncretrysucceeded operation.
+ */
+export interface LroscustomheaderPostasyncretrysucceededHeaders {
   azureAsyncOperation?: string;
   location?: string;
   retryAfter?: number;
@@ -794,7 +794,7 @@ export interface LROsPutNoHeaderInRetryOptionalParams
 /**
  * Contains response data for the putNoHeaderInRetry operation.
  */
-export type LROsPutNoHeaderInRetryResponse = LROsPutNoHeaderInRetryHeaders &
+export type LROsPutNoHeaderInRetryResponse = LrosPutnoheaderinretryHeaders &
   Product & {
     /**
      * The underlying HTTP response.
@@ -812,7 +812,7 @@ export type LROsPutNoHeaderInRetryResponse = LROsPutNoHeaderInRetryHeaders &
       /**
        * The parsed HTTP response headers.
        */
-      parsedHeaders: LROsPutNoHeaderInRetryHeaders;
+      parsedHeaders: LrosPutnoheaderinretryHeaders;
     };
   };
 
@@ -830,7 +830,7 @@ export interface LROsPutAsyncRetrySucceededOptionalParams
 /**
  * Contains response data for the putAsyncRetrySucceeded operation.
  */
-export type LROsPutAsyncRetrySucceededResponse = LROsPutAsyncRetrySucceededHeaders &
+export type LROsPutAsyncRetrySucceededResponse = LrosPutasyncretrysucceededHeaders &
   Product & {
     /**
      * The underlying HTTP response.
@@ -848,7 +848,7 @@ export type LROsPutAsyncRetrySucceededResponse = LROsPutAsyncRetrySucceededHeade
       /**
        * The parsed HTTP response headers.
        */
-      parsedHeaders: LROsPutAsyncRetrySucceededHeaders;
+      parsedHeaders: LrosPutasyncretrysucceededHeaders;
     };
   };
 
@@ -866,7 +866,7 @@ export interface LROsPutAsyncNoRetrySucceededOptionalParams
 /**
  * Contains response data for the putAsyncNoRetrySucceeded operation.
  */
-export type LROsPutAsyncNoRetrySucceededResponse = LROsPutAsyncNoRetrySucceededHeaders &
+export type LROsPutAsyncNoRetrySucceededResponse = LrosPutasyncnoretrysucceededHeaders &
   Product & {
     /**
      * The underlying HTTP response.
@@ -884,7 +884,7 @@ export type LROsPutAsyncNoRetrySucceededResponse = LROsPutAsyncNoRetrySucceededH
       /**
        * The parsed HTTP response headers.
        */
-      parsedHeaders: LROsPutAsyncNoRetrySucceededHeaders;
+      parsedHeaders: LrosPutasyncnoretrysucceededHeaders;
     };
   };
 
@@ -902,7 +902,7 @@ export interface LROsPutAsyncRetryFailedOptionalParams
 /**
  * Contains response data for the putAsyncRetryFailed operation.
  */
-export type LROsPutAsyncRetryFailedResponse = LROsPutAsyncRetryFailedHeaders &
+export type LROsPutAsyncRetryFailedResponse = LrosPutasyncretryfailedHeaders &
   Product & {
     /**
      * The underlying HTTP response.
@@ -920,7 +920,7 @@ export type LROsPutAsyncRetryFailedResponse = LROsPutAsyncRetryFailedHeaders &
       /**
        * The parsed HTTP response headers.
        */
-      parsedHeaders: LROsPutAsyncRetryFailedHeaders;
+      parsedHeaders: LrosPutasyncretryfailedHeaders;
     };
   };
 
@@ -938,7 +938,7 @@ export interface LROsPutAsyncNoRetrycanceledOptionalParams
 /**
  * Contains response data for the putAsyncNoRetrycanceled operation.
  */
-export type LROsPutAsyncNoRetrycanceledResponse = LROsPutAsyncNoRetrycanceledHeaders &
+export type LROsPutAsyncNoRetrycanceledResponse = LrosPutasyncnoretrycanceledHeaders &
   Product & {
     /**
      * The underlying HTTP response.
@@ -956,7 +956,7 @@ export type LROsPutAsyncNoRetrycanceledResponse = LROsPutAsyncNoRetrycanceledHea
       /**
        * The parsed HTTP response headers.
        */
-      parsedHeaders: LROsPutAsyncNoRetrycanceledHeaders;
+      parsedHeaders: LrosPutasyncnoretrycanceledHeaders;
     };
   };
 
@@ -974,7 +974,7 @@ export interface LROsPutAsyncNoHeaderInRetryOptionalParams
 /**
  * Contains response data for the putAsyncNoHeaderInRetry operation.
  */
-export type LROsPutAsyncNoHeaderInRetryResponse = LROsPutAsyncNoHeaderInRetryHeaders &
+export type LROsPutAsyncNoHeaderInRetryResponse = LrosPutasyncnoheaderinretryHeaders &
   Product & {
     /**
      * The underlying HTTP response.
@@ -992,7 +992,7 @@ export type LROsPutAsyncNoHeaderInRetryResponse = LROsPutAsyncNoHeaderInRetryHea
       /**
        * The parsed HTTP response headers.
        */
-      parsedHeaders: LROsPutAsyncNoHeaderInRetryHeaders;
+      parsedHeaders: LrosPutasyncnoheaderinretryHeaders;
     };
   };
 
@@ -1223,7 +1223,7 @@ export type LROsDelete202NoRetry204Response = Product & {
 /**
  * Contains response data for the deleteAsyncRetrySucceeded operation.
  */
-export type LROsDeleteAsyncRetrySucceededResponse = LROsDeleteAsyncRetrySucceededHeaders & {
+export type LROsDeleteAsyncRetrySucceededResponse = LrosDeleteasyncretrysucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -1231,14 +1231,14 @@ export type LROsDeleteAsyncRetrySucceededResponse = LROsDeleteAsyncRetrySucceede
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LROsDeleteAsyncRetrySucceededHeaders;
+    parsedHeaders: LrosDeleteasyncretrysucceededHeaders;
   };
 };
 
 /**
  * Contains response data for the deleteAsyncNoRetrySucceeded operation.
  */
-export type LROsDeleteAsyncNoRetrySucceededResponse = LROsDeleteAsyncNoRetrySucceededHeaders & {
+export type LROsDeleteAsyncNoRetrySucceededResponse = LrosDeleteasyncnoretrysucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -1246,14 +1246,14 @@ export type LROsDeleteAsyncNoRetrySucceededResponse = LROsDeleteAsyncNoRetrySucc
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LROsDeleteAsyncNoRetrySucceededHeaders;
+    parsedHeaders: LrosDeleteasyncnoretrysucceededHeaders;
   };
 };
 
 /**
  * Contains response data for the deleteAsyncRetryFailed operation.
  */
-export type LROsDeleteAsyncRetryFailedResponse = LROsDeleteAsyncRetryFailedHeaders & {
+export type LROsDeleteAsyncRetryFailedResponse = LrosDeleteasyncretryfailedHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -1261,14 +1261,14 @@ export type LROsDeleteAsyncRetryFailedResponse = LROsDeleteAsyncRetryFailedHeade
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LROsDeleteAsyncRetryFailedHeaders;
+    parsedHeaders: LrosDeleteasyncretryfailedHeaders;
   };
 };
 
 /**
  * Contains response data for the deleteAsyncRetrycanceled operation.
  */
-export type LROsDeleteAsyncRetrycanceledResponse = LROsDeleteAsyncRetrycanceledHeaders & {
+export type LROsDeleteAsyncRetrycanceledResponse = LrosDeleteasyncretrycanceledHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -1276,7 +1276,7 @@ export type LROsDeleteAsyncRetrycanceledResponse = LROsDeleteAsyncRetrycanceledH
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LROsDeleteAsyncRetrycanceledHeaders;
+    parsedHeaders: LrosDeleteasyncretrycanceledHeaders;
   };
 };
 
@@ -1314,7 +1314,7 @@ export interface LROsPost202Retry200OptionalParams
 /**
  * Contains response data for the post202Retry200 operation.
  */
-export type LROsPost202Retry200Response = LROsPost202Retry200Headers & {
+export type LROsPost202Retry200Response = LrosPost202retry200Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1322,7 +1322,7 @@ export type LROsPost202Retry200Response = LROsPost202Retry200Headers & {
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LROsPost202Retry200Headers;
+    parsedHeaders: LrosPost202retry200Headers;
   };
 };
 
@@ -1340,7 +1340,7 @@ export interface LROsPost202NoRetry204OptionalParams
 /**
  * Contains response data for the post202NoRetry204 operation.
  */
-export type LROsPost202NoRetry204Response = LROsPost202NoRetry204Headers &
+export type LROsPost202NoRetry204Response = LrosPost202noretry204Headers &
   Product & {
     /**
      * The underlying HTTP response.
@@ -1358,7 +1358,7 @@ export type LROsPost202NoRetry204Response = LROsPost202NoRetry204Headers &
       /**
        * The parsed HTTP response headers.
        */
-      parsedHeaders: LROsPost202NoRetry204Headers;
+      parsedHeaders: LrosPost202noretry204Headers;
     };
   };
 
@@ -1498,7 +1498,7 @@ export interface LROsPostAsyncRetryFailedOptionalParams
 /**
  * Contains response data for the postAsyncRetryFailed operation.
  */
-export type LROsPostAsyncRetryFailedResponse = LROsPostAsyncRetryFailedHeaders & {
+export type LROsPostAsyncRetryFailedResponse = LrosPostasyncretryfailedHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -1506,7 +1506,7 @@ export type LROsPostAsyncRetryFailedResponse = LROsPostAsyncRetryFailedHeaders &
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LROsPostAsyncRetryFailedHeaders;
+    parsedHeaders: LrosPostasyncretryfailedHeaders;
   };
 };
 
@@ -1524,7 +1524,7 @@ export interface LROsPostAsyncRetrycanceledOptionalParams
 /**
  * Contains response data for the postAsyncRetrycanceled operation.
  */
-export type LROsPostAsyncRetrycanceledResponse = LROsPostAsyncRetrycanceledHeaders & {
+export type LROsPostAsyncRetrycanceledResponse = LrosPostasyncretrycanceledHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -1532,7 +1532,7 @@ export type LROsPostAsyncRetrycanceledResponse = LROsPostAsyncRetrycanceledHeade
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LROsPostAsyncRetrycanceledHeaders;
+    parsedHeaders: LrosPostasyncretrycanceledHeaders;
   };
 };
 
@@ -1581,7 +1581,7 @@ export interface LRORetrysPutAsyncRelativeRetrySucceededOptionalParams
 /**
  * Contains response data for the putAsyncRelativeRetrySucceeded operation.
  */
-export type LRORetrysPutAsyncRelativeRetrySucceededResponse = LRORetrysPutAsyncRelativeRetrySucceededHeaders &
+export type LRORetrysPutAsyncRelativeRetrySucceededResponse = LroretrysPutasyncrelativeretrysucceededHeaders &
   Product & {
     /**
      * The underlying HTTP response.
@@ -1599,7 +1599,7 @@ export type LRORetrysPutAsyncRelativeRetrySucceededResponse = LRORetrysPutAsyncR
       /**
        * The parsed HTTP response headers.
        */
-      parsedHeaders: LRORetrysPutAsyncRelativeRetrySucceededHeaders;
+      parsedHeaders: LroretrysPutasyncrelativeretrysucceededHeaders;
     };
   };
 
@@ -1626,7 +1626,7 @@ export type LRORetrysDeleteProvisioning202Accepted200SucceededResponse = Product
 /**
  * Contains response data for the delete202Retry200 operation.
  */
-export type LRORetrysDelete202Retry200Response = LRORetrysDelete202Retry200Headers & {
+export type LRORetrysDelete202Retry200Response = LroretrysDelete202retry200Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1634,14 +1634,14 @@ export type LRORetrysDelete202Retry200Response = LRORetrysDelete202Retry200Heade
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LRORetrysDelete202Retry200Headers;
+    parsedHeaders: LroretrysDelete202retry200Headers;
   };
 };
 
 /**
  * Contains response data for the deleteAsyncRelativeRetrySucceeded operation.
  */
-export type LRORetrysDeleteAsyncRelativeRetrySucceededResponse = LRORetrysDeleteAsyncRelativeRetrySucceededHeaders & {
+export type LRORetrysDeleteAsyncRelativeRetrySucceededResponse = LroretrysDeleteasyncrelativeretrysucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -1649,7 +1649,7 @@ export type LRORetrysDeleteAsyncRelativeRetrySucceededResponse = LRORetrysDelete
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LRORetrysDeleteAsyncRelativeRetrySucceededHeaders;
+    parsedHeaders: LroretrysDeleteasyncrelativeretrysucceededHeaders;
   };
 };
 
@@ -1667,7 +1667,7 @@ export interface LRORetrysPost202Retry200OptionalParams
 /**
  * Contains response data for the post202Retry200 operation.
  */
-export type LRORetrysPost202Retry200Response = LRORetrysPost202Retry200Headers & {
+export type LRORetrysPost202Retry200Response = LroretrysPost202retry200Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1675,7 +1675,7 @@ export type LRORetrysPost202Retry200Response = LRORetrysPost202Retry200Headers &
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LRORetrysPost202Retry200Headers;
+    parsedHeaders: LroretrysPost202retry200Headers;
   };
 };
 
@@ -1693,7 +1693,7 @@ export interface LRORetrysPostAsyncRelativeRetrySucceededOptionalParams
 /**
  * Contains response data for the postAsyncRelativeRetrySucceeded operation.
  */
-export type LRORetrysPostAsyncRelativeRetrySucceededResponse = LRORetrysPostAsyncRelativeRetrySucceededHeaders & {
+export type LRORetrysPostAsyncRelativeRetrySucceededResponse = LroretrysPostasyncrelativeretrysucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -1701,7 +1701,7 @@ export type LRORetrysPostAsyncRelativeRetrySucceededResponse = LRORetrysPostAsyn
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LRORetrysPostAsyncRelativeRetrySucceededHeaders;
+    parsedHeaders: LroretrysPostasyncrelativeretrysucceededHeaders;
   };
 };
 
@@ -1812,7 +1812,7 @@ export interface LrosaDsPutAsyncRelativeRetry400OptionalParams
 /**
  * Contains response data for the putAsyncRelativeRetry400 operation.
  */
-export type LrosaDsPutAsyncRelativeRetry400Response = LrosaDsPutAsyncRelativeRetry400Headers &
+export type LrosaDsPutAsyncRelativeRetry400Response = LrosadsPutasyncrelativeretry400Headers &
   Product & {
     /**
      * The underlying HTTP response.
@@ -1830,14 +1830,14 @@ export type LrosaDsPutAsyncRelativeRetry400Response = LrosaDsPutAsyncRelativeRet
       /**
        * The parsed HTTP response headers.
        */
-      parsedHeaders: LrosaDsPutAsyncRelativeRetry400Headers;
+      parsedHeaders: LrosadsPutasyncrelativeretry400Headers;
     };
   };
 
 /**
  * Contains response data for the deleteNonRetry400 operation.
  */
-export type LrosaDsDeleteNonRetry400Response = LrosaDsDeleteNonRetry400Headers & {
+export type LrosaDsDeleteNonRetry400Response = LrosadsDeletenonretry400Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1845,14 +1845,14 @@ export type LrosaDsDeleteNonRetry400Response = LrosaDsDeleteNonRetry400Headers &
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LrosaDsDeleteNonRetry400Headers;
+    parsedHeaders: LrosadsDeletenonretry400Headers;
   };
 };
 
 /**
  * Contains response data for the delete202NonRetry400 operation.
  */
-export type LrosaDsDelete202NonRetry400Response = LrosaDsDelete202NonRetry400Headers & {
+export type LrosaDsDelete202NonRetry400Response = LrosadsDelete202nonretry400Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1860,14 +1860,14 @@ export type LrosaDsDelete202NonRetry400Response = LrosaDsDelete202NonRetry400Hea
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LrosaDsDelete202NonRetry400Headers;
+    parsedHeaders: LrosadsDelete202nonretry400Headers;
   };
 };
 
 /**
  * Contains response data for the deleteAsyncRelativeRetry400 operation.
  */
-export type LrosaDsDeleteAsyncRelativeRetry400Response = LrosaDsDeleteAsyncRelativeRetry400Headers & {
+export type LrosaDsDeleteAsyncRelativeRetry400Response = LrosadsDeleteasyncrelativeretry400Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1875,7 +1875,7 @@ export type LrosaDsDeleteAsyncRelativeRetry400Response = LrosaDsDeleteAsyncRelat
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LrosaDsDeleteAsyncRelativeRetry400Headers;
+    parsedHeaders: LrosadsDeleteasyncrelativeretry400Headers;
   };
 };
 
@@ -1893,7 +1893,7 @@ export interface LrosaDsPostNonRetry400OptionalParams
 /**
  * Contains response data for the postNonRetry400 operation.
  */
-export type LrosaDsPostNonRetry400Response = LrosaDsPostNonRetry400Headers & {
+export type LrosaDsPostNonRetry400Response = LrosadsPostnonretry400Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1901,7 +1901,7 @@ export type LrosaDsPostNonRetry400Response = LrosaDsPostNonRetry400Headers & {
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LrosaDsPostNonRetry400Headers;
+    parsedHeaders: LrosadsPostnonretry400Headers;
   };
 };
 
@@ -1919,7 +1919,7 @@ export interface LrosaDsPost202NonRetry400OptionalParams
 /**
  * Contains response data for the post202NonRetry400 operation.
  */
-export type LrosaDsPost202NonRetry400Response = LrosaDsPost202NonRetry400Headers & {
+export type LrosaDsPost202NonRetry400Response = LrosadsPost202nonretry400Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1927,7 +1927,7 @@ export type LrosaDsPost202NonRetry400Response = LrosaDsPost202NonRetry400Headers
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LrosaDsPost202NonRetry400Headers;
+    parsedHeaders: LrosadsPost202nonretry400Headers;
   };
 };
 
@@ -1945,7 +1945,7 @@ export interface LrosaDsPostAsyncRelativeRetry400OptionalParams
 /**
  * Contains response data for the postAsyncRelativeRetry400 operation.
  */
-export type LrosaDsPostAsyncRelativeRetry400Response = LrosaDsPostAsyncRelativeRetry400Headers & {
+export type LrosaDsPostAsyncRelativeRetry400Response = LrosadsPostasyncrelativeretry400Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -1953,7 +1953,7 @@ export type LrosaDsPostAsyncRelativeRetry400Response = LrosaDsPostAsyncRelativeR
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LrosaDsPostAsyncRelativeRetry400Headers;
+    parsedHeaders: LrosadsPostasyncrelativeretry400Headers;
   };
 };
 
@@ -2002,7 +2002,7 @@ export interface LrosaDsPutAsyncRelativeRetryNoStatusOptionalParams
 /**
  * Contains response data for the putAsyncRelativeRetryNoStatus operation.
  */
-export type LrosaDsPutAsyncRelativeRetryNoStatusResponse = LrosaDsPutAsyncRelativeRetryNoStatusHeaders &
+export type LrosaDsPutAsyncRelativeRetryNoStatusResponse = LrosadsPutasyncrelativeretrynostatusHeaders &
   Product & {
     /**
      * The underlying HTTP response.
@@ -2020,7 +2020,7 @@ export type LrosaDsPutAsyncRelativeRetryNoStatusResponse = LrosaDsPutAsyncRelati
       /**
        * The parsed HTTP response headers.
        */
-      parsedHeaders: LrosaDsPutAsyncRelativeRetryNoStatusHeaders;
+      parsedHeaders: LrosadsPutasyncrelativeretrynostatusHeaders;
     };
   };
 
@@ -2038,7 +2038,7 @@ export interface LrosaDsPutAsyncRelativeRetryNoStatusPayloadOptionalParams
 /**
  * Contains response data for the putAsyncRelativeRetryNoStatusPayload operation.
  */
-export type LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse = LrosaDsPutAsyncRelativeRetryNoStatusPayloadHeaders &
+export type LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse = LrosadsPutasyncrelativeretrynostatuspayloadHeaders &
   Product & {
     /**
      * The underlying HTTP response.
@@ -2056,14 +2056,14 @@ export type LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse = LrosaDsPutAsyn
       /**
        * The parsed HTTP response headers.
        */
-      parsedHeaders: LrosaDsPutAsyncRelativeRetryNoStatusPayloadHeaders;
+      parsedHeaders: LrosadsPutasyncrelativeretrynostatuspayloadHeaders;
     };
   };
 
 /**
  * Contains response data for the deleteAsyncRelativeRetryNoStatus operation.
  */
-export type LrosaDsDeleteAsyncRelativeRetryNoStatusResponse = LrosaDsDeleteAsyncRelativeRetryNoStatusHeaders & {
+export type LrosaDsDeleteAsyncRelativeRetryNoStatusResponse = LrosadsDeleteasyncrelativeretrynostatusHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -2071,7 +2071,7 @@ export type LrosaDsDeleteAsyncRelativeRetryNoStatusResponse = LrosaDsDeleteAsync
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LrosaDsDeleteAsyncRelativeRetryNoStatusHeaders;
+    parsedHeaders: LrosadsDeleteasyncrelativeretrynostatusHeaders;
   };
 };
 
@@ -2089,7 +2089,7 @@ export interface LrosaDsPost202NoLocationOptionalParams
 /**
  * Contains response data for the post202NoLocation operation.
  */
-export type LrosaDsPost202NoLocationResponse = LrosaDsPost202NoLocationHeaders & {
+export type LrosaDsPost202NoLocationResponse = LrosadsPost202nolocationHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -2097,7 +2097,7 @@ export type LrosaDsPost202NoLocationResponse = LrosaDsPost202NoLocationHeaders &
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LrosaDsPost202NoLocationHeaders;
+    parsedHeaders: LrosadsPost202nolocationHeaders;
   };
 };
 
@@ -2115,7 +2115,7 @@ export interface LrosaDsPostAsyncRelativeRetryNoPayloadOptionalParams
 /**
  * Contains response data for the postAsyncRelativeRetryNoPayload operation.
  */
-export type LrosaDsPostAsyncRelativeRetryNoPayloadResponse = LrosaDsPostAsyncRelativeRetryNoPayloadHeaders & {
+export type LrosaDsPostAsyncRelativeRetryNoPayloadResponse = LrosadsPostasyncrelativeretrynopayloadHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -2123,7 +2123,7 @@ export type LrosaDsPostAsyncRelativeRetryNoPayloadResponse = LrosaDsPostAsyncRel
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LrosaDsPostAsyncRelativeRetryNoPayloadHeaders;
+    parsedHeaders: LrosadsPostasyncrelativeretrynopayloadHeaders;
   };
 };
 
@@ -2172,7 +2172,7 @@ export interface LrosaDsPutAsyncRelativeRetryInvalidHeaderOptionalParams
 /**
  * Contains response data for the putAsyncRelativeRetryInvalidHeader operation.
  */
-export type LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse = LrosaDsPutAsyncRelativeRetryInvalidHeaderHeaders &
+export type LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse = LrosadsPutasyncrelativeretryinvalidheaderHeaders &
   Product & {
     /**
      * The underlying HTTP response.
@@ -2190,7 +2190,7 @@ export type LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse = LrosaDsPutAsyncR
       /**
        * The parsed HTTP response headers.
        */
-      parsedHeaders: LrosaDsPutAsyncRelativeRetryInvalidHeaderHeaders;
+      parsedHeaders: LrosadsPutasyncrelativeretryinvalidheaderHeaders;
     };
   };
 
@@ -2208,7 +2208,7 @@ export interface LrosaDsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams
 /**
  * Contains response data for the putAsyncRelativeRetryInvalidJsonPolling operation.
  */
-export type LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsPutAsyncRelativeRetryInvalidJsonPollingHeaders &
+export type LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse = LrosadsPutasyncrelativeretryinvalidjsonpollingHeaders &
   Product & {
     /**
      * The underlying HTTP response.
@@ -2226,14 +2226,14 @@ export type LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsPutA
       /**
        * The parsed HTTP response headers.
        */
-      parsedHeaders: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingHeaders;
+      parsedHeaders: LrosadsPutasyncrelativeretryinvalidjsonpollingHeaders;
     };
   };
 
 /**
  * Contains response data for the delete202RetryInvalidHeader operation.
  */
-export type LrosaDsDelete202RetryInvalidHeaderResponse = LrosaDsDelete202RetryInvalidHeaderHeaders & {
+export type LrosaDsDelete202RetryInvalidHeaderResponse = LrosadsDelete202retryinvalidheaderHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -2241,14 +2241,14 @@ export type LrosaDsDelete202RetryInvalidHeaderResponse = LrosaDsDelete202RetryIn
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LrosaDsDelete202RetryInvalidHeaderHeaders;
+    parsedHeaders: LrosadsDelete202retryinvalidheaderHeaders;
   };
 };
 
 /**
  * Contains response data for the deleteAsyncRelativeRetryInvalidHeader operation.
  */
-export type LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse = LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders & {
+export type LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse = LrosadsDeleteasyncrelativeretryinvalidheaderHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -2256,14 +2256,14 @@ export type LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse = LrosaDsDelete
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders;
+    parsedHeaders: LrosadsDeleteasyncrelativeretryinvalidheaderHeaders;
   };
 };
 
 /**
  * Contains response data for the deleteAsyncRelativeRetryInvalidJsonPolling operation.
  */
-export type LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders & {
+export type LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse = LrosadsDeleteasyncrelativeretryinvalidjsonpollingHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -2271,7 +2271,7 @@ export type LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsD
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders;
+    parsedHeaders: LrosadsDeleteasyncrelativeretryinvalidjsonpollingHeaders;
   };
 };
 
@@ -2289,7 +2289,7 @@ export interface LrosaDsPost202RetryInvalidHeaderOptionalParams
 /**
  * Contains response data for the post202RetryInvalidHeader operation.
  */
-export type LrosaDsPost202RetryInvalidHeaderResponse = LrosaDsPost202RetryInvalidHeaderHeaders & {
+export type LrosaDsPost202RetryInvalidHeaderResponse = LrosadsPost202retryinvalidheaderHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -2297,7 +2297,7 @@ export type LrosaDsPost202RetryInvalidHeaderResponse = LrosaDsPost202RetryInvali
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LrosaDsPost202RetryInvalidHeaderHeaders;
+    parsedHeaders: LrosadsPost202retryinvalidheaderHeaders;
   };
 };
 
@@ -2315,7 +2315,7 @@ export interface LrosaDsPostAsyncRelativeRetryInvalidHeaderOptionalParams
 /**
  * Contains response data for the postAsyncRelativeRetryInvalidHeader operation.
  */
-export type LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse = LrosaDsPostAsyncRelativeRetryInvalidHeaderHeaders & {
+export type LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse = LrosadsPostasyncrelativeretryinvalidheaderHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -2323,7 +2323,7 @@ export type LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse = LrosaDsPostAsyn
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LrosaDsPostAsyncRelativeRetryInvalidHeaderHeaders;
+    parsedHeaders: LrosadsPostasyncrelativeretryinvalidheaderHeaders;
   };
 };
 
@@ -2341,7 +2341,7 @@ export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams
 /**
  * Contains response data for the postAsyncRelativeRetryInvalidJsonPolling operation.
  */
-export type LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders & {
+export type LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse = LrosadsPostasyncrelativeretryinvalidjsonpollingHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -2349,7 +2349,7 @@ export type LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsPos
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders;
+    parsedHeaders: LrosadsPostasyncrelativeretryinvalidjsonpollingHeaders;
   };
 };
 
@@ -2367,7 +2367,7 @@ export interface LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
 /**
  * Contains response data for the putAsyncRetrySucceeded operation.
  */
-export type LROsCustomHeaderPutAsyncRetrySucceededResponse = LROsCustomHeaderPutAsyncRetrySucceededHeaders &
+export type LROsCustomHeaderPutAsyncRetrySucceededResponse = LroscustomheaderPutasyncretrysucceededHeaders &
   Product & {
     /**
      * The underlying HTTP response.
@@ -2385,7 +2385,7 @@ export type LROsCustomHeaderPutAsyncRetrySucceededResponse = LROsCustomHeaderPut
       /**
        * The parsed HTTP response headers.
        */
-      parsedHeaders: LROsCustomHeaderPutAsyncRetrySucceededHeaders;
+      parsedHeaders: LroscustomheaderPutasyncretrysucceededHeaders;
     };
   };
 
@@ -2434,7 +2434,7 @@ export interface LROsCustomHeaderPost202Retry200OptionalParams
 /**
  * Contains response data for the post202Retry200 operation.
  */
-export type LROsCustomHeaderPost202Retry200Response = LROsCustomHeaderPost202Retry200Headers & {
+export type LROsCustomHeaderPost202Retry200Response = LroscustomheaderPost202retry200Headers & {
   /**
    * The underlying HTTP response.
    */
@@ -2442,7 +2442,7 @@ export type LROsCustomHeaderPost202Retry200Response = LROsCustomHeaderPost202Ret
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LROsCustomHeaderPost202Retry200Headers;
+    parsedHeaders: LroscustomheaderPost202retry200Headers;
   };
 };
 
@@ -2460,7 +2460,7 @@ export interface LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
 /**
  * Contains response data for the postAsyncRetrySucceeded operation.
  */
-export type LROsCustomHeaderPostAsyncRetrySucceededResponse = LROsCustomHeaderPostAsyncRetrySucceededHeaders & {
+export type LROsCustomHeaderPostAsyncRetrySucceededResponse = LroscustomheaderPostasyncretrysucceededHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -2468,7 +2468,7 @@ export type LROsCustomHeaderPostAsyncRetrySucceededResponse = LROsCustomHeaderPo
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: LROsCustomHeaderPostAsyncRetrySucceededHeaders;
+    parsedHeaders: LroscustomheaderPostasyncretrysucceededHeaders;
   };
 };
 

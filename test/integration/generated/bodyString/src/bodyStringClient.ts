@@ -18,12 +18,12 @@ class BodyStringClient extends BodyStringClientContext {
    */
   constructor(options?: Models.BodyStringClientOptionalParams) {
     super(options);
-    this.string = new operations.String(this);
-    this.enum = new operations.Enum(this);
+    this.stringOperations = new operations.StringOperations(this);
+    this.enumOperations = new operations.EnumOperations(this);
   }
 
-  string: operations.String;
-  enum: operations.Enum;
+  stringOperations: operations.StringOperations;
+  enumOperations: operations.EnumOperations;
 }
 
 // Operation Specifications

@@ -4,7 +4,70 @@ import { Operation, OperationGroup } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "./languageHelpers";
 import { TypeDetails, PropertyKind } from "../models/modelDetails";
 
-const ReservedModelNames = ["Error", "Date"];
+const ReservedModelNames = [
+  "error",
+  "date",
+  "break",
+  "as",
+  "any",
+  "case",
+  "implements",
+  "boolean",
+  "catch",
+  "interface",
+  "constructor",
+  "class",
+  "let",
+  "declare",
+  "const",
+  "package",
+  "get",
+  "continue",
+  "private",
+  "module",
+  "debugger",
+  "protected",
+  "require",
+  "default",
+  "public",
+  "number",
+  "delete",
+  "static",
+  "set",
+  "do",
+  "yield",
+  "string",
+  "else",
+  "symbol",
+  "enum",
+  "type",
+  "export",
+  "from",
+  "extends",
+  "of",
+  "false",
+  "finally",
+  "for",
+  "function",
+  "if",
+  "import",
+  "in",
+  "instanceof",
+  "new",
+  "null",
+  "return",
+  "super",
+  "switch",
+  "this",
+  "throw",
+  "true",
+  "try",
+  "typeof",
+  "var",
+  "void",
+  "while",
+  "with"
+];
 
 export enum CasingConvention {
   Pascal,
@@ -15,11 +78,36 @@ export enum NameType {
   Class,
   File,
   Interface,
-  Property
+  Property,
+  Parameter,
+  Operation,
+  OperationGroup
 }
 
-export function guardReservedNames(name: string): string {
-  return ReservedModelNames.indexOf(name) > -1 ? `${name}Model` : name;
+export function guardReservedNames(name: string, nameType?: NameType): string {
+  const suffix = getSuffix(nameType);
+  return ReservedModelNames.indexOf(name.toLowerCase()) > -1
+    ? `${name}${suffix}`
+    : name;
+}
+
+function getSuffix(nameType?: NameType) {
+  switch (nameType) {
+    case NameType.File:
+      return "";
+    case NameType.Operation:
+      return "Operation";
+    case NameType.OperationGroup:
+      return "Operations";
+    case NameType.Property:
+      return "Property";
+    case NameType.Parameter:
+      return "Param";
+    case NameType.Class:
+    case NameType.Interface:
+    default:
+      return "Model";
+  }
 }
 
 /**
@@ -36,7 +124,11 @@ export function normalizeTypeName({ kind, typeName }: TypeDetails) {
   return typeName;
 }
 
-export function normalizeName(name: string, nameType: NameType): string {
+export function normalizeName(
+  name: string,
+  nameType: NameType,
+  shouldGuard?: boolean
+): string {
   const casingConvention = getCasingConvention(nameType);
 
   let parts = getNameParts(name);
@@ -47,7 +139,7 @@ export function normalizeName(name: string, nameType: NameType): string {
     .join("");
 
   const normalized = `${normalizedFirstPart}${normalizedParts}`;
-  return guardReservedNames(normalized);
+  return shouldGuard ? guardReservedNames(normalized, nameType) : normalized;
 }
 
 export function getModelsName(title: string): string {
@@ -67,6 +159,9 @@ function getCasingConvention(nameType: NameType) {
       return CasingConvention.Pascal;
     case NameType.File:
     case NameType.Property:
+    case NameType.Operation:
+    case NameType.OperationGroup:
+    case NameType.Parameter:
       return CasingConvention.Camel;
   }
 }
@@ -102,12 +197,12 @@ export function getOperationFullName(
 ) {
   const groupName = normalizeName(
     getLanguageMetadata(operationGroup.language).name || clientName,
-    NameType.Property
+    NameType.OperationGroup
   );
   const operationName = normalizeName(
     getLanguageMetadata(operation.language).name,
-    NameType.Property
+    NameType.Operation
   );
 
-  return `${groupName}_${operationName}`;
+  return `${groupName}_${operationName}`.toLowerCase();
 }

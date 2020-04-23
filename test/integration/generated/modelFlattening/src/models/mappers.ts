@@ -15,7 +15,7 @@ export const Resource: coreHttp.CompositeMapper = {
     className: "Resource",
     modelProperties: {
       id: { type: { name: "String" }, serializedName: "id", readOnly: true },
-      type: {
+      typeProperty: {
         type: { name: "String" },
         serializedName: "type",
         readOnly: true

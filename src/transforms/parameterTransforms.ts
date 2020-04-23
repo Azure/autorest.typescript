@@ -13,7 +13,11 @@ import {
 } from "@azure-tools/codemodel";
 import { QueryCollectionFormat } from "@azure/core-http";
 import { getLanguageMetadata } from "../utils/languageHelpers";
-import { normalizeName, NameType } from "../utils/nameUtils";
+import {
+  normalizeName,
+  NameType,
+  getOperationFullName
+} from "../utils/nameUtils";
 import { ParameterDetails } from "../models/parameterDetails";
 import {
   isSchemaType,
@@ -111,13 +115,11 @@ export function transformParameters(
 const extractOperationParameters = (codeModel: CodeModel) =>
   codeModel.operationGroups.reduce<OperationParameterDetails[]>((acc, og) => {
     const clientName = getLanguageMetadata(codeModel.language).name;
-    const groupName = getLanguageMetadata(og.language).name || clientName;
     return [
       ...acc,
       ...og.operations.reduce<OperationParameterDetails[]>(
         (operations, operation) => {
-          const opName = getLanguageMetadata(operation.language).name;
-          const operationName = `${groupName}_${opName}`.toLowerCase();
+          const operationName = getOperationFullName(og, operation, clientName);
 
           // Look for request in old 'request' property if new 'requests' doesn't exist
           const requests = operation.requests;
@@ -200,7 +202,11 @@ export function populateOperationParameters(
     return;
   }
 
-  const name = normalizeName(parameterName, NameType.Property);
+  const name = normalizeName(
+    parameterName,
+    NameType.Parameter,
+    true /** shouldGuard */
+  );
   const serializedName =
     getLanguageMetadata(parameter.language).serializedName || name;
   const sameNameParams = operationParameters.filter(p => p.name === name);
@@ -275,12 +281,19 @@ function getIsGlobal(parameter: Parameter) {
 function getParameterPath(parameter: Parameter) {
   const metadata = getLanguageMetadata(parameter.language);
   // ParameterPath has to include the name we used for the parameter, not the serializedName
-  const name = normalizeName(metadata.name, NameType.Property);
+  const name = normalizeName(
+    metadata.name,
+    NameType.Parameter,
+    true /** shouldGuard */
+  );
 
   if (parameter.groupedBy) {
     const groupedByName = getLanguageMetadata(parameter.groupedBy.language)
       .name;
-    return [normalizeName(groupedByName, NameType.Property), name];
+    return [
+      normalizeName(groupedByName, NameType.Parameter, true /** shouldGuard */),
+      name
+    ];
   }
 
   return isClientImplementation(parameter) || parameter.required
@@ -383,7 +396,11 @@ export function disambiguateParameter(
     return;
   } else {
     // Since there is already a parameter with the same name, we need to ad a sufix
-    const name = normalizeName(serializedName, NameType.Property);
+    const name = normalizeName(
+      serializedName,
+      NameType.Parameter,
+      true /** shouldGuard */
+    );
     const nameRef = `${name}${sameNameParams.length}`;
     const collectionFormat = getCollectionFormat(parameter);
     let description =

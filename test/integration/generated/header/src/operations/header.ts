@@ -610,7 +610,7 @@ const responseExistingKeyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderResponseExistingKeyHeaders
+      headersMapper: Mappers.HeaderResponseexistingkeyHeaders
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -637,7 +637,7 @@ const responseProtectedKeyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderResponseProtectedKeyHeaders
+      headersMapper: Mappers.HeaderResponseprotectedkeyHeaders
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -664,7 +664,7 @@ const responseIntegerOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderResponseIntegerHeaders
+      headersMapper: Mappers.HeaderResponseintegerHeaders
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -692,7 +692,7 @@ const responseLongOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderResponseLongHeaders
+      headersMapper: Mappers.HeaderResponselongHeaders
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -720,7 +720,7 @@ const responseFloatOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderResponseFloatHeaders
+      headersMapper: Mappers.HeaderResponsefloatHeaders
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -748,7 +748,7 @@ const responseDoubleOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderResponseDoubleHeaders
+      headersMapper: Mappers.HeaderResponsedoubleHeaders
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -776,7 +776,7 @@ const responseBoolOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderResponseBoolHeaders
+      headersMapper: Mappers.HeaderResponseboolHeaders
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -804,7 +804,7 @@ const responseStringOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderResponseStringHeaders
+      headersMapper: Mappers.HeaderResponsestringHeaders
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -832,7 +832,7 @@ const responseDateOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderResponseDateHeaders
+      headersMapper: Mappers.HeaderResponsedateHeaders
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -860,7 +860,7 @@ const responseDatetimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderResponseDatetimeHeaders
+      headersMapper: Mappers.HeaderResponsedatetimeHeaders
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -888,7 +888,7 @@ const responseDatetimeRfc1123OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderResponseDatetimeRfc1123Headers
+      headersMapper: Mappers.HeaderResponsedatetimerfc1123Headers
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -916,7 +916,7 @@ const responseDurationOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderResponseDurationHeaders
+      headersMapper: Mappers.HeaderResponsedurationHeaders
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -944,7 +944,7 @@ const responseByteOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderResponseByteHeaders
+      headersMapper: Mappers.HeaderResponsebyteHeaders
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -972,7 +972,7 @@ const responseEnumOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderResponseEnumHeaders
+      headersMapper: Mappers.HeaderResponseenumHeaders
     },
     default: {
       bodyMapper: Mappers.ErrorModel

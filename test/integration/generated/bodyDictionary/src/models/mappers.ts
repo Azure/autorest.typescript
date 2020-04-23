@@ -27,7 +27,7 @@ export const Widget: coreHttp.CompositeMapper = {
     className: "Widget",
     modelProperties: {
       integer: { type: { name: "Number" }, serializedName: "integer" },
-      string: { type: { name: "String" }, serializedName: "string" }
+      stringProperty: { type: { name: "String" }, serializedName: "string" }
     }
   }
 };

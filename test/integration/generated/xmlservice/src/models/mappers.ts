@@ -84,7 +84,7 @@ export const Slideshow: coreHttp.CompositeMapper = {
         xmlName: "title",
         xmlIsAttribute: true
       },
-      date: {
+      dateProperty: {
         type: { name: "String" },
         serializedName: "date",
         xmlName: "date",
@@ -116,7 +116,7 @@ export const Slide: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Slide",
     modelProperties: {
-      type: {
+      typeProperty: {
         type: { name: "String" },
         serializedName: "type",
         xmlName: "type",
@@ -413,7 +413,7 @@ export const Logging: coreHttp.CompositeMapper = {
         required: true,
         xmlName: "Version"
       },
-      delete: {
+      deleteProperty: {
         type: { name: "Boolean" },
         serializedName: "Delete",
         required: true,
@@ -919,11 +919,11 @@ export const JsonOutput: coreHttp.CompositeMapper = {
   }
 };
 
-export const XmlGetHeadersHeaders: coreHttp.CompositeMapper = {
-  serializedName: "xml_getHeadersHeaders",
+export const XmlGetheadersHeaders: coreHttp.CompositeMapper = {
+  serializedName: "xml_getheadersHeaders",
   type: {
     name: "Composite",
-    className: "XmlGetHeadersHeaders",
+    className: "XmlGetheadersHeaders",
     modelProperties: {
       customHeader: {
         type: { name: "String" },
