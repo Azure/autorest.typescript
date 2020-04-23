@@ -26,7 +26,7 @@ jobs:
         workingDirectory: node_modules/@microsoft.azure/autorest.testserver
         displayName: "Upload Coverage Report"
 
-  - job: Smoke-Test-1
+  - job: Smoke_Test_1
     pool:
       vmImage: "ubuntu-latest"
 
