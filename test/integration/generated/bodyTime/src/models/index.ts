@@ -14,7 +14,7 @@ export interface ErrorModel {
 }
 
 /**
- * Contains response data for the getOperation operation.
+ * Contains response data for the get operation.
  */
 export type TimeGetModelResponse = {
   /**

@@ -919,11 +919,11 @@ export const JsonOutput: coreHttp.CompositeMapper = {
   }
 };
 
-export const XmlGetheadersHeaders: coreHttp.CompositeMapper = {
-  serializedName: "xml_getheadersHeaders",
+export const XmlGetHeadersHeaders: coreHttp.CompositeMapper = {
+  serializedName: "xml_getHeadersHeaders",
   type: {
     name: "Composite",
-    className: "XmlGetheadersHeaders",
+    className: "XmlGetHeadersHeaders",
     modelProperties: {
       customHeader: {
         type: { name: "String" },

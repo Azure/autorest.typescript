@@ -14,9 +14,7 @@ describe("Integration tests for BodyInteger", () => {
   });
 
   it("should put big double", async () => {
-    const result = await testClient.numberOperations.putBigDouble(
-      2.5976931e101
-    );
+    const result = await testClient.numberOperations.putBigDouble(2.5976931e101);
     expect(result._response.status).to.equal(200);
   });
 
@@ -31,16 +29,12 @@ describe("Integration tests for BodyInteger", () => {
   });
 
   it("should put small float", async () => {
-    const result = await testClient.numberOperations.putSmallFloat(
-      3.402823e-20
-    );
+    const result = await testClient.numberOperations.putSmallFloat(3.402823e-20);
     expect(result._response.status).to.equal(200);
   });
 
   it("should put small double values", async () => {
-    const result = await testClient.numberOperations.putSmallDouble(
-      2.5976931e-101
-    );
+    const result = await testClient.numberOperations.putSmallDouble(2.5976931e-101);
     expect(result._response.status).to.equal(200);
   });
 
@@ -65,16 +59,12 @@ describe("Integration tests for BodyInteger", () => {
   });
 
   it("should get big positive double value", async () => {
-    const {
-      body
-    } = await testClient.numberOperations.getBigDoublePositiveDecimal();
+    const { body } = await testClient.numberOperations.getBigDoublePositiveDecimal();
     expect(body).to.equal(99999999.99);
   });
 
   it("should get big negative double value", async () => {
-    const {
-      body
-    } = await testClient.numberOperations.getBigDoubleNegativeDecimal();
+    const { body } = await testClient.numberOperations.getBigDoubleNegativeDecimal();
     expect(body).to.equal(-99999999.99);
   });
 

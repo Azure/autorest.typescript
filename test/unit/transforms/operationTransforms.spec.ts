@@ -206,15 +206,15 @@ describe("OperationTransforms", () => {
         );
 
         const mockOperation = getOperation(undefined, [parameter]);
-        const operationDetails = transformOperation(
+        const operationDetails = await transformOperation(
           mockOperation,
           { language: { default: { name: "MockOperationGroup" } } } as any,
           "ClientName"
         );
-        const operationSpec = transformOperationSpec(await operationDetails, [
+        const operationSpec = transformOperationSpec(operationDetails, [
           {
             nameRef: "MockOperation",
-            operationsIn: ["mockoperationgroup_getnull"],
+            operationsIn: ["mockOperationGroup_getNull"],
             parameterPath: "mockOperation",
             isGlobal: false,
             mapper: "",

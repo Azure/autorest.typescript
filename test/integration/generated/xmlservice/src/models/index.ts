@@ -372,9 +372,9 @@ export interface JsonOutput {
 }
 
 /**
- * Defines headers for xml_getheaders operation.
+ * Defines headers for xml_getHeaders operation.
  */
-export interface XmlGetheadersHeaders {
+export interface XmlGetHeadersHeaders {
   customHeader?: string;
 }
 
@@ -511,7 +511,7 @@ export type XmlGetWrappedListsResponse = AppleBarrel & {
 /**
  * Contains response data for the getHeaders operation.
  */
-export type XmlGetHeadersResponse = XmlGetheadersHeaders & {
+export type XmlGetHeadersResponse = XmlGetHeadersHeaders & {
   /**
    * The underlying HTTP response.
    */
@@ -519,7 +519,7 @@ export type XmlGetHeadersResponse = XmlGetheadersHeaders & {
     /**
      * The parsed HTTP response headers.
      */
-    parsedHeaders: XmlGetheadersHeaders;
+    parsedHeaders: XmlGetHeadersHeaders;
   };
 };
 

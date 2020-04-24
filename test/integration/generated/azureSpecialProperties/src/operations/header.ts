@@ -98,7 +98,7 @@ const customNamedRequestIdOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderCustomnamedrequestidHeaders
+      headersMapper: Mappers.HeaderCustomNamedRequestIdHeaders
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -113,7 +113,7 @@ const customNamedRequestIdParamGroupingOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderCustomnamedrequestidparamgroupingHeaders
+      headersMapper: Mappers.HeaderCustomNamedRequestIdParamGroupingHeaders
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -128,7 +128,7 @@ const customNamedRequestIdHeadOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "HEAD",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderCustomnamedrequestidheadHeaders
+      headersMapper: Mappers.HeaderCustomNamedRequestIdHeadHeaders
     },
     404: {},
     default: {

@@ -197,19 +197,19 @@ const putAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LroscustomheaderPutasyncretrysucceededHeaders
+      headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
     },
     201: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LroscustomheaderPutasyncretrysucceededHeaders
+      headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
     },
     202: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LroscustomheaderPutasyncretrysucceededHeaders
+      headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
     },
     204: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LroscustomheaderPutasyncretrysucceededHeaders
+      headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
@@ -247,16 +247,16 @@ const post202Retry200OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.LroscustomheaderPost202retry200Headers
+      headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
     },
     201: {
-      headersMapper: Mappers.LroscustomheaderPost202retry200Headers
+      headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
     },
     202: {
-      headersMapper: Mappers.LroscustomheaderPost202retry200Headers
+      headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
     },
     204: {
-      headersMapper: Mappers.LroscustomheaderPost202retry200Headers
+      headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
     },
     default: {
       bodyMapper: Mappers.CloudError
@@ -272,16 +272,16 @@ const postAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.LroscustomheaderPostasyncretrysucceededHeaders
+      headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
     },
     201: {
-      headersMapper: Mappers.LroscustomheaderPostasyncretrysucceededHeaders
+      headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
     },
     202: {
-      headersMapper: Mappers.LroscustomheaderPostasyncretrysucceededHeaders
+      headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
     },
     204: {
-      headersMapper: Mappers.LroscustomheaderPostasyncretrysucceededHeaders
+      headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError

@@ -18,7 +18,7 @@ describe("BodyTimeClient", () => {
 
   describe("#get", () => {
     it("returns time as a string", async () => {
-      const result = await client.time.getOperation();
+      const result = await client.time.get();
 
       assert.equal(result._response.status, 200, "Unexpected status code.");
       assert.deepEqual(result as RemoveResponse<TimeGetModelResponse>, {

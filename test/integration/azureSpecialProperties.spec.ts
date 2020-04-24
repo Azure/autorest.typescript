@@ -195,7 +195,7 @@ describe("AzureSpecialProperties", () => {
           }
         }
       };
-      let result = await client.xMsClientRequestId.getOperation(options);
+      let result = await client.xMsClientRequestId.get(options);
       assert.equal(result._response.status, 200);
       assert.equal(result._response.headers.get("x-ms-request-id"), "123");
     });
@@ -210,7 +210,7 @@ describe("AzureSpecialProperties", () => {
         }
       );
 
-      const result = await client.xMsClientRequestId.getOperation();
+      const result = await client.xMsClientRequestId.get();
       assert.equal(result._response.status, 200);
       assert.equal(result._response.headers.get("x-ms-request-id"), "123");
     });
@@ -226,7 +226,7 @@ describe("AzureSpecialProperties", () => {
       };
 
       try {
-        await client.xMsClientRequestId.getOperation(options);
+        await client.xMsClientRequestId.get(options);
       } catch (error) {
         const errorHeader = (error as RestError).response?.headers.get(
           "x-ms-request-id"

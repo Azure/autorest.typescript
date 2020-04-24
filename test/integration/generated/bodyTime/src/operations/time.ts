@@ -30,15 +30,13 @@ export class Time {
    * Get time value "11:34:56"
    * @param options The options parameters.
    */
-  getOperation(
-    options?: coreHttp.OperationOptions
-  ): Promise<TimeGetModelResponse> {
+  get(options?: coreHttp.OperationOptions): Promise<TimeGetModelResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
-      getOperationOperationSpec
+      getOperationSpec
     ) as Promise<TimeGetModelResponse>;
   }
 
@@ -66,7 +64,7 @@ export class Time {
 
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getOperationOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreHttp.OperationSpec = {
   path: "/time/get",
   httpMethod: "GET",
   responses: {

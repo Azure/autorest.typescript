@@ -20,154 +20,154 @@ export const ErrorModel: coreHttp.CompositeMapper = {
   }
 };
 
-export const HeaderResponseexistingkeyHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseexistingkeyHeaders",
+export const HeaderResponseExistingKeyHeaders: coreHttp.CompositeMapper = {
+  serializedName: "header_responseExistingKeyHeaders",
   type: {
     name: "Composite",
-    className: "HeaderResponseexistingkeyHeaders",
+    className: "HeaderResponseExistingKeyHeaders",
     modelProperties: {
       userAgent: { type: { name: "String" }, serializedName: "user-agent" }
     }
   }
 };
 
-export const HeaderResponseprotectedkeyHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseprotectedkeyHeaders",
+export const HeaderResponseProtectedKeyHeaders: coreHttp.CompositeMapper = {
+  serializedName: "header_responseProtectedKeyHeaders",
   type: {
     name: "Composite",
-    className: "HeaderResponseprotectedkeyHeaders",
+    className: "HeaderResponseProtectedKeyHeaders",
     modelProperties: {
       contentType: { type: { name: "String" }, serializedName: "content-type" }
     }
   }
 };
 
-export const HeaderResponseintegerHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseintegerHeaders",
+export const HeaderResponseIntegerHeaders: coreHttp.CompositeMapper = {
+  serializedName: "header_responseIntegerHeaders",
   type: {
     name: "Composite",
-    className: "HeaderResponseintegerHeaders",
+    className: "HeaderResponseIntegerHeaders",
     modelProperties: {
       value: { type: { name: "Number" }, serializedName: "value" }
     }
   }
 };
 
-export const HeaderResponselongHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responselongHeaders",
+export const HeaderResponseLongHeaders: coreHttp.CompositeMapper = {
+  serializedName: "header_responseLongHeaders",
   type: {
     name: "Composite",
-    className: "HeaderResponselongHeaders",
+    className: "HeaderResponseLongHeaders",
     modelProperties: {
       value: { type: { name: "Number" }, serializedName: "value" }
     }
   }
 };
 
-export const HeaderResponsefloatHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responsefloatHeaders",
+export const HeaderResponseFloatHeaders: coreHttp.CompositeMapper = {
+  serializedName: "header_responseFloatHeaders",
   type: {
     name: "Composite",
-    className: "HeaderResponsefloatHeaders",
+    className: "HeaderResponseFloatHeaders",
     modelProperties: {
       value: { type: { name: "Number" }, serializedName: "value" }
     }
   }
 };
 
-export const HeaderResponsedoubleHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responsedoubleHeaders",
+export const HeaderResponseDoubleHeaders: coreHttp.CompositeMapper = {
+  serializedName: "header_responseDoubleHeaders",
   type: {
     name: "Composite",
-    className: "HeaderResponsedoubleHeaders",
+    className: "HeaderResponseDoubleHeaders",
     modelProperties: {
       value: { type: { name: "Number" }, serializedName: "value" }
     }
   }
 };
 
-export const HeaderResponseboolHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseboolHeaders",
+export const HeaderResponseBoolHeaders: coreHttp.CompositeMapper = {
+  serializedName: "header_responseBoolHeaders",
   type: {
     name: "Composite",
-    className: "HeaderResponseboolHeaders",
+    className: "HeaderResponseBoolHeaders",
     modelProperties: {
       value: { type: { name: "Boolean" }, serializedName: "value" }
     }
   }
 };
 
-export const HeaderResponsestringHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responsestringHeaders",
+export const HeaderResponseStringHeaders: coreHttp.CompositeMapper = {
+  serializedName: "header_responseStringHeaders",
   type: {
     name: "Composite",
-    className: "HeaderResponsestringHeaders",
+    className: "HeaderResponseStringHeaders",
     modelProperties: {
       value: { type: { name: "String" }, serializedName: "value" }
     }
   }
 };
 
-export const HeaderResponsedateHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responsedateHeaders",
+export const HeaderResponseDateHeaders: coreHttp.CompositeMapper = {
+  serializedName: "header_responseDateHeaders",
   type: {
     name: "Composite",
-    className: "HeaderResponsedateHeaders",
+    className: "HeaderResponseDateHeaders",
     modelProperties: {
       value: { type: { name: "Date" }, serializedName: "value" }
     }
   }
 };
 
-export const HeaderResponsedatetimeHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responsedatetimeHeaders",
+export const HeaderResponseDatetimeHeaders: coreHttp.CompositeMapper = {
+  serializedName: "header_responseDatetimeHeaders",
   type: {
     name: "Composite",
-    className: "HeaderResponsedatetimeHeaders",
+    className: "HeaderResponseDatetimeHeaders",
     modelProperties: {
       value: { type: { name: "DateTime" }, serializedName: "value" }
     }
   }
 };
 
-export const HeaderResponsedatetimerfc1123Headers: coreHttp.CompositeMapper = {
-  serializedName: "header_responsedatetimerfc1123Headers",
+export const HeaderResponseDatetimeRfc1123Headers: coreHttp.CompositeMapper = {
+  serializedName: "header_responseDatetimeRfc1123Headers",
   type: {
     name: "Composite",
-    className: "HeaderResponsedatetimerfc1123Headers",
+    className: "HeaderResponseDatetimeRfc1123Headers",
     modelProperties: {
       value: { type: { name: "DateTimeRfc1123" }, serializedName: "value" }
     }
   }
 };
 
-export const HeaderResponsedurationHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responsedurationHeaders",
+export const HeaderResponseDurationHeaders: coreHttp.CompositeMapper = {
+  serializedName: "header_responseDurationHeaders",
   type: {
     name: "Composite",
-    className: "HeaderResponsedurationHeaders",
+    className: "HeaderResponseDurationHeaders",
     modelProperties: {
       value: { type: { name: "TimeSpan" }, serializedName: "value" }
     }
   }
 };
 
-export const HeaderResponsebyteHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responsebyteHeaders",
+export const HeaderResponseByteHeaders: coreHttp.CompositeMapper = {
+  serializedName: "header_responseByteHeaders",
   type: {
     name: "Composite",
-    className: "HeaderResponsebyteHeaders",
+    className: "HeaderResponseByteHeaders",
     modelProperties: {
       value: { type: { name: "ByteArray" }, serializedName: "value" }
     }
   }
 };
 
-export const HeaderResponseenumHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseenumHeaders",
+export const HeaderResponseEnumHeaders: coreHttp.CompositeMapper = {
+  serializedName: "header_responseEnumHeaders",
   type: {
     name: "Composite",
-    className: "HeaderResponseenumHeaders",
+    className: "HeaderResponseEnumHeaders",
     modelProperties: {
       value: {
         type: { name: "Enum", allowedValues: ["White", "black", "GREY"] },

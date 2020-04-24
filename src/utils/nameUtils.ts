@@ -94,9 +94,8 @@ export function guardReservedNames(name: string, nameType?: NameType): string {
 function getSuffix(nameType?: NameType) {
   switch (nameType) {
     case NameType.File:
-      return "";
     case NameType.Operation:
-      return "Operation";
+      return "";
     case NameType.OperationGroup:
       return "Operations";
     case NameType.Property:
@@ -204,5 +203,5 @@ export function getOperationFullName(
     NameType.Operation
   );
 
-  return `${groupName}_${operationName}`.toLowerCase();
+  return `${groupName}_${operationName}`;
 }
