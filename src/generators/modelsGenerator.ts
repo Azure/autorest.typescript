@@ -113,7 +113,9 @@ function writeOptionsParameter(
 
   const operationName = normalizeName(operation.name, NameType.Interface);
   const operationRequestMediaTypes = new Set<KnownMediaType>();
-  operation.requests.forEach(r => r.mediaType && operationRequestMediaTypes.add(r.mediaType));
+  operation.requests.forEach(
+    r => r.mediaType && operationRequestMediaTypes.add(r.mediaType)
+  );
   writeOptionalParameters(
     operationGroupName,
     operationName,
@@ -454,7 +456,7 @@ function writeOptionalParameters(
         properties: [
           ...optionalGroupDeclarations,
           ...optionalParams
-            .filter(p => p.targetMediaType === mediaType)
+            .filter(p => !p.targetMediaType || p.targetMediaType === mediaType)
             .map<PropertySignatureStructure>(p => ({
               name: p.name,
               hasQuestionToken: true,
