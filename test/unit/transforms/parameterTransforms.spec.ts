@@ -5,14 +5,12 @@ import {
   StringSchema,
   NumberSchema,
   SchemaType,
-  Languages,
   OperationGroup,
   Request,
   ParameterLocation
 } from "@azure-tools/codemodel";
 import { transformParameters } from "../../../src/transforms/parameterTransforms";
 import { ParameterDetails } from "../../../src/models/parameterDetails";
-import { EntityOptions } from "../../../src/transforms/mapperTransforms";
 import { ClientOptions } from "../../../src/models/clientDetails";
 describe("parameterTransforms", () => {
   const getCodeModelWithOneParam = (paramOptions?: {
@@ -173,8 +171,8 @@ describe("parameterTransforms", () => {
         p => p.nameRef === "mockParam1"
       )!;
 
-      assert.deepEqual(p1.operationsIn, ["operationGroup1_operation1"]);
-      assert.deepEqual(p2.operationsIn, ["operationGroup2_operation2"]);
+      assert.deepEqual(p1.operationsIn, ["OperationGroup1_operation1"]);
+      assert.deepEqual(p2.operationsIn, ["OperationGroup2_operation2"]);
       assert.equal(p1.parameter, param1);
       assert.equal(p2.parameter, param2);
     });
@@ -242,8 +240,8 @@ describe("parameterTransforms", () => {
       )!;
 
       assert.deepEqual(p1.operationsIn, [
-        "operationGroup1_operation1",
-        "operationGroup2_operation2"
+        "OperationGroup1_operation1",
+        "OperationGroup2_operation2"
       ]);
       assert.equal(p1.parameter, param1);
     });
@@ -314,8 +312,8 @@ describe("parameterTransforms", () => {
         p => p.nameRef === "mockParam2"
       )!;
 
-      assert.deepEqual(p1.operationsIn, ["operationGroup1_operation1"]);
-      assert.deepEqual(p2.operationsIn, ["operationGroup1_operation1"]);
+      assert.deepEqual(p1.operationsIn, ["OperationGroup1_operation1"]);
+      assert.deepEqual(p2.operationsIn, ["OperationGroup1_operation1"]);
 
       assert.equal(p1.parameter, param1);
       assert.equal(p2.parameter, param2);

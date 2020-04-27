@@ -154,7 +154,8 @@ function buildMapper(
   const serializedName =
     getDiscriminatorValue(schema) ||
     options.serializedName ||
-    getLanguageMetadata(schema.language).name;
+    // Fallback to name only for XML schemas since they need a name, otherwise don't
+    (options.hasXmlMetadata && getLanguageMetadata(schema.language).name);
 
   const arraySchema = schema as ArraySchema;
   arraySchema.elementType;
@@ -529,8 +530,7 @@ function transformConstantMapper(pipelineValue: PipelineValue): PipelineValue {
   }
   const serializedName =
     (options && options.serializedName) ||
-    getLanguageMetadata(schema.language).serializedName ||
-    getLanguageMetadata(schema.language).name;
+    getLanguageMetadata(schema.language).serializedName;
 
   const constantSchema = schema as ConstantSchema;
 

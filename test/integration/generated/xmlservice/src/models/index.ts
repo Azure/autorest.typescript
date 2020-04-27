@@ -61,7 +61,7 @@ export interface ComplexTypeWithMeta {
  */
 export interface Slideshow {
   title?: string;
-  dateProperty?: string;
+  date?: string;
   author?: string;
   slides?: Slide[];
 }
@@ -70,7 +70,7 @@ export interface Slideshow {
  * A slide in a slideshow
  */
 export interface Slide {
-  typeProperty?: string;
+  type?: string;
   title?: string;
   items?: string[];
 }
@@ -180,7 +180,7 @@ export interface Logging {
   /**
    * Indicates whether all delete requests should be logged.
    */
-  deleteProperty: boolean;
+  delete: boolean;
   /**
    * Indicates whether all read requests should be logged.
    */
@@ -372,7 +372,7 @@ export interface JsonOutput {
 }
 
 /**
- * Defines headers for xml_getHeaders operation.
+ * Defines headers for Xml_getHeaders operation.
  */
 export interface XmlGetHeadersHeaders {
   customHeader?: string;

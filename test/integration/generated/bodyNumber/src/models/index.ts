@@ -16,7 +16,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export type NumberOperationsGetNullResponse = {
+export type NumberGetNullResponse = {
   /**
    * The parsed response body.
    */
@@ -41,7 +41,7 @@ export type NumberOperationsGetNullResponse = {
 /**
  * Contains response data for the getInvalidFloat operation.
  */
-export type NumberOperationsGetInvalidFloatResponse = {
+export type NumberGetInvalidFloatResponse = {
   /**
    * The parsed response body.
    */
@@ -66,7 +66,7 @@ export type NumberOperationsGetInvalidFloatResponse = {
 /**
  * Contains response data for the getInvalidDouble operation.
  */
-export type NumberOperationsGetInvalidDoubleResponse = {
+export type NumberGetInvalidDoubleResponse = {
   /**
    * The parsed response body.
    */
@@ -91,7 +91,7 @@ export type NumberOperationsGetInvalidDoubleResponse = {
 /**
  * Contains response data for the getInvalidDecimal operation.
  */
-export type NumberOperationsGetInvalidDecimalResponse = {
+export type NumberGetInvalidDecimalResponse = {
   /**
    * The parsed response body.
    */
@@ -116,7 +116,7 @@ export type NumberOperationsGetInvalidDecimalResponse = {
 /**
  * Contains response data for the getBigFloat operation.
  */
-export type NumberOperationsGetBigFloatResponse = {
+export type NumberGetBigFloatResponse = {
   /**
    * The parsed response body.
    */
@@ -141,7 +141,7 @@ export type NumberOperationsGetBigFloatResponse = {
 /**
  * Contains response data for the getBigDouble operation.
  */
-export type NumberOperationsGetBigDoubleResponse = {
+export type NumberGetBigDoubleResponse = {
   /**
    * The parsed response body.
    */
@@ -166,7 +166,7 @@ export type NumberOperationsGetBigDoubleResponse = {
 /**
  * Contains response data for the getBigDoublePositiveDecimal operation.
  */
-export type NumberOperationsGetBigDoublePositiveDecimalResponse = {
+export type NumberGetBigDoublePositiveDecimalResponse = {
   /**
    * The parsed response body.
    */
@@ -191,7 +191,7 @@ export type NumberOperationsGetBigDoublePositiveDecimalResponse = {
 /**
  * Contains response data for the getBigDoubleNegativeDecimal operation.
  */
-export type NumberOperationsGetBigDoubleNegativeDecimalResponse = {
+export type NumberGetBigDoubleNegativeDecimalResponse = {
   /**
    * The parsed response body.
    */
@@ -216,7 +216,7 @@ export type NumberOperationsGetBigDoubleNegativeDecimalResponse = {
 /**
  * Contains response data for the getBigDecimal operation.
  */
-export type NumberOperationsGetBigDecimalResponse = {
+export type NumberGetBigDecimalResponse = {
   /**
    * The parsed response body.
    */
@@ -241,7 +241,7 @@ export type NumberOperationsGetBigDecimalResponse = {
 /**
  * Contains response data for the getBigDecimalPositiveDecimal operation.
  */
-export type NumberOperationsGetBigDecimalPositiveDecimalResponse = {
+export type NumberGetBigDecimalPositiveDecimalResponse = {
   /**
    * The parsed response body.
    */
@@ -266,7 +266,7 @@ export type NumberOperationsGetBigDecimalPositiveDecimalResponse = {
 /**
  * Contains response data for the getBigDecimalNegativeDecimal operation.
  */
-export type NumberOperationsGetBigDecimalNegativeDecimalResponse = {
+export type NumberGetBigDecimalNegativeDecimalResponse = {
   /**
    * The parsed response body.
    */
@@ -291,7 +291,7 @@ export type NumberOperationsGetBigDecimalNegativeDecimalResponse = {
 /**
  * Contains response data for the getSmallFloat operation.
  */
-export type NumberOperationsGetSmallFloatResponse = {
+export type NumberGetSmallFloatResponse = {
   /**
    * The parsed response body.
    */
@@ -316,7 +316,7 @@ export type NumberOperationsGetSmallFloatResponse = {
 /**
  * Contains response data for the getSmallDouble operation.
  */
-export type NumberOperationsGetSmallDoubleResponse = {
+export type NumberGetSmallDoubleResponse = {
   /**
    * The parsed response body.
    */
@@ -341,7 +341,7 @@ export type NumberOperationsGetSmallDoubleResponse = {
 /**
  * Contains response data for the getSmallDecimal operation.
  */
-export type NumberOperationsGetSmallDecimalResponse = {
+export type NumberGetSmallDecimalResponse = {
   /**
    * The parsed response body.
    */

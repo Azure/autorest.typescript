@@ -1252,14 +1252,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Number" },
-            serializedName: "Get200ApplicationJsonItemsItem"
-          }
-        },
-        serializedName: "ArrayOfGet200ApplicationJsonItemsItem"
+        type: { name: "Sequence", element: { type: { name: "Number" } } }
       }
     },
     default: {
@@ -1275,11 +1268,7 @@ const getInvalidOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Integer" }
-        },
-        serializedName: "ArrayOfInteger"
+        type: { name: "Sequence", element: { type: { name: "Number" } } }
       }
     },
     default: {
@@ -1295,11 +1284,7 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Integer" }
-        },
-        serializedName: "ArrayOfInteger"
+        type: { name: "Sequence", element: { type: { name: "Number" } } }
       }
     },
     default: {
@@ -1329,11 +1314,7 @@ const getBooleanTfftOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Boolean" }, serializedName: "Boolean" }
-        },
-        serializedName: "ArrayOfBoolean"
+        type: { name: "Sequence", element: { type: { name: "Boolean" } } }
       }
     },
     default: {
@@ -1363,11 +1344,7 @@ const getBooleanInvalidNullOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Boolean" }, serializedName: "Boolean" }
-        },
-        serializedName: "ArrayOfBoolean"
+        type: { name: "Sequence", element: { type: { name: "Boolean" } } }
       }
     },
     default: {
@@ -1383,11 +1360,7 @@ const getBooleanInvalidStringOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Boolean" }, serializedName: "Boolean" }
-        },
-        serializedName: "ArrayOfBoolean"
+        type: { name: "Sequence", element: { type: { name: "Boolean" } } }
       }
     },
     default: {
@@ -1403,11 +1376,7 @@ const getIntegerValidOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Integer" }
-        },
-        serializedName: "ArrayOfInteger"
+        type: { name: "Sequence", element: { type: { name: "Number" } } }
       }
     },
     default: {
@@ -1437,11 +1406,7 @@ const getIntInvalidNullOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Integer" }
-        },
-        serializedName: "ArrayOfInteger"
+        type: { name: "Sequence", element: { type: { name: "Number" } } }
       }
     },
     default: {
@@ -1457,11 +1422,7 @@ const getIntInvalidStringOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Integer" }
-        },
-        serializedName: "ArrayOfInteger"
+        type: { name: "Sequence", element: { type: { name: "Number" } } }
       }
     },
     default: {
@@ -1477,11 +1438,7 @@ const getLongValidOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Integer" }
-        },
-        serializedName: "ArrayOfInteger"
+        type: { name: "Sequence", element: { type: { name: "Number" } } }
       }
     },
     default: {
@@ -1511,11 +1468,7 @@ const getLongInvalidNullOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Integer" }
-        },
-        serializedName: "ArrayOfInteger"
+        type: { name: "Sequence", element: { type: { name: "Number" } } }
       }
     },
     default: {
@@ -1531,11 +1484,7 @@ const getLongInvalidStringOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Integer" }
-        },
-        serializedName: "ArrayOfInteger"
+        type: { name: "Sequence", element: { type: { name: "Number" } } }
       }
     },
     default: {
@@ -1551,11 +1500,7 @@ const getFloatValidOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Number" }
-        },
-        serializedName: "ArrayOfNumber"
+        type: { name: "Sequence", element: { type: { name: "Number" } } }
       }
     },
     default: {
@@ -1585,11 +1530,7 @@ const getFloatInvalidNullOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Number" }
-        },
-        serializedName: "ArrayOfNumber"
+        type: { name: "Sequence", element: { type: { name: "Number" } } }
       }
     },
     default: {
@@ -1605,11 +1546,7 @@ const getFloatInvalidStringOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Number" }
-        },
-        serializedName: "ArrayOfNumber"
+        type: { name: "Sequence", element: { type: { name: "Number" } } }
       }
     },
     default: {
@@ -1625,11 +1562,7 @@ const getDoubleValidOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Number" }
-        },
-        serializedName: "ArrayOfNumber"
+        type: { name: "Sequence", element: { type: { name: "Number" } } }
       }
     },
     default: {
@@ -1659,11 +1592,7 @@ const getDoubleInvalidNullOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Number" }
-        },
-        serializedName: "ArrayOfNumber"
+        type: { name: "Sequence", element: { type: { name: "Number" } } }
       }
     },
     default: {
@@ -1679,11 +1608,7 @@ const getDoubleInvalidStringOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Number" }, serializedName: "Number" }
-        },
-        serializedName: "ArrayOfNumber"
+        type: { name: "Sequence", element: { type: { name: "Number" } } }
       }
     },
     default: {
@@ -1699,11 +1624,7 @@ const getStringValidOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" }, serializedName: "String" }
-        },
-        serializedName: "ArrayOfString"
+        type: { name: "Sequence", element: { type: { name: "String" } } }
       }
     },
     default: {
@@ -1736,11 +1657,9 @@ const getEnumValidOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Enum", allowedValues: ["foo1", "foo2", "foo3"] },
-            serializedName: "FooEnum"
+            type: { name: "Enum", allowedValues: ["foo1", "foo2", "foo3"] }
           }
-        },
-        serializedName: "ArrayOfFooEnum"
+        }
       }
     },
     default: {
@@ -1770,11 +1689,7 @@ const getStringEnumValidOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" }, serializedName: "Enum0" }
-        },
-        serializedName: "ArrayOfEnum0"
+        type: { name: "Sequence", element: { type: { name: "String" } } }
       }
     },
     default: {
@@ -1804,11 +1719,7 @@ const getStringWithNullOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" }, serializedName: "String" }
-        },
-        serializedName: "ArrayOfString"
+        type: { name: "Sequence", element: { type: { name: "String" } } }
       }
     },
     default: {
@@ -1824,11 +1735,7 @@ const getStringWithInvalidOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" }, serializedName: "String" }
-        },
-        serializedName: "ArrayOfString"
+        type: { name: "Sequence", element: { type: { name: "String" } } }
       }
     },
     default: {
@@ -1844,11 +1751,7 @@ const getUuidValidOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Uuid" }, serializedName: "Uuid" }
-        },
-        serializedName: "ArrayOfUuid"
+        type: { name: "Sequence", element: { type: { name: "Uuid" } } }
       }
     },
     default: {
@@ -1878,11 +1781,7 @@ const getUuidInvalidCharsOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Uuid" }, serializedName: "Uuid" }
-        },
-        serializedName: "ArrayOfUuid"
+        type: { name: "Sequence", element: { type: { name: "Uuid" } } }
       }
     },
     default: {
@@ -1898,11 +1797,7 @@ const getDateValidOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Date" }, serializedName: "Date" }
-        },
-        serializedName: "ArrayOfDate"
+        type: { name: "Sequence", element: { type: { name: "Date" } } }
       }
     },
     default: {
@@ -1932,11 +1827,7 @@ const getDateInvalidNullOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Date" }, serializedName: "Date" }
-        },
-        serializedName: "ArrayOfDate"
+        type: { name: "Sequence", element: { type: { name: "Date" } } }
       }
     },
     default: {
@@ -1952,11 +1843,7 @@ const getDateInvalidCharsOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Date" }, serializedName: "Date" }
-        },
-        serializedName: "ArrayOfDate"
+        type: { name: "Sequence", element: { type: { name: "Date" } } }
       }
     },
     default: {
@@ -1972,11 +1859,7 @@ const getDateTimeValidOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "DateTime" }, serializedName: "DateTime" }
-        },
-        serializedName: "ArrayOfDateTime"
+        type: { name: "Sequence", element: { type: { name: "DateTime" } } }
       }
     },
     default: {
@@ -2006,11 +1889,7 @@ const getDateTimeInvalidNullOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "DateTime" }, serializedName: "DateTime" }
-        },
-        serializedName: "ArrayOfDateTime"
+        type: { name: "Sequence", element: { type: { name: "DateTime" } } }
       }
     },
     default: {
@@ -2026,11 +1905,7 @@ const getDateTimeInvalidCharsOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "DateTime" }, serializedName: "DateTime" }
-        },
-        serializedName: "ArrayOfDateTime"
+        type: { name: "Sequence", element: { type: { name: "DateTime" } } }
       }
     },
     default: {
@@ -2048,12 +1923,8 @@ const getDateTimeRfc1123ValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Sequence",
-          element: {
-            type: { name: "DateTimeRfc1123" },
-            serializedName: "DateTime"
-          }
-        },
-        serializedName: "ArrayOfDateTime"
+          element: { type: { name: "DateTimeRfc1123" } }
+        }
       }
     },
     default: {
@@ -2083,11 +1954,7 @@ const getDurationValidOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "TimeSpan" }, serializedName: "Duration" }
-        },
-        serializedName: "ArrayOfDuration"
+        type: { name: "Sequence", element: { type: { name: "TimeSpan" } } }
       }
     },
     default: {
@@ -2117,11 +1984,7 @@ const getByteValidOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "ByteArray" }, serializedName: "ByteArray" }
-        },
-        serializedName: "ArrayOfByteArray"
+        type: { name: "Sequence", element: { type: { name: "ByteArray" } } }
       }
     },
     default: {
@@ -2151,11 +2014,7 @@ const getByteInvalidNullOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "ByteArray" }, serializedName: "ByteArray" }
-        },
-        serializedName: "ArrayOfByteArray"
+        type: { name: "Sequence", element: { type: { name: "ByteArray" } } }
       }
     },
     default: {
@@ -2171,11 +2030,7 @@ const getBase64UrlOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Base64Url" }, serializedName: "ByteArray" }
-        },
-        serializedName: "ArrayOfByteArray"
+        type: { name: "Sequence", element: { type: { name: "Base64Url" } } }
       }
     },
     default: {
@@ -2194,8 +2049,7 @@ const getComplexNullOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Product" } }
-        },
-        serializedName: "ArrayOfProduct"
+        }
       }
     },
     default: {
@@ -2214,8 +2068,7 @@ const getComplexEmptyOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Product" } }
-        },
-        serializedName: "ArrayOfProduct"
+        }
       }
     },
     default: {
@@ -2234,8 +2087,7 @@ const getComplexItemNullOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Product" } }
-        },
-        serializedName: "ArrayOfProduct"
+        }
       }
     },
     default: {
@@ -2254,8 +2106,7 @@ const getComplexItemEmptyOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Product" } }
-        },
-        serializedName: "ArrayOfProduct"
+        }
       }
     },
     default: {
@@ -2274,8 +2125,7 @@ const getComplexValidOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Product" } }
-        },
-        serializedName: "ArrayOfProduct"
+        }
       }
     },
     default: {
@@ -2308,14 +2158,9 @@ const getArrayNullOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: {
-              name: "Sequence",
-              element: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "ArrayOfString"
+            type: { name: "Sequence", element: { type: { name: "String" } } }
           }
-        },
-        serializedName: "ArrayOfString"
+        }
       }
     },
     default: {
@@ -2334,14 +2179,9 @@ const getArrayEmptyOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: {
-              name: "Sequence",
-              element: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "ArrayOfString"
+            type: { name: "Sequence", element: { type: { name: "String" } } }
           }
-        },
-        serializedName: "ArrayOfString"
+        }
       }
     },
     default: {
@@ -2360,14 +2200,9 @@ const getArrayItemNullOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: {
-              name: "Sequence",
-              element: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "ArrayOfString"
+            type: { name: "Sequence", element: { type: { name: "String" } } }
           }
-        },
-        serializedName: "ArrayOfString"
+        }
       }
     },
     default: {
@@ -2386,14 +2221,9 @@ const getArrayItemEmptyOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: {
-              name: "Sequence",
-              element: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "ArrayOfString"
+            type: { name: "Sequence", element: { type: { name: "String" } } }
           }
-        },
-        serializedName: "ArrayOfString"
+        }
       }
     },
     default: {
@@ -2412,14 +2242,9 @@ const getArrayValidOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: {
-              name: "Sequence",
-              element: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "ArrayOfString"
+            type: { name: "Sequence", element: { type: { name: "String" } } }
           }
-        },
-        serializedName: "ArrayOfString"
+        }
       }
     },
     default: {
@@ -2452,14 +2277,9 @@ const getDictionaryNullOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: {
-              name: "Dictionary",
-              value: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "DictionaryOfString"
+            type: { name: "Dictionary", value: { type: { name: "String" } } }
           }
-        },
-        serializedName: "ArrayOfDictionaryOfString"
+        }
       }
     },
     default: {
@@ -2478,14 +2298,9 @@ const getDictionaryEmptyOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: {
-              name: "Dictionary",
-              value: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "DictionaryOfString"
+            type: { name: "Dictionary", value: { type: { name: "String" } } }
           }
-        },
-        serializedName: "ArrayOfDictionaryOfString"
+        }
       }
     },
     default: {
@@ -2504,14 +2319,9 @@ const getDictionaryItemNullOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: {
-              name: "Dictionary",
-              value: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "DictionaryOfString"
+            type: { name: "Dictionary", value: { type: { name: "String" } } }
           }
-        },
-        serializedName: "ArrayOfDictionaryOfString"
+        }
       }
     },
     default: {
@@ -2530,14 +2340,9 @@ const getDictionaryItemEmptyOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: {
-              name: "Dictionary",
-              value: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "DictionaryOfString"
+            type: { name: "Dictionary", value: { type: { name: "String" } } }
           }
-        },
-        serializedName: "ArrayOfDictionaryOfString"
+        }
       }
     },
     default: {
@@ -2556,14 +2361,9 @@ const getDictionaryValidOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: {
-              name: "Dictionary",
-              value: { type: { name: "String" }, serializedName: "String" }
-            },
-            serializedName: "DictionaryOfString"
+            type: { name: "Dictionary", value: { type: { name: "String" } } }
           }
-        },
-        serializedName: "ArrayOfDictionaryOfString"
+        }
       }
     },
     default: {

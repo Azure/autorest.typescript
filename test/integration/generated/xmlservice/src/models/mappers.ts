@@ -84,7 +84,7 @@ export const Slideshow: coreHttp.CompositeMapper = {
         xmlName: "title",
         xmlIsAttribute: true
       },
-      dateProperty: {
+      date: {
         type: { name: "String" },
         serializedName: "date",
         xmlName: "date",
@@ -116,7 +116,7 @@ export const Slide: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Slide",
     modelProperties: {
-      typeProperty: {
+      type: {
         type: { name: "String" },
         serializedName: "type",
         xmlName: "type",
@@ -128,13 +128,7 @@ export const Slide: coreHttp.CompositeMapper = {
         xmlName: "title"
       },
       items: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "String" },
-            serializedName: "SlideItemsItem"
-          }
-        },
+        type: { name: "Sequence", element: { type: { name: "String" } } },
         serializedName: "items",
         xmlName: "items",
         xmlElementName: "item"
@@ -170,26 +164,14 @@ export const AppleBarrel: coreHttp.CompositeMapper = {
     className: "AppleBarrel",
     modelProperties: {
       goodApples: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "String" },
-            serializedName: "AppleBarrelGoodApplesItem"
-          }
-        },
+        type: { name: "Sequence", element: { type: { name: "String" } } },
         serializedName: "GoodApples",
         xmlName: "GoodApples",
         xmlIsWrapped: true,
         xmlElementName: "Apple"
       },
       badApples: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "String" },
-            serializedName: "AppleBarrelBadApplesItem"
-          }
-        },
+        type: { name: "Sequence", element: { type: { name: "String" } } },
         serializedName: "BadApples",
         xmlName: "BadApples",
         xmlIsWrapped: true,
@@ -294,10 +276,7 @@ export const Container: coreHttp.CompositeMapper = {
         type: { name: "Composite", className: "ContainerProperties" }
       },
       metadata: {
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "String" }, serializedName: "String" }
-        },
+        type: { name: "Dictionary", value: { type: { name: "String" } } },
         serializedName: "Metadata",
         xmlName: "Metadata"
       }
@@ -413,7 +392,7 @@ export const Logging: coreHttp.CompositeMapper = {
         required: true,
         xmlName: "Version"
       },
-      deleteProperty: {
+      delete: {
         type: { name: "Boolean" },
         serializedName: "Delete",
         required: true,
@@ -719,10 +698,7 @@ export const Blob: coreHttp.CompositeMapper = {
         type: { name: "Composite", className: "BlobProperties" }
       },
       metadata: {
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "String" }, serializedName: "String" }
-        },
+        type: { name: "Dictionary", value: { type: { name: "String" } } },
         serializedName: "Metadata",
         xmlName: "Metadata"
       }
@@ -920,7 +896,7 @@ export const JsonOutput: coreHttp.CompositeMapper = {
 };
 
 export const XmlGetHeadersHeaders: coreHttp.CompositeMapper = {
-  serializedName: "xml_getHeadersHeaders",
+  serializedName: "Xml_getHeadersHeaders",
   type: {
     name: "Composite",
     className: "XmlGetHeadersHeaders",

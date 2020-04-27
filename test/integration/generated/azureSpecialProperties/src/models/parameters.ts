@@ -47,8 +47,8 @@ export const apiVersion: coreHttp.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2015-07-01-preview",
-    serializedName: "api-version",
     isConstant: true,
+    serializedName: "api-version",
     type: {
       name: "String"
     }
@@ -103,8 +103,8 @@ export const apiVersion1: coreHttp.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2.0",
-    serializedName: "api-version",
     isConstant: true,
+    serializedName: "api-version",
     type: {
       name: "String"
     }
@@ -125,8 +125,8 @@ export const apiVersion3: coreHttp.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2.0",
-    serializedName: "api-version",
     isConstant: true,
+    serializedName: "api-version",
     type: {
       name: "String"
     }
@@ -149,8 +149,8 @@ export const unencodedPathParam1: coreHttp.OperationURLParameter = {
   parameterPath: "unencodedPathParam",
   mapper: {
     defaultValue: "path1/path2/path3",
-    serializedName: "unencodedPathParam",
     isConstant: true,
+    serializedName: "unencodedPathParam",
     type: {
       name: "String"
     }
@@ -185,8 +185,8 @@ export const q12: coreHttp.OperationQueryParameter = {
   parameterPath: "q1",
   mapper: {
     defaultValue: "value1&q2=value2&q3=value3",
-    serializedName: "q1",
     isConstant: true,
+    serializedName: "q1",
     type: {
       name: "String"
     }

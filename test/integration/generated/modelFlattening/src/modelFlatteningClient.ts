@@ -246,8 +246,7 @@ const getArrayOperationSpec: coreHttp.OperationSpec = {
           element: {
             type: { name: "Composite", className: "FlattenedProduct" }
           }
-        },
-        serializedName: "ArrayOfFlattenedProduct"
+        }
       }
     },
     default: {
@@ -280,8 +279,7 @@ const getWrappedArrayOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "ProductWrapper" } }
-        },
-        serializedName: "ArrayOfProductWrapper"
+        }
       }
     },
     default: {
@@ -314,8 +312,7 @@ const getDictionaryOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Dictionary",
           value: { type: { name: "Composite", className: "FlattenedProduct" } }
-        },
-        serializedName: "DictionaryOfFlattenedProduct"
+        }
       }
     },
     default: {

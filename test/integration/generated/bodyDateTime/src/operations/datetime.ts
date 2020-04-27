@@ -400,7 +400,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      bodyMapper: { type: { name: "DateTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -414,7 +414,7 @@ const getInvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      bodyMapper: { type: { name: "DateTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -428,7 +428,7 @@ const getOverflowOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      bodyMapper: { type: { name: "DateTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -442,7 +442,7 @@ const getUnderflowOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      bodyMapper: { type: { name: "DateTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -484,7 +484,7 @@ const getUtcLowercaseMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      bodyMapper: { type: { name: "DateTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -498,7 +498,7 @@ const getUtcUppercaseMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      bodyMapper: { type: { name: "DateTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -512,7 +512,7 @@ const getUtcUppercaseMaxDateTime7DigitsOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      bodyMapper: { type: { name: "DateTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -540,7 +540,7 @@ const getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec: coreHttp.Operatio
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      bodyMapper: { type: { name: "DateTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -554,7 +554,7 @@ const getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec: coreHttp.Operatio
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      bodyMapper: { type: { name: "DateTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -582,7 +582,7 @@ const getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec: coreHttp.Operatio
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      bodyMapper: { type: { name: "DateTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -596,7 +596,7 @@ const getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec: coreHttp.Operatio
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      bodyMapper: { type: { name: "DateTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -624,7 +624,7 @@ const getUtcMinDateTimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      bodyMapper: { type: { name: "DateTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -652,7 +652,7 @@ const getLocalPositiveOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      bodyMapper: { type: { name: "DateTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -680,7 +680,7 @@ const getLocalNegativeOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      bodyMapper: { type: { name: "DateTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel

@@ -9,7 +9,6 @@
 import * as coreHttp from "@azure/core-http";
 
 export const ErrorModel: coreHttp.CompositeMapper = {
-  serializedName: "Error",
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -21,7 +20,6 @@ export const ErrorModel: coreHttp.CompositeMapper = {
 };
 
 export const HeaderResponseExistingKeyHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseExistingKeyHeaders",
   type: {
     name: "Composite",
     className: "HeaderResponseExistingKeyHeaders",
@@ -32,7 +30,6 @@ export const HeaderResponseExistingKeyHeaders: coreHttp.CompositeMapper = {
 };
 
 export const HeaderResponseProtectedKeyHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseProtectedKeyHeaders",
   type: {
     name: "Composite",
     className: "HeaderResponseProtectedKeyHeaders",
@@ -43,7 +40,6 @@ export const HeaderResponseProtectedKeyHeaders: coreHttp.CompositeMapper = {
 };
 
 export const HeaderResponseIntegerHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseIntegerHeaders",
   type: {
     name: "Composite",
     className: "HeaderResponseIntegerHeaders",
@@ -54,7 +50,6 @@ export const HeaderResponseIntegerHeaders: coreHttp.CompositeMapper = {
 };
 
 export const HeaderResponseLongHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseLongHeaders",
   type: {
     name: "Composite",
     className: "HeaderResponseLongHeaders",
@@ -65,7 +60,6 @@ export const HeaderResponseLongHeaders: coreHttp.CompositeMapper = {
 };
 
 export const HeaderResponseFloatHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseFloatHeaders",
   type: {
     name: "Composite",
     className: "HeaderResponseFloatHeaders",
@@ -76,7 +70,6 @@ export const HeaderResponseFloatHeaders: coreHttp.CompositeMapper = {
 };
 
 export const HeaderResponseDoubleHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseDoubleHeaders",
   type: {
     name: "Composite",
     className: "HeaderResponseDoubleHeaders",
@@ -87,7 +80,6 @@ export const HeaderResponseDoubleHeaders: coreHttp.CompositeMapper = {
 };
 
 export const HeaderResponseBoolHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseBoolHeaders",
   type: {
     name: "Composite",
     className: "HeaderResponseBoolHeaders",
@@ -98,7 +90,6 @@ export const HeaderResponseBoolHeaders: coreHttp.CompositeMapper = {
 };
 
 export const HeaderResponseStringHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseStringHeaders",
   type: {
     name: "Composite",
     className: "HeaderResponseStringHeaders",
@@ -109,7 +100,6 @@ export const HeaderResponseStringHeaders: coreHttp.CompositeMapper = {
 };
 
 export const HeaderResponseDateHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseDateHeaders",
   type: {
     name: "Composite",
     className: "HeaderResponseDateHeaders",
@@ -120,7 +110,6 @@ export const HeaderResponseDateHeaders: coreHttp.CompositeMapper = {
 };
 
 export const HeaderResponseDatetimeHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseDatetimeHeaders",
   type: {
     name: "Composite",
     className: "HeaderResponseDatetimeHeaders",
@@ -131,7 +120,6 @@ export const HeaderResponseDatetimeHeaders: coreHttp.CompositeMapper = {
 };
 
 export const HeaderResponseDatetimeRfc1123Headers: coreHttp.CompositeMapper = {
-  serializedName: "header_responseDatetimeRfc1123Headers",
   type: {
     name: "Composite",
     className: "HeaderResponseDatetimeRfc1123Headers",
@@ -142,7 +130,6 @@ export const HeaderResponseDatetimeRfc1123Headers: coreHttp.CompositeMapper = {
 };
 
 export const HeaderResponseDurationHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseDurationHeaders",
   type: {
     name: "Composite",
     className: "HeaderResponseDurationHeaders",
@@ -153,7 +140,6 @@ export const HeaderResponseDurationHeaders: coreHttp.CompositeMapper = {
 };
 
 export const HeaderResponseByteHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseByteHeaders",
   type: {
     name: "Composite",
     className: "HeaderResponseByteHeaders",
@@ -164,7 +150,6 @@ export const HeaderResponseByteHeaders: coreHttp.CompositeMapper = {
 };
 
 export const HeaderResponseEnumHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_responseEnumHeaders",
   type: {
     name: "Composite",
     className: "HeaderResponseEnumHeaders",

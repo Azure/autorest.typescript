@@ -4,74 +4,9 @@ import { Operation, OperationGroup } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "./languageHelpers";
 import { TypeDetails, PropertyKind } from "../models/modelDetails";
 
-const ReservedModelNames = [
-  "error",
-  "date",
-  "break",
-  "as",
-  "any",
-  "case",
-  "implements",
-  "boolean",
-  "catch",
-  "interface",
-  "constructor",
-  "class",
-  "let",
-  "declare",
-  "const",
-  "package",
-  "get",
-  "continue",
-  "private",
-  "module",
-  "debugger",
-  "protected",
-  "require",
-  "default",
-  "public",
-  "number",
-  "delete",
-  "static",
-  "set",
-  "do",
-  "yield",
-  "string",
-  "else",
-  "symbol",
-  "enum",
-  "type",
-  "export",
-  "from",
-  "extends",
-  "of",
-  "false",
-  "finally",
-  "for",
-  "function",
-  "if",
-  "import",
-  "in",
-  "instanceof",
-  "new",
-  "null",
-  "return",
-  "super",
-  "switch",
-  "this",
-  "throw",
-  "true",
-  "try",
-  "typeof",
-  "var",
-  "void",
-  "while",
-  "with"
-];
-
-export enum CasingConvention {
-  Pascal,
-  Camel
+interface ReservedName {
+  name: string;
+  reservedFor: NameType[];
 }
 
 export enum NameType {
@@ -84,9 +19,83 @@ export enum NameType {
   OperationGroup
 }
 
-export function guardReservedNames(name: string, nameType?: NameType): string {
+const Newable = [NameType.Class, NameType.Interface, NameType.OperationGroup];
+
+const ReservedModelNames: ReservedName[] = [
+  { name: "any", reservedFor: [NameType.Parameter] },
+  { name: "as", reservedFor: [NameType.Parameter] },
+  { name: "boolean", reservedFor: [NameType.Parameter, ...Newable] },
+  { name: "break", reservedFor: [NameType.Parameter] },
+  { name: "case", reservedFor: [NameType.Parameter] },
+  { name: "catch", reservedFor: [NameType.Parameter] },
+  { name: "class", reservedFor: [NameType.Parameter] },
+  { name: "const", reservedFor: [NameType.Parameter] },
+  { name: "constructor", reservedFor: [NameType.Parameter] },
+  { name: "continue", reservedFor: [NameType.Parameter] },
+  { name: "date", reservedFor: [NameType.Parameter, ...Newable] },
+  { name: "debugger", reservedFor: [NameType.Parameter] },
+  { name: "declare", reservedFor: [NameType.Parameter] },
+  { name: "default", reservedFor: [NameType.Parameter] },
+  { name: "delete", reservedFor: [NameType.Parameter] },
+  { name: "do", reservedFor: [NameType.Parameter] },
+  { name: "else", reservedFor: [NameType.Parameter] },
+  { name: "enum", reservedFor: [NameType.Parameter] },
+  { name: "error", reservedFor: [NameType.Parameter, ...Newable] },
+  { name: "export", reservedFor: [NameType.Parameter] },
+  { name: "extends", reservedFor: [NameType.Parameter] },
+  { name: "false", reservedFor: [NameType.Parameter] },
+  { name: "finally", reservedFor: [NameType.Parameter] },
+  { name: "for", reservedFor: [NameType.Parameter] },
+  { name: "from", reservedFor: [NameType.Parameter] },
+  { name: "function", reservedFor: [NameType.Parameter, ...Newable] },
+  { name: "get", reservedFor: [NameType.Parameter] },
+  { name: "if", reservedFor: [NameType.Parameter] },
+  { name: "implements", reservedFor: [NameType.Parameter] },
+  { name: "import", reservedFor: [NameType.Parameter] },
+  { name: "in", reservedFor: [NameType.Parameter] },
+  { name: "instanceof", reservedFor: [NameType.Parameter] },
+  { name: "interface", reservedFor: [NameType.Parameter] },
+  { name: "let", reservedFor: [NameType.Parameter] },
+  { name: "module", reservedFor: [NameType.Parameter] },
+  { name: "new", reservedFor: [NameType.Parameter] },
+  { name: "null", reservedFor: [NameType.Parameter] },
+  { name: "number", reservedFor: [NameType.Parameter, ...Newable] },
+  { name: "of", reservedFor: [NameType.Parameter] },
+  { name: "package", reservedFor: [NameType.Parameter] },
+  { name: "private", reservedFor: [NameType.Parameter] },
+  { name: "protected", reservedFor: [NameType.Parameter] },
+  { name: "public", reservedFor: [NameType.Parameter] },
+  { name: "require", reservedFor: [NameType.Parameter] },
+  { name: "return", reservedFor: [NameType.Parameter] },
+  { name: "set", reservedFor: [NameType.Parameter, ...Newable] },
+  { name: "static", reservedFor: [NameType.Parameter] },
+  { name: "string", reservedFor: [NameType.Parameter, ...Newable] },
+  { name: "super", reservedFor: [NameType.Parameter] },
+  { name: "switch", reservedFor: [NameType.Parameter] },
+  { name: "symbol", reservedFor: [NameType.Parameter, ...Newable] },
+  { name: "this", reservedFor: [NameType.Parameter] },
+  { name: "throw", reservedFor: [NameType.Parameter] },
+  { name: "true", reservedFor: [NameType.Parameter] },
+  { name: "try", reservedFor: [NameType.Parameter] },
+  { name: "type", reservedFor: [NameType.Parameter] },
+  { name: "typeof", reservedFor: [NameType.Parameter] },
+  { name: "var", reservedFor: [NameType.Parameter] },
+  { name: "void", reservedFor: [NameType.Parameter] },
+  { name: "while", reservedFor: [NameType.Parameter] },
+  { name: "with", reservedFor: [NameType.Parameter] },
+  { name: "yield", reservedFor: [NameType.Parameter] }
+];
+
+export enum CasingConvention {
+  Pascal,
+  Camel
+}
+
+export function guardReservedNames(name: string, nameType: NameType): string {
   const suffix = getSuffix(nameType);
-  return ReservedModelNames.indexOf(name.toLowerCase()) > -1
+  return ReservedModelNames.filter(r => r.reservedFor.includes(nameType)).find(
+    r => r.name === name.toLowerCase()
+  )
     ? `${name}${suffix}`
     : name;
 }
@@ -95,11 +104,10 @@ function getSuffix(nameType?: NameType) {
   switch (nameType) {
     case NameType.File:
     case NameType.Operation:
+    case NameType.Property:
       return "";
     case NameType.OperationGroup:
       return "Operations";
-    case NameType.Property:
-      return "Property";
     case NameType.Parameter:
       return "Param";
     case NameType.Class:
@@ -155,11 +163,11 @@ function getCasingConvention(nameType: NameType) {
   switch (nameType) {
     case NameType.Class:
     case NameType.Interface:
+    case NameType.OperationGroup:
       return CasingConvention.Pascal;
     case NameType.File:
     case NameType.Property:
     case NameType.Operation:
-    case NameType.OperationGroup:
     case NameType.Parameter:
       return CasingConvention.Camel;
   }

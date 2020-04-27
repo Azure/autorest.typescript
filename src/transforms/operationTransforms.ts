@@ -403,7 +403,7 @@ function getOperationGroupName(
 ) {
   const { name } = getLanguageMetadata(operationGroup.language);
 
-  return normalizeName(name || clientName, NameType.OperationGroup, true);
+  return normalizeName(name || clientName, NameType.OperationGroup);
 }
 
 export async function transformOperationGroup(

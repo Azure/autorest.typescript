@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { BodyTimeClient } from "./generated/bodyTime/src/bodyTimeClient";
-import { TimeGetModelResponse } from "./generated/bodyTime/src/models";
+import { TimeGetResponse } from "./generated/bodyTime/src/models";
 
 /**
  * Returns an interface that omits the _response field.
@@ -21,7 +21,7 @@ describe("BodyTimeClient", () => {
       const result = await client.time.get();
 
       assert.equal(result._response.status, 200, "Unexpected status code.");
-      assert.deepEqual(result as RemoveResponse<TimeGetModelResponse>, {
+      assert.deepEqual(result as RemoveResponse<TimeGetResponse>, {
         body: "11:34:56"
       });
     });

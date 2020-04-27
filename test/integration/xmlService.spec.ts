@@ -47,16 +47,16 @@ describe("typescript", function() {
       slideshow.should.exist;
 
       slideshow.author!.should.equal("Yours Truly");
-      slideshow.dateProperty!.should.equal("Date of publication");
+      slideshow.date!.should.equal("Date of publication");
       slideshow.title!.should.equal("Sample Slide Show");
       slideshow.slides!.length.should.equal(2);
 
       slideshow.slides![0].title!.should.equal("Wake up to WonderWidgets!");
-      slideshow.slides![0].typeProperty!.should.equal("all");
+      slideshow.slides![0].type!.should.equal("all");
       slideshow.slides![0].items!.length.should.equal(0);
 
       slideshow.slides![1].title!.should.equal("Overview");
-      slideshow.slides![1].typeProperty!.should.equal("all");
+      slideshow.slides![1].type!.should.equal("all");
       slideshow.slides![1].items!.length.should.equal(3);
       slideshow.slides![1].items![0].should.equal(
         "Why WonderWidgets are great"
@@ -68,12 +68,12 @@ describe("typescript", function() {
     it("should correctly serialize a simple XML document", async function() {
       const slideshow: XmlServiceModels.Slideshow = {
         author: "Yours Truly",
-        dateProperty: "Date of publication",
+        date: "Date of publication",
         title: "Sample Slide Show",
         slides: [
-          { typeProperty: "all", title: "Wake up to WonderWidgets!" },
+          { type: "all", title: "Wake up to WonderWidgets!" },
           {
-            typeProperty: "all",
+            type: "all",
             title: "Overview",
             items: ["Why WonderWidgets are great", "", "Who buys WonderWidgets"]
           }
@@ -106,7 +106,7 @@ describe("typescript", function() {
     it("should correctly deserialize an empty XML list", async function() {
       const emptyList = await testClient.xml.getEmptyList();
       should().not.exist(emptyList.author);
-      should().not.exist(emptyList.dateProperty);
+      should().not.exist(emptyList.date);
       should().not.exist(emptyList.title);
 
       emptyList.slides!.length.should.equal(0);
@@ -307,7 +307,7 @@ describe("typescript", function() {
       const serviceProperties = await testClient.xml.getServiceProperties();
 
       serviceProperties.logging!.version.should.equal("1.0");
-      serviceProperties.logging!.deleteProperty.should.equal(true);
+      serviceProperties.logging!.delete.should.equal(true);
       serviceProperties.logging!.read.should.equal(false);
       serviceProperties.logging!.write.should.equal(true);
       serviceProperties.logging!.retentionPolicy.enabled.should.equal(true);
@@ -334,7 +334,7 @@ describe("typescript", function() {
       const serviceProperties: XmlServiceModels.StorageServiceProperties = {
         logging: {
           version: "1.0",
-          deleteProperty: true,
+          delete: true,
           read: false,
           write: true,
           retentionPolicy: {

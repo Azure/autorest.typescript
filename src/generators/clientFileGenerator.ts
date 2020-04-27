@@ -175,7 +175,11 @@ function getOperationGroupsDeclarationDetails(
   return operationGroups.map(og => {
     return {
       name: normalizeName(og.name, NameType.Property),
-      typeName: `operations.${normalizeName(og.name, NameType.Class)}`
+      typeName: `operations.${normalizeName(
+        og.name,
+        NameType.OperationGroup,
+        true /* shouldGuard */
+      )}`
     };
   });
 }

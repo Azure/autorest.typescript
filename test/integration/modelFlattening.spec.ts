@@ -22,7 +22,7 @@ describe("ModelFlatteningClient", () => {
         pName: "Product1",
         provisioningState: "Succeeded",
         provisioningStateValues: "OK",
-        typeProperty: "Microsoft.Web/sites",
+        type: "Microsoft.Web/sites",
         tags: {
           tag1: "value1",
           tag2: "value3"
@@ -79,7 +79,7 @@ describe("ModelFlatteningClient", () => {
           tag1: "value1",
           tag2: "value3"
         },
-        typeProperty: "Microsoft.Web/sites",
+        type: "Microsoft.Web/sites",
         typePropertiesType: "Flat"
       },
       Product2: {
@@ -132,7 +132,7 @@ describe("ModelFlatteningClient", () => {
             tag1: "value1",
             tag2: "value3"
           },
-          typeProperty: "Microsoft.Web/sites",
+          type: "Microsoft.Web/sites",
           typePropertiesType: "Flat"
         },
         {
@@ -157,7 +157,7 @@ describe("ModelFlatteningClient", () => {
             tag1: "value1",
             tag2: "value3"
           },
-          typeProperty: "Microsoft.Web/sites",
+          type: "Microsoft.Web/sites",
           typePropertiesType: "Flat"
         },
         Product2: {

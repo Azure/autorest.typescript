@@ -25,8 +25,8 @@ export const contentType: coreHttp.OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
-    serializedName: "Content-Type",
     isConstant: true,
+    serializedName: "Content-Type",
     type: {
       name: "String"
     }
@@ -40,7 +40,7 @@ export const arrayBody: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "String" }, serializedName: "String" }
+      value: { type: { name: "String" } }
     }
   }
 };
@@ -52,7 +52,7 @@ export const arrayBody1: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "Boolean" }, serializedName: "Boolean" }
+      value: { type: { name: "Boolean" } }
     }
   }
 };
@@ -64,7 +64,7 @@ export const arrayBody2: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "Number" }, serializedName: "Integer" }
+      value: { type: { name: "Number" } }
     }
   }
 };
@@ -76,7 +76,7 @@ export const arrayBody3: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "Number" }, serializedName: "Integer" }
+      value: { type: { name: "Number" } }
     }
   }
 };
@@ -88,7 +88,7 @@ export const arrayBody4: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "Number" }, serializedName: "Number" }
+      value: { type: { name: "Number" } }
     }
   }
 };
@@ -100,7 +100,7 @@ export const arrayBody5: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "Number" }, serializedName: "Number" }
+      value: { type: { name: "Number" } }
     }
   }
 };
@@ -112,7 +112,7 @@ export const arrayBody6: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "String" }, serializedName: "String" }
+      value: { type: { name: "String" } }
     }
   }
 };
@@ -124,7 +124,7 @@ export const arrayBody7: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "Date" }, serializedName: "Date" }
+      value: { type: { name: "Date" } }
     }
   }
 };
@@ -136,7 +136,7 @@ export const arrayBody8: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      value: { type: { name: "DateTime" } }
     }
   }
 };
@@ -148,7 +148,7 @@ export const arrayBody9: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "DateTimeRfc1123" }, serializedName: "DateTime" }
+      value: { type: { name: "DateTimeRfc1123" } }
     }
   }
 };
@@ -160,7 +160,7 @@ export const arrayBody10: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "TimeSpan" }, serializedName: "Duration" }
+      value: { type: { name: "TimeSpan" } }
     }
   }
 };
@@ -172,7 +172,7 @@ export const arrayBody11: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "ByteArray" }, serializedName: "ByteArray" }
+      value: { type: { name: "ByteArray" } }
     }
   }
 };
@@ -197,14 +197,7 @@ export const arrayBody13: coreHttp.OperationParameter = {
     type: {
       name: "Dictionary",
       value: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "String" },
-            serializedName: "PutContentSchemaItemsItem"
-          }
-        },
-        serializedName: "ArrayOfPutContentSchemaItemsItem"
+        type: { name: "Sequence", element: { type: { name: "String" } } }
       }
     }
   }
@@ -217,7 +210,7 @@ export const arrayBody14: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "any" }, serializedName: "any" }
+      value: { type: { name: "any" } }
     }
   }
 };

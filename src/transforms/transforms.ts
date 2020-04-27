@@ -41,7 +41,7 @@ export function transformChoice(
   choice: ChoiceSchema | SealedChoiceSchema
 ): UnionDetails {
   const metadata = getLanguageMetadata(choice.language);
-  let name = guardReservedNames(metadata.name);
+  let name = normalizeName(metadata.name, NameType.Interface);
 
   return {
     name,

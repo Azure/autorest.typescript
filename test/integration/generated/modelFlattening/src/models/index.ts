@@ -16,7 +16,7 @@ export interface Resource {
   /**
    * Resource Type
    */
-  readonly typeProperty?: string;
+  readonly type?: string;
   /**
    * Dictionary of <string>
    */

@@ -191,10 +191,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: {
-        type: { name: "DateTimeRfc1123" },
-        serializedName: "DateTime"
-      }
+      bodyMapper: { type: { name: "DateTimeRfc1123" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -208,10 +205,7 @@ const getInvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: {
-        type: { name: "DateTimeRfc1123" },
-        serializedName: "DateTime"
-      }
+      bodyMapper: { type: { name: "DateTimeRfc1123" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -225,10 +219,7 @@ const getOverflowOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: {
-        type: { name: "DateTimeRfc1123" },
-        serializedName: "DateTime"
-      }
+      bodyMapper: { type: { name: "DateTimeRfc1123" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -242,10 +233,7 @@ const getUnderflowOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: {
-        type: { name: "DateTimeRfc1123" },
-        serializedName: "DateTime"
-      }
+      bodyMapper: { type: { name: "DateTimeRfc1123" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -273,10 +261,7 @@ const getUtcLowercaseMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: {
-        type: { name: "DateTimeRfc1123" },
-        serializedName: "DateTime"
-      }
+      bodyMapper: { type: { name: "DateTimeRfc1123" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -290,10 +275,7 @@ const getUtcUppercaseMaxDateTimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: {
-        type: { name: "DateTimeRfc1123" },
-        serializedName: "DateTime"
-      }
+      bodyMapper: { type: { name: "DateTimeRfc1123" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -321,10 +303,7 @@ const getUtcMinDateTimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: {
-        type: { name: "DateTimeRfc1123" },
-        serializedName: "DateTime"
-      }
+      bodyMapper: { type: { name: "DateTimeRfc1123" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel

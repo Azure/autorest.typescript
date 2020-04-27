@@ -9,7 +9,6 @@
 import * as coreHttp from "@azure/core-http";
 
 export const SourcePath: coreHttp.CompositeMapper = {
-  serializedName: "SourcePath",
   type: {
     name: "Composite",
     className: "SourcePath",

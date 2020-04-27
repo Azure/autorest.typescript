@@ -20,21 +20,21 @@ export interface OdataFilter {
 }
 
 /**
- * Defines headers for header_customNamedRequestId operation.
+ * Defines headers for Header_customNamedRequestId operation.
  */
 export interface HeaderCustomNamedRequestIdHeaders {
   fooRequestId?: string;
 }
 
 /**
- * Defines headers for header_customNamedRequestIdParamGrouping operation.
+ * Defines headers for Header_customNamedRequestIdParamGrouping operation.
  */
 export interface HeaderCustomNamedRequestIdParamGroupingHeaders {
   fooRequestId?: string;
 }
 
 /**
- * Defines headers for header_customNamedRequestIdHead operation.
+ * Defines headers for Header_customNamedRequestIdHead operation.
  */
 export interface HeaderCustomNamedRequestIdHeadHeaders {
   fooRequestId?: string;

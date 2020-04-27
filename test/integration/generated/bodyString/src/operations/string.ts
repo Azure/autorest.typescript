@@ -11,15 +11,15 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyStringClient } from "../bodyStringClient";
 import {
-  StringOperationsGetNullResponse,
-  StringOperationsPutNullOptionalParams,
-  StringOperationsGetEmptyResponse,
-  StringOperationsGetMbcsResponse,
-  StringOperationsGetWhitespaceResponse,
-  StringOperationsGetNotProvidedResponse,
-  StringOperationsGetBase64EncodedResponse,
-  StringOperationsGetBase64UrlEncodedResponse,
-  StringOperationsGetNullBase64UrlEncodedResponse
+  StringGetNullResponse,
+  StringPutNullOptionalParams,
+  StringGetEmptyResponse,
+  StringGetMbcsResponse,
+  StringGetWhitespaceResponse,
+  StringGetNotProvidedResponse,
+  StringGetBase64EncodedResponse,
+  StringGetBase64UrlEncodedResponse,
+  StringGetNullBase64UrlEncodedResponse
 } from "../models";
 
 /**
@@ -40,16 +40,14 @@ export class StringOperations {
    * Get null string value value
    * @param options The options parameters.
    */
-  getNull(
-    options?: coreHttp.OperationOptions
-  ): Promise<StringOperationsGetNullResponse> {
+  getNull(options?: coreHttp.OperationOptions): Promise<StringGetNullResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getNullOperationSpec
-    ) as Promise<StringOperationsGetNullResponse>;
+    ) as Promise<StringGetNullResponse>;
   }
 
   /**
@@ -57,7 +55,7 @@ export class StringOperations {
    * @param options The options parameters.
    */
   putNull(
-    options?: StringOperationsPutNullOptionalParams
+    options?: StringPutNullOptionalParams
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
@@ -74,14 +72,14 @@ export class StringOperations {
    */
   getEmpty(
     options?: coreHttp.OperationOptions
-  ): Promise<StringOperationsGetEmptyResponse> {
+  ): Promise<StringGetEmptyResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getEmptyOperationSpec
-    ) as Promise<StringOperationsGetEmptyResponse>;
+    ) as Promise<StringGetEmptyResponse>;
   }
 
   /**
@@ -104,16 +102,14 @@ export class StringOperations {
    * Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    * @param options The options parameters.
    */
-  getMbcs(
-    options?: coreHttp.OperationOptions
-  ): Promise<StringOperationsGetMbcsResponse> {
+  getMbcs(options?: coreHttp.OperationOptions): Promise<StringGetMbcsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getMbcsOperationSpec
-    ) as Promise<StringOperationsGetMbcsResponse>;
+    ) as Promise<StringGetMbcsResponse>;
   }
 
   /**
@@ -137,14 +133,14 @@ export class StringOperations {
    */
   getWhitespace(
     options?: coreHttp.OperationOptions
-  ): Promise<StringOperationsGetWhitespaceResponse> {
+  ): Promise<StringGetWhitespaceResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getWhitespaceOperationSpec
-    ) as Promise<StringOperationsGetWhitespaceResponse>;
+    ) as Promise<StringGetWhitespaceResponse>;
   }
 
   /**
@@ -170,14 +166,14 @@ export class StringOperations {
    */
   getNotProvided(
     options?: coreHttp.OperationOptions
-  ): Promise<StringOperationsGetNotProvidedResponse> {
+  ): Promise<StringGetNotProvidedResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getNotProvidedOperationSpec
-    ) as Promise<StringOperationsGetNotProvidedResponse>;
+    ) as Promise<StringGetNotProvidedResponse>;
   }
 
   /**
@@ -186,14 +182,14 @@ export class StringOperations {
    */
   getBase64Encoded(
     options?: coreHttp.OperationOptions
-  ): Promise<StringOperationsGetBase64EncodedResponse> {
+  ): Promise<StringGetBase64EncodedResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getBase64EncodedOperationSpec
-    ) as Promise<StringOperationsGetBase64EncodedResponse>;
+    ) as Promise<StringGetBase64EncodedResponse>;
   }
 
   /**
@@ -202,14 +198,14 @@ export class StringOperations {
    */
   getBase64UrlEncoded(
     options?: coreHttp.OperationOptions
-  ): Promise<StringOperationsGetBase64UrlEncodedResponse> {
+  ): Promise<StringGetBase64UrlEncodedResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getBase64UrlEncodedOperationSpec
-    ) as Promise<StringOperationsGetBase64UrlEncodedResponse>;
+    ) as Promise<StringGetBase64UrlEncodedResponse>;
   }
 
   /**
@@ -236,14 +232,14 @@ export class StringOperations {
    */
   getNullBase64UrlEncoded(
     options?: coreHttp.OperationOptions
-  ): Promise<StringOperationsGetNullBase64UrlEncodedResponse> {
+  ): Promise<StringGetNullBase64UrlEncodedResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getNullBase64UrlEncodedOperationSpec
-    ) as Promise<StringOperationsGetNullBase64UrlEncodedResponse>;
+    ) as Promise<StringGetNullBase64UrlEncodedResponse>;
   }
 }
 // Operation Specifications
@@ -255,7 +251,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" }, serializedName: "String" }
+      bodyMapper: { type: { name: "String" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -283,7 +279,7 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" }, serializedName: "String" }
+      bodyMapper: { type: { name: "String" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -311,7 +307,7 @@ const getMbcsOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" }, serializedName: "String" }
+      bodyMapper: { type: { name: "String" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -339,7 +335,7 @@ const getWhitespaceOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" }, serializedName: "String" }
+      bodyMapper: { type: { name: "String" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -367,7 +363,7 @@ const getNotProvidedOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" }, serializedName: "String" }
+      bodyMapper: { type: { name: "String" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -381,7 +377,7 @@ const getBase64EncodedOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Base64Url" }, serializedName: "ByteArray" }
+      bodyMapper: { type: { name: "Base64Url" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -395,7 +391,7 @@ const getBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Base64Url" }, serializedName: "ByteArray" }
+      bodyMapper: { type: { name: "Base64Url" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -423,7 +419,7 @@ const getNullBase64UrlEncodedOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Base64Url" }, serializedName: "ByteArray" }
+      bodyMapper: { type: { name: "Base64Url" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel

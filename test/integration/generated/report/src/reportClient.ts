@@ -69,11 +69,7 @@ const getReportOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "Number" }, serializedName: "Integer" }
-        },
-        serializedName: "DictionaryOfInteger"
+        type: { name: "Dictionary", value: { type: { name: "Number" } } }
       }
     },
     default: {
@@ -90,11 +86,7 @@ const getOptionalReportOperationSpec: coreHttp.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "Number" }, serializedName: "Integer" }
-        },
-        serializedName: "DictionaryOfInteger"
+        type: { name: "Dictionary", value: { type: { name: "Number" } } }
       }
     },
     default: {

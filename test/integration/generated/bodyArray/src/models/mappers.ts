@@ -9,7 +9,6 @@
 import * as coreHttp from "@azure/core-http";
 
 export const ErrorModel: coreHttp.CompositeMapper = {
-  serializedName: "Error",
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -21,13 +20,12 @@ export const ErrorModel: coreHttp.CompositeMapper = {
 };
 
 export const Product: coreHttp.CompositeMapper = {
-  serializedName: "Product",
   type: {
     name: "Composite",
     className: "Product",
     modelProperties: {
       integer: { type: { name: "Number" }, serializedName: "integer" },
-      stringProperty: { type: { name: "String" }, serializedName: "string" }
+      string: { type: { name: "String" }, serializedName: "string" }
     }
   }
 };

@@ -118,7 +118,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "ByteArray" }, serializedName: "ByteArray" }
+      bodyMapper: { type: { name: "ByteArray" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -132,7 +132,7 @@ const getEmptyOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "ByteArray" }, serializedName: "ByteArray" }
+      bodyMapper: { type: { name: "ByteArray" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -146,7 +146,7 @@ const getNonAsciiOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "ByteArray" }, serializedName: "ByteArray" }
+      bodyMapper: { type: { name: "ByteArray" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -174,7 +174,7 @@ const getInvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "ByteArray" }, serializedName: "ByteArray" }
+      bodyMapper: { type: { name: "ByteArray" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel

@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyTimeClient } from "../bodyTimeClient";
-import { TimeGetModelResponse, TimePutResponse } from "../models";
+import { TimeGetResponse, TimePutResponse } from "../models";
 
 /**
  * Class representing a Time.
@@ -30,14 +30,14 @@ export class Time {
    * Get time value "11:34:56"
    * @param options The options parameters.
    */
-  get(options?: coreHttp.OperationOptions): Promise<TimeGetModelResponse> {
+  get(options?: coreHttp.OperationOptions): Promise<TimeGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getOperationSpec
-    ) as Promise<TimeGetModelResponse>;
+    ) as Promise<TimeGetResponse>;
   }
 
   /**
@@ -69,7 +69,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" }, serializedName: "time" }
+      bodyMapper: { type: { name: "String" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -83,7 +83,7 @@ const putOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" }, serializedName: "String" }
+      bodyMapper: { type: { name: "String" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel

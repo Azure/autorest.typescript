@@ -105,7 +105,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "TimeSpan" }, serializedName: "Duration" }
+      bodyMapper: { type: { name: "TimeSpan" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -133,7 +133,7 @@ const getPositiveDurationOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "TimeSpan" }, serializedName: "Duration" }
+      bodyMapper: { type: { name: "TimeSpan" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -147,7 +147,7 @@ const getInvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "TimeSpan" }, serializedName: "Duration" }
+      bodyMapper: { type: { name: "TimeSpan" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel

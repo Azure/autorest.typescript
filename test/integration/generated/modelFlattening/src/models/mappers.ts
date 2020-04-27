@@ -9,22 +9,18 @@
 import * as coreHttp from "@azure/core-http";
 
 export const Resource: coreHttp.CompositeMapper = {
-  serializedName: "Resource",
   type: {
     name: "Composite",
     className: "Resource",
     modelProperties: {
       id: { type: { name: "String" }, serializedName: "id", readOnly: true },
-      typeProperty: {
+      type: {
         type: { name: "String" },
         serializedName: "type",
         readOnly: true
       },
       tags: {
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "String" }, serializedName: "String" }
-        },
+        type: { name: "Dictionary", value: { type: { name: "String" } } },
         serializedName: "tags"
       },
       location: { type: { name: "String" }, serializedName: "location" },
@@ -34,7 +30,6 @@ export const Resource: coreHttp.CompositeMapper = {
 };
 
 export const ErrorModel: coreHttp.CompositeMapper = {
-  serializedName: "Error",
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -50,7 +45,6 @@ export const ErrorModel: coreHttp.CompositeMapper = {
 };
 
 export const FlattenedProduct: coreHttp.CompositeMapper = {
-  serializedName: "FlattenedProduct",
   type: {
     name: "Composite",
     className: "FlattenedProduct",
@@ -78,7 +72,6 @@ export const FlattenedProduct: coreHttp.CompositeMapper = {
 };
 
 export const WrappedProduct: coreHttp.CompositeMapper = {
-  serializedName: "WrappedProduct",
   type: {
     name: "Composite",
     className: "WrappedProduct",
@@ -89,7 +82,6 @@ export const WrappedProduct: coreHttp.CompositeMapper = {
 };
 
 export const ProductWrapper: coreHttp.CompositeMapper = {
-  serializedName: "ProductWrapper",
   type: {
     name: "Composite",
     className: "ProductWrapper",
@@ -100,7 +92,6 @@ export const ProductWrapper: coreHttp.CompositeMapper = {
 };
 
 export const ResourceCollection: coreHttp.CompositeMapper = {
-  serializedName: "ResourceCollection",
   type: {
     name: "Composite",
     className: "ResourceCollection",
@@ -130,7 +121,6 @@ export const ResourceCollection: coreHttp.CompositeMapper = {
 };
 
 export const BaseProduct: coreHttp.CompositeMapper = {
-  serializedName: "BaseProduct",
   type: {
     name: "Composite",
     className: "BaseProduct",
@@ -149,7 +139,6 @@ export const BaseProduct: coreHttp.CompositeMapper = {
 };
 
 export const SimpleProduct: coreHttp.CompositeMapper = {
-  serializedName: "SimpleProduct",
   type: {
     name: "Composite",
     className: "SimpleProduct",
@@ -161,9 +150,9 @@ export const SimpleProduct: coreHttp.CompositeMapper = {
       },
       capacity: {
         type: { name: "String" },
-        serializedName: "details.max_product_capacity",
         defaultValue: "Large",
-        isConstant: true
+        isConstant: true,
+        serializedName: "details.max_product_capacity"
       },
       genericValue: {
         type: { name: "String" },
@@ -178,7 +167,6 @@ export const SimpleProduct: coreHttp.CompositeMapper = {
 };
 
 export const GenericUrl: coreHttp.CompositeMapper = {
-  serializedName: "GenericUrl",
   type: {
     name: "Composite",
     className: "GenericUrl",
@@ -192,7 +180,6 @@ export const GenericUrl: coreHttp.CompositeMapper = {
 };
 
 export const ProductUrl: coreHttp.CompositeMapper = {
-  serializedName: "ProductUrl",
   type: {
     name: "Composite",
     className: "ProductUrl",

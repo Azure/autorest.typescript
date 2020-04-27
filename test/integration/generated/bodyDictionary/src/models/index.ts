@@ -15,7 +15,7 @@ export interface ErrorModel {
 
 export interface Widget {
   integer?: number;
-  stringProperty?: string;
+  string?: string;
 }
 
 /**

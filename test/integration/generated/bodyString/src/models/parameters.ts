@@ -25,8 +25,8 @@ export const contentType: coreHttp.OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
-    serializedName: "Content-Type",
     isConstant: true,
+    serializedName: "Content-Type",
     type: {
       name: "String"
     }
@@ -47,8 +47,8 @@ export const stringBody1: coreHttp.OperationParameter = {
   parameterPath: "stringBody",
   mapper: {
     defaultValue: "",
-    serializedName: "stringBody",
     isConstant: true,
+    serializedName: "stringBody",
     type: {
       name: "String"
     }
@@ -60,8 +60,8 @@ export const stringBody2: coreHttp.OperationParameter = {
   mapper: {
     defaultValue:
       "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€",
-    serializedName: "stringBody",
     isConstant: true,
+    serializedName: "stringBody",
     type: {
       name: "String"
     }
@@ -73,8 +73,8 @@ export const stringBody3: coreHttp.OperationParameter = {
   mapper: {
     defaultValue:
       "    Now is the time for all good men to come to the aid of their country    ",
-    serializedName: "stringBody",
     isConstant: true,
+    serializedName: "stringBody",
     type: {
       name: "String"
     }

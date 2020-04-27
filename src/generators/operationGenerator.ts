@@ -326,7 +326,11 @@ function addClass(
   clientDetails: ClientDetails
 ) {
   let importedModels = new Set<string>();
-  const className = normalizeName(operationGroupDetails.name, NameType.Class);
+  const className = normalizeName(
+    operationGroupDetails.name,
+    NameType.OperationGroup,
+    true /** shouldGuard */
+  );
   const operationGroupClass = operationGroupFile.addClass({
     name: className,
     docs: [`Class representing a ${className}.`],

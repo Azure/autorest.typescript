@@ -26,8 +26,8 @@ export const contentType: coreHttp.OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/xml",
-    serializedName: "Content-Type",
     isConstant: true,
+    serializedName: "Content-Type",
     type: {
       name: "String"
     }
@@ -83,8 +83,8 @@ export const comp: coreHttp.OperationQueryParameter = {
   parameterPath: "comp",
   mapper: {
     defaultValue: "list",
-    serializedName: "comp",
     isConstant: true,
+    serializedName: "comp",
     type: {
       name: "String"
     }
@@ -95,8 +95,8 @@ export const comp1: coreHttp.OperationQueryParameter = {
   parameterPath: "comp",
   mapper: {
     defaultValue: "properties",
-    serializedName: "comp",
     isConstant: true,
+    serializedName: "comp",
     type: {
       name: "String"
     }
@@ -107,8 +107,8 @@ export const restype: coreHttp.OperationQueryParameter = {
   parameterPath: "restype",
   mapper: {
     defaultValue: "service",
-    serializedName: "restype",
     isConstant: true,
+    serializedName: "restype",
     type: {
       name: "String"
     }
@@ -124,8 +124,8 @@ export const comp2: coreHttp.OperationQueryParameter = {
   parameterPath: "comp",
   mapper: {
     defaultValue: "acl",
-    serializedName: "comp",
     isConstant: true,
+    serializedName: "comp",
     type: {
       name: "String"
     }
@@ -136,8 +136,8 @@ export const restype1: coreHttp.OperationQueryParameter = {
   parameterPath: "restype",
   mapper: {
     defaultValue: "container",
-    serializedName: "restype",
     isConstant: true,
+    serializedName: "restype",
     type: {
       name: "String"
     }
@@ -163,8 +163,8 @@ export const contentType1: coreHttp.OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
-    serializedName: "Content-Type",
     isConstant: true,
+    serializedName: "Content-Type",
     type: {
       name: "String"
     }

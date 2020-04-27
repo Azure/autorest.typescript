@@ -277,7 +277,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Integer" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -291,7 +291,7 @@ const getInvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Integer" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -305,7 +305,7 @@ const getOverflowInt32OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Integer" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -319,7 +319,7 @@ const getUnderflowInt32OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Integer" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -333,7 +333,7 @@ const getOverflowInt64OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Integer" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -347,7 +347,7 @@ const getUnderflowInt64OperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Integer" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -417,7 +417,7 @@ const getUnixTimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "UnixTime" }, serializedName: "Unixtime" }
+      bodyMapper: { type: { name: "UnixTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -445,7 +445,7 @@ const getInvalidUnixTimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "UnixTime" }, serializedName: "Unixtime" }
+      bodyMapper: { type: { name: "UnixTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -459,7 +459,7 @@ const getNullUnixTimeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "UnixTime" }, serializedName: "Unixtime" }
+      bodyMapper: { type: { name: "UnixTime" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
