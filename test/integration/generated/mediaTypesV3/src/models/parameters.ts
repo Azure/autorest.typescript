@@ -12,8 +12,8 @@ export const contentType: coreHttp.OperationParameter = {
   parameterPath: "contentType",
   mapper: {
     defaultValue: "application/octet-stream",
-    serializedName: "Content-Type",
     isConstant: true,
+    serializedName: "Content-Type",
     type: {
       name: "String"
     }
@@ -35,8 +35,8 @@ export const contentType1: coreHttp.OperationParameter = {
   parameterPath: "contentType",
   mapper: {
     defaultValue: "text/plain",
-    serializedName: "Content-Type",
     isConstant: true,
+    serializedName: "Content-Type",
     type: {
       name: "String"
     }
@@ -72,7 +72,7 @@ export const excluded: coreHttp.OperationQueryParameter = {
     serializedName: "excluded",
     type: {
       name: "Sequence",
-      element: { type: { name: "String" }, serializedName: "Post0ItemsItem" }
+      element: { type: { name: "String" } }
     }
   }
 };
@@ -94,7 +94,7 @@ export const excluded1: coreHttp.OperationQueryParameter = {
     serializedName: "excluded",
     type: {
       name: "Sequence",
-      element: { type: { name: "String" }, serializedName: "Post1ItemsItem" }
+      element: { type: { name: "String" } }
     }
   }
 };
