@@ -185,7 +185,7 @@ export function populateOperationParameters(
   targetMediaType?: KnownMediaType
 ): void {
   const parameterName = getParameterName(parameter);
-  const patameterMetadata = getLanguageMetadata(parameter.language);
+  const parameterMetadata = getLanguageMetadata(parameter.language);
   const schemaMetadata = getLanguageMetadata(parameter.schema.language);
 
   if (!parameterName) {
@@ -195,11 +195,11 @@ export function populateOperationParameters(
   }
 
   const serializedName: string =
-    patameterMetadata.serializedName ||
+    parameterMetadata.serializedName ||
     schemaMetadata.serializedName ||
     parameterName;
 
-  let description = patameterMetadata.description || schemaMetadata.description;
+  let description = parameterMetadata.description || schemaMetadata.description;
 
   // Ignore parameters with SchemaType.Group, since these are "virtual".
   // These are handled separately in GroupTransforms and through
