@@ -372,7 +372,7 @@ export interface JsonOutput {
 }
 
 /**
- * Defines headers for xml_getHeaders operation.
+ * Defines headers for Xml_getHeaders operation.
  */
 export interface XmlGetHeadersHeaders {
   customHeader?: string;

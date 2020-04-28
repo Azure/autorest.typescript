@@ -128,7 +128,7 @@ const getTrueOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Boolean" }, serializedName: "Bool" }
+      bodyMapper: { type: { name: "Boolean" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -156,7 +156,7 @@ const getFalseOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Boolean" }, serializedName: "Bool" }
+      bodyMapper: { type: { name: "Boolean" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -184,7 +184,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Boolean" }, serializedName: "Boolean" }
+      bodyMapper: { type: { name: "Boolean" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -198,7 +198,7 @@ const getInvalidOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Boolean" }, serializedName: "Boolean" }
+      bodyMapper: { type: { name: "Boolean" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel

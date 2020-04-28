@@ -9,7 +9,6 @@
 import * as coreHttp from "@azure/core-http";
 
 export const ErrorModel: coreHttp.CompositeMapper = {
-  serializedName: "Error",
   type: {
     name: "Composite",
     className: "ErrorModel",

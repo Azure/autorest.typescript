@@ -9,7 +9,6 @@
 import * as coreHttp from "@azure/core-http";
 
 export const PetAPTrue: coreHttp.CompositeMapper = {
-  serializedName: "PetAPTrue",
   type: {
     name: "Composite",
     className: "PetAPTrue",
@@ -27,7 +26,6 @@ export const PetAPTrue: coreHttp.CompositeMapper = {
 };
 
 export const ErrorModel: coreHttp.CompositeMapper = {
-  serializedName: "Error",
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -39,7 +37,6 @@ export const ErrorModel: coreHttp.CompositeMapper = {
 };
 
 export const CatAPTrue: coreHttp.CompositeMapper = {
-  serializedName: "CatAPTrue",
   type: {
     name: "Composite",
     className: "CatAPTrue",
@@ -52,7 +49,6 @@ export const CatAPTrue: coreHttp.CompositeMapper = {
 };
 
 export const PetAPObject: coreHttp.CompositeMapper = {
-  serializedName: "PetAPObject",
   type: {
     name: "Composite",
     className: "PetAPObject",
@@ -70,7 +66,6 @@ export const PetAPObject: coreHttp.CompositeMapper = {
 };
 
 export const PetAPString: coreHttp.CompositeMapper = {
-  serializedName: "PetAPString",
   type: {
     name: "Composite",
     className: "PetAPString",
@@ -88,7 +83,6 @@ export const PetAPString: coreHttp.CompositeMapper = {
 };
 
 export const PetAPInProperties: coreHttp.CompositeMapper = {
-  serializedName: "PetAPInProperties",
   type: {
     name: "Composite",
     className: "PetAPInProperties",
@@ -101,10 +95,7 @@ export const PetAPInProperties: coreHttp.CompositeMapper = {
         readOnly: true
       },
       additionalProperties: {
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "Number" }, serializedName: "Number" }
-        },
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
         serializedName: "additionalProperties"
       }
     }
@@ -112,7 +103,6 @@ export const PetAPInProperties: coreHttp.CompositeMapper = {
 };
 
 export const PetAPInPropertiesWithAPString: coreHttp.CompositeMapper = {
-  serializedName: "PetAPInPropertiesWithAPString",
   type: {
     name: "Composite",
     className: "PetAPInPropertiesWithAPString",
@@ -131,10 +121,7 @@ export const PetAPInPropertiesWithAPString: coreHttp.CompositeMapper = {
         required: true
       },
       additionalProperties: {
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "Number" }, serializedName: "Number" }
-        },
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
         serializedName: "additionalProperties"
       }
     }

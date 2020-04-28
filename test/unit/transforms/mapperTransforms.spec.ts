@@ -93,20 +93,22 @@ describe("transformObjectMapper", () => {
     const stringSchema = getStringSchema("stringSchema");
     const schema = getObjectSchema(objectName, {
       properties: [
-        new Property(stringPropName, "", stringSchema, { required: true })
+        new Property(stringPropName, "", stringSchema, {
+          required: true,
+          serializedName: "string-prop"
+        })
       ]
     });
 
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: objectName,
       type: {
         className: getMapperClassName(schema),
         name: MapperType.Composite,
         modelProperties: {
           stringProp: {
-            serializedName: "stringProp",
+            serializedName: "string-prop",
             required: true,
             type: {
               name: "String"
@@ -127,19 +129,22 @@ describe("transformObjectMapper", () => {
       new ConstantValue(constantValue)
     );
     const schema = getObjectSchema(objectName, {
-      properties: [new Property(propName, "", constantSchema)]
+      properties: [
+        new Property(propName, "", constantSchema, {
+          serializedName: "constant-prop"
+        })
+      ]
     });
 
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: objectName,
       type: {
         name: MapperType.Composite,
         className: "MockObjectName",
         modelProperties: {
           constantProp: {
-            serializedName: "constantProp",
+            serializedName: "constant-prop",
             defaultValue: constantValue,
             isConstant: true,
             type: {
@@ -164,19 +169,22 @@ describe("transformObjectMapper", () => {
       choices
     });
     const schema = getObjectSchema(objectName, {
-      properties: [new Property(propName, "", choiceSchema)]
+      properties: [
+        new Property(propName, "", choiceSchema, {
+          serializedName: "choice-prop"
+        })
+      ]
     });
 
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: objectName,
       type: {
         name: MapperType.Composite,
         className: getMapperClassName(schema),
         modelProperties: {
           choiceProp: {
-            serializedName: "choiceProp",
+            serializedName: "choice-prop",
             type: {
               name: "String"
             }
@@ -196,16 +204,18 @@ describe("transformObjectMapper", () => {
       new Property(
         "length",
         "",
-        new NumberSchema("typeForlength", "", SchemaType.Number, 32)
+        new NumberSchema("typeForlength", "", SchemaType.Number, 32),
+        { serializedName: "length" }
       ),
-      new Property("siblings", "", new ArraySchema("Fish-siblings", "", fish))
+      new Property("siblings", "", new ArraySchema("Fish-siblings", "", fish), {
+        serializedName: "siblings"
+      })
     ];
     fish.properties = properties;
 
     const mapper = transformMapper({ schema: fish });
 
     assert.deepEqual(mapper, {
-      serializedName: "fish",
       type: {
         className: getMapperClassName(fish),
         modelProperties: {
@@ -251,19 +261,22 @@ describe("transformObjectMapper", () => {
       properties: [new Property(childObjectProp, "", getStringSchema("foo"))]
     });
     const schema = getObjectSchema(parentObjectName, {
-      properties: [new Property(propName, "", childObject)]
+      properties: [
+        new Property(propName, "", childObject, {
+          serializedName: "object-prop"
+        })
+      ]
     });
 
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: parentObjectName,
       type: {
         className: getMapperClassName(schema),
         name: MapperType.Composite,
         modelProperties: {
           objectProp: {
-            serializedName: "objectProp",
+            serializedName: "object-prop",
             type: {
               name: "Composite",
               className: "MockChildObject"
@@ -282,7 +295,6 @@ describe("transformPrimitiveMapper", () => {
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: byteArrayName,
       type: {
         name: MapperType.ByteArray
       }
@@ -295,7 +307,6 @@ describe("transformPrimitiveMapper", () => {
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: byteArrayName,
       type: {
         name: MapperType.Base64Url
       }
@@ -310,7 +321,6 @@ describe("transformPrimitiveMapper", () => {
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: booleanSchemaName,
       type: {
         name: MapperType.Boolean
       }
@@ -323,7 +333,6 @@ describe("transformPrimitiveMapper", () => {
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: charSchemaName,
       type: {
         name: MapperType.String
       }
@@ -346,7 +355,6 @@ describe("transformChoiceMapper", () => {
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: choiceSchemaName,
       type: {
         name: MapperType.String
       }
@@ -368,7 +376,6 @@ describe("transformChoiceMapper", () => {
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: choiceSchemaName,
       type: {
         name: MapperType.Enum,
         allowedValues: choices.map(choice => choice.value)
@@ -384,7 +391,6 @@ describe("transformDateMapper", () => {
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: dateSchemaName,
       type: { name: "Date" }
     });
   });
@@ -395,7 +401,6 @@ describe("transformDateMapper", () => {
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: dateSchemaName,
       type: { name: "DateTime" }
     });
   });
@@ -406,7 +411,6 @@ describe("transformDateMapper", () => {
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: dateSchemaName,
       type: { name: "UnixTime" }
     });
   });
@@ -422,7 +426,6 @@ describe("transformConstantMapper", () => {
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: constantName,
       type: {
         name: "String"
       },
@@ -440,7 +443,6 @@ describe("transformConstantMapper", () => {
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: constantName,
       type: {
         name: "Number"
       },
@@ -458,7 +460,6 @@ describe("transformConstantMapper", () => {
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: constantName,
       type: {
         name: "Date"
       },
@@ -476,7 +477,6 @@ describe("transformConstantMapper", () => {
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: constantName,
       type: {
         name: "DateTime"
       },
@@ -494,7 +494,6 @@ describe("transformConstantMapper", () => {
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: constantName,
       type: {
         name: "UnixTime"
       },
@@ -510,7 +509,6 @@ describe("transformStringMapper", () => {
     const mapper = transformMapper({ schema });
 
     assert.deepEqual(mapper, {
-      serializedName: stringSchemaName,
       type: { name: "String" }
     });
   });
@@ -521,7 +519,6 @@ describe("transformStringMapper", () => {
     const mapper = transformMapper({ schema, options: { required: true } });
 
     assert.deepEqual(mapper, {
-      serializedName: stringSchemaName,
       type: { name: "String" },
       required: true,
       constraints: {
@@ -537,7 +534,6 @@ describe("transformNumberMapper", () => {
   it("Gets a mapper from a non required NumberSchema", () => {
     const mapper = transformMapper({ schema: getNumberSchema() });
     assert.deepEqual(mapper, {
-      serializedName: numberSchemaName,
       type: { name: "Number" }
     });
   });
@@ -545,7 +541,6 @@ describe("transformNumberMapper", () => {
   it("Gets a mapper from a NumberSchema with constrains", () => {
     const mapper = transformMapper({ schema: getNumberSchema() });
     assert.deepEqual(mapper, {
-      serializedName: numberSchemaName,
       type: { name: "Number" }
     });
   });
@@ -556,7 +551,6 @@ describe("transformNumberMapper", () => {
       schema: getNumberSchema(undefined, constraints)
     });
     assert.deepEqual(mapper, {
-      serializedName: numberSchemaName,
       type: { name: "Number" },
       constraints: {
         InclusiveMaximum: constraints.maximum,
@@ -638,7 +632,6 @@ describe("Mapper Transforms", () => {
     }) as CompositeMapper;
     const modelPropertiesKeys = Object.keys(mapper.type.modelProperties || {});
 
-    assert.strictEqual(mapper.serializedName, "RefColorConstant");
     assert.strictEqual(mapper.type.name, MapperType.Composite);
     assert.strictEqual(modelPropertiesKeys.length, 2);
 
@@ -685,11 +678,6 @@ describe("Mapper Transforms", () => {
     const modelPropertiesKeys = Object.keys(mapper.type.modelProperties || {});
 
     assert.strictEqual(
-      mapper.serializedName,
-      "basic",
-      "Unexpected serialized name"
-    );
-    assert.strictEqual(
       mapper.type.name,
       MapperType.Composite,
       "unexpected mapper type"
@@ -717,11 +705,6 @@ describe("Mapper Transforms", () => {
     const mapper = transformMapper({ schema: errorSchema }) as CompositeMapper;
     const modelPropertiesKeys = Object.keys(mapper.type.modelProperties || {});
 
-    assert.strictEqual(
-      mapper.serializedName,
-      "Error",
-      `Expected  "Error" but got ${mapper.serializedName}`
-    );
     assert.strictEqual(
       mapper.type.name,
       MapperType.Composite,

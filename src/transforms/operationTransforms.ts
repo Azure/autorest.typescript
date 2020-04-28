@@ -15,7 +15,11 @@ import {
   ConstantSchema,
   CodeModel
 } from "@azure-tools/codemodel";
-import { normalizeName, NameType } from "../utils/nameUtils";
+import {
+  normalizeName,
+  NameType,
+  getOperationFullName
+} from "../utils/nameUtils";
 import {
   OperationGroupDetails,
   OperationDetails,
@@ -86,7 +90,11 @@ export function transformOperationSpec(
   operationDetails: OperationDetails,
   parameters: ParameterDetails[]
 ): OperationSpecDetails[] {
-  const operationName = normalizeName(operationDetails.name, NameType.Property);
+  const operationName = normalizeName(
+    operationDetails.name,
+    NameType.Operation,
+    true /** shouldGuard */
+  );
   // Extract protocol information
   const operationFullName = operationDetails.fullName;
 
@@ -190,7 +198,11 @@ export function getSpecType(responseSchema: Schema, expand = false): SpecType {
       break;
     case SchemaType.Object:
       const name = getLanguageMetadata(responseSchema.language).name;
-      reference = `Mappers.${normalizeName(name, NameType.Class)}`;
+      reference = `Mappers.${normalizeName(
+        name,
+        NameType.Class,
+        true /** shouldGuard */
+      )}`;
       break;
     default:
       typeName = getMapperTypeFromSchema(responseSchema.type);
@@ -290,20 +302,33 @@ export function transformOperationResponse(
 
 export async function transformOperation(
   operation: Operation,
-  operationGroupName: string
+  operationGroup: OperationGroup,
+  clientName: string
 ): Promise<OperationDetails> {
   const metadata = getLanguageMetadata(operation.language);
   const pagination = extractPaginationDetails(operation);
-  const name = normalizeName(metadata.name, NameType.Property);
-  const operationFullName = `${operationGroupName}_${name}`;
+  const name = normalizeName(
+    metadata.name,
+    NameType.Operation,
+    true /** shouldGuard */
+  );
+  const operationFullName = getOperationFullName(
+    operationGroup,
+    operation,
+    clientName
+  );
   const responsesAndErrors = [
     ...(operation.responses || []),
     ...(operation.exceptions || [])
   ];
   const typeName = `${normalizeName(
-    operationGroupName,
+    getOperationGroupName(operationGroup, clientName),
     NameType.Interface
-  )}${normalizeName(metadata.name, NameType.Interface)}`;
+  )}${normalizeName(
+    metadata.name,
+    NameType.Interface,
+    true /** shouldGuard */
+  )}`;
 
   const typeDetails: TypeDetails = {
     typeName,
@@ -347,7 +372,7 @@ export async function transformOperation(
   return {
     name,
     typeDetails,
-    fullName: operationFullName.toLowerCase(),
+    fullName: operationFullName,
     apiVersions: operation.apiVersions
       ? operation.apiVersions.map(v => v.version)
       : [],
@@ -372,23 +397,35 @@ export function transformOperationGroups(
   );
 }
 
+function getOperationGroupName(
+  operationGroup: OperationGroup,
+  clientName: string = ""
+) {
+  const { name } = getLanguageMetadata(operationGroup.language);
+
+  return normalizeName(name || clientName, NameType.OperationGroup);
+}
+
 export async function transformOperationGroup(
   operationGroup: OperationGroup,
   clientName: string
 ): Promise<OperationGroupDetails> {
   const metadata = getLanguageMetadata(operationGroup.language);
   const isTopLevel = !metadata.name;
-  const name = normalizeName(metadata.name || clientName, NameType.Property);
+  const operationGroupClassName = getOperationGroupName(
+    operationGroup,
+    clientName
+  );
 
   const operations = await Promise.all(
     operationGroup.operations.map(operation =>
-      transformOperation(operation, name)
+      transformOperation(operation, operationGroup, clientName)
     )
   );
   const mediaTypes = getOperationGroupMediaTypes(operations);
 
   return {
-    name,
+    name: operationGroupClassName,
     key: operationGroup.$key,
     operations,
     isTopLevel,

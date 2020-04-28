@@ -9,7 +9,6 @@
 import * as coreHttp from "@azure/core-http";
 
 export const ProductResultValue: coreHttp.CompositeMapper = {
-  serializedName: "ProductResultValue",
   type: {
     name: "Composite",
     className: "ProductResultValue",
@@ -27,7 +26,6 @@ export const ProductResultValue: coreHttp.CompositeMapper = {
 };
 
 export const Product: coreHttp.CompositeMapper = {
-  serializedName: "Product",
   type: {
     name: "Composite",
     className: "Product",
@@ -41,7 +39,6 @@ export const Product: coreHttp.CompositeMapper = {
 };
 
 export const ProductProperties: coreHttp.CompositeMapper = {
-  serializedName: "ProductProperties",
   type: {
     name: "Composite",
     className: "ProductProperties",
@@ -53,7 +50,6 @@ export const ProductProperties: coreHttp.CompositeMapper = {
 };
 
 export const ProductResult: coreHttp.CompositeMapper = {
-  serializedName: "ProductResult",
   type: {
     name: "Composite",
     className: "ProductResult",
@@ -71,7 +67,6 @@ export const ProductResult: coreHttp.CompositeMapper = {
 };
 
 export const OdataProductResult: coreHttp.CompositeMapper = {
-  serializedName: "OdataProductResult",
   type: {
     name: "Composite",
     className: "OdataProductResult",
@@ -92,7 +87,6 @@ export const OdataProductResult: coreHttp.CompositeMapper = {
 };
 
 export const OperationResult: coreHttp.CompositeMapper = {
-  serializedName: "OperationResult",
   type: {
     name: "Composite",
     className: "OperationResult",

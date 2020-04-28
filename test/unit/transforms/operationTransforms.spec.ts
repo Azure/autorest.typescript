@@ -172,7 +172,8 @@ describe("OperationTransforms", () => {
         const mockOperation = getOperation(okResponseSchema);
         const operationDetails = await transformOperation(
           mockOperation,
-          "MockOperationGroup"
+          { language: { default: { name: "MockOperationGroup" } } } as any,
+          "ClientName"
         );
         const operationSpec = transformOperationSpec(operationDetails, [])[0];
         checkHttpMethodAndPath(operationSpec);
@@ -182,7 +183,8 @@ describe("OperationTransforms", () => {
         const mockOperation = getOperation();
         const operationDetails = transformOperation(
           mockOperation,
-          "MockOperationGroup"
+          { language: { default: { name: "MockOperationGroup" } } } as any,
+          "ClientName"
         );
         const operationSpec = transformOperationSpec(
           await operationDetails,
@@ -204,14 +206,15 @@ describe("OperationTransforms", () => {
         );
 
         const mockOperation = getOperation(undefined, [parameter]);
-        const operationDetails = transformOperation(
+        const operationDetails = await transformOperation(
           mockOperation,
-          "MockOperationGroup"
+          { language: { default: { name: "MockOperationGroup" } } } as any,
+          "ClientName"
         );
-        const operationSpec = transformOperationSpec(await operationDetails, [
+        const operationSpec = transformOperationSpec(operationDetails, [
           {
             nameRef: "MockOperation",
-            operationsIn: ["mockoperationgroup_getnull"],
+            operationsIn: ["MockOperationGroup_getNull"],
             parameterPath: "mockOperation",
             isGlobal: false,
             mapper: "",
@@ -238,7 +241,8 @@ describe("OperationTransforms", () => {
         const mockOperation = getOperation(okResponseSchema);
         const operationDetails = await transformOperation(
           mockOperation,
-          "MockOperationGroup"
+          { language: { default: { name: "MockOperationGroup" } } } as any,
+          "ClientName"
         );
         const operationSpec = transformOperationSpec(operationDetails, [])[0];
         checkHttpMethodAndPath(operationSpec);
@@ -257,7 +261,8 @@ describe("OperationTransforms", () => {
         const mockOperation = getOperation(okResponseSchema);
         const operationDetails = await transformOperation(
           mockOperation,
-          "MockOperationGroup"
+          { language: { default: { name: "MockOperationGroup" } } } as any,
+          "ClientName"
         );
         const operationSpec = transformOperationSpec(operationDetails, [])[0];
         checkHttpMethodAndPath(operationSpec);

@@ -125,7 +125,8 @@ export function transformMapper({ schema, options }: MapperInput) {
 export function getMapperClassName(schema: Schema): string {
   return normalizeName(
     getLanguageMetadata(schema.language).name,
-    NameType.Class
+    NameType.Class,
+    true /** shouldGuard */
   );
 }
 
@@ -153,7 +154,8 @@ function buildMapper(
   const serializedName =
     getDiscriminatorValue(schema) ||
     options.serializedName ||
-    getLanguageMetadata(schema.language).name;
+    // Fallback to name only for XML schemas since they need a name, otherwise don't
+    (options.hasXmlMetadata && getLanguageMetadata(schema.language).name);
 
   const arraySchema = schema as ArraySchema;
   arraySchema.elementType;
@@ -528,8 +530,7 @@ function transformConstantMapper(pipelineValue: PipelineValue): PipelineValue {
   }
   const serializedName =
     (options && options.serializedName) ||
-    getLanguageMetadata(schema.language).serializedName ||
-    getLanguageMetadata(schema.language).name;
+    getLanguageMetadata(schema.language).serializedName;
 
   const constantSchema = schema as ConstantSchema;
 
@@ -607,7 +608,11 @@ function processProperties(
   properties.forEach(prop => {
     const serializedName = getPropertySerializedName(prop);
     const propName = getLanguageMetadata(prop.language).name;
-    const name = normalizeName(propName, NameType.Property);
+    const name = normalizeName(
+      propName,
+      NameType.Property,
+      true /** shouldGuard */
+    );
     modelProperties[name] = getMapperOrRef(prop.schema, prop.serializedName, {
       ...options,
       required: prop.required,

@@ -16,7 +16,7 @@ export interface ErrorModel {
 /**
  * Contains response data for the getNull operation.
  */
-export type DateModelGetNullResponse = {
+export type DateGetNullResponse = {
   /**
    * The parsed response body.
    */
@@ -41,7 +41,7 @@ export type DateModelGetNullResponse = {
 /**
  * Contains response data for the getInvalidDate operation.
  */
-export type DateModelGetInvalidDateResponse = {
+export type DateGetInvalidDateResponse = {
   /**
    * The parsed response body.
    */
@@ -66,7 +66,7 @@ export type DateModelGetInvalidDateResponse = {
 /**
  * Contains response data for the getOverflowDate operation.
  */
-export type DateModelGetOverflowDateResponse = {
+export type DateGetOverflowDateResponse = {
   /**
    * The parsed response body.
    */
@@ -91,7 +91,7 @@ export type DateModelGetOverflowDateResponse = {
 /**
  * Contains response data for the getUnderflowDate operation.
  */
-export type DateModelGetUnderflowDateResponse = {
+export type DateGetUnderflowDateResponse = {
   /**
    * The parsed response body.
    */
@@ -116,7 +116,7 @@ export type DateModelGetUnderflowDateResponse = {
 /**
  * Contains response data for the getMaxDate operation.
  */
-export type DateModelGetMaxDateResponse = {
+export type DateGetMaxDateResponse = {
   /**
    * The parsed response body.
    */
@@ -141,7 +141,7 @@ export type DateModelGetMaxDateResponse = {
 /**
  * Contains response data for the getMinDate operation.
  */
-export type DateModelGetMinDateResponse = {
+export type DateGetMinDateResponse = {
   /**
    * The parsed response body.
    */

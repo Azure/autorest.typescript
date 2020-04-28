@@ -18,10 +18,10 @@ class BodyDateClient extends BodyDateClientContext {
    */
   constructor(options?: Models.BodyDateClientOptionalParams) {
     super(options);
-    this.date = new operations.DateModel(this);
+    this.date = new operations.DateOperations(this);
   }
 
-  date: operations.DateModel;
+  date: operations.DateOperations;
 }
 
 // Operation Specifications

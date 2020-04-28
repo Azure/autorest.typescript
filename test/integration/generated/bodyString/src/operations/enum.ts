@@ -147,8 +147,7 @@ const getNotExpandableOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Enum",
           allowedValues: ["red color", "green-color", "blue_color"]
-        },
-        serializedName: "Colors"
+        }
       }
     },
     default: {
@@ -181,8 +180,7 @@ const getReferencedOperationSpec: coreHttp.OperationSpec = {
         type: {
           name: "Enum",
           allowedValues: ["red color", "green-color", "blue_color"]
-        },
-        serializedName: "Colors"
+        }
       }
     },
     default: {

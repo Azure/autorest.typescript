@@ -25,8 +25,8 @@ export const contentType: coreHttp.OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
-    serializedName: "Content-Type",
     isConstant: true,
+    serializedName: "Content-Type",
     type: {
       name: "String"
     }
@@ -40,10 +40,7 @@ export const arrayBody: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: {
-        type: { name: "String" },
-        serializedName: "PutContentSchemaItem"
-      }
+      element: { type: { name: "String" } }
     }
   }
 };
@@ -55,7 +52,7 @@ export const arrayBody1: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Boolean" }, serializedName: "Boolean" }
+      element: { type: { name: "Boolean" } }
     }
   }
 };
@@ -67,7 +64,7 @@ export const arrayBody2: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Number" }, serializedName: "Integer" }
+      element: { type: { name: "Number" } }
     }
   }
 };
@@ -79,7 +76,7 @@ export const arrayBody3: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Number" }, serializedName: "Integer" }
+      element: { type: { name: "Number" } }
     }
   }
 };
@@ -91,7 +88,7 @@ export const arrayBody4: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Number" }, serializedName: "Number" }
+      element: { type: { name: "Number" } }
     }
   }
 };
@@ -103,7 +100,7 @@ export const arrayBody5: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Number" }, serializedName: "Number" }
+      element: { type: { name: "Number" } }
     }
   }
 };
@@ -115,7 +112,7 @@ export const arrayBody6: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "String" }, serializedName: "String" }
+      element: { type: { name: "String" } }
     }
   }
 };
@@ -128,8 +125,7 @@ export const arrayBody7: coreHttp.OperationParameter = {
     type: {
       name: "Sequence",
       element: {
-        type: { name: "Enum", allowedValues: ["foo1", "foo2", "foo3"] },
-        serializedName: "FooEnum"
+        type: { name: "Enum", allowedValues: ["foo1", "foo2", "foo3"] }
       }
     }
   }
@@ -142,7 +138,7 @@ export const arrayBody8: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "String" }, serializedName: "Enum1" }
+      element: { type: { name: "String" } }
     }
   }
 };
@@ -154,7 +150,7 @@ export const arrayBody9: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Uuid" }, serializedName: "Uuid" }
+      element: { type: { name: "Uuid" } }
     }
   }
 };
@@ -166,7 +162,7 @@ export const arrayBody10: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Date" }, serializedName: "Date" }
+      element: { type: { name: "Date" } }
     }
   }
 };
@@ -178,7 +174,7 @@ export const arrayBody11: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "DateTime" }, serializedName: "DateTime" }
+      element: { type: { name: "DateTime" } }
     }
   }
 };
@@ -190,7 +186,7 @@ export const arrayBody12: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "DateTimeRfc1123" }, serializedName: "DateTime" }
+      element: { type: { name: "DateTimeRfc1123" } }
     }
   }
 };
@@ -202,7 +198,7 @@ export const arrayBody13: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "TimeSpan" }, serializedName: "Duration" }
+      element: { type: { name: "TimeSpan" } }
     }
   }
 };
@@ -214,7 +210,7 @@ export const arrayBody14: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "ByteArray" }, serializedName: "ByteArray" }
+      element: { type: { name: "ByteArray" } }
     }
   }
 };
@@ -239,14 +235,7 @@ export const arrayBody16: coreHttp.OperationParameter = {
     type: {
       name: "Sequence",
       element: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "String" },
-            serializedName: "PutContentSchemaItemsItem"
-          }
-        },
-        serializedName: "ArrayOfPutContentSchemaItemsItem"
+        type: { name: "Sequence", element: { type: { name: "String" } } }
       }
     }
   }
@@ -260,11 +249,7 @@ export const arrayBody17: coreHttp.OperationParameter = {
     type: {
       name: "Sequence",
       element: {
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "String" }, serializedName: "String" }
-        },
-        serializedName: "DictionaryOfString"
+        type: { name: "Dictionary", value: { type: { name: "String" } } }
       }
     }
   }

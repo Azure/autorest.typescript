@@ -46,7 +46,7 @@ const apiV1ValueGetOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" }, serializedName: "String" }
+      bodyMapper: { type: { name: "String" } }
     }
   },
   urlParameters: [Parameters.$host],

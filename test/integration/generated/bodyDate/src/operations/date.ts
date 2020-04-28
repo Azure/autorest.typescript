@@ -11,22 +11,22 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyDateClient } from "../bodyDateClient";
 import {
-  DateModelGetNullResponse,
-  DateModelGetInvalidDateResponse,
-  DateModelGetOverflowDateResponse,
-  DateModelGetUnderflowDateResponse,
-  DateModelGetMaxDateResponse,
-  DateModelGetMinDateResponse
+  DateGetNullResponse,
+  DateGetInvalidDateResponse,
+  DateGetOverflowDateResponse,
+  DateGetUnderflowDateResponse,
+  DateGetMaxDateResponse,
+  DateGetMinDateResponse
 } from "../models";
 
 /**
- * Class representing a DateModel.
+ * Class representing a DateOperations.
  */
-export class DateModel {
+export class DateOperations {
   private readonly client: BodyDateClient;
 
   /**
-   * Initialize a new instance of the class DateModel class.
+   * Initialize a new instance of the class DateOperations class.
    * @param client Reference to the service client
    */
   constructor(client: BodyDateClient) {
@@ -37,16 +37,14 @@ export class DateModel {
    * Get null date value
    * @param options The options parameters.
    */
-  getNull(
-    options?: coreHttp.OperationOptions
-  ): Promise<DateModelGetNullResponse> {
+  getNull(options?: coreHttp.OperationOptions): Promise<DateGetNullResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getNullOperationSpec
-    ) as Promise<DateModelGetNullResponse>;
+    ) as Promise<DateGetNullResponse>;
   }
 
   /**
@@ -55,14 +53,14 @@ export class DateModel {
    */
   getInvalidDate(
     options?: coreHttp.OperationOptions
-  ): Promise<DateModelGetInvalidDateResponse> {
+  ): Promise<DateGetInvalidDateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getInvalidDateOperationSpec
-    ) as Promise<DateModelGetInvalidDateResponse>;
+    ) as Promise<DateGetInvalidDateResponse>;
   }
 
   /**
@@ -71,14 +69,14 @@ export class DateModel {
    */
   getOverflowDate(
     options?: coreHttp.OperationOptions
-  ): Promise<DateModelGetOverflowDateResponse> {
+  ): Promise<DateGetOverflowDateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getOverflowDateOperationSpec
-    ) as Promise<DateModelGetOverflowDateResponse>;
+    ) as Promise<DateGetOverflowDateResponse>;
   }
 
   /**
@@ -87,14 +85,14 @@ export class DateModel {
    */
   getUnderflowDate(
     options?: coreHttp.OperationOptions
-  ): Promise<DateModelGetUnderflowDateResponse> {
+  ): Promise<DateGetUnderflowDateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getUnderflowDateOperationSpec
-    ) as Promise<DateModelGetUnderflowDateResponse>;
+    ) as Promise<DateGetUnderflowDateResponse>;
   }
 
   /**
@@ -121,14 +119,14 @@ export class DateModel {
    */
   getMaxDate(
     options?: coreHttp.OperationOptions
-  ): Promise<DateModelGetMaxDateResponse> {
+  ): Promise<DateGetMaxDateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getMaxDateOperationSpec
-    ) as Promise<DateModelGetMaxDateResponse>;
+    ) as Promise<DateGetMaxDateResponse>;
   }
 
   /**
@@ -155,14 +153,14 @@ export class DateModel {
    */
   getMinDate(
     options?: coreHttp.OperationOptions
-  ): Promise<DateModelGetMinDateResponse> {
+  ): Promise<DateGetMinDateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       getMinDateOperationSpec
-    ) as Promise<DateModelGetMinDateResponse>;
+    ) as Promise<DateGetMinDateResponse>;
   }
 }
 // Operation Specifications
@@ -174,7 +172,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Date" }, serializedName: "Date" }
+      bodyMapper: { type: { name: "Date" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -188,7 +186,7 @@ const getInvalidDateOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Date" }, serializedName: "Date" }
+      bodyMapper: { type: { name: "Date" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -202,7 +200,7 @@ const getOverflowDateOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Date" }, serializedName: "Date" }
+      bodyMapper: { type: { name: "Date" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -216,7 +214,7 @@ const getUnderflowDateOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Date" }, serializedName: "Date" }
+      bodyMapper: { type: { name: "Date" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -244,7 +242,7 @@ const getMaxDateOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Date" }, serializedName: "Date" }
+      bodyMapper: { type: { name: "Date" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -272,7 +270,7 @@ const getMinDateOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Date" }, serializedName: "Date" }
+      bodyMapper: { type: { name: "Date" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel

@@ -9,7 +9,6 @@
 import * as coreHttp from "@azure/core-http";
 
 export const ErrorModel: coreHttp.CompositeMapper = {
-  serializedName: "Error",
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -17,9 +16,9 @@ export const ErrorModel: coreHttp.CompositeMapper = {
       status: { type: { name: "Number" }, serializedName: "status" },
       constantId: {
         type: { name: "Number" },
-        serializedName: "constantId",
         defaultValue: 1,
-        isConstant: true
+        isConstant: true,
+        serializedName: "constantId"
       },
       message: { type: { name: "String" }, serializedName: "message" }
     }
@@ -27,7 +26,6 @@ export const ErrorModel: coreHttp.CompositeMapper = {
 };
 
 export const OdataFilter: coreHttp.CompositeMapper = {
-  serializedName: "OdataFilter",
   type: {
     name: "Composite",
     className: "OdataFilter",
@@ -39,7 +37,6 @@ export const OdataFilter: coreHttp.CompositeMapper = {
 };
 
 export const HeaderCustomNamedRequestIdHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_customNamedRequestIdHeaders",
   type: {
     name: "Composite",
     className: "HeaderCustomNamedRequestIdHeaders",
@@ -53,7 +50,6 @@ export const HeaderCustomNamedRequestIdHeaders: coreHttp.CompositeMapper = {
 };
 
 export const HeaderCustomNamedRequestIdParamGroupingHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_customNamedRequestIdParamGroupingHeaders",
   type: {
     name: "Composite",
     className: "HeaderCustomNamedRequestIdParamGroupingHeaders",
@@ -67,7 +63,6 @@ export const HeaderCustomNamedRequestIdParamGroupingHeaders: coreHttp.CompositeM
 };
 
 export const HeaderCustomNamedRequestIdHeadHeaders: coreHttp.CompositeMapper = {
-  serializedName: "header_customNamedRequestIdHeadHeaders",
   type: {
     name: "Composite",
     className: "HeaderCustomNamedRequestIdHeadHeaders",

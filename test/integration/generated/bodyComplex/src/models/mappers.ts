@@ -9,7 +9,6 @@
 import * as coreHttp from "@azure/core-http";
 
 export const Basic: coreHttp.CompositeMapper = {
-  serializedName: "Basic",
   type: {
     name: "Composite",
     className: "Basic",
@@ -22,7 +21,6 @@ export const Basic: coreHttp.CompositeMapper = {
 };
 
 export const ErrorModel: coreHttp.CompositeMapper = {
-  serializedName: "Error",
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -34,7 +32,6 @@ export const ErrorModel: coreHttp.CompositeMapper = {
 };
 
 export const IntWrapper: coreHttp.CompositeMapper = {
-  serializedName: "IntWrapper",
   type: {
     name: "Composite",
     className: "IntWrapper",
@@ -46,7 +43,6 @@ export const IntWrapper: coreHttp.CompositeMapper = {
 };
 
 export const LongWrapper: coreHttp.CompositeMapper = {
-  serializedName: "LongWrapper",
   type: {
     name: "Composite",
     className: "LongWrapper",
@@ -58,7 +54,6 @@ export const LongWrapper: coreHttp.CompositeMapper = {
 };
 
 export const FloatWrapper: coreHttp.CompositeMapper = {
-  serializedName: "FloatWrapper",
   type: {
     name: "Composite",
     className: "FloatWrapper",
@@ -70,7 +65,6 @@ export const FloatWrapper: coreHttp.CompositeMapper = {
 };
 
 export const DoubleWrapper: coreHttp.CompositeMapper = {
-  serializedName: "DoubleWrapper",
   type: {
     name: "Composite",
     className: "DoubleWrapper",
@@ -86,7 +80,6 @@ export const DoubleWrapper: coreHttp.CompositeMapper = {
 };
 
 export const BooleanWrapper: coreHttp.CompositeMapper = {
-  serializedName: "BooleanWrapper",
   type: {
     name: "Composite",
     className: "BooleanWrapper",
@@ -98,7 +91,6 @@ export const BooleanWrapper: coreHttp.CompositeMapper = {
 };
 
 export const StringWrapper: coreHttp.CompositeMapper = {
-  serializedName: "StringWrapper",
   type: {
     name: "Composite",
     className: "StringWrapper",
@@ -111,7 +103,6 @@ export const StringWrapper: coreHttp.CompositeMapper = {
 };
 
 export const DateWrapper: coreHttp.CompositeMapper = {
-  serializedName: "DateWrapper",
   type: {
     name: "Composite",
     className: "DateWrapper",
@@ -123,7 +114,6 @@ export const DateWrapper: coreHttp.CompositeMapper = {
 };
 
 export const DatetimeWrapper: coreHttp.CompositeMapper = {
-  serializedName: "DatetimeWrapper",
   type: {
     name: "Composite",
     className: "DatetimeWrapper",
@@ -135,7 +125,6 @@ export const DatetimeWrapper: coreHttp.CompositeMapper = {
 };
 
 export const Datetimerfc1123Wrapper: coreHttp.CompositeMapper = {
-  serializedName: "Datetimerfc1123Wrapper",
   type: {
     name: "Composite",
     className: "Datetimerfc1123Wrapper",
@@ -147,7 +136,6 @@ export const Datetimerfc1123Wrapper: coreHttp.CompositeMapper = {
 };
 
 export const DurationWrapper: coreHttp.CompositeMapper = {
-  serializedName: "DurationWrapper",
   type: {
     name: "Composite",
     className: "DurationWrapper",
@@ -158,7 +146,6 @@ export const DurationWrapper: coreHttp.CompositeMapper = {
 };
 
 export const ByteWrapper: coreHttp.CompositeMapper = {
-  serializedName: "ByteWrapper",
   type: {
     name: "Composite",
     className: "ByteWrapper",
@@ -169,19 +156,12 @@ export const ByteWrapper: coreHttp.CompositeMapper = {
 };
 
 export const ArrayWrapper: coreHttp.CompositeMapper = {
-  serializedName: "ArrayWrapper",
   type: {
     name: "Composite",
     className: "ArrayWrapper",
     modelProperties: {
       array: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "String" },
-            serializedName: "ArrayWrapperArrayItem"
-          }
-        },
+        type: { name: "Sequence", element: { type: { name: "String" } } },
         serializedName: "array"
       }
     }
@@ -189,16 +169,12 @@ export const ArrayWrapper: coreHttp.CompositeMapper = {
 };
 
 export const DictionaryWrapper: coreHttp.CompositeMapper = {
-  serializedName: "DictionaryWrapper",
   type: {
     name: "Composite",
     className: "DictionaryWrapper",
     modelProperties: {
       defaultProgram: {
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "String" }, serializedName: "String" }
-        },
+        type: { name: "Dictionary", value: { type: { name: "String" } } },
         serializedName: "defaultProgram"
       }
     }
@@ -206,7 +182,6 @@ export const DictionaryWrapper: coreHttp.CompositeMapper = {
 };
 
 export const Pet: coreHttp.CompositeMapper = {
-  serializedName: "Pet",
   type: {
     name: "Composite",
     className: "Pet",
@@ -218,7 +193,6 @@ export const Pet: coreHttp.CompositeMapper = {
 };
 
 export const Cat: coreHttp.CompositeMapper = {
-  serializedName: "Cat",
   type: {
     name: "Composite",
     className: "Cat",
@@ -237,7 +211,6 @@ export const Cat: coreHttp.CompositeMapper = {
 };
 
 export const Dog: coreHttp.CompositeMapper = {
-  serializedName: "Dog",
   type: {
     name: "Composite",
     className: "Dog",
@@ -249,7 +222,6 @@ export const Dog: coreHttp.CompositeMapper = {
 };
 
 export const Siamese: coreHttp.CompositeMapper = {
-  serializedName: "Siamese",
   type: {
     name: "Composite",
     className: "Siamese",
@@ -261,7 +233,6 @@ export const Siamese: coreHttp.CompositeMapper = {
 };
 
 export const Fish: coreHttp.CompositeMapper = {
-  serializedName: "Fish",
   type: {
     name: "Composite",
     className: "Fish",
@@ -294,7 +265,6 @@ export const Fish: coreHttp.CompositeMapper = {
 };
 
 export const DotFish: coreHttp.CompositeMapper = {
-  serializedName: "DotFish",
   type: {
     name: "Composite",
     className: "DotFish",
@@ -315,7 +285,6 @@ export const DotFish: coreHttp.CompositeMapper = {
 };
 
 export const DotFishMarket: coreHttp.CompositeMapper = {
-  serializedName: "DotFishMarket",
   type: {
     name: "Composite",
     className: "DotFishMarket",
@@ -380,7 +349,6 @@ export const Salmon: coreHttp.CompositeMapper = {
 };
 
 export const ReadonlyObj: coreHttp.CompositeMapper = {
-  serializedName: "ReadonlyObj",
   type: {
     name: "Composite",
     className: "ReadonlyObj",
@@ -392,7 +360,6 @@ export const ReadonlyObj: coreHttp.CompositeMapper = {
 };
 
 export const MyBaseType: coreHttp.CompositeMapper = {
-  serializedName: "MyBaseType",
   type: {
     name: "Composite",
     className: "MyBaseType",
@@ -404,9 +371,9 @@ export const MyBaseType: coreHttp.CompositeMapper = {
     modelProperties: {
       kind: {
         type: { name: "String" },
-        serializedName: "kind",
         defaultValue: "Kind1",
-        isConstant: true
+        isConstant: true,
+        serializedName: "kind"
       },
       propB1: { type: { name: "String" }, serializedName: "propB1" },
       propBH1: { type: { name: "String" }, serializedName: "helper.propBH1" }

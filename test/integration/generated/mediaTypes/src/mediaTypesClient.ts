@@ -100,7 +100,7 @@ const analyzeBody$binaryOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" }, serializedName: "String" }
+      bodyMapper: { type: { name: "String" } }
     }
   },
   requestBody: Parameters.input,
@@ -113,7 +113,7 @@ const analyzeBody$jsonOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" }, serializedName: "String" }
+      bodyMapper: { type: { name: "String" } }
     }
   },
   requestBody: Parameters.input1,

@@ -41,8 +41,8 @@ export const contentType1: coreHttp.OperationParameter = {
   parameterPath: "contentType",
   mapper: {
     defaultValue: "application/json",
-    serializedName: "Content-Type",
     isConstant: true,
+    serializedName: "Content-Type",
     type: {
       name: "String"
     }

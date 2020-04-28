@@ -25,8 +25,8 @@ export const contentType: coreHttp.OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
-    serializedName: "Content-Type",
     isConstant: true,
+    serializedName: "Content-Type",
     type: {
       name: "String"
     }
@@ -37,8 +37,8 @@ export const boolBody: coreHttp.OperationParameter = {
   parameterPath: "boolBody",
   mapper: {
     defaultValue: true,
-    serializedName: "boolBody",
     isConstant: true,
+    serializedName: "boolBody",
     type: {
       name: "Boolean"
     }
@@ -49,8 +49,8 @@ export const boolBody1: coreHttp.OperationParameter = {
   parameterPath: "boolBody",
   mapper: {
     defaultValue: false,
-    serializedName: "boolBody",
     isConstant: true,
+    serializedName: "boolBody",
     type: {
       name: "Boolean"
     }

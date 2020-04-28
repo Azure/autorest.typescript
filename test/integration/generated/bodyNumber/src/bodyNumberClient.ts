@@ -18,10 +18,10 @@ class BodyNumberClient extends BodyNumberClientContext {
    */
   constructor(options?: Models.BodyNumberClientOptionalParams) {
     super(options);
-    this.number = new operations.Number(this);
+    this.number = new operations.NumberOperations(this);
   }
 
-  number: operations.Number;
+  number: operations.NumberOperations;
 }
 
 // Operation Specifications

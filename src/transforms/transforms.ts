@@ -41,7 +41,7 @@ export function transformChoice(
   choice: ChoiceSchema | SealedChoiceSchema
 ): UnionDetails {
   const metadata = getLanguageMetadata(choice.language);
-  let name = guardReservedNames(metadata.name);
+  let name = normalizeName(metadata.name, NameType.Interface);
 
   return {
     name,
@@ -57,7 +57,11 @@ export async function transformCodeModel(
   codeModel: CodeModel,
   host: Host
 ): Promise<ClientDetails> {
-  const className = normalizeName(codeModel.info.title, NameType.Class);
+  const className = normalizeName(
+    codeModel.info.title,
+    NameType.Class,
+    true /** shouldGuard */
+  );
   normalizeModelWithExtensions(codeModel);
 
   const [uberParents, operationGroups] = await Promise.all([

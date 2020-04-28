@@ -69,7 +69,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" }, serializedName: "time" }
+      bodyMapper: { type: { name: "String" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -83,7 +83,7 @@ const putOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" }, serializedName: "String" }
+      bodyMapper: { type: { name: "String" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel

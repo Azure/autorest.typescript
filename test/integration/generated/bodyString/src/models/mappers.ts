@@ -9,7 +9,6 @@
 import * as coreHttp from "@azure/core-http";
 
 export const ErrorModel: coreHttp.CompositeMapper = {
-  serializedName: "Error",
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -21,16 +20,15 @@ export const ErrorModel: coreHttp.CompositeMapper = {
 };
 
 export const RefColorConstant: coreHttp.CompositeMapper = {
-  serializedName: "RefColorConstant",
   type: {
     name: "Composite",
     className: "RefColorConstant",
     modelProperties: {
       colorConstant: {
         type: { name: "String" },
-        serializedName: "ColorConstant",
         defaultValue: "green-color",
-        isConstant: true
+        isConstant: true,
+        serializedName: "ColorConstant"
       },
       field1: { type: { name: "String" }, serializedName: "field1" }
     }

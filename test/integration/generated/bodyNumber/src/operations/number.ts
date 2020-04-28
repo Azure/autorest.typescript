@@ -28,13 +28,13 @@ import {
 } from "../models";
 
 /**
- * Class representing a Number.
+ * Class representing a NumberOperations.
  */
-export class Number {
+export class NumberOperations {
   private readonly client: BodyNumberClient;
 
   /**
-   * Initialize a new instance of the class Number class.
+   * Initialize a new instance of the class NumberOperations class.
    * @param client Reference to the service client
    */
   constructor(client: BodyNumberClient) {
@@ -444,7 +444,7 @@ const getNullOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Number" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -458,7 +458,7 @@ const getInvalidFloatOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Number" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -472,7 +472,7 @@ const getInvalidDoubleOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Number" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -486,7 +486,7 @@ const getInvalidDecimalOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Number" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -514,7 +514,7 @@ const getBigFloatOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Number" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -542,7 +542,7 @@ const getBigDoubleOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Number" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -570,7 +570,7 @@ const getBigDoublePositiveDecimalOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Number" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -598,7 +598,7 @@ const getBigDoubleNegativeDecimalOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Number" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -626,7 +626,7 @@ const getBigDecimalOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Number" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -654,7 +654,7 @@ const getBigDecimalPositiveDecimalOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Number" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -682,7 +682,7 @@ const getBigDecimalNegativeDecimalOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Number" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -710,7 +710,7 @@ const getSmallFloatOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Number" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -738,7 +738,7 @@ const getSmallDoubleOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Number" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
@@ -766,7 +766,7 @@ const getSmallDecimalOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" }, serializedName: "Number" }
+      bodyMapper: { type: { name: "Number" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel
