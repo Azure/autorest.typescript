@@ -20,6 +20,10 @@ steps:
   displayName: 'Run Tests'
 
 - script: |
+    npm run smoke-test
+  displayName: 'Run Smoke Tests'
+
+- script: |
     npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
   workingDirectory: node_modules/@microsoft.azure/autorest.testserver
   displayName: 'Upload Coverage Report'
