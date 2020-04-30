@@ -13,14 +13,26 @@ export const ErrorModel: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ErrorModel",
     modelProperties: {
-      status: { type: { name: "Number" }, serializedName: "status" },
+      status: {
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
       constantId: {
-        type: { name: "Number" },
         defaultValue: 1,
         isConstant: true,
-        serializedName: "constantId"
+        serializedName: "constantId",
+        type: {
+          name: "Number"
+        }
       },
-      message: { type: { name: "String" }, serializedName: "message" }
+      message: {
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -30,8 +42,18 @@ export const OdataFilter: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "OdataFilter",
     modelProperties: {
-      id: { type: { name: "Number" }, serializedName: "id" },
-      name: { type: { name: "String" }, serializedName: "name" }
+      id: {
+        serializedName: "id",
+        type: {
+          name: "Number"
+        }
+      },
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -42,8 +64,10 @@ export const HeaderCustomNamedRequestIdHeaders: coreHttp.CompositeMapper = {
     className: "HeaderCustomNamedRequestIdHeaders",
     modelProperties: {
       fooRequestId: {
-        type: { name: "String" },
-        serializedName: "foo-request-id"
+        serializedName: "foo-request-id",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -55,8 +79,10 @@ export const HeaderCustomNamedRequestIdParamGroupingHeaders: coreHttp.CompositeM
     className: "HeaderCustomNamedRequestIdParamGroupingHeaders",
     modelProperties: {
       fooRequestId: {
-        type: { name: "String" },
-        serializedName: "foo-request-id"
+        serializedName: "foo-request-id",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -68,8 +94,10 @@ export const HeaderCustomNamedRequestIdHeadHeaders: coreHttp.CompositeMapper = {
     className: "HeaderCustomNamedRequestIdHeadHeaders",
     modelProperties: {
       fooRequestId: {
-        type: { name: "String" },
-        serializedName: "foo-request-id"
+        serializedName: "foo-request-id",
+        type: {
+          name: "String"
+        }
       }
     }
   }

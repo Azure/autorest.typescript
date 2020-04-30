@@ -13,20 +13,32 @@ export const Services: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Services",
     modelProperties: {
-      nextLink: { type: { name: "String" }, serializedName: "nextLink" },
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      },
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: {
             type: { name: "Composite", className: "ServiceProperties" }
           }
-        },
-        serializedName: "value"
+        }
       },
-      totalCount: { type: { name: "Number" }, serializedName: "totalCount" },
+      totalCount: {
+        serializedName: "totalCount",
+        type: {
+          name: "Number"
+        }
+      },
       continuationToken: {
-        type: { name: "String" },
-        serializedName: "continuationToken"
+        serializedName: "continuationToken",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -37,75 +49,152 @@ export const ServiceProperties: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ServiceProperties",
     modelProperties: {
-      id: { type: { name: "String" }, serializedName: "id" },
+      id: {
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      },
       activeAlerts: {
-        type: { name: "Number" },
-        serializedName: "activeAlerts"
+        serializedName: "activeAlerts",
+        type: {
+          name: "Number"
+        }
       },
       additionalInformation: {
-        type: { name: "String" },
-        serializedName: "additionalInformation"
+        serializedName: "additionalInformation",
+        type: {
+          name: "String"
+        }
       },
       createdDate: {
-        type: { name: "DateTime" },
-        serializedName: "createdDate"
+        serializedName: "createdDate",
+        type: {
+          name: "DateTime"
+        }
       },
       customNotificationEmails: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "customNotificationEmails"
+        serializedName: "customNotificationEmails",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       },
-      disabled: { type: { name: "Boolean" }, serializedName: "disabled" },
-      displayName: { type: { name: "String" }, serializedName: "displayName" },
-      health: { type: { name: "String" }, serializedName: "health" },
+      disabled: {
+        serializedName: "disabled",
+        type: {
+          name: "Boolean"
+        }
+      },
+      displayName: {
+        serializedName: "displayName",
+        type: {
+          name: "String"
+        }
+      },
+      health: {
+        serializedName: "health",
+        type: {
+          name: "String"
+        }
+      },
       lastDisabled: {
-        type: { name: "DateTime" },
-        serializedName: "lastDisabled"
+        serializedName: "lastDisabled",
+        type: {
+          name: "DateTime"
+        }
       },
       lastUpdated: {
-        type: { name: "DateTime" },
-        serializedName: "lastUpdated"
+        serializedName: "lastUpdated",
+        type: {
+          name: "DateTime"
+        }
       },
       monitoringConfigurationsComputed: {
-        type: { name: "any" },
-        serializedName: "monitoringConfigurationsComputed"
+        serializedName: "monitoringConfigurationsComputed",
+        type: {
+          name: "any"
+        }
       },
       monitoringConfigurationsCustomized: {
-        type: { name: "any" },
-        serializedName: "monitoringConfigurationsCustomized"
+        serializedName: "monitoringConfigurationsCustomized",
+        type: {
+          name: "any"
+        }
       },
       notificationEmailEnabled: {
-        type: { name: "Boolean" },
-        serializedName: "notificationEmailEnabled"
+        serializedName: "notificationEmailEnabled",
+        type: {
+          name: "Boolean"
+        }
       },
       notificationEmailEnabledForGlobalAdmins: {
-        type: { name: "Boolean" },
-        serializedName: "notificationEmailEnabledForGlobalAdmins"
+        serializedName: "notificationEmailEnabledForGlobalAdmins",
+        type: {
+          name: "Boolean"
+        }
       },
       notificationEmailsEnabledForGlobalAdmins: {
-        type: { name: "Boolean" },
-        serializedName: "notificationEmailsEnabledForGlobalAdmins"
+        serializedName: "notificationEmailsEnabledForGlobalAdmins",
+        type: {
+          name: "Boolean"
+        }
       },
       notificationEmails: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "notificationEmails"
+        serializedName: "notificationEmails",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       },
       originalDisabledState: {
-        type: { name: "Boolean" },
-        serializedName: "originalDisabledState"
+        serializedName: "originalDisabledState",
+        type: {
+          name: "Boolean"
+        }
       },
       resolvedAlerts: {
-        type: { name: "Number" },
-        serializedName: "resolvedAlerts"
+        serializedName: "resolvedAlerts",
+        type: {
+          name: "Number"
+        }
       },
-      serviceId: { type: { name: "String" }, serializedName: "serviceId" },
-      serviceName: { type: { name: "String" }, serializedName: "serviceName" },
-      signature: { type: { name: "String" }, serializedName: "signature" },
+      serviceId: {
+        serializedName: "serviceId",
+        type: {
+          name: "String"
+        }
+      },
+      serviceName: {
+        serializedName: "serviceName",
+        type: {
+          name: "String"
+        }
+      },
+      signature: {
+        serializedName: "signature",
+        type: {
+          name: "String"
+        }
+      },
       simpleProperties: {
-        type: { name: "any" },
-        serializedName: "simpleProperties"
+        serializedName: "simpleProperties",
+        type: {
+          name: "any"
+        }
       },
-      tenantId: { type: { name: "String" }, serializedName: "tenantId" },
-      type: { type: { name: "String" }, serializedName: "type" }
+      tenantId: {
+        serializedName: "tenantId",
+        type: {
+          name: "String"
+        }
+      },
+      type: {
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -116,17 +205,29 @@ export const Alerts: coreHttp.CompositeMapper = {
     className: "Alerts",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Alert" } }
-        },
-        serializedName: "value"
+        }
       },
-      nextLink: { type: { name: "String" }, serializedName: "nextLink" },
-      totalCount: { type: { name: "Number" }, serializedName: "totalCount" },
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      },
+      totalCount: {
+        serializedName: "totalCount",
+        type: {
+          name: "Number"
+        }
+      },
       continuationToken: {
-        type: { name: "String" },
-        serializedName: "continuationToken"
+        serializedName: "continuationToken",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -137,65 +238,125 @@ export const Alert: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Alert",
     modelProperties: {
-      alertId: { type: { name: "Uuid" }, serializedName: "alertId" },
-      level: { type: { name: "String" }, serializedName: "level" },
-      state: { type: { name: "String" }, serializedName: "state" },
-      shortName: { type: { name: "String" }, serializedName: "shortName" },
-      displayName: { type: { name: "String" }, serializedName: "displayName" },
-      description: { type: { name: "String" }, serializedName: "description" },
-      remediation: { type: { name: "String" }, serializedName: "remediation" },
+      alertId: {
+        serializedName: "alertId",
+        type: {
+          name: "Uuid"
+        }
+      },
+      level: {
+        serializedName: "level",
+        type: {
+          name: "String"
+        }
+      },
+      state: {
+        serializedName: "state",
+        type: {
+          name: "String"
+        }
+      },
+      shortName: {
+        serializedName: "shortName",
+        type: {
+          name: "String"
+        }
+      },
+      displayName: {
+        serializedName: "displayName",
+        type: {
+          name: "String"
+        }
+      },
+      description: {
+        serializedName: "description",
+        type: {
+          name: "String"
+        }
+      },
+      remediation: {
+        serializedName: "remediation",
+        type: {
+          name: "String"
+        }
+      },
       relatedLinks: {
+        serializedName: "relatedLinks",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "HelpLink" } }
-        },
-        serializedName: "relatedLinks"
+        }
       },
-      scope: { type: { name: "String" }, serializedName: "scope" },
+      scope: {
+        serializedName: "scope",
+        type: {
+          name: "String"
+        }
+      },
       additionalInformation: {
+        serializedName: "additionalInformation",
         type: {
           name: "Sequence",
           element: {
             type: { name: "Composite", className: "AdditionalInformation" }
           }
-        },
-        serializedName: "additionalInformation"
+        }
       },
       createdDate: {
-        type: { name: "DateTime" },
-        serializedName: "createdDate"
+        serializedName: "createdDate",
+        type: {
+          name: "DateTime"
+        }
       },
       resolvedDate: {
-        type: { name: "DateTime" },
-        serializedName: "resolvedDate"
+        serializedName: "resolvedDate",
+        type: {
+          name: "DateTime"
+        }
       },
       lastUpdated: {
-        type: { name: "DateTime" },
-        serializedName: "lastUpdated"
+        serializedName: "lastUpdated",
+        type: {
+          name: "DateTime"
+        }
       },
       monitorRoleType: {
-        type: { name: "String" },
-        serializedName: "monitorRoleType"
+        serializedName: "monitorRoleType",
+        type: {
+          name: "String"
+        }
       },
       activeAlertProperties: {
+        serializedName: "activeAlertProperties",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Item" } }
-        },
-        serializedName: "activeAlertProperties"
+        }
       },
       resolvedAlertProperties: {
+        serializedName: "resolvedAlertProperties",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Item" } }
-        },
-        serializedName: "resolvedAlertProperties"
+        }
       },
-      tenantId: { type: { name: "Uuid" }, serializedName: "tenantId" },
-      serviceId: { type: { name: "Uuid" }, serializedName: "serviceId" },
+      tenantId: {
+        serializedName: "tenantId",
+        type: {
+          name: "Uuid"
+        }
+      },
+      serviceId: {
+        serializedName: "serviceId",
+        type: {
+          name: "Uuid"
+        }
+      },
       serviceMemberId: {
-        type: { name: "Uuid" },
-        serializedName: "serviceMemberId"
+        serializedName: "serviceMemberId",
+        type: {
+          name: "Uuid"
+        }
       }
     }
   }
@@ -206,8 +367,18 @@ export const HelpLink: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "HelpLink",
     modelProperties: {
-      title: { type: { name: "String" }, serializedName: "title" },
-      url: { type: { name: "String" }, serializedName: "url" }
+      title: {
+        serializedName: "title",
+        type: {
+          name: "String"
+        }
+      },
+      url: {
+        serializedName: "url",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -217,12 +388,29 @@ export const AdditionalInformation: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "AdditionalInformation",
     modelProperties: {
-      titleName: { type: { name: "String" }, serializedName: "titleName" },
-      titleValue: { type: { name: "String" }, serializedName: "titleValue" },
-      properties: { type: { name: "any" }, serializedName: "properties" },
+      titleName: {
+        serializedName: "titleName",
+        type: {
+          name: "String"
+        }
+      },
+      titleValue: {
+        serializedName: "titleValue",
+        type: {
+          name: "String"
+        }
+      },
+      properties: {
+        serializedName: "properties",
+        type: {
+          name: "any"
+        }
+      },
       hasProperties: {
-        type: { name: "Boolean" },
-        serializedName: "hasProperties"
+        serializedName: "hasProperties",
+        type: {
+          name: "Boolean"
+        }
       }
     }
   }
@@ -233,8 +421,18 @@ export const Item: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Item",
     modelProperties: {
-      key: { type: { name: "String" }, serializedName: "key" },
-      value: { type: { name: "String" }, serializedName: "value" }
+      key: {
+        serializedName: "key",
+        type: {
+          name: "String"
+        }
+      },
+      value: {
+        serializedName: "value",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -244,18 +442,30 @@ export const AddsConfiguration: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "AddsConfiguration",
     modelProperties: {
-      nextLink: { type: { name: "String" }, serializedName: "nextLink" },
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      },
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Item" } }
-        },
-        serializedName: "value"
+        }
       },
-      totalCount: { type: { name: "Number" }, serializedName: "totalCount" },
+      totalCount: {
+        serializedName: "totalCount",
+        type: {
+          name: "Number"
+        }
+      },
       continuationToken: {
-        type: { name: "String" },
-        serializedName: "continuationToken"
+        serializedName: "continuationToken",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -266,18 +476,30 @@ export const Dimensions: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Dimensions",
     modelProperties: {
-      nextLink: { type: { name: "String" }, serializedName: "nextLink" },
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      },
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Dimension" } }
-        },
-        serializedName: "value"
+        }
       },
-      totalCount: { type: { name: "Number" }, serializedName: "totalCount" },
+      totalCount: {
+        serializedName: "totalCount",
+        type: {
+          name: "Number"
+        }
+      },
       continuationToken: {
-        type: { name: "String" },
-        serializedName: "continuationToken"
+        serializedName: "continuationToken",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -288,30 +510,60 @@ export const Dimension: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Dimension",
     modelProperties: {
-      health: { type: { name: "String" }, serializedName: "health" },
+      health: {
+        serializedName: "health",
+        type: {
+          name: "String"
+        }
+      },
       simpleProperties: {
-        type: { name: "any" },
-        serializedName: "simpleProperties"
+        serializedName: "simpleProperties",
+        type: {
+          name: "any"
+        }
       },
       activeAlerts: {
-        type: { name: "Number" },
-        serializedName: "activeAlerts"
+        serializedName: "activeAlerts",
+        type: {
+          name: "Number"
+        }
       },
       additionalInformation: {
-        type: { name: "String" },
-        serializedName: "additionalInformation"
+        serializedName: "additionalInformation",
+        type: {
+          name: "String"
+        }
       },
       lastUpdated: {
-        type: { name: "DateTime" },
-        serializedName: "lastUpdated"
+        serializedName: "lastUpdated",
+        type: {
+          name: "DateTime"
+        }
       },
-      displayName: { type: { name: "String" }, serializedName: "displayName" },
+      displayName: {
+        serializedName: "displayName",
+        type: {
+          name: "String"
+        }
+      },
       resolvedAlerts: {
-        type: { name: "Number" },
-        serializedName: "resolvedAlerts"
+        serializedName: "resolvedAlerts",
+        type: {
+          name: "Number"
+        }
       },
-      signature: { type: { name: "String" }, serializedName: "signature" },
-      type: { type: { name: "String" }, serializedName: "type" }
+      signature: {
+        serializedName: "signature",
+        type: {
+          name: "String"
+        }
+      },
+      type: {
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -321,20 +573,32 @@ export const AddsServiceMembers: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "AddsServiceMembers",
     modelProperties: {
-      nextLink: { type: { name: "String" }, serializedName: "nextLink" },
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      },
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: {
             type: { name: "Composite", className: "AddsServiceMember" }
           }
-        },
-        serializedName: "value"
+        }
       },
-      totalCount: { type: { name: "Number" }, serializedName: "totalCount" },
+      totalCount: {
+        serializedName: "totalCount",
+        type: {
+          name: "Number"
+        }
+      },
       continuationToken: {
-        type: { name: "String" },
-        serializedName: "continuationToken"
+        serializedName: "continuationToken",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -345,118 +609,219 @@ export const AddsServiceMember: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "AddsServiceMember",
     modelProperties: {
-      domainName: { type: { name: "String" }, serializedName: "domainName" },
-      siteName: { type: { name: "String" }, serializedName: "siteName" },
-      addsRoles: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "addsRoles"
+      domainName: {
+        serializedName: "domainName",
+        type: {
+          name: "String"
+        }
       },
-      gcReachable: { type: { name: "Boolean" }, serializedName: "gcReachable" },
+      siteName: {
+        serializedName: "siteName",
+        type: {
+          name: "String"
+        }
+      },
+      addsRoles: {
+        serializedName: "addsRoles",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      },
+      gcReachable: {
+        serializedName: "gcReachable",
+        type: {
+          name: "Boolean"
+        }
+      },
       isAdvertising: {
-        type: { name: "Boolean" },
-        serializedName: "isAdvertising"
+        serializedName: "isAdvertising",
+        type: {
+          name: "Boolean"
+        }
       },
       pdcReachable: {
-        type: { name: "Boolean" },
-        serializedName: "pdcReachable"
+        serializedName: "pdcReachable",
+        type: {
+          name: "Boolean"
+        }
       },
-      sysvolState: { type: { name: "Boolean" }, serializedName: "sysvolState" },
+      sysvolState: {
+        serializedName: "sysvolState",
+        type: {
+          name: "Boolean"
+        }
+      },
       dcTypes: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "dcTypes"
+        serializedName: "dcTypes",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       },
       serviceMemberId: {
-        type: { name: "String" },
-        serializedName: "serviceMemberId"
+        serializedName: "serviceMemberId",
+        type: {
+          name: "String"
+        }
       },
-      serviceId: { type: { name: "String" }, serializedName: "serviceId" },
-      tenantId: { type: { name: "String" }, serializedName: "tenantId" },
+      serviceId: {
+        serializedName: "serviceId",
+        type: {
+          name: "String"
+        }
+      },
+      tenantId: {
+        serializedName: "tenantId",
+        type: {
+          name: "String"
+        }
+      },
       activeAlerts: {
-        type: { name: "Number" },
-        serializedName: "activeAlerts"
+        serializedName: "activeAlerts",
+        type: {
+          name: "Number"
+        }
       },
       additionalInformation: {
-        type: { name: "String" },
-        serializedName: "additionalInformation"
+        serializedName: "additionalInformation",
+        type: {
+          name: "String"
+        }
       },
       createdDate: {
-        type: { name: "DateTime" },
-        serializedName: "createdDate"
+        serializedName: "createdDate",
+        type: {
+          name: "DateTime"
+        }
       },
       dimensions: {
+        serializedName: "dimensions",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Item" } }
-        },
-        serializedName: "dimensions"
+        }
       },
-      disabled: { type: { name: "Boolean" }, serializedName: "disabled" },
+      disabled: {
+        serializedName: "disabled",
+        type: {
+          name: "Boolean"
+        }
+      },
       disabledReason: {
-        type: { name: "Number" },
-        serializedName: "disabledReason"
+        serializedName: "disabledReason",
+        type: {
+          name: "Number"
+        }
       },
       installedQfes: {
+        serializedName: "installedQfes",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Hotfix" } }
-        },
-        serializedName: "installedQfes"
+        }
       },
       lastDisabled: {
-        type: { name: "DateTime" },
-        serializedName: "lastDisabled"
+        serializedName: "lastDisabled",
+        type: {
+          name: "DateTime"
+        }
       },
-      lastReboot: { type: { name: "DateTime" }, serializedName: "lastReboot" },
+      lastReboot: {
+        serializedName: "lastReboot",
+        type: {
+          name: "DateTime"
+        }
+      },
       lastServerReportedMonitoringLevelChange: {
-        type: { name: "DateTime" },
-        serializedName: "lastServerReportedMonitoringLevelChange"
+        serializedName: "lastServerReportedMonitoringLevelChange",
+        type: {
+          name: "DateTime"
+        }
       },
       lastUpdated: {
-        type: { name: "DateTime" },
-        serializedName: "lastUpdated"
+        serializedName: "lastUpdated",
+        type: {
+          name: "DateTime"
+        }
       },
-      machineId: { type: { name: "String" }, serializedName: "machineId" },
-      machineName: { type: { name: "String" }, serializedName: "machineName" },
+      machineId: {
+        serializedName: "machineId",
+        type: {
+          name: "String"
+        }
+      },
+      machineName: {
+        serializedName: "machineName",
+        type: {
+          name: "String"
+        }
+      },
       monitoringConfigurationsComputed: {
+        serializedName: "monitoringConfigurationsComputed",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Item" } }
-        },
-        serializedName: "monitoringConfigurationsComputed"
+        }
       },
       monitoringConfigurationsCustomized: {
+        serializedName: "monitoringConfigurationsCustomized",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Item" } }
-        },
-        serializedName: "monitoringConfigurationsCustomized"
+        }
       },
-      osName: { type: { name: "String" }, serializedName: "osName" },
-      osVersion: { type: { name: "String" }, serializedName: "osVersion" },
+      osName: {
+        serializedName: "osName",
+        type: {
+          name: "String"
+        }
+      },
+      osVersion: {
+        serializedName: "osVersion",
+        type: {
+          name: "String"
+        }
+      },
       properties: {
+        serializedName: "properties",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Item" } }
-        },
-        serializedName: "properties"
+        }
       },
       recommendedQfes: {
+        serializedName: "recommendedQfes",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Hotfix" } }
-        },
-        serializedName: "recommendedQfes"
+        }
       },
       resolvedAlerts: {
-        type: { name: "Number" },
-        serializedName: "resolvedAlerts"
+        serializedName: "resolvedAlerts",
+        type: {
+          name: "Number"
+        }
       },
-      role: { type: { name: "String" }, serializedName: "role" },
+      role: {
+        serializedName: "role",
+        type: {
+          name: "String"
+        }
+      },
       serverReportedMonitoringLevel: {
-        type: { name: "Enum", allowedValues: ["Partial", "Full", "Off"] },
-        serializedName: "serverReportedMonitoringLevel"
+        serializedName: "serverReportedMonitoringLevel",
+        type: {
+          name: "Enum",
+          allowedValues: ["Partial", "Full", "Off"]
+        }
       },
-      status: { type: { name: "String" }, serializedName: "status" }
+      status: {
+        serializedName: "status",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -466,11 +831,23 @@ export const Hotfix: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Hotfix",
     modelProperties: {
-      kbName: { type: { name: "String" }, serializedName: "kbName" },
-      link: { type: { name: "String" }, serializedName: "link" },
+      kbName: {
+        serializedName: "kbName",
+        type: {
+          name: "String"
+        }
+      },
+      link: {
+        serializedName: "link",
+        type: {
+          name: "String"
+        }
+      },
       installedDate: {
-        type: { name: "DateTime" },
-        serializedName: "installedDate"
+        serializedName: "installedDate",
+        type: {
+          name: "DateTime"
+        }
       }
     }
   }
@@ -482,8 +859,11 @@ export const UserPreference: coreHttp.CompositeMapper = {
     className: "UserPreference",
     modelProperties: {
       metricNames: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "metricNames"
+        serializedName: "metricNames",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       }
     }
   }
@@ -494,24 +874,49 @@ export const ForestSummary: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ForestSummary",
     modelProperties: {
-      forestName: { type: { name: "String" }, serializedName: "forestName" },
-      domainCount: { type: { name: "Number" }, serializedName: "domainCount" },
-      siteCount: { type: { name: "Number" }, serializedName: "siteCount" },
+      forestName: {
+        serializedName: "forestName",
+        type: {
+          name: "String"
+        }
+      },
+      domainCount: {
+        serializedName: "domainCount",
+        type: {
+          name: "Number"
+        }
+      },
+      siteCount: {
+        serializedName: "siteCount",
+        type: {
+          name: "Number"
+        }
+      },
       monitoredDcCount: {
-        type: { name: "Number" },
-        serializedName: "monitoredDcCount"
+        serializedName: "monitoredDcCount",
+        type: {
+          name: "Number"
+        }
       },
       totalDcCount: {
-        type: { name: "Number" },
-        serializedName: "totalDcCount"
+        serializedName: "totalDcCount",
+        type: {
+          name: "Number"
+        }
       },
       domains: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "domains"
+        serializedName: "domains",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       },
       sites: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "sites"
+        serializedName: "sites",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       }
     }
   }
@@ -523,15 +928,18 @@ export const MetricSets: coreHttp.CompositeMapper = {
     className: "MetricSets",
     modelProperties: {
       sets: {
+        serializedName: "sets",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "MetricSet" } }
-        },
-        serializedName: "sets"
+        }
       },
       timeStamps: {
-        type: { name: "Sequence", element: { type: { name: "DateTime" } } },
-        serializedName: "timeStamps"
+        serializedName: "timeStamps",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "DateTime" } }
+        }
       }
     }
   }
@@ -542,10 +950,18 @@ export const MetricSet: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "MetricSet",
     modelProperties: {
-      setName: { type: { name: "String" }, serializedName: "setName" },
+      setName: {
+        serializedName: "setName",
+        type: {
+          name: "String"
+        }
+      },
       values: {
-        type: { name: "Sequence", element: { type: { name: "Number" } } },
-        serializedName: "values"
+        serializedName: "values",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Number" } }
+        }
       }
     }
   }
@@ -556,18 +972,30 @@ export const Metrics: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Metrics",
     modelProperties: {
-      nextLink: { type: { name: "String" }, serializedName: "nextLink" },
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      },
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Item" } }
-        },
-        serializedName: "value"
+        }
       },
-      totalCount: { type: { name: "Number" }, serializedName: "totalCount" },
+      totalCount: {
+        serializedName: "totalCount",
+        type: {
+          name: "Number"
+        }
+      },
       continuationToken: {
-        type: { name: "String" },
-        serializedName: "continuationToken"
+        serializedName: "continuationToken",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -578,18 +1006,30 @@ export const MetricMetadataList: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "MetricMetadataList",
     modelProperties: {
-      nextLink: { type: { name: "String" }, serializedName: "nextLink" },
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      },
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "MetricMetadata" } }
-        },
-        serializedName: "value"
+        }
       },
-      totalCount: { type: { name: "Number" }, serializedName: "totalCount" },
+      totalCount: {
+        serializedName: "totalCount",
+        type: {
+          name: "Number"
+        }
+      },
       continuationToken: {
-        type: { name: "String" },
-        serializedName: "continuationToken"
+        serializedName: "continuationToken",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -601,28 +1041,72 @@ export const MetricMetadata: coreHttp.CompositeMapper = {
     className: "MetricMetadata",
     modelProperties: {
       metricsProcessorClassName: {
-        type: { name: "String" },
-        serializedName: "metricsProcessorClassName"
+        serializedName: "metricsProcessorClassName",
+        type: {
+          name: "String"
+        }
       },
-      metricName: { type: { name: "String" }, serializedName: "metricName" },
+      metricName: {
+        serializedName: "metricName",
+        type: {
+          name: "String"
+        }
+      },
       groupings: {
+        serializedName: "groupings",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "MetricGroup" } }
-        },
-        serializedName: "groupings"
+        }
       },
-      displayName: { type: { name: "String" }, serializedName: "displayName" },
-      valueKind: { type: { name: "String" }, serializedName: "valueKind" },
-      minValue: { type: { name: "Number" }, serializedName: "minValue" },
-      maxValue: { type: { name: "Number" }, serializedName: "maxValue" },
-      kind: { type: { name: "String" }, serializedName: "kind" },
-      isDefault: { type: { name: "Boolean" }, serializedName: "isDefault" },
+      displayName: {
+        serializedName: "displayName",
+        type: {
+          name: "String"
+        }
+      },
+      valueKind: {
+        serializedName: "valueKind",
+        type: {
+          name: "String"
+        }
+      },
+      minValue: {
+        serializedName: "minValue",
+        type: {
+          name: "Number"
+        }
+      },
+      maxValue: {
+        serializedName: "maxValue",
+        type: {
+          name: "Number"
+        }
+      },
+      kind: {
+        serializedName: "kind",
+        type: {
+          name: "String"
+        }
+      },
+      isDefault: {
+        serializedName: "isDefault",
+        type: {
+          name: "Boolean"
+        }
+      },
       isPerfCounter: {
-        type: { name: "Boolean" },
-        serializedName: "isPerfCounter"
+        serializedName: "isPerfCounter",
+        type: {
+          name: "Boolean"
+        }
       },
-      isDevOps: { type: { name: "Boolean" }, serializedName: "isDevOps" }
+      isDevOps: {
+        serializedName: "isDevOps",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -632,11 +1116,23 @@ export const MetricGroup: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "MetricGroup",
     modelProperties: {
-      key: { type: { name: "String" }, serializedName: "key" },
-      displayName: { type: { name: "String" }, serializedName: "displayName" },
+      key: {
+        serializedName: "key",
+        type: {
+          name: "String"
+        }
+      },
+      displayName: {
+        serializedName: "displayName",
+        type: {
+          name: "String"
+        }
+      },
       invisibleForUi: {
-        type: { name: "Boolean" },
-        serializedName: "invisibleForUi"
+        serializedName: "invisibleForUi",
+        type: {
+          name: "Boolean"
+        }
       }
     }
   }
@@ -648,20 +1144,32 @@ export const ReplicationDetailsList: coreHttp.CompositeMapper = {
     className: "ReplicationDetailsList",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: {
             type: { name: "Composite", className: "ReplicationSummary" }
           }
-        },
-        serializedName: "value"
+        }
       },
-      totalCount: { type: { name: "Number" }, serializedName: "totalCount" },
+      totalCount: {
+        serializedName: "totalCount",
+        type: {
+          name: "Number"
+        }
+      },
       continuationToken: {
-        type: { name: "String" },
-        serializedName: "continuationToken"
+        serializedName: "continuationToken",
+        type: {
+          name: "String"
+        }
       },
-      nextLink: { type: { name: "String" }, serializedName: "nextLink" }
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -672,28 +1180,49 @@ export const ReplicationSummary: coreHttp.CompositeMapper = {
     className: "ReplicationSummary",
     modelProperties: {
       targetServer: {
-        type: { name: "String" },
-        serializedName: "targetServer"
+        serializedName: "targetServer",
+        type: {
+          name: "String"
+        }
       },
-      site: { type: { name: "String" }, serializedName: "site" },
-      domain: { type: { name: "String" }, serializedName: "domain" },
-      status: { type: { name: "Number" }, serializedName: "status" },
+      site: {
+        serializedName: "site",
+        type: {
+          name: "String"
+        }
+      },
+      domain: {
+        serializedName: "domain",
+        type: {
+          name: "String"
+        }
+      },
+      status: {
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
       lastAttemptedSync: {
-        type: { name: "DateTime" },
-        serializedName: "lastAttemptedSync"
+        serializedName: "lastAttemptedSync",
+        type: {
+          name: "DateTime"
+        }
       },
       lastSuccessfulSync: {
-        type: { name: "DateTime" },
-        serializedName: "lastSuccessfulSync"
+        serializedName: "lastSuccessfulSync",
+        type: {
+          name: "DateTime"
+        }
       },
       inboundNeighborCollection: {
+        serializedName: "inboundNeighborCollection",
         type: {
           name: "Sequence",
           element: {
             type: { name: "Composite", className: "InboundReplicationNeighbor" }
           }
-        },
-        serializedName: "inboundNeighborCollection"
+        }
       }
     }
   }
@@ -705,44 +1234,82 @@ export const InboundReplicationNeighbor: coreHttp.CompositeMapper = {
     className: "InboundReplicationNeighbor",
     modelProperties: {
       sourceDomainController: {
-        type: { name: "String" },
-        serializedName: "sourceDomainController"
+        serializedName: "sourceDomainController",
+        type: {
+          name: "String"
+        }
       },
       consecutiveFailureCount: {
-        type: { name: "Number" },
-        serializedName: "consecutiveFailureCount"
+        serializedName: "consecutiveFailureCount",
+        type: {
+          name: "Number"
+        }
       },
       namingContext: {
-        type: { name: "String" },
-        serializedName: "namingContext"
+        serializedName: "namingContext",
+        type: {
+          name: "String"
+        }
       },
-      status: { type: { name: "Number" }, serializedName: "status" },
+      status: {
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
       lastAttemptedSync: {
-        type: { name: "DateTime" },
-        serializedName: "lastAttemptedSync"
+        serializedName: "lastAttemptedSync",
+        type: {
+          name: "DateTime"
+        }
       },
       lastSuccessfulSync: {
-        type: { name: "DateTime" },
-        serializedName: "lastSuccessfulSync"
+        serializedName: "lastSuccessfulSync",
+        type: {
+          name: "DateTime"
+        }
       },
       lastErrorCode: {
-        type: { name: "Number" },
-        serializedName: "lastErrorCode"
+        serializedName: "lastErrorCode",
+        type: {
+          name: "Number"
+        }
       },
       lastErrorMessage: {
-        type: { name: "String" },
-        serializedName: "lastErrorMessage"
+        serializedName: "lastErrorMessage",
+        type: {
+          name: "String"
+        }
       },
-      errorTitle: { type: { name: "String" }, serializedName: "errorTitle" },
+      errorTitle: {
+        serializedName: "errorTitle",
+        type: {
+          name: "String"
+        }
+      },
       errorDescription: {
-        type: { name: "String" },
-        serializedName: "errorDescription"
+        serializedName: "errorDescription",
+        type: {
+          name: "String"
+        }
       },
-      fixLink: { type: { name: "String" }, serializedName: "fixLink" },
-      fixDetails: { type: { name: "String" }, serializedName: "fixDetails" },
+      fixLink: {
+        serializedName: "fixLink",
+        type: {
+          name: "String"
+        }
+      },
+      fixDetails: {
+        serializedName: "fixDetails",
+        type: {
+          name: "String"
+        }
+      },
       additionalInfo: {
-        type: { name: "String" },
-        serializedName: "additionalInfo"
+        serializedName: "additionalInfo",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -753,12 +1320,24 @@ export const ReplicationStatus: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ReplicationStatus",
     modelProperties: {
-      forestName: { type: { name: "String" }, serializedName: "forestName" },
-      totalDcCount: {
-        type: { name: "Number" },
-        serializedName: "totalDcCount"
+      forestName: {
+        serializedName: "forestName",
+        type: {
+          name: "String"
+        }
       },
-      errorDcCount: { type: { name: "Number" }, serializedName: "errorDcCount" }
+      totalDcCount: {
+        serializedName: "totalDcCount",
+        type: {
+          name: "Number"
+        }
+      },
+      errorDcCount: {
+        serializedName: "errorDcCount",
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -769,13 +1348,13 @@ export const ReplicationSummaryList: coreHttp.CompositeMapper = {
     className: "ReplicationSummaryList",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: {
             type: { name: "Composite", className: "ReplicationSummary" }
           }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -786,18 +1365,30 @@ export const ServiceMembers: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ServiceMembers",
     modelProperties: {
-      nextLink: { type: { name: "String" }, serializedName: "nextLink" },
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      },
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "ServiceMember" } }
-        },
-        serializedName: "value"
+        }
       },
-      totalCount: { type: { name: "Number" }, serializedName: "totalCount" },
+      totalCount: {
+        serializedName: "totalCount",
+        type: {
+          name: "Number"
+        }
+      },
       continuationToken: {
-        type: { name: "String" },
-        serializedName: "continuationToken"
+        serializedName: "continuationToken",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -809,70 +1400,162 @@ export const ServiceMember: coreHttp.CompositeMapper = {
     className: "ServiceMember",
     modelProperties: {
       serviceMemberId: {
-        type: { name: "String" },
-        serializedName: "serviceMemberId"
+        serializedName: "serviceMemberId",
+        type: {
+          name: "String"
+        }
       },
-      serviceId: { type: { name: "String" }, serializedName: "serviceId" },
-      tenantId: { type: { name: "String" }, serializedName: "tenantId" },
+      serviceId: {
+        serializedName: "serviceId",
+        type: {
+          name: "String"
+        }
+      },
+      tenantId: {
+        serializedName: "tenantId",
+        type: {
+          name: "String"
+        }
+      },
       activeAlerts: {
-        type: { name: "Number" },
-        serializedName: "activeAlerts"
+        serializedName: "activeAlerts",
+        type: {
+          name: "Number"
+        }
       },
       additionalInformation: {
-        type: { name: "String" },
-        serializedName: "additionalInformation"
+        serializedName: "additionalInformation",
+        type: {
+          name: "String"
+        }
       },
       createdDate: {
-        type: { name: "DateTime" },
-        serializedName: "createdDate"
+        serializedName: "createdDate",
+        type: {
+          name: "DateTime"
+        }
       },
-      dimensions: { type: { name: "any" }, serializedName: "dimensions" },
-      disabled: { type: { name: "Boolean" }, serializedName: "disabled" },
+      dimensions: {
+        serializedName: "dimensions",
+        type: {
+          name: "any"
+        }
+      },
+      disabled: {
+        serializedName: "disabled",
+        type: {
+          name: "Boolean"
+        }
+      },
       disabledReason: {
-        type: { name: "Number" },
-        serializedName: "disabledReason"
+        serializedName: "disabledReason",
+        type: {
+          name: "Number"
+        }
       },
-      installedQfes: { type: { name: "any" }, serializedName: "installedQfes" },
+      installedQfes: {
+        serializedName: "installedQfes",
+        type: {
+          name: "any"
+        }
+      },
       lastDisabled: {
-        type: { name: "DateTime" },
-        serializedName: "lastDisabled"
+        serializedName: "lastDisabled",
+        type: {
+          name: "DateTime"
+        }
       },
-      lastReboot: { type: { name: "DateTime" }, serializedName: "lastReboot" },
+      lastReboot: {
+        serializedName: "lastReboot",
+        type: {
+          name: "DateTime"
+        }
+      },
       lastServerReportedMonitoringLevelChange: {
-        type: { name: "DateTime" },
-        serializedName: "lastServerReportedMonitoringLevelChange"
+        serializedName: "lastServerReportedMonitoringLevelChange",
+        type: {
+          name: "DateTime"
+        }
       },
       lastUpdated: {
-        type: { name: "DateTime" },
-        serializedName: "lastUpdated"
+        serializedName: "lastUpdated",
+        type: {
+          name: "DateTime"
+        }
       },
-      machineId: { type: { name: "String" }, serializedName: "machineId" },
-      machineName: { type: { name: "String" }, serializedName: "machineName" },
+      machineId: {
+        serializedName: "machineId",
+        type: {
+          name: "String"
+        }
+      },
+      machineName: {
+        serializedName: "machineName",
+        type: {
+          name: "String"
+        }
+      },
       monitoringConfigurationsComputed: {
-        type: { name: "any" },
-        serializedName: "monitoringConfigurationsComputed"
+        serializedName: "monitoringConfigurationsComputed",
+        type: {
+          name: "any"
+        }
       },
       monitoringConfigurationsCustomized: {
-        type: { name: "any" },
-        serializedName: "monitoringConfigurationsCustomized"
+        serializedName: "monitoringConfigurationsCustomized",
+        type: {
+          name: "any"
+        }
       },
-      osName: { type: { name: "String" }, serializedName: "osName" },
-      osVersion: { type: { name: "String" }, serializedName: "osVersion" },
-      properties: { type: { name: "any" }, serializedName: "properties" },
+      osName: {
+        serializedName: "osName",
+        type: {
+          name: "String"
+        }
+      },
+      osVersion: {
+        serializedName: "osVersion",
+        type: {
+          name: "String"
+        }
+      },
+      properties: {
+        serializedName: "properties",
+        type: {
+          name: "any"
+        }
+      },
       recommendedQfes: {
-        type: { name: "any" },
-        serializedName: "recommendedQfes"
+        serializedName: "recommendedQfes",
+        type: {
+          name: "any"
+        }
       },
       resolvedAlerts: {
-        type: { name: "Number" },
-        serializedName: "resolvedAlerts"
+        serializedName: "resolvedAlerts",
+        type: {
+          name: "Number"
+        }
       },
-      role: { type: { name: "String" }, serializedName: "role" },
+      role: {
+        serializedName: "role",
+        type: {
+          name: "String"
+        }
+      },
       serverReportedMonitoringLevel: {
-        type: { name: "Enum", allowedValues: ["Partial", "Full", "Off"] },
-        serializedName: "serverReportedMonitoringLevel"
+        serializedName: "serverReportedMonitoringLevel",
+        type: {
+          name: "Enum",
+          allowedValues: ["Partial", "Full", "Off"]
+        }
       },
-      status: { type: { name: "String" }, serializedName: "status" }
+      status: {
+        serializedName: "status",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -883,11 +1566,11 @@ export const Credentials: coreHttp.CompositeMapper = {
     className: "Credentials",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Credential" } }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -898,11 +1581,24 @@ export const Credential: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Credential",
     modelProperties: {
-      identifier: { type: { name: "String" }, serializedName: "identifier" },
-      type: { type: { name: "String" }, serializedName: "type" },
+      identifier: {
+        serializedName: "identifier",
+        type: {
+          name: "String"
+        }
+      },
+      type: {
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      },
       credentialData: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "credentialData"
+        serializedName: "credentialData",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       }
     }
   }
@@ -914,22 +1610,31 @@ export const OperationListResponse: coreHttp.CompositeMapper = {
     className: "OperationListResponse",
     modelProperties: {
       nextLink: {
-        type: { name: "String" },
         serializedName: "nextLink",
-        readOnly: true
+        readOnly: true,
+        type: {
+          name: "String"
+        }
       },
       value: {
+        serializedName: "value",
+        readOnly: true,
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Operation" } }
-        },
-        serializedName: "value",
-        readOnly: true
+        }
       },
-      totalCount: { type: { name: "Number" }, serializedName: "totalCount" },
+      totalCount: {
+        serializedName: "totalCount",
+        type: {
+          name: "Number"
+        }
+      },
       continuationToken: {
-        type: { name: "String" },
-        serializedName: "continuationToken"
+        serializedName: "continuationToken",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -940,8 +1645,18 @@ export const Operation: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Operation",
     modelProperties: {
-      name: { type: { name: "String" }, serializedName: "name" },
-      display: { type: { name: "any" }, serializedName: "display" }
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
+      display: {
+        serializedName: "display",
+        type: {
+          name: "any"
+        }
+      }
     }
   }
 };
@@ -951,69 +1666,133 @@ export const Tenant: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Tenant",
     modelProperties: {
-      tenantId: { type: { name: "String" }, serializedName: "tenantId" },
-      aadLicense: { type: { name: "String" }, serializedName: "aadLicense" },
-      aadPremium: { type: { name: "Boolean" }, serializedName: "aadPremium" },
+      tenantId: {
+        serializedName: "tenantId",
+        type: {
+          name: "String"
+        }
+      },
+      aadLicense: {
+        serializedName: "aadLicense",
+        type: {
+          name: "String"
+        }
+      },
+      aadPremium: {
+        serializedName: "aadPremium",
+        type: {
+          name: "Boolean"
+        }
+      },
       agentAutoUpdate: {
-        type: { name: "Boolean" },
-        serializedName: "agentAutoUpdate"
+        serializedName: "agentAutoUpdate",
+        type: {
+          name: "Boolean"
+        }
       },
       alertSuppressionTimeInMins: {
-        type: { name: "Number" },
-        serializedName: "alertSuppressionTimeInMins"
+        serializedName: "alertSuppressionTimeInMins",
+        type: {
+          name: "Number"
+        }
       },
       consentedToMicrosoftDevOps: {
-        type: { name: "Boolean" },
-        serializedName: "consentedToMicrosoftDevOps"
+        serializedName: "consentedToMicrosoftDevOps",
+        type: {
+          name: "Boolean"
+        }
       },
       countryLetterCode: {
-        type: { name: "String" },
-        serializedName: "countryLetterCode"
+        serializedName: "countryLetterCode",
+        type: {
+          name: "String"
+        }
       },
       createdDate: {
-        type: { name: "DateTime" },
-        serializedName: "createdDate"
+        serializedName: "createdDate",
+        type: {
+          name: "DateTime"
+        }
       },
-      devOpsTtl: { type: { name: "DateTime" }, serializedName: "devOpsTtl" },
-      disabled: { type: { name: "Boolean" }, serializedName: "disabled" },
+      devOpsTtl: {
+        serializedName: "devOpsTtl",
+        type: {
+          name: "DateTime"
+        }
+      },
+      disabled: {
+        serializedName: "disabled",
+        type: {
+          name: "Boolean"
+        }
+      },
       disabledReason: {
-        type: { name: "Number" },
-        serializedName: "disabledReason"
+        serializedName: "disabledReason",
+        type: {
+          name: "Number"
+        }
       },
       globalAdminsEmail: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "globalAdminsEmail"
+        serializedName: "globalAdminsEmail",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       },
       initialDomain: {
-        type: { name: "String" },
-        serializedName: "initialDomain"
+        serializedName: "initialDomain",
+        type: {
+          name: "String"
+        }
       },
       lastDisabled: {
-        type: { name: "DateTime" },
-        serializedName: "lastDisabled"
+        serializedName: "lastDisabled",
+        type: {
+          name: "DateTime"
+        }
       },
       lastVerified: {
-        type: { name: "DateTime" },
-        serializedName: "lastVerified"
+        serializedName: "lastVerified",
+        type: {
+          name: "DateTime"
+        }
       },
       onboardingAllowed: {
-        type: { name: "Boolean" },
-        serializedName: "onboardingAllowed"
+        serializedName: "onboardingAllowed",
+        type: {
+          name: "Boolean"
+        }
       },
-      onboarded: { type: { name: "Boolean" }, serializedName: "onboarded" },
+      onboarded: {
+        serializedName: "onboarded",
+        type: {
+          name: "Boolean"
+        }
+      },
       pksCertificate: {
-        type: { name: "any" },
-        serializedName: "pksCertificate"
+        serializedName: "pksCertificate",
+        type: {
+          name: "any"
+        }
       },
       privatePreviewTenant: {
-        type: { name: "Boolean" },
-        serializedName: "privatePreviewTenant"
+        serializedName: "privatePreviewTenant",
+        type: {
+          name: "Boolean"
+        }
       },
       tenantInQuarantine: {
-        type: { name: "Boolean" },
-        serializedName: "tenantInQuarantine"
+        serializedName: "tenantInQuarantine",
+        type: {
+          name: "Boolean"
+        }
       },
-      tenantName: { type: { name: "String" }, serializedName: "tenantName" }
+      tenantName: {
+        serializedName: "tenantName",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -1023,7 +1802,12 @@ export const Result: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Result",
     modelProperties: {
-      value: { type: { name: "Boolean" }, serializedName: "value" }
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -1034,11 +1818,11 @@ export const ErrorCounts: coreHttp.CompositeMapper = {
     className: "ErrorCounts",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "ErrorCount" } }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -1049,9 +1833,24 @@ export const ErrorCount: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ErrorCount",
     modelProperties: {
-      errorBucket: { type: { name: "String" }, serializedName: "errorBucket" },
-      count: { type: { name: "Number" }, serializedName: "count" },
-      truncated: { type: { name: "Boolean" }, serializedName: "truncated" }
+      errorBucket: {
+        serializedName: "errorBucket",
+        type: {
+          name: "String"
+        }
+      },
+      count: {
+        serializedName: "count",
+        type: {
+          name: "Number"
+        }
+      },
+      truncated: {
+        serializedName: "truncated",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -1062,13 +1861,13 @@ export const MergedExportErrors: coreHttp.CompositeMapper = {
     className: "MergedExportErrors",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: {
             type: { name: "Composite", className: "MergedExportError" }
           }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -1079,78 +1878,139 @@ export const MergedExportError: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "MergedExportError",
     modelProperties: {
-      id: { type: { name: "String" }, serializedName: "id" },
+      id: {
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      },
       incomingObjectDisplayName: {
-        type: { name: "String" },
-        serializedName: "incomingObjectDisplayName"
+        serializedName: "incomingObjectDisplayName",
+        type: {
+          name: "String"
+        }
       },
       incomingObjectType: {
-        type: { name: "String" },
-        serializedName: "incomingObjectType"
+        serializedName: "incomingObjectType",
+        type: {
+          name: "String"
+        }
       },
       userPrincipalName: {
-        type: { name: "String" },
-        serializedName: "userPrincipalName"
+        serializedName: "userPrincipalName",
+        type: {
+          name: "String"
+        }
       },
-      type: { type: { name: "String" }, serializedName: "type" },
+      type: {
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      },
       attributeName: {
-        type: { name: "String" },
-        serializedName: "attributeName"
+        serializedName: "attributeName",
+        type: {
+          name: "String"
+        }
       },
       attributeValue: {
-        type: { name: "String" },
-        serializedName: "attributeValue"
+        serializedName: "attributeValue",
+        type: {
+          name: "String"
+        }
       },
       timeOccurred: {
-        type: { name: "DateTime" },
-        serializedName: "timeOccurred"
+        serializedName: "timeOccurred",
+        type: {
+          name: "DateTime"
+        }
       },
       timeFirstOccurred: {
-        type: { name: "DateTime" },
-        serializedName: "timeFirstOccurred"
+        serializedName: "timeFirstOccurred",
+        type: {
+          name: "DateTime"
+        }
       },
-      csObjectId: { type: { name: "String" }, serializedName: "csObjectId" },
-      dn: { type: { name: "String" }, serializedName: "dn" },
+      csObjectId: {
+        serializedName: "csObjectId",
+        type: {
+          name: "String"
+        }
+      },
+      dn: {
+        serializedName: "dn",
+        type: {
+          name: "String"
+        }
+      },
       incomingObject: {
         serializedName: "incomingObject",
-        type: { name: "Composite", className: "AssociatedObject" }
+        type: {
+          name: "Composite",
+          className: "AssociatedObject"
+        }
       },
       existingObject: {
         serializedName: "existingObject",
-        type: { name: "Composite", className: "AssociatedObject" }
+        type: {
+          name: "Composite",
+          className: "AssociatedObject"
+        }
       },
       modifiedOrRemovedAttributeValue: {
-        type: { name: "String" },
-        serializedName: "modifiedOrRemovedAttributeValue"
+        serializedName: "modifiedOrRemovedAttributeValue",
+        type: {
+          name: "String"
+        }
       },
       runStepResultId: {
-        type: { name: "Uuid" },
-        serializedName: "runStepResultId"
+        serializedName: "runStepResultId",
+        type: {
+          name: "Uuid"
+        }
       },
       samAccountName: {
-        type: { name: "String" },
-        serializedName: "samAccountName"
+        serializedName: "samAccountName",
+        type: {
+          name: "String"
+        }
       },
       serverErrorDetail: {
-        type: { name: "String" },
-        serializedName: "serverErrorDetail"
+        serializedName: "serverErrorDetail",
+        type: {
+          name: "String"
+        }
       },
-      serviceId: { type: { name: "Uuid" }, serializedName: "serviceId" },
+      serviceId: {
+        serializedName: "serviceId",
+        type: {
+          name: "Uuid"
+        }
+      },
       serviceMemberId: {
-        type: { name: "Uuid" },
-        serializedName: "serviceMemberId"
+        serializedName: "serviceMemberId",
+        type: {
+          name: "Uuid"
+        }
       },
       mergedEntityId: {
-        type: { name: "Uuid" },
-        serializedName: "mergedEntityId"
+        serializedName: "mergedEntityId",
+        type: {
+          name: "Uuid"
+        }
       },
       createdDate: {
-        type: { name: "DateTime" },
-        serializedName: "createdDate"
+        serializedName: "createdDate",
+        type: {
+          name: "DateTime"
+        }
       },
       exportErrorStatus: {
-        type: { name: "Number" },
-        serializedName: "exportErrorStatus"
+        serializedName: "exportErrorStatus",
+        type: {
+          name: "Number"
+        }
       }
     }
   }
@@ -1161,41 +2021,77 @@ export const AssociatedObject: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "AssociatedObject",
     modelProperties: {
-      displayName: { type: { name: "String" }, serializedName: "displayName" },
+      displayName: {
+        serializedName: "displayName",
+        type: {
+          name: "String"
+        }
+      },
       distinguishedName: {
-        type: { name: "String" },
-        serializedName: "distinguishedName"
+        serializedName: "distinguishedName",
+        type: {
+          name: "String"
+        }
       },
       lastDirSyncTime: {
-        type: { name: "DateTime" },
-        serializedName: "lastDirSyncTime"
+        serializedName: "lastDirSyncTime",
+        type: {
+          name: "DateTime"
+        }
       },
-      mail: { type: { name: "String" }, serializedName: "mail" },
-      objectGuid: { type: { name: "String" }, serializedName: "objectGuid" },
-      objectType: { type: { name: "String" }, serializedName: "objectType" },
+      mail: {
+        serializedName: "mail",
+        type: {
+          name: "String"
+        }
+      },
+      objectGuid: {
+        serializedName: "objectGuid",
+        type: {
+          name: "String"
+        }
+      },
+      objectType: {
+        serializedName: "objectType",
+        type: {
+          name: "String"
+        }
+      },
       onpremisesUserPrincipalName: {
-        type: { name: "String" },
-        serializedName: "onpremisesUserPrincipalName"
+        serializedName: "onpremisesUserPrincipalName",
+        type: {
+          name: "String"
+        }
       },
       proxyAddresses: {
-        type: { name: "String" },
-        serializedName: "proxyAddresses"
+        serializedName: "proxyAddresses",
+        type: {
+          name: "String"
+        }
       },
       sourceAnchor: {
-        type: { name: "String" },
-        serializedName: "sourceAnchor"
+        serializedName: "sourceAnchor",
+        type: {
+          name: "String"
+        }
       },
       sourceOfAuthority: {
-        type: { name: "String" },
-        serializedName: "sourceOfAuthority"
+        serializedName: "sourceOfAuthority",
+        type: {
+          name: "String"
+        }
       },
       timeOccurred: {
-        type: { name: "DateTime" },
-        serializedName: "timeOccurred"
+        serializedName: "timeOccurred",
+        type: {
+          name: "DateTime"
+        }
       },
       userPrincipalName: {
-        type: { name: "String" },
-        serializedName: "userPrincipalName"
+        serializedName: "userPrincipalName",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -1206,18 +2102,30 @@ export const ExportStatuses: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ExportStatuses",
     modelProperties: {
-      nextLink: { type: { name: "String" }, serializedName: "nextLink" },
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      },
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "ExportStatus" } }
-        },
-        serializedName: "value"
+        }
       },
-      totalCount: { type: { name: "Number" }, serializedName: "totalCount" },
+      totalCount: {
+        serializedName: "totalCount",
+        type: {
+          name: "Number"
+        }
+      },
       continuationToken: {
-        type: { name: "String" },
-        serializedName: "continuationToken"
+        serializedName: "continuationToken",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -1228,15 +2136,29 @@ export const ExportStatus: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ExportStatus",
     modelProperties: {
-      serviceId: { type: { name: "Uuid" }, serializedName: "serviceId" },
-      serviceMemberId: {
-        type: { name: "Uuid" },
-        serializedName: "serviceMemberId"
+      serviceId: {
+        serializedName: "serviceId",
+        type: {
+          name: "Uuid"
+        }
       },
-      endTime: { type: { name: "DateTime" }, serializedName: "endTime" },
+      serviceMemberId: {
+        serializedName: "serviceMemberId",
+        type: {
+          name: "Uuid"
+        }
+      },
+      endTime: {
+        serializedName: "endTime",
+        type: {
+          name: "DateTime"
+        }
+      },
       runStepResultId: {
-        type: { name: "String" },
-        serializedName: "runStepResultId"
+        serializedName: "runStepResultId",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -1247,20 +2169,54 @@ export const AlertFeedback: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "AlertFeedback",
     modelProperties: {
-      level: { type: { name: "String" }, serializedName: "level" },
-      state: { type: { name: "String" }, serializedName: "state" },
-      shortName: { type: { name: "String" }, serializedName: "shortName" },
-      feedback: { type: { name: "String" }, serializedName: "feedback" },
-      comment: { type: { name: "String" }, serializedName: "comment" },
+      level: {
+        serializedName: "level",
+        type: {
+          name: "String"
+        }
+      },
+      state: {
+        serializedName: "state",
+        type: {
+          name: "String"
+        }
+      },
+      shortName: {
+        serializedName: "shortName",
+        type: {
+          name: "String"
+        }
+      },
+      feedback: {
+        serializedName: "feedback",
+        type: {
+          name: "String"
+        }
+      },
+      comment: {
+        serializedName: "comment",
+        type: {
+          name: "String"
+        }
+      },
       consentedToShare: {
-        type: { name: "Boolean" },
-        serializedName: "consentedToShare"
+        serializedName: "consentedToShare",
+        type: {
+          name: "Boolean"
+        }
       },
       serviceMemberId: {
-        type: { name: "String" },
-        serializedName: "serviceMemberId"
+        serializedName: "serviceMemberId",
+        type: {
+          name: "String"
+        }
       },
-      createdDate: { type: { name: "DateTime" }, serializedName: "createdDate" }
+      createdDate: {
+        serializedName: "createdDate",
+        type: {
+          name: "DateTime"
+        }
+      }
     }
   }
 };
@@ -1271,11 +2227,11 @@ export const AlertFeedbacks: coreHttp.CompositeMapper = {
     className: "AlertFeedbacks",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "AlertFeedback" } }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -1287,11 +2243,11 @@ export const Items: coreHttp.CompositeMapper = {
     className: "Items",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Item" } }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -1303,13 +2259,13 @@ export const ErrorReportUsersEntries: coreHttp.CompositeMapper = {
     className: "ErrorReportUsersEntries",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: {
             type: { name: "Composite", className: "ErrorReportUsersEntry" }
           }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -1320,19 +2276,35 @@ export const ErrorReportUsersEntry: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ErrorReportUsersEntry",
     modelProperties: {
-      userId: { type: { name: "String" }, serializedName: "userId" },
-      ipAddress: { type: { name: "String" }, serializedName: "ipAddress" },
+      userId: {
+        serializedName: "userId",
+        type: {
+          name: "String"
+        }
+      },
+      ipAddress: {
+        serializedName: "ipAddress",
+        type: {
+          name: "String"
+        }
+      },
       lastUpdated: {
-        type: { name: "DateTime" },
-        serializedName: "lastUpdated"
+        serializedName: "lastUpdated",
+        type: {
+          name: "DateTime"
+        }
       },
       uniqueIpAddresses: {
-        type: { name: "String" },
-        serializedName: "uniqueIpAddresses"
+        serializedName: "uniqueIpAddresses",
+        type: {
+          name: "String"
+        }
       },
       totalErrorAttempts: {
-        type: { name: "Number" },
-        serializedName: "totalErrorAttempts"
+        serializedName: "totalErrorAttempts",
+        type: {
+          name: "Number"
+        }
       }
     }
   }
@@ -1344,11 +2316,11 @@ export const Connectors: coreHttp.CompositeMapper = {
     className: "Connectors",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Connector" } }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -1359,50 +2331,99 @@ export const Connector: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Connector",
     modelProperties: {
-      connectorId: { type: { name: "String" }, serializedName: "connectorId" },
-      id: { type: { name: "String" }, serializedName: "id" },
-      name: { type: { name: "String" }, serializedName: "name" },
-      version: { type: { name: "Number" }, serializedName: "version" },
-      type: { type: { name: "String" }, serializedName: "type" },
-      description: { type: { name: "String" }, serializedName: "description" },
-      schemaXml: { type: { name: "String" }, serializedName: "schemaXml" },
+      connectorId: {
+        serializedName: "connectorId",
+        type: {
+          name: "String"
+        }
+      },
+      id: {
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      },
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
+      version: {
+        serializedName: "version",
+        type: {
+          name: "Number"
+        }
+      },
+      type: {
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      },
+      description: {
+        serializedName: "description",
+        type: {
+          name: "String"
+        }
+      },
+      schemaXml: {
+        serializedName: "schemaXml",
+        type: {
+          name: "String"
+        }
+      },
       passwordManagementSettings: {
-        type: { name: "any" },
-        serializedName: "passwordManagementSettings"
+        serializedName: "passwordManagementSettings",
+        type: {
+          name: "any"
+        }
       },
       passwordHashSyncConfiguration: {
-        type: { name: "any" },
-        serializedName: "passwordHashSyncConfiguration"
+        serializedName: "passwordHashSyncConfiguration",
+        type: {
+          name: "any"
+        }
       },
       timeCreated: {
-        type: { name: "DateTime" },
-        serializedName: "timeCreated"
+        serializedName: "timeCreated",
+        type: {
+          name: "DateTime"
+        }
       },
       timeLastModified: {
-        type: { name: "DateTime" },
-        serializedName: "timeLastModified"
+        serializedName: "timeLastModified",
+        type: {
+          name: "DateTime"
+        }
       },
       partitions: {
+        serializedName: "partitions",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Partition" } }
-        },
-        serializedName: "partitions"
+        }
       },
       runProfiles: {
+        serializedName: "runProfiles",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "RunProfile" } }
-        },
-        serializedName: "runProfiles"
+        }
       },
       classesIncluded: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "classesIncluded"
+        serializedName: "classesIncluded",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       },
       attributesIncluded: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "attributesIncluded"
+        serializedName: "attributesIncluded",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       }
     }
   }
@@ -1413,24 +2434,61 @@ export const Partition: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Partition",
     modelProperties: {
-      id: { type: { name: "String" }, serializedName: "id" },
-      dn: { type: { name: "String" }, serializedName: "dn" },
-      enabled: { type: { name: "Boolean" }, serializedName: "enabled" },
+      id: {
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      },
+      dn: {
+        serializedName: "dn",
+        type: {
+          name: "String"
+        }
+      },
+      enabled: {
+        serializedName: "enabled",
+        type: {
+          name: "Boolean"
+        }
+      },
       timeCreated: {
-        type: { name: "DateTime" },
-        serializedName: "timeCreated"
+        serializedName: "timeCreated",
+        type: {
+          name: "DateTime"
+        }
       },
       timeLastModified: {
-        type: { name: "DateTime" },
-        serializedName: "timeLastModified"
+        serializedName: "timeLastModified",
+        type: {
+          name: "DateTime"
+        }
       },
       partitionScope: {
         serializedName: "partitionScope",
-        type: { name: "Composite", className: "PartitionScope" }
+        type: {
+          name: "Composite",
+          className: "PartitionScope"
+        }
       },
-      name: { type: { name: "String" }, serializedName: "name" },
-      isDomain: { type: { name: "Boolean" }, serializedName: "isDomain" },
-      type: { type: { name: "String" }, serializedName: "type" }
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
+      isDomain: {
+        serializedName: "isDomain",
+        type: {
+          name: "Boolean"
+        }
+      },
+      type: {
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -1440,18 +2498,32 @@ export const PartitionScope: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "PartitionScope",
     modelProperties: {
-      isDefault: { type: { name: "Boolean" }, serializedName: "isDefault" },
+      isDefault: {
+        serializedName: "isDefault",
+        type: {
+          name: "Boolean"
+        }
+      },
       objectClasses: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "objectClasses"
+        serializedName: "objectClasses",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       },
       containersIncluded: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "containersIncluded"
+        serializedName: "containersIncluded",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       },
       containersExcluded: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "containersExcluded"
+        serializedName: "containersExcluded",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       }
     }
   }
@@ -1462,14 +2534,24 @@ export const RunProfile: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "RunProfile",
     modelProperties: {
-      id: { type: { name: "String" }, serializedName: "id" },
-      name: { type: { name: "String" }, serializedName: "name" },
+      id: {
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      },
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
       runSteps: {
+        serializedName: "runSteps",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "RunStep" } }
-        },
-        serializedName: "runSteps"
+        }
       }
     }
   }
@@ -1480,22 +2562,48 @@ export const RunStep: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "RunStep",
     modelProperties: {
-      batchSize: { type: { name: "Number" }, serializedName: "batchSize" },
+      batchSize: {
+        serializedName: "batchSize",
+        type: {
+          name: "Number"
+        }
+      },
       objectProcessLimit: {
-        type: { name: "Number" },
-        serializedName: "objectProcessLimit"
+        serializedName: "objectProcessLimit",
+        type: {
+          name: "Number"
+        }
       },
       objectDeleteLimit: {
-        type: { name: "Number" },
-        serializedName: "objectDeleteLimit"
+        serializedName: "objectDeleteLimit",
+        type: {
+          name: "Number"
+        }
       },
-      pageSize: { type: { name: "Number" }, serializedName: "pageSize" },
-      partitionId: { type: { name: "String" }, serializedName: "partitionId" },
+      pageSize: {
+        serializedName: "pageSize",
+        type: {
+          name: "Number"
+        }
+      },
+      partitionId: {
+        serializedName: "partitionId",
+        type: {
+          name: "String"
+        }
+      },
       operationType: {
-        type: { name: "Number" },
-        serializedName: "operationType"
+        serializedName: "operationType",
+        type: {
+          name: "Number"
+        }
       },
-      timeout: { type: { name: "Number" }, serializedName: "timeout" }
+      timeout: {
+        serializedName: "timeout",
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -1506,11 +2614,11 @@ export const DataFreshnessDetails: coreHttp.CompositeMapper = {
     className: "DataFreshnessDetails",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Item" } }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -1522,13 +2630,13 @@ export const GlobalConfigurations: coreHttp.CompositeMapper = {
     className: "GlobalConfigurations",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: {
             type: { name: "Composite", className: "GlobalConfiguration" }
           }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -1539,22 +2647,36 @@ export const GlobalConfiguration: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "GlobalConfiguration",
     modelProperties: {
-      version: { type: { name: "Number" }, serializedName: "version" },
-      schemaXml: { type: { name: "String" }, serializedName: "schemaXml" },
+      version: {
+        serializedName: "version",
+        type: {
+          name: "Number"
+        }
+      },
+      schemaXml: {
+        serializedName: "schemaXml",
+        type: {
+          name: "String"
+        }
+      },
       passwordSyncEnabled: {
-        type: { name: "Boolean" },
-        serializedName: "passwordSyncEnabled"
+        serializedName: "passwordSyncEnabled",
+        type: {
+          name: "Boolean"
+        }
       },
       numSavedPwdEvent: {
-        type: { name: "Number" },
-        serializedName: "numSavedPwdEvent"
+        serializedName: "numSavedPwdEvent",
+        type: {
+          name: "Number"
+        }
       },
       featureSet: {
+        serializedName: "featureSet",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Item" } }
-        },
-        serializedName: "featureSet"
+        }
       }
     }
   }
@@ -1565,23 +2687,59 @@ export const ServiceConfiguration: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ServiceConfiguration",
     modelProperties: {
-      version: { type: { name: "String" }, serializedName: "version" },
-      serviceType: { type: { name: "Number" }, serializedName: "serviceType" },
-      serviceAccount: {
-        type: { name: "String" },
-        serializedName: "serviceAccount"
+      version: {
+        serializedName: "version",
+        type: {
+          name: "String"
+        }
       },
-      sqlServer: { type: { name: "String" }, serializedName: "sqlServer" },
-      sqlVersion: { type: { name: "String" }, serializedName: "sqlVersion" },
-      sqlEdition: { type: { name: "String" }, serializedName: "sqlEdition" },
-      sqlInstance: { type: { name: "String" }, serializedName: "sqlInstance" },
+      serviceType: {
+        serializedName: "serviceType",
+        type: {
+          name: "Number"
+        }
+      },
+      serviceAccount: {
+        serializedName: "serviceAccount",
+        type: {
+          name: "String"
+        }
+      },
+      sqlServer: {
+        serializedName: "sqlServer",
+        type: {
+          name: "String"
+        }
+      },
+      sqlVersion: {
+        serializedName: "sqlVersion",
+        type: {
+          name: "String"
+        }
+      },
+      sqlEdition: {
+        serializedName: "sqlEdition",
+        type: {
+          name: "String"
+        }
+      },
+      sqlInstance: {
+        serializedName: "sqlInstance",
+        type: {
+          name: "String"
+        }
+      },
       sqlDatabaseName: {
-        type: { name: "String" },
-        serializedName: "sqlDatabaseName"
+        serializedName: "sqlDatabaseName",
+        type: {
+          name: "String"
+        }
       },
       sqlDatabaseSize: {
-        type: { name: "Number" },
-        serializedName: "sqlDatabaseSize"
+        serializedName: "sqlDatabaseSize",
+        type: {
+          name: "Number"
+        }
       }
     }
   }
@@ -1593,11 +2751,11 @@ export const RiskyIPBlobUris: coreHttp.CompositeMapper = {
     className: "RiskyIPBlobUris",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "RiskyIPBlobUri" } }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -1608,21 +2766,42 @@ export const RiskyIPBlobUri: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "RiskyIPBlobUri",
     modelProperties: {
-      tenantId: { type: { name: "String" }, serializedName: "tenantId" },
-      serviceId: { type: { name: "String" }, serializedName: "serviceId" },
+      tenantId: {
+        serializedName: "tenantId",
+        type: {
+          name: "String"
+        }
+      },
+      serviceId: {
+        serializedName: "serviceId",
+        type: {
+          name: "String"
+        }
+      },
       resultSasUri: {
-        type: { name: "String" },
-        serializedName: "resultSasUri"
+        serializedName: "resultSasUri",
+        type: {
+          name: "String"
+        }
       },
       blobCreateDateTime: {
-        type: { name: "DateTime" },
-        serializedName: "blobCreateDateTime"
+        serializedName: "blobCreateDateTime",
+        type: {
+          name: "DateTime"
+        }
       },
       jobCompletionTime: {
-        type: { name: "DateTime" },
-        serializedName: "jobCompletionTime"
+        serializedName: "jobCompletionTime",
+        type: {
+          name: "DateTime"
+        }
       },
-      status: { type: { name: "String" }, serializedName: "status" }
+      status: {
+        serializedName: "status",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -1633,17 +2812,20 @@ export const ConnectorMetadata: coreHttp.CompositeMapper = {
     className: "ConnectorMetadata",
     modelProperties: {
       connectors: {
+        serializedName: "connectors",
         type: {
           name: "Sequence",
           element: {
             type: { name: "Composite", className: "ConnectorMetadataDetails" }
           }
-        },
-        serializedName: "connectors"
+        }
       },
       runProfileNames: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "runProfileNames"
+        serializedName: "runProfileNames",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       }
     }
   }
@@ -1654,10 +2836,17 @@ export const ConnectorMetadataDetails: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ConnectorMetadataDetails",
     modelProperties: {
-      connectorId: { type: { name: "String" }, serializedName: "connectorId" },
+      connectorId: {
+        serializedName: "connectorId",
+        type: {
+          name: "String"
+        }
+      },
       connectorDisplayName: {
-        type: { name: "String" },
-        serializedName: "connectorDisplayName"
+        serializedName: "connectorDisplayName",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -1668,19 +2857,48 @@ export const Agent: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Agent",
     modelProperties: {
-      tenantId: { type: { name: "String" }, serializedName: "tenantId" },
-      machineId: { type: { name: "String" }, serializedName: "machineId" },
-      credential: { type: { name: "any" }, serializedName: "credential" },
-      machineName: { type: { name: "String" }, serializedName: "machineName" },
+      tenantId: {
+        serializedName: "tenantId",
+        type: {
+          name: "String"
+        }
+      },
+      machineId: {
+        serializedName: "machineId",
+        type: {
+          name: "String"
+        }
+      },
+      credential: {
+        serializedName: "credential",
+        type: {
+          name: "any"
+        }
+      },
+      machineName: {
+        serializedName: "machineName",
+        type: {
+          name: "String"
+        }
+      },
       agentVersion: {
-        type: { name: "String" },
-        serializedName: "agentVersion"
+        serializedName: "agentVersion",
+        type: {
+          name: "String"
+        }
       },
       createdDate: {
-        type: { name: "DateTime" },
-        serializedName: "createdDate"
+        serializedName: "createdDate",
+        type: {
+          name: "DateTime"
+        }
       },
-      key: { type: { name: "String" }, serializedName: "key" }
+      key: {
+        serializedName: "key",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -1691,19 +2909,36 @@ export const AttributeDelta: coreHttp.CompositeMapper = {
     className: "AttributeDelta",
     modelProperties: {
       values: {
+        serializedName: "values",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "ValueDelta" } }
-        },
-        serializedName: "values"
+        }
       },
-      name: { type: { name: "String" }, serializedName: "name" },
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
       operationType: {
-        type: { name: "String" },
-        serializedName: "operationType"
+        serializedName: "operationType",
+        type: {
+          name: "String"
+        }
       },
-      valueType: { type: { name: "String" }, serializedName: "valueType" },
-      multiValued: { type: { name: "Boolean" }, serializedName: "multiValued" }
+      valueType: {
+        serializedName: "valueType",
+        type: {
+          name: "String"
+        }
+      },
+      multiValued: {
+        serializedName: "multiValued",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -1714,10 +2949,17 @@ export const ValueDelta: coreHttp.CompositeMapper = {
     className: "ValueDelta",
     modelProperties: {
       operationType: {
-        type: { name: "String" },
-        serializedName: "operationType"
+        serializedName: "operationType",
+        type: {
+          name: "String"
+        }
       },
-      value: { type: { name: "String" }, serializedName: "value" }
+      value: {
+        serializedName: "value",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -1729,14 +2971,29 @@ export const AttributeMapping: coreHttp.CompositeMapper = {
     modelProperties: {
       mappingSource: {
         serializedName: "mappingSource",
-        type: { name: "Composite", className: "AttributeMppingSource" }
+        type: {
+          name: "Composite",
+          className: "AttributeMppingSource"
+        }
       },
-      type: { type: { name: "String" }, serializedName: "type" },
+      type: {
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      },
       destinationAttribute: {
-        type: { name: "String" },
-        serializedName: "destinationAttribute"
+        serializedName: "destinationAttribute",
+        type: {
+          name: "String"
+        }
       },
-      contextId: { type: { name: "String" }, serializedName: "contextId" }
+      contextId: {
+        serializedName: "contextId",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -1747,17 +3004,29 @@ export const AttributeMppingSource: coreHttp.CompositeMapper = {
     className: "AttributeMppingSource",
     modelProperties: {
       sourceAttribute: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "sourceAttribute"
+        serializedName: "sourceAttribute",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       },
-      dnPart: { type: { name: "Number" }, serializedName: "dnPart" },
+      dnPart: {
+        serializedName: "dnPart",
+        type: {
+          name: "Number"
+        }
+      },
       scriptContext: {
-        type: { name: "String" },
-        serializedName: "scriptContext"
+        serializedName: "scriptContext",
+        type: {
+          name: "String"
+        }
       },
       constantValue: {
-        type: { name: "String" },
-        serializedName: "constantValue"
+        serializedName: "constantValue",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -1770,11 +3039,17 @@ export const ChangeNotReimported: coreHttp.CompositeMapper = {
     modelProperties: {
       delta: {
         serializedName: "delta",
-        type: { name: "Composite", className: "ChangeNotReimportedDelta" }
+        type: {
+          name: "Composite",
+          className: "ChangeNotReimportedDelta"
+        }
       },
       entry: {
         serializedName: "entry",
-        type: { name: "Composite", className: "ChangeNotReimportedEntry" }
+        type: {
+          name: "Composite",
+          className: "ChangeNotReimportedEntry"
+        }
       }
     }
   }
@@ -1785,24 +3060,31 @@ export const ChangeNotReimportedDelta: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ChangeNotReimportedDelta",
     modelProperties: {
-      anchor: { type: { name: "String" }, serializedName: "anchor" },
+      anchor: {
+        serializedName: "anchor",
+        type: {
+          name: "String"
+        }
+      },
       dnAttributes: {
+        serializedName: "dnAttributes",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "AttributeDelta" } }
-        },
-        serializedName: "dnAttributes"
+        }
       },
       attributes: {
+        serializedName: "attributes",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "AttributeDelta" } }
-        },
-        serializedName: "attributes"
+        }
       },
       operationType: {
-        type: { name: "String" },
-        serializedName: "operationType"
+        serializedName: "operationType",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -1813,34 +3095,51 @@ export const ChangeNotReimportedEntry: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ChangeNotReimportedEntry",
     modelProperties: {
-      anchor: { type: { name: "String" }, serializedName: "anchor" },
+      anchor: {
+        serializedName: "anchor",
+        type: {
+          name: "String"
+        }
+      },
       parentAnchor: {
-        type: { name: "String" },
-        serializedName: "parentAnchor"
+        serializedName: "parentAnchor",
+        type: {
+          name: "String"
+        }
       },
       primaryObjectClass: {
-        type: { name: "String" },
-        serializedName: "primaryObjectClass"
+        serializedName: "primaryObjectClass",
+        type: {
+          name: "String"
+        }
       },
       objectClasses: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "objectClasses"
+        serializedName: "objectClasses",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       },
       dnAttributes: {
+        serializedName: "dnAttributes",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "AttributeDelta" } }
-        },
-        serializedName: "dnAttributes"
+        }
       },
       attributes: {
+        serializedName: "attributes",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "AttributeDelta" } }
-        },
-        serializedName: "attributes"
+        }
       },
-      dn: { type: { name: "String" }, serializedName: "dn" }
+      dn: {
+        serializedName: "dn",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -1850,20 +3149,54 @@ export const ConnectorConnectionError: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ConnectorConnectionError",
     modelProperties: {
-      id: { type: { name: "String" }, serializedName: "id" },
+      id: {
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      },
       runStepResultId: {
-        type: { name: "String" },
-        serializedName: "runStepResultId"
+        serializedName: "runStepResultId",
+        type: {
+          name: "String"
+        }
       },
-      connectorId: { type: { name: "String" }, serializedName: "connectorId" },
-      type: { type: { name: "String" }, serializedName: "type" },
-      errorCode: { type: { name: "String" }, serializedName: "errorCode" },
-      message: { type: { name: "String" }, serializedName: "message" },
+      connectorId: {
+        serializedName: "connectorId",
+        type: {
+          name: "String"
+        }
+      },
+      type: {
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      },
+      errorCode: {
+        serializedName: "errorCode",
+        type: {
+          name: "String"
+        }
+      },
+      message: {
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      },
       timeOccured: {
-        type: { name: "DateTime" },
-        serializedName: "timeOccured"
+        serializedName: "timeOccured",
+        type: {
+          name: "DateTime"
+        }
       },
-      server: { type: { name: "String" }, serializedName: "server" }
+      server: {
+        serializedName: "server",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -1874,13 +3207,13 @@ export const ConnectorConnectionErrors: coreHttp.CompositeMapper = {
     className: "ConnectorConnectionErrors",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: {
             type: { name: "Composite", className: "ConnectorConnectionError" }
           }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -1891,34 +3224,90 @@ export const ConnectorObjectError: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ConnectorObjectError",
     modelProperties: {
-      id: { type: { name: "String" }, serializedName: "id" },
+      id: {
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      },
       runStepResultId: {
-        type: { name: "String" },
-        serializedName: "runStepResultId"
+        serializedName: "runStepResultId",
+        type: {
+          name: "String"
+        }
       },
-      connectorId: { type: { name: "String" }, serializedName: "connectorId" },
-      type: { type: { name: "String" }, serializedName: "type" },
-      errorCode: { type: { name: "String" }, serializedName: "errorCode" },
-      message: { type: { name: "String" }, serializedName: "message" },
-      entryNumber: { type: { name: "Number" }, serializedName: "entryNumber" },
-      lineNumber: { type: { name: "Number" }, serializedName: "lineNumber" },
+      connectorId: {
+        serializedName: "connectorId",
+        type: {
+          name: "String"
+        }
+      },
+      type: {
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      },
+      errorCode: {
+        serializedName: "errorCode",
+        type: {
+          name: "String"
+        }
+      },
+      message: {
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      },
+      entryNumber: {
+        serializedName: "entryNumber",
+        type: {
+          name: "Number"
+        }
+      },
+      lineNumber: {
+        serializedName: "lineNumber",
+        type: {
+          name: "Number"
+        }
+      },
       columnNumber: {
-        type: { name: "Number" },
-        serializedName: "columnNumber"
+        serializedName: "columnNumber",
+        type: {
+          name: "Number"
+        }
       },
-      dn: { type: { name: "String" }, serializedName: "dn" },
-      anchor: { type: { name: "String" }, serializedName: "anchor" },
+      dn: {
+        serializedName: "dn",
+        type: {
+          name: "String"
+        }
+      },
+      anchor: {
+        serializedName: "anchor",
+        type: {
+          name: "String"
+        }
+      },
       attributeName: {
-        type: { name: "String" },
-        serializedName: "attributeName"
+        serializedName: "attributeName",
+        type: {
+          name: "String"
+        }
       },
       serverErrorDetail: {
-        type: { name: "String" },
-        serializedName: "serverErrorDetail"
+        serializedName: "serverErrorDetail",
+        type: {
+          name: "String"
+        }
       },
       values: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
-        serializedName: "values"
+        serializedName: "values",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       }
     }
   }
@@ -1930,13 +3319,13 @@ export const ConnectorObjectErrors: coreHttp.CompositeMapper = {
     className: "ConnectorObjectErrors",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: {
             type: { name: "Composite", className: "ConnectorObjectError" }
           }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -1947,9 +3336,24 @@ export const Display: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Display",
     modelProperties: {
-      description: { type: { name: "String" }, serializedName: "description" },
-      operation: { type: { name: "String" }, serializedName: "operation" },
-      provider: { type: { name: "String" }, serializedName: "provider" }
+      description: {
+        serializedName: "description",
+        type: {
+          name: "String"
+        }
+      },
+      operation: {
+        serializedName: "operation",
+        type: {
+          name: "String"
+        }
+      },
+      provider: {
+        serializedName: "provider",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -1959,16 +3363,37 @@ export const ErrorDetail: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ErrorDetail",
     modelProperties: {
-      description: { type: { name: "String" }, serializedName: "description" },
-      kbUrl: { type: { name: "String" }, serializedName: "kbUrl" },
-      detail: { type: { name: "String" }, serializedName: "detail" },
+      description: {
+        serializedName: "description",
+        type: {
+          name: "String"
+        }
+      },
+      kbUrl: {
+        serializedName: "kbUrl",
+        type: {
+          name: "String"
+        }
+      },
+      detail: {
+        serializedName: "detail",
+        type: {
+          name: "String"
+        }
+      },
       objectsWithSyncError: {
         serializedName: "objectsWithSyncError",
-        type: { name: "Composite", className: "ObjectWithSyncError" }
+        type: {
+          name: "Composite",
+          className: "ObjectWithSyncError"
+        }
       },
       objectWithSyncError: {
         serializedName: "objectWithSyncError",
-        type: { name: "Composite", className: "MergedExportError" }
+        type: {
+          name: "Composite",
+          className: "MergedExportError"
+        }
       }
     }
   }
@@ -1980,45 +3405,101 @@ export const ObjectWithSyncError: coreHttp.CompositeMapper = {
     className: "ObjectWithSyncError",
     modelProperties: {
       sourceOfAuthority: {
-        type: { name: "String" },
-        serializedName: "sourceOfAuthority"
+        serializedName: "sourceOfAuthority",
+        type: {
+          name: "String"
+        }
       },
-      displayName: { type: { name: "String" }, serializedName: "displayName" },
-      objectType: { type: { name: "String" }, serializedName: "objectType" },
+      displayName: {
+        serializedName: "displayName",
+        type: {
+          name: "String"
+        }
+      },
+      objectType: {
+        serializedName: "objectType",
+        type: {
+          name: "String"
+        }
+      },
       attributeName: {
-        type: { name: "String" },
-        serializedName: "attributeName"
+        serializedName: "attributeName",
+        type: {
+          name: "String"
+        }
       },
       attributeValue: {
-        type: { name: "String" },
-        serializedName: "attributeValue"
+        serializedName: "attributeValue",
+        type: {
+          name: "String"
+        }
       },
       modififedValue: {
-        type: { name: "String" },
-        serializedName: "modififedValue"
+        serializedName: "modififedValue",
+        type: {
+          name: "String"
+        }
       },
       userPrincipalName: {
-        type: { name: "String" },
-        serializedName: "userPrincipalName"
+        serializedName: "userPrincipalName",
+        type: {
+          name: "String"
+        }
       },
-      objectGuid: { type: { name: "String" }, serializedName: "objectGuid" },
+      objectGuid: {
+        serializedName: "objectGuid",
+        type: {
+          name: "String"
+        }
+      },
       attributeMultiValues: {
-        type: { name: "Boolean" },
-        serializedName: "attributeMultiValues"
+        serializedName: "attributeMultiValues",
+        type: {
+          name: "Boolean"
+        }
       },
-      minLimit: { type: { name: "String" }, serializedName: "minLimit" },
-      maxLimit: { type: { name: "String" }, serializedName: "maxLimit" },
+      minLimit: {
+        serializedName: "minLimit",
+        type: {
+          name: "String"
+        }
+      },
+      maxLimit: {
+        serializedName: "maxLimit",
+        type: {
+          name: "String"
+        }
+      },
       distinguishedName: {
-        type: { name: "String" },
-        serializedName: "distinguishedName"
+        serializedName: "distinguishedName",
+        type: {
+          name: "String"
+        }
       },
-      mail: { type: { name: "String" }, serializedName: "mail" },
+      mail: {
+        serializedName: "mail",
+        type: {
+          name: "String"
+        }
+      },
       timeOccured: {
-        type: { name: "DateTime" },
-        serializedName: "timeOccured"
+        serializedName: "timeOccured",
+        type: {
+          name: "DateTime"
+        }
       },
-      errorType: { type: { name: "String" }, serializedName: "errorType" },
-      sourceAnchor: { type: { name: "String" }, serializedName: "sourceAnchor" }
+      errorType: {
+        serializedName: "errorType",
+        type: {
+          name: "String"
+        }
+      },
+      sourceAnchor: {
+        serializedName: "sourceAnchor",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -2028,114 +3509,227 @@ export const ExportError: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ExportError",
     modelProperties: {
-      id: { type: { name: "String" }, serializedName: "id" },
-      runStepResultId: {
-        type: { name: "String" },
-        serializedName: "runStepResultId"
+      id: {
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
       },
-      connectorId: { type: { name: "String" }, serializedName: "connectorId" },
-      type: { type: { name: "String" }, serializedName: "type" },
-      errorCode: { type: { name: "String" }, serializedName: "errorCode" },
-      message: { type: { name: "String" }, serializedName: "message" },
+      runStepResultId: {
+        serializedName: "runStepResultId",
+        type: {
+          name: "String"
+        }
+      },
+      connectorId: {
+        serializedName: "connectorId",
+        type: {
+          name: "String"
+        }
+      },
+      type: {
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      },
+      errorCode: {
+        serializedName: "errorCode",
+        type: {
+          name: "String"
+        }
+      },
+      message: {
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      },
       serverErrorDetail: {
-        type: { name: "String" },
-        serializedName: "serverErrorDetail"
+        serializedName: "serverErrorDetail",
+        type: {
+          name: "String"
+        }
       },
       timeFirstOccured: {
-        type: { name: "DateTime" },
-        serializedName: "timeFirstOccured"
+        serializedName: "timeFirstOccured",
+        type: {
+          name: "DateTime"
+        }
       },
-      retryCount: { type: { name: "Number" }, serializedName: "retryCount" },
-      csObjectId: { type: { name: "String" }, serializedName: "csObjectId" },
-      dn: { type: { name: "String" }, serializedName: "dn" },
-      minLimit: { type: { name: "String" }, serializedName: "minLimit" },
-      maxLimit: { type: { name: "String" }, serializedName: "maxLimit" },
-      cloudAnchor: { type: { name: "String" }, serializedName: "cloudAnchor" },
+      retryCount: {
+        serializedName: "retryCount",
+        type: {
+          name: "Number"
+        }
+      },
+      csObjectId: {
+        serializedName: "csObjectId",
+        type: {
+          name: "String"
+        }
+      },
+      dn: {
+        serializedName: "dn",
+        type: {
+          name: "String"
+        }
+      },
+      minLimit: {
+        serializedName: "minLimit",
+        type: {
+          name: "String"
+        }
+      },
+      maxLimit: {
+        serializedName: "maxLimit",
+        type: {
+          name: "String"
+        }
+      },
+      cloudAnchor: {
+        serializedName: "cloudAnchor",
+        type: {
+          name: "String"
+        }
+      },
       attributeName: {
-        type: { name: "String" },
-        serializedName: "attributeName"
+        serializedName: "attributeName",
+        type: {
+          name: "String"
+        }
       },
       attributeValue: {
-        type: { name: "String" },
-        serializedName: "attributeValue"
+        serializedName: "attributeValue",
+        type: {
+          name: "String"
+        }
       },
       attributeMultiValue: {
-        type: { name: "Boolean" },
-        serializedName: "attributeMultiValue"
+        serializedName: "attributeMultiValue",
+        type: {
+          name: "Boolean"
+        }
       },
       objectIdConflict: {
-        type: { name: "String" },
-        serializedName: "objectIdConflict"
+        serializedName: "objectIdConflict",
+        type: {
+          name: "String"
+        }
       },
       samAccountName: {
-        type: { name: "String" },
-        serializedName: "samAccountName"
+        serializedName: "samAccountName",
+        type: {
+          name: "String"
+        }
       },
       adObjectType: {
-        type: { name: "String" },
-        serializedName: "adObjectType"
+        serializedName: "adObjectType",
+        type: {
+          name: "String"
+        }
       },
       adObjectGuid: {
-        type: { name: "String" },
-        serializedName: "adObjectGuid"
+        serializedName: "adObjectGuid",
+        type: {
+          name: "String"
+        }
       },
       adDisplayName: {
-        type: { name: "String" },
-        serializedName: "adDisplayName"
+        serializedName: "adDisplayName",
+        type: {
+          name: "String"
+        }
       },
       adSourceOfAuthority: {
-        type: { name: "String" },
-        serializedName: "adSourceOfAuthority"
+        serializedName: "adSourceOfAuthority",
+        type: {
+          name: "String"
+        }
       },
       adSourceAnchor: {
-        type: { name: "String" },
-        serializedName: "adSourceAnchor"
+        serializedName: "adSourceAnchor",
+        type: {
+          name: "String"
+        }
       },
       adUserPrincipalName: {
-        type: { name: "String" },
-        serializedName: "adUserPrincipalName"
+        serializedName: "adUserPrincipalName",
+        type: {
+          name: "String"
+        }
       },
       adDistinguishedName: {
-        type: { name: "String" },
-        serializedName: "adDistinguishedName"
+        serializedName: "adDistinguishedName",
+        type: {
+          name: "String"
+        }
       },
-      adMail: { type: { name: "String" }, serializedName: "adMail" },
+      adMail: {
+        serializedName: "adMail",
+        type: {
+          name: "String"
+        }
+      },
       timeOccured: {
-        type: { name: "DateTime" },
-        serializedName: "timeOccured"
+        serializedName: "timeOccured",
+        type: {
+          name: "DateTime"
+        }
       },
       aadObjectType: {
-        type: { name: "String" },
-        serializedName: "aadObjectType"
+        serializedName: "aadObjectType",
+        type: {
+          name: "String"
+        }
       },
       aadObjectGuid: {
-        type: { name: "String" },
-        serializedName: "aadObjectGuid"
+        serializedName: "aadObjectGuid",
+        type: {
+          name: "String"
+        }
       },
       aadDisplayName: {
-        type: { name: "String" },
-        serializedName: "aadDisplayName"
+        serializedName: "aadDisplayName",
+        type: {
+          name: "String"
+        }
       },
       aadSourceOfAuthority: {
-        type: { name: "String" },
-        serializedName: "aadSourceOfAuthority"
+        serializedName: "aadSourceOfAuthority",
+        type: {
+          name: "String"
+        }
       },
       aadUserPrincipalName: {
-        type: { name: "String" },
-        serializedName: "aadUserPrincipalName"
+        serializedName: "aadUserPrincipalName",
+        type: {
+          name: "String"
+        }
       },
       aadDistinguishedName: {
-        type: { name: "String" },
-        serializedName: "aadDistinguishedName"
+        serializedName: "aadDistinguishedName",
+        type: {
+          name: "String"
+        }
       },
-      aadMail: { type: { name: "String" }, serializedName: "aadMail" },
+      aadMail: {
+        serializedName: "aadMail",
+        type: {
+          name: "String"
+        }
+      },
       lastDirSyncTime: {
-        type: { name: "DateTime" },
-        serializedName: "lastDirSyncTime"
+        serializedName: "lastDirSyncTime",
+        type: {
+          name: "DateTime"
+        }
       },
       modifiedAttributeValue: {
-        type: { name: "String" },
-        serializedName: "modifiedAttributeValue"
+        serializedName: "modifiedAttributeValue",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -2147,11 +3741,11 @@ export const ExportErrors: coreHttp.CompositeMapper = {
     className: "ExportErrors",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "ExportError" } }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -2163,14 +3757,23 @@ export const ExtensionErrorInfo: coreHttp.CompositeMapper = {
     className: "ExtensionErrorInfo",
     modelProperties: {
       extensionName: {
-        type: { name: "String" },
-        serializedName: "extensionName"
+        serializedName: "extensionName",
+        type: {
+          name: "String"
+        }
       },
       extensionContext: {
-        type: { name: "String" },
-        serializedName: "extensionContext"
+        serializedName: "extensionContext",
+        type: {
+          name: "String"
+        }
       },
-      callStack: { type: { name: "String" }, serializedName: "callStack" }
+      callStack: {
+        serializedName: "callStack",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -2181,11 +3784,11 @@ export const Hotfixes: coreHttp.CompositeMapper = {
     className: "Hotfixes",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Hotfix" } }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -2197,11 +3800,11 @@ export const ImportErrors: coreHttp.CompositeMapper = {
     className: "ImportErrors",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "ImportError" } }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -2212,40 +3815,87 @@ export const ImportError: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ImportError",
     modelProperties: {
-      id: { type: { name: "String" }, serializedName: "id" },
-      runStepResultId: {
-        type: { name: "String" },
-        serializedName: "runStepResultId"
+      id: {
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
       },
-      connectorId: { type: { name: "String" }, serializedName: "connectorId" },
-      type: { type: { name: "String" }, serializedName: "type" },
+      runStepResultId: {
+        serializedName: "runStepResultId",
+        type: {
+          name: "String"
+        }
+      },
+      connectorId: {
+        serializedName: "connectorId",
+        type: {
+          name: "String"
+        }
+      },
+      type: {
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      },
       timeOccurred: {
-        type: { name: "DateTime" },
-        serializedName: "timeOccurred"
+        serializedName: "timeOccurred",
+        type: {
+          name: "DateTime"
+        }
       },
       timeFirstOccurred: {
-        type: { name: "DateTime" },
-        serializedName: "timeFirstOccurred"
+        serializedName: "timeFirstOccurred",
+        type: {
+          name: "DateTime"
+        }
       },
-      retryCount: { type: { name: "Number" }, serializedName: "retryCount" },
+      retryCount: {
+        serializedName: "retryCount",
+        type: {
+          name: "Number"
+        }
+      },
       algorithmStepType: {
-        type: { name: "String" },
-        serializedName: "algorithmStepType"
+        serializedName: "algorithmStepType",
+        type: {
+          name: "String"
+        }
       },
       changeNotReimported: {
         serializedName: "changeNotReimported",
-        type: { name: "Composite", className: "ChangeNotReimported" }
+        type: {
+          name: "Composite",
+          className: "ChangeNotReimported"
+        }
       },
       extensionErrorInfo: {
         serializedName: "extensionErrorInfo",
-        type: { name: "Composite", className: "ExtensionErrorInfo" }
+        type: {
+          name: "Composite",
+          className: "ExtensionErrorInfo"
+        }
       },
       ruleErrorInfo: {
         serializedName: "ruleErrorInfo",
-        type: { name: "Composite", className: "RuleErrorInfo" }
+        type: {
+          name: "Composite",
+          className: "RuleErrorInfo"
+        }
       },
-      csObjectId: { type: { name: "String" }, serializedName: "csObjectId" },
-      dn: { type: { name: "String" }, serializedName: "dn" }
+      csObjectId: {
+        serializedName: "csObjectId",
+        type: {
+          name: "String"
+        }
+      },
+      dn: {
+        serializedName: "dn",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -2257,15 +3907,35 @@ export const RuleErrorInfo: coreHttp.CompositeMapper = {
     modelProperties: {
       attributeMapping: {
         serializedName: "attributeMapping",
-        type: { name: "Composite", className: "AttributeMapping" }
+        type: {
+          name: "Composite",
+          className: "AttributeMapping"
+        }
       },
-      connectorId: { type: { name: "String" }, serializedName: "connectorId" },
+      connectorId: {
+        serializedName: "connectorId",
+        type: {
+          name: "String"
+        }
+      },
       connectorName: {
-        type: { name: "String" },
-        serializedName: "connectorName"
+        serializedName: "connectorName",
+        type: {
+          name: "String"
+        }
       },
-      csObjectId: { type: { name: "String" }, serializedName: "csObjectId" },
-      dn: { type: { name: "String" }, serializedName: "dn" }
+      csObjectId: {
+        serializedName: "csObjectId",
+        type: {
+          name: "String"
+        }
+      },
+      dn: {
+        serializedName: "dn",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -2276,13 +3946,13 @@ export const InboundReplicationNeighbors: coreHttp.CompositeMapper = {
     className: "InboundReplicationNeighbors",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: {
             type: { name: "Composite", className: "InboundReplicationNeighbor" }
           }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -2294,13 +3964,23 @@ export const ModuleConfiguration: coreHttp.CompositeMapper = {
     className: "ModuleConfiguration",
     modelProperties: {
       agentService: {
-        type: { name: "String" },
-        serializedName: "agentService"
+        serializedName: "agentService",
+        type: {
+          name: "String"
+        }
       },
-      moduleName: { type: { name: "String" }, serializedName: "moduleName" },
+      moduleName: {
+        serializedName: "moduleName",
+        type: {
+          name: "String"
+        }
+      },
       properties: {
-        type: { name: "Dictionary", value: { type: { name: "String" } } },
-        serializedName: "properties"
+        serializedName: "properties",
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" } }
+        }
       }
     }
   }
@@ -2312,13 +3992,13 @@ export const ModuleConfigurations: coreHttp.CompositeMapper = {
     className: "ModuleConfigurations",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: {
             type: { name: "Composite", className: "ModuleConfiguration" }
           }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -2329,36 +4009,65 @@ export const PasswordManagementSettings: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "PasswordManagementSettings",
     modelProperties: {
-      enabled: { type: { name: "Boolean" }, serializedName: "enabled" },
+      enabled: {
+        serializedName: "enabled",
+        type: {
+          name: "Boolean"
+        }
+      },
       extensionFilePath: {
-        type: { name: "String" },
-        serializedName: "extensionFilePath"
+        serializedName: "extensionFilePath",
+        type: {
+          name: "String"
+        }
       },
-      connectTo: { type: { name: "String" }, serializedName: "connectTo" },
+      connectTo: {
+        serializedName: "connectTo",
+        type: {
+          name: "String"
+        }
+      },
       connectionTimeout: {
-        type: { name: "Number" },
-        serializedName: "connectionTimeout"
+        serializedName: "connectionTimeout",
+        type: {
+          name: "Number"
+        }
       },
-      user: { type: { name: "String" }, serializedName: "user" },
+      user: {
+        serializedName: "user",
+        type: {
+          name: "String"
+        }
+      },
       supportedPasswordOperations: {
-        type: { name: "String" },
-        serializedName: "supportedPasswordOperations"
+        serializedName: "supportedPasswordOperations",
+        type: {
+          name: "String"
+        }
       },
       maximumRetryCount: {
-        type: { name: "Number" },
-        serializedName: "maximumRetryCount"
+        serializedName: "maximumRetryCount",
+        type: {
+          name: "Number"
+        }
       },
       retryIntervalInSeconds: {
-        type: { name: "Number" },
-        serializedName: "retryIntervalInSeconds"
+        serializedName: "retryIntervalInSeconds",
+        type: {
+          name: "Number"
+        }
       },
       requiresSecureConnection: {
-        type: { name: "Boolean" },
-        serializedName: "requiresSecureConnection"
+        serializedName: "requiresSecureConnection",
+        type: {
+          name: "Boolean"
+        }
       },
       unlockAccount: {
-        type: { name: "Boolean" },
-        serializedName: "unlockAccount"
+        serializedName: "unlockAccount",
+        type: {
+          name: "Boolean"
+        }
       }
     }
   }
@@ -2369,8 +4078,18 @@ export const PasswordHashSyncConfiguration: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "PasswordHashSyncConfiguration",
     modelProperties: {
-      enabled: { type: { name: "Boolean" }, serializedName: "enabled" },
-      target: { type: { name: "String" }, serializedName: "target" }
+      enabled: {
+        serializedName: "enabled",
+        type: {
+          name: "Boolean"
+        }
+      },
+      target: {
+        serializedName: "target",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -2381,11 +4100,11 @@ export const RunProfiles: coreHttp.CompositeMapper = {
     className: "RunProfiles",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "RunProfile" } }
-        },
-        serializedName: "value"
+        }
       }
     }
   }
@@ -2396,18 +4115,29 @@ export const TabularExportError: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "TabularExportError",
     modelProperties: {
-      serviceId: { type: { name: "Uuid" }, serializedName: "serviceId" },
+      serviceId: {
+        serializedName: "serviceId",
+        type: {
+          name: "Uuid"
+        }
+      },
       serviceMemberId: {
-        type: { name: "Uuid" },
-        serializedName: "serviceMemberId"
+        serializedName: "serviceMemberId",
+        type: {
+          name: "Uuid"
+        }
       },
       mergedEntityId: {
-        type: { name: "Uuid" },
-        serializedName: "mergedEntityId"
+        serializedName: "mergedEntityId",
+        type: {
+          name: "Uuid"
+        }
       },
       tabularExportErrorData: {
-        type: { name: "String" },
-        serializedName: "tabularExportErrorData"
+        serializedName: "tabularExportErrorData",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -2419,12 +4149,16 @@ export const TenantOnboardingDetails: coreHttp.CompositeMapper = {
     className: "TenantOnboardingDetails",
     modelProperties: {
       tenantOnboarded: {
-        type: { name: "Boolean" },
-        serializedName: "tenantOnboarded"
+        serializedName: "tenantOnboarded",
+        type: {
+          name: "Boolean"
+        }
       },
       onboardingDisplayUrl: {
-        type: { name: "String" },
-        serializedName: "onboardingDisplayUrl"
+        serializedName: "onboardingDisplayUrl",
+        type: {
+          name: "String"
+        }
       }
     }
   }

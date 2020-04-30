@@ -13,18 +13,40 @@ export const Resource: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "Resource",
     modelProperties: {
-      id: { type: { name: "String" }, serializedName: "id", readOnly: true },
+      id: {
+        serializedName: "id",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
       type: {
-        type: { name: "String" },
         serializedName: "type",
-        readOnly: true
+        readOnly: true,
+        type: {
+          name: "String"
+        }
       },
       tags: {
-        type: { name: "Dictionary", value: { type: { name: "String" } } },
-        serializedName: "tags"
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" } }
+        }
       },
-      location: { type: { name: "String" }, serializedName: "location" },
-      name: { type: { name: "String" }, serializedName: "name", readOnly: true }
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
+      name: {
+        serializedName: "name",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -34,11 +56,24 @@ export const ErrorModel: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ErrorModel",
     modelProperties: {
-      status: { type: { name: "Number" }, serializedName: "status" },
-      message: { type: { name: "String" }, serializedName: "message" },
+      status: {
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
+      message: {
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      },
       parentError: {
         serializedName: "parentError",
-        type: { name: "Composite", className: "ErrorModel" }
+        type: {
+          name: "Composite",
+          className: "ErrorModel"
+        }
       }
     }
   }
@@ -51,21 +86,29 @@ export const FlattenedProduct: coreHttp.CompositeMapper = {
     modelProperties: {
       ...Resource.type.modelProperties,
       pName: {
-        type: { name: "String" },
-        serializedName: "properties.p\\.name"
+        serializedName: "properties.p\\.name",
+        type: {
+          name: "String"
+        }
       },
       typePropertiesType: {
-        type: { name: "String" },
-        serializedName: "properties.type"
+        serializedName: "properties.type",
+        type: {
+          name: "String"
+        }
       },
       provisioningStateValues: {
-        type: { name: "String" },
         serializedName: "properties.provisioningStateValues",
-        readOnly: true
+        readOnly: true,
+        type: {
+          name: "String"
+        }
       },
       provisioningState: {
-        type: { name: "String" },
-        serializedName: "properties.provisioningState"
+        serializedName: "properties.provisioningState",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -76,7 +119,12 @@ export const WrappedProduct: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "WrappedProduct",
     modelProperties: {
-      value: { type: { name: "String" }, serializedName: "value" }
+      value: {
+        serializedName: "value",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -86,7 +134,12 @@ export const ProductWrapper: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ProductWrapper",
     modelProperties: {
-      value: { type: { name: "String" }, serializedName: "property.value" }
+      value: {
+        serializedName: "property.value",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -98,23 +151,26 @@ export const ResourceCollection: coreHttp.CompositeMapper = {
     modelProperties: {
       productresource: {
         serializedName: "productresource",
-        type: { name: "Composite", className: "FlattenedProduct" }
+        type: {
+          name: "Composite",
+          className: "FlattenedProduct"
+        }
       },
       arrayofresources: {
+        serializedName: "arrayofresources",
         type: {
           name: "Sequence",
           element: {
             type: { name: "Composite", className: "FlattenedProduct" }
           }
-        },
-        serializedName: "arrayofresources"
+        }
       },
       dictionaryofresources: {
+        serializedName: "dictionaryofresources",
         type: {
           name: "Dictionary",
           value: { type: { name: "Composite", className: "FlattenedProduct" } }
-        },
-        serializedName: "dictionaryofresources"
+        }
       }
     }
   }
@@ -126,13 +182,17 @@ export const BaseProduct: coreHttp.CompositeMapper = {
     className: "BaseProduct",
     modelProperties: {
       productId: {
-        type: { name: "String" },
         serializedName: "base_product_id",
-        required: true
+        required: true,
+        type: {
+          name: "String"
+        }
       },
       description: {
-        type: { name: "String" },
-        serializedName: "base_product_description"
+        serializedName: "base_product_description",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -145,22 +205,30 @@ export const SimpleProduct: coreHttp.CompositeMapper = {
     modelProperties: {
       ...BaseProduct.type.modelProperties,
       maxProductDisplayName: {
-        type: { name: "String" },
-        serializedName: "details.max_product_display_name"
+        serializedName: "details.max_product_display_name",
+        type: {
+          name: "String"
+        }
       },
       capacity: {
-        type: { name: "String" },
         defaultValue: "Large",
         isConstant: true,
-        serializedName: "details.max_product_capacity"
+        serializedName: "details.max_product_capacity",
+        type: {
+          name: "String"
+        }
       },
       genericValue: {
-        type: { name: "String" },
-        serializedName: "details.max_product_image.generic_value"
+        serializedName: "details.max_product_image.generic_value",
+        type: {
+          name: "String"
+        }
       },
       odataValue: {
-        type: { name: "String" },
-        serializedName: "details.max_product_image.@odata\\.value"
+        serializedName: "details.max_product_image.@odata\\.value",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -172,8 +240,10 @@ export const GenericUrl: coreHttp.CompositeMapper = {
     className: "GenericUrl",
     modelProperties: {
       genericValue: {
-        type: { name: "String" },
-        serializedName: "generic_value"
+        serializedName: "generic_value",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -185,7 +255,12 @@ export const ProductUrl: coreHttp.CompositeMapper = {
     className: "ProductUrl",
     modelProperties: {
       ...GenericUrl.type.modelProperties,
-      odataValue: { type: { name: "String" }, serializedName: "@odata\\.value" }
+      odataValue: {
+        serializedName: "@odata\\.value",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };

@@ -14,7 +14,8 @@ import {
   Mapper,
   CompositeMapper,
   CompositeMapperType,
-  PolymorphicDiscriminator
+  PolymorphicDiscriminator,
+  MapperConstraints
 } from "@azure/core-http";
 import { ModelProperties } from "../transforms/mapperTransforms";
 import { keys, isEmpty, isString, isNil } from "lodash";
@@ -131,7 +132,7 @@ export function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
   // We want to handle modelProperties and polimorphicDiscriminator
   // so we extract them from the type object. The remaining of the type
   // object we'll just write all its properties as they are using writeObjectProps
-  const { type, defaultValue, ...restMapper } = mapper;
+  const { type, defaultValue, constraints, ...restMapper } = mapper;
   const {
     modelProperties,
     polymorphicDiscriminator,
@@ -141,6 +142,8 @@ export function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
     // we need to handle default value differently, since some types need to be
     // converted, such as ByteAttay, hence extracting it from the props
     writeDefaultValue(writer, defaultValue, restType);
+    // Write mapper constraints
+    writeMapperContraints(writer, constraints);
     // Writing the rest of the props
     writeObjectProps(restMapper, writer)
       .write("type:")
@@ -152,6 +155,27 @@ export function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
         writeModelProperties(writer, parents, modelProperties);
       });
   });
+}
+
+function writeMapperContraints(
+  writer: CodeBlockWriter,
+  constraints?: MapperConstraints
+) {
+  if (!constraints) {
+    return writer;
+  }
+
+  const { Pattern, ...restContstraints } = constraints;
+  return writer
+    .write("constraints:")
+    .block(() => {
+      if (Pattern) {
+        writer.write(`Pattern: new RegExp("${Pattern.source}"), `);
+      }
+
+      writeObjectProps(restContstraints, writer);
+    })
+    .write(",");
 }
 
 function writeModelProperties(
@@ -171,7 +195,14 @@ function writeModelProperties(
     //  color: { type: { name: "String" }, serializedName: "color" }
     // }
     writeParentMappers(parents, writer);
-    writeObjectProps(modelProperties, writer);
+    // Write all sub-mappers
+    if (modelProperties) {
+      keys(modelProperties).forEach(key => {
+        writer.write(`"${key}":`);
+        writeMapper(writer, modelProperties[key]);
+        writer.write(",");
+      });
+    }
   });
 }
 
@@ -240,8 +271,8 @@ function extractParents(mapper: Mapper) {
   let parents: string[] = [];
   if (mapper.type.name === MapperType.Composite) {
     const compositeMapper = mapper as CompositeMapper;
-    const { parentsRefs, ...modelProperties } = compositeMapper.type
-      .modelProperties as ModelProperties;
+    const { parentsRefs, ...modelProperties } = (compositeMapper.type
+      .modelProperties || {}) as ModelProperties;
     parents = parentsRefs as string[];
     compositeMapper.type.modelProperties = modelProperties as {
       [propertyName: string]: Mapper;
