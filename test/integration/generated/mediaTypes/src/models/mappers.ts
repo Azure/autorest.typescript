@@ -14,9 +14,13 @@ export const SourcePath: coreHttp.CompositeMapper = {
     className: "SourcePath",
     modelProperties: {
       source: {
-        type: { name: "String" },
+        constraints: {
+          MaxLength: 2048
+        },
         serializedName: "source",
-        constraints: { MaxLength: 2048 }
+        type: {
+          name: "String"
+        }
       }
     }
   }

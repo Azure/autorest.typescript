@@ -17,12 +17,17 @@ export const RootWithRefAndNoMeta: coreHttp.CompositeMapper = {
       refToModel: {
         serializedName: "RefToModel",
         xmlName: "RefToModel",
-        type: { name: "Composite", className: "ComplexTypeNoMeta" }
+        type: {
+          name: "Composite",
+          className: "ComplexTypeNoMeta"
+        }
       },
       something: {
-        type: { name: "String" },
         serializedName: "Something",
-        xmlName: "Something"
+        xmlName: "Something",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -34,7 +39,13 @@ export const ComplexTypeNoMeta: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ComplexTypeNoMeta",
     modelProperties: {
-      id: { type: { name: "String" }, serializedName: "ID", xmlName: "ID" }
+      id: {
+        serializedName: "ID",
+        xmlName: "ID",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -48,12 +59,17 @@ export const RootWithRefAndMeta: coreHttp.CompositeMapper = {
       refToModel: {
         serializedName: "RefToModel",
         xmlName: "XMLComplexTypeWithMeta",
-        type: { name: "Composite", className: "ComplexTypeWithMeta" }
+        type: {
+          name: "Composite",
+          className: "ComplexTypeWithMeta"
+        }
       },
       something: {
-        type: { name: "String" },
         serializedName: "Something",
-        xmlName: "Something"
+        xmlName: "Something",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -66,7 +82,13 @@ export const ComplexTypeWithMeta: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ComplexTypeWithMeta",
     modelProperties: {
-      id: { type: { name: "String" }, serializedName: "ID", xmlName: "ID" }
+      id: {
+        serializedName: "ID",
+        xmlName: "ID",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -79,31 +101,37 @@ export const Slideshow: coreHttp.CompositeMapper = {
     className: "Slideshow",
     modelProperties: {
       title: {
-        type: { name: "String" },
         serializedName: "title",
         xmlName: "title",
-        xmlIsAttribute: true
+        xmlIsAttribute: true,
+        type: {
+          name: "String"
+        }
       },
       date: {
-        type: { name: "String" },
         serializedName: "date",
         xmlName: "date",
-        xmlIsAttribute: true
+        xmlIsAttribute: true,
+        type: {
+          name: "String"
+        }
       },
       author: {
-        type: { name: "String" },
         serializedName: "author",
         xmlName: "author",
-        xmlIsAttribute: true
+        xmlIsAttribute: true,
+        type: {
+          name: "String"
+        }
       },
       slides: {
+        serializedName: "slides",
+        xmlName: "slides",
+        xmlElementName: "slide",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Slide" } }
-        },
-        serializedName: "slides",
-        xmlName: "slides",
-        xmlElementName: "slide"
+        }
       }
     }
   }
@@ -117,21 +145,28 @@ export const Slide: coreHttp.CompositeMapper = {
     className: "Slide",
     modelProperties: {
       type: {
-        type: { name: "String" },
         serializedName: "type",
         xmlName: "type",
-        xmlIsAttribute: true
+        xmlIsAttribute: true,
+        type: {
+          name: "String"
+        }
       },
       title: {
-        type: { name: "String" },
         serializedName: "title",
-        xmlName: "title"
+        xmlName: "title",
+        type: {
+          name: "String"
+        }
       },
       items: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
         serializedName: "items",
         xmlName: "items",
-        xmlElementName: "item"
+        xmlElementName: "item",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       }
     }
   }
@@ -144,14 +179,18 @@ export const ErrorModel: coreHttp.CompositeMapper = {
     className: "ErrorModel",
     modelProperties: {
       status: {
-        type: { name: "Number" },
         serializedName: "status",
-        xmlName: "status"
+        xmlName: "status",
+        type: {
+          name: "Number"
+        }
       },
       message: {
-        type: { name: "String" },
         serializedName: "message",
-        xmlName: "message"
+        xmlName: "message",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -164,18 +203,24 @@ export const AppleBarrel: coreHttp.CompositeMapper = {
     className: "AppleBarrel",
     modelProperties: {
       goodApples: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
         serializedName: "GoodApples",
         xmlName: "GoodApples",
         xmlIsWrapped: true,
-        xmlElementName: "Apple"
+        xmlElementName: "Apple",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       },
       badApples: {
-        type: { name: "Sequence", element: { type: { name: "String" } } },
         serializedName: "BadApples",
         xmlName: "BadApples",
         xmlIsWrapped: true,
-        xmlElementName: "Apple"
+        xmlElementName: "Apple",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
       }
     }
   }
@@ -189,19 +234,25 @@ export const Banana: coreHttp.CompositeMapper = {
     className: "Banana",
     modelProperties: {
       name: {
-        type: { name: "String" },
         serializedName: "name",
-        xmlName: "name"
+        xmlName: "name",
+        type: {
+          name: "String"
+        }
       },
       flavor: {
-        type: { name: "String" },
         serializedName: "flavor",
-        xmlName: "flavor"
+        xmlName: "flavor",
+        type: {
+          name: "String"
+        }
       },
       expiration: {
-        type: { name: "DateTime" },
         serializedName: "expiration",
-        xmlName: "expiration"
+        xmlName: "expiration",
+        type: {
+          name: "DateTime"
+        }
       }
     }
   }
@@ -215,44 +266,54 @@ export const ListContainersResponse: coreHttp.CompositeMapper = {
     className: "ListContainersResponse",
     modelProperties: {
       serviceEndpoint: {
-        type: { name: "String" },
         serializedName: "ServiceEndpoint",
         required: true,
         xmlName: "ServiceEndpoint",
-        xmlIsAttribute: true
+        xmlIsAttribute: true,
+        type: {
+          name: "String"
+        }
       },
       prefix: {
-        type: { name: "String" },
         serializedName: "Prefix",
         required: true,
-        xmlName: "Prefix"
+        xmlName: "Prefix",
+        type: {
+          name: "String"
+        }
       },
       marker: {
-        type: { name: "String" },
         serializedName: "Marker",
-        xmlName: "Marker"
+        xmlName: "Marker",
+        type: {
+          name: "String"
+        }
       },
       maxResults: {
-        type: { name: "Number" },
         serializedName: "MaxResults",
         required: true,
-        xmlName: "MaxResults"
+        xmlName: "MaxResults",
+        type: {
+          name: "Number"
+        }
       },
       containers: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Container" } }
-        },
         serializedName: "Containers",
         xmlName: "Containers",
         xmlIsWrapped: true,
-        xmlElementName: "Container"
+        xmlElementName: "Container",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Container" } }
+        }
       },
       nextMarker: {
-        type: { name: "String" },
         serializedName: "NextMarker",
         required: true,
-        xmlName: "NextMarker"
+        xmlName: "NextMarker",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -265,20 +326,28 @@ export const Container: coreHttp.CompositeMapper = {
     className: "Container",
     modelProperties: {
       name: {
-        type: { name: "String" },
         serializedName: "Name",
         required: true,
-        xmlName: "Name"
+        xmlName: "Name",
+        type: {
+          name: "String"
+        }
       },
       properties: {
         serializedName: "Properties",
         xmlName: "Properties",
-        type: { name: "Composite", className: "ContainerProperties" }
+        type: {
+          name: "Composite",
+          className: "ContainerProperties"
+        }
       },
       metadata: {
-        type: { name: "Dictionary", value: { type: { name: "String" } } },
         serializedName: "Metadata",
-        xmlName: "Metadata"
+        xmlName: "Metadata",
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" } }
+        }
       }
     }
   }
@@ -291,23 +360,32 @@ export const ContainerProperties: coreHttp.CompositeMapper = {
     className: "ContainerProperties",
     modelProperties: {
       lastModified: {
-        type: { name: "DateTimeRfc1123" },
         serializedName: "Last-Modified",
         required: true,
-        xmlName: "Last-Modified"
+        xmlName: "Last-Modified",
+        type: {
+          name: "DateTimeRfc1123"
+        }
       },
       etag: {
-        type: { name: "String" },
         serializedName: "Etag",
         required: true,
-        xmlName: "Etag"
+        xmlName: "Etag",
+        type: {
+          name: "String"
+        }
       },
       leaseStatus: {
-        type: { name: "Enum", allowedValues: ["locked", "unlocked"] },
         serializedName: "LeaseStatus",
-        xmlName: "LeaseStatus"
+        xmlName: "LeaseStatus",
+        type: {
+          name: "Enum",
+          allowedValues: ["locked", "unlocked"]
+        }
       },
       leaseState: {
+        serializedName: "LeaseState",
+        xmlName: "LeaseState",
         type: {
           name: "Enum",
           allowedValues: [
@@ -317,19 +395,22 @@ export const ContainerProperties: coreHttp.CompositeMapper = {
             "breaking",
             "broken"
           ]
-        },
-        serializedName: "LeaseState",
-        xmlName: "LeaseState"
+        }
       },
       leaseDuration: {
-        type: { name: "Enum", allowedValues: ["infinite", "fixed"] },
         serializedName: "LeaseDuration",
-        xmlName: "LeaseDuration"
+        xmlName: "LeaseDuration",
+        type: {
+          name: "Enum",
+          allowedValues: ["infinite", "fixed"]
+        }
       },
       publicAccess: {
-        type: { name: "String" },
         serializedName: "PublicAccess",
-        xmlName: "PublicAccess"
+        xmlName: "PublicAccess",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -344,37 +425,51 @@ export const StorageServiceProperties: coreHttp.CompositeMapper = {
       logging: {
         serializedName: "Logging",
         xmlName: "Logging",
-        type: { name: "Composite", className: "Logging" }
+        type: {
+          name: "Composite",
+          className: "Logging"
+        }
       },
       hourMetrics: {
         serializedName: "HourMetrics",
         xmlName: "HourMetrics",
-        type: { name: "Composite", className: "Metrics" }
+        type: {
+          name: "Composite",
+          className: "Metrics"
+        }
       },
       minuteMetrics: {
         serializedName: "MinuteMetrics",
         xmlName: "MinuteMetrics",
-        type: { name: "Composite", className: "Metrics" }
+        type: {
+          name: "Composite",
+          className: "Metrics"
+        }
       },
       cors: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "CorsRule" } }
-        },
         serializedName: "Cors",
         xmlName: "Cors",
         xmlIsWrapped: true,
-        xmlElementName: "CorsRule"
+        xmlElementName: "CorsRule",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "CorsRule" } }
+        }
       },
       defaultServiceVersion: {
-        type: { name: "String" },
         serializedName: "DefaultServiceVersion",
-        xmlName: "DefaultServiceVersion"
+        xmlName: "DefaultServiceVersion",
+        type: {
+          name: "String"
+        }
       },
       deleteRetentionPolicy: {
         serializedName: "DeleteRetentionPolicy",
         xmlName: "DeleteRetentionPolicy",
-        type: { name: "Composite", className: "RetentionPolicy" }
+        type: {
+          name: "Composite",
+          className: "RetentionPolicy"
+        }
       }
     }
   }
@@ -387,33 +482,44 @@ export const Logging: coreHttp.CompositeMapper = {
     className: "Logging",
     modelProperties: {
       version: {
-        type: { name: "String" },
         serializedName: "Version",
         required: true,
-        xmlName: "Version"
+        xmlName: "Version",
+        type: {
+          name: "String"
+        }
       },
       delete: {
-        type: { name: "Boolean" },
         serializedName: "Delete",
         required: true,
-        xmlName: "Delete"
+        xmlName: "Delete",
+        type: {
+          name: "Boolean"
+        }
       },
       read: {
-        type: { name: "Boolean" },
         serializedName: "Read",
         required: true,
-        xmlName: "Read"
+        xmlName: "Read",
+        type: {
+          name: "Boolean"
+        }
       },
       write: {
-        type: { name: "Boolean" },
         serializedName: "Write",
         required: true,
-        xmlName: "Write"
+        xmlName: "Write",
+        type: {
+          name: "Boolean"
+        }
       },
       retentionPolicy: {
         serializedName: "RetentionPolicy",
         xmlName: "RetentionPolicy",
-        type: { name: "Composite", className: "RetentionPolicy" }
+        type: {
+          name: "Composite",
+          className: "RetentionPolicy"
+        }
       }
     }
   }
@@ -426,16 +532,22 @@ export const RetentionPolicy: coreHttp.CompositeMapper = {
     className: "RetentionPolicy",
     modelProperties: {
       enabled: {
-        type: { name: "Boolean" },
         serializedName: "Enabled",
         required: true,
-        xmlName: "Enabled"
+        xmlName: "Enabled",
+        type: {
+          name: "Boolean"
+        }
       },
       days: {
-        type: { name: "Number" },
+        constraints: {
+          InclusiveMinimum: 1
+        },
         serializedName: "Days",
-        constraints: { InclusiveMinimum: 1 },
-        xmlName: "Days"
+        xmlName: "Days",
+        type: {
+          name: "Number"
+        }
       }
     }
   }
@@ -448,25 +560,34 @@ export const Metrics: coreHttp.CompositeMapper = {
     className: "Metrics",
     modelProperties: {
       version: {
-        type: { name: "String" },
         serializedName: "Version",
-        xmlName: "Version"
+        xmlName: "Version",
+        type: {
+          name: "String"
+        }
       },
       enabled: {
-        type: { name: "Boolean" },
         serializedName: "Enabled",
         required: true,
-        xmlName: "Enabled"
+        xmlName: "Enabled",
+        type: {
+          name: "Boolean"
+        }
       },
       includeAPIs: {
-        type: { name: "Boolean" },
         serializedName: "IncludeAPIs",
-        xmlName: "IncludeAPIs"
+        xmlName: "IncludeAPIs",
+        type: {
+          name: "Boolean"
+        }
       },
       retentionPolicy: {
         serializedName: "RetentionPolicy",
         xmlName: "RetentionPolicy",
-        type: { name: "Composite", className: "RetentionPolicy" }
+        type: {
+          name: "Composite",
+          className: "RetentionPolicy"
+        }
       }
     }
   }
@@ -480,35 +601,45 @@ export const CorsRule: coreHttp.CompositeMapper = {
     className: "CorsRule",
     modelProperties: {
       allowedOrigins: {
-        type: { name: "String" },
         serializedName: "AllowedOrigins",
         required: true,
-        xmlName: "AllowedOrigins"
+        xmlName: "AllowedOrigins",
+        type: {
+          name: "String"
+        }
       },
       allowedMethods: {
-        type: { name: "String" },
         serializedName: "AllowedMethods",
         required: true,
-        xmlName: "AllowedMethods"
+        xmlName: "AllowedMethods",
+        type: {
+          name: "String"
+        }
       },
       allowedHeaders: {
-        type: { name: "String" },
         serializedName: "AllowedHeaders",
         required: true,
-        xmlName: "AllowedHeaders"
+        xmlName: "AllowedHeaders",
+        type: {
+          name: "String"
+        }
       },
       exposedHeaders: {
-        type: { name: "String" },
         serializedName: "ExposedHeaders",
         required: true,
-        xmlName: "ExposedHeaders"
+        xmlName: "ExposedHeaders",
+        type: {
+          name: "String"
+        }
       },
       maxAgeInSeconds: {
-        type: { name: "Number" },
+        constraints: {},
         serializedName: "MaxAgeInSeconds",
         required: true,
-        constraints: {},
-        xmlName: "MaxAgeInSeconds"
+        xmlName: "MaxAgeInSeconds",
+        type: {
+          name: "Number"
+        }
       }
     }
   }
@@ -522,15 +653,20 @@ export const SignedIdentifier: coreHttp.CompositeMapper = {
     className: "SignedIdentifier",
     modelProperties: {
       id: {
-        type: { name: "String" },
         serializedName: "Id",
         required: true,
-        xmlName: "Id"
+        xmlName: "Id",
+        type: {
+          name: "String"
+        }
       },
       accessPolicy: {
         serializedName: "AccessPolicy",
         xmlName: "AccessPolicy",
-        type: { name: "Composite", className: "AccessPolicy" }
+        type: {
+          name: "Composite",
+          className: "AccessPolicy"
+        }
       }
     }
   }
@@ -543,22 +679,28 @@ export const AccessPolicy: coreHttp.CompositeMapper = {
     className: "AccessPolicy",
     modelProperties: {
       start: {
-        type: { name: "DateTime" },
         serializedName: "Start",
         required: true,
-        xmlName: "Start"
+        xmlName: "Start",
+        type: {
+          name: "DateTime"
+        }
       },
       expiry: {
-        type: { name: "DateTime" },
         serializedName: "Expiry",
         required: true,
-        xmlName: "Expiry"
+        xmlName: "Expiry",
+        type: {
+          name: "DateTime"
+        }
       },
       permission: {
-        type: { name: "String" },
         serializedName: "Permission",
         required: true,
-        xmlName: "Permission"
+        xmlName: "Permission",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -572,52 +714,69 @@ export const ListBlobsResponse: coreHttp.CompositeMapper = {
     className: "ListBlobsResponse",
     modelProperties: {
       serviceEndpoint: {
-        type: { name: "String" },
         serializedName: "ServiceEndpoint",
         xmlName: "ServiceEndpoint",
-        xmlIsAttribute: true
+        xmlIsAttribute: true,
+        type: {
+          name: "String"
+        }
       },
       containerName: {
-        type: { name: "String" },
         serializedName: "ContainerName",
         required: true,
         xmlName: "ContainerName",
-        xmlIsAttribute: true
+        xmlIsAttribute: true,
+        type: {
+          name: "String"
+        }
       },
       prefix: {
-        type: { name: "String" },
         serializedName: "Prefix",
         required: true,
-        xmlName: "Prefix"
+        xmlName: "Prefix",
+        type: {
+          name: "String"
+        }
       },
       marker: {
-        type: { name: "String" },
         serializedName: "Marker",
         required: true,
-        xmlName: "Marker"
+        xmlName: "Marker",
+        type: {
+          name: "String"
+        }
       },
       maxResults: {
-        type: { name: "Number" },
         serializedName: "MaxResults",
         required: true,
-        xmlName: "MaxResults"
+        xmlName: "MaxResults",
+        type: {
+          name: "Number"
+        }
       },
       delimiter: {
-        type: { name: "String" },
         serializedName: "Delimiter",
         required: true,
-        xmlName: "Delimiter"
+        xmlName: "Delimiter",
+        type: {
+          name: "String"
+        }
       },
       blobs: {
         serializedName: "Blobs",
         xmlName: "Blobs",
-        type: { name: "Composite", className: "Blobs" }
+        type: {
+          name: "Composite",
+          className: "Blobs"
+        }
       },
       nextMarker: {
-        type: { name: "String" },
         serializedName: "NextMarker",
         required: true,
-        xmlName: "NextMarker"
+        xmlName: "NextMarker",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -630,22 +789,22 @@ export const Blobs: coreHttp.CompositeMapper = {
     className: "Blobs",
     modelProperties: {
       blobPrefix: {
+        serializedName: "BlobPrefix",
+        xmlName: "BlobPrefix",
+        xmlElementName: "BlobPrefix",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "BlobPrefix" } }
-        },
-        serializedName: "BlobPrefix",
-        xmlName: "BlobPrefix",
-        xmlElementName: "BlobPrefix"
+        }
       },
       blob: {
+        serializedName: "Blob",
+        xmlName: "Blob",
+        xmlElementName: "Blob",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Blob" } }
-        },
-        serializedName: "Blob",
-        xmlName: "Blob",
-        xmlElementName: "Blob"
+        }
       }
     }
   }
@@ -658,10 +817,12 @@ export const BlobPrefix: coreHttp.CompositeMapper = {
     className: "BlobPrefix",
     modelProperties: {
       name: {
-        type: { name: "String" },
         serializedName: "Name",
         required: true,
-        xmlName: "Name"
+        xmlName: "Name",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -675,32 +836,44 @@ export const Blob: coreHttp.CompositeMapper = {
     className: "Blob",
     modelProperties: {
       name: {
-        type: { name: "String" },
         serializedName: "Name",
         required: true,
-        xmlName: "Name"
+        xmlName: "Name",
+        type: {
+          name: "String"
+        }
       },
       deleted: {
-        type: { name: "Boolean" },
         serializedName: "Deleted",
         required: true,
-        xmlName: "Deleted"
+        xmlName: "Deleted",
+        type: {
+          name: "Boolean"
+        }
       },
       snapshot: {
-        type: { name: "String" },
         serializedName: "Snapshot",
         required: true,
-        xmlName: "Snapshot"
+        xmlName: "Snapshot",
+        type: {
+          name: "String"
+        }
       },
       properties: {
         serializedName: "Properties",
         xmlName: "Properties",
-        type: { name: "Composite", className: "BlobProperties" }
+        type: {
+          name: "Composite",
+          className: "BlobProperties"
+        }
       },
       metadata: {
-        type: { name: "Dictionary", value: { type: { name: "String" } } },
         serializedName: "Metadata",
-        xmlName: "Metadata"
+        xmlName: "Metadata",
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" } }
+        }
       }
     }
   }
@@ -713,71 +886,96 @@ export const BlobProperties: coreHttp.CompositeMapper = {
     className: "BlobProperties",
     modelProperties: {
       lastModified: {
-        type: { name: "DateTimeRfc1123" },
         serializedName: "Last-Modified",
         required: true,
-        xmlName: "Last-Modified"
+        xmlName: "Last-Modified",
+        type: {
+          name: "DateTimeRfc1123"
+        }
       },
       etag: {
-        type: { name: "String" },
         serializedName: "Etag",
         required: true,
-        xmlName: "Etag"
+        xmlName: "Etag",
+        type: {
+          name: "String"
+        }
       },
       contentLength: {
-        type: { name: "Number" },
         serializedName: "Content-Length",
-        xmlName: "Content-Length"
+        xmlName: "Content-Length",
+        type: {
+          name: "Number"
+        }
       },
       contentType: {
-        type: { name: "String" },
         serializedName: "Content-Type",
-        xmlName: "Content-Type"
+        xmlName: "Content-Type",
+        type: {
+          name: "String"
+        }
       },
       contentEncoding: {
-        type: { name: "String" },
         serializedName: "Content-Encoding",
-        xmlName: "Content-Encoding"
+        xmlName: "Content-Encoding",
+        type: {
+          name: "String"
+        }
       },
       contentLanguage: {
-        type: { name: "String" },
         serializedName: "Content-Language",
-        xmlName: "Content-Language"
+        xmlName: "Content-Language",
+        type: {
+          name: "String"
+        }
       },
       contentMD5: {
-        type: { name: "String" },
         serializedName: "Content-MD5",
-        xmlName: "Content-MD5"
+        xmlName: "Content-MD5",
+        type: {
+          name: "String"
+        }
       },
       contentDisposition: {
-        type: { name: "String" },
         serializedName: "Content-Disposition",
-        xmlName: "Content-Disposition"
+        xmlName: "Content-Disposition",
+        type: {
+          name: "String"
+        }
       },
       cacheControl: {
-        type: { name: "String" },
         serializedName: "Cache-Control",
-        xmlName: "Cache-Control"
+        xmlName: "Cache-Control",
+        type: {
+          name: "String"
+        }
       },
       blobSequenceNumber: {
-        type: { name: "Number" },
         serializedName: "x-ms-blob-sequence-number",
-        xmlName: "x-ms-blob-sequence-number"
+        xmlName: "x-ms-blob-sequence-number",
+        type: {
+          name: "Number"
+        }
       },
       blobType: {
+        serializedName: "BlobType",
+        xmlName: "BlobType",
         type: {
           name: "Enum",
           allowedValues: ["BlockBlob", "PageBlob", "AppendBlob"]
-        },
-        serializedName: "BlobType",
-        xmlName: "BlobType"
+        }
       },
       leaseStatus: {
-        type: { name: "Enum", allowedValues: ["locked", "unlocked"] },
         serializedName: "LeaseStatus",
-        xmlName: "LeaseStatus"
+        xmlName: "LeaseStatus",
+        type: {
+          name: "Enum",
+          allowedValues: ["locked", "unlocked"]
+        }
       },
       leaseState: {
+        serializedName: "LeaseState",
+        xmlName: "LeaseState",
         type: {
           name: "Enum",
           allowedValues: [
@@ -787,87 +985,114 @@ export const BlobProperties: coreHttp.CompositeMapper = {
             "breaking",
             "broken"
           ]
-        },
-        serializedName: "LeaseState",
-        xmlName: "LeaseState"
+        }
       },
       leaseDuration: {
-        type: { name: "Enum", allowedValues: ["infinite", "fixed"] },
         serializedName: "LeaseDuration",
-        xmlName: "LeaseDuration"
+        xmlName: "LeaseDuration",
+        type: {
+          name: "Enum",
+          allowedValues: ["infinite", "fixed"]
+        }
       },
       copyId: {
-        type: { name: "String" },
         serializedName: "CopyId",
-        xmlName: "CopyId"
+        xmlName: "CopyId",
+        type: {
+          name: "String"
+        }
       },
       copyStatus: {
+        serializedName: "CopyStatus",
+        xmlName: "CopyStatus",
         type: {
           name: "Enum",
           allowedValues: ["pending", "success", "aborted", "failed"]
-        },
-        serializedName: "CopyStatus",
-        xmlName: "CopyStatus"
+        }
       },
       copySource: {
-        type: { name: "String" },
         serializedName: "CopySource",
-        xmlName: "CopySource"
+        xmlName: "CopySource",
+        type: {
+          name: "String"
+        }
       },
       copyProgress: {
-        type: { name: "String" },
         serializedName: "CopyProgress",
-        xmlName: "CopyProgress"
+        xmlName: "CopyProgress",
+        type: {
+          name: "String"
+        }
       },
       copyCompletionTime: {
-        type: { name: "DateTimeRfc1123" },
         serializedName: "CopyCompletionTime",
-        xmlName: "CopyCompletionTime"
+        xmlName: "CopyCompletionTime",
+        type: {
+          name: "DateTimeRfc1123"
+        }
       },
       copyStatusDescription: {
-        type: { name: "String" },
         serializedName: "CopyStatusDescription",
-        xmlName: "CopyStatusDescription"
+        xmlName: "CopyStatusDescription",
+        type: {
+          name: "String"
+        }
       },
       serverEncrypted: {
-        type: { name: "Boolean" },
         serializedName: "ServerEncrypted",
-        xmlName: "ServerEncrypted"
+        xmlName: "ServerEncrypted",
+        type: {
+          name: "Boolean"
+        }
       },
       incrementalCopy: {
-        type: { name: "Boolean" },
         serializedName: "IncrementalCopy",
-        xmlName: "IncrementalCopy"
+        xmlName: "IncrementalCopy",
+        type: {
+          name: "Boolean"
+        }
       },
       destinationSnapshot: {
-        type: { name: "String" },
         serializedName: "DestinationSnapshot",
-        xmlName: "DestinationSnapshot"
+        xmlName: "DestinationSnapshot",
+        type: {
+          name: "String"
+        }
       },
       deletedTime: {
-        type: { name: "DateTimeRfc1123" },
         serializedName: "DeletedTime",
-        xmlName: "DeletedTime"
+        xmlName: "DeletedTime",
+        type: {
+          name: "DateTimeRfc1123"
+        }
       },
       remainingRetentionDays: {
-        type: { name: "Number" },
         serializedName: "RemainingRetentionDays",
-        xmlName: "RemainingRetentionDays"
+        xmlName: "RemainingRetentionDays",
+        type: {
+          name: "Number"
+        }
       },
       accessTier: {
-        type: { name: "String" },
         serializedName: "AccessTier",
-        xmlName: "AccessTier"
+        xmlName: "AccessTier",
+        type: {
+          name: "String"
+        }
       },
       accessTierInferred: {
-        type: { name: "Boolean" },
         serializedName: "AccessTierInferred",
-        xmlName: "AccessTierInferred"
+        xmlName: "AccessTierInferred",
+        type: {
+          name: "Boolean"
+        }
       },
       archiveStatus: {
-        type: { name: "String" },
         serializedName: "ArchiveStatus",
-        xmlName: "ArchiveStatus"
+        xmlName: "ArchiveStatus",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -879,7 +1104,13 @@ export const JsonInput: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "JsonInput",
     modelProperties: {
-      id: { type: { name: "Number" }, serializedName: "id", xmlName: "id" }
+      id: {
+        serializedName: "id",
+        xmlName: "id",
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -890,7 +1121,13 @@ export const JsonOutput: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "JsonOutput",
     modelProperties: {
-      id: { type: { name: "Number" }, serializedName: "id", xmlName: "id" }
+      id: {
+        serializedName: "id",
+        xmlName: "id",
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -902,9 +1139,11 @@ export const XmlGetHeadersHeaders: coreHttp.CompositeMapper = {
     className: "XmlGetHeadersHeaders",
     modelProperties: {
       customHeader: {
-        type: { name: "String" },
         serializedName: "custom-header",
-        xmlName: "custom-header"
+        xmlName: "custom-header",
+        type: {
+          name: "String"
+        }
       }
     }
   }

@@ -52,6 +52,8 @@ export function getStringForValue(
     case SchemaType.Duration:
     case SchemaType.String:
     case MapperTypes.String:
+    case MapperTypes.TimeSpan:
+    case "Enum":
       const valueString = !!value ? value.toString() : "";
       return quotedStrings ? `"${valueString}"` : `${valueString}`;
     default:

@@ -14,13 +14,18 @@ export const ProductResultValue: coreHttp.CompositeMapper = {
     className: "ProductResultValue",
     modelProperties: {
       value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Product" } }
-        },
-        serializedName: "value"
+        }
       },
-      nextLink: { type: { name: "String" }, serializedName: "nextLink" }
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -32,7 +37,10 @@ export const Product: coreHttp.CompositeMapper = {
     modelProperties: {
       properties: {
         serializedName: "properties",
-        type: { name: "Composite", className: "ProductProperties" }
+        type: {
+          name: "Composite",
+          className: "ProductProperties"
+        }
       }
     }
   }
@@ -43,8 +51,18 @@ export const ProductProperties: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "ProductProperties",
     modelProperties: {
-      id: { type: { name: "Number" }, serializedName: "id" },
-      name: { type: { name: "String" }, serializedName: "name" }
+      id: {
+        serializedName: "id",
+        type: {
+          name: "Number"
+        }
+      },
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -55,13 +73,18 @@ export const ProductResult: coreHttp.CompositeMapper = {
     className: "ProductResult",
     modelProperties: {
       values: {
+        serializedName: "values",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Product" } }
-        },
-        serializedName: "values"
+        }
       },
-      nextLink: { type: { name: "String" }, serializedName: "nextLink" }
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -72,15 +95,17 @@ export const OdataProductResult: coreHttp.CompositeMapper = {
     className: "OdataProductResult",
     modelProperties: {
       values: {
+        serializedName: "values",
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Product" } }
-        },
-        serializedName: "values"
+        }
       },
       odataNextLink: {
-        type: { name: "String" },
-        serializedName: "odata\\.nextLink"
+        serializedName: "odata\\.nextLink",
+        type: {
+          name: "String"
+        }
       }
     }
   }
@@ -91,7 +116,12 @@ export const OperationResult: coreHttp.CompositeMapper = {
     name: "Composite",
     className: "OperationResult",
     modelProperties: {
-      status: { type: { name: "String" }, serializedName: "status" }
+      status: {
+        serializedName: "status",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
