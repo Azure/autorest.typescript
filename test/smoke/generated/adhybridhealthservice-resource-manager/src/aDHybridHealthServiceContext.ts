@@ -10,7 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import * as Models from "./models";
 
 const packageName = "adhybridhealthservice-resource-manager";
-const packageVersion = "";
+const packageVersion = "1.0.0";
 
 export class ADHybridHealthServiceContext extends coreHttp.ServiceClient {
   $host: string;

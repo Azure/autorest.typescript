@@ -3,7 +3,7 @@
   "author": "Microsoft Corporation",
   "description": "Test Infrastructure for AutoRest",
   "version": "1.0.0-preview1",
-  "dependencies": { "@azure/core-http": "^1.0.4", "tslib": "^1.9.3" },
+  "dependencies": { "@azure/core-http": "^1.1.1", "tslib": "^1.9.3" },
   "keywords": ["node", "azure", "typescript", "browser", "isomorphic"],
   "license": "MIT",
   "main": "./dist/body-boolean.js",
