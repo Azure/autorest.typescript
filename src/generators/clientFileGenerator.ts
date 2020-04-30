@@ -29,7 +29,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   const clientContextClassName = `${clientDetails.className}Context`;
   const hasMappers = !!clientDetails.mappers.length;
 
-  // Check if there ara any client level operations
+  // Check if there are any client level operations
   const hasInlineOperations = clientDetails.operationGroups.some(
     og => og.isTopLevel
   );
