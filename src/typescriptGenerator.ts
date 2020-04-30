@@ -63,7 +63,7 @@ export async function generateTypeScriptLibrary(
     scopeName: packageNameParts[2],
     nameWithoutScope: packageNameParts[3],
     description: clientDetails.description,
-    version: await host.GetValue("package-version")
+    version: (await host.GetValue("package-version")) || "1.0.0"
   };
 
   // Skip metadata generation if `generate-metadata` is explicitly false

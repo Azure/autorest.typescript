@@ -2,9 +2,9 @@
   "name": "adhybridhealthservice-resource-manager",
   "author": "Microsoft Corporation",
   "description": "REST APIs for Azure Active Directory Connect Health",
-  "version": null,
+  "version": "1.0.0",
   "dependencies": {
-    "@azure/core-http": "^1.0.4",
+    "@azure/core-http": "^1.1.1",
     "tslib": "^1.9.3"
   },
   "keywords": [

@@ -224,7 +224,8 @@ describe("Integration tests for Url", () => {
       assert.ok("Call succeeded");
     });
 
-    it("should work when query has string array values", async function() {
+    // TODO: Re-enable when PullRequest#8604 is merged
+    it.skip("should work when query has string array values", async function() {
       const testArray = [
         "ArrayQuery1",
         "begin!*'();:@ &=+$,/?#[]end",
