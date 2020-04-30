@@ -142,6 +142,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "PagingClient",
     packageName: "paging-service"
   },
+  regexConstraint: {
+    swagger: "test/integration/swaggers/regex-constraint.json",
+    clientName: "RegexConstraint",
+    packageName: "regex-constraint"
+  },
   report: {
     swagger: "report.json",
     clientName: "ReportClient",
