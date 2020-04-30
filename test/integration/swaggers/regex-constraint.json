@@ -1,0 +1,30 @@
+{
+  "swagger": "2.0",
+  "info": { "title": "Azure Foo Service REST API", "version": "v1" },
+  "paths": {
+    "/api/v1/value": {
+      "get": {
+        "tags": ["ValueApi"],
+        "operationId": "ApiV1ValueGet",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "serverName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*$",
+            "minLength": 3,
+            "maxLength": 63,
+            "description": "The name of the Analysis Services server. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        ],
+        "responses": {
+          "200": { "description": "Success", "schema": { "type": "string" } }
+        }
+      }
+    }
+  },
+  "definitions": {}
+}
