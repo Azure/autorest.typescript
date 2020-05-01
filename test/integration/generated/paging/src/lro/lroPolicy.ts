@@ -14,7 +14,6 @@ import {
   WebResource
 } from "@azure/core-http";
 import { getLROData } from "./requestUtils";
-import { isEmpty } from "lodash";
 
 export function lroPolicy() {
   return {

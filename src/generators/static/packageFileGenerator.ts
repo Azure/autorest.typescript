@@ -10,6 +10,9 @@ export function generatePackageJson(
   packageDetails: PackageDetails,
   project: Project
 ) {
+  const hasLRO = clientDetails.operationGroups.some(og =>
+    og.operations.some(o => o.isLRO)
+  );
   const packageJsonContents = {
     name: packageDetails.name,
     author: "Microsoft Corporation",
@@ -18,6 +21,7 @@ export function generatePackageJson(
       `A generated SDK for ${clientDetails.name}.`,
     version: packageDetails.version,
     dependencies: {
+      ...(hasLRO && { "@azure/core-lro": "^1.0.1" }),
       "@azure/core-http": "^1.1.1",
       tslib: "^1.9.3"
     },
