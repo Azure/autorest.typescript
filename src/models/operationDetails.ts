@@ -46,6 +46,7 @@ export interface OperationResponseDetails {
   mappers: OperationResponseMappers;
   types: OperationResponseTypes;
   isError?: boolean;
+  hash: string;
 }
 
 /**

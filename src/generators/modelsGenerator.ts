@@ -134,6 +134,7 @@ function writeResponseTypes(
   modelsIndexFile: SourceFile
 ) {
   const responseName = `${operationType.typeName}Response`;
+  const addedResponses: string[] = [];
 
   responses
     // Filter responses that are not marked as errors and that have either body or headers
@@ -142,14 +143,24 @@ function writeResponseTypes(
         !isError && (mappers.bodyMapper || mappers.headersMapper)
     )
     .forEach(operation => {
-      // Define possible values for response
-      modelsIndexFile.addTypeAlias({
-        name: responseName,
-        docs: [`Contains response data for the ${name} operation.`],
-        isExported: true,
-        type: buildResponseType(operation),
-        leadingTrivia: writer => writer.blankLine()
-      });
+      if (addedResponses.length === 0) {
+        // Define possible values for response
+        modelsIndexFile.addTypeAlias({
+          name: responseName,
+          docs: [`Contains response data for the ${name} operation.`],
+          isExported: true,
+          type: buildResponseType(operation),
+          leadingTrivia: writer => writer.blankLine(),
+          kind: StructureKind.TypeAlias
+        });
+        addedResponses.push(operation.hash);
+      }
+
+      if (!addedResponses.includes(operation.hash)) {
+        throw new Error(
+          "Handling multiple response types is not yet implemented"
+        );
+      }
     });
 }
 
