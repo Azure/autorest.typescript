@@ -39,7 +39,6 @@ import { KnownMediaType } from "@azure-tools/codegen";
 import { headersToSchema } from "../utils/headersToSchema";
 import { extractPaginationDetails } from "../utils/extractPaginationDetails";
 import { isEmpty, isEqual } from "lodash";
-import { createHash } from "crypto";
 
 /**
  * SWAGGER doesn't require to define all possible response codes
@@ -292,21 +291,12 @@ export function transformOperationResponse(
 
   const isDefault = httpInfo.statusCodes.indexOf("default") > -1;
 
-  const resultResponse = {
+  return {
+    statusCodes: httpInfo.statusCodes,
     mediaType: httpInfo.knownMediaType,
     mappers,
     types,
     isError: isDefault || isError
-  };
-
-  const hash = createHash("md5")
-    .update(JSON.stringify(resultResponse))
-    .digest("base64");
-
-  return {
-    ...resultResponse,
-    statusCodes: httpInfo.statusCodes,
-    hash
   };
 }
 

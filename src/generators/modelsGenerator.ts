@@ -12,7 +12,7 @@ import {
   OptionalKind,
   WriterFunctionOrValue
 } from "ts-morph";
-import { keys, pull } from "lodash";
+import { keys, pull, isEqual } from "lodash";
 import {
   ObjectKind,
   PolymorphicObjectDetails,
@@ -134,7 +134,10 @@ function writeResponseTypes(
   modelsIndexFile: SourceFile
 ) {
   const responseName = `${operationType.typeName}Response`;
-  const addedResponses: string[] = [];
+  const addedResponses: {
+    name: string;
+    response: Partial<OperationResponseDetails>;
+  }[] = [];
 
   responses
     // Filter responses that are not marked as errors and that have either body or headers
@@ -143,6 +146,7 @@ function writeResponseTypes(
         !isError && (mappers.bodyMapper || mappers.headersMapper)
     )
     .forEach(operation => {
+      const { statusCodes, ...coreResponse } = operation;
       if (addedResponses.length === 0) {
         // Define possible values for response
         modelsIndexFile.addTypeAlias({
@@ -153,10 +157,14 @@ function writeResponseTypes(
           leadingTrivia: writer => writer.blankLine(),
           kind: StructureKind.TypeAlias
         });
-        addedResponses.push(operation.hash);
+        addedResponses.push({ name: responseName, response: coreResponse });
       }
 
-      if (!addedResponses.includes(operation.hash)) {
+      const existingResponse = addedResponses.find(r => r.name === name);
+      if (
+        existingResponse &&
+        isEqual(existingResponse.response, coreResponse)
+      ) {
         throw new Error(
           "Handling multiple response types is not yet implemented"
         );
