@@ -127,6 +127,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "MediaTypesV3Client",
     packageName: "media-types-v3-client"
   },
+  mediaTypesV3Lro: {
+    swagger: "test/integration/swaggers/media-types-v3-lro.json",
+    clientName: "MediaTypesV3LROClient",
+    packageName: "media-types-v3-lro-client"
+  },
   modelFlattening: {
     swagger: "model-flattening.json",
     clientName: "ModelFlatteningClient",

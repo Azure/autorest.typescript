@@ -109,7 +109,9 @@ function generateOperation(
   );
 }
 
-function writeGetOperationOptions(operationGroupClass: ClassDeclaration) {
+export function writeGetOperationOptions(
+  operationGroupClass: ClassDeclaration
+) {
   operationGroupClass.addMethod({
     scope: Scope.Private,
     name: "getOperationOptions<TOptions extends coreHttp.OperationOptions>",
@@ -315,6 +317,17 @@ function getOptionsParameter(
     hasQuestionToken: isOptional,
     description: "The options parameters."
   };
+}
+
+function getReturnType(
+  operation: OperationDetails,
+  importedModels: Set<string>
+) {
+  const responseName = getResponseType(operation, importedModels);
+
+  return operation.isLRO
+    ? `Promise<LROPoller<${responseName}>>`
+    : `Promise<${responseName}>`;
 }
 
 /**
@@ -578,11 +591,12 @@ export function writeOperations(
       operationGroupClass
     );
     const responseName = getResponseType(operation, importedModels);
+    const returnType = getReturnType(operation, importedModels);
 
     const operationMethod = operationGroupClass.addMethod({
       name: normalizeName(operation.name, NameType.Property),
       parameters: baseMethodParameters,
-      returnType: `Promise<${responseName}>`,
+      returnType,
       docs: [
         generateOperationJSDoc(baseMethodParameters, operation.description)
       ],
@@ -603,7 +617,7 @@ export function writeOperations(
     for (const overload of overloadParameterDeclarations) {
       operationMethod.addOverload({
         parameters: overload,
-        returnType: `Promise<${responseName}>`,
+        returnType,
         docs: [generateOperationJSDoc(overload, operation.description)]
       });
     }
@@ -649,7 +663,8 @@ function writeNoOverloadsOperationBody(
       responseName,
       operationSpecName,
       operationMethod,
-      finalStateVia
+      finalStateVia,
+      isInline
     );
   } else {
     operationMethod.addStatements(
@@ -667,7 +682,8 @@ function writeLROOperationBody(
   responseName: string,
   operationSpecName: string,
   methodDeclaration: MethodDeclaration,
-  finalStateVia?: string
+  finalStateVia?: string,
+  isInline?: boolean
 ) {
   const finalStateStr = finalStateVia
     ? `finalStateVia: "${finalStateVia.toLowerCase()}"`
@@ -675,7 +691,9 @@ function writeLROOperationBody(
 
   const operationBody = `
   const args: coreHttp.OperationArguments  = {${sendParams}};
-  const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>  this.client.sendOperationRequest(args, spec) as Promise<${responseName}>;
+  const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>  this${
+    isInline ? "" : ".client"
+  }.sendOperationRequest(args, spec) as Promise<${responseName}>;
   const initialOperationResult = await sendOperation(args, ${operationSpecName});
 
   return new LROPoller({
@@ -779,12 +797,14 @@ function writeMultiMediaTypeOperationBody(
       : "";
 
     statements += `
-    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>  this.client.sendOperationRequest(args, spec) as Promise<${responseName}>;
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>  this${
+      isInline ? "" : ".client"
+    }.sendOperationRequest(args, spec) as Promise<${responseName}>;
     const initialOperationResult = await sendOperation(operationArguments, operationSpec);
 
     return new LROPoller({
       initialOperationArguments: operationArguments,
-      initialOperationSpec: operationSpec
+      initialOperationSpec: operationSpec,
       initialOperationResult,
       sendOperation,
       ${finalStateStr}
