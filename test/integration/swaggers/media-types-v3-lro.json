@@ -1,0 +1,137 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Azure Foo Service REST API",
+    "version": "v1"
+  },
+  "paths": {
+    "/foo/api/v1": {
+      "post": {
+        "x-ms-long-running-operation": true,
+        "tags": ["FooApi"],
+        "summary": "Send payload to Foo service.",
+        "operationId": "SendOnDefault",
+        "parameters": [
+          {
+            "name": "excluded",
+            "in": "query",
+            "description": "Excluded Ids",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/foo/api/v1/things/{thing}": {
+      "x-ms-long-running-operation": true,
+      "post": {
+        "tags": ["FooApi"],
+        "summary": "Send payload to targetted thing in Foo service.",
+        "operationId": "Send",
+        "parameters": [
+          {
+            "name": "thing",
+            "in": "path",
+            "description": "Target thing name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excluded",
+            "in": "query",
+            "description": "Excluded Ids",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ]
+}

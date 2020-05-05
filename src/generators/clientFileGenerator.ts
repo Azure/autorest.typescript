@@ -9,7 +9,11 @@ import {
   CodeBlockWriter
 } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
-import { addOperationSpecs, writeOperations } from "./operationGenerator";
+import {
+  addOperationSpecs,
+  writeOperations,
+  writeGetOperationOptions
+} from "./operationGenerator";
 import {
   getModelsName,
   getMappersName,
@@ -59,6 +63,17 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       moduleSpecifier: "@azure/core-http"
     });
 
+  const hasLRO = clientDetails.operationGroups.some(og =>
+    og.operations.some(o => o.isLRO)
+  );
+
+  if (hasInlineOperations && hasLRO) {
+    clientFile.addImportDeclaration({
+      namedImports: ["LROPoller", "shouldDeserializeLRO"],
+      moduleSpecifier: "./lro"
+    });
+  }
+
   if (hasImportedOperations) {
     clientFile.addImportDeclaration({
       namespaceImport: "operations",
@@ -97,7 +112,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   });
 
   writeConstructor(clientDetails, clientClass);
-  writeClientOperations(clientFile, clientClass, clientDetails);
+  writeClientOperations(clientFile, clientClass, clientDetails, hasLRO);
 
   clientFile.addExportDeclaration({
     leadingTrivia: (writer: CodeBlockWriter) =>
@@ -194,7 +209,8 @@ function getOperationGroupsDeclarationDetails(
 function writeClientOperations(
   file: SourceFile,
   classDeclaration: ClassDeclaration,
-  clientDetails: ClientDetails
+  clientDetails: ClientDetails,
+  hasLRO: boolean
 ) {
   const topLevelGroup = clientDetails.operationGroups.find(og => og.isTopLevel);
   const hasMappers = !!clientDetails.mappers.length;
@@ -202,6 +218,9 @@ function writeClientOperations(
   // TODO: Switch to named model imports in client File
   const importedModels = new Set<string>();
   if (!!topLevelGroup) {
+    if (hasLRO) {
+      writeGetOperationOptions(classDeclaration);
+    }
     writeOperations(
       topLevelGroup,
       classDeclaration,

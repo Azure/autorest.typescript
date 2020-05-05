@@ -1,4 +1,4 @@
-import { Poller, PollOperationState } from "@azure/core-lro";
+import { Poller } from "@azure/core-lro";
 import {
   OperationSpec,
   OperationArguments,

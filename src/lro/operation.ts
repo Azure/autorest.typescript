@@ -1,5 +1,4 @@
 import { BaseResult, LROOperationState, LROOperation } from "./models";
-import { createBodyPollingStrategy } from "./bodyPollingStrategy";
 
 /**
  * Creates a copy of the operation from a given State

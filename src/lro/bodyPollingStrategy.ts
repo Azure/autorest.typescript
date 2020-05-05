@@ -1,9 +1,4 @@
-import {
-  LROStrategy,
-  BaseResult,
-  LROOperationStep,
-  LROResponseInfo
-} from "./models";
+import { LROStrategy, BaseResult, LROOperationStep } from "./models";
 import { OperationSpec } from "@azure/core-http";
 import { terminalStates } from "./constants";
 import { SendOperationFn } from "./lroPoller";

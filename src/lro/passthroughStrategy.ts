@@ -1,5 +1,4 @@
 import { LROStrategy, BaseResult, LROOperationStep } from "./models";
-import { SendOperationFn } from "./lroPoller";
 
 /**
  * Creates a polling strategy based on BodyPolling which uses the provisioning state
