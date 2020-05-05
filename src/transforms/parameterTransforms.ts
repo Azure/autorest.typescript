@@ -256,7 +256,6 @@ export function populateOperationParameters(
   disambiguateParameter(
     paramDetails,
     operationParameters,
-    parameterName,
     sameNameParams,
     operationName
   );
@@ -386,9 +385,11 @@ function getParameterName(parameter: Parameter) {
   return name;
 }
 
+/**
+ * Extracts the properties from ParameterDetails to use for equality comparison
+ */
 function getComparableParameter({
   name,
-  nameRef,
   description,
   serializedName,
   location,
@@ -421,10 +422,19 @@ function getComparableParameter({
   };
 }
 
+/**
+ * This function takes care of disambiguating parameters with different schemas but
+ * using the same name. If it is the first time a parameter is seen, we store it in the
+ * operationParameters array.
+ *
+ * If there is already a parameter with the same name we check if they are the same, if so
+ * we just add the current operationName to the operationsIn array.
+ *
+ * Otherwise we add a suffix to the parameter name and store it as a different parameter.
+ */
 export function disambiguateParameter(
   parameter: ParameterDetails,
   operationParameters: ParameterDetails[],
-  parameterName: string,
   sameNameParams: ParameterDetails[],
   operationName: string
 ) {
@@ -441,20 +451,15 @@ export function disambiguateParameter(
     }
     return;
   } else {
-    // Since there is already a parameter with the same name, we need to ad a sufix
-    const name = normalizeName(
-      parameterName,
-      NameType.Parameter,
-      true /** shouldGuard */
-    );
-
-    const nameRef = `${name}${sameNameParams.length}`;
+    // Since there is already a parameter with the same name, we need to ad a suffix
+    const nameRef = `${parameter.name}${sameNameParams.length}`;
     let description = parameter.description;
 
     if (parameter.schemaType === SchemaType.Time) {
       description += `\nThis value should be an ISO-8601 formatted string representing time. E.g. "HH:MM:SS" or "HH:MM:SS.mm".`;
     }
 
+    // Start tracking as a new parameter with a different name
     operationParameters.push({
       ...parameter,
       nameRef,
