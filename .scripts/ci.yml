@@ -17,10 +17,12 @@ steps:
 
 - script: |
     npm run test
+    npm run check:tree
   displayName: 'Run Tests'
 
 - script: |
     npm run smoke-test
+    npm run check:tree
   displayName: 'Run Smoke Tests'
 
 - script: |

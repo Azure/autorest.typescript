@@ -224,7 +224,7 @@ const send$binaryOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: { 204: {}, 400: {} },
   requestBody: Parameters.data,
-  queryParameters: [Parameters.excluded1],
+  queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host, Parameters.thing],
   headerParameters: [Parameters.contentType],
   serializer
@@ -234,7 +234,7 @@ const send$textOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "POST",
   responses: { 204: {}, 400: {} },
   requestBody: Parameters.data1,
-  queryParameters: [Parameters.excluded1],
+  queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host, Parameters.thing],
   headerParameters: [Parameters.contentType1],
   serializer

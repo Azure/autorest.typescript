@@ -4,6 +4,7 @@
     "private": true,
     "scripts": {
         "build": "tsc -p .",
+        "check:tree": "ts-node ./test/utils/check-clean-tree.ts",
         "start": "node ./dist/src/main.js",
         "test": "npm-run-all unit-test integration-test",
         "unit-test": "mocha -r ts-node/register './test/unit/**/*spec.ts'",
