@@ -1,9 +1,10 @@
 import { spawn, ChildProcess } from "child_process";
 import { join as joinPath } from "path";
 import { bold } from "chalk";
-import { readmes } from "./smoke-test-list";
+import { readmes, SpecDefinition } from "./smoke-test-list";
 import { command } from "yargs";
 import { read } from "fs";
+import { SPECS_PATH, DEFAULT_SPEC_BRANCH } from "./constants";
 
 const SMOKE_PATH = joinPath(".", "test", "smoke", "generated");
 
@@ -57,6 +58,7 @@ const generateFromReadme = async (readmeUrl: string) => {
       stdio: [process.stdin, process.stdout, process.stderr]
     }
   );
+
   await onExit(childProcess);
   return output;
 };
@@ -80,9 +82,11 @@ const buildGenerated = async (projectPath?: string) => {
   await onExit(npmBuild);
 };
 
-const verifyLibrary = async (readmeUrl: string): Promise<SmokeResult> => {
+const verifyLibrary = async (spec: SpecDefinition): Promise<SmokeResult> => {
   let success = false;
+  const readmeUrl = spec.path;
   try {
+    checkoutBranch(spec.branch);
     const projectPath = await generateFromReadme(readmeUrl);
     await buildGenerated(projectPath);
     success = true;
@@ -93,7 +97,7 @@ const verifyLibrary = async (readmeUrl: string): Promise<SmokeResult> => {
   return { readme: readmeUrl, success };
 };
 
-const verifyLibraries = async (readmes: string[]) => {
+const verifyLibraries = async (readmes: SpecDefinition[]) => {
   const startTime = Date.now();
 
   let results: SmokeResult[] = [];
@@ -155,6 +159,18 @@ const main = async () => {
     logError(error);
     process.exit(-1);
   }
+};
+
+const checkoutBranch = async (branch?: string) => {
+  const childProdcess = spawn(
+    "git",
+    ["checkout", branch || DEFAULT_SPEC_BRANCH],
+    {
+      cwd: SPECS_PATH,
+      stdio: [process.stdin, process.stdout, process.stderr]
+    }
+  );
+  return await onExit(childProdcess);
 };
 
 main();
