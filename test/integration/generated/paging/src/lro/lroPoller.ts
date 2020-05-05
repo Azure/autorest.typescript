@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Poller, PollOperationState } from "@azure/core-lro";
+import { Poller } from "@azure/core-lro";
 import {
   OperationSpec,
   OperationArguments,
