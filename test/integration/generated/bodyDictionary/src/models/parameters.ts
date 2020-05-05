@@ -88,7 +88,7 @@ export const arrayBody4: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "Number" } }
+      value: { type: { name: "String" } }
     }
   }
 };
@@ -100,7 +100,7 @@ export const arrayBody5: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "Number" } }
+      value: { type: { name: "Date" } }
     }
   }
 };
@@ -112,7 +112,7 @@ export const arrayBody6: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "String" } }
+      value: { type: { name: "DateTime" } }
     }
   }
 };
@@ -124,7 +124,7 @@ export const arrayBody7: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "Date" } }
+      value: { type: { name: "DateTimeRfc1123" } }
     }
   }
 };
@@ -136,7 +136,7 @@ export const arrayBody8: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "DateTime" } }
+      value: { type: { name: "TimeSpan" } }
     }
   }
 };
@@ -148,7 +148,7 @@ export const arrayBody9: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "DateTimeRfc1123" } }
+      value: { type: { name: "ByteArray" } }
     }
   }
 };
@@ -160,36 +160,12 @@ export const arrayBody10: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "TimeSpan" } }
-    }
-  }
-};
-
-export const arrayBody11: coreHttp.OperationParameter = {
-  parameterPath: "arrayBody",
-  mapper: {
-    serializedName: "arrayBody",
-    required: true,
-    type: {
-      name: "Dictionary",
-      value: { type: { name: "ByteArray" } }
-    }
-  }
-};
-
-export const arrayBody12: coreHttp.OperationParameter = {
-  parameterPath: "arrayBody",
-  mapper: {
-    serializedName: "arrayBody",
-    required: true,
-    type: {
-      name: "Dictionary",
       value: { type: { name: "Composite", className: "Widget" } }
     }
   }
 };
 
-export const arrayBody13: coreHttp.OperationParameter = {
+export const arrayBody11: coreHttp.OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",
@@ -203,7 +179,7 @@ export const arrayBody13: coreHttp.OperationParameter = {
   }
 };
 
-export const arrayBody14: coreHttp.OperationParameter = {
+export const arrayBody12: coreHttp.OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",

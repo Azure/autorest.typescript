@@ -88,7 +88,7 @@ export const arrayBody4: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Number" } }
+      element: { type: { name: "String" } }
     }
   }
 };
@@ -100,7 +100,9 @@ export const arrayBody5: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Number" } }
+      element: {
+        type: { name: "Enum", allowedValues: ["foo1", "foo2", "foo3"] }
+      }
     }
   }
 };
@@ -124,9 +126,7 @@ export const arrayBody7: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: {
-        type: { name: "Enum", allowedValues: ["foo1", "foo2", "foo3"] }
-      }
+      element: { type: { name: "Uuid" } }
     }
   }
 };
@@ -138,7 +138,7 @@ export const arrayBody8: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "String" } }
+      element: { type: { name: "Date" } }
     }
   }
 };
@@ -150,7 +150,7 @@ export const arrayBody9: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Uuid" } }
+      element: { type: { name: "DateTime" } }
     }
   }
 };
@@ -162,7 +162,7 @@ export const arrayBody10: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "Date" } }
+      element: { type: { name: "DateTimeRfc1123" } }
     }
   }
 };
@@ -174,7 +174,7 @@ export const arrayBody11: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "DateTime" } }
+      element: { type: { name: "TimeSpan" } }
     }
   }
 };
@@ -186,7 +186,7 @@ export const arrayBody12: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "DateTimeRfc1123" } }
+      element: { type: { name: "ByteArray" } }
     }
   }
 };
@@ -198,36 +198,12 @@ export const arrayBody13: coreHttp.OperationParameter = {
     required: true,
     type: {
       name: "Sequence",
-      element: { type: { name: "TimeSpan" } }
-    }
-  }
-};
-
-export const arrayBody14: coreHttp.OperationParameter = {
-  parameterPath: "arrayBody",
-  mapper: {
-    serializedName: "arrayBody",
-    required: true,
-    type: {
-      name: "Sequence",
-      element: { type: { name: "ByteArray" } }
-    }
-  }
-};
-
-export const arrayBody15: coreHttp.OperationParameter = {
-  parameterPath: "arrayBody",
-  mapper: {
-    serializedName: "arrayBody",
-    required: true,
-    type: {
-      name: "Sequence",
       element: { type: { name: "Composite", className: "Product" } }
     }
   }
 };
 
-export const arrayBody16: coreHttp.OperationParameter = {
+export const arrayBody14: coreHttp.OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",
@@ -241,7 +217,7 @@ export const arrayBody16: coreHttp.OperationParameter = {
   }
 };
 
-export const arrayBody17: coreHttp.OperationParameter = {
+export const arrayBody15: coreHttp.OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",

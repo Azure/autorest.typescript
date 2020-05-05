@@ -87,14 +87,3 @@ export const thing: coreHttp.OperationURLParameter = {
     }
   }
 };
-
-export const excluded1: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "excluded"],
-  mapper: {
-    serializedName: "excluded",
-    type: {
-      name: "Sequence",
-      element: { type: { name: "String" } }
-    }
-  }
-};

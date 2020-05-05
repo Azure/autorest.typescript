@@ -532,7 +532,7 @@ const putBigDoubleOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.numberBody1,
+  requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   serializer
@@ -560,7 +560,7 @@ const putBigDoublePositiveDecimalOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.numberBody2,
+  requestBody: Parameters.numberBody1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   serializer
@@ -588,7 +588,7 @@ const putBigDoubleNegativeDecimalOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.numberBody3,
+  requestBody: Parameters.numberBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   serializer
@@ -616,7 +616,7 @@ const putBigDecimalOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.numberBody4,
+  requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   serializer
@@ -644,7 +644,7 @@ const putBigDecimalPositiveDecimalOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.numberBody5,
+  requestBody: Parameters.numberBody1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   serializer
@@ -672,7 +672,7 @@ const putBigDecimalNegativeDecimalOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.numberBody6,
+  requestBody: Parameters.numberBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   serializer
@@ -728,7 +728,7 @@ const putSmallDoubleOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.numberBody1,
+  requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   serializer
@@ -756,7 +756,7 @@ const putSmallDecimalOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.numberBody4,
+  requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   serializer

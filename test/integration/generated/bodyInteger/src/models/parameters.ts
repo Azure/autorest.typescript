@@ -50,17 +50,6 @@ export const intBody1: coreHttp.OperationParameter = {
     serializedName: "intBody",
     required: true,
     type: {
-      name: "Number"
-    }
-  }
-};
-
-export const intBody2: coreHttp.OperationParameter = {
-  parameterPath: "intBody",
-  mapper: {
-    serializedName: "intBody",
-    required: true,
-    type: {
       name: "UnixTime"
     }
   }
