@@ -219,49 +219,45 @@ export function populateOperationParameters(
     description += `\nThis value should be an ISO-8601 formatted string representing time. E.g. "HH:MM:SS" or "HH:MM:SS.mm".`;
   }
 
-  if (!sameNameParams.length) {
-    const collectionFormat = getCollectionFormat(parameter);
-    const typeDetails = getTypeForSchema(parameter.schema);
-    const paramDetails: ParameterDetails = {
-      nameRef: name,
-      description,
-      name,
+  const collectionFormat = getCollectionFormat(parameter);
+  const typeDetails = getTypeForSchema(parameter.schema);
+  const paramDetails: ParameterDetails = {
+    nameRef: name,
+    description,
+    name,
+    serializedName,
+    operationsIn: [operationName],
+    location: getParameterLocation(parameter),
+    required: getParameterRequired(parameter),
+    schemaType: parameter.schema.type,
+    parameterPath: getParameterPath(parameter),
+    mapper: getMapperOrRef(
+      parameter.schema,
       serializedName,
-      operationsIn: [operationName],
-      location: getParameterLocation(parameter),
-      required: getParameterRequired(parameter),
-      schemaType: parameter.schema.type,
-      parameterPath: getParameterPath(parameter),
-      mapper: getMapperOrRef(
-        parameter.schema,
-        serializedName,
-        parameter.required,
-        hasXmlMetadata
-      ),
-      isGlobal: getIsGlobal(parameter),
-      parameter,
-      collectionFormat,
-      implementationLocation: parameter.implementation,
-      typeDetails,
-      defaultValue: getDefaultValue(parameter),
-      skipEncoding: getSkipEncoding(parameter),
-      targetMediaType
-    };
-    operationParameters.push(paramDetails);
+      parameter.required,
+      hasXmlMetadata
+    ),
+    isGlobal: getIsGlobal(parameter),
+    parameter,
+    collectionFormat,
+    implementationLocation: parameter.implementation,
+    typeDetails,
+    defaultValue: getDefaultValue(parameter),
+    skipEncoding: getSkipEncoding(parameter),
+    targetMediaType
+  };
 
+  if (!sameNameParams.length) {
+    operationParameters.push(paramDetails);
     return;
   }
 
   //Disambiguate parameter
   disambiguateParameter(
-    parameter,
+    paramDetails,
     operationParameters,
-    serializedName,
-    parameterName,
     sameNameParams,
-    operationName,
-    hasXmlMetadata,
-    targetMediaType
+    operationName
   );
 }
 
@@ -389,18 +385,62 @@ function getParameterName(parameter: Parameter) {
   return name;
 }
 
+/**
+ * Extracts the properties from ParameterDetails to use for equality comparison
+ */
+function getComparableParameter({
+  name,
+  description,
+  serializedName,
+  location,
+  required,
+  parameterPath,
+  mapper,
+  collectionFormat,
+  schemaType,
+  implementationLocation,
+  typeDetails,
+  skipEncoding,
+  isSynthetic,
+  targetMediaType
+}: ParameterDetails) {
+  return {
+    name,
+    description,
+    serializedName,
+    location,
+    required,
+    parameterPath,
+    mapper,
+    collectionFormat,
+    schemaType,
+    implementationLocation,
+    typeDetails,
+    skipEncoding,
+    isSynthetic,
+    targetMediaType
+  };
+}
+
+/**
+ * This function takes care of disambiguating parameters with different schemas but
+ * using the same name. If it is the first time a parameter is seen, we store it in the
+ * operationParameters array.
+ *
+ * If there is already a parameter with the same name we check if they are the same, if so
+ * we just add the current operationName to the operationsIn array.
+ *
+ * Otherwise we add a suffix to the parameter name and store it as a different parameter.
+ */
 export function disambiguateParameter(
-  parameter: Parameter,
+  parameter: ParameterDetails,
   operationParameters: ParameterDetails[],
-  serializedName: string,
-  parameterName: string,
   sameNameParams: ParameterDetails[],
-  operationName: string,
-  hasXmlMetadata: boolean,
-  targetMediaType?: KnownMediaType
+  operationName: string
 ) {
+  const param = getComparableParameter(parameter);
   const existingParam = sameNameParams.find(p =>
-    isEqual(p.parameter, parameter)
+    isEqual(getComparableParameter(p), param)
   );
 
   if (existingParam) {
@@ -411,47 +451,19 @@ export function disambiguateParameter(
     }
     return;
   } else {
-    // Since there is already a parameter with the same name, we need to ad a sufix
-    const name = normalizeName(
-      parameterName,
-      NameType.Parameter,
-      true /** shouldGuard */
-    );
-    const nameRef = `${name}${sameNameParams.length}`;
-    const collectionFormat = getCollectionFormat(parameter);
-    let description =
-      getLanguageMetadata(parameter.language).description ||
-      getLanguageMetadata(parameter.schema.language).description;
+    // Since there is already a parameter with the same name, we need to ad a suffix
+    const nameRef = `${parameter.name}${sameNameParams.length}`;
+    let description = parameter.description;
 
-    if (parameter.schema.type === SchemaType.Time) {
+    if (parameter.schemaType === SchemaType.Time) {
       description += `\nThis value should be an ISO-8601 formatted string representing time. E.g. "HH:MM:SS" or "HH:MM:SS.mm".`;
     }
-    const typeDetails = getTypeForSchema(parameter.schema);
 
+    // Start tracking as a new parameter with a different name
     operationParameters.push({
+      ...parameter,
       nameRef,
-      name,
-      description,
-      serializedName,
-      operationsIn: [operationName],
-      required: parameter.required,
-      schemaType: parameter.schema.type,
-      parameterPath: getParameterPath(parameter),
-      location: getParameterLocation(parameter),
-      mapper: getMapperOrRef(
-        parameter.schema,
-        serializedName,
-        parameter.required,
-        hasXmlMetadata
-      ),
-      typeDetails,
-      isGlobal: getIsGlobal(parameter),
-      parameter,
-      collectionFormat,
-      implementationLocation: parameter.implementation,
-      defaultValue: getDefaultValue(parameter),
-      skipEncoding: getSkipEncoding(parameter),
-      targetMediaType
+      description
     });
   }
 }

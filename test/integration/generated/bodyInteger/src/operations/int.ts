@@ -379,7 +379,7 @@ const putMax64OperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.intBody1,
+  requestBody: Parameters.intBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   serializer
@@ -407,7 +407,7 @@ const putMin64OperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.intBody1,
+  requestBody: Parameters.intBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   serializer
@@ -435,7 +435,7 @@ const putUnixTimeDateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.intBody2,
+  requestBody: Parameters.intBody1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   serializer

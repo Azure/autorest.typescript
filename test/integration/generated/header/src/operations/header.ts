@@ -964,7 +964,7 @@ const paramEnumOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario5, Parameters.value11],
+  headerParameters: [Parameters.scenario2, Parameters.value11],
   serializer
 };
 const responseEnumOperationSpec: coreHttp.OperationSpec = {
@@ -979,7 +979,7 @@ const responseEnumOperationSpec: coreHttp.OperationSpec = {
     }
   },
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.scenario5],
+  headerParameters: [Parameters.scenario2],
   serializer
 };
 const customRequestIdOperationSpec: coreHttp.OperationSpec = {
