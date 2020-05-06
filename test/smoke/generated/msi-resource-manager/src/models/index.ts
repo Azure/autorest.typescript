@@ -24,14 +24,9 @@ export interface Resource {
 }
 
 /**
- * The resource model definition for a ARM proxy resource. It will have everything other than required location and tags
- */
-export type ProxyResource = Resource & {};
-
-/**
  * Describes a system assigned identity resource.
  */
-export type SystemAssignedIdentity = ProxyResource & {
+export type SystemAssignedIdentity = Resource & {
   /**
    * The geo-location where the resource lives
    */
@@ -211,6 +206,11 @@ export type IdentityUpdate = Resource & {
    */
   readonly clientId?: string;
 };
+
+/**
+ * The resource model definition for a ARM proxy resource. It will have everything other than required location and tags
+ */
+export type ProxyResource = Resource & {};
 
 /**
  * Contains response data for the getByScope operation.
