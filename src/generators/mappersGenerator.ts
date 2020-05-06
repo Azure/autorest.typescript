@@ -18,7 +18,7 @@ import {
   MapperConstraints
 } from "@azure/core-http";
 import { ModelProperties } from "../transforms/mapperTransforms";
-import { keys, isEmpty, isString, isNil } from "lodash";
+import { keys, isEmpty, isString, isNil, isEqual } from "lodash";
 import { getStringForValue } from "../utils/valueHelpers";
 import { PolymorphicObjectDetails, ObjectKind } from "../models/modelDetails";
 import { logger } from "../utils/logger";
@@ -50,11 +50,27 @@ export function generateMappers(
  * This function writes to the mappers.ts file all the mappers to be used by @azure/core-http for serialization
  */
 function writeMappers(sourceFile: SourceFile, { mappers }: ClientDetails) {
+  const generatedMappers: Map<string, Mapper> = new Map<string, Mapper>();
+
   mappers.forEach(mapper => {
-    if (!(mapper as CompositeMapper).type.className) {
+    const mapperClassName = (mapper as CompositeMapper).type.className;
+    if (!mapperClassName) {
       logger.warning(`Expected a mapper with a className, skipping generation`);
       logger.verbose(JSON.stringify(mapper));
       return;
+    }
+
+    const existingMapper = generatedMappers.get(mapperClassName);
+
+    if (existingMapper) {
+      if (isEqual(existingMapper, mapper)) {
+        // If we already generated the same mapper, skip
+        return;
+      }
+
+      throw new Error(
+        "There are different mapper definitions with the same name. This may be caused by a Swagger defining multiple Success responses with different return types"
+      );
     }
 
     sourceFile.addVariableStatement({
@@ -72,6 +88,9 @@ function writeMappers(sourceFile: SourceFile, { mappers }: ClientDetails) {
       declarationKind: VariableDeclarationKind.Const,
       leadingTrivia: writer => writer.blankLine()
     });
+
+    // Keep track of the mapper we just generated
+    generatedMappers.set(mapperClassName, mapper);
   });
 }
 

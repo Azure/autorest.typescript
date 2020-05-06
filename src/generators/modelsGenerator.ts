@@ -32,6 +32,10 @@ import { ImplementationLocation, Parameter } from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { getStringForValue } from "../utils/valueHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
+import {
+  getResponseTypeName,
+  getAllModelsNames
+} from "./utils/responseTypeUtils";
 
 export function generateModels(clientDetails: ClientDetails, project: Project) {
   const modelsIndexFile = project.createSourceFile(
@@ -74,8 +78,9 @@ const writeClientModels = (
 const writeOperationModels = (
   clientDetails: ClientDetails,
   modelsIndexFile: SourceFile
-) =>
-  clientDetails.operationGroups.forEach(operationGroup => {
+) => {
+  const modelsNames = getAllModelsNames(clientDetails);
+  return clientDetails.operationGroups.forEach(operationGroup => {
     operationGroup.operations.forEach(operation => {
       writeOptionsParameter(
         clientDetails,
@@ -83,9 +88,10 @@ const writeOperationModels = (
         operation,
         modelsIndexFile
       );
-      writeResponseTypes(operation, modelsIndexFile);
+      writeResponseTypes(operation, modelsIndexFile, modelsNames);
     });
   });
+};
 
 /**
  * Writes the options parameter model containing all the optional parameters
@@ -131,9 +137,14 @@ function writeOptionsParameter(
  */
 function writeResponseTypes(
   { responses, name, typeDetails: operationType }: OperationDetails,
-  modelsIndexFile: SourceFile
+  modelsIndexFile: SourceFile,
+  allModelsNames: Set<string>
 ) {
-  const responseName = `${operationType.typeName}Response`;
+  const responseName = getResponseTypeName(
+    operationType.typeName,
+    allModelsNames
+  );
+
   const addedResponses: {
     name: string;
     response: Partial<OperationResponseDetails>;
