@@ -17,6 +17,7 @@
         "stop-test-server": "stop-autorest-testserver",
         "debug": "node --inspect-brk ./dist/src/main.js",
         "generate-swaggers": "ts-node ./test/utils/test-swagger-gen.ts",
+        "clone:specs": "git clone https://github.com/Azure/azure-rest-api-specs.git ./.tmp/specs",
         "smoke-test": "ts-node ./test/utils/smoke-test.ts"
     },
     "files": [
@@ -51,7 +52,7 @@
         "@types/express": "^4.17.2",
         "@types/js-yaml": "3.12.1",
         "@types/mocha": "^5.2.7",
-        "@types/node": "12.7.12",
+        "@types/node": "^12.7.12",
         "@types/prettier": "^1.18.4",
         "@types/xmlbuilder": "0.0.34",
         "@types/yargs": "^15.0.4",
