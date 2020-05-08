@@ -40,6 +40,10 @@ import {
 } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { shouldImportParameters } from "./utils/importUtils";
+import {
+  getAllModelsNames,
+  getResponseTypeName
+} from "./utils/responseTypeUtils";
 
 /**
  * Function that writes the code for all the operations.
@@ -321,9 +325,10 @@ function getOptionsParameter(
 
 function getReturnType(
   operation: OperationDetails,
-  importedModels: Set<string>
+  importedModels: Set<string>,
+  modelNames: Set<string>
 ) {
-  const responseName = getResponseType(operation, importedModels);
+  const responseName = getResponseType(operation, importedModels, modelNames);
 
   return operation.isLRO
     ? `Promise<LROPoller<${responseName}>>`
@@ -339,6 +344,9 @@ function addClass(
   clientDetails: ClientDetails
 ) {
   let importedModels = new Set<string>();
+
+  let allModelsNames = getAllModelsNames(clientDetails);
+
   const className = normalizeName(
     operationGroupDetails.name,
     NameType.OperationGroup,
@@ -375,7 +383,8 @@ function addClass(
     operationGroupDetails,
     operationGroupClass,
     importedModels,
-    clientDetails.parameters
+    clientDetails.parameters,
+    allModelsNames
   );
 
   if (hasLROOperation(operationGroupDetails)) {
@@ -578,6 +587,7 @@ export function writeOperations(
   operationGroupClass: ClassDeclaration,
   importedModels: Set<string>,
   parameters: ParameterDetails[],
+  modelNames: Set<string>,
   isInline = false
 ) {
   operationGroupDetails.operations.forEach(operation => {
@@ -590,8 +600,8 @@ export function writeOperations(
       importedModels,
       operationGroupClass
     );
-    const responseName = getResponseType(operation, importedModels);
-    const returnType = getReturnType(operation, importedModels);
+    const responseName = getResponseType(operation, importedModels, modelNames);
+    const returnType = getReturnType(operation, importedModels, modelNames);
 
     const operationMethod = operationGroupClass.addMethod({
       name: normalizeName(operation.name, NameType.Property),
@@ -848,7 +858,8 @@ function getContentTypeInfo(
 
 function getResponseType(
   operation: OperationDetails,
-  importedModels: Set<string>
+  importedModels: Set<string>,
+  modelNames: Set<string>
 ) {
   const hasSuccessResponse = operation.responses.some(
     ({ isError, mappers }) =>
@@ -858,13 +869,8 @@ function getResponseType(
   const responseName = hasSuccessResponse ? operation.typeDetails.typeName : "";
 
   if (responseName) {
-    const typeName = `${normalizeName(
-      responseName,
-      NameType.Interface
-    )}Response`;
-
+    const typeName = getResponseTypeName(responseName, modelNames);
     importedModels.add(typeName);
-
     return typeName;
   }
 

@@ -24,6 +24,7 @@ import { ImplementationLocation, SchemaType } from "@azure-tools/codemodel";
 import { OperationGroupDetails } from "../models/operationDetails";
 import { formatJsDocParam } from "./utils/parameterUtils";
 import { shouldImportParameters } from "./utils/importUtils";
+import { getAllModelsNames } from "./utils/responseTypeUtils";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
@@ -212,6 +213,7 @@ function writeClientOperations(
   clientDetails: ClientDetails,
   hasLRO: boolean
 ) {
+  const allModelsNames = getAllModelsNames(clientDetails);
   const topLevelGroup = clientDetails.operationGroups.find(og => og.isTopLevel);
   const hasMappers = !!clientDetails.mappers.length;
   // Add top level operation groups as client properties
@@ -226,7 +228,8 @@ function writeClientOperations(
       classDeclaration,
       importedModels,
       clientDetails.parameters,
-      true // isInline
+      allModelsNames,
+      true // isInline,
     );
 
     addOperationSpecs(

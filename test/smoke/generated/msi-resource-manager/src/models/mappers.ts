@@ -38,22 +38,12 @@ export const Resource: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProxyResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ProxyResource",
-    modelProperties: {
-      ...Resource.type.modelProperties
-    }
-  }
-};
-
 export const SystemAssignedIdentity: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SystemAssignedIdentity",
     modelProperties: {
-      ...ProxyResource.type.modelProperties,
+      ...Resource.type.modelProperties,
       location: {
         serializedName: "location",
         required: true,
@@ -344,6 +334,16 @@ export const IdentityUpdate: coreHttp.CompositeMapper = {
           name: "Uuid"
         }
       }
+    }
+  }
+};
+
+export const ProxyResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ProxyResource",
+    modelProperties: {
+      ...Resource.type.modelProperties
     }
   }
 };
