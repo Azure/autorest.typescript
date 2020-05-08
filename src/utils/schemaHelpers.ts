@@ -10,11 +10,52 @@ import {
   ObjectSchema,
   ArraySchema,
   DictionarySchema,
-  SchemaResponse
+  SchemaResponse,
+  ComplexSchema
 } from "@azure-tools/codemodel";
 import { getStringForValue } from "./valueHelpers";
 import { getLanguageMetadata } from "./languageHelpers";
 import { normalizeName, NameType, normalizeTypeName } from "./nameUtils";
+
+/**
+ * Extracts parents from an ObjectSchema
+ * by default it extracts all parameters unless
+ * immediateOnly = true is passed
+ */
+export function getSchemaParents(
+  { parents }: ObjectSchema,
+  immediateOnly = false
+) {
+  if (!parents) {
+    return [];
+  }
+
+  const allParents: ComplexSchema[] = immediateOnly
+    ? parents.immediate
+    : parents.all;
+
+  return allParents.filter(p => p.type === SchemaType.Object);
+}
+
+/**
+ * Extracts the additional properties for an object schema
+ * if immediateOnly is true, it will only extract additionalProperties defined directly
+ * in the schema, otherwise it will get it from any of its parents
+ */
+export function getAdditionalProperties(
+  { parents }: ObjectSchema,
+  immediateOnly = false
+): ComplexSchema | undefined {
+  if (!parents) {
+    return undefined;
+  }
+
+  const allParents: ComplexSchema[] = immediateOnly
+    ? parents.immediate
+    : parents.all;
+
+  return allParents.find(p => p.type === SchemaType.Dictionary);
+}
 
 /**
  * Helper function which given a schema returns type information for useful for generating Typescript code
