@@ -772,7 +772,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorResponse
     }
   },
-  requestBody: Parameters.parameters32,
+  requestBody: Parameters.parameters35,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -830,7 +830,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorResponse
     }
   },
-  requestBody: Parameters.parameters33,
+  requestBody: Parameters.parameters36,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -889,7 +889,7 @@ const getTopologyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorResponse
     }
   },
-  requestBody: Parameters.parameters34,
+  requestBody: Parameters.parameters37,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -918,7 +918,7 @@ const verifyIPFlowOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VerificationIPFlowResult
     }
   },
-  requestBody: Parameters.parameters35,
+  requestBody: Parameters.parameters38,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -947,7 +947,7 @@ const getNextHopOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.NextHopResult
     }
   },
-  requestBody: Parameters.parameters36,
+  requestBody: Parameters.parameters39,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -976,7 +976,7 @@ const getVMSecurityRulesOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.SecurityGroupViewResult
     }
   },
-  requestBody: Parameters.parameters37,
+  requestBody: Parameters.parameters40,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1005,7 +1005,7 @@ const getTroubleshootingOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.TroubleshootingResult
     }
   },
-  requestBody: Parameters.parameters38,
+  requestBody: Parameters.parameters41,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1034,7 +1034,7 @@ const getTroubleshootingResultOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.TroubleshootingResult
     }
   },
-  requestBody: Parameters.parameters39,
+  requestBody: Parameters.parameters42,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1063,7 +1063,7 @@ const setFlowLogConfigurationOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.FlowLogInformation
     }
   },
-  requestBody: Parameters.parameters40,
+  requestBody: Parameters.parameters43,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1092,7 +1092,7 @@ const getFlowLogStatusOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.FlowLogInformation
     }
   },
-  requestBody: Parameters.parameters41,
+  requestBody: Parameters.parameters44,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1121,7 +1121,7 @@ const checkConnectivityOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ConnectivityInformation
     }
   },
-  requestBody: Parameters.parameters42,
+  requestBody: Parameters.parameters45,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1150,7 +1150,7 @@ const getAzureReachabilityReportOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.AzureReachabilityReport
     }
   },
-  requestBody: Parameters.parameters43,
+  requestBody: Parameters.parameters46,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1179,7 +1179,7 @@ const listAvailableProvidersOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.AvailableProvidersList
     }
   },
-  requestBody: Parameters.parameters44,
+  requestBody: Parameters.parameters47,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1208,7 +1208,7 @@ const getNetworkConfigurationDiagnosticOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.NetworkConfigurationDiagnosticResponse
     }
   },
-  requestBody: Parameters.parameters45,
+  requestBody: Parameters.parameters48,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

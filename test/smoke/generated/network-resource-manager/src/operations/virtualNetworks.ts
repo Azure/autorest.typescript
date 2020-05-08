@@ -390,7 +390,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VirtualNetwork
     }
   },
-  requestBody: Parameters.parameters63,
+  requestBody: Parameters.parameters69,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -413,7 +413,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters64,
+  requestBody: Parameters.parameters70,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

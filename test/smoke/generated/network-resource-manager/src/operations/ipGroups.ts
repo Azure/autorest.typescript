@@ -297,7 +297,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.IpGroup
     }
   },
-  requestBody: Parameters.parameters18,
+  requestBody: Parameters.parameters20,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -320,7 +320,7 @@ const updateGroupsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.parameters19,
+  requestBody: Parameters.parameters21,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

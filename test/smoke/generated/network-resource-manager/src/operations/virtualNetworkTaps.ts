@@ -307,7 +307,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VirtualNetworkTap
     }
   },
-  requestBody: Parameters.parameters79,
+  requestBody: Parameters.parameters85,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

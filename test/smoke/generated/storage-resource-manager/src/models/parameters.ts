@@ -204,6 +204,25 @@ export const properties1: coreHttp.OperationParameter = {
   mapper: Mappers.PrivateEndpointConnection
 };
 
+export const objectReplicationPolicyId: coreHttp.OperationURLParameter = {
+  parameterPath: "objectReplicationPolicyId",
+  mapper: {
+    constraints: {
+      MinLength: 1
+    },
+    serializedName: "objectReplicationPolicyId",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const properties2: coreHttp.OperationParameter = {
+  parameterPath: "properties",
+  mapper: Mappers.ObjectReplicationPolicy
+};
+
 export const encryptionScope: coreHttp.OperationParameter = {
   parameterPath: "encryptionScope",
   mapper: Mappers.EncryptionScope
@@ -386,6 +405,18 @@ export const filter1: coreHttp.OperationQueryParameter = {
   }
 };
 
+export const expand2: coreHttp.OperationQueryParameter = {
+  parameterPath: ["options", "expand"],
+  mapper: {
+    defaultValue: "deleted",
+    isConstant: true,
+    serializedName: "$expand",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const fileShare: coreHttp.OperationParameter = {
   parameterPath: "fileShare",
   mapper: Mappers.FileShare
@@ -409,4 +440,21 @@ export const shareName: coreHttp.OperationURLParameter = {
 export const fileShare1: coreHttp.OperationParameter = {
   parameterPath: "fileShare",
   mapper: Mappers.FileShare
+};
+
+export const expand3: coreHttp.OperationQueryParameter = {
+  parameterPath: ["options", "expand"],
+  mapper: {
+    defaultValue: "stats",
+    isConstant: true,
+    serializedName: "$expand",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const deletedShare: coreHttp.OperationParameter = {
+  parameterPath: "deletedShare",
+  mapper: Mappers.DeletedShare
 };

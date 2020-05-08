@@ -492,7 +492,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VirtualNetworkGatewayConnection
     }
   },
-  requestBody: Parameters.parameters71,
+  requestBody: Parameters.parameters77,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -556,7 +556,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VirtualNetworkGatewayConnection
     }
   },
-  requestBody: Parameters.parameters72,
+  requestBody: Parameters.parameters78,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -585,7 +585,7 @@ const setSharedKeyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ConnectionSharedKey
     }
   },
-  requestBody: Parameters.parameters73,
+  requestBody: Parameters.parameters79,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -655,7 +655,7 @@ const resetSharedKeyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ConnectionResetSharedKey
     }
   },
-  requestBody: Parameters.parameters74,
+  requestBody: Parameters.parameters80,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -684,7 +684,7 @@ const startPacketCaptureOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     }
   },
-  requestBody: Parameters.parameters75,
+  requestBody: Parameters.parameters81,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -713,7 +713,7 @@ const stopPacketCaptureOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     }
   },
-  requestBody: Parameters.parameters76,
+  requestBody: Parameters.parameters82,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

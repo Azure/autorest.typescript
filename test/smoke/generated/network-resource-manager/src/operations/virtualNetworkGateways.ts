@@ -1017,7 +1017,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VirtualNetworkGateway
     }
   },
-  requestBody: Parameters.parameters65,
+  requestBody: Parameters.parameters71,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1081,7 +1081,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VirtualNetworkGateway
     }
   },
-  requestBody: Parameters.parameters66,
+  requestBody: Parameters.parameters72,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1192,7 +1192,7 @@ const generatevpnclientpackageOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     }
   },
-  requestBody: Parameters.parameters67,
+  requestBody: Parameters.parameters73,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1221,7 +1221,7 @@ const generateVpnProfileOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     }
   },
-  requestBody: Parameters.parameters67,
+  requestBody: Parameters.parameters73,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1432,7 +1432,7 @@ const vpnDeviceConfigurationScriptOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters68,
+  requestBody: Parameters.parameters74,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1461,7 +1461,7 @@ const startPacketCaptureOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     }
   },
-  requestBody: Parameters.parameters69,
+  requestBody: Parameters.parameters75,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1490,7 +1490,7 @@ const stopPacketCaptureOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     }
   },
-  requestBody: Parameters.parameters70,
+  requestBody: Parameters.parameters76,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

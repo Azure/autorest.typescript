@@ -241,7 +241,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.LocalNetworkGateway
     }
   },
-  requestBody: Parameters.parameters77,
+  requestBody: Parameters.parameters83,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -299,7 +299,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters78,
+  requestBody: Parameters.parameters84,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

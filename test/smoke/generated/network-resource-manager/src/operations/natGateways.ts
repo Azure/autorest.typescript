@@ -313,7 +313,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.NatGateway
     }
   },
-  requestBody: Parameters.parameters22,
+  requestBody: Parameters.parameters25,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -336,7 +336,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters23,
+  requestBody: Parameters.parameters26,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

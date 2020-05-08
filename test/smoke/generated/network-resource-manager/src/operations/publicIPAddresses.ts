@@ -498,7 +498,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.PublicIPAddress
     }
   },
-  requestBody: Parameters.parameters54,
+  requestBody: Parameters.parameters58,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -521,7 +521,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters55,
+  requestBody: Parameters.parameters59,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

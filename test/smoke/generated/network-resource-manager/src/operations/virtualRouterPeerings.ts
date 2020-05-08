@@ -271,7 +271,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VirtualRouterPeering
     }
   },
-  requestBody: Parameters.parameters81,
+  requestBody: Parameters.parameters87,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

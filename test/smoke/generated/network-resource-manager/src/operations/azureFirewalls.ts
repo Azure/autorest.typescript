@@ -151,24 +151,42 @@ export class AzureFirewalls {
    * @param parameters Parameters supplied to update azure firewall tags.
    * @param options The options parameters.
    */
-  updateTags(
+  async updateTags(
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: TagsObject,
     options?: coreHttp.OperationOptions
-  ): Promise<AzureFirewallsUpdateTagsResponse> {
-    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
-      options || {}
+  ): Promise<LROPoller<AzureFirewallsUpdateTagsResponse>> {
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options,
+      "azure-async-operation"
     );
-    return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        azureFirewallName,
-        parameters,
-        options: operationOptions
-      },
+
+    const args: coreHttp.OperationArguments = {
+      resourceGroupName,
+      azureFirewallName,
+      parameters,
+      options: operationOptions
+    };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        AzureFirewallsUpdateTagsResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
       updateTagsOperationSpec
-    ) as Promise<AzureFirewallsUpdateTagsResponse>;
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: updateTagsOperationSpec,
+      initialOperationResult,
+      sendOperation,
+      finalStateVia: "azure-async-operation"
+    });
   }
 
   /**
@@ -331,8 +349,14 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     200: {
       bodyMapper: Mappers.AzureFirewall
     },
-    default: {
-      bodyMapper: Mappers.CloudError
+    201: {
+      bodyMapper: Mappers.AzureFirewall
+    },
+    202: {
+      bodyMapper: Mappers.AzureFirewall
+    },
+    204: {
+      bodyMapper: Mappers.AzureFirewall
     }
   },
   requestBody: Parameters.parameters5,

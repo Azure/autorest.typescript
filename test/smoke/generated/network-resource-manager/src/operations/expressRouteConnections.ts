@@ -214,7 +214,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.expressRouteGatewayName,
-    Parameters.connectionName2
+    Parameters.connectionName4
   ],
   headerParameters: [Parameters.contentType],
   serializer
@@ -237,7 +237,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.expressRouteGatewayName,
-    Parameters.connectionName3
+    Parameters.connectionName5
   ],
   serializer
 };
@@ -252,7 +252,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.expressRouteGatewayName,
-    Parameters.connectionName2
+    Parameters.connectionName4
   ],
   serializer
 };

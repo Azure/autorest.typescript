@@ -588,7 +588,7 @@ const generateVpnProfileOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VpnProfileResponse
     }
   },
-  requestBody: Parameters.parameters82,
+  requestBody: Parameters.parameters88,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
