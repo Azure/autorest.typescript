@@ -284,7 +284,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.PrivateEndpoint
     }
   },
-  requestBody: Parameters.parameters50,
+  requestBody: Parameters.parameters53,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

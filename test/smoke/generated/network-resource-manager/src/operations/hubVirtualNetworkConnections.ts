@@ -126,7 +126,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName9,
     Parameters.virtualHubName,
-    Parameters.connectionName4
+    Parameters.connectionName2
   ],
   serializer
 };

@@ -228,7 +228,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.connectionName4,
+    Parameters.connectionName2,
     Parameters.resourceGroupName10,
     Parameters.gatewayName
   ],
@@ -259,7 +259,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName10,
     Parameters.gatewayName,
-    Parameters.connectionName5
+    Parameters.connectionName3
   ],
   headerParameters: [Parameters.contentType],
   serializer
@@ -275,7 +275,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName10,
     Parameters.gatewayName,
-    Parameters.connectionName5
+    Parameters.connectionName3
   ],
   serializer
 };

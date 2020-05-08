@@ -1,2 +1,2 @@
 export const SPECS_PATH = "./.tmp/specs";
-export const DEFAULT_SPEC_BRANCH = "49fc16354df7211f8392c56884a3437138317d1f";
+export const DEFAULT_SPEC_BRANCH = "6879889f69c84fb26a196121eab5d79c19e87ffb";

@@ -2852,6 +2852,198 @@ export const ConnectorMetadataDetails: coreHttp.CompositeMapper = {
   }
 };
 
+export const IPAddressAggregates: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "IPAddressAggregates",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "IPAddressAggregate" }
+          }
+        }
+      },
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      },
+      totalCount: {
+        serializedName: "totalCount",
+        type: {
+          name: "Number"
+        }
+      },
+      continuationToken: {
+        serializedName: "continuationToken",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const IPAddressAggregate: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "IPAddressAggregate",
+    modelProperties: {
+      id: {
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      },
+      tenantId: {
+        serializedName: "tenantId",
+        type: {
+          name: "String"
+        }
+      },
+      serviceId: {
+        serializedName: "serviceId",
+        type: {
+          name: "String"
+        }
+      },
+      ipAddress: {
+        serializedName: "ipAddress",
+        type: {
+          name: "String"
+        }
+      },
+      timestamp: {
+        serializedName: "timestamp",
+        type: {
+          name: "String"
+        }
+      },
+      firstAuditTimestamp: {
+        serializedName: "firstAuditTimestamp",
+        type: {
+          name: "String"
+        }
+      },
+      lastAuditTimestamp: {
+        serializedName: "lastAuditTimestamp",
+        type: {
+          name: "String"
+        }
+      },
+      extranetLockoutErrorCount: {
+        serializedName: "extranetLockoutErrorCount",
+        type: {
+          name: "Number"
+        }
+      },
+      badPasswordErrorCount: {
+        serializedName: "badPasswordErrorCount",
+        type: {
+          name: "Number"
+        }
+      },
+      uniqueUsernamesAttemptedCount: {
+        serializedName: "uniqueUsernamesAttemptedCount",
+        type: {
+          name: "Number"
+        }
+      },
+      attemptCountThresholdIsExceeded: {
+        serializedName: "attemptCountThresholdIsExceeded",
+        type: {
+          name: "Boolean"
+        }
+      },
+      timeSpan: {
+        serializedName: "timeSpan",
+        type: {
+          name: "String"
+        }
+      },
+      isWhitelistedIpAddress: {
+        serializedName: "isWhitelistedIpAddress",
+        type: {
+          name: "Boolean"
+        }
+      },
+      networkLocation: {
+        serializedName: "networkLocation",
+        type: {
+          name: "String"
+        }
+      },
+      attemptCountThresholdOnTrigger: {
+        serializedName: "attemptCountThresholdOnTrigger",
+        type: {
+          name: "Number"
+        }
+      },
+      attemptThresholdTypeOnTrigger: {
+        serializedName: "attemptThresholdTypeOnTrigger",
+        type: {
+          name: "String"
+        }
+      },
+      geographicLocation: {
+        serializedName: "geographicLocation",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const IPAddressAggregateSetting: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "IPAddressAggregateSetting",
+    modelProperties: {
+      id: {
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      },
+      badPasswordAndExtranetLockoutCombinedDailyThreshold: {
+        serializedName: "badPasswordAndExtranetLockoutCombinedDailyThreshold",
+        type: {
+          name: "Number"
+        }
+      },
+      badPasswordAndExtranetLockoutCombinedHourlyThreshold: {
+        serializedName: "badPasswordAndExtranetLockoutCombinedHourlyThreshold",
+        type: {
+          name: "Number"
+        }
+      },
+      extranetLockoutDailyThreshold: {
+        serializedName: "extranetLockoutDailyThreshold",
+        type: {
+          name: "Number"
+        }
+      },
+      extranetLockoutHourlyThreshold: {
+        serializedName: "extranetLockoutHourlyThreshold",
+        type: {
+          name: "Number"
+        }
+      },
+      emailNotificationEnabled: {
+        serializedName: "emailNotificationEnabled",
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  }
+};
+
 export const Agent: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",

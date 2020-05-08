@@ -34,6 +34,9 @@ class StorageManagementClient extends StorageManagementClientContext {
       this
     );
     this.privateLinkResources = new operations.PrivateLinkResources(this);
+    this.objectReplicationPolicies = new operations.ObjectReplicationPolicies(
+      this
+    );
     this.encryptionScopes = new operations.EncryptionScopes(this);
     this.blobServices = new operations.BlobServices(this);
     this.blobContainers = new operations.BlobContainers(this);
@@ -48,6 +51,7 @@ class StorageManagementClient extends StorageManagementClientContext {
   managementPolicies: operations.ManagementPolicies;
   privateEndpointConnections: operations.PrivateEndpointConnections;
   privateLinkResources: operations.PrivateLinkResources;
+  objectReplicationPolicies: operations.ObjectReplicationPolicies;
   encryptionScopes: operations.EncryptionScopes;
   blobServices: operations.BlobServices;
   blobContainers: operations.BlobContainers;

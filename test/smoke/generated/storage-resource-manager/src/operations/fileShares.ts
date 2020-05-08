@@ -17,6 +17,7 @@ import {
   FileSharesCreateResponse,
   FileSharesUpdateResponse,
   FileSharesGetResponse,
+  DeletedShare,
   FileSharesListNextOptionalParams,
   FileSharesListNextResponse
 } from "../models";
@@ -186,6 +187,41 @@ export class FileShares {
   }
 
   /**
+   * Restore a file share within a valid retention days if share soft delete is enabled
+   * @param resourceGroupName The name of the resource group within the user's subscription. The name is
+   *                          case insensitive.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
+   *                    only.
+   * @param shareName The name of the file share within the specified storage account. File share names
+   *                  must be between 3 and 63 characters in length and use numbers, lower-case letters and dash (-) only.
+   *                  Every dash (-) character must be immediately preceded and followed by a letter or number.
+   * @param deletedShare The deleted share to be restored.
+   * @param options The options parameters.
+   */
+  restore(
+    resourceGroupName: string,
+    accountName: string,
+    shareName: string,
+    deletedShare: DeletedShare,
+    options?: coreHttp.OperationOptions
+  ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        accountName,
+        shareName,
+        deletedShare,
+        options: operationOptions
+      },
+      restoreOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
+  }
+
+  /**
    * ListNext
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
    *                          case insensitive.
@@ -229,7 +265,8 @@ const listOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion,
     Parameters.maxpagesize1,
-    Parameters.filter1
+    Parameters.filter1,
+    Parameters.expand2
   ],
   urlParameters: [
     Parameters.$host,
@@ -302,7 +339,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
+  queryParameters: [Parameters.apiVersion, Parameters.expand3],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -333,6 +370,28 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
+const restoreOperationSpec: coreHttp.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/fileServices/default/shares/{shareName}/restore",
+  httpMethod: "POST",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.deletedShare,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName1,
+    Parameters.shareName
+  ],
+  headerParameters: [Parameters.contentType],
+  serializer
+};
 const listNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
@@ -347,7 +406,8 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion,
     Parameters.maxpagesize1,
-    Parameters.filter1
+    Parameters.filter1,
+    Parameters.expand2
   ],
   urlParameters: [
     Parameters.$host,

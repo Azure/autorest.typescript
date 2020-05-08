@@ -670,3 +670,30 @@ export const metricName1: coreHttp.OperationURLParameter = {
     }
   }
 };
+
+export const skiptoken: coreHttp.OperationQueryParameter = {
+  parameterPath: ["options", "skiptoken"],
+  mapper: {
+    serializedName: "skiptoken",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const nextLink12: coreHttp.OperationURLParameter = {
+  parameterPath: "nextLink",
+  mapper: {
+    serializedName: "nextLink",
+    required: true,
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};
+
+export const iPAddressAggregateSetting: coreHttp.OperationParameter = {
+  parameterPath: "iPAddressAggregateSetting",
+  mapper: Mappers.IPAddressAggregateSetting
+};

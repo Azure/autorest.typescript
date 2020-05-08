@@ -682,7 +682,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.NetworkInterface
     }
   },
-  requestBody: Parameters.parameters24,
+  requestBody: Parameters.parameters27,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -705,7 +705,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters25,
+  requestBody: Parameters.parameters28,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

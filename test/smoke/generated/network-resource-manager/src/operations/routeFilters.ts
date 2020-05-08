@@ -334,7 +334,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters58,
+  requestBody: Parameters.parameters62,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

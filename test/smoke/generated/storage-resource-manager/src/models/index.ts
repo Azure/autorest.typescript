@@ -1305,6 +1305,38 @@ export interface ManagementPolicyFilter {
    * An array of predefined enum values. Only blockBlob is supported.
    */
   blobTypes: string[];
+  /**
+   * An array of blob index tag based filters, there can be at most 10 tag filters
+   */
+  blobIndexMatch?: TagFilter[];
+}
+
+/**
+ * Blob index tag based filtering for blob objects
+ */
+export interface TagFilter {
+  /**
+   * This is the filter tag name, it can have 1 - 128 characters
+   */
+  name: string;
+  /**
+   * This is the comparison operator which is used for object comparison and filtering. Only == (equality operator) is currently supported
+   */
+  op: string;
+  /**
+   * This is the filter tag value field used for tag based filtering, it can have 0 - 256 characters
+   */
+  value: string;
+}
+
+/**
+ * List of private endpoint connection associated with the specified storage account
+ */
+export interface PrivateEndpointConnectionListResult {
+  /**
+   * Array of private endpoint connections
+   */
+  value?: PrivateEndpointConnection[];
 }
 
 /**
@@ -1348,6 +1380,78 @@ export type PrivateLinkResource = Resource & {
    */
   requiredZoneNames?: string[];
 };
+
+/**
+ * List storage account object replication policies.
+ */
+export interface ObjectReplicationPolicies {
+  /**
+   * The replication policy between two storage accounts.
+   */
+  value?: ObjectReplicationPolicy[];
+}
+
+/**
+ * The replication policy between two storage accounts. Multiple rules can be defined in one policy.
+ */
+export type ObjectReplicationPolicy = Resource & {
+  /**
+   * A unique id for object replication policy.
+   */
+  readonly policyId?: string;
+  /**
+   * Indicates when the policy is enabled on the source account.
+   */
+  readonly enabledTime?: Date;
+  /**
+   * Required. Source account name.
+   */
+  sourceAccount?: string;
+  /**
+   * Required. Destination account name.
+   */
+  destinationAccount?: string;
+  /**
+   * The storage account object replication rules.
+   */
+  rules?: ObjectReplicationPolicyRule[];
+};
+
+/**
+ * The replication policy rule between two containers.
+ */
+export interface ObjectReplicationPolicyRule {
+  /**
+   * Rule Id is auto-generated for each new rule on destination account. It is required for put policy on source account.
+   */
+  ruleId?: string;
+  /**
+   * Required. Source container name.
+   */
+  sourceContainer: string;
+  /**
+   * Required. Destination container name.
+   */
+  destinationContainer: string;
+  /**
+   * Optional. An object that defines the filter set.
+   */
+  filters?: ObjectReplicationPolicyFilter;
+}
+
+/**
+ * Filters limit replication to a subset of blobs within the storage account. A logical OR is performed on values in the filter. If multiple filters are defined, a logical AND is performed on all filters.
+ */
+export interface ObjectReplicationPolicyFilter {
+  /**
+   * Optional. Filters the results to replicate only blobs whose names begin with the specified prefix.
+   */
+  prefixMatch?: string[];
+  /**
+   * Blobs created after the time will be replicated to the destination. It must be in datetime format 'yyyy-MM-ddTHH:mm:ssZ'. Example: 2020-02-19T16:05:00Z
+   */
+  minCreationTime?: string;
+}
 
 /**
  * The Encryption Scope resource.
@@ -1913,6 +2017,46 @@ export type FileShareItem = AzureEntityResource & {
    * The maximum size of the share, in gigabytes. Must be greater than 0, and less than or equal to 5TB (5120). For Large File Shares, the maximum size is 102400.
    */
   shareQuota?: number;
+  /**
+   * The authentication protocol that is used for the file share. Can only be specified when creating a share.
+   */
+  enabledProtocols?: EnabledProtocols;
+  /**
+   * The property is for NFS share only. The default is NoRootSquash.
+   */
+  rootSquash?: RootSquashType;
+  /**
+   * The version of the share.
+   */
+  readonly version?: string;
+  /**
+   * Indicates whether the share was deleted.
+   */
+  readonly deleted?: boolean;
+  /**
+   * The deleted time if the share was deleted.
+   */
+  readonly deletedTime?: Date;
+  /**
+   * Remaining retention days for share that was soft deleted.
+   */
+  readonly remainingRetentionDays?: number;
+  /**
+   * Access tier for specific share. GpV2 account can choose between TransactionOptimized (default), Hot, and Cool. FileStorage account can choose Premium.
+   */
+  accessTier?: ShareAccessTier;
+  /**
+   * Indicates the last modification time for share access tier.
+   */
+  readonly accessTierChangeTime?: Date;
+  /**
+   * Indicates if there is a pending transition for access tier.
+   */
+  readonly accessTierStatus?: string;
+  /**
+   * The approximate size of the data stored on the share. Note that this value may not include all recently created or recently resized files.
+   */
+  readonly shareUsageBytes?: number;
 };
 
 /**
@@ -1931,7 +2075,61 @@ export type FileShare = AzureEntityResource & {
    * The maximum size of the share, in gigabytes. Must be greater than 0, and less than or equal to 5TB (5120). For Large File Shares, the maximum size is 102400.
    */
   shareQuota?: number;
+  /**
+   * The authentication protocol that is used for the file share. Can only be specified when creating a share.
+   */
+  enabledProtocols?: EnabledProtocols;
+  /**
+   * The property is for NFS share only. The default is NoRootSquash.
+   */
+  rootSquash?: RootSquashType;
+  /**
+   * The version of the share.
+   */
+  readonly version?: string;
+  /**
+   * Indicates whether the share was deleted.
+   */
+  readonly deleted?: boolean;
+  /**
+   * The deleted time if the share was deleted.
+   */
+  readonly deletedTime?: Date;
+  /**
+   * Remaining retention days for share that was soft deleted.
+   */
+  readonly remainingRetentionDays?: number;
+  /**
+   * Access tier for specific share. GpV2 account can choose between TransactionOptimized (default), Hot, and Cool. FileStorage account can choose Premium.
+   */
+  accessTier?: ShareAccessTier;
+  /**
+   * Indicates the last modification time for share access tier.
+   */
+  readonly accessTierChangeTime?: Date;
+  /**
+   * Indicates if there is a pending transition for access tier.
+   */
+  readonly accessTierStatus?: string;
+  /**
+   * The approximate size of the data stored on the share. Note that this value may not include all recently created or recently resized files.
+   */
+  readonly shareUsageBytes?: number;
 };
+
+/**
+ * The deleted share to be restored.
+ */
+export interface DeletedShare {
+  /**
+   * Required. Identify the name of the deleted share that will be restored.
+   */
+  deletedShareName: string;
+  /**
+   * Required. Identify the version of the deleted share that will be restored.
+   */
+  deletedShareVersion: string;
+}
 
 /**
  * Defines headers for BlobContainers_createOrUpdateImmutabilityPolicy operation.
@@ -2109,6 +2307,22 @@ export type LeaseContainerRequestAction =
   | "Change"
   | "Release"
   | "Break";
+/**
+ * Defines values for EnabledProtocols.
+ */
+export type EnabledProtocols = "SMB" | "NFS";
+/**
+ * Defines values for RootSquashType.
+ */
+export type RootSquashType = "NoRootSquash" | "RootSquash" | "AllSquash";
+/**
+ * Defines values for ShareAccessTier.
+ */
+export type ShareAccessTier =
+  | "TransactionOptimized"
+  | "Hot"
+  | "Cool"
+  | "Premium";
 /**
  * Defines values for SkuTier.
  */
@@ -2521,6 +2735,26 @@ export type ManagementPoliciesCreateOrUpdateResponse = ManagementPolicy & {
 };
 
 /**
+ * Contains response data for the list operation.
+ */
+export type PrivateEndpointConnectionsListResponse = PrivateEndpointConnectionListResult & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: PrivateEndpointConnectionListResult;
+  };
+};
+
+/**
  * Contains response data for the get operation.
  */
 export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & {
@@ -2577,6 +2811,66 @@ export type PrivateLinkResourcesListByStorageAccountResponse = PrivateLinkResour
      * The response body as parsed JSON or XML
      */
     parsedBody: PrivateLinkResourceListResult;
+  };
+};
+
+/**
+ * Contains response data for the list operation.
+ */
+export type ObjectReplicationPoliciesListResponse = ObjectReplicationPolicies & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ObjectReplicationPolicies;
+  };
+};
+
+/**
+ * Contains response data for the get operation.
+ */
+export type ObjectReplicationPoliciesGetResponse = ObjectReplicationPolicy & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ObjectReplicationPolicy;
+  };
+};
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export type ObjectReplicationPoliciesCreateOrUpdateResponse = ObjectReplicationPolicy & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ObjectReplicationPolicy;
   };
 };
 

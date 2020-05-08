@@ -44,6 +44,8 @@ class ADHybridHealthService extends ADHybridHealthServiceContext {
     this.services = new operations.Services(this);
     this.service = new operations.Service(this);
     this.serviceMembers = new operations.ServiceMembers(this);
+    this.list = new operations.List(this);
+    this.update = new operations.Update(this);
   }
 
   addsServices: operations.AddsServices;
@@ -61,6 +63,8 @@ class ADHybridHealthService extends ADHybridHealthServiceContext {
   services: operations.Services;
   service: operations.Service;
   serviceMembers: operations.ServiceMembers;
+  list: operations.List;
+  update: operations.Update;
 }
 
 // Operation Specifications

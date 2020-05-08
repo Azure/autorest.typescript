@@ -1483,7 +1483,7 @@ export interface ErrorReportUsersEntry {
    */
   userId?: string;
   /**
-   * The Ip address corresponding to the last error event.
+   * The IP address corresponding to the last error event.
    */
   ipAddress?: string;
   /**
@@ -1846,6 +1846,132 @@ export interface ConnectorMetadataDetails {
    * The Connector Display Name
    */
   connectorDisplayName?: string;
+}
+
+/**
+ * IP address aggregates.
+ */
+export interface IPAddressAggregates {
+  /**
+   * The value returned by the operation.
+   */
+  value?: IPAddressAggregate[];
+  /**
+   * URL to get the next set of IP Aggregate list results if there are any.
+   */
+  nextLink?: string;
+  /**
+   * The number of results.
+   */
+  totalCount?: number;
+  /**
+   * The continuation token for paginated calls.
+   */
+  continuationToken?: string;
+}
+
+/**
+ * The key value pair for properties.
+ */
+export interface IPAddressAggregate {
+  /**
+   * Unique ID for the entree
+   */
+  id?: string;
+  /**
+   * The tenant ID
+   */
+  tenantId?: string;
+  /**
+   * The service ID
+   */
+  serviceId?: string;
+  /**
+   * The IP address from where the attempted login originated from.
+   */
+  ipAddress?: string;
+  /**
+   * When the event occurred
+   */
+  timestamp?: string;
+  /**
+   * The first audit timestamp
+   */
+  firstAuditTimestamp?: string;
+  /**
+   * The last audit timestamp
+   */
+  lastAuditTimestamp?: string;
+  /**
+   * The extranet lockout error count
+   */
+  extranetLockoutErrorCount?: number;
+  /**
+   * The bad password error count
+   */
+  badPasswordErrorCount?: number;
+  /**
+   * The unique usernames attempted
+   */
+  uniqueUsernamesAttemptedCount?: number;
+  /**
+   * A value indicating whether the attempt count threshold been exceeded
+   */
+  attemptCountThresholdIsExceeded?: boolean;
+  /**
+   * The duration of the event
+   */
+  timeSpan?: string;
+  /**
+   * A value indicating whether the IP address has been whitelisted.
+   */
+  isWhitelistedIpAddress?: boolean;
+  /**
+   * The network location
+   */
+  networkLocation?: string;
+  /**
+   * The attempted count threshold on trigger.
+   */
+  attemptCountThresholdOnTrigger?: number;
+  /**
+   * The attempted threshold type on trigger.
+   */
+  attemptThresholdTypeOnTrigger?: string;
+  /**
+   * The geographic location.
+   */
+  geographicLocation?: string;
+}
+
+/**
+ * The key value pair for IP aggregate thresholds.
+ */
+export interface IPAddressAggregateSetting {
+  /**
+   * Unique ID for the entree
+   */
+  id?: string;
+  /**
+   * This threshold setting defines the per day trigger for a new event to be generated in the report.
+   */
+  badPasswordAndExtranetLockoutCombinedDailyThreshold?: number;
+  /**
+   * This threshold setting defines the per hour trigger for a new event to be generated in the report.
+   */
+  badPasswordAndExtranetLockoutCombinedHourlyThreshold?: number;
+  /**
+   * This threshold setting defines the per hour trigger for a new event to be generated in the report.
+   */
+  extranetLockoutDailyThreshold?: number;
+  /**
+   * This threshold setting defines the per hour trigger for a new event to be generated in the report.
+   */
+  extranetLockoutHourlyThreshold?: number;
+  /**
+   * A value indicating whether email notification has been enabled.
+   */
+  emailNotificationEnabled?: boolean;
 }
 
 /**
@@ -5351,6 +5477,108 @@ export type ServiceMembersListExportStatusNextResponse = ExportStatuses & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ExportStatuses;
+  };
+};
+
+/**
+ * Optional parameters.
+ */
+export interface ListIPAddressAggregatesByServiceOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * A continuationtoken value returned in paginated result to load different pages.
+   */
+  skiptoken?: string;
+}
+
+/**
+ * Contains response data for the iPAddressAggregatesByService operation.
+ */
+export type ListIPAddressAggregatesByServiceResponse = IPAddressAggregates & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: IPAddressAggregates;
+  };
+};
+
+/**
+ * Contains response data for the iPAddressAggregateSettings operation.
+ */
+export type ListIPAddressAggregateSettingsResponse = IPAddressAggregateSetting & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: IPAddressAggregateSetting;
+  };
+};
+
+/**
+ * Optional parameters.
+ */
+export interface ListIPAddressAggregatesByServiceNextOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * A continuationtoken value returned in paginated result to load different pages.
+   */
+  skiptoken?: string;
+}
+
+/**
+ * Contains response data for the iPAddressAggregatesByServiceNext operation.
+ */
+export type ListIPAddressAggregatesByServiceNextResponse = IPAddressAggregates & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: IPAddressAggregates;
+  };
+};
+
+/**
+ * Contains response data for the iPAddressAggregateSettings operation.
+ */
+export type UpdateIPAddressAggregateSettingsResponse = IPAddressAggregateSetting & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: IPAddressAggregateSetting;
   };
 };
 

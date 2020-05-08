@@ -11,6 +11,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClient } from "../storageManagementClient";
 import {
+  PrivateEndpointConnectionsListResponse,
   PrivateEndpointConnectionsGetResponse,
   PrivateEndpointConnection,
   PrivateEndpointConnectionsPutResponse
@@ -28,6 +29,29 @@ export class PrivateEndpointConnections {
    */
   constructor(client: StorageManagementClient) {
     this.client = client;
+  }
+
+  /**
+   * List all the private endpoint connections associated with the storage account.
+   * @param resourceGroupName The name of the resource group within the user's subscription. The name is
+   *                          case insensitive.
+   * @param accountName The name of the storage account within the specified resource group. Storage
+   *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
+   *                    only.
+   * @param options The options parameters.
+   */
+  list(
+    resourceGroupName: string,
+    accountName: string,
+    options?: coreHttp.OperationOptions
+  ): Promise<PrivateEndpointConnectionsListResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
+    return this.client.sendOperationRequest(
+      { resourceGroupName, accountName, options: operationOptions },
+      listOperationSpec
+    ) as Promise<PrivateEndpointConnectionsListResponse>;
   }
 
   /**
@@ -130,6 +154,24 @@ export class PrivateEndpointConnections {
 
 const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
+const listOperationSpec: coreHttp.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/privateEndpointConnections",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.PrivateEndpointConnectionListResult
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName1
+  ],
+  serializer
+};
 const getOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",

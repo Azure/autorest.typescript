@@ -2197,6 +2197,68 @@ export const ManagementPolicyFilter: coreHttp.CompositeMapper = {
           name: "Sequence",
           element: { type: { name: "String" } }
         }
+      },
+      blobIndexMatch: {
+        serializedName: "blobIndexMatch",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "TagFilter" } }
+        }
+      }
+    }
+  }
+};
+
+export const TagFilter: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "TagFilter",
+    modelProperties: {
+      name: {
+        constraints: {
+          MaxLength: 128,
+          MinLength: 1
+        },
+        serializedName: "name",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      op: {
+        serializedName: "op",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      value: {
+        constraints: {
+          MaxLength: 256
+        },
+        serializedName: "value",
+        required: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const PrivateEndpointConnectionListResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PrivateEndpointConnectionListResult",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "PrivateEndpointConnection" }
+          }
+        }
       }
     }
   }
@@ -2267,6 +2329,130 @@ export const PrivateLinkResource: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: { type: { name: "String" } }
+        }
+      }
+    }
+  }
+};
+
+export const ObjectReplicationPolicies: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ObjectReplicationPolicies",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "ObjectReplicationPolicy" }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const ObjectReplicationPolicy: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ObjectReplicationPolicy",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      policyId: {
+        serializedName: "properties.policyId",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      enabledTime: {
+        serializedName: "properties.enabledTime",
+        readOnly: true,
+        type: {
+          name: "DateTime"
+        }
+      },
+      sourceAccount: {
+        serializedName: "properties.sourceAccount",
+        type: {
+          name: "String"
+        }
+      },
+      destinationAccount: {
+        serializedName: "properties.destinationAccount",
+        type: {
+          name: "String"
+        }
+      },
+      rules: {
+        serializedName: "properties.rules",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "Composite",
+              className: "ObjectReplicationPolicyRule"
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const ObjectReplicationPolicyRule: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ObjectReplicationPolicyRule",
+    modelProperties: {
+      ruleId: {
+        serializedName: "ruleId",
+        type: {
+          name: "String"
+        }
+      },
+      sourceContainer: {
+        serializedName: "sourceContainer",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      destinationContainer: {
+        serializedName: "destinationContainer",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      filters: {
+        serializedName: "filters",
+        type: {
+          name: "Composite",
+          className: "ObjectReplicationPolicyFilter"
+        }
+      }
+    }
+  }
+};
+
+export const ObjectReplicationPolicyFilter: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ObjectReplicationPolicyFilter",
+    modelProperties: {
+      prefixMatch: {
+        serializedName: "prefixMatch",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      },
+      minCreationTime: {
+        serializedName: "minCreationTime",
+        type: {
+          name: "String"
         }
       }
     }
@@ -3241,6 +3427,73 @@ export const FileShareItem: coreHttp.CompositeMapper = {
         type: {
           name: "Number"
         }
+      },
+      enabledProtocols: {
+        serializedName: "properties.enabledProtocols",
+        type: {
+          name: "String"
+        }
+      },
+      rootSquash: {
+        serializedName: "properties.rootSquash",
+        type: {
+          name: "String"
+        }
+      },
+      version: {
+        serializedName: "properties.version",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      deleted: {
+        serializedName: "properties.deleted",
+        readOnly: true,
+        type: {
+          name: "Boolean"
+        }
+      },
+      deletedTime: {
+        serializedName: "properties.deletedTime",
+        readOnly: true,
+        type: {
+          name: "DateTime"
+        }
+      },
+      remainingRetentionDays: {
+        serializedName: "properties.remainingRetentionDays",
+        readOnly: true,
+        type: {
+          name: "Number"
+        }
+      },
+      accessTier: {
+        serializedName: "properties.accessTier",
+        type: {
+          name: "String"
+        }
+      },
+      accessTierChangeTime: {
+        serializedName: "properties.accessTierChangeTime",
+        readOnly: true,
+        type: {
+          name: "DateTime"
+        }
+      },
+      accessTierStatus: {
+        serializedName: "properties.accessTierStatus",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      shareUsageBytes: {
+        serializedName: "properties.shareUsageBytes",
+        readOnly: true,
+        type: {
+          name: "Number"
+        }
       }
     }
   }
@@ -3274,6 +3527,96 @@ export const FileShare: coreHttp.CompositeMapper = {
         serializedName: "properties.shareQuota",
         type: {
           name: "Number"
+        }
+      },
+      enabledProtocols: {
+        serializedName: "properties.enabledProtocols",
+        type: {
+          name: "String"
+        }
+      },
+      rootSquash: {
+        serializedName: "properties.rootSquash",
+        type: {
+          name: "String"
+        }
+      },
+      version: {
+        serializedName: "properties.version",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      deleted: {
+        serializedName: "properties.deleted",
+        readOnly: true,
+        type: {
+          name: "Boolean"
+        }
+      },
+      deletedTime: {
+        serializedName: "properties.deletedTime",
+        readOnly: true,
+        type: {
+          name: "DateTime"
+        }
+      },
+      remainingRetentionDays: {
+        serializedName: "properties.remainingRetentionDays",
+        readOnly: true,
+        type: {
+          name: "Number"
+        }
+      },
+      accessTier: {
+        serializedName: "properties.accessTier",
+        type: {
+          name: "String"
+        }
+      },
+      accessTierChangeTime: {
+        serializedName: "properties.accessTierChangeTime",
+        readOnly: true,
+        type: {
+          name: "DateTime"
+        }
+      },
+      accessTierStatus: {
+        serializedName: "properties.accessTierStatus",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      shareUsageBytes: {
+        serializedName: "properties.shareUsageBytes",
+        readOnly: true,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const DeletedShare: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "DeletedShare",
+    modelProperties: {
+      deletedShareName: {
+        serializedName: "deletedShareName",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      deletedShareVersion: {
+        serializedName: "deletedShareVersion",
+        required: true,
+        type: {
+          name: "String"
         }
       }
     }

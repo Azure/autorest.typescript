@@ -234,7 +234,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.FlowLog
     }
   },
-  requestBody: Parameters.parameters49,
+  requestBody: Parameters.parameters52,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

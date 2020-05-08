@@ -371,6 +371,12 @@ export const ApplicationGateway: coreHttp.CompositeMapper = {
             }
           }
         }
+      },
+      forceFirewallPolicyAssociation: {
+        serializedName: "properties.forceFirewallPolicyAssociation",
+        type: {
+          name: "Boolean"
+        }
       }
     }
   }
@@ -1394,6 +1400,13 @@ export const Subnet: coreHttp.CompositeMapper = {
           }
         }
       },
+      ipAllocations: {
+        serializedName: "properties.ipAllocations",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "SubResource" } }
+        }
+      },
       resourceNavigationLinks: {
         serializedName: "properties.resourceNavigationLinks",
         readOnly: true,
@@ -1862,6 +1875,18 @@ export const PrivateEndpoint: coreHttp.CompositeMapper = {
             }
           }
         }
+      },
+      customDnsConfigs: {
+        serializedName: "properties.customDnsConfigs",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "Composite",
+              className: "CustomDnsConfigPropertiesFormat"
+            }
+          }
+        }
       }
     }
   }
@@ -1951,6 +1976,28 @@ export const PrivateLinkServiceConnectionState: coreHttp.CompositeMapper = {
         serializedName: "actionsRequired",
         type: {
           name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const CustomDnsConfigPropertiesFormat: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "CustomDnsConfigPropertiesFormat",
+    modelProperties: {
+      fqdn: {
+        serializedName: "fqdn",
+        type: {
+          name: "String"
+        }
+      },
+      ipAddresses: {
+        serializedName: "ipAddresses",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
         }
       }
     }
@@ -2699,13 +2746,6 @@ export const ResourceNavigationLink: coreHttp.CompositeMapper = {
           name: "String"
         }
       },
-      id: {
-        serializedName: "id",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
       etag: {
         serializedName: "etag",
         readOnly: true,
@@ -2888,6 +2928,15 @@ export const BackendAddressPool: coreHttp.CompositeMapper = {
           }
         }
       },
+      loadBalancerBackendAddresses: {
+        serializedName: "properties.loadBalancerBackendAddresses",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "LoadBalancerBackendAddress" }
+          }
+        }
+      },
       loadBalancingRules: {
         serializedName: "properties.loadBalancingRules",
         readOnly: true,
@@ -2913,6 +2962,264 @@ export const BackendAddressPool: coreHttp.CompositeMapper = {
       },
       provisioningState: {
         serializedName: "properties.provisioningState",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const LoadBalancerBackendAddress: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LoadBalancerBackendAddress",
+    modelProperties: {
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
+      virtualNetwork: {
+        serializedName: "virtualNetwork",
+        type: {
+          name: "Composite",
+          className: "VirtualNetwork"
+        }
+      },
+      ipAddress: {
+        serializedName: "properties.ipAddress",
+        type: {
+          name: "String"
+        }
+      },
+      networkInterfaceIPConfiguration: {
+        serializedName: "networkInterfaceIPConfiguration",
+        type: {
+          name: "Composite",
+          className: "NetworkInterfaceIPConfiguration"
+        }
+      }
+    }
+  }
+};
+
+export const VirtualNetwork: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "VirtualNetwork",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      etag: {
+        serializedName: "etag",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      addressSpace: {
+        serializedName: "addressSpace",
+        type: {
+          name: "Composite",
+          className: "AddressSpace"
+        }
+      },
+      dhcpOptions: {
+        serializedName: "dhcpOptions",
+        type: {
+          name: "Composite",
+          className: "DhcpOptions"
+        }
+      },
+      subnets: {
+        serializedName: "properties.subnets",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Subnet" } }
+        }
+      },
+      virtualNetworkPeerings: {
+        serializedName: "properties.virtualNetworkPeerings",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "VirtualNetworkPeering" }
+          }
+        }
+      },
+      resourceGuid: {
+        serializedName: "properties.resourceGuid",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      provisioningState: {
+        serializedName: "properties.provisioningState",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      enableDdosProtection: {
+        serializedName: "properties.enableDdosProtection",
+        type: {
+          name: "Boolean"
+        }
+      },
+      enableVmProtection: {
+        serializedName: "properties.enableVmProtection",
+        type: {
+          name: "Boolean"
+        }
+      },
+      ddosProtectionPlan: {
+        serializedName: "ddosProtectionPlan",
+        type: {
+          name: "Composite",
+          className: "SubResource"
+        }
+      },
+      bgpCommunities: {
+        serializedName: "bgpCommunities",
+        type: {
+          name: "Composite",
+          className: "VirtualNetworkBgpCommunities"
+        }
+      },
+      ipAllocations: {
+        serializedName: "properties.ipAllocations",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "SubResource" } }
+        }
+      }
+    }
+  }
+};
+
+export const AddressSpace: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "AddressSpace",
+    modelProperties: {
+      addressPrefixes: {
+        serializedName: "addressPrefixes",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      }
+    }
+  }
+};
+
+export const DhcpOptions: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "DhcpOptions",
+    modelProperties: {
+      dnsServers: {
+        serializedName: "dnsServers",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      }
+    }
+  }
+};
+
+export const VirtualNetworkPeering: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "VirtualNetworkPeering",
+    modelProperties: {
+      ...SubResource.type.modelProperties,
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
+      etag: {
+        serializedName: "etag",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      allowVirtualNetworkAccess: {
+        serializedName: "properties.allowVirtualNetworkAccess",
+        type: {
+          name: "Boolean"
+        }
+      },
+      allowForwardedTraffic: {
+        serializedName: "properties.allowForwardedTraffic",
+        type: {
+          name: "Boolean"
+        }
+      },
+      allowGatewayTransit: {
+        serializedName: "properties.allowGatewayTransit",
+        type: {
+          name: "Boolean"
+        }
+      },
+      useRemoteGateways: {
+        serializedName: "properties.useRemoteGateways",
+        type: {
+          name: "Boolean"
+        }
+      },
+      remoteVirtualNetwork: {
+        serializedName: "remoteVirtualNetwork",
+        type: {
+          name: "Composite",
+          className: "SubResource"
+        }
+      },
+      remoteAddressSpace: {
+        serializedName: "remoteAddressSpace",
+        type: {
+          name: "Composite",
+          className: "AddressSpace"
+        }
+      },
+      peeringState: {
+        serializedName: "properties.peeringState",
+        type: {
+          name: "String"
+        }
+      },
+      provisioningState: {
+        serializedName: "properties.provisioningState",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const VirtualNetworkBgpCommunities: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "VirtualNetworkBgpCommunities",
+    modelProperties: {
+      virtualNetworkCommunity: {
+        serializedName: "virtualNetworkCommunity",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      regionalCommunity: {
+        serializedName: "regionalCommunity",
         readOnly: true,
         type: {
           name: "String"
@@ -5471,8 +5778,6 @@ export const AzureFirewallSku: coreHttp.CompositeMapper = {
         }
       },
       tier: {
-        defaultValue: "Standard",
-        isConstant: true,
         serializedName: "tier",
         type: {
           name: "String"
@@ -5704,7 +6009,7 @@ export const BastionShareableLink: coreHttp.CompositeMapper = {
         serializedName: "vm",
         type: {
           name: "Composite",
-          className: "Vm"
+          className: "Resource"
         }
       },
       bsl: {
@@ -5728,16 +6033,6 @@ export const BastionShareableLink: coreHttp.CompositeMapper = {
           name: "String"
         }
       }
-    }
-  }
-};
-
-export const Vm: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "Vm",
-    modelProperties: {
-      ...Resource.type.modelProperties
     }
   }
 };
@@ -7650,206 +7945,6 @@ export const ExpressRouteCrossConnectionRoutesTableSummary: coreHttp.CompositeMa
   }
 };
 
-export const ExpressRouteGatewayList: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ExpressRouteGatewayList",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Composite", className: "ExpressRouteGateway" }
-          }
-        }
-      }
-    }
-  }
-};
-
-export const ExpressRouteGateway: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ExpressRouteGateway",
-    modelProperties: {
-      ...Resource.type.modelProperties,
-      etag: {
-        serializedName: "etag",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      autoScaleConfiguration: {
-        serializedName: "autoScaleConfiguration",
-        type: {
-          name: "Composite",
-          className: "ExpressRouteGatewayPropertiesAutoScaleConfiguration"
-        }
-      },
-      expressRouteConnections: {
-        serializedName: "properties.expressRouteConnections",
-        readOnly: true,
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Composite", className: "ExpressRouteConnection" }
-          }
-        }
-      },
-      provisioningState: {
-        serializedName: "properties.provisioningState",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      virtualHub: {
-        serializedName: "virtualHub",
-        type: {
-          name: "Composite",
-          className: "VirtualHubId"
-        }
-      }
-    }
-  }
-};
-
-export const ExpressRouteGatewayPropertiesAutoScaleConfiguration: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ExpressRouteGatewayPropertiesAutoScaleConfiguration",
-    modelProperties: {
-      bounds: {
-        serializedName: "bounds",
-        type: {
-          name: "Composite",
-          className: "ExpressRouteGatewayPropertiesAutoScaleConfigurationBounds"
-        }
-      }
-    }
-  }
-};
-
-export const ExpressRouteGatewayPropertiesAutoScaleConfigurationBounds: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ExpressRouteGatewayPropertiesAutoScaleConfigurationBounds",
-    modelProperties: {
-      min: {
-        serializedName: "min",
-        type: {
-          name: "Number"
-        }
-      },
-      max: {
-        serializedName: "max",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const ExpressRouteConnection: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ExpressRouteConnection",
-    modelProperties: {
-      ...SubResource.type.modelProperties,
-      name: {
-        serializedName: "name",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      provisioningState: {
-        serializedName: "properties.provisioningState",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      expressRouteCircuitPeering: {
-        serializedName: "expressRouteCircuitPeering",
-        type: {
-          name: "Composite",
-          className: "ExpressRouteCircuitPeeringId"
-        }
-      },
-      authorizationKey: {
-        serializedName: "properties.authorizationKey",
-        type: {
-          name: "String"
-        }
-      },
-      routingWeight: {
-        serializedName: "properties.routingWeight",
-        type: {
-          name: "Number"
-        }
-      },
-      enableInternetSecurity: {
-        serializedName: "properties.enableInternetSecurity",
-        type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
-};
-
-export const ExpressRouteCircuitPeeringId: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ExpressRouteCircuitPeeringId",
-    modelProperties: {
-      id: {
-        serializedName: "id",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const VirtualHubId: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "VirtualHubId",
-    modelProperties: {
-      id: {
-        serializedName: "id",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const ExpressRouteConnectionList: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ExpressRouteConnectionList",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Composite", className: "ExpressRouteConnection" }
-          }
-        }
-      }
-    }
-  }
-};
-
 export const ExpressRoutePortsLocationListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -8207,6 +8302,13 @@ export const FirewallPolicy: coreHttp.CompositeMapper = {
           name: "String"
         }
       },
+      identity: {
+        serializedName: "identity",
+        type: {
+          name: "Composite",
+          className: "ManagedServiceIdentity"
+        }
+      },
       ruleGroups: {
         serializedName: "properties.ruleGroups",
         readOnly: true,
@@ -8247,6 +8349,127 @@ export const FirewallPolicy: coreHttp.CompositeMapper = {
       },
       threatIntelMode: {
         serializedName: "properties.threatIntelMode",
+        type: {
+          name: "String"
+        }
+      },
+      threatIntelWhitelist: {
+        serializedName: "threatIntelWhitelist",
+        type: {
+          name: "Composite",
+          className: "FirewallPolicyThreatIntelWhitelist"
+        }
+      },
+      intrusionSystemMode: {
+        serializedName: "properties.intrusionSystemMode",
+        type: {
+          name: "String"
+        }
+      },
+      transportSecurity: {
+        serializedName: "transportSecurity",
+        type: {
+          name: "Composite",
+          className: "FirewallPolicyTransportSecurity"
+        }
+      }
+    }
+  }
+};
+
+export const FirewallPolicyThreatIntelWhitelist: coreHttp.CompositeMapper = {
+  serializedName: "FirewallPolicyThreatIntelWhitelist",
+  type: {
+    name: "Composite",
+    className: "FirewallPolicyThreatIntelWhitelist",
+    modelProperties: {
+      ipAddresses: {
+        serializedName: "ipAddresses",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      },
+      fqdns: {
+        serializedName: "fqdns",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      }
+    }
+  }
+};
+
+export const FirewallPolicyTransportSecurity: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "FirewallPolicyTransportSecurity",
+    modelProperties: {
+      certificateAuthority: {
+        serializedName: "certificateAuthority",
+        type: {
+          name: "Composite",
+          className: "FirewallPolicyCertificateAuthority"
+        }
+      },
+      excludedDomains: {
+        serializedName: "excludedDomains",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      },
+      trustedRootCertificates: {
+        serializedName: "trustedRootCertificates",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "Composite",
+              className: "FirewallPolicyTrustedRootCertificate"
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const FirewallPolicyCertificateAuthority: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "FirewallPolicyCertificateAuthority",
+    modelProperties: {
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
+      keyVaultSecretId: {
+        serializedName: "properties.keyVaultSecretId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const FirewallPolicyTrustedRootCertificate: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "FirewallPolicyTrustedRootCertificate",
+    modelProperties: {
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
+      keyVaultSecretId: {
+        serializedName: "properties.keyVaultSecretId",
         type: {
           name: "String"
         }
@@ -8382,6 +8605,96 @@ export const FirewallPolicyRuleGroupListResult: coreHttp.CompositeMapper = {
           element: {
             type: { name: "Composite", className: "FirewallPolicyRuleGroup" }
           }
+        }
+      },
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const IpAllocation: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "IpAllocation",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      etag: {
+        serializedName: "etag",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      subnet: {
+        serializedName: "subnet",
+        type: {
+          name: "Composite",
+          className: "SubResource"
+        }
+      },
+      virtualNetwork: {
+        serializedName: "virtualNetwork",
+        type: {
+          name: "Composite",
+          className: "SubResource"
+        }
+      },
+      typePropertiesType: {
+        serializedName: "properties.type",
+        type: {
+          name: "String"
+        }
+      },
+      prefix: {
+        serializedName: "properties.prefix",
+        type: {
+          name: "String"
+        }
+      },
+      prefixLength: {
+        serializedName: "properties.prefixLength",
+        type: {
+          name: "Number"
+        }
+      },
+      prefixType: {
+        serializedName: "properties.prefixType",
+        type: {
+          name: "String"
+        }
+      },
+      ipamAllocationId: {
+        serializedName: "properties.ipamAllocationId",
+        type: {
+          name: "String"
+        }
+      },
+      allocationTags: {
+        serializedName: "properties.allocationTags",
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" } }
+        }
+      }
+    }
+  }
+};
+
+export const IpAllocationListResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "IpAllocationListResult",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "IpAllocation" } }
         }
       },
       nextLink: {
@@ -9651,7 +9964,7 @@ export const ContainerNetworkInterface: coreHttp.CompositeMapper = {
         serializedName: "container",
         type: {
           name: "Composite",
-          className: "Container"
+          className: "SubResource"
         }
       },
       ipConfigurations: {
@@ -9727,16 +10040,6 @@ export const ContainerNetworkInterfaceConfiguration: coreHttp.CompositeMapper = 
           name: "String"
         }
       }
-    }
-  }
-};
-
-export const Container: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "Container",
-    modelProperties: {
-      ...SubResource.type.modelProperties
     }
   }
 };
@@ -13195,6 +13498,146 @@ export const AvailablePrivateEndpointType: coreHttp.CompositeMapper = {
   }
 };
 
+export const PrivateDnsZoneGroup: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PrivateDnsZoneGroup",
+    modelProperties: {
+      ...SubResource.type.modelProperties,
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
+      etag: {
+        serializedName: "etag",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      provisioningState: {
+        serializedName: "properties.provisioningState",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      privateDnsZoneConfigs: {
+        serializedName: "properties.privateDnsZoneConfigs",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "PrivateDnsZoneConfig" }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const PrivateDnsZoneConfig: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PrivateDnsZoneConfig",
+    modelProperties: {
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
+      privateDnsZoneId: {
+        serializedName: "properties.privateDnsZoneId",
+        type: {
+          name: "String"
+        }
+      },
+      recordSets: {
+        serializedName: "properties.recordSets",
+        readOnly: true,
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "RecordSet" } }
+        }
+      }
+    }
+  }
+};
+
+export const RecordSet: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "RecordSet",
+    modelProperties: {
+      recordType: {
+        serializedName: "recordType",
+        type: {
+          name: "String"
+        }
+      },
+      recordSetName: {
+        serializedName: "recordSetName",
+        type: {
+          name: "String"
+        }
+      },
+      fqdn: {
+        serializedName: "fqdn",
+        type: {
+          name: "String"
+        }
+      },
+      provisioningState: {
+        serializedName: "provisioningState",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      ttl: {
+        serializedName: "ttl",
+        type: {
+          name: "Number"
+        }
+      },
+      ipAddresses: {
+        serializedName: "ipAddresses",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      }
+    }
+  }
+};
+
+export const PrivateDnsZoneGroupListResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PrivateDnsZoneGroupListResult",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "PrivateDnsZoneGroup" }
+          }
+        }
+      },
+      nextLink: {
+        serializedName: "nextLink",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const PrivateLinkService: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -13260,14 +13703,14 @@ export const PrivateLinkService: coreHttp.CompositeMapper = {
         serializedName: "visibility",
         type: {
           name: "Composite",
-          className: "PrivateLinkServicePropertiesVisibility"
+          className: "ResourceSet"
         }
       },
       autoApproval: {
         serializedName: "autoApproval",
         type: {
           name: "Composite",
-          className: "PrivateLinkServicePropertiesAutoApproval"
+          className: "ResourceSet"
         }
       },
       fqdns: {
@@ -13432,26 +13875,6 @@ export const ResourceSet: coreHttp.CompositeMapper = {
           element: { type: { name: "String" } }
         }
       }
-    }
-  }
-};
-
-export const PrivateLinkServicePropertiesVisibility: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "PrivateLinkServicePropertiesVisibility",
-    modelProperties: {
-      ...ResourceSet.type.modelProperties
-    }
-  }
-};
-
-export const PrivateLinkServicePropertiesAutoApproval: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "PrivateLinkServicePropertiesAutoApproval",
-    modelProperties: {
-      ...ResourceSet.type.modelProperties
     }
   }
 };
@@ -13939,6 +14362,74 @@ export const RouteListResult: coreHttp.CompositeMapper = {
   }
 };
 
+export const SecurityPartnerProvider: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SecurityPartnerProvider",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      etag: {
+        serializedName: "etag",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      provisioningState: {
+        serializedName: "properties.provisioningState",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      securityProviderName: {
+        serializedName: "properties.securityProviderName",
+        type: {
+          name: "String"
+        }
+      },
+      connectionStatus: {
+        serializedName: "properties.connectionStatus",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      virtualHub: {
+        serializedName: "virtualHub",
+        type: {
+          name: "Composite",
+          className: "SubResource"
+        }
+      }
+    }
+  }
+};
+
+export const SecurityPartnerProviderListResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SecurityPartnerProviderListResult",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "SecurityPartnerProvider" }
+          }
+        }
+      },
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const BgpServiceCommunityListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -14286,222 +14777,6 @@ export const UsageName: coreHttp.CompositeMapper = {
       },
       localizedValue: {
         serializedName: "localizedValue",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const VirtualNetwork: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "VirtualNetwork",
-    modelProperties: {
-      ...Resource.type.modelProperties,
-      etag: {
-        serializedName: "etag",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      addressSpace: {
-        serializedName: "addressSpace",
-        type: {
-          name: "Composite",
-          className: "AddressSpace"
-        }
-      },
-      dhcpOptions: {
-        serializedName: "dhcpOptions",
-        type: {
-          name: "Composite",
-          className: "DhcpOptions"
-        }
-      },
-      subnets: {
-        serializedName: "properties.subnets",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Subnet" } }
-        }
-      },
-      virtualNetworkPeerings: {
-        serializedName: "properties.virtualNetworkPeerings",
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Composite", className: "VirtualNetworkPeering" }
-          }
-        }
-      },
-      resourceGuid: {
-        serializedName: "properties.resourceGuid",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      provisioningState: {
-        serializedName: "properties.provisioningState",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      enableDdosProtection: {
-        serializedName: "properties.enableDdosProtection",
-        type: {
-          name: "Boolean"
-        }
-      },
-      enableVmProtection: {
-        serializedName: "properties.enableVmProtection",
-        type: {
-          name: "Boolean"
-        }
-      },
-      ddosProtectionPlan: {
-        serializedName: "ddosProtectionPlan",
-        type: {
-          name: "Composite",
-          className: "SubResource"
-        }
-      },
-      bgpCommunities: {
-        serializedName: "bgpCommunities",
-        type: {
-          name: "Composite",
-          className: "VirtualNetworkBgpCommunities"
-        }
-      }
-    }
-  }
-};
-
-export const AddressSpace: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "AddressSpace",
-    modelProperties: {
-      addressPrefixes: {
-        serializedName: "addressPrefixes",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" } }
-        }
-      }
-    }
-  }
-};
-
-export const DhcpOptions: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "DhcpOptions",
-    modelProperties: {
-      dnsServers: {
-        serializedName: "dnsServers",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" } }
-        }
-      }
-    }
-  }
-};
-
-export const VirtualNetworkPeering: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "VirtualNetworkPeering",
-    modelProperties: {
-      ...SubResource.type.modelProperties,
-      name: {
-        serializedName: "name",
-        type: {
-          name: "String"
-        }
-      },
-      etag: {
-        serializedName: "etag",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      allowVirtualNetworkAccess: {
-        serializedName: "properties.allowVirtualNetworkAccess",
-        type: {
-          name: "Boolean"
-        }
-      },
-      allowForwardedTraffic: {
-        serializedName: "properties.allowForwardedTraffic",
-        type: {
-          name: "Boolean"
-        }
-      },
-      allowGatewayTransit: {
-        serializedName: "properties.allowGatewayTransit",
-        type: {
-          name: "Boolean"
-        }
-      },
-      useRemoteGateways: {
-        serializedName: "properties.useRemoteGateways",
-        type: {
-          name: "Boolean"
-        }
-      },
-      remoteVirtualNetwork: {
-        serializedName: "remoteVirtualNetwork",
-        type: {
-          name: "Composite",
-          className: "SubResource"
-        }
-      },
-      remoteAddressSpace: {
-        serializedName: "remoteAddressSpace",
-        type: {
-          name: "Composite",
-          className: "AddressSpace"
-        }
-      },
-      peeringState: {
-        serializedName: "properties.peeringState",
-        type: {
-          name: "String"
-        }
-      },
-      provisioningState: {
-        serializedName: "properties.provisioningState",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const VirtualNetworkBgpCommunities: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "VirtualNetworkBgpCommunities",
-    modelProperties: {
-      virtualNetworkCommunity: {
-        serializedName: "virtualNetworkCommunity",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      regionalCommunity: {
-        serializedName: "regionalCommunity",
-        readOnly: true,
         type: {
           name: "String"
         }
@@ -15094,6 +15369,13 @@ export const VpnClientConfiguration: coreHttp.CompositeMapper = {
           name: "String"
         }
       },
+      radiusServers: {
+        serializedName: "radiusServers",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "RadiusServer" } }
+        }
+      },
       aadTenant: {
         serializedName: "aadTenant",
         type: {
@@ -15254,12 +15536,43 @@ export const IpsecPolicy: coreHttp.CompositeMapper = {
   }
 };
 
+export const RadiusServer: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "RadiusServer",
+    modelProperties: {
+      radiusServerAddress: {
+        serializedName: "radiusServerAddress",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      radiusServerScore: {
+        serializedName: "radiusServerScore",
+        type: {
+          name: "Number"
+        }
+      },
+      radiusServerSecret: {
+        serializedName: "radiusServerSecret",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const BgpSettings: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "BgpSettings",
     modelProperties: {
       asn: {
+        constraints: {
+          InclusiveMaximum: 4294967295
+        },
         serializedName: "asn",
         type: {
           name: "Number"
@@ -15694,6 +16007,9 @@ export const BgpPeerStatus: coreHttp.CompositeMapper = {
         }
       },
       asn: {
+        constraints: {
+          InclusiveMaximum: 4294967295
+        },
         serializedName: "asn",
         readOnly: true,
         type: {
@@ -15990,6 +16306,12 @@ export const VirtualNetworkGatewayConnection: coreHttp.CompositeMapper = {
       },
       routingWeight: {
         serializedName: "properties.routingWeight",
+        type: {
+          name: "Number"
+        }
+      },
+      dpdTimeoutSeconds: {
+        serializedName: "properties.dpdTimeoutSeconds",
         type: {
           name: "Number"
         }
@@ -16978,12 +17300,6 @@ export const VpnServerConfiguration: coreHttp.CompositeMapper = {
     className: "VpnServerConfiguration",
     modelProperties: {
       ...Resource.type.modelProperties,
-      name: {
-        serializedName: "name",
-        type: {
-          name: "String"
-        }
-      },
       etag: {
         serializedName: "etag",
         readOnly: true,
@@ -17076,6 +17392,13 @@ export const VpnServerConfiguration: coreHttp.CompositeMapper = {
         serializedName: "properties.radiusServerSecret",
         type: {
           name: "String"
+        }
+      },
+      radiusServers: {
+        serializedName: "properties.radiusServers",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "RadiusServer" } }
         }
       },
       aadAuthenticationParameters: {
@@ -17308,9 +17631,113 @@ export const P2SConnectionConfiguration: coreHttp.CompositeMapper = {
           className: "AddressSpace"
         }
       },
+      routingConfiguration: {
+        serializedName: "routingConfiguration",
+        type: {
+          name: "Composite",
+          className: "RoutingConfiguration"
+        }
+      },
       provisioningState: {
         serializedName: "properties.provisioningState",
         readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const RoutingConfiguration: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "RoutingConfiguration",
+    modelProperties: {
+      associatedRouteTable: {
+        serializedName: "associatedRouteTable",
+        type: {
+          name: "Composite",
+          className: "SubResource"
+        }
+      },
+      propagatedRouteTables: {
+        serializedName: "propagatedRouteTables",
+        type: {
+          name: "Composite",
+          className: "PropagatedRouteTable"
+        }
+      },
+      vnetRoutes: {
+        serializedName: "vnetRoutes",
+        type: {
+          name: "Composite",
+          className: "VnetRoute"
+        }
+      }
+    }
+  }
+};
+
+export const PropagatedRouteTable: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PropagatedRouteTable",
+    modelProperties: {
+      labels: {
+        serializedName: "labels",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      },
+      ids: {
+        serializedName: "ids",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "SubResource" } }
+        }
+      }
+    }
+  }
+};
+
+export const VnetRoute: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "VnetRoute",
+    modelProperties: {
+      staticRoutes: {
+        serializedName: "staticRoutes",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "StaticRoute" } }
+        }
+      }
+    }
+  }
+};
+
+export const StaticRoute: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "StaticRoute",
+    modelProperties: {
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
+      addressPrefixes: {
+        serializedName: "addressPrefixes",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      },
+      nextHopIpAddress: {
+        serializedName: "nextHopIpAddress",
         type: {
           name: "String"
         }
@@ -17427,6 +17854,13 @@ export const VirtualHub: coreHttp.CompositeMapper = {
           className: "SubResource"
         }
       },
+      securityPartnerProvider: {
+        serializedName: "securityPartnerProvider",
+        type: {
+          name: "Composite",
+          className: "SubResource"
+        }
+      },
       virtualNetworkConnections: {
         serializedName: "properties.virtualNetworkConnections",
         type: {
@@ -17526,6 +17960,13 @@ export const HubVirtualNetworkConnection: coreHttp.CompositeMapper = {
         serializedName: "properties.enableInternetSecurity",
         type: {
           name: "Boolean"
+        }
+      },
+      routingConfiguration: {
+        serializedName: "routingConfiguration",
+        type: {
+          name: "Composite",
+          className: "RoutingConfiguration"
         }
       },
       provisioningState: {
@@ -17790,6 +18231,12 @@ export const VpnConnection: coreHttp.CompositeMapper = {
           name: "Number"
         }
       },
+      dpdTimeoutSeconds: {
+        serializedName: "properties.dpdTimeoutSeconds",
+        type: {
+          name: "Number"
+        }
+      },
       connectionStatus: {
         serializedName: "properties.connectionStatus",
         readOnly: true,
@@ -17880,6 +18327,13 @@ export const VpnConnection: coreHttp.CompositeMapper = {
           element: {
             type: { name: "Composite", className: "VpnSiteLinkConnection" }
           }
+        }
+      },
+      routingConfiguration: {
+        serializedName: "routingConfiguration",
+        type: {
+          name: "Composite",
+          className: "RoutingConfiguration"
         }
       }
     }
@@ -18212,6 +18666,347 @@ export const ListVirtualHubRouteTableV2SResult: coreHttp.CompositeMapper = {
           element: {
             type: { name: "Composite", className: "VirtualHubRouteTableV2" }
           }
+        }
+      },
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const ExpressRouteGatewayList: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ExpressRouteGatewayList",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "ExpressRouteGateway" }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const ExpressRouteGateway: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ExpressRouteGateway",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      etag: {
+        serializedName: "etag",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      autoScaleConfiguration: {
+        serializedName: "autoScaleConfiguration",
+        type: {
+          name: "Composite",
+          className: "ExpressRouteGatewayPropertiesAutoScaleConfiguration"
+        }
+      },
+      expressRouteConnections: {
+        serializedName: "properties.expressRouteConnections",
+        readOnly: true,
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "ExpressRouteConnection" }
+          }
+        }
+      },
+      provisioningState: {
+        serializedName: "properties.provisioningState",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      virtualHub: {
+        serializedName: "virtualHub",
+        type: {
+          name: "Composite",
+          className: "VirtualHubId"
+        }
+      }
+    }
+  }
+};
+
+export const ExpressRouteGatewayPropertiesAutoScaleConfiguration: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ExpressRouteGatewayPropertiesAutoScaleConfiguration",
+    modelProperties: {
+      bounds: {
+        serializedName: "bounds",
+        type: {
+          name: "Composite",
+          className: "ExpressRouteGatewayPropertiesAutoScaleConfigurationBounds"
+        }
+      }
+    }
+  }
+};
+
+export const ExpressRouteGatewayPropertiesAutoScaleConfigurationBounds: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ExpressRouteGatewayPropertiesAutoScaleConfigurationBounds",
+    modelProperties: {
+      min: {
+        serializedName: "min",
+        type: {
+          name: "Number"
+        }
+      },
+      max: {
+        serializedName: "max",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const ExpressRouteConnection: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ExpressRouteConnection",
+    modelProperties: {
+      ...SubResource.type.modelProperties,
+      name: {
+        serializedName: "name",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      provisioningState: {
+        serializedName: "properties.provisioningState",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      expressRouteCircuitPeering: {
+        serializedName: "expressRouteCircuitPeering",
+        type: {
+          name: "Composite",
+          className: "ExpressRouteCircuitPeeringId"
+        }
+      },
+      authorizationKey: {
+        serializedName: "properties.authorizationKey",
+        type: {
+          name: "String"
+        }
+      },
+      routingWeight: {
+        serializedName: "properties.routingWeight",
+        type: {
+          name: "Number"
+        }
+      },
+      enableInternetSecurity: {
+        serializedName: "properties.enableInternetSecurity",
+        type: {
+          name: "Boolean"
+        }
+      },
+      routingConfiguration: {
+        serializedName: "routingConfiguration",
+        type: {
+          name: "Composite",
+          className: "RoutingConfiguration"
+        }
+      }
+    }
+  }
+};
+
+export const ExpressRouteCircuitPeeringId: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ExpressRouteCircuitPeeringId",
+    modelProperties: {
+      id: {
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const VirtualHubId: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "VirtualHubId",
+    modelProperties: {
+      id: {
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const ExpressRouteConnectionList: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ExpressRouteConnectionList",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "ExpressRouteConnection" }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const HubRouteTable: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "HubRouteTable",
+    modelProperties: {
+      ...SubResource.type.modelProperties,
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
+      etag: {
+        serializedName: "etag",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      type: {
+        serializedName: "type",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      routes: {
+        serializedName: "properties.routes",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "HubRoute" } }
+        }
+      },
+      labels: {
+        serializedName: "properties.labels",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      },
+      associatedConnections: {
+        serializedName: "properties.associatedConnections",
+        readOnly: true,
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "SubResource" } }
+        }
+      },
+      propagatingConnections: {
+        serializedName: "properties.propagatingConnections",
+        readOnly: true,
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "SubResource" } }
+        }
+      },
+      provisioningState: {
+        serializedName: "properties.provisioningState",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const HubRoute: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "HubRoute",
+    modelProperties: {
+      name: {
+        serializedName: "name",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      destinationType: {
+        serializedName: "destinationType",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      destinations: {
+        serializedName: "destinations",
+        required: true,
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      },
+      nextHopType: {
+        serializedName: "nextHopType",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      nextHop: {
+        serializedName: "nextHop",
+        required: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const ListHubRouteTablesResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ListHubRouteTablesResult",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "HubRouteTable" } }
         }
       },
       nextLink: {
@@ -18638,6 +19433,16 @@ export const ManagedRuleOverride: coreHttp.CompositeMapper = {
   }
 };
 
+export const Vm: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "Vm",
+    modelProperties: {
+      ...Resource.type.modelProperties
+    }
+  }
+};
+
 export const FirewallPolicyNatRule: coreHttp.CompositeMapper = {
   serializedName: "FirewallPolicyNatRule",
   type: {
@@ -18810,6 +19615,13 @@ export const ApplicationRuleCondition: coreHttp.CompositeMapper = {
           }
         }
       },
+      targetUrls: {
+        serializedName: "targetUrls",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      },
       targetFqdns: {
         serializedName: "targetFqdns",
         type: {
@@ -18903,6 +19715,12 @@ export const NatRuleCondition: coreHttp.CompositeMapper = {
           name: "Sequence",
           element: { type: { name: "String" } }
         }
+      },
+      terminateTLS: {
+        serializedName: "terminateTLS",
+        type: {
+          name: "Boolean"
+        }
       }
     }
   }
@@ -18982,6 +19800,36 @@ export const AzureAsyncOperationResult: coreHttp.CompositeMapper = {
           className: "ErrorModel"
         }
       }
+    }
+  }
+};
+
+export const Container: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "Container",
+    modelProperties: {
+      ...SubResource.type.modelProperties
+    }
+  }
+};
+
+export const PrivateLinkServicePropertiesVisibility: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PrivateLinkServicePropertiesVisibility",
+    modelProperties: {
+      ...ResourceSet.type.modelProperties
+    }
+  }
+};
+
+export const PrivateLinkServicePropertiesAutoApproval: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PrivateLinkServicePropertiesAutoApproval",
+    modelProperties: {
+      ...ResourceSet.type.modelProperties
     }
   }
 };

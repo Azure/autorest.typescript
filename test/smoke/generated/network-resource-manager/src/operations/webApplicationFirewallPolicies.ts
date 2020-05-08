@@ -279,7 +279,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters83,
+  requestBody: Parameters.parameters89,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
