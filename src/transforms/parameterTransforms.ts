@@ -25,7 +25,10 @@ import {
   transformMapper
 } from "./mapperTransforms";
 import { isEqual, isNil } from "lodash";
-import { getTypeForSchema } from "../utils/schemaHelpers";
+import {
+  getTypeForSchema,
+  getSchemaTypeDocumentation
+} from "../utils/schemaHelpers";
 import { getStringForValue } from "../utils/valueHelpers";
 import { ClientOptions } from "../models/clientDetails";
 import { PropertyKind } from "../models/modelDetails";
@@ -215,9 +218,7 @@ export function populateOperationParameters(
   );
 
   const sameNameParams = operationParameters.filter(p => p.name === name);
-  if (parameter.schema.type === SchemaType.Time) {
-    description += `\nThis value should be an ISO-8601 formatted string representing time. E.g. "HH:MM:SS" or "HH:MM:SS.mm".`;
-  }
+  description += getSchemaTypeDocumentation(parameter.schema);
 
   const collectionFormat = getCollectionFormat(parameter);
   const typeDetails = getTypeForSchema(parameter.schema);

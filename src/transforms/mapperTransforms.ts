@@ -522,7 +522,19 @@ function transformTimeMapper(pipelineValue: PipelineValue) {
 function transformStringMapper(pipelineValue: PipelineValue) {
   const { schema, options } = pipelineValue;
 
-  if (!isSchemaType([SchemaType.String, SchemaType.Choice], schema)) {
+  /**
+   * Note: SchemaCredential is treated as a string for mapping purposes. According to OpenApi v3
+   * the "password" format on a string schema is `A hint to UIs to obscure input.`
+   * So for mapping this has no effect. However when generating models we are including a hint
+   * as part of the documentation. For more information:
+   * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#data-types
+   */
+  if (
+    !isSchemaType(
+      [SchemaType.String, SchemaType.Choice, SchemaType.Credential],
+      schema
+    )
+  ) {
     return pipelineValue;
   }
 
@@ -705,6 +717,7 @@ export function getMapperTypeFromSchema(type: SchemaType, format?: string) {
     case SchemaType.ByteArray:
       return MapperType.ByteArray;
     case SchemaType.Char:
+    case SchemaType.Credential:
     case SchemaType.String:
       return MapperType.String;
     case SchemaType.Choice:

@@ -156,6 +156,7 @@ export function getTypeForSchema(schema: Schema): TypeDetails {
     case SchemaType.String:
     case SchemaType.Time:
     case SchemaType.Uuid:
+    case SchemaType.Credential:
       typeName = "string";
       break;
     default:
@@ -178,4 +179,19 @@ function isModelNeeded({ kind }: TypeDetails) {
 export function isSchemaResponse(response: any): response is SchemaResponse {
   // check fields that should exist to determine if this is a SchemaResponse
   return typeof response.schema !== "undefined";
+}
+
+/**
+ * Gets special information to include as documentation when generating certain
+ * schema types.
+ */
+export function getSchemaTypeDocumentation(schema: Schema) {
+  switch (schema.type) {
+    case SchemaType.Time:
+      return `\nThis value should be an ISO-8601 formatted string representing time. E.g. "HH:MM:SS" or "HH:MM:SS.mm".`;
+    case SchemaType.Credential:
+      return `\nThis value contains a credential. Consider obscuring before showing to users`;
+    default:
+      return "";
+  }
 }

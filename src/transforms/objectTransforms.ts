@@ -21,7 +21,8 @@ import { PropertyDetails } from "../models/modelDetails";
 import {
   getTypeForSchema,
   getSchemaParents,
-  getAdditionalProperties
+  getAdditionalProperties,
+  getSchemaTypeDocumentation
 } from "../utils/schemaHelpers";
 import { extractHeaders } from "../utils/extractHeaders";
 
@@ -79,15 +80,18 @@ export function transformProperty({
   const typeDetails = getTypeForSchema(schema);
   const { typeName, isConstant, defaultValue } = typeDetails;
 
+  const schemaDescription = getSchemaTypeDocumentation(schema);
+  const description = !metadata.description
+    ? `${metadata.description}${schemaDescription}`
+    : schemaDescription;
+
   return {
     name: normalizeName(
       metadata.name,
       NameType.Property,
       true /** shouldGuard */
     ),
-    description: !metadata.description.startsWith("MISSING")
-      ? metadata.description
-      : undefined,
+    description,
     serializedName: serializedName,
     type: typeName,
     required: !!required,
