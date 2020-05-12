@@ -154,7 +154,6 @@ export function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
   const { type, defaultValue, constraints, ...restMapper } = mapper;
   const {
     modelProperties,
-    additionalProperties,
     polymorphicDiscriminator,
     ...restType
   } = type as CompositeMapperType;
