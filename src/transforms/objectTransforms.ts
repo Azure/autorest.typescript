@@ -18,7 +18,11 @@ import {
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { PropertyDetails } from "../models/modelDetails";
-import { getTypeForSchema } from "../utils/schemaHelpers";
+import {
+  getTypeForSchema,
+  getSchemaParents,
+  getAdditionalProperties
+} from "../utils/schemaHelpers";
 import { extractHeaders } from "../utils/extractHeaders";
 
 export function transformObjects(
@@ -61,7 +65,7 @@ export function transformObject(
       : []
   };
 
-  return getAdditionalObjectDetails(objectDetails, schema, uberParents);
+  return getAdditionalObjectDetails(objectDetails, uberParents);
 }
 
 export function transformProperty({
@@ -100,7 +104,8 @@ function getObjectKind(schema: ObjectSchema): ObjectKind {
     return ObjectKind.Polymorphic;
   }
 
-  if (schema.parents && schema.parents.immediate.length) {
+  const immediateParents = getSchemaParents(schema, true /** immediateOnly */);
+  if (immediateParents.length) {
     return ObjectKind.Extended;
   }
 
@@ -111,8 +116,10 @@ function getObjectDetailsWithHierarchy(
   objectsDetails: ObjectDetails[]
 ): ObjectDetails[] {
   return objectsDetails.map(current => {
-    const parentsSchema =
-      current.schema.parents && current.schema.parents.immediate;
+    const parentsSchema = getSchemaParents(
+      current.schema,
+      true /** immediateOnly */
+    );
     const childrenSchema =
       current.schema.children && current.schema.children.immediate;
     let parents: ObjectDetails[] = extractHierarchy(
@@ -125,9 +132,9 @@ function getObjectDetailsWithHierarchy(
       objectsDetails,
       current
     );
-    const hasAdditionalProperties =
-      !!parentsSchema &&
-      parentsSchema.some(p => p.type === SchemaType.Dictionary);
+    const hasAdditionalProperties = Boolean(
+      getAdditionalProperties(current.schema, true /** immediateOnly */)
+    );
 
     return {
       ...current,
@@ -147,28 +154,25 @@ function extractHierarchy(
     return [];
   }
 
-  return schemas
-    .filter(s => s.type === SchemaType.Object)
-    .map(r => {
-      const relativeName = normalizeName(
-        getLanguageMetadata(r.language).name,
-        NameType.Interface,
-        true /** shouldGuard */
-      );
-      const relative = objectsDetails.find(o => o.name === relativeName);
+  return schemas.map(r => {
+    const relativeName = normalizeName(
+      getLanguageMetadata(r.language).name,
+      NameType.Interface,
+      true /** shouldGuard */
+    );
+    const relative = objectsDetails.find(o => o.name === relativeName);
 
-      if (!relative) {
-        throw new Error(
-          `Expected relative ${relativeName} of ${current.name} but couldn't find it in transformed objects`
-        );
-      }
-      return relative;
-    });
+    if (!relative) {
+      throw new Error(
+        `Expected relative ${relativeName} of ${current.name} but couldn't find it in transformed objects`
+      );
+    }
+    return relative;
+  });
 }
 
 function getAdditionalObjectDetails(
   objectDetails: ObjectDetails,
-  schema: ObjectSchema,
   uberParents: ObjectDetails[]
 ): ObjectDetails {
   switch (objectDetails.kind) {
@@ -177,25 +181,27 @@ function getAdditionalObjectDetails(
     case ObjectKind.Polymorphic:
       return transformPolymorphicObject(
         objectDetails as PolymorphicObjectDetails,
-        schema,
         uberParents
       );
     case ObjectKind.Extended:
-      return transformComposedObject(objectDetails, schema);
+      return transformComposedObject(objectDetails);
     default:
       throw new Error(`Unexpected ObjectKind ${objectDetails.kind}`);
   }
 }
 
 function transformComposedObject(
-  objectDetails: ObjectDetails,
-  schema: ObjectSchema
+  objectDetails: ObjectDetails
 ): ComposedObjectDetails {
-  if (!schema.parents) {
+  const immediateParents = getSchemaParents(
+    objectDetails.schema,
+    true /** immediateOnly */
+  );
+  if (immediateParents.length < 1) {
     throw new Error(`Expected object ${objectDetails.name} to have parents`);
   }
 
-  const parentNames = schema.parents.immediate.map(parent => {
+  const parentNames = immediateParents.map(parent => {
     const name = getLanguageMetadata(parent.language).name;
     return `${normalizeName(
       name,
@@ -212,11 +218,11 @@ function transformComposedObject(
 
 function transformPolymorphicObject(
   objectDetails: PolymorphicObjectDetails,
-  schema: ObjectSchema,
   uberParents: ObjectDetails[]
 ): PolymorphicObjectDetails {
-  let uberParent: ObjectSchema | undefined = schema;
-  const allParents = schema.parents && schema.parents.all;
+  const schema = objectDetails.schema;
+  let uberParent: ObjectSchema | undefined = objectDetails.schema;
+  const allParents = getSchemaParents(schema);
   if (allParents && allParents.length) {
     const uberParentSchema = allParents.find(p => {
       // TODO: Reconsider names to reduce issues with normalization, can we switch to serialized?

@@ -27,6 +27,7 @@ import { Host } from "@azure-tools/autorest-extension-base";
 import { transformBaseUrl } from "./urlTransforms";
 import { normalizeModelWithExtensions } from "./extensions";
 import { transformGroups } from "./groupTransforms";
+import { getSchemaParents } from "../utils/schemaHelpers";
 
 export async function transformChoices(codeModel: CodeModel) {
   const choices = [
@@ -82,7 +83,7 @@ export async function transformCodeModel(
   ] = await Promise.all([
     transformObjects(codeModel, uberParents),
     transformGroups(codeModel),
-    transformMappers(codeModel, options),
+    transformMappers(codeModel, uberParents, options),
     transformChoices(codeModel),
     transformParameters(codeModel, options),
     transformBaseUrl(codeModel)
@@ -105,6 +106,7 @@ export async function transformCodeModel(
 
 /**
  * This function gets all top level objects with children, aka UberParents
+ * An UberParent is an object schema that has no parents but is extended
  * @param codeModel CodeModel
  */
 async function getUberParents(codeModel: CodeModel): Promise<ObjectDetails[]> {
@@ -118,7 +120,7 @@ async function getUberParents(codeModel: CodeModel): Promise<ObjectDetails[]> {
     const name = getLanguageMetadata(object.language).name;
     const isPresent = uberParents.some(up => up.name === name);
     const hasChildren = object.children && object.children.all.length;
-    const hasParents = object.parents && object.parents.all.length;
+    const hasParents = getSchemaParents(object).length > 0;
 
     if (hasChildren && !hasParents && !isPresent) {
       const baseObject = transformObject(object, uberParents);

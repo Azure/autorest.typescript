@@ -169,8 +169,8 @@ export function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
       .block(() => {
         // Write all type properties that don't need special handling
         writeObjectProps(restType, writer);
-        // Write ptype roperties that need special handling
-        writePolymorphicDiscrimitator(writer, polymorphicDiscriminator);
+        // Write type properties that need special handling
+        writePolymorphicDiscriminator(writer, polymorphicDiscriminator);
         writeModelProperties(writer, parents, modelProperties);
       });
   });
@@ -225,7 +225,7 @@ function writeModelProperties(
   });
 }
 
-function writePolymorphicDiscrimitator(
+function writePolymorphicDiscriminator(
   writer: CodeBlockWriter,
   polymorphicDiscriminator?: PolymorphicDiscriminator
 ) {

@@ -30,6 +30,11 @@ import { normalizeName, NameType } from "../utils/nameUtils";
 import { extractHeaders } from "../utils/extractHeaders";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { ClientOptions } from "../models/clientDetails";
+import {
+  getSchemaParents,
+  getAdditionalProperties
+} from "../utils/schemaHelpers";
+import { ObjectDetails } from "../models/modelDetails";
 
 interface PipelineValue {
   schema: Schema;
@@ -53,8 +58,6 @@ const pipe = (
   ...fns: Array<(pipelineValue: PipelineValue) => PipelineValue>
 ) => (x: PipelineValue) => fns.reduce((v, f) => (!v.isHandled ? f(v) : v), x);
 
-let uberParents: string[] = [];
-
 export type ModelProperties = { [propertyName: string]: Mapper | string[] };
 
 export interface EntityOptions {
@@ -62,6 +65,7 @@ export interface EntityOptions {
   required?: boolean;
   readOnly?: boolean;
   hasXmlMetadata?: boolean;
+  uberParents?: string[];
 }
 
 export interface MapperInput {
@@ -71,6 +75,7 @@ export interface MapperInput {
 
 export async function transformMappers(
   codeModel: CodeModel,
+  uberParents: ObjectDetails[],
   { mediaTypes }: ClientOptions
 ): Promise<Mapper[]> {
   const clientName = getLanguageMetadata(codeModel.language).name;
@@ -79,12 +84,16 @@ export async function transformMappers(
     return [];
   }
 
+  const uberParentsNames = uberParents.map(up => up.name);
   const hasXmlMetadata = mediaTypes?.has(KnownMediaType.Xml);
   return [
     ...codeModel.schemas.objects,
     ...extractHeaders(codeModel.operationGroups, clientName)
   ].map(objectSchema =>
-    transformMapper({ schema: objectSchema, options: { hasXmlMetadata } })
+    transformMapper({
+      schema: objectSchema,
+      options: { hasXmlMetadata, uberParents: uberParentsNames }
+    })
   );
 }
 
@@ -253,8 +262,11 @@ function getXmlMetadata(
   };
 }
 
-function getAdditionalProperties(allParents: Schema[]): Mapper | undefined {
-  return allParents.some(p => p.type === SchemaType.Dictionary)
+function buildAdditionalProperties(
+  objectSchema: ObjectSchema
+): Mapper | undefined {
+  const additionalProperties = getAdditionalProperties(objectSchema);
+  return additionalProperties
     ? {
         type: {
           name: MapperType.Object
@@ -264,10 +276,8 @@ function getAdditionalProperties(allParents: Schema[]): Mapper | undefined {
 }
 
 function isUberParent(objectSchema: ObjectSchema) {
-  const { discriminator, parents, children } = objectSchema;
-  return (
-    discriminator && !parents && children && children.all && children.all.length
-  );
+  const { parents, children } = objectSchema;
+  return !parents && children && children.all && children.all.length;
 }
 
 function transformObjectMapper(pipelineValue: PipelineValue) {
@@ -281,20 +291,23 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
   const { discriminator, discriminatorValue } = objectSchema;
 
   let modelProperties = processProperties(objectSchema.properties, options);
-  const parents = objectSchema.parents ? objectSchema.parents.all : [];
-  const immediateParents = objectSchema.parents
-    ? objectSchema.parents.immediate
-    : [];
+  const parents = getSchemaParents(objectSchema);
+  const immediateParents = getSchemaParents(
+    objectSchema,
+    true /** immediateOnly */
+  );
   const parentsRefs = immediateParents
     .map(p => getMapperClassName(p))
     .filter(p => p !== className);
 
-  const additionalProperties = getAdditionalProperties(parents);
+  const additionalProperties = buildAdditionalProperties(objectSchema);
 
   modelProperties = {
     ...modelProperties,
     ...(parentsRefs && parentsRefs.length && { parentsRefs })
   };
+
+  const uberParents = options?.uberParents || [];
 
   // If we find a new uber parent, store it
   if (uberParents.indexOf(className) < 0 && isUberParent(objectSchema)) {
@@ -717,6 +730,8 @@ export function getMapperTypeFromSchema(type: SchemaType, format?: string) {
       return MapperType.Number;
     case SchemaType.Object:
       return MapperType.Object;
+    case SchemaType.Any:
+      return "any";
     default:
       throw new Error(`There is no known Mapper type for schema type ${type}`);
   }
