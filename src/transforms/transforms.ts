@@ -106,6 +106,7 @@ export async function transformCodeModel(
 
 /**
  * This function gets all top level objects with children, aka UberParents
+ * An UberParent is an object schema that has no parents but is extended
  * @param codeModel CodeModel
  */
 async function getUberParents(codeModel: CodeModel): Promise<ObjectDetails[]> {

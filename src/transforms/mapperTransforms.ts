@@ -730,8 +730,9 @@ export function getMapperTypeFromSchema(type: SchemaType, format?: string) {
     case SchemaType.Number:
       return MapperType.Number;
     case SchemaType.Object:
-    case SchemaType.Any:
       return MapperType.Object;
+    case SchemaType.Any:
+      return "any";
     default:
       throw new Error(`There is no known Mapper type for schema type ${type}`);
   }
