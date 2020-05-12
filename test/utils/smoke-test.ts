@@ -32,11 +32,11 @@ const onExit = (childProcess: ChildProcess) => {
   });
 };
 
-const generateFromReadme = async (readmeUrl: string) => {
+const generateFromReadme = async ({ path, params }: SpecDefinition) => {
   const regex = new RegExp(
     "^[^#].*?specification/([\\w-]+(/[\\w-]+)+)/readme.md"
   );
-  const matches = readmeUrl.match(regex);
+  const matches = path.match(regex);
   if (!matches?.length) {
     return;
   }
@@ -48,11 +48,12 @@ const generateFromReadme = async (readmeUrl: string) => {
     autorestCmd,
     [
       `--version="3.0.6267"`,
-      `--require=${readmeUrl}`,
+      `--require=${path}`,
       `--typescript`,
       `--package-name=${projectName}`,
       `--output-folder=${output}`,
-      `--use=.`
+      `--use=.`,
+      ...(params || [])
     ],
     {
       stdio: [process.stdin, process.stdout, process.stderr]
@@ -87,7 +88,7 @@ const verifyLibrary = async (spec: SpecDefinition): Promise<SmokeResult> => {
   const readmeUrl = spec.path;
   try {
     checkoutBranch(spec.branch);
-    const projectPath = await generateFromReadme(readmeUrl);
+    const projectPath = await generateFromReadme(spec);
     await buildGenerated(projectPath);
     success = true;
   } catch (e) {
@@ -152,13 +153,7 @@ const main = async () => {
     chunk = readmes.slice(start, end < readmes.length ? end : readmes.length);
     console.log(`start: ${start}, end: ${end}, size: ${chunk.length}`);
   }
-
-  try {
-    await verifyLibraries(chunk);
-  } catch (error) {
-    logError(error);
-    process.exit(-1);
-  }
+  await verifyLibraries(chunk);
 };
 
 const checkoutBranch = async (branch?: string) => {
@@ -173,4 +168,7 @@ const checkoutBranch = async (branch?: string) => {
   return await onExit(childProdcess);
 };
 
-main();
+main().catch(error => {
+  logError(error);
+  process.exit(-1);
+});
