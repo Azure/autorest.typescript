@@ -41,6 +41,6 @@ steps:
 
   - task: PublishPipelineArtifact@1
     inputs:
-      targetPath: "autorest-typescript-6.0.0-pr.$BUILD_BUILDNUMBER.tgz"
+      targetPath: "autorest-typescript-6.0.0-pr.$(BUILD_BUILDNUMBER).tgz"
       artifact: "packages"
       publishLocation: "pipeline"
