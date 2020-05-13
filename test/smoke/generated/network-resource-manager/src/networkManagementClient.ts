@@ -14,6 +14,7 @@ import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { NetworkManagementClientContext } from "./networkManagementClientContext";
 import {
+  NetworkManagementClientOptionalParams,
   BastionShareableLinkListRequest,
   NetworkManagementClientPutBastionShareableLinkResponse,
   NetworkManagementClientGetBastionShareableLinkResponse,
@@ -41,7 +42,7 @@ class NetworkManagementClient extends NetworkManagementClientContext {
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
-    options?: Models.NetworkManagementClientOptionalParams
+    options?: NetworkManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
     this.applicationGateways = new operations.ApplicationGateways(this);

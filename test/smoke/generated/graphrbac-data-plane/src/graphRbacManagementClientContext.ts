@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { GraphRbacManagementClientOptionalParams } from "./models";
 
 const packageName = "graphrbac-data-plane";
 const packageVersion = "1.0.0";
@@ -26,7 +26,7 @@ export class GraphRbacManagementClientContext extends coreHttp.ServiceClient {
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     tenantID: string,
-    options?: Models.GraphRbacManagementClientOptionalParams
+    options?: GraphRbacManagementClientOptionalParams
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");

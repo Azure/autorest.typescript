@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { CosmosDBManagementClientOptionalParams } from "./models";
 import { lroPolicy } from "./lro";
 
 const packageName = "cosmos-db-resource-manager";
@@ -26,7 +26,7 @@ export class CosmosDBManagementClientContext extends coreHttp.ServiceClient {
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
-    options?: Models.CosmosDBManagementClientOptionalParams
+    options?: CosmosDBManagementClientOptionalParams
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");

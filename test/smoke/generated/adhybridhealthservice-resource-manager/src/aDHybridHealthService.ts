@@ -11,6 +11,7 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { ADHybridHealthServiceContext } from "./aDHybridHealthServiceContext";
+import { ADHybridHealthServiceOptionalParams } from "./models";
 
 class ADHybridHealthService extends ADHybridHealthServiceContext {
   /**
@@ -20,7 +21,7 @@ class ADHybridHealthService extends ADHybridHealthServiceContext {
    */
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
-    options?: Models.ADHybridHealthServiceOptionalParams
+    options?: ADHybridHealthServiceOptionalParams
   ) {
     super(credentials, options);
     this.addsServices = new operations.AddsServices(this);

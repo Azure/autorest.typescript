@@ -11,6 +11,7 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { GraphRbacManagementClientContext } from "./graphRbacManagementClientContext";
+import { GraphRbacManagementClientOptionalParams } from "./models";
 
 class GraphRbacManagementClient extends GraphRbacManagementClientContext {
   /**
@@ -22,7 +23,7 @@ class GraphRbacManagementClient extends GraphRbacManagementClientContext {
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     tenantID: string,
-    options?: Models.GraphRbacManagementClientOptionalParams
+    options?: GraphRbacManagementClientOptionalParams
   ) {
     super(credentials, tenantID, options);
     this.signedInUser = new operations.SignedInUser(this);

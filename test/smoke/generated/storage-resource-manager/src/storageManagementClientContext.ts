@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { StorageManagementClientOptionalParams } from "./models";
 import { lroPolicy } from "./lro";
 
 const packageName = "storage-resource-manager";
@@ -27,7 +27,7 @@ export class StorageManagementClientContext extends coreHttp.ServiceClient {
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
-    options?: Models.StorageManagementClientOptionalParams
+    options?: StorageManagementClientOptionalParams
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");

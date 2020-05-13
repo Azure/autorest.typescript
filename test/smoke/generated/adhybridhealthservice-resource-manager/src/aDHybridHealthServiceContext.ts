@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { ADHybridHealthServiceOptionalParams } from "./models";
 
 const packageName = "adhybridhealthservice-resource-manager";
 const packageVersion = "1.0.0";
@@ -23,7 +23,7 @@ export class ADHybridHealthServiceContext extends coreHttp.ServiceClient {
    */
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
-    options?: Models.ADHybridHealthServiceOptionalParams
+    options?: ADHybridHealthServiceOptionalParams
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");

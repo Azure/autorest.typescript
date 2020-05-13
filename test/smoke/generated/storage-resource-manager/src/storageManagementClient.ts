@@ -11,6 +11,7 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { StorageManagementClientContext } from "./storageManagementClientContext";
+import { StorageManagementClientOptionalParams } from "./models";
 
 class StorageManagementClient extends StorageManagementClientContext {
   /**
@@ -22,7 +23,7 @@ class StorageManagementClient extends StorageManagementClientContext {
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
-    options?: Models.StorageManagementClientOptionalParams
+    options?: StorageManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
     this.operations = new operations.Operations(this);

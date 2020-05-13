@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { ManagedServiceIdentityClientOptionalParams } from "./models";
 
 const packageName = "msi-resource-manager";
 const packageVersion = "1.0.0";
@@ -26,7 +26,7 @@ export class ManagedServiceIdentityClientContext extends coreHttp.ServiceClient 
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
-    options?: Models.ManagedServiceIdentityClientOptionalParams
+    options?: ManagedServiceIdentityClientOptionalParams
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");

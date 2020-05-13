@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { MonitorClientOptionalParams } from "./models";
 
 const packageName = "monitor-data-plane";
 const packageVersion = "1.0.0";
@@ -22,7 +22,7 @@ export class MonitorClientContext extends coreHttp.ServiceClient {
    */
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
-    options?: Models.MonitorClientOptionalParams
+    options?: MonitorClientOptionalParams
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");

@@ -11,6 +11,7 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { KeyVaultManagementClientContext } from "./keyVaultManagementClientContext";
+import { KeyVaultManagementClientOptionalParams } from "./models";
 
 class KeyVaultManagementClient extends KeyVaultManagementClientContext {
   /**
@@ -23,7 +24,7 @@ class KeyVaultManagementClient extends KeyVaultManagementClientContext {
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
-    options?: Models.KeyVaultManagementClientOptionalParams
+    options?: KeyVaultManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
     this.vaults = new operations.Vaults(this);
