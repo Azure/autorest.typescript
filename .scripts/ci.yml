@@ -2,45 +2,34 @@ trigger:
   - v6
 
 pool:
-  vmImage: "ubuntu-latest"
+  vmImage: 'ubuntu-latest'
 
 steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: "10.x"
-    displayName: "Install Node.js"
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
 
-  - script: |
-      npm install
-      npm run build
-    displayName: "Build"
+- script: |
+    npm install
+    npm run build
+  displayName: 'Build'
 
-  # - script: |
-  #     npm run test
-  #     npm run check:tree
-  #   displayName: "Run Tests"
+- script: |
+    npm run test
+    npm run check:tree
+  displayName: 'Run Tests'
 
-  # - script: |
-  #     npm run clone:specs
-  #   displayName: "Clone Specs Repository"
+- script: |
+    npm run clone:specs
+  displayName: 'Clone Specs Repository'
 
-  # - script: |
-  #     npm run smoke-test
-  #     npm run check:tree
-  #   displayName: "Run Smoke Tests"
+- script: |
+    npm run smoke-test
+    npm run check:tree
+  displayName: 'Run Smoke Tests'
 
-  - script: |
-      npm version --no-git-tag-version 6.0.0-pr.$BUILD_BUILDNUMBER
-      npm pack
-    displayName: "Npm Pack"
-
-  - script: |
-      npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
-    workingDirectory: node_modules/@microsoft.azure/autorest.testserver
-    displayName: "Upload Coverage Report"
-
-  - task: PublishPipelineArtifact@1
-    inputs:
-      targetPath: "autorest-typescript-6.0.0-pr.$(Build.BuildNumber).tgz"
-      artifact: "packages"
-      publishLocation: "pipeline"
+- script: |
+    npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
+  workingDirectory: node_modules/@microsoft.azure/autorest.testserver
+  displayName: 'Upload Coverage Report'
