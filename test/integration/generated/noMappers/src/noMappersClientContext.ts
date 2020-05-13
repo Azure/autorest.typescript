@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { NoMappersClientOptionalParams } from "./models";
 
 const packageName = "no-mappers";
 const packageVersion = "1.0.0-preview1";
@@ -20,7 +20,7 @@ export class NoMappersClientContext extends coreHttp.ServiceClient {
    * @param $host server parameter
    * @param options The parameter options
    */
-  constructor($host: string, options?: Models.NoMappersClientOptionalParams) {
+  constructor($host: string, options?: NoMappersClientOptionalParams) {
     if ($host === undefined) {
       throw new Error("'$host' cannot be null");
     }

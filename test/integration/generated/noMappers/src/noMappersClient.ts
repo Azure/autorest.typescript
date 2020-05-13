@@ -10,7 +10,10 @@ import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
 import * as Models from "./models";
 import { NoMappersClientContext } from "./noMappersClientContext";
-import { NoMappersClientApiV1ValueGetResponse } from "./models";
+import {
+  NoMappersClientOptionalParams,
+  NoMappersClientApiV1ValueGetResponse
+} from "./models";
 
 class NoMappersClient extends NoMappersClientContext {
   /**
@@ -18,7 +21,7 @@ class NoMappersClient extends NoMappersClientContext {
    * @param $host server parameter
    * @param options The parameter options
    */
-  constructor($host: string, options?: Models.NoMappersClientOptionalParams) {
+  constructor($host: string, options?: NoMappersClientOptionalParams) {
     super($host, options);
   }
 

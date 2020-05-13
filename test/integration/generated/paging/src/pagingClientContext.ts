@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { PagingClientOptionalParams } from "./models";
 import { lroPolicy } from "./lro";
 
 const packageName = "paging-service";
@@ -20,7 +20,7 @@ export class PagingClientContext extends coreHttp.ServiceClient {
    * Initializes a new instance of the PagingClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: Models.PagingClientOptionalParams) {
+  constructor(options?: PagingClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};

@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { BodyByteClientOptionalParams } from "./models";
 
 const packageName = "body-byte";
 const packageVersion = "1.0.0-preview1";
@@ -19,7 +19,7 @@ export class BodyByteClientContext extends coreHttp.ServiceClient {
    * Initializes a new instance of the BodyByteClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: Models.BodyByteClientOptionalParams) {
+  constructor(options?: BodyByteClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};

@@ -10,13 +10,14 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { HeaderClientContext } from "./headerClientContext";
+import { HeaderClientOptionalParams } from "./models";
 
 class HeaderClient extends HeaderClientContext {
   /**
    * Initializes a new instance of the HeaderClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.HeaderClientOptionalParams) {
+  constructor(options?: HeaderClientOptionalParams) {
     super(options);
     this.header = new operations.Header(this);
   }

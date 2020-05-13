@@ -10,13 +10,14 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { BodyDictionaryClientContext } from "./bodyDictionaryClientContext";
+import { BodyDictionaryClientOptionalParams } from "./models";
 
 class BodyDictionaryClient extends BodyDictionaryClientContext {
   /**
    * Initializes a new instance of the BodyDictionaryClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.BodyDictionaryClientOptionalParams) {
+  constructor(options?: BodyDictionaryClientOptionalParams) {
     super(options);
     this.dictionary = new operations.Dictionary(this);
   }

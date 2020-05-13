@@ -10,13 +10,14 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { PagingClientContext } from "./pagingClientContext";
+import { PagingClientOptionalParams } from "./models";
 
 class PagingClient extends PagingClientContext {
   /**
    * Initializes a new instance of the PagingClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.PagingClientOptionalParams) {
+  constructor(options?: PagingClientOptionalParams) {
     super(options);
     this.paging = new operations.Paging(this);
   }

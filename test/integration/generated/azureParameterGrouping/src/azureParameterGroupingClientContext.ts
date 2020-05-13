@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { AzureParameterGroupingClientOptionalParams } from "./models";
 
 const packageName = "azure-parameter-grouping";
 const packageVersion = "1.0.0-preview1";
@@ -19,7 +19,7 @@ export class AzureParameterGroupingClientContext extends coreHttp.ServiceClient 
    * Initializes a new instance of the AzureParameterGroupingClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: Models.AzureParameterGroupingClientOptionalParams) {
+  constructor(options?: AzureParameterGroupingClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};

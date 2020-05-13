@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { RegexConstraintOptionalParams } from "./models";
 
 const packageName = "regex-constraint";
 const packageVersion = "1.0.0-preview1";
@@ -20,7 +20,7 @@ export class RegexConstraintContext extends coreHttp.ServiceClient {
    * @param $host server parameter
    * @param options The parameter options
    */
-  constructor($host: string, options?: Models.RegexConstraintOptionalParams) {
+  constructor($host: string, options?: RegexConstraintOptionalParams) {
     if ($host === undefined) {
       throw new Error("'$host' cannot be null");
     }

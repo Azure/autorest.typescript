@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { MediaTypesV3LROClientOptionalParams } from "./models";
 import { lroPolicy } from "./lro";
 
 const packageName = "media-types-v3-lro-client";
@@ -21,10 +21,7 @@ export class MediaTypesV3LROClientContext extends coreHttp.ServiceClient {
    * @param $host server parameter
    * @param options The parameter options
    */
-  constructor(
-    $host: string,
-    options?: Models.MediaTypesV3LROClientOptionalParams
-  ) {
+  constructor($host: string, options?: MediaTypesV3LROClientOptionalParams) {
     if ($host === undefined) {
       throw new Error("'$host' cannot be null");
     }

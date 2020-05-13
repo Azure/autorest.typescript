@@ -12,6 +12,7 @@ import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { ModelFlatteningClientContext } from "./modelFlatteningClientContext";
 import {
+  ModelFlatteningClientOptionalParams,
   ModelFlatteningClientPutArrayOptionalParams,
   ModelFlatteningClientGetArrayResponse,
   ModelFlatteningClientPutWrappedArrayOptionalParams,
@@ -33,7 +34,7 @@ class ModelFlatteningClient extends ModelFlatteningClientContext {
    * Initializes a new instance of the ModelFlatteningClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.ModelFlatteningClientOptionalParams) {
+  constructor(options?: ModelFlatteningClientOptionalParams) {
     super(options);
   }
 

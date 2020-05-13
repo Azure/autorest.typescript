@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { XmlServiceClientOptionalParams } from "./models";
 
 const packageName = "xml-service";
 const packageVersion = "1.0.0-preview1";
@@ -19,7 +19,7 @@ export class XmlServiceClientContext extends coreHttp.ServiceClient {
    * Initializes a new instance of the XmlServiceClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: Models.XmlServiceClientOptionalParams) {
+  constructor(options?: XmlServiceClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};

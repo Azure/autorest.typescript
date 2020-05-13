@@ -15,14 +15,14 @@ steps:
       npm run build
     displayName: "Build"
 
-  - script: |
-      npm run test
-      npm run check:tree
-    displayName: "Run Tests"
+  # - script: |
+  #     npm run test
+  #     npm run check:tree
+  #   displayName: "Run Tests"
 
-  - script: |
-      npm run clone:specs
-    displayName: "Clone Specs Repository"
+  # - script: |
+  #     npm run clone:specs
+  #   displayName: "Clone Specs Repository"
 
   # - script: |
   #     npm run smoke-test

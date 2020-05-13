@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { BodyDictionaryClientOptionalParams } from "./models";
 
 const packageName = "body-dictionary";
 const packageVersion = "1.0.0-preview1";
@@ -19,7 +19,7 @@ export class BodyDictionaryClientContext extends coreHttp.ServiceClient {
    * Initializes a new instance of the BodyDictionaryClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: Models.BodyDictionaryClientOptionalParams) {
+  constructor(options?: BodyDictionaryClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};

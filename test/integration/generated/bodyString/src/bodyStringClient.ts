@@ -10,13 +10,14 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { BodyStringClientContext } from "./bodyStringClientContext";
+import { BodyStringClientOptionalParams } from "./models";
 
 class BodyStringClient extends BodyStringClientContext {
   /**
    * Initializes a new instance of the BodyStringClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.BodyStringClientOptionalParams) {
+  constructor(options?: BodyStringClientOptionalParams) {
     super(options);
     this.string = new operations.StringOperations(this);
     this.enum = new operations.Enum(this);

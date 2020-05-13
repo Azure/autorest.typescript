@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { AdditionalPropertiesClientOptionalParams } from "./models";
 
 const packageName = "additional-properties";
 const packageVersion = "1.0.0-preview1";
@@ -19,7 +19,7 @@ export class AdditionalPropertiesClientContext extends coreHttp.ServiceClient {
    * Initializes a new instance of the AdditionalPropertiesClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: Models.AdditionalPropertiesClientOptionalParams) {
+  constructor(options?: AdditionalPropertiesClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};

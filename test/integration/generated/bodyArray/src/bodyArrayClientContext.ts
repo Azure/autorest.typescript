@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { BodyArrayClientOptionalParams } from "./models";
 
 const packageName = "body-array";
 const packageVersion = "1.0.0-preview1";
@@ -19,7 +19,7 @@ export class BodyArrayClientContext extends coreHttp.ServiceClient {
    * Initializes a new instance of the BodyArrayClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: Models.BodyArrayClientOptionalParams) {
+  constructor(options?: BodyArrayClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};

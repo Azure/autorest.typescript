@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { MediaTypesClientOptionalParams } from "./models";
 
 const packageName = "media-types-service";
 const packageVersion = "1.0.0-preview1";
@@ -19,7 +19,7 @@ export class MediaTypesClientContext extends coreHttp.ServiceClient {
    * Initializes a new instance of the MediaTypesClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: Models.MediaTypesClientOptionalParams) {
+  constructor(options?: MediaTypesClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};

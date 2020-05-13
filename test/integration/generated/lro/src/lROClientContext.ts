@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { LROClientOptionalParams } from "./models";
 import { lroPolicy } from "./lro";
 
 const packageName = "lro";
@@ -20,7 +20,7 @@ export class LROClientContext extends coreHttp.ServiceClient {
    * Initializes a new instance of the LROClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: Models.LROClientOptionalParams) {
+  constructor(options?: LROClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};

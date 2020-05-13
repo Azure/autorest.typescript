@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { MediaTypesV3ClientOptionalParams } from "./models";
 
 const packageName = "media-types-v3-client";
 const packageVersion = "1.0.0-preview1";
@@ -20,10 +20,7 @@ export class MediaTypesV3ClientContext extends coreHttp.ServiceClient {
    * @param $host server parameter
    * @param options The parameter options
    */
-  constructor(
-    $host: string,
-    options?: Models.MediaTypesV3ClientOptionalParams
-  ) {
+  constructor($host: string, options?: MediaTypesV3ClientOptionalParams) {
     if ($host === undefined) {
       throw new Error("'$host' cannot be null");
     }

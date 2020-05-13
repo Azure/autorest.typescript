@@ -10,13 +10,14 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { BodyBooleanClientContext } from "./bodyBooleanClientContext";
+import { BodyBooleanClientOptionalParams } from "./models";
 
 class BodyBooleanClient extends BodyBooleanClientContext {
   /**
    * Initializes a new instance of the BodyBooleanClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.BodyBooleanClientOptionalParams) {
+  constructor(options?: BodyBooleanClientOptionalParams) {
     super(options);
     this.bool = new operations.Bool(this);
   }

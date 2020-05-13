@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { BodyBooleanQuirksClientOptionalParams } from "./models";
 
 const packageName = "body-boolean-quirks";
 const packageVersion = "1.0.0-preview1";
@@ -19,7 +19,7 @@ export class BodyBooleanQuirksClientContext extends coreHttp.ServiceClient {
    * Initializes a new instance of the BodyBooleanQuirksClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: Models.BodyBooleanQuirksClientOptionalParams) {
+  constructor(options?: BodyBooleanQuirksClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};

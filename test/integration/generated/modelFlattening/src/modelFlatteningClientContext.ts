@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { ModelFlatteningClientOptionalParams } from "./models";
 
 const packageName = "model-flattening";
 const packageVersion = "1.0.0-preview1";
@@ -19,7 +19,7 @@ export class ModelFlatteningClientContext extends coreHttp.ServiceClient {
    * Initializes a new instance of the ModelFlatteningClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: Models.ModelFlatteningClientOptionalParams) {
+  constructor(options?: ModelFlatteningClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};

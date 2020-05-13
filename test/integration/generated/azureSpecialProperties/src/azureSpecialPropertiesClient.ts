@@ -11,6 +11,7 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { AzureSpecialPropertiesClientContext } from "./azureSpecialPropertiesClientContext";
+import { AzureSpecialPropertiesClientOptionalParams } from "./models";
 
 class AzureSpecialPropertiesClient extends AzureSpecialPropertiesClientContext {
   /**
@@ -23,7 +24,7 @@ class AzureSpecialPropertiesClient extends AzureSpecialPropertiesClientContext {
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
-    options?: Models.AzureSpecialPropertiesClientOptionalParams
+    options?: AzureSpecialPropertiesClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
     this.xMsClientRequestId = new operations.XMsClientRequestId(this);

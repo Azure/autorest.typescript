@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { BodyDateClientOptionalParams } from "./models";
 
 const packageName = "body-date";
 const packageVersion = "1.0.0-preview1";
@@ -19,7 +19,7 @@ export class BodyDateClientContext extends coreHttp.ServiceClient {
    * Initializes a new instance of the BodyDateClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: Models.BodyDateClientOptionalParams) {
+  constructor(options?: BodyDateClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};
