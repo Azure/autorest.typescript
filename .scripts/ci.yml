@@ -30,8 +30,7 @@ steps:
   #   displayName: "Run Smoke Tests"
 
   - script: |
-      export DEV_VERSION=$(node -p -e "require('./package.json').version")-dev.$BUILD_BUILDNUMBER
-      npm version --no-git-tag-version $DEV_VERSION
+      npm version --no-git-tag-version 6.0.0-pr.$BUILD_BUILDNUMBER
       npm pack
     displayName: "Npm Pack"
 
@@ -42,6 +41,6 @@ steps:
 
   - task: PublishPipelineArtifact@1
     inputs:
-      targetPath: "autorest-typescript-$DEV_VERSION.tgz"
+      targetPath: "autorest-typescript-6.0.0-pr.$BUILD_BUILDNUMBER.tgz"
       artifact: "packages"
       publishLocation: "pipeline"
