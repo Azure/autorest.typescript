@@ -112,8 +112,24 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     extends: clientContextClassName
   });
 
-  writeConstructor(clientDetails, clientClass);
-  writeClientOperations(clientFile, clientClass, clientDetails, hasLRO);
+  const importedModels = new Set<string>();
+
+  writeConstructor(clientDetails, clientClass, importedModels);
+  writeClientOperations(
+    clientFile,
+    clientClass,
+    clientDetails,
+    hasLRO,
+    importedModels
+  );
+
+  // Use named import from Models
+  if (importedModels.size) {
+    clientFile.addImportDeclaration({
+      namedImports: [...importedModels],
+      moduleSpecifier: "./models"
+    });
+  }
 
   clientFile.addExportDeclaration({
     leadingTrivia: (writer: CodeBlockWriter) =>
@@ -134,7 +150,8 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
 
 function writeConstructor(
   clientDetails: ClientDetails,
-  classDeclaration: ClassDeclaration
+  classDeclaration: ClassDeclaration,
+  importedModels: Set<string>
 ) {
   const requiredParams = clientDetails.parameters.filter(
     param =>
@@ -158,9 +175,18 @@ function writeConstructor(
     .filter(d => !!d)
     .join("\n");
 
-  const optionsParameterType = hasClientOptionalParameters
-    ? `Models.${clientDetails.className}OptionalParams`
-    : "coreHttp.ServiceClientOptions";
+  let optionsParameterType = "ServiceClientOptions";
+
+  if (hasClientOptionalParameters) {
+    const paramType = `${clientDetails.className}OptionalParams`;
+    importedModels.add(paramType);
+    optionsParameterType = paramType;
+  }
+
+  requiredParams.forEach(({ typeDetails }) =>
+    typeDetails.usedModels.forEach(model => importedModels.add(model))
+  );
+
   const clientConstructor = classDeclaration.addConstructor({
     docs: [docs],
     parameters: [
@@ -211,14 +237,13 @@ function writeClientOperations(
   file: SourceFile,
   classDeclaration: ClassDeclaration,
   clientDetails: ClientDetails,
-  hasLRO: boolean
+  hasLRO: boolean,
+  importedModels: Set<string>
 ) {
   const allModelsNames = getAllModelsNames(clientDetails);
   const topLevelGroup = clientDetails.operationGroups.find(og => og.isTopLevel);
   const hasMappers = !!clientDetails.mappers.length;
   // Add top level operation groups as client properties
-  // TODO: Switch to named model imports in client File
-  const importedModels = new Set<string>();
   if (!!topLevelGroup) {
     if (hasLRO) {
       writeGetOperationOptions(classDeclaration);
@@ -238,14 +263,6 @@ function writeClientOperations(
       clientDetails.parameters,
       hasMappers
     );
-
-    // Use named import from Models
-    if (importedModels.size) {
-      file.addImportDeclaration({
-        namedImports: [...importedModels],
-        moduleSpecifier: "./models"
-      });
-    }
   }
 
   const operationsDeclarationDetails = getOperationGroupsDeclarationDetails(
