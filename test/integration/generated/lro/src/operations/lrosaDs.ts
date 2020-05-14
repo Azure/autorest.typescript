@@ -1369,7 +1369,9 @@ const put200InvalidJsonOperationSpec: coreHttp.OperationSpec = {
     202: {
       bodyMapper: Mappers.Product
     },
-    204: {}
+    204: {
+      bodyMapper: Mappers.Product
+    }
   },
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],

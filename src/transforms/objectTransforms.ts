@@ -81,7 +81,7 @@ export function transformProperty({
   const { typeName, isConstant, defaultValue } = typeDetails;
 
   const schemaDescription = getSchemaTypeDocumentation(schema);
-  const description = !metadata.description
+  const description = metadata.description
     ? `${metadata.description}${schemaDescription}`
     : schemaDescription;
 
