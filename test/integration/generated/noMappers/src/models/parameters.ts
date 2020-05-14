@@ -19,3 +19,14 @@ export const $host: coreHttp.OperationURLParameter = {
   },
   skipEncoding: true
 };
+
+export const apiVersion: coreHttp.OperationParameter = {
+  parameterPath: "apiVersion",
+  mapper: {
+    serializedName: "api-version",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};

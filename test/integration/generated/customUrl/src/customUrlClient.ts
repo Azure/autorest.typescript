@@ -10,13 +10,14 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { CustomUrlClientContext } from "./customUrlClientContext";
+import { CustomUrlClientOptionalParams } from "./models";
 
 class CustomUrlClient extends CustomUrlClientContext {
   /**
    * Initializes a new instance of the CustomUrlClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.CustomUrlClientOptionalParams) {
+  constructor(options?: CustomUrlClientOptionalParams) {
     super(options);
     this.paths = new operations.Paths(this);
   }

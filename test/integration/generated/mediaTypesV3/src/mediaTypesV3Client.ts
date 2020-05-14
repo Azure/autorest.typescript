@@ -9,6 +9,7 @@
 import * as operations from "./operations";
 import * as Models from "./models";
 import { MediaTypesV3ClientContext } from "./mediaTypesV3ClientContext";
+import { MediaTypesV3ClientOptionalParams } from "./models";
 
 class MediaTypesV3Client extends MediaTypesV3ClientContext {
   /**
@@ -16,10 +17,7 @@ class MediaTypesV3Client extends MediaTypesV3ClientContext {
    * @param $host server parameter
    * @param options The parameter options
    */
-  constructor(
-    $host: string,
-    options?: Models.MediaTypesV3ClientOptionalParams
-  ) {
+  constructor($host: string, options?: MediaTypesV3ClientOptionalParams) {
     super($host, options);
     this.fooApi = new operations.FooApi(this);
   }

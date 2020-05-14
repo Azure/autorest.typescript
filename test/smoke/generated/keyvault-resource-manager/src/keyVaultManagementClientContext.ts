@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { KeyVaultManagementClientOptionalParams } from "./models";
 import { lroPolicy } from "./lro";
 
 const packageName = "keyvault-resource-manager";
@@ -28,7 +28,7 @@ export class KeyVaultManagementClientContext extends coreHttp.ServiceClient {
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
-    options?: Models.KeyVaultManagementClientOptionalParams
+    options?: KeyVaultManagementClientOptionalParams
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");

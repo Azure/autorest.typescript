@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { NetworkManagementClientOptionalParams } from "./models";
 import { lroPolicy } from "./lro";
 
 const packageName = "network-resource-manager";
@@ -27,7 +27,7 @@ export class NetworkManagementClientContext extends coreHttp.ServiceClient {
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
-    options?: Models.NetworkManagementClientOptionalParams
+    options?: NetworkManagementClientOptionalParams
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");

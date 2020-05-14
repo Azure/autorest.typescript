@@ -7,22 +7,31 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { Enum0, NoMappersClientOptionalParams } from "./models";
 
 const packageName = "no-mappers";
 const packageVersion = "1.0.0-preview1";
 
 export class NoMappersClientContext extends coreHttp.ServiceClient {
   $host: string;
+  apiVersion: Enum0;
 
   /**
    * Initializes a new instance of the NoMappersClientContext class.
    * @param $host server parameter
+   * @param apiVersion
    * @param options The parameter options
    */
-  constructor($host: string, options?: Models.NoMappersClientOptionalParams) {
+  constructor(
+    $host: string,
+    apiVersion: Enum0,
+    options?: NoMappersClientOptionalParams
+  ) {
     if ($host === undefined) {
       throw new Error("'$host' cannot be null");
+    }
+    if (apiVersion === undefined) {
+      throw new Error("'apiVersion' cannot be null");
     }
 
     // Initializing default values for options
@@ -43,5 +52,6 @@ export class NoMappersClientContext extends coreHttp.ServiceClient {
 
     // Parameter assignments
     this.$host = $host;
+    this.apiVersion = apiVersion;
   }
 }

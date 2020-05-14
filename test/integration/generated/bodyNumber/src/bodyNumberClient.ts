@@ -10,13 +10,14 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { BodyNumberClientContext } from "./bodyNumberClientContext";
+import { BodyNumberClientOptionalParams } from "./models";
 
 class BodyNumberClient extends BodyNumberClientContext {
   /**
    * Initializes a new instance of the BodyNumberClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.BodyNumberClientOptionalParams) {
+  constructor(options?: BodyNumberClientOptionalParams) {
     super(options);
     this.number = new operations.NumberOperations(this);
   }

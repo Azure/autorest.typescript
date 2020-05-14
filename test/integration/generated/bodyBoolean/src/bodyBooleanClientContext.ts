@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { BodyBooleanClientOptionalParams } from "./models";
 
 const packageName = "body-boolean";
 const packageVersion = "1.0.0-preview1";
@@ -19,7 +19,7 @@ export class BodyBooleanClientContext extends coreHttp.ServiceClient {
    * Initializes a new instance of the BodyBooleanClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: Models.BodyBooleanClientOptionalParams) {
+  constructor(options?: BodyBooleanClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};

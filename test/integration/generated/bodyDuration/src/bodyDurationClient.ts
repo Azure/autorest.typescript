@@ -10,13 +10,14 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { BodyDurationClientContext } from "./bodyDurationClientContext";
+import { BodyDurationClientOptionalParams } from "./models";
 
 class BodyDurationClient extends BodyDurationClientContext {
   /**
    * Initializes a new instance of the BodyDurationClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.BodyDurationClientOptionalParams) {
+  constructor(options?: BodyDurationClientOptionalParams) {
     super(options);
     this.duration = new operations.Duration(this);
   }

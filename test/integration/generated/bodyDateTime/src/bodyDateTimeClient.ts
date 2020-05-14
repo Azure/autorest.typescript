@@ -10,13 +10,14 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { BodyDateTimeClientContext } from "./bodyDateTimeClientContext";
+import { BodyDateTimeClientOptionalParams } from "./models";
 
 class BodyDateTimeClient extends BodyDateTimeClientContext {
   /**
    * Initializes a new instance of the BodyDateTimeClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.BodyDateTimeClientOptionalParams) {
+  constructor(options?: BodyDateTimeClientOptionalParams) {
     super(options);
     this.datetime = new operations.Datetime(this);
   }

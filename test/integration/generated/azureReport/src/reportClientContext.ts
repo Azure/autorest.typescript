@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { ReportClientOptionalParams } from "./models";
 
 const packageName = "zzzAzureReport";
 const packageVersion = "1.0.0-preview1";
@@ -19,7 +19,7 @@ export class ReportClientContext extends coreHttp.ServiceClient {
    * Initializes a new instance of the ReportClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: Models.ReportClientOptionalParams) {
+  constructor(options?: ReportClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};

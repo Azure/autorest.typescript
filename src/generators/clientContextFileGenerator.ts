@@ -22,6 +22,7 @@ export function generateClientContext(
   packageDetails: PackageDetails,
   project: Project
 ) {
+  const importedModels = new Set<string>();
   const clientParams = clientDetails.parameters.filter(
     param => param.implementationLocation === ImplementationLocation.Client
   );
@@ -44,16 +45,16 @@ export function generateClientContext(
     }
   );
 
-  writeImports(sourceFile, hasLRO);
   writePackageInfo(sourceFile, packageDetails);
 
   const contextClass = buildClass(sourceFile, clientContextClassName);
-  writeClassProperties(contextClass, clientParams);
+  writeClassProperties(contextClass, clientParams, importedModels);
 
   const classConstructor = buildConstructor(contextClass, {
     clientContextClassName,
     clientClassName: clientDetails.className,
-    clientParams
+    clientParams,
+    importedModels
   });
 
   writeConstructorBody(
@@ -64,6 +65,8 @@ export function generateClientContext(
     },
     hasLRO
   );
+
+  writeImports(sourceFile, hasLRO, importedModels);
 }
 
 interface WriteConstructorBodyParameters {
@@ -71,16 +74,22 @@ interface WriteConstructorBodyParameters {
   clientDetails: ClientDetails;
 }
 
-function writeImports(sourceFile: SourceFile, hasLRO: boolean) {
+function writeImports(
+  sourceFile: SourceFile,
+  hasLRO: boolean,
+  importedModels: Set<string>
+) {
   sourceFile.addImportDeclaration({
     namespaceImport: "coreHttp",
     moduleSpecifier: "@azure/core-http"
   });
 
-  sourceFile.addImportDeclaration({
-    namespaceImport: "Models",
-    moduleSpecifier: "./models"
-  });
+  if (importedModels.size) {
+    sourceFile.addImportDeclaration({
+      namedImports: [...importedModels],
+      moduleSpecifier: "./models"
+    });
+  }
 
   if (hasLRO) {
     sourceFile.addImportDeclaration({
@@ -103,18 +112,21 @@ function writePackageInfo(
 
 function writeClassProperties(
   contextClass: ClassDeclaration,
-  clientParams: ParameterDetails[]
+  clientParams: ParameterDetails[],
+  importedModels: Set<string>
 ) {
+  const params = clientParams.filter(p => !p.isSynthetic);
+  params.forEach(({ typeDetails }) =>
+    typeDetails.usedModels.forEach(model => importedModels.add(model))
+  );
   contextClass.addProperties(
-    clientParams
-      .filter(p => !p.isSynthetic)
-      .map(param => {
-        return {
-          name: param.name,
-          type: param.typeDetails.typeName,
-          hasQuestionToken: !param.required
-        } as PropertyDeclarationStructure;
-      })
+    params.map(param => {
+      return {
+        name: param.name,
+        type: param.typeDetails.typeName,
+        hasQuestionToken: !param.required
+      } as PropertyDeclarationStructure;
+    })
   );
 }
 
@@ -202,6 +214,7 @@ interface BuildContructorParams {
   clientContextClassName: string;
   clientClassName: string;
   clientParams: ParameterDetails[];
+  importedModels: Set<string>;
 }
 
 function buildConstructor(
@@ -209,7 +222,8 @@ function buildConstructor(
   {
     clientContextClassName,
     clientParams,
-    clientClassName
+    clientClassName,
+    importedModels
   }: BuildContructorParams
 ) {
   const requiredParams = getRequiredParameters(clientParams);
@@ -222,9 +236,18 @@ function buildConstructor(
     .filter(d => !!d)
     .join("\n");
 
-  const clientOptionsParameterType = hasClientOptionalParams
-    ? `Models.${clientClassName}OptionalParams`
-    : "coreHttp.ServiceClientOptions";
+  let clientOptionsParameterType = "coreHttp.ServiceClientOptions";
+
+  if (hasClientOptionalParams) {
+    const typeName = `${clientClassName}OptionalParams`;
+    importedModels.add(typeName);
+    clientOptionsParameterType = typeName;
+  }
+
+  requiredParams.forEach(({ typeDetails }) =>
+    typeDetails.usedModels.forEach(model => importedModels.add(model))
+  );
+
   return contextClass.addConstructor({
     docs: [docs],
     parameters: [

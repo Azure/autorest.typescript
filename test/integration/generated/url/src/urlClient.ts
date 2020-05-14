@@ -10,6 +10,7 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { UrlClientContext } from "./urlClientContext";
+import { UrlClientOptionalParams } from "./models";
 
 class UrlClient extends UrlClientContext {
   /**
@@ -17,10 +18,7 @@ class UrlClient extends UrlClientContext {
    * @param globalStringPath A string value 'globalItemStringPath' that appears in the path
    * @param options The parameter options
    */
-  constructor(
-    globalStringPath: string,
-    options?: Models.UrlClientOptionalParams
-  ) {
+  constructor(globalStringPath: string, options?: UrlClientOptionalParams) {
     super(globalStringPath, options);
     this.paths = new operations.Paths(this);
     this.queries = new operations.Queries(this);

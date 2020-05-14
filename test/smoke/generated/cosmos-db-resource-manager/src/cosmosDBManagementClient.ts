@@ -11,6 +11,7 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { CosmosDBManagementClientContext } from "./cosmosDBManagementClientContext";
+import { CosmosDBManagementClientOptionalParams } from "./models";
 
 class CosmosDBManagementClient extends CosmosDBManagementClientContext {
   /**
@@ -22,7 +23,7 @@ class CosmosDBManagementClient extends CosmosDBManagementClientContext {
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
-    options?: Models.CosmosDBManagementClientOptionalParams
+    options?: CosmosDBManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
     this.databaseAccounts = new operations.DatabaseAccounts(this);

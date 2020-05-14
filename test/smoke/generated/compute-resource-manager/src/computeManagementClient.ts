@@ -11,6 +11,7 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { ComputeManagementClientContext } from "./computeManagementClientContext";
+import { ComputeManagementClientOptionalParams } from "./models";
 
 class ComputeManagementClient extends ComputeManagementClientContext {
   /**
@@ -23,7 +24,7 @@ class ComputeManagementClient extends ComputeManagementClientContext {
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
-    options?: Models.ComputeManagementClientOptionalParams
+    options?: ComputeManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
     this.operations = new operations.Operations(this);

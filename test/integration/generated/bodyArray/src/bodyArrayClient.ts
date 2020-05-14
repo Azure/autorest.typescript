@@ -10,13 +10,14 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { BodyArrayClientContext } from "./bodyArrayClientContext";
+import { BodyArrayClientOptionalParams } from "./models";
 
 class BodyArrayClient extends BodyArrayClientContext {
   /**
    * Initializes a new instance of the BodyArrayClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.BodyArrayClientOptionalParams) {
+  constructor(options?: BodyArrayClientOptionalParams) {
     super(options);
     this.array = new operations.Array(this);
   }

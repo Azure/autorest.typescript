@@ -10,13 +10,14 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { BodyComplexClientContext } from "./bodyComplexClientContext";
+import { BodyComplexClientOptionalParams } from "./models";
 
 class BodyComplexClient extends BodyComplexClientContext {
   /**
    * Initializes a new instance of the BodyComplexClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.BodyComplexClientOptionalParams) {
+  constructor(options?: BodyComplexClientOptionalParams) {
     super(options);
     this.basic = new operations.Basic(this);
     this.primitive = new operations.Primitive(this);

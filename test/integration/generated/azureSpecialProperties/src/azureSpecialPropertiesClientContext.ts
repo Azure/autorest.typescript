@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { AzureSpecialPropertiesClientOptionalParams } from "./models";
 
 const packageName = "azure-special-properties";
 const packageVersion = "1.0.0-preview1";
@@ -27,7 +27,7 @@ export class AzureSpecialPropertiesClientContext extends coreHttp.ServiceClient 
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
-    options?: Models.AzureSpecialPropertiesClientOptionalParams
+    options?: AzureSpecialPropertiesClientOptionalParams
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");

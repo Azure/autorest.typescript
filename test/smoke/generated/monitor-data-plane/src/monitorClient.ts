@@ -11,6 +11,7 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { MonitorClientContext } from "./monitorClientContext";
+import { MonitorClientOptionalParams } from "./models";
 
 class MonitorClient extends MonitorClientContext {
   /**
@@ -20,7 +21,7 @@ class MonitorClient extends MonitorClientContext {
    */
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
-    options?: Models.MonitorClientOptionalParams
+    options?: MonitorClientOptionalParams
   ) {
     super(credentials, options);
     this.metrics = new operations.Metrics(this);

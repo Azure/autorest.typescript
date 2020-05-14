@@ -10,13 +10,14 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { LROClientContext } from "./lROClientContext";
+import { LROClientOptionalParams } from "./models";
 
 class LROClient extends LROClientContext {
   /**
    * Initializes a new instance of the LROClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.LROClientOptionalParams) {
+  constructor(options?: LROClientOptionalParams) {
     super(options);
     this.lROs = new operations.LROs(this);
     this.lRORetrys = new operations.LRORetrys(this);

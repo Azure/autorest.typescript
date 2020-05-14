@@ -10,13 +10,14 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { BodyByteClientContext } from "./bodyByteClientContext";
+import { BodyByteClientOptionalParams } from "./models";
 
 class BodyByteClient extends BodyByteClientContext {
   /**
    * Initializes a new instance of the BodyByteClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.BodyByteClientOptionalParams) {
+  constructor(options?: BodyByteClientOptionalParams) {
     super(options);
     this.byte = new operations.Byte(this);
   }

@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { ComputeManagementClientOptionalParams } from "./models";
 import { lroPolicy } from "./lro";
 
 const packageName = "compute-resource-manager";
@@ -27,7 +27,7 @@ export class ComputeManagementClientContext extends coreHttp.ServiceClient {
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
-    options?: Models.ComputeManagementClientOptionalParams
+    options?: ComputeManagementClientOptionalParams
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");

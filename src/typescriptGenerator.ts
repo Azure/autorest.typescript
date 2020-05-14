@@ -56,7 +56,8 @@ export async function generateTypeScriptLibrary(
   const clientDetails = await transformCodeModel(codeModel, host);
   clientDetails.srcPath = srcPath;
 
-  const packageName = await host.GetValue("package-name");
+  const packageName =
+    (await host.GetValue("package-name")) || clientDetails.name;
   const packageNameParts = packageName.match(/(^@(.*)\/)?(.*)/);
   const packageDetails: PackageDetails = {
     name: packageName,

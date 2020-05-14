@@ -10,7 +10,10 @@ import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
 import * as Models from "./models";
 import { RegexConstraintContext } from "./regexConstraintContext";
-import { RegexConstraintApiV1ValueGetResponse } from "./models";
+import {
+  RegexConstraintOptionalParams,
+  RegexConstraintApiV1ValueGetResponse
+} from "./models";
 
 class RegexConstraint extends RegexConstraintContext {
   /**
@@ -18,7 +21,7 @@ class RegexConstraint extends RegexConstraintContext {
    * @param $host server parameter
    * @param options The parameter options
    */
-  constructor($host: string, options?: Models.RegexConstraintOptionalParams) {
+  constructor($host: string, options?: RegexConstraintOptionalParams) {
     super($host, options);
   }
 

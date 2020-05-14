@@ -11,6 +11,7 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { ManagedServiceIdentityClientContext } from "./managedServiceIdentityClientContext";
+import { ManagedServiceIdentityClientOptionalParams } from "./models";
 
 class ManagedServiceIdentityClient extends ManagedServiceIdentityClientContext {
   /**
@@ -22,7 +23,7 @@ class ManagedServiceIdentityClient extends ManagedServiceIdentityClientContext {
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
-    options?: Models.ManagedServiceIdentityClientOptionalParams
+    options?: ManagedServiceIdentityClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
     this.systemAssignedIdentities = new operations.SystemAssignedIdentities(

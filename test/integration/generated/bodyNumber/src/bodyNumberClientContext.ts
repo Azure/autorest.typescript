@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { BodyNumberClientOptionalParams } from "./models";
 
 const packageName = "body-number";
 const packageVersion = "1.0.0-preview1";
@@ -19,7 +19,7 @@ export class BodyNumberClientContext extends coreHttp.ServiceClient {
    * Initializes a new instance of the BodyNumberClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: Models.BodyNumberClientOptionalParams) {
+  constructor(options?: BodyNumberClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};

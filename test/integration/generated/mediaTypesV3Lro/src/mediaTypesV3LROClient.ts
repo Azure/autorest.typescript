@@ -12,6 +12,7 @@ import * as Parameters from "./models/parameters";
 import * as Models from "./models";
 import { MediaTypesV3LROClientContext } from "./mediaTypesV3LROClientContext";
 import {
+  MediaTypesV3LROClientOptionalParams,
   MediaTypesV3LROClientSendOnDefault$binaryOptionalParams,
   MediaTypesV3LROClientSendOnDefault$textOptionalParams,
   MediaTypesV3LROClientSend$binaryOptionalParams,
@@ -24,10 +25,7 @@ class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
    * @param $host server parameter
    * @param options The parameter options
    */
-  constructor(
-    $host: string,
-    options?: Models.MediaTypesV3LROClientOptionalParams
-  ) {
+  constructor($host: string, options?: MediaTypesV3LROClientOptionalParams) {
     super($host, options);
   }
 

@@ -12,6 +12,7 @@ import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { MediaTypesClientContext } from "./mediaTypesClientContext";
 import {
+  MediaTypesClientOptionalParams,
   ContentType,
   MediaTypesClientAnalyzeBody$binaryOptionalParams,
   MediaTypesClientAnalyzeBody$jsonOptionalParams,
@@ -23,7 +24,7 @@ class MediaTypesClient extends MediaTypesClientContext {
    * Initializes a new instance of the MediaTypesClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.MediaTypesClientOptionalParams) {
+  constructor(options?: MediaTypesClientOptionalParams) {
     super(options);
   }
 

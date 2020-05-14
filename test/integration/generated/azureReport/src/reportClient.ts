@@ -12,6 +12,7 @@ import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { ReportClientContext } from "./reportClientContext";
 import {
+  ReportClientOptionalParams,
   ReportClientGetReportOptionalParams,
   ReportClientGetReportResponse
 } from "./models";
@@ -21,7 +22,7 @@ class ReportClient extends ReportClientContext {
    * Initializes a new instance of the ReportClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.ReportClientOptionalParams) {
+  constructor(options?: ReportClientOptionalParams) {
     super(options);
   }
 

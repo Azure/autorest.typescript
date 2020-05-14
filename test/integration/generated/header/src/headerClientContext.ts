@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Models from "./models";
+import { HeaderClientOptionalParams } from "./models";
 
 const packageName = "header";
 const packageVersion = "1.0.0-preview1";
@@ -19,7 +19,7 @@ export class HeaderClientContext extends coreHttp.ServiceClient {
    * Initializes a new instance of the HeaderClientContext class.
    * @param options The parameter options
    */
-  constructor(options?: Models.HeaderClientOptionalParams) {
+  constructor(options?: HeaderClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};

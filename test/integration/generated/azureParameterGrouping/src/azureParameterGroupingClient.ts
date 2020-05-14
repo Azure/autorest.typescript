@@ -10,13 +10,14 @@ import * as operations from "./operations";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { AzureParameterGroupingClientContext } from "./azureParameterGroupingClientContext";
+import { AzureParameterGroupingClientOptionalParams } from "./models";
 
 class AzureParameterGroupingClient extends AzureParameterGroupingClientContext {
   /**
    * Initializes a new instance of the AzureParameterGroupingClient class.
    * @param options The parameter options
    */
-  constructor(options?: Models.AzureParameterGroupingClientOptionalParams) {
+  constructor(options?: AzureParameterGroupingClientOptionalParams) {
     super(options);
     this.parameterGrouping = new operations.ParameterGrouping(this);
   }
