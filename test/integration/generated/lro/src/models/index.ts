@@ -1221,6 +1221,36 @@ export type LROsDelete202NoRetry204Response = Product & {
 };
 
 /**
+ * Contains response data for the deleteNoHeaderInRetry operation.
+ */
+export type LROsDeleteNoHeaderInRetryResponse = LROsDeleteNoHeaderInRetryHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: LROsDeleteNoHeaderInRetryHeaders;
+  };
+};
+
+/**
+ * Contains response data for the deleteAsyncNoHeaderInRetry operation.
+ */
+export type LROsDeleteAsyncNoHeaderInRetryResponse = LROsDeleteAsyncNoHeaderInRetryHeaders & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The parsed HTTP response headers.
+     */
+    parsedHeaders: LROsDeleteAsyncNoHeaderInRetryHeaders;
+  };
+};
+
+/**
  * Contains response data for the deleteAsyncRetrySucceeded operation.
  */
 export type LROsDeleteAsyncRetrySucceededResponse = LROsDeleteAsyncRetrySucceededHeaders & {

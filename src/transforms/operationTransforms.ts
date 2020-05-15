@@ -356,15 +356,11 @@ export async function transformOperation(
   );
   const hasMultipleResponses = responses.filter(r => !r.isError).length > 1;
 
-  // If this is an LRO operation only consider the success response,
+  // If this is an LRO operation only consider the first success response,
   // this is because LRO operations swagger defines initial and final operation
   // responses in the same operation.
   if (isLRO && hasMultipleResponses) {
-    responses = responses.filter(
-      response =>
-        response.statusCodes.includes("200") ||
-        response.statusCodes.includes("204")
-    );
+    responses = [responses[0]];
   }
 
   const mediaTypes = await getOperationMediaTypes(requests, responses);

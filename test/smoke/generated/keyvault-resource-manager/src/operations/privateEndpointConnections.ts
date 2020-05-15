@@ -212,7 +212,9 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     202: {
       bodyMapper: Mappers.PrivateEndpointConnection
     },
-    204: {}
+    204: {
+      bodyMapper: Mappers.PrivateEndpointConnection
+    }
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
