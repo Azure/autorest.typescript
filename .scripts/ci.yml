@@ -4,32 +4,29 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+jobs:
+  - job: Build
+    steps:
+    - template: build.yml
+    - script: npm run test
+      displayName: 'Run Tests'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'Build'
+    - script: npm run check:tree
+      displayName: 'Check git Tree'
 
-- script: |
-    npm run test
-    npm run check:tree
-  displayName: 'Run Tests'
+    - script: |
+        npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
+      workingDirectory: node_modules/@microsoft.azure/autorest.testserver
+      displayName: 'Upload Coverage Report'
 
-- script: |
-    npm run clone:specs
-  displayName: 'Clone Specs Repository'
+  - job: SmokeTest
+    steps:
+    - template: build.yml
+    - script: npm run clone:specs
+      displayName: 'Clone Specs Repository'
 
-- script: |
-    npm run smoke-test
-    npm run check:tree
-  displayName: 'Run Smoke Tests'
+    - script: npm run smoke-test
+      displayName: 'Run Smoke Tests'
 
-- script: |
-    npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
-  workingDirectory: node_modules/@microsoft.azure/autorest.testserver
-  displayName: 'Upload Coverage Report'
+    - script: npm run check:tree
+      displayName: 'Check git Tree'
