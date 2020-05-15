@@ -7,19 +7,7 @@ pool:
 jobs:
   - job: Build
     steps:
-    - task: NodeTool@0
-      inputs:
-        versionSpec: '10.x'
-      displayName: 'Install Node.js'
-
-    - script: |
-        npm install
-        npm run build
-      displayName: 'Build'
-
-  - job: Test
-    dependsOn: Build
-    steps:
+    - template: build.yml
     - script: npm run test
       displayName: 'Run Tests'
 
@@ -32,8 +20,8 @@ jobs:
       displayName: 'Upload Coverage Report'
 
   - job: SmokeTest
-    dependsOn: Build
     steps:
+    - template: build.yml
     - script: npm run clone:specs
       displayName: 'Clone Specs Repository'
 
