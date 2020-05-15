@@ -9,6 +9,7 @@ export enum AutorestParams {
 }
 
 export const readmes: SpecDefinition[] = [
+  { path: "./.tmp/specs/specification/web/resource-manager/readme.md" },
   { path: "./.tmp/specs/specification/monitor/data-plane/readme.md" },
   { path: "./.tmp/specs/specification/graphrbac/data-plane/readme.md" },
   {
