@@ -28,3 +28,8 @@ jobs:
     parameters:
       name: SmokeTest_2
       tag: ci_2
+
+  - template: smoke-test.yml
+    parameters:
+      name: SmokeTest_3
+      tag: ci_3

@@ -61,24 +61,24 @@ export const readmes: SpecDefinition[] = [
   },
   {
     path: "./.tmp/specs/specification/network/resource-manager/readme.md",
-    buildTag: "ci_2"
+    buildTag: "ci_3"
   },
   {
     path: "./.tmp/specs/specification/keyvault/resource-manager/readme.md",
-    buildTag: "ci_2"
+    buildTag: "ci_3"
   },
   {
     path: "./.tmp/specs/specification/storage/resource-manager/readme.md",
     params: [AutorestParams.ModelDedup],
-    buildTag: "ci_2"
+    buildTag: "ci_3"
   },
   {
     path: "./.tmp/specs/specification/msi/resource-manager/readme.md",
-    buildTag: "ci_2"
+    buildTag: "ci_3"
   },
   {
     path:
       "./.tmp/specs/specification/adhybridhealthservice/resource-manager/readme.md",
-    buildTag: "ci_2"
+    buildTag: "ci_3"
   }
 ];
