@@ -21,10 +21,10 @@ jobs:
 
   - template: smoke-test.yml
     parameters:
-      name: "SmokeTest 1"
-      tag: "ci_1"
+      name: SmokeTest_1
+      tag: ci_1
 
   - template: smoke-test.yml
     parameters:
-      name: "SmokeTest 2"
-      tag: "ci_2"
+      name: SmokeTest_2
+      tag: ci_2
