@@ -9,7 +9,7 @@ jobs:
       - script: npm run clone:specs
         displayName: "Clone Specs Repository"
 
-      - script: npm run smoke-test --${{ parameters.tag }}
+      - script: npm run smoke-test -- --tag=${{ parameters.tag }}
         displayName: "Run Smoke Tests"
 
       - script: npm run check:tree
