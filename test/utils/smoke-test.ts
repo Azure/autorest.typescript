@@ -32,7 +32,11 @@ const onExit = (childProcess: ChildProcess) => {
   });
 };
 
-const generateFromReadme = async ({ path, params }: SpecDefinition) => {
+const generateFromReadme = async ({
+  path,
+  params,
+  outputFolderName
+}: SpecDefinition) => {
   const regex = new RegExp(
     "^[^#].*?specification/([\\w-]+(/[\\w-]+)+)/readme.md"
   );
@@ -41,7 +45,9 @@ const generateFromReadme = async ({ path, params }: SpecDefinition) => {
     return;
   }
 
-  const projectName = matches[1].replace(new RegExp("/", "g"), "-");
+  const projectName =
+    outputFolderName || matches[1].replace(new RegExp("/", "g"), "-");
+
   const output = joinPath(SMOKE_PATH, projectName);
   const autorestCmd = `autorest${/^win/.test(process.platform) ? ".cmd" : ""}`;
   const childProcess = spawn(
@@ -126,34 +132,25 @@ const verifyLibraries = async (readmes: SpecDefinition[]) => {
 
 const main = async () => {
   const args = command("test-smoke", "Run @autorest.typescript smoke test", {
-    slice: {
-      alias: "n",
-      default: 0,
-      type: "number"
-    },
-    size: {
-      aliase: "s",
-      default: 0,
-      type: "number"
+    tag: {
+      alias: "t",
+      default: undefined,
+      type: "string"
     }
   }).help().argv;
 
-  const slice = args.slice as number;
-  const size = args.size as number;
-  let chunk = readmes;
+  let tag = (args.tag || args.t) as string;
+  let swaggers = readmes;
 
-  if (size && slice) {
-    const start = size * (slice - 1);
-    const end = start + size;
-
-    if (start < 1 && start >= read.length) {
-      throw new Error("Start index is out of bounds, check the slice and size");
-    }
-
-    chunk = readmes.slice(start, end < readmes.length ? end : readmes.length);
-    console.log(`start: ${start}, end: ${end}, size: ${chunk.length}`);
+  // If the tag parameter was provided only generate swaggers with that tag
+  if (tag) {
+    tag = tag.toLowerCase();
+    swaggers = readmes.filter(
+      r => r.buildTag && r.buildTag.toLowerCase() === tag
+    );
   }
-  await verifyLibraries(chunk);
+
+  await verifyLibraries(swaggers);
 };
 
 const checkoutBranch = async (branch?: string) => {
