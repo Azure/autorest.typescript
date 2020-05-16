@@ -48,7 +48,7 @@ export const readmes: SpecDefinition[] = [
   },
   {
     path: "./.tmp/specs/specification/graphrbac/data-plane/readme.md",
-    buildTag: "ci_1"
+    buildTag: "ci_2"
   },
   {
     path: "./.tmp/specs/specification/cosmos-db/resource-manager/readme.md",
@@ -69,6 +69,7 @@ export const readmes: SpecDefinition[] = [
   },
   {
     path: "./.tmp/specs/specification/storage/resource-manager/readme.md",
+    params: [AutorestParams.ModelDedup],
     buildTag: "ci_2"
   },
   {
