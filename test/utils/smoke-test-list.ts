@@ -40,11 +40,11 @@ export const readmes: SpecDefinition[] = [
   },
   {
     path: "./.tmp/specs/specification/web/resource-manager/readme.md",
-    buildTag: "ci_1"
+    buildTag: "ci_2"
   },
   {
     path: "./.tmp/specs/specification/monitor/data-plane/readme.md",
-    buildTag: "ci_1"
+    buildTag: "ci_2"
   },
   {
     path: "./.tmp/specs/specification/graphrbac/data-plane/readme.md",
