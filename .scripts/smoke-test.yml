@@ -1,0 +1,16 @@
+parameters:
+  name: ""
+  tag: ""
+
+jobs:
+  - job: ${{ parameters.name }}
+    steps:
+      - template: build.yml
+      - script: npm run clone:specs
+        displayName: "Clone Specs Repository"
+
+      - script: npm run smoke-test -- --tag=${{ parameters.tag }}
+        displayName: "Run Smoke Tests"
+
+      - script: npm run check:tree
+        displayName: "Check git Tree"

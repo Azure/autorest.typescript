@@ -2,31 +2,34 @@ trigger:
   - v6
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: "ubuntu-latest"
 
 jobs:
   - job: Build
     steps:
-    - template: build.yml
-    - script: npm run test
-      displayName: 'Run Tests'
+      - template: build.yml
+      - script: npm run test
+        displayName: "Run Tests"
 
-    - script: npm run check:tree
-      displayName: 'Check git Tree'
+      - script: npm run check:tree
+        displayName: "Check git Tree"
 
-    - script: |
-        npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
-      workingDirectory: node_modules/@microsoft.azure/autorest.testserver
-      displayName: 'Upload Coverage Report'
+      - script: |
+          npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
+        workingDirectory: node_modules/@microsoft.azure/autorest.testserver
+        displayName: "Upload Coverage Report"
 
-  - job: SmokeTest
-    steps:
-    - template: build.yml
-    - script: npm run clone:specs
-      displayName: 'Clone Specs Repository'
+  - template: smoke-test.yml
+    parameters:
+      name: SmokeTest_1
+      tag: ci_1
 
-    - script: npm run smoke-test
-      displayName: 'Run Smoke Tests'
+  - template: smoke-test.yml
+    parameters:
+      name: SmokeTest_2
+      tag: ci_2
 
-    - script: npm run check:tree
-      displayName: 'Check git Tree'
+  - template: smoke-test.yml
+    parameters:
+      name: SmokeTest_3
+      tag: ci_3
