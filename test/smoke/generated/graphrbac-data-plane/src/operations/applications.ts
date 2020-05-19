@@ -152,21 +152,21 @@ export class Applications {
 
   /**
    * Add an owner to an application.
+   * @param applicationObjectId The object ID of the application to which to add the owner.
    * @param parameters The URL of the owner object, such as
    *                   https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd.
-   * @param applicationObjectId The object ID of the application to which to add the owner.
    * @param options The options parameters.
    */
   addOwner(
-    parameters: AddOwnerParameters,
     applicationObjectId: string,
+    parameters: AddOwnerParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { parameters, applicationObjectId, options: operationOptions },
+      { applicationObjectId, parameters, options: operationOptions },
       addOwnerOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -342,6 +342,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -412,6 +413,7 @@ const patchOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationObjectId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOwnersOperationSpec: coreHttp.OperationSpec = {
@@ -450,6 +452,7 @@ const addOwnerOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationObjectId2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const removeOwnerOperationSpec: coreHttp.OperationSpec = {
@@ -507,6 +510,7 @@ const updateKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationObjectId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listPasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
@@ -545,6 +549,7 @@ const updatePasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
     Parameters.applicationObjectId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getServicePrincipalsIdByAppIdOperationSpec: coreHttp.OperationSpec = {

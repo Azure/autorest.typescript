@@ -39,16 +39,16 @@ export class VirtualMachineExtensions {
   /**
    * The operation to create or update the extension.
    * @param resourceGroupName The name of the resource group.
-   * @param extensionParameters Parameters supplied to the Create Virtual Machine Extension operation.
    * @param vmName The name of the virtual machine where the extension should be created or updated.
    * @param vmExtensionName The name of the virtual machine extension.
+   * @param extensionParameters Parameters supplied to the Create Virtual Machine Extension operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    extensionParameters: VirtualMachineExtension,
     vmName: string,
     vmExtensionName: string,
+    extensionParameters: VirtualMachineExtension,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualMachineExtensionsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -57,9 +57,9 @@ export class VirtualMachineExtensions {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      extensionParameters,
       vmName,
       vmExtensionName,
+      extensionParameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -85,16 +85,16 @@ export class VirtualMachineExtensions {
   /**
    * The operation to update the extension.
    * @param resourceGroupName The name of the resource group.
+   * @param vmName The name of the virtual machine where the extension should be updated.
    * @param vmExtensionName The name of the virtual machine extension.
    * @param extensionParameters Parameters supplied to the Update Virtual Machine Extension operation.
-   * @param vmName The name of the virtual machine where the extension should be updated.
    * @param options The options parameters.
    */
   async update(
     resourceGroupName: string,
+    vmName: string,
     vmExtensionName: string,
     extensionParameters: VirtualMachineExtensionUpdate,
-    vmName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualMachineExtensionsUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -103,9 +103,9 @@ export class VirtualMachineExtensions {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
+      vmName,
       vmExtensionName,
       extensionParameters,
-      vmName,
       options: operationOptions
     };
     const sendOperation = (
@@ -131,14 +131,14 @@ export class VirtualMachineExtensions {
   /**
    * The operation to delete the extension.
    * @param resourceGroupName The name of the resource group.
-   * @param vmExtensionName The name of the virtual machine extension.
    * @param vmName The name of the virtual machine where the extension should be deleted.
+   * @param vmExtensionName The name of the virtual machine extension.
    * @param options The options parameters.
    */
   async delete(
     resourceGroupName: string,
-    vmExtensionName: string,
     vmName: string,
+    vmExtensionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -147,8 +147,8 @@ export class VirtualMachineExtensions {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      vmExtensionName,
       vmName,
+      vmExtensionName,
       options: operationOptions
     };
     const sendOperation = (
@@ -174,21 +174,21 @@ export class VirtualMachineExtensions {
   /**
    * The operation to get the extension.
    * @param resourceGroupName The name of the resource group.
-   * @param vmExtensionName The name of the virtual machine extension.
    * @param vmName The name of the virtual machine containing the extension.
+   * @param vmExtensionName The name of the virtual machine extension.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
-    vmExtensionName: string,
     vmName: string,
+    vmExtensionName: string,
     options?: VirtualMachineExtensionsGetOptionalParams
   ): Promise<VirtualMachineExtensionsGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, vmExtensionName, vmName, options: operationOptions },
+      { resourceGroupName, vmName, vmExtensionName, options: operationOptions },
       getOperationSpec
     ) as Promise<VirtualMachineExtensionsGetResponse>;
   }
@@ -257,6 +257,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmExtensionName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -287,6 +288,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

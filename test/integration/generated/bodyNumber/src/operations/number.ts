@@ -507,6 +507,7 @@ const putBigFloatOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getBigFloatOperationSpec: coreHttp.OperationSpec = {
@@ -535,6 +536,7 @@ const putBigDoubleOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getBigDoubleOperationSpec: coreHttp.OperationSpec = {
@@ -563,6 +565,7 @@ const putBigDoublePositiveDecimalOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.numberBody1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getBigDoublePositiveDecimalOperationSpec: coreHttp.OperationSpec = {
@@ -591,6 +594,7 @@ const putBigDoubleNegativeDecimalOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.numberBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getBigDoubleNegativeDecimalOperationSpec: coreHttp.OperationSpec = {
@@ -619,6 +623,7 @@ const putBigDecimalOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getBigDecimalOperationSpec: coreHttp.OperationSpec = {
@@ -647,6 +652,7 @@ const putBigDecimalPositiveDecimalOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.numberBody1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getBigDecimalPositiveDecimalOperationSpec: coreHttp.OperationSpec = {
@@ -675,6 +681,7 @@ const putBigDecimalNegativeDecimalOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.numberBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getBigDecimalNegativeDecimalOperationSpec: coreHttp.OperationSpec = {
@@ -703,6 +710,7 @@ const putSmallFloatOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getSmallFloatOperationSpec: coreHttp.OperationSpec = {
@@ -731,6 +739,7 @@ const putSmallDoubleOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getSmallDoubleOperationSpec: coreHttp.OperationSpec = {
@@ -759,6 +768,7 @@ const putSmallDecimalOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getSmallDecimalOperationSpec: coreHttp.OperationSpec = {

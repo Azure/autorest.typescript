@@ -317,6 +317,7 @@ const createUpdateTableOperationSpec: coreHttp.OperationSpec = {
     Parameters.tableName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteTableOperationSpec: coreHttp.OperationSpec = {
@@ -381,5 +382,6 @@ const updateTableThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.tableName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };

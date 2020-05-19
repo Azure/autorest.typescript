@@ -627,6 +627,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -656,6 +657,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -686,6 +688,7 @@ const failoverPriorityChangeOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -768,6 +771,7 @@ const offlineRegionOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const onlineRegionOperationSpec: coreHttp.OperationSpec = {
@@ -784,6 +788,7 @@ const onlineRegionOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getReadOnlyKeysOperationSpec: coreHttp.OperationSpec = {
@@ -836,6 +841,7 @@ const regenerateKeyOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const checkNameExistsOperationSpec: coreHttp.OperationSpec = {

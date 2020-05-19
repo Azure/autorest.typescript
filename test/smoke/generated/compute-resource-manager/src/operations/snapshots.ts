@@ -42,16 +42,16 @@ export class Snapshots {
   /**
    * Creates or updates a snapshot.
    * @param resourceGroupName The name of the resource group.
-   * @param snapshot Snapshot object supplied in the body of the Put disk operation.
    * @param snapshotName The name of the snapshot that is being created. The name can't be changed after
    *                     the snapshot is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The max name
    *                     length is 80 characters.
+   * @param snapshot Snapshot object supplied in the body of the Put disk operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    snapshot: Snapshot,
     snapshotName: string,
+    snapshot: Snapshot,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<SnapshotsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -60,8 +60,8 @@ export class Snapshots {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      snapshot,
       snapshotName,
+      snapshot,
       options: operationOptions
     };
     const sendOperation = (
@@ -397,6 +397,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.snapshotName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -426,6 +427,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.snapshotName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -516,6 +518,7 @@ const grantAccessOperationSpec: coreHttp.OperationSpec = {
     Parameters.snapshotName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const revokeAccessOperationSpec: coreHttp.OperationSpec = {

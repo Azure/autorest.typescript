@@ -40,15 +40,15 @@ export class Galleries {
   /**
    * Create or update a Shared Image Gallery.
    * @param resourceGroupName The name of the resource group.
-   * @param gallery Parameters supplied to the create or update Shared Image Gallery operation.
    * @param galleryName The name of the Shared Image Gallery. The allowed characters are alphabets and
    *                    numbers with dots and periods allowed in the middle. The maximum length is 80 characters.
+   * @param gallery Parameters supplied to the create or update Shared Image Gallery operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    gallery: Gallery,
     galleryName: string,
+    gallery: Gallery,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<GalleriesCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -57,8 +57,8 @@ export class Galleries {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      gallery,
       galleryName,
+      gallery,
       options: operationOptions
     };
     const sendOperation = (
@@ -298,6 +298,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -330,6 +331,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

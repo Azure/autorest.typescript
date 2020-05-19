@@ -160,6 +160,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getInvalidOperationSpec: coreHttp.OperationSpec = {

@@ -39,15 +39,15 @@ export class DedicatedHosts {
    * Create or update a dedicated host .
    * @param resourceGroupName The name of the resource group.
    * @param hostGroupName The name of the dedicated host group.
-   * @param parameters Parameters supplied to the Create Dedicated Host.
    * @param hostName The name of the dedicated host .
+   * @param parameters Parameters supplied to the Create Dedicated Host.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
     hostGroupName: string,
-    parameters: DedicatedHost,
     hostName: string,
+    parameters: DedicatedHost,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DedicatedHostsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -57,8 +57,8 @@ export class DedicatedHosts {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       hostGroupName,
-      parameters,
       hostName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -279,6 +279,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.hostName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -309,6 +310,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.hostName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

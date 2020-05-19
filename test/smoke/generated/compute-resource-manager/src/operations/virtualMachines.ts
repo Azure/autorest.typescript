@@ -71,14 +71,14 @@ export class VirtualMachines {
    * Captures the VM by copying virtual hard disks of the VM and outputs a template that can be used to
    * create similar VMs.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters supplied to the Capture Virtual Machine operation.
    * @param vmName The name of the virtual machine.
+   * @param parameters Parameters supplied to the Capture Virtual Machine operation.
    * @param options The options parameters.
    */
   async capture(
     resourceGroupName: string,
-    parameters: VirtualMachineCaptureParameters,
     vmName: string,
+    parameters: VirtualMachineCaptureParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualMachinesCaptureResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -88,8 +88,8 @@ export class VirtualMachines {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       vmName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -908,6 +908,7 @@ const captureOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -937,6 +938,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -966,6 +968,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -1192,6 +1195,7 @@ const reimageOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const performMaintenanceOperationSpec: coreHttp.OperationSpec = {
@@ -1249,6 +1253,7 @@ const runCommandOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByLocationNextOperationSpec: coreHttp.OperationSpec = {

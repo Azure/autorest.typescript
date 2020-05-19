@@ -40,14 +40,14 @@ export class ProximityPlacementGroups {
   /**
    * Create or update a proximity placement group.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters supplied to the Create Proximity Placement Group operation.
    * @param proximityPlacementGroupName The name of the proximity placement group.
+   * @param parameters Parameters supplied to the Create Proximity Placement Group operation.
    * @param options The options parameters.
    */
   createOrUpdate(
     resourceGroupName: string,
-    parameters: ProximityPlacementGroup,
     proximityPlacementGroupName: string,
+    parameters: ProximityPlacementGroup,
     options?: coreHttp.OperationOptions
   ): Promise<ProximityPlacementGroupsCreateOrUpdateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -56,8 +56,8 @@ export class ProximityPlacementGroups {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        parameters,
         proximityPlacementGroupName,
+        parameters,
         options: operationOptions
       },
       createOrUpdateOperationSpec
@@ -236,6 +236,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.proximityPlacementGroupName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -256,6 +257,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.proximityPlacementGroupName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

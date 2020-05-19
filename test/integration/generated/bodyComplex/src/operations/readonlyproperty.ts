@@ -90,5 +90,6 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.complexBody21,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };

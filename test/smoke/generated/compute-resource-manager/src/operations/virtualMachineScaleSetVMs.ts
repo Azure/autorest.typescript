@@ -588,16 +588,16 @@ export class VirtualMachineScaleSetVMs {
   /**
    * Run command on a virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters supplied to the Run command operation.
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
+   * @param parameters Parameters supplied to the Run command operation.
    * @param options The options parameters.
    */
   async runCommand(
     resourceGroupName: string,
-    parameters: RunCommandInput,
     vmScaleSetName: string,
     instanceId: string,
+    parameters: RunCommandInput,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualMachineScaleSetVMsRunCommandResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -607,9 +607,9 @@ export class VirtualMachineScaleSetVMs {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       vmScaleSetName,
       instanceId,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -636,14 +636,14 @@ export class VirtualMachineScaleSetVMs {
   /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param virtualMachineScaleSetName The name of the VM scale set.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
     resourceGroupName: string,
-    nextLink: string,
     virtualMachineScaleSetName: string,
+    nextLink: string,
     options?: VirtualMachineScaleSetVMsListNextOptionalParams
   ): Promise<VirtualMachineScaleSetVMsListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -652,8 +652,8 @@ export class VirtualMachineScaleSetVMs {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        nextLink,
         virtualMachineScaleSetName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec
@@ -691,6 +691,7 @@ const reimageOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const reimageAllOperationSpec: coreHttp.OperationSpec = {
@@ -751,6 +752,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -947,6 +949,7 @@ const runCommandOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {

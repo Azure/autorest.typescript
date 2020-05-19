@@ -40,14 +40,14 @@ export class DedicatedHostGroups {
    * Create or update a dedicated host group. For details of Dedicated Host and Dedicated Host Groups
    * please see [Dedicated Host Documentation] (https://go.microsoft.com/fwlink/?linkid=2082596)
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters supplied to the Create Dedicated Host Group.
    * @param hostGroupName The name of the dedicated host group.
+   * @param parameters Parameters supplied to the Create Dedicated Host Group.
    * @param options The options parameters.
    */
   createOrUpdate(
     resourceGroupName: string,
-    parameters: DedicatedHostGroup,
     hostGroupName: string,
+    parameters: DedicatedHostGroup,
     options?: coreHttp.OperationOptions
   ): Promise<DedicatedHostGroupsCreateOrUpdateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -56,8 +56,8 @@ export class DedicatedHostGroups {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        parameters,
         hostGroupName,
+        parameters,
         options: operationOptions
       },
       createOrUpdateOperationSpec
@@ -230,6 +230,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.hostGroupName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -250,6 +251,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.hostGroupName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

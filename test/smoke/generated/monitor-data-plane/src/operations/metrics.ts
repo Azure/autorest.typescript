@@ -28,7 +28,6 @@ export class Metrics {
 
   /**
    * **Post the metric values for a resource**.
-   * @param body The Azure metrics document json payload
    * @param contentType Supports application/json and application/x-ndjson
    * @param contentLength Content length of the payload
    * @param authorization Authorization token issue for issued for audience
@@ -38,10 +37,10 @@ export class Metrics {
    * @param resourceProvider The ARM resource provider name
    * @param resourceTypeName The ARM resource type name
    * @param resourceName The ARM resource name
+   * @param body The Azure metrics document json payload
    * @param options The options parameters.
    */
   create(
-    body: AzureMetricsDocument,
     contentType: string,
     contentLength: number,
     authorization: string,
@@ -50,6 +49,7 @@ export class Metrics {
     resourceProvider: string,
     resourceTypeName: string,
     resourceName: string,
+    body: AzureMetricsDocument,
     options?: coreHttp.OperationOptions
   ): Promise<MetricsCreateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -57,7 +57,6 @@ export class Metrics {
     );
     return this.client.sendOperationRequest(
       {
-        body,
         contentType,
         contentLength,
         authorization,
@@ -66,6 +65,7 @@ export class Metrics {
         resourceProvider,
         resourceTypeName,
         resourceName,
+        body,
         options: operationOptions
       },
       createOperationSpec
@@ -103,5 +103,6 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.contentLength,
     Parameters.authorization
   ],
+  mediaType: "json",
   serializer
 };

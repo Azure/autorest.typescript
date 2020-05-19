@@ -42,16 +42,16 @@ export class Disks {
   /**
    * Creates or updates a disk.
    * @param resourceGroupName The name of the resource group.
-   * @param disk Disk object supplied in the body of the Put disk operation.
    * @param diskName The name of the managed disk that is being created. The name can't be changed after
    *                 the disk is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name
    *                 length is 80 characters.
+   * @param disk Disk object supplied in the body of the Put disk operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    disk: Disk,
     diskName: string,
+    disk: Disk,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DisksCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -60,8 +60,8 @@ export class Disks {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      disk,
       diskName,
+      disk,
       options: operationOptions
     };
     const sendOperation = (
@@ -397,6 +397,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.diskName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -426,6 +427,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.diskName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -516,6 +518,7 @@ const grantAccessOperationSpec: coreHttp.OperationSpec = {
     Parameters.diskName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const revokeAccessOperationSpec: coreHttp.OperationSpec = {

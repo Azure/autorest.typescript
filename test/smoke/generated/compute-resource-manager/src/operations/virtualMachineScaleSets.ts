@@ -57,14 +57,14 @@ export class VirtualMachineScaleSets {
   /**
    * Create or update a VM scale set.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters The scale set object.
    * @param vmScaleSetName The name of the VM scale set to create or update.
+   * @param parameters The scale set object.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    parameters: VirtualMachineScaleSet,
     vmScaleSetName: string,
+    parameters: VirtualMachineScaleSet,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualMachineScaleSetsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -73,8 +73,8 @@ export class VirtualMachineScaleSets {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       vmScaleSetName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -749,14 +749,14 @@ export class VirtualMachineScaleSets {
   /**
    * Converts SinglePlacementGroup property to false for a existing virtual machine scale set.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters The input object for ConvertToSinglePlacementGroup API.
    * @param vmScaleSetName The name of the virtual machine scale set to create or update.
+   * @param parameters The input object for ConvertToSinglePlacementGroup API.
    * @param options The options parameters.
    */
   convertToSinglePlacementGroup(
     resourceGroupName: string,
-    parameters: VMScaleSetConvertToSinglePlacementGroupInput,
     vmScaleSetName: string,
+    parameters: VMScaleSetConvertToSinglePlacementGroupInput,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -765,8 +765,8 @@ export class VirtualMachineScaleSets {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        parameters,
         vmScaleSetName,
+        parameters,
         options: operationOptions
       },
       convertToSinglePlacementGroupOperationSpec
@@ -951,6 +951,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -980,6 +981,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -1028,6 +1030,7 @@ const deallocateOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteInstancesOperationSpec: coreHttp.OperationSpec = {
@@ -1044,6 +1047,7 @@ const deleteInstancesOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getInstanceViewOperationSpec: coreHttp.OperationSpec = {
@@ -1144,6 +1148,7 @@ const powerOffOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const restartOperationSpec: coreHttp.OperationSpec = {
@@ -1160,6 +1165,7 @@ const restartOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const startOperationSpec: coreHttp.OperationSpec = {
@@ -1176,6 +1182,7 @@ const startOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const redeployOperationSpec: coreHttp.OperationSpec = {
@@ -1192,6 +1199,7 @@ const redeployOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const performMaintenanceOperationSpec: coreHttp.OperationSpec = {
@@ -1208,6 +1216,7 @@ const performMaintenanceOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateInstancesOperationSpec: coreHttp.OperationSpec = {
@@ -1224,6 +1233,7 @@ const updateInstancesOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const reimageOperationSpec: coreHttp.OperationSpec = {
@@ -1240,6 +1250,7 @@ const reimageOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const reimageAllOperationSpec: coreHttp.OperationSpec = {
@@ -1256,6 +1267,7 @@ const reimageAllOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const forceRecoveryServiceFabricPlatformUpdateDomainWalkOperationSpec: coreHttp.OperationSpec = {
@@ -1289,6 +1301,7 @@ const convertToSinglePlacementGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const setOrchestrationServiceStateOperationSpec: coreHttp.OperationSpec = {
@@ -1305,6 +1318,7 @@ const setOrchestrationServiceStateOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {

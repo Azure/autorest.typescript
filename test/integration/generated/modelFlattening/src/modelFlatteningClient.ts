@@ -234,6 +234,7 @@ const putArrayOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.resourceArray,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getArrayOperationSpec: coreHttp.OperationSpec = {
@@ -269,6 +270,7 @@ const putWrappedArrayOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.resourceArray1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getWrappedArrayOperationSpec: coreHttp.OperationSpec = {
@@ -302,6 +304,7 @@ const putDictionaryOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.resourceDictionary,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getDictionaryOperationSpec: coreHttp.OperationSpec = {
@@ -335,6 +338,7 @@ const putResourceCollectionOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.resourceComplexObject,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getResourceCollectionOperationSpec: coreHttp.OperationSpec = {
@@ -365,6 +369,7 @@ const putSimpleProductOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.simpleBodyProduct,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const postFlattenedSimpleProductOperationSpec: coreHttp.OperationSpec = {
@@ -381,6 +386,7 @@ const postFlattenedSimpleProductOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.simpleBodyProduct1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const putSimpleProductWithGroupingOperationSpec: coreHttp.OperationSpec = {
@@ -397,6 +403,7 @@ const putSimpleProductWithGroupingOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.simpleBodyProduct2,
   urlParameters: [Parameters.$host, Parameters.name],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 

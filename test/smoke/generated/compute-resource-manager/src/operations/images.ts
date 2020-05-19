@@ -41,14 +41,14 @@ export class Images {
   /**
    * Create or update an image.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters supplied to the Create Image operation.
    * @param imageName The name of the image.
+   * @param parameters Parameters supplied to the Create Image operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    parameters: Image,
     imageName: string,
+    parameters: Image,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ImagesCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -57,8 +57,8 @@ export class Images {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       imageName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -298,6 +298,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.imageName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -327,6 +328,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.imageName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

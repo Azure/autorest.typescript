@@ -570,6 +570,7 @@ const createUpdateGremlinDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteGremlinDatabaseOperationSpec: coreHttp.OperationSpec = {
@@ -634,6 +635,7 @@ const updateGremlinDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listGremlinGraphsOperationSpec: coreHttp.OperationSpec = {
@@ -704,6 +706,7 @@ const createUpdateGremlinGraphOperationSpec: coreHttp.OperationSpec = {
     Parameters.graphName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteGremlinGraphOperationSpec: coreHttp.OperationSpec = {
@@ -771,5 +774,6 @@ const updateGremlinGraphThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.graphName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };

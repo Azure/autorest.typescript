@@ -88,20 +88,20 @@ export class Users {
 
   /**
    * Updates a user.
-   * @param parameters Parameters to update an existing user.
    * @param upnOrObjectId The object ID or principal name of the user to update.
+   * @param parameters Parameters to update an existing user.
    * @param options The options parameters.
    */
   update(
-    parameters: UserUpdateParameters,
     upnOrObjectId: string,
+    parameters: UserUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { parameters, upnOrObjectId, options: operationOptions },
+      { upnOrObjectId, parameters, options: operationOptions },
       updateOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -126,20 +126,20 @@ export class Users {
 
   /**
    * Gets a collection that contains the object IDs of the groups of which the user is a member.
-   * @param parameters User filtering parameters.
    * @param objectId The object ID of the user for which to get group membership.
+   * @param parameters User filtering parameters.
    * @param options The options parameters.
    */
   getMemberGroups(
-    parameters: UserGetMemberGroupsParameters,
     objectId: string,
+    parameters: UserGetMemberGroupsParameters,
     options?: coreHttp.OperationOptions
   ): Promise<UsersGetMemberGroupsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { parameters, objectId, options: operationOptions },
+      { objectId, parameters, options: operationOptions },
       getMemberGroupsOperationSpec
     ) as Promise<UsersGetMemberGroupsResponse>;
   }
@@ -181,6 +181,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -238,6 +239,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.upnOrObjectId1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -272,6 +274,7 @@ const getMemberGroupsOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId14],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {

@@ -39,18 +39,18 @@ export class VirtualMachineScaleSetVMExtensions {
   /**
    * The operation to create or update the VMSS VM extension.
    * @param resourceGroupName The name of the resource group.
-   * @param extensionParameters Parameters supplied to the Create Virtual Machine Extension operation.
-   * @param vmExtensionName The name of the virtual machine extension.
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
+   * @param vmExtensionName The name of the virtual machine extension.
+   * @param extensionParameters Parameters supplied to the Create Virtual Machine Extension operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    extensionParameters: VirtualMachineExtension,
-    vmExtensionName: string,
     vmScaleSetName: string,
     instanceId: string,
+    vmExtensionName: string,
+    extensionParameters: VirtualMachineExtension,
     options?: coreHttp.OperationOptions
   ): Promise<
     LROPoller<VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>
@@ -61,10 +61,10 @@ export class VirtualMachineScaleSetVMExtensions {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      extensionParameters,
-      vmExtensionName,
       vmScaleSetName,
       instanceId,
+      vmExtensionName,
+      extensionParameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -90,18 +90,18 @@ export class VirtualMachineScaleSetVMExtensions {
   /**
    * The operation to update the VMSS VM extension.
    * @param resourceGroupName The name of the resource group.
-   * @param vmExtensionName The name of the virtual machine extension.
-   * @param extensionParameters Parameters supplied to the Update Virtual Machine Extension operation.
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
+   * @param vmExtensionName The name of the virtual machine extension.
+   * @param extensionParameters Parameters supplied to the Update Virtual Machine Extension operation.
    * @param options The options parameters.
    */
   async update(
     resourceGroupName: string,
-    vmExtensionName: string,
-    extensionParameters: VirtualMachineExtensionUpdate,
     vmScaleSetName: string,
     instanceId: string,
+    vmExtensionName: string,
+    extensionParameters: VirtualMachineExtensionUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualMachineScaleSetVMExtensionsUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -110,10 +110,10 @@ export class VirtualMachineScaleSetVMExtensions {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      vmExtensionName,
-      extensionParameters,
       vmScaleSetName,
       instanceId,
+      vmExtensionName,
+      extensionParameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -139,16 +139,16 @@ export class VirtualMachineScaleSetVMExtensions {
   /**
    * The operation to delete the VMSS VM extension.
    * @param resourceGroupName The name of the resource group.
-   * @param vmExtensionName The name of the virtual machine extension.
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
+   * @param vmExtensionName The name of the virtual machine extension.
    * @param options The options parameters.
    */
   async delete(
     resourceGroupName: string,
-    vmExtensionName: string,
     vmScaleSetName: string,
     instanceId: string,
+    vmExtensionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -157,9 +157,9 @@ export class VirtualMachineScaleSetVMExtensions {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      vmExtensionName,
       vmScaleSetName,
       instanceId,
+      vmExtensionName,
       options: operationOptions
     };
     const sendOperation = (
@@ -185,16 +185,16 @@ export class VirtualMachineScaleSetVMExtensions {
   /**
    * The operation to get the VMSS VM extension.
    * @param resourceGroupName The name of the resource group.
-   * @param vmExtensionName The name of the virtual machine extension.
    * @param vmScaleSetName The name of the VM scale set.
    * @param instanceId The instance ID of the virtual machine.
+   * @param vmExtensionName The name of the virtual machine extension.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
-    vmExtensionName: string,
     vmScaleSetName: string,
     instanceId: string,
+    vmExtensionName: string,
     options?: VirtualMachineScaleSetVMExtensionsGetOptionalParams
   ): Promise<VirtualMachineScaleSetVMExtensionsGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -203,9 +203,9 @@ export class VirtualMachineScaleSetVMExtensions {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        vmExtensionName,
         vmScaleSetName,
         instanceId,
+        vmExtensionName,
         options: operationOptions
       },
       getOperationSpec
@@ -284,6 +284,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -318,6 +319,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

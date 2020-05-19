@@ -76,20 +76,20 @@ export class ServicePrincipals {
 
   /**
    * Updates a service principal in the directory.
-   * @param parameters Parameters to update a service principal.
    * @param objectId The object ID of the service principal to delete.
+   * @param parameters Parameters to update a service principal.
    * @param options The options parameters.
    */
   update(
-    parameters: ServicePrincipalBase,
     objectId: string,
+    parameters: ServicePrincipalBase,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { parameters, objectId, options: operationOptions },
+      { objectId, parameters, options: operationOptions },
       updateOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -169,20 +169,20 @@ export class ServicePrincipals {
 
   /**
    * Update the keyCredentials associated with a service principal.
-   * @param parameters Parameters to update the keyCredentials of an existing service principal.
    * @param objectId The object ID for which to get service principal information.
+   * @param parameters Parameters to update the keyCredentials of an existing service principal.
    * @param options The options parameters.
    */
   updateKeyCredentials(
-    parameters: KeyCredentialsUpdateParameters,
     objectId: string,
+    parameters: KeyCredentialsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { parameters, objectId, options: operationOptions },
+      { objectId, parameters, options: operationOptions },
       updateKeyCredentialsOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -245,20 +245,20 @@ export class ServicePrincipals {
 
   /**
    * ListOwnersNext
-   * @param nextLink The nextLink from the previous successful call to the ListOwners method.
    * @param objectId The object ID of the service principal for which to get owners.
+   * @param nextLink The nextLink from the previous successful call to the ListOwners method.
    * @param options The options parameters.
    */
   listOwnersNext(
-    nextLink: string,
     objectId: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServicePrincipalsListOwnersNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { nextLink, objectId, options: operationOptions },
+      { objectId, nextLink, options: operationOptions },
       listOwnersNextOperationSpec
     ) as Promise<ServicePrincipalsListOwnersNextResponse>;
   }
@@ -282,6 +282,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -312,6 +313,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId8],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -385,6 +387,7 @@ const updateKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId12],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listPasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
@@ -415,6 +418,7 @@ const updatePasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId13],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
