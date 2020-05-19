@@ -107,6 +107,7 @@ const analyzeBody$binaryOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.input,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "binary",
   serializer
 };
 const analyzeBody$jsonOperationSpec: coreHttp.OperationSpec = {
@@ -120,6 +121,7 @@ const analyzeBody$jsonOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.input1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1],
+  mediaType: "json",
   serializer
 };
 

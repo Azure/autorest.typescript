@@ -36,7 +36,8 @@ import {
   ChoiceSchema,
   SealedChoiceSchema,
   ConstantSchema,
-  Parameter
+  Parameter,
+  ImplementationLocation
 } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { shouldImportParameters } from "./utils/importUtils";
@@ -146,14 +147,23 @@ function buildSpec(spec: OperationSpecDetails): string {
   const urlParams = buildParameters(spec, "urlParameters");
   const headerParams = buildParameters(spec, "headerParameters");
   const contentType = buildContentType(spec);
+  const mediaType = buildMediaType(spec);
+
   const isXML = spec.isXML ? "isXML: true," : "";
 
   return `{ path: "${spec.path}", httpMethod: "${
     spec.httpMethod
   }", responses: {${responses.join(
     ", "
-  )}},${requestBody}${queryParams}${urlParams}${headerParams}${isXML}${contentType}serializer
+  )}},${requestBody}${queryParams}${urlParams}${headerParams}${isXML}${contentType}${mediaType}serializer
     }`;
+}
+
+function buildMediaType({ requestBody }: OperationSpecDetails) {
+  if (requestBody?.targetMediaType) {
+    return `mediaType: '${requestBody.targetMediaType}',`;
+  }
+  return "";
 }
 
 function buildContentType({ requestBody, isXML }: OperationSpecDetails) {
@@ -482,11 +492,42 @@ function getOperationParameterSignatures(
       return acc;
     }, []);
 
+    // sort parameters to match the signature ordering
+    // note that this may inlcude parameters that aren't displayed
+    // e.g. constant types.
+    const expectedParameterOrdering = [
+      ...operation.parameters,
+      ...(request.parameters ?? [])
+    ]
+      // Only parameters that are implemented on the method should be considered.
+      .filter(param => param.implementation === ImplementationLocation.Method)
+      .map(param => getLanguageMetadata(param.language).name);
+
+    const orderedParameterDeclarations: typeof parameterDeclarations = [];
+    for (const parameterName of expectedParameterOrdering) {
+      const index = parameterDeclarations.findIndex(
+        p => p.name === parameterName
+      );
+      if (index === -1) {
+        // No matching parameter found.
+        // Common cases where this occurs is if a parameter
+        // is optional, or a constant.
+        continue;
+      }
+
+      orderedParameterDeclarations.push(
+        ...parameterDeclarations.splice(index, 1)
+      );
+    }
+
+    // push any remaining parameters into the ordered parameter list
+    orderedParameterDeclarations.push(...parameterDeclarations);
+
     trackParameterGroups(
       operation,
       parameters,
       importedModels,
-      parameterDeclarations
+      orderedParameterDeclarations
     );
 
     // add optional parameter
@@ -498,9 +539,9 @@ function getOperationParameterSignatures(
         mediaType: hasMultipleOverloads ? requestMediaType : undefined
       }
     );
-    parameterDeclarations.push(optionalParameter);
+    orderedParameterDeclarations.push(optionalParameter);
 
-    overloadParameterDeclarations.push(parameterDeclarations);
+    overloadParameterDeclarations.push(orderedParameterDeclarations);
   }
 
   // Create the parameter declarations for the base method signature.

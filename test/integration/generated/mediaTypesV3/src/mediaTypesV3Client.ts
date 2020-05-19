@@ -19,9 +19,11 @@ class MediaTypesV3Client extends MediaTypesV3ClientContext {
    */
   constructor($host: string, options?: MediaTypesV3ClientOptionalParams) {
     super($host, options);
+    this.barApi = new operations.BarApi(this);
     this.fooApi = new operations.FooApi(this);
   }
 
+  barApi: operations.BarApi;
   fooApi: operations.FooApi;
 }
 

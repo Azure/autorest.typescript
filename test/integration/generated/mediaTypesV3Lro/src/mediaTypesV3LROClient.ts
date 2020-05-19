@@ -121,28 +121,28 @@ class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
 
   /**
    * Send payload to targetted thing in Foo service.
+   * @param thing Target thing name
    * @param contentType Upload file type
    * @param data
-   * @param thing Target thing name
    * @param options The options parameters.
    */
   send(
+    thing: string,
     contentType: "application/octet-stream",
     data: coreHttp.HttpRequestBody,
-    thing: string,
     options?: MediaTypesV3LROClientSend$binaryOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Send payload to targetted thing in Foo service.
+   * @param thing Target thing name
    * @param contentType Upload file type
    * @param data simple string
-   * @param thing Target thing name
    * @param options The options parameters.
    */
   send(
+    thing: string,
     contentType: "text/plain",
     data: string,
-    thing: string,
     options?: MediaTypesV3LROClientSend$textOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
@@ -152,39 +152,39 @@ class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
   send(
     ...args:
       | [
+          string,
           "application/octet-stream",
           coreHttp.HttpRequestBody,
-          string,
           MediaTypesV3LROClientSend$binaryOptionalParams?
         ]
       | [
-          "text/plain",
           string,
+          "text/plain",
           string,
           MediaTypesV3LROClientSend$textOptionalParams?
         ]
   ): Promise<coreHttp.RestResponse> {
     let operationSpec: coreHttp.OperationSpec;
     let operationArguments: coreHttp.OperationArguments;
-    if (args[0] === "application/octet-stream") {
+    if (args[1] === "application/octet-stream") {
       operationSpec = send$binaryOperationSpec;
       operationArguments = {
-        contentType: args[0],
-        data: args[1],
-        thing: args[2],
+        thing: args[0],
+        contentType: args[1],
+        data: args[2],
         options: args[3]
       };
-    } else if (args[0] === "text/plain") {
+    } else if (args[1] === "text/plain") {
       operationSpec = send$textOperationSpec;
       operationArguments = {
-        contentType: args[0],
-        data: args[1],
-        thing: args[2],
+        thing: args[0],
+        contentType: args[1],
+        data: args[2],
         options: args[3]
       };
     } else {
       throw new TypeError(
-        `"contentType" must be a valid value but instead was "${args[0]}".`
+        `"contentType" must be a valid value but instead was "${args[1]}".`
       );
     }
     return this.sendOperationRequest(
@@ -205,6 +205,7 @@ const sendOnDefault$binaryOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "binary",
   serializer
 };
 const sendOnDefault$textOperationSpec: coreHttp.OperationSpec = {
@@ -215,6 +216,7 @@ const sendOnDefault$textOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1],
+  mediaType: "text",
   serializer
 };
 const send$binaryOperationSpec: coreHttp.OperationSpec = {
@@ -225,6 +227,7 @@ const send$binaryOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host, Parameters.thing],
   headerParameters: [Parameters.contentType],
+  mediaType: "binary",
   serializer
 };
 const send$textOperationSpec: coreHttp.OperationSpec = {
@@ -235,6 +238,7 @@ const send$textOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host, Parameters.thing],
   headerParameters: [Parameters.contentType1],
+  mediaType: "text",
   serializer
 };
 
