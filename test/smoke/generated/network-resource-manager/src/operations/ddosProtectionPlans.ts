@@ -321,6 +321,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.ddosProtectionPlanName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -344,6 +345,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.ddosProtectionPlanName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {

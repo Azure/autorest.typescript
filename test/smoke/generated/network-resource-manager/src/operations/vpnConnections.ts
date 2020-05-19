@@ -35,15 +35,15 @@ export class VpnConnections {
 
   /**
    * Retrieves the details of a vpn connection.
-   * @param connectionName The name of the vpn connection.
    * @param resourceGroupName The resource group name of the VpnGateway.
    * @param gatewayName The name of the gateway.
+   * @param connectionName The name of the vpn connection.
    * @param options The options parameters.
    */
   get(
-    connectionName: string,
     resourceGroupName: string,
     gatewayName: string,
+    connectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VpnConnectionsGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -51,9 +51,9 @@ export class VpnConnections {
     );
     return this.client.sendOperationRequest(
       {
-        connectionName,
         resourceGroupName,
         gatewayName,
+        connectionName,
         options: operationOptions
       },
       getOperationSpec
@@ -65,15 +65,15 @@ export class VpnConnections {
    * connection.
    * @param resourceGroupName The resource group name of the VpnGateway.
    * @param gatewayName The name of the gateway.
-   * @param vpnConnectionParameters Parameters supplied to create or Update a VPN Connection.
    * @param connectionName The name of the connection.
+   * @param vpnConnectionParameters Parameters supplied to create or Update a VPN Connection.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
     gatewayName: string,
-    vpnConnectionParameters: VpnConnection,
     connectionName: string,
+    vpnConnectionParameters: VpnConnection,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VpnConnectionsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -84,8 +84,8 @@ export class VpnConnections {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       gatewayName,
-      vpnConnectionParameters,
       connectionName,
+      vpnConnectionParameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -262,6 +262,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.connectionName3
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

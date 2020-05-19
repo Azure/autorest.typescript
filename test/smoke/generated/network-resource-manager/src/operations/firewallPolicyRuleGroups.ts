@@ -176,14 +176,14 @@ export class FirewallPolicyRuleGroups {
   /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param firewallPolicyName The name of the Firewall Policy.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
     resourceGroupName: string,
-    nextLink: string,
     firewallPolicyName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<FirewallPolicyRuleGroupsListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -192,8 +192,8 @@ export class FirewallPolicyRuleGroups {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        nextLink,
         firewallPolicyName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec
@@ -281,6 +281,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.ruleGroupName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {

@@ -62,14 +62,14 @@ export class VirtualNetworkGateways {
   /**
    * Creates or updates a virtual network gateway in the specified resource group.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters supplied to create or update virtual network gateway operation.
    * @param virtualNetworkGatewayName The name of the virtual network gateway.
+   * @param parameters Parameters supplied to create or update virtual network gateway operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    parameters: VirtualNetworkGateway,
     virtualNetworkGatewayName: string,
+    parameters: VirtualNetworkGateway,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualNetworkGatewaysCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -79,8 +79,8 @@ export class VirtualNetworkGateways {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       virtualNetworkGatewayName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -733,15 +733,15 @@ export class VirtualNetworkGateways {
   /**
    * Gets a xml format representation for vpn device configuration script.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters supplied to the generate vpn device script operation.
    * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway connection for
    *                                            which the configuration script is generated.
+   * @param parameters Parameters supplied to the generate vpn device script operation.
    * @param options The options parameters.
    */
   vpnDeviceConfigurationScript(
     resourceGroupName: string,
-    parameters: VpnDeviceScriptParameters,
     virtualNetworkGatewayConnectionName: string,
+    parameters: VpnDeviceScriptParameters,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -750,8 +750,8 @@ export class VirtualNetworkGateways {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        parameters,
         virtualNetworkGatewayConnectionName,
+        parameters,
         options: operationOptions
       },
       vpnDeviceConfigurationScriptOperationSpec
@@ -1026,6 +1026,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkGatewayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -1090,6 +1091,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkGatewayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -1201,6 +1203,7 @@ const generatevpnclientpackageOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkGatewayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const generateVpnProfileOperationSpec: coreHttp.OperationSpec = {
@@ -1230,6 +1233,7 @@ const generateVpnProfileOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkGatewayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getVpnProfilePackageUrlOperationSpec: coreHttp.OperationSpec = {
@@ -1388,6 +1392,7 @@ const setVpnclientIpsecParametersOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkGatewayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getVpnclientIpsecParametersOperationSpec: coreHttp.OperationSpec = {
@@ -1441,6 +1446,7 @@ const vpnDeviceConfigurationScriptOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkGatewayConnectionName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const startPacketCaptureOperationSpec: coreHttp.OperationSpec = {
@@ -1470,6 +1476,7 @@ const startPacketCaptureOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkGatewayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const stopPacketCaptureOperationSpec: coreHttp.OperationSpec = {
@@ -1499,6 +1506,7 @@ const stopPacketCaptureOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkGatewayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getVpnclientConnectionHealthOperationSpec: coreHttp.OperationSpec = {
@@ -1542,6 +1550,7 @@ const disconnectVirtualNetworkGatewayVpnConnectionsOperationSpec: coreHttp.Opera
     Parameters.virtualNetworkGatewayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {

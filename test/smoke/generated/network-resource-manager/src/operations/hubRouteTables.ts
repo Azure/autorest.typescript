@@ -37,15 +37,15 @@ export class HubRouteTables {
    * Creates a RouteTable resource if it doesn't exist else updates the existing RouteTable.
    * @param resourceGroupName The resource group name of the VirtualHub.
    * @param virtualHubName The name of the VirtualHub.
-   * @param routeTableParameters Parameters supplied to create or update RouteTable.
    * @param routeTableName The name of the RouteTable.
+   * @param routeTableParameters Parameters supplied to create or update RouteTable.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
     virtualHubName: string,
-    routeTableParameters: HubRouteTable,
     routeTableName: string,
+    routeTableParameters: HubRouteTable,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<HubRouteTablesCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -56,8 +56,8 @@ export class HubRouteTables {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualHubName,
-      routeTableParameters,
       routeTableName,
+      routeTableParameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -110,15 +110,15 @@ export class HubRouteTables {
 
   /**
    * Deletes a RouteTable.
+   * @param resourceGroupName The resource group name of the RouteTable.
    * @param virtualHubName The name of the VirtualHub.
    * @param routeTableName The name of the RouteTable.
-   * @param resourceGroupName The resource group name of the RouteTable.
    * @param options The options parameters.
    */
   async delete(
+    resourceGroupName: string,
     virtualHubName: string,
     routeTableName: string,
-    resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -127,9 +127,9 @@ export class HubRouteTables {
     );
 
     const args: coreHttp.OperationArguments = {
+      resourceGroupName,
       virtualHubName,
       routeTableName,
-      resourceGroupName,
       options: operationOptions
     };
     const sendOperation = (
@@ -175,15 +175,15 @@ export class HubRouteTables {
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param resourceGroupName The resource group name of the VirtualHub.
    * @param virtualHubName The name of the VirtualHub.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
-    nextLink: string,
     resourceGroupName: string,
     virtualHubName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<HubRouteTablesListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -191,9 +191,9 @@ export class HubRouteTables {
     );
     return this.client.sendOperationRequest(
       {
-        nextLink,
         resourceGroupName,
         virtualHubName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec
@@ -244,6 +244,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.routeTableName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

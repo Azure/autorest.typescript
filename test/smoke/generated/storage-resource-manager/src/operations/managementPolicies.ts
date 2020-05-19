@@ -143,6 +143,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.managementPolicyName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

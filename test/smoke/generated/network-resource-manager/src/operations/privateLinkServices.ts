@@ -335,14 +335,14 @@ export class PrivateLinkServices {
 
   /**
    * Checks whether the subscription is visible to private link service in the specified resource group.
-   * @param resourceGroupName The name of the resource group.
    * @param location The location of the domain name.
+   * @param resourceGroupName The name of the resource group.
    * @param parameters The request body of CheckPrivateLinkService API call.
    * @param options The options parameters.
    */
   checkPrivateLinkServiceVisibilityByResourceGroup(
-    resourceGroupName: string,
     location: string,
+    resourceGroupName: string,
     parameters: CheckPrivateLinkServiceVisibilityRequest,
     options?: coreHttp.OperationOptions
   ): Promise<
@@ -352,7 +352,7 @@ export class PrivateLinkServices {
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, location, parameters, options: operationOptions },
+      { location, resourceGroupName, parameters, options: operationOptions },
       checkPrivateLinkServiceVisibilityByResourceGroupOperationSpec
     ) as Promise<
       PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse
@@ -383,13 +383,13 @@ export class PrivateLinkServices {
   /**
    * Returns all of the private link service ids that can be linked to a Private Endpoint with auto
    * approved in this subscription in this region.
-   * @param resourceGroupName The name of the resource group.
    * @param location The location of the domain name.
+   * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
   listAutoApprovedPrivateLinkServicesByResourceGroup(
-    resourceGroupName: string,
     location: string,
+    resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
     PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupResponse
@@ -398,7 +398,7 @@ export class PrivateLinkServices {
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, location, options: operationOptions },
+      { location, resourceGroupName, options: operationOptions },
       listAutoApprovedPrivateLinkServicesByResourceGroupOperationSpec
     ) as Promise<
       PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupResponse
@@ -493,15 +493,15 @@ export class PrivateLinkServices {
 
   /**
    * ListAutoApprovedPrivateLinkServicesByResourceGroupNext
-   * @param resourceGroupName The name of the resource group.
    * @param location The location of the domain name.
+   * @param resourceGroupName The name of the resource group.
    * @param nextLink The nextLink from the previous successful call to the
    *                 ListAutoApprovedPrivateLinkServicesByResourceGroup method.
    * @param options The options parameters.
    */
   listAutoApprovedPrivateLinkServicesByResourceGroupNext(
-    resourceGroupName: string,
     location: string,
+    resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<
@@ -511,7 +511,7 @@ export class PrivateLinkServices {
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, location, nextLink, options: operationOptions },
+      { location, resourceGroupName, nextLink, options: operationOptions },
       listAutoApprovedPrivateLinkServicesByResourceGroupNextOperationSpec
     ) as Promise<
       PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupNextResponse
@@ -596,6 +596,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.serviceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -678,6 +679,7 @@ const updatePrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.peConnectionName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deletePrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -736,6 +738,7 @@ const checkPrivateLinkServiceVisibilityOperationSpec: coreHttp.OperationSpec = {
     Parameters.location1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const checkPrivateLinkServiceVisibilityByResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -759,6 +762,7 @@ const checkPrivateLinkServiceVisibilityByResourceGroupOperationSpec: coreHttp.Op
     Parameters.location1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listAutoApprovedPrivateLinkServicesOperationSpec: coreHttp.OperationSpec = {

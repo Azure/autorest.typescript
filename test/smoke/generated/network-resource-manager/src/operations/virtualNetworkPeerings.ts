@@ -109,16 +109,16 @@ export class VirtualNetworkPeerings {
    * Creates or updates a peering in the specified virtual network.
    * @param resourceGroupName The name of the resource group.
    * @param virtualNetworkName The name of the virtual network.
+   * @param virtualNetworkPeeringName The name of the peering.
    * @param virtualNetworkPeeringParameters Parameters supplied to the create or update virtual network
    *                                        peering operation.
-   * @param virtualNetworkPeeringName The name of the peering.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
     virtualNetworkName: string,
-    virtualNetworkPeeringParameters: VirtualNetworkPeering,
     virtualNetworkPeeringName: string,
+    virtualNetworkPeeringParameters: VirtualNetworkPeering,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualNetworkPeeringsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -129,8 +129,8 @@ export class VirtualNetworkPeerings {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       virtualNetworkName,
-      virtualNetworkPeeringParameters,
       virtualNetworkPeeringName,
+      virtualNetworkPeeringParameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -177,14 +177,14 @@ export class VirtualNetworkPeerings {
   /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param virtualNetworkName The name of the virtual network.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
     resourceGroupName: string,
-    nextLink: string,
     virtualNetworkName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkPeeringsListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -193,8 +193,8 @@ export class VirtualNetworkPeerings {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        nextLink,
         virtualNetworkName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec
@@ -282,6 +282,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkPeeringName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {

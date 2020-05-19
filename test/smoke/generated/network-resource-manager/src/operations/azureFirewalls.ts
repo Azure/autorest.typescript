@@ -102,14 +102,14 @@ export class AzureFirewalls {
   /**
    * Creates or updates the specified Azure Firewall.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters supplied to the create or update Azure Firewall operation.
    * @param azureFirewallName The name of the Azure Firewall.
+   * @param parameters Parameters supplied to the create or update Azure Firewall operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    parameters: AzureFirewall,
     azureFirewallName: string,
+    parameters: AzureFirewall,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<AzureFirewallsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -119,8 +119,8 @@ export class AzureFirewalls {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       azureFirewallName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -339,6 +339,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.azureFirewallName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -368,6 +369,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.azureFirewallName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {

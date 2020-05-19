@@ -80,14 +80,14 @@ export class NetworkInterfaceIPConfigurations {
   /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param networkInterfaceName The name of the network interface.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
     resourceGroupName: string,
-    nextLink: string,
     networkInterfaceName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkInterfaceIPConfigurationsListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -96,8 +96,8 @@ export class NetworkInterfaceIPConfigurations {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        nextLink,
         networkInterfaceName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec

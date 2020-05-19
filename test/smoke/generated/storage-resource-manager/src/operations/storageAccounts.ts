@@ -73,18 +73,18 @@ export class StorageAccounts {
    * created and a subsequent create request is issued with different properties, the account properties
    * will be updated. If an account is already created and a subsequent create or update request is
    * issued with the exact same set of properties, the request will succeed.
-   * @param parameters The parameters to provide for the created account.
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
    *                          case insensitive.
    * @param accountName The name of the storage account within the specified resource group. Storage
    *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
    *                    only.
+   * @param parameters The parameters to provide for the created account.
    * @param options The options parameters.
    */
   async create(
-    parameters: StorageAccountCreateParameters,
     resourceGroupName: string,
     accountName: string,
+    parameters: StorageAccountCreateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<StorageAccountsCreateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -92,9 +92,9 @@ export class StorageAccounts {
     );
 
     const args: coreHttp.OperationArguments = {
-      parameters,
       resourceGroupName,
       accountName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -502,6 +502,7 @@ const checkNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const createOperationSpec: coreHttp.OperationSpec = {
@@ -531,6 +532,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -583,6 +585,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -651,6 +654,7 @@ const regenerateKeyOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listAccountSASOperationSpec: coreHttp.OperationSpec = {
@@ -671,6 +675,7 @@ const listAccountSASOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listServiceSASOperationSpec: coreHttp.OperationSpec = {
@@ -691,6 +696,7 @@ const listServiceSASOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const failoverOperationSpec: coreHttp.OperationSpec = {
@@ -734,6 +740,7 @@ const restoreBlobRangesOperationSpec: coreHttp.OperationSpec = {
     Parameters.accountName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const revokeUserDelegationKeysOperationSpec: coreHttp.OperationSpec = {

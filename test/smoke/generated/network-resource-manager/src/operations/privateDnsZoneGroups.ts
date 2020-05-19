@@ -155,35 +155,35 @@ export class PrivateDnsZoneGroups {
 
   /**
    * Gets all private dns zone groups in a private endpoint.
-   * @param resourceGroupName The name of the resource group.
    * @param privateEndpointName The name of the private endpoint.
+   * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
   list(
-    resourceGroupName: string,
     privateEndpointName: string,
+    resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateDnsZoneGroupsListResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, privateEndpointName, options: operationOptions },
+      { privateEndpointName, resourceGroupName, options: operationOptions },
       listOperationSpec
     ) as Promise<PrivateDnsZoneGroupsListResponse>;
   }
 
   /**
    * ListNext
+   * @param privateEndpointName The name of the private endpoint.
    * @param resourceGroupName The name of the resource group.
    * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param privateEndpointName The name of the private endpoint.
    * @param options The options parameters.
    */
   listNext(
+    privateEndpointName: string,
     resourceGroupName: string,
     nextLink: string,
-    privateEndpointName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PrivateDnsZoneGroupsListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -191,9 +191,9 @@ export class PrivateDnsZoneGroups {
     );
     return this.client.sendOperationRequest(
       {
+        privateEndpointName,
         resourceGroupName,
         nextLink,
-        privateEndpointName,
         options: operationOptions
       },
       listNextOperationSpec
@@ -281,6 +281,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.privateDnsZoneGroupName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {

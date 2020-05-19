@@ -62,14 +62,14 @@ export class NetworkWatchers {
   /**
    * Creates or updates a network watcher in the specified resource group.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters that define the network watcher resource.
    * @param networkWatcherName The name of the network watcher.
+   * @param parameters Parameters that define the network watcher resource.
    * @param options The options parameters.
    */
   createOrUpdate(
     resourceGroupName: string,
-    parameters: NetworkWatcher,
     networkWatcherName: string,
+    parameters: NetworkWatcher,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkWatchersCreateOrUpdateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -78,8 +78,8 @@ export class NetworkWatchers {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        parameters,
         networkWatcherName,
+        parameters,
         options: operationOptions
       },
       createOrUpdateOperationSpec
@@ -374,14 +374,14 @@ export class NetworkWatchers {
   /**
    * Initiate troubleshooting on a specified resource.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters that define the resource to troubleshoot.
    * @param networkWatcherName The name of the network watcher resource.
+   * @param parameters Parameters that define the resource to troubleshoot.
    * @param options The options parameters.
    */
   async getTroubleshooting(
     resourceGroupName: string,
-    parameters: TroubleshootingParameters,
     networkWatcherName: string,
+    parameters: TroubleshootingParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkWatchersGetTroubleshootingResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -391,8 +391,8 @@ export class NetworkWatchers {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       networkWatcherName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -463,15 +463,15 @@ export class NetworkWatchers {
 
   /**
    * Configures flow log and traffic analytics (optional) on a specified resource.
+   * @param resourceGroupName The name of the network watcher resource group.
    * @param networkWatcherName The name of the network watcher resource.
    * @param parameters Parameters that define the configuration of flow log.
-   * @param resourceGroupName The name of the network watcher resource group.
    * @param options The options parameters.
    */
   async setFlowLogConfiguration(
+    resourceGroupName: string,
     networkWatcherName: string,
     parameters: FlowLogInformation,
-    resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkWatchersSetFlowLogConfigurationResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -480,9 +480,9 @@ export class NetworkWatchers {
     );
 
     const args: coreHttp.OperationArguments = {
+      resourceGroupName,
       networkWatcherName,
       parameters,
-      resourceGroupName,
       options: operationOptions
     };
     const sendOperation = (
@@ -508,15 +508,15 @@ export class NetworkWatchers {
 
   /**
    * Queries status of flow log and traffic analytics (optional) on a specified resource.
-   * @param networkWatcherName The name of the network watcher resource.
    * @param resourceGroupName The name of the network watcher resource group.
+   * @param networkWatcherName The name of the network watcher resource.
    * @param parameters Parameters that define a resource to query flow log and traffic analytics
    *                   (optional) status.
    * @param options The options parameters.
    */
   async getFlowLogStatus(
-    networkWatcherName: string,
     resourceGroupName: string,
+    networkWatcherName: string,
     parameters: FlowLogStatusParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkWatchersGetFlowLogStatusResponse>> {
@@ -526,8 +526,8 @@ export class NetworkWatchers {
     );
 
     const args: coreHttp.OperationArguments = {
-      networkWatcherName,
       resourceGroupName,
+      networkWatcherName,
       parameters,
       options: operationOptions
     };
@@ -555,14 +555,14 @@ export class NetworkWatchers {
   /**
    * Verifies the possibility of establishing a direct TCP connection from a virtual machine to a given
    * endpoint including another VM or an arbitrary remote server.
-   * @param networkWatcherName The name of the network watcher resource.
    * @param resourceGroupName The name of the network watcher resource group.
+   * @param networkWatcherName The name of the network watcher resource.
    * @param parameters Parameters that determine how the connectivity check will be performed.
    * @param options The options parameters.
    */
   async checkConnectivity(
-    networkWatcherName: string,
     resourceGroupName: string,
+    networkWatcherName: string,
     parameters: ConnectivityParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkWatchersCheckConnectivityResponse>> {
@@ -572,8 +572,8 @@ export class NetworkWatchers {
     );
 
     const args: coreHttp.OperationArguments = {
-      networkWatcherName,
       resourceGroupName,
+      networkWatcherName,
       parameters,
       options: operationOptions
     };
@@ -601,14 +601,14 @@ export class NetworkWatchers {
   /**
    * NOTE: This feature is currently in preview and still being tested for stability. Gets the relative
    * latency score for internet service providers from a specified location to Azure regions.
-   * @param networkWatcherName The name of the network watcher resource.
    * @param resourceGroupName The name of the network watcher resource group.
+   * @param networkWatcherName The name of the network watcher resource.
    * @param parameters Parameters that determine Azure reachability report configuration.
    * @param options The options parameters.
    */
   async getAzureReachabilityReport(
-    networkWatcherName: string,
     resourceGroupName: string,
+    networkWatcherName: string,
     parameters: AzureReachabilityReportParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkWatchersGetAzureReachabilityReportResponse>> {
@@ -618,8 +618,8 @@ export class NetworkWatchers {
     );
 
     const args: coreHttp.OperationArguments = {
-      networkWatcherName,
       resourceGroupName,
+      networkWatcherName,
       parameters,
       options: operationOptions
     };
@@ -647,14 +647,14 @@ export class NetworkWatchers {
   /**
    * NOTE: This feature is currently in preview and still being tested for stability. Lists all available
    * internet service providers for a specified Azure region.
-   * @param networkWatcherName The name of the network watcher resource.
    * @param resourceGroupName The name of the network watcher resource group.
+   * @param networkWatcherName The name of the network watcher resource.
    * @param parameters Parameters that scope the list of available providers.
    * @param options The options parameters.
    */
   async listAvailableProviders(
-    networkWatcherName: string,
     resourceGroupName: string,
+    networkWatcherName: string,
     parameters: AvailableProvidersListParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NetworkWatchersListAvailableProvidersResponse>> {
@@ -664,8 +664,8 @@ export class NetworkWatchers {
     );
 
     const args: coreHttp.OperationArguments = {
-      networkWatcherName,
       resourceGroupName,
+      networkWatcherName,
       parameters,
       options: operationOptions
     };
@@ -781,6 +781,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -839,6 +840,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -898,6 +900,7 @@ const getTopologyOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const verifyIPFlowOperationSpec: coreHttp.OperationSpec = {
@@ -927,6 +930,7 @@ const verifyIPFlowOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getNextHopOperationSpec: coreHttp.OperationSpec = {
@@ -956,6 +960,7 @@ const getNextHopOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getVMSecurityRulesOperationSpec: coreHttp.OperationSpec = {
@@ -985,6 +990,7 @@ const getVMSecurityRulesOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getTroubleshootingOperationSpec: coreHttp.OperationSpec = {
@@ -1014,6 +1020,7 @@ const getTroubleshootingOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getTroubleshootingResultOperationSpec: coreHttp.OperationSpec = {
@@ -1043,6 +1050,7 @@ const getTroubleshootingResultOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const setFlowLogConfigurationOperationSpec: coreHttp.OperationSpec = {
@@ -1072,6 +1080,7 @@ const setFlowLogConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getFlowLogStatusOperationSpec: coreHttp.OperationSpec = {
@@ -1101,6 +1110,7 @@ const getFlowLogStatusOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const checkConnectivityOperationSpec: coreHttp.OperationSpec = {
@@ -1130,6 +1140,7 @@ const checkConnectivityOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getAzureReachabilityReportOperationSpec: coreHttp.OperationSpec = {
@@ -1159,6 +1170,7 @@ const getAzureReachabilityReportOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listAvailableProvidersOperationSpec: coreHttp.OperationSpec = {
@@ -1188,6 +1200,7 @@ const listAvailableProvidersOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getNetworkConfigurationDiagnosticOperationSpec: coreHttp.OperationSpec = {
@@ -1217,5 +1230,6 @@ const getNetworkConfigurationDiagnosticOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkWatcherName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };

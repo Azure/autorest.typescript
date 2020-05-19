@@ -38,14 +38,14 @@ export class LocalNetworkGateways {
   /**
    * Creates or updates a local network gateway in the specified resource group.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters supplied to the create or update local network gateway operation.
    * @param localNetworkGatewayName The name of the local network gateway.
+   * @param parameters Parameters supplied to the create or update local network gateway operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    parameters: LocalNetworkGateway,
     localNetworkGatewayName: string,
+    parameters: LocalNetworkGateway,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<LocalNetworkGatewaysCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -55,8 +55,8 @@ export class LocalNetworkGateways {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       localNetworkGatewayName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -250,6 +250,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.localNetworkGatewayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -308,6 +309,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.localNetworkGatewayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {

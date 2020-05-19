@@ -37,15 +37,15 @@ export class PacketCaptures {
    * Create and start a packet capture on the specified VM.
    * @param resourceGroupName The name of the resource group.
    * @param networkWatcherName The name of the network watcher.
-   * @param parameters Parameters that define the create packet capture operation.
    * @param packetCaptureName The name of the packet capture session.
+   * @param parameters Parameters that define the create packet capture operation.
    * @param options The options parameters.
    */
   async create(
     resourceGroupName: string,
     networkWatcherName: string,
-    parameters: PacketCapture,
     packetCaptureName: string,
+    parameters: PacketCapture,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<PacketCapturesCreateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -56,8 +56,8 @@ export class PacketCaptures {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
-      parameters,
       packetCaptureName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -307,6 +307,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.packetCaptureName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

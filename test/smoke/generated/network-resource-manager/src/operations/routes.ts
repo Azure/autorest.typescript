@@ -176,14 +176,14 @@ export class Routes {
   /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param routeTableName The name of the route table.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
     resourceGroupName: string,
-    nextLink: string,
     routeTableName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<RoutesListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -192,8 +192,8 @@ export class Routes {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        nextLink,
         routeTableName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec
@@ -281,6 +281,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.routeName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {

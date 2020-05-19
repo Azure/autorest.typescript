@@ -159,20 +159,20 @@ export class Services {
 
   /**
    * Updates the service properties of an onboarded service.
-   * @param service The service object.
    * @param serviceName The name of the service which needs to be deleted.
+   * @param service The service object.
    * @param options The options parameters.
    */
   update(
-    service: ServiceProperties,
     serviceName: string,
+    service: ServiceProperties,
     options?: coreHttp.OperationOptions
   ): Promise<ServicesUpdateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { service, serviceName, options: operationOptions },
+      { serviceName, service, options: operationOptions },
       updateOperationSpec
     ) as Promise<ServicesUpdateResponse>;
   }
@@ -717,6 +717,7 @@ const addOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listPremiumOperationSpec: coreHttp.OperationSpec = {
@@ -769,6 +770,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.serviceName1],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listAlertsOperationSpec: coreHttp.OperationSpec = {
@@ -859,6 +861,7 @@ const addAlertFeedbackOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.serviceName],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listAlertFeedbackOperationSpec: coreHttp.OperationSpec = {
@@ -980,6 +983,7 @@ const updateMonitoringConfigurationOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.serviceName],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listMonitoringConfigurationsOperationSpec: coreHttp.OperationSpec = {

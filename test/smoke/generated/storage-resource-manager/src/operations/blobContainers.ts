@@ -81,18 +81,18 @@ export class BlobContainers {
    * @param accountName The name of the storage account within the specified resource group. Storage
    *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
    *                    only.
-   * @param blobContainer Properties of the blob container to create.
    * @param containerName The name of the blob container within the specified storage account. Blob
    *                      container names must be between 3 and 63 characters in length and use numbers, lower-case letters
    *                      and dash (-) only. Every dash (-) character must be immediately preceded and followed by a letter or
    *                      number.
+   * @param blobContainer Properties of the blob container to create.
    * @param options The options parameters.
    */
   create(
     resourceGroupName: string,
     accountName: string,
-    blobContainer: BlobContainer,
     containerName: string,
+    blobContainer: BlobContainer,
     options?: coreHttp.OperationOptions
   ): Promise<BlobContainersCreateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -102,8 +102,8 @@ export class BlobContainers {
       {
         resourceGroupName,
         accountName,
-        blobContainer,
         containerName,
+        blobContainer,
         options: operationOptions
       },
       createOperationSpec
@@ -581,6 +581,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -602,6 +603,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -657,6 +659,7 @@ const setLegalHoldOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const clearLegalHoldOperationSpec: coreHttp.OperationSpec = {
@@ -678,6 +681,7 @@ const clearLegalHoldOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const createOrUpdateImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
@@ -702,6 +706,7 @@ const createOrUpdateImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
     Parameters.immutabilityPolicyName
   ],
   headerParameters: [Parameters.contentType, Parameters.ifMatch],
+  mediaType: "json",
   serializer
 };
 const getImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
@@ -789,6 +794,7 @@ const extendImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName
   ],
   headerParameters: [Parameters.contentType, Parameters.ifMatch1],
+  mediaType: "json",
   serializer
 };
 const leaseOperationSpec: coreHttp.OperationSpec = {
@@ -810,6 +816,7 @@ const leaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {

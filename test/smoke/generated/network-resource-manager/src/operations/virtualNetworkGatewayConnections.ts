@@ -47,15 +47,15 @@ export class VirtualNetworkGatewayConnections {
   /**
    * Creates or updates a virtual network gateway connection in the specified resource group.
    * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway connection.
    * @param parameters Parameters supplied to the create or update virtual network gateway connection
    *                   operation.
-   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway connection.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    parameters: VirtualNetworkGatewayConnection,
     virtualNetworkGatewayConnectionName: string,
+    parameters: VirtualNetworkGatewayConnection,
     options?: coreHttp.OperationOptions
   ): Promise<
     LROPoller<VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>
@@ -67,8 +67,8 @@ export class VirtualNetworkGatewayConnections {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       virtualNetworkGatewayConnectionName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -208,15 +208,15 @@ export class VirtualNetworkGatewayConnections {
    * connection shared key for passed virtual network gateway connection in the specified resource group
    * through Network resource provider.
    * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The virtual network gateway connection name.
    * @param parameters Parameters supplied to the Begin Set Virtual Network Gateway connection Shared key
    *                   operation throughNetwork resource provider.
-   * @param virtualNetworkGatewayConnectionName The virtual network gateway connection name.
    * @param options The options parameters.
    */
   async setSharedKey(
     resourceGroupName: string,
-    parameters: ConnectionSharedKey,
     virtualNetworkGatewayConnectionName: string,
+    parameters: ConnectionSharedKey,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualNetworkGatewayConnectionsSetSharedKeyResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -226,8 +226,8 @@ export class VirtualNetworkGatewayConnections {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       virtualNetworkGatewayConnectionName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -300,16 +300,16 @@ export class VirtualNetworkGatewayConnections {
    * connection shared key for passed virtual network gateway connection in the specified resource group
    * through Network resource provider.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters supplied to the begin reset virtual network gateway connection shared
-   *                   key operation through network resource provider.
    * @param virtualNetworkGatewayConnectionName The virtual network gateway connection reset shared key
    *                                            Name.
+   * @param parameters Parameters supplied to the begin reset virtual network gateway connection shared
+   *                   key operation through network resource provider.
    * @param options The options parameters.
    */
   async resetSharedKey(
     resourceGroupName: string,
-    parameters: ConnectionResetSharedKey,
     virtualNetworkGatewayConnectionName: string,
+    parameters: ConnectionResetSharedKey,
     options?: coreHttp.OperationOptions
   ): Promise<
     LROPoller<VirtualNetworkGatewayConnectionsResetSharedKeyResponse>
@@ -321,8 +321,8 @@ export class VirtualNetworkGatewayConnections {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       virtualNetworkGatewayConnectionName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -393,15 +393,15 @@ export class VirtualNetworkGatewayConnections {
   /**
    * Stops packet capture on virtual network gateway connection in the specified resource group.
    * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway Connection.
    * @param parameters Virtual network gateway packet capture parameters supplied to stop packet capture
    *                   on gateway connection.
-   * @param virtualNetworkGatewayConnectionName The name of the virtual network gateway Connection.
    * @param options The options parameters.
    */
   async stopPacketCapture(
     resourceGroupName: string,
-    parameters: VpnPacketCaptureStopParameters,
     virtualNetworkGatewayConnectionName: string,
+    parameters: VpnPacketCaptureStopParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
     LROPoller<VirtualNetworkGatewayConnectionsStopPacketCaptureResponse>
@@ -413,8 +413,8 @@ export class VirtualNetworkGatewayConnections {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       virtualNetworkGatewayConnectionName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -501,6 +501,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkGatewayConnectionName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -565,6 +566,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkGatewayConnectionName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const setSharedKeyOperationSpec: coreHttp.OperationSpec = {
@@ -594,6 +596,7 @@ const setSharedKeyOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkGatewayConnectionName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getSharedKeyOperationSpec: coreHttp.OperationSpec = {
@@ -664,6 +667,7 @@ const resetSharedKeyOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkGatewayConnectionName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const startPacketCaptureOperationSpec: coreHttp.OperationSpec = {
@@ -693,6 +697,7 @@ const startPacketCaptureOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkGatewayConnectionName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const stopPacketCaptureOperationSpec: coreHttp.OperationSpec = {
@@ -722,6 +727,7 @@ const stopPacketCaptureOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkGatewayConnectionName5
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {

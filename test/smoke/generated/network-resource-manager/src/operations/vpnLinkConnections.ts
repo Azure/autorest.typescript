@@ -31,15 +31,15 @@ export class VpnLinkConnections {
 
   /**
    * Retrieves all vpn site link connections for a particular virtual wan vpn gateway vpn connection.
-   * @param connectionName The name of the vpn connection.
    * @param resourceGroupName The resource group name of the VpnGateway.
    * @param gatewayName The name of the gateway.
+   * @param connectionName The name of the vpn connection.
    * @param options The options parameters.
    */
   listByVpnConnection(
-    connectionName: string,
     resourceGroupName: string,
     gatewayName: string,
+    connectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VpnLinkConnectionsListByVpnConnectionResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -47,9 +47,9 @@ export class VpnLinkConnections {
     );
     return this.client.sendOperationRequest(
       {
-        connectionName,
         resourceGroupName,
         gatewayName,
+        connectionName,
         options: operationOptions
       },
       listByVpnConnectionOperationSpec
@@ -58,16 +58,16 @@ export class VpnLinkConnections {
 
   /**
    * ListByVpnConnectionNext
-   * @param connectionName The name of the vpn connection.
    * @param resourceGroupName The resource group name of the VpnGateway.
    * @param gatewayName The name of the gateway.
+   * @param connectionName The name of the vpn connection.
    * @param nextLink The nextLink from the previous successful call to the ListByVpnConnection method.
    * @param options The options parameters.
    */
   listByVpnConnectionNext(
-    connectionName: string,
     resourceGroupName: string,
     gatewayName: string,
+    connectionName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VpnLinkConnectionsListByVpnConnectionNextResponse> {
@@ -76,9 +76,9 @@ export class VpnLinkConnections {
     );
     return this.client.sendOperationRequest(
       {
-        connectionName,
         resourceGroupName,
         gatewayName,
+        connectionName,
         nextLink,
         options: operationOptions
       },

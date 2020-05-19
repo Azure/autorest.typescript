@@ -65,15 +65,15 @@ export class VpnServerConfigurations {
    * Creates a VpnServerConfiguration resource if it doesn't exist else updates the existing
    * VpnServerConfiguration.
    * @param resourceGroupName The resource group name of the VpnServerConfiguration.
+   * @param vpnServerConfigurationName The name of the VpnServerConfiguration being created or updated.
    * @param vpnServerConfigurationParameters Parameters supplied to create or update
    *                                         VpnServerConfiguration.
-   * @param vpnServerConfigurationName The name of the VpnServerConfiguration being created or updated.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    vpnServerConfigurationParameters: VpnServerConfiguration,
     vpnServerConfigurationName: string,
+    vpnServerConfigurationParameters: VpnServerConfiguration,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VpnServerConfigurationsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -83,8 +83,8 @@ export class VpnServerConfigurations {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      vpnServerConfigurationParameters,
       vpnServerConfigurationName,
+      vpnServerConfigurationParameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -111,14 +111,14 @@ export class VpnServerConfigurations {
   /**
    * Updates VpnServerConfiguration tags.
    * @param resourceGroupName The resource group name of the VpnServerConfiguration.
-   * @param vpnServerConfigurationParameters Parameters supplied to update VpnServerConfiguration tags.
    * @param vpnServerConfigurationName The name of the VpnServerConfiguration being updated.
+   * @param vpnServerConfigurationParameters Parameters supplied to update VpnServerConfiguration tags.
    * @param options The options parameters.
    */
   updateTags(
     resourceGroupName: string,
-    vpnServerConfigurationParameters: TagsObject,
     vpnServerConfigurationName: string,
+    vpnServerConfigurationParameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<VpnServerConfigurationsUpdateTagsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -127,8 +127,8 @@ export class VpnServerConfigurations {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        vpnServerConfigurationParameters,
         vpnServerConfigurationName,
+        vpnServerConfigurationParameters,
         options: operationOptions
       },
       updateTagsOperationSpec
@@ -213,20 +213,20 @@ export class VpnServerConfigurations {
 
   /**
    * ListByResourceGroupNext
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param resourceGroupName The resource group name of the VpnServerConfiguration.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
   listByResourceGroupNext(
-    nextLink: string,
     resourceGroupName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VpnServerConfigurationsListByResourceGroupNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { nextLink, resourceGroupName, options: operationOptions },
+      { resourceGroupName, nextLink, options: operationOptions },
       listByResourceGroupNextOperationSpec
     ) as Promise<VpnServerConfigurationsListByResourceGroupNextResponse>;
   }
@@ -313,6 +313,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.vpnServerConfigurationName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -336,6 +337,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.vpnServerConfigurationName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

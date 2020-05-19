@@ -80,14 +80,14 @@ export class ExpressRouteLinks {
   /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param expressRoutePortName The name of the ExpressRoutePort resource.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
     resourceGroupName: string,
-    nextLink: string,
     expressRoutePortName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteLinksListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -96,8 +96,8 @@ export class ExpressRouteLinks {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        nextLink,
         expressRoutePortName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec

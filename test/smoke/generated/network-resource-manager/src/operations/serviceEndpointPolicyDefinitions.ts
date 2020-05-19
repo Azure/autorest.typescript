@@ -183,14 +183,14 @@ export class ServiceEndpointPolicyDefinitions {
   /**
    * ListByResourceGroupNext
    * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param serviceEndpointPolicyName The name of the service endpoint policy name.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
   listByResourceGroupNext(
     resourceGroupName: string,
-    nextLink: string,
     serviceEndpointPolicyName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServiceEndpointPolicyDefinitionsListByResourceGroupNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -199,8 +199,8 @@ export class ServiceEndpointPolicyDefinitions {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        nextLink,
         serviceEndpointPolicyName,
+        nextLink,
         options: operationOptions
       },
       listByResourceGroupNextOperationSpec
@@ -290,6 +290,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.serviceEndpointPolicyDefinitionName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {

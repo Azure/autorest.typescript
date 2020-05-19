@@ -277,14 +277,14 @@ export class Subnets {
   /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param virtualNetworkName The name of the virtual network.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
     resourceGroupName: string,
-    nextLink: string,
     virtualNetworkName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<SubnetsListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -293,8 +293,8 @@ export class Subnets {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        nextLink,
         virtualNetworkName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec
@@ -382,6 +382,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subnetName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const prepareNetworkPoliciesOperationSpec: coreHttp.OperationSpec = {
@@ -399,6 +400,7 @@ const prepareNetworkPoliciesOperationSpec: coreHttp.OperationSpec = {
     Parameters.subnetName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const unprepareNetworkPoliciesOperationSpec: coreHttp.OperationSpec = {
@@ -416,6 +418,7 @@ const unprepareNetworkPoliciesOperationSpec: coreHttp.OperationSpec = {
     Parameters.subnetName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {

@@ -55,20 +55,20 @@ export class AddsServicesServiceMembers {
   /**
    * Onboards  a server, for a given Active Directory Domain Controller service, to Azure Active
    * Directory Connect Health Service.
-   * @param serviceMember The server object.
    * @param serviceName The name of the service under which the server is to be onboarded.
+   * @param serviceMember The server object.
    * @param options The options parameters.
    */
   add(
-    serviceMember: ServiceMember,
     serviceName: string,
+    serviceMember: ServiceMember,
     options?: coreHttp.OperationOptions
   ): Promise<AddsServicesServiceMembersAddResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { serviceMember, serviceName, options: operationOptions },
+      { serviceName, serviceMember, options: operationOptions },
       addOperationSpec
     ) as Promise<AddsServicesServiceMembersAddResponse>;
   }
@@ -128,6 +128,7 @@ const addOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.serviceName2],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {

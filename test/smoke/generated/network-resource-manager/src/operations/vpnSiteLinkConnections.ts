@@ -28,16 +28,16 @@ export class VpnSiteLinkConnections {
 
   /**
    * Retrieves the details of a vpn site link connection.
-   * @param connectionName The name of the vpn connection.
    * @param resourceGroupName The resource group name of the VpnGateway.
    * @param gatewayName The name of the gateway.
+   * @param connectionName The name of the vpn connection.
    * @param linkConnectionName The name of the vpn connection.
    * @param options The options parameters.
    */
   get(
-    connectionName: string,
     resourceGroupName: string,
     gatewayName: string,
+    connectionName: string,
     linkConnectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VpnSiteLinkConnectionsGetResponse> {
@@ -46,9 +46,9 @@ export class VpnSiteLinkConnections {
     );
     return this.client.sendOperationRequest(
       {
-        connectionName,
         resourceGroupName,
         gatewayName,
+        connectionName,
         linkConnectionName,
         options: operationOptions
       },

@@ -293,6 +293,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.firewallPolicyName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {

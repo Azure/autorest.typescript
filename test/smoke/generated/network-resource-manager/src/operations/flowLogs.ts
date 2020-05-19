@@ -37,15 +37,15 @@ export class FlowLogs {
    * Create or update a flow log for the specified network security group.
    * @param resourceGroupName The name of the resource group.
    * @param networkWatcherName The name of the network watcher.
-   * @param parameters Parameters that define the create or update flow log resource.
    * @param flowLogName The name of the flow log.
+   * @param parameters Parameters that define the create or update flow log resource.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
     networkWatcherName: string,
-    parameters: FlowLog,
     flowLogName: string,
+    parameters: FlowLog,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<FlowLogsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -56,8 +56,8 @@ export class FlowLogs {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       networkWatcherName,
-      parameters,
       flowLogName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -155,35 +155,35 @@ export class FlowLogs {
 
   /**
    * Lists all flow log resources for the specified Network Watcher.
-   * @param networkWatcherName The name of the Network Watcher resource.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
    * @param options The options parameters.
    */
   list(
-    networkWatcherName: string,
     resourceGroupName: string,
+    networkWatcherName: string,
     options?: coreHttp.OperationOptions
   ): Promise<FlowLogsListResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { networkWatcherName, resourceGroupName, options: operationOptions },
+      { resourceGroupName, networkWatcherName, options: operationOptions },
       listOperationSpec
     ) as Promise<FlowLogsListResponse>;
   }
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param networkWatcherName The name of the Network Watcher resource.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
-    nextLink: string,
-    networkWatcherName: string,
     resourceGroupName: string,
+    networkWatcherName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<FlowLogsListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -191,9 +191,9 @@ export class FlowLogs {
     );
     return this.client.sendOperationRequest(
       {
-        nextLink,
-        networkWatcherName,
         resourceGroupName,
+        networkWatcherName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec
@@ -244,6 +244,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.flowLogName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

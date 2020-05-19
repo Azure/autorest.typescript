@@ -66,5 +66,6 @@ const iPAddressAggregateSettingsOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.serviceName],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };

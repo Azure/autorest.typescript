@@ -73,14 +73,14 @@ export class UserAssignedIdentities {
   /**
    * Create or update an identity in the specified subscription and resource group.
    * @param resourceGroupName The name of the Resource Group to which the identity belongs.
-   * @param parameters Parameters to create or update the identity
    * @param resourceName The name of the identity resource.
+   * @param parameters Parameters to create or update the identity
    * @param options The options parameters.
    */
   createOrUpdate(
     resourceGroupName: string,
-    parameters: Identity,
     resourceName: string,
+    parameters: Identity,
     options?: coreHttp.OperationOptions
   ): Promise<UserAssignedIdentitiesCreateOrUpdateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -89,8 +89,8 @@ export class UserAssignedIdentities {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        parameters,
         resourceName,
+        parameters,
         options: operationOptions
       },
       createOrUpdateOperationSpec
@@ -266,6 +266,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -289,6 +290,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

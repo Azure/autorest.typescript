@@ -440,15 +440,15 @@ class NetworkManagementClient extends NetworkManagementClientContext {
    * Generates a unique VPN profile for P2S clients for VirtualWan and associated VpnServerConfiguration
    * combination in the specified resource group.
    * @param resourceGroupName The resource group name.
+   * @param virtualWANName The name of the VirtualWAN whose associated VpnServerConfigurations is needed.
    * @param vpnClientParams Parameters supplied to the generate VirtualWan VPN profile generation
    *                        operation.
-   * @param virtualWANName The name of the VirtualWAN whose associated VpnServerConfigurations is needed.
    * @param options The options parameters.
    */
   async generatevirtualwanvpnserverconfigurationvpnprofile(
     resourceGroupName: string,
-    vpnClientParams: VirtualWanVpnProfileParameters,
     virtualWANName: string,
+    vpnClientParams: VirtualWanVpnProfileParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
     LROPoller<
@@ -462,8 +462,8 @@ class NetworkManagementClient extends NetworkManagementClientContext {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      vpnClientParams,
       virtualWANName,
+      vpnClientParams,
       options: operationOptions
     };
     const sendOperation = (
@@ -771,6 +771,7 @@ const putBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {
     Parameters.bastionHostName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {
@@ -787,6 +788,7 @@ const deleteBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {
     Parameters.bastionHostName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {
@@ -810,6 +812,7 @@ const getBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {
     Parameters.bastionHostName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getActiveSessionsOperationSpec: coreHttp.OperationSpec = {
@@ -860,6 +863,7 @@ const disconnectActiveSessionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.bastionHostName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const checkDnsNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
@@ -930,6 +934,7 @@ const generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec: coreHttp.
     Parameters.virtualWANName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const putBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
@@ -959,6 +964,7 @@ const putBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
@@ -982,6 +988,7 @@ const getBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink5
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getActiveSessionsNextOperationSpec: coreHttp.OperationSpec = {
@@ -1032,6 +1039,7 @@ const disconnectActiveSessionsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink7
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 

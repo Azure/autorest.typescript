@@ -60,14 +60,14 @@ export class VpnSites {
   /**
    * Creates a VpnSite resource if it doesn't exist else updates the existing VpnSite.
    * @param resourceGroupName The resource group name of the VpnSite.
-   * @param vpnSiteParameters Parameters supplied to create or update VpnSite.
    * @param vpnSiteName The name of the VpnSite being created or updated.
+   * @param vpnSiteParameters Parameters supplied to create or update VpnSite.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    vpnSiteParameters: VpnSite,
     vpnSiteName: string,
+    vpnSiteParameters: VpnSite,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VpnSitesCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -77,8 +77,8 @@ export class VpnSites {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      vpnSiteParameters,
       vpnSiteName,
+      vpnSiteParameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -105,14 +105,14 @@ export class VpnSites {
   /**
    * Updates VpnSite tags.
    * @param resourceGroupName The resource group name of the VpnSite.
-   * @param vpnSiteParameters Parameters supplied to update VpnSite tags.
    * @param vpnSiteName The name of the VpnSite being updated.
+   * @param vpnSiteParameters Parameters supplied to update VpnSite tags.
    * @param options The options parameters.
    */
   updateTags(
     resourceGroupName: string,
-    vpnSiteParameters: TagsObject,
     vpnSiteName: string,
+    vpnSiteParameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<VpnSitesUpdateTagsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -121,8 +121,8 @@ export class VpnSites {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        vpnSiteParameters,
         vpnSiteName,
+        vpnSiteParameters,
         options: operationOptions
       },
       updateTagsOperationSpec
@@ -205,20 +205,20 @@ export class VpnSites {
 
   /**
    * ListByResourceGroupNext
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param resourceGroupName The resource group name of the VpnSite.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
   listByResourceGroupNext(
-    nextLink: string,
     resourceGroupName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VpnSitesListByResourceGroupNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { nextLink, resourceGroupName, options: operationOptions },
+      { resourceGroupName, nextLink, options: operationOptions },
       listByResourceGroupNextOperationSpec
     ) as Promise<VpnSitesListByResourceGroupNextResponse>;
   }
@@ -305,6 +305,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.vpnSiteName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -328,6 +329,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.vpnSiteName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

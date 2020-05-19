@@ -177,21 +177,21 @@ export class ExpressRouteCircuitPeerings {
   /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param circuitName The name of the express route circuit.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
     resourceGroupName: string,
-    nextLink: string,
     circuitName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCircuitPeeringsListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, circuitName, options: operationOptions },
+      { resourceGroupName, circuitName, nextLink, options: operationOptions },
       listNextOperationSpec
     ) as Promise<ExpressRouteCircuitPeeringsListNextResponse>;
   }
@@ -277,6 +277,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.peeringName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {

@@ -53,54 +53,54 @@ export class AvailablePrivateEndpointTypes {
   /**
    * Returns all of the resource types that can be linked to a Private Endpoint in this subscription in
    * this region.
-   * @param resourceGroupName The name of the resource group.
    * @param location The location of the domain name.
+   * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
    */
   listByResourceGroup(
-    resourceGroupName: string,
     location: string,
+    resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailablePrivateEndpointTypesListByResourceGroupResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, location, options: operationOptions },
+      { location, resourceGroupName, options: operationOptions },
       listByResourceGroupOperationSpec
     ) as Promise<AvailablePrivateEndpointTypesListByResourceGroupResponse>;
   }
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param location The location of the domain name.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
-    nextLink: string,
     location: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailablePrivateEndpointTypesListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { nextLink, location, options: operationOptions },
+      { location, nextLink, options: operationOptions },
       listNextOperationSpec
     ) as Promise<AvailablePrivateEndpointTypesListNextResponse>;
   }
 
   /**
    * ListByResourceGroupNext
-   * @param resourceGroupName The name of the resource group.
    * @param location The location of the domain name.
+   * @param resourceGroupName The name of the resource group.
    * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
   listByResourceGroupNext(
-    resourceGroupName: string,
     location: string,
+    resourceGroupName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailablePrivateEndpointTypesListByResourceGroupNextResponse> {
@@ -108,7 +108,7 @@ export class AvailablePrivateEndpointTypes {
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, location, nextLink, options: operationOptions },
+      { location, resourceGroupName, nextLink, options: operationOptions },
       listByResourceGroupNextOperationSpec
     ) as Promise<AvailablePrivateEndpointTypesListByResourceGroupNextResponse>;
   }

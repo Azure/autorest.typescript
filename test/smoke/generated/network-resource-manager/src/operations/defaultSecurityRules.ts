@@ -84,14 +84,14 @@ export class DefaultSecurityRules {
   /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param networkSecurityGroupName The name of the network security group.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
     resourceGroupName: string,
-    nextLink: string,
     networkSecurityGroupName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<DefaultSecurityRulesListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -100,8 +100,8 @@ export class DefaultSecurityRules {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        nextLink,
         networkSecurityGroupName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec

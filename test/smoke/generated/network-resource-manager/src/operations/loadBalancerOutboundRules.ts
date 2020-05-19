@@ -80,14 +80,14 @@ export class LoadBalancerOutboundRules {
   /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param loadBalancerName The name of the load balancer.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
     resourceGroupName: string,
-    nextLink: string,
     loadBalancerName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<LoadBalancerOutboundRulesListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -96,8 +96,8 @@ export class LoadBalancerOutboundRules {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        nextLink,
         loadBalancerName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec

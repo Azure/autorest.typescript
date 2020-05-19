@@ -220,6 +220,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.objectReplicationPolicyId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

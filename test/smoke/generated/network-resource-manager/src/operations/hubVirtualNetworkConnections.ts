@@ -79,15 +79,15 @@ export class HubVirtualNetworkConnections {
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param resourceGroupName The resource group name of the VirtualHub.
    * @param virtualHubName The name of the VirtualHub.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
-    nextLink: string,
     resourceGroupName: string,
     virtualHubName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<HubVirtualNetworkConnectionsListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -95,9 +95,9 @@ export class HubVirtualNetworkConnections {
     );
     return this.client.sendOperationRequest(
       {
-        nextLink,
         resourceGroupName,
         virtualHubName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec

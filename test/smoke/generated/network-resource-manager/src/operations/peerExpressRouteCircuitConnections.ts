@@ -91,16 +91,16 @@ export class PeerExpressRouteCircuitConnections {
   /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param circuitName The name of the circuit.
    * @param peeringName The name of the peering.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
     resourceGroupName: string,
-    nextLink: string,
     circuitName: string,
     peeringName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<PeerExpressRouteCircuitConnectionsListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -109,9 +109,9 @@ export class PeerExpressRouteCircuitConnections {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        nextLink,
         circuitName,
         peeringName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec

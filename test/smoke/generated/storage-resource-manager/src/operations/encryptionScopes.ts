@@ -42,18 +42,18 @@ export class EncryptionScopes {
    * @param accountName The name of the storage account within the specified resource group. Storage
    *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
    *                    only.
-   * @param encryptionScope Encryption scope properties to be used for the create or update.
    * @param encryptionScopeName The name of the encryption scope within the specified storage account.
    *                            Encryption scope names must be between 3 and 63 characters in length and use numbers, lower-case
    *                            letters and dash (-) only. Every dash (-) character must be immediately preceded and followed by a
    *                            letter or number.
+   * @param encryptionScope Encryption scope properties to be used for the create or update.
    * @param options The options parameters.
    */
   put(
     resourceGroupName: string,
     accountName: string,
-    encryptionScope: EncryptionScope,
     encryptionScopeName: string,
+    encryptionScope: EncryptionScope,
     options?: coreHttp.OperationOptions
   ): Promise<EncryptionScopesPutResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -63,8 +63,8 @@ export class EncryptionScopes {
       {
         resourceGroupName,
         accountName,
-        encryptionScope,
         encryptionScopeName,
+        encryptionScope,
         options: operationOptions
       },
       putOperationSpec
@@ -218,6 +218,7 @@ const putOperationSpec: coreHttp.OperationSpec = {
     Parameters.encryptionScopeName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const patchOperationSpec: coreHttp.OperationSpec = {
@@ -242,6 +243,7 @@ const patchOperationSpec: coreHttp.OperationSpec = {
     Parameters.encryptionScopeName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

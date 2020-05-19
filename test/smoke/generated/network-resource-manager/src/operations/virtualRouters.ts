@@ -293,6 +293,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualRouterName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
