@@ -431,14 +431,14 @@ export class Paging {
 
   /**
    * GetMultiplePagesWithOffsetNext
+   * @param pagingGetMultiplePagesWithOffsetOptions Parameter group
    * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesWithOffset
    *                 method.
-   * @param pagingGetMultiplePagesWithOffsetOptions Parameter group
    * @param options The options parameters.
    */
   getMultiplePagesWithOffsetNext(
-    nextLink: string,
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
+    nextLink: string,
     options?: PagingGetMultiplePagesWithOffsetNextOptionalParams
   ): Promise<PagingGetMultiplePagesWithOffsetNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -446,8 +446,8 @@ export class Paging {
     );
     return this.client.sendOperationRequest(
       {
-        nextLink,
         pagingGetMultiplePagesWithOffsetOptions,
+        nextLink,
         options: operationOptions
       },
       getMultiplePagesWithOffsetNextOperationSpec
