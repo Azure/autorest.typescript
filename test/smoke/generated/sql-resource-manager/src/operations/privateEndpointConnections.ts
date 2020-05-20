@@ -66,15 +66,15 @@ export class PrivateEndpointConnections {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param parameters A private endpoint connection
    * @param privateEndpointConnectionName
+   * @param parameters A private endpoint connection
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
     serverName: string,
-    parameters: PrivateEndpointConnection,
     privateEndpointConnectionName: string,
+    parameters: PrivateEndpointConnection,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<PrivateEndpointConnectionsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -84,8 +84,8 @@ export class PrivateEndpointConnections {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
-      parameters,
       privateEndpointConnectionName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -260,6 +260,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.privateEndpointConnectionName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

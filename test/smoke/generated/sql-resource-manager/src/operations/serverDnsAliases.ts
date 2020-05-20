@@ -175,15 +175,15 @@ export class ServerDnsAliases {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server that the alias is pointing to.
-   * @param parameters A server DNS alias acquisition request.
    * @param dnsAliasName The name of the server dns alias.
+   * @param parameters A server DNS alias acquisition request.
    * @param options The options parameters.
    */
   async acquire(
     resourceGroupName: string,
     serverName: string,
-    parameters: ServerDnsAliasAcquisition,
     dnsAliasName: string,
+    parameters: ServerDnsAliasAcquisition,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -193,8 +193,8 @@ export class ServerDnsAliases {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
-      parameters,
       dnsAliasName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -221,21 +221,21 @@ export class ServerDnsAliases {
    * ListByServerNext
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param nextLink The nextLink from the previous successful call to the ListByServer method.
    * @param serverName The name of the server that the alias is pointing to.
+   * @param nextLink The nextLink from the previous successful call to the ListByServer method.
    * @param options The options parameters.
    */
   listByServerNext(
     resourceGroupName: string,
-    nextLink: string,
     serverName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ServerDnsAliasesListByServerNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, serverName, options: operationOptions },
+      { resourceGroupName, serverName, nextLink, options: operationOptions },
       listByServerNextOperationSpec
     ) as Promise<ServerDnsAliasesListByServerNextResponse>;
   }
@@ -353,6 +353,7 @@ const acquireOperationSpec: coreHttp.OperationSpec = {
     Parameters.dnsAliasName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByServerNextOperationSpec: coreHttp.OperationSpec = {

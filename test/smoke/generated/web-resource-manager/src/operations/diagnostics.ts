@@ -130,21 +130,21 @@ export class Diagnostics {
   /**
    * Description for Get site detector response
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param detectorName Detector Resource Name
    * @param siteName Site Name
+   * @param detectorName Detector Resource Name
    * @param options The options parameters.
    */
   getSiteDetectorResponse(
     resourceGroupName: string,
-    detectorName: string,
     siteName: string,
+    detectorName: string,
     options?: DiagnosticsGetSiteDetectorResponseOptionalParams
   ): Promise<DiagnosticsGetSiteDetectorResponseResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, detectorName, siteName, options: operationOptions },
+      { resourceGroupName, siteName, detectorName, options: operationOptions },
       getSiteDetectorResponseOperationSpec
     ) as Promise<DiagnosticsGetSiteDetectorResponseResponse>;
   }
@@ -343,15 +343,15 @@ export class Diagnostics {
   /**
    * Description for Execute Detector
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param detectorName Detector Resource Name
    * @param siteName Site Name
+   * @param detectorName Detector Resource Name
    * @param diagnosticCategory Category Name
    * @param options The options parameters.
    */
   executeSiteDetector(
     resourceGroupName: string,
-    detectorName: string,
     siteName: string,
+    detectorName: string,
     diagnosticCategory: string,
     options?: DiagnosticsExecuteSiteDetectorOptionalParams
   ): Promise<DiagnosticsExecuteSiteDetectorResponse> {
@@ -361,8 +361,8 @@ export class Diagnostics {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        detectorName,
         siteName,
+        detectorName,
         diagnosticCategory,
         options: operationOptions
       },
@@ -395,15 +395,15 @@ export class Diagnostics {
   /**
    * Description for Get site detector response
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param detectorName Detector Resource Name
    * @param siteName Site Name
+   * @param detectorName Detector Resource Name
    * @param slot Slot Name
    * @param options The options parameters.
    */
   getSiteDetectorResponseSlot(
     resourceGroupName: string,
-    detectorName: string,
     siteName: string,
+    detectorName: string,
     slot: string,
     options?: DiagnosticsGetSiteDetectorResponseSlotOptionalParams
   ): Promise<DiagnosticsGetSiteDetectorResponseSlotResponse> {
@@ -413,8 +413,8 @@ export class Diagnostics {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        detectorName,
         siteName,
+        detectorName,
         slot,
         options: operationOptions
       },
@@ -636,16 +636,16 @@ export class Diagnostics {
   /**
    * Description for Execute Detector
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param detectorName Detector Resource Name
    * @param siteName Site Name
+   * @param detectorName Detector Resource Name
    * @param diagnosticCategory Category Name
    * @param slot Slot Name
    * @param options The options parameters.
    */
   executeSiteDetectorSlot(
     resourceGroupName: string,
-    detectorName: string,
     siteName: string,
+    detectorName: string,
     diagnosticCategory: string,
     slot: string,
     options?: DiagnosticsExecuteSiteDetectorSlotOptionalParams
@@ -656,8 +656,8 @@ export class Diagnostics {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        detectorName,
         siteName,
+        detectorName,
         diagnosticCategory,
         slot,
         options: operationOptions

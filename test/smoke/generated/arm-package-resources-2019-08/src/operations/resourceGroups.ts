@@ -59,22 +59,22 @@ export class ResourceGroups {
 
   /**
    * Creates or updates a resource group.
-   * @param parameters Parameters supplied to the create or update a resource group.
    * @param resourceGroupName The name of the resource group to create or update. Can include
    *                          alphanumeric, underscore, parentheses, hyphen, period (except at end), and Unicode characters that
    *                          match the allowed characters.
+   * @param parameters Parameters supplied to the create or update a resource group.
    * @param options The options parameters.
    */
   createOrUpdate(
-    parameters: ResourceGroup,
     resourceGroupName: string,
+    parameters: ResourceGroup,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceGroupsCreateOrUpdateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { parameters, resourceGroupName, options: operationOptions },
+      { resourceGroupName, parameters, options: operationOptions },
       createOrUpdateOperationSpec
     ) as Promise<ResourceGroupsCreateOrUpdateResponse>;
   }
@@ -139,20 +139,20 @@ export class ResourceGroups {
    * Resource groups can be updated through a simple PATCH operation to a group address. The format of
    * the request is the same as that for creating a resource group. If a field is unspecified, the
    * current value is retained.
-   * @param parameters Parameters supplied to update a resource group.
    * @param resourceGroupName The name of the resource group to update. The name is case insensitive.
+   * @param parameters Parameters supplied to update a resource group.
    * @param options The options parameters.
    */
   update(
-    parameters: ResourceGroupPatchable,
     resourceGroupName: string,
+    parameters: ResourceGroupPatchable,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceGroupsUpdateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { parameters, resourceGroupName, options: operationOptions },
+      { resourceGroupName, parameters, options: operationOptions },
       updateOperationSpec
     ) as Promise<ResourceGroupsUpdateResponse>;
   }
@@ -289,6 +289,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName12
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -341,6 +342,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName15
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const exportTemplateOperationSpec: coreHttp.OperationSpec = {
@@ -369,6 +371,7 @@ const exportTemplateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName3
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {

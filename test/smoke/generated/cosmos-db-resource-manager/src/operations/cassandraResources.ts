@@ -289,15 +289,15 @@ export class CassandraResources {
    * Gets the Cassandra table under an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
-   * @param tableName Cosmos DB table name.
    * @param keyspaceName Cosmos DB keyspace name.
+   * @param tableName Cosmos DB table name.
    * @param options The options parameters.
    */
   getCassandraTable(
     resourceGroupName: string,
     accountName: string,
-    tableName: string,
     keyspaceName: string,
+    tableName: string,
     options?: coreHttp.OperationOptions
   ): Promise<CassandraResourcesGetCassandraTableResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -307,8 +307,8 @@ export class CassandraResources {
       {
         resourceGroupName,
         accountName,
-        tableName,
         keyspaceName,
+        tableName,
         options: operationOptions
       },
       getCassandraTableOperationSpec
@@ -319,8 +319,8 @@ export class CassandraResources {
    * Create or update an Azure Cosmos DB Cassandra Table
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
-   * @param tableName Cosmos DB table name.
    * @param keyspaceName Cosmos DB keyspace name.
+   * @param tableName Cosmos DB table name.
    * @param createUpdateCassandraTableParameters The parameters to provide for the current Cassandra
    *                                             Table.
    * @param options The options parameters.
@@ -328,8 +328,8 @@ export class CassandraResources {
   async createUpdateCassandraTable(
     resourceGroupName: string,
     accountName: string,
-    tableName: string,
     keyspaceName: string,
+    tableName: string,
     createUpdateCassandraTableParameters: CassandraTableCreateUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<CassandraResourcesCreateUpdateCassandraTableResponse>> {
@@ -340,8 +340,8 @@ export class CassandraResources {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
-      tableName,
       keyspaceName,
+      tableName,
       createUpdateCassandraTableParameters,
       options: operationOptions
     };
@@ -369,15 +369,15 @@ export class CassandraResources {
    * Deletes an existing Azure Cosmos DB Cassandra table.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
-   * @param tableName Cosmos DB table name.
    * @param keyspaceName Cosmos DB keyspace name.
+   * @param tableName Cosmos DB table name.
    * @param options The options parameters.
    */
   async deleteCassandraTable(
     resourceGroupName: string,
     accountName: string,
-    tableName: string,
     keyspaceName: string,
+    tableName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -387,8 +387,8 @@ export class CassandraResources {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
-      tableName,
       keyspaceName,
+      tableName,
       options: operationOptions
     };
     const sendOperation = (
@@ -416,15 +416,15 @@ export class CassandraResources {
    * with the provided name.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
-   * @param tableName Cosmos DB table name.
    * @param keyspaceName Cosmos DB keyspace name.
+   * @param tableName Cosmos DB table name.
    * @param options The options parameters.
    */
   getCassandraTableThroughput(
     resourceGroupName: string,
     accountName: string,
-    tableName: string,
     keyspaceName: string,
+    tableName: string,
     options?: coreHttp.OperationOptions
   ): Promise<CassandraResourcesGetCassandraTableThroughputResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -434,8 +434,8 @@ export class CassandraResources {
       {
         resourceGroupName,
         accountName,
-        tableName,
         keyspaceName,
+        tableName,
         options: operationOptions
       },
       getCassandraTableThroughputOperationSpec
@@ -446,8 +446,8 @@ export class CassandraResources {
    * Update RUs per second of an Azure Cosmos DB Cassandra table
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
-   * @param tableName Cosmos DB table name.
    * @param keyspaceName Cosmos DB keyspace name.
+   * @param tableName Cosmos DB table name.
    * @param updateThroughputParameters The RUs per second of the parameters to provide for the current
    *                                   Cassandra table.
    * @param options The options parameters.
@@ -455,8 +455,8 @@ export class CassandraResources {
   async updateCassandraTableThroughput(
     resourceGroupName: string,
     accountName: string,
-    tableName: string,
     keyspaceName: string,
+    tableName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<
@@ -469,8 +469,8 @@ export class CassandraResources {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
-      tableName,
       keyspaceName,
+      tableName,
       updateThroughputParameters,
       options: operationOptions
     };
@@ -575,6 +575,7 @@ const createUpdateCassandraKeyspaceOperationSpec: coreHttp.OperationSpec = {
     Parameters.keyspaceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteCassandraKeyspaceOperationSpec: coreHttp.OperationSpec = {
@@ -639,6 +640,7 @@ const updateCassandraKeyspaceThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.keyspaceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listCassandraTablesOperationSpec: coreHttp.OperationSpec = {
@@ -709,6 +711,7 @@ const createUpdateCassandraTableOperationSpec: coreHttp.OperationSpec = {
     Parameters.keyspaceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteCassandraTableOperationSpec: coreHttp.OperationSpec = {
@@ -776,5 +779,6 @@ const updateCassandraTableThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.keyspaceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };

@@ -76,14 +76,14 @@ export class SshPublicKeys {
   /**
    * Creates a new SSH public key resource.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters supplied to create the SSH public key.
    * @param sshPublicKeyName The name of the SSH public key.
+   * @param parameters Parameters supplied to create the SSH public key.
    * @param options The options parameters.
    */
   create(
     resourceGroupName: string,
-    parameters: SshPublicKeyResource,
     sshPublicKeyName: string,
+    parameters: SshPublicKeyResource,
     options?: coreHttp.OperationOptions
   ): Promise<SshPublicKeysCreateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -92,8 +92,8 @@ export class SshPublicKeys {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        parameters,
         sshPublicKeyName,
+        parameters,
         options: operationOptions
       },
       createOperationSpec
@@ -282,6 +282,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.sshPublicKeyName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -302,6 +303,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.sshPublicKeyName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

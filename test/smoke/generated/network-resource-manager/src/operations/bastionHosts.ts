@@ -290,6 +290,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.bastionHostName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {

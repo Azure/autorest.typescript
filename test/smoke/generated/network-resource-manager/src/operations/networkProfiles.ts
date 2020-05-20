@@ -103,14 +103,14 @@ export class NetworkProfiles {
   /**
    * Creates or updates a network profile.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters supplied to the create or update network profile operation.
    * @param networkProfileName The name of the network profile.
+   * @param parameters Parameters supplied to the create or update network profile operation.
    * @param options The options parameters.
    */
   createOrUpdate(
     resourceGroupName: string,
-    parameters: NetworkProfile,
     networkProfileName: string,
+    parameters: NetworkProfile,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkProfilesCreateOrUpdateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -119,8 +119,8 @@ export class NetworkProfiles {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        parameters,
         networkProfileName,
+        parameters,
         options: operationOptions
       },
       createOrUpdateOperationSpec
@@ -301,6 +301,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkProfileName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -324,6 +325,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkProfileName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listAllOperationSpec: coreHttp.OperationSpec = {

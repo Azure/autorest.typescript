@@ -216,6 +216,7 @@ const putOperationSpec: coreHttp.OperationSpec = {
     Parameters.privateEndpointConnectionName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

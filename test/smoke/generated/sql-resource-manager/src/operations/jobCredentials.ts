@@ -256,6 +256,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.credentialName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

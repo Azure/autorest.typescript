@@ -306,6 +306,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.ipGroupsName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateGroupsOperationSpec: coreHttp.OperationSpec = {
@@ -329,6 +330,7 @@ const updateGroupsOperationSpec: coreHttp.OperationSpec = {
     Parameters.ipGroupsName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

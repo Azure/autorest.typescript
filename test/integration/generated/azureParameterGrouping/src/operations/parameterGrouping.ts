@@ -114,6 +114,7 @@ const postRequiredOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.query],
   urlParameters: [Parameters.$host, Parameters.path],
   headerParameters: [Parameters.contentType, Parameters.customHeader],
+  mediaType: "json",
   serializer
 };
 const postOptionalOperationSpec: coreHttp.OperationSpec = {

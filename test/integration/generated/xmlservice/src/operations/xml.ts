@@ -565,6 +565,7 @@ const putComplexTypeRefNoMetaOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
+  mediaType: "xml",
   serializer
 };
 const getComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
@@ -588,6 +589,7 @@ const putComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
+  mediaType: "xml",
   serializer
 };
 const getSimpleOperationSpec: coreHttp.OperationSpec = {
@@ -619,6 +621,7 @@ const putSimpleOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
+  mediaType: "xml",
   serializer
 };
 const getWrappedListsOperationSpec: coreHttp.OperationSpec = {
@@ -647,6 +650,7 @@ const putWrappedListsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
+  mediaType: "xml",
   serializer
 };
 const getHeadersOperationSpec: coreHttp.OperationSpec = {
@@ -681,6 +685,7 @@ const putEmptyListOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
+  mediaType: "xml",
   serializer
 };
 const getEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
@@ -704,6 +709,7 @@ const putEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
+  mediaType: "xml",
   serializer
 };
 const getRootListOperationSpec: coreHttp.OperationSpec = {
@@ -735,6 +741,7 @@ const putRootListOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
+  mediaType: "xml",
   serializer
 };
 const getRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
@@ -766,6 +773,7 @@ const putRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
+  mediaType: "xml",
   serializer
 };
 const getEmptyRootListOperationSpec: coreHttp.OperationSpec = {
@@ -797,6 +805,7 @@ const putEmptyRootListOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
+  mediaType: "xml",
   serializer
 };
 const getEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
@@ -820,6 +829,7 @@ const putEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
+  mediaType: "xml",
   serializer
 };
 const listContainersOperationSpec: coreHttp.OperationSpec = {
@@ -858,6 +868,7 @@ const putServicePropertiesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
+  mediaType: "xml",
   serializer
 };
 const getAclsOperationSpec: coreHttp.OperationSpec = {
@@ -894,6 +905,7 @@ const putAclsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
+  mediaType: "xml",
   serializer
 };
 const listBlobsOperationSpec: coreHttp.OperationSpec = {
@@ -916,6 +928,7 @@ const jsonInputOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.properties2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1],
+  mediaType: "json",
   serializer
 };
 const jsonOutputOperationSpec: coreHttp.OperationSpec = {

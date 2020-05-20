@@ -92,18 +92,18 @@ export class LongTermRetentionBackups {
    * Deletes a long term retention backup.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The location of the database
    * @param longTermRetentionServerName The name of the server
    * @param longTermRetentionDatabaseName The name of the database
    * @param backupName The backup name.
-   * @param locationName The location of the database
    * @param options The options parameters.
    */
   async deleteByResourceGroup(
     resourceGroupName: string,
+    locationName: string,
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
     backupName: string,
-    locationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -112,10 +112,10 @@ export class LongTermRetentionBackups {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
+      locationName,
       longTermRetentionServerName,
       longTermRetentionDatabaseName,
       backupName,
-      locationName,
       options: operationOptions
     };
     const sendOperation = (
@@ -142,16 +142,16 @@ export class LongTermRetentionBackups {
    * Lists all long term retention backups for a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The location of the database
    * @param longTermRetentionServerName The name of the server
    * @param longTermRetentionDatabaseName The name of the database
-   * @param locationName The location of the database
    * @param options The options parameters.
    */
   listByResourceGroupDatabase(
     resourceGroupName: string,
+    locationName: string,
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
-    locationName: string,
     options?: LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams
   ): Promise<LongTermRetentionBackupsListByResourceGroupDatabaseResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -160,9 +160,9 @@ export class LongTermRetentionBackups {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
+        locationName,
         longTermRetentionServerName,
         longTermRetentionDatabaseName,
-        locationName,
         options: operationOptions
       },
       listByResourceGroupDatabaseOperationSpec
@@ -194,14 +194,14 @@ export class LongTermRetentionBackups {
    * Lists the long term retention backups for a given server.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param longTermRetentionServerName The name of the server
    * @param locationName The location of the database
+   * @param longTermRetentionServerName The name of the server
    * @param options The options parameters.
    */
   listByResourceGroupServer(
     resourceGroupName: string,
-    longTermRetentionServerName: string,
     locationName: string,
+    longTermRetentionServerName: string,
     options?: LongTermRetentionBackupsListByResourceGroupServerOptionalParams
   ): Promise<LongTermRetentionBackupsListByResourceGroupServerResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -210,8 +210,8 @@ export class LongTermRetentionBackups {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        longTermRetentionServerName,
         locationName,
+        longTermRetentionServerName,
         options: operationOptions
       },
       listByResourceGroupServerOperationSpec
@@ -250,17 +250,17 @@ export class LongTermRetentionBackups {
 
   /**
    * Deletes a long term retention backup.
+   * @param locationName The location of the database
    * @param longTermRetentionServerName The name of the server
    * @param longTermRetentionDatabaseName The name of the database
    * @param backupName The backup name.
-   * @param locationName The location of the database
    * @param options The options parameters.
    */
   async delete(
+    locationName: string,
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
     backupName: string,
-    locationName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -268,10 +268,10 @@ export class LongTermRetentionBackups {
     );
 
     const args: coreHttp.OperationArguments = {
+      locationName,
       longTermRetentionServerName,
       longTermRetentionDatabaseName,
       backupName,
-      locationName,
       options: operationOptions
     };
     const sendOperation = (
@@ -296,15 +296,15 @@ export class LongTermRetentionBackups {
 
   /**
    * Lists all long term retention backups for a database.
+   * @param locationName The location of the database
    * @param longTermRetentionServerName The name of the server
    * @param longTermRetentionDatabaseName The name of the database
-   * @param locationName The location of the database
    * @param options The options parameters.
    */
   listByDatabase(
+    locationName: string,
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
-    locationName: string,
     options?: LongTermRetentionBackupsListByDatabaseOptionalParams
   ): Promise<LongTermRetentionBackupsListByDatabaseResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -312,9 +312,9 @@ export class LongTermRetentionBackups {
     );
     return this.client.sendOperationRequest(
       {
+        locationName,
         longTermRetentionServerName,
         longTermRetentionDatabaseName,
-        locationName,
         options: operationOptions
       },
       listByDatabaseOperationSpec
@@ -341,20 +341,20 @@ export class LongTermRetentionBackups {
 
   /**
    * Lists the long term retention backups for a given server.
-   * @param longTermRetentionServerName The name of the server
    * @param locationName The location of the database
+   * @param longTermRetentionServerName The name of the server
    * @param options The options parameters.
    */
   listByServer(
-    longTermRetentionServerName: string,
     locationName: string,
+    longTermRetentionServerName: string,
     options?: LongTermRetentionBackupsListByServerOptionalParams
   ): Promise<LongTermRetentionBackupsListByServerResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { longTermRetentionServerName, locationName, options: operationOptions },
+      { locationName, longTermRetentionServerName, options: operationOptions },
       listByServerOperationSpec
     ) as Promise<LongTermRetentionBackupsListByServerResponse>;
   }
@@ -363,18 +363,18 @@ export class LongTermRetentionBackups {
    * ListByResourceGroupDatabaseNext
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
+   * @param locationName The location of the database
    * @param longTermRetentionServerName The name of the server
    * @param longTermRetentionDatabaseName The name of the database
-   * @param locationName The location of the database
    * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupDatabase
    *                 method.
    * @param options The options parameters.
    */
   listByResourceGroupDatabaseNext(
     resourceGroupName: string,
+    locationName: string,
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
-    locationName: string,
     nextLink: string,
     options?: LongTermRetentionBackupsListByResourceGroupDatabaseNextOptionalParams
   ): Promise<LongTermRetentionBackupsListByResourceGroupDatabaseNextResponse> {
@@ -384,9 +384,9 @@ export class LongTermRetentionBackups {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
+        locationName,
         longTermRetentionServerName,
         longTermRetentionDatabaseName,
-        locationName,
         nextLink,
         options: operationOptions
       },
@@ -426,16 +426,16 @@ export class LongTermRetentionBackups {
    * ListByResourceGroupServerNext
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param longTermRetentionServerName The name of the server
    * @param locationName The location of the database
+   * @param longTermRetentionServerName The name of the server
    * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupServer
    *                 method.
    * @param options The options parameters.
    */
   listByResourceGroupServerNext(
     resourceGroupName: string,
-    longTermRetentionServerName: string,
     locationName: string,
+    longTermRetentionServerName: string,
     nextLink: string,
     options?: LongTermRetentionBackupsListByResourceGroupServerNextOptionalParams
   ): Promise<LongTermRetentionBackupsListByResourceGroupServerNextResponse> {
@@ -445,8 +445,8 @@ export class LongTermRetentionBackups {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        longTermRetentionServerName,
         locationName,
+        longTermRetentionServerName,
         nextLink,
         options: operationOptions
       },
@@ -456,17 +456,17 @@ export class LongTermRetentionBackups {
 
   /**
    * ListByDatabaseNext
-   * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
+   * @param locationName The location of the database
    * @param longTermRetentionServerName The name of the server
    * @param longTermRetentionDatabaseName The name of the database
-   * @param locationName The location of the database
+   * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
    * @param options The options parameters.
    */
   listByDatabaseNext(
-    nextLink: string,
+    locationName: string,
     longTermRetentionServerName: string,
     longTermRetentionDatabaseName: string,
-    locationName: string,
+    nextLink: string,
     options?: LongTermRetentionBackupsListByDatabaseNextOptionalParams
   ): Promise<LongTermRetentionBackupsListByDatabaseNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -474,10 +474,10 @@ export class LongTermRetentionBackups {
     );
     return this.client.sendOperationRequest(
       {
-        nextLink,
+        locationName,
         longTermRetentionServerName,
         longTermRetentionDatabaseName,
-        locationName,
+        nextLink,
         options: operationOptions
       },
       listByDatabaseNextOperationSpec
@@ -486,35 +486,35 @@ export class LongTermRetentionBackups {
 
   /**
    * ListByLocationNext
-   * @param nextLink The nextLink from the previous successful call to the ListByLocation method.
    * @param locationName The location of the database
+   * @param nextLink The nextLink from the previous successful call to the ListByLocation method.
    * @param options The options parameters.
    */
   listByLocationNext(
-    nextLink: string,
     locationName: string,
+    nextLink: string,
     options?: LongTermRetentionBackupsListByLocationNextOptionalParams
   ): Promise<LongTermRetentionBackupsListByLocationNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { nextLink, locationName, options: operationOptions },
+      { locationName, nextLink, options: operationOptions },
       listByLocationNextOperationSpec
     ) as Promise<LongTermRetentionBackupsListByLocationNextResponse>;
   }
 
   /**
    * ListByServerNext
-   * @param nextLink The nextLink from the previous successful call to the ListByServer method.
-   * @param longTermRetentionServerName The name of the server
    * @param locationName The location of the database
+   * @param longTermRetentionServerName The name of the server
+   * @param nextLink The nextLink from the previous successful call to the ListByServer method.
    * @param options The options parameters.
    */
   listByServerNext(
-    nextLink: string,
-    longTermRetentionServerName: string,
     locationName: string,
+    longTermRetentionServerName: string,
+    nextLink: string,
     options?: LongTermRetentionBackupsListByServerNextOptionalParams
   ): Promise<LongTermRetentionBackupsListByServerNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -522,9 +522,9 @@ export class LongTermRetentionBackups {
     );
     return this.client.sendOperationRequest(
       {
-        nextLink,
-        longTermRetentionServerName,
         locationName,
+        longTermRetentionServerName,
+        nextLink,
         options: operationOptions
       },
       listByServerNextOperationSpec

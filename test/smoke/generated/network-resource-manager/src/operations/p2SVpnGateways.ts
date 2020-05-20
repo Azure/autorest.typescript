@@ -45,35 +45,35 @@ export class P2SVpnGateways {
 
   /**
    * Retrieves the details of a virtual wan p2s vpn gateway.
-   * @param gatewayName The name of the gateway.
    * @param resourceGroupName The resource group name of the P2SVpnGateway.
+   * @param gatewayName The name of the gateway.
    * @param options The options parameters.
    */
   get(
-    gatewayName: string,
     resourceGroupName: string,
+    gatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<P2SVpnGatewaysGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { gatewayName, resourceGroupName, options: operationOptions },
+      { resourceGroupName, gatewayName, options: operationOptions },
       getOperationSpec
     ) as Promise<P2SVpnGatewaysGetResponse>;
   }
 
   /**
    * Creates a virtual wan p2s vpn gateway if it doesn't exist else updates the existing gateway.
-   * @param gatewayName The name of the gateway.
    * @param resourceGroupName The resource group name of the P2SVpnGateway.
+   * @param gatewayName The name of the gateway.
    * @param p2SVpnGatewayParameters Parameters supplied to create or Update a virtual wan p2s vpn
    *                                gateway.
    * @param options The options parameters.
    */
   async createOrUpdate(
-    gatewayName: string,
     resourceGroupName: string,
+    gatewayName: string,
     p2SVpnGatewayParameters: P2SVpnGateway,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<P2SVpnGatewaysCreateOrUpdateResponse>> {
@@ -83,8 +83,8 @@ export class P2SVpnGateways {
     );
 
     const args: coreHttp.OperationArguments = {
-      gatewayName,
       resourceGroupName,
+      gatewayName,
       p2SVpnGatewayParameters,
       options: operationOptions
     };
@@ -111,14 +111,14 @@ export class P2SVpnGateways {
 
   /**
    * Updates virtual wan p2s vpn gateway tags.
-   * @param gatewayName The name of the gateway.
    * @param resourceGroupName The resource group name of the P2SVpnGateway.
+   * @param gatewayName The name of the gateway.
    * @param p2SVpnGatewayParameters Parameters supplied to update a virtual wan p2s vpn gateway tags.
    * @param options The options parameters.
    */
   updateTags(
-    gatewayName: string,
     resourceGroupName: string,
+    gatewayName: string,
     p2SVpnGatewayParameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<P2SVpnGatewaysUpdateTagsResponse> {
@@ -127,8 +127,8 @@ export class P2SVpnGateways {
     );
     return this.client.sendOperationRequest(
       {
-        gatewayName,
         resourceGroupName,
+        gatewayName,
         p2SVpnGatewayParameters,
         options: operationOptions
       },
@@ -138,13 +138,13 @@ export class P2SVpnGateways {
 
   /**
    * Deletes a virtual wan p2s vpn gateway.
-   * @param gatewayName The name of the gateway.
    * @param resourceGroupName The resource group name of the P2SVpnGateway.
+   * @param gatewayName The name of the gateway.
    * @param options The options parameters.
    */
   async delete(
-    gatewayName: string,
     resourceGroupName: string,
+    gatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -153,8 +153,8 @@ export class P2SVpnGateways {
     );
 
     const args: coreHttp.OperationArguments = {
-      gatewayName,
       resourceGroupName,
+      gatewayName,
       options: operationOptions
     };
     const sendOperation = (
@@ -215,14 +215,14 @@ export class P2SVpnGateways {
   /**
    * Generates VPN profile for P2S client of the P2SVpnGateway in the specified resource group.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters supplied to the generate P2SVpnGateway VPN client package operation.
    * @param gatewayName The name of the P2SVpnGateway.
+   * @param parameters Parameters supplied to the generate P2SVpnGateway VPN client package operation.
    * @param options The options parameters.
    */
   async generateVpnProfile(
     resourceGroupName: string,
-    parameters: P2SVpnProfileParameters,
     gatewayName: string,
+    parameters: P2SVpnProfileParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<P2SVpnGatewaysGenerateVpnProfileResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -232,8 +232,8 @@ export class P2SVpnGateways {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       gatewayName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -351,14 +351,14 @@ export class P2SVpnGateways {
   /**
    * Disconnect P2S vpn connections of the virtual wan P2SVpnGateway in the specified resource group.
    * @param resourceGroupName The name of the resource group.
-   * @param request The parameters are supplied to disconnect p2s vpn connections.
    * @param p2SVpnGatewayName The name of the P2S Vpn Gateway.
+   * @param request The parameters are supplied to disconnect p2s vpn connections.
    * @param options The options parameters.
    */
   async disconnectP2SVpnConnections(
     resourceGroupName: string,
-    request: P2SVpnConnectionRequest,
     p2SVpnGatewayName: string,
+    request: P2SVpnConnectionRequest,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -368,8 +368,8 @@ export class P2SVpnGateways {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      request,
       p2SVpnGatewayName,
+      request,
       options: operationOptions
     };
     const sendOperation = (
@@ -395,20 +395,20 @@ export class P2SVpnGateways {
 
   /**
    * ListByResourceGroupNext
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param resourceGroupName The resource group name of the P2SVpnGateway.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
   listByResourceGroupNext(
-    nextLink: string,
     resourceGroupName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<P2SVpnGatewaysListByResourceGroupNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { nextLink, resourceGroupName, options: operationOptions },
+      { resourceGroupName, nextLink, options: operationOptions },
       listByResourceGroupNextOperationSpec
     ) as Promise<P2SVpnGatewaysListByResourceGroupNextResponse>;
   }
@@ -495,6 +495,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName11
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -518,6 +519,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName11
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -597,6 +599,7 @@ const generateVpnProfileOperationSpec: coreHttp.OperationSpec = {
     Parameters.gatewayName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getP2SVpnConnectionHealthOperationSpec: coreHttp.OperationSpec = {
@@ -653,6 +656,7 @@ const getP2SVpnConnectionHealthDetailedOperationSpec: coreHttp.OperationSpec = {
     Parameters.gatewayName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const disconnectP2SVpnConnectionsOperationSpec: coreHttp.OperationSpec = {
@@ -669,6 +673,7 @@ const disconnectP2SVpnConnectionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.p2SVpnGatewayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {

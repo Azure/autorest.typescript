@@ -106,15 +106,15 @@ export class NetworkVirtualAppliances {
 
   /**
    * Updates a Network Virtual Appliance.
-   * @param parameters Parameters supplied to Update Network Virtual Appliance Tags.
    * @param resourceGroupName The resource group name of Network Virtual Appliance.
    * @param networkVirtualApplianceName The name of Network Virtual Appliance being updated.
+   * @param parameters Parameters supplied to Update Network Virtual Appliance Tags.
    * @param options The options parameters.
    */
   updateTags(
-    parameters: TagsObject,
     resourceGroupName: string,
     networkVirtualApplianceName: string,
+    parameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<NetworkVirtualAppliancesUpdateTagsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -122,9 +122,9 @@ export class NetworkVirtualAppliances {
     );
     return this.client.sendOperationRequest(
       {
-        parameters,
         resourceGroupName,
         networkVirtualApplianceName,
+        parameters,
         options: operationOptions
       },
       updateTagsOperationSpec
@@ -320,6 +320,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkVirtualApplianceName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
@@ -349,6 +350,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkVirtualApplianceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {

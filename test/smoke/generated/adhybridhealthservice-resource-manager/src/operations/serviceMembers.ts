@@ -71,20 +71,20 @@ export class ServiceMembers {
 
   /**
    * Onboards  a server, for a given service, to Azure Active Directory Connect Health Service.
-   * @param serviceMember The server object.
    * @param serviceName The name of the service under which the server is to be onboarded.
+   * @param serviceMember The server object.
    * @param options The options parameters.
    */
   add(
-    serviceMember: ServiceMember,
     serviceName: string,
+    serviceMember: ServiceMember,
     options?: coreHttp.OperationOptions
   ): Promise<ServiceMembersAddResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { serviceMember, serviceName, options: operationOptions },
+      { serviceName, serviceMember, options: operationOptions },
       addOperationSpec
     ) as Promise<ServiceMembersAddResponse>;
   }
@@ -132,20 +132,20 @@ export class ServiceMembers {
 
   /**
    * Gets the details of an alert for a given service and server combination.
-   * @param serviceName The name of the service.
    * @param serviceMemberId The server Id for which the alert details needs to be queried.
+   * @param serviceName The name of the service.
    * @param options The options parameters.
    */
   listAlerts(
-    serviceName: string,
     serviceMemberId: string,
+    serviceName: string,
     options?: ServiceMembersListAlertsOptionalParams
   ): Promise<ServiceMembersListAlertsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { serviceName, serviceMemberId, options: operationOptions },
+      { serviceMemberId, serviceName, options: operationOptions },
       listAlertsOperationSpec
     ) as Promise<ServiceMembersListAlertsResponse>;
   }
@@ -365,14 +365,14 @@ export class ServiceMembers {
 
   /**
    * ListAlertsNext
-   * @param serviceName The name of the service.
    * @param serviceMemberId The server Id for which the alert details needs to be queried.
+   * @param serviceName The name of the service.
    * @param nextLink The nextLink from the previous successful call to the ListAlerts method.
    * @param options The options parameters.
    */
   listAlertsNext(
-    serviceName: string,
     serviceMemberId: string,
+    serviceName: string,
     nextLink: string,
     options?: ServiceMembersListAlertsNextOptionalParams
   ): Promise<ServiceMembersListAlertsNextResponse> {
@@ -380,7 +380,7 @@ export class ServiceMembers {
       options || {}
     );
     return this.client.sendOperationRequest(
-      { serviceName, serviceMemberId, nextLink, options: operationOptions },
+      { serviceMemberId, serviceName, nextLink, options: operationOptions },
       listAlertsNextOperationSpec
     ) as Promise<ServiceMembersListAlertsNextResponse>;
   }
@@ -442,6 +442,7 @@ const addOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.serviceName2],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

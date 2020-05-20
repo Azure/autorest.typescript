@@ -5,6 +5,51 @@
     "version": "v1"
   },
   "paths": {
+    "/bar/api/v1": {
+      "post": {
+        "tags": ["BarApi"],
+        "summary": "Send payload to Foo service.",
+        "operationId": "BarApi_Post_SendOnDefault",
+        "parameters": [
+          {
+            "name": "excluded",
+            "in": "query",
+            "description": "Excluded Ids",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/foo/api/v1": {
       "post": {
         "tags": ["FooApi"],

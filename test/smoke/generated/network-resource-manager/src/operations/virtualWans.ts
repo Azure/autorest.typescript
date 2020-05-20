@@ -60,14 +60,14 @@ export class VirtualWans {
   /**
    * Creates a VirtualWAN resource if it doesn't exist else updates the existing VirtualWAN.
    * @param resourceGroupName The resource group name of the VirtualWan.
-   * @param wANParameters Parameters supplied to create or update VirtualWAN.
    * @param virtualWANName The name of the VirtualWAN being created or updated.
+   * @param wANParameters Parameters supplied to create or update VirtualWAN.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    wANParameters: VirtualWAN,
     virtualWANName: string,
+    wANParameters: VirtualWAN,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualWansCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -77,8 +77,8 @@ export class VirtualWans {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      wANParameters,
       virtualWANName,
+      wANParameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -105,14 +105,14 @@ export class VirtualWans {
   /**
    * Updates a VirtualWAN tags.
    * @param resourceGroupName The resource group name of the VirtualWan.
-   * @param wANParameters Parameters supplied to Update VirtualWAN tags.
    * @param virtualWANName The name of the VirtualWAN being updated.
+   * @param wANParameters Parameters supplied to Update VirtualWAN tags.
    * @param options The options parameters.
    */
   updateTags(
     resourceGroupName: string,
-    wANParameters: TagsObject,
     virtualWANName: string,
+    wANParameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualWansUpdateTagsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -121,8 +121,8 @@ export class VirtualWans {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        wANParameters,
         virtualWANName,
+        wANParameters,
         options: operationOptions
       },
       updateTagsOperationSpec
@@ -205,20 +205,20 @@ export class VirtualWans {
 
   /**
    * ListByResourceGroupNext
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param resourceGroupName The resource group name of the VirtualWan.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
   listByResourceGroupNext(
-    nextLink: string,
     resourceGroupName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualWansListByResourceGroupNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { nextLink, resourceGroupName, options: operationOptions },
+      { resourceGroupName, nextLink, options: operationOptions },
       listByResourceGroupNextOperationSpec
     ) as Promise<VirtualWansListByResourceGroupNextResponse>;
   }
@@ -305,6 +305,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualWANName3
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -328,6 +329,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualWANName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

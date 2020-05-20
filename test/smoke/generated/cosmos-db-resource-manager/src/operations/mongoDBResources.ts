@@ -573,6 +573,7 @@ const createUpdateMongoDBDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteMongoDBDatabaseOperationSpec: coreHttp.OperationSpec = {
@@ -637,6 +638,7 @@ const updateMongoDBDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listMongoDBCollectionsOperationSpec: coreHttp.OperationSpec = {
@@ -707,6 +709,7 @@ const createUpdateMongoDBCollectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.collectionName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteMongoDBCollectionOperationSpec: coreHttp.OperationSpec = {
@@ -774,5 +777,6 @@ const updateMongoDBCollectionThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.collectionName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };

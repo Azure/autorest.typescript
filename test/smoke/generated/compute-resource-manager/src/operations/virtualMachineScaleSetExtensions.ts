@@ -39,16 +39,16 @@ export class VirtualMachineScaleSetExtensions {
   /**
    * The operation to create or update an extension.
    * @param resourceGroupName The name of the resource group.
-   * @param extensionParameters Parameters supplied to the Create VM scale set Extension operation.
    * @param vmScaleSetName The name of the VM scale set where the extension should be create or updated.
    * @param vmssExtensionName The name of the VM scale set extension.
+   * @param extensionParameters Parameters supplied to the Create VM scale set Extension operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    extensionParameters: VirtualMachineScaleSetExtension,
     vmScaleSetName: string,
     vmssExtensionName: string,
+    extensionParameters: VirtualMachineScaleSetExtension,
     options?: coreHttp.OperationOptions
   ): Promise<
     LROPoller<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>
@@ -59,9 +59,9 @@ export class VirtualMachineScaleSetExtensions {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      extensionParameters,
       vmScaleSetName,
       vmssExtensionName,
+      extensionParameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -87,16 +87,16 @@ export class VirtualMachineScaleSetExtensions {
   /**
    * The operation to update an extension.
    * @param resourceGroupName The name of the resource group.
+   * @param vmScaleSetName The name of the VM scale set where the extension should be updated.
    * @param vmssExtensionName The name of the VM scale set extension.
    * @param extensionParameters Parameters supplied to the Update VM scale set Extension operation.
-   * @param vmScaleSetName The name of the VM scale set where the extension should be updated.
    * @param options The options parameters.
    */
   async update(
     resourceGroupName: string,
+    vmScaleSetName: string,
     vmssExtensionName: string,
     extensionParameters: VirtualMachineScaleSetExtensionUpdate,
-    vmScaleSetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VirtualMachineScaleSetExtensionsUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -105,9 +105,9 @@ export class VirtualMachineScaleSetExtensions {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
+      vmScaleSetName,
       vmssExtensionName,
       extensionParameters,
-      vmScaleSetName,
       options: operationOptions
     };
     const sendOperation = (
@@ -133,14 +133,14 @@ export class VirtualMachineScaleSetExtensions {
   /**
    * The operation to delete the extension.
    * @param resourceGroupName The name of the resource group.
-   * @param vmssExtensionName The name of the VM scale set extension.
    * @param vmScaleSetName The name of the VM scale set where the extension should be deleted.
+   * @param vmssExtensionName The name of the VM scale set extension.
    * @param options The options parameters.
    */
   async delete(
     resourceGroupName: string,
-    vmssExtensionName: string,
     vmScaleSetName: string,
+    vmssExtensionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -149,8 +149,8 @@ export class VirtualMachineScaleSetExtensions {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      vmssExtensionName,
       vmScaleSetName,
+      vmssExtensionName,
       options: operationOptions
     };
     const sendOperation = (
@@ -176,14 +176,14 @@ export class VirtualMachineScaleSetExtensions {
   /**
    * The operation to get the extension.
    * @param resourceGroupName The name of the resource group.
-   * @param vmssExtensionName The name of the VM scale set extension.
    * @param vmScaleSetName The name of the VM scale set containing the extension.
+   * @param vmssExtensionName The name of the VM scale set extension.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
-    vmssExtensionName: string,
     vmScaleSetName: string,
+    vmssExtensionName: string,
     options?: VirtualMachineScaleSetExtensionsGetOptionalParams
   ): Promise<VirtualMachineScaleSetExtensionsGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -192,8 +192,8 @@ export class VirtualMachineScaleSetExtensions {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        vmssExtensionName,
         vmScaleSetName,
+        vmssExtensionName,
         options: operationOptions
       },
       getOperationSpec
@@ -223,14 +223,14 @@ export class VirtualMachineScaleSetExtensions {
   /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param vmScaleSetName The name of the VM scale set containing the extension.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
     resourceGroupName: string,
-    nextLink: string,
     vmScaleSetName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachineScaleSetExtensionsListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -239,8 +239,8 @@ export class VirtualMachineScaleSetExtensions {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        nextLink,
         vmScaleSetName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec
@@ -291,6 +291,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmssExtensionName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -321,6 +322,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.vmScaleSetName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

@@ -135,20 +135,20 @@ export class AddsServices {
 
   /**
    * Updates an Active Directory Domain Service properties of an onboarded service.
-   * @param service The service object.
    * @param serviceName The name of the service which needs to be deleted.
+   * @param service The service object.
    * @param options The options parameters.
    */
   update(
-    service: ServiceProperties,
     serviceName: string,
+    service: ServiceProperties,
     options?: coreHttp.OperationOptions
   ): Promise<AddsServicesUpdateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { service, serviceName, options: operationOptions },
+      { serviceName, service, options: operationOptions },
       updateOperationSpec
     ) as Promise<AddsServicesUpdateResponse>;
   }
@@ -321,20 +321,20 @@ export class AddsServices {
   /**
    * Gets the details of an alert for a given Active Directory Domain Controller service and server
    * combination.
-   * @param serviceName The name of the service.
    * @param serviceMemberId The server Id for which the alert details needs to be queried.
+   * @param serviceName The name of the service.
    * @param options The options parameters.
    */
   listServerAlerts(
-    serviceName: string,
     serviceMemberId: string,
+    serviceName: string,
     options?: AddsServicesListServerAlertsOptionalParams
   ): Promise<AddsServicesListServerAlertsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { serviceName, serviceMemberId, options: operationOptions },
+      { serviceMemberId, serviceName, options: operationOptions },
       listServerAlertsOperationSpec
     ) as Promise<AddsServicesListServerAlertsResponse>;
   }
@@ -456,14 +456,14 @@ export class AddsServices {
 
   /**
    * ListServerAlertsNext
-   * @param serviceName The name of the service.
    * @param serviceMemberId The server Id for which the alert details needs to be queried.
+   * @param serviceName The name of the service.
    * @param nextLink The nextLink from the previous successful call to the ListServerAlerts method.
    * @param options The options parameters.
    */
   listServerAlertsNext(
-    serviceName: string,
     serviceMemberId: string,
+    serviceName: string,
     nextLink: string,
     options?: AddsServicesListServerAlertsNextOptionalParams
   ): Promise<AddsServicesListServerAlertsNextResponse> {
@@ -471,7 +471,7 @@ export class AddsServices {
       options || {}
     );
     return this.client.sendOperationRequest(
-      { serviceName, serviceMemberId, nextLink, options: operationOptions },
+      { serviceMemberId, serviceName, nextLink, options: operationOptions },
       listServerAlertsNextOperationSpec
     ) as Promise<AddsServicesListServerAlertsNextResponse>;
   }
@@ -528,6 +528,7 @@ const addOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -562,6 +563,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.serviceName1],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getForestSummaryOperationSpec: coreHttp.OperationSpec = {

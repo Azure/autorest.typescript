@@ -34,15 +34,15 @@ export class ElasticPoolOperations {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param operationId The operation identifier.
    * @param elasticPoolName
+   * @param operationId The operation identifier.
    * @param options The options parameters.
    */
   cancel(
     resourceGroupName: string,
     serverName: string,
-    operationId: string,
     elasticPoolName: string,
+    operationId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -52,8 +52,8 @@ export class ElasticPoolOperations {
       {
         resourceGroupName,
         serverName,
-        operationId,
         elasticPoolName,
+        operationId,
         options: operationOptions
       },
       cancelOperationSpec
@@ -93,15 +93,15 @@ export class ElasticPoolOperations {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param nextLink The nextLink from the previous successful call to the ListByElasticPool method.
    * @param elasticPoolName
+   * @param nextLink The nextLink from the previous successful call to the ListByElasticPool method.
    * @param options The options parameters.
    */
   listByElasticPoolNext(
     resourceGroupName: string,
     serverName: string,
-    nextLink: string,
     elasticPoolName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ElasticPoolOperationsListByElasticPoolNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -111,8 +111,8 @@ export class ElasticPoolOperations {
       {
         resourceGroupName,
         serverName,
-        nextLink,
         elasticPoolName,
+        nextLink,
         options: operationOptions
       },
       listByElasticPoolNextOperationSpec

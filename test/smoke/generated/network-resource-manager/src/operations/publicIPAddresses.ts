@@ -109,14 +109,14 @@ export class PublicIPAddresses {
   /**
    * Creates or updates a static or dynamic public IP address.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters supplied to the create or update public IP address operation.
    * @param publicIpAddressName The name of the public IP address.
+   * @param parameters Parameters supplied to the create or update public IP address operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    parameters: PublicIPAddress,
     publicIpAddressName: string,
+    parameters: PublicIPAddress,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<PublicIPAddressesCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -126,8 +126,8 @@ export class PublicIPAddresses {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       publicIpAddressName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -281,18 +281,18 @@ export class PublicIPAddresses {
   /**
    * Get the specified public IP address in a virtual machine scale set.
    * @param resourceGroupName The name of the resource group.
-   * @param networkInterfaceName The name of the network interface.
    * @param virtualMachineScaleSetName The name of the virtual machine scale set.
    * @param virtualmachineIndex The virtual machine index.
+   * @param networkInterfaceName The name of the network interface.
    * @param ipConfigurationName The name of the IP configuration.
    * @param publicIpAddressName The name of the public IP Address.
    * @param options The options parameters.
    */
   getVirtualMachineScaleSetPublicIPAddress(
     resourceGroupName: string,
-    networkInterfaceName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
+    networkInterfaceName: string,
     ipConfigurationName: string,
     publicIpAddressName: string,
     options?: PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOptionalParams
@@ -305,9 +305,9 @@ export class PublicIPAddresses {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        networkInterfaceName,
         virtualMachineScaleSetName,
         virtualmachineIndex,
+        networkInterfaceName,
         ipConfigurationName,
         publicIpAddressName,
         options: operationOptions
@@ -507,6 +507,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.publicIpAddressName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -530,6 +531,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.publicIpAddressName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listAllOperationSpec: coreHttp.OperationSpec = {

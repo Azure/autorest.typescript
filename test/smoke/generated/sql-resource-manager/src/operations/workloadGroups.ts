@@ -286,6 +286,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.workloadGroupName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

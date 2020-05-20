@@ -489,21 +489,21 @@ export class AppServicePlans {
   /**
    * Description for Get a Virtual Network associated with an App Service plan.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param vnetName Name of the Virtual Network.
    * @param name Name of the App Service plan.
+   * @param vnetName Name of the Virtual Network.
    * @param options The options parameters.
    */
   getVnetFromServerFarm(
     resourceGroupName: string,
-    vnetName: string,
     name: string,
+    vnetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansGetVnetFromServerFarmResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, vnetName, name, options: operationOptions },
+      { resourceGroupName, name, vnetName, options: operationOptions },
       getVnetFromServerFarmOperationSpec
     ) as Promise<AppServicePlansGetVnetFromServerFarmResponse>;
   }
@@ -511,15 +511,15 @@ export class AppServicePlans {
   /**
    * Description for Get a Virtual Network gateway.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param vnetName Name of the Virtual Network.
    * @param name Name of the App Service plan.
+   * @param vnetName Name of the Virtual Network.
    * @param gatewayName Name of the gateway. Only the 'primary' gateway is supported.
    * @param options The options parameters.
    */
   getVnetGateway(
     resourceGroupName: string,
-    vnetName: string,
     name: string,
+    vnetName: string,
     gatewayName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansGetVnetGatewayResponse> {
@@ -529,8 +529,8 @@ export class AppServicePlans {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        vnetName,
         name,
+        vnetName,
         gatewayName,
         options: operationOptions
       },
@@ -541,16 +541,16 @@ export class AppServicePlans {
   /**
    * Description for Update a Virtual Network gateway.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param vnetName Name of the Virtual Network.
    * @param name Name of the App Service plan.
+   * @param vnetName Name of the Virtual Network.
    * @param gatewayName Name of the gateway. Only the 'primary' gateway is supported.
    * @param connectionEnvelope Definition of the gateway.
    * @param options The options parameters.
    */
   updateVnetGateway(
     resourceGroupName: string,
-    vnetName: string,
     name: string,
+    vnetName: string,
     gatewayName: string,
     connectionEnvelope: VnetGateway,
     options?: coreHttp.OperationOptions
@@ -561,8 +561,8 @@ export class AppServicePlans {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        vnetName,
         name,
+        vnetName,
         gatewayName,
         connectionEnvelope,
         options: operationOptions
@@ -574,21 +574,21 @@ export class AppServicePlans {
   /**
    * Description for Get all routes that are associated with a Virtual Network in an App Service plan.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param vnetName Name of the Virtual Network.
    * @param name Name of the App Service plan.
+   * @param vnetName Name of the Virtual Network.
    * @param options The options parameters.
    */
   listRoutesForVnet(
     resourceGroupName: string,
-    vnetName: string,
     name: string,
+    vnetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansListRoutesForVnetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, vnetName, name, options: operationOptions },
+      { resourceGroupName, name, vnetName, options: operationOptions },
       listRoutesForVnetOperationSpec
     ) as Promise<AppServicePlansListRoutesForVnetResponse>;
   }
@@ -596,15 +596,15 @@ export class AppServicePlans {
   /**
    * Description for Get a Virtual Network route in an App Service plan.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param vnetName Name of the Virtual Network.
    * @param name Name of the App Service plan.
+   * @param vnetName Name of the Virtual Network.
    * @param routeName Name of the Virtual Network route.
    * @param options The options parameters.
    */
   getRouteForVnet(
     resourceGroupName: string,
-    vnetName: string,
     name: string,
+    vnetName: string,
     routeName: string,
     options?: coreHttp.OperationOptions
   ): Promise<AppServicePlansGetRouteForVnetResponse> {
@@ -614,8 +614,8 @@ export class AppServicePlans {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        vnetName,
         name,
+        vnetName,
         routeName,
         options: operationOptions
       },
@@ -626,16 +626,16 @@ export class AppServicePlans {
   /**
    * Description for Create or update a Virtual Network route in an App Service plan.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param vnetName Name of the Virtual Network.
    * @param name Name of the App Service plan.
+   * @param vnetName Name of the Virtual Network.
    * @param routeName Name of the Virtual Network route.
    * @param route Definition of the Virtual Network route.
    * @param options The options parameters.
    */
   createOrUpdateVnetRoute(
     resourceGroupName: string,
-    vnetName: string,
     name: string,
+    vnetName: string,
     routeName: string,
     route: VnetRoute,
     options?: coreHttp.OperationOptions
@@ -646,8 +646,8 @@ export class AppServicePlans {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        vnetName,
         name,
+        vnetName,
         routeName,
         route,
         options: operationOptions
@@ -659,15 +659,15 @@ export class AppServicePlans {
   /**
    * Description for Delete a Virtual Network route in an App Service plan.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param vnetName Name of the Virtual Network.
    * @param name Name of the App Service plan.
+   * @param vnetName Name of the Virtual Network.
    * @param routeName Name of the Virtual Network route.
    * @param options The options parameters.
    */
   deleteVnetRoute(
     resourceGroupName: string,
-    vnetName: string,
     name: string,
+    vnetName: string,
     routeName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
@@ -677,8 +677,8 @@ export class AppServicePlans {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        vnetName,
         name,
+        vnetName,
         routeName,
         options: operationOptions
       },
@@ -689,16 +689,16 @@ export class AppServicePlans {
   /**
    * Description for Create or update a Virtual Network route in an App Service plan.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param vnetName Name of the Virtual Network.
    * @param name Name of the App Service plan.
+   * @param vnetName Name of the Virtual Network.
    * @param routeName Name of the Virtual Network route.
    * @param route Definition of the Virtual Network route.
    * @param options The options parameters.
    */
   updateVnetRoute(
     resourceGroupName: string,
-    vnetName: string,
     name: string,
+    vnetName: string,
     routeName: string,
     route: VnetRoute,
     options?: coreHttp.OperationOptions
@@ -709,8 +709,8 @@ export class AppServicePlans {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        vnetName,
         name,
+        vnetName,
         routeName,
         route,
         options: operationOptions
@@ -838,21 +838,21 @@ export class AppServicePlans {
   /**
    * ListWebAppsNext
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param nextLink The nextLink from the previous successful call to the ListWebApps method.
    * @param name Name of the App Service plan.
+   * @param nextLink The nextLink from the previous successful call to the ListWebApps method.
    * @param options The options parameters.
    */
   listWebAppsNext(
     resourceGroupName: string,
-    nextLink: string,
     name: string,
+    nextLink: string,
     options?: AppServicePlansListWebAppsNextOptionalParams
   ): Promise<AppServicePlansListWebAppsNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, name, options: operationOptions },
+      { resourceGroupName, name, nextLink, options: operationOptions },
       listWebAppsNextOperationSpec
     ) as Promise<AppServicePlansListWebAppsNextResponse>;
   }
@@ -860,21 +860,21 @@ export class AppServicePlans {
   /**
    * ListUsagesNext
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param nextLink The nextLink from the previous successful call to the ListUsages method.
    * @param name Name of App Service Plan
+   * @param nextLink The nextLink from the previous successful call to the ListUsages method.
    * @param options The options parameters.
    */
   listUsagesNext(
     resourceGroupName: string,
-    nextLink: string,
     name: string,
+    nextLink: string,
     options?: AppServicePlansListUsagesNextOptionalParams
   ): Promise<AppServicePlansListUsagesNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, name, options: operationOptions },
+      { resourceGroupName, name, nextLink, options: operationOptions },
       listUsagesNextOperationSpec
     ) as Promise<AppServicePlansListUsagesNextResponse>;
   }
@@ -979,6 +979,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.name23
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -1025,6 +1026,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.name23
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listCapabilitiesOperationSpec: coreHttp.OperationSpec = {
@@ -1368,6 +1370,7 @@ const updateVnetGatewayOperationSpec: coreHttp.OperationSpec = {
     Parameters.gatewayName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listRoutesForVnetOperationSpec: coreHttp.OperationSpec = {
@@ -1451,6 +1454,7 @@ const createOrUpdateVnetRouteOperationSpec: coreHttp.OperationSpec = {
     Parameters.routeName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteVnetRouteOperationSpec: coreHttp.OperationSpec = {
@@ -1500,6 +1504,7 @@ const updateVnetRouteOperationSpec: coreHttp.OperationSpec = {
     Parameters.routeName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const rebootWorkerOperationSpec: coreHttp.OperationSpec = {

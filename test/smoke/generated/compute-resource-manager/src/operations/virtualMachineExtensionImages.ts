@@ -35,15 +35,15 @@ export class VirtualMachineExtensionImages {
    * Gets a virtual machine extension image.
    * @param location The name of a supported Azure region.
    * @param publisherName
-   * @param typeParam
    * @param version
+   * @param typeParam
    * @param options The options parameters.
    */
   get(
     location: string,
     publisherName: string,
-    typeParam: string,
     version: string,
+    typeParam: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachineExtensionImagesGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -53,8 +53,8 @@ export class VirtualMachineExtensionImages {
       {
         location,
         publisherName,
-        typeParam,
         version,
+        typeParam,
         options: operationOptions
       },
       getOperationSpec

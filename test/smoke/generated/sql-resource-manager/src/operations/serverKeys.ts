@@ -82,18 +82,18 @@ export class ServerKeys {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param parameters The requested server key resource state.
    * @param keyName The name of the server key to be operated on (updated or created). The key name is
    *                required to be in the format of 'vault_key_version'. For example, if the keyId is
    *                https://YourVaultName.vault.azure.net/keys/YourKeyName/01234567890123456789012345678901, then the
    *                server key name should be formatted as: YourVaultName_YourKeyName_01234567890123456789012345678901
+   * @param parameters The requested server key resource state.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
     serverName: string,
-    parameters: ServerKey,
     keyName: string,
+    parameters: ServerKey,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ServerKeysCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -103,8 +103,8 @@ export class ServerKeys {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
-      parameters,
       keyName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -277,6 +277,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.keyName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

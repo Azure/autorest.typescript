@@ -97,14 +97,14 @@ export class ExpressRouteCrossConnections {
   /**
    * Update the specified ExpressRouteCrossConnection.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters supplied to the update express route crossConnection operation.
    * @param crossConnectionName The name of the ExpressRouteCrossConnection.
+   * @param parameters Parameters supplied to the update express route crossConnection operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    parameters: ExpressRouteCrossConnection,
     crossConnectionName: string,
+    parameters: ExpressRouteCrossConnection,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ExpressRouteCrossConnectionsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -114,8 +114,8 @@ export class ExpressRouteCrossConnections {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       crossConnectionName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -142,14 +142,14 @@ export class ExpressRouteCrossConnections {
   /**
    * Updates an express route cross connection tags.
    * @param resourceGroupName The name of the resource group.
-   * @param crossConnectionParameters Parameters supplied to update express route cross connection tags.
    * @param crossConnectionName The name of the cross connection.
+   * @param crossConnectionParameters Parameters supplied to update express route cross connection tags.
    * @param options The options parameters.
    */
   updateTags(
     resourceGroupName: string,
-    crossConnectionParameters: TagsObject,
     crossConnectionName: string,
+    crossConnectionParameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<ExpressRouteCrossConnectionsUpdateTagsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -158,8 +158,8 @@ export class ExpressRouteCrossConnections {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        crossConnectionParameters,
         crossConnectionName,
+        crossConnectionParameters,
         options: operationOptions
       },
       updateTagsOperationSpec
@@ -170,16 +170,16 @@ export class ExpressRouteCrossConnections {
    * Gets the currently advertised ARP table associated with the express route cross connection in a
    * resource group.
    * @param resourceGroupName The name of the resource group.
+   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
    * @param peeringName The name of the peering.
    * @param devicePath The path of the device.
-   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
    * @param options The options parameters.
    */
   async listArpTable(
     resourceGroupName: string,
+    crossConnectionName: string,
     peeringName: string,
     devicePath: string,
-    crossConnectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ExpressRouteCrossConnectionsListArpTableResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -189,9 +189,9 @@ export class ExpressRouteCrossConnections {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
+      crossConnectionName,
       peeringName,
       devicePath,
-      crossConnectionName,
       options: operationOptions
     };
     const sendOperation = (
@@ -218,16 +218,16 @@ export class ExpressRouteCrossConnections {
   /**
    * Gets the route table summary associated with the express route cross connection in a resource group.
    * @param resourceGroupName The name of the resource group.
+   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
    * @param peeringName The name of the peering.
    * @param devicePath The path of the device.
-   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
    * @param options The options parameters.
    */
   async listRoutesTableSummary(
     resourceGroupName: string,
+    crossConnectionName: string,
     peeringName: string,
     devicePath: string,
-    crossConnectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
     LROPoller<ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>
@@ -239,9 +239,9 @@ export class ExpressRouteCrossConnections {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
+      crossConnectionName,
       peeringName,
       devicePath,
-      crossConnectionName,
       options: operationOptions
     };
     const sendOperation = (
@@ -269,16 +269,16 @@ export class ExpressRouteCrossConnections {
    * Gets the currently advertised routes table associated with the express route cross connection in a
    * resource group.
    * @param resourceGroupName The name of the resource group.
+   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
    * @param peeringName The name of the peering.
    * @param devicePath The path of the device.
-   * @param crossConnectionName The name of the ExpressRouteCrossConnection.
    * @param options The options parameters.
    */
   async listRoutesTable(
     resourceGroupName: string,
+    crossConnectionName: string,
     peeringName: string,
     devicePath: string,
-    crossConnectionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ExpressRouteCrossConnectionsListRoutesTableResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -288,9 +288,9 @@ export class ExpressRouteCrossConnections {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
+      crossConnectionName,
       peeringName,
       devicePath,
-      crossConnectionName,
       options: operationOptions
     };
     const sendOperation = (
@@ -455,6 +455,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.crossConnectionName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -478,6 +479,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.crossConnectionName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listArpTableOperationSpec: coreHttp.OperationSpec = {

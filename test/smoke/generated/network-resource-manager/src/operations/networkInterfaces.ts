@@ -368,16 +368,16 @@ export class NetworkInterfaces {
   /**
    * Get the specified network interface in a virtual machine scale set.
    * @param resourceGroupName The name of the resource group.
-   * @param networkInterfaceName The name of the network interface.
    * @param virtualMachineScaleSetName The name of the virtual machine scale set.
    * @param virtualmachineIndex The virtual machine index.
+   * @param networkInterfaceName The name of the network interface.
    * @param options The options parameters.
    */
   getVirtualMachineScaleSetNetworkInterface(
     resourceGroupName: string,
-    networkInterfaceName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
+    networkInterfaceName: string,
     options?: NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams
   ): Promise<
     NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse
@@ -388,9 +388,9 @@ export class NetworkInterfaces {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        networkInterfaceName,
         virtualMachineScaleSetName,
         virtualmachineIndex,
+        networkInterfaceName,
         options: operationOptions
       },
       getVirtualMachineScaleSetNetworkInterfaceOperationSpec
@@ -402,16 +402,16 @@ export class NetworkInterfaces {
   /**
    * Get the specified network interface ip configuration in a virtual machine scale set.
    * @param resourceGroupName The name of the resource group.
-   * @param networkInterfaceName The name of the network interface.
    * @param virtualMachineScaleSetName The name of the virtual machine scale set.
    * @param virtualmachineIndex The virtual machine index.
+   * @param networkInterfaceName The name of the network interface.
    * @param options The options parameters.
    */
   listVirtualMachineScaleSetIpConfigurations(
     resourceGroupName: string,
-    networkInterfaceName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
+    networkInterfaceName: string,
     options?: NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams
   ): Promise<
     NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse
@@ -422,9 +422,9 @@ export class NetworkInterfaces {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        networkInterfaceName,
         virtualMachineScaleSetName,
         virtualmachineIndex,
+        networkInterfaceName,
         options: operationOptions
       },
       listVirtualMachineScaleSetIpConfigurationsOperationSpec
@@ -436,17 +436,17 @@ export class NetworkInterfaces {
   /**
    * Get the specified network interface ip configuration in a virtual machine scale set.
    * @param resourceGroupName The name of the resource group.
-   * @param networkInterfaceName The name of the network interface.
    * @param virtualMachineScaleSetName The name of the virtual machine scale set.
    * @param virtualmachineIndex The virtual machine index.
+   * @param networkInterfaceName The name of the network interface.
    * @param ipConfigurationName The name of the ip configuration.
    * @param options The options parameters.
    */
   getVirtualMachineScaleSetIpConfiguration(
     resourceGroupName: string,
-    networkInterfaceName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
+    networkInterfaceName: string,
     ipConfigurationName: string,
     options?: NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams
   ): Promise<
@@ -458,9 +458,9 @@ export class NetworkInterfaces {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        networkInterfaceName,
         virtualMachineScaleSetName,
         virtualmachineIndex,
+        networkInterfaceName,
         ipConfigurationName,
         options: operationOptions
       },
@@ -578,18 +578,18 @@ export class NetworkInterfaces {
   /**
    * ListVirtualMachineScaleSetIpConfigurationsNext
    * @param resourceGroupName The name of the resource group.
-   * @param networkInterfaceName The name of the network interface.
    * @param virtualMachineScaleSetName The name of the virtual machine scale set.
    * @param virtualmachineIndex The virtual machine index.
+   * @param networkInterfaceName The name of the network interface.
    * @param nextLink The nextLink from the previous successful call to the
    *                 ListVirtualMachineScaleSetIpConfigurations method.
    * @param options The options parameters.
    */
   listVirtualMachineScaleSetIpConfigurationsNext(
     resourceGroupName: string,
-    networkInterfaceName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
+    networkInterfaceName: string,
     nextLink: string,
     options?: NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextOptionalParams
   ): Promise<
@@ -601,9 +601,9 @@ export class NetworkInterfaces {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        networkInterfaceName,
         virtualMachineScaleSetName,
         virtualmachineIndex,
+        networkInterfaceName,
         nextLink,
         options: operationOptions
       },
@@ -691,6 +691,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkInterfaceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -714,6 +715,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.networkInterfaceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listAllOperationSpec: coreHttp.OperationSpec = {

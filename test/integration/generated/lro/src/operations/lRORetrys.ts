@@ -312,6 +312,7 @@ const put201CreatingSucceeded200OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const putAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
@@ -341,6 +342,7 @@ const putAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteProvisioning202Accepted200SucceededOperationSpec: coreHttp.OperationSpec = {
@@ -432,6 +434,7 @@ const post202Retry200OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const postAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
@@ -457,5 +460,6 @@ const postAsyncRelativeRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };

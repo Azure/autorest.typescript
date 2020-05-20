@@ -109,16 +109,16 @@ export class RouteFilterRules {
    * Creates or updates a route in the specified route filter.
    * @param resourceGroupName The name of the resource group.
    * @param routeFilterName The name of the route filter.
+   * @param ruleName The name of the route filter rule.
    * @param routeFilterRuleParameters Parameters supplied to the create or update route filter rule
    *                                  operation.
-   * @param ruleName The name of the route filter rule.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
     routeFilterName: string,
-    routeFilterRuleParameters: RouteFilterRule,
     ruleName: string,
+    routeFilterRuleParameters: RouteFilterRule,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<RouteFilterRulesCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -129,8 +129,8 @@ export class RouteFilterRules {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       routeFilterName,
-      routeFilterRuleParameters,
       ruleName,
+      routeFilterRuleParameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -282,6 +282,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.ruleName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByRouteFilterOperationSpec: coreHttp.OperationSpec = {

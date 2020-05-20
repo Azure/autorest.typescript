@@ -488,13 +488,13 @@ export class Deployments {
    * call to the URI in the Location header returns a status of 202. When the process finishes, the URI
    * in the Location header returns a status of 204 on success. If the asynchronous request failed, the
    * URI in the Location header returns an error-level status code.
-   * @param deploymentName The name of the deployment.
    * @param groupId The management group ID.
+   * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
   async deleteAtManagementGroupScope(
-    deploymentName: string,
     groupId: string,
+    deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -502,8 +502,8 @@ export class Deployments {
     );
 
     const args: coreHttp.OperationArguments = {
-      deploymentName,
       groupId,
+      deploymentName,
       options: operationOptions
     };
     const sendOperation = (
@@ -528,35 +528,35 @@ export class Deployments {
 
   /**
    * Checks whether the deployment exists.
-   * @param deploymentName The name of the deployment.
    * @param groupId The management group ID.
+   * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
   checkExistenceAtManagementGroupScope(
-    deploymentName: string,
     groupId: string,
+    deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { deploymentName, groupId, options: operationOptions },
+      { groupId, deploymentName, options: operationOptions },
       checkExistenceAtManagementGroupScopeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
+   * @param groupId The management group ID.
    * @param deploymentName The name of the deployment.
    * @param parameters Additional parameters supplied to the operation.
-   * @param groupId The management group ID.
    * @param options The options parameters.
    */
   async createOrUpdateAtManagementGroupScope(
+    groupId: string,
     deploymentName: string,
     parameters: ScopedDeployment,
-    groupId: string,
     options?: coreHttp.OperationOptions
   ): Promise<
     LROPoller<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>
@@ -566,9 +566,9 @@ export class Deployments {
     );
 
     const args: coreHttp.OperationArguments = {
+      groupId,
       deploymentName,
       parameters,
-      groupId,
       options: operationOptions
     };
     const sendOperation = (
@@ -593,20 +593,20 @@ export class Deployments {
 
   /**
    * Gets a deployment.
-   * @param deploymentName The name of the deployment.
    * @param groupId The management group ID.
+   * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
   getAtManagementGroupScope(
-    deploymentName: string,
     groupId: string,
+    deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsGetAtManagementGroupScopeResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { deploymentName, groupId, options: operationOptions },
+      { groupId, deploymentName, options: operationOptions },
       getAtManagementGroupScopeOperationSpec
     ) as Promise<DeploymentsGetAtManagementGroupScopeResponse>;
   }
@@ -615,20 +615,20 @@ export class Deployments {
    * You can cancel a deployment only if the provisioningState is Accepted or Running. After the
    * deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment
    * stops the currently running template deployment and leaves the resources partially deployed.
-   * @param deploymentName The name of the deployment.
    * @param groupId The management group ID.
+   * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
   cancelAtManagementGroupScope(
-    deploymentName: string,
     groupId: string,
+    deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { deploymentName, groupId, options: operationOptions },
+      { groupId, deploymentName, options: operationOptions },
       cancelAtManagementGroupScopeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -636,42 +636,42 @@ export class Deployments {
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..
+   * @param groupId The management group ID.
    * @param deploymentName The name of the deployment.
    * @param parameters Parameters to validate.
-   * @param groupId The management group ID.
    * @param options The options parameters.
    */
   validateAtManagementGroupScope(
+    groupId: string,
     deploymentName: string,
     parameters: ScopedDeployment,
-    groupId: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsValidateAtManagementGroupScopeResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { deploymentName, parameters, groupId, options: operationOptions },
+      { groupId, deploymentName, parameters, options: operationOptions },
       validateAtManagementGroupScopeOperationSpec
     ) as Promise<DeploymentsValidateAtManagementGroupScopeResponse>;
   }
 
   /**
    * Exports the template used for specified deployment.
-   * @param deploymentName The name of the deployment.
    * @param groupId The management group ID.
+   * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
   exportTemplateAtManagementGroupScope(
-    deploymentName: string,
     groupId: string,
+    deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsExportTemplateAtManagementGroupScopeResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { deploymentName, groupId, options: operationOptions },
+      { groupId, deploymentName, options: operationOptions },
       exportTemplateAtManagementGroupScopeOperationSpec
     ) as Promise<DeploymentsExportTemplateAtManagementGroupScopeResponse>;
   }
@@ -939,14 +939,14 @@ export class Deployments {
    * Location header returns a status of 202. When the process finishes, the URI in the Location header
    * returns a status of 204 on success. If the asynchronous request failed, the URI in the Location
    * header returns an error-level status code.
-   * @param deploymentName The name of the deployment.
    * @param resourceGroupName The name of the resource group with the deployment to delete. The name is
    *                          case insensitive.
+   * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
   async delete(
-    deploymentName: string,
     resourceGroupName: string,
+    deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -954,8 +954,8 @@ export class Deployments {
     );
 
     const args: coreHttp.OperationArguments = {
-      deploymentName,
       resourceGroupName,
+      deploymentName,
       options: operationOptions
     };
     const sendOperation = (
@@ -980,37 +980,37 @@ export class Deployments {
 
   /**
    * Checks whether the deployment exists.
-   * @param deploymentName The name of the deployment.
    * @param resourceGroupName The name of the resource group with the deployment to check. The name is
    *                          case insensitive.
+   * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
   checkExistence(
-    deploymentName: string,
     resourceGroupName: string,
+    deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { deploymentName, resourceGroupName, options: operationOptions },
+      { resourceGroupName, deploymentName, options: operationOptions },
       checkExistenceOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
-   * @param deploymentName The name of the deployment.
-   * @param parameters Additional parameters supplied to the operation.
    * @param resourceGroupName The name of the resource group to deploy the resources to. The name is case
    *                          insensitive. The resource group must already exist.
+   * @param deploymentName The name of the deployment.
+   * @param parameters Additional parameters supplied to the operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
+    resourceGroupName: string,
     deploymentName: string,
     parameters: Deployment,
-    resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DeploymentsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -1018,9 +1018,9 @@ export class Deployments {
     );
 
     const args: coreHttp.OperationArguments = {
+      resourceGroupName,
       deploymentName,
       parameters,
-      resourceGroupName,
       options: operationOptions
     };
     const sendOperation = (
@@ -1045,20 +1045,20 @@ export class Deployments {
 
   /**
    * Gets a deployment.
-   * @param deploymentName The name of the deployment.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
   get(
-    deploymentName: string,
     resourceGroupName: string,
+    deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { deploymentName, resourceGroupName, options: operationOptions },
+      { resourceGroupName, deploymentName, options: operationOptions },
       getOperationSpec
     ) as Promise<DeploymentsGetResponse>;
   }
@@ -1067,20 +1067,20 @@ export class Deployments {
    * You can cancel a deployment only if the provisioningState is Accepted or Running. After the
    * deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment
    * stops the currently running template deployment and leaves the resource group partially deployed.
-   * @param deploymentName The name of the deployment.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
   cancel(
-    deploymentName: string,
     resourceGroupName: string,
+    deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { deploymentName, resourceGroupName, options: operationOptions },
+      { resourceGroupName, deploymentName, options: operationOptions },
       cancelOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -1088,16 +1088,16 @@ export class Deployments {
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..
-   * @param deploymentName The name of the deployment.
-   * @param parameters Parameters to validate.
    * @param resourceGroupName The name of the resource group the template will be deployed to. The name
    *                          is case insensitive.
+   * @param deploymentName The name of the deployment.
+   * @param parameters Parameters to validate.
    * @param options The options parameters.
    */
   validate(
+    resourceGroupName: string,
     deploymentName: string,
     parameters: Deployment,
-    resourceGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsValidateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -1105,9 +1105,9 @@ export class Deployments {
     );
     return this.client.sendOperationRequest(
       {
+        resourceGroupName,
         deploymentName,
         parameters,
-        resourceGroupName,
         options: operationOptions
       },
       validateOperationSpec
@@ -1116,15 +1116,15 @@ export class Deployments {
 
   /**
    * Returns changes that will be made by the deployment if executed at the scope of the resource group.
-   * @param deploymentName The name of the deployment.
    * @param resourceGroupName The name of the resource group the template will be deployed to. The name
    *                          is case insensitive.
+   * @param deploymentName The name of the deployment.
    * @param parameters Parameters to validate.
    * @param options The options parameters.
    */
   async whatIf(
-    deploymentName: string,
     resourceGroupName: string,
+    deploymentName: string,
     parameters: DeploymentWhatIf,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DeploymentsWhatIfResponse>> {
@@ -1134,8 +1134,8 @@ export class Deployments {
     );
 
     const args: coreHttp.OperationArguments = {
-      deploymentName,
       resourceGroupName,
+      deploymentName,
       parameters,
       options: operationOptions
     };
@@ -1162,20 +1162,20 @@ export class Deployments {
 
   /**
    * Exports the template used for specified deployment.
-   * @param deploymentName The name of the deployment.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
   exportTemplate(
-    deploymentName: string,
     resourceGroupName: string,
+    deploymentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentsExportTemplateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { deploymentName, resourceGroupName, options: operationOptions },
+      { resourceGroupName, deploymentName, options: operationOptions },
       exportTemplateOperationSpec
     ) as Promise<DeploymentsExportTemplateResponse>;
   }
@@ -1387,6 +1387,7 @@ const createOrUpdateAtScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getAtScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1449,6 +1450,7 @@ const validateAtScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.deploymentName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const exportTemplateAtScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1529,6 +1531,7 @@ const createOrUpdateAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1577,6 +1580,7 @@ const validateAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const exportTemplateAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1668,6 +1672,7 @@ const createOrUpdateAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec 
     Parameters.groupId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1731,6 +1736,7 @@ const validateAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.groupId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const exportTemplateAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1827,6 +1833,7 @@ const createOrUpdateAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1890,6 +1897,7 @@ const validateAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const whatIfAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
@@ -1918,6 +1926,7 @@ const whatIfAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const exportTemplateAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
@@ -2017,6 +2026,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -2083,6 +2093,7 @@ const validateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const whatIfOperationSpec: coreHttp.OperationSpec = {
@@ -2112,6 +2123,7 @@ const whatIfOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const exportTemplateOperationSpec: coreHttp.OperationSpec = {
@@ -2170,6 +2182,7 @@ const calculateTemplateHashOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listAtScopeNextOperationSpec: coreHttp.OperationSpec = {

@@ -99,15 +99,15 @@ export class Databases {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param parameters The required parameters for importing a Bacpac into a database.
    * @param databaseName The name of the database to import into
+   * @param parameters The required parameters for importing a Bacpac into a database.
    * @param options The options parameters.
    */
   async createImportOperation(
     resourceGroupName: string,
     serverName: string,
-    parameters: ImportExtensionRequest,
     databaseName: string,
+    parameters: ImportExtensionRequest,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DatabasesCreateImportOperationResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -117,8 +117,8 @@ export class Databases {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
-      parameters,
       databaseName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -146,15 +146,15 @@ export class Databases {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param parameters The required parameters for exporting a database.
    * @param databaseName The name of the database to be exported.
+   * @param parameters The required parameters for exporting a database.
    * @param options The options parameters.
    */
   async export(
     resourceGroupName: string,
     serverName: string,
-    parameters: ExportRequest,
     databaseName: string,
+    parameters: ExportRequest,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DatabasesExportResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -164,8 +164,8 @@ export class Databases {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
-      parameters,
       databaseName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -599,15 +599,15 @@ export class Databases {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param parameters The resource move definition for renaming this database.
    * @param databaseName The name of the database to rename.
+   * @param parameters The resource move definition for renaming this database.
    * @param options The options parameters.
    */
   rename(
     resourceGroupName: string,
     serverName: string,
-    parameters: ResourceMoveDefinition,
     databaseName: string,
+    parameters: ResourceMoveDefinition,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -617,8 +617,8 @@ export class Databases {
       {
         resourceGroupName,
         serverName,
-        parameters,
         databaseName,
+        parameters,
         options: operationOptions
       },
       renameOperationSpec
@@ -766,6 +766,7 @@ const importOperationSpec: coreHttp.OperationSpec = {
     Parameters.serverName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const createImportOperationOperationSpec: coreHttp.OperationSpec = {
@@ -797,6 +798,7 @@ const createImportOperationOperationSpec: coreHttp.OperationSpec = {
     Parameters.extensionName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const exportOperationSpec: coreHttp.OperationSpec = {
@@ -827,6 +829,7 @@ const exportOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listMetricsOperationSpec: coreHttp.OperationSpec = {
@@ -934,6 +937,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -979,6 +983,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByElasticPoolOperationSpec: coreHttp.OperationSpec = {
@@ -1087,6 +1092,7 @@ const renameOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const failoverOperationSpec: coreHttp.OperationSpec = {

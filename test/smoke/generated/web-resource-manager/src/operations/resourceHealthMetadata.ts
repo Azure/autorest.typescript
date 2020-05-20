@@ -139,21 +139,21 @@ export class ResourceHealthMetadata {
   /**
    * Description for Gets the category of ResourceHealthMetadata to use for the given site
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param slot Name of web app slot. If not specified then will default to production slot.
    * @param name Name of web app
+   * @param slot Name of web app slot. If not specified then will default to production slot.
    * @param options The options parameters.
    */
   getBySiteSlot(
     resourceGroupName: string,
-    slot: string,
     name: string,
+    slot: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourceHealthMetadataGetBySiteSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, slot, name, options: operationOptions },
+      { resourceGroupName, name, slot, options: operationOptions },
       getBySiteSlotOperationSpec
     ) as Promise<ResourceHealthMetadataGetBySiteSlotResponse>;
   }

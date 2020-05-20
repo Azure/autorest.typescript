@@ -11,6 +11,17 @@ import * as coreHttp from "@azure/core-http";
 /**
  * Optional parameters.
  */
+export interface BarApiPostSendOnDefaultOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Excluded Ids
+   */
+  excluded?: string[];
+}
+
+/**
+ * Optional parameters.
+ */
 export interface FooApiPostSendOnDefault$binaryOptionalParams
   extends coreHttp.OperationOptions {
   /**

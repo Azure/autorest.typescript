@@ -30,14 +30,14 @@ export class ManagedDatabaseRestoreDetails {
    * Gets managed database restore details.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabaseRestoreDetailsGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -46,8 +46,8 @@ export class ManagedDatabaseRestoreDetails {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        databaseName,
         managedInstanceName,
+        databaseName,
         options: operationOptions
       },
       getOperationSpec

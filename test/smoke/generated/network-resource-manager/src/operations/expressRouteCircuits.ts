@@ -515,6 +515,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.circuitName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -538,6 +539,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.circuitName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listArpTableOperationSpec: coreHttp.OperationSpec = {

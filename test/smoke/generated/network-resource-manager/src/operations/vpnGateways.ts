@@ -248,20 +248,20 @@ export class VpnGateways {
 
   /**
    * ListByResourceGroupNext
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param resourceGroupName The resource group name of the VpnGateway.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
   listByResourceGroupNext(
-    nextLink: string,
     resourceGroupName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VpnGatewaysListByResourceGroupNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { nextLink, resourceGroupName, options: operationOptions },
+      { resourceGroupName, nextLink, options: operationOptions },
       listByResourceGroupNextOperationSpec
     ) as Promise<VpnGatewaysListByResourceGroupNextResponse>;
   }
@@ -348,6 +348,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.gatewayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -371,6 +372,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.gatewayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

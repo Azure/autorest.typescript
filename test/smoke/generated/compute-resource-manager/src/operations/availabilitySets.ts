@@ -41,15 +41,15 @@ export class AvailabilitySets {
 
   /**
    * Create or update an availability set.
-   * @param parameters Parameters supplied to the Create Availability Set operation.
    * @param resourceGroupName The name of the resource group.
    * @param availabilitySetName The name of the availability set.
+   * @param parameters Parameters supplied to the Create Availability Set operation.
    * @param options The options parameters.
    */
   createOrUpdate(
-    parameters: AvailabilitySet,
     resourceGroupName: string,
     availabilitySetName: string,
+    parameters: AvailabilitySet,
     options?: coreHttp.OperationOptions
   ): Promise<AvailabilitySetsCreateOrUpdateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -57,9 +57,9 @@ export class AvailabilitySets {
     );
     return this.client.sendOperationRequest(
       {
-        parameters,
         resourceGroupName,
         availabilitySetName,
+        parameters,
         options: operationOptions
       },
       createOrUpdateOperationSpec
@@ -248,6 +248,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -268,6 +269,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

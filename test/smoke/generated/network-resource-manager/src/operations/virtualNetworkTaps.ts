@@ -147,21 +147,21 @@ export class VirtualNetworkTaps {
   /**
    * Updates an VirtualNetworkTap tags.
    * @param resourceGroupName The name of the resource group.
-   * @param tapParameters Parameters supplied to update VirtualNetworkTap tags.
    * @param tapName The name of the tap.
+   * @param tapParameters Parameters supplied to update VirtualNetworkTap tags.
    * @param options The options parameters.
    */
   updateTags(
     resourceGroupName: string,
-    tapParameters: TagsObject,
     tapName: string,
+    tapParameters: TagsObject,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualNetworkTapsUpdateTagsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, tapParameters, tapName, options: operationOptions },
+      { resourceGroupName, tapName, tapParameters, options: operationOptions },
       updateTagsOperationSpec
     ) as Promise<VirtualNetworkTapsUpdateTagsResponse>;
   }
@@ -316,6 +316,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.tapName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -339,6 +340,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.tapName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listAllOperationSpec: coreHttp.OperationSpec = {

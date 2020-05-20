@@ -55,15 +55,15 @@ export class Vaults {
 
   /**
    * Create or update a key vault in the specified subscription.
-   * @param parameters Parameters to create or update the vault
    * @param resourceGroupName The name of the Resource Group to which the server belongs.
    * @param vaultName Name of the vault
+   * @param parameters Parameters to create or update the vault
    * @param options The options parameters.
    */
   async createOrUpdate(
-    parameters: VaultCreateOrUpdateParameters,
     resourceGroupName: string,
     vaultName: string,
+    parameters: VaultCreateOrUpdateParameters,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<VaultsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -71,9 +71,9 @@ export class Vaults {
     );
 
     const args: coreHttp.OperationArguments = {
-      parameters,
       resourceGroupName,
       vaultName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -160,17 +160,17 @@ export class Vaults {
 
   /**
    * Update access policies in a key vault in the specified subscription.
-   * @param vaultName Name of the vault
    * @param resourceGroupName The name of the Resource Group to which the vault belongs.
-   * @param parameters Access policy to merge into the vault
+   * @param vaultName Name of the vault
    * @param operationKind Name of the operation
+   * @param parameters Access policy to merge into the vault
    * @param options The options parameters.
    */
   updateAccessPolicy(
-    vaultName: string,
     resourceGroupName: string,
-    parameters: VaultAccessPolicyParameters,
+    vaultName: string,
     operationKind: AccessPolicyUpdateKind,
+    parameters: VaultAccessPolicyParameters,
     options?: coreHttp.OperationOptions
   ): Promise<VaultsUpdateAccessPolicyResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -178,10 +178,10 @@ export class Vaults {
     );
     return this.client.sendOperationRequest(
       {
-        vaultName,
         resourceGroupName,
-        parameters,
+        vaultName,
         operationKind,
+        parameters,
         options: operationOptions
       },
       updateAccessPolicyOperationSpec
@@ -448,6 +448,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -471,6 +472,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -527,6 +529,7 @@ const updateAccessPolicyOperationSpec: coreHttp.OperationSpec = {
     Parameters.operationKind
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -628,6 +631,7 @@ const checkNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {

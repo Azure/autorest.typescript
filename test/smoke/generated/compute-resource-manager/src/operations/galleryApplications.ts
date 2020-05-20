@@ -38,19 +38,19 @@ export class GalleryApplications {
   /**
    * Create or update a gallery Application Definition.
    * @param resourceGroupName The name of the resource group.
-   * @param galleryApplication Parameters supplied to the create or update gallery Application operation.
    * @param galleryName The name of the Shared Application Gallery in which the Application Definition is
    *                    to be created.
    * @param galleryApplicationName The name of the gallery Application Definition to be created or
    *                               updated. The allowed characters are alphabets and numbers with dots, dashes, and periods allowed in
    *                               the middle. The maximum length is 80 characters.
+   * @param galleryApplication Parameters supplied to the create or update gallery Application operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    galleryApplication: GalleryApplication,
     galleryName: string,
     galleryApplicationName: string,
+    galleryApplication: GalleryApplication,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<GalleryApplicationsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -59,9 +59,9 @@ export class GalleryApplications {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      galleryApplication,
       galleryName,
       galleryApplicationName,
+      galleryApplication,
       options: operationOptions
     };
     const sendOperation = (
@@ -87,19 +87,19 @@ export class GalleryApplications {
   /**
    * Update a gallery Application Definition.
    * @param resourceGroupName The name of the resource group.
-   * @param galleryApplication Parameters supplied to the update gallery Application operation.
    * @param galleryName The name of the Shared Application Gallery in which the Application Definition is
    *                    to be updated.
    * @param galleryApplicationName The name of the gallery Application Definition to be updated. The
    *                               allowed characters are alphabets and numbers with dots, dashes, and periods allowed in the middle.
    *                               The maximum length is 80 characters.
+   * @param galleryApplication Parameters supplied to the update gallery Application operation.
    * @param options The options parameters.
    */
   async update(
     resourceGroupName: string,
-    galleryApplication: GalleryApplicationUpdate,
     galleryName: string,
     galleryApplicationName: string,
+    galleryApplication: GalleryApplicationUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<GalleryApplicationsUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -108,9 +108,9 @@ export class GalleryApplications {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      galleryApplication,
       galleryName,
       galleryApplicationName,
+      galleryApplication,
       options: operationOptions
     };
     const sendOperation = (
@@ -229,22 +229,22 @@ export class GalleryApplications {
   /**
    * ListByGalleryNext
    * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the ListByGallery method.
    * @param galleryName The name of the Shared Application Gallery from which Application Definitions are
    *                    to be listed.
+   * @param nextLink The nextLink from the previous successful call to the ListByGallery method.
    * @param options The options parameters.
    */
   listByGalleryNext(
     resourceGroupName: string,
-    nextLink: string,
     galleryName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<GalleryApplicationsListByGalleryNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, galleryName, options: operationOptions },
+      { resourceGroupName, galleryName, nextLink, options: operationOptions },
       listByGalleryNextOperationSpec
     ) as Promise<GalleryApplicationsListByGalleryNextResponse>;
   }
@@ -293,6 +293,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryApplicationName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -326,6 +327,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryApplicationName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

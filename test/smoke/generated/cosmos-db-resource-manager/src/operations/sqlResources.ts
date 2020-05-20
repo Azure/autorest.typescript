@@ -1073,6 +1073,7 @@ const createUpdateSqlDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteSqlDatabaseOperationSpec: coreHttp.OperationSpec = {
@@ -1137,6 +1138,7 @@ const updateSqlDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listSqlContainersOperationSpec: coreHttp.OperationSpec = {
@@ -1207,6 +1209,7 @@ const createUpdateSqlContainerOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteSqlContainerOperationSpec: coreHttp.OperationSpec = {
@@ -1274,6 +1277,7 @@ const updateSqlContainerThroughputOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listSqlStoredProceduresOperationSpec: coreHttp.OperationSpec = {
@@ -1347,6 +1351,7 @@ const createUpdateSqlStoredProcedureOperationSpec: coreHttp.OperationSpec = {
     Parameters.storedProcedureName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteSqlStoredProcedureOperationSpec: coreHttp.OperationSpec = {
@@ -1437,6 +1442,7 @@ const createUpdateSqlUserDefinedFunctionOperationSpec: coreHttp.OperationSpec = 
     Parameters.userDefinedFunctionName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteSqlUserDefinedFunctionOperationSpec: coreHttp.OperationSpec = {
@@ -1527,6 +1533,7 @@ const createUpdateSqlTriggerOperationSpec: coreHttp.OperationSpec = {
     Parameters.triggerName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteSqlTriggerOperationSpec: coreHttp.OperationSpec = {

@@ -159,6 +159,7 @@ const exportRequestRateByIntervalOperationSpec: coreHttp.OperationSpec = {
     Parameters.location3
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const exportThrottledRequestsOperationSpec: coreHttp.OperationSpec = {
@@ -187,5 +188,6 @@ const exportThrottledRequestsOperationSpec: coreHttp.OperationSpec = {
     Parameters.location3
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };

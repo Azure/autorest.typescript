@@ -38,19 +38,19 @@ export class GalleryImages {
   /**
    * Create or update a gallery Image Definition.
    * @param resourceGroupName The name of the resource group.
-   * @param galleryImage Parameters supplied to the create or update gallery image operation.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
    *                    created.
    * @param galleryImageName The name of the gallery Image Definition to be created or updated. The
    *                         allowed characters are alphabets and numbers with dots, dashes, and periods allowed in the middle.
    *                         The maximum length is 80 characters.
+   * @param galleryImage Parameters supplied to the create or update gallery image operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    galleryImage: GalleryImage,
     galleryName: string,
     galleryImageName: string,
+    galleryImage: GalleryImage,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<GalleryImagesCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -59,9 +59,9 @@ export class GalleryImages {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      galleryImage,
       galleryName,
       galleryImageName,
+      galleryImage,
       options: operationOptions
     };
     const sendOperation = (
@@ -87,19 +87,19 @@ export class GalleryImages {
   /**
    * Update a gallery Image Definition.
    * @param resourceGroupName The name of the resource group.
-   * @param galleryImage Parameters supplied to the update gallery image operation.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition is to be
    *                    updated.
    * @param galleryImageName The name of the gallery Image Definition to be updated. The allowed
    *                         characters are alphabets and numbers with dots, dashes, and periods allowed in the middle. The
    *                         maximum length is 80 characters.
+   * @param galleryImage Parameters supplied to the update gallery image operation.
    * @param options The options parameters.
    */
   async update(
     resourceGroupName: string,
-    galleryImage: GalleryImageUpdate,
     galleryName: string,
     galleryImageName: string,
+    galleryImage: GalleryImageUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<GalleryImagesUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -108,9 +108,9 @@ export class GalleryImages {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      galleryImage,
       galleryName,
       galleryImageName,
+      galleryImage,
       options: operationOptions
     };
     const sendOperation = (
@@ -293,6 +293,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryImageName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -326,6 +327,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryImageName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

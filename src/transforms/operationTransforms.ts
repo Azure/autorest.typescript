@@ -373,6 +373,7 @@ export async function transformOperation(
       ? operation.apiVersions.map(v => v.version)
       : [],
     description: metadata.description,
+    parameters: operation.parameters || [],
     requests,
     responses,
     mediaTypes,

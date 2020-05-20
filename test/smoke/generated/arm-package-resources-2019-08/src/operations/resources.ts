@@ -67,13 +67,13 @@ export class Resources {
    * a different subscription. When moving resources, both the source group and the target group are
    * locked for the duration of the operation. Write and delete operations are blocked on the groups
    * until the move completes.
-   * @param parameters Parameters for moving resources.
    * @param sourceResourceGroupName The name of the resource group containing the resources to move.
+   * @param parameters Parameters for moving resources.
    * @param options The options parameters.
    */
   async moveResources(
-    parameters: ResourcesMoveInfo,
     sourceResourceGroupName: string,
+    parameters: ResourcesMoveInfo,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -81,8 +81,8 @@ export class Resources {
     );
 
     const args: coreHttp.OperationArguments = {
-      parameters,
       sourceResourceGroupName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -111,14 +111,14 @@ export class Resources {
    * subscription. If validation succeeds, it returns HTTP response code 204 (no content). If validation
    * fails, it returns HTTP response code 409 (Conflict) with an error message. Retrieve the URL in the
    * Location header value to check the result of the long-running operation.
-   * @param parameters Parameters for moving resources.
    * @param sourceResourceGroupName The name of the resource group containing the resources to validate
    *                                for move.
+   * @param parameters Parameters for moving resources.
    * @param options The options parameters.
    */
   async validateMoveResources(
-    parameters: ResourcesMoveInfo,
     sourceResourceGroupName: string,
+    parameters: ResourcesMoveInfo,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -126,8 +126,8 @@ export class Resources {
     );
 
     const args: coreHttp.OperationArguments = {
-      parameters,
       sourceResourceGroupName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -203,22 +203,22 @@ export class Resources {
 
   /**
    * Deletes a resource.
+   * @param resourceGroupName The name of the resource group that contains the resource to delete. The
+   *                          name is case insensitive.
    * @param resourceProviderNamespace The namespace of the resource provider.
    * @param parentResourcePath The parent resource identity.
    * @param resourceType The resource type.
-   * @param apiVersion The API version to use for the operation.
-   * @param resourceGroupName The name of the resource group that contains the resource to delete. The
-   *                          name is case insensitive.
    * @param resourceName The name of the resource to delete.
+   * @param apiVersion The API version to use for the operation.
    * @param options The options parameters.
    */
   async delete(
+    resourceGroupName: string,
     resourceProviderNamespace: string,
     parentResourcePath: string,
     resourceType: string,
-    apiVersion: string,
-    resourceGroupName: string,
     resourceName: string,
+    apiVersion: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -226,12 +226,12 @@ export class Resources {
     );
 
     const args: coreHttp.OperationArguments = {
+      resourceGroupName,
       resourceProviderNamespace,
       parentResourcePath,
       resourceType,
-      apiVersion,
-      resourceGroupName,
       resourceName,
+      apiVersion,
       options: operationOptions
     };
     const sendOperation = (
@@ -256,24 +256,24 @@ export class Resources {
 
   /**
    * Creates a resource.
-   * @param resourceProviderNamespace The namespace of the resource provider.
-   * @param parentResourcePath The parent resource identity.
-   * @param apiVersion The API version to use for the operation.
-   * @param parameters Parameters for creating or updating the resource.
    * @param resourceGroupName The name of the resource group for the resource. The name is case
    *                          insensitive.
+   * @param resourceProviderNamespace The namespace of the resource provider.
+   * @param parentResourcePath The parent resource identity.
    * @param resourceType The resource type of the resource to create.
    * @param resourceName The name of the resource to create.
+   * @param apiVersion The API version to use for the operation.
+   * @param parameters Parameters for creating or updating the resource.
    * @param options The options parameters.
    */
   async createOrUpdate(
+    resourceGroupName: string,
     resourceProviderNamespace: string,
     parentResourcePath: string,
-    apiVersion: string,
-    parameters: GenericResource,
-    resourceGroupName: string,
     resourceType: string,
     resourceName: string,
+    apiVersion: string,
+    parameters: GenericResource,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ResourcesCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -281,13 +281,13 @@ export class Resources {
     );
 
     const args: coreHttp.OperationArguments = {
+      resourceGroupName,
       resourceProviderNamespace,
       parentResourcePath,
-      apiVersion,
-      parameters,
-      resourceGroupName,
       resourceType,
       resourceName,
+      apiVersion,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -312,24 +312,24 @@ export class Resources {
 
   /**
    * Updates a resource.
-   * @param resourceProviderNamespace The namespace of the resource provider.
-   * @param parentResourcePath The parent resource identity.
-   * @param apiVersion The API version to use for the operation.
    * @param resourceGroupName The name of the resource group for the resource. The name is case
    *                          insensitive.
-   * @param parameters Parameters for updating the resource.
+   * @param resourceProviderNamespace The namespace of the resource provider.
+   * @param parentResourcePath The parent resource identity.
    * @param resourceType The resource type of the resource to update.
    * @param resourceName The name of the resource to update.
+   * @param apiVersion The API version to use for the operation.
+   * @param parameters Parameters for updating the resource.
    * @param options The options parameters.
    */
   async update(
+    resourceGroupName: string,
     resourceProviderNamespace: string,
     parentResourcePath: string,
-    apiVersion: string,
-    resourceGroupName: string,
-    parameters: GenericResource,
     resourceType: string,
     resourceName: string,
+    apiVersion: string,
+    parameters: GenericResource,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ResourcesUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -337,13 +337,13 @@ export class Resources {
     );
 
     const args: coreHttp.OperationArguments = {
+      resourceGroupName,
       resourceProviderNamespace,
       parentResourcePath,
-      apiVersion,
-      resourceGroupName,
-      parameters,
       resourceType,
       resourceName,
+      apiVersion,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -368,22 +368,22 @@ export class Resources {
 
   /**
    * Gets a resource.
-   * @param resourceProviderNamespace The namespace of the resource provider.
-   * @param parentResourcePath The parent resource identity.
-   * @param apiVersion The API version to use for the operation.
    * @param resourceGroupName The name of the resource group containing the resource to get. The name is
    *                          case insensitive.
+   * @param resourceProviderNamespace The namespace of the resource provider.
+   * @param parentResourcePath The parent resource identity.
    * @param resourceType The resource type of the resource.
    * @param resourceName The name of the resource to get.
+   * @param apiVersion The API version to use for the operation.
    * @param options The options parameters.
    */
   get(
+    resourceGroupName: string,
     resourceProviderNamespace: string,
     parentResourcePath: string,
-    apiVersion: string,
-    resourceGroupName: string,
     resourceType: string,
     resourceName: string,
+    apiVersion: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourcesGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -391,12 +391,12 @@ export class Resources {
     );
     return this.client.sendOperationRequest(
       {
+        resourceGroupName,
         resourceProviderNamespace,
         parentResourcePath,
-        apiVersion,
-        resourceGroupName,
         resourceType,
         resourceName,
+        apiVersion,
         options: operationOptions
       },
       getOperationSpec
@@ -405,37 +405,37 @@ export class Resources {
 
   /**
    * Checks by ID whether a resource exists.
-   * @param apiVersion The API version to use for the operation.
    * @param resourceId The fully qualified ID of the resource, including the resource name and resource
    *                   type. Use the format,
    *                   /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
+   * @param apiVersion The API version to use for the operation.
    * @param options The options parameters.
    */
   checkExistenceById(
-    apiVersion: string,
     resourceId: string,
+    apiVersion: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { apiVersion, resourceId, options: operationOptions },
+      { resourceId, apiVersion, options: operationOptions },
       checkExistenceByIdOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Deletes a resource by ID.
-   * @param apiVersion The API version to use for the operation.
    * @param resourceId The fully qualified ID of the resource, including the resource name and resource
    *                   type. Use the format,
    *                   /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
+   * @param apiVersion The API version to use for the operation.
    * @param options The options parameters.
    */
   async deleteById(
-    apiVersion: string,
     resourceId: string,
+    apiVersion: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -443,8 +443,8 @@ export class Resources {
     );
 
     const args: coreHttp.OperationArguments = {
-      apiVersion,
       resourceId,
+      apiVersion,
       options: operationOptions
     };
     const sendOperation = (
@@ -469,16 +469,16 @@ export class Resources {
 
   /**
    * Create a resource by ID.
-   * @param apiVersion The API version to use for the operation.
    * @param resourceId The fully qualified ID of the resource, including the resource name and resource
    *                   type. Use the format,
    *                   /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
+   * @param apiVersion The API version to use for the operation.
    * @param parameters Create or update resource parameters.
    * @param options The options parameters.
    */
   async createOrUpdateById(
-    apiVersion: string,
     resourceId: string,
+    apiVersion: string,
     parameters: GenericResource,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ResourcesCreateOrUpdateByIdResponse>> {
@@ -487,8 +487,8 @@ export class Resources {
     );
 
     const args: coreHttp.OperationArguments = {
-      apiVersion,
       resourceId,
+      apiVersion,
       parameters,
       options: operationOptions
     };
@@ -514,16 +514,16 @@ export class Resources {
 
   /**
    * Updates a resource by ID.
-   * @param apiVersion The API version to use for the operation.
    * @param resourceId The fully qualified ID of the resource, including the resource name and resource
    *                   type. Use the format,
    *                   /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
+   * @param apiVersion The API version to use for the operation.
    * @param parameters Update resource parameters.
    * @param options The options parameters.
    */
   async updateById(
-    apiVersion: string,
     resourceId: string,
+    apiVersion: string,
     parameters: GenericResource,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ResourcesUpdateByIdResponse>> {
@@ -532,8 +532,8 @@ export class Resources {
     );
 
     const args: coreHttp.OperationArguments = {
-      apiVersion,
       resourceId,
+      apiVersion,
       parameters,
       options: operationOptions
     };
@@ -559,42 +559,42 @@ export class Resources {
 
   /**
    * Gets a resource by ID.
-   * @param apiVersion The API version to use for the operation.
    * @param resourceId The fully qualified ID of the resource, including the resource name and resource
    *                   type. Use the format,
    *                   /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
+   * @param apiVersion The API version to use for the operation.
    * @param options The options parameters.
    */
   getById(
-    apiVersion: string,
     resourceId: string,
+    apiVersion: string,
     options?: coreHttp.OperationOptions
   ): Promise<ResourcesGetByIdResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { apiVersion, resourceId, options: operationOptions },
+      { resourceId, apiVersion, options: operationOptions },
       getByIdOperationSpec
     ) as Promise<ResourcesGetByIdResponse>;
   }
 
   /**
    * ListByResourceGroupNext
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param resourceGroupName The resource group with the resources to get.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
   listByResourceGroupNext(
-    nextLink: string,
     resourceGroupName: string,
+    nextLink: string,
     options?: ResourcesListByResourceGroupNextOptionalParams
   ): Promise<ResourcesListByResourceGroupNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { nextLink, resourceGroupName, options: operationOptions },
+      { resourceGroupName, nextLink, options: operationOptions },
       listByResourceGroupNextOperationSpec
     ) as Promise<ResourcesListByResourceGroupNextResponse>;
   }
@@ -671,6 +671,7 @@ const moveResourcesOperationSpec: coreHttp.OperationSpec = {
     Parameters.sourceResourceGroupName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const validateMoveResourcesOperationSpec: coreHttp.OperationSpec = {
@@ -686,6 +687,7 @@ const validateMoveResourcesOperationSpec: coreHttp.OperationSpec = {
     Parameters.sourceResourceGroupName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -778,6 +780,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -810,6 +813,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceName3
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -879,6 +883,7 @@ const createOrUpdateByIdOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.resourceId],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateByIdOperationSpec: coreHttp.OperationSpec = {
@@ -902,6 +907,7 @@ const updateByIdOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.resourceId],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getByIdOperationSpec: coreHttp.OperationSpec = {

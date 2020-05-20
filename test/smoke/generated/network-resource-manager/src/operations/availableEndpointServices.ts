@@ -49,20 +49,20 @@ export class AvailableEndpointServices {
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param location The location to check available endpoint services.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
-    nextLink: string,
     location: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<AvailableEndpointServicesListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { nextLink, location, options: operationOptions },
+      { location, nextLink, options: operationOptions },
       listNextOperationSpec
     ) as Promise<AvailableEndpointServicesListNextResponse>;
   }

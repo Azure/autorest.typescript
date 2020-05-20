@@ -199,6 +199,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.blobAuditingPolicyName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByDatabaseOperationSpec: coreHttp.OperationSpec = {

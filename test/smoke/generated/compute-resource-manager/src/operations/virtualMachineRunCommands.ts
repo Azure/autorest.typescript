@@ -70,20 +70,20 @@ export class VirtualMachineRunCommands {
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param location The location upon which run commands is queried.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
-    nextLink: string,
     location: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualMachineRunCommandsListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { nextLink, location, options: operationOptions },
+      { location, nextLink, options: operationOptions },
       listNextOperationSpec
     ) as Promise<VirtualMachineRunCommandsListNextResponse>;
   }

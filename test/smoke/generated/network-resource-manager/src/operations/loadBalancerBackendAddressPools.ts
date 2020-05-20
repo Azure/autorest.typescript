@@ -177,14 +177,14 @@ export class LoadBalancerBackendAddressPools {
   /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param loadBalancerName The name of the load balancer.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
     resourceGroupName: string,
-    nextLink: string,
     loadBalancerName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<LoadBalancerBackendAddressPoolsListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -193,8 +193,8 @@ export class LoadBalancerBackendAddressPools {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        nextLink,
         loadBalancerName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec
@@ -288,6 +288,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.backendAddressPoolName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

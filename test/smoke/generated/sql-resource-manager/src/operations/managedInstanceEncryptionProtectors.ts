@@ -288,6 +288,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {

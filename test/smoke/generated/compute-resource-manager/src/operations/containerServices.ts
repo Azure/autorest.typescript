@@ -57,15 +57,15 @@ export class ContainerServices {
    * Creates or updates a container service with the specified configuration of orchestrator, masters,
    * and agents.
    * @param resourceGroupName The name of the resource group.
-   * @param parameters Parameters supplied to the Create or Update a Container Service operation.
    * @param containerServiceName The name of the container service in the specified subscription and
    *                             resource group.
+   * @param parameters Parameters supplied to the Create or Update a Container Service operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    parameters: ContainerService,
     containerServiceName: string,
+    parameters: ContainerService,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ContainerServicesCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -74,8 +74,8 @@ export class ContainerServices {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       containerServiceName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -279,6 +279,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.containerServiceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

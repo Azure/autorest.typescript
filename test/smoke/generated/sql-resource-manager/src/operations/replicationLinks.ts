@@ -366,6 +366,7 @@ const unlinkOperationSpec: coreHttp.OperationSpec = {
     Parameters.linkId2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByDatabaseOperationSpec: coreHttp.OperationSpec = {

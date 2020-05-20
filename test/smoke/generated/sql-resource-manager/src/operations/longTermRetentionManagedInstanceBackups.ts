@@ -57,16 +57,16 @@ export class LongTermRetentionManagedInstanceBackups {
   /**
    * Gets a long term retention backup for a managed database.
    * @param locationName The location of the database.
-   * @param backupName The backup name.
    * @param managedInstanceName The name of the managed instance.
    * @param databaseName The name of the managed database.
+   * @param backupName The backup name.
    * @param options The options parameters.
    */
   get(
     locationName: string,
-    backupName: string,
     managedInstanceName: string,
     databaseName: string,
+    backupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LongTermRetentionManagedInstanceBackupsGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -75,9 +75,9 @@ export class LongTermRetentionManagedInstanceBackups {
     return this.client.sendOperationRequest(
       {
         locationName,
-        backupName,
         managedInstanceName,
         databaseName,
+        backupName,
         options: operationOptions
       },
       getOperationSpec
@@ -87,16 +87,16 @@ export class LongTermRetentionManagedInstanceBackups {
   /**
    * Deletes a long term retention backup.
    * @param locationName The location of the database.
-   * @param backupName The backup name.
    * @param managedInstanceName The name of the managed instance.
    * @param databaseName The name of the managed database.
+   * @param backupName The backup name.
    * @param options The options parameters.
    */
   async delete(
     locationName: string,
-    backupName: string,
     managedInstanceName: string,
     databaseName: string,
+    backupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -105,9 +105,9 @@ export class LongTermRetentionManagedInstanceBackups {
 
     const args: coreHttp.OperationArguments = {
       locationName,
-      backupName,
       managedInstanceName,
       databaseName,
+      backupName,
       options: operationOptions
     };
     const sendOperation = (
@@ -200,17 +200,17 @@ export class LongTermRetentionManagedInstanceBackups {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param locationName The location of the database.
-   * @param backupName The backup name.
    * @param managedInstanceName The name of the managed instance.
    * @param databaseName The name of the managed database.
+   * @param backupName The backup name.
    * @param options The options parameters.
    */
   getByResourceGroup(
     resourceGroupName: string,
     locationName: string,
-    backupName: string,
     managedInstanceName: string,
     databaseName: string,
+    backupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
     LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse
@@ -222,9 +222,9 @@ export class LongTermRetentionManagedInstanceBackups {
       {
         resourceGroupName,
         locationName,
-        backupName,
         managedInstanceName,
         databaseName,
+        backupName,
         options: operationOptions
       },
       getByResourceGroupOperationSpec
@@ -237,18 +237,18 @@ export class LongTermRetentionManagedInstanceBackups {
    * Deletes a long term retention backup.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param backupName The backup name.
    * @param locationName The location of the database
    * @param managedInstanceName The name of the managed instance.
    * @param databaseName The name of the managed database.
+   * @param backupName The backup name.
    * @param options The options parameters.
    */
   async deleteByResourceGroup(
     resourceGroupName: string,
-    backupName: string,
     locationName: string,
     managedInstanceName: string,
     databaseName: string,
+    backupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -257,10 +257,10 @@ export class LongTermRetentionManagedInstanceBackups {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      backupName,
       locationName,
       managedInstanceName,
       databaseName,
+      backupName,
       options: operationOptions
     };
     const sendOperation = (
@@ -377,17 +377,17 @@ export class LongTermRetentionManagedInstanceBackups {
 
   /**
    * ListByDatabaseNext
-   * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
    * @param locationName The location of the database.
    * @param managedInstanceName The name of the managed instance.
    * @param databaseName The name of the managed database.
+   * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
    * @param options The options parameters.
    */
   listByDatabaseNext(
-    nextLink: string,
     locationName: string,
     managedInstanceName: string,
     databaseName: string,
+    nextLink: string,
     options?: LongTermRetentionManagedInstanceBackupsListByDatabaseNextOptionalParams
   ): Promise<
     LongTermRetentionManagedInstanceBackupsListByDatabaseNextResponse
@@ -397,10 +397,10 @@ export class LongTermRetentionManagedInstanceBackups {
     );
     return this.client.sendOperationRequest(
       {
-        nextLink,
         locationName,
         managedInstanceName,
         databaseName,
+        nextLink,
         options: operationOptions
       },
       listByDatabaseNextOperationSpec
@@ -442,13 +442,13 @@ export class LongTermRetentionManagedInstanceBackups {
 
   /**
    * ListByLocationNext
-   * @param nextLink The nextLink from the previous successful call to the ListByLocation method.
    * @param locationName The location of the database.
+   * @param nextLink The nextLink from the previous successful call to the ListByLocation method.
    * @param options The options parameters.
    */
   listByLocationNext(
-    nextLink: string,
     locationName: string,
+    nextLink: string,
     options?: LongTermRetentionManagedInstanceBackupsListByLocationNextOptionalParams
   ): Promise<
     LongTermRetentionManagedInstanceBackupsListByLocationNextResponse
@@ -457,7 +457,7 @@ export class LongTermRetentionManagedInstanceBackups {
       options || {}
     );
     return this.client.sendOperationRequest(
-      { nextLink, locationName, options: operationOptions },
+      { locationName, nextLink, options: operationOptions },
       listByLocationNextOperationSpec
     ) as Promise<
       LongTermRetentionManagedInstanceBackupsListByLocationNextResponse
@@ -469,18 +469,18 @@ export class LongTermRetentionManagedInstanceBackups {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param locationName The location of the database
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupDatabase
-   *                 method.
    * @param managedInstanceName The name of the managed instance.
    * @param databaseName The name of the managed database.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroupDatabase
+   *                 method.
    * @param options The options parameters.
    */
   listByResourceGroupDatabaseNext(
     resourceGroupName: string,
     locationName: string,
-    nextLink: string,
     managedInstanceName: string,
     databaseName: string,
+    nextLink: string,
     options?: LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseNextOptionalParams
   ): Promise<
     LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseNextResponse
@@ -492,9 +492,9 @@ export class LongTermRetentionManagedInstanceBackups {
       {
         resourceGroupName,
         locationName,
-        nextLink,
         managedInstanceName,
         databaseName,
+        nextLink,
         options: operationOptions
       },
       listByResourceGroupDatabaseNextOperationSpec

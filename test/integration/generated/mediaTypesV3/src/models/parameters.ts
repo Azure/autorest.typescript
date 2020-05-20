@@ -9,30 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 
 export const contentType: coreHttp.OperationParameter = {
-  parameterPath: "contentType",
-  mapper: {
-    defaultValue: "application/octet-stream",
-    isConstant: true,
-    serializedName: "Content-Type",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const data: coreHttp.OperationParameter = {
-  parameterPath: "data",
-  mapper: {
-    serializedName: "data",
-    required: true,
-    type: {
-      name: "Stream"
-    }
-  }
-};
-
-export const contentType1: coreHttp.OperationParameter = {
-  parameterPath: "contentType",
+  parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "text/plain",
     isConstant: true,
@@ -43,7 +20,7 @@ export const contentType1: coreHttp.OperationParameter = {
   }
 };
 
-export const data1: coreHttp.OperationParameter = {
+export const data: coreHttp.OperationParameter = {
   parameterPath: "data",
   mapper: {
     serializedName: "data",
@@ -73,6 +50,41 @@ export const excluded: coreHttp.OperationQueryParameter = {
     type: {
       name: "Sequence",
       element: { type: { name: "String" } }
+    }
+  }
+};
+
+export const contentType1: coreHttp.OperationParameter = {
+  parameterPath: "contentType",
+  mapper: {
+    defaultValue: "application/octet-stream",
+    isConstant: true,
+    serializedName: "Content-Type",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const data1: coreHttp.OperationParameter = {
+  parameterPath: "data",
+  mapper: {
+    serializedName: "data",
+    required: true,
+    type: {
+      name: "Stream"
+    }
+  }
+};
+
+export const contentType2: coreHttp.OperationParameter = {
+  parameterPath: "contentType",
+  mapper: {
+    defaultValue: "text/plain",
+    isConstant: true,
+    serializedName: "Content-Type",
+    type: {
+      name: "String"
     }
   }
 };

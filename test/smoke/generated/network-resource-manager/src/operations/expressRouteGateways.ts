@@ -70,15 +70,15 @@ export class ExpressRouteGateways {
   /**
    * Creates or updates a ExpressRoute gateway in a specified resource group.
    * @param resourceGroupName The name of the resource group.
+   * @param expressRouteGatewayName The name of the ExpressRoute gateway.
    * @param putExpressRouteGatewayParameters Parameters required in an ExpressRoute gateway PUT
    *                                         operation.
-   * @param expressRouteGatewayName The name of the ExpressRoute gateway.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    putExpressRouteGatewayParameters: ExpressRouteGateway,
     expressRouteGatewayName: string,
+    putExpressRouteGatewayParameters: ExpressRouteGateway,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ExpressRouteGatewaysCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -88,8 +88,8 @@ export class ExpressRouteGateways {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      putExpressRouteGatewayParameters,
       expressRouteGatewayName,
+      putExpressRouteGatewayParameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -255,6 +255,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.expressRouteGatewayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

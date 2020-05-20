@@ -84,21 +84,21 @@ export class Groups {
 
   /**
    * Add a member to a group.
+   * @param groupObjectId The object ID of the group to which to add the member.
    * @param parameters The URL of the member object, such as
    *                   https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd.
-   * @param groupObjectId The object ID of the group to which to add the member.
    * @param options The options parameters.
    */
   addMember(
-    parameters: GroupAddMemberParameters,
     groupObjectId: string,
+    parameters: GroupAddMemberParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { parameters, groupObjectId, options: operationOptions },
+      { groupObjectId, parameters, options: operationOptions },
       addMemberOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -191,20 +191,20 @@ export class Groups {
 
   /**
    * Gets a collection of object IDs of groups of which the specified group is a member.
-   * @param parameters Group filtering parameters.
    * @param objectId The object ID of the group for which to get group membership.
+   * @param parameters Group filtering parameters.
    * @param options The options parameters.
    */
   getMemberGroups(
-    parameters: GroupGetMemberGroupsParameters,
     objectId: string,
+    parameters: GroupGetMemberGroupsParameters,
     options?: coreHttp.OperationOptions
   ): Promise<GroupsGetMemberGroupsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { parameters, objectId, options: operationOptions },
+      { objectId, parameters, options: operationOptions },
       getMemberGroupsOperationSpec
     ) as Promise<GroupsGetMemberGroupsResponse>;
   }
@@ -229,41 +229,41 @@ export class Groups {
 
   /**
    * Add an owner to a group.
+   * @param objectId The object ID of the application to which to add the owner.
    * @param parameters The URL of the owner object, such as
    *                   https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd.
-   * @param objectId The object ID of the application to which to add the owner.
    * @param options The options parameters.
    */
   addOwner(
-    parameters: AddOwnerParameters,
     objectId: string,
+    parameters: AddOwnerParameters,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { parameters, objectId, options: operationOptions },
+      { objectId, parameters, options: operationOptions },
       addOwnerOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Remove a member from owners.
-   * @param ownerObjectId Owner object id
    * @param objectId The object ID of the group from which to remove the owner.
+   * @param ownerObjectId Owner object id
    * @param options The options parameters.
    */
   removeOwner(
-    ownerObjectId: string,
     objectId: string,
+    ownerObjectId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { ownerObjectId, objectId, options: operationOptions },
+      { objectId, ownerObjectId, options: operationOptions },
       removeOwnerOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -306,20 +306,20 @@ export class Groups {
 
   /**
    * ListOwnersNext
-   * @param nextLink The nextLink from the previous successful call to the ListOwners method.
    * @param objectId The object ID of the group for which to get owners.
+   * @param nextLink The nextLink from the previous successful call to the ListOwners method.
    * @param options The options parameters.
    */
   listOwnersNext(
-    nextLink: string,
     objectId: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<GroupsListOwnersNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { nextLink, objectId, options: operationOptions },
+      { objectId, nextLink, options: operationOptions },
       listOwnersNextOperationSpec
     ) as Promise<GroupsListOwnersNextResponse>;
   }
@@ -343,6 +343,7 @@ const isMemberOfOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const removeMemberOperationSpec: coreHttp.OperationSpec = {
@@ -380,6 +381,7 @@ const addMemberOperationSpec: coreHttp.OperationSpec = {
     Parameters.groupObjectId1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const createOperationSpec: coreHttp.OperationSpec = {
@@ -397,6 +399,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -472,6 +475,7 @@ const getMemberGroupsOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId4],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOwnersOperationSpec: coreHttp.OperationSpec = {
@@ -502,6 +506,7 @@ const addOwnerOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId6],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const removeOwnerOperationSpec: coreHttp.OperationSpec = {

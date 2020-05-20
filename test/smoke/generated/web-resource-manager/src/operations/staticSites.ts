@@ -115,14 +115,14 @@ export class StaticSites {
    * Description for Creates a new static site in an existing resource group, or updates an existing
    * static site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param staticSiteEnvelope A JSON representation of the staticsite properties. See example.
    * @param name Name of the static site to create or update.
+   * @param staticSiteEnvelope A JSON representation of the staticsite properties. See example.
    * @param options The options parameters.
    */
   createOrUpdateStaticSite(
     resourceGroupName: string,
-    staticSiteEnvelope: StaticSiteARMResource,
     name: string,
+    staticSiteEnvelope: StaticSiteARMResource,
     options?: coreHttp.OperationOptions
   ): Promise<StaticSitesCreateOrUpdateStaticSiteResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -131,8 +131,8 @@ export class StaticSites {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        staticSiteEnvelope,
         name,
+        staticSiteEnvelope,
         options: operationOptions
       },
       createOrUpdateStaticSiteOperationSpec
@@ -899,6 +899,7 @@ const createOrUpdateStaticSiteOperationSpec: coreHttp.OperationSpec = {
     Parameters.name17
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteStaticSiteOperationSpec: coreHttp.OperationSpec = {
@@ -945,6 +946,7 @@ const updateStaticSiteOperationSpec: coreHttp.OperationSpec = {
     Parameters.name17
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listStaticSiteUsersOperationSpec: coreHttp.OperationSpec = {
@@ -1013,6 +1015,7 @@ const updateStaticSiteUserOperationSpec: coreHttp.OperationSpec = {
     Parameters.userid
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getStaticSiteBuildsOperationSpec: coreHttp.OperationSpec = {
@@ -1104,6 +1107,7 @@ const createOrUpdateStaticSiteBuildFunctionAppSettingsOperationSpec: coreHttp.Op
     Parameters.prId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listStaticSiteBuildFunctionsOperationSpec: coreHttp.OperationSpec = {
@@ -1177,6 +1181,7 @@ const createOrUpdateStaticSiteFunctionAppSettingsOperationSpec: coreHttp.Operati
     Parameters.name16
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const createUserRolesInvitationLinkOperationSpec: coreHttp.OperationSpec = {
@@ -1200,6 +1205,7 @@ const createUserRolesInvitationLinkOperationSpec: coreHttp.OperationSpec = {
     Parameters.name16
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listStaticSiteCustomDomainsOperationSpec: coreHttp.OperationSpec = {
@@ -1395,6 +1401,7 @@ const resetStaticSiteApiKeyOperationSpec: coreHttp.OperationSpec = {
     Parameters.name16
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {

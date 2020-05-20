@@ -157,14 +157,14 @@ export class Domains {
   /**
    * Description for Creates or updates a domain.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param domain Domain registration information.
    * @param domainName Name of the domain.
+   * @param domain Domain registration information.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    domain: Domain,
     domainName: string,
+    domain: Domain,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DomainsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -173,8 +173,8 @@ export class Domains {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      domain,
       domainName,
+      domain,
       options: operationOptions
     };
     const sendOperation = (
@@ -498,6 +498,7 @@ const checkAvailabilityOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -548,6 +549,7 @@ const listRecommendationsOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -618,6 +620,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.domainName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -664,6 +667,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.domainName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOwnershipIdentifiersOperationSpec: coreHttp.OperationSpec = {
@@ -731,6 +735,7 @@ const createOrUpdateOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.name2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
@@ -776,6 +781,7 @@ const updateOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.name2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const renewOperationSpec: coreHttp.OperationSpec = {
@@ -837,6 +843,7 @@ const listRecommendationsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {

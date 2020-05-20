@@ -36,7 +36,7 @@ describe("parameterTransforms", () => {
         ...(extensions && { extensions })
       }
     );
-    const request = { parameters: [param1] } as Request;
+    const request = { parameters: [param1], protocol: {} } as Request;
     const op1 = new OperationGroup("OperationGroup1", {
       operations: [
         {
@@ -123,8 +123,8 @@ describe("parameterTransforms", () => {
         }
       );
 
-      const request = { parameters: [param1] } as Request;
-      const request2 = { parameters: [param2] } as Request;
+      const request = { parameters: [param1], protocol: {} } as Request;
+      const request2 = { parameters: [param2], protocol: {} } as Request;
 
       const op1 = new OperationGroup("OperationGroup1", {
         operations: [
@@ -195,8 +195,14 @@ describe("parameterTransforms", () => {
         }
       );
       const operationParameters = [param1];
-      const request = { parameters: operationParameters } as Request;
-      const request2 = { parameters: operationParameters } as Request;
+      const request = {
+        parameters: operationParameters,
+        protocol: {}
+      } as Request;
+      const request2 = {
+        parameters: operationParameters,
+        protocol: {}
+      } as Request;
 
       const op1 = new OperationGroup("OperationGroup1", {
         operations: [
@@ -280,7 +286,10 @@ describe("parameterTransforms", () => {
       );
 
       const operationParameters = [param1, param2];
-      const request = { parameters: operationParameters } as Request;
+      const request = {
+        parameters: operationParameters,
+        protocol: {}
+      } as Request;
 
       codeModel.operationGroups = [
         new OperationGroup("OperationGroup1", {

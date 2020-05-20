@@ -6,14 +6,14 @@ describe("OpenAPI V3 model that supports multiple media-types", () => {
     // excluded is an optional parameter that exists on both overloads.
     // TypeScript complains if we attempt to set `excluded` but the models lack it.
     client.fooApi.postSend(
+      "thingA",
       "application/octet-stream",
       Buffer.from("data"),
-      "thingA",
       {
         excluded: ["id1", "id2"]
       }
     );
-    client.fooApi.postSend("text/plain", "data", "thingB", {
+    client.fooApi.postSend("thingB", "text/plain", "data", {
       excluded: ["id1", "id2"]
     });
     assert.isDefined(client);

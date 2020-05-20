@@ -201,6 +201,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.policyName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByDatabaseOperationSpec: coreHttp.OperationSpec = {

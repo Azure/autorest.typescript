@@ -260,15 +260,15 @@ export class Applications {
 
   /**
    * Creates a new managed application.
-   * @param parameters Parameters supplied to the create or update a managed application.
    * @param applicationId The fully qualified ID of the managed application, including the managed
    *                      application name and the managed application resource type. Use the format,
    *                      /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}
+   * @param parameters Parameters supplied to the create or update a managed application.
    * @param options The options parameters.
    */
   async createOrUpdateById(
-    parameters: Application,
     applicationId: string,
+    parameters: Application,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ApplicationsCreateOrUpdateByIdResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -276,8 +276,8 @@ export class Applications {
     );
 
     const args: coreHttp.OperationArguments = {
-      parameters,
       applicationId,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -438,6 +438,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -461,6 +462,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -544,6 +546,7 @@ const createOrUpdateByIdOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.applicationId],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateByIdOperationSpec: coreHttp.OperationSpec = {
@@ -561,6 +564,7 @@ const updateByIdOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.applicationId],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {

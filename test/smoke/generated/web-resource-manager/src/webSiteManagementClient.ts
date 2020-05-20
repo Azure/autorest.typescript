@@ -534,6 +534,7 @@ const updatePublishingUserOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listSourceControlsOperationSpec: coreHttp.OperationSpec = {
@@ -581,6 +582,7 @@ const updateSourceControlOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.sourceControlType],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listBillingMetersOperationSpec: coreHttp.OperationSpec = {
@@ -618,6 +620,7 @@ const checkNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getSubscriptionDeploymentLocationsOperationSpec: coreHttp.OperationSpec = {
@@ -673,6 +676,7 @@ const listSiteIdentifiersAssignedToHostNameOperationSpec: coreHttp.OperationSpec
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listPremierAddOnOffersOperationSpec: coreHttp.OperationSpec = {
@@ -722,6 +726,7 @@ const verifyHostingEnvironmentVnetOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const moveOperationSpec: coreHttp.OperationSpec = {
@@ -742,6 +747,7 @@ const moveOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const validateOperationSpec: coreHttp.OperationSpec = {
@@ -764,6 +770,7 @@ const validateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const validateMoveOperationSpec: coreHttp.OperationSpec = {
@@ -784,6 +791,7 @@ const validateMoveOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listSourceControlsNextOperationSpec: coreHttp.OperationSpec = {
@@ -868,6 +876,7 @@ const listSiteIdentifiersAssignedToHostNameNextOperationSpec: coreHttp.Operation
     Parameters.nextLink26
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listPremierAddOnOffersNextOperationSpec: coreHttp.OperationSpec = {

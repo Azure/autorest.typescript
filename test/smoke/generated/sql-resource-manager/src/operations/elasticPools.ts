@@ -44,15 +44,15 @@ export class ElasticPools {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param filter An OData filter expression that describes a subset of metrics to return.
    * @param elasticPoolName The name of the elastic pool.
+   * @param filter An OData filter expression that describes a subset of metrics to return.
    * @param options The options parameters.
    */
   listMetrics(
     resourceGroupName: string,
     serverName: string,
-    filter: string,
     elasticPoolName: string,
+    filter: string,
     options?: coreHttp.OperationOptions
   ): Promise<ElasticPoolsListMetricsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -62,8 +62,8 @@ export class ElasticPools {
       {
         resourceGroupName,
         serverName,
-        filter,
         elasticPoolName,
+        filter,
         options: operationOptions
       },
       listMetricsOperationSpec
@@ -473,6 +473,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.elasticPoolName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -518,6 +519,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.elasticPoolName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const failoverOperationSpec: coreHttp.OperationSpec = {

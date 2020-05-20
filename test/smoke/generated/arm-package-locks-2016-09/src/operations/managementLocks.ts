@@ -57,23 +57,23 @@ export class ManagementLocks {
    * management locks, you must have access to Microsoft.Authorization/* or
    * Microsoft.Authorization/locks/* actions. Of the built-in roles, only Owner and User Access
    * Administrator are granted those actions.
-   * @param parameters The management lock parameters.
    * @param resourceGroupName The name of the resource group to lock.
    * @param lockName The lock name. The lock name can be a maximum of 260 characters. It cannot contain
    *                 <, > %, &, :, \, ?, /, or any control characters.
+   * @param parameters The management lock parameters.
    * @param options The options parameters.
    */
   createOrUpdateAtResourceGroupLevel(
-    parameters: ManagementLockObject,
     resourceGroupName: string,
     lockName: string,
+    parameters: ManagementLockObject,
     options?: coreHttp.OperationOptions
   ): Promise<ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { parameters, resourceGroupName, lockName, options: operationOptions },
+      { resourceGroupName, lockName, parameters, options: operationOptions },
       createOrUpdateAtResourceGroupLevelOperationSpec
     ) as Promise<ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse>;
   }
@@ -122,66 +122,66 @@ export class ManagementLocks {
 
   /**
    * Create or update a management lock by scope.
-   * @param parameters Create or update management lock parameters.
    * @param scope The scope for the lock. When providing a scope for the assignment, use
    *              '/subscriptions/{subscriptionId}' for subscriptions,
    *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}' for resource groups, and
    *              '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePathIfPresent}/{resourceType}/{resourceName}'
    *              for resources.
    * @param lockName The name of lock.
+   * @param parameters Create or update management lock parameters.
    * @param options The options parameters.
    */
   createOrUpdateByScope(
-    parameters: ManagementLockObject,
     scope: string,
     lockName: string,
+    parameters: ManagementLockObject,
     options?: coreHttp.OperationOptions
   ): Promise<ManagementLocksCreateOrUpdateByScopeResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { parameters, scope, lockName, options: operationOptions },
+      { scope, lockName, parameters, options: operationOptions },
       createOrUpdateByScopeOperationSpec
     ) as Promise<ManagementLocksCreateOrUpdateByScopeResponse>;
   }
 
   /**
    * Delete a management lock by scope.
-   * @param lockName The name of lock.
    * @param scope The scope for the lock.
+   * @param lockName The name of lock.
    * @param options The options parameters.
    */
   deleteByScope(
-    lockName: string,
     scope: string,
+    lockName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { lockName, scope, options: operationOptions },
+      { scope, lockName, options: operationOptions },
       deleteByScopeOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
    * Get a management lock by scope.
-   * @param lockName The name of lock.
    * @param scope The scope for the lock.
+   * @param lockName The name of lock.
    * @param options The options parameters.
    */
   getByScope(
-    lockName: string,
     scope: string,
+    lockName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagementLocksGetByScopeResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { lockName, scope, options: operationOptions },
+      { scope, lockName, options: operationOptions },
       getByScopeOperationSpec
     ) as Promise<ManagementLocksGetByScopeResponse>;
   }
@@ -191,7 +191,6 @@ export class ManagementLocks {
    * management locks, you must have access to Microsoft.Authorization/* or
    * Microsoft.Authorization/locks/* actions. Of the built-in roles, only Owner and User Access
    * Administrator are granted those actions.
-   * @param parameters Parameters for creating or updating a  management lock.
    * @param resourceGroupName The name of the resource group containing the resource to lock.
    * @param resourceProviderNamespace The resource provider namespace of the resource to lock.
    * @param parentResourcePath The parent resource identity.
@@ -199,16 +198,17 @@ export class ManagementLocks {
    * @param resourceName The name of the resource to lock.
    * @param lockName The name of lock. The lock name can be a maximum of 260 characters. It cannot
    *                 contain <, > %, &, :, \, ?, /, or any control characters.
+   * @param parameters Parameters for creating or updating a  management lock.
    * @param options The options parameters.
    */
   createOrUpdateAtResourceLevel(
-    parameters: ManagementLockObject,
     resourceGroupName: string,
     resourceProviderNamespace: string,
     parentResourcePath: string,
     resourceType: string,
     resourceName: string,
     lockName: string,
+    parameters: ManagementLockObject,
     options?: coreHttp.OperationOptions
   ): Promise<ManagementLocksCreateOrUpdateAtResourceLevelResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -216,13 +216,13 @@ export class ManagementLocks {
     );
     return this.client.sendOperationRequest(
       {
-        parameters,
         resourceGroupName,
         resourceProviderNamespace,
         parentResourcePath,
         resourceType,
         resourceName,
         lockName,
+        parameters,
         options: operationOptions
       },
       createOrUpdateAtResourceLevelOperationSpec
@@ -233,20 +233,20 @@ export class ManagementLocks {
    * To delete management locks, you must have access to Microsoft.Authorization/* or
    * Microsoft.Authorization/locks/* actions. Of the built-in roles, only Owner and User Access
    * Administrator are granted those actions.
-   * @param parentResourcePath The parent resource identity.
    * @param resourceGroupName The name of the resource group containing the resource with the lock to
    *                          delete.
    * @param resourceProviderNamespace The resource provider namespace of the resource with the lock to
    *                                  delete.
+   * @param parentResourcePath The parent resource identity.
    * @param resourceType The resource type of the resource with the lock to delete.
    * @param resourceName The name of the resource with the lock to delete.
    * @param lockName The name of the lock to delete.
    * @param options The options parameters.
    */
   deleteAtResourceLevel(
-    parentResourcePath: string,
     resourceGroupName: string,
     resourceProviderNamespace: string,
+    parentResourcePath: string,
     resourceType: string,
     resourceName: string,
     lockName: string,
@@ -257,9 +257,9 @@ export class ManagementLocks {
     );
     return this.client.sendOperationRequest(
       {
-        parentResourcePath,
         resourceGroupName,
         resourceProviderNamespace,
+        parentResourcePath,
         resourceType,
         resourceName,
         lockName,
@@ -271,21 +271,21 @@ export class ManagementLocks {
 
   /**
    * Get the management lock of a resource or any level below resource.
-   * @param lockName The name of lock.
    * @param resourceGroupName The name of the resource group.
    * @param resourceProviderNamespace The namespace of the resource provider.
    * @param parentResourcePath An extra path parameter needed in some services, like SQL Databases.
    * @param resourceType The type of the resource.
    * @param resourceName The name of the resource.
+   * @param lockName The name of lock.
    * @param options The options parameters.
    */
   getAtResourceLevel(
-    lockName: string,
     resourceGroupName: string,
     resourceProviderNamespace: string,
     parentResourcePath: string,
     resourceType: string,
     resourceName: string,
+    lockName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagementLocksGetAtResourceLevelResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -293,12 +293,12 @@ export class ManagementLocks {
     );
     return this.client.sendOperationRequest(
       {
-        lockName,
         resourceGroupName,
         resourceProviderNamespace,
         parentResourcePath,
         resourceType,
         resourceName,
+        lockName,
         options: operationOptions
       },
       getAtResourceLevelOperationSpec
@@ -310,21 +310,21 @@ export class ManagementLocks {
    * management locks, you must have access to Microsoft.Authorization/* or
    * Microsoft.Authorization/locks/* actions. Of the built-in roles, only Owner and User Access
    * Administrator are granted those actions.
-   * @param parameters The management lock parameters.
    * @param lockName The name of lock. The lock name can be a maximum of 260 characters. It cannot
    *                 contain <, > %, &, :, \, ?, /, or any control characters.
+   * @param parameters The management lock parameters.
    * @param options The options parameters.
    */
   createOrUpdateAtSubscriptionLevel(
-    parameters: ManagementLockObject,
     lockName: string,
+    parameters: ManagementLockObject,
     options?: coreHttp.OperationOptions
   ): Promise<ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { parameters, lockName, options: operationOptions },
+      { lockName, parameters, options: operationOptions },
       createOrUpdateAtSubscriptionLevelOperationSpec
     ) as Promise<ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse>;
   }
@@ -387,18 +387,18 @@ export class ManagementLocks {
 
   /**
    * Gets all the management locks for a resource or any level below resource.
-   * @param parentResourcePath The parent resource identity.
-   * @param resourceProviderNamespace The namespace of the resource provider.
    * @param resourceGroupName The name of the resource group containing the locked resource. The name is
    *                          case insensitive.
+   * @param resourceProviderNamespace The namespace of the resource provider.
+   * @param parentResourcePath The parent resource identity.
    * @param resourceType The resource type of the locked resource.
    * @param resourceName The name of the locked resource.
    * @param options The options parameters.
    */
   listAtResourceLevel(
-    parentResourcePath: string,
-    resourceProviderNamespace: string,
     resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
     resourceType: string,
     resourceName: string,
     options?: ManagementLocksListAtResourceLevelOptionalParams
@@ -408,9 +408,9 @@ export class ManagementLocks {
     );
     return this.client.sendOperationRequest(
       {
-        parentResourcePath,
-        resourceProviderNamespace,
         resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
         resourceType,
         resourceName,
         options: operationOptions
@@ -480,19 +480,19 @@ export class ManagementLocks {
 
   /**
    * ListAtResourceLevelNext
-   * @param parentResourcePath The parent resource identity.
-   * @param resourceProviderNamespace The namespace of the resource provider.
    * @param resourceGroupName The name of the resource group containing the locked resource. The name is
    *                          case insensitive.
+   * @param resourceProviderNamespace The namespace of the resource provider.
+   * @param parentResourcePath The parent resource identity.
    * @param resourceType The resource type of the locked resource.
    * @param resourceName The name of the locked resource.
    * @param nextLink The nextLink from the previous successful call to the ListAtResourceLevel method.
    * @param options The options parameters.
    */
   listAtResourceLevelNext(
-    parentResourcePath: string,
-    resourceProviderNamespace: string,
     resourceGroupName: string,
+    resourceProviderNamespace: string,
+    parentResourcePath: string,
     resourceType: string,
     resourceName: string,
     nextLink: string,
@@ -503,9 +503,9 @@ export class ManagementLocks {
     );
     return this.client.sendOperationRequest(
       {
-        parentResourcePath,
-        resourceProviderNamespace,
         resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
         resourceType,
         resourceName,
         nextLink,
@@ -583,6 +583,7 @@ const createOrUpdateAtResourceGroupLevelOperationSpec: coreHttp.OperationSpec = 
     Parameters.subscriptionId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteAtResourceGroupLevelOperationSpec: coreHttp.OperationSpec = {
@@ -632,6 +633,7 @@ const createOrUpdateByScopeOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.scope, Parameters.lockName3],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteByScopeOperationSpec: coreHttp.OperationSpec = {
@@ -679,6 +681,7 @@ const createOrUpdateAtResourceLevelOperationSpec: coreHttp.OperationSpec = {
     Parameters.lockName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteAtResourceLevelOperationSpec: coreHttp.OperationSpec = {
@@ -741,6 +744,7 @@ const createOrUpdateAtSubscriptionLevelOperationSpec: coreHttp.OperationSpec = {
     Parameters.lockName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteAtSubscriptionLevelOperationSpec: coreHttp.OperationSpec = {

@@ -40,17 +40,17 @@ export class DiskEncryptionSets {
   /**
    * Creates or updates a disk encryption set
    * @param resourceGroupName The name of the resource group.
-   * @param diskEncryptionSet disk encryption set object supplied in the body of the Put disk encryption
-   *                          set operation.
    * @param diskEncryptionSetName The name of the disk encryption set that is being created. The name
    *                              can't be changed after the disk encryption set is created. Supported characters for the name are
    *                              a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.
+   * @param diskEncryptionSet disk encryption set object supplied in the body of the Put disk encryption
+   *                          set operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    diskEncryptionSet: DiskEncryptionSet,
     diskEncryptionSetName: string,
+    diskEncryptionSet: DiskEncryptionSet,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DiskEncryptionSetsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -59,8 +59,8 @@ export class DiskEncryptionSets {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      diskEncryptionSet,
       diskEncryptionSetName,
+      diskEncryptionSet,
       options: operationOptions
     };
     const sendOperation = (
@@ -308,6 +308,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.diskEncryptionSetName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -337,6 +338,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.diskEncryptionSetName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

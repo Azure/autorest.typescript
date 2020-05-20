@@ -146,6 +146,7 @@ const setServicePropertiesOperationSpec: coreHttp.OperationSpec = {
     Parameters.blobServicesName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getServicePropertiesOperationSpec: coreHttp.OperationSpec = {

@@ -38,22 +38,22 @@ export class GalleryImageVersions {
   /**
    * Create or update a gallery Image Version.
    * @param resourceGroupName The name of the resource group.
-   * @param galleryImageVersion Parameters supplied to the create or update gallery Image Version
-   *                            operation.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
    * @param galleryImageName The name of the gallery Image Definition in which the Image Version is to be
    *                         created.
    * @param galleryImageVersionName The name of the gallery Image Version to be created. Needs to follow
    *                                semantic version name pattern: The allowed characters are digit and period. Digits must be within
    *                                the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
+   * @param galleryImageVersion Parameters supplied to the create or update gallery Image Version
+   *                            operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    galleryImageVersion: GalleryImageVersion,
     galleryName: string,
     galleryImageName: string,
     galleryImageVersionName: string,
+    galleryImageVersion: GalleryImageVersion,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<GalleryImageVersionsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -62,10 +62,10 @@ export class GalleryImageVersions {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      galleryImageVersion,
       galleryName,
       galleryImageName,
       galleryImageVersionName,
+      galleryImageVersion,
       options: operationOptions
     };
     const sendOperation = (
@@ -92,20 +92,20 @@ export class GalleryImageVersions {
    * Update a gallery Image Version.
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Image Gallery in which the Image Definition resides.
-   * @param galleryImageVersion Parameters supplied to the update gallery Image Version operation.
    * @param galleryImageName The name of the gallery Image Definition in which the Image Version is to be
    *                         updated.
    * @param galleryImageVersionName The name of the gallery Image Version to be updated. Needs to follow
    *                                semantic version name pattern: The allowed characters are digit and period. Digits must be within
    *                                the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
+   * @param galleryImageVersion Parameters supplied to the update gallery Image Version operation.
    * @param options The options parameters.
    */
   async update(
     resourceGroupName: string,
     galleryName: string,
-    galleryImageVersion: GalleryImageVersionUpdate,
     galleryImageName: string,
     galleryImageVersionName: string,
+    galleryImageVersion: GalleryImageVersionUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<GalleryImageVersionsUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -115,9 +115,9 @@ export class GalleryImageVersions {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,
-      galleryImageVersion,
       galleryImageName,
       galleryImageVersionName,
+      galleryImageVersion,
       options: operationOptions
     };
     const sendOperation = (
@@ -320,6 +320,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryImageVersionName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -354,6 +355,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryImageVersionName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

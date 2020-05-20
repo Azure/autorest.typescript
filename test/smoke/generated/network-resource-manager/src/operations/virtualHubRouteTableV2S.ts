@@ -35,14 +35,14 @@ export class VirtualHubRouteTableV2S {
 
   /**
    * Retrieves the details of a VirtualHubRouteTableV2.
-   * @param virtualHubName The name of the VirtualHub.
    * @param resourceGroupName The resource group name of the VirtualHubRouteTableV2.
+   * @param virtualHubName The name of the VirtualHub.
    * @param routeTableName The name of the VirtualHubRouteTableV2.
    * @param options The options parameters.
    */
   get(
-    virtualHubName: string,
     resourceGroupName: string,
+    virtualHubName: string,
     routeTableName: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualHubRouteTableV2SGetResponse> {
@@ -51,8 +51,8 @@ export class VirtualHubRouteTableV2S {
     );
     return this.client.sendOperationRequest(
       {
-        virtualHubName,
         resourceGroupName,
+        virtualHubName,
         routeTableName,
         options: operationOptions
       },
@@ -112,14 +112,14 @@ export class VirtualHubRouteTableV2S {
 
   /**
    * Deletes a VirtualHubRouteTableV2.
-   * @param virtualHubName The name of the VirtualHub.
    * @param resourceGroupName The resource group name of the VirtualHubRouteTableV2.
+   * @param virtualHubName The name of the VirtualHub.
    * @param routeTableName The name of the VirtualHubRouteTableV2.
    * @param options The options parameters.
    */
   async delete(
-    virtualHubName: string,
     resourceGroupName: string,
+    virtualHubName: string,
     routeTableName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
@@ -129,8 +129,8 @@ export class VirtualHubRouteTableV2S {
     );
 
     const args: coreHttp.OperationArguments = {
-      virtualHubName,
       resourceGroupName,
+      virtualHubName,
       routeTableName,
       options: operationOptions
     };
@@ -177,15 +177,15 @@ export class VirtualHubRouteTableV2S {
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param resourceGroupName The resource group name of the VirtualHub.
    * @param virtualHubName The name of the VirtualHub.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
-    nextLink: string,
     resourceGroupName: string,
     virtualHubName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualHubRouteTableV2SListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -193,9 +193,9 @@ export class VirtualHubRouteTableV2S {
     );
     return this.client.sendOperationRequest(
       {
-        nextLink,
         resourceGroupName,
         virtualHubName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec
@@ -268,6 +268,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.routeTableName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

@@ -249,14 +249,14 @@ export class ManagedInstances {
    * ListByInstancePoolNext
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param nextLink The nextLink from the previous successful call to the ListByInstancePool method.
    * @param instancePoolName The instance pool name.
+   * @param nextLink The nextLink from the previous successful call to the ListByInstancePool method.
    * @param options The options parameters.
    */
   listByInstancePoolNext(
     resourceGroupName: string,
-    nextLink: string,
     instancePoolName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedInstancesListByInstancePoolNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -265,8 +265,8 @@ export class ManagedInstances {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        nextLink,
         instancePoolName,
+        nextLink,
         options: operationOptions
       },
       listByInstancePoolNextOperationSpec
@@ -411,6 +411,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -454,6 +455,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {

@@ -187,6 +187,7 @@ const listAgreementsOperationSpec: coreHttp.OperationSpec = {
     Parameters.name3
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -228,5 +229,6 @@ const listAgreementsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink6
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };

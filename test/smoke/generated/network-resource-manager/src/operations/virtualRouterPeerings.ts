@@ -36,14 +36,14 @@ export class VirtualRouterPeerings {
   /**
    * Deletes the specified peering from a Virtual Router.
    * @param resourceGroupName The name of the resource group.
-   * @param peeringName The name of the peering.
    * @param virtualRouterName The name of the Virtual Router.
+   * @param peeringName The name of the peering.
    * @param options The options parameters.
    */
   async delete(
     resourceGroupName: string,
-    peeringName: string,
     virtualRouterName: string,
+    peeringName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -53,8 +53,8 @@ export class VirtualRouterPeerings {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      peeringName,
       virtualRouterName,
+      peeringName,
       options: operationOptions
     };
     const sendOperation = (
@@ -176,14 +176,14 @@ export class VirtualRouterPeerings {
   /**
    * ListNext
    * @param resourceGroupName The name of the resource group.
-   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param virtualRouterName The name of the Virtual Router.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
     resourceGroupName: string,
-    nextLink: string,
     virtualRouterName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<VirtualRouterPeeringsListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -192,8 +192,8 @@ export class VirtualRouterPeerings {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        nextLink,
         virtualRouterName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec
@@ -281,6 +281,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.peeringName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {

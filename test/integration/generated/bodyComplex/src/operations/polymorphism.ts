@@ -282,6 +282,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.complexBody17,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getDotSyntaxOperationSpec: coreHttp.OperationSpec = {
@@ -352,6 +353,7 @@ const putComplicatedOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.complexBody18,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const putMissingDiscriminatorOperationSpec: coreHttp.OperationSpec = {
@@ -368,6 +370,7 @@ const putMissingDiscriminatorOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.complexBody18,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const putValidMissingRequiredOperationSpec: coreHttp.OperationSpec = {
@@ -382,5 +385,6 @@ const putValidMissingRequiredOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.complexBody19,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };

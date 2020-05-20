@@ -399,6 +399,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateTagsOperationSpec: coreHttp.OperationSpec = {
@@ -422,6 +423,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listAllOperationSpec: coreHttp.OperationSpec = {

@@ -35,16 +35,16 @@ export class TransparentDataEncryptions {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param parameters The required parameters for creating or updating transparent data encryption.
    * @param databaseName The name of the database for which setting the transparent data encryption
    *                     applies.
+   * @param parameters The required parameters for creating or updating transparent data encryption.
    * @param options The options parameters.
    */
   createOrUpdate(
     resourceGroupName: string,
     serverName: string,
-    parameters: TransparentDataEncryption,
     databaseName: string,
+    parameters: TransparentDataEncryption,
     options?: coreHttp.OperationOptions
   ): Promise<TransparentDataEncryptionsCreateOrUpdateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -54,8 +54,8 @@ export class TransparentDataEncryptions {
       {
         resourceGroupName,
         serverName,
-        parameters,
         databaseName,
+        parameters,
         options: operationOptions
       },
       createOrUpdateOperationSpec
@@ -117,6 +117,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.transparentDataEncryptionName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

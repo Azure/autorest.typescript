@@ -235,6 +235,7 @@ const putMaxDateOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.dateBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getMaxDateOperationSpec: coreHttp.OperationSpec = {
@@ -263,6 +264,7 @@ const putMinDateOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.dateBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getMinDateOperationSpec: coreHttp.OperationSpec = {

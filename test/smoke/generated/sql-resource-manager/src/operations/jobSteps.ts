@@ -430,6 +430,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.stepName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

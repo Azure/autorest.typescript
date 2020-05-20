@@ -316,21 +316,21 @@ export class FailoverGroups {
    * ListByServerNext
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param nextLink The nextLink from the previous successful call to the ListByServer method.
    * @param serverName The name of the server containing the failover group.
+   * @param nextLink The nextLink from the previous successful call to the ListByServer method.
    * @param options The options parameters.
    */
   listByServerNext(
     resourceGroupName: string,
-    nextLink: string,
     serverName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<FailoverGroupsListByServerNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, serverName, options: operationOptions },
+      { resourceGroupName, serverName, nextLink, options: operationOptions },
       listByServerNextOperationSpec
     ) as Promise<FailoverGroupsListByServerNextResponse>;
   }
@@ -399,6 +399,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.failoverGroupName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -444,6 +445,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.failoverGroupName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByServerOperationSpec: coreHttp.OperationSpec = {

@@ -165,6 +165,7 @@ const createAPTrueOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.createParameters,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const createCatAPTrueOperationSpec: coreHttp.OperationSpec = {
@@ -181,6 +182,7 @@ const createCatAPTrueOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.createParameters1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const createAPObjectOperationSpec: coreHttp.OperationSpec = {
@@ -197,6 +199,7 @@ const createAPObjectOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.createParameters2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const createAPStringOperationSpec: coreHttp.OperationSpec = {
@@ -213,6 +216,7 @@ const createAPStringOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.createParameters3,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const createAPInPropertiesOperationSpec: coreHttp.OperationSpec = {
@@ -229,6 +233,7 @@ const createAPInPropertiesOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.createParameters4,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const createAPInPropertiesWithAPStringOperationSpec: coreHttp.OperationSpec = {
@@ -245,5 +250,6 @@ const createAPInPropertiesWithAPStringOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.createParameters5,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };

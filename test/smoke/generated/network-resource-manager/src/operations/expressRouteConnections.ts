@@ -36,16 +36,16 @@ export class ExpressRouteConnections {
    * Creates a connection between an ExpressRoute gateway and an ExpressRoute circuit.
    * @param resourceGroupName The name of the resource group.
    * @param expressRouteGatewayName The name of the ExpressRoute gateway.
+   * @param connectionName The name of the connection subresource.
    * @param putExpressRouteConnectionParameters Parameters required in an ExpressRouteConnection PUT
    *                                            operation.
-   * @param connectionName The name of the connection subresource.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
     expressRouteGatewayName: string,
-    putExpressRouteConnectionParameters: ExpressRouteConnection,
     connectionName: string,
+    putExpressRouteConnectionParameters: ExpressRouteConnection,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ExpressRouteConnectionsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -56,8 +56,8 @@ export class ExpressRouteConnections {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       expressRouteGatewayName,
-      putExpressRouteConnectionParameters,
       connectionName,
+      putExpressRouteConnectionParameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -217,6 +217,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.connectionName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

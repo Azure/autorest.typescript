@@ -56,6 +56,10 @@ export interface OperationDetails {
   fullName: string;
   description: string;
   apiVersions: string[];
+  /**
+   * Operation parameters that are shared across requests.
+   */
+  parameters: Parameter[];
   requests: OperationRequestDetails[];
   responses: OperationResponseDetails[];
   typeDetails: TypeDetails;

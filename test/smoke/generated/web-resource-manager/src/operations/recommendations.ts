@@ -227,16 +227,16 @@ export class Recommendations {
   /**
    * Description for Disables the specific rule for a web site permanently.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
+   * @param environmentName Site name
    * @param name Rule name
    * @param hostingEnvironmentName
-   * @param environmentName Site name
    * @param options The options parameters.
    */
   disableRecommendationForHostingEnvironment(
     resourceGroupName: string,
+    environmentName: string,
     name: string,
     hostingEnvironmentName: string,
-    environmentName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -245,9 +245,9 @@ export class Recommendations {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
+        environmentName,
         name,
         hostingEnvironmentName,
-        environmentName,
         options: operationOptions
       },
       disableRecommendationForHostingEnvironmentOperationSpec
@@ -337,21 +337,21 @@ export class Recommendations {
   /**
    * Description for Get a recommendation rule for an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param name Name of the recommendation.
    * @param siteName Name of the app.
+   * @param name Name of the recommendation.
    * @param options The options parameters.
    */
   getRuleDetailsByWebApp(
     resourceGroupName: string,
-    name: string,
     siteName: string,
+    name: string,
     options?: RecommendationsGetRuleDetailsByWebAppOptionalParams
   ): Promise<RecommendationsGetRuleDetailsByWebAppResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, siteName, options: operationOptions },
+      { resourceGroupName, siteName, name, options: operationOptions },
       getRuleDetailsByWebAppOperationSpec
     ) as Promise<RecommendationsGetRuleDetailsByWebAppResponse>;
   }
@@ -359,21 +359,21 @@ export class Recommendations {
   /**
    * Description for Disables the specific rule for a web site permanently.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param name Rule name
    * @param siteName Site name
+   * @param name Rule name
    * @param options The options parameters.
    */
   disableRecommendationForSite(
     resourceGroupName: string,
-    name: string,
     siteName: string,
+    name: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, siteName, options: operationOptions },
+      { resourceGroupName, siteName, name, options: operationOptions },
       disableRecommendationForSiteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

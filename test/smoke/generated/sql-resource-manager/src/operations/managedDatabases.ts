@@ -63,14 +63,14 @@ export class ManagedDatabases {
    * Gets a managed database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabasesGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -79,8 +79,8 @@ export class ManagedDatabases {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        databaseName,
         managedInstanceName,
+        databaseName,
         options: operationOptions
       },
       getOperationSpec
@@ -91,15 +91,15 @@ export class ManagedDatabases {
    * Creates a new database or updates an existing database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param parameters The requested database resource state.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     parameters: ManagedDatabase,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ManagedDatabasesCreateOrUpdateResponse>> {
@@ -109,8 +109,8 @@ export class ManagedDatabases {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      databaseName,
       managedInstanceName,
+      databaseName,
       parameters,
       options: operationOptions
     };
@@ -138,14 +138,14 @@ export class ManagedDatabases {
    * Deletes a managed database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param options The options parameters.
    */
   async delete(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -154,8 +154,8 @@ export class ManagedDatabases {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      databaseName,
       managedInstanceName,
+      databaseName,
       options: operationOptions
     };
     const sendOperation = (
@@ -182,15 +182,15 @@ export class ManagedDatabases {
    * Updates an existing database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param parameters The requested database resource state.
    * @param options The options parameters.
    */
   async update(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     parameters: ManagedDatabaseUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ManagedDatabasesUpdateResponse>> {
@@ -200,8 +200,8 @@ export class ManagedDatabases {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      databaseName,
       managedInstanceName,
+      databaseName,
       parameters,
       options: operationOptions
     };
@@ -250,15 +250,15 @@ export class ManagedDatabases {
    * Completes the restore operation on a managed database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param parameters The definition for completing the restore of this managed database.
    * @param options The options parameters.
    */
   async completeRestore(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     parameters: CompleteDatabaseRestoreDefinition,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
@@ -268,8 +268,8 @@ export class ManagedDatabases {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      databaseName,
       managedInstanceName,
+      databaseName,
       parameters,
       options: operationOptions
     };
@@ -433,6 +433,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -478,6 +479,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listInaccessibleByInstanceOperationSpec: coreHttp.OperationSpec = {
@@ -514,6 +516,7 @@ const completeRestoreOperationSpec: coreHttp.OperationSpec = {
     Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {

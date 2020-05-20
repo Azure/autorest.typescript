@@ -30,14 +30,14 @@ export class VpnSitesConfiguration {
   /**
    * Gives the sas-url to download the configurations for vpn-sites in a resource group.
    * @param resourceGroupName The resource group name.
-   * @param request Parameters supplied to download vpn-sites configuration.
    * @param virtualWANName The name of the VirtualWAN for which configuration of all vpn-sites is needed.
+   * @param request Parameters supplied to download vpn-sites configuration.
    * @param options The options parameters.
    */
   async download(
     resourceGroupName: string,
-    request: GetVpnSitesConfigurationRequest,
     virtualWANName: string,
+    request: GetVpnSitesConfigurationRequest,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -47,8 +47,8 @@ export class VpnSitesConfiguration {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      request,
       virtualWANName,
+      request,
       options: operationOptions
     };
     const sendOperation = (
@@ -102,5 +102,6 @@ const downloadOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualWANName6
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };

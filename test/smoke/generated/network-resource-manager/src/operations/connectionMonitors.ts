@@ -37,17 +37,17 @@ export class ConnectionMonitors {
 
   /**
    * Create or update a connection monitor.
-   * @param networkWatcherName The name of the Network Watcher resource.
-   * @param parameters Parameters that define the operation to create a connection monitor.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
    * @param connectionMonitorName The name of the connection monitor.
+   * @param parameters Parameters that define the operation to create a connection monitor.
    * @param options The options parameters.
    */
   async createOrUpdate(
-    networkWatcherName: string,
-    parameters: ConnectionMonitor,
     resourceGroupName: string,
+    networkWatcherName: string,
     connectionMonitorName: string,
+    parameters: ConnectionMonitor,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ConnectionMonitorsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -56,10 +56,10 @@ export class ConnectionMonitors {
     );
 
     const args: coreHttp.OperationArguments = {
-      networkWatcherName,
-      parameters,
       resourceGroupName,
+      networkWatcherName,
       connectionMonitorName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -85,14 +85,14 @@ export class ConnectionMonitors {
 
   /**
    * Gets a connection monitor by name.
-   * @param networkWatcherName The name of the Network Watcher resource.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
    * @param connectionMonitorName The name of the connection monitor.
    * @param options The options parameters.
    */
   get(
-    networkWatcherName: string,
     resourceGroupName: string,
+    networkWatcherName: string,
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ConnectionMonitorsGetResponse> {
@@ -101,8 +101,8 @@ export class ConnectionMonitors {
     );
     return this.client.sendOperationRequest(
       {
-        networkWatcherName,
         resourceGroupName,
+        networkWatcherName,
         connectionMonitorName,
         options: operationOptions
       },
@@ -112,14 +112,14 @@ export class ConnectionMonitors {
 
   /**
    * Deletes the specified connection monitor.
-   * @param networkWatcherName The name of the Network Watcher resource.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
    * @param connectionMonitorName The name of the connection monitor.
    * @param options The options parameters.
    */
   async delete(
-    networkWatcherName: string,
     resourceGroupName: string,
+    networkWatcherName: string,
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
@@ -129,8 +129,8 @@ export class ConnectionMonitors {
     );
 
     const args: coreHttp.OperationArguments = {
-      networkWatcherName,
       resourceGroupName,
+      networkWatcherName,
       connectionMonitorName,
       options: operationOptions
     };
@@ -187,14 +187,14 @@ export class ConnectionMonitors {
 
   /**
    * Stops the specified connection monitor.
-   * @param networkWatcherName The name of the Network Watcher resource.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
    * @param connectionMonitorName The name of the connection monitor.
    * @param options The options parameters.
    */
   async stop(
-    networkWatcherName: string,
     resourceGroupName: string,
+    networkWatcherName: string,
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
@@ -204,8 +204,8 @@ export class ConnectionMonitors {
     );
 
     const args: coreHttp.OperationArguments = {
-      networkWatcherName,
       resourceGroupName,
+      networkWatcherName,
       connectionMonitorName,
       options: operationOptions
     };
@@ -229,14 +229,14 @@ export class ConnectionMonitors {
 
   /**
    * Starts the specified connection monitor.
-   * @param networkWatcherName The name of the Network Watcher resource.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
    * @param connectionMonitorName The name of the connection monitor.
    * @param options The options parameters.
    */
   async start(
-    networkWatcherName: string,
     resourceGroupName: string,
+    networkWatcherName: string,
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
@@ -246,8 +246,8 @@ export class ConnectionMonitors {
     );
 
     const args: coreHttp.OperationArguments = {
-      networkWatcherName,
       resourceGroupName,
+      networkWatcherName,
       connectionMonitorName,
       options: operationOptions
     };
@@ -274,14 +274,14 @@ export class ConnectionMonitors {
 
   /**
    * Query a snapshot of the most recent connection states.
-   * @param networkWatcherName The name of the Network Watcher resource.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
    * @param connectionMonitorName The name given to the connection monitor.
    * @param options The options parameters.
    */
   async query(
-    networkWatcherName: string,
     resourceGroupName: string,
+    networkWatcherName: string,
     connectionMonitorName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ConnectionMonitorsQueryResponse>> {
@@ -291,8 +291,8 @@ export class ConnectionMonitors {
     );
 
     const args: coreHttp.OperationArguments = {
-      networkWatcherName,
       resourceGroupName,
+      networkWatcherName,
       connectionMonitorName,
       options: operationOptions
     };
@@ -319,20 +319,20 @@ export class ConnectionMonitors {
 
   /**
    * Lists all connection monitors for the specified Network Watcher.
-   * @param networkWatcherName The name of the Network Watcher resource.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
+   * @param networkWatcherName The name of the Network Watcher resource.
    * @param options The options parameters.
    */
   list(
-    networkWatcherName: string,
     resourceGroupName: string,
+    networkWatcherName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ConnectionMonitorsListResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { networkWatcherName, resourceGroupName, options: operationOptions },
+      { resourceGroupName, networkWatcherName, options: operationOptions },
       listOperationSpec
     ) as Promise<ConnectionMonitorsListResponse>;
   }
@@ -381,6 +381,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.connectionMonitorName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -442,6 +443,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.connectionMonitorName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const stopOperationSpec: coreHttp.OperationSpec = {

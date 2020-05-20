@@ -34,19 +34,19 @@ export class CollectionPartition {
    * Retrieves the metrics determined by the given filter for the given collection, split by partition.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
+   * @param databaseRid Cosmos DB database rid.
+   * @param collectionRid Cosmos DB collection rid.
    * @param filter An OData filter expression that describes a subset of metrics to return. The
    *               parameters that can be filtered are name.value (name of the metric, can have an or of multiple
    *               names), startTime, endTime, and timeGrain. The supported operator is eq.
-   * @param databaseRid Cosmos DB database rid.
-   * @param collectionRid Cosmos DB collection rid.
    * @param options The options parameters.
    */
   listMetrics(
     resourceGroupName: string,
     accountName: string,
-    filter: string,
     databaseRid: string,
     collectionRid: string,
+    filter: string,
     options?: coreHttp.OperationOptions
   ): Promise<CollectionPartitionListMetricsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -56,9 +56,9 @@ export class CollectionPartition {
       {
         resourceGroupName,
         accountName,
-        filter,
         databaseRid,
         collectionRid,
+        filter,
         options: operationOptions
       },
       listMetricsOperationSpec

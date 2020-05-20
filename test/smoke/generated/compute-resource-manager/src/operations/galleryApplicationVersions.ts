@@ -38,8 +38,6 @@ export class GalleryApplicationVersions {
   /**
    * Create or update a gallery Application Version.
    * @param resourceGroupName The name of the resource group.
-   * @param galleryApplicationVersion Parameters supplied to the create or update gallery Application
-   *                                  Version operation.
    * @param galleryName The name of the Shared Application Gallery in which the Application Definition
    *                    resides.
    * @param galleryApplicationName The name of the gallery Application Definition in which the
@@ -47,14 +45,16 @@ export class GalleryApplicationVersions {
    * @param galleryApplicationVersionName The name of the gallery Application Version to be created.
    *                                      Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits
    *                                      must be within the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
+   * @param galleryApplicationVersion Parameters supplied to the create or update gallery Application
+   *                                  Version operation.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    galleryApplicationVersion: GalleryApplicationVersion,
     galleryName: string,
     galleryApplicationName: string,
     galleryApplicationVersionName: string,
+    galleryApplicationVersion: GalleryApplicationVersion,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<GalleryApplicationVersionsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -63,10 +63,10 @@ export class GalleryApplicationVersions {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      galleryApplicationVersion,
       galleryName,
       galleryApplicationName,
       galleryApplicationVersionName,
+      galleryApplicationVersion,
       options: operationOptions
     };
     const sendOperation = (
@@ -94,21 +94,21 @@ export class GalleryApplicationVersions {
    * @param resourceGroupName The name of the resource group.
    * @param galleryName The name of the Shared Application Gallery in which the Application Definition
    *                    resides.
-   * @param galleryApplicationVersion Parameters supplied to the update gallery Application Version
-   *                                  operation.
    * @param galleryApplicationName The name of the gallery Application Definition in which the
    *                               Application Version is to be updated.
    * @param galleryApplicationVersionName The name of the gallery Application Version to be updated.
    *                                      Needs to follow semantic version name pattern: The allowed characters are digit and period. Digits
    *                                      must be within the range of a 32-bit integer. Format: <MajorVersion>.<MinorVersion>.<Patch>
+   * @param galleryApplicationVersion Parameters supplied to the update gallery Application Version
+   *                                  operation.
    * @param options The options parameters.
    */
   async update(
     resourceGroupName: string,
     galleryName: string,
-    galleryApplicationVersion: GalleryApplicationVersionUpdate,
     galleryApplicationName: string,
     galleryApplicationVersionName: string,
+    galleryApplicationVersion: GalleryApplicationVersionUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<GalleryApplicationVersionsUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -118,9 +118,9 @@ export class GalleryApplicationVersions {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       galleryName,
-      galleryApplicationVersion,
       galleryApplicationName,
       galleryApplicationVersionName,
+      galleryApplicationVersion,
       options: operationOptions
     };
     const sendOperation = (
@@ -332,6 +332,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryApplicationVersionName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -366,6 +367,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.galleryApplicationVersionName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

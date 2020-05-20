@@ -101,5 +101,6 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };

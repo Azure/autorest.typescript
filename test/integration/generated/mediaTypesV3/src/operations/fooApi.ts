@@ -94,28 +94,28 @@ export class FooApi {
 
   /**
    * Send payload to targetted thing in Foo service.
+   * @param thing Target thing name
    * @param contentType Upload file type
    * @param data
-   * @param thing Target thing name
    * @param options The options parameters.
    */
   postSend(
+    thing: string,
     contentType: "application/octet-stream",
     data: coreHttp.HttpRequestBody,
-    thing: string,
     options?: FooApiPostSend$binaryOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
    * Send payload to targetted thing in Foo service.
+   * @param thing Target thing name
    * @param contentType Upload file type
    * @param data simple string
-   * @param thing Target thing name
    * @param options The options parameters.
    */
   postSend(
+    thing: string,
     contentType: "text/plain",
     data: string,
-    thing: string,
     options?: FooApiPostSend$textOptionalParams
   ): Promise<coreHttp.RestResponse>;
   /**
@@ -125,34 +125,34 @@ export class FooApi {
   postSend(
     ...args:
       | [
+          string,
           "application/octet-stream",
           coreHttp.HttpRequestBody,
-          string,
           FooApiPostSend$binaryOptionalParams?
         ]
-      | ["text/plain", string, string, FooApiPostSend$textOptionalParams?]
+      | [string, "text/plain", string, FooApiPostSend$textOptionalParams?]
   ): Promise<coreHttp.RestResponse> {
     let operationSpec: coreHttp.OperationSpec;
     let operationArguments: coreHttp.OperationArguments;
-    if (args[0] === "application/octet-stream") {
+    if (args[1] === "application/octet-stream") {
       operationSpec = postSend$binaryOperationSpec;
       operationArguments = {
-        contentType: args[0],
-        data: args[1],
-        thing: args[2],
+        thing: args[0],
+        contentType: args[1],
+        data: args[2],
         options: args[3]
       };
-    } else if (args[0] === "text/plain") {
+    } else if (args[1] === "text/plain") {
       operationSpec = postSend$textOperationSpec;
       operationArguments = {
-        contentType: args[0],
-        data: args[1],
-        thing: args[2],
+        thing: args[0],
+        contentType: args[1],
+        data: args[2],
         options: args[3]
       };
     } else {
       throw new TypeError(
-        `"contentType" must be a valid value but instead was "${args[0]}".`
+        `"contentType" must be a valid value but instead was "${args[1]}".`
       );
     }
     return this.client.sendOperationRequest(
@@ -169,39 +169,43 @@ const postSendOnDefault$binaryOperationSpec: coreHttp.OperationSpec = {
   path: "/foo/api/v1",
   httpMethod: "POST",
   responses: { 202: {}, 400: {} },
-  requestBody: Parameters.data,
+  requestBody: Parameters.data1,
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType1],
+  mediaType: "binary",
   serializer
 };
 const postSendOnDefault$textOperationSpec: coreHttp.OperationSpec = {
   path: "/foo/api/v1",
   httpMethod: "POST",
   responses: { 202: {}, 400: {} },
-  requestBody: Parameters.data1,
+  requestBody: Parameters.data,
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType1],
+  headerParameters: [Parameters.contentType2],
+  mediaType: "text",
   serializer
 };
 const postSend$binaryOperationSpec: coreHttp.OperationSpec = {
   path: "/foo/api/v1/things/{thing}",
   httpMethod: "POST",
   responses: { 202: {}, 400: {} },
-  requestBody: Parameters.data,
+  requestBody: Parameters.data1,
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host, Parameters.thing],
-  headerParameters: [Parameters.contentType],
+  headerParameters: [Parameters.contentType1],
+  mediaType: "binary",
   serializer
 };
 const postSend$textOperationSpec: coreHttp.OperationSpec = {
   path: "/foo/api/v1/things/{thing}",
   httpMethod: "POST",
   responses: { 202: {}, 400: {} },
-  requestBody: Parameters.data1,
+  requestBody: Parameters.data,
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host, Parameters.thing],
-  headerParameters: [Parameters.contentType1],
+  headerParameters: [Parameters.contentType2],
+  mediaType: "text",
   serializer
 };
