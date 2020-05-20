@@ -320,11 +320,11 @@ describe("Integration tests for BodyArrayClient", () => {
     });
   });
 
-  describe.skip("#putDurationValid", () => {
+  describe("#putDurationValid", () => {
     it(`sends a list of duration strings successfully`, async () => {
       const response = await client.array.putDurationValid([
         "P123DT22H14M12.011S",
-        "P5DT1H0M0S"
+        "P5DT1H"
       ]);
       expect(response._response.status).to.equal(
         200,
@@ -601,9 +601,8 @@ describe("Integration tests for BodyArrayClient", () => {
     });
   });
 
-  describe.skip("#getBooleanInvalidString", () => {
+  describe("#getBooleanInvalidString", () => {
     it("returns [true, 'boolean', false]", async () => {
-      // TODO: Should throw deserialization error
       const response = await client.array.getBooleanInvalidString();
       expect(response).to.deep.equal([true, "boolean", false]);
       expect(response._response.status).to.equal(
@@ -624,7 +623,7 @@ describe("Integration tests for BodyArrayClient", () => {
     });
   });
 
-  describe.skip("#getIntInvalidString", () => {
+  describe("#getIntInvalidString", () => {
     it("returns [1, 'integer', 0]", async () => {
       // TODO: Should throw deserialization error
       const response = await client.array.getIntInvalidString();
@@ -647,9 +646,8 @@ describe("Integration tests for BodyArrayClient", () => {
     });
   });
 
-  describe.skip("#getLongInvalidString", () => {
+  describe("#getLongInvalidString", () => {
     it("returns [1, 'integer', 0]", async () => {
-      // TODO: Should throw deserialization error
       const response = await client.array.getLongInvalidString();
       expect(response).to.deep.equal([1, "integer", 0]);
       expect(response._response.status).to.equal(
@@ -670,9 +668,8 @@ describe("Integration tests for BodyArrayClient", () => {
     });
   });
 
-  describe.skip("#getFloatInvalidString", () => {
+  describe("#getFloatInvalidString", () => {
     it("returns [1.0, 'number', 0.0]", async () => {
-      // TODO: Should throw deserialization error
       const response = await client.array.getFloatInvalidString();
       expect(response).to.deep.equal([1.0, "number", 0.0]);
       expect(response._response.status).to.equal(
@@ -693,7 +690,7 @@ describe("Integration tests for BodyArrayClient", () => {
     });
   });
 
-  describe.skip("#getDoubleInvalidString", () => {
+  describe("#getDoubleInvalidString", () => {
     it("returns [1.0, 'number', 0.0]", async () => {
       // TODO: Should throw deserialization error
       const response = await client.array.getDoubleInvalidString();
@@ -720,11 +717,13 @@ describe("Integration tests for BodyArrayClient", () => {
     });
   });
 
-  describe.skip("#getDateInvalidChars", () => {
+  describe("#getDateInvalidChars", () => {
     it("returns ['2011-03-22', 'date']", async () => {
-      // TODO: Should throw deserialization error
       const response = await client.array.getDateInvalidChars();
-      expect(response).to.deep.equal([new Date("2011-03-22"), "date"]);
+      expect(response).to.deep.equal([
+        new Date("2011-03-22"),
+        new Date("date")
+      ]);
       expect(response._response.status).to.equal(
         200,
         `Unexpected status code.`

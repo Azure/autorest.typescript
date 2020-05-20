@@ -137,6 +137,7 @@ function addPageableMethods(codeModel: CodeModel) {
       const nextLinkRequestProtocol =
         nextLinkMethod.requests?.[0].protocol.http ?? new Protocol();
       nextLinkRequestProtocol.path = "{nextLink}";
+      nextLinkRequestProtocol.method = "GET";
 
       // Create the nextLink parameter.
       // This will appear as a required parameter to the "Next" operation.

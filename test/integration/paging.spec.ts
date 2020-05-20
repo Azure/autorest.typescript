@@ -1,16 +1,131 @@
-import { expect } from "chai";
+import { expect, assert } from "chai";
 import { PagingClient } from "./generated/paging/src/pagingClient";
 import {
   PagingGetMultiplePagesResponse,
   PagingGetMultiplePagesWithOffsetResponse,
-  PagingGetMultiplePagesFragmentNextLinkResponse
+  PagingGetMultiplePagesFragmentNextLinkResponse,
+  Product
 } from "./generated/paging/src/models";
+import { InternalPipelineOptions } from "@azure/core-http";
 
 describe("Integration tests for Paging", () => {
   let client: PagingClient;
 
   beforeEach(() => {
-    client = new PagingClient();
+    const pipelineOptions: InternalPipelineOptions = {
+      retryOptions: {
+        retryDelayInMs: 0
+      }
+    };
+    client = new PagingClient(pipelineOptions);
+  });
+
+  describe("#getNoItemNamePages", () => {
+    it("should return result of the default 'value' node", async () => {
+      const response = await client.paging.getNoItemNamePages();
+      assert.lengthOf(response.value!, 1);
+      assert.deepEqual(response.value && response.value[0], {
+        properties: { id: 1, name: "Product" }
+      });
+    });
+  });
+
+  // Azure/autorest.typescript/issues/648
+  describe.skip("#getNullNextLinkNamePages", () => {
+    it("should ignore any kind of nextLink, and stop after page 1", async () => {
+      const expected: Product[] = [
+        {
+          properties: {
+            id: 1,
+            name: "Product"
+          }
+        }
+      ];
+      const response = await client.paging.getNullNextLinkNamePages();
+      // assert.deepEqual(response, expected);
+    });
+  });
+
+  describe("#getWithQueryParams", () => {
+    it("should return a ProductResult", async () => {
+      const expected: Product[] = [
+        {
+          properties: {
+            id: 1,
+            name: "Product"
+          }
+        }
+      ];
+      const response = await client.paging.getWithQueryParams(100);
+      assert.deepEqual(response.values, expected);
+    });
+  });
+
+  describe("#nextOperationWithQueryParams", () => {
+    it("should return a ProductResult", async () => {
+      const expected: Product[] = [
+        {
+          properties: {
+            id: 2,
+            name: "Product"
+          }
+        }
+      ];
+      const response = await client.paging.nextOperationWithQueryParams();
+      assert.deepEqual(response.values, expected);
+    });
+  });
+
+  describe("#getOdataMultiplePages", () => {
+    it("should return a ProductResult", async () => {
+      const expected: Product[] = [
+        {
+          properties: {
+            id: 10,
+            name: "product"
+          }
+        }
+      ];
+
+      let response = await client.paging.getOdataMultiplePages();
+      let pages = 1;
+
+      while (response.odataNextLink) {
+        response = await client.paging.getOdataMultiplePagesNext(
+          response.odataNextLink
+        );
+        pages += 1;
+      }
+
+      assert.equal(pages, 10);
+      assert.deepEqual(response.values, expected);
+    });
+  });
+
+  describe("#getMultiplePagesRetryFirst", () => {
+    it("should retry first failed request and then get the next 10 pages", async () => {
+      const expected: Product[] = [
+        {
+          properties: {
+            id: 10,
+            name: "product"
+          }
+        }
+      ];
+
+      let response = await client.paging.getMultiplePagesRetryFirst();
+      let pages = 1;
+
+      while (response.nextLink) {
+        response = await client.paging.getMultiplePagesRetryFirstNext(
+          response.nextLink
+        );
+        pages += 1;
+      }
+
+      assert.equal(pages, 10);
+      assert.deepEqual(response.values, expected);
+    });
   });
 
   describe("#getSinglePages", () => {
@@ -65,6 +180,59 @@ describe("Integration tests for Paging", () => {
         10,
         "Unexpected number of pages received."
       );
+    });
+
+    it("should fail on 400 multiple pages", async () => {
+      try {
+        const result = await client.paging.getMultiplePagesFailure();
+        await client.paging.getMultiplePagesFailureNext(result.nextLink!);
+      } catch (error) {
+        assert.equal(error.statusCode, 400);
+      }
+    });
+
+    it("should fail on invalid next link URL in multiple pages", async () => {
+      try {
+        const result = await client.paging.getMultiplePagesFailureUri();
+        await client.paging.getMultiplePagesFailureUriNext(result.nextLink!);
+      } catch (error) {
+        assert.equal(error.statusCode, 404);
+      }
+    });
+
+    it("should handle PagingMultipleLRO", async () => {
+      const poller = await client.paging.getMultiplePagesLRO();
+      poller.delay = () => Promise.resolve();
+      const result = await poller.pollUntilDone();
+      const poller2 = await client.paging.getMultiplePagesLRONext(
+        result.nextLink!
+      );
+      poller2.delay = () => Promise.resolve();
+      const finalResult = await poller2.pollUntilDone();
+
+      assert.equal(finalResult._response.status, 200);
+    });
+
+    it("should get multiple pages with fragmented nextLink", async () => {
+      const result = await client.paging.getMultiplePagesFragmentNextLink(
+        "1.6",
+        "test_user"
+      );
+      const loop = async function(odataNextLink?: string, count: number = 0) {
+        if (odataNextLink !== null && odataNextLink !== undefined) {
+          const res = await client.paging.nextFragment(
+            "1.6",
+            "test_user",
+            odataNextLink
+          );
+          await loop(res.odataNextLink, count + 1);
+        } else {
+          assert.equal(count, 10);
+        }
+      };
+
+      assert.isDefined(result.odataNextLink);
+      await loop(result.odataNextLink, 1);
     });
   });
 
