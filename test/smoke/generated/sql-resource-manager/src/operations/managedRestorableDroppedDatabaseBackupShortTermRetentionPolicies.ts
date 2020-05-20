@@ -302,6 +302,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.restorableDroppedDatabaseId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -333,6 +334,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.restorableDroppedDatabaseId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByRestorableDroppedDatabaseOperationSpec: coreHttp.OperationSpec = {

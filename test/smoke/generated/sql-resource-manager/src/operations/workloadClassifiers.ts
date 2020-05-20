@@ -74,8 +74,8 @@ export class WorkloadClassifiers {
    * @param serverName The name of the server.
    * @param databaseName The name of the database.
    * @param workloadGroupName The name of the workload group from which to receive the classifier from.
-   * @param parameters The properties of the workload classifier.
    * @param workloadClassifierName The name of the workload classifier to create/update.
+   * @param parameters The properties of the workload classifier.
    * @param options The options parameters.
    */
   async createOrUpdate(
@@ -83,8 +83,8 @@ export class WorkloadClassifiers {
     serverName: string,
     databaseName: string,
     workloadGroupName: string,
-    parameters: WorkloadClassifier,
     workloadClassifierName: string,
+    parameters: WorkloadClassifier,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<WorkloadClassifiersCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -96,8 +96,8 @@ export class WorkloadClassifiers {
       serverName,
       databaseName,
       workloadGroupName,
-      parameters,
       workloadClassifierName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -303,6 +303,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.workloadClassifierName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

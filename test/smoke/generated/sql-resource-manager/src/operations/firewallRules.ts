@@ -36,15 +36,15 @@ export class FirewallRules {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param parameters The required parameters for creating or updating a firewall rule.
    * @param firewallRuleName The name of the firewall rule.
+   * @param parameters The required parameters for creating or updating a firewall rule.
    * @param options The options parameters.
    */
   createOrUpdate(
     resourceGroupName: string,
     serverName: string,
-    parameters: FirewallRule,
     firewallRuleName: string,
+    parameters: FirewallRule,
     options?: coreHttp.OperationOptions
   ): Promise<FirewallRulesCreateOrUpdateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -54,8 +54,8 @@ export class FirewallRules {
       {
         resourceGroupName,
         serverName,
-        parameters,
         firewallRuleName,
+        parameters,
         options: operationOptions
       },
       createOrUpdateOperationSpec
@@ -165,6 +165,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.firewallRuleName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

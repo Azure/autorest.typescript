@@ -283,6 +283,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.policyName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -314,6 +315,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.policyName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByDatabaseOperationSpec: coreHttp.OperationSpec = {

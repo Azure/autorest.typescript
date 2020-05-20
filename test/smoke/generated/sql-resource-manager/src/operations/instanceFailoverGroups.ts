@@ -39,14 +39,14 @@ export class InstanceFailoverGroups {
    * Gets a failover group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param failoverGroupName The name of the failover group.
    * @param locationName The name of the region where the resource is located.
+   * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
-    failoverGroupName: string,
     locationName: string,
+    failoverGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<InstanceFailoverGroupsGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -55,8 +55,8 @@ export class InstanceFailoverGroups {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        failoverGroupName,
         locationName,
+        failoverGroupName,
         options: operationOptions
       },
       getOperationSpec
@@ -67,15 +67,15 @@ export class InstanceFailoverGroups {
    * Creates or updates a failover group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param failoverGroupName The name of the failover group.
    * @param locationName The name of the region where the resource is located.
+   * @param failoverGroupName The name of the failover group.
    * @param parameters The failover group parameters.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    failoverGroupName: string,
     locationName: string,
+    failoverGroupName: string,
     parameters: InstanceFailoverGroup,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<InstanceFailoverGroupsCreateOrUpdateResponse>> {
@@ -85,8 +85,8 @@ export class InstanceFailoverGroups {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      failoverGroupName,
       locationName,
+      failoverGroupName,
       parameters,
       options: operationOptions
     };
@@ -114,14 +114,14 @@ export class InstanceFailoverGroups {
    * Deletes a failover group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param failoverGroupName The name of the failover group.
    * @param locationName The name of the region where the resource is located.
+   * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
   async delete(
     resourceGroupName: string,
-    failoverGroupName: string,
     locationName: string,
+    failoverGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -130,8 +130,8 @@ export class InstanceFailoverGroups {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      failoverGroupName,
       locationName,
+      failoverGroupName,
       options: operationOptions
     };
     const sendOperation = (
@@ -179,14 +179,14 @@ export class InstanceFailoverGroups {
    * Fails over from the current primary managed instance to this managed instance.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param failoverGroupName The name of the failover group.
    * @param locationName The name of the region where the resource is located.
+   * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
   async failover(
     resourceGroupName: string,
-    failoverGroupName: string,
     locationName: string,
+    failoverGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<InstanceFailoverGroupsFailoverResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -195,8 +195,8 @@ export class InstanceFailoverGroups {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      failoverGroupName,
       locationName,
+      failoverGroupName,
       options: operationOptions
     };
     const sendOperation = (
@@ -224,14 +224,14 @@ export class InstanceFailoverGroups {
    * result in data loss.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param failoverGroupName The name of the failover group.
    * @param locationName The name of the region where the resource is located.
+   * @param failoverGroupName The name of the failover group.
    * @param options The options parameters.
    */
   async forceFailoverAllowDataLoss(
     resourceGroupName: string,
-    failoverGroupName: string,
     locationName: string,
+    failoverGroupName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
     LROPoller<InstanceFailoverGroupsForceFailoverAllowDataLossResponse>
@@ -242,8 +242,8 @@ export class InstanceFailoverGroups {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      failoverGroupName,
       locationName,
+      failoverGroupName,
       options: operationOptions
     };
     const sendOperation = (
@@ -353,6 +353,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.locationName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

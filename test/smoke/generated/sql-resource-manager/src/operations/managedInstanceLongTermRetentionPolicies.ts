@@ -37,14 +37,14 @@ export class ManagedInstanceLongTermRetentionPolicies {
    * Gets a managed database's long term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedInstanceLongTermRetentionPoliciesGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -53,8 +53,8 @@ export class ManagedInstanceLongTermRetentionPolicies {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        databaseName,
         managedInstanceName,
+        databaseName,
         options: operationOptions
       },
       getOperationSpec
@@ -65,15 +65,15 @@ export class ManagedInstanceLongTermRetentionPolicies {
    * Sets a managed database's long term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param parameters The long term retention policy info.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     parameters: ManagedInstanceLongTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<
@@ -85,8 +85,8 @@ export class ManagedInstanceLongTermRetentionPolicies {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      databaseName,
       managedInstanceName,
+      databaseName,
       parameters,
       options: operationOptions
     };
@@ -114,14 +114,14 @@ export class ManagedInstanceLongTermRetentionPolicies {
    * Gets a database's long term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param options The options parameters.
    */
   listByDatabase(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedInstanceLongTermRetentionPoliciesListByDatabaseResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -130,8 +130,8 @@ export class ManagedInstanceLongTermRetentionPolicies {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        databaseName,
         managedInstanceName,
+        databaseName,
         options: operationOptions
       },
       listByDatabaseOperationSpec
@@ -144,16 +144,16 @@ export class ManagedInstanceLongTermRetentionPolicies {
    * ListByDatabaseNext
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
    * @param databaseName The name of the database.
    * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
-   * @param managedInstanceName The name of the managed instance.
    * @param options The options parameters.
    */
   listByDatabaseNext(
     resourceGroupName: string,
+    managedInstanceName: string,
     databaseName: string,
     nextLink: string,
-    managedInstanceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
     ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextResponse
@@ -164,9 +164,9 @@ export class ManagedInstanceLongTermRetentionPolicies {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
+        managedInstanceName,
         databaseName,
         nextLink,
-        managedInstanceName,
         options: operationOptions
       },
       listByDatabaseNextOperationSpec
@@ -241,6 +241,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByDatabaseOperationSpec: coreHttp.OperationSpec = {

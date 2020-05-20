@@ -202,6 +202,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.linkId],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

@@ -213,6 +213,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.securityAlertPolicyName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByInstanceOperationSpec: coreHttp.OperationSpec = {

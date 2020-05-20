@@ -488,6 +488,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.sensitivityLabelSource2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

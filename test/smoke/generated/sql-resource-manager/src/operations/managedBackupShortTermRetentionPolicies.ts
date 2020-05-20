@@ -38,14 +38,14 @@ export class ManagedBackupShortTermRetentionPolicies {
    * Gets a managed database's short term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedBackupShortTermRetentionPoliciesGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -54,8 +54,8 @@ export class ManagedBackupShortTermRetentionPolicies {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        databaseName,
         managedInstanceName,
+        databaseName,
         options: operationOptions
       },
       getOperationSpec
@@ -66,15 +66,15 @@ export class ManagedBackupShortTermRetentionPolicies {
    * Updates a managed database's short term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     parameters: ManagedBackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<
@@ -86,8 +86,8 @@ export class ManagedBackupShortTermRetentionPolicies {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      databaseName,
       managedInstanceName,
+      databaseName,
       parameters,
       options: operationOptions
     };
@@ -115,15 +115,15 @@ export class ManagedBackupShortTermRetentionPolicies {
    * Updates a managed database's short term retention policy.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
   async update(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     parameters: ManagedBackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ManagedBackupShortTermRetentionPoliciesUpdateResponse>> {
@@ -133,8 +133,8 @@ export class ManagedBackupShortTermRetentionPolicies {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      databaseName,
       managedInstanceName,
+      databaseName,
       parameters,
       options: operationOptions
     };
@@ -162,14 +162,14 @@ export class ManagedBackupShortTermRetentionPolicies {
    * Gets a managed database's short term retention policy list.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param options The options parameters.
    */
   listByDatabase(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedBackupShortTermRetentionPoliciesListByDatabaseResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -178,8 +178,8 @@ export class ManagedBackupShortTermRetentionPolicies {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        databaseName,
         managedInstanceName,
+        databaseName,
         options: operationOptions
       },
       listByDatabaseOperationSpec
@@ -190,16 +190,16 @@ export class ManagedBackupShortTermRetentionPolicies {
    * ListByDatabaseNext
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
+   * @param managedInstanceName The name of the managed instance.
    * @param databaseName The name of the database.
    * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
-   * @param managedInstanceName The name of the managed instance.
    * @param options The options parameters.
    */
   listByDatabaseNext(
     resourceGroupName: string,
+    managedInstanceName: string,
     databaseName: string,
     nextLink: string,
-    managedInstanceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<
     ManagedBackupShortTermRetentionPoliciesListByDatabaseNextResponse
@@ -210,9 +210,9 @@ export class ManagedBackupShortTermRetentionPolicies {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
+        managedInstanceName,
         databaseName,
         nextLink,
-        managedInstanceName,
         options: operationOptions
       },
       listByDatabaseNextOperationSpec
@@ -287,6 +287,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.policyName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -318,6 +319,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.policyName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByDatabaseOperationSpec: coreHttp.OperationSpec = {

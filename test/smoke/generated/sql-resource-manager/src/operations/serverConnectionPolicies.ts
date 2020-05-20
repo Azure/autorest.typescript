@@ -100,6 +100,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.connectionPolicyName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

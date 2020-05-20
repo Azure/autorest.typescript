@@ -83,21 +83,21 @@ export class PolicyAssignments {
    *              '/subscriptions/{subscriptionId}'), resource group (format:
    *              '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}', or resource (format:
    *              '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/[{parentResourcePath}/]{resourceType}/{resourceName}'
-   * @param parameters Parameters for the policy assignment.
    * @param policyAssignmentName The name of the policy assignment.
+   * @param parameters Parameters for the policy assignment.
    * @param options The options parameters.
    */
   create(
     scope: string,
-    parameters: PolicyAssignment,
     policyAssignmentName: string,
+    parameters: PolicyAssignment,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyAssignmentsCreateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { scope, parameters, policyAssignmentName, options: operationOptions },
+      { scope, policyAssignmentName, parameters, options: operationOptions },
       createOperationSpec
     ) as Promise<PolicyAssignmentsCreateResponse>;
   }
@@ -294,21 +294,21 @@ export class PolicyAssignments {
    * '/subscriptions/{subscriptionId}'), resource group (format:
    * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}', or resource (format:
    * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/[{parentResourcePath}/]{resourceType}/{resourceName}'.
-   * @param parameters Parameters for policy assignment.
    * @param policyAssignmentId The ID of the policy assignment to create. Use the format
    *                           '{scope}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}'.
+   * @param parameters Parameters for policy assignment.
    * @param options The options parameters.
    */
   createById(
-    parameters: PolicyAssignment,
     policyAssignmentId: string,
+    parameters: PolicyAssignment,
     options?: coreHttp.OperationOptions
   ): Promise<PolicyAssignmentsCreateByIdResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { parameters, policyAssignmentId, options: operationOptions },
+      { policyAssignmentId, parameters, options: operationOptions },
       createByIdOperationSpec
     ) as Promise<PolicyAssignmentsCreateByIdResponse>;
   }
@@ -483,6 +483,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.policyAssignmentName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -612,6 +613,7 @@ const createByIdOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.policyAssignmentId1],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getByIdOperationSpec: coreHttp.OperationSpec = {

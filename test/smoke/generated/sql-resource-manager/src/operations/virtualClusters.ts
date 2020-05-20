@@ -323,6 +323,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualClusterName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {

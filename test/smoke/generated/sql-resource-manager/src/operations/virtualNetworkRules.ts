@@ -260,6 +260,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.virtualNetworkRuleName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

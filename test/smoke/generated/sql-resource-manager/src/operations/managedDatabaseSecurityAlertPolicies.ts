@@ -124,17 +124,17 @@ export class ManagedDatabaseSecurityAlertPolicies {
    * ListByDatabaseNext
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
    * @param managedInstanceName The name of the managed instance.
    * @param databaseName The name of the managed database for which the security alert policies are
    *                     defined.
+   * @param nextLink The nextLink from the previous successful call to the ListByDatabase method.
    * @param options The options parameters.
    */
   listByDatabaseNext(
     resourceGroupName: string,
-    nextLink: string,
     managedInstanceName: string,
     databaseName: string,
+    nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -143,9 +143,9 @@ export class ManagedDatabaseSecurityAlertPolicies {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        nextLink,
         managedInstanceName,
         databaseName,
+        nextLink,
         options: operationOptions
       },
       listByDatabaseNextOperationSpec
@@ -203,6 +203,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName21
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByDatabaseOperationSpec: coreHttp.OperationSpec = {

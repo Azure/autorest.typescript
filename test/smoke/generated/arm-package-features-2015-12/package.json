@@ -4,7 +4,7 @@
   "description": "Azure Feature Exposure Control (AFEC) provides a mechanism for the resource providers to control feature exposure to users. Resource providers typically use this mechanism to provide public/private preview for new features prior to making them generally available. Users need to explicitly register for AFEC features to get access to such functionality.",
   "version": "1.0.0",
   "dependencies": {
-    "@azure/core-http": "^1.1.1",
+    "@azure/core-http": "1.1.3-dev.20200520.1",
     "tslib": "^1.9.3"
   },
   "keywords": [

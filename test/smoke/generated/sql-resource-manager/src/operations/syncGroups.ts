@@ -755,6 +755,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.syncGroupName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -802,6 +803,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.syncGroupName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByDatabaseOperationSpec: coreHttp.OperationSpec = {

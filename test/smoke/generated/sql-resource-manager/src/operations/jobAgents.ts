@@ -89,15 +89,15 @@ export class JobAgents {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param parameters The requested job agent resource state.
    * @param jobAgentName The name of the job agent to be created or updated.
+   * @param parameters The requested job agent resource state.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
     serverName: string,
-    parameters: JobAgent,
     jobAgentName: string,
+    parameters: JobAgent,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<JobAgentsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -107,8 +107,8 @@ export class JobAgents {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
-      parameters,
       jobAgentName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -180,15 +180,15 @@ export class JobAgents {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param parameters The update to the job agent.
    * @param jobAgentName The name of the job agent to be updated.
+   * @param parameters The update to the job agent.
    * @param options The options parameters.
    */
   async update(
     resourceGroupName: string,
     serverName: string,
-    parameters: JobAgentUpdate,
     jobAgentName: string,
+    parameters: JobAgentUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<JobAgentsUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -198,8 +198,8 @@ export class JobAgents {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
-      parameters,
       jobAgentName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -328,6 +328,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobAgentName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -373,6 +374,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.jobAgentName3
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByServerNextOperationSpec: coreHttp.OperationSpec = {

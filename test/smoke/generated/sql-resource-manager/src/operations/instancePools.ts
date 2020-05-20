@@ -62,14 +62,14 @@ export class InstancePools {
    * Creates or updates an instance pool.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param parameters The requested instance pool resource state.
    * @param instancePoolName The name of the instance pool to be created or updated.
+   * @param parameters The requested instance pool resource state.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    parameters: InstancePool,
     instancePoolName: string,
+    parameters: InstancePool,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<InstancePoolsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -78,8 +78,8 @@ export class InstancePools {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       instancePoolName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -147,14 +147,14 @@ export class InstancePools {
    * Updates an instance pool.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param parameters The requested instance pool resource state.
    * @param instancePoolName The name of the instance pool to be updated.
+   * @param parameters The requested instance pool resource state.
    * @param options The options parameters.
    */
   async update(
     resourceGroupName: string,
-    parameters: InstancePoolUpdate,
     instancePoolName: string,
+    parameters: InstancePoolUpdate,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<InstancePoolsUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -163,8 +163,8 @@ export class InstancePools {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      parameters,
       instancePoolName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -323,6 +323,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.instancePoolName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -366,6 +367,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.instancePoolName3
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {

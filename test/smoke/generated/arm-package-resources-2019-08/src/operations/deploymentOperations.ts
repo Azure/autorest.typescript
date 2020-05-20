@@ -134,14 +134,14 @@ export class DeploymentOperations {
 
   /**
    * Gets a deployments operation.
-   * @param deploymentName The name of the deployment.
    * @param groupId The management group ID.
+   * @param deploymentName The name of the deployment.
    * @param operationId The ID of the operation to get.
    * @param options The options parameters.
    */
   getAtManagementGroupScope(
-    deploymentName: string,
     groupId: string,
+    deploymentName: string,
     operationId: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentOperationsGetAtManagementGroupScopeResponse> {
@@ -149,27 +149,27 @@ export class DeploymentOperations {
       options || {}
     );
     return this.client.sendOperationRequest(
-      { deploymentName, groupId, operationId, options: operationOptions },
+      { groupId, deploymentName, operationId, options: operationOptions },
       getAtManagementGroupScopeOperationSpec
     ) as Promise<DeploymentOperationsGetAtManagementGroupScopeResponse>;
   }
 
   /**
    * Gets all deployments operations for a deployment.
-   * @param deploymentName The name of the deployment.
    * @param groupId The management group ID.
+   * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
   listAtManagementGroupScope(
-    deploymentName: string,
     groupId: string,
+    deploymentName: string,
     options?: DeploymentOperationsListAtManagementGroupScopeOptionalParams
   ): Promise<DeploymentOperationsListAtManagementGroupScopeResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { deploymentName, groupId, options: operationOptions },
+      { groupId, deploymentName, options: operationOptions },
       listAtManagementGroupScopeOperationSpec
     ) as Promise<DeploymentOperationsListAtManagementGroupScopeResponse>;
   }
@@ -214,14 +214,14 @@ export class DeploymentOperations {
 
   /**
    * Gets a deployments operation.
-   * @param deploymentName The name of the deployment.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param deploymentName The name of the deployment.
    * @param operationId The ID of the operation to get.
    * @param options The options parameters.
    */
   get(
-    deploymentName: string,
     resourceGroupName: string,
+    deploymentName: string,
     operationId: string,
     options?: coreHttp.OperationOptions
   ): Promise<DeploymentOperationsGetResponse> {
@@ -230,8 +230,8 @@ export class DeploymentOperations {
     );
     return this.client.sendOperationRequest(
       {
-        deploymentName,
         resourceGroupName,
+        deploymentName,
         operationId,
         options: operationOptions
       },
@@ -241,20 +241,20 @@ export class DeploymentOperations {
 
   /**
    * Gets all deployments operations for a deployment.
-   * @param deploymentName The name of the deployment.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param deploymentName The name of the deployment.
    * @param options The options parameters.
    */
   list(
-    deploymentName: string,
     resourceGroupName: string,
+    deploymentName: string,
     options?: DeploymentOperationsListOptionalParams
   ): Promise<DeploymentOperationsListResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { deploymentName, resourceGroupName, options: operationOptions },
+      { resourceGroupName, deploymentName, options: operationOptions },
       listOperationSpec
     ) as Promise<DeploymentOperationsListResponse>;
   }
@@ -303,15 +303,15 @@ export class DeploymentOperations {
 
   /**
    * ListAtManagementGroupScopeNext
-   * @param deploymentName The name of the deployment.
    * @param groupId The management group ID.
+   * @param deploymentName The name of the deployment.
    * @param nextLink The nextLink from the previous successful call to the ListAtManagementGroupScope
    *                 method.
    * @param options The options parameters.
    */
   listAtManagementGroupScopeNext(
-    deploymentName: string,
     groupId: string,
+    deploymentName: string,
     nextLink: string,
     options?: DeploymentOperationsListAtManagementGroupScopeNextOptionalParams
   ): Promise<DeploymentOperationsListAtManagementGroupScopeNextResponse> {
@@ -319,7 +319,7 @@ export class DeploymentOperations {
       options || {}
     );
     return this.client.sendOperationRequest(
-      { deploymentName, groupId, nextLink, options: operationOptions },
+      { groupId, deploymentName, nextLink, options: operationOptions },
       listAtManagementGroupScopeNextOperationSpec
     ) as Promise<DeploymentOperationsListAtManagementGroupScopeNextResponse>;
   }
@@ -347,15 +347,15 @@ export class DeploymentOperations {
 
   /**
    * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
-   * @param deploymentName The name of the deployment.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
+   * @param deploymentName The name of the deployment.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   listNext(
-    nextLink: string,
-    deploymentName: string,
     resourceGroupName: string,
+    deploymentName: string,
+    nextLink: string,
     options?: DeploymentOperationsListNextOptionalParams
   ): Promise<DeploymentOperationsListNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -363,9 +363,9 @@ export class DeploymentOperations {
     );
     return this.client.sendOperationRequest(
       {
-        nextLink,
-        deploymentName,
         resourceGroupName,
+        deploymentName,
+        nextLink,
         options: operationOptions
       },
       listNextOperationSpec

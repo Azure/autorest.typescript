@@ -133,5 +133,6 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.databaseName2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };

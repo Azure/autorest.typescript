@@ -42,20 +42,20 @@ export class PolicySetDefinitions {
   /**
    * This operation creates or updates a policy set definition in the given subscription with the given
    * name.
-   * @param parameters The policy set definition properties.
    * @param policySetDefinitionName The name of the policy set definition to create.
+   * @param parameters The policy set definition properties.
    * @param options The options parameters.
    */
   createOrUpdate(
-    parameters: PolicySetDefinition,
     policySetDefinitionName: string,
+    parameters: PolicySetDefinition,
     options?: coreHttp.OperationOptions
   ): Promise<PolicySetDefinitionsCreateOrUpdateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { parameters, policySetDefinitionName, options: operationOptions },
+      { policySetDefinitionName, parameters, options: operationOptions },
       createOrUpdateOperationSpec
     ) as Promise<PolicySetDefinitionsCreateOrUpdateResponse>;
   }
@@ -149,15 +149,15 @@ export class PolicySetDefinitions {
   /**
    * This operation creates or updates a policy set definition in the given management group with the
    * given name.
+   * @param policySetDefinitionName The name of the policy set definition to create.
    * @param managementGroupId The ID of the management group.
    * @param parameters The policy set definition properties.
-   * @param policySetDefinitionName The name of the policy set definition to create.
    * @param options The options parameters.
    */
   createOrUpdateAtManagementGroup(
+    policySetDefinitionName: string,
     managementGroupId: string,
     parameters: PolicySetDefinition,
-    policySetDefinitionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -165,9 +165,9 @@ export class PolicySetDefinitions {
     );
     return this.client.sendOperationRequest(
       {
+        policySetDefinitionName,
         managementGroupId,
         parameters,
-        policySetDefinitionName,
         options: operationOptions
       },
       createOrUpdateAtManagementGroupOperationSpec
@@ -176,20 +176,20 @@ export class PolicySetDefinitions {
 
   /**
    * This operation deletes the policy set definition in the given management group with the given name.
-   * @param managementGroupId The ID of the management group.
    * @param policySetDefinitionName The name of the policy set definition to delete.
+   * @param managementGroupId The ID of the management group.
    * @param options The options parameters.
    */
   deleteAtManagementGroup(
-    managementGroupId: string,
     policySetDefinitionName: string,
+    managementGroupId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { managementGroupId, policySetDefinitionName, options: operationOptions },
+      { policySetDefinitionName, managementGroupId, options: operationOptions },
       deleteAtManagementGroupOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -197,20 +197,20 @@ export class PolicySetDefinitions {
   /**
    * This operation retrieves the policy set definition in the given management group with the given
    * name.
-   * @param managementGroupId The ID of the management group.
    * @param policySetDefinitionName The name of the policy set definition to get.
+   * @param managementGroupId The ID of the management group.
    * @param options The options parameters.
    */
   getAtManagementGroup(
-    managementGroupId: string,
     policySetDefinitionName: string,
+    managementGroupId: string,
     options?: coreHttp.OperationOptions
   ): Promise<PolicySetDefinitionsGetAtManagementGroupResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { managementGroupId, policySetDefinitionName, options: operationOptions },
+      { policySetDefinitionName, managementGroupId, options: operationOptions },
       getAtManagementGroupOperationSpec
     ) as Promise<PolicySetDefinitionsGetAtManagementGroupResponse>;
   }
@@ -316,6 +316,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.policySetDefinitionName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -427,6 +428,7 @@ const createOrUpdateAtManagementGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.policySetDefinitionName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteAtManagementGroupOperationSpec: coreHttp.OperationSpec = {

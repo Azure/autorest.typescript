@@ -234,6 +234,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.communicationLinkName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByServerOperationSpec: coreHttp.OperationSpec = {

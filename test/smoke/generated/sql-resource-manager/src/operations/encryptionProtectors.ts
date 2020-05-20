@@ -281,6 +281,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.encryptionProtectorName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByServerNextOperationSpec: coreHttp.OperationSpec = {

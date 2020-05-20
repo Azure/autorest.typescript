@@ -42,15 +42,15 @@ export class DeploymentScripts {
 
   /**
    * Creates a deployment script.
-   * @param deploymentScript Deployment script supplied to the operation.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param scriptName Name of the deployment script.
+   * @param deploymentScript Deployment script supplied to the operation.
    * @param options The options parameters.
    */
   async create(
-    deploymentScript: DeploymentScriptUnion,
     resourceGroupName: string,
     scriptName: string,
+    deploymentScript: DeploymentScriptUnion,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DeploymentScriptsCreateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -58,9 +58,9 @@ export class DeploymentScripts {
     );
 
     const args: coreHttp.OperationArguments = {
-      deploymentScript,
       resourceGroupName,
       scriptName,
+      deploymentScript,
       options: operationOptions
     };
     const sendOperation = (
@@ -298,6 +298,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
     Parameters.scriptName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -321,6 +322,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.scriptName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

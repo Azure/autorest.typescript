@@ -468,15 +468,15 @@ export class WebApps {
    * Description for Creates a new web, mobile, or API app in an existing resource group, or updates an
    * existing app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param siteEnvelope A JSON representation of the app properties. See example.
    * @param name Unique name of the app to create or update. To create or update a deployment slot, use
    *             the {slot} parameter.
+   * @param siteEnvelope A JSON representation of the app properties. See example.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    siteEnvelope: Site,
     name: string,
+    siteEnvelope: Site,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<WebAppsCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -485,8 +485,8 @@ export class WebApps {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      siteEnvelope,
       name,
+      siteEnvelope,
       options: operationOptions
     };
     const sendOperation = (
@@ -688,22 +688,22 @@ export class WebApps {
    * URL for the backup if a new URL is passed in the request body.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
-   * @param request Information on backup request.
    * @param backupId ID of backup.
+   * @param request Information on backup request.
    * @param options The options parameters.
    */
   listBackupStatusSecrets(
     resourceGroupName: string,
     name: string,
-    request: BackupRequest,
     backupId: string,
+    request: BackupRequest,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsListBackupStatusSecretsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, request, backupId, options: operationOptions },
+      { resourceGroupName, name, backupId, request, options: operationOptions },
       listBackupStatusSecretsOperationSpec
     ) as Promise<WebAppsListBackupStatusSecretsResponse>;
   }
@@ -1586,22 +1586,22 @@ export class WebApps {
    * Description for Create a deployment for an app, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param deployment Deployment details.
    * @param id ID of an existing deployment.
+   * @param deployment Deployment details.
    * @param options The options parameters.
    */
   createDeployment(
     resourceGroupName: string,
     name: string,
-    deployment: Deployment,
     id: string,
+    deployment: Deployment,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateDeploymentResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, deployment, id, options: operationOptions },
+      { resourceGroupName, name, id, deployment, options: operationOptions },
       createDeploymentOperationSpec
     ) as Promise<WebAppsCreateDeploymentResponse>;
   }
@@ -2028,17 +2028,17 @@ export class WebApps {
    * Description for Add or update a function secret.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param key The key to create or update
    * @param functionName The name of the function.
    * @param keyName The name of the key.
+   * @param key The key to create or update
    * @param options The options parameters.
    */
   createOrUpdateFunctionSecret(
     resourceGroupName: string,
     name: string,
-    key: KeyInfo,
     functionName: string,
     keyName: string,
+    key: KeyInfo,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateOrUpdateFunctionSecretResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -2048,9 +2048,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        key,
         functionName,
         keyName,
+        key,
         options: operationOptions
       },
       createOrUpdateFunctionSecretOperationSpec
@@ -2195,17 +2195,17 @@ export class WebApps {
    * Description for Add or update a host level secret.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param key The key to create or update
-   * @param keyName The name of the key.
    * @param keyType The type of host key.
+   * @param keyName The name of the key.
+   * @param key The key to create or update
    * @param options The options parameters.
    */
   createOrUpdateHostSecret(
     resourceGroupName: string,
     name: string,
-    key: KeyInfo,
-    keyName: string,
     keyType: string,
+    keyName: string,
+    key: KeyInfo,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateOrUpdateHostSecretResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -2215,9 +2215,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        key,
-        keyName,
         keyType,
+        keyName,
+        key,
         options: operationOptions
       },
       createOrUpdateHostSecretOperationSpec
@@ -2228,22 +2228,22 @@ export class WebApps {
    * Description for Delete a host level secret.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param keyName The name of the key.
    * @param keyType The type of host key.
+   * @param keyName The name of the key.
    * @param options The options parameters.
    */
   deleteHostSecret(
     resourceGroupName: string,
     name: string,
-    keyName: string,
     keyType: string,
+    keyName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, keyName, keyType, options: operationOptions },
+      { resourceGroupName, name, keyType, keyName, options: operationOptions },
       deleteHostSecretOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -2535,15 +2535,15 @@ export class WebApps {
    * (PATCH).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param connectionEnvelope Details of the hybrid connection configuration.
    * @param entityName Name of the hybrid connection configuration.
+   * @param connectionEnvelope Details of the hybrid connection configuration.
    * @param options The options parameters.
    */
   createOrUpdateRelayServiceConnection(
     resourceGroupName: string,
     name: string,
-    connectionEnvelope: RelayServiceConnectionEntity,
     entityName: string,
+    connectionEnvelope: RelayServiceConnectionEntity,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateOrUpdateRelayServiceConnectionResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -2553,8 +2553,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        connectionEnvelope,
         entityName,
+        connectionEnvelope,
         options: operationOptions
       },
       createOrUpdateRelayServiceConnectionOperationSpec
@@ -2588,15 +2588,15 @@ export class WebApps {
    * (PATCH).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param connectionEnvelope Details of the hybrid connection configuration.
    * @param entityName Name of the hybrid connection configuration.
+   * @param connectionEnvelope Details of the hybrid connection configuration.
    * @param options The options parameters.
    */
   updateRelayServiceConnection(
     resourceGroupName: string,
     name: string,
-    connectionEnvelope: RelayServiceConnectionEntity,
     entityName: string,
+    connectionEnvelope: RelayServiceConnectionEntity,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateRelayServiceConnectionResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -2606,8 +2606,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        connectionEnvelope,
         entityName,
+        connectionEnvelope,
         options: operationOptions
       },
       updateRelayServiceConnectionOperationSpec
@@ -2682,15 +2682,15 @@ export class WebApps {
    * Description for Invoke the MSDeploy web app extension.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
-   * @param mSDeploy Details of MSDeploy operation
    * @param instanceId ID of web app instance.
+   * @param mSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async createInstanceMSDeployOperation(
     resourceGroupName: string,
     name: string,
-    mSDeploy: MSDeploy,
     instanceId: string,
+    mSDeploy: MSDeploy,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<WebAppsCreateInstanceMSDeployOperationResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -2700,8 +2700,8 @@ export class WebApps {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
-      mSDeploy,
       instanceId,
+      mSDeploy,
       options: operationOptions
     };
     const sendOperation = (
@@ -2774,16 +2774,16 @@ export class WebApps {
    * Description for Get process information by its ID for a specific scaled-out instance in a web site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
+   * @param processId PID.
    * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
    *                   the JSON response from "GET api/sites/{siteName}/instances".
-   * @param processId PID.
    * @param options The options parameters.
    */
   getInstanceProcess(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     processId: string,
+    instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsGetInstanceProcessResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -2793,8 +2793,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         processId,
+        instanceId,
         options: operationOptions
       },
       getInstanceProcessOperationSpec
@@ -2806,16 +2806,16 @@ export class WebApps {
    * scaled-out instance in a web site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
+   * @param processId PID.
    * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
    *                   the JSON response from "GET api/sites/{siteName}/instances".
-   * @param processId PID.
    * @param options The options parameters.
    */
   deleteInstanceProcess(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     processId: string,
+    instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -2825,8 +2825,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         processId,
+        instanceId,
         options: operationOptions
       },
       deleteInstanceProcessOperationSpec
@@ -2838,16 +2838,16 @@ export class WebApps {
    * site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
+   * @param processId PID.
    * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
    *                   the JSON response from "GET api/sites/{siteName}/instances".
-   * @param processId PID.
    * @param options The options parameters.
    */
   getInstanceProcessDump(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     processId: string,
+    instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -2857,8 +2857,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         processId,
+        instanceId,
         options: operationOptions
       },
       getInstanceProcessDumpOperationSpec
@@ -2870,16 +2870,16 @@ export class WebApps {
    * in a web site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
+   * @param processId PID.
    * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
    *                   the JSON response from "GET api/sites/{siteName}/instances".
-   * @param processId PID.
    * @param options The options parameters.
    */
   listInstanceProcessModules(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     processId: string,
+    instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsListInstanceProcessModulesResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -2889,8 +2889,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         processId,
+        instanceId,
         options: operationOptions
       },
       listInstanceProcessModulesOperationSpec
@@ -2901,18 +2901,18 @@ export class WebApps {
    * Description for Get process information by its ID for a specific scaled-out instance in a web site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
-   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param processId PID.
    * @param baseAddress Module base address.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param options The options parameters.
    */
   getInstanceProcessModule(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     processId: string,
     baseAddress: string,
+    instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsGetInstanceProcessModuleResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -2922,9 +2922,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         processId,
         baseAddress,
+        instanceId,
         options: operationOptions
       },
       getInstanceProcessModuleOperationSpec
@@ -2936,16 +2936,16 @@ export class WebApps {
    * site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
+   * @param processId PID.
    * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
    *                   the JSON response from "GET api/sites/{siteName}/instances".
-   * @param processId PID.
    * @param options The options parameters.
    */
   listInstanceProcessThreads(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     processId: string,
+    instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsListInstanceProcessThreadsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -2955,8 +2955,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         processId,
+        instanceId,
         options: operationOptions
       },
       listInstanceProcessThreadsOperationSpec
@@ -3025,17 +3025,17 @@ export class WebApps {
 
   /**
    * Description for Restores a web app.
+   * @param subscriptionName Azure subscription.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
    * @param migrationOptions Migration migrationOptions.
-   * @param subscriptionName Azure subscription.
    * @param options The options parameters.
    */
   async migrateStorage(
+    subscriptionName: string,
     resourceGroupName: string,
     name: string,
     migrationOptions: StorageMigrationOptions,
-    subscriptionName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<WebAppsMigrateStorageResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -3043,10 +3043,10 @@ export class WebApps {
     );
 
     const args: coreHttp.OperationArguments = {
+      subscriptionName,
       resourceGroupName,
       name,
       migrationOptions,
-      subscriptionName,
       options: operationOptions
     };
     const sendOperation = (
@@ -4321,18 +4321,18 @@ export class WebApps {
    * Description for Creates a new web, mobile, or API app in an existing resource group, or updates an
    * existing app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param siteEnvelope A JSON representation of the app properties. See example.
    * @param name Unique name of the app to create or update. To create or update a deployment slot, use
    *             the {slot} parameter.
    * @param slot Name of the deployment slot to create or update. By default, this API attempts to create
    *             or modify the production slot.
+   * @param siteEnvelope A JSON representation of the app properties. See example.
    * @param options The options parameters.
    */
   async createOrUpdateSlot(
     resourceGroupName: string,
-    siteEnvelope: Site,
     name: string,
     slot: string,
+    siteEnvelope: Site,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<WebAppsCreateOrUpdateSlotResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -4341,9 +4341,9 @@ export class WebApps {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      siteEnvelope,
       name,
       slot,
+      siteEnvelope,
       options: operationOptions
     };
     const sendOperation = (
@@ -4394,16 +4394,16 @@ export class WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Unique name of the app to create or update. To create or update a deployment slot, use
    *             the {slot} parameter.
-   * @param siteEnvelope A JSON representation of the app properties. See example.
    * @param slot Name of the deployment slot to create or update. By default, this API attempts to create
    *             or modify the production slot.
+   * @param siteEnvelope A JSON representation of the app properties. See example.
    * @param options The options parameters.
    */
   updateSlot(
     resourceGroupName: string,
     name: string,
-    siteEnvelope: SitePatchResource,
     slot: string,
+    siteEnvelope: SitePatchResource,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -4413,8 +4413,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        siteEnvelope,
         slot,
+        siteEnvelope,
         options: operationOptions
       },
       updateSlotOperationSpec
@@ -4447,16 +4447,16 @@ export class WebApps {
    * Description for Applies the configuration settings from the target slot onto the current slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param slotSwapEntity JSON object that contains the target slot name. See example.
    * @param slot Name of the source slot. If a slot is not specified, the production slot is used as the
    *             source slot.
+   * @param slotSwapEntity JSON object that contains the target slot name. See example.
    * @param options The options parameters.
    */
   applySlotConfigurationSlot(
     resourceGroupName: string,
     name: string,
-    slotSwapEntity: CsmSlotEntity,
     slot: string,
+    slotSwapEntity: CsmSlotEntity,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -4466,8 +4466,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        slotSwapEntity,
         slot,
+        slotSwapEntity,
         options: operationOptions
       },
       applySlotConfigurationSlotOperationSpec
@@ -4478,24 +4478,24 @@ export class WebApps {
    * Description for Creates a backup of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param request Backup configuration. You can use the JSON response from the POST action as input
-   *                here.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will create a backup
    *             for the production slot.
+   * @param request Backup configuration. You can use the JSON response from the POST action as input
+   *                here.
    * @param options The options parameters.
    */
   backupSlot(
     resourceGroupName: string,
     name: string,
-    request: BackupRequest,
     slot: string,
+    request: BackupRequest,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsBackupSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, request, slot, options: operationOptions },
+      { resourceGroupName, name, slot, request, options: operationOptions },
       backupSlotOperationSpec
     ) as Promise<WebAppsBackupSlotResponse>;
   }
@@ -4579,17 +4579,17 @@ export class WebApps {
    * URL for the backup if a new URL is passed in the request body.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
-   * @param request Information on backup request.
    * @param backupId ID of backup.
    * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param request Information on backup request.
    * @param options The options parameters.
    */
   listBackupStatusSecretsSlot(
     resourceGroupName: string,
     name: string,
-    request: BackupRequest,
     backupId: string,
     slot: string,
+    request: BackupRequest,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsListBackupStatusSecretsSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -4599,9 +4599,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        request,
         backupId,
         slot,
+        request,
         options: operationOptions
       },
       listBackupStatusSecretsSlotOperationSpec
@@ -4613,17 +4613,17 @@ export class WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
    * @param backupId ID of the backup.
-   * @param request Information on restore request .
    * @param slot Name of the deployment slot. If a slot is not specified, the API will restore a backup
    *             of the production slot.
+   * @param request Information on restore request .
    * @param options The options parameters.
    */
   async restoreSlot(
     resourceGroupName: string,
     name: string,
     backupId: string,
-    request: RestoreRequest,
     slot: string,
+    request: RestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -4634,8 +4634,8 @@ export class WebApps {
       resourceGroupName,
       name,
       backupId,
-      request,
       slot,
+      request,
       options: operationOptions
     };
     const sendOperation = (
@@ -4685,23 +4685,23 @@ export class WebApps {
    * Description for Replaces the application settings of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param appSettings Application settings of the app.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will update the
    *             application settings for the production slot.
+   * @param appSettings Application settings of the app.
    * @param options The options parameters.
    */
   updateApplicationSettingsSlot(
     resourceGroupName: string,
     name: string,
-    appSettings: StringDictionary,
     slot: string,
+    appSettings: StringDictionary,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateApplicationSettingsSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, appSettings, slot, options: operationOptions },
+      { resourceGroupName, name, slot, appSettings, options: operationOptions },
       updateApplicationSettingsSlotOperationSpec
     ) as Promise<WebAppsUpdateApplicationSettingsSlotResponse>;
   }
@@ -4733,15 +4733,15 @@ export class WebApps {
    * Description for Updates the Authentication / Authorization settings associated with web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
-   * @param siteAuthSettings Auth settings associated with web app.
    * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param siteAuthSettings Auth settings associated with web app.
    * @param options The options parameters.
    */
   updateAuthSettingsSlot(
     resourceGroupName: string,
     name: string,
-    siteAuthSettings: SiteAuthSettings,
     slot: string,
+    siteAuthSettings: SiteAuthSettings,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateAuthSettingsSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -4751,8 +4751,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        siteAuthSettings,
         slot,
+        siteAuthSettings,
         options: operationOptions
       },
       updateAuthSettingsSlotOperationSpec
@@ -4786,16 +4786,16 @@ export class WebApps {
    * Description for Updates the Azure storage account configurations of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param azureStorageAccounts Azure storage accounts of the app.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will update the Azure
    *             storage account configurations for the production slot.
+   * @param azureStorageAccounts Azure storage accounts of the app.
    * @param options The options parameters.
    */
   updateAzureStorageAccountsSlot(
     resourceGroupName: string,
     name: string,
-    azureStorageAccounts: AzureStoragePropertyDictionaryResource,
     slot: string,
+    azureStorageAccounts: AzureStoragePropertyDictionaryResource,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateAzureStorageAccountsSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -4805,8 +4805,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        azureStorageAccounts,
         slot,
+        azureStorageAccounts,
         options: operationOptions
       },
       updateAzureStorageAccountsSlotOperationSpec
@@ -4840,23 +4840,23 @@ export class WebApps {
    * Description for Updates the backup configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param request Edited backup configuration.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will update the backup
    *             configuration for the production slot.
+   * @param request Edited backup configuration.
    * @param options The options parameters.
    */
   updateBackupConfigurationSlot(
     resourceGroupName: string,
     name: string,
-    request: BackupRequest,
     slot: string,
+    request: BackupRequest,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateBackupConfigurationSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, request, slot, options: operationOptions },
+      { resourceGroupName, name, slot, request, options: operationOptions },
       updateBackupConfigurationSlotOperationSpec
     ) as Promise<WebAppsUpdateBackupConfigurationSlotResponse>;
   }
@@ -4911,16 +4911,16 @@ export class WebApps {
    * Description for Replaces the connection strings of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param connectionStrings Connection strings of the app or deployment slot. See example.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will update the
    *             connection settings for the production slot.
+   * @param connectionStrings Connection strings of the app or deployment slot. See example.
    * @param options The options parameters.
    */
   updateConnectionStringsSlot(
     resourceGroupName: string,
     name: string,
-    connectionStrings: ConnectionStringDictionary,
     slot: string,
+    connectionStrings: ConnectionStringDictionary,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateConnectionStringsSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -4930,8 +4930,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        connectionStrings,
         slot,
+        connectionStrings,
         options: operationOptions
       },
       updateConnectionStringsSlotOperationSpec
@@ -4988,17 +4988,17 @@ export class WebApps {
    * Description for Updates the logging configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param siteLogsConfig A SiteLogsConfig JSON object that contains the logging configuration to change
-   *                       in the "properties" property.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will update the logging
    *             configuration for the production slot.
+   * @param siteLogsConfig A SiteLogsConfig JSON object that contains the logging configuration to change
+   *                       in the "properties" property.
    * @param options The options parameters.
    */
   updateDiagnosticLogsConfigSlot(
     resourceGroupName: string,
     name: string,
-    siteLogsConfig: SiteLogsConfig,
     slot: string,
+    siteLogsConfig: SiteLogsConfig,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateDiagnosticLogsConfigSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -5008,8 +5008,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        siteLogsConfig,
         slot,
+        siteLogsConfig,
         options: operationOptions
       },
       updateDiagnosticLogsConfigSlotOperationSpec
@@ -5020,23 +5020,23 @@ export class WebApps {
    * Description for Replaces the metadata of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param metadata Edited metadata of the app or deployment slot. See example.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will update the
    *             metadata for the production slot.
+   * @param metadata Edited metadata of the app or deployment slot. See example.
    * @param options The options parameters.
    */
   updateMetadataSlot(
     resourceGroupName: string,
     name: string,
-    metadata: StringDictionary,
     slot: string,
+    metadata: StringDictionary,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateMetadataSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, metadata, slot, options: operationOptions },
+      { resourceGroupName, name, slot, metadata, options: operationOptions },
       updateMetadataSlotOperationSpec
     ) as Promise<WebAppsUpdateMetadataSlotResponse>;
   }
@@ -5112,15 +5112,15 @@ export class WebApps {
    * Description for Updates the Push settings associated with web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
-   * @param pushSettings Push settings associated with web app.
    * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param pushSettings Push settings associated with web app.
    * @param options The options parameters.
    */
   updateSitePushSettingsSlot(
     resourceGroupName: string,
     name: string,
-    pushSettings: PushSettings,
     slot: string,
+    pushSettings: PushSettings,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateSitePushSettingsSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -5130,8 +5130,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        pushSettings,
         slot,
+        pushSettings,
         options: operationOptions
       },
       updateSitePushSettingsSlotOperationSpec
@@ -5188,23 +5188,23 @@ export class WebApps {
    * Description for Updates the configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param siteConfig JSON representation of a SiteConfig object. See example.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will update
    *             configuration for the production slot.
+   * @param siteConfig JSON representation of a SiteConfig object. See example.
    * @param options The options parameters.
    */
   createOrUpdateConfigurationSlot(
     resourceGroupName: string,
     name: string,
-    siteConfig: SiteConfigResource,
     slot: string,
+    siteConfig: SiteConfigResource,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateOrUpdateConfigurationSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, siteConfig, slot, options: operationOptions },
+      { resourceGroupName, name, slot, siteConfig, options: operationOptions },
       createOrUpdateConfigurationSlotOperationSpec
     ) as Promise<WebAppsCreateOrUpdateConfigurationSlotResponse>;
   }
@@ -5213,23 +5213,23 @@ export class WebApps {
    * Description for Updates the configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param siteConfig JSON representation of a SiteConfig object. See example.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will update
    *             configuration for the production slot.
+   * @param siteConfig JSON representation of a SiteConfig object. See example.
    * @param options The options parameters.
    */
   updateConfigurationSlot(
     resourceGroupName: string,
     name: string,
-    siteConfig: SiteConfigResource,
     slot: string,
+    siteConfig: SiteConfigResource,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateConfigurationSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, siteConfig, slot, options: operationOptions },
+      { resourceGroupName, name, slot, siteConfig, options: operationOptions },
       updateConfigurationSlotOperationSpec
     ) as Promise<WebAppsUpdateConfigurationSlotResponse>;
   }
@@ -5527,18 +5527,18 @@ export class WebApps {
    * Description for Create a deployment for an app, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param deployment Deployment details.
    * @param id ID of an existing deployment.
    * @param slot Name of the deployment slot. If a slot is not specified, the API creates a deployment
    *             for the production slot.
+   * @param deployment Deployment details.
    * @param options The options parameters.
    */
   createDeploymentSlot(
     resourceGroupName: string,
     name: string,
-    deployment: Deployment,
     id: string,
     slot: string,
+    deployment: Deployment,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateDeploymentSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -5548,9 +5548,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        deployment,
         id,
         slot,
+        deployment,
         options: operationOptions
       },
       createDeploymentSlotOperationSpec
@@ -5613,24 +5613,24 @@ export class WebApps {
    * Use this to get information about the databases stored in a backup.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param request A RestoreRequest object that includes Azure storage URL and blog name for discovery
-   *                of backup.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will perform discovery
    *             for the production slot.
+   * @param request A RestoreRequest object that includes Azure storage URL and blog name for discovery
+   *                of backup.
    * @param options The options parameters.
    */
   discoverBackupSlot(
     resourceGroupName: string,
     name: string,
-    request: RestoreRequest,
     slot: string,
+    request: RestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsDiscoverBackupSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, request, slot, options: operationOptions },
+      { resourceGroupName, name, slot, request, options: operationOptions },
       discoverBackupSlotOperationSpec
     ) as Promise<WebAppsDiscoverBackupSlotResponse>;
   }
@@ -5695,17 +5695,17 @@ export class WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
    * @param domainOwnershipIdentifierName Name of domain ownership identifier.
-   * @param domainOwnershipIdentifier A JSON representation of the domain ownership properties.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will delete the binding
    *             for the production slot.
+   * @param domainOwnershipIdentifier A JSON representation of the domain ownership properties.
    * @param options The options parameters.
    */
   createOrUpdateDomainOwnershipIdentifierSlot(
     resourceGroupName: string,
     name: string,
     domainOwnershipIdentifierName: string,
-    domainOwnershipIdentifier: Identifier,
     slot: string,
+    domainOwnershipIdentifier: Identifier,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -5716,8 +5716,8 @@ export class WebApps {
         resourceGroupName,
         name,
         domainOwnershipIdentifierName,
-        domainOwnershipIdentifier,
         slot,
+        domainOwnershipIdentifier,
         options: operationOptions
       },
       createOrUpdateDomainOwnershipIdentifierSlotOperationSpec
@@ -5761,17 +5761,17 @@ export class WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
    * @param domainOwnershipIdentifierName Name of domain ownership identifier.
-   * @param domainOwnershipIdentifier A JSON representation of the domain ownership properties.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will delete the binding
    *             for the production slot.
+   * @param domainOwnershipIdentifier A JSON representation of the domain ownership properties.
    * @param options The options parameters.
    */
   updateDomainOwnershipIdentifierSlot(
     resourceGroupName: string,
     name: string,
     domainOwnershipIdentifierName: string,
-    domainOwnershipIdentifier: Identifier,
     slot: string,
+    domainOwnershipIdentifier: Identifier,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateDomainOwnershipIdentifierSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -5782,8 +5782,8 @@ export class WebApps {
         resourceGroupName,
         name,
         domainOwnershipIdentifierName,
-        domainOwnershipIdentifier,
         slot,
+        domainOwnershipIdentifier,
         options: operationOptions
       },
       updateDomainOwnershipIdentifierSlotOperationSpec
@@ -5816,15 +5816,15 @@ export class WebApps {
    * Description for Invoke the MSDeploy web app extension.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
-   * @param mSDeploy Details of MSDeploy operation
    * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param mSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async createMSDeployOperationSlot(
     resourceGroupName: string,
     name: string,
-    mSDeploy: MSDeploy,
     slot: string,
+    mSDeploy: MSDeploy,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<WebAppsCreateMSDeployOperationSlotResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -5834,8 +5834,8 @@ export class WebApps {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
-      mSDeploy,
       slot,
+      mSDeploy,
       options: operationOptions
     };
     const sendOperation = (
@@ -5959,16 +5959,16 @@ export class WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
    * @param functionName Function name.
-   * @param functionEnvelope Function details.
    * @param slot Name of the deployment slot.
+   * @param functionEnvelope Function details.
    * @param options The options parameters.
    */
   async createInstanceFunctionSlot(
     resourceGroupName: string,
     name: string,
     functionName: string,
-    functionEnvelope: FunctionEnvelope,
     slot: string,
+    functionEnvelope: FunctionEnvelope,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<WebAppsCreateInstanceFunctionSlotResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -5979,8 +5979,8 @@ export class WebApps {
       resourceGroupName,
       name,
       functionName,
-      functionEnvelope,
       slot,
+      functionEnvelope,
       options: operationOptions
     };
     const sendOperation = (
@@ -6037,19 +6037,19 @@ export class WebApps {
    * Description for Add or update a function secret.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param key The key to create or update
    * @param functionName The name of the function.
    * @param keyName The name of the key.
    * @param slot Name of the deployment slot.
+   * @param key The key to create or update
    * @param options The options parameters.
    */
   createOrUpdateFunctionSecretSlot(
     resourceGroupName: string,
     name: string,
-    key: KeyInfo,
     functionName: string,
     keyName: string,
     slot: string,
+    key: KeyInfo,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateOrUpdateFunctionSecretSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -6059,10 +6059,10 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        key,
         functionName,
         keyName,
         slot,
+        key,
         options: operationOptions
       },
       createOrUpdateFunctionSecretSlotOperationSpec
@@ -6232,19 +6232,19 @@ export class WebApps {
    * Description for Add or update a host level secret.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param key The key to create or update
-   * @param keyName The name of the key.
    * @param keyType The type of host key.
+   * @param keyName The name of the key.
    * @param slot Name of the deployment slot.
+   * @param key The key to create or update
    * @param options The options parameters.
    */
   createOrUpdateHostSecretSlot(
     resourceGroupName: string,
     name: string,
-    key: KeyInfo,
-    keyName: string,
     keyType: string,
+    keyName: string,
     slot: string,
+    key: KeyInfo,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateOrUpdateHostSecretSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -6254,10 +6254,10 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        key,
-        keyName,
         keyType,
+        keyName,
         slot,
+        key,
         options: operationOptions
       },
       createOrUpdateHostSecretSlotOperationSpec
@@ -6268,16 +6268,16 @@ export class WebApps {
    * Description for Delete a host level secret.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param keyName The name of the key.
    * @param keyType The type of host key.
+   * @param keyName The name of the key.
    * @param slot Name of the deployment slot.
    * @param options The options parameters.
    */
   deleteHostSecretSlot(
     resourceGroupName: string,
     name: string,
-    keyName: string,
     keyType: string,
+    keyName: string,
     slot: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
@@ -6288,8 +6288,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        keyName,
         keyType,
+        keyName,
         slot,
         options: operationOptions
       },
@@ -6324,23 +6324,23 @@ export class WebApps {
    * Description for Get the named hostname binding for an app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param hostName Hostname in the hostname binding.
    * @param slot Name of the deployment slot. If a slot is not specified, the API the named binding for
    *             the production slot.
+   * @param hostName Hostname in the hostname binding.
    * @param options The options parameters.
    */
   getHostNameBindingSlot(
     resourceGroupName: string,
     name: string,
-    hostName: string,
     slot: string,
+    hostName: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsGetHostNameBindingSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, hostName, slot, options: operationOptions },
+      { resourceGroupName, name, slot, hostName, options: operationOptions },
       getHostNameBindingSlotOperationSpec
     ) as Promise<WebAppsGetHostNameBindingSlotResponse>;
   }
@@ -6350,17 +6350,17 @@ export class WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
    * @param hostName Hostname in the hostname binding.
-   * @param hostNameBinding Binding details. This is the JSON representation of a HostNameBinding object.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will create a binding
    *             for the production slot.
+   * @param hostNameBinding Binding details. This is the JSON representation of a HostNameBinding object.
    * @param options The options parameters.
    */
   createOrUpdateHostNameBindingSlot(
     resourceGroupName: string,
     name: string,
     hostName: string,
-    hostNameBinding: HostNameBinding,
     slot: string,
+    hostNameBinding: HostNameBinding,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateOrUpdateHostNameBindingSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -6371,8 +6371,8 @@ export class WebApps {
         resourceGroupName,
         name,
         hostName,
-        hostNameBinding,
         slot,
+        hostNameBinding,
         options: operationOptions
       },
       createOrUpdateHostNameBindingSlotOperationSpec
@@ -6383,23 +6383,23 @@ export class WebApps {
    * Description for Deletes a hostname binding for an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param hostName Hostname in the hostname binding.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will delete the binding
    *             for the production slot.
+   * @param hostName Hostname in the hostname binding.
    * @param options The options parameters.
    */
   deleteHostNameBindingSlot(
     resourceGroupName: string,
     name: string,
-    hostName: string,
     slot: string,
+    hostName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, hostName, slot, options: operationOptions },
+      { resourceGroupName, name, slot, hostName, options: operationOptions },
       deleteHostNameBindingSlotOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -6443,8 +6443,8 @@ export class WebApps {
    * @param name The name of the web app.
    * @param namespaceName The namespace for this hybrid connection.
    * @param relayName The relay name for this hybrid connection.
-   * @param connectionEnvelope The details of the hybrid connection.
    * @param slot The name of the slot for the web app.
+   * @param connectionEnvelope The details of the hybrid connection.
    * @param options The options parameters.
    */
   createOrUpdateHybridConnectionSlot(
@@ -6452,8 +6452,8 @@ export class WebApps {
     name: string,
     namespaceName: string,
     relayName: string,
-    connectionEnvelope: HybridConnection,
     slot: string,
+    connectionEnvelope: HybridConnection,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateOrUpdateHybridConnectionSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -6465,8 +6465,8 @@ export class WebApps {
         name,
         namespaceName,
         relayName,
-        connectionEnvelope,
         slot,
+        connectionEnvelope,
         options: operationOptions
       },
       createOrUpdateHybridConnectionSlotOperationSpec
@@ -6512,8 +6512,8 @@ export class WebApps {
    * @param name The name of the web app.
    * @param namespaceName The namespace for this hybrid connection.
    * @param relayName The relay name for this hybrid connection.
-   * @param connectionEnvelope The details of the hybrid connection.
    * @param slot The name of the slot for the web app.
+   * @param connectionEnvelope The details of the hybrid connection.
    * @param options The options parameters.
    */
   updateHybridConnectionSlot(
@@ -6521,8 +6521,8 @@ export class WebApps {
     name: string,
     namespaceName: string,
     relayName: string,
-    connectionEnvelope: HybridConnection,
     slot: string,
+    connectionEnvelope: HybridConnection,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateHybridConnectionSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -6534,8 +6534,8 @@ export class WebApps {
         name,
         namespaceName,
         relayName,
-        connectionEnvelope,
         slot,
+        connectionEnvelope,
         options: operationOptions
       },
       updateHybridConnectionSlotOperationSpec
@@ -6617,18 +6617,18 @@ export class WebApps {
    * (PATCH).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param connectionEnvelope Details of the hybrid connection configuration.
    * @param entityName Name of the hybrid connection configuration.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will create or update a
    *             hybrid connection for the production slot.
+   * @param connectionEnvelope Details of the hybrid connection configuration.
    * @param options The options parameters.
    */
   createOrUpdateRelayServiceConnectionSlot(
     resourceGroupName: string,
     name: string,
-    connectionEnvelope: RelayServiceConnectionEntity,
     entityName: string,
     slot: string,
+    connectionEnvelope: RelayServiceConnectionEntity,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateOrUpdateRelayServiceConnectionSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -6638,9 +6638,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        connectionEnvelope,
         entityName,
         slot,
+        connectionEnvelope,
         options: operationOptions
       },
       createOrUpdateRelayServiceConnectionSlotOperationSpec
@@ -6677,18 +6677,18 @@ export class WebApps {
    * (PATCH).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param connectionEnvelope Details of the hybrid connection configuration.
    * @param entityName Name of the hybrid connection configuration.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will create or update a
    *             hybrid connection for the production slot.
+   * @param connectionEnvelope Details of the hybrid connection configuration.
    * @param options The options parameters.
    */
   updateRelayServiceConnectionSlot(
     resourceGroupName: string,
     name: string,
-    connectionEnvelope: RelayServiceConnectionEntity,
     entityName: string,
     slot: string,
+    connectionEnvelope: RelayServiceConnectionEntity,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateRelayServiceConnectionSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -6698,9 +6698,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        connectionEnvelope,
         entityName,
         slot,
+        connectionEnvelope,
         options: operationOptions
       },
       updateRelayServiceConnectionSlotOperationSpec
@@ -6759,22 +6759,22 @@ export class WebApps {
    * Description for Get the status of the last MSDeploy operation.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
-   * @param instanceId ID of web app instance.
    * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param instanceId ID of web app instance.
    * @param options The options parameters.
    */
   getInstanceMsDeployStatusSlot(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     slot: string,
+    instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsGetInstanceMsDeployStatusSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, instanceId, slot, options: operationOptions },
+      { resourceGroupName, name, slot, instanceId, options: operationOptions },
       getInstanceMsDeployStatusSlotOperationSpec
     ) as Promise<WebAppsGetInstanceMsDeployStatusSlotResponse>;
   }
@@ -6783,17 +6783,17 @@ export class WebApps {
    * Description for Invoke the MSDeploy web app extension.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
-   * @param mSDeploy Details of MSDeploy operation
-   * @param instanceId ID of web app instance.
    * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param instanceId ID of web app instance.
+   * @param mSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async createInstanceMSDeployOperationSlot(
     resourceGroupName: string,
     name: string,
-    mSDeploy: MSDeploy,
-    instanceId: string,
     slot: string,
+    instanceId: string,
+    mSDeploy: MSDeploy,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<WebAppsCreateInstanceMSDeployOperationSlotResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -6803,9 +6803,9 @@ export class WebApps {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
-      mSDeploy,
-      instanceId,
       slot,
+      instanceId,
+      mSDeploy,
       options: operationOptions
     };
     const sendOperation = (
@@ -6832,22 +6832,22 @@ export class WebApps {
    * Description for Get the MSDeploy Log for the last MSDeploy operation.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
-   * @param instanceId ID of web app instance.
    * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param instanceId ID of web app instance.
    * @param options The options parameters.
    */
   getInstanceMSDeployLogSlot(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     slot: string,
+    instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsGetInstanceMSDeployLogSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, instanceId, slot, options: operationOptions },
+      { resourceGroupName, name, slot, instanceId, options: operationOptions },
       getInstanceMSDeployLogSlotOperationSpec
     ) as Promise<WebAppsGetInstanceMSDeployLogSlotResponse>;
   }
@@ -6857,24 +6857,24 @@ export class WebApps {
    * scaled-out instance in a web site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
-   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
    *             the production slot.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param options The options parameters.
    */
   listInstanceProcessesSlot(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     slot: string,
+    instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsListInstanceProcessesSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, instanceId, slot, options: operationOptions },
+      { resourceGroupName, name, slot, instanceId, options: operationOptions },
       listInstanceProcessesSlotOperationSpec
     ) as Promise<WebAppsListInstanceProcessesSlotResponse>;
   }
@@ -6883,19 +6883,19 @@ export class WebApps {
    * Description for Get process information by its ID for a specific scaled-out instance in a web site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
-   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param processId PID.
    * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
    *             the production slot.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param options The options parameters.
    */
   getInstanceProcessSlot(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     processId: string,
     slot: string,
+    instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsGetInstanceProcessSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -6905,9 +6905,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         processId,
         slot,
+        instanceId,
         options: operationOptions
       },
       getInstanceProcessSlotOperationSpec
@@ -6919,19 +6919,19 @@ export class WebApps {
    * scaled-out instance in a web site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
-   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param processId PID.
    * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
    *             the production slot.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param options The options parameters.
    */
   deleteInstanceProcessSlot(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     processId: string,
     slot: string,
+    instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -6941,9 +6941,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         processId,
         slot,
+        instanceId,
         options: operationOptions
       },
       deleteInstanceProcessSlotOperationSpec
@@ -6955,19 +6955,19 @@ export class WebApps {
    * site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
-   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param processId PID.
    * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
    *             the production slot.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param options The options parameters.
    */
   getInstanceProcessDumpSlot(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     processId: string,
     slot: string,
+    instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -6977,9 +6977,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         processId,
         slot,
+        instanceId,
         options: operationOptions
       },
       getInstanceProcessDumpSlotOperationSpec
@@ -6991,19 +6991,19 @@ export class WebApps {
    * in a web site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
-   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param processId PID.
    * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
    *             the production slot.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param options The options parameters.
    */
   listInstanceProcessModulesSlot(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     processId: string,
     slot: string,
+    instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsListInstanceProcessModulesSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -7013,9 +7013,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         processId,
         slot,
+        instanceId,
         options: operationOptions
       },
       listInstanceProcessModulesSlotOperationSpec
@@ -7026,21 +7026,21 @@ export class WebApps {
    * Description for Get process information by its ID for a specific scaled-out instance in a web site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
-   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param processId PID.
    * @param baseAddress Module base address.
    * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
    *             the production slot.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param options The options parameters.
    */
   getInstanceProcessModuleSlot(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     processId: string,
     baseAddress: string,
     slot: string,
+    instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsGetInstanceProcessModuleSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -7050,10 +7050,10 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         processId,
         baseAddress,
         slot,
+        instanceId,
         options: operationOptions
       },
       getInstanceProcessModuleSlotOperationSpec
@@ -7065,19 +7065,19 @@ export class WebApps {
    * site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
-   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param processId PID.
    * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
    *             the production slot.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param options The options parameters.
    */
   listInstanceProcessThreadsSlot(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     processId: string,
     slot: string,
+    instanceId: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsListInstanceProcessThreadsSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -7087,9 +7087,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         processId,
         slot,
+        instanceId,
         options: operationOptions
       },
       listInstanceProcessThreadsSlotOperationSpec
@@ -7217,16 +7217,16 @@ export class WebApps {
    * in use by another App Service Plan other than the one this App is in.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param connectionEnvelope Properties of the Virtual Network connection. See example.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will add or update
    *             connections for the production slot.
+   * @param connectionEnvelope Properties of the Virtual Network connection. See example.
    * @param options The options parameters.
    */
   createOrUpdateSwiftVirtualNetworkConnectionSlot(
     resourceGroupName: string,
     name: string,
-    connectionEnvelope: SwiftVirtualNetwork,
     slot: string,
+    connectionEnvelope: SwiftVirtualNetwork,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -7236,8 +7236,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        connectionEnvelope,
         slot,
+        connectionEnvelope,
         options: operationOptions
       },
       createOrUpdateSwiftVirtualNetworkConnectionSlotOperationSpec
@@ -7276,16 +7276,16 @@ export class WebApps {
    * in use by another App Service Plan other than the one this App is in.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param connectionEnvelope Properties of the Virtual Network connection. See example.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will add or update
    *             connections for the production slot.
+   * @param connectionEnvelope Properties of the Virtual Network connection. See example.
    * @param options The options parameters.
    */
   updateSwiftVirtualNetworkConnectionSlot(
     resourceGroupName: string,
     name: string,
-    connectionEnvelope: SwiftVirtualNetwork,
     slot: string,
+    connectionEnvelope: SwiftVirtualNetwork,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -7295,8 +7295,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        connectionEnvelope,
         slot,
+        connectionEnvelope,
         options: operationOptions
       },
       updateSwiftVirtualNetworkConnectionSlotOperationSpec
@@ -7645,17 +7645,17 @@ export class WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
    * @param premierAddOnName Add-on name.
-   * @param premierAddOn A JSON representation of the edited premier add-on.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will update the named
    *             add-on for the production slot.
+   * @param premierAddOn A JSON representation of the edited premier add-on.
    * @param options The options parameters.
    */
   addPremierAddOnSlot(
     resourceGroupName: string,
     name: string,
     premierAddOnName: string,
-    premierAddOn: PremierAddOn,
     slot: string,
+    premierAddOn: PremierAddOn,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsAddPremierAddOnSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -7666,8 +7666,8 @@ export class WebApps {
         resourceGroupName,
         name,
         premierAddOnName,
-        premierAddOn,
         slot,
+        premierAddOn,
         options: operationOptions
       },
       addPremierAddOnSlotOperationSpec
@@ -7710,17 +7710,17 @@ export class WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
    * @param premierAddOnName Add-on name.
-   * @param premierAddOn A JSON representation of the edited premier add-on.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will update the named
    *             add-on for the production slot.
+   * @param premierAddOn A JSON representation of the edited premier add-on.
    * @param options The options parameters.
    */
   updatePremierAddOnSlot(
     resourceGroupName: string,
     name: string,
     premierAddOnName: string,
-    premierAddOn: PremierAddOnPatchResource,
     slot: string,
+    premierAddOn: PremierAddOnPatchResource,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdatePremierAddOnSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -7731,8 +7731,8 @@ export class WebApps {
         resourceGroupName,
         name,
         premierAddOnName,
-        premierAddOn,
         slot,
+        premierAddOn,
         options: operationOptions
       },
       updatePremierAddOnSlotOperationSpec
@@ -7767,22 +7767,22 @@ export class WebApps {
    * can access the site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name The name of the web app.
-   * @param access The information for the private access
    * @param slot The name of the slot for the web app.
+   * @param access The information for the private access
    * @param options The options parameters.
    */
   putPrivateAccessVnetSlot(
     resourceGroupName: string,
     name: string,
-    access: PrivateAccess,
     slot: string,
+    access: PrivateAccess,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsPutPrivateAccessVnetSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, access, slot, options: operationOptions },
+      { resourceGroupName, name, slot, access, options: operationOptions },
       putPrivateAccessVnetSlotOperationSpec
     ) as Promise<WebAppsPutPrivateAccessVnetSlotResponse>;
   }
@@ -8139,16 +8139,16 @@ export class WebApps {
    * Description for Get the named public certificate for an app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param publicCertificateName Public certificate name.
    * @param slot Name of the deployment slot. If a slot is not specified, the API the named binding for
    *             the production slot.
+   * @param publicCertificateName Public certificate name.
    * @param options The options parameters.
    */
   getPublicCertificateSlot(
     resourceGroupName: string,
     name: string,
-    publicCertificateName: string,
     slot: string,
+    publicCertificateName: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsGetPublicCertificateSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -8158,8 +8158,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        publicCertificateName,
         slot,
+        publicCertificateName,
         options: operationOptions
       },
       getPublicCertificateSlotOperationSpec
@@ -8171,18 +8171,18 @@ export class WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
    * @param publicCertificateName Public certificate name.
-   * @param publicCertificate Public certificate details. This is the JSON representation of a
-   *                          PublicCertificate object.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will create a binding
    *             for the production slot.
+   * @param publicCertificate Public certificate details. This is the JSON representation of a
+   *                          PublicCertificate object.
    * @param options The options parameters.
    */
   createOrUpdatePublicCertificateSlot(
     resourceGroupName: string,
     name: string,
     publicCertificateName: string,
-    publicCertificate: PublicCertificate,
     slot: string,
+    publicCertificate: PublicCertificate,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateOrUpdatePublicCertificateSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -8193,8 +8193,8 @@ export class WebApps {
         resourceGroupName,
         name,
         publicCertificateName,
-        publicCertificate,
         slot,
+        publicCertificate,
         options: operationOptions
       },
       createOrUpdatePublicCertificateSlotOperationSpec
@@ -8205,16 +8205,16 @@ export class WebApps {
    * Description for Deletes a hostname binding for an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param publicCertificateName Public certificate name.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will delete the binding
    *             for the production slot.
+   * @param publicCertificateName Public certificate name.
    * @param options The options parameters.
    */
   deletePublicCertificateSlot(
     resourceGroupName: string,
     name: string,
-    publicCertificateName: string,
     slot: string,
+    publicCertificateName: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -8224,8 +8224,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        publicCertificateName,
         slot,
+        publicCertificateName,
         options: operationOptions
       },
       deletePublicCertificateSlotOperationSpec
@@ -8236,17 +8236,17 @@ export class WebApps {
    * Description for Gets the publishing profile for an app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param publishingProfileOptions Specifies publishingProfileOptions for publishing profile. For
-   *                                 example, use {"format": "FileZilla3"} to get a FileZilla publishing profile.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will get the publishing
    *             profile for the production slot.
+   * @param publishingProfileOptions Specifies publishingProfileOptions for publishing profile. For
+   *                                 example, use {"format": "FileZilla3"} to get a FileZilla publishing profile.
    * @param options The options parameters.
    */
   listPublishingProfileXmlWithSecretsSlot(
     resourceGroupName: string,
     name: string,
-    publishingProfileOptions: CsmPublishingProfileOptions,
     slot: string,
+    publishingProfileOptions: CsmPublishingProfileOptions,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -8256,8 +8256,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        publishingProfileOptions,
         slot,
+        publishingProfileOptions,
         options: operationOptions
       },
       listPublishingProfileXmlWithSecretsSlotOperationSpec
@@ -8315,16 +8315,16 @@ export class WebApps {
    * Description for Restores an app from a backup blob in Azure Storage.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param request Information on restore request .
    * @param slot Name of the deployment slot. If a slot is not specified, the API will restore a backup
    *             of the production slot.
+   * @param request Information on restore request .
    * @param options The options parameters.
    */
   async restoreFromBackupBlobSlot(
     resourceGroupName: string,
     name: string,
-    request: RestoreRequest,
     slot: string,
+    request: RestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -8334,8 +8334,8 @@ export class WebApps {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
-      request,
       slot,
+      request,
       options: operationOptions
     };
     const sendOperation = (
@@ -8362,15 +8362,15 @@ export class WebApps {
    * Description for Restores a deleted web app to this web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
-   * @param restoreRequest Deleted web app restore information.
    * @param slot Name of web app slot. If not specified then will default to production slot.
+   * @param restoreRequest Deleted web app restore information.
    * @param options The options parameters.
    */
   async restoreFromDeletedAppSlot(
     resourceGroupName: string,
     name: string,
-    restoreRequest: DeletedAppRestoreRequest,
     slot: string,
+    restoreRequest: DeletedAppRestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -8380,8 +8380,8 @@ export class WebApps {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
-      restoreRequest,
       slot,
+      restoreRequest,
       options: operationOptions
     };
     const sendOperation = (
@@ -8408,16 +8408,16 @@ export class WebApps {
    * Description for Restores a web app from a snapshot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
+   * @param slot Name of web app slot. If not specified then will default to production slot.
    * @param restoreRequest Snapshot restore settings. Snapshot information can be obtained by calling
    *                       GetDeletedSites or GetSiteSnapshots API.
-   * @param slot Name of web app slot. If not specified then will default to production slot.
    * @param options The options parameters.
    */
   async restoreSnapshotSlot(
     resourceGroupName: string,
     name: string,
-    restoreRequest: SnapshotRestoreRequest,
     slot: string,
+    restoreRequest: SnapshotRestoreRequest,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -8427,8 +8427,8 @@ export class WebApps {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
-      restoreRequest,
       slot,
+      restoreRequest,
       options: operationOptions
     };
     const sendOperation = (
@@ -8587,17 +8587,17 @@ export class WebApps {
    * Description for Copies a deployment slot to another deployment slot of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param copySlotEntity JSON object that contains the target slot name and site config properties to
-   *                       override the source slot config. See example.
    * @param slot Name of the source slot. If a slot is not specified, the production slot is used as the
    *             source slot.
+   * @param copySlotEntity JSON object that contains the target slot name and site config properties to
+   *                       override the source slot config. See example.
    * @param options The options parameters.
    */
   async copySlot(
     resourceGroupName: string,
     name: string,
-    copySlotEntity: CsmCopySlotEntity,
     slot: string,
+    copySlotEntity: CsmCopySlotEntity,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -8607,8 +8607,8 @@ export class WebApps {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
-      copySlotEntity,
       slot,
+      copySlotEntity,
       options: operationOptions
     };
     const sendOperation = (
@@ -8635,16 +8635,16 @@ export class WebApps {
    * Description for Get the difference in configuration settings between two web app slots.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param slotSwapEntity JSON object that contains the target slot name. See example.
    * @param slot Name of the source slot. If a slot is not specified, the production slot is used as the
    *             source slot.
+   * @param slotSwapEntity JSON object that contains the target slot name. See example.
    * @param options The options parameters.
    */
   listSlotDifferencesSlot(
     resourceGroupName: string,
     name: string,
-    slotSwapEntity: CsmSlotEntity,
     slot: string,
+    slotSwapEntity: CsmSlotEntity,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsListSlotDifferencesSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -8654,8 +8654,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        slotSwapEntity,
         slot,
+        slotSwapEntity,
         options: operationOptions
       },
       listSlotDifferencesSlotOperationSpec
@@ -8666,16 +8666,16 @@ export class WebApps {
    * Description for Swaps two deployment slots of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param slotSwapEntity JSON object that contains the target slot name. See example.
    * @param slot Name of the source slot. If a slot is not specified, the production slot is used as the
    *             source slot.
+   * @param slotSwapEntity JSON object that contains the target slot name. See example.
    * @param options The options parameters.
    */
   async swapSlot(
     resourceGroupName: string,
     name: string,
-    slotSwapEntity: CsmSlotEntity,
     slot: string,
+    slotSwapEntity: CsmSlotEntity,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -8685,8 +8685,8 @@ export class WebApps {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
-      slotSwapEntity,
       slot,
+      slotSwapEntity,
       options: operationOptions
     };
     const sendOperation = (
@@ -8780,16 +8780,16 @@ export class WebApps {
    * Description for Updates the source control configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param siteSourceControl JSON representation of a SiteSourceControl object. See example.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will update the source
    *             control configuration for the production slot.
+   * @param siteSourceControl JSON representation of a SiteSourceControl object. See example.
    * @param options The options parameters.
    */
   async createOrUpdateSourceControlSlot(
     resourceGroupName: string,
     name: string,
-    siteSourceControl: SiteSourceControl,
     slot: string,
+    siteSourceControl: SiteSourceControl,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<WebAppsCreateOrUpdateSourceControlSlotResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -8799,8 +8799,8 @@ export class WebApps {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       name,
-      siteSourceControl,
       slot,
+      siteSourceControl,
       options: operationOptions
     };
     const sendOperation = (
@@ -8850,16 +8850,16 @@ export class WebApps {
    * Description for Updates the source control configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param siteSourceControl JSON representation of a SiteSourceControl object. See example.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will update the source
    *             control configuration for the production slot.
+   * @param siteSourceControl JSON representation of a SiteSourceControl object. See example.
    * @param options The options parameters.
    */
   updateSourceControlSlot(
     resourceGroupName: string,
     name: string,
-    siteSourceControl: SiteSourceControl,
     slot: string,
+    siteSourceControl: SiteSourceControl,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateSourceControlSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -8869,8 +8869,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        siteSourceControl,
         slot,
+        siteSourceControl,
         options: operationOptions
       },
       updateSourceControlSlotOperationSpec
@@ -9135,17 +9135,17 @@ export class WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
    * @param webJobName Name of Web Job.
+   * @param id History ID.
    * @param slot Name of the deployment slot. If a slot is not specified, the API uses the production
    *             slot.
-   * @param id History ID.
    * @param options The options parameters.
    */
   getTriggeredWebJobHistorySlot(
     resourceGroupName: string,
     name: string,
     webJobName: string,
-    slot: string,
     id: string,
+    slot: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsGetTriggeredWebJobHistorySlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -9156,8 +9156,8 @@ export class WebApps {
         resourceGroupName,
         name,
         webJobName,
-        slot,
         id,
+        slot,
         options: operationOptions
       },
       getTriggeredWebJobHistorySlotOperationSpec
@@ -9265,18 +9265,18 @@ export class WebApps {
    * properties (PATCH).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
+   * @param vnetName Name of an existing Virtual Network.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will add or update
    *             connections for the production slot.
    * @param connectionEnvelope Properties of the Virtual Network connection. See example.
-   * @param vnetName Name of an existing Virtual Network.
    * @param options The options parameters.
    */
   createOrUpdateVnetConnectionSlot(
     resourceGroupName: string,
     name: string,
+    vnetName: string,
     slot: string,
     connectionEnvelope: VnetInfo,
-    vnetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateOrUpdateVnetConnectionSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -9286,9 +9286,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
+        vnetName,
         slot,
         connectionEnvelope,
-        vnetName,
         options: operationOptions
       },
       createOrUpdateVnetConnectionSlotOperationSpec
@@ -9299,23 +9299,23 @@ export class WebApps {
    * Description for Deletes a connection from an app (or deployment slot to a named virtual network.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
+   * @param vnetName Name of the virtual network.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will delete the
    *             connection for the production slot.
-   * @param vnetName Name of the virtual network.
    * @param options The options parameters.
    */
   deleteVnetConnectionSlot(
     resourceGroupName: string,
     name: string,
-    slot: string,
     vnetName: string,
+    slot: string,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, slot, vnetName, options: operationOptions },
+      { resourceGroupName, name, vnetName, slot, options: operationOptions },
       deleteVnetConnectionSlotOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }
@@ -9325,18 +9325,18 @@ export class WebApps {
    * properties (PATCH).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
+   * @param vnetName Name of an existing Virtual Network.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will add or update
    *             connections for the production slot.
    * @param connectionEnvelope Properties of the Virtual Network connection. See example.
-   * @param vnetName Name of an existing Virtual Network.
    * @param options The options parameters.
    */
   updateVnetConnectionSlot(
     resourceGroupName: string,
     name: string,
+    vnetName: string,
     slot: string,
     connectionEnvelope: VnetInfo,
-    vnetName: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateVnetConnectionSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -9346,9 +9346,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
+        vnetName,
         slot,
         connectionEnvelope,
-        vnetName,
         options: operationOptions
       },
       updateVnetConnectionSlotOperationSpec
@@ -9359,18 +9359,18 @@ export class WebApps {
    * Description for Gets an app's Virtual Network gateway.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param slot Name of the deployment slot. If a slot is not specified, the API will get a gateway for
-   *             the production slot's Virtual Network.
    * @param vnetName Name of the Virtual Network.
    * @param gatewayName Name of the gateway. Currently, the only supported string is "primary".
+   * @param slot Name of the deployment slot. If a slot is not specified, the API will get a gateway for
+   *             the production slot's Virtual Network.
    * @param options The options parameters.
    */
   getVnetConnectionGatewaySlot(
     resourceGroupName: string,
     name: string,
-    slot: string,
     vnetName: string,
     gatewayName: string,
+    slot: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsGetVnetConnectionGatewaySlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -9380,9 +9380,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        slot,
         vnetName,
         gatewayName,
+        slot,
         options: operationOptions
       },
       getVnetConnectionGatewaySlotOperationSpec
@@ -9395,9 +9395,9 @@ export class WebApps {
    * @param name Name of the app.
    * @param vnetName Name of the Virtual Network.
    * @param gatewayName Name of the gateway. Currently, the only supported string is "primary".
-   * @param connectionEnvelope The properties to update this gateway with.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will add or update a
    *             gateway for the production slot's Virtual Network.
+   * @param connectionEnvelope The properties to update this gateway with.
    * @param options The options parameters.
    */
   createOrUpdateVnetConnectionGatewaySlot(
@@ -9405,8 +9405,8 @@ export class WebApps {
     name: string,
     vnetName: string,
     gatewayName: string,
-    connectionEnvelope: VnetGateway,
     slot: string,
+    connectionEnvelope: VnetGateway,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateOrUpdateVnetConnectionGatewaySlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -9418,8 +9418,8 @@ export class WebApps {
         name,
         vnetName,
         gatewayName,
-        connectionEnvelope,
         slot,
+        connectionEnvelope,
         options: operationOptions
       },
       createOrUpdateVnetConnectionGatewaySlotOperationSpec
@@ -9432,9 +9432,9 @@ export class WebApps {
    * @param name Name of the app.
    * @param vnetName Name of the Virtual Network.
    * @param gatewayName Name of the gateway. Currently, the only supported string is "primary".
-   * @param connectionEnvelope The properties to update this gateway with.
    * @param slot Name of the deployment slot. If a slot is not specified, the API will add or update a
    *             gateway for the production slot's Virtual Network.
+   * @param connectionEnvelope The properties to update this gateway with.
    * @param options The options parameters.
    */
   updateVnetConnectionGatewaySlot(
@@ -9442,8 +9442,8 @@ export class WebApps {
     name: string,
     vnetName: string,
     gatewayName: string,
-    connectionEnvelope: VnetGateway,
     slot: string,
+    connectionEnvelope: VnetGateway,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateVnetConnectionGatewaySlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -9455,8 +9455,8 @@ export class WebApps {
         name,
         vnetName,
         gatewayName,
-        connectionEnvelope,
         slot,
+        connectionEnvelope,
         options: operationOptions
       },
       updateVnetConnectionGatewaySlotOperationSpec
@@ -9490,23 +9490,23 @@ export class WebApps {
    * Description for Get webjob information for an app, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
+   * @param webJobName Name of the web job.
    * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
    *             the production slot.
-   * @param webJobName Name of the web job.
    * @param options The options parameters.
    */
   getWebJobSlot(
     resourceGroupName: string,
     name: string,
-    slot: string,
     webJobName: string,
+    slot: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsGetWebJobSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, name, slot, webJobName, options: operationOptions },
+      { resourceGroupName, name, webJobName, slot, options: operationOptions },
       getWebJobSlotOperationSpec
     ) as Promise<WebAppsGetWebJobSlotResponse>;
   }
@@ -10060,15 +10060,15 @@ export class WebApps {
    * properties (PATCH).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param connectionEnvelope Properties of the Virtual Network connection. See example.
    * @param vnetName Name of an existing Virtual Network.
+   * @param connectionEnvelope Properties of the Virtual Network connection. See example.
    * @param options The options parameters.
    */
   createOrUpdateVnetConnection(
     resourceGroupName: string,
     name: string,
-    connectionEnvelope: VnetInfo,
     vnetName: string,
+    connectionEnvelope: VnetInfo,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsCreateOrUpdateVnetConnectionResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -10078,8 +10078,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        connectionEnvelope,
         vnetName,
+        connectionEnvelope,
         options: operationOptions
       },
       createOrUpdateVnetConnectionOperationSpec
@@ -10113,15 +10113,15 @@ export class WebApps {
    * properties (PATCH).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param connectionEnvelope Properties of the Virtual Network connection. See example.
    * @param vnetName Name of an existing Virtual Network.
+   * @param connectionEnvelope Properties of the Virtual Network connection. See example.
    * @param options The options parameters.
    */
   updateVnetConnection(
     resourceGroupName: string,
     name: string,
-    connectionEnvelope: VnetInfo,
     vnetName: string,
+    connectionEnvelope: VnetInfo,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsUpdateVnetConnectionResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -10131,8 +10131,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        connectionEnvelope,
         vnetName,
+        connectionEnvelope,
         options: operationOptions
       },
       updateVnetConnectionOperationSpec
@@ -10551,9 +10551,9 @@ export class WebApps {
    * ListInstanceProcessModulesNext
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
+   * @param processId PID.
    * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
    *                   the JSON response from "GET api/sites/{siteName}/instances".
-   * @param processId PID.
    * @param nextLink The nextLink from the previous successful call to the ListInstanceProcessModules
    *                 method.
    * @param options The options parameters.
@@ -10561,8 +10561,8 @@ export class WebApps {
   listInstanceProcessModulesNext(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     processId: string,
+    instanceId: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsListInstanceProcessModulesNextResponse> {
@@ -10573,8 +10573,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         processId,
+        instanceId,
         nextLink,
         options: operationOptions
       },
@@ -10586,9 +10586,9 @@ export class WebApps {
    * ListInstanceProcessThreadsNext
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
+   * @param processId PID.
    * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
    *                   the JSON response from "GET api/sites/{siteName}/instances".
-   * @param processId PID.
    * @param nextLink The nextLink from the previous successful call to the ListInstanceProcessThreads
    *                 method.
    * @param options The options parameters.
@@ -10596,8 +10596,8 @@ export class WebApps {
   listInstanceProcessThreadsNext(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     processId: string,
+    instanceId: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsListInstanceProcessThreadsNextResponse> {
@@ -10608,8 +10608,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         processId,
+        instanceId,
         nextLink,
         options: operationOptions
       },
@@ -11043,10 +11043,10 @@ export class WebApps {
    * ListInstanceProcessesSlotNext
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
-   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
    *             the production slot.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param nextLink The nextLink from the previous successful call to the ListInstanceProcessesSlot
    *                 method.
    * @param options The options parameters.
@@ -11054,8 +11054,8 @@ export class WebApps {
   listInstanceProcessesSlotNext(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     slot: string,
+    instanceId: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsListInstanceProcessesSlotNextResponse> {
@@ -11066,8 +11066,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         slot,
+        instanceId,
         nextLink,
         options: operationOptions
       },
@@ -11079,11 +11079,11 @@ export class WebApps {
    * ListInstanceProcessModulesSlotNext
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
-   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param processId PID.
    * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
    *             the production slot.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param nextLink The nextLink from the previous successful call to the ListInstanceProcessModulesSlot
    *                 method.
    * @param options The options parameters.
@@ -11091,9 +11091,9 @@ export class WebApps {
   listInstanceProcessModulesSlotNext(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     processId: string,
     slot: string,
+    instanceId: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsListInstanceProcessModulesSlotNextResponse> {
@@ -11104,9 +11104,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         processId,
         slot,
+        instanceId,
         nextLink,
         options: operationOptions
       },
@@ -11118,11 +11118,11 @@ export class WebApps {
    * ListInstanceProcessThreadsSlotNext
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Site name.
-   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
-   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param processId PID.
    * @param slot Name of the deployment slot. If a slot is not specified, the API returns deployments for
    *             the production slot.
+   * @param instanceId ID of a specific scaled-out instance. This is the value of the name property in
+   *                   the JSON response from "GET api/sites/{siteName}/instances".
    * @param nextLink The nextLink from the previous successful call to the ListInstanceProcessThreadsSlot
    *                 method.
    * @param options The options parameters.
@@ -11130,9 +11130,9 @@ export class WebApps {
   listInstanceProcessThreadsSlotNext(
     resourceGroupName: string,
     name: string,
-    instanceId: string,
     processId: string,
     slot: string,
+    instanceId: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsListInstanceProcessThreadsSlotNextResponse> {
@@ -11143,9 +11143,9 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        instanceId,
         processId,
         slot,
+        instanceId,
         nextLink,
         options: operationOptions
       },
@@ -11351,9 +11351,9 @@ export class WebApps {
    * ListSlotDifferencesSlotNext
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of the app.
-   * @param slotSwapEntity JSON object that contains the target slot name. See example.
    * @param slot Name of the source slot. If a slot is not specified, the production slot is used as the
    *             source slot.
+   * @param slotSwapEntity JSON object that contains the target slot name. See example.
    * @param nextLink The nextLink from the previous successful call to the ListSlotDifferencesSlot
    *                 method.
    * @param options The options parameters.
@@ -11361,8 +11361,8 @@ export class WebApps {
   listSlotDifferencesSlotNext(
     resourceGroupName: string,
     name: string,
-    slotSwapEntity: CsmSlotEntity,
     slot: string,
+    slotSwapEntity: CsmSlotEntity,
     nextLink: string,
     options?: coreHttp.OperationOptions
   ): Promise<WebAppsListSlotDifferencesSlotNextResponse> {
@@ -11373,8 +11373,8 @@ export class WebApps {
       {
         resourceGroupName,
         name,
-        slotSwapEntity,
         slot,
+        slotSwapEntity,
         nextLink,
         options: operationOptions
       },
@@ -11815,6 +11815,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.name9
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -11866,6 +11867,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.name9
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const analyzeCustomHostnameOperationSpec: coreHttp.OperationSpec = {
@@ -11908,6 +11910,7 @@ const applySlotConfigToProductionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const backupOperationSpec: coreHttp.OperationSpec = {
@@ -11931,6 +11934,7 @@ const backupOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listBackupsOperationSpec: coreHttp.OperationSpec = {
@@ -12019,6 +12023,7 @@ const listBackupStatusSecretsOperationSpec: coreHttp.OperationSpec = {
     Parameters.backupId1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const restoreOperationSpec: coreHttp.OperationSpec = {
@@ -12036,6 +12041,7 @@ const restoreOperationSpec: coreHttp.OperationSpec = {
     Parameters.backupId
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listConfigurationsOperationSpec: coreHttp.OperationSpec = {
@@ -12080,6 +12086,7 @@ const updateApplicationSettingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listApplicationSettingsOperationSpec: coreHttp.OperationSpec = {
@@ -12124,6 +12131,7 @@ const updateAuthSettingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.name11
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getAuthSettingsOperationSpec: coreHttp.OperationSpec = {
@@ -12168,6 +12176,7 @@ const updateAzureStorageAccountsOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listAzureStorageAccountsOperationSpec: coreHttp.OperationSpec = {
@@ -12212,6 +12221,7 @@ const updateBackupConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteBackupConfigurationOperationSpec: coreHttp.OperationSpec = {
@@ -12318,6 +12328,7 @@ const updateConnectionStringsOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listConnectionStringsOperationSpec: coreHttp.OperationSpec = {
@@ -12383,6 +12394,7 @@ const updateDiagnosticLogsConfigOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateMetadataOperationSpec: coreHttp.OperationSpec = {
@@ -12406,6 +12418,7 @@ const updateMetadataOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listMetadataOperationSpec: coreHttp.OperationSpec = {
@@ -12480,6 +12493,7 @@ const updateSitePushSettingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.name11
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listSitePushSettingsOperationSpec: coreHttp.OperationSpec = {
@@ -12545,6 +12559,7 @@ const updateSlotConfigurationNamesOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getConfigurationOperationSpec: coreHttp.OperationSpec = {
@@ -12589,6 +12604,7 @@ const createOrUpdateConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateConfigurationOperationSpec: coreHttp.OperationSpec = {
@@ -12612,6 +12628,7 @@ const updateConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listConfigurationSnapshotInfoOperationSpec: coreHttp.OperationSpec = {
@@ -12877,6 +12894,7 @@ const createDeploymentOperationSpec: coreHttp.OperationSpec = {
     Parameters.id1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteDeploymentOperationSpec: coreHttp.OperationSpec = {
@@ -12943,6 +12961,7 @@ const discoverBackupOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listDomainOwnershipIdentifiersOperationSpec: coreHttp.OperationSpec = {
@@ -13010,6 +13029,7 @@ const createOrUpdateDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSp
     Parameters.domainOwnershipIdentifierName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
@@ -13055,6 +13075,7 @@ const updateDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.domainOwnershipIdentifierName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getMSDeployStatusOperationSpec: coreHttp.OperationSpec = {
@@ -13105,6 +13126,7 @@ const createMSDeployOperationOperationSpec: coreHttp.OperationSpec = {
     Parameters.name11
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getMSDeployLogOperationSpec: coreHttp.OperationSpec = {
@@ -13226,6 +13248,7 @@ const createFunctionOperationSpec: coreHttp.OperationSpec = {
     Parameters.functionName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteFunctionOperationSpec: coreHttp.OperationSpec = {
@@ -13275,6 +13298,7 @@ const createOrUpdateFunctionSecretOperationSpec: coreHttp.OperationSpec = {
     Parameters.keyName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteFunctionSecretOperationSpec: coreHttp.OperationSpec = {
@@ -13428,6 +13452,7 @@ const createOrUpdateHostSecretOperationSpec: coreHttp.OperationSpec = {
     Parameters.keyType
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteHostSecretOperationSpec: coreHttp.OperationSpec = {
@@ -13517,6 +13542,7 @@ const createOrUpdateHostNameBindingOperationSpec: coreHttp.OperationSpec = {
     Parameters.hostName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteHostNameBindingOperationSpec: coreHttp.OperationSpec = {
@@ -13586,6 +13612,7 @@ const createOrUpdateHybridConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.relayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteHybridConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -13633,6 +13660,7 @@ const updateHybridConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.relayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listHybridConnectionsOperationSpec: coreHttp.OperationSpec = {
@@ -13721,6 +13749,7 @@ const createOrUpdateRelayServiceConnectionOperationSpec: coreHttp.OperationSpec 
     Parameters.entityName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -13766,6 +13795,7 @@ const updateRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.entityName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listInstanceIdentifiersOperationSpec: coreHttp.OperationSpec = {
@@ -13861,6 +13891,7 @@ const createInstanceMSDeployOperationOperationSpec: coreHttp.OperationSpec = {
     Parameters.instanceId1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getInstanceMSDeployLogOperationSpec: coreHttp.OperationSpec = {
@@ -14143,6 +14174,7 @@ const migrateStorageOperationSpec: coreHttp.OperationSpec = {
     Parameters.name11
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const migrateMySqlOperationSpec: coreHttp.OperationSpec = {
@@ -14175,6 +14207,7 @@ const migrateMySqlOperationSpec: coreHttp.OperationSpec = {
     Parameters.name11
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getMigrateMySqlStatusOperationSpec: coreHttp.OperationSpec = {
@@ -14240,6 +14273,7 @@ const createOrUpdateSwiftVirtualNetworkConnectionOperationSpec: coreHttp.Operati
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteSwiftVirtualNetworkOperationSpec: coreHttp.OperationSpec = {
@@ -14283,6 +14317,7 @@ const updateSwiftVirtualNetworkConnectionOperationSpec: coreHttp.OperationSpec =
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listNetworkFeaturesOperationSpec: coreHttp.OperationSpec = {
@@ -14657,6 +14692,7 @@ const addPremierAddOnOperationSpec: coreHttp.OperationSpec = {
     Parameters.premierAddOnName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deletePremierAddOnOperationSpec: coreHttp.OperationSpec = {
@@ -14701,6 +14737,7 @@ const updatePremierAddOnOperationSpec: coreHttp.OperationSpec = {
     Parameters.premierAddOnName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getPrivateAccessOperationSpec: coreHttp.OperationSpec = {
@@ -14745,6 +14782,7 @@ const putPrivateAccessVnetOperationSpec: coreHttp.OperationSpec = {
     Parameters.name13
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listProcessesOperationSpec: coreHttp.OperationSpec = {
@@ -14969,6 +15007,7 @@ const createOrUpdatePublicCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.publicCertificateName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deletePublicCertificateOperationSpec: coreHttp.OperationSpec = {
@@ -15011,6 +15050,7 @@ const listPublishingProfileXmlWithSecretsOperationSpec: coreHttp.OperationSpec =
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const resetProductionSlotConfigOperationSpec: coreHttp.OperationSpec = {
@@ -15069,6 +15109,7 @@ const restoreFromBackupBlobOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const restoreFromDeletedAppOperationSpec: coreHttp.OperationSpec = {
@@ -15085,6 +15126,7 @@ const restoreFromDeletedAppOperationSpec: coreHttp.OperationSpec = {
     Parameters.name11
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const restoreSnapshotOperationSpec: coreHttp.OperationSpec = {
@@ -15101,6 +15143,7 @@ const restoreSnapshotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name11
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listSiteExtensionsOperationSpec: coreHttp.OperationSpec = {
@@ -15211,6 +15254,7 @@ const copyProductionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listSlotsOperationSpec: coreHttp.OperationSpec = {
@@ -15285,6 +15329,7 @@ const createOrUpdateSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot3
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15338,6 +15383,7 @@ const updateSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot3
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const analyzeCustomHostnameSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15382,6 +15428,7 @@ const applySlotConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot6
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const backupSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15406,6 +15453,7 @@ const backupSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot7
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listBackupsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15498,6 +15546,7 @@ const listBackupStatusSecretsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot5
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const restoreSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15516,6 +15565,7 @@ const restoreSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot11
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listConfigurationsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15562,6 +15612,7 @@ const updateApplicationSettingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot13
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listApplicationSettingsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15608,6 +15659,7 @@ const updateAuthSettingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot5
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getAuthSettingsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15654,6 +15706,7 @@ const updateAzureStorageAccountsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot16
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listAzureStorageAccountsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15700,6 +15753,7 @@ const updateBackupConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot17
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteBackupConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15766,6 +15820,7 @@ const updateConnectionStringsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot20
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listConnectionStringsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15834,6 +15889,7 @@ const updateDiagnosticLogsConfigSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot23
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateMetadataSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15858,6 +15914,7 @@ const updateMetadataSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot24
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listMetadataSlotOperationSpec: coreHttp.OperationSpec = {
@@ -15935,6 +15992,7 @@ const updateSitePushSettingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot5
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listSitePushSettingsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16003,6 +16061,7 @@ const createOrUpdateConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot27
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16027,6 +16086,7 @@ const updateConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot27
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listConfigurationSnapshotInfoSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16305,6 +16365,7 @@ const createDeploymentSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot31
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteDeploymentSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16374,6 +16435,7 @@ const discoverBackupSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot32
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listDomainOwnershipIdentifiersSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16444,6 +16506,7 @@ const createOrUpdateDomainOwnershipIdentifierSlotOperationSpec: coreHttp.Operati
     Parameters.slot33
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16491,6 +16554,7 @@ const updateDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec =
     Parameters.slot33
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getMSDeployStatusSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16543,6 +16607,7 @@ const createMSDeployOperationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot5
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getMSDeployLogSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16669,6 +16734,7 @@ const createInstanceFunctionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot34
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteInstanceFunctionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16720,6 +16786,7 @@ const createOrUpdateFunctionSecretSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot34
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteFunctionSecretSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16880,6 +16947,7 @@ const createOrUpdateHostSecretSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot34
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteHostSecretSlotOperationSpec: coreHttp.OperationSpec = {
@@ -16973,6 +17041,7 @@ const createOrUpdateHostNameBindingSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot37
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteHostNameBindingSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17045,6 +17114,7 @@ const createOrUpdateHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = 
     Parameters.slot38
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17094,6 +17164,7 @@ const updateHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot38
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listHybridConnectionsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17186,6 +17257,7 @@ const createOrUpdateRelayServiceConnectionSlotOperationSpec: coreHttp.OperationS
     Parameters.slot41
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17233,6 +17305,7 @@ const updateRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot41
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listInstanceIdentifiersSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17332,6 +17405,7 @@ const createInstanceMSDeployOperationSlotOperationSpec: coreHttp.OperationSpec =
     Parameters.slot5
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getInstanceMSDeployLogSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17661,6 +17735,7 @@ const createOrUpdateSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.Ope
     Parameters.slot46
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteSwiftVirtualNetworkSlotOperationSpec: coreHttp.OperationSpec = {
@@ -17706,6 +17781,7 @@ const updateSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.OperationSp
     Parameters.slot46
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listNetworkFeaturesSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18094,6 +18170,7 @@ const addPremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot54
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deletePremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18140,6 +18217,7 @@ const updatePremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot54
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getPrivateAccessSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18186,6 +18264,7 @@ const putPrivateAccessVnetSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot38
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getPrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -18238,6 +18317,7 @@ const approveOrRejectPrivateEndpointConnectionOperationSpec: coreHttp.OperationS
     Parameters.privateEndpointConnectionName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deletePrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -18521,6 +18601,7 @@ const createOrUpdatePublicCertificateSlotOperationSpec: coreHttp.OperationSpec =
     Parameters.slot37
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deletePublicCertificateSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18565,6 +18646,7 @@ const listPublishingProfileXmlWithSecretsSlotOperationSpec: coreHttp.OperationSp
     Parameters.slot56
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const resetSlotConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18626,6 +18708,7 @@ const restoreFromBackupBlobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot11
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const restoreFromDeletedAppSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18643,6 +18726,7 @@ const restoreFromDeletedAppSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot5
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const restoreSnapshotSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18660,6 +18744,7 @@ const restoreSnapshotSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot5
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listSiteExtensionsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18775,6 +18860,7 @@ const copySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot6
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listSlotDifferencesSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18799,6 +18885,7 @@ const listSlotDifferencesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot6
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const swapSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18816,6 +18903,7 @@ const swapSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot6
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listSnapshotsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18918,6 +19006,7 @@ const createOrUpdateSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot62
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
@@ -18970,6 +19059,7 @@ const updateSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot62
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const startSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19360,6 +19450,7 @@ const createOrUpdateVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.vnetName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19407,6 +19498,7 @@ const updateVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.vnetName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSpec = {
@@ -19458,6 +19550,7 @@ const createOrUpdateVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSp
     Parameters.slot70
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSpec = {
@@ -19484,6 +19577,7 @@ const updateVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.slot70
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listWebJobsSlotOperationSpec: coreHttp.OperationSpec = {
@@ -19552,6 +19646,7 @@ const listSlotDifferencesFromProductionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const swapSlotWithProductionOperationSpec: coreHttp.OperationSpec = {
@@ -19568,6 +19663,7 @@ const swapSlotWithProductionOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listSnapshotsOperationSpec: coreHttp.OperationSpec = {
@@ -19666,6 +19762,7 @@ const createOrUpdateSourceControlOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteSourceControlOperationSpec: coreHttp.OperationSpec = {
@@ -19716,6 +19813,7 @@ const updateSourceControlOperationSpec: coreHttp.OperationSpec = {
     Parameters.name8
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const startOperationSpec: coreHttp.OperationSpec = {
@@ -20090,6 +20188,7 @@ const createOrUpdateVnetConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.vnetName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteVnetConnectionOperationSpec: coreHttp.OperationSpec = {
@@ -20135,6 +20234,7 @@ const updateVnetConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.vnetName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec = {
@@ -20184,6 +20284,7 @@ const createOrUpdateVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec =
     Parameters.gatewayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec = {
@@ -20209,6 +20310,7 @@ const updateVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec = {
     Parameters.gatewayName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listWebJobsOperationSpec: coreHttp.OperationSpec = {
@@ -21183,6 +21285,7 @@ const listSlotDifferencesSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink67
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listSnapshotsSlotNextOperationSpec: coreHttp.OperationSpec = {
@@ -21340,6 +21443,7 @@ const listSlotDifferencesFromProductionNextOperationSpec: coreHttp.OperationSpec
     Parameters.nextLink74
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listSnapshotsNextOperationSpec: coreHttp.OperationSpec = {

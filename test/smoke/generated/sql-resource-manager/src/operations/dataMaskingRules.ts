@@ -36,16 +36,16 @@ export class DataMaskingRules {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
    * @param databaseName The name of the database.
-   * @param parameters The required parameters for creating or updating a data masking rule.
    * @param dataMaskingRuleName The name of the data masking rule.
+   * @param parameters The required parameters for creating or updating a data masking rule.
    * @param options The options parameters.
    */
   createOrUpdate(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    parameters: DataMaskingRule,
     dataMaskingRuleName: string,
+    parameters: DataMaskingRule,
     options?: coreHttp.OperationOptions
   ): Promise<DataMaskingRulesCreateOrUpdateResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -56,8 +56,8 @@ export class DataMaskingRules {
         resourceGroupName,
         serverName,
         databaseName,
-        parameters,
         dataMaskingRuleName,
+        parameters,
         options: operationOptions
       },
       createOrUpdateOperationSpec
@@ -120,6 +120,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.dataMaskingRuleName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByDatabaseOperationSpec: coreHttp.OperationSpec = {

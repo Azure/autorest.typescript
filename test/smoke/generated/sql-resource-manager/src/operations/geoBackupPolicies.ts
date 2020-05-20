@@ -145,6 +145,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.geoBackupPolicyName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {

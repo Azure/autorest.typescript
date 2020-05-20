@@ -126,14 +126,14 @@ export class AppServiceCertificateOrders {
   /**
    * Description for Create or update a certificate purchase order.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param certificateDistinguishedName Distinguished name to use for the certificate order.
    * @param certificateOrderName Name of the certificate order.
+   * @param certificateDistinguishedName Distinguished name to use for the certificate order.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
-    certificateDistinguishedName: AppServiceCertificateOrder,
     certificateOrderName: string,
+    certificateDistinguishedName: AppServiceCertificateOrder,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<AppServiceCertificateOrdersCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -142,8 +142,8 @@ export class AppServiceCertificateOrders {
 
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
-      certificateDistinguishedName,
       certificateOrderName,
+      certificateDistinguishedName,
       options: operationOptions
     };
     const sendOperation = (
@@ -668,6 +668,7 @@ const validatePurchaseInformationOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
@@ -738,6 +739,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.certificateOrderName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -784,6 +786,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.certificateOrderName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listCertificatesOperationSpec: coreHttp.OperationSpec = {
@@ -857,6 +860,7 @@ const createOrUpdateCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.name
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteCertificateOperationSpec: coreHttp.OperationSpec = {
@@ -905,6 +909,7 @@ const updateCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.name
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const reissueOperationSpec: coreHttp.OperationSpec = {
@@ -926,6 +931,7 @@ const reissueOperationSpec: coreHttp.OperationSpec = {
     Parameters.certificateOrderName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const renewOperationSpec: coreHttp.OperationSpec = {
@@ -947,6 +953,7 @@ const renewOperationSpec: coreHttp.OperationSpec = {
     Parameters.certificateOrderName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const resendEmailOperationSpec: coreHttp.OperationSpec = {
@@ -987,6 +994,7 @@ const resendRequestEmailsOperationSpec: coreHttp.OperationSpec = {
     Parameters.certificateOrderName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const retrieveSiteSealOperationSpec: coreHttp.OperationSpec = {
@@ -1010,6 +1018,7 @@ const retrieveSiteSealOperationSpec: coreHttp.OperationSpec = {
     Parameters.certificateOrderName1
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const verifyDomainOwnershipOperationSpec: coreHttp.OperationSpec = {

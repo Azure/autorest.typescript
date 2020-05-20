@@ -1449,21 +1449,21 @@ export class AppServiceEnvironments {
   /**
    * ListUsagesNext
    * @param resourceGroupName Name of the resource group to which the resource belongs.
-   * @param nextLink The nextLink from the previous successful call to the ListUsages method.
    * @param name Name of the App Service Environment.
+   * @param nextLink The nextLink from the previous successful call to the ListUsages method.
    * @param options The options parameters.
    */
   listUsagesNext(
     resourceGroupName: string,
-    nextLink: string,
     name: string,
+    nextLink: string,
     options?: AppServiceEnvironmentsListUsagesNextOptionalParams
   ): Promise<AppServiceEnvironmentsListUsagesNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, nextLink, name, options: operationOptions },
+      { resourceGroupName, name, nextLink, options: operationOptions },
       listUsagesNextOperationSpec
     ) as Promise<AppServiceEnvironmentsListUsagesNextResponse>;
   }
@@ -1721,6 +1721,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.name22
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -1764,6 +1765,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.name22
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listCapacitiesOperationSpec: coreHttp.OperationSpec = {
@@ -1835,6 +1837,7 @@ const changeVnetOperationSpec: coreHttp.OperationSpec = {
     Parameters.name22
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listDiagnosticsOperationSpec: coreHttp.OperationSpec = {
@@ -1980,6 +1983,7 @@ const createOrUpdateMultiRolePoolOperationSpec: coreHttp.OperationSpec = {
     Parameters.name22
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateMultiRolePoolOperationSpec: coreHttp.OperationSpec = {
@@ -2006,6 +2010,7 @@ const updateMultiRolePoolOperationSpec: coreHttp.OperationSpec = {
     Parameters.name22
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listMultiRolePoolInstanceMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
@@ -2347,6 +2352,7 @@ const createOrUpdateWorkerPoolOperationSpec: coreHttp.OperationSpec = {
     Parameters.workerPoolName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const updateWorkerPoolOperationSpec: coreHttp.OperationSpec = {
@@ -2374,6 +2380,7 @@ const updateWorkerPoolOperationSpec: coreHttp.OperationSpec = {
     Parameters.workerPoolName
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const listWorkerPoolInstanceMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
@@ -2552,6 +2559,7 @@ const changeVnetNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.nextLink88
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const getInboundNetworkDependenciesEndpointsNextOperationSpec: coreHttp.OperationSpec = {

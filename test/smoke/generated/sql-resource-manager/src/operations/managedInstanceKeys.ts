@@ -89,15 +89,15 @@ export class ManagedInstanceKeys {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
-   * @param parameters The requested managed instance key resource state.
    * @param keyName The name of the managed instance key to be operated on (updated or created).
+   * @param parameters The requested managed instance key resource state.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
-    parameters: ManagedInstanceKey,
     keyName: string,
+    parameters: ManagedInstanceKey,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ManagedInstanceKeysCreateOrUpdateResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -107,8 +107,8 @@ export class ManagedInstanceKeys {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
-      parameters,
       keyName,
+      parameters,
       options: operationOptions
     };
     const sendOperation = (
@@ -286,6 +286,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.keyName4
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {

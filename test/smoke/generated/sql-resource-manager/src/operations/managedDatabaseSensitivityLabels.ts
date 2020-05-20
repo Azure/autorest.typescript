@@ -43,8 +43,8 @@ export class ManagedDatabaseSensitivityLabels {
    * Gets the sensitivity label of a given column
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param schemaName The name of the schema.
    * @param tableName The name of the table.
    * @param columnName The name of the column.
@@ -53,8 +53,8 @@ export class ManagedDatabaseSensitivityLabels {
    */
   get(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     schemaName: string,
     tableName: string,
     columnName: string,
@@ -67,8 +67,8 @@ export class ManagedDatabaseSensitivityLabels {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        databaseName,
         managedInstanceName,
+        databaseName,
         schemaName,
         tableName,
         columnName,
@@ -83,8 +83,8 @@ export class ManagedDatabaseSensitivityLabels {
    * Creates or updates the sensitivity label of a given column
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param schemaName The name of the schema.
    * @param tableName The name of the table.
    * @param columnName The name of the column.
@@ -93,8 +93,8 @@ export class ManagedDatabaseSensitivityLabels {
    */
   createOrUpdate(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     schemaName: string,
     tableName: string,
     columnName: string,
@@ -107,8 +107,8 @@ export class ManagedDatabaseSensitivityLabels {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        databaseName,
         managedInstanceName,
+        databaseName,
         schemaName,
         tableName,
         columnName,
@@ -123,8 +123,8 @@ export class ManagedDatabaseSensitivityLabels {
    * Deletes the sensitivity label of a given column
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param schemaName The name of the schema.
    * @param tableName The name of the table.
    * @param columnName The name of the column.
@@ -132,8 +132,8 @@ export class ManagedDatabaseSensitivityLabels {
    */
   delete(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     schemaName: string,
     tableName: string,
     columnName: string,
@@ -145,8 +145,8 @@ export class ManagedDatabaseSensitivityLabels {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        databaseName,
         managedInstanceName,
+        databaseName,
         schemaName,
         tableName,
         columnName,
@@ -160,8 +160,8 @@ export class ManagedDatabaseSensitivityLabels {
    * Disables sensitivity recommendations on a given column
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param schemaName The name of the schema.
    * @param tableName The name of the table.
    * @param columnName The name of the column.
@@ -169,8 +169,8 @@ export class ManagedDatabaseSensitivityLabels {
    */
   disableRecommendation(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     schemaName: string,
     tableName: string,
     columnName: string,
@@ -182,8 +182,8 @@ export class ManagedDatabaseSensitivityLabels {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        databaseName,
         managedInstanceName,
+        databaseName,
         schemaName,
         tableName,
         columnName,
@@ -198,8 +198,8 @@ export class ManagedDatabaseSensitivityLabels {
    * columns)
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param schemaName The name of the schema.
    * @param tableName The name of the table.
    * @param columnName The name of the column.
@@ -207,8 +207,8 @@ export class ManagedDatabaseSensitivityLabels {
    */
   enableRecommendation(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     schemaName: string,
     tableName: string,
     columnName: string,
@@ -220,8 +220,8 @@ export class ManagedDatabaseSensitivityLabels {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        databaseName,
         managedInstanceName,
+        databaseName,
         schemaName,
         tableName,
         columnName,
@@ -235,14 +235,14 @@ export class ManagedDatabaseSensitivityLabels {
    * Gets the sensitivity labels of a given database
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param options The options parameters.
    */
   listCurrentByDatabase(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     options?: ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams
   ): Promise<ManagedDatabaseSensitivityLabelsListCurrentByDatabaseResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -251,8 +251,8 @@ export class ManagedDatabaseSensitivityLabels {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        databaseName,
         managedInstanceName,
+        databaseName,
         options: operationOptions
       },
       listCurrentByDatabaseOperationSpec
@@ -263,14 +263,14 @@ export class ManagedDatabaseSensitivityLabels {
    * Gets the sensitivity labels of a given database
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param options The options parameters.
    */
   listRecommendedByDatabase(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     options?: ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOptionalParams
   ): Promise<
     ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseResponse
@@ -281,8 +281,8 @@ export class ManagedDatabaseSensitivityLabels {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        databaseName,
         managedInstanceName,
+        databaseName,
         options: operationOptions
       },
       listRecommendedByDatabaseOperationSpec
@@ -295,15 +295,15 @@ export class ManagedDatabaseSensitivityLabels {
    * ListCurrentByDatabaseNext
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param nextLink The nextLink from the previous successful call to the ListCurrentByDatabase method.
    * @param options The options parameters.
    */
   listCurrentByDatabaseNext(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     nextLink: string,
     options?: ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextOptionalParams
   ): Promise<
@@ -315,8 +315,8 @@ export class ManagedDatabaseSensitivityLabels {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        databaseName,
         managedInstanceName,
+        databaseName,
         nextLink,
         options: operationOptions
       },
@@ -330,16 +330,16 @@ export class ManagedDatabaseSensitivityLabels {
    * ListRecommendedByDatabaseNext
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
-   * @param databaseName The name of the database.
    * @param managedInstanceName The name of the managed instance.
+   * @param databaseName The name of the database.
    * @param nextLink The nextLink from the previous successful call to the ListRecommendedByDatabase
    *                 method.
    * @param options The options parameters.
    */
   listRecommendedByDatabaseNext(
     resourceGroupName: string,
-    databaseName: string,
     managedInstanceName: string,
+    databaseName: string,
     nextLink: string,
     options?: ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextOptionalParams
   ): Promise<
@@ -351,8 +351,8 @@ export class ManagedDatabaseSensitivityLabels {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
-        databaseName,
         managedInstanceName,
+        databaseName,
         nextLink,
         options: operationOptions
       },
@@ -417,6 +417,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.sensitivityLabelSource2
   ],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
