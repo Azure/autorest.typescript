@@ -18,8 +18,7 @@
         "debug": "node --inspect-brk ./dist/src/main.js",
         "generate-swaggers": "ts-node ./test/utils/test-swagger-gen.ts",
         "clone:specs": "git clone https://github.com/Azure/azure-rest-api-specs.git ./.tmp/specs",
-        "smoke-test": "ts-node ./test/utils/smoke-test.ts",
-        "generate-mediatypes": "autorest --typescript --add-credentials=false --output-folder=./test/integration/generated/azureParameterGrouping --use=. --title=AzureParameterGroupingClient --input-file=node_modules/@microsoft.azure/autorest.testserver/swagger/azure-parameter-grouping.json --package-name=azure-parameter-grouping --package-version=1.0.0-preview1"
+        "smoke-test": "ts-node ./test/utils/smoke-test.ts"
     },
     "files": [
         "src",
