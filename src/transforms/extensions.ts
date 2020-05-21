@@ -7,7 +7,8 @@ import {
   Parameter,
   StringSchema,
   Protocol,
-  ParameterLocation
+  ParameterLocation,
+  ImplementationLocation
 } from "@azure-tools/codemodel";
 import { cloneOperation } from "../utils/cloneOperation";
 import { extractPaginationDetails } from "../utils/extractPaginationDetails";
@@ -157,10 +158,17 @@ function addPageableMethods(codeModel: CodeModel) {
           },
           protocol: {
             http: httpProtocol
-          }
+          },
+          implementation: ImplementationLocation.Method
         }
       );
-      nextLinkMethod.requests?.[0].addParameter(nextLinkParameter);
+
+      // Ensure all overloads support the nextLink parameter.
+      for (const request of nextLinkMethod.requests ?? []) {
+        const parameters = request.parameters ?? [];
+        parameters.push(nextLinkParameter);
+        request.parameters = parameters;
+      }
 
       operationGroup.addOperation(nextLinkMethod);
     }

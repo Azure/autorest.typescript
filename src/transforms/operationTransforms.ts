@@ -456,7 +456,7 @@ function getGroupedParameters(
   const operationParams = parameters.filter(p => {
     // Ensure parameters are specific to the operation.
     const matchesOperation =
-      p.operationsIn && p.operationsIn.indexOf(operationFullname) > -1;
+      p.operationsIn && p.operationsIn[operationFullname];
     // Consider the media type as a match if none was provided, or they actually match.
     // This is important when an operation supports multiple media types.
     const matchesMediaType =
