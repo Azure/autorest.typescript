@@ -1,4 +1,4 @@
-type BuildTag = "ci_1" | "ci_2" | "ci_3" | "network";
+type BuildTag = "ci_1" | "ci_2" | "ci_3";
 
 export interface SpecDefinition {
   path: string;
@@ -9,8 +9,7 @@ export interface SpecDefinition {
 }
 
 export enum AutorestParams {
-  ModelDedup = "--modelerfour.lenient-model-deduplication",
-  Debugger = "--typescript.debugger"
+  ModelDedup = "--modelerfour.lenient-model-deduplication"
 }
 
 const getArmReadmes = (): SpecDefinition[] => {
@@ -62,8 +61,7 @@ export const readmes: SpecDefinition[] = [
   },
   {
     path: "./.tmp/specs/specification/network/resource-manager/readme.md",
-    buildTag: "network",
-    params: [AutorestParams.Debugger]
+    buildTag: "ci_3"
   },
   {
     path: "./.tmp/specs/specification/keyvault/resource-manager/readme.md",
