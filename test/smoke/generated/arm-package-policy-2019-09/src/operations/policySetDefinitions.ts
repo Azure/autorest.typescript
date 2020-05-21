@@ -308,7 +308,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters3,
+  requestBody: Parameters.parameters2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -334,7 +334,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.policySetDefinitionName1
+    Parameters.policySetDefinitionName
   ],
   serializer
 };
@@ -354,7 +354,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.policySetDefinitionName2
+    Parameters.policySetDefinitionName
   ],
   serializer
 };
@@ -371,7 +371,7 @@ const getBuiltInOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.policySetDefinitionName2],
+  urlParameters: [Parameters.$host, Parameters.policySetDefinitionName],
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
@@ -420,7 +420,7 @@ const createOrUpdateAtManagementGroupOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters3,
+  requestBody: Parameters.parameters2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -446,7 +446,7 @@ const deleteAtManagementGroupOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.managementGroupId,
-    Parameters.policySetDefinitionName1
+    Parameters.policySetDefinitionName
   ],
   serializer
 };
@@ -466,7 +466,7 @@ const getAtManagementGroupOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.managementGroupId,
-    Parameters.policySetDefinitionName2
+    Parameters.policySetDefinitionName
   ],
   serializer
 };
@@ -501,7 +501,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink3
+    Parameters.nextLink
   ],
   serializer
 };
@@ -517,7 +517,7 @@ const listBuiltInNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.nextLink4],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };
 const listByManagementGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -535,7 +535,7 @@ const listByManagementGroupNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.managementGroupId,
-    Parameters.nextLink5
+    Parameters.nextLink
   ],
   serializer
 };

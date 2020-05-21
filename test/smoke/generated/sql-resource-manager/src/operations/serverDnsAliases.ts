@@ -271,7 +271,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName3,
+    Parameters.serverName,
     Parameters.dnsAliasName
   ],
   serializer
@@ -299,7 +299,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName3,
+    Parameters.serverName,
     Parameters.dnsAliasName
   ],
   serializer
@@ -314,7 +314,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName3,
+    Parameters.serverName,
     Parameters.dnsAliasName
   ],
   serializer
@@ -334,7 +334,7 @@ const listByServerOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName3
+    Parameters.serverName
   ],
   serializer
 };
@@ -343,14 +343,14 @@ const acquireOperationSpec: coreHttp.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/dnsAliases/{dnsAliasName}/acquire",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  requestBody: Parameters.parameters43,
+  requestBody: Parameters.parameters42,
   queryParameters: [Parameters.apiVersion4],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName3,
-    Parameters.dnsAliasName1
+    Parameters.serverName,
+    Parameters.dnsAliasName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -370,8 +370,8 @@ const listByServerNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.nextLink,
-    Parameters.serverName3
+    Parameters.serverName,
+    Parameters.nextLink
   ],
   serializer
 };

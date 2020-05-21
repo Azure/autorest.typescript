@@ -687,7 +687,7 @@ const reimageOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   headerParameters: [Parameters.contentType],
@@ -704,7 +704,7 @@ const reimageAllOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   serializer
@@ -719,7 +719,7 @@ const deallocateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   serializer
@@ -748,7 +748,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName3,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   headerParameters: [Parameters.contentType],
@@ -765,7 +765,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   serializer
@@ -784,7 +784,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   serializer
@@ -803,7 +803,7 @@ const getInstanceViewOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   serializer
@@ -820,7 +820,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion,
     Parameters.expand,
-    Parameters.filter1,
+    Parameters.filter,
     Parameters.select
   ],
   urlParameters: [
@@ -841,7 +841,7 @@ const powerOffOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   serializer
@@ -856,7 +856,7 @@ const restartOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   serializer
@@ -871,7 +871,7 @@ const startOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   serializer
@@ -886,7 +886,7 @@ const redeployOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   serializer
@@ -901,7 +901,7 @@ const performMaintenanceOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   serializer
@@ -916,7 +916,7 @@ const simulateEvictionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   serializer
@@ -945,7 +945,7 @@ const runCommandOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   headerParameters: [Parameters.contentType],
@@ -963,14 +963,14 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion,
     Parameters.expand,
-    Parameters.filter1,
+    Parameters.filter,
     Parameters.select
   ],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.nextLink1,
+    Parameters.nextLink,
     Parameters.virtualMachineScaleSetName
   ],
   serializer

@@ -945,7 +945,7 @@ const listAllNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
   serializer
 };
@@ -964,7 +964,7 @@ const listAvailableSslPredefinedPoliciesNextOperationSpec: coreHttp.OperationSpe
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink2
+    Parameters.nextLink
   ],
   serializer
 };

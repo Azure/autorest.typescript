@@ -284,8 +284,8 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmExtensionName,
-    Parameters.vmName1
+    Parameters.vmName,
+    Parameters.vmExtensionName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -301,8 +301,8 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmExtensionName,
-    Parameters.vmName2
+    Parameters.vmName,
+    Parameters.vmExtensionName
   ],
   serializer
 };
@@ -315,13 +315,13 @@ const getOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VirtualMachineExtension
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand2],
+  queryParameters: [Parameters.apiVersion, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmExtensionName,
-    Parameters.vmName3
+    Parameters.vmName,
+    Parameters.vmExtensionName
   ],
   serializer
 };
@@ -334,12 +334,12 @@ const listOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VirtualMachineExtensionsListResult
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand2],
+  queryParameters: [Parameters.apiVersion, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmName3
+    Parameters.vmName
   ],
   serializer
 };

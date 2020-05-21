@@ -6781,12 +6781,12 @@ export type VirtualMachineImagesGetResponse = VirtualMachineImage & {
  */
 export interface VirtualMachineImagesListOptionalParams
   extends coreHttp.OperationOptions {
-  top?: number;
-  orderby?: string;
   /**
    * The expand expression to apply on the operation.
    */
   expand?: string;
+  top?: number;
+  orderby?: string;
 }
 
 /**

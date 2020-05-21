@@ -1809,7 +1809,7 @@ const putAsyncNonResourceOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.sku1,
+  requestBody: Parameters.sku,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",

@@ -24,7 +24,7 @@ describe("parameterUtils", () => {
     });
 
     it("should include optional parameters", () => {
-      const operationsIn = [operation.fullName];
+      const operationsIn = { [operation.fullName]: { description: "" } };
       const parameters = [
         getParameter({ name: "requiredParam", operationsIn, required: true }),
         getParameter({
@@ -42,7 +42,7 @@ describe("parameterUtils", () => {
     });
 
     it("should not include optional parameters", () => {
-      const operationsIn = [operation.fullName];
+      const operationsIn = { [operation.fullName]: { description: "" } };
       const parameters = [
         getParameter({ name: "requiredParam", operationsIn, required: true }),
         getParameter({
@@ -61,7 +61,7 @@ describe("parameterUtils", () => {
     });
 
     it("should honor includeConstant option", () => {
-      const operationsIn = [operation.fullName];
+      const operationsIn = { [operation.fullName]: { description: "" } };
       const parameters = [
         getParameter({
           name: "constantParameter",
@@ -84,7 +84,7 @@ describe("parameterUtils", () => {
       assert.equal(result.length, 0);
     });
     it("should include honor incluideClientParmeter options", () => {
-      const operationsIn = [operation.fullName];
+      const operationsIn = { [operation.fullName]: { description: "" } };
       const parameters = [
         getParameter({
           name: "clientParameter",
@@ -108,7 +108,7 @@ describe("parameterUtils", () => {
     });
 
     it("should honor includeGlobalParameters", () => {
-      const operationsIn = [operation.fullName];
+      const operationsIn = { [operation.fullName]: { description: "" } };
       const parameters = [
         getParameter({
           name: "globalParameter",
@@ -134,11 +134,11 @@ describe("parameterUtils", () => {
       const parameters = [
         getParameter({
           name: "foreignParameter",
-          operationsIn: ["some_other_operation"]
+          operationsIn: { ["some_other_operation"]: { description: "" } }
         }),
         getParameter({
           name: "goodParameter",
-          operationsIn: [operation.fullName]
+          operationsIn: { [operation.fullName]: { description: "" } }
         })
       ];
 
@@ -168,7 +168,7 @@ const getParameter = ({
     "",
     new StringSchema("mock_string", "")
   ),
-  operationsIn = [],
+  operationsIn = {},
   implementationLocation = ImplementationLocation.Method
 }: Partial<ParameterDetails & { sufix: string }>): ParameterDetails => ({
   nameRef: nameRef || `MockParameter${sufix}`,

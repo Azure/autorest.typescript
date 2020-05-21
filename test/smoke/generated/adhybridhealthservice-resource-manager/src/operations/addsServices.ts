@@ -548,7 +548,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   responses: { 204: {} },
   queryParameters: [Parameters.apiVersion, Parameters.confirm],
-  urlParameters: [Parameters.$host, Parameters.serviceName1],
+  urlParameters: [Parameters.$host, Parameters.serviceName],
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -561,7 +561,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.service,
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.serviceName1],
+  urlParameters: [Parameters.$host, Parameters.serviceName],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
   serializer
@@ -625,8 +625,8 @@ const listMetricMetadataOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter1,
     Parameters.perfCounter
   ],
   urlParameters: [Parameters.$host, Parameters.serviceName],
@@ -682,8 +682,8 @@ const listReplicationDetailsOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter2,
     Parameters.withDetails
   ],
   urlParameters: [Parameters.$host, Parameters.serviceName],
@@ -699,9 +699,9 @@ const listReplicationSummaryOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.takeCount,
     Parameters.apiVersion,
-    Parameters.filter2,
     Parameters.isGroupbySite,
     Parameters.query,
     Parameters.nextPartitionKey,
@@ -720,8 +720,8 @@ const listServerAlertsOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter3,
     Parameters.state,
     Parameters.fromParam,
     Parameters.to
@@ -783,7 +783,7 @@ const listMetricsAverageNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.serviceName,
     Parameters.metricName,
     Parameters.groupName,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
   serializer
 };
@@ -801,7 +801,7 @@ const listMetricsSumNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.serviceName,
     Parameters.metricName,
     Parameters.groupName,
-    Parameters.nextLink2
+    Parameters.nextLink
   ],
   serializer
 };
@@ -814,14 +814,14 @@ const listMetricMetadataNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter1,
     Parameters.perfCounter
   ],
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.nextLink3
+    Parameters.nextLink
   ],
   serializer
 };
@@ -834,8 +834,8 @@ const listServerAlertsNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter3,
     Parameters.state,
     Parameters.fromParam,
     Parameters.to
@@ -844,7 +844,7 @@ const listServerAlertsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.serviceName,
     Parameters.serviceMemberId,
-    Parameters.nextLink4
+    Parameters.nextLink
   ],
   serializer
 };
@@ -863,6 +863,6 @@ const listPremiumServicesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.takeCount,
     Parameters.apiVersion
   ],
-  urlParameters: [Parameters.$host, Parameters.nextLink5],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };

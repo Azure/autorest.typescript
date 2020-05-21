@@ -167,7 +167,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.policyName
   ],
   serializer
@@ -197,7 +197,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.policyName
   ],
   headerParameters: [Parameters.contentType],
@@ -220,7 +220,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2
+    Parameters.databaseName
   ],
   serializer
 };

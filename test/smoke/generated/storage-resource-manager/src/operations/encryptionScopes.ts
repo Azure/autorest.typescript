@@ -233,7 +233,7 @@ const patchOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorResponse
     }
   },
-  requestBody: Parameters.encryptionScope1,
+  requestBody: Parameters.encryptionScope,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

@@ -115,7 +115,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.dataMaskingPolicyName,
     Parameters.dataMaskingRuleName
   ],
@@ -138,7 +138,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.dataMaskingPolicyName
   ],
   serializer

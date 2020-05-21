@@ -235,7 +235,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.serviceEndpointPolicyName1,
+    Parameters.serviceEndpointPolicyName,
     Parameters.serviceEndpointPolicyDefinitionName
   ],
   serializer
@@ -257,8 +257,8 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.serviceEndpointPolicyName2,
-    Parameters.serviceEndpointPolicyDefinitionName1
+    Parameters.serviceEndpointPolicyName,
+    Parameters.serviceEndpointPolicyDefinitionName
   ],
   serializer
 };
@@ -287,7 +287,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.serviceEndpointPolicyName,
-    Parameters.serviceEndpointPolicyDefinitionName1
+    Parameters.serviceEndpointPolicyDefinitionName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -310,7 +310,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.serviceEndpointPolicyName2
+    Parameters.serviceEndpointPolicyName
   ],
   serializer
 };
@@ -330,8 +330,8 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.nextLink3,
-    Parameters.serviceEndpointPolicyName2
+    Parameters.nextLink,
+    Parameters.serviceEndpointPolicyName
   ],
   serializer
 };

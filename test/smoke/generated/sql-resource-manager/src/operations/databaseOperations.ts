@@ -134,7 +134,7 @@ const cancelOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.operationId
   ],
   serializer
@@ -155,7 +155,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2
+    Parameters.databaseName
   ],
   serializer
 };
@@ -174,8 +174,8 @@ const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
-    Parameters.nextLink7
+    Parameters.databaseName,
+    Parameters.nextLink
   ],
   serializer
 };

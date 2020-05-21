@@ -252,9 +252,9 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.databaseName2,
-    Parameters.managedInstanceName,
-    Parameters.policyName1
+    Parameters.databaseName,
+    Parameters.policyName,
+    Parameters.managedInstanceName
   ],
   serializer
 };
@@ -282,9 +282,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.databaseName2,
-    Parameters.managedInstanceName,
-    Parameters.policyName2
+    Parameters.databaseName,
+    Parameters.policyName,
+    Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -314,9 +314,9 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.databaseName2,
-    Parameters.managedInstanceName,
-    Parameters.policyName2
+    Parameters.databaseName,
+    Parameters.policyName,
+    Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -337,7 +337,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.managedInstanceName
   ],
   serializer
@@ -356,8 +356,8 @@ const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.databaseName2,
-    Parameters.nextLink7,
+    Parameters.databaseName,
+    Parameters.nextLink,
     Parameters.managedInstanceName
   ],
   serializer

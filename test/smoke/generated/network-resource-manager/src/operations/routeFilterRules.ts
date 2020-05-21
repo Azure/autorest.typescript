@@ -279,7 +279,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.routeFilterName,
-    Parameters.ruleName1
+    Parameters.ruleName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -322,8 +322,8 @@ const listByRouteFilterNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.routeFilterName,
-    Parameters.nextLink17
+    Parameters.nextLink,
+    Parameters.routeFilterName
   ],
   serializer
 };

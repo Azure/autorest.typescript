@@ -36,6 +36,7 @@ import {
   getResponseTypeName,
   getAllModelsNames
 } from "./utils/responseTypeUtils";
+import { getParameterDescription } from "../utils/getParameterDescription";
 
 export function generateModels(clientDetails: ClientDetails, project: Project) {
   const modelsIndexFile = project.createSourceFile(
@@ -127,7 +128,10 @@ function writeOptionsParameter(
     operationName,
     optionalParams,
     sourceFile,
-    { mediaTypes: operationRequestMediaTypes }
+    {
+      mediaTypes: operationRequestMediaTypes,
+      operationFullName: operation.fullName
+    }
   );
 }
 
@@ -423,6 +427,11 @@ function writeUniontypes({ objects }: ClientDetails, modelsFile: SourceFile) {
 interface WriteOptionalParametersOptions {
   baseClass?: string;
   mediaTypes?: Set<KnownMediaType>;
+
+  /**
+   * Useful for getting parameter description.
+   */
+  operationFullName?: string;
 }
 
 function getOptionalGroups(
@@ -463,7 +472,7 @@ function writeOptionalParameters(
   operationName: string,
   optionalParams: ParameterDetails[],
   modelsIndexFile: SourceFile,
-  { baseClass, mediaTypes }: WriteOptionalParametersOptions
+  { baseClass, mediaTypes, operationFullName }: WriteOptionalParametersOptions
 ) {
   if (!optionalParams || !optionalParams.length) {
     return;
@@ -487,13 +496,16 @@ function writeOptionalParameters(
           ...optionalGroupDeclarations,
           ...optionalParams
             .filter(p => !p.targetMediaType || p.targetMediaType === mediaType)
-            .map<PropertySignatureStructure>(p => ({
-              name: p.name,
-              hasQuestionToken: true,
-              type: p.typeDetails.typeName,
-              docs: p.description ? [p.description] : undefined,
-              kind: StructureKind.PropertySignature
-            }))
+            .map<PropertySignatureStructure>(p => {
+              const description = getParameterDescription(p, operationFullName);
+              return {
+                name: p.name,
+                hasQuestionToken: true,
+                type: p.typeDetails.typeName,
+                docs: description ? [description] : undefined,
+                kind: StructureKind.PropertySignature
+              };
+            })
         ]
       });
     }
@@ -505,13 +517,16 @@ function writeOptionalParameters(
       extends: [baseClass || "coreHttp.OperationOptions"],
       properties: [
         ...optionalGroupDeclarations,
-        ...optionalParams.map<PropertySignatureStructure>(p => ({
-          name: p.name,
-          hasQuestionToken: true,
-          type: p.typeDetails.typeName,
-          docs: p.description ? [p.description] : undefined,
-          kind: StructureKind.PropertySignature
-        }))
+        ...optionalParams.map<PropertySignatureStructure>(p => {
+          const description = getParameterDescription(p, operationFullName);
+          return {
+            name: p.name,
+            hasQuestionToken: true,
+            type: p.typeDetails.typeName,
+            docs: description ? [description] : undefined,
+            kind: StructureKind.PropertySignature
+          };
+        })
       ]
     });
   }

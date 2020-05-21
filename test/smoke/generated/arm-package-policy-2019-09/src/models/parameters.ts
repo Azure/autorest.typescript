@@ -73,28 +73,6 @@ export const parameters: coreHttp.OperationParameter = {
   mapper: Mappers.PolicyAssignment
 };
 
-export const policyAssignmentName1: coreHttp.OperationURLParameter = {
-  parameterPath: "policyAssignmentName",
-  mapper: {
-    serializedName: "policyAssignmentName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const policyAssignmentName2: coreHttp.OperationURLParameter = {
-  parameterPath: "policyAssignmentName",
-  mapper: {
-    serializedName: "policyAssignmentName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const resourceGroupName: coreHttp.OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
@@ -126,22 +104,6 @@ export const subscriptionId: coreHttp.OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     serializedName: "subscriptionId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName1: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "resourceGroupName",
     required: true,
     type: {
       name: "String"
@@ -240,35 +202,6 @@ export const policyAssignmentId: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const parameters1: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.PolicyAssignment
-};
-
-export const policyAssignmentId1: coreHttp.OperationURLParameter = {
-  parameterPath: "policyAssignmentId",
-  mapper: {
-    serializedName: "policyAssignmentId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const policyAssignmentId2: coreHttp.OperationURLParameter = {
-  parameterPath: "policyAssignmentId",
-  mapper: {
-    serializedName: "policyAssignmentId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const nextLink: coreHttp.OperationURLParameter = {
   parameterPath: "nextLink",
   mapper: {
@@ -281,43 +214,7 @@ export const nextLink: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const nextLink1: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink2: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink3: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const parameters2: coreHttp.OperationParameter = {
+export const parameters1: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.PolicyDefinition
 };
@@ -333,91 +230,12 @@ export const policyDefinitionName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const policyDefinitionName1: coreHttp.OperationURLParameter = {
-  parameterPath: "policyDefinitionName",
-  mapper: {
-    serializedName: "policyDefinitionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const policyDefinitionName2: coreHttp.OperationURLParameter = {
-  parameterPath: "policyDefinitionName",
-  mapper: {
-    serializedName: "policyDefinitionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const policyDefinitionName3: coreHttp.OperationURLParameter = {
-  parameterPath: "policyDefinitionName",
-  mapper: {
-    serializedName: "policyDefinitionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const nextLink4: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink5: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const parameters3: coreHttp.OperationParameter = {
+export const parameters2: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.PolicySetDefinition
 };
 
 export const policySetDefinitionName: coreHttp.OperationURLParameter = {
-  parameterPath: "policySetDefinitionName",
-  mapper: {
-    serializedName: "policySetDefinitionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const policySetDefinitionName1: coreHttp.OperationURLParameter = {
-  parameterPath: "policySetDefinitionName",
-  mapper: {
-    serializedName: "policySetDefinitionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const policySetDefinitionName2: coreHttp.OperationURLParameter = {
   parameterPath: "policySetDefinitionName",
   mapper: {
     serializedName: "policySetDefinitionName",

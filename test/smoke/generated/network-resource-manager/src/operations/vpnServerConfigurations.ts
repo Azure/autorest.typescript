@@ -280,8 +280,8 @@ const getOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName8,
     Parameters.vpnServerConfigurationName
   ],
   serializer
@@ -308,9 +308,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName8,
-    Parameters.vpnServerConfigurationName1
+    Parameters.vpnServerConfigurationName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -332,9 +332,9 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName8,
-    Parameters.vpnServerConfigurationName2
+    Parameters.vpnServerConfigurationName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -348,9 +348,9 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName8,
-    Parameters.vpnServerConfigurationName3
+    Parameters.vpnServerConfigurationName
   ],
   serializer
 };
@@ -369,8 +369,8 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName8
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -404,9 +404,9 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.nextLink3,
-    Parameters.resourceGroupName8
+    Parameters.nextLink
   ],
   serializer
 };

@@ -126,30 +126,6 @@ export const nextLink: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const nextLink1: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink2: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const applicationSecurityGroupName: coreHttp.OperationURLParameter = {
   parameterPath: "applicationSecurityGroupName",
   mapper: {
@@ -166,11 +142,6 @@ export const parameters2: coreHttp.OperationParameter = {
   mapper: Mappers.ApplicationSecurityGroup
 };
 
-export const parameters3: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
-};
-
 export const location: coreHttp.OperationURLParameter = {
   parameterPath: "location",
   mapper: {
@@ -180,40 +151,6 @@ export const location: coreHttp.OperationURLParameter = {
       name: "String"
     }
   }
-};
-
-export const location1: coreHttp.OperationURLParameter = {
-  parameterPath: "location",
-  mapper: {
-    serializedName: "location",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const location2: coreHttp.OperationURLParameter = {
-  parameterPath: "location",
-  mapper: {
-    serializedName: "location",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const nextLink3: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const azureFirewallName: coreHttp.OperationURLParameter = {
@@ -227,7 +164,7 @@ export const azureFirewallName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters4: coreHttp.OperationParameter = {
+export const parameters3: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.AzureFirewall
 };
@@ -247,11 +184,6 @@ export const azureFirewallName1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters5: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
-};
-
 export const bastionHostName: coreHttp.OperationURLParameter = {
   parameterPath: "bastionHostName",
   mapper: {
@@ -263,7 +195,7 @@ export const bastionHostName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters6: coreHttp.OperationParameter = {
+export const parameters4: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.BastionHost
 };
@@ -289,17 +221,6 @@ export const domainNameLabel: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const resourceGroupName1: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const virtualWANName: coreHttp.OperationURLParameter = {
   parameterPath: "virtualWANName",
   mapper: {
@@ -316,54 +237,7 @@ export const vpnClientParams: coreHttp.OperationParameter = {
   mapper: Mappers.VirtualWanVpnProfileParameters
 };
 
-export const virtualWANName1: coreHttp.OperationURLParameter = {
-  parameterPath: "virtualWANName",
-  mapper: {
-    serializedName: "virtualWANName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const nextLink4: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink5: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink6: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink7: coreHttp.OperationURLParameter = {
+export const nextLink1: coreHttp.OperationURLParameter = {
   parameterPath: "nextLink",
   mapper: {
     serializedName: "nextLink",
@@ -386,14 +260,9 @@ export const ddosCustomPolicyName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters7: coreHttp.OperationParameter = {
+export const parameters5: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.DdosCustomPolicy
-};
-
-export const parameters8: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
 };
 
 export const ddosProtectionPlanName: coreHttp.OperationURLParameter = {
@@ -407,25 +276,9 @@ export const ddosProtectionPlanName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters9: coreHttp.OperationParameter = {
+export const parameters6: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.DdosProtectionPlan
-};
-
-export const parameters10: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
-};
-
-export const location3: coreHttp.OperationURLParameter = {
-  parameterPath: "location",
-  mapper: {
-    serializedName: "location",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const circuitName: coreHttp.OperationURLParameter = {
@@ -453,17 +306,6 @@ export const authorizationName: coreHttp.OperationURLParameter = {
 export const authorizationParameters: coreHttp.OperationParameter = {
   parameterPath: "authorizationParameters",
   mapper: Mappers.ExpressRouteCircuitAuthorization
-};
-
-export const circuitName1: coreHttp.OperationURLParameter = {
-  parameterPath: "circuitName",
-  mapper: {
-    serializedName: "circuitName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const peeringName: coreHttp.OperationURLParameter = {
@@ -498,53 +340,15 @@ export const expressRouteCircuitConnectionParameters: coreHttp.OperationParamete
   mapper: Mappers.ExpressRouteCircuitConnection
 };
 
-export const connectionName1: coreHttp.OperationURLParameter = {
-  parameterPath: "connectionName",
-  mapper: {
-    serializedName: "connectionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const circuitName2: coreHttp.OperationURLParameter = {
-  parameterPath: "circuitName",
-  mapper: {
-    serializedName: "circuitName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters11: coreHttp.OperationParameter = {
+export const parameters7: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ExpressRouteCircuit
-};
-
-export const parameters12: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
 };
 
 export const devicePath: coreHttp.OperationURLParameter = {
   parameterPath: "devicePath",
   mapper: {
     serializedName: "devicePath",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName2: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    serializedName: "resourceGroupName",
     required: true,
     type: {
       name: "String"
@@ -563,36 +367,14 @@ export const crossConnectionName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters13: coreHttp.OperationParameter = {
+export const parameters8: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ExpressRouteCrossConnection
-};
-
-export const crossConnectionName1: coreHttp.OperationURLParameter = {
-  parameterPath: "crossConnectionName",
-  mapper: {
-    serializedName: "crossConnectionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const crossConnectionParameters: coreHttp.OperationParameter = {
   parameterPath: "crossConnectionParameters",
   mapper: Mappers.TagsObject
-};
-
-export const crossConnectionName2: coreHttp.OperationURLParameter = {
-  parameterPath: "crossConnectionName",
-  mapper: {
-    serializedName: "crossConnectionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const peeringParameters1: coreHttp.OperationParameter = {
@@ -622,25 +404,9 @@ export const expressRoutePortName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const expressRoutePortName1: coreHttp.OperationURLParameter = {
-  parameterPath: "expressRoutePortName",
-  mapper: {
-    serializedName: "expressRoutePortName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters14: coreHttp.OperationParameter = {
+export const parameters9: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ExpressRoutePort
-};
-
-export const parameters15: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
 };
 
 export const linkName: coreHttp.OperationURLParameter = {
@@ -665,17 +431,7 @@ export const firewallPolicyName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const expand1: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "expand"],
-  mapper: {
-    serializedName: "$expand",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters16: coreHttp.OperationParameter = {
+export const parameters10: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.FirewallPolicy
 };
@@ -691,7 +447,7 @@ export const ruleGroupName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters17: coreHttp.OperationParameter = {
+export const parameters11: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.FirewallPolicyRuleGroup
 };
@@ -707,14 +463,9 @@ export const ipAllocationName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters18: coreHttp.OperationParameter = {
+export const parameters12: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.IpAllocation
-};
-
-export const parameters19: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
 };
 
 export const ipGroupsName: coreHttp.OperationURLParameter = {
@@ -728,24 +479,9 @@ export const ipGroupsName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const expand2: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "expand"],
-  mapper: {
-    serializedName: "$expand",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters20: coreHttp.OperationParameter = {
+export const parameters13: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.IpGroup
-};
-
-export const parameters21: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
 };
 
 export const loadBalancerName: coreHttp.OperationURLParameter = {
@@ -759,14 +495,9 @@ export const loadBalancerName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters22: coreHttp.OperationParameter = {
+export const parameters14: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.LoadBalancer
-};
-
-export const parameters23: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
 };
 
 export const backendAddressPoolName: coreHttp.OperationURLParameter = {
@@ -780,7 +511,7 @@ export const backendAddressPoolName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters24: coreHttp.OperationParameter = {
+export const parameters15: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.BackendAddressPool
 };
@@ -856,14 +587,9 @@ export const natGatewayName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters25: coreHttp.OperationParameter = {
+export const parameters16: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.NatGateway
-};
-
-export const parameters26: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
 };
 
 export const networkInterfaceName: coreHttp.OperationURLParameter = {
@@ -877,14 +603,9 @@ export const networkInterfaceName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters27: coreHttp.OperationParameter = {
+export const parameters17: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.NetworkInterface
-};
-
-export const parameters28: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
 };
 
 export const virtualMachineScaleSetName: coreHttp.OperationURLParameter = {
@@ -932,53 +653,6 @@ export const ipConfigurationName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const nextLink8: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink9: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink10: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const ipConfigurationName1: coreHttp.OperationURLParameter = {
-  parameterPath: "ipConfigurationName",
-  mapper: {
-    serializedName: "ipConfigurationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const tapConfigurationName: coreHttp.OperationURLParameter = {
   parameterPath: "tapConfigurationName",
   mapper: {
@@ -1006,36 +680,9 @@ export const networkProfileName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const networkProfileName1: coreHttp.OperationURLParameter = {
-  parameterPath: "networkProfileName",
-  mapper: {
-    serializedName: "networkProfileName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters29: coreHttp.OperationParameter = {
+export const parameters18: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.NetworkProfile
-};
-
-export const networkProfileName2: coreHttp.OperationURLParameter = {
-  parameterPath: "networkProfileName",
-  mapper: {
-    serializedName: "networkProfileName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters30: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
 };
 
 export const networkSecurityGroupName: coreHttp.OperationURLParameter = {
@@ -1049,14 +696,9 @@ export const networkSecurityGroupName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters31: coreHttp.OperationParameter = {
+export const parameters19: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.NetworkSecurityGroup
-};
-
-export const parameters32: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
 };
 
 export const securityRuleName: coreHttp.OperationURLParameter = {
@@ -1097,39 +739,12 @@ export const networkVirtualApplianceName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters33: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
-};
-
-export const resourceGroupName3: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const networkVirtualApplianceName1: coreHttp.OperationURLParameter = {
-  parameterPath: "networkVirtualApplianceName",
-  mapper: {
-    serializedName: "networkVirtualApplianceName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters34: coreHttp.OperationParameter = {
+export const parameters20: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.NetworkVirtualAppliance
 };
 
-export const parameters35: coreHttp.OperationParameter = {
+export const parameters21: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.NetworkWatcher
 };
@@ -1145,94 +760,67 @@ export const networkWatcherName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters36: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
-};
-
-export const parameters37: coreHttp.OperationParameter = {
+export const parameters22: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.TopologyParameters
 };
 
-export const parameters38: coreHttp.OperationParameter = {
+export const parameters23: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.VerificationIPFlowParameters
 };
 
-export const parameters39: coreHttp.OperationParameter = {
+export const parameters24: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.NextHopParameters
 };
 
-export const parameters40: coreHttp.OperationParameter = {
+export const parameters25: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.SecurityGroupViewParameters
 };
 
-export const parameters41: coreHttp.OperationParameter = {
+export const parameters26: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.TroubleshootingParameters
 };
 
-export const networkWatcherName1: coreHttp.OperationURLParameter = {
-  parameterPath: "networkWatcherName",
-  mapper: {
-    serializedName: "networkWatcherName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters42: coreHttp.OperationParameter = {
+export const parameters27: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.QueryTroubleshootingParameters
 };
 
-export const parameters43: coreHttp.OperationParameter = {
+export const parameters28: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.FlowLogInformation
 };
 
-export const resourceGroupName4: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters44: coreHttp.OperationParameter = {
+export const parameters29: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.FlowLogStatusParameters
 };
 
-export const parameters45: coreHttp.OperationParameter = {
+export const parameters30: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ConnectivityParameters
 };
 
-export const parameters46: coreHttp.OperationParameter = {
+export const parameters31: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.AzureReachabilityReportParameters
 };
 
-export const parameters47: coreHttp.OperationParameter = {
+export const parameters32: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.AvailableProvidersListParameters
 };
 
-export const parameters48: coreHttp.OperationParameter = {
+export const parameters33: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.NetworkConfigurationDiagnosticParameters
 };
 
-export const parameters49: coreHttp.OperationParameter = {
+export const parameters34: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.PacketCapture
 };
@@ -1248,42 +836,9 @@ export const packetCaptureName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const networkWatcherName2: coreHttp.OperationURLParameter = {
-  parameterPath: "networkWatcherName",
-  mapper: {
-    serializedName: "networkWatcherName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const packetCaptureName1: coreHttp.OperationURLParameter = {
-  parameterPath: "packetCaptureName",
-  mapper: {
-    serializedName: "packetCaptureName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters50: coreHttp.OperationParameter = {
+export const parameters35: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ConnectionMonitor
-};
-
-export const resourceGroupName5: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const connectionMonitorName: coreHttp.OperationURLParameter = {
@@ -1297,39 +852,12 @@ export const connectionMonitorName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters51: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
-};
-
-export const connectionMonitorName1: coreHttp.OperationURLParameter = {
-  parameterPath: "connectionMonitorName",
-  mapper: {
-    serializedName: "connectionMonitorName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters52: coreHttp.OperationParameter = {
+export const parameters36: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.FlowLog
 };
 
 export const flowLogName: coreHttp.OperationURLParameter = {
-  parameterPath: "flowLogName",
-  mapper: {
-    serializedName: "flowLogName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const flowLogName1: coreHttp.OperationURLParameter = {
   parameterPath: "flowLogName",
   mapper: {
     serializedName: "flowLogName",
@@ -1351,21 +879,9 @@ export const privateEndpointName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters53: coreHttp.OperationParameter = {
+export const parameters37: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.PrivateEndpoint
-};
-
-export const nextLink11: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const privateDnsZoneGroupName: coreHttp.OperationURLParameter = {
@@ -1379,7 +895,7 @@ export const privateDnsZoneGroupName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters54: coreHttp.OperationParameter = {
+export const parameters38: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.PrivateDnsZoneGroup
 };
@@ -1395,7 +911,7 @@ export const serviceName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters55: coreHttp.OperationParameter = {
+export const parameters39: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.PrivateLinkService
 };
@@ -1411,50 +927,14 @@ export const peConnectionName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters56: coreHttp.OperationParameter = {
+export const parameters40: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.PrivateEndpointConnection
 };
 
-export const parameters57: coreHttp.OperationParameter = {
+export const parameters41: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.CheckPrivateLinkServiceVisibilityRequest
-};
-
-export const nextLink12: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink13: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink14: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const publicIpAddressName: coreHttp.OperationURLParameter = {
@@ -1468,93 +948,9 @@ export const publicIpAddressName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters58: coreHttp.OperationParameter = {
+export const parameters42: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.PublicIPAddress
-};
-
-export const publicIpAddressName1: coreHttp.OperationURLParameter = {
-  parameterPath: "publicIpAddressName",
-  mapper: {
-    serializedName: "publicIpAddressName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters59: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
-};
-
-export const networkInterfaceName1: coreHttp.OperationURLParameter = {
-  parameterPath: "networkInterfaceName",
-  mapper: {
-    serializedName: "networkInterfaceName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const ipConfigurationName2: coreHttp.OperationURLParameter = {
-  parameterPath: "ipConfigurationName",
-  mapper: {
-    serializedName: "ipConfigurationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const ipConfigurationName3: coreHttp.OperationURLParameter = {
-  parameterPath: "ipConfigurationName",
-  mapper: {
-    serializedName: "ipConfigurationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const publicIpAddressName2: coreHttp.OperationURLParameter = {
-  parameterPath: "publicIpAddressName",
-  mapper: {
-    serializedName: "publicIpAddressName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const nextLink15: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink16: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const publicIpPrefixName: coreHttp.OperationURLParameter = {
@@ -1568,25 +964,9 @@ export const publicIpPrefixName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const publicIpPrefixName1: coreHttp.OperationURLParameter = {
-  parameterPath: "publicIpPrefixName",
-  mapper: {
-    serializedName: "publicIpPrefixName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters60: coreHttp.OperationParameter = {
+export const parameters43: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.PublicIPPrefix
-};
-
-export const parameters61: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
 };
 
 export const routeFilterName: coreHttp.OperationURLParameter = {
@@ -1600,24 +980,9 @@ export const routeFilterName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const expand3: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "expand"],
-  mapper: {
-    serializedName: "$expand",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const routeFilterParameters: coreHttp.OperationParameter = {
   parameterPath: "routeFilterParameters",
   mapper: Mappers.RouteFilter
-};
-
-export const parameters62: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
 };
 
 export const ruleName: coreHttp.OperationURLParameter = {
@@ -1636,29 +1001,6 @@ export const routeFilterRuleParameters: coreHttp.OperationParameter = {
   mapper: Mappers.RouteFilterRule
 };
 
-export const ruleName1: coreHttp.OperationURLParameter = {
-  parameterPath: "ruleName",
-  mapper: {
-    serializedName: "ruleName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const nextLink17: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const routeTableName: coreHttp.OperationURLParameter = {
   parameterPath: "routeTableName",
   mapper: {
@@ -1670,14 +1012,9 @@ export const routeTableName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters63: coreHttp.OperationParameter = {
+export const parameters44: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.RouteTable
-};
-
-export const parameters64: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
 };
 
 export const routeName: coreHttp.OperationURLParameter = {
@@ -1707,14 +1044,9 @@ export const securityPartnerProviderName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters65: coreHttp.OperationParameter = {
+export const parameters45: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.SecurityPartnerProvider
-};
-
-export const parameters66: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
 };
 
 export const serviceEndpointPolicyName: coreHttp.OperationURLParameter = {
@@ -1728,50 +1060,12 @@ export const serviceEndpointPolicyName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters67: coreHttp.OperationParameter = {
+export const parameters46: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ServiceEndpointPolicy
 };
 
-export const parameters68: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
-};
-
-export const serviceEndpointPolicyName1: coreHttp.OperationURLParameter = {
-  parameterPath: "serviceEndpointPolicyName",
-  mapper: {
-    serializedName: "serviceEndpointPolicyName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const serviceEndpointPolicyDefinitionName: coreHttp.OperationURLParameter = {
-  parameterPath: "serviceEndpointPolicyDefinitionName",
-  mapper: {
-    serializedName: "serviceEndpointPolicyDefinitionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const serviceEndpointPolicyName2: coreHttp.OperationURLParameter = {
-  parameterPath: "serviceEndpointPolicyName",
-  mapper: {
-    serializedName: "serviceEndpointPolicyName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const serviceEndpointPolicyDefinitionName1: coreHttp.OperationURLParameter = {
   parameterPath: "serviceEndpointPolicyDefinitionName",
   mapper: {
     serializedName: "serviceEndpointPolicyDefinitionName",
@@ -1787,18 +1081,7 @@ export const serviceEndpointPolicyDefinitions: coreHttp.OperationParameter = {
   mapper: Mappers.ServiceEndpointPolicyDefinition
 };
 
-export const location4: coreHttp.OperationURLParameter = {
-  parameterPath: "location",
-  mapper: {
-    serializedName: "location",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const location5: coreHttp.OperationURLParameter = {
+export const location1: coreHttp.OperationURLParameter = {
   parameterPath: "location",
   mapper: {
     constraints: {
@@ -1823,14 +1106,9 @@ export const virtualNetworkName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters69: coreHttp.OperationParameter = {
+export const parameters47: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.VirtualNetwork
-};
-
-export const parameters70: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
 };
 
 export const ipAddress: coreHttp.OperationQueryParameter = {
@@ -1842,18 +1120,6 @@ export const ipAddress: coreHttp.OperationQueryParameter = {
       name: "String"
     }
   }
-};
-
-export const nextLink18: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const subnetName: coreHttp.OperationURLParameter = {
@@ -1898,18 +1164,7 @@ export const virtualNetworkPeeringParameters: coreHttp.OperationParameter = {
   mapper: Mappers.VirtualNetworkPeering
 };
 
-export const virtualNetworkPeeringName1: coreHttp.OperationURLParameter = {
-  parameterPath: "virtualNetworkPeeringName",
-  mapper: {
-    serializedName: "virtualNetworkPeeringName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters71: coreHttp.OperationParameter = {
+export const parameters48: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.VirtualNetworkGateway
 };
@@ -1925,11 +1180,6 @@ export const virtualNetworkGatewayName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters72: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
-};
-
 export const gatewayVip: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "gatewayVip"],
   mapper: {
@@ -1940,7 +1190,7 @@ export const gatewayVip: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const parameters73: coreHttp.OperationParameter = {
+export const parameters49: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.VpnClientParameters
 };
@@ -1971,18 +1221,7 @@ export const vpnclientIpsecParams: coreHttp.OperationParameter = {
   mapper: Mappers.VpnClientIPsecParameters
 };
 
-export const virtualNetworkGatewayName1: coreHttp.OperationURLParameter = {
-  parameterPath: "virtualNetworkGatewayName",
-  mapper: {
-    serializedName: "virtualNetworkGatewayName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters74: coreHttp.OperationParameter = {
+export const parameters50: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.VpnDeviceScriptParameters
 };
@@ -1998,12 +1237,12 @@ export const virtualNetworkGatewayConnectionName: coreHttp.OperationURLParameter
   }
 };
 
-export const parameters75: coreHttp.OperationParameter = {
+export const parameters51: coreHttp.OperationParameter = {
   parameterPath: ["options", "parameters"],
   mapper: Mappers.VpnPacketCaptureStartParameters
 };
 
-export const parameters76: coreHttp.OperationParameter = {
+export const parameters52: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.VpnPacketCaptureStopParameters
 };
@@ -2013,104 +1252,22 @@ export const request: coreHttp.OperationParameter = {
   mapper: Mappers.P2SVpnConnectionRequest
 };
 
-export const nextLink19: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const parameters77: coreHttp.OperationParameter = {
+export const parameters53: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.VirtualNetworkGatewayConnection
 };
 
-export const virtualNetworkGatewayConnectionName1: coreHttp.OperationURLParameter = {
-  parameterPath: "virtualNetworkGatewayConnectionName",
-  mapper: {
-    serializedName: "virtualNetworkGatewayConnectionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters78: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
-};
-
-export const parameters79: coreHttp.OperationParameter = {
+export const parameters54: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ConnectionSharedKey
 };
 
-export const virtualNetworkGatewayConnectionName2: coreHttp.OperationURLParameter = {
-  parameterPath: "virtualNetworkGatewayConnectionName",
-  mapper: {
-    serializedName: "virtualNetworkGatewayConnectionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const virtualNetworkGatewayConnectionName3: coreHttp.OperationURLParameter = {
-  parameterPath: "virtualNetworkGatewayConnectionName",
-  mapper: {
-    serializedName: "virtualNetworkGatewayConnectionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters80: coreHttp.OperationParameter = {
+export const parameters55: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ConnectionResetSharedKey
 };
 
-export const virtualNetworkGatewayConnectionName4: coreHttp.OperationURLParameter = {
-  parameterPath: "virtualNetworkGatewayConnectionName",
-  mapper: {
-    serializedName: "virtualNetworkGatewayConnectionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters81: coreHttp.OperationParameter = {
-  parameterPath: ["options", "parameters"],
-  mapper: Mappers.VpnPacketCaptureStartParameters
-};
-
-export const parameters82: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.VpnPacketCaptureStopParameters
-};
-
-export const virtualNetworkGatewayConnectionName5: coreHttp.OperationURLParameter = {
-  parameterPath: "virtualNetworkGatewayConnectionName",
-  mapper: {
-    serializedName: "virtualNetworkGatewayConnectionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters83: coreHttp.OperationParameter = {
+export const parameters56: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.LocalNetworkGateway
 };
@@ -2129,11 +1286,6 @@ export const localNetworkGatewayName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters84: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.TagsObject
-};
-
 export const tapName: coreHttp.OperationURLParameter = {
   parameterPath: "tapName",
   mapper: {
@@ -2145,18 +1297,7 @@ export const tapName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const tapName1: coreHttp.OperationURLParameter = {
-  parameterPath: "tapName",
-  mapper: {
-    serializedName: "tapName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters85: coreHttp.OperationParameter = {
+export const parameters57: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.VirtualNetworkTap
 };
@@ -2164,17 +1305,6 @@ export const parameters85: coreHttp.OperationParameter = {
 export const tapParameters: coreHttp.OperationParameter = {
   parameterPath: "tapParameters",
   mapper: Mappers.TagsObject
-};
-
-export const tapName2: coreHttp.OperationURLParameter = {
-  parameterPath: "tapName",
-  mapper: {
-    serializedName: "tapName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const virtualRouterName: coreHttp.OperationURLParameter = {
@@ -2188,39 +1318,17 @@ export const virtualRouterName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters86: coreHttp.OperationParameter = {
+export const parameters58: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.VirtualRouter
 };
 
-export const peeringName1: coreHttp.OperationURLParameter = {
-  parameterPath: "peeringName",
-  mapper: {
-    serializedName: "peeringName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters87: coreHttp.OperationParameter = {
+export const parameters59: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.VirtualRouterPeering
 };
 
-export const resourceGroupName6: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const virtualWANName2: coreHttp.OperationURLParameter = {
+export const virtualWANName1: coreHttp.OperationURLParameter = {
   parameterPath: "virtualWANName",
   mapper: {
     serializedName: "VirtualWANName",
@@ -2236,53 +1344,9 @@ export const wANParameters: coreHttp.OperationParameter = {
   mapper: Mappers.VirtualWAN
 };
 
-export const virtualWANName3: coreHttp.OperationURLParameter = {
-  parameterPath: "virtualWANName",
-  mapper: {
-    serializedName: "VirtualWANName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const wANParameters1: coreHttp.OperationParameter = {
   parameterPath: "wANParameters",
   mapper: Mappers.TagsObject
-};
-
-export const virtualWANName4: coreHttp.OperationURLParameter = {
-  parameterPath: "virtualWANName",
-  mapper: {
-    serializedName: "VirtualWANName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const virtualWANName5: coreHttp.OperationURLParameter = {
-  parameterPath: "virtualWANName",
-  mapper: {
-    serializedName: "VirtualWANName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName7: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const vpnSiteName: coreHttp.OperationURLParameter = {
@@ -2301,53 +1365,9 @@ export const vpnSiteParameters: coreHttp.OperationParameter = {
   mapper: Mappers.VpnSite
 };
 
-export const vpnSiteName1: coreHttp.OperationURLParameter = {
-  parameterPath: "vpnSiteName",
-  mapper: {
-    serializedName: "vpnSiteName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const vpnSiteParameters1: coreHttp.OperationParameter = {
   parameterPath: "vpnSiteParameters",
   mapper: Mappers.TagsObject
-};
-
-export const vpnSiteName2: coreHttp.OperationURLParameter = {
-  parameterPath: "vpnSiteName",
-  mapper: {
-    serializedName: "vpnSiteName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const vpnSiteName3: coreHttp.OperationURLParameter = {
-  parameterPath: "vpnSiteName",
-  mapper: {
-    serializedName: "vpnSiteName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const vpnSiteName4: coreHttp.OperationURLParameter = {
-  parameterPath: "vpnSiteName",
-  mapper: {
-    serializedName: "vpnSiteName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const vpnSiteLinkName: coreHttp.OperationURLParameter = {
@@ -2361,43 +1381,9 @@ export const vpnSiteLinkName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const nextLink20: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const request1: coreHttp.OperationParameter = {
   parameterPath: "request",
   mapper: Mappers.GetVpnSitesConfigurationRequest
-};
-
-export const virtualWANName6: coreHttp.OperationURLParameter = {
-  parameterPath: "virtualWANName",
-  mapper: {
-    serializedName: "virtualWANName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName8: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const vpnServerConfigurationName: coreHttp.OperationURLParameter = {
@@ -2416,53 +1402,9 @@ export const vpnServerConfigurationParameters: coreHttp.OperationParameter = {
   mapper: Mappers.VpnServerConfiguration
 };
 
-export const vpnServerConfigurationName1: coreHttp.OperationURLParameter = {
-  parameterPath: "vpnServerConfigurationName",
-  mapper: {
-    serializedName: "vpnServerConfigurationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const vpnServerConfigurationParameters1: coreHttp.OperationParameter = {
   parameterPath: "vpnServerConfigurationParameters",
   mapper: Mappers.TagsObject
-};
-
-export const vpnServerConfigurationName2: coreHttp.OperationURLParameter = {
-  parameterPath: "vpnServerConfigurationName",
-  mapper: {
-    serializedName: "vpnServerConfigurationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const vpnServerConfigurationName3: coreHttp.OperationURLParameter = {
-  parameterPath: "vpnServerConfigurationName",
-  mapper: {
-    serializedName: "vpnServerConfigurationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName9: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const virtualHubName: coreHttp.OperationURLParameter = {
@@ -2484,28 +1426,6 @@ export const virtualHubParameters: coreHttp.OperationParameter = {
 export const virtualHubParameters1: coreHttp.OperationParameter = {
   parameterPath: "virtualHubParameters",
   mapper: Mappers.TagsObject
-};
-
-export const connectionName2: coreHttp.OperationURLParameter = {
-  parameterPath: "connectionName",
-  mapper: {
-    serializedName: "connectionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName10: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const gatewayName: coreHttp.OperationURLParameter = {
@@ -2534,56 +1454,10 @@ export const vpnConnectionParameters: coreHttp.OperationParameter = {
   mapper: Mappers.VpnConnection
 };
 
-export const connectionName3: coreHttp.OperationURLParameter = {
-  parameterPath: "connectionName",
-  mapper: {
-    serializedName: "connectionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const nextLink21: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const linkConnectionName: coreHttp.OperationURLParameter = {
   parameterPath: "linkConnectionName",
   mapper: {
     serializedName: "linkConnectionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const nextLink22: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const resourceGroupName11: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    serializedName: "resourceGroupName",
     required: true,
     type: {
       name: "String"
@@ -2601,20 +1475,9 @@ export const p2SVpnGatewayParameters1: coreHttp.OperationParameter = {
   mapper: Mappers.TagsObject
 };
 
-export const parameters88: coreHttp.OperationParameter = {
+export const parameters60: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.P2SVpnProfileParameters
-};
-
-export const gatewayName1: coreHttp.OperationURLParameter = {
-  parameterPath: "gatewayName",
-  mapper: {
-    serializedName: "gatewayName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const request2: coreHttp.OperationParameter = {
@@ -2622,37 +1485,10 @@ export const request2: coreHttp.OperationParameter = {
   mapper: Mappers.P2SVpnConnectionHealthRequest
 };
 
-export const request3: coreHttp.OperationParameter = {
-  parameterPath: "request",
-  mapper: Mappers.P2SVpnConnectionRequest
-};
-
 export const p2SVpnGatewayName: coreHttp.OperationURLParameter = {
   parameterPath: "p2SVpnGatewayName",
   mapper: {
     serializedName: "p2sVpnGatewayName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName12: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const routeTableName1: coreHttp.OperationURLParameter = {
-  parameterPath: "routeTableName",
-  mapper: {
-    serializedName: "routeTableName",
     required: true,
     type: {
       name: "String"
@@ -2686,53 +1522,9 @@ export const putExpressRouteConnectionParameters: coreHttp.OperationParameter = 
   mapper: Mappers.ExpressRouteConnection
 };
 
-export const connectionName4: coreHttp.OperationURLParameter = {
-  parameterPath: "connectionName",
-  mapper: {
-    serializedName: "connectionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const connectionName5: coreHttp.OperationURLParameter = {
-  parameterPath: "connectionName",
-  mapper: {
-    serializedName: "connectionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const routeTableParameters: coreHttp.OperationParameter = {
   parameterPath: "routeTableParameters",
   mapper: Mappers.HubRouteTable
-};
-
-export const routeTableName2: coreHttp.OperationURLParameter = {
-  parameterPath: "routeTableName",
-  mapper: {
-    serializedName: "routeTableName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName13: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const policyName: coreHttp.OperationURLParameter = {
@@ -2749,7 +1541,7 @@ export const policyName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters89: coreHttp.OperationParameter = {
+export const parameters61: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.WebApplicationFirewallPolicy
 };

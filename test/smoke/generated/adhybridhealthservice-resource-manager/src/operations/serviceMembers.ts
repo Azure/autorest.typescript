@@ -421,8 +421,8 @@ const listOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter2,
     Parameters.dimensionType,
     Parameters.dimensionSignature
   ],
@@ -440,7 +440,7 @@ const addOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.serviceMember,
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.serviceName2],
+  urlParameters: [Parameters.$host, Parameters.serviceName],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
   serializer
@@ -458,7 +458,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.serviceMemberId1
+    Parameters.serviceMemberId
   ],
   serializer
 };
@@ -467,11 +467,11 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     "/providers/Microsoft.ADHybridHealthService/services/{serviceName}/servicemembers/{serviceMemberId}",
   httpMethod: "DELETE",
   responses: { 200: {} },
-  queryParameters: [Parameters.apiVersion, Parameters.confirm1],
+  queryParameters: [Parameters.apiVersion, Parameters.confirm],
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.serviceMemberId1
+    Parameters.serviceMemberId
   ],
   serializer
 };
@@ -485,8 +485,8 @@ const listAlertsOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter3,
     Parameters.state,
     Parameters.fromParam,
     Parameters.to
@@ -511,7 +511,7 @@ const listConnectorsOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.serviceMemberId1
+    Parameters.serviceMemberId
   ],
   serializer
 };
@@ -524,11 +524,11 @@ const listCredentialsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.Credentials
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter4],
+  queryParameters: [Parameters.filter, Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.serviceMemberId1
+    Parameters.serviceMemberId
   ],
   serializer
 };
@@ -541,7 +541,7 @@ const deleteDataOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.serviceMemberId1
+    Parameters.serviceMemberId
   ],
   serializer
 };
@@ -558,7 +558,7 @@ const listDataFreshnessOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.serviceMemberId1
+    Parameters.serviceMemberId
   ],
   serializer
 };
@@ -575,7 +575,7 @@ const listExportStatusOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.serviceMemberId1
+    Parameters.serviceMemberId
   ],
   serializer
 };
@@ -592,7 +592,7 @@ const listGlobalConfigurationOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.serviceMemberId2
+    Parameters.serviceMemberId1
   ],
   serializer
 };
@@ -616,7 +616,7 @@ const getMetricsOperationSpec: coreHttp.OperationSpec = {
     Parameters.serviceName,
     Parameters.metricName,
     Parameters.groupName,
-    Parameters.serviceMemberId3
+    Parameters.serviceMemberId
   ],
   serializer
 };
@@ -633,7 +633,7 @@ const getServiceConfigurationOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.serviceMemberId4
+    Parameters.serviceMemberId1
   ],
   serializer
 };
@@ -650,8 +650,8 @@ const getConnectorMetadataOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.serviceMemberId5,
-    Parameters.metricName1
+    Parameters.metricName,
+    Parameters.serviceMemberId
   ],
   serializer
 };
@@ -664,8 +664,8 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter2,
     Parameters.dimensionType,
     Parameters.dimensionSignature
   ],
@@ -685,8 +685,8 @@ const listAlertsNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter3,
     Parameters.state,
     Parameters.fromParam,
     Parameters.to
@@ -695,7 +695,7 @@ const listAlertsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.serviceName,
     Parameters.serviceMemberId,
-    Parameters.nextLink10
+    Parameters.nextLink
   ],
   serializer
 };
@@ -711,8 +711,8 @@ const listExportStatusNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.serviceMemberId1,
-    Parameters.nextLink11
+    Parameters.serviceMemberId,
+    Parameters.nextLink
   ],
   serializer
 };

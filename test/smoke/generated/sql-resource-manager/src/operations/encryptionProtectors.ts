@@ -249,7 +249,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.encryptionProtectorName1
+    Parameters.encryptionProtectorName
   ],
   serializer
 };

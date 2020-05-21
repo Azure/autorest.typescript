@@ -250,14 +250,14 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.PrivateEndpointConnection
     }
   },
-  requestBody: Parameters.parameters61,
+  requestBody: Parameters.parameters60,
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.privateEndpointConnectionName1
+    Parameters.privateEndpointConnectionName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -274,7 +274,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.privateEndpointConnectionName1
+    Parameters.privateEndpointConnectionName
   ],
   serializer
 };

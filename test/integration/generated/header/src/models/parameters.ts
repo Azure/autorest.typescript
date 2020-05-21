@@ -82,27 +82,15 @@ export const value2: coreHttp.OperationParameter = {
     serializedName: "value",
     required: true,
     type: {
-      name: "Number"
+      name: "Boolean"
     }
   }
 };
 
 export const value3: coreHttp.OperationParameter = {
-  parameterPath: "value",
+  parameterPath: ["options", "value"],
   mapper: {
     serializedName: "value",
-    required: true,
-    type: {
-      name: "Number"
-    }
-  }
-};
-
-export const scenario1: coreHttp.OperationParameter = {
-  parameterPath: "scenario",
-  mapper: {
-    serializedName: "scenario",
-    required: true,
     type: {
       name: "String"
     }
@@ -115,55 +103,12 @@ export const value4: coreHttp.OperationParameter = {
     serializedName: "value",
     required: true,
     type: {
-      name: "Boolean"
-    }
-  }
-};
-
-export const scenario2: coreHttp.OperationParameter = {
-  parameterPath: "scenario",
-  mapper: {
-    serializedName: "scenario",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const value5: coreHttp.OperationParameter = {
-  parameterPath: ["options", "value"],
-  mapper: {
-    serializedName: "value",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const scenario3: coreHttp.OperationParameter = {
-  parameterPath: "scenario",
-  mapper: {
-    serializedName: "scenario",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const value6: coreHttp.OperationParameter = {
-  parameterPath: "value",
-  mapper: {
-    serializedName: "value",
-    required: true,
-    type: {
       name: "Date"
     }
   }
 };
 
-export const value7: coreHttp.OperationParameter = {
+export const value5: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
     serializedName: "value",
@@ -174,7 +119,7 @@ export const value7: coreHttp.OperationParameter = {
   }
 };
 
-export const value8: coreHttp.OperationParameter = {
+export const value6: coreHttp.OperationParameter = {
   parameterPath: ["options", "value"],
   mapper: {
     serializedName: "value",
@@ -184,18 +129,7 @@ export const value8: coreHttp.OperationParameter = {
   }
 };
 
-export const scenario4: coreHttp.OperationParameter = {
-  parameterPath: "scenario",
-  mapper: {
-    serializedName: "scenario",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const value9: coreHttp.OperationParameter = {
+export const value7: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
     serializedName: "value",
@@ -206,7 +140,7 @@ export const value9: coreHttp.OperationParameter = {
   }
 };
 
-export const value10: coreHttp.OperationParameter = {
+export const value8: coreHttp.OperationParameter = {
   parameterPath: "value",
   mapper: {
     serializedName: "value",
@@ -217,7 +151,7 @@ export const value10: coreHttp.OperationParameter = {
   }
 };
 
-export const value11: coreHttp.OperationParameter = {
+export const value9: coreHttp.OperationParameter = {
   parameterPath: ["options", "value"],
   mapper: {
     serializedName: "value",

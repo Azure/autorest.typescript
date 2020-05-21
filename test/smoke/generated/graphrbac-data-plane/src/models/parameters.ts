@@ -99,42 +99,9 @@ export const parameters1: coreHttp.OperationParameter = {
   mapper: Mappers.ApplicationUpdateParameters
 };
 
-export const applicationObjectId1: coreHttp.OperationURLParameter = {
-  parameterPath: "applicationObjectId",
-  mapper: {
-    serializedName: "applicationObjectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const parameters2: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.AddOwnerParameters
-};
-
-export const applicationObjectId2: coreHttp.OperationURLParameter = {
-  parameterPath: "applicationObjectId",
-  mapper: {
-    serializedName: "applicationObjectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const applicationObjectId3: coreHttp.OperationURLParameter = {
-  parameterPath: "applicationObjectId",
-  mapper: {
-    serializedName: "applicationObjectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const ownerObjectId: coreHttp.OperationURLParameter = {
@@ -169,33 +136,11 @@ export const applicationID: coreHttp.OperationURLParameter = {
   }
 };
 
-export const nextLink1: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const objectId: coreHttp.OperationURLParameter = {
   parameterPath: "objectId",
   mapper: {
     serializedName: "objectId",
     required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const filter1: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "filter"],
-  mapper: {
-    serializedName: "$filter",
     type: {
       name: "String"
     }
@@ -234,102 +179,14 @@ export const parameters6: coreHttp.OperationParameter = {
   mapper: Mappers.GroupAddMemberParameters
 };
 
-export const groupObjectId1: coreHttp.OperationURLParameter = {
-  parameterPath: "groupObjectId",
-  mapper: {
-    serializedName: "groupObjectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const parameters7: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.GroupCreateParameters
 };
 
-export const objectId1: coreHttp.OperationURLParameter = {
-  parameterPath: "objectId",
-  mapper: {
-    serializedName: "objectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const objectId2: coreHttp.OperationURLParameter = {
-  parameterPath: "objectId",
-  mapper: {
-    serializedName: "objectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const objectId3: coreHttp.OperationURLParameter = {
-  parameterPath: "objectId",
-  mapper: {
-    serializedName: "objectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const parameters8: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.GroupGetMemberGroupsParameters
-};
-
-export const objectId4: coreHttp.OperationURLParameter = {
-  parameterPath: "objectId",
-  mapper: {
-    serializedName: "objectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const objectId5: coreHttp.OperationURLParameter = {
-  parameterPath: "objectId",
-  mapper: {
-    serializedName: "objectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const objectId6: coreHttp.OperationURLParameter = {
-  parameterPath: "objectId",
-  mapper: {
-    serializedName: "objectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const objectId7: coreHttp.OperationURLParameter = {
-  parameterPath: "objectId",
-  mapper: {
-    serializedName: "objectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const parameters9: coreHttp.OperationParameter = {
@@ -342,83 +199,7 @@ export const parameters10: coreHttp.OperationParameter = {
   mapper: Mappers.ServicePrincipalBase
 };
 
-export const objectId8: coreHttp.OperationURLParameter = {
-  parameterPath: "objectId",
-  mapper: {
-    serializedName: "objectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const objectId9: coreHttp.OperationURLParameter = {
-  parameterPath: "objectId",
-  mapper: {
-    serializedName: "objectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const objectId10: coreHttp.OperationURLParameter = {
-  parameterPath: "objectId",
-  mapper: {
-    serializedName: "objectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const objectId11: coreHttp.OperationURLParameter = {
-  parameterPath: "objectId",
-  mapper: {
-    serializedName: "objectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const parameters11: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.KeyCredentialsUpdateParameters
-};
-
-export const objectId12: coreHttp.OperationURLParameter = {
-  parameterPath: "objectId",
-  mapper: {
-    serializedName: "objectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const objectId13: coreHttp.OperationURLParameter = {
-  parameterPath: "objectId",
-  mapper: {
-    serializedName: "objectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters12: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.PasswordCredentialsUpdateParameters
-};
-
-export const parameters13: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.UserCreateParameters
 };
@@ -444,50 +225,17 @@ export const upnOrObjectId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters14: coreHttp.OperationParameter = {
+export const parameters12: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.UserUpdateParameters
 };
 
-export const upnOrObjectId1: coreHttp.OperationURLParameter = {
-  parameterPath: "upnOrObjectId",
-  mapper: {
-    serializedName: "upnOrObjectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const upnOrObjectId2: coreHttp.OperationURLParameter = {
-  parameterPath: "upnOrObjectId",
-  mapper: {
-    serializedName: "upnOrObjectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters15: coreHttp.OperationParameter = {
+export const parameters13: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.UserGetMemberGroupsParameters
 };
 
-export const objectId14: coreHttp.OperationURLParameter = {
-  parameterPath: "objectId",
-  mapper: {
-    serializedName: "objectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters16: coreHttp.OperationParameter = {
+export const parameters14: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.GetObjectsParameters
 };
@@ -503,28 +251,7 @@ export const domainName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const filter2: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "filter"],
-  mapper: {
-    serializedName: "$filter",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const body: coreHttp.OperationParameter = {
   parameterPath: ["options", "body"],
   mapper: Mappers.OAuth2PermissionGrant
-};
-
-export const objectId15: coreHttp.OperationURLParameter = {
-  parameterPath: "objectId",
-  mapper: {
-    serializedName: "objectId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };

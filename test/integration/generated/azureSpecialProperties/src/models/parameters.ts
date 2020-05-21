@@ -66,39 +66,6 @@ export const subscriptionId1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const subscriptionId2: coreHttp.OperationURLParameter = {
-  parameterPath: "subscriptionId",
-  mapper: {
-    serializedName: "subscriptionId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const subscriptionId3: coreHttp.OperationURLParameter = {
-  parameterPath: "subscriptionId",
-  mapper: {
-    serializedName: "subscriptionId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const subscriptionId4: coreHttp.OperationURLParameter = {
-  parameterPath: "subscriptionId",
-  mapper: {
-    serializedName: "subscriptionId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const apiVersion1: coreHttp.OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
@@ -114,18 +81,6 @@ export const apiVersion1: coreHttp.OperationQueryParameter = {
 export const apiVersion2: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "apiVersion"],
   mapper: {
-    serializedName: "api-version",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const apiVersion3: coreHttp.OperationQueryParameter = {
-  parameterPath: "apiVersion",
-  mapper: {
-    defaultValue: "2.0",
-    isConstant: true,
     serializedName: "api-version",
     type: {
       name: "String"

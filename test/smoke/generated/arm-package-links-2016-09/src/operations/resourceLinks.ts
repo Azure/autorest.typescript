@@ -214,7 +214,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.linkId1],
+  urlParameters: [Parameters.$host, Parameters.linkId],
   serializer
 };
 const listAtSubscriptionOperationSpec: coreHttp.OperationSpec = {
@@ -252,8 +252,8 @@ const listAtSubscriptionNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink1
+    Parameters.nextLink,
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -266,6 +266,6 @@ const listAtSourceScopeNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter1],
-  urlParameters: [Parameters.$host, Parameters.scope, Parameters.nextLink2],
+  urlParameters: [Parameters.$host, Parameters.nextLink, Parameters.scope],
   serializer
 };

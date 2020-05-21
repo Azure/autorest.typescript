@@ -166,9 +166,9 @@ const getOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.vaultName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName2,
-    Parameters.vaultName5,
     Parameters.privateEndpointConnectionName
   ],
   serializer
@@ -190,9 +190,9 @@ const putOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.vaultName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName2,
-    Parameters.vaultName5,
     Parameters.privateEndpointConnectionName
   ],
   headerParameters: [Parameters.contentType],
@@ -220,9 +220,9 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.vaultName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName2,
-    Parameters.vaultName5,
     Parameters.privateEndpointConnectionName
   ],
   serializer

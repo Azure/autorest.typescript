@@ -594,9 +594,9 @@ const deleteAtResourceGroupLevelOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName1,
-    Parameters.lockName1
+    Parameters.resourceGroupName,
+    Parameters.lockName,
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -612,9 +612,9 @@ const getAtResourceGroupLevelOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName2,
-    Parameters.lockName2
+    Parameters.resourceGroupName,
+    Parameters.lockName,
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -629,9 +629,9 @@ const createOrUpdateByScopeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ManagementLockObject
     }
   },
-  requestBody: Parameters.parameters1,
+  requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.scope, Parameters.lockName3],
+  urlParameters: [Parameters.$host, Parameters.lockName, Parameters.scope],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
   serializer
@@ -641,7 +641,7 @@ const deleteByScopeOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   responses: { 200: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.lockName3, Parameters.scope1],
+  urlParameters: [Parameters.$host, Parameters.lockName, Parameters.scope],
   serializer
 };
 const getByScopeOperationSpec: coreHttp.OperationSpec = {
@@ -653,7 +653,7 @@ const getByScopeOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.lockName3, Parameters.scope1],
+  urlParameters: [Parameters.$host, Parameters.lockName, Parameters.scope],
   serializer
 };
 const createOrUpdateAtResourceLevelOperationSpec: coreHttp.OperationSpec = {
@@ -668,17 +668,17 @@ const createOrUpdateAtResourceLevelOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ManagementLockObject
     }
   },
-  requestBody: Parameters.parameters2,
+  requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.lockName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName3,
     Parameters.resourceProviderNamespace,
     Parameters.parentResourcePath,
     Parameters.resourceType,
-    Parameters.resourceName,
-    Parameters.lockName4
+    Parameters.resourceName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -692,13 +692,13 @@ const deleteAtResourceLevelOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.lockName,
     Parameters.subscriptionId,
+    Parameters.resourceProviderNamespace,
     Parameters.parentResourcePath,
-    Parameters.resourceGroupName4,
-    Parameters.resourceProviderNamespace1,
-    Parameters.resourceType1,
-    Parameters.resourceName1,
-    Parameters.lockName5
+    Parameters.resourceType,
+    Parameters.resourceName
   ],
   serializer
 };
@@ -714,13 +714,13 @@ const getAtResourceLevelOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.lockName,
     Parameters.subscriptionId,
-    Parameters.lockName3,
-    Parameters.resourceGroupName5,
-    Parameters.resourceProviderNamespace2,
-    Parameters.parentResourcePath1,
-    Parameters.resourceType2,
-    Parameters.resourceName2
+    Parameters.resourceProviderNamespace,
+    Parameters.parentResourcePath,
+    Parameters.resourceType,
+    Parameters.resourceName
   ],
   serializer
 };
@@ -740,8 +740,8 @@ const createOrUpdateAtSubscriptionLevelOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.lockName4
+    Parameters.lockName,
+    Parameters.subscriptionId
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -755,8 +755,8 @@ const deleteAtSubscriptionLevelOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.lockName1
+    Parameters.lockName,
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -772,8 +772,8 @@ const getAtSubscriptionLevelOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.lockName2
+    Parameters.lockName,
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -789,8 +789,8 @@ const listAtResourceGroupLevelOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName6
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -806,12 +806,12 @@ const listAtResourceLevelOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
+    Parameters.resourceProviderNamespace,
     Parameters.parentResourcePath,
-    Parameters.resourceProviderNamespace2,
-    Parameters.resourceGroupName7,
-    Parameters.resourceType3,
-    Parameters.resourceName3
+    Parameters.resourceType,
+    Parameters.resourceName
   ],
   serializer
 };
@@ -851,9 +851,9 @@ const listAtResourceGroupLevelNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName6,
-    Parameters.nextLink1
+    Parameters.nextLink,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -868,13 +868,13 @@ const listAtResourceLevelNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
+    Parameters.nextLink,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
+    Parameters.resourceProviderNamespace,
     Parameters.parentResourcePath,
-    Parameters.resourceProviderNamespace2,
-    Parameters.resourceGroupName7,
-    Parameters.resourceType3,
-    Parameters.resourceName3,
-    Parameters.nextLink2
+    Parameters.resourceType,
+    Parameters.resourceName
   ],
   serializer
 };
@@ -889,8 +889,8 @@ const listAtSubscriptionLevelNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink3
+    Parameters.nextLink,
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -903,6 +903,6 @@ const listByScopeNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter],
-  urlParameters: [Parameters.$host, Parameters.scope, Parameters.nextLink4],
+  urlParameters: [Parameters.$host, Parameters.nextLink, Parameters.scope],
   serializer
 };

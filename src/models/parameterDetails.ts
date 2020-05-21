@@ -14,7 +14,7 @@ import { KnownMediaType } from "@azure-tools/codegen";
 export interface ParameterDetails {
   nameRef: string;
   defaultValue?: any;
-  description: string;
+  description?: string;
   name: string;
   serializedName: string;
   location: ParameterLocation;
@@ -23,7 +23,7 @@ export interface ParameterDetails {
   mapper: string | Mapper;
   isGlobal: boolean;
   parameter: Parameter;
-  operationsIn?: string[];
+  operationsIn?: { [operationName: string]: { description: string } };
   collectionFormat?: string;
   schemaType: AllSchemaTypes;
   implementationLocation?: ImplementationLocation;

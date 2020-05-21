@@ -74,7 +74,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DomainListResult
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter1],
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   serializer
 };

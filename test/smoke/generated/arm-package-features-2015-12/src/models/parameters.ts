@@ -67,17 +67,6 @@ export const resourceProviderNamespace: coreHttp.OperationURLParameter = {
   }
 };
 
-export const resourceProviderNamespace1: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceProviderNamespace",
-  mapper: {
-    serializedName: "resourceProviderNamespace",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const featureName: coreHttp.OperationURLParameter = {
   parameterPath: "featureName",
   mapper: {
@@ -87,61 +76,4 @@ export const featureName: coreHttp.OperationURLParameter = {
       name: "String"
     }
   }
-};
-
-export const resourceProviderNamespace2: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceProviderNamespace",
-  mapper: {
-    serializedName: "resourceProviderNamespace",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const featureName1: coreHttp.OperationURLParameter = {
-  parameterPath: "featureName",
-  mapper: {
-    serializedName: "featureName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const featureName2: coreHttp.OperationURLParameter = {
-  parameterPath: "featureName",
-  mapper: {
-    serializedName: "featureName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const nextLink1: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink2: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };

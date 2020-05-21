@@ -234,7 +234,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.FlowLog
     }
   },
-  requestBody: Parameters.parameters52,
+  requestBody: Parameters.parameters36,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -265,7 +265,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.networkWatcherName,
-    Parameters.flowLogName1
+    Parameters.flowLogName
   ],
   serializer
 };
@@ -280,7 +280,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.networkWatcherName,
-    Parameters.flowLogName1
+    Parameters.flowLogName
   ],
   serializer
 };
@@ -299,9 +299,9 @@ const listOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName2,
-    Parameters.resourceGroupName5
+    Parameters.networkWatcherName
   ],
   serializer
 };
@@ -319,10 +319,10 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.nextLink,
-    Parameters.networkWatcherName2,
-    Parameters.resourceGroupName5
+    Parameters.networkWatcherName
   ],
   serializer
 };

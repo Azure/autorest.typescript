@@ -213,18 +213,6 @@ export const enumPath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const enumPath1: coreHttp.OperationURLParameter = {
-  parameterPath: "enumPath",
-  mapper: {
-    serializedName: "enumPath",
-    required: true,
-    type: {
-      name: "Enum",
-      allowedValues: ["red color", "green color", "blue color"]
-    }
-  }
-};
-
 export const bytePath: coreHttp.OperationURLParameter = {
   parameterPath: "bytePath",
   mapper: {
@@ -242,17 +230,6 @@ export const bytePath1: coreHttp.OperationURLParameter = {
     defaultValue: new Uint8Array(0),
     isConstant: true,
     serializedName: "bytePath",
-    type: {
-      name: "ByteArray"
-    }
-  }
-};
-
-export const bytePath2: coreHttp.OperationURLParameter = {
-  parameterPath: "bytePath",
-  mapper: {
-    serializedName: "bytePath",
-    required: true,
     type: {
       name: "ByteArray"
     }
@@ -566,17 +543,6 @@ export const enumQuery: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const enumQuery1: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "enumQuery"],
-  mapper: {
-    serializedName: "enumQuery",
-    type: {
-      name: "Enum",
-      allowedValues: ["red color", "green color", "blue color"]
-    }
-  }
-};
-
 export const byteQuery: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "byteQuery"],
   mapper: {
@@ -592,16 +558,6 @@ export const byteQuery1: coreHttp.OperationQueryParameter = {
   mapper: {
     defaultValue: new Uint8Array(0),
     isConstant: true,
-    serializedName: "byteQuery",
-    type: {
-      name: "ByteArray"
-    }
-  }
-};
-
-export const byteQuery2: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "byteQuery"],
-  mapper: {
     serializedName: "byteQuery",
     type: {
       name: "ByteArray"
@@ -674,7 +630,7 @@ export const arrayQuery1: coreHttp.OperationQueryParameter = {
       element: { type: { name: "String" } }
     }
   },
-  collectionFormat: coreHttp.QueryCollectionFormat.Csv
+  collectionFormat: coreHttp.QueryCollectionFormat.Ssv
 };
 
 export const arrayQuery2: coreHttp.OperationQueryParameter = {
@@ -686,34 +642,10 @@ export const arrayQuery2: coreHttp.OperationQueryParameter = {
       element: { type: { name: "String" } }
     }
   },
-  collectionFormat: coreHttp.QueryCollectionFormat.Csv
-};
-
-export const arrayQuery3: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "arrayQuery"],
-  mapper: {
-    serializedName: "arrayQuery",
-    type: {
-      name: "Sequence",
-      element: { type: { name: "String" } }
-    }
-  },
-  collectionFormat: coreHttp.QueryCollectionFormat.Ssv
-};
-
-export const arrayQuery4: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "arrayQuery"],
-  mapper: {
-    serializedName: "arrayQuery",
-    type: {
-      name: "Sequence",
-      element: { type: { name: "String" } }
-    }
-  },
   collectionFormat: coreHttp.QueryCollectionFormat.Tsv
 };
 
-export const arrayQuery5: coreHttp.OperationQueryParameter = {
+export const arrayQuery3: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "arrayQuery"],
   mapper: {
     serializedName: "arrayQuery",
@@ -779,36 +711,6 @@ export const localStringPath: coreHttp.OperationURLParameter = {
 };
 
 export const localStringQuery: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "localStringQuery"],
-  mapper: {
-    serializedName: "localStringQuery",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const localStringQuery1: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "localStringQuery"],
-  mapper: {
-    serializedName: "localStringQuery",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const pathItemStringQuery1: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "pathItemStringQuery"],
-  mapper: {
-    serializedName: "pathItemStringQuery",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const localStringQuery2: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "localStringQuery"],
   mapper: {
     serializedName: "localStringQuery",

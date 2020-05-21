@@ -11784,7 +11784,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -11812,7 +11812,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name9
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -11839,7 +11839,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name10
+    Parameters.name
   ],
   serializer
 };
@@ -11864,7 +11864,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name9
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -11887,7 +11887,7 @@ const analyzeCustomHostnameOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   serializer
 };
@@ -11907,7 +11907,7 @@ const applySlotConfigToProductionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -11931,7 +11931,7 @@ const backupOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -11954,7 +11954,7 @@ const listBackupsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -11975,7 +11975,7 @@ const getBackupStatusOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.backupId
   ],
   serializer
@@ -11996,7 +11996,7 @@ const deleteBackupOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.backupId
   ],
   serializer
@@ -12013,14 +12013,14 @@ const listBackupStatusSecretsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.request2,
+  requestBody: Parameters.request1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.backupId1
+    Parameters.name,
+    Parameters.backupId
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -12031,13 +12031,13 @@ const restoreOperationSpec: coreHttp.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/backups/{backupId}/restore",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  requestBody: Parameters.request3,
+  requestBody: Parameters.request2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.backupId
   ],
   headerParameters: [Parameters.contentType],
@@ -12061,7 +12061,7 @@ const listConfigurationsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -12083,7 +12083,7 @@ const updateApplicationSettingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -12106,7 +12106,7 @@ const listApplicationSettingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -12128,7 +12128,7 @@ const updateAuthSettingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -12151,7 +12151,7 @@ const getAuthSettingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -12173,7 +12173,7 @@ const updateAzureStorageAccountsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -12196,7 +12196,7 @@ const listAzureStorageAccountsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -12212,13 +12212,13 @@ const updateBackupConfigurationOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.request4,
+  requestBody: Parameters.request1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -12239,7 +12239,7 @@ const deleteBackupConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -12260,7 +12260,7 @@ const getBackupConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -12281,7 +12281,7 @@ const getAppSettingsKeyVaultReferencesOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -12302,7 +12302,7 @@ const getAppSettingKeyVaultReferenceOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.appSettingKey
   ],
   serializer
@@ -12325,7 +12325,7 @@ const updateConnectionStringsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -12348,7 +12348,7 @@ const listConnectionStringsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -12369,7 +12369,7 @@ const getDiagnosticLogsConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -12391,7 +12391,7 @@ const updateDiagnosticLogsConfigOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -12415,7 +12415,7 @@ const updateMetadataOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -12438,7 +12438,7 @@ const listMetadataOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -12468,7 +12468,7 @@ const listPublishingCredentialsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -12490,7 +12490,7 @@ const updateSitePushSettingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -12513,7 +12513,7 @@ const listSitePushSettingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   serializer
 };
@@ -12534,7 +12534,7 @@ const listSlotConfigurationNamesOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -12556,7 +12556,7 @@ const updateSlotConfigurationNamesOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -12579,7 +12579,7 @@ const getConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -12601,7 +12601,7 @@ const createOrUpdateConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -12625,7 +12625,7 @@ const updateConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -12648,7 +12648,7 @@ const listConfigurationSnapshotInfoOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -12669,7 +12669,7 @@ const getConfigurationSnapshotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.snapshotId
   ],
   serializer
@@ -12689,7 +12689,7 @@ const recoverSiteConfigurationSnapshotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.snapshotId
   ],
   serializer
@@ -12704,7 +12704,7 @@ const getWebSiteContainerLogsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   serializer
 };
@@ -12718,7 +12718,7 @@ const getContainerLogsZipOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   serializer
 };
@@ -12739,7 +12739,7 @@ const listContinuousWebJobsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12
+    Parameters.name
   ],
   serializer
 };
@@ -12761,7 +12761,7 @@ const getContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.webJobName
   ],
   serializer
@@ -12782,7 +12782,7 @@ const deleteContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.webJobName
   ],
   serializer
@@ -12803,7 +12803,7 @@ const startContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.webJobName
   ],
   serializer
@@ -12824,7 +12824,7 @@ const stopContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.webJobName
   ],
   serializer
@@ -12846,7 +12846,7 @@ const listDeploymentsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -12867,7 +12867,7 @@ const getDeploymentOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.id
   ],
   serializer
@@ -12890,8 +12890,8 @@ const createDeploymentOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.id1
+    Parameters.name,
+    Parameters.id
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -12913,7 +12913,7 @@ const deleteDeploymentOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.id
   ],
   serializer
@@ -12935,8 +12935,8 @@ const listDeploymentLogOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.id2
+    Parameters.name,
+    Parameters.id
   ],
   serializer
 };
@@ -12952,13 +12952,13 @@ const discoverBackupOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.request5,
+  requestBody: Parameters.request2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -12981,7 +12981,7 @@ const listDomainOwnershipIdentifiersOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -13002,7 +13002,7 @@ const getDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.domainOwnershipIdentifierName
   ],
   serializer
@@ -13025,7 +13025,7 @@ const createOrUpdateDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSp
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.domainOwnershipIdentifierName
   ],
   headerParameters: [Parameters.contentType],
@@ -13048,7 +13048,7 @@ const deleteDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.domainOwnershipIdentifierName
   ],
   serializer
@@ -13071,7 +13071,7 @@ const updateDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.domainOwnershipIdentifierName
   ],
   headerParameters: [Parameters.contentType],
@@ -13095,7 +13095,7 @@ const getMSDeployStatusOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   serializer
 };
@@ -13123,7 +13123,7 @@ const createMSDeployOperationOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -13147,7 +13147,7 @@ const getMSDeployLogOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   serializer
 };
@@ -13169,7 +13169,7 @@ const listFunctionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12
+    Parameters.name
   ],
   serializer
 };
@@ -13190,7 +13190,7 @@ const getFunctionsAdminTokenOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   serializer
 };
@@ -13212,7 +13212,7 @@ const getFunctionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.functionName
   ],
   serializer
@@ -13244,7 +13244,7 @@ const createFunctionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.functionName
   ],
   headerParameters: [Parameters.contentType],
@@ -13267,7 +13267,7 @@ const deleteFunctionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.functionName
   ],
   serializer
@@ -13293,8 +13293,8 @@ const createOrUpdateFunctionSecretOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.functionName1,
+    Parameters.name,
+    Parameters.functionName,
     Parameters.keyName
   ],
   headerParameters: [Parameters.contentType],
@@ -13317,8 +13317,8 @@ const deleteFunctionSecretOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.functionName1,
+    Parameters.name,
+    Parameters.functionName,
     Parameters.keyName
   ],
   serializer
@@ -13340,7 +13340,7 @@ const listFunctionKeysOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.functionName
   ],
   serializer
@@ -13362,7 +13362,7 @@ const listFunctionSecretsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.functionName
   ],
   serializer
@@ -13384,7 +13384,7 @@ const listHostKeysOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12
+    Parameters.name
   ],
   serializer
 };
@@ -13403,7 +13403,7 @@ const listSyncStatusOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -13422,7 +13422,7 @@ const syncFunctionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -13447,7 +13447,7 @@ const createOrUpdateHostSecretOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.keyName,
     Parameters.keyType
   ],
@@ -13471,7 +13471,7 @@ const deleteHostSecretOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.keyName,
     Parameters.keyType
   ],
@@ -13494,7 +13494,7 @@ const listHostNameBindingsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -13515,7 +13515,7 @@ const getHostNameBindingOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.hostName1
   ],
   serializer
@@ -13538,7 +13538,7 @@ const createOrUpdateHostNameBindingOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.hostName1
   ],
   headerParameters: [Parameters.contentType],
@@ -13561,7 +13561,7 @@ const deleteHostNameBindingOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.hostName1
   ],
   serializer
@@ -13583,7 +13583,7 @@ const getHybridConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13,
+    Parameters.name,
     Parameters.namespaceName,
     Parameters.relayName
   ],
@@ -13607,7 +13607,7 @@ const createOrUpdateHybridConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13,
+    Parameters.name,
     Parameters.namespaceName,
     Parameters.relayName
   ],
@@ -13631,7 +13631,7 @@ const deleteHybridConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13,
+    Parameters.name,
     Parameters.namespaceName,
     Parameters.relayName
   ],
@@ -13655,7 +13655,7 @@ const updateHybridConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13,
+    Parameters.name,
     Parameters.namespaceName,
     Parameters.relayName
   ],
@@ -13680,7 +13680,7 @@ const listHybridConnectionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13
+    Parameters.name
   ],
   serializer
 };
@@ -13701,7 +13701,7 @@ const listRelayServiceConnectionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -13722,7 +13722,7 @@ const getRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.entityName
   ],
   serializer
@@ -13745,8 +13745,8 @@ const createOrUpdateRelayServiceConnectionOperationSpec: coreHttp.OperationSpec 
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.entityName1
+    Parameters.name,
+    Parameters.entityName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -13768,8 +13768,8 @@ const deleteRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.entityName1
+    Parameters.name,
+    Parameters.entityName
   ],
   serializer
 };
@@ -13791,8 +13791,8 @@ const updateRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.entityName1
+    Parameters.name,
+    Parameters.entityName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -13815,7 +13815,7 @@ const listInstanceIdentifiersOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -13836,7 +13836,7 @@ const getInstanceInfoOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.instanceId
   ],
   serializer
@@ -13858,8 +13858,8 @@ const getInstanceMsDeployStatusOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.instanceId1
+    Parameters.name,
+    Parameters.instanceId
   ],
   serializer
 };
@@ -13887,8 +13887,8 @@ const createInstanceMSDeployOperationOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.instanceId1
+    Parameters.name,
+    Parameters.instanceId
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -13912,8 +13912,8 @@ const getInstanceMSDeployLogOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.instanceId1
+    Parameters.name,
+    Parameters.instanceId
   ],
   serializer
 };
@@ -13935,8 +13935,8 @@ const listInstanceProcessesOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2
+    Parameters.name,
+    Parameters.instanceId
   ],
   serializer
 };
@@ -13958,8 +13958,8 @@ const getInstanceProcessOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
+    Parameters.name,
+    Parameters.instanceId,
     Parameters.processId
   ],
   serializer
@@ -13980,8 +13980,8 @@ const deleteInstanceProcessOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
+    Parameters.name,
+    Parameters.instanceId,
     Parameters.processId
   ],
   serializer
@@ -14002,8 +14002,8 @@ const getInstanceProcessDumpOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
+    Parameters.name,
+    Parameters.instanceId,
     Parameters.processId
   ],
   serializer
@@ -14026,8 +14026,8 @@ const listInstanceProcessModulesOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
+    Parameters.name,
+    Parameters.instanceId,
     Parameters.processId
   ],
   serializer
@@ -14050,8 +14050,8 @@ const getInstanceProcessModuleOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
+    Parameters.name,
+    Parameters.instanceId,
     Parameters.processId,
     Parameters.baseAddress
   ],
@@ -14075,8 +14075,8 @@ const listInstanceProcessThreadsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
+    Parameters.name,
+    Parameters.instanceId,
     Parameters.processId
   ],
   serializer
@@ -14098,7 +14098,7 @@ const isCloneableOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -14119,7 +14119,7 @@ const listSiteBackupsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -14140,7 +14140,7 @@ const listSyncFunctionTriggersOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -14171,7 +14171,7 @@ const migrateStorageOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -14204,7 +14204,7 @@ const migrateMySqlOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -14227,7 +14227,7 @@ const getMigrateMySqlStatusOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   serializer
 };
@@ -14248,7 +14248,7 @@ const getSwiftVirtualNetworkConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -14270,7 +14270,7 @@ const createOrUpdateSwiftVirtualNetworkConnectionOperationSpec: coreHttp.Operati
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -14292,7 +14292,7 @@ const deleteSwiftVirtualNetworkOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -14314,7 +14314,7 @@ const updateSwiftVirtualNetworkConnectionOperationSpec: coreHttp.OperationSpec =
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -14338,7 +14338,7 @@ const listNetworkFeaturesOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.view
   ],
   serializer
@@ -14373,7 +14373,7 @@ const getNetworkTraceOperationOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.operationId
   ],
   serializer
@@ -14400,7 +14400,7 @@ const startWebSiteNetworkTraceOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13
+    Parameters.name
   ],
   serializer
 };
@@ -14452,7 +14452,7 @@ const startWebSiteNetworkTraceOperationOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13
+    Parameters.name
   ],
   serializer
 };
@@ -14472,7 +14472,7 @@ const stopWebSiteNetworkTraceOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13
+    Parameters.name
   ],
   serializer
 };
@@ -14498,7 +14498,7 @@ const getNetworkTracesOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.operationId
   ],
   serializer
@@ -14533,7 +14533,7 @@ const getNetworkTraceOperationV2OperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.operationId
   ],
   serializer
@@ -14560,7 +14560,7 @@ const getNetworkTracesV2OperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.operationId
   ],
   serializer
@@ -14581,7 +14581,7 @@ const generateNewSitePublishingPasswordOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -14597,12 +14597,12 @@ const listPerfMonCountersOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter2],
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   serializer
 };
@@ -14623,7 +14623,7 @@ const getSitePhpErrorLogFlagOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   serializer
 };
@@ -14644,7 +14644,7 @@ const listPremierAddOnsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -14665,7 +14665,7 @@ const getPremierAddOnOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.premierAddOnName
   ],
   serializer
@@ -14688,7 +14688,7 @@ const addPremierAddOnOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.premierAddOnName
   ],
   headerParameters: [Parameters.contentType],
@@ -14710,7 +14710,7 @@ const deletePremierAddOnOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.premierAddOnName
   ],
   serializer
@@ -14733,7 +14733,7 @@ const updatePremierAddOnOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.premierAddOnName
   ],
   headerParameters: [Parameters.contentType],
@@ -14757,7 +14757,7 @@ const getPrivateAccessOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13
+    Parameters.name
   ],
   serializer
 };
@@ -14779,7 +14779,7 @@ const putPrivateAccessVnetOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -14803,7 +14803,7 @@ const listProcessesOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12
+    Parameters.name
   ],
   serializer
 };
@@ -14825,7 +14825,7 @@ const getProcessOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.processId
   ],
   serializer
@@ -14846,7 +14846,7 @@ const deleteProcessOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.processId
   ],
   serializer
@@ -14867,7 +14867,7 @@ const getProcessDumpOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.processId
   ],
   serializer
@@ -14890,7 +14890,7 @@ const listProcessModulesOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.processId
   ],
   serializer
@@ -14913,7 +14913,7 @@ const getProcessModuleOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.processId,
     Parameters.baseAddress
   ],
@@ -14937,7 +14937,7 @@ const listProcessThreadsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.processId
   ],
   serializer
@@ -14959,7 +14959,7 @@ const listPublicCertificatesOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -14980,7 +14980,7 @@ const getPublicCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.publicCertificateName
   ],
   serializer
@@ -15003,7 +15003,7 @@ const createOrUpdatePublicCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.publicCertificateName
   ],
   headerParameters: [Parameters.contentType],
@@ -15026,7 +15026,7 @@ const deletePublicCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.publicCertificateName
   ],
   serializer
@@ -15047,7 +15047,7 @@ const listPublishingProfileXmlWithSecretsOperationSpec: coreHttp.OperationSpec =
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15068,7 +15068,7 @@ const resetProductionSlotConfigOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -15091,7 +15091,7 @@ const restartOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -15100,13 +15100,13 @@ const restoreFromBackupBlobOperationSpec: coreHttp.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/restoreFromBackupBlob",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  requestBody: Parameters.request3,
+  requestBody: Parameters.request2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15123,7 +15123,7 @@ const restoreFromDeletedAppOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15140,7 +15140,7 @@ const restoreSnapshotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15164,7 +15164,7 @@ const listSiteExtensionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12
+    Parameters.name
   ],
   serializer
 };
@@ -15186,7 +15186,7 @@ const getSiteExtensionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.siteExtensionId
   ],
   serializer
@@ -15214,7 +15214,7 @@ const installSiteExtensionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.siteExtensionId
   ],
   serializer
@@ -15235,7 +15235,7 @@ const deleteSiteExtensionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.siteExtensionId
   ],
   serializer
@@ -15251,7 +15251,7 @@ const copyProductionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15274,7 +15274,7 @@ const listSlotsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -15296,8 +15296,8 @@ const getSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot2
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -15325,8 +15325,8 @@ const createOrUpdateSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name9,
-    Parameters.slot3
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15347,14 +15347,14 @@ const deleteSlotOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [
     Parameters.apiVersion,
     Parameters.deleteMetrics,
-    Parameters.deleteEmptyServerFarm1
+    Parameters.deleteEmptyServerFarm
   ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name10,
-    Parameters.slot4
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -15379,8 +15379,8 @@ const updateSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name9,
-    Parameters.slot3
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15403,8 +15403,8 @@ const analyzeCustomHostnameSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -15424,8 +15424,8 @@ const applySlotConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot6
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15449,8 +15449,8 @@ const backupSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot7
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15473,8 +15473,8 @@ const listBackupsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot8
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -15495,9 +15495,9 @@ const getBackupStatusSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.backupId,
-    Parameters.slot9
+    Parameters.name,
+    Parameters.slot,
+    Parameters.backupId
   ],
   serializer
 };
@@ -15517,9 +15517,9 @@ const deleteBackupSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.backupId,
-    Parameters.slot10
+    Parameters.name,
+    Parameters.slot,
+    Parameters.backupId
   ],
   serializer
 };
@@ -15535,15 +15535,15 @@ const listBackupStatusSecretsSlotOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.request2,
+  requestBody: Parameters.request1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.backupId1,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot,
+    Parameters.backupId
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15554,15 +15554,15 @@ const restoreSlotOperationSpec: coreHttp.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/backups/{backupId}/restore",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  requestBody: Parameters.request3,
+  requestBody: Parameters.request2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.backupId,
-    Parameters.slot11
+    Parameters.name,
+    Parameters.slot,
+    Parameters.backupId
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15585,8 +15585,8 @@ const listConfigurationsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot12
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -15608,8 +15608,8 @@ const updateApplicationSettingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot13
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15632,8 +15632,8 @@ const listApplicationSettingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot14
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -15655,8 +15655,8 @@ const updateAuthSettingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15679,8 +15679,8 @@ const getAuthSettingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot15
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -15702,8 +15702,8 @@ const updateAzureStorageAccountsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot16
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15726,8 +15726,8 @@ const listAzureStorageAccountsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot16
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -15743,14 +15743,14 @@ const updateBackupConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.request4,
+  requestBody: Parameters.request1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot17
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15771,8 +15771,8 @@ const deleteBackupConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot18
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -15793,8 +15793,8 @@ const getBackupConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot19
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -15816,8 +15816,8 @@ const updateConnectionStringsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot20
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15840,8 +15840,8 @@ const listConnectionStringsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot21
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -15862,8 +15862,8 @@ const getDiagnosticLogsConfigurationSlotOperationSpec: coreHttp.OperationSpec = 
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot22
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -15885,8 +15885,8 @@ const updateDiagnosticLogsConfigSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot23
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15910,8 +15910,8 @@ const updateMetadataSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot24
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -15934,8 +15934,8 @@ const listMetadataSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot25
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -15965,8 +15965,8 @@ const listPublishingCredentialsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot26
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -15988,8 +15988,8 @@ const updateSitePushSettingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -16012,8 +16012,8 @@ const listSitePushSettingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -16034,8 +16034,8 @@ const getConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot12
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -16057,8 +16057,8 @@ const createOrUpdateConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot27
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -16082,8 +16082,8 @@ const updateConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot27
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -16106,8 +16106,8 @@ const listConfigurationSnapshotInfoSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot12
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -16128,9 +16128,9 @@ const getConfigurationSnapshotSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.snapshotId,
-    Parameters.slot12
+    Parameters.name,
+    Parameters.slot,
+    Parameters.snapshotId
   ],
   serializer
 };
@@ -16149,9 +16149,9 @@ const recoverSiteConfigurationSnapshotSlotOperationSpec: coreHttp.OperationSpec 
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.snapshotId,
-    Parameters.slot12
+    Parameters.name,
+    Parameters.slot,
+    Parameters.snapshotId
   ],
   serializer
 };
@@ -16165,8 +16165,8 @@ const getWebSiteContainerLogsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -16180,8 +16180,8 @@ const getContainerLogsZipSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -16202,8 +16202,8 @@ const listContinuousWebJobsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.slot28
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -16225,9 +16225,9 @@ const getContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.webJobName,
-    Parameters.slot28
+    Parameters.name,
+    Parameters.slot,
+    Parameters.webJobName
   ],
   serializer
 };
@@ -16247,9 +16247,9 @@ const deleteContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.webJobName,
-    Parameters.slot28
+    Parameters.name,
+    Parameters.slot,
+    Parameters.webJobName
   ],
   serializer
 };
@@ -16269,9 +16269,9 @@ const startContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.webJobName,
-    Parameters.slot28
+    Parameters.name,
+    Parameters.slot,
+    Parameters.webJobName
   ],
   serializer
 };
@@ -16291,9 +16291,9 @@ const stopContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.webJobName,
-    Parameters.slot28
+    Parameters.name,
+    Parameters.slot,
+    Parameters.webJobName
   ],
   serializer
 };
@@ -16314,8 +16314,8 @@ const listDeploymentsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot29
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -16336,9 +16336,9 @@ const getDeploymentSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.id,
-    Parameters.slot30
+    Parameters.name,
+    Parameters.slot,
+    Parameters.id
   ],
   serializer
 };
@@ -16360,9 +16360,9 @@ const createDeploymentSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.id1,
-    Parameters.slot31
+    Parameters.name,
+    Parameters.slot,
+    Parameters.id
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -16384,9 +16384,9 @@ const deleteDeploymentSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.id,
-    Parameters.slot28
+    Parameters.name,
+    Parameters.slot,
+    Parameters.id
   ],
   serializer
 };
@@ -16407,9 +16407,9 @@ const listDeploymentLogSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.id2,
-    Parameters.slot29
+    Parameters.name,
+    Parameters.slot,
+    Parameters.id
   ],
   serializer
 };
@@ -16425,14 +16425,14 @@ const discoverBackupSlotOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.request5,
+  requestBody: Parameters.request2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot32
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -16455,8 +16455,8 @@ const listDomainOwnershipIdentifiersSlotOperationSpec: coreHttp.OperationSpec = 
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot33
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -16477,9 +16477,9 @@ const getDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.domainOwnershipIdentifierName,
-    Parameters.slot33
+    Parameters.name,
+    Parameters.slot,
+    Parameters.domainOwnershipIdentifierName
   ],
   serializer
 };
@@ -16501,9 +16501,9 @@ const createOrUpdateDomainOwnershipIdentifierSlotOperationSpec: coreHttp.Operati
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.domainOwnershipIdentifierName,
-    Parameters.slot33
+    Parameters.name,
+    Parameters.slot,
+    Parameters.domainOwnershipIdentifierName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -16525,9 +16525,9 @@ const deleteDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec =
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.domainOwnershipIdentifierName,
-    Parameters.slot33
+    Parameters.name,
+    Parameters.slot,
+    Parameters.domainOwnershipIdentifierName
   ],
   serializer
 };
@@ -16549,9 +16549,9 @@ const updateDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec =
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.domainOwnershipIdentifierName,
-    Parameters.slot33
+    Parameters.name,
+    Parameters.slot,
+    Parameters.domainOwnershipIdentifierName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -16574,8 +16574,8 @@ const getMSDeployStatusSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -16603,8 +16603,8 @@ const createMSDeployOperationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -16628,8 +16628,8 @@ const getMSDeployLogSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -16651,8 +16651,8 @@ const listInstanceFunctionsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.slot34
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -16673,8 +16673,8 @@ const getFunctionsAdminTokenSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -16696,9 +16696,9 @@ const getInstanceFunctionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.functionName,
-    Parameters.slot34
+    Parameters.name,
+    Parameters.slot,
+    Parameters.functionName
   ],
   serializer
 };
@@ -16729,9 +16729,9 @@ const createInstanceFunctionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.functionName,
-    Parameters.slot34
+    Parameters.name,
+    Parameters.slot,
+    Parameters.functionName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -16753,9 +16753,9 @@ const deleteInstanceFunctionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.functionName,
-    Parameters.slot34
+    Parameters.name,
+    Parameters.slot,
+    Parameters.functionName
   ],
   serializer
 };
@@ -16780,10 +16780,10 @@ const createOrUpdateFunctionSecretSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.functionName1,
-    Parameters.keyName,
-    Parameters.slot34
+    Parameters.name,
+    Parameters.slot,
+    Parameters.functionName,
+    Parameters.keyName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -16805,10 +16805,10 @@ const deleteFunctionSecretSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.functionName1,
-    Parameters.keyName,
-    Parameters.slot34
+    Parameters.name,
+    Parameters.slot,
+    Parameters.functionName,
+    Parameters.keyName
   ],
   serializer
 };
@@ -16829,9 +16829,9 @@ const listFunctionKeysSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.functionName,
-    Parameters.slot34
+    Parameters.name,
+    Parameters.slot,
+    Parameters.functionName
   ],
   serializer
 };
@@ -16852,9 +16852,9 @@ const listFunctionSecretsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.functionName,
-    Parameters.slot34
+    Parameters.name,
+    Parameters.slot,
+    Parameters.functionName
   ],
   serializer
 };
@@ -16875,8 +16875,8 @@ const listHostKeysSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.slot34
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -16895,8 +16895,8 @@ const listSyncStatusSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot34
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -16915,8 +16915,8 @@ const syncFunctionsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot34
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -16941,10 +16941,10 @@ const createOrUpdateHostSecretSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
+    Parameters.slot,
     Parameters.keyName,
-    Parameters.keyType,
-    Parameters.slot34
+    Parameters.keyType
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -16966,10 +16966,10 @@ const deleteHostSecretSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
+    Parameters.slot,
     Parameters.keyName,
-    Parameters.keyType,
-    Parameters.slot34
+    Parameters.keyType
   ],
   serializer
 };
@@ -16990,8 +16990,8 @@ const listHostNameBindingsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot35
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -17012,9 +17012,9 @@ const getHostNameBindingSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.hostName1,
-    Parameters.slot36
+    Parameters.name,
+    Parameters.slot,
+    Parameters.hostName1
   ],
   serializer
 };
@@ -17036,9 +17036,9 @@ const createOrUpdateHostNameBindingSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.hostName1,
-    Parameters.slot37
+    Parameters.name,
+    Parameters.slot,
+    Parameters.hostName1
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -17060,9 +17060,9 @@ const deleteHostNameBindingSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.hostName1,
-    Parameters.slot33
+    Parameters.name,
+    Parameters.slot,
+    Parameters.hostName1
   ],
   serializer
 };
@@ -17083,10 +17083,10 @@ const getHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13,
+    Parameters.name,
+    Parameters.slot,
     Parameters.namespaceName,
-    Parameters.relayName,
-    Parameters.slot38
+    Parameters.relayName
   ],
   serializer
 };
@@ -17108,10 +17108,10 @@ const createOrUpdateHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = 
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13,
+    Parameters.name,
+    Parameters.slot,
     Parameters.namespaceName,
-    Parameters.relayName,
-    Parameters.slot38
+    Parameters.relayName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -17133,10 +17133,10 @@ const deleteHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13,
+    Parameters.name,
+    Parameters.slot,
     Parameters.namespaceName,
-    Parameters.relayName,
-    Parameters.slot38
+    Parameters.relayName
   ],
   serializer
 };
@@ -17158,10 +17158,10 @@ const updateHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13,
+    Parameters.name,
+    Parameters.slot,
     Parameters.namespaceName,
-    Parameters.relayName,
-    Parameters.slot38
+    Parameters.relayName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -17184,8 +17184,8 @@ const listHybridConnectionsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13,
-    Parameters.slot38
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -17206,8 +17206,8 @@ const listRelayServiceConnectionsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot39
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -17228,9 +17228,9 @@ const getRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.entityName,
-    Parameters.slot40
+    Parameters.name,
+    Parameters.slot,
+    Parameters.entityName
   ],
   serializer
 };
@@ -17252,9 +17252,9 @@ const createOrUpdateRelayServiceConnectionSlotOperationSpec: coreHttp.OperationS
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.entityName1,
-    Parameters.slot41
+    Parameters.name,
+    Parameters.slot,
+    Parameters.entityName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -17276,9 +17276,9 @@ const deleteRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.entityName1,
-    Parameters.slot42
+    Parameters.name,
+    Parameters.slot,
+    Parameters.entityName
   ],
   serializer
 };
@@ -17300,9 +17300,9 @@ const updateRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.entityName1,
-    Parameters.slot41
+    Parameters.name,
+    Parameters.slot,
+    Parameters.entityName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -17325,8 +17325,8 @@ const listInstanceIdentifiersSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot43
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -17347,9 +17347,9 @@ const getInstanceInfoSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.instanceId,
-    Parameters.slot43
+    Parameters.name,
+    Parameters.slot,
+    Parameters.instanceId
   ],
   serializer
 };
@@ -17370,9 +17370,9 @@ const getInstanceMsDeployStatusSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.instanceId1,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot,
+    Parameters.instanceId
   ],
   serializer
 };
@@ -17400,9 +17400,9 @@ const createInstanceMSDeployOperationSlotOperationSpec: coreHttp.OperationSpec =
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.instanceId1,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot,
+    Parameters.instanceId
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -17426,9 +17426,9 @@ const getInstanceMSDeployLogSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.instanceId1,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot,
+    Parameters.instanceId
   ],
   serializer
 };
@@ -17450,9 +17450,9 @@ const listInstanceProcessesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
-    Parameters.slot29
+    Parameters.name,
+    Parameters.slot,
+    Parameters.instanceId
   ],
   serializer
 };
@@ -17474,10 +17474,10 @@ const getInstanceProcessSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
-    Parameters.processId,
-    Parameters.slot29
+    Parameters.name,
+    Parameters.slot,
+    Parameters.instanceId,
+    Parameters.processId
   ],
   serializer
 };
@@ -17497,10 +17497,10 @@ const deleteInstanceProcessSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
-    Parameters.processId,
-    Parameters.slot29
+    Parameters.name,
+    Parameters.slot,
+    Parameters.instanceId,
+    Parameters.processId
   ],
   serializer
 };
@@ -17520,10 +17520,10 @@ const getInstanceProcessDumpSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
-    Parameters.processId,
-    Parameters.slot29
+    Parameters.name,
+    Parameters.slot,
+    Parameters.instanceId,
+    Parameters.processId
   ],
   serializer
 };
@@ -17545,10 +17545,10 @@ const listInstanceProcessModulesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
-    Parameters.processId,
-    Parameters.slot29
+    Parameters.name,
+    Parameters.slot,
+    Parameters.instanceId,
+    Parameters.processId
   ],
   serializer
 };
@@ -17570,11 +17570,11 @@ const getInstanceProcessModuleSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
+    Parameters.name,
+    Parameters.slot,
+    Parameters.instanceId,
     Parameters.processId,
-    Parameters.baseAddress,
-    Parameters.slot29
+    Parameters.baseAddress
   ],
   serializer
 };
@@ -17596,10 +17596,10 @@ const listInstanceProcessThreadsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
-    Parameters.processId,
-    Parameters.slot29
+    Parameters.name,
+    Parameters.slot,
+    Parameters.instanceId,
+    Parameters.processId
   ],
   serializer
 };
@@ -17620,8 +17620,8 @@ const isCloneableSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot44
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -17642,8 +17642,8 @@ const listSiteBackupsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot8
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -17664,8 +17664,8 @@ const listSyncFunctionTriggersSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot34
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -17686,8 +17686,8 @@ const getMigrateMySqlStatusSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot34
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -17708,8 +17708,8 @@ const getSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.OperationSpec 
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot45
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -17731,8 +17731,8 @@ const createOrUpdateSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.Ope
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot46
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -17754,8 +17754,8 @@ const deleteSwiftVirtualNetworkSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot47
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -17777,8 +17777,8 @@ const updateSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.OperationSp
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot46
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -17802,9 +17802,9 @@ const listNetworkFeaturesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.view,
-    Parameters.slot48
+    Parameters.name,
+    Parameters.slot,
+    Parameters.view
   ],
   serializer
 };
@@ -17838,9 +17838,9 @@ const getNetworkTraceOperationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.operationId,
-    Parameters.slot49
+    Parameters.name,
+    Parameters.slot,
+    Parameters.operationId
   ],
   serializer
 };
@@ -17866,8 +17866,8 @@ const startWebSiteNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13,
-    Parameters.slot50
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -17919,8 +17919,8 @@ const startWebSiteNetworkTraceOperationSlotOperationSpec: coreHttp.OperationSpec
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13,
-    Parameters.slot50
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -17940,8 +17940,8 @@ const stopWebSiteNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13,
-    Parameters.slot50
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -17967,9 +17967,9 @@ const getNetworkTracesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.operationId,
-    Parameters.slot49
+    Parameters.name,
+    Parameters.slot,
+    Parameters.operationId
   ],
   serializer
 };
@@ -18003,9 +18003,9 @@ const getNetworkTraceOperationSlotV2OperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.operationId,
-    Parameters.slot49
+    Parameters.name,
+    Parameters.slot,
+    Parameters.operationId
   ],
   serializer
 };
@@ -18031,9 +18031,9 @@ const getNetworkTracesSlotV2OperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.operationId,
-    Parameters.slot49
+    Parameters.name,
+    Parameters.slot,
+    Parameters.operationId
   ],
   serializer
 };
@@ -18053,8 +18053,8 @@ const generateNewSitePublishingPasswordSlotOperationSpec: coreHttp.OperationSpec
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot51
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -18070,13 +18070,13 @@ const listPerfMonCountersSlotOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter2],
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -18097,8 +18097,8 @@ const getSitePhpErrorLogFlagSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -18119,8 +18119,8 @@ const listPremierAddOnsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot52
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -18141,9 +18141,9 @@ const getPremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.premierAddOnName,
-    Parameters.slot53
+    Parameters.name,
+    Parameters.slot,
+    Parameters.premierAddOnName
   ],
   serializer
 };
@@ -18165,9 +18165,9 @@ const addPremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.premierAddOnName,
-    Parameters.slot54
+    Parameters.name,
+    Parameters.slot,
+    Parameters.premierAddOnName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -18188,9 +18188,9 @@ const deletePremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.premierAddOnName,
-    Parameters.slot55
+    Parameters.name,
+    Parameters.slot,
+    Parameters.premierAddOnName
   ],
   serializer
 };
@@ -18212,9 +18212,9 @@ const updatePremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.premierAddOnName,
-    Parameters.slot54
+    Parameters.name,
+    Parameters.slot,
+    Parameters.premierAddOnName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -18237,8 +18237,8 @@ const getPrivateAccessSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13,
-    Parameters.slot38
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -18260,8 +18260,8 @@ const putPrivateAccessVnetSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13,
-    Parameters.slot38
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -18284,7 +18284,7 @@ const getPrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name14,
+    Parameters.name,
     Parameters.privateEndpointConnectionName
   ],
   serializer
@@ -18313,7 +18313,7 @@ const approveOrRejectPrivateEndpointConnectionOperationSpec: coreHttp.OperationS
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name14,
+    Parameters.name,
     Parameters.privateEndpointConnectionName
   ],
   headerParameters: [Parameters.contentType],
@@ -18343,7 +18343,7 @@ const deletePrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name14,
+    Parameters.name,
     Parameters.privateEndpointConnectionName
   ],
   serializer
@@ -18365,7 +18365,7 @@ const getPrivateLinkResourcesOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name14
+    Parameters.name
   ],
   serializer
 };
@@ -18387,8 +18387,8 @@ const listProcessesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.slot29
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -18410,9 +18410,9 @@ const getProcessSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.processId,
-    Parameters.slot29
+    Parameters.name,
+    Parameters.slot,
+    Parameters.processId
   ],
   serializer
 };
@@ -18432,9 +18432,9 @@ const deleteProcessSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.processId,
-    Parameters.slot29
+    Parameters.name,
+    Parameters.slot,
+    Parameters.processId
   ],
   serializer
 };
@@ -18454,9 +18454,9 @@ const getProcessDumpSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.processId,
-    Parameters.slot29
+    Parameters.name,
+    Parameters.slot,
+    Parameters.processId
   ],
   serializer
 };
@@ -18478,9 +18478,9 @@ const listProcessModulesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.processId,
-    Parameters.slot29
+    Parameters.name,
+    Parameters.slot,
+    Parameters.processId
   ],
   serializer
 };
@@ -18502,10 +18502,10 @@ const getProcessModuleSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
+    Parameters.slot,
     Parameters.processId,
-    Parameters.baseAddress,
-    Parameters.slot29
+    Parameters.baseAddress
   ],
   serializer
 };
@@ -18527,9 +18527,9 @@ const listProcessThreadsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.processId,
-    Parameters.slot29
+    Parameters.name,
+    Parameters.slot,
+    Parameters.processId
   ],
   serializer
 };
@@ -18550,8 +18550,8 @@ const listPublicCertificatesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot35
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -18572,9 +18572,9 @@ const getPublicCertificateSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.publicCertificateName,
-    Parameters.slot36
+    Parameters.name,
+    Parameters.slot,
+    Parameters.publicCertificateName
   ],
   serializer
 };
@@ -18596,9 +18596,9 @@ const createOrUpdatePublicCertificateSlotOperationSpec: coreHttp.OperationSpec =
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.publicCertificateName,
-    Parameters.slot37
+    Parameters.name,
+    Parameters.slot,
+    Parameters.publicCertificateName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -18620,9 +18620,9 @@ const deletePublicCertificateSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.publicCertificateName,
-    Parameters.slot33
+    Parameters.name,
+    Parameters.slot,
+    Parameters.publicCertificateName
   ],
   serializer
 };
@@ -18642,8 +18642,8 @@ const listPublishingProfileXmlWithSecretsSlotOperationSpec: coreHttp.OperationSp
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot56
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -18664,8 +18664,8 @@ const resetSlotConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot57
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -18688,8 +18688,8 @@ const restartSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot58
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -18698,14 +18698,14 @@ const restoreFromBackupBlobSlotOperationSpec: coreHttp.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/restoreFromBackupBlob",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  requestBody: Parameters.request3,
+  requestBody: Parameters.request2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot11
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -18722,8 +18722,8 @@ const restoreFromDeletedAppSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -18740,8 +18740,8 @@ const restoreSnapshotSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -18765,8 +18765,8 @@ const listSiteExtensionsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.slot59
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -18788,9 +18788,9 @@ const getSiteExtensionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.siteExtensionId,
-    Parameters.slot59
+    Parameters.name,
+    Parameters.slot,
+    Parameters.siteExtensionId
   ],
   serializer
 };
@@ -18817,9 +18817,9 @@ const installSiteExtensionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.siteExtensionId,
-    Parameters.slot59
+    Parameters.name,
+    Parameters.slot,
+    Parameters.siteExtensionId
   ],
   serializer
 };
@@ -18839,9 +18839,9 @@ const deleteSiteExtensionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.siteExtensionId,
-    Parameters.slot28
+    Parameters.name,
+    Parameters.slot,
+    Parameters.siteExtensionId
   ],
   serializer
 };
@@ -18856,8 +18856,8 @@ const copySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot6
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -18881,8 +18881,8 @@ const listSlotDifferencesSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot6
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -18899,8 +18899,8 @@ const swapSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot6
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -18923,8 +18923,8 @@ const listSnapshotsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name15,
-    Parameters.slot60
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -18945,8 +18945,8 @@ const listSnapshotsFromDRSecondarySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name15,
-    Parameters.slot60
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -18973,8 +18973,8 @@ const getSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot61
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -19002,8 +19002,8 @@ const createOrUpdateSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot62
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -19026,8 +19026,8 @@ const deleteSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot63
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -19055,8 +19055,8 @@ const updateSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot62
+    Parameters.name,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -19077,8 +19077,8 @@ const startSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot64
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -19130,8 +19130,8 @@ const startNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13,
-    Parameters.slot50
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -19150,8 +19150,8 @@ const stopSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot65
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -19171,8 +19171,8 @@ const stopNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13,
-    Parameters.slot50
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -19191,8 +19191,8 @@ const syncRepositorySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -19211,8 +19211,8 @@ const syncFunctionTriggersSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot34
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -19233,8 +19233,8 @@ const listTriggeredWebJobsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.slot28
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -19256,9 +19256,9 @@ const getTriggeredWebJobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.webJobName,
-    Parameters.slot59
+    Parameters.name,
+    Parameters.slot,
+    Parameters.webJobName
   ],
   serializer
 };
@@ -19278,9 +19278,9 @@ const deleteTriggeredWebJobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.webJobName,
-    Parameters.slot66
+    Parameters.name,
+    Parameters.slot,
+    Parameters.webJobName
   ],
   serializer
 };
@@ -19302,9 +19302,9 @@ const listTriggeredWebJobHistorySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.webJobName,
-    Parameters.slot59
+    Parameters.name,
+    Parameters.slot,
+    Parameters.webJobName
   ],
   serializer
 };
@@ -19326,10 +19326,10 @@ const getTriggeredWebJobHistorySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
+    Parameters.slot,
     Parameters.webJobName,
-    Parameters.slot59,
-    Parameters.id3
+    Parameters.id
   ],
   serializer
 };
@@ -19349,9 +19349,9 @@ const runTriggeredWebJobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.webJobName,
-    Parameters.slot59
+    Parameters.name,
+    Parameters.slot,
+    Parameters.webJobName
   ],
   serializer
 };
@@ -19367,13 +19367,13 @@ const listUsagesSlotOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter3],
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot67
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -19399,8 +19399,8 @@ const listVnetConnectionsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot68
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -19421,9 +19421,9 @@ const getVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.vnetName,
-    Parameters.slot69
+    Parameters.name,
+    Parameters.slot,
+    Parameters.vnetName
   ],
   serializer
 };
@@ -19445,9 +19445,9 @@ const createOrUpdateVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot46,
-    Parameters.vnetName1
+    Parameters.name,
+    Parameters.slot,
+    Parameters.vnetName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -19469,8 +19469,8 @@ const deleteVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot47,
+    Parameters.name,
+    Parameters.slot,
     Parameters.vnetName
   ],
   serializer
@@ -19493,9 +19493,9 @@ const updateVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot46,
-    Parameters.vnetName1
+    Parameters.name,
+    Parameters.slot,
+    Parameters.vnetName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -19519,9 +19519,9 @@ const getVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot45,
-    Parameters.vnetName2,
+    Parameters.name,
+    Parameters.slot,
+    Parameters.vnetName,
     Parameters.gatewayName
   ],
   serializer
@@ -19544,10 +19544,10 @@ const createOrUpdateVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSp
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.vnetName2,
-    Parameters.gatewayName,
-    Parameters.slot70
+    Parameters.name,
+    Parameters.slot,
+    Parameters.vnetName,
+    Parameters.gatewayName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -19571,10 +19571,10 @@ const updateVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.vnetName2,
-    Parameters.gatewayName,
-    Parameters.slot70
+    Parameters.name,
+    Parameters.slot,
+    Parameters.vnetName,
+    Parameters.gatewayName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -19597,8 +19597,8 @@ const listWebJobsSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.slot29
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -19619,9 +19619,9 @@ const getWebJobSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.slot29,
-    Parameters.webJobName1
+    Parameters.name,
+    Parameters.slot,
+    Parameters.webJobName
   ],
   serializer
 };
@@ -19643,7 +19643,7 @@ const listSlotDifferencesFromProductionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -19660,7 +19660,7 @@ const swapSlotWithProductionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -19683,7 +19683,7 @@ const listSnapshotsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name15
+    Parameters.name
   ],
   serializer
 };
@@ -19704,7 +19704,7 @@ const listSnapshotsFromDRSecondaryOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name15
+    Parameters.name
   ],
   serializer
 };
@@ -19731,7 +19731,7 @@ const getSourceControlOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -19759,7 +19759,7 @@ const createOrUpdateSourceControlOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -19782,7 +19782,7 @@ const deleteSourceControlOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -19810,7 +19810,7 @@ const updateSourceControlOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -19831,7 +19831,7 @@ const startOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -19883,7 +19883,7 @@ const startNetworkTraceOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13
+    Parameters.name
   ],
   serializer
 };
@@ -19902,7 +19902,7 @@ const stopOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -19922,7 +19922,7 @@ const stopNetworkTraceOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name13
+    Parameters.name
   ],
   serializer
 };
@@ -19941,7 +19941,7 @@ const syncRepositoryOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   serializer
 };
@@ -19960,7 +19960,7 @@ const syncFunctionTriggersOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -19981,7 +19981,7 @@ const listTriggeredWebJobsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12
+    Parameters.name
   ],
   serializer
 };
@@ -20003,7 +20003,7 @@ const getTriggeredWebJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.webJobName
   ],
   serializer
@@ -20024,7 +20024,7 @@ const deleteTriggeredWebJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.webJobName
   ],
   serializer
@@ -20047,7 +20047,7 @@ const listTriggeredWebJobHistoryOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.webJobName
   ],
   serializer
@@ -20070,9 +20070,9 @@ const getTriggeredWebJobHistoryOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.webJobName,
-    Parameters.id3
+    Parameters.id
   ],
   serializer
 };
@@ -20092,7 +20092,7 @@ const runTriggeredWebJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
+    Parameters.name,
     Parameters.webJobName
   ],
   serializer
@@ -20109,12 +20109,12 @@ const listUsagesOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter3],
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -20140,7 +20140,7 @@ const listVnetConnectionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8
+    Parameters.name
   ],
   serializer
 };
@@ -20161,7 +20161,7 @@ const getVnetConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.vnetName
   ],
   serializer
@@ -20184,8 +20184,8 @@ const createOrUpdateVnetConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.vnetName1
+    Parameters.name,
+    Parameters.vnetName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -20207,7 +20207,7 @@ const deleteVnetConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
+    Parameters.name,
     Parameters.vnetName
   ],
   serializer
@@ -20230,8 +20230,8 @@ const updateVnetConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.vnetName1
+    Parameters.name,
+    Parameters.vnetName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -20255,8 +20255,8 @@ const getVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.vnetName2,
+    Parameters.name,
+    Parameters.vnetName,
     Parameters.gatewayName
   ],
   serializer
@@ -20279,8 +20279,8 @@ const createOrUpdateVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec =
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.vnetName2,
+    Parameters.name,
+    Parameters.vnetName,
     Parameters.gatewayName
   ],
   headerParameters: [Parameters.contentType],
@@ -20305,8 +20305,8 @@ const updateVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.vnetName2,
+    Parameters.name,
+    Parameters.vnetName,
     Parameters.gatewayName
   ],
   headerParameters: [Parameters.contentType],
@@ -20330,7 +20330,7 @@ const listWebJobsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12
+    Parameters.name
   ],
   serializer
 };
@@ -20351,8 +20351,8 @@ const getWebJobOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.webJobName1
+    Parameters.name,
+    Parameters.webJobName
   ],
   serializer
 };
@@ -20391,7 +20391,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
   serializer
 };
@@ -20411,8 +20411,8 @@ const listBackupsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.nextLink28
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -20432,8 +20432,8 @@ const listConfigurationsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.nextLink29
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -20453,8 +20453,8 @@ const listConfigurationSnapshotInfoNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.nextLink30
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -20474,8 +20474,8 @@ const listContinuousWebJobsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.nextLink31
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -20495,8 +20495,8 @@ const listDeploymentsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.nextLink32
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -20516,8 +20516,8 @@ const listDomainOwnershipIdentifiersNextOperationSpec: coreHttp.OperationSpec = 
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.nextLink33
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -20538,8 +20538,8 @@ const listFunctionsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.nextLink34
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -20559,8 +20559,8 @@ const listHostNameBindingsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.nextLink35
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -20580,8 +20580,8 @@ const listInstanceIdentifiersNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.nextLink36
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -20602,9 +20602,9 @@ const listInstanceProcessesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
-    Parameters.nextLink37
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.instanceId
   ],
   serializer
 };
@@ -20625,10 +20625,10 @@ const listInstanceProcessModulesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
-    Parameters.processId,
-    Parameters.nextLink38
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.instanceId,
+    Parameters.processId
   ],
   serializer
 };
@@ -20649,10 +20649,10 @@ const listInstanceProcessThreadsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
-    Parameters.processId,
-    Parameters.nextLink39
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.instanceId,
+    Parameters.processId
   ],
   serializer
 };
@@ -20672,8 +20672,8 @@ const listSiteBackupsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.nextLink40
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -20688,13 +20688,13 @@ const listPerfMonCountersNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter2],
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.nextLink41
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -20715,8 +20715,8 @@ const listProcessesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.nextLink42
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -20737,9 +20737,9 @@ const listProcessModulesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.processId,
-    Parameters.nextLink43
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.processId
   ],
   serializer
 };
@@ -20760,9 +20760,9 @@ const listProcessThreadsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.processId,
-    Parameters.nextLink44
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.processId
   ],
   serializer
 };
@@ -20782,8 +20782,8 @@ const listPublicCertificatesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.nextLink45
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -20804,8 +20804,8 @@ const listSiteExtensionsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.nextLink46
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -20825,8 +20825,8 @@ const listSlotsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.nextLink47
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -20846,9 +20846,9 @@ const listBackupsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot8,
-    Parameters.nextLink48
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -20868,9 +20868,9 @@ const listConfigurationsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot12,
-    Parameters.nextLink49
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -20890,9 +20890,9 @@ const listConfigurationSnapshotInfoSlotNextOperationSpec: coreHttp.OperationSpec
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot12,
-    Parameters.nextLink50
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -20912,9 +20912,9 @@ const listContinuousWebJobsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.slot28,
-    Parameters.nextLink51
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -20934,9 +20934,9 @@ const listDeploymentsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot29,
-    Parameters.nextLink52
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -20956,9 +20956,9 @@ const listDomainOwnershipIdentifiersSlotNextOperationSpec: coreHttp.OperationSpe
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot33,
-    Parameters.nextLink53
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -20979,9 +20979,9 @@ const listInstanceFunctionsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.slot34,
-    Parameters.nextLink54
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -21001,9 +21001,9 @@ const listHostNameBindingsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot35,
-    Parameters.nextLink55
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -21023,9 +21023,9 @@ const listInstanceIdentifiersSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot43,
-    Parameters.nextLink56
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -21046,10 +21046,10 @@ const listInstanceProcessesSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
-    Parameters.slot29,
-    Parameters.nextLink57
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot,
+    Parameters.instanceId
   ],
   serializer
 };
@@ -21070,11 +21070,11 @@ const listInstanceProcessModulesSlotNextOperationSpec: coreHttp.OperationSpec = 
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
-    Parameters.processId,
-    Parameters.slot29,
-    Parameters.nextLink58
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot,
+    Parameters.instanceId,
+    Parameters.processId
   ],
   serializer
 };
@@ -21095,11 +21095,11 @@ const listInstanceProcessThreadsSlotNextOperationSpec: coreHttp.OperationSpec = 
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.instanceId2,
-    Parameters.processId,
-    Parameters.slot29,
-    Parameters.nextLink59
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot,
+    Parameters.instanceId,
+    Parameters.processId
   ],
   serializer
 };
@@ -21119,9 +21119,9 @@ const listSiteBackupsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot8,
-    Parameters.nextLink60
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -21136,14 +21136,14 @@ const listPerfMonCountersSlotNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter2],
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5,
-    Parameters.nextLink61
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -21164,9 +21164,9 @@ const listProcessesSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.slot29,
-    Parameters.nextLink62
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -21187,10 +21187,10 @@ const listProcessModulesSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.processId,
-    Parameters.slot29,
-    Parameters.nextLink63
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot,
+    Parameters.processId
   ],
   serializer
 };
@@ -21211,10 +21211,10 @@ const listProcessThreadsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.processId,
-    Parameters.slot29,
-    Parameters.nextLink64
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot,
+    Parameters.processId
   ],
   serializer
 };
@@ -21234,9 +21234,9 @@ const listPublicCertificatesSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot35,
-    Parameters.nextLink65
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -21257,9 +21257,9 @@ const listSiteExtensionsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.slot59,
-    Parameters.nextLink66
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -21280,9 +21280,9 @@ const listSlotDifferencesSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot6,
-    Parameters.nextLink67
+    Parameters.name,
+    Parameters.nextLink1,
+    Parameters.slot
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -21304,9 +21304,9 @@ const listSnapshotsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name15,
-    Parameters.slot60,
-    Parameters.nextLink68
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -21326,9 +21326,9 @@ const listSnapshotsFromDRSecondarySlotNextOperationSpec: coreHttp.OperationSpec 
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name15,
-    Parameters.slot60,
-    Parameters.nextLink69
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -21348,9 +21348,9 @@ const listTriggeredWebJobsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.slot28,
-    Parameters.nextLink70
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -21371,10 +21371,10 @@ const listTriggeredWebJobHistorySlotNextOperationSpec: coreHttp.OperationSpec = 
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.webJobName,
-    Parameters.slot59,
-    Parameters.nextLink71
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot,
+    Parameters.webJobName
   ],
   serializer
 };
@@ -21389,14 +21389,14 @@ const listUsagesSlotNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter3],
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.slot67,
-    Parameters.nextLink72
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -21416,9 +21416,9 @@ const listWebJobsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.slot29,
-    Parameters.nextLink73
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };
@@ -21439,8 +21439,8 @@ const listSlotDifferencesFromProductionNextOperationSpec: coreHttp.OperationSpec
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.nextLink74
+    Parameters.name,
+    Parameters.nextLink1
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -21462,8 +21462,8 @@ const listSnapshotsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name15,
-    Parameters.nextLink75
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -21483,8 +21483,8 @@ const listSnapshotsFromDRSecondaryNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name15,
-    Parameters.nextLink76
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -21504,8 +21504,8 @@ const listTriggeredWebJobsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.nextLink77
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -21526,9 +21526,9 @@ const listTriggeredWebJobHistoryNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.webJobName,
-    Parameters.nextLink78
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.webJobName
   ],
   serializer
 };
@@ -21543,13 +21543,13 @@ const listUsagesNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter3],
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name8,
-    Parameters.nextLink79
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -21569,8 +21569,8 @@ const listWebJobsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name12,
-    Parameters.nextLink80
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };

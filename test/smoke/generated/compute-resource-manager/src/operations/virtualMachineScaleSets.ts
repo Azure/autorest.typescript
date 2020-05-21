@@ -994,7 +994,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   serializer
 };
@@ -1012,7 +1012,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   serializer
 };
@@ -1027,7 +1027,7 @@ const deallocateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1044,7 +1044,7 @@ const deleteInstancesOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1064,7 +1064,7 @@ const getInstanceViewOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   serializer
 };
@@ -1112,7 +1112,7 @@ const listSkusOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   serializer
 };
@@ -1130,7 +1130,7 @@ const getOSUpgradeHistoryOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   serializer
 };
@@ -1145,7 +1145,7 @@ const powerOffOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1162,7 +1162,7 @@ const restartOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1179,7 +1179,7 @@ const startOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1196,7 +1196,7 @@ const redeployOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1213,7 +1213,7 @@ const performMaintenanceOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1230,7 +1230,7 @@ const updateInstancesOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1247,7 +1247,7 @@ const reimageOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1264,7 +1264,7 @@ const reimageAllOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1284,7 +1284,7 @@ const forceRecoveryServiceFabricPlatformUpdateDomainWalkOperationSpec: coreHttp.
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   serializer
 };
@@ -1298,7 +1298,7 @@ const convertToSinglePlacementGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName2
+    Parameters.vmScaleSetName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1315,7 +1315,7 @@ const setOrchestrationServiceStateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName2
+    Parameters.vmScaleSetName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1334,7 +1334,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
   serializer
 };
@@ -1350,7 +1350,7 @@ const listAllNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink5
+    Parameters.nextLink
   ],
   serializer
 };
@@ -1367,8 +1367,8 @@ const listSkusNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1,
-    Parameters.nextLink6
+    Parameters.nextLink,
+    Parameters.vmScaleSetName
   ],
   serializer
 };
@@ -1385,8 +1385,8 @@ const getOSUpgradeHistoryNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1,
-    Parameters.nextLink7
+    Parameters.nextLink,
+    Parameters.vmScaleSetName
   ],
   serializer
 };

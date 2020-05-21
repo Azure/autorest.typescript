@@ -249,8 +249,8 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
-    Parameters.policyName2
+    Parameters.databaseName,
+    Parameters.policyName
   ],
   serializer
 };
@@ -272,15 +272,15 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.BackupShortTermRetentionPolicy
     }
   },
-  requestBody: Parameters.parameters51,
+  requestBody: Parameters.parameters50,
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
-    Parameters.policyName2
+    Parameters.databaseName,
+    Parameters.policyName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -304,15 +304,15 @@ const updateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.BackupShortTermRetentionPolicy
     }
   },
-  requestBody: Parameters.parameters51,
+  requestBody: Parameters.parameters50,
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
-    Parameters.policyName2
+    Parameters.databaseName,
+    Parameters.policyName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -334,7 +334,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2
+    Parameters.databaseName
   ],
   serializer
 };
@@ -353,8 +353,8 @@ const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
-    Parameters.nextLink7
+    Parameters.databaseName,
+    Parameters.nextLink
   ],
   serializer
 };

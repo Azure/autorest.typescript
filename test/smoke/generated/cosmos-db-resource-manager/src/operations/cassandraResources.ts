@@ -630,7 +630,7 @@ const updateCassandraKeyspaceThroughputOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     }
   },
-  requestBody: Parameters.updateThroughputParameters5,
+  requestBody: Parameters.updateThroughputParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -768,7 +768,7 @@ const updateCassandraTableThroughputOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     }
   },
-  requestBody: Parameters.updateThroughputParameters6,
+  requestBody: Parameters.updateThroughputParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

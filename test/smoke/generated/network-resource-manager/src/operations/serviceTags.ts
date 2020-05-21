@@ -66,7 +66,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.location4
+    Parameters.location
   ],
   serializer
 };

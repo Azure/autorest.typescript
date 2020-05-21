@@ -533,7 +533,7 @@ const failoverOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.elasticPoolName1
+    Parameters.elasticPoolName
   ],
   serializer
 };

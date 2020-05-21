@@ -218,8 +218,8 @@ const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.location,
-    Parameters.nextLink7
+    Parameters.nextLink,
+    Parameters.location
   ],
   serializer
 };

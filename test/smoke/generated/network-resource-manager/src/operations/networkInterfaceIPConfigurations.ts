@@ -147,7 +147,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.networkInterfaceName,
-    Parameters.ipConfigurationName1
+    Parameters.ipConfigurationName
   ],
   serializer
 };

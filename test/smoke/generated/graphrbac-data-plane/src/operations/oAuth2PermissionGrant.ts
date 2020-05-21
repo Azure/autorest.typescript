@@ -112,7 +112,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.OAuth2PermissionGrantListResult
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter2],
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   serializer
 };
@@ -141,7 +141,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId15],
+  urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {

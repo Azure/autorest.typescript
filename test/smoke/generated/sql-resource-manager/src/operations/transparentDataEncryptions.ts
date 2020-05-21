@@ -113,7 +113,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName15,
+    Parameters.databaseName,
     Parameters.transparentDataEncryptionName
   ],
   headerParameters: [Parameters.contentType],
@@ -135,8 +135,8 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.transparentDataEncryptionName,
-    Parameters.databaseName16
+    Parameters.databaseName,
+    Parameters.transparentDataEncryptionName
   ],
   serializer
 };

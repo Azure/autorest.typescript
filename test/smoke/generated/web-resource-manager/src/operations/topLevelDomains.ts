@@ -160,11 +160,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.name3
-  ],
+  urlParameters: [Parameters.$host, Parameters.subscriptionId, Parameters.name],
   serializer
 };
 const listAgreementsOperationSpec: coreHttp.OperationSpec = {
@@ -181,11 +177,7 @@ const listAgreementsOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.agreementOption,
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.name3
-  ],
+  urlParameters: [Parameters.$host, Parameters.subscriptionId, Parameters.name],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
   serializer
@@ -225,8 +217,8 @@ const listAgreementsNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.name3,
-    Parameters.nextLink6
+    Parameters.name,
+    Parameters.nextLink1
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",

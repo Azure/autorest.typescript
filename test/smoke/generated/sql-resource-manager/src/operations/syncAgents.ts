@@ -317,7 +317,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName2,
+    Parameters.serverName,
     Parameters.syncAgentName
   ],
   serializer
@@ -346,7 +346,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName2,
+    Parameters.serverName,
     Parameters.syncAgentName
   ],
   headerParameters: [Parameters.contentType],
@@ -363,7 +363,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName2,
+    Parameters.serverName,
     Parameters.syncAgentName
   ],
   serializer
@@ -383,7 +383,7 @@ const listByServerOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName2
+    Parameters.serverName
   ],
   serializer
 };
@@ -402,7 +402,7 @@ const generateKeyOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName2,
+    Parameters.serverName,
     Parameters.syncAgentName
   ],
   serializer
@@ -422,7 +422,7 @@ const listLinkedDatabasesOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName2,
+    Parameters.serverName,
     Parameters.syncAgentName
   ],
   serializer
@@ -441,8 +441,8 @@ const listByServerNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.nextLink,
-    Parameters.serverName2
+    Parameters.serverName,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -460,9 +460,9 @@ const listLinkedDatabasesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName2,
-    Parameters.syncAgentName,
-    Parameters.nextLink3
+    Parameters.serverName,
+    Parameters.nextLink,
+    Parameters.syncAgentName
   ],
   serializer
 };

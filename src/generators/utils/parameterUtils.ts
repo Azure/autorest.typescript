@@ -60,7 +60,7 @@ export function filterOperationParameters(
     !!(includeGlobalParameters || !param.isGlobal);
 
   const isInOperation = (param: ParameterDetails) =>
-    !!(param.operationsIn && param.operationsIn.includes(operation.fullName));
+    !!(param.operationsIn && param.operationsIn[operation.fullName]);
 
   // We may want to filter out any parameter that is grouped by here.
   // This is so that we can place the group parameter instead.

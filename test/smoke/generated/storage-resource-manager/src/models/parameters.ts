@@ -243,11 +243,6 @@ export const encryptionScopeName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const encryptionScope1: coreHttp.OperationParameter = {
-  parameterPath: "encryptionScope",
-  mapper: Mappers.EncryptionScope
-};
-
 export const parameters5: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.BlobServiceProperties
@@ -305,17 +300,7 @@ export const containerName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const blobContainer1: coreHttp.OperationParameter = {
-  parameterPath: "blobContainer",
-  mapper: Mappers.BlobContainer
-};
-
 export const legalHold: coreHttp.OperationParameter = {
-  parameterPath: "legalHold",
-  mapper: Mappers.LegalHold
-};
-
-export const legalHold1: coreHttp.OperationParameter = {
   parameterPath: "legalHold",
   mapper: Mappers.LegalHold
 };
@@ -360,15 +345,10 @@ export const ifMatch1: coreHttp.OperationParameter = {
 
 export const parameters7: coreHttp.OperationParameter = {
   parameterPath: ["options", "parameters"],
-  mapper: Mappers.ImmutabilityPolicy
-};
-
-export const parameters8: coreHttp.OperationParameter = {
-  parameterPath: ["options", "parameters"],
   mapper: Mappers.LeaseContainerRequest
 };
 
-export const parameters9: coreHttp.OperationParameter = {
+export const parameters8: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.FileServiceProperties
 };
@@ -379,26 +359,6 @@ export const fileServicesName: coreHttp.OperationURLParameter = {
     defaultValue: "default",
     isConstant: true,
     serializedName: "FileServicesName",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const maxpagesize1: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "maxpagesize"],
-  mapper: {
-    serializedName: "$maxpagesize",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const filter1: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "filter"],
-  mapper: {
-    serializedName: "$filter",
     type: {
       name: "String"
     }
@@ -435,11 +395,6 @@ export const shareName: coreHttp.OperationURLParameter = {
       name: "String"
     }
   }
-};
-
-export const fileShare1: coreHttp.OperationParameter = {
-  parameterPath: "fileShare",
-  mapper: Mappers.FileShare
 };
 
 export const expand3: coreHttp.OperationQueryParameter = {

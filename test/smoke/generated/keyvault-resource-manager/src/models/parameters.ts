@@ -91,29 +91,7 @@ export const parameters1: coreHttp.OperationParameter = {
   mapper: Mappers.VaultPatchParameters
 };
 
-export const resourceGroupName1: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const vaultName1: coreHttp.OperationURLParameter = {
-  parameterPath: "vaultName",
-  mapper: {
-    serializedName: "vaultName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const vaultName2: coreHttp.OperationURLParameter = {
   parameterPath: "vaultName",
   mapper: {
     serializedName: "vaultName",
@@ -162,28 +140,6 @@ export const location: coreHttp.OperationURLParameter = {
   }
 };
 
-export const vaultName3: coreHttp.OperationURLParameter = {
-  parameterPath: "vaultName",
-  mapper: {
-    serializedName: "vaultName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const location1: coreHttp.OperationURLParameter = {
-  parameterPath: "location",
-  mapper: {
-    serializedName: "location",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const filter: coreHttp.OperationQueryParameter = {
   parameterPath: "filter",
   mapper: {
@@ -196,7 +152,7 @@ export const filter: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const vaultName4: coreHttp.OperationParameter = {
+export const vaultName2: coreHttp.OperationParameter = {
   parameterPath: "vaultName",
   mapper: Mappers.VaultCheckNameAvailabilityParameters
 };
@@ -211,67 +167,6 @@ export const nextLink: coreHttp.OperationURLParameter = {
     }
   },
   skipEncoding: true
-};
-
-export const nextLink1: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink2: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink3: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const resourceGroupName2: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const vaultName5: coreHttp.OperationURLParameter = {
-  parameterPath: "vaultName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[a-zA-Z0-9-]{3,24}$")
-    },
-    serializedName: "vaultName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const privateEndpointConnectionName: coreHttp.OperationURLParameter = {

@@ -350,7 +350,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.Server
     }
   },
-  requestBody: Parameters.parameters62,
+  requestBody: Parameters.parameters61,
   queryParameters: [Parameters.apiVersion5],
   urlParameters: [
     Parameters.$host,
@@ -394,7 +394,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.Server
     }
   },
-  requestBody: Parameters.parameters63,
+  requestBody: Parameters.parameters62,
   queryParameters: [Parameters.apiVersion5],
   urlParameters: [
     Parameters.$host,
@@ -429,7 +429,7 @@ const checkNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters64,
+  requestBody: Parameters.parameters63,
   queryParameters: [Parameters.apiVersion5],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.contentType],
@@ -450,7 +450,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.nextLink11
+    Parameters.nextLink
   ],
   serializer
 };
@@ -467,7 +467,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink2
+    Parameters.nextLink
   ],
   serializer
 };

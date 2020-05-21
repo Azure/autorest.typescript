@@ -409,7 +409,7 @@ const listAtScopeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.top5],
+  queryParameters: [Parameters.apiVersion, Parameters.top],
   urlParameters: [
     Parameters.$host,
     Parameters.scope,
@@ -449,7 +449,7 @@ const listAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.top5],
+  queryParameters: [Parameters.apiVersion, Parameters.top],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
   serializer
 };
@@ -486,7 +486,7 @@ const listAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.top5],
+  queryParameters: [Parameters.apiVersion, Parameters.top],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
@@ -527,7 +527,7 @@ const listAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.top5],
+  queryParameters: [Parameters.apiVersion, Parameters.top],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
@@ -552,7 +552,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName3,
+    Parameters.resourceGroupName,
     Parameters.operationId
   ],
   serializer
@@ -569,12 +569,12 @@ const listOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.top5],
+  queryParameters: [Parameters.apiVersion, Parameters.top],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName3
+    Parameters.resourceGroupName
   ],
   serializer
 };
@@ -589,12 +589,12 @@ const listAtScopeNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.top5],
+  queryParameters: [Parameters.apiVersion, Parameters.top],
   urlParameters: [
     Parameters.$host,
+    Parameters.nextLink,
     Parameters.scope,
-    Parameters.deploymentName,
-    Parameters.nextLink1
+    Parameters.deploymentName
   ],
   serializer
 };
@@ -609,11 +609,11 @@ const listAtTenantScopeNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.top5],
+  queryParameters: [Parameters.apiVersion, Parameters.top],
   urlParameters: [
     Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.nextLink2
+    Parameters.nextLink,
+    Parameters.deploymentName
   ],
   serializer
 };
@@ -628,12 +628,12 @@ const listAtManagementGroupScopeNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.top5],
+  queryParameters: [Parameters.apiVersion, Parameters.top],
   urlParameters: [
     Parameters.$host,
+    Parameters.nextLink,
     Parameters.deploymentName,
-    Parameters.groupId,
-    Parameters.nextLink3
+    Parameters.groupId
   ],
   serializer
 };
@@ -648,12 +648,12 @@ const listAtSubscriptionScopeNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.top5],
+  queryParameters: [Parameters.apiVersion, Parameters.top],
   urlParameters: [
     Parameters.$host,
+    Parameters.nextLink,
     Parameters.deploymentName,
-    Parameters.subscriptionId,
-    Parameters.nextLink4
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -668,13 +668,13 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.top5],
+  queryParameters: [Parameters.apiVersion, Parameters.top],
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName3
+    Parameters.resourceGroupName
   ],
   serializer
 };

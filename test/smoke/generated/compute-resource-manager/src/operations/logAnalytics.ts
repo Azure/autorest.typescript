@@ -156,7 +156,7 @@ const exportRequestRateByIntervalOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.location3
+    Parameters.location1
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -185,7 +185,7 @@ const exportThrottledRequestsOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.location3
+    Parameters.location1
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",

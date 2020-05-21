@@ -315,8 +315,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.galleryName8,
-    Parameters.galleryImageName4,
+    Parameters.galleryName,
+    Parameters.galleryImageName,
     Parameters.galleryImageVersionName
   ],
   headerParameters: [Parameters.contentType],
@@ -350,9 +350,9 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.galleryName8,
-    Parameters.galleryImageName5,
-    Parameters.galleryImageVersionName1
+    Parameters.galleryName,
+    Parameters.galleryImageName,
+    Parameters.galleryImageVersionName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -370,14 +370,14 @@ const getOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand3],
+  queryParameters: [Parameters.apiVersion, Parameters.expand2],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.galleryName8,
-    Parameters.galleryImageName6,
-    Parameters.galleryImageVersionName2
+    Parameters.galleryName,
+    Parameters.galleryImageName,
+    Parameters.galleryImageVersionName
   ],
   serializer
 };
@@ -391,9 +391,9 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.galleryName8,
-    Parameters.galleryImageName6,
-    Parameters.galleryImageVersionName3
+    Parameters.galleryName,
+    Parameters.galleryImageName,
+    Parameters.galleryImageVersionName
   ],
   serializer
 };
@@ -414,8 +414,8 @@ const listByGalleryImageOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.galleryName8,
-    Parameters.galleryImageName7
+    Parameters.galleryName,
+    Parameters.galleryImageName
   ],
   serializer
 };
@@ -435,9 +435,9 @@ const listByGalleryImageNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.galleryName8,
-    Parameters.galleryImageName7,
-    Parameters.nextLink9
+    Parameters.nextLink,
+    Parameters.galleryName,
+    Parameters.galleryImageName
   ],
   serializer
 };

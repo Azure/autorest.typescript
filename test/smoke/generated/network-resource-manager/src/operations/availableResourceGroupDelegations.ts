@@ -92,7 +92,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.location1
+    Parameters.location
   ],
   serializer
 };
@@ -113,7 +113,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.nextLink,
-    Parameters.location1
+    Parameters.location
   ],
   serializer
 };

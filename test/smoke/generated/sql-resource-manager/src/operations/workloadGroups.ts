@@ -252,7 +252,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.workloadGroupName
   ],
   serializer
@@ -275,14 +275,14 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.WorkloadGroup
     }
   },
-  requestBody: Parameters.parameters66,
+  requestBody: Parameters.parameters65,
   queryParameters: [Parameters.apiVersion5],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.workloadGroupName
   ],
   headerParameters: [Parameters.contentType],
@@ -300,8 +300,8 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
-    Parameters.workloadGroupName1
+    Parameters.databaseName,
+    Parameters.workloadGroupName
   ],
   serializer
 };
@@ -321,7 +321,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2
+    Parameters.databaseName
   ],
   serializer
 };
@@ -340,8 +340,8 @@ const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
-    Parameters.nextLink7
+    Parameters.databaseName,
+    Parameters.nextLink
   ],
   serializer
 };

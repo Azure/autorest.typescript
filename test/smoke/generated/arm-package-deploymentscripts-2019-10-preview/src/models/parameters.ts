@@ -118,15 +118,3 @@ export const nextLink: coreHttp.OperationURLParameter = {
   },
   skipEncoding: true
 };
-
-export const nextLink1: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};

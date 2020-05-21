@@ -255,7 +255,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.encryptionProtectorName1,
+    Parameters.encryptionProtectorName,
     Parameters.managedInstanceName
   ],
   serializer
@@ -278,7 +278,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ManagedInstanceEncryptionProtector
     }
   },
-  requestBody: Parameters.parameters54,
+  requestBody: Parameters.parameters53,
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
@@ -305,8 +305,8 @@ const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.nextLink21
+    Parameters.nextLink,
+    Parameters.managedInstanceName
   ],
   serializer
 };

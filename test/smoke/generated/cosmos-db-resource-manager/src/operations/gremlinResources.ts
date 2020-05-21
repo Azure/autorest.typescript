@@ -625,7 +625,7 @@ const updateGremlinDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     }
   },
-  requestBody: Parameters.updateThroughputParameters7,
+  requestBody: Parameters.updateThroughputParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -763,7 +763,7 @@ const updateGremlinGraphThroughputOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     }
   },
-  requestBody: Parameters.updateThroughputParameters8,
+  requestBody: Parameters.updateThroughputParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

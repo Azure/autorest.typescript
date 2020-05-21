@@ -372,7 +372,7 @@ const updateTableThroughputOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     }
   },
-  requestBody: Parameters.updateThroughputParameters4,
+  requestBody: Parameters.updateThroughputParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

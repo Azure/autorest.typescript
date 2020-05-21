@@ -20403,13 +20403,13 @@ export interface AppServicePlansRestartWebAppsOptionalParams
 export interface AppServicePlansListWebAppsOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * Skip to a web app in the list of webapps associated with app service plan. If specified, the resulting list will contain web apps starting from (including) the skipToken. Otherwise, the resulting list contains web apps from the start of the list
-   */
-  skipToken?: string;
-  /**
    * Supported filter: $filter=state eq running. Returns only web apps that are currently running
    */
   filter?: string;
+  /**
+   * Skip to a web app in the list of webapps associated with app service plan. If specified, the resulting list will contain web apps starting from (including) the skipToken. Otherwise, the resulting list contains web apps from the start of the list
+   */
+  skipToken?: string;
   /**
    * List page size. If specified, results are paged.
    */
@@ -20750,13 +20750,13 @@ export type AppServicePlansListHybridConnectionsNextResponse = HybridConnectionC
 export interface AppServicePlansListWebAppsNextOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * Skip to a web app in the list of webapps associated with app service plan. If specified, the resulting list will contain web apps starting from (including) the skipToken. Otherwise, the resulting list contains web apps from the start of the list
-   */
-  skipToken?: string;
-  /**
    * Supported filter: $filter=state eq running. Returns only web apps that are currently running
    */
   filter?: string;
+  /**
+   * Skip to a web app in the list of webapps associated with app service plan. If specified, the resulting list will contain web apps starting from (including) the skipToken. Otherwise, the resulting list contains web apps from the start of the list
+   */
+  skipToken?: string;
   /**
    * List page size. If specified, results are paged.
    */

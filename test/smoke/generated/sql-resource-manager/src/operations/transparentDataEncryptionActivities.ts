@@ -75,8 +75,8 @@ const listByConfigurationOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.transparentDataEncryptionName,
-    Parameters.databaseName16
+    Parameters.databaseName,
+    Parameters.transparentDataEncryptionName
   ],
   serializer
 };

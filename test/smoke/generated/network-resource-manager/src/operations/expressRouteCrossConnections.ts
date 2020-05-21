@@ -419,8 +419,8 @@ const getOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName2,
     Parameters.crossConnectionName
   ],
   serializer
@@ -446,13 +446,13 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters13,
+  requestBody: Parameters.parameters8,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.crossConnectionName1
+    Parameters.crossConnectionName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -476,7 +476,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.crossConnectionName2
+    Parameters.crossConnectionName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -507,7 +507,7 @@ const listArpTableOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.peeringName,
     Parameters.devicePath,
-    Parameters.crossConnectionName1
+    Parameters.crossConnectionName
   ],
   serializer
 };
@@ -540,7 +540,7 @@ const listRoutesTableSummaryOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.peeringName,
     Parameters.devicePath,
-    Parameters.crossConnectionName1
+    Parameters.crossConnectionName
   ],
   serializer
 };
@@ -569,7 +569,7 @@ const listRoutesTableOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.peeringName,
     Parameters.devicePath,
-    Parameters.crossConnectionName1
+    Parameters.crossConnectionName
   ],
   serializer
 };
@@ -608,7 +608,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.nextLink3
+    Parameters.nextLink
   ],
   serializer
 };

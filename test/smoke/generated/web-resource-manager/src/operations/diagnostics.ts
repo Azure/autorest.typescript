@@ -946,7 +946,7 @@ const listHostingEnvironmentDetectorResponsesOperationSpec: coreHttp.OperationSp
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name4
+    Parameters.name
   ],
   serializer
 };
@@ -972,7 +972,7 @@ const getHostingEnvironmentDetectorResponseOperationSpec: coreHttp.OperationSpec
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name5,
+    Parameters.name,
     Parameters.detectorName
   ],
   serializer
@@ -1136,8 +1136,8 @@ const executeSiteAnalysisOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.siteName,
-    Parameters.diagnosticCategory1,
-    Parameters.analysisName1
+    Parameters.diagnosticCategory,
+    Parameters.analysisName
   ],
   serializer
 };
@@ -1180,9 +1180,9 @@ const getSiteDetectorOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
+    Parameters.detectorName,
     Parameters.siteName,
-    Parameters.diagnosticCategory,
-    Parameters.detectorName1
+    Parameters.diagnosticCategory
   ],
   serializer
 };
@@ -1210,7 +1210,7 @@ const executeSiteDetectorOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.detectorName,
     Parameters.siteName,
-    Parameters.diagnosticCategory1
+    Parameters.diagnosticCategory
   ],
   serializer
 };
@@ -1352,7 +1352,7 @@ const getSiteAnalysisSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.siteName,
     Parameters.diagnosticCategory,
     Parameters.analysisName,
-    Parameters.slot1
+    Parameters.slot
   ],
   serializer
 };
@@ -1379,8 +1379,8 @@ const executeSiteAnalysisSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.siteName,
-    Parameters.diagnosticCategory1,
-    Parameters.analysisName1,
+    Parameters.diagnosticCategory,
+    Parameters.analysisName,
     Parameters.slot
   ],
   serializer
@@ -1425,9 +1425,9 @@ const getSiteDetectorSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
+    Parameters.detectorName,
     Parameters.siteName,
     Parameters.diagnosticCategory,
-    Parameters.detectorName1,
     Parameters.slot
   ],
   serializer
@@ -1456,7 +1456,7 @@ const executeSiteDetectorSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.detectorName,
     Parameters.siteName,
-    Parameters.diagnosticCategory1,
+    Parameters.diagnosticCategory,
     Parameters.slot
   ],
   serializer
@@ -1477,8 +1477,8 @@ const listHostingEnvironmentDetectorResponsesNextOperationSpec: coreHttp.Operati
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name4,
-    Parameters.nextLink8
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -1498,8 +1498,8 @@ const listSiteDetectorResponsesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.siteName,
-    Parameters.nextLink9
+    Parameters.nextLink,
+    Parameters.siteName
   ],
   serializer
 };
@@ -1519,8 +1519,8 @@ const listSiteDiagnosticCategoriesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.siteName,
-    Parameters.nextLink10
+    Parameters.nextLink,
+    Parameters.siteName
   ],
   serializer
 };
@@ -1540,9 +1540,9 @@ const listSiteAnalysesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
+    Parameters.nextLink,
     Parameters.siteName,
-    Parameters.diagnosticCategory,
-    Parameters.nextLink11
+    Parameters.diagnosticCategory
   ],
   serializer
 };
@@ -1562,9 +1562,9 @@ const listSiteDetectorsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
+    Parameters.nextLink,
     Parameters.siteName,
-    Parameters.diagnosticCategory,
-    Parameters.nextLink12
+    Parameters.diagnosticCategory
   ],
   serializer
 };
@@ -1584,9 +1584,9 @@ const listSiteDetectorResponsesSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
+    Parameters.nextLink,
     Parameters.siteName,
-    Parameters.slot,
-    Parameters.nextLink13
+    Parameters.slot
   ],
   serializer
 };
@@ -1606,9 +1606,9 @@ const listSiteDiagnosticCategoriesSlotNextOperationSpec: coreHttp.OperationSpec 
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
+    Parameters.nextLink,
     Parameters.siteName,
-    Parameters.slot,
-    Parameters.nextLink14
+    Parameters.slot
   ],
   serializer
 };
@@ -1628,10 +1628,10 @@ const listSiteAnalysesSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
+    Parameters.nextLink,
     Parameters.siteName,
     Parameters.diagnosticCategory,
-    Parameters.slot,
-    Parameters.nextLink15
+    Parameters.slot
   ],
   serializer
 };
@@ -1651,10 +1651,10 @@ const listSiteDetectorsSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
+    Parameters.nextLink,
     Parameters.siteName,
     Parameters.diagnosticCategory,
-    Parameters.slot,
-    Parameters.nextLink16
+    Parameters.slot
   ],
   serializer
 };

@@ -107,8 +107,8 @@ const listOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter2,
     Parameters.dimensionType,
     Parameters.dimensionSignature
   ],
@@ -126,7 +126,7 @@ const addOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.serviceMember,
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.serviceName2],
+  urlParameters: [Parameters.$host, Parameters.serviceName],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
   serializer
@@ -140,8 +140,8 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter2,
     Parameters.dimensionType,
     Parameters.dimensionSignature
   ],

@@ -118,9 +118,9 @@ const getOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName7,
-    Parameters.vpnSiteName4,
+    Parameters.vpnSiteName,
     Parameters.vpnSiteLinkName
   ],
   serializer
@@ -140,9 +140,9 @@ const listByVpnSiteOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName7,
-    Parameters.vpnSiteName4
+    Parameters.vpnSiteName
   ],
   serializer
 };
@@ -160,10 +160,10 @@ const listByVpnSiteNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName7,
-    Parameters.vpnSiteName4,
-    Parameters.nextLink20
+    Parameters.nextLink,
+    Parameters.vpnSiteName
   ],
   serializer
 };

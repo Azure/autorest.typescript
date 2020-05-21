@@ -483,8 +483,8 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName1,
     Parameters.vaultName1
   ],
   serializer
@@ -501,9 +501,9 @@ const getOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName1,
-    Parameters.vaultName2
+    Parameters.vaultName1
   ],
   serializer
 };
@@ -523,9 +523,9 @@ const updateAccessPolicyOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.vaultName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName1,
     Parameters.operationKind
   ],
   headerParameters: [Parameters.contentType],
@@ -544,8 +544,8 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion, Parameters.top],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName1
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -587,7 +587,7 @@ const getDeletedOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.vaultName2,
+    Parameters.vaultName1,
     Parameters.location
   ],
   serializer
@@ -601,8 +601,8 @@ const purgeDeletedOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.vaultName3,
-    Parameters.location1
+    Parameters.vaultName1,
+    Parameters.location
   ],
   serializer
 };
@@ -627,7 +627,7 @@ const checkNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CheckNameAvailabilityResult
     }
   },
-  requestBody: Parameters.vaultName4,
+  requestBody: Parameters.vaultName2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.contentType],
@@ -645,8 +645,8 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion, Parameters.top],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName1,
     Parameters.nextLink
   ],
   serializer
@@ -663,7 +663,7 @@ const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
   serializer
 };
@@ -679,7 +679,7 @@ const listDeletedNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink2
+    Parameters.nextLink
   ],
   serializer
 };
@@ -695,7 +695,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink3
+    Parameters.nextLink
   ],
   serializer
 };

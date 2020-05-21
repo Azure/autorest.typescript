@@ -238,10 +238,10 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName9,
-    Parameters.virtualHubName,
-    Parameters.routeTableName2
+    Parameters.routeTableName,
+    Parameters.virtualHubName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -262,10 +262,10 @@ const getOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName9,
-    Parameters.virtualHubName,
-    Parameters.routeTableName2
+    Parameters.routeTableName,
+    Parameters.virtualHubName
   ],
   serializer
 };
@@ -277,10 +277,10 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.virtualHubName,
-    Parameters.routeTableName2,
-    Parameters.resourceGroupName13
+    Parameters.routeTableName,
+    Parameters.virtualHubName
   ],
   serializer
 };
@@ -299,8 +299,8 @@ const listOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName9,
     Parameters.virtualHubName
   ],
   serializer
@@ -319,9 +319,9 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.nextLink,
-    Parameters.resourceGroupName9,
     Parameters.virtualHubName
   ],
   serializer

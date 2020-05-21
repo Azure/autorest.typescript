@@ -253,8 +253,8 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.keyName3
+    Parameters.keyName,
+    Parameters.managedInstanceName
   ],
   serializer
 };
@@ -276,14 +276,14 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ManagedInstanceKey
     }
   },
-  requestBody: Parameters.parameters53,
+  requestBody: Parameters.parameters52,
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.keyName4
+    Parameters.keyName,
+    Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -299,8 +299,8 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.keyName5
+    Parameters.keyName,
+    Parameters.managedInstanceName
   ],
   serializer
 };
@@ -318,8 +318,8 @@ const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.nextLink21
+    Parameters.nextLink,
+    Parameters.managedInstanceName
   ],
   serializer
 };

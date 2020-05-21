@@ -593,7 +593,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.BlobContainer
     }
   },
-  requestBody: Parameters.blobContainer1,
+  requestBody: Parameters.blobContainer,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -671,7 +671,7 @@ const clearLegalHoldOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.LegalHold
     }
   },
-  requestBody: Parameters.legalHold1,
+  requestBody: Parameters.legalHold,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -784,7 +784,7 @@ const extendImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
       headersMapper: Mappers.BlobContainersExtendImmutabilityPolicyHeaders
     }
   },
-  requestBody: Parameters.parameters7,
+  requestBody: Parameters.parameters6,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -806,7 +806,7 @@ const leaseOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.LeaseContainerResponse
     }
   },
-  requestBody: Parameters.parameters8,
+  requestBody: Parameters.parameters7,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

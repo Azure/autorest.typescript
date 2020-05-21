@@ -117,17 +117,6 @@ export const connectionPolicyName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const databaseName1: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const securityAlertPolicyName: coreHttp.OperationURLParameter = {
   parameterPath: "securityAlertPolicyName",
   mapper: {
@@ -148,17 +137,6 @@ export const parameters1: coreHttp.OperationParameter = {
 export const parameters2: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.DataMaskingPolicy
-};
-
-export const databaseName2: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const dataMaskingPolicyName: coreHttp.OperationURLParameter = {
@@ -232,17 +210,6 @@ export const parameters7: coreHttp.OperationParameter = {
   mapper: Mappers.ImportExtensionRequest
 };
 
-export const databaseName3: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const extensionName: coreHttp.OperationURLParameter = {
   parameterPath: "extensionName",
   mapper: {
@@ -258,17 +225,6 @@ export const extensionName: coreHttp.OperationURLParameter = {
 export const parameters8: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ExportRequest
-};
-
-export const databaseName4: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const filter: coreHttp.OperationQueryParameter = {
@@ -315,64 +271,9 @@ export const elasticPoolName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const databaseName5: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const databaseName6: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const databaseName7: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const parameters11: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ResourceMoveDefinition
-};
-
-export const databaseName8: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const databaseName9: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const replicaType: coreHttp.OperationQueryParameter = {
@@ -409,18 +310,6 @@ export const nextLink: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const nextLink1: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const skip: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "skip"],
   mapper: {
@@ -441,32 +330,10 @@ export const parameters13: coreHttp.OperationParameter = {
   mapper: Mappers.ElasticPoolUpdate
 };
 
-export const elasticPoolName1: coreHttp.OperationURLParameter = {
-  parameterPath: "elasticPoolName",
-  mapper: {
-    serializedName: "elasticPoolName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const recommendedElasticPoolName: coreHttp.OperationURLParameter = {
   parameterPath: "recommendedElasticPoolName",
   mapper: {
     serializedName: "recommendedElasticPoolName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const databaseName10: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
     required: true,
     type: {
       name: "String"
@@ -485,64 +352,9 @@ export const linkId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const databaseName11: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const linkId1: coreHttp.OperationURLParameter = {
-  parameterPath: "linkId",
-  mapper: {
-    serializedName: "linkId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const databaseName12: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const linkId2: coreHttp.OperationURLParameter = {
-  parameterPath: "linkId",
-  mapper: {
-    serializedName: "linkId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const parameters14: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.UnlinkParameters
-};
-
-export const databaseName13: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const communicationLinkName: coreHttp.OperationURLParameter = {
@@ -572,28 +384,6 @@ export const serviceObjectiveName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const elasticPoolName2: coreHttp.OperationURLParameter = {
-  parameterPath: "elasticPoolName",
-  mapper: {
-    serializedName: "elasticPoolName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const databaseName14: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const serviceTierAdvisorName: coreHttp.OperationURLParameter = {
   parameterPath: "serviceTierAdvisorName",
   mapper: {
@@ -610,34 +400,12 @@ export const parameters16: coreHttp.OperationParameter = {
   mapper: Mappers.TransparentDataEncryption
 };
 
-export const databaseName15: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const transparentDataEncryptionName: coreHttp.OperationURLParameter = {
   parameterPath: "transparentDataEncryptionName",
   mapper: {
     defaultValue: "current",
     isConstant: true,
     serializedName: "transparentDataEncryptionName",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const databaseName16: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
     type: {
       name: "String"
     }
@@ -673,32 +441,9 @@ export const encryptionProtectorName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const encryptionProtectorName1: coreHttp.OperationURLParameter = {
-  parameterPath: "encryptionProtectorName",
-  mapper: {
-    defaultValue: "current",
-    isConstant: true,
-    serializedName: "encryptionProtectorName",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const parameters18: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.EncryptionProtector
-};
-
-export const serverName1: coreHttp.OperationURLParameter = {
-  parameterPath: "serverName",
-  mapper: {
-    serializedName: "serverName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const failoverGroupName: coreHttp.OperationURLParameter = {
@@ -722,18 +467,6 @@ export const parameters20: coreHttp.OperationParameter = {
   mapper: Mappers.FailoverGroupUpdate
 };
 
-export const nextLink2: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const keyName: coreHttp.OperationURLParameter = {
   parameterPath: "keyName",
   mapper: {
@@ -748,39 +481,6 @@ export const keyName: coreHttp.OperationURLParameter = {
 export const parameters21: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ServerKey
-};
-
-export const keyName1: coreHttp.OperationURLParameter = {
-  parameterPath: "keyName",
-  mapper: {
-    serializedName: "keyName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const keyName2: coreHttp.OperationURLParameter = {
-  parameterPath: "keyName",
-  mapper: {
-    serializedName: "keyName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const serverName2: coreHttp.OperationURLParameter = {
-  parameterPath: "serverName",
-  mapper: {
-    serializedName: "serverName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const syncAgentName: coreHttp.OperationURLParameter = {
@@ -799,33 +499,10 @@ export const parameters22: coreHttp.OperationParameter = {
   mapper: Mappers.SyncAgent
 };
 
-export const nextLink3: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const locationName: coreHttp.OperationURLParameter = {
   parameterPath: "locationName",
   mapper: {
     serializedName: "locationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const databaseName17: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
     required: true,
     type: {
       name: "String"
@@ -892,65 +569,6 @@ export const parameters23: coreHttp.OperationParameter = {
   mapper: Mappers.SyncGroup
 };
 
-export const nextLink4: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink5: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink6: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink7: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const syncGroupName1: coreHttp.OperationURLParameter = {
-  parameterPath: "syncGroupName",
-  mapper: {
-    serializedName: "syncGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const syncMemberName: coreHttp.OperationURLParameter = {
   parameterPath: "syncMemberName",
   mapper: {
@@ -967,30 +585,6 @@ export const parameters24: coreHttp.OperationParameter = {
   mapper: Mappers.SyncMember
 };
 
-export const nextLink8: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink9: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const usageName: coreHttp.OperationURLParameter = {
   parameterPath: "usageName",
   mapper: {
@@ -1000,18 +594,6 @@ export const usageName: coreHttp.OperationURLParameter = {
       name: "String"
     }
   }
-};
-
-export const nextLink10: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const virtualClusterName: coreHttp.OperationURLParameter = {
@@ -1028,18 +610,6 @@ export const virtualClusterName: coreHttp.OperationURLParameter = {
 export const parameters25: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.VirtualClusterUpdate
-};
-
-export const nextLink11: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const virtualNetworkRuleName: coreHttp.OperationURLParameter = {
@@ -1102,17 +672,6 @@ export const parameters30: coreHttp.OperationParameter = {
   mapper: Mappers.DatabaseBlobAuditingPolicy
 };
 
-export const databaseName18: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const vulnerabilityAssessmentName: coreHttp.OperationURLParameter = {
   parameterPath: "vulnerabilityAssessmentName",
   mapper: {
@@ -1153,31 +712,9 @@ export const parameters31: coreHttp.OperationParameter = {
   mapper: Mappers.DatabaseVulnerabilityAssessmentRuleBaseline
 };
 
-export const databaseName19: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const parameters32: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.DatabaseVulnerabilityAssessment
-};
-
-export const databaseName20: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const jobAgentName: coreHttp.OperationURLParameter = {
@@ -1196,53 +733,9 @@ export const parameters33: coreHttp.OperationParameter = {
   mapper: Mappers.JobAgent
 };
 
-export const jobAgentName1: coreHttp.OperationURLParameter = {
-  parameterPath: "jobAgentName",
-  mapper: {
-    serializedName: "jobAgentName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const jobAgentName2: coreHttp.OperationURLParameter = {
-  parameterPath: "jobAgentName",
-  mapper: {
-    serializedName: "jobAgentName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const parameters34: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.JobAgentUpdate
-};
-
-export const jobAgentName3: coreHttp.OperationURLParameter = {
-  parameterPath: "jobAgentName",
-  mapper: {
-    serializedName: "jobAgentName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const jobAgentName4: coreHttp.OperationURLParameter = {
-  parameterPath: "jobAgentName",
-  mapper: {
-    serializedName: "jobAgentName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const credentialName: coreHttp.OperationURLParameter = {
@@ -1259,18 +752,6 @@ export const credentialName: coreHttp.OperationURLParameter = {
 export const parameters35: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.JobCredential
-};
-
-export const nextLink12: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const createTimeMin: coreHttp.OperationQueryParameter = {
@@ -1355,76 +836,9 @@ export const jobExecutionId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const jobName1: coreHttp.OperationURLParameter = {
-  parameterPath: "jobName",
-  mapper: {
-    serializedName: "jobName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const jobExecutionId1: coreHttp.OperationURLParameter = {
-  parameterPath: "jobExecutionId",
-  mapper: {
-    serializedName: "jobExecutionId",
-    required: true,
-    type: {
-      name: "Uuid"
-    }
-  }
-};
-
-export const jobExecutionId2: coreHttp.OperationURLParameter = {
-  parameterPath: "jobExecutionId",
-  mapper: {
-    serializedName: "jobExecutionId",
-    required: true,
-    type: {
-      name: "Uuid"
-    }
-  }
-};
-
-export const nextLink13: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const parameters36: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.Job
-};
-
-export const jobName2: coreHttp.OperationURLParameter = {
-  parameterPath: "jobName",
-  mapper: {
-    serializedName: "jobName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const jobExecutionId3: coreHttp.OperationURLParameter = {
-  parameterPath: "jobExecutionId",
-  mapper: {
-    serializedName: "jobExecutionId",
-    required: true,
-    type: {
-      name: "Uuid"
-    }
-  }
 };
 
 export const stepName: coreHttp.OperationURLParameter = {
@@ -1438,18 +852,6 @@ export const stepName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const nextLink14: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const jobVersion: coreHttp.OperationURLParameter = {
   parameterPath: "jobVersion",
   mapper: {
@@ -1461,43 +863,9 @@ export const jobVersion: coreHttp.OperationURLParameter = {
   }
 };
 
-export const stepName1: coreHttp.OperationURLParameter = {
-  parameterPath: "stepName",
-  mapper: {
-    serializedName: "stepName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const parameters37: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.JobStep
-};
-
-export const stepName2: coreHttp.OperationURLParameter = {
-  parameterPath: "stepName",
-  mapper: {
-    serializedName: "stepName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const nextLink15: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const targetId: coreHttp.OperationURLParameter = {
@@ -1509,18 +877,6 @@ export const targetId: coreHttp.OperationURLParameter = {
       name: "Uuid"
     }
   }
-};
-
-export const nextLink16: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const targetGroupName: coreHttp.OperationURLParameter = {
@@ -1537,17 +893,6 @@ export const targetGroupName: coreHttp.OperationURLParameter = {
 export const parameters38: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.JobTargetGroup
-};
-
-export const locationName1: coreHttp.OperationURLParameter = {
-  parameterPath: "locationName",
-  mapper: {
-    serializedName: "locationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const longTermRetentionServerName: coreHttp.OperationURLParameter = {
@@ -1583,17 +928,6 @@ export const backupName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const locationName2: coreHttp.OperationURLParameter = {
-  parameterPath: "locationName",
-  mapper: {
-    serializedName: "locationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const onlyLatestPerDatabase: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "onlyLatestPerDatabase"],
   mapper: {
@@ -1612,42 +946,6 @@ export const databaseState: coreHttp.OperationQueryParameter = {
       name: "String"
     }
   }
-};
-
-export const nextLink17: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink18: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink19: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const policyName: coreHttp.OperationURLParameter = {
@@ -1678,33 +976,9 @@ export const managedInstanceName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const policyName1: coreHttp.OperationURLParameter = {
-  parameterPath: "policyName",
-  mapper: {
-    defaultValue: "default",
-    isConstant: true,
-    serializedName: "policyName",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const parameters40: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ManagedBackupShortTermRetentionPolicy
-};
-
-export const policyName2: coreHttp.OperationURLParameter = {
-  parameterPath: "policyName",
-  mapper: {
-    defaultValue: "default",
-    isConstant: true,
-    serializedName: "policyName",
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const restorableDroppedDatabaseId: coreHttp.OperationURLParameter = {
@@ -1720,35 +994,7 @@ export const restorableDroppedDatabaseId: coreHttp.OperationURLParameter = {
 
 export const parameters41: coreHttp.OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.ManagedBackupShortTermRetentionPolicy
-};
-
-export const nextLink20: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const parameters42: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
   mapper: Mappers.ServerAutomaticTuning
-};
-
-export const serverName3: coreHttp.OperationURLParameter = {
-  parameterPath: "serverName",
-  mapper: {
-    serializedName: "serverName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const dnsAliasName: coreHttp.OperationURLParameter = {
@@ -1762,20 +1008,9 @@ export const dnsAliasName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters43: coreHttp.OperationParameter = {
+export const parameters42: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ServerDnsAliasAcquisition
-};
-
-export const dnsAliasName1: coreHttp.OperationURLParameter = {
-  parameterPath: "dnsAliasName",
-  mapper: {
-    serializedName: "dnsAliasName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const securityAlertPolicyName1: coreHttp.OperationURLParameter = {
@@ -1790,36 +1025,12 @@ export const securityAlertPolicyName1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters44: coreHttp.OperationParameter = {
+export const parameters43: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ServerSecurityAlertPolicy
 };
 
-export const securityAlertPolicyName2: coreHttp.OperationURLParameter = {
-  parameterPath: "securityAlertPolicyName",
-  mapper: {
-    defaultValue: "Default",
-    isConstant: true,
-    serializedName: "securityAlertPolicyName",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const nextLink21: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const parameters45: coreHttp.OperationParameter = {
+export const parameters44: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.CreateDatabaseRestorePointDefinition
 };
@@ -1835,34 +1046,12 @@ export const restorePointName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const databaseName21: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters46: coreHttp.OperationParameter = {
+export const parameters45: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ManagedDatabaseSecurityAlertPolicy
 };
 
-export const databaseName22: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters47: coreHttp.OperationParameter = {
+export const parameters46: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ManagedServerSecurityAlertPolicy
 };
@@ -1954,7 +1143,7 @@ export const sensitivityLabelSource1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters48: coreHttp.OperationParameter = {
+export const parameters47: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.SensitivityLabel
 };
@@ -1971,30 +1160,6 @@ export const sensitivityLabelSource2: coreHttp.OperationURLParameter = {
   }
 };
 
-export const nextLink22: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink23: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const administratorName: coreHttp.OperationURLParameter = {
   parameterPath: "administratorName",
   mapper: {
@@ -2007,21 +1172,9 @@ export const administratorName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters49: coreHttp.OperationParameter = {
+export const parameters48: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ManagedInstanceAdministrator
-};
-
-export const administratorName1: coreHttp.OperationURLParameter = {
-  parameterPath: "administratorName",
-  mapper: {
-    defaultValue: "ActiveDirectory",
-    isConstant: true,
-    serializedName: "administratorName",
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const operationId: coreHttp.OperationURLParameter = {
@@ -2031,17 +1184,6 @@ export const operationId: coreHttp.OperationURLParameter = {
     required: true,
     type: {
       name: "Uuid"
-    }
-  }
-};
-
-export const elasticPoolName3: coreHttp.OperationURLParameter = {
-  parameterPath: "elasticPoolName",
-  mapper: {
-    serializedName: "elasticPoolName",
-    required: true,
-    type: {
-      name: "String"
     }
   }
 };
@@ -2057,82 +1199,27 @@ export const scanId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const databaseName23: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const scanId1: coreHttp.OperationURLParameter = {
-  parameterPath: "scanId",
-  mapper: {
-    serializedName: "scanId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters50: coreHttp.OperationParameter = {
+export const parameters49: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.InstanceFailoverGroup
 };
 
-export const parameters51: coreHttp.OperationParameter = {
+export const parameters50: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.BackupShortTermRetentionPolicy
 };
 
-export const parameters52: coreHttp.OperationParameter = {
+export const parameters51: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.TdeCertificate
 };
 
-export const keyName3: coreHttp.OperationURLParameter = {
-  parameterPath: "keyName",
-  mapper: {
-    serializedName: "keyName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters53: coreHttp.OperationParameter = {
+export const parameters52: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ManagedInstanceKey
 };
 
-export const keyName4: coreHttp.OperationURLParameter = {
-  parameterPath: "keyName",
-  mapper: {
-    serializedName: "keyName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const keyName5: coreHttp.OperationURLParameter = {
-  parameterPath: "keyName",
-  mapper: {
-    serializedName: "keyName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters54: coreHttp.OperationParameter = {
+export const parameters53: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ManagedInstanceEncryptionProtector
 };
@@ -2148,45 +1235,12 @@ export const recoverableDatabaseName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const managedInstanceName1: coreHttp.OperationURLParameter = {
-  parameterPath: "managedInstanceName",
-  mapper: {
-    serializedName: "managedInstanceName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters55: coreHttp.OperationParameter = {
+export const parameters54: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ManagedInstanceVulnerabilityAssessment
 };
 
-export const managedInstanceName2: coreHttp.OperationURLParameter = {
-  parameterPath: "managedInstanceName",
-  mapper: {
-    serializedName: "managedInstanceName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const serverName4: coreHttp.OperationURLParameter = {
-  parameterPath: "serverName",
-  mapper: {
-    serializedName: "serverName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters56: coreHttp.OperationParameter = {
+export const parameters55: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ServerVulnerabilityAssessment
 };
@@ -2202,47 +1256,14 @@ export const instancePoolName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters57: coreHttp.OperationParameter = {
+export const parameters56: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.InstancePool
 };
 
-export const instancePoolName1: coreHttp.OperationURLParameter = {
-  parameterPath: "instancePoolName",
-  mapper: {
-    serializedName: "instancePoolName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const instancePoolName2: coreHttp.OperationURLParameter = {
-  parameterPath: "instancePoolName",
-  mapper: {
-    serializedName: "instancePoolName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters58: coreHttp.OperationParameter = {
+export const parameters57: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.InstancePoolUpdate
-};
-
-export const instancePoolName3: coreHttp.OperationURLParameter = {
-  parameterPath: "instancePoolName",
-  mapper: {
-    serializedName: "instancePoolName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const expandChildren: coreHttp.OperationQueryParameter = {
@@ -2255,35 +1276,12 @@ export const expandChildren: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const nextLink24: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const instancePoolName4: coreHttp.OperationURLParameter = {
-  parameterPath: "instancePoolName",
-  mapper: {
-    serializedName: "instancePoolName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters59: coreHttp.OperationParameter = {
+export const parameters58: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ManagedInstance
 };
 
-export const parameters60: coreHttp.OperationParameter = {
+export const parameters59: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ManagedInstanceUpdate
 };
@@ -2299,20 +1297,9 @@ export const privateEndpointConnectionName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters61: coreHttp.OperationParameter = {
+export const parameters60: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.PrivateEndpointConnection
-};
-
-export const privateEndpointConnectionName1: coreHttp.OperationURLParameter = {
-  parameterPath: "privateEndpointConnectionName",
-  mapper: {
-    serializedName: "privateEndpointConnectionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const groupName: coreHttp.OperationURLParameter = {
@@ -2338,47 +1325,25 @@ export const apiVersion5: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const parameters62: coreHttp.OperationParameter = {
+export const parameters61: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.Server
 };
 
-export const parameters63: coreHttp.OperationParameter = {
+export const parameters62: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ServerUpdate
 };
 
-export const parameters64: coreHttp.OperationParameter = {
+export const parameters63: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.CheckNameAvailabilityRequest
-};
-
-export const locationName3: coreHttp.OperationURLParameter = {
-  parameterPath: "locationName",
-  mapper: {
-    serializedName: "locationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const include: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "include"],
   mapper: {
     serializedName: "include",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const databaseName24: coreHttp.OperationURLParameter = {
-  parameterPath: "databaseName",
-  mapper: {
-    serializedName: "databaseName",
-    required: true,
     type: {
       name: "String"
     }
@@ -2395,19 +1360,7 @@ export const databaseState1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const nextLink25: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const parameters65: coreHttp.OperationParameter = {
+export const parameters64: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ManagedInstanceLongTermRetentionPolicy
 };
@@ -2423,31 +1376,9 @@ export const workloadGroupName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters66: coreHttp.OperationParameter = {
+export const parameters65: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.WorkloadGroup
-};
-
-export const workloadGroupName1: coreHttp.OperationURLParameter = {
-  parameterPath: "workloadGroupName",
-  mapper: {
-    serializedName: "workloadGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const workloadGroupName2: coreHttp.OperationURLParameter = {
-  parameterPath: "workloadGroupName",
-  mapper: {
-    serializedName: "workloadGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const workloadClassifierName: coreHttp.OperationURLParameter = {
@@ -2461,54 +1392,9 @@ export const workloadClassifierName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters67: coreHttp.OperationParameter = {
+export const parameters66: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.WorkloadClassifier
-};
-
-export const workloadClassifierName1: coreHttp.OperationURLParameter = {
-  parameterPath: "workloadClassifierName",
-  mapper: {
-    serializedName: "workloadClassifierName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const workloadClassifierName2: coreHttp.OperationURLParameter = {
-  parameterPath: "workloadClassifierName",
-  mapper: {
-    serializedName: "workloadClassifierName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const workloadGroupName3: coreHttp.OperationURLParameter = {
-  parameterPath: "workloadGroupName",
-  mapper: {
-    serializedName: "workloadGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const nextLink26: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const restoreDetailsName: coreHttp.OperationURLParameter = {
@@ -2523,81 +1409,22 @@ export const restoreDetailsName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters68: coreHttp.OperationParameter = {
+export const parameters67: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ManagedDatabase
 };
 
-export const parameters69: coreHttp.OperationParameter = {
+export const parameters68: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ManagedDatabaseUpdate
 };
 
-export const parameters70: coreHttp.OperationParameter = {
+export const parameters69: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.CompleteDatabaseRestoreDefinition
 };
 
-export const nextLink27: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const administratorName2: coreHttp.OperationURLParameter = {
-  parameterPath: "administratorName",
-  mapper: {
-    defaultValue: "ActiveDirectory",
-    isConstant: true,
-    serializedName: "administratorName",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters71: coreHttp.OperationParameter = {
+export const parameters70: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ServerAzureADAdministrator
-};
-
-export const administratorName3: coreHttp.OperationURLParameter = {
-  parameterPath: "administratorName",
-  mapper: {
-    defaultValue: "ActiveDirectory",
-    isConstant: true,
-    serializedName: "administratorName",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const operationId1: coreHttp.OperationURLParameter = {
-  parameterPath: "operationId",
-  mapper: {
-    serializedName: "operationId",
-    required: true,
-    type: {
-      name: "Uuid"
-    }
-  }
-};
-
-export const nextLink28: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };

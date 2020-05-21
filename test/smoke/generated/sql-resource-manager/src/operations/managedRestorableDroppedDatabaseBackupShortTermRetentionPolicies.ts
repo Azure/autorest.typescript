@@ -267,8 +267,8 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
+    Parameters.policyName,
     Parameters.managedInstanceName,
-    Parameters.policyName1,
     Parameters.restorableDroppedDatabaseId
   ],
   serializer
@@ -291,14 +291,14 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ManagedBackupShortTermRetentionPolicy
     }
   },
-  requestBody: Parameters.parameters41,
+  requestBody: Parameters.parameters40,
   queryParameters: [Parameters.apiVersion4],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
+    Parameters.policyName,
     Parameters.managedInstanceName,
-    Parameters.policyName2,
     Parameters.restorableDroppedDatabaseId
   ],
   headerParameters: [Parameters.contentType],
@@ -323,14 +323,14 @@ const updateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ManagedBackupShortTermRetentionPolicy
     }
   },
-  requestBody: Parameters.parameters41,
+  requestBody: Parameters.parameters40,
   queryParameters: [Parameters.apiVersion4],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
+    Parameters.policyName,
     Parameters.managedInstanceName,
-    Parameters.policyName2,
     Parameters.restorableDroppedDatabaseId
   ],
   headerParameters: [Parameters.contentType],
@@ -371,9 +371,9 @@ const listByRestorableDroppedDatabaseNextOperationSpec: coreHttp.OperationSpec =
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
+    Parameters.nextLink,
     Parameters.managedInstanceName,
-    Parameters.restorableDroppedDatabaseId,
-    Parameters.nextLink20
+    Parameters.restorableDroppedDatabaseId
   ],
   serializer
 };

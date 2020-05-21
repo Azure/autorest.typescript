@@ -117,8 +117,8 @@ const listByInstancePoolNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.instancePoolName,
-    Parameters.nextLink24
+    Parameters.nextLink,
+    Parameters.instancePoolName
   ],
   serializer
 };

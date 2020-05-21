@@ -794,7 +794,7 @@ const createImportOperationOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName3,
+    Parameters.databaseName,
     Parameters.extensionName
   ],
   headerParameters: [Parameters.contentType],
@@ -826,7 +826,7 @@ const exportOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName4
+    Parameters.databaseName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -847,7 +847,7 @@ const listMetricsOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2
+    Parameters.databaseName
   ],
   serializer
 };
@@ -866,7 +866,7 @@ const listMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2
+    Parameters.databaseName
   ],
   serializer
 };
@@ -905,7 +905,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2
+    Parameters.databaseName
   ],
   serializer
 };
@@ -934,7 +934,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2
+    Parameters.databaseName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -951,7 +951,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2
+    Parameters.databaseName
   ],
   serializer
 };
@@ -980,7 +980,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2
+    Parameters.databaseName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1030,7 +1030,7 @@ const pauseOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName5
+    Parameters.databaseName
   ],
   serializer
 };
@@ -1058,7 +1058,7 @@ const resumeOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName6
+    Parameters.databaseName
   ],
   serializer
 };
@@ -1073,7 +1073,7 @@ const upgradeDataWarehouseOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName7
+    Parameters.databaseName
   ],
   serializer
 };
@@ -1089,7 +1089,7 @@ const renameOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName8
+    Parameters.databaseName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1106,7 +1106,7 @@ const failoverOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName9
+    Parameters.databaseName
   ],
   serializer
 };
@@ -1145,7 +1145,7 @@ const listByElasticPoolNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName,
     Parameters.elasticPoolName,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
   serializer
 };

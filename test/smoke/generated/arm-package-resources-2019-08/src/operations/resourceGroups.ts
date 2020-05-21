@@ -263,7 +263,7 @@ const checkExistenceOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName11
+    Parameters.resourceGroupName
   ],
   serializer
 };
@@ -281,12 +281,12 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters11,
+  requestBody: Parameters.parameters5,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName12
+    Parameters.resourceGroupName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -300,7 +300,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName13
+    Parameters.resourceGroupName
   ],
   serializer
 };
@@ -319,7 +319,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName14
+    Parameters.resourceGroupName
   ],
   serializer
 };
@@ -334,12 +334,12 @@ const updateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters12,
+  requestBody: Parameters.parameters6,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName15
+    Parameters.resourceGroupName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -363,12 +363,12 @@ const exportTemplateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ResourceGroupExportResult
     }
   },
-  requestBody: Parameters.parameters13,
+  requestBody: Parameters.parameters7,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName3
+    Parameters.resourceGroupName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -385,7 +385,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.top4, Parameters.filter2],
+  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   serializer
 };
@@ -400,7 +400,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.top4, Parameters.filter2],
+  queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,

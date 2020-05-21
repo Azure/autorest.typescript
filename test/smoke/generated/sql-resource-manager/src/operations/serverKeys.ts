@@ -274,7 +274,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.keyName1
+    Parameters.keyName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -291,7 +291,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.keyName2
+    Parameters.keyName
   ],
   serializer
 };

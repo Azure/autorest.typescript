@@ -297,7 +297,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorResponse
     }
   },
-  requestBody: Parameters.parameters49,
+  requestBody: Parameters.parameters34,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -385,8 +385,8 @@ const getStatusOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName2,
-    Parameters.packetCaptureName1
+    Parameters.networkWatcherName,
+    Parameters.packetCaptureName
   ],
   serializer
 };
@@ -407,7 +407,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName2
+    Parameters.networkWatcherName
   ],
   serializer
 };

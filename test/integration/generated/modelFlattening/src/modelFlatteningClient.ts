@@ -383,7 +383,7 @@ const postFlattenedSimpleProductOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.simpleBodyProduct1,
+  requestBody: Parameters.simpleBodyProduct,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -400,7 +400,7 @@ const putSimpleProductWithGroupingOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.simpleBodyProduct2,
+  requestBody: Parameters.simpleBodyProduct1,
   urlParameters: [Parameters.$host, Parameters.name],
   headerParameters: [Parameters.contentType],
   mediaType: "json",

@@ -45,6 +45,7 @@ import {
   getAllModelsNames,
   getResponseTypeName
 } from "./utils/responseTypeUtils";
+import { getParameterDescription } from "../utils/getParameterDescription";
 
 /**
  * Function that writes the code for all the operations.
@@ -520,7 +521,7 @@ function getOperationParameterSignatures(
 
       const newParameter = {
         name: param.name,
-        description: param.description,
+        description: getParameterDescription(param, operation.fullName),
         type: typeName,
         hasQuestionToken: !param.required,
         isContentType: Boolean(

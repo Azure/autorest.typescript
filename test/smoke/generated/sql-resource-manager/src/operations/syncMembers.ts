@@ -444,8 +444,8 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
-    Parameters.syncGroupName1,
+    Parameters.databaseName,
+    Parameters.syncGroupName,
     Parameters.syncMemberName
   ],
   serializer
@@ -475,8 +475,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
-    Parameters.syncGroupName1,
+    Parameters.databaseName,
+    Parameters.syncGroupName,
     Parameters.syncMemberName
   ],
   headerParameters: [Parameters.contentType],
@@ -494,8 +494,8 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
-    Parameters.syncGroupName1,
+    Parameters.databaseName,
+    Parameters.syncGroupName,
     Parameters.syncMemberName
   ],
   serializer
@@ -525,8 +525,8 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
-    Parameters.syncGroupName1,
+    Parameters.databaseName,
+    Parameters.syncGroupName,
     Parameters.syncMemberName
   ],
   headerParameters: [Parameters.contentType],
@@ -549,7 +549,7 @@ const listBySyncGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
+    Parameters.databaseName,
     Parameters.syncGroupName
   ],
   serializer
@@ -570,8 +570,8 @@ const listMemberSchemasOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
-    Parameters.syncGroupName1,
+    Parameters.databaseName,
+    Parameters.syncGroupName,
     Parameters.syncMemberName
   ],
   serializer
@@ -587,8 +587,8 @@ const refreshMemberSchemaOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
-    Parameters.syncGroupName1,
+    Parameters.databaseName,
+    Parameters.syncGroupName,
     Parameters.syncMemberName
   ],
   serializer
@@ -608,9 +608,9 @@ const listBySyncGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
-    Parameters.syncGroupName,
-    Parameters.nextLink8
+    Parameters.databaseName,
+    Parameters.nextLink,
+    Parameters.syncGroupName
   ],
   serializer
 };
@@ -629,10 +629,10 @@ const listMemberSchemasNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
-    Parameters.syncGroupName1,
-    Parameters.syncMemberName,
-    Parameters.nextLink9
+    Parameters.databaseName,
+    Parameters.nextLink,
+    Parameters.syncGroupName,
+    Parameters.syncMemberName
   ],
   serializer
 };

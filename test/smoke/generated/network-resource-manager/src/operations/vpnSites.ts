@@ -272,8 +272,8 @@ const getOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName7,
     Parameters.vpnSiteName
   ],
   serializer
@@ -300,9 +300,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName7,
-    Parameters.vpnSiteName1
+    Parameters.vpnSiteName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -324,9 +324,9 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName7,
-    Parameters.vpnSiteName2
+    Parameters.vpnSiteName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -340,9 +340,9 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName7,
-    Parameters.vpnSiteName3
+    Parameters.vpnSiteName
   ],
   serializer
 };
@@ -361,8 +361,8 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName7
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -395,9 +395,9 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.nextLink3,
-    Parameters.resourceGroupName7
+    Parameters.nextLink
   ],
   serializer
 };

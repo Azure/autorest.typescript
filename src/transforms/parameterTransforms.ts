@@ -216,17 +216,25 @@ export function populateOperationParameters(
 
   const sameNameParams = operationParameters.filter(p => p.name === name);
   description += getSchemaTypeDocumentation(parameter.schema);
+  const isRequired = getParameterRequired(parameter);
 
   const collectionFormat = getCollectionFormat(parameter);
   const typeDetails = getTypeForSchema(parameter.schema);
   const paramDetails: ParameterDetails = {
     nameRef: name,
-    description,
+    description:
+      isRequired && parameter.implementation === ImplementationLocation.Method
+        ? undefined
+        : description,
     name,
     serializedName,
-    operationsIn: [operationName],
+    operationsIn: {
+      [operationName]: {
+        description
+      }
+    },
     location: getParameterLocation(parameter),
-    required: getParameterRequired(parameter),
+    required: isRequired,
     schemaType: parameter.schema.type,
     parameterPath: getParameterPath(parameter),
     mapper: getMapperOrRef(
@@ -255,7 +263,8 @@ export function populateOperationParameters(
     paramDetails,
     operationParameters,
     sameNameParams,
-    operationName
+    operationName,
+    description
   );
 }
 
@@ -388,7 +397,6 @@ function getParameterName(parameter: Parameter) {
  */
 function getComparableParameter({
   name,
-  description,
   serializedName,
   location,
   required,
@@ -404,7 +412,6 @@ function getComparableParameter({
 }: ParameterDetails) {
   return {
     name,
-    description,
     serializedName,
     location,
     required,
@@ -434,7 +441,8 @@ export function disambiguateParameter(
   parameter: ParameterDetails,
   operationParameters: ParameterDetails[],
   sameNameParams: ParameterDetails[],
-  operationName: string
+  operationName: string,
+  description: string
 ) {
   const param = getComparableParameter(parameter);
   const existingParam = sameNameParams.find(p =>
@@ -443,9 +451,9 @@ export function disambiguateParameter(
 
   if (existingParam) {
     if (existingParam.operationsIn) {
-      existingParam.operationsIn.push(operationName);
+      existingParam.operationsIn[operationName] = { description };
     } else {
-      existingParam.operationsIn = [operationName];
+      existingParam.operationsIn = { [operationName]: { description } };
     }
     return;
   } else {

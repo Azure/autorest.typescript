@@ -948,7 +948,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23
+    Parameters.name
   ],
   serializer
 };
@@ -976,7 +976,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -998,7 +998,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23
+    Parameters.name
   ],
   serializer
 };
@@ -1023,7 +1023,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23
+    Parameters.name
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1051,7 +1051,7 @@ const listCapabilitiesOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23
+    Parameters.name
   ],
   serializer
 };
@@ -1072,9 +1072,9 @@ const getHybridConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23,
-    Parameters.namespaceName1,
-    Parameters.relayName1
+    Parameters.name,
+    Parameters.namespaceName,
+    Parameters.relayName
   ],
   serializer
 };
@@ -1094,9 +1094,9 @@ const deleteHybridConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23,
-    Parameters.namespaceName1,
-    Parameters.relayName1
+    Parameters.name,
+    Parameters.namespaceName,
+    Parameters.relayName
   ],
   serializer
 };
@@ -1117,9 +1117,9 @@ const listHybridConnectionKeysOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23,
-    Parameters.namespaceName2,
-    Parameters.relayName2
+    Parameters.name,
+    Parameters.namespaceName,
+    Parameters.relayName
   ],
   serializer
 };
@@ -1140,9 +1140,9 @@ const listWebAppsByHybridConnectionOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23,
-    Parameters.namespaceName3,
-    Parameters.relayName3
+    Parameters.name,
+    Parameters.namespaceName,
+    Parameters.relayName
   ],
   serializer
 };
@@ -1163,7 +1163,7 @@ const getHybridConnectionPlanLimitOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23
+    Parameters.name
   ],
   serializer
 };
@@ -1184,7 +1184,7 @@ const listHybridConnectionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23
+    Parameters.name
   ],
   serializer
 };
@@ -1198,12 +1198,12 @@ const restartWebAppsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.softRestart1],
+  queryParameters: [Parameters.apiVersion, Parameters.softRestart],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23
+    Parameters.name
   ],
   serializer
 };
@@ -1221,15 +1221,15 @@ const listWebAppsOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [
     Parameters.apiVersion,
+    Parameters.filter,
     Parameters.skipToken,
-    Parameters.filter5,
     Parameters.top
   ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23
+    Parameters.name
   ],
   serializer
 };
@@ -1250,7 +1250,7 @@ const getServerFarmSkusOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name24
+    Parameters.name
   ],
   serializer
 };
@@ -1266,12 +1266,12 @@ const listUsagesOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter6],
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name24
+    Parameters.name
   ],
   serializer
 };
@@ -1297,7 +1297,7 @@ const listVnetsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23
+    Parameters.name
   ],
   serializer
 };
@@ -1319,8 +1319,8 @@ const getVnetFromServerFarmOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.vnetName2,
-    Parameters.name23
+    Parameters.name,
+    Parameters.vnetName
   ],
   serializer
 };
@@ -1341,9 +1341,9 @@ const getVnetGatewayOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.vnetName2,
-    Parameters.name23,
-    Parameters.gatewayName1
+    Parameters.name,
+    Parameters.vnetName,
+    Parameters.gatewayName
   ],
   serializer
 };
@@ -1359,15 +1359,15 @@ const updateVnetGatewayOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.connectionEnvelope5,
+  requestBody: Parameters.connectionEnvelope4,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.vnetName2,
-    Parameters.name23,
-    Parameters.gatewayName1
+    Parameters.name,
+    Parameters.vnetName,
+    Parameters.gatewayName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1395,8 +1395,8 @@ const listRoutesForVnetOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.vnetName2,
-    Parameters.name23
+    Parameters.name,
+    Parameters.vnetName
   ],
   serializer
 };
@@ -1423,8 +1423,8 @@ const getRouteForVnetOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.vnetName2,
-    Parameters.name23,
+    Parameters.name,
+    Parameters.vnetName,
     Parameters.routeName
   ],
   serializer
@@ -1449,8 +1449,8 @@ const createOrUpdateVnetRouteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.vnetName2,
-    Parameters.name23,
+    Parameters.name,
+    Parameters.vnetName,
     Parameters.routeName
   ],
   headerParameters: [Parameters.contentType],
@@ -1473,8 +1473,8 @@ const deleteVnetRouteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.vnetName2,
-    Parameters.name23,
+    Parameters.name,
+    Parameters.vnetName,
     Parameters.routeName
   ],
   serializer
@@ -1499,8 +1499,8 @@ const updateVnetRouteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.vnetName2,
-    Parameters.name23,
+    Parameters.name,
+    Parameters.vnetName,
     Parameters.routeName
   ],
   headerParameters: [Parameters.contentType],
@@ -1522,7 +1522,7 @@ const rebootWorkerOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23,
+    Parameters.name,
     Parameters.workerName
   ],
   serializer
@@ -1562,7 +1562,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
   serializer
 };
@@ -1582,10 +1582,10 @@ const listWebAppsByHybridConnectionNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23,
-    Parameters.namespaceName3,
-    Parameters.relayName3,
-    Parameters.nextLink105
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.namespaceName,
+    Parameters.relayName
   ],
   serializer
 };
@@ -1605,8 +1605,8 @@ const listHybridConnectionsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name23,
-    Parameters.nextLink106
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -1623,16 +1623,16 @@ const listWebAppsNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [
     Parameters.apiVersion,
+    Parameters.filter,
     Parameters.skipToken,
-    Parameters.filter5,
     Parameters.top
   ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.nextLink98,
-    Parameters.name23
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -1647,13 +1647,13 @@ const listUsagesNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter6],
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.nextLink79,
-    Parameters.name24
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };

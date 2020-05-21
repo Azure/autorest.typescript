@@ -882,7 +882,7 @@ const checkDnsNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.location1
+    Parameters.location
   ],
   serializer
 };
@@ -901,8 +901,8 @@ const supportedSecurityProvidersOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName1,
     Parameters.virtualWANName
   ],
   serializer
@@ -929,9 +929,9 @@ const generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec: coreHttp.
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName1,
-    Parameters.virtualWANName1
+    Parameters.virtualWANName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -961,7 +961,7 @@ const putBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.bastionHostName,
-    Parameters.nextLink4
+    Parameters.nextLink1
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -985,7 +985,7 @@ const getBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.bastionHostName,
-    Parameters.nextLink5
+    Parameters.nextLink1
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1013,8 +1013,8 @@ const getActiveSessionsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.bastionHostName,
-    Parameters.nextLink6
+    Parameters.nextLink,
+    Parameters.bastionHostName
   ],
   serializer
 };
@@ -1036,7 +1036,7 @@ const disconnectActiveSessionsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.bastionHostName,
-    Parameters.nextLink7
+    Parameters.nextLink1
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",

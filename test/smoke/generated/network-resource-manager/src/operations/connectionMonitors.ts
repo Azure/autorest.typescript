@@ -371,13 +371,13 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ConnectionMonitorResult
     }
   },
-  requestBody: Parameters.parameters50,
+  requestBody: Parameters.parameters35,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName2,
-    Parameters.resourceGroupName5,
+    Parameters.networkWatcherName,
     Parameters.connectionMonitorName
   ],
   headerParameters: [Parameters.contentType],
@@ -399,9 +399,9 @@ const getOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName2,
-    Parameters.resourceGroupName5,
+    Parameters.networkWatcherName,
     Parameters.connectionMonitorName
   ],
   serializer
@@ -414,9 +414,9 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName2,
-    Parameters.resourceGroupName5,
+    Parameters.networkWatcherName,
     Parameters.connectionMonitorName
   ],
   serializer
@@ -433,7 +433,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorResponse
     }
   },
-  requestBody: Parameters.parameters51,
+  requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -454,9 +454,9 @@ const stopOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName2,
-    Parameters.resourceGroupName5,
+    Parameters.networkWatcherName,
     Parameters.connectionMonitorName
   ],
   serializer
@@ -469,9 +469,9 @@ const startOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName2,
-    Parameters.resourceGroupName5,
+    Parameters.networkWatcherName,
     Parameters.connectionMonitorName
   ],
   serializer
@@ -497,10 +497,10 @@ const queryOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName2,
-    Parameters.resourceGroupName5,
-    Parameters.connectionMonitorName1
+    Parameters.networkWatcherName,
+    Parameters.connectionMonitorName
   ],
   serializer
 };
@@ -519,9 +519,9 @@ const listOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName2,
-    Parameters.resourceGroupName5
+    Parameters.networkWatcherName
   ],
   serializer
 };
