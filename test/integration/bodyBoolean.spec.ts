@@ -36,6 +36,7 @@ describe("Bool Client", function() {
     let failed = false;
     try {
       await testClient.bool.getInvalid();
+      throw new Error("Expected error to be thrown");
     } catch (error) {
       failed = true;
     } finally {

@@ -186,6 +186,7 @@ describe("Integration tests for Paging", () => {
       try {
         const result = await client.paging.getMultiplePagesFailure();
         await client.paging.getMultiplePagesFailureNext(result.nextLink!);
+        assert.fail("Expected to throw error");
       } catch (error) {
         assert.equal(error.statusCode, 400);
       }
@@ -195,6 +196,7 @@ describe("Integration tests for Paging", () => {
       try {
         const result = await client.paging.getMultiplePagesFailureUri();
         await client.paging.getMultiplePagesFailureUriNext(result.nextLink!);
+        assert.fail("Expected to throw error");
       } catch (error) {
         assert.equal(error.statusCode, 404);
       }
