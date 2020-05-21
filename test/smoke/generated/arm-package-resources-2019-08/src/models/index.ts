@@ -2152,13 +2152,13 @@ export type ProvidersListResponse = ProviderListResult & {
 export interface ProvidersListAtTenantScopeOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases.
-   */
-  expand?: string;
-  /**
    * The number of results to return. If null is passed returns all providers.
    */
   top?: number;
+  /**
+   * The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases.
+   */
+  expand?: string;
 }
 
 /**
@@ -2283,13 +2283,13 @@ export type ProvidersListNextResponse = ProviderListResult & {
 export interface ProvidersListAtTenantScopeNextOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases.
-   */
-  expand?: string;
-  /**
    * The number of results to return. If null is passed returns all providers.
    */
   top?: number;
+  /**
+   * The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases.
+   */
+  expand?: string;
 }
 
 /**
@@ -2322,13 +2322,13 @@ export interface ResourcesListByResourceGroupOptionalParams
    */
   filter?: string;
   /**
-   * Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`.
-   */
-  expand?: string;
-  /**
    * The number of results to return. If null is passed, returns all resources.
    */
   top?: number;
+  /**
+   * Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`.
+   */
+  expand?: string;
 }
 
 /**
@@ -2360,13 +2360,13 @@ export interface ResourcesListOptionalParams extends coreHttp.OperationOptions {
    */
   filter?: string;
   /**
-   * Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`.
-   */
-  expand?: string;
-  /**
    * The number of results to return. If null is passed, returns all resource groups.
    */
   top?: number;
+  /**
+   * Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`.
+   */
+  expand?: string;
 }
 
 /**
@@ -2519,13 +2519,13 @@ export interface ResourcesListByResourceGroupNextOptionalParams
    */
   filter?: string;
   /**
-   * Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`.
-   */
-  expand?: string;
-  /**
    * The number of results to return. If null is passed, returns all resources.
    */
   top?: number;
+  /**
+   * Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`.
+   */
+  expand?: string;
 }
 
 /**
@@ -2558,13 +2558,13 @@ export interface ResourcesListNextOptionalParams
    */
   filter?: string;
   /**
-   * Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`.
-   */
-  expand?: string;
-  /**
    * The number of results to return. If null is passed, returns all resource groups.
    */
   top?: number;
+  /**
+   * Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`.
+   */
+  expand?: string;
 }
 
 /**
@@ -2673,13 +2673,13 @@ export type ResourceGroupsExportTemplateResponse = ResourceGroupExportResult & {
 export interface ResourceGroupsListOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * The number of results to return. If null is passed, returns all resource groups.
-   */
-  top?: number;
-  /**
    * The filter to apply on the operation.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'
    */
   filter?: string;
+  /**
+   * The number of results to return. If null is passed, returns all resource groups.
+   */
+  top?: number;
 }
 
 /**
@@ -2708,13 +2708,13 @@ export type ResourceGroupsListResponse = ResourceGroupListResult & {
 export interface ResourceGroupsListNextOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * The number of results to return. If null is passed, returns all resource groups.
-   */
-  top?: number;
-  /**
    * The filter to apply on the operation.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'
    */
   filter?: string;
+  /**
+   * The number of results to return. If null is passed, returns all resource groups.
+   */
+  top?: number;
 }
 
 /**

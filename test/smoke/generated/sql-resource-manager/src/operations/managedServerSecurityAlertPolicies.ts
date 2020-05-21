@@ -203,7 +203,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ManagedServerSecurityAlertPolicy
     }
   },
-  requestBody: Parameters.parameters47,
+  requestBody: Parameters.parameters46,
   queryParameters: [Parameters.apiVersion4],
   urlParameters: [
     Parameters.$host,
@@ -249,8 +249,8 @@ const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.nextLink21
+    Parameters.nextLink,
+    Parameters.managedInstanceName
   ],
   serializer
 };

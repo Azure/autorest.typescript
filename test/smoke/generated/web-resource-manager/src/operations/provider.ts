@@ -203,7 +203,7 @@ const getAvailableStacksNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion, Parameters.osTypeSelected],
-  urlParameters: [Parameters.$host, Parameters.nextLink17],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };
 const listOperationsNextOperationSpec: coreHttp.OperationSpec = {
@@ -218,7 +218,7 @@ const listOperationsNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.nextLink3],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };
 const getAvailableStacksOnPremNextOperationSpec: coreHttp.OperationSpec = {
@@ -236,7 +236,7 @@ const getAvailableStacksOnPremNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink18
+    Parameters.nextLink
   ],
   serializer
 };

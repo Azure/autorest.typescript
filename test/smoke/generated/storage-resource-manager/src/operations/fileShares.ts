@@ -264,8 +264,8 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [
     Parameters.apiVersion,
-    Parameters.maxpagesize1,
-    Parameters.filter1,
+    Parameters.maxpagesize,
+    Parameters.filter,
     Parameters.expand2
   ],
   urlParameters: [
@@ -316,7 +316,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.fileShare1,
+  requestBody: Parameters.fileShare,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -408,8 +408,8 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [
     Parameters.apiVersion,
-    Parameters.maxpagesize1,
-    Parameters.filter1,
+    Parameters.maxpagesize,
+    Parameters.filter,
     Parameters.expand2
   ],
   urlParameters: [

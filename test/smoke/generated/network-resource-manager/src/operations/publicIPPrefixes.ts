@@ -286,12 +286,12 @@ const getOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand1],
+  queryParameters: [Parameters.apiVersion, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.publicIpPrefixName1
+    Parameters.publicIpPrefixName
   ],
   serializer
 };
@@ -313,13 +313,13 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.PublicIPPrefix
     }
   },
-  requestBody: Parameters.parameters60,
+  requestBody: Parameters.parameters43,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.publicIpPrefixName1
+    Parameters.publicIpPrefixName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -337,13 +337,13 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters61,
+  requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.publicIpPrefixName1
+    Parameters.publicIpPrefixName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -400,7 +400,7 @@ const listAllNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
   serializer
 };

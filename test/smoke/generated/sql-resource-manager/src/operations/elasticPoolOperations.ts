@@ -134,8 +134,8 @@ const cancelOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.operationId,
-    Parameters.elasticPoolName3
+    Parameters.elasticPoolName,
+    Parameters.operationId
   ],
   serializer
 };
@@ -155,7 +155,7 @@ const listByElasticPoolOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.elasticPoolName3
+    Parameters.elasticPoolName
   ],
   serializer
 };
@@ -174,8 +174,8 @@ const listByElasticPoolNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.nextLink1,
-    Parameters.elasticPoolName3
+    Parameters.elasticPoolName,
+    Parameters.nextLink
   ],
   serializer
 };

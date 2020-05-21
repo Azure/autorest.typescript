@@ -267,8 +267,8 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
-    Parameters.workloadGroupName2,
+    Parameters.databaseName,
+    Parameters.workloadGroupName,
     Parameters.workloadClassifierName
   ],
   serializer
@@ -291,16 +291,16 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.WorkloadClassifier
     }
   },
-  requestBody: Parameters.parameters67,
+  requestBody: Parameters.parameters66,
   queryParameters: [Parameters.apiVersion5],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
-    Parameters.workloadGroupName2,
-    Parameters.workloadClassifierName1
+    Parameters.databaseName,
+    Parameters.workloadGroupName,
+    Parameters.workloadClassifierName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -317,9 +317,9 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
-    Parameters.workloadGroupName2,
-    Parameters.workloadClassifierName2
+    Parameters.databaseName,
+    Parameters.workloadGroupName,
+    Parameters.workloadClassifierName
   ],
   serializer
 };
@@ -339,8 +339,8 @@ const listByWorkloadGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
-    Parameters.workloadGroupName3
+    Parameters.databaseName,
+    Parameters.workloadGroupName
   ],
   serializer
 };
@@ -359,9 +359,9 @@ const listByWorkloadGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
-    Parameters.workloadGroupName3,
-    Parameters.nextLink26
+    Parameters.databaseName,
+    Parameters.nextLink,
+    Parameters.workloadGroupName
   ],
   serializer
 };

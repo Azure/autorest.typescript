@@ -480,7 +480,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.scope,
-    Parameters.policyAssignmentName1
+    Parameters.policyAssignmentName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -502,7 +502,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.scope,
-    Parameters.policyAssignmentName2
+    Parameters.policyAssignmentName
   ],
   serializer
 };
@@ -541,8 +541,8 @@ const listForResourceOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion, Parameters.filter1],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName1,
     Parameters.resourceProviderNamespace,
     Parameters.parentResourcePath,
     Parameters.resourceType,
@@ -609,9 +609,9 @@ const createByIdOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters1,
+  requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.policyAssignmentId1],
+  urlParameters: [Parameters.$host, Parameters.policyAssignmentId],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
   serializer
@@ -628,7 +628,7 @@ const getByIdOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.policyAssignmentId2],
+  urlParameters: [Parameters.$host, Parameters.policyAssignmentId],
   serializer
 };
 const listForResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
@@ -665,13 +665,13 @@ const listForResourceNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion, Parameters.filter1],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName1,
     Parameters.resourceProviderNamespace,
     Parameters.parentResourcePath,
     Parameters.resourceType,
     Parameters.resourceName,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
   serializer
 };
@@ -690,7 +690,7 @@ const listForManagementGroupNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.managementGroupId,
-    Parameters.nextLink2
+    Parameters.nextLink
   ],
   serializer
 };
@@ -709,7 +709,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink3
+    Parameters.nextLink
   ],
   serializer
 };

@@ -400,7 +400,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.managedInstanceName
   ],
   serializer
@@ -423,13 +423,13 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ManagedDatabase
     }
   },
-  requestBody: Parameters.parameters68,
+  requestBody: Parameters.parameters67,
   queryParameters: [Parameters.apiVersion5],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.contentType],
@@ -446,7 +446,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.managedInstanceName
   ],
   serializer
@@ -469,13 +469,13 @@ const updateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ManagedDatabase
     }
   },
-  requestBody: Parameters.parameters69,
+  requestBody: Parameters.parameters68,
   queryParameters: [Parameters.apiVersion5],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.contentType],
@@ -506,13 +506,13 @@ const completeRestoreOperationSpec: coreHttp.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/completeRestore",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  requestBody: Parameters.parameters70,
+  requestBody: Parameters.parameters69,
   queryParameters: [Parameters.apiVersion5],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.contentType],
@@ -533,8 +533,8 @@ const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.nextLink21
+    Parameters.nextLink,
+    Parameters.managedInstanceName
   ],
   serializer
 };
@@ -552,8 +552,8 @@ const listInaccessibleByInstanceNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.nextLink27
+    Parameters.nextLink,
+    Parameters.managedInstanceName
   ],
   serializer
 };

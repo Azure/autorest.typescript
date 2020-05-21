@@ -655,7 +655,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand1],
+  queryParameters: [Parameters.apiVersion, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -682,7 +682,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.NetworkInterface
     }
   },
-  requestBody: Parameters.parameters27,
+  requestBody: Parameters.parameters17,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -706,7 +706,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters28,
+  requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -863,7 +863,7 @@ const getVirtualMachineScaleSetNetworkInterfaceOperationSpec: coreHttp.Operation
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.expand1, Parameters.apiVersion1],
+  queryParameters: [Parameters.expand, Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -886,7 +886,7 @@ const listVirtualMachineScaleSetIpConfigurationsOperationSpec: coreHttp.Operatio
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.expand1, Parameters.apiVersion1],
+  queryParameters: [Parameters.expand, Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -909,7 +909,7 @@ const getVirtualMachineScaleSetIpConfigurationOperationSpec: coreHttp.OperationS
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.expand1, Parameters.apiVersion1],
+  queryParameters: [Parameters.expand, Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -936,7 +936,7 @@ const listAllNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
   serializer
 };
@@ -976,9 +976,9 @@ const listVirtualMachineScaleSetVMNetworkInterfacesNextOperationSpec: coreHttp.O
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
+    Parameters.nextLink,
     Parameters.virtualMachineScaleSetName,
-    Parameters.virtualmachineIndex,
-    Parameters.nextLink8
+    Parameters.virtualmachineIndex
   ],
   serializer
 };
@@ -998,8 +998,8 @@ const listVirtualMachineScaleSetNetworkInterfacesNextOperationSpec: coreHttp.Ope
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.virtualMachineScaleSetName,
-    Parameters.nextLink9
+    Parameters.nextLink,
+    Parameters.virtualMachineScaleSetName
   ],
   serializer
 };
@@ -1014,15 +1014,15 @@ const listVirtualMachineScaleSetIpConfigurationsNextOperationSpec: coreHttp.Oper
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.expand1, Parameters.apiVersion1],
+  queryParameters: [Parameters.expand, Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
+    Parameters.nextLink,
     Parameters.networkInterfaceName,
     Parameters.virtualMachineScaleSetName,
-    Parameters.virtualmachineIndex,
-    Parameters.nextLink10
+    Parameters.virtualmachineIndex
   ],
   serializer
 };

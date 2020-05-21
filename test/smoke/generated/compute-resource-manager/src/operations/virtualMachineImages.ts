@@ -169,10 +169,10 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.location,
-    Parameters.publisherName1,
+    Parameters.publisherName,
+    Parameters.version,
     Parameters.offer,
-    Parameters.skus,
-    Parameters.version1
+    Parameters.skus
   ],
   serializer
 };
@@ -197,15 +197,15 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [
     Parameters.apiVersion,
+    Parameters.expand,
     Parameters.top,
-    Parameters.orderby,
-    Parameters.expand2
+    Parameters.orderby
   ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.location,
-    Parameters.publisherName1,
+    Parameters.publisherName,
     Parameters.offer,
     Parameters.skus
   ],
@@ -235,7 +235,7 @@ const listOffersOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.location,
-    Parameters.publisherName1
+    Parameters.publisherName
   ],
   serializer
 };
@@ -290,7 +290,7 @@ const listSkusOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.location,
-    Parameters.publisherName1,
+    Parameters.publisherName,
     Parameters.offer
   ],
   serializer

@@ -324,7 +324,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.hostGroupName,
-    Parameters.hostName1
+    Parameters.hostName
   ],
   serializer
 };
@@ -343,7 +343,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.hostGroupName,
-    Parameters.hostName1
+    Parameters.hostName
   ],
   serializer
 };
@@ -378,8 +378,8 @@ const listByHostGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.hostGroupName,
-    Parameters.nextLink3
+    Parameters.nextLink,
+    Parameters.hostGroupName
   ],
   serializer
 };

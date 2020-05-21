@@ -293,7 +293,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName10,
+    Parameters.databaseName,
     Parameters.linkId
   ],
   serializer
@@ -313,8 +313,8 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName11,
-    Parameters.linkId1
+    Parameters.databaseName,
+    Parameters.linkId
   ],
   serializer
 };
@@ -329,8 +329,8 @@ const failoverOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName12,
-    Parameters.linkId2
+    Parameters.databaseName,
+    Parameters.linkId
   ],
   serializer
 };
@@ -345,8 +345,8 @@ const failoverAllowDataLossOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName12,
-    Parameters.linkId2
+    Parameters.databaseName,
+    Parameters.linkId
   ],
   serializer
 };
@@ -362,8 +362,8 @@ const unlinkOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName12,
-    Parameters.linkId2
+    Parameters.databaseName,
+    Parameters.linkId
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -384,7 +384,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName13
+    Parameters.databaseName
   ],
   serializer
 };

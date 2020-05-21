@@ -213,7 +213,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceProviderNamespace1,
+    Parameters.resourceProviderNamespace,
     Parameters.featureName
   ],
   serializer
@@ -231,8 +231,8 @@ const registerOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceProviderNamespace2,
-    Parameters.featureName1
+    Parameters.resourceProviderNamespace,
+    Parameters.featureName
   ],
   serializer
 };
@@ -249,8 +249,8 @@ const unregisterOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceProviderNamespace2,
-    Parameters.featureName2
+    Parameters.resourceProviderNamespace,
+    Parameters.featureName
   ],
   serializer
 };
@@ -265,8 +265,8 @@ const listAllNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink1
+    Parameters.nextLink,
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -281,9 +281,9 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.nextLink,
     Parameters.subscriptionId,
-    Parameters.resourceProviderNamespace,
-    Parameters.nextLink2
+    Parameters.resourceProviderNamespace
   ],
   serializer
 };

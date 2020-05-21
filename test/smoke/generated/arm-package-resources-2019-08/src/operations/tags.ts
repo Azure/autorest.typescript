@@ -185,7 +185,7 @@ const createOrUpdateValueOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.tagName,
-    Parameters.tagValue1
+    Parameters.tagValue
   ],
   serializer
 };
@@ -207,7 +207,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.tagName1
+    Parameters.tagName
   ],
   serializer
 };

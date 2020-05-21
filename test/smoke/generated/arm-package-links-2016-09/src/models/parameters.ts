@@ -74,18 +74,6 @@ export const parameters: coreHttp.OperationParameter = {
   mapper: Mappers.ResourceLink
 };
 
-export const linkId1: coreHttp.OperationURLParameter = {
-  parameterPath: "linkId",
-  mapper: {
-    serializedName: "linkId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const filter: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "filter"],
   mapper: {
@@ -129,28 +117,4 @@ export const filter1: coreHttp.OperationQueryParameter = {
       name: "String"
     }
   }
-};
-
-export const nextLink1: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink2: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };

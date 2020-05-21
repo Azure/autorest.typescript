@@ -289,7 +289,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.galleryName3,
+    Parameters.galleryName,
     Parameters.galleryImageName
   ],
   headerParameters: [Parameters.contentType],
@@ -323,8 +323,8 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.galleryName4,
-    Parameters.galleryImageName1
+    Parameters.galleryName,
+    Parameters.galleryImageName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -347,8 +347,8 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.galleryName5,
-    Parameters.galleryImageName2
+    Parameters.galleryName,
+    Parameters.galleryImageName
   ],
   serializer
 };
@@ -362,8 +362,8 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.galleryName6,
-    Parameters.galleryImageName3
+    Parameters.galleryName,
+    Parameters.galleryImageName
   ],
   serializer
 };
@@ -384,7 +384,7 @@ const listByGalleryOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.galleryName7
+    Parameters.galleryName
   ],
   serializer
 };
@@ -404,8 +404,8 @@ const listByGalleryNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.galleryName7,
-    Parameters.nextLink8
+    Parameters.nextLink,
+    Parameters.galleryName
   ],
   serializer
 };

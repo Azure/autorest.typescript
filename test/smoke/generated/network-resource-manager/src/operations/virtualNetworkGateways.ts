@@ -1017,7 +1017,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VirtualNetworkGateway
     }
   },
-  requestBody: Parameters.parameters71,
+  requestBody: Parameters.parameters48,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1082,7 +1082,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VirtualNetworkGateway
     }
   },
-  requestBody: Parameters.parameters72,
+  requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1194,7 +1194,7 @@ const generatevpnclientpackageOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     }
   },
-  requestBody: Parameters.parameters73,
+  requestBody: Parameters.parameters49,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1224,7 +1224,7 @@ const generateVpnProfileOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     }
   },
-  requestBody: Parameters.parameters73,
+  requestBody: Parameters.parameters49,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1421,7 +1421,7 @@ const getVpnclientIpsecParametersOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.virtualNetworkGatewayName1
+    Parameters.virtualNetworkGatewayName
   ],
   serializer
 };
@@ -1437,7 +1437,7 @@ const vpnDeviceConfigurationScriptOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters74,
+  requestBody: Parameters.parameters50,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1467,7 +1467,7 @@ const startPacketCaptureOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     }
   },
-  requestBody: Parameters.parameters75,
+  requestBody: Parameters.parameters51,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1497,7 +1497,7 @@ const stopPacketCaptureOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     }
   },
-  requestBody: Parameters.parameters76,
+  requestBody: Parameters.parameters52,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1589,8 +1589,8 @@ const listConnectionsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.virtualNetworkGatewayName,
-    Parameters.nextLink19
+    Parameters.nextLink,
+    Parameters.virtualNetworkGatewayName
   ],
   serializer
 };

@@ -207,7 +207,7 @@ const listByAgentOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.jobAgentName4
+    Parameters.jobAgentName
   ],
   serializer
 };
@@ -227,7 +227,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.jobAgentName4,
+    Parameters.jobAgentName,
     Parameters.credentialName
   ],
   serializer
@@ -252,7 +252,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.jobAgentName4,
+    Parameters.jobAgentName,
     Parameters.credentialName
   ],
   headerParameters: [Parameters.contentType],
@@ -270,7 +270,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.jobAgentName4,
+    Parameters.jobAgentName,
     Parameters.credentialName
   ],
   serializer
@@ -290,8 +290,8 @@ const listByAgentNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.jobAgentName4,
-    Parameters.nextLink12
+    Parameters.nextLink,
+    Parameters.jobAgentName
   ],
   serializer
 };

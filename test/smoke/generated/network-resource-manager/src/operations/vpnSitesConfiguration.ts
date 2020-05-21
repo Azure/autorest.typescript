@@ -97,9 +97,9 @@ const downloadOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName1,
-    Parameters.virtualWANName6
+    Parameters.virtualWANName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",

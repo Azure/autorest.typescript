@@ -164,8 +164,8 @@ const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.nextLink21
+    Parameters.nextLink,
+    Parameters.managedInstanceName
   ],
   serializer
 };

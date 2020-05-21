@@ -104,8 +104,8 @@ const listAddsDimensionsNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.dimension,
-    Parameters.nextLink8
+    Parameters.nextLink,
+    Parameters.dimension
   ],
   serializer
 };

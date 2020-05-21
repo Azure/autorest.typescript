@@ -85,6 +85,6 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     default: {}
   },
   queryParameters: [Parameters.apiVersion3],
-  urlParameters: [Parameters.$host, Parameters.nextLink2],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };

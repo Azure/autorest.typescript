@@ -280,7 +280,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.vmExtensionName,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   headerParameters: [Parameters.contentType],
@@ -315,7 +315,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.vmExtensionName,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   headerParameters: [Parameters.contentType],
@@ -333,7 +333,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.vmExtensionName,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   serializer
@@ -350,13 +350,13 @@ const getOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand2],
+  queryParameters: [Parameters.apiVersion, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.vmExtensionName,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   serializer
@@ -373,12 +373,12 @@ const listOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand2],
+  queryParameters: [Parameters.apiVersion, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1,
+    Parameters.vmScaleSetName,
     Parameters.instanceId
   ],
   serializer

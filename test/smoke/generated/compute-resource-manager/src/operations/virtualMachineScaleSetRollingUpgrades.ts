@@ -197,7 +197,7 @@ const cancelOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   serializer
 };
@@ -211,7 +211,7 @@ const startOSUpgradeOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   serializer
 };
@@ -225,7 +225,7 @@ const startExtensionUpgradeOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   serializer
 };
@@ -243,7 +243,7 @@ const getLatestOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName1
+    Parameters.vmScaleSetName
   ],
   serializer
 };

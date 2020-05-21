@@ -248,8 +248,8 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.virtualRouterName,
-    Parameters.peeringName1
+    Parameters.peeringName,
+    Parameters.virtualRouterName
   ],
   serializer
 };
@@ -271,14 +271,14 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VirtualRouterPeering
     }
   },
-  requestBody: Parameters.parameters87,
+  requestBody: Parameters.parameters59,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.virtualRouterName,
-    Parameters.peeringName1
+    Parameters.peeringName,
+    Parameters.virtualRouterName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",

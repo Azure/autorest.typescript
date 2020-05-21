@@ -366,7 +366,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName1,
+    Parameters.serverName,
     Parameters.failoverGroupName
   ],
   serializer
@@ -395,7 +395,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName1,
+    Parameters.serverName,
     Parameters.failoverGroupName
   ],
   headerParameters: [Parameters.contentType],
@@ -412,7 +412,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName1,
+    Parameters.serverName,
     Parameters.failoverGroupName
   ],
   serializer
@@ -441,7 +441,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName1,
+    Parameters.serverName,
     Parameters.failoverGroupName
   ],
   headerParameters: [Parameters.contentType],
@@ -463,7 +463,7 @@ const listByServerOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName1
+    Parameters.serverName
   ],
   serializer
 };
@@ -490,7 +490,7 @@ const failoverOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName1,
+    Parameters.serverName,
     Parameters.failoverGroupName
   ],
   serializer
@@ -518,7 +518,7 @@ const forceFailoverAllowDataLossOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName1,
+    Parameters.serverName,
     Parameters.failoverGroupName
   ],
   serializer
@@ -537,8 +537,8 @@ const listByServerNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.nextLink,
-    Parameters.serverName1
+    Parameters.serverName,
+    Parameters.nextLink
   ],
   serializer
 };

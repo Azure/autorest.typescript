@@ -75,9 +75,9 @@ const getOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.connectionName2,
-    Parameters.resourceGroupName10,
+    Parameters.connectionName,
     Parameters.gatewayName,
     Parameters.linkConnectionName
   ],

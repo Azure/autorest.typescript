@@ -1266,7 +1266,7 @@ const updateSqlContainerThroughputOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     }
   },
-  requestBody: Parameters.updateThroughputParameters1,
+  requestBody: Parameters.updateThroughputParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

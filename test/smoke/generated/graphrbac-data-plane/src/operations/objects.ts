@@ -79,7 +79,7 @@ const getObjectsByObjectIdsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DirectoryObjectListResult
     }
   },
-  requestBody: Parameters.parameters16,
+  requestBody: Parameters.parameters14,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.contentType],

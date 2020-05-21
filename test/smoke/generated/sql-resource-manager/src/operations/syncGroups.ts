@@ -510,8 +510,8 @@ export class SyncGroups {
    * @param syncGroupName The name of the sync group.
    * @param startTime Get logs generated after this time.
    * @param endTime Get logs generated before this time.
-   * @param typeParam The types of logs to retrieve.
    * @param nextLink The nextLink from the previous successful call to the ListLogs method.
+   * @param typeParam The types of logs to retrieve.
    * @param options The options parameters.
    */
   listLogsNext(
@@ -521,8 +521,8 @@ export class SyncGroups {
     syncGroupName: string,
     startTime: string,
     endTime: string,
-    typeParam: Enum15,
     nextLink: string,
+    typeParam: Enum15,
     options?: SyncGroupsListLogsNextOptionalParams
   ): Promise<SyncGroupsListLogsNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -536,8 +536,8 @@ export class SyncGroups {
         syncGroupName,
         startTime,
         endTime,
-        typeParam,
         nextLink,
+        typeParam,
         options: operationOptions
       },
       listLogsNextOperationSpec
@@ -620,7 +620,7 @@ const refreshHubSchemaOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
+    Parameters.databaseName,
     Parameters.syncGroupName
   ],
   serializer
@@ -641,7 +641,7 @@ const listHubSchemasOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
+    Parameters.databaseName,
     Parameters.syncGroupName
   ],
   serializer
@@ -668,7 +668,7 @@ const listLogsOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
+    Parameters.databaseName,
     Parameters.syncGroupName
   ],
   serializer
@@ -684,7 +684,7 @@ const cancelSyncOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
+    Parameters.databaseName,
     Parameters.syncGroupName
   ],
   serializer
@@ -700,7 +700,7 @@ const triggerSyncOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
+    Parameters.databaseName,
     Parameters.syncGroupName
   ],
   serializer
@@ -721,7 +721,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
+    Parameters.databaseName,
     Parameters.syncGroupName
   ],
   serializer
@@ -751,7 +751,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
+    Parameters.databaseName,
     Parameters.syncGroupName
   ],
   headerParameters: [Parameters.contentType],
@@ -769,7 +769,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
+    Parameters.databaseName,
     Parameters.syncGroupName
   ],
   serializer
@@ -799,7 +799,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
+    Parameters.databaseName,
     Parameters.syncGroupName
   ],
   headerParameters: [Parameters.contentType],
@@ -822,7 +822,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17
+    Parameters.databaseName
   ],
   serializer
 };
@@ -839,8 +839,8 @@ const listSyncDatabaseIdsNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.locationName,
-    Parameters.nextLink4
+    Parameters.nextLink,
+    Parameters.locationName
   ],
   serializer
 };
@@ -859,9 +859,9 @@ const listHubSchemasNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
-    Parameters.syncGroupName,
-    Parameters.nextLink5
+    Parameters.databaseName,
+    Parameters.nextLink,
+    Parameters.syncGroupName
   ],
   serializer
 };
@@ -886,9 +886,9 @@ const listLogsNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
-    Parameters.syncGroupName,
-    Parameters.nextLink6
+    Parameters.databaseName,
+    Parameters.nextLink,
+    Parameters.syncGroupName
   ],
   serializer
 };
@@ -907,8 +907,8 @@ const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName17,
-    Parameters.nextLink7
+    Parameters.databaseName,
+    Parameters.nextLink
   ],
   serializer
 };

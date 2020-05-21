@@ -207,7 +207,7 @@ const listByAgentOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.jobAgentName4
+    Parameters.jobAgentName
   ],
   serializer
 };
@@ -227,8 +227,8 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.jobAgentName4,
-    Parameters.jobName1
+    Parameters.jobAgentName,
+    Parameters.jobName
   ],
   serializer
 };
@@ -252,8 +252,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.jobAgentName4,
-    Parameters.jobName1
+    Parameters.jobAgentName,
+    Parameters.jobName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -270,8 +270,8 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.jobAgentName4,
-    Parameters.jobName2
+    Parameters.jobAgentName,
+    Parameters.jobName
   ],
   serializer
 };
@@ -290,8 +290,8 @@ const listByAgentNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.jobAgentName4,
-    Parameters.nextLink12
+    Parameters.nextLink,
+    Parameters.jobAgentName
   ],
   serializer
 };

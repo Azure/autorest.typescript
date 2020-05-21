@@ -736,7 +736,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.certificateOrderName1
+    Parameters.certificateOrderName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -758,7 +758,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.certificateOrderName1
+    Parameters.certificateOrderName
   ],
   serializer
 };
@@ -783,7 +783,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.certificateOrderName1
+    Parameters.certificateOrderName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -806,7 +806,7 @@ const listCertificatesOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.certificateOrderName1
+    Parameters.certificateOrderName
   ],
   serializer
 };
@@ -827,7 +827,7 @@ const getCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.certificateOrderName1,
+    Parameters.certificateOrderName,
     Parameters.name
   ],
   serializer
@@ -856,7 +856,7 @@ const createOrUpdateCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.certificateOrderName1,
+    Parameters.certificateOrderName,
     Parameters.name
   ],
   headerParameters: [Parameters.contentType],
@@ -879,7 +879,7 @@ const deleteCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.certificateOrderName1,
+    Parameters.certificateOrderName,
     Parameters.name
   ],
   serializer
@@ -905,7 +905,7 @@ const updateCertificateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.certificateOrderName1,
+    Parameters.certificateOrderName,
     Parameters.name
   ],
   headerParameters: [Parameters.contentType],
@@ -928,7 +928,7 @@ const reissueOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.certificateOrderName1
+    Parameters.certificateOrderName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -950,7 +950,7 @@ const renewOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.certificateOrderName1
+    Parameters.certificateOrderName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -971,7 +971,7 @@ const resendEmailOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.certificateOrderName1
+    Parameters.certificateOrderName
   ],
   serializer
 };
@@ -991,7 +991,7 @@ const resendRequestEmailsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.certificateOrderName1
+    Parameters.certificateOrderName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1015,7 +1015,7 @@ const retrieveSiteSealOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.certificateOrderName1
+    Parameters.certificateOrderName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1036,7 +1036,7 @@ const verifyDomainOwnershipOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.certificateOrderName1
+    Parameters.certificateOrderName
   ],
   serializer
 };
@@ -1064,7 +1064,7 @@ const retrieveCertificateActionsOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name1
+    Parameters.name
   ],
   serializer
 };
@@ -1092,7 +1092,7 @@ const retrieveCertificateEmailHistoryOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name1
+    Parameters.name
   ],
   serializer
 };
@@ -1131,7 +1131,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
   serializer
 };
@@ -1151,8 +1151,8 @@ const listCertificatesNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.certificateOrderName1,
-    Parameters.nextLink2
+    Parameters.certificateOrderName,
+    Parameters.nextLink
   ],
   serializer
 };

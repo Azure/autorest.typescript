@@ -253,9 +253,9 @@ const listByJobExecutionOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.jobAgentName4,
-    Parameters.jobName1,
-    Parameters.jobExecutionId1
+    Parameters.jobAgentName,
+    Parameters.jobName,
+    Parameters.jobExecutionId
   ],
   serializer
 };
@@ -284,9 +284,9 @@ const listByStepOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.jobAgentName4,
-    Parameters.jobName1,
-    Parameters.jobExecutionId1,
+    Parameters.jobAgentName,
+    Parameters.jobName,
+    Parameters.jobExecutionId,
     Parameters.stepName
   ],
   serializer
@@ -307,9 +307,9 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.jobAgentName4,
-    Parameters.jobName1,
-    Parameters.jobExecutionId3,
+    Parameters.jobAgentName,
+    Parameters.jobName,
+    Parameters.jobExecutionId,
     Parameters.stepName,
     Parameters.targetId
   ],
@@ -339,10 +339,10 @@ const listByJobExecutionNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.jobAgentName4,
-    Parameters.jobName1,
-    Parameters.jobExecutionId1,
-    Parameters.nextLink14
+    Parameters.nextLink,
+    Parameters.jobAgentName,
+    Parameters.jobName,
+    Parameters.jobExecutionId
   ],
   serializer
 };
@@ -370,11 +370,11 @@ const listByStepNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.jobAgentName4,
-    Parameters.jobName1,
-    Parameters.jobExecutionId1,
-    Parameters.stepName,
-    Parameters.nextLink16
+    Parameters.nextLink,
+    Parameters.jobAgentName,
+    Parameters.jobName,
+    Parameters.jobExecutionId,
+    Parameters.stepName
   ],
   serializer
 };

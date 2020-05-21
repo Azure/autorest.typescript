@@ -101,17 +101,6 @@ export const serviceName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const serviceName1: coreHttp.OperationURLParameter = {
-  parameterPath: "serviceName",
-  mapper: {
-    serializedName: "serviceName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const confirm: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "confirm"],
   mapper: {
@@ -138,16 +127,6 @@ export const groupName: coreHttp.OperationURLParameter = {
   mapper: {
     serializedName: "groupName",
     required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const filter1: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "filter"],
-  mapper: {
-    serializedName: "$filter",
     type: {
       name: "String"
     }
@@ -190,16 +169,6 @@ export const toDate: coreHttp.OperationQueryParameter = {
     serializedName: "toDate",
     type: {
       name: "DateTime"
-    }
-  }
-};
-
-export const filter2: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "filter"],
-  mapper: {
-    serializedName: "$filter",
-    type: {
-      name: "String"
     }
   }
 };
@@ -271,16 +240,6 @@ export const serviceMemberId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const filter3: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "filter"],
-  mapper: {
-    serializedName: "$filter",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const state: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "state"],
   mapper: {
@@ -323,78 +282,6 @@ export const nextLink: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const nextLink1: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink2: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink3: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink4: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink5: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink6: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const grouping: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "grouping"],
   mapper: {
@@ -410,66 +297,11 @@ export const tenant: coreHttp.OperationParameter = {
   mapper: Mappers.Tenant
 };
 
-export const nextLink7: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const dimension: coreHttp.OperationURLParameter = {
   parameterPath: "dimension",
   mapper: {
     serializedName: "dimension",
     required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const nextLink8: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const serviceMemberId1: coreHttp.OperationURLParameter = {
-  parameterPath: "serviceMemberId",
-  mapper: {
-    serializedName: "serviceMemberId",
-    required: true,
-    type: {
-      name: "Uuid"
-    }
-  }
-};
-
-export const confirm1: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "confirm"],
-  mapper: {
-    serializedName: "confirm",
-    type: {
-      name: "Boolean"
-    }
-  }
-};
-
-export const filter4: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "filter"],
-  mapper: {
-    serializedName: "$filter",
     type: {
       name: "String"
     }
@@ -527,17 +359,6 @@ export const serviceMember: coreHttp.OperationParameter = {
   mapper: Mappers.ServiceMember
 };
 
-export const serviceName2: coreHttp.OperationURLParameter = {
-  parameterPath: "serviceName",
-  mapper: {
-    serializedName: "serviceName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const errorBucket: coreHttp.OperationQueryParameter = {
   parameterPath: "errorBucket",
   mapper: {
@@ -580,90 +401,10 @@ export const dataSource: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const nextLink9: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink10: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink11: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const serviceMemberId2: coreHttp.OperationURLParameter = {
+export const serviceMemberId1: coreHttp.OperationURLParameter = {
   parameterPath: "serviceMemberId",
   mapper: {
     serializedName: "serviceMemberId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const serviceMemberId3: coreHttp.OperationURLParameter = {
-  parameterPath: "serviceMemberId",
-  mapper: {
-    serializedName: "serviceMemberId",
-    required: true,
-    type: {
-      name: "Uuid"
-    }
-  }
-};
-
-export const serviceMemberId4: coreHttp.OperationURLParameter = {
-  parameterPath: "serviceMemberId",
-  mapper: {
-    serializedName: "serviceMemberId",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const serviceMemberId5: coreHttp.OperationURLParameter = {
-  parameterPath: "serviceMemberId",
-  mapper: {
-    serializedName: "serviceMemberId",
-    required: true,
-    type: {
-      name: "Uuid"
-    }
-  }
-};
-
-export const metricName1: coreHttp.OperationURLParameter = {
-  parameterPath: "metricName",
-  mapper: {
-    serializedName: "metricName",
     required: true,
     type: {
       name: "String"
@@ -679,18 +420,6 @@ export const skiptoken: coreHttp.OperationQueryParameter = {
       name: "String"
     }
   }
-};
-
-export const nextLink12: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const iPAddressAggregateSetting: coreHttp.OperationParameter = {

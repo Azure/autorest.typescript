@@ -755,7 +755,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "DELETE",
   responses: { 204: {} },
   queryParameters: [Parameters.apiVersion, Parameters.confirm],
-  urlParameters: [Parameters.$host, Parameters.serviceName1],
+  urlParameters: [Parameters.$host, Parameters.serviceName],
   serializer
 };
 const updateOperationSpec: coreHttp.OperationSpec = {
@@ -768,7 +768,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.service,
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.serviceName1],
+  urlParameters: [Parameters.$host, Parameters.serviceName],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
   serializer
@@ -783,8 +783,8 @@ const listAlertsOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter3,
     Parameters.state,
     Parameters.fromParam,
     Parameters.to
@@ -927,8 +927,8 @@ const listMetricMetadataOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter1,
     Parameters.perfCounter
   ],
   urlParameters: [Parameters.$host, Parameters.serviceName],
@@ -1088,7 +1088,7 @@ const listPremiumNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.takeCount,
     Parameters.apiVersion
   ],
-  urlParameters: [Parameters.$host, Parameters.nextLink9],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };
 const listAlertsNextOperationSpec: coreHttp.OperationSpec = {
@@ -1100,8 +1100,8 @@ const listAlertsNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter3,
     Parameters.state,
     Parameters.fromParam,
     Parameters.to
@@ -1109,7 +1109,7 @@ const listAlertsNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.nextLink10
+    Parameters.nextLink
   ],
   serializer
 };
@@ -1125,7 +1125,7 @@ const listExportStatusNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.nextLink11
+    Parameters.nextLink
   ],
   serializer
 };
@@ -1143,7 +1143,7 @@ const listMetricsAverageNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.serviceName,
     Parameters.metricName,
     Parameters.groupName,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
   serializer
 };
@@ -1161,7 +1161,7 @@ const listMetricsSumNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.serviceName,
     Parameters.metricName,
     Parameters.groupName,
-    Parameters.nextLink2
+    Parameters.nextLink
   ],
   serializer
 };
@@ -1174,14 +1174,14 @@ const listMetricMetadataNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter1,
     Parameters.perfCounter
   ],
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.nextLink3
+    Parameters.nextLink
   ],
   serializer
 };

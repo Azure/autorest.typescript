@@ -89,11 +89,6 @@ export const parameters: coreHttp.OperationParameter = {
   mapper: Mappers.Deployment
 };
 
-export const parameters1: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.Deployment
-};
-
 export const filter: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "filter"],
   mapper: {
@@ -114,12 +109,7 @@ export const top: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const parameters2: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.ScopedDeployment
-};
-
-export const parameters3: coreHttp.OperationParameter = {
+export const parameters1: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ScopedDeployment
 };
@@ -150,97 +140,12 @@ export const subscriptionId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters4: coreHttp.OperationParameter = {
+export const parameters2: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.DeploymentWhatIf
 };
 
 export const resourceGroupName: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName1: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName2: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName3: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName4: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters5: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.DeploymentWhatIf
-};
-
-export const resourceGroupName5: coreHttp.OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     constraints: {
@@ -267,66 +172,6 @@ export const template: coreHttp.OperationParameter = {
   }
 };
 
-export const nextLink1: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink2: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink3: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink4: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink5: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const resourceProviderNamespace: coreHttp.OperationURLParameter = {
   parameterPath: "resourceProviderNamespace",
   mapper: {
@@ -334,27 +179,6 @@ export const resourceProviderNamespace: coreHttp.OperationURLParameter = {
     required: true,
     type: {
       name: "String"
-    }
-  }
-};
-
-export const resourceProviderNamespace1: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceProviderNamespace",
-  mapper: {
-    serializedName: "resourceProviderNamespace",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const top1: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "top"],
-  mapper: {
-    serializedName: "$top",
-    type: {
-      name: "Number"
     }
   }
 };
@@ -369,84 +193,7 @@ export const expand: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const top2: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "top"],
-  mapper: {
-    serializedName: "$top",
-    type: {
-      name: "Number"
-    }
-  }
-};
-
-export const expand1: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "expand"],
-  mapper: {
-    serializedName: "$expand",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceProviderNamespace2: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceProviderNamespace",
-  mapper: {
-    serializedName: "resourceProviderNamespace",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName6: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const filter1: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "filter"],
-  mapper: {
-    serializedName: "$filter",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const expand2: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "expand"],
-  mapper: {
-    serializedName: "$expand",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const top3: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "top"],
-  mapper: {
-    serializedName: "$top",
-    type: {
-      name: "Number"
-    }
-  }
-};
-
-export const parameters6: coreHttp.OperationParameter = {
+export const parameters3: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ResourcesMoveInfo
 };
@@ -460,59 +207,6 @@ export const sourceResourceGroupName: coreHttp.OperationURLParameter = {
       MinLength: 1
     },
     serializedName: "sourceResourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const sourceResourceGroupName1: coreHttp.OperationURLParameter = {
-  parameterPath: "sourceResourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "sourceResourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const top4: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "top"],
-  mapper: {
-    serializedName: "$top",
-    type: {
-      name: "Number"
-    }
-  }
-};
-
-export const resourceGroupName7: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceProviderNamespace3: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceProviderNamespace",
-  mapper: {
-    serializedName: "resourceProviderNamespace",
     required: true,
     type: {
       name: "String"
@@ -566,142 +260,9 @@ export const apiVersion1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const resourceGroupName8: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceName1: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceName",
-  mapper: {
-    serializedName: "resourceName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters7: coreHttp.OperationParameter = {
+export const parameters4: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.GenericResource
-};
-
-export const resourceGroupName9: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceType1: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceType",
-  mapper: {
-    serializedName: "resourceType",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const resourceName2: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceName",
-  mapper: {
-    serializedName: "resourceName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters8: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.GenericResource
-};
-
-export const resourceType2: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceType",
-  mapper: {
-    serializedName: "resourceType",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const resourceName3: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceName",
-  mapper: {
-    serializedName: "resourceName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName10: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceType3: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceType",
-  mapper: {
-    serializedName: "resourceType",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const resourceName4: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceName",
-  mapper: {
-    serializedName: "resourceName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const resourceId: coreHttp.OperationURLParameter = {
@@ -716,119 +277,19 @@ export const resourceId: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const parameters9: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.GenericResource
-};
-
-export const parameters10: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.GenericResource
-};
-
-export const resourceGroupName11: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters11: coreHttp.OperationParameter = {
+export const parameters5: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ResourceGroup
 };
 
-export const resourceGroupName12: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName13: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const resourceGroupName14: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters12: coreHttp.OperationParameter = {
+export const parameters6: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ResourceGroupPatchable
 };
 
-export const resourceGroupName15: coreHttp.OperationURLParameter = {
-  parameterPath: "resourceGroupName",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._()]+$"),
-      MaxLength: 90,
-      MinLength: 1
-    },
-    serializedName: "resourceGroupName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const parameters13: coreHttp.OperationParameter = {
+export const parameters7: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ExportTemplateRequest
-};
-
-export const filter2: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "filter"],
-  mapper: {
-    serializedName: "$filter",
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const tagName: coreHttp.OperationURLParameter = {
@@ -853,28 +314,6 @@ export const tagValue: coreHttp.OperationURLParameter = {
   }
 };
 
-export const tagValue1: coreHttp.OperationURLParameter = {
-  parameterPath: "tagValue",
-  mapper: {
-    serializedName: "tagValue",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const tagName1: coreHttp.OperationURLParameter = {
-  parameterPath: "tagName",
-  mapper: {
-    serializedName: "tagName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const operationId: coreHttp.OperationURLParameter = {
   parameterPath: "operationId",
   mapper: {
@@ -882,16 +321,6 @@ export const operationId: coreHttp.OperationURLParameter = {
     required: true,
     type: {
       name: "String"
-    }
-  }
-};
-
-export const top5: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "top"],
-  mapper: {
-    serializedName: "$top",
-    type: {
-      name: "Number"
     }
   }
 };

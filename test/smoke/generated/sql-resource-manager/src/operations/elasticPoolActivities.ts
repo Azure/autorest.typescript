@@ -73,7 +73,7 @@ const listByElasticPoolOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.elasticPoolName2
+    Parameters.elasticPoolName
   ],
   serializer
 };

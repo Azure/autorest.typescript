@@ -219,7 +219,7 @@ const registerOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceProviderNamespace1
+    Parameters.resourceProviderNamespace
   ],
   serializer
 };
@@ -234,7 +234,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.top1, Parameters.expand],
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   serializer
 };
@@ -249,7 +249,7 @@ const listAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand, Parameters.top2],
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
   urlParameters: [Parameters.$host],
   serializer
 };
@@ -264,11 +264,11 @@ const getOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand1],
+  queryParameters: [Parameters.apiVersion, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceProviderNamespace2
+    Parameters.resourceProviderNamespace
   ],
   serializer
 };
@@ -283,8 +283,8 @@ const getAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand1],
-  urlParameters: [Parameters.$host, Parameters.resourceProviderNamespace2],
+  queryParameters: [Parameters.apiVersion, Parameters.expand],
+  urlParameters: [Parameters.$host, Parameters.resourceProviderNamespace],
   serializer
 };
 const listNextOperationSpec: coreHttp.OperationSpec = {
@@ -298,7 +298,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.top1, Parameters.expand],
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
@@ -317,7 +317,7 @@ const listAtTenantScopeNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand, Parameters.top2],
-  urlParameters: [Parameters.$host, Parameters.nextLink2],
+  queryParameters: [Parameters.apiVersion, Parameters.top, Parameters.expand],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };

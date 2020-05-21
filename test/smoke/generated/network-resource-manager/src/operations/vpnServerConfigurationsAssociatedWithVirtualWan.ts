@@ -105,9 +105,9 @@ const listOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName1,
-    Parameters.virtualWANName1
+    Parameters.virtualWANName
   ],
   serializer
 };

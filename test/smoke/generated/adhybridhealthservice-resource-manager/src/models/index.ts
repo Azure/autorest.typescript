@@ -3222,13 +3222,13 @@ export type AddsServicesListReplicationDetailsResponse = ReplicationDetailsList 
 export interface AddsServicesListReplicationSummaryOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * The take count , which specifies the number of elements that can be returned from a sequence.
-   */
-  takeCount?: number;
-  /**
    * The server property filter to apply.
    */
   filter?: string;
+  /**
+   * The take count , which specifies the number of elements that can be returned from a sequence.
+   */
+  takeCount?: number;
 }
 
 /**
@@ -3919,13 +3919,13 @@ export type AddsServiceMembersListNextResponse = AddsServiceMembers & {
 export interface AdDomainServiceMembersListOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * The take count , which specifies the number of elements that can be returned from a sequence.
-   */
-  takeCount?: number;
-  /**
    * The server property filter to apply.
    */
   filter?: string;
+  /**
+   * The take count , which specifies the number of elements that can be returned from a sequence.
+   */
+  takeCount?: number;
   /**
    * The custom query.
    */
@@ -3958,13 +3958,13 @@ export type AdDomainServiceMembersListResponse = AddsServiceMembers & {
 export interface AdDomainServiceMembersListNextOptionalParams
   extends coreHttp.OperationOptions {
   /**
-   * The take count , which specifies the number of elements that can be returned from a sequence.
-   */
-  takeCount?: number;
-  /**
    * The server property filter to apply.
    */
   filter?: string;
+  /**
+   * The take count , which specifies the number of elements that can be returned from a sequence.
+   */
+  takeCount?: number;
   /**
    * The custom query.
    */

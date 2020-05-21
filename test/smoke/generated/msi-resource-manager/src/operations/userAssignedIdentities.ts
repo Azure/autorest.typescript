@@ -348,8 +348,8 @@ const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink1
+    Parameters.nextLink,
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -367,9 +367,9 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.nextLink,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.nextLink2
+    Parameters.resourceGroupName
   ],
   serializer
 };

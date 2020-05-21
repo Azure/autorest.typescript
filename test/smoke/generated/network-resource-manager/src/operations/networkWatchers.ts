@@ -772,7 +772,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorResponse
     }
   },
-  requestBody: Parameters.parameters35,
+  requestBody: Parameters.parameters21,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -831,7 +831,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorResponse
     }
   },
-  requestBody: Parameters.parameters36,
+  requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -891,7 +891,7 @@ const getTopologyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorResponse
     }
   },
-  requestBody: Parameters.parameters37,
+  requestBody: Parameters.parameters22,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -921,7 +921,7 @@ const verifyIPFlowOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VerificationIPFlowResult
     }
   },
-  requestBody: Parameters.parameters38,
+  requestBody: Parameters.parameters23,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -951,7 +951,7 @@ const getNextHopOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.NextHopResult
     }
   },
-  requestBody: Parameters.parameters39,
+  requestBody: Parameters.parameters24,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -981,7 +981,7 @@ const getVMSecurityRulesOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.SecurityGroupViewResult
     }
   },
-  requestBody: Parameters.parameters40,
+  requestBody: Parameters.parameters25,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1011,13 +1011,13 @@ const getTroubleshootingOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.TroubleshootingResult
     }
   },
-  requestBody: Parameters.parameters41,
+  requestBody: Parameters.parameters26,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName1
+    Parameters.networkWatcherName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1041,13 +1041,13 @@ const getTroubleshootingResultOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.TroubleshootingResult
     }
   },
-  requestBody: Parameters.parameters42,
+  requestBody: Parameters.parameters27,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName1
+    Parameters.networkWatcherName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1071,13 +1071,13 @@ const setFlowLogConfigurationOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.FlowLogInformation
     }
   },
-  requestBody: Parameters.parameters43,
+  requestBody: Parameters.parameters28,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName1,
-    Parameters.resourceGroupName4
+    Parameters.networkWatcherName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1101,13 +1101,13 @@ const getFlowLogStatusOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.FlowLogInformation
     }
   },
-  requestBody: Parameters.parameters44,
+  requestBody: Parameters.parameters29,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName1,
-    Parameters.resourceGroupName4
+    Parameters.networkWatcherName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1131,13 +1131,13 @@ const checkConnectivityOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ConnectivityInformation
     }
   },
-  requestBody: Parameters.parameters45,
+  requestBody: Parameters.parameters30,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName1,
-    Parameters.resourceGroupName4
+    Parameters.networkWatcherName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1161,13 +1161,13 @@ const getAzureReachabilityReportOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.AzureReachabilityReport
     }
   },
-  requestBody: Parameters.parameters46,
+  requestBody: Parameters.parameters31,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName1,
-    Parameters.resourceGroupName4
+    Parameters.networkWatcherName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1191,13 +1191,13 @@ const listAvailableProvidersOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.AvailableProvidersList
     }
   },
-  requestBody: Parameters.parameters47,
+  requestBody: Parameters.parameters32,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.networkWatcherName1,
-    Parameters.resourceGroupName4
+    Parameters.networkWatcherName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1221,7 +1221,7 @@ const getNetworkConfigurationDiagnosticOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.NetworkConfigurationDiagnosticResponse
     }
   },
-  requestBody: Parameters.parameters48,
+  requestBody: Parameters.parameters33,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

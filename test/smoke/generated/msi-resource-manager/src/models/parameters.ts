@@ -111,27 +111,3 @@ export const parameters1: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.IdentityUpdate
 };
-
-export const nextLink1: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink2: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};

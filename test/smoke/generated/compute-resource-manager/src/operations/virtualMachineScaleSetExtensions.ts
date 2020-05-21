@@ -287,7 +287,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName3,
+    Parameters.vmScaleSetName,
     Parameters.vmssExtensionName
   ],
   headerParameters: [Parameters.contentType],
@@ -318,8 +318,8 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmssExtensionName,
-    Parameters.vmScaleSetName4
+    Parameters.vmScaleSetName,
+    Parameters.vmssExtensionName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -335,8 +335,8 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmssExtensionName,
-    Parameters.vmScaleSetName5
+    Parameters.vmScaleSetName,
+    Parameters.vmssExtensionName
   ],
   serializer
 };
@@ -349,13 +349,13 @@ const getOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VirtualMachineScaleSetExtension
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand2],
+  queryParameters: [Parameters.apiVersion, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmssExtensionName,
-    Parameters.vmScaleSetName6
+    Parameters.vmScaleSetName,
+    Parameters.vmssExtensionName
   ],
   serializer
 };
@@ -373,7 +373,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.vmScaleSetName6
+    Parameters.vmScaleSetName
   ],
   serializer
 };
@@ -390,8 +390,8 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.nextLink1,
-    Parameters.vmScaleSetName6
+    Parameters.nextLink,
+    Parameters.vmScaleSetName
   ],
   serializer
 };

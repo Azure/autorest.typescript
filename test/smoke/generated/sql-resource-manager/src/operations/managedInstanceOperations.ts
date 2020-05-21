@@ -150,7 +150,7 @@ const cancelOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.managedInstanceName,
-    Parameters.operationId1
+    Parameters.operationId
   ],
   serializer
 };
@@ -189,7 +189,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.managedInstanceName,
-    Parameters.operationId1
+    Parameters.operationId
   ],
   serializer
 };
@@ -207,8 +207,8 @@ const listByManagedInstanceNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.nextLink28
+    Parameters.nextLink,
+    Parameters.managedInstanceName
   ],
   serializer
 };

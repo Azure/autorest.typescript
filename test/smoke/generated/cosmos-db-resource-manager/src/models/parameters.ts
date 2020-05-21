@@ -257,11 +257,6 @@ export const createUpdateSqlContainerParameters: coreHttp.OperationParameter = {
   mapper: Mappers.SqlContainerCreateUpdateParameters
 };
 
-export const updateThroughputParameters1: coreHttp.OperationParameter = {
-  parameterPath: "updateThroughputParameters",
-  mapper: Mappers.ThroughputSettingsUpdateParameters
-};
-
 export const storedProcedureName: coreHttp.OperationURLParameter = {
   parameterPath: "storedProcedureName",
   mapper: {
@@ -315,11 +310,6 @@ export const createUpdateMongoDBDatabaseParameters: coreHttp.OperationParameter 
   mapper: Mappers.MongoDBDatabaseCreateUpdateParameters
 };
 
-export const updateThroughputParameters2: coreHttp.OperationParameter = {
-  parameterPath: "updateThroughputParameters",
-  mapper: Mappers.ThroughputSettingsUpdateParameters
-};
-
 export const collectionName: coreHttp.OperationURLParameter = {
   parameterPath: "collectionName",
   mapper: {
@@ -334,11 +324,6 @@ export const collectionName: coreHttp.OperationURLParameter = {
 export const createUpdateMongoDBCollectionParameters: coreHttp.OperationParameter = {
   parameterPath: "createUpdateMongoDBCollectionParameters",
   mapper: Mappers.MongoDBCollectionCreateUpdateParameters
-};
-
-export const updateThroughputParameters3: coreHttp.OperationParameter = {
-  parameterPath: "updateThroughputParameters",
-  mapper: Mappers.ThroughputSettingsUpdateParameters
 };
 
 export const tableName: coreHttp.OperationURLParameter = {
@@ -357,11 +342,6 @@ export const createUpdateTableParameters: coreHttp.OperationParameter = {
   mapper: Mappers.TableCreateUpdateParameters
 };
 
-export const updateThroughputParameters4: coreHttp.OperationParameter = {
-  parameterPath: "updateThroughputParameters",
-  mapper: Mappers.ThroughputSettingsUpdateParameters
-};
-
 export const keyspaceName: coreHttp.OperationURLParameter = {
   parameterPath: "keyspaceName",
   mapper: {
@@ -378,29 +358,14 @@ export const createUpdateCassandraKeyspaceParameters: coreHttp.OperationParamete
   mapper: Mappers.CassandraKeyspaceCreateUpdateParameters
 };
 
-export const updateThroughputParameters5: coreHttp.OperationParameter = {
-  parameterPath: "updateThroughputParameters",
-  mapper: Mappers.ThroughputSettingsUpdateParameters
-};
-
 export const createUpdateCassandraTableParameters: coreHttp.OperationParameter = {
   parameterPath: "createUpdateCassandraTableParameters",
   mapper: Mappers.CassandraTableCreateUpdateParameters
 };
 
-export const updateThroughputParameters6: coreHttp.OperationParameter = {
-  parameterPath: "updateThroughputParameters",
-  mapper: Mappers.ThroughputSettingsUpdateParameters
-};
-
 export const createUpdateGremlinDatabaseParameters: coreHttp.OperationParameter = {
   parameterPath: "createUpdateGremlinDatabaseParameters",
   mapper: Mappers.GremlinDatabaseCreateUpdateParameters
-};
-
-export const updateThroughputParameters7: coreHttp.OperationParameter = {
-  parameterPath: "updateThroughputParameters",
-  mapper: Mappers.ThroughputSettingsUpdateParameters
 };
 
 export const graphName: coreHttp.OperationURLParameter = {
@@ -417,11 +382,6 @@ export const graphName: coreHttp.OperationURLParameter = {
 export const createUpdateGremlinGraphParameters: coreHttp.OperationParameter = {
   parameterPath: "createUpdateGremlinGraphParameters",
   mapper: Mappers.GremlinGraphCreateUpdateParameters
-};
-
-export const updateThroughputParameters8: coreHttp.OperationParameter = {
-  parameterPath: "updateThroughputParameters",
-  mapper: Mappers.ThroughputSettingsUpdateParameters
 };
 
 export const apiVersion1: coreHttp.OperationQueryParameter = {

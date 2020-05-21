@@ -105,9 +105,9 @@ const listByVpnConnectionOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.connectionName2,
-    Parameters.resourceGroupName10,
+    Parameters.connectionName,
     Parameters.gatewayName
   ],
   serializer
@@ -126,11 +126,11 @@ const listByVpnConnectionNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.connectionName2,
-    Parameters.resourceGroupName10,
-    Parameters.gatewayName,
-    Parameters.nextLink22
+    Parameters.nextLink,
+    Parameters.connectionName,
+    Parameters.gatewayName
   ],
   serializer
 };

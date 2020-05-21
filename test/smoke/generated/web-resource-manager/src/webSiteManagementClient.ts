@@ -672,7 +672,7 @@ const listSiteIdentifiersAssignedToHostNameOperationSpec: coreHttp.OperationSpec
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.nameIdentifier1,
+  requestBody: Parameters.nameIdentifier,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.contentType],
@@ -806,7 +806,7 @@ const listSourceControlsNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.nextLink23],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };
 const listBillingMetersNextOperationSpec: coreHttp.OperationSpec = {
@@ -828,7 +828,7 @@ const listBillingMetersNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink24
+    Parameters.nextLink
   ],
   serializer
 };
@@ -853,7 +853,7 @@ const listGeoRegionsNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink25
+    Parameters.nextLink
   ],
   serializer
 };
@@ -868,12 +868,12 @@ const listSiteIdentifiersAssignedToHostNameNextOperationSpec: coreHttp.Operation
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.nameIdentifier1,
+  requestBody: Parameters.nameIdentifier,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink26
+    Parameters.nextLink1
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -894,7 +894,7 @@ const listPremierAddOnOffersNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink27
+    Parameters.nextLink
   ],
   serializer
 };

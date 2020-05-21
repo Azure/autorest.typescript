@@ -378,7 +378,7 @@ const addMemberOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
-    Parameters.groupObjectId1
+    Parameters.groupObjectId
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -413,7 +413,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.GraphError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter1],
+  queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   serializer
 };
@@ -429,7 +429,7 @@ const getGroupMembersOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId1],
+  urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   serializer
 };
 const getOperationSpec: coreHttp.OperationSpec = {
@@ -444,7 +444,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId2],
+  urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   serializer
 };
 const deleteOperationSpec: coreHttp.OperationSpec = {
@@ -457,7 +457,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId3],
+  urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   serializer
 };
 const getMemberGroupsOperationSpec: coreHttp.OperationSpec = {
@@ -473,7 +473,7 @@ const getMemberGroupsOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.parameters8,
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId4],
+  urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
   serializer
@@ -490,7 +490,7 @@ const listOwnersOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId5],
+  urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   serializer
 };
 const addOwnerOperationSpec: coreHttp.OperationSpec = {
@@ -504,7 +504,7 @@ const addOwnerOperationSpec: coreHttp.OperationSpec = {
   },
   requestBody: Parameters.parameters2,
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId6],
+  urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
   serializer
@@ -523,7 +523,7 @@ const removeOwnerOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.tenantID,
     Parameters.ownerObjectId,
-    Parameters.objectId7
+    Parameters.objectId
   ],
   serializer
 };
@@ -572,8 +572,8 @@ const listOwnersNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
-    Parameters.nextLink1,
-    Parameters.objectId5
+    Parameters.nextLink,
+    Parameters.objectId
   ],
   serializer
 };

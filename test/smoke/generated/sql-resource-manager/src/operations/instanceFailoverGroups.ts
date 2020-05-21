@@ -343,7 +343,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.InstanceFailoverGroup
     }
   },
-  requestBody: Parameters.parameters50,
+  requestBody: Parameters.parameters49,
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
@@ -460,8 +460,8 @@ const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.locationName,
-    Parameters.nextLink10
+    Parameters.nextLink,
+    Parameters.locationName
   ],
   serializer
 };

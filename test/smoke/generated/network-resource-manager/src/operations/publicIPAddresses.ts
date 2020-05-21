@@ -471,7 +471,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand1],
+  queryParameters: [Parameters.apiVersion, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -498,13 +498,13 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.PublicIPAddress
     }
   },
-  requestBody: Parameters.parameters58,
+  requestBody: Parameters.parameters42,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.publicIpAddressName1
+    Parameters.publicIpAddressName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -522,13 +522,13 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters59,
+  requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.publicIpAddressName1
+    Parameters.publicIpAddressName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -608,10 +608,10 @@ const listVirtualMachineScaleSetVMPublicIPAddressesOperationSpec: coreHttp.Opera
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
+    Parameters.networkInterfaceName,
     Parameters.virtualMachineScaleSetName,
     Parameters.virtualmachineIndex,
-    Parameters.networkInterfaceName1,
-    Parameters.ipConfigurationName2
+    Parameters.ipConfigurationName
   ],
   serializer
 };
@@ -627,7 +627,7 @@ const getVirtualMachineScaleSetPublicIPAddressOperationSpec: coreHttp.OperationS
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.expand1, Parameters.apiVersion1],
+  queryParameters: [Parameters.expand, Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -635,8 +635,8 @@ const getVirtualMachineScaleSetPublicIPAddressOperationSpec: coreHttp.OperationS
     Parameters.networkInterfaceName,
     Parameters.virtualMachineScaleSetName,
     Parameters.virtualmachineIndex,
-    Parameters.ipConfigurationName3,
-    Parameters.publicIpAddressName2
+    Parameters.ipConfigurationName,
+    Parameters.publicIpAddressName
   ],
   serializer
 };
@@ -655,7 +655,7 @@ const listAllNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
   serializer
 };
@@ -695,8 +695,8 @@ const listVirtualMachineScaleSetPublicIPAddressesNextOperationSpec: coreHttp.Ope
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.virtualMachineScaleSetName,
-    Parameters.nextLink15
+    Parameters.nextLink,
+    Parameters.virtualMachineScaleSetName
   ],
   serializer
 };
@@ -716,11 +716,11 @@ const listVirtualMachineScaleSetVMPublicIPAddressesNextOperationSpec: coreHttp.O
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
+    Parameters.nextLink,
+    Parameters.networkInterfaceName,
     Parameters.virtualMachineScaleSetName,
     Parameters.virtualmachineIndex,
-    Parameters.networkInterfaceName1,
-    Parameters.ipConfigurationName2,
-    Parameters.nextLink16
+    Parameters.ipConfigurationName
   ],
   serializer
 };

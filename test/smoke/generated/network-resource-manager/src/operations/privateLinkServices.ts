@@ -560,7 +560,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand1],
+  queryParameters: [Parameters.apiVersion, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -587,7 +587,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.PrivateLinkService
     }
   },
-  requestBody: Parameters.parameters55,
+  requestBody: Parameters.parameters39,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -647,7 +647,7 @@ const getPrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand1],
+  queryParameters: [Parameters.apiVersion, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -669,7 +669,7 @@ const updatePrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.parameters56,
+  requestBody: Parameters.parameters40,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -730,12 +730,12 @@ const checkPrivateLinkServiceVisibilityOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters57,
+  requestBody: Parameters.parameters41,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.location1
+    Parameters.location
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -753,13 +753,13 @@ const checkPrivateLinkServiceVisibilityByResourceGroupOperationSpec: coreHttp.Op
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters57,
+  requestBody: Parameters.parameters41,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.location1
+    Parameters.location
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -781,7 +781,7 @@ const listAutoApprovedPrivateLinkServicesOperationSpec: coreHttp.OperationSpec =
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.location1
+    Parameters.location
   ],
   serializer
 };
@@ -802,7 +802,7 @@ const listAutoApprovedPrivateLinkServicesByResourceGroupOperationSpec: coreHttp.
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.location1
+    Parameters.location
   ],
   serializer
 };
@@ -841,7 +841,7 @@ const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink11
+    Parameters.nextLink
   ],
   serializer
 };
@@ -861,8 +861,8 @@ const listPrivateEndpointConnectionsNextOperationSpec: coreHttp.OperationSpec = 
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.serviceName,
-    Parameters.nextLink12
+    Parameters.nextLink,
+    Parameters.serviceName
   ],
   serializer
 };
@@ -881,8 +881,8 @@ const listAutoApprovedPrivateLinkServicesNextOperationSpec: coreHttp.OperationSp
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.location1,
-    Parameters.nextLink13
+    Parameters.nextLink,
+    Parameters.location
   ],
   serializer
 };
@@ -902,8 +902,8 @@ const listAutoApprovedPrivateLinkServicesByResourceGroupNextOperationSpec: coreH
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.location1,
-    Parameters.nextLink14
+    Parameters.nextLink,
+    Parameters.location
   ],
   serializer
 };

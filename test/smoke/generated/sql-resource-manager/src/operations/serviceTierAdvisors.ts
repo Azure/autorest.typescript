@@ -107,7 +107,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName14,
+    Parameters.databaseName,
     Parameters.serviceTierAdvisorName
   ],
   serializer
@@ -127,7 +127,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName14
+    Parameters.databaseName
   ],
   serializer
 };

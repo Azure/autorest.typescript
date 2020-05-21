@@ -343,7 +343,7 @@ const listByInstancePoolOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.instancePoolName4
+    Parameters.instancePoolName
   ],
   serializer
 };
@@ -402,7 +402,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ManagedInstance
     }
   },
-  requestBody: Parameters.parameters59,
+  requestBody: Parameters.parameters58,
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
@@ -446,7 +446,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ManagedInstance
     }
   },
-  requestBody: Parameters.parameters60,
+  requestBody: Parameters.parameters59,
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
@@ -486,8 +486,8 @@ const listByInstancePoolNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.nextLink24,
-    Parameters.instancePoolName4
+    Parameters.nextLink,
+    Parameters.instancePoolName
   ],
   serializer
 };
@@ -505,7 +505,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.nextLink11
+    Parameters.nextLink
   ],
   serializer
 };
@@ -522,7 +522,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink2
+    Parameters.nextLink
   ],
   serializer
 };

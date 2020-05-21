@@ -462,9 +462,9 @@ const getOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.gatewayName,
-    Parameters.resourceGroupName11
+    Parameters.gatewayName
   ],
   serializer
 };
@@ -490,9 +490,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.gatewayName,
-    Parameters.resourceGroupName11
+    Parameters.gatewayName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -514,9 +514,9 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.gatewayName,
-    Parameters.resourceGroupName11
+    Parameters.gatewayName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -530,9 +530,9 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.gatewayName,
-    Parameters.resourceGroupName11
+    Parameters.gatewayName
   ],
   serializer
 };
@@ -551,8 +551,8 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName11
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -590,13 +590,13 @@ const generateVpnProfileOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VpnProfileResponse
     }
   },
-  requestBody: Parameters.parameters88,
+  requestBody: Parameters.parameters60,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.gatewayName1
+    Parameters.gatewayName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -625,7 +625,7 @@ const getP2SVpnConnectionHealthOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.gatewayName1
+    Parameters.gatewayName
   ],
   serializer
 };
@@ -653,7 +653,7 @@ const getP2SVpnConnectionHealthDetailedOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.gatewayName1
+    Parameters.gatewayName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -664,7 +664,7 @@ const disconnectP2SVpnConnectionsOperationSpec: coreHttp.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/p2svpnGateways/{p2sVpnGatewayName}/disconnectP2sVpnConnections",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  requestBody: Parameters.request3,
+  requestBody: Parameters.request,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -690,9 +690,9 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.nextLink3,
-    Parameters.resourceGroupName11
+    Parameters.nextLink
   ],
   serializer
 };

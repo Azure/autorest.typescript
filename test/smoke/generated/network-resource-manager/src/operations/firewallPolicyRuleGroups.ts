@@ -271,7 +271,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.FirewallPolicyRuleGroup
     }
   },
-  requestBody: Parameters.parameters17,
+  requestBody: Parameters.parameters11,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

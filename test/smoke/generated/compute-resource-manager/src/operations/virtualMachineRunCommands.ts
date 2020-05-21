@@ -105,7 +105,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.location4
+    Parameters.location1
   ],
   serializer
 };
@@ -122,7 +122,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.location4,
+    Parameters.location1,
     Parameters.commandId
   ],
   serializer
@@ -139,8 +139,8 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink1,
-    Parameters.location4
+    Parameters.nextLink,
+    Parameters.location1
   ],
   serializer
 };

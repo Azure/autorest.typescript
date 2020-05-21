@@ -628,7 +628,7 @@ const updateMongoDBDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     }
   },
-  requestBody: Parameters.updateThroughputParameters2,
+  requestBody: Parameters.updateThroughputParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -766,7 +766,7 @@ const updateMongoDBCollectionThroughputOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     }
   },
-  requestBody: Parameters.updateThroughputParameters3,
+  requestBody: Parameters.updateThroughputParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

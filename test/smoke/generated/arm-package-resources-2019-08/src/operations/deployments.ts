@@ -1442,7 +1442,7 @@ const validateAtScopeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters1,
+  requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1527,7 +1527,7 @@ const createOrUpdateAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DeploymentExtended
     }
   },
-  requestBody: Parameters.parameters2,
+  requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
   headerParameters: [Parameters.contentType],
@@ -1576,7 +1576,7 @@ const validateAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters3,
+  requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
   headerParameters: [Parameters.contentType],
@@ -1664,7 +1664,7 @@ const createOrUpdateAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec 
       bodyMapper: Mappers.DeploymentExtended
     }
   },
-  requestBody: Parameters.parameters2,
+  requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1728,7 +1728,7 @@ const validateAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters3,
+  requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1889,7 +1889,7 @@ const validateAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters1,
+  requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1918,7 +1918,7 @@ const whatIfAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.WhatIfOperationResult
     }
   },
-  requestBody: Parameters.parameters4,
+  requestBody: Parameters.parameters2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1995,7 +1995,7 @@ const checkExistenceOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName1
+    Parameters.resourceGroupName
   ],
   serializer
 };
@@ -2023,7 +2023,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName2
+    Parameters.resourceGroupName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -2046,7 +2046,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName3
+    Parameters.resourceGroupName
   ],
   serializer
 };
@@ -2065,7 +2065,7 @@ const cancelOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName3
+    Parameters.resourceGroupName
   ],
   serializer
 };
@@ -2084,13 +2084,13 @@ const validateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters1,
+  requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName4
+    Parameters.resourceGroupName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -2114,13 +2114,13 @@ const whatIfOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.WhatIfOperationResult
     }
   },
-  requestBody: Parameters.parameters5,
+  requestBody: Parameters.parameters2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName4
+    Parameters.resourceGroupName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -2143,7 +2143,7 @@ const exportTemplateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName3
+    Parameters.resourceGroupName
   ],
   serializer
 };
@@ -2163,7 +2163,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName5
+    Parameters.resourceGroupName
   ],
   serializer
 };
@@ -2197,7 +2197,7 @@ const listAtScopeNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
-  urlParameters: [Parameters.$host, Parameters.scope, Parameters.nextLink1],
+  urlParameters: [Parameters.$host, Parameters.nextLink, Parameters.scope],
   serializer
 };
 const listAtTenantScopeNextOperationSpec: coreHttp.OperationSpec = {
@@ -2212,7 +2212,7 @@ const listAtTenantScopeNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
-  urlParameters: [Parameters.$host, Parameters.nextLink2],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };
 const listAtManagementGroupScopeNextOperationSpec: coreHttp.OperationSpec = {
@@ -2227,7 +2227,7 @@ const listAtManagementGroupScopeNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
-  urlParameters: [Parameters.$host, Parameters.groupId, Parameters.nextLink3],
+  urlParameters: [Parameters.$host, Parameters.nextLink, Parameters.groupId],
   serializer
 };
 const listAtSubscriptionScopeNextOperationSpec: coreHttp.OperationSpec = {
@@ -2244,8 +2244,8 @@ const listAtSubscriptionScopeNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.nextLink4
+    Parameters.nextLink,
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -2263,9 +2263,9 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
   urlParameters: [
     Parameters.$host,
+    Parameters.nextLink,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName5,
-    Parameters.nextLink5
+    Parameters.resourceGroupName
   ],
   serializer
 };

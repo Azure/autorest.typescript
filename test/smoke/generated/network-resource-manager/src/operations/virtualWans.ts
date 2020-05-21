@@ -272,9 +272,9 @@ const getOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName6,
-    Parameters.virtualWANName2
+    Parameters.virtualWANName1
   ],
   serializer
 };
@@ -300,9 +300,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName6,
-    Parameters.virtualWANName3
+    Parameters.virtualWANName1
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -324,9 +324,9 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName6,
-    Parameters.virtualWANName4
+    Parameters.virtualWANName1
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -340,9 +340,9 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName6,
-    Parameters.virtualWANName5
+    Parameters.virtualWANName1
   ],
   serializer
 };
@@ -361,8 +361,8 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName6
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId
   ],
   serializer
 };
@@ -396,9 +396,9 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.nextLink3,
-    Parameters.resourceGroupName6
+    Parameters.nextLink
   ],
   serializer
 };

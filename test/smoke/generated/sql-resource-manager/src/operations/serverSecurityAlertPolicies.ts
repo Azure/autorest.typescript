@@ -196,14 +196,14 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ServerSecurityAlertPolicy
     }
   },
-  requestBody: Parameters.parameters44,
+  requestBody: Parameters.parameters43,
   queryParameters: [Parameters.apiVersion4],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.securityAlertPolicyName2
+    Parameters.securityAlertPolicyName1
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",

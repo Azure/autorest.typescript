@@ -73,7 +73,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.managedInstanceName,
     Parameters.restoreDetailsName
   ],

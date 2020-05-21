@@ -236,7 +236,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.crossConnectionName1
+    Parameters.crossConnectionName
   ],
   serializer
 };
@@ -251,7 +251,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.peeringName,
-    Parameters.crossConnectionName1
+    Parameters.crossConnectionName
   ],
   serializer
 };
@@ -273,7 +273,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.peeringName,
-    Parameters.crossConnectionName1
+    Parameters.crossConnectionName
   ],
   serializer
 };
@@ -302,7 +302,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.peeringName,
-    Parameters.crossConnectionName1
+    Parameters.crossConnectionName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -325,7 +325,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.nextLink,
-    Parameters.crossConnectionName1
+    Parameters.crossConnectionName
   ],
   serializer
 };

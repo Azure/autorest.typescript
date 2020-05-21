@@ -206,7 +206,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.policyName,
     Parameters.managedInstanceName
   ],
@@ -230,13 +230,13 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ManagedInstanceLongTermRetentionPolicy
     }
   },
-  requestBody: Parameters.parameters65,
+  requestBody: Parameters.parameters64,
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.policyName,
     Parameters.managedInstanceName
   ],
@@ -259,7 +259,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.managedInstanceName
   ],
   serializer
@@ -278,8 +278,8 @@ const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.databaseName2,
-    Parameters.nextLink7,
+    Parameters.databaseName,
+    Parameters.nextLink,
     Parameters.managedInstanceName
   ],
   serializer

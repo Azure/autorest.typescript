@@ -201,7 +201,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2
+    Parameters.databaseName
   ],
   serializer
 };
@@ -223,14 +223,14 @@ const createOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.RestorePoint
     }
   },
-  requestBody: Parameters.parameters45,
+  requestBody: Parameters.parameters44,
   queryParameters: [Parameters.apiVersion4],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2
+    Parameters.databaseName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -252,7 +252,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.restorePointName
   ],
   serializer
@@ -268,7 +268,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.restorePointName
   ],
   serializer

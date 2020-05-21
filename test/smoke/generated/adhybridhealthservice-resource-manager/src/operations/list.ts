@@ -131,7 +131,7 @@ const iPAddressAggregatesByServiceNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.nextLink12
+    Parameters.nextLink
   ],
   serializer
 };

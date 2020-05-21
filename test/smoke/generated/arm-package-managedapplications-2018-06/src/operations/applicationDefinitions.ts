@@ -332,7 +332,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.applicationDefinitionName1
+    Parameters.applicationDefinitionName
   ],
   serializer
 };
@@ -427,7 +427,7 @@ const createOrUpdateByIdOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ApplicationDefinition
     }
   },
-  requestBody: Parameters.parameters3,
+  requestBody: Parameters.parameters2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.applicationDefinitionId],
   headerParameters: [Parameters.contentType],

@@ -88,9 +88,9 @@ const listOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.takeCount,
     Parameters.apiVersion,
-    Parameters.filter2,
     Parameters.isGroupbySite,
     Parameters.nextPartitionKey,
     Parameters.nextRowKey,
@@ -108,9 +108,9 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.takeCount,
     Parameters.apiVersion,
-    Parameters.filter2,
     Parameters.isGroupbySite,
     Parameters.nextPartitionKey,
     Parameters.nextRowKey,

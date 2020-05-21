@@ -83,8 +83,8 @@ const listAddsAlertsOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter3,
     Parameters.state,
     Parameters.fromParam,
     Parameters.to
@@ -101,8 +101,8 @@ const listAddsAlertsNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.filter,
     Parameters.apiVersion,
-    Parameters.filter3,
     Parameters.state,
     Parameters.fromParam,
     Parameters.to
@@ -110,7 +110,7 @@ const listAddsAlertsNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.nextLink6
+    Parameters.nextLink
   ],
   serializer
 };

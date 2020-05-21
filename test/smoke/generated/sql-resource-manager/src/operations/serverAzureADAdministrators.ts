@@ -262,7 +262,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.administratorName2
+    Parameters.administratorName
   ],
   serializer
 };
@@ -284,14 +284,14 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ServerAzureADAdministrator
     }
   },
-  requestBody: Parameters.parameters71,
+  requestBody: Parameters.parameters70,
   queryParameters: [Parameters.apiVersion5],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.administratorName3
+    Parameters.administratorName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -308,7 +308,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.administratorName2
+    Parameters.administratorName
   ],
   serializer
 };

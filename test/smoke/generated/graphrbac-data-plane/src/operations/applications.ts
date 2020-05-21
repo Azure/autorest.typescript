@@ -431,7 +431,7 @@ const listOwnersOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
-    Parameters.applicationObjectId1
+    Parameters.applicationObjectId
   ],
   serializer
 };
@@ -449,7 +449,7 @@ const addOwnerOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
-    Parameters.applicationObjectId2
+    Parameters.applicationObjectId
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -469,7 +469,7 @@ const removeOwnerOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
-    Parameters.applicationObjectId3,
+    Parameters.applicationObjectId,
     Parameters.ownerObjectId
   ],
   serializer
@@ -601,8 +601,8 @@ const listOwnersNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
-    Parameters.applicationObjectId1,
-    Parameters.nextLink1
+    Parameters.nextLink,
+    Parameters.applicationObjectId
   ],
   serializer
 };

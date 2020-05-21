@@ -133,7 +133,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.location1
+    Parameters.location
   ],
   serializer
 };
@@ -154,7 +154,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.location1
+    Parameters.location
   ],
   serializer
 };
@@ -174,7 +174,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.nextLink,
-    Parameters.location1
+    Parameters.location
   ],
   serializer
 };
@@ -194,8 +194,8 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.location1,
-    Parameters.nextLink3
+    Parameters.nextLink,
+    Parameters.location
   ],
   serializer
 };

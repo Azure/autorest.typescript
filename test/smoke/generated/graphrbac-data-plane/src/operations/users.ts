@@ -177,7 +177,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.GraphError
     }
   },
-  requestBody: Parameters.parameters13,
+  requestBody: Parameters.parameters11,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.contentType],
@@ -197,7 +197,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [
     Parameters.apiVersion,
-    Parameters.filter1,
+    Parameters.filter,
     Parameters.expand
   ],
   urlParameters: [Parameters.$host, Parameters.tenantID],
@@ -231,12 +231,12 @@ const updateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.GraphError
     }
   },
-  requestBody: Parameters.parameters14,
+  requestBody: Parameters.parameters12,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
-    Parameters.upnOrObjectId1
+    Parameters.upnOrObjectId
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -255,7 +255,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
-    Parameters.upnOrObjectId2
+    Parameters.upnOrObjectId
   ],
   serializer
 };
@@ -270,9 +270,9 @@ const getMemberGroupsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.GraphError
     }
   },
-  requestBody: Parameters.parameters15,
+  requestBody: Parameters.parameters13,
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId14],
+  urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
   serializer

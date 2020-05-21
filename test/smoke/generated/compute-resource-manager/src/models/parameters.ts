@@ -110,18 +110,6 @@ export const nextLink: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const nextLink1: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const parameters2: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.ProximityPlacementGroup
@@ -151,18 +139,6 @@ export const includeColocationStatus: coreHttp.OperationQueryParameter = {
       name: "String"
     }
   }
-};
-
-export const nextLink2: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const parameters4: coreHttp.OperationParameter = {
@@ -207,17 +183,6 @@ export const parameters7: coreHttp.OperationParameter = {
   mapper: Mappers.DedicatedHostUpdate
 };
 
-export const hostName1: coreHttp.OperationURLParameter = {
-  parameterPath: "hostName",
-  mapper: {
-    serializedName: "hostName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const expand1: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "expand"],
   mapper: {
@@ -228,18 +193,6 @@ export const expand1: coreHttp.OperationQueryParameter = {
       name: "String"
     }
   }
-};
-
-export const nextLink3: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const parameters8: coreHttp.OperationParameter = {
@@ -369,60 +322,6 @@ export const extensionParameters1: coreHttp.OperationParameter = {
   mapper: Mappers.VirtualMachineExtensionUpdate
 };
 
-export const vmName1: coreHttp.OperationURLParameter = {
-  parameterPath: "vmName",
-  mapper: {
-    serializedName: "vmName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const vmName2: coreHttp.OperationURLParameter = {
-  parameterPath: "vmName",
-  mapper: {
-    serializedName: "vmName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const vmName3: coreHttp.OperationURLParameter = {
-  parameterPath: "vmName",
-  mapper: {
-    serializedName: "vmName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const expand2: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "expand"],
-  mapper: {
-    serializedName: "$expand",
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const publisherName1: coreHttp.OperationURLParameter = {
-  parameterPath: "publisherName",
-  mapper: {
-    serializedName: "publisherName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const offer: coreHttp.OperationURLParameter = {
   parameterPath: "offer",
   mapper: {
@@ -445,32 +344,7 @@ export const skus: coreHttp.OperationURLParameter = {
   }
 };
 
-export const version1: coreHttp.OperationURLParameter = {
-  parameterPath: "version",
-  mapper: {
-    serializedName: "version",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const location1: coreHttp.OperationURLParameter = {
-  parameterPath: "location",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._]+$")
-    },
-    serializedName: "location",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const location2: coreHttp.OperationURLParameter = {
   parameterPath: "location",
   mapper: {
     constraints: {
@@ -487,17 +361,6 @@ export const location2: coreHttp.OperationURLParameter = {
 export const parameters10: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.VirtualMachineCaptureParameters
-};
-
-export const vmName4: coreHttp.OperationURLParameter = {
-  parameterPath: "vmName",
-  mapper: {
-    serializedName: "vmName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const parameters11: coreHttp.OperationParameter = {
@@ -538,44 +401,6 @@ export const parameters13: coreHttp.OperationParameter = {
 export const parameters14: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.RunCommandInput
-};
-
-export const nextLink4: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink5: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const location3: coreHttp.OperationURLParameter = {
-  parameterPath: "location",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._]+$")
-    },
-    serializedName: "location",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const parameters15: coreHttp.OperationParameter = {
@@ -620,17 +445,6 @@ export const parameters18: coreHttp.OperationParameter = {
   mapper: Mappers.VirtualMachineScaleSetUpdate
 };
 
-export const vmScaleSetName1: coreHttp.OperationURLParameter = {
-  parameterPath: "vmScaleSetName",
-  mapper: {
-    serializedName: "vmScaleSetName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const vmInstanceIDs: coreHttp.OperationParameter = {
   parameterPath: ["options", "vmInstanceIDs"],
   mapper: Mappers.VirtualMachineScaleSetVMInstanceIDs
@@ -662,60 +476,14 @@ export const parameters19: coreHttp.OperationParameter = {
   mapper: Mappers.VMScaleSetConvertToSinglePlacementGroupInput
 };
 
-export const vmScaleSetName2: coreHttp.OperationURLParameter = {
-  parameterPath: "vmScaleSetName",
-  mapper: {
-    serializedName: "vmScaleSetName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const parameters20: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.OrchestrationServiceStateInput
 };
 
-export const nextLink6: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
-export const nextLink7: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const extensionParameters2: coreHttp.OperationParameter = {
   parameterPath: "extensionParameters",
   mapper: Mappers.VirtualMachineScaleSetExtension
-};
-
-export const vmScaleSetName3: coreHttp.OperationURLParameter = {
-  parameterPath: "vmScaleSetName",
-  mapper: {
-    serializedName: "vmScaleSetName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const vmssExtensionName: coreHttp.OperationURLParameter = {
@@ -732,39 +500,6 @@ export const vmssExtensionName: coreHttp.OperationURLParameter = {
 export const extensionParameters3: coreHttp.OperationParameter = {
   parameterPath: "extensionParameters",
   mapper: Mappers.VirtualMachineScaleSetExtensionUpdate
-};
-
-export const vmScaleSetName4: coreHttp.OperationURLParameter = {
-  parameterPath: "vmScaleSetName",
-  mapper: {
-    serializedName: "vmScaleSetName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const vmScaleSetName5: coreHttp.OperationURLParameter = {
-  parameterPath: "vmScaleSetName",
-  mapper: {
-    serializedName: "vmScaleSetName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const vmScaleSetName6: coreHttp.OperationURLParameter = {
-  parameterPath: "vmScaleSetName",
-  mapper: {
-    serializedName: "vmScaleSetName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const instanceId: coreHttp.OperationURLParameter = {
@@ -799,16 +534,6 @@ export const virtualMachineScaleSetName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const filter1: coreHttp.OperationQueryParameter = {
-  parameterPath: ["options", "filter"],
-  mapper: {
-    serializedName: "$filter",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const select: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "select"],
   mapper: {
@@ -827,20 +552,6 @@ export const parameters22: coreHttp.OperationParameter = {
 export const parameters23: coreHttp.OperationParameter = {
   parameterPath: "parameters",
   mapper: Mappers.LogAnalyticsInputBase
-};
-
-export const location4: coreHttp.OperationURLParameter = {
-  parameterPath: "location",
-  mapper: {
-    constraints: {
-      Pattern: new RegExp("^[-w._]+$")
-    },
-    serializedName: "location",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const commandId: coreHttp.OperationURLParameter = {
@@ -925,11 +636,6 @@ export const snapshot1: coreHttp.OperationParameter = {
   mapper: Mappers.SnapshotUpdate
 };
 
-export const grantAccessData1: coreHttp.OperationParameter = {
-  parameterPath: "grantAccessData",
-  mapper: Mappers.GrantAccessData
-};
-
 export const diskEncryptionSet: coreHttp.OperationParameter = {
   parameterPath: "diskEncryptionSet",
   mapper: Mappers.DiskEncryptionSet
@@ -972,42 +678,9 @@ export const gallery1: coreHttp.OperationParameter = {
   mapper: Mappers.GalleryUpdate
 };
 
-export const galleryName1: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryName",
-  mapper: {
-    serializedName: "galleryName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryName2: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryName",
-  mapper: {
-    serializedName: "galleryName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const galleryImage: coreHttp.OperationParameter = {
   parameterPath: "galleryImage",
   mapper: Mappers.GalleryImage
-};
-
-export const galleryName3: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryName",
-  mapper: {
-    serializedName: "galleryName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const galleryImageName: coreHttp.OperationURLParameter = {
@@ -1026,120 +699,9 @@ export const galleryImage1: coreHttp.OperationParameter = {
   mapper: Mappers.GalleryImageUpdate
 };
 
-export const galleryName4: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryName",
-  mapper: {
-    serializedName: "galleryName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryImageName1: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryImageName",
-  mapper: {
-    serializedName: "galleryImageName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryName5: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryName",
-  mapper: {
-    serializedName: "galleryName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryImageName2: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryImageName",
-  mapper: {
-    serializedName: "galleryImageName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryName6: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryName",
-  mapper: {
-    serializedName: "galleryName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryImageName3: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryImageName",
-  mapper: {
-    serializedName: "galleryImageName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryName7: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryName",
-  mapper: {
-    serializedName: "galleryName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const nextLink8: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const galleryImageVersion: coreHttp.OperationParameter = {
   parameterPath: "galleryImageVersion",
   mapper: Mappers.GalleryImageVersion
-};
-
-export const galleryName8: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryName",
-  mapper: {
-    serializedName: "galleryName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryImageName4: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryImageName",
-  mapper: {
-    serializedName: "galleryImageName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const galleryImageVersionName: coreHttp.OperationURLParameter = {
@@ -1158,51 +720,7 @@ export const galleryImageVersion1: coreHttp.OperationParameter = {
   mapper: Mappers.GalleryImageVersionUpdate
 };
 
-export const galleryImageName5: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryImageName",
-  mapper: {
-    serializedName: "galleryImageName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryImageVersionName1: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryImageVersionName",
-  mapper: {
-    serializedName: "galleryImageVersionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryImageName6: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryImageName",
-  mapper: {
-    serializedName: "galleryImageName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryImageVersionName2: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryImageVersionName",
-  mapper: {
-    serializedName: "galleryImageVersionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const expand3: coreHttp.OperationQueryParameter = {
+export const expand2: coreHttp.OperationQueryParameter = {
   parameterPath: ["options", "expand"],
   mapper: {
     defaultValue: "ReplicationStatus",
@@ -1214,54 +732,9 @@ export const expand3: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const galleryImageVersionName3: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryImageVersionName",
-  mapper: {
-    serializedName: "galleryImageVersionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryImageName7: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryImageName",
-  mapper: {
-    serializedName: "galleryImageName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const nextLink9: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const galleryApplication: coreHttp.OperationParameter = {
   parameterPath: "galleryApplication",
   mapper: Mappers.GalleryApplication
-};
-
-export const galleryName9: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryName",
-  mapper: {
-    serializedName: "galleryName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const galleryApplicationName: coreHttp.OperationURLParameter = {
@@ -1280,108 +753,9 @@ export const galleryApplication1: coreHttp.OperationParameter = {
   mapper: Mappers.GalleryApplicationUpdate
 };
 
-export const galleryName10: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryName",
-  mapper: {
-    serializedName: "galleryName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryApplicationName1: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryApplicationName",
-  mapper: {
-    serializedName: "galleryApplicationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryName11: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryName",
-  mapper: {
-    serializedName: "galleryName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryApplicationName2: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryApplicationName",
-  mapper: {
-    serializedName: "galleryApplicationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryName12: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryName",
-  mapper: {
-    serializedName: "galleryName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryApplicationName3: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryApplicationName",
-  mapper: {
-    serializedName: "galleryApplicationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryName13: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryName",
-  mapper: {
-    serializedName: "galleryName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const galleryApplicationVersion: coreHttp.OperationParameter = {
   parameterPath: "galleryApplicationVersion",
   mapper: Mappers.GalleryApplicationVersion
-};
-
-export const galleryName14: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryName",
-  mapper: {
-    serializedName: "galleryName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryApplicationName4: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryApplicationName",
-  mapper: {
-    serializedName: "galleryApplicationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
 };
 
 export const galleryApplicationVersionName: coreHttp.OperationURLParameter = {
@@ -1398,84 +772,6 @@ export const galleryApplicationVersionName: coreHttp.OperationURLParameter = {
 export const galleryApplicationVersion1: coreHttp.OperationParameter = {
   parameterPath: "galleryApplicationVersion",
   mapper: Mappers.GalleryApplicationVersionUpdate
-};
-
-export const galleryApplicationName5: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryApplicationName",
-  mapper: {
-    serializedName: "galleryApplicationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryApplicationVersionName1: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryApplicationVersionName",
-  mapper: {
-    serializedName: "galleryApplicationVersionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryApplicationName6: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryApplicationName",
-  mapper: {
-    serializedName: "galleryApplicationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryApplicationVersionName2: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryApplicationVersionName",
-  mapper: {
-    serializedName: "galleryApplicationVersionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryApplicationVersionName3: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryApplicationVersionName",
-  mapper: {
-    serializedName: "galleryApplicationVersionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const galleryApplicationName7: coreHttp.OperationURLParameter = {
-  parameterPath: "galleryApplicationName",
-  mapper: {
-    serializedName: "galleryApplicationName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const nextLink10: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
 };
 
 export const apiVersion3: coreHttp.OperationQueryParameter = {

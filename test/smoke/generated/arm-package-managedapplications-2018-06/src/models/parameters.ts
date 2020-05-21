@@ -121,34 +121,7 @@ export const nextLink: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const nextLink1: coreHttp.OperationURLParameter = {
-  parameterPath: "nextLink",
-  mapper: {
-    serializedName: "nextLink",
-    required: true,
-    type: {
-      name: "String"
-    }
-  },
-  skipEncoding: true
-};
-
 export const applicationDefinitionName: coreHttp.OperationURLParameter = {
-  parameterPath: "applicationDefinitionName",
-  mapper: {
-    constraints: {
-      MaxLength: 64,
-      MinLength: 3
-    },
-    serializedName: "applicationDefinitionName",
-    required: true,
-    type: {
-      name: "String"
-    }
-  }
-};
-
-export const applicationDefinitionName1: coreHttp.OperationURLParameter = {
   parameterPath: "applicationDefinitionName",
   mapper: {
     constraints: {
@@ -178,9 +151,4 @@ export const applicationDefinitionId: coreHttp.OperationURLParameter = {
     }
   },
   skipEncoding: true
-};
-
-export const parameters3: coreHttp.OperationParameter = {
-  parameterPath: "parameters",
-  mapper: Mappers.ApplicationDefinition
 };

@@ -492,13 +492,13 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VirtualNetworkGatewayConnection
     }
   },
-  requestBody: Parameters.parameters77,
+  requestBody: Parameters.parameters53,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.virtualNetworkGatewayConnectionName1
+    Parameters.virtualNetworkGatewayConnectionName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -521,7 +521,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.virtualNetworkGatewayConnectionName1
+    Parameters.virtualNetworkGatewayConnectionName
   ],
   serializer
 };
@@ -535,7 +535,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.virtualNetworkGatewayConnectionName1
+    Parameters.virtualNetworkGatewayConnectionName
   ],
   serializer
 };
@@ -557,13 +557,13 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.VirtualNetworkGatewayConnection
     }
   },
-  requestBody: Parameters.parameters78,
+  requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.virtualNetworkGatewayConnectionName1
+    Parameters.virtualNetworkGatewayConnectionName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -587,13 +587,13 @@ const setSharedKeyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ConnectionSharedKey
     }
   },
-  requestBody: Parameters.parameters79,
+  requestBody: Parameters.parameters54,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.virtualNetworkGatewayConnectionName2
+    Parameters.virtualNetworkGatewayConnectionName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -616,7 +616,7 @@ const getSharedKeyOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.virtualNetworkGatewayConnectionName3
+    Parameters.virtualNetworkGatewayConnectionName
   ],
   serializer
 };
@@ -658,13 +658,13 @@ const resetSharedKeyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ConnectionResetSharedKey
     }
   },
-  requestBody: Parameters.parameters80,
+  requestBody: Parameters.parameters55,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.virtualNetworkGatewayConnectionName4
+    Parameters.virtualNetworkGatewayConnectionName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -688,13 +688,13 @@ const startPacketCaptureOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     }
   },
-  requestBody: Parameters.parameters81,
+  requestBody: Parameters.parameters51,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.virtualNetworkGatewayConnectionName1
+    Parameters.virtualNetworkGatewayConnectionName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -718,13 +718,13 @@ const stopPacketCaptureOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     }
   },
-  requestBody: Parameters.parameters82,
+  requestBody: Parameters.parameters52,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.virtualNetworkGatewayConnectionName5
+    Parameters.virtualNetworkGatewayConnectionName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",

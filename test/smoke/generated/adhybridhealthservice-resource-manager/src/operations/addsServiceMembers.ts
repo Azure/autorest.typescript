@@ -150,7 +150,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.AddsServiceMembers
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter2],
+  queryParameters: [Parameters.filter, Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.serviceName],
   serializer
 };
@@ -167,7 +167,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.serviceMemberId1
+    Parameters.serviceMemberId
   ],
   serializer
 };
@@ -176,11 +176,11 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     "/providers/Microsoft.ADHybridHealthService/addsservices/{serviceName}/servicemembers/{serviceMemberId}",
   httpMethod: "DELETE",
   responses: { 200: {} },
-  queryParameters: [Parameters.apiVersion, Parameters.confirm1],
+  queryParameters: [Parameters.apiVersion, Parameters.confirm],
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.serviceMemberId1
+    Parameters.serviceMemberId
   ],
   serializer
 };
@@ -193,11 +193,11 @@ const listCredentialsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.Credentials
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter4],
+  queryParameters: [Parameters.filter, Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.serviceMemberId1
+    Parameters.serviceMemberId
   ],
   serializer
 };
@@ -209,7 +209,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.AddsServiceMembers
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter2],
+  queryParameters: [Parameters.filter, Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,

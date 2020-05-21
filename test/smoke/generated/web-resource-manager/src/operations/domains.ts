@@ -687,7 +687,7 @@ const listOwnershipIdentifiersOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.domainName2
+    Parameters.domainName
   ],
   serializer
 };
@@ -708,8 +708,8 @@ const getOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.domainName2,
-    Parameters.name2
+    Parameters.name,
+    Parameters.domainName
   ],
   serializer
 };
@@ -731,8 +731,8 @@ const createOrUpdateOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.domainName2,
-    Parameters.name2
+    Parameters.name,
+    Parameters.domainName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -754,8 +754,8 @@ const deleteOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.domainName2,
-    Parameters.name2
+    Parameters.name,
+    Parameters.domainName
   ],
   serializer
 };
@@ -777,8 +777,8 @@ const updateOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.domainName2,
-    Parameters.name2
+    Parameters.name,
+    Parameters.domainName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -840,7 +840,7 @@ const listRecommendationsNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink4
+    Parameters.nextLink1
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -862,7 +862,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
   serializer
 };
@@ -882,8 +882,8 @@ const listOwnershipIdentifiersNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.domainName2,
-    Parameters.nextLink5
+    Parameters.nextLink,
+    Parameters.domainName
   ],
   serializer
 };

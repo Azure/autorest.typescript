@@ -261,14 +261,14 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ManagedInstanceAdministrator
     }
   },
-  requestBody: Parameters.parameters49,
+  requestBody: Parameters.parameters48,
   queryParameters: [Parameters.apiVersion4],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.managedInstanceName,
-    Parameters.administratorName1
+    Parameters.administratorName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -303,8 +303,8 @@ const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.managedInstanceName,
-    Parameters.nextLink21
+    Parameters.nextLink,
+    Parameters.managedInstanceName
   ],
   serializer
 };

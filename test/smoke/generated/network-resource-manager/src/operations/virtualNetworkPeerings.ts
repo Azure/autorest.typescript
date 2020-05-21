@@ -279,7 +279,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
     Parameters.virtualNetworkName,
-    Parameters.virtualNetworkPeeringName1
+    Parameters.virtualNetworkPeeringName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",

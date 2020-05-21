@@ -299,7 +299,7 @@ const listBySiteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11
+    Parameters.name
   ],
   serializer
 };
@@ -320,7 +320,7 @@ const getBySiteOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name25
+    Parameters.name
   ],
   serializer
 };
@@ -341,8 +341,8 @@ const listBySiteSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -363,8 +363,8 @@ const getBySiteSlotOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.slot5,
-    Parameters.name25
+    Parameters.name,
+    Parameters.slot
   ],
   serializer
 };
@@ -403,7 +403,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.nextLink1
+    Parameters.nextLink
   ],
   serializer
 };
@@ -423,8 +423,8 @@ const listBySiteNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.nextLink107
+    Parameters.name,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -444,9 +444,9 @@ const listBySiteSlotNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.name11,
-    Parameters.slot5,
-    Parameters.nextLink108
+    Parameters.name,
+    Parameters.nextLink,
+    Parameters.slot
   ],
   serializer
 };

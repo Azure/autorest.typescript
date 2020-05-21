@@ -647,14 +647,14 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [
     Parameters.apiVersion,
-    Parameters.filter1,
-    Parameters.expand2,
-    Parameters.top3
+    Parameters.filter,
+    Parameters.top,
+    Parameters.expand
   ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName6
+    Parameters.resourceGroupName
   ],
   serializer
 };
@@ -663,7 +663,7 @@ const moveResourcesOperationSpec: coreHttp.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{sourceResourceGroupName}/moveResources",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  requestBody: Parameters.parameters6,
+  requestBody: Parameters.parameters3,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -679,12 +679,12 @@ const validateMoveResourcesOperationSpec: coreHttp.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{sourceResourceGroupName}/validateMoveResources",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  requestBody: Parameters.parameters6,
+  requestBody: Parameters.parameters3,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.sourceResourceGroupName1
+    Parameters.sourceResourceGroupName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -703,9 +703,9 @@ const listOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [
     Parameters.apiVersion,
-    Parameters.filter1,
-    Parameters.expand2,
-    Parameters.top4
+    Parameters.filter,
+    Parameters.top,
+    Parameters.expand
   ],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   serializer
@@ -725,8 +725,8 @@ const checkExistenceOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName7,
-    Parameters.resourceProviderNamespace3,
+    Parameters.resourceGroupName,
+    Parameters.resourceProviderNamespace,
     Parameters.parentResourcePath,
     Parameters.resourceType,
     Parameters.resourceName
@@ -742,11 +742,11 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceProviderNamespace2,
+    Parameters.resourceGroupName,
+    Parameters.resourceProviderNamespace,
     Parameters.parentResourcePath,
     Parameters.resourceType,
-    Parameters.resourceGroupName8,
-    Parameters.resourceName1
+    Parameters.resourceName
   ],
   serializer
 };
@@ -768,16 +768,16 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.GenericResource
     }
   },
-  requestBody: Parameters.parameters7,
+  requestBody: Parameters.parameters4,
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceProviderNamespace2,
+    Parameters.resourceGroupName,
+    Parameters.resourceProviderNamespace,
     Parameters.parentResourcePath,
-    Parameters.resourceGroupName9,
-    Parameters.resourceType1,
-    Parameters.resourceName2
+    Parameters.resourceType,
+    Parameters.resourceName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -801,16 +801,16 @@ const updateOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.GenericResource
     }
   },
-  requestBody: Parameters.parameters8,
+  requestBody: Parameters.parameters4,
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceProviderNamespace2,
+    Parameters.resourceGroupName,
+    Parameters.resourceProviderNamespace,
     Parameters.parentResourcePath,
-    Parameters.resourceGroupName9,
-    Parameters.resourceType2,
-    Parameters.resourceName3
+    Parameters.resourceType,
+    Parameters.resourceName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -832,11 +832,11 @@ const getOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceProviderNamespace2,
+    Parameters.resourceGroupName,
+    Parameters.resourceProviderNamespace,
     Parameters.parentResourcePath,
-    Parameters.resourceGroupName10,
-    Parameters.resourceType3,
-    Parameters.resourceName4
+    Parameters.resourceType,
+    Parameters.resourceName
   ],
   serializer
 };
@@ -879,7 +879,7 @@ const createOrUpdateByIdOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.GenericResource
     }
   },
-  requestBody: Parameters.parameters9,
+  requestBody: Parameters.parameters4,
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.resourceId],
   headerParameters: [Parameters.contentType],
@@ -903,7 +903,7 @@ const updateByIdOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.GenericResource
     }
   },
-  requestBody: Parameters.parameters10,
+  requestBody: Parameters.parameters4,
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.resourceId],
   headerParameters: [Parameters.contentType],
@@ -938,15 +938,15 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [
     Parameters.apiVersion,
-    Parameters.filter1,
-    Parameters.expand2,
-    Parameters.top3
+    Parameters.filter,
+    Parameters.top,
+    Parameters.expand
   ],
   urlParameters: [
     Parameters.$host,
+    Parameters.nextLink,
     Parameters.subscriptionId,
-    Parameters.nextLink5,
-    Parameters.resourceGroupName6
+    Parameters.resourceGroupName
   ],
   serializer
 };
@@ -963,9 +963,9 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   },
   queryParameters: [
     Parameters.apiVersion,
-    Parameters.filter1,
-    Parameters.expand2,
-    Parameters.top4
+    Parameters.filter,
+    Parameters.top,
+    Parameters.expand
   ],
   urlParameters: [
     Parameters.$host,

@@ -227,9 +227,9 @@ const getOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.connectionName2,
-    Parameters.resourceGroupName10,
+    Parameters.connectionName,
     Parameters.gatewayName
   ],
   serializer
@@ -256,10 +256,10 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName10,
-    Parameters.gatewayName,
-    Parameters.connectionName3
+    Parameters.connectionName,
+    Parameters.gatewayName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -273,10 +273,10 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName10,
-    Parameters.gatewayName,
-    Parameters.connectionName3
+    Parameters.connectionName,
+    Parameters.gatewayName
   ],
   serializer
 };
@@ -295,8 +295,8 @@ const listByVpnGatewayOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName10,
     Parameters.gatewayName
   ],
   serializer
@@ -315,10 +315,10 @@ const listByVpnGatewayNextOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
+    Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName10,
-    Parameters.gatewayName,
-    Parameters.nextLink21
+    Parameters.nextLink,
+    Parameters.gatewayName
   ],
   serializer
 };

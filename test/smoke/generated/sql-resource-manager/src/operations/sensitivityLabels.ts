@@ -370,7 +370,7 @@ const listCurrentByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2
+    Parameters.databaseName
   ],
   serializer
 };
@@ -395,7 +395,7 @@ const listRecommendedByDatabaseOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2
+    Parameters.databaseName
   ],
   serializer
 };
@@ -410,7 +410,7 @@ const enableRecommendationOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.schemaName,
     Parameters.tableName,
     Parameters.columnName,
@@ -429,7 +429,7 @@ const disableRecommendationOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.schemaName,
     Parameters.tableName,
     Parameters.columnName,
@@ -453,7 +453,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.schemaName,
     Parameters.tableName,
     Parameters.columnName,
@@ -474,14 +474,14 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  requestBody: Parameters.parameters48,
+  requestBody: Parameters.parameters47,
   queryParameters: [Parameters.apiVersion4],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.schemaName,
     Parameters.tableName,
     Parameters.columnName,
@@ -502,7 +502,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
+    Parameters.databaseName,
     Parameters.schemaName,
     Parameters.tableName,
     Parameters.columnName,
@@ -525,8 +525,8 @@ const listCurrentByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
-    Parameters.nextLink22
+    Parameters.databaseName,
+    Parameters.nextLink
   ],
   serializer
 };
@@ -550,8 +550,8 @@ const listRecommendedByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName2,
-    Parameters.nextLink23
+    Parameters.databaseName,
+    Parameters.nextLink
   ],
   serializer
 };

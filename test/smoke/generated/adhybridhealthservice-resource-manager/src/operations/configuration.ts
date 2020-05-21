@@ -187,7 +187,7 @@ const listAddsConfigurationsNextOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [
     Parameters.$host,
     Parameters.serviceName,
-    Parameters.nextLink7
+    Parameters.nextLink
   ],
   serializer
 };
