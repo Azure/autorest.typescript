@@ -687,7 +687,7 @@ const enumNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.enumPath1],
+  urlParameters: [Parameters.$host, Parameters.enumPath],
   serializer
 };
 const byteMultiByteOperationSpec: coreHttp.OperationSpec = {
@@ -723,7 +723,7 @@ const byteNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.bytePath2],
+  urlParameters: [Parameters.$host, Parameters.bytePath],
   serializer
 };
 const dateValidOperationSpec: coreHttp.OperationSpec = {

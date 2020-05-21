@@ -835,7 +835,7 @@ const getNoItemNamePagesNextOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink1],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };
 const getSinglePagesNextOperationSpec: coreHttp.OperationSpec = {
@@ -847,7 +847,7 @@ const getSinglePagesNextOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink2],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };
 const getMultiplePagesNextOperationSpec: coreHttp.OperationSpec = {
@@ -859,7 +859,7 @@ const getMultiplePagesNextOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink3],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [
     Parameters.clientRequestId,
     Parameters.maxresults,
@@ -876,7 +876,7 @@ const getOdataMultiplePagesNextOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink4],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [
     Parameters.clientRequestId,
     Parameters.maxresults1,
@@ -893,7 +893,7 @@ const getMultiplePagesWithOffsetNextOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.offset, Parameters.nextLink5],
+  urlParameters: [Parameters.$host, Parameters.offset, Parameters.nextLink],
   headerParameters: [
     Parameters.clientRequestId,
     Parameters.maxresults2,
@@ -910,7 +910,7 @@ const getMultiplePagesRetryFirstNextOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink6],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };
 const getMultiplePagesRetrySecondNextOperationSpec: coreHttp.OperationSpec = {
@@ -922,7 +922,7 @@ const getMultiplePagesRetrySecondNextOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink7],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };
 const getSinglePagesFailureNextOperationSpec: coreHttp.OperationSpec = {
@@ -934,7 +934,7 @@ const getSinglePagesFailureNextOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink8],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };
 const getMultiplePagesFailureNextOperationSpec: coreHttp.OperationSpec = {
@@ -946,7 +946,7 @@ const getMultiplePagesFailureNextOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink9],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };
 const getMultiplePagesFailureUriNextOperationSpec: coreHttp.OperationSpec = {
@@ -958,7 +958,7 @@ const getMultiplePagesFailureUriNextOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink10],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };
 const getMultiplePagesLRONextOperationSpec: coreHttp.OperationSpec = {
@@ -979,7 +979,7 @@ const getMultiplePagesLRONextOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink11],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [
     Parameters.clientRequestId,
     Parameters.maxresults3,

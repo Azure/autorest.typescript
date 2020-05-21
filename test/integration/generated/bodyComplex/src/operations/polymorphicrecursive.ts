@@ -139,7 +139,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.complexBody20,
+  requestBody: Parameters.complexBody15,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",

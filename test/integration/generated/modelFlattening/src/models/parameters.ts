@@ -77,11 +77,6 @@ export const simpleBodyProduct: coreHttp.OperationParameter = {
 };
 
 export const simpleBodyProduct1: coreHttp.OperationParameter = {
-  parameterPath: ["options", "simpleBodyProduct"],
-  mapper: Mappers.SimpleProduct
-};
-
-export const simpleBodyProduct2: coreHttp.OperationParameter = {
   parameterPath: ["flattenParameterGroup", "simpleBodyProduct"],
   mapper: Mappers.SimpleProduct
 };

@@ -160,7 +160,7 @@ const putValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.complexBody14,
+  requestBody: Parameters.complexBody13,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -189,7 +189,7 @@ const putEmptyOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.complexBody15,
+  requestBody: Parameters.complexBody13,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",

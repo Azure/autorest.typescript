@@ -142,7 +142,7 @@ const getSwaggerLocalValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.apiVersion3],
+  queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host],
   serializer
 };

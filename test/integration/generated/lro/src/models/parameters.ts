@@ -43,11 +43,6 @@ export const sku: coreHttp.OperationParameter = {
   mapper: Mappers.Sku
 };
 
-export const sku1: coreHttp.OperationParameter = {
-  parameterPath: ["options", "sku"],
-  mapper: Mappers.Sku
-};
-
 export const product1: coreHttp.OperationParameter = {
   parameterPath: ["options", "product"],
   mapper: Mappers.SubProduct

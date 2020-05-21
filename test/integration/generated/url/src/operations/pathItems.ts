@@ -182,7 +182,7 @@ const getGlobalAndLocalQueryNullOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [
     Parameters.pathItemStringQuery,
     Parameters.globalStringQuery,
-    Parameters.localStringQuery1
+    Parameters.localStringQuery
   ],
   urlParameters: [
     Parameters.$host,
@@ -203,9 +203,9 @@ const getLocalPathItemQueryNullOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [
+    Parameters.pathItemStringQuery,
     Parameters.globalStringQuery,
-    Parameters.pathItemStringQuery1,
-    Parameters.localStringQuery2
+    Parameters.localStringQuery
   ],
   urlParameters: [
     Parameters.$host,

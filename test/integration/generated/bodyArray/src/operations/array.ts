@@ -1523,7 +1523,7 @@ const putFloatValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.arrayBody3,
+  requestBody: Parameters.arrayBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1586,7 +1586,7 @@ const putDoubleValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.arrayBody3,
+  requestBody: Parameters.arrayBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1649,7 +1649,7 @@ const putStringValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.arrayBody4,
+  requestBody: Parameters.arrayBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1685,7 +1685,7 @@ const putEnumValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.arrayBody5,
+  requestBody: Parameters.arrayBody3,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1716,7 +1716,7 @@ const putStringEnumValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.arrayBody6,
+  requestBody: Parameters.arrayBody4,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1779,7 +1779,7 @@ const putUuidValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.arrayBody7,
+  requestBody: Parameters.arrayBody5,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1826,7 +1826,7 @@ const putDateValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.arrayBody8,
+  requestBody: Parameters.arrayBody6,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1889,7 +1889,7 @@ const putDateTimeValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.arrayBody9,
+  requestBody: Parameters.arrayBody7,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1955,7 +1955,7 @@ const putDateTimeRfc1123ValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.arrayBody10,
+  requestBody: Parameters.arrayBody8,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -1986,7 +1986,7 @@ const putDurationValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.arrayBody11,
+  requestBody: Parameters.arrayBody9,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -2017,7 +2017,7 @@ const putByteValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.arrayBody12,
+  requestBody: Parameters.arrayBody10,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -2159,7 +2159,7 @@ const putComplexValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.arrayBody13,
+  requestBody: Parameters.arrayBody11,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -2279,7 +2279,7 @@ const putArrayValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.arrayBody14,
+  requestBody: Parameters.arrayBody12,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -2399,7 +2399,7 @@ const putDictionaryValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.arrayBody15,
+  requestBody: Parameters.arrayBody13,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",

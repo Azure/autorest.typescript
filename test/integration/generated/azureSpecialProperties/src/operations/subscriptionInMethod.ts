@@ -130,7 +130,7 @@ const postMethodLocalNullOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.subscriptionId2],
+  urlParameters: [Parameters.$host, Parameters.subscriptionId1],
   serializer
 };
 const postPathLocalValidOperationSpec: coreHttp.OperationSpec = {
@@ -143,7 +143,7 @@ const postPathLocalValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.subscriptionId3],
+  urlParameters: [Parameters.$host, Parameters.subscriptionId1],
   serializer
 };
 const postSwaggerLocalValidOperationSpec: coreHttp.OperationSpec = {
@@ -156,6 +156,6 @@ const postSwaggerLocalValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.subscriptionId4],
+  urlParameters: [Parameters.$host, Parameters.subscriptionId1],
   serializer
 };
