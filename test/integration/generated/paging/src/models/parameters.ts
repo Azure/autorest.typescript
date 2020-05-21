@@ -75,18 +75,6 @@ export const queryConstant: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const queryConstant1: coreHttp.OperationQueryParameter = {
-  parameterPath: "queryConstant",
-  mapper: {
-    defaultValue: true,
-    isConstant: true,
-    serializedName: "queryConstant",
-    type: {
-      name: "Boolean"
-    }
-  }
-};
-
 export const maxresults1: coreHttp.OperationParameter = {
   parameterPath: ["pagingGetOdataMultiplePagesOptions", "maxresults"],
   mapper: {

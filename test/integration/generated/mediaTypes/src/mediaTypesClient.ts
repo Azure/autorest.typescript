@@ -154,6 +154,7 @@ const contentTypeWithEncodingOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.input2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType2],
+  mediaType: "text",
   serializer
 };
 

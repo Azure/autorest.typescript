@@ -367,6 +367,7 @@ const put200OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const patch200OperationSpec: coreHttp.OperationSpec = {
@@ -381,6 +382,7 @@ const patch200OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const post200OperationSpec: coreHttp.OperationSpec = {
@@ -395,6 +397,7 @@ const post200OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const delete200OperationSpec: coreHttp.OperationSpec = {
@@ -409,6 +412,7 @@ const delete200OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const put201OperationSpec: coreHttp.OperationSpec = {
@@ -423,6 +427,7 @@ const put201OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const post201OperationSpec: coreHttp.OperationSpec = {
@@ -437,6 +442,7 @@ const post201OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const put202OperationSpec: coreHttp.OperationSpec = {
@@ -451,6 +457,7 @@ const put202OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const patch202OperationSpec: coreHttp.OperationSpec = {
@@ -465,6 +472,7 @@ const patch202OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const post202OperationSpec: coreHttp.OperationSpec = {
@@ -479,6 +487,7 @@ const post202OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const delete202OperationSpec: coreHttp.OperationSpec = {
@@ -493,6 +502,7 @@ const delete202OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const head204OperationSpec: coreHttp.OperationSpec = {
@@ -519,6 +529,7 @@ const put204OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const patch204OperationSpec: coreHttp.OperationSpec = {
@@ -533,6 +544,7 @@ const patch204OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const post204OperationSpec: coreHttp.OperationSpec = {
@@ -547,6 +559,7 @@ const post204OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const delete204OperationSpec: coreHttp.OperationSpec = {
@@ -561,6 +574,7 @@ const delete204OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const head404OperationSpec: coreHttp.OperationSpec = {

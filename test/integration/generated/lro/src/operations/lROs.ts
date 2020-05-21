@@ -1525,6 +1525,7 @@ const put201SucceededOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.product,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const post202ListOperationSpec: coreHttp.OperationSpec = {

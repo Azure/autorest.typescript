@@ -716,7 +716,7 @@ const nextOperationWithQueryParamsOperationSpec: coreHttp.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.queryConstant1],
+  queryParameters: [Parameters.queryConstant],
   urlParameters: [Parameters.$host],
   serializer
 };

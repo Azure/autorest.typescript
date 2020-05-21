@@ -120,6 +120,7 @@ const post505OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const delete505OperationSpec: coreHttp.OperationSpec = {
@@ -133,5 +134,6 @@ const delete505OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };

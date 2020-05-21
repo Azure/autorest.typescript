@@ -383,6 +383,7 @@ const put301OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const head302OperationSpec: coreHttp.OperationSpec = {
@@ -429,6 +430,7 @@ const patch302OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const post303OperationSpec: coreHttp.OperationSpec = {
@@ -446,6 +448,7 @@ const post303OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const head307OperationSpec: coreHttp.OperationSpec = {
@@ -508,6 +511,7 @@ const put307OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const patch307OperationSpec: coreHttp.OperationSpec = {
@@ -525,6 +529,7 @@ const patch307OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const post307OperationSpec: coreHttp.OperationSpec = {
@@ -542,6 +547,7 @@ const post307OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const delete307OperationSpec: coreHttp.OperationSpec = {
@@ -559,5 +565,6 @@ const delete307OperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
+  mediaType: "json",
   serializer
 };
