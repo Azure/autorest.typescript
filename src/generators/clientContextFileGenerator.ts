@@ -180,9 +180,7 @@ function writeDefaultOptions(hasCredentials: boolean, hasLRO: boolean) {
 
   options = {
       ...options,
-      requestPolicyFactories: [${
-        hasLRO ? "lroPolicy()," : ""
-      } ...defaultPipelines]
+      requestPolicyFactories: [lroPolicy(), ...defaultPipelines]
     };`;
 
   return `// Initializing default values for options
@@ -195,7 +193,7 @@ function writeDefaultOptions(hasCredentials: boolean, hasLRO: boolean) {
      options.userAgent = \`\${packageName}/\${packageVersion} \${defaultUserAgent}\`;
    }
   
-   ${policies}
+   ${hasLRO ? policies : ""}
 
   super(${hasCredentials ? "credentials" : `undefined`}, options);
   
