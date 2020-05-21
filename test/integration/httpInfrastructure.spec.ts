@@ -1,18 +1,40 @@
 import { HttpInfrastructureClient } from "./generated/httpInfrastructure/src/httpInfrastructureClient";
 import { assert } from "chai";
-import { InternalPipelineOptions } from "@azure/core-http";
+import {
+  RequestPolicyFactory,
+  OperationOptions,
+  redirectPolicy,
+  exponentialRetryPolicy,
+  deserializationPolicy
+} from "@azure/core-http";
+import { HttpInfrastructureClientOptionalParams } from "./generated/httpInfrastructure/src/models";
 describe("Http infrastructure Client", () => {
   let client: HttpInfrastructureClient;
 
-  beforeEach(() => {
-    const pipelineOptions: InternalPipelineOptions = {
-      retryOptions: {
-        retryDelayInMs: 0,
-        maxRetryDelayInMs: 0
+  // Prevents caching redirects
+  const preventCachingPolicy: RequestPolicyFactory = {
+    create: next => ({
+      sendRequest: req => {
+        if (!req.query) {
+          req.query = {};
+        }
+        req.query._ = new Date().toISOString();
+        return next.sendRequest(req);
       }
+    })
+  };
+
+  beforeEach(() => {
+    const options = {
+      requestPolicyFactories: [
+        preventCachingPolicy,
+        redirectPolicy(),
+        exponentialRetryPolicy(3, 0, 0),
+        deserializationPolicy()
+      ]
     };
 
-    client = new HttpInfrastructureClient(pipelineOptions);
+    client = new HttpInfrastructureClient(options);
   });
 
   describe("Success scenarios", () => {
@@ -682,6 +704,7 @@ describe("Http infrastructure Client", () => {
 
     it("getDefaultNone400None should return 200", async () => {
       try {
+        client.httpClientFailure;
         await client.multipleResponses.getDefaultNone400None();
         assert.fail("Expected an Error");
       } catch (error) {

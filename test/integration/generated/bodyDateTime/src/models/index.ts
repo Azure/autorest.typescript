@@ -364,6 +364,31 @@ export type DatetimeGetLocalNegativeOffsetMinDateTimeResponse = {
 };
 
 /**
+ * Contains response data for the getLocalNoOffsetMinDateTime operation.
+ */
+export type DatetimeGetLocalNoOffsetMinDateTimeResponse = {
+  /**
+   * The parsed response body.
+   */
+  body: Date;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: Date;
+  };
+};
+
+/**
  * Optional parameters.
  */
 export interface BodyDateTimeClientOptionalParams

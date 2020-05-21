@@ -200,19 +200,6 @@ describe("Integration tests for Paging", () => {
       }
     });
 
-    it("should handle PagingMultipleLRO", async () => {
-      const poller = await client.paging.getMultiplePagesLRO();
-      poller.delay = () => Promise.resolve();
-      const result = await poller.pollUntilDone();
-      const poller2 = await client.paging.getMultiplePagesLRONext(
-        result.nextLink!
-      );
-      poller2.delay = () => Promise.resolve();
-      const finalResult = await poller2.pollUntilDone();
-
-      assert.equal(finalResult._response.status, 200);
-    });
-
     it("should get multiple pages with fragmented nextLink", async () => {
       const result = await client.paging.getMultiplePagesFragmentNextLink(
         "1.6",

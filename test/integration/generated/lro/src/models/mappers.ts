@@ -198,6 +198,27 @@ export const OperationResultError: coreHttp.CompositeMapper = {
   }
 };
 
+export const LROsPost202ListHeaders: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LROsPost202ListHeaders",
+    modelProperties: {
+      azureAsyncOperation: {
+        serializedName: "azure-asyncoperation",
+        type: {
+          name: "String"
+        }
+      },
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const LROsPutNoHeaderInRetryHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",

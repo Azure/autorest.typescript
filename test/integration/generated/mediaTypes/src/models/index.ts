@@ -70,6 +70,31 @@ export type MediaTypesClientAnalyzeBodyResponse = {
 };
 
 /**
+ * Contains response data for the contentTypeWithEncoding operation.
+ */
+export type MediaTypesClientContentTypeWithEncodingResponse = {
+  /**
+   * The parsed response body.
+   */
+  body: string;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: string;
+  };
+};
+
+/**
  * Optional parameters.
  */
 export interface MediaTypesClientOptionalParams

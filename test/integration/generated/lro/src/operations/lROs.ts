@@ -14,6 +14,9 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   LROsPut200SucceededOptionalParams,
   LROsPut200SucceededResponse,
+  LROsPut201SucceededOptionalParams,
+  LROsPut201SucceededResponse,
+  LROsPost202ListResponse,
   LROsPut200SucceededNoStateOptionalParams,
   LROsPut200SucceededNoStateResponse,
   LROsPut202Retry200OptionalParams,
@@ -117,6 +120,72 @@ export class LROs {
     return new LROPoller({
       initialOperationArguments: args,
       initialOperationSpec: put200SucceededOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
+  }
+
+  /**
+   * Long running put request, service returns a 201 to the initial request, with an entity that contains
+   * ProvisioningState=’Succeeded’.
+   * @param options The options parameters.
+   */
+  async put201Succeeded(
+    options?: LROsPut201SucceededOptionalParams
+  ): Promise<LROPoller<LROsPut201SucceededResponse>> {
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPut201SucceededResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
+      put201SucceededOperationSpec
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: put201SucceededOperationSpec,
+      initialOperationResult,
+      sendOperation
+    });
+  }
+
+  /**
+   * Long running put request, service returns a 202 with empty body to first request, returns a 200 with
+   * body [{ 'id': '100', 'name': 'foo' }].
+   * @param options The options parameters.
+   */
+  async post202List(
+    options?: coreHttp.OperationOptions
+  ): Promise<LROPoller<LROsPost202ListResponse>> {
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
+      options
+    );
+
+    const args: coreHttp.OperationArguments = { options: operationOptions };
+    const sendOperation = (
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
+    ) =>
+      this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPost202ListResponse
+      >;
+    const initialOperationResult = await sendOperation(
+      args,
+      post202ListOperationSpec
+    );
+
+    return new LROPoller({
+      initialOperationArguments: args,
+      initialOperationSpec: post202ListOperationSpec,
       initialOperationResult,
       sendOperation
     });
@@ -1431,6 +1500,71 @@ const put200SucceededOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
+  serializer
+};
+const put201SucceededOperationSpec: coreHttp.OperationSpec = {
+  path: "/lro/put/201/succeeded",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product
+    },
+    201: {
+      bodyMapper: Mappers.Product
+    },
+    202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
+      bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.product,
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType],
+  serializer
+};
+const post202ListOperationSpec: coreHttp.OperationSpec = {
+  path: "/lro/list",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Product" } }
+        }
+      }
+    },
+    201: {
+      bodyMapper: {
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Product" } }
+        }
+      }
+    },
+    202: {
+      bodyMapper: {
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Product" } }
+        }
+      }
+    },
+    204: {
+      bodyMapper: {
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Product" } }
+        }
+      }
+    }
+  },
+  urlParameters: [Parameters.$host],
   serializer
 };
 const put200SucceededNoStateOperationSpec: coreHttp.OperationSpec = {

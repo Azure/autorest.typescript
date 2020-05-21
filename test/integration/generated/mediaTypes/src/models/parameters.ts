@@ -65,3 +65,26 @@ export const $host: coreHttp.OperationURLParameter = {
   },
   skipEncoding: true
 };
+
+export const contentType2: coreHttp.OperationParameter = {
+  parameterPath: ["options", "contentType"],
+  mapper: {
+    defaultValue: "text/plain",
+    isConstant: true,
+    serializedName: "Content-Type",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const input2: coreHttp.OperationParameter = {
+  parameterPath: "input",
+  mapper: {
+    serializedName: "input",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
