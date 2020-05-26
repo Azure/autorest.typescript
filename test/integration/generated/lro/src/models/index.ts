@@ -78,6 +78,14 @@ export interface OperationResultError {
 }
 
 /**
+ * Defines headers for LROs_post202List operation.
+ */
+export interface LROsPost202ListHeaders {
+  azureAsyncOperation?: string;
+  location?: string;
+}
+
+/**
  * Defines headers for LROs_putNoHeaderInRetry operation.
  */
 export interface LROsPutNoHeaderInRetryHeaders {
@@ -591,6 +599,57 @@ export type LROsPut200SucceededResponse = Product & {
      * The response body as parsed JSON or XML
      */
     parsedBody: Product;
+  };
+};
+
+/**
+ * Optional parameters.
+ */
+export interface LROsPut201SucceededOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Product to put
+   */
+  product?: Product;
+}
+
+/**
+ * Contains response data for the put201Succeeded operation.
+ */
+export type LROsPut201SucceededResponse = Product & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: Product;
+  };
+};
+
+/**
+ * Contains response data for the post202List operation.
+ */
+export type LROsPost202ListResponse = Product[] & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: Product[];
   };
 };
 

@@ -24,7 +24,8 @@ import {
   DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse,
   DatetimeGetUtcMinDateTimeResponse,
   DatetimeGetLocalPositiveOffsetMinDateTimeResponse,
-  DatetimeGetLocalNegativeOffsetMinDateTimeResponse
+  DatetimeGetLocalNegativeOffsetMinDateTimeResponse,
+  DatetimeGetLocalNoOffsetMinDateTimeResponse
 } from "../models";
 
 /**
@@ -390,6 +391,22 @@ export class Datetime {
       getLocalNegativeOffsetMinDateTimeOperationSpec
     ) as Promise<DatetimeGetLocalNegativeOffsetMinDateTimeResponse>;
   }
+
+  /**
+   * Get min datetime value 0001-01-01T00:00:00
+   * @param options The options parameters.
+   */
+  getLocalNoOffsetMinDateTime(
+    options?: coreHttp.OperationOptions
+  ): Promise<DatetimeGetLocalNoOffsetMinDateTimeResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
+    return this.client.sendOperationRequest(
+      { options: operationOptions },
+      getLocalNoOffsetMinDateTimeOperationSpec
+    ) as Promise<DatetimeGetLocalNoOffsetMinDateTimeResponse>;
+  }
 }
 // Operation Specifications
 
@@ -684,6 +701,20 @@ const putLocalNegativeOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {
 };
 const getLocalNegativeOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {
   path: "/datetime/min/localnegativeoffset",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: { type: { name: "DateTime" } }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const getLocalNoOffsetMinDateTimeOperationSpec: coreHttp.OperationSpec = {
+  path: "/datetime/min/localnooffset",
   httpMethod: "GET",
   responses: {
     200: {

@@ -112,6 +112,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "HeaderClient",
     packageName: "header"
   },
+  httpInfrastructure: {
+    swagger: "httpInfrastructure.json",
+    clientName: "HttpInfrastructureClient",
+    packageName: "httpInfrastructure"
+  },
   lro: {
     swagger: "lro.json",
     clientName: "LROClient",

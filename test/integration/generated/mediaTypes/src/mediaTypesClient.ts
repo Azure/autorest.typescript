@@ -16,7 +16,8 @@ import {
   ContentType,
   MediaTypesClientAnalyzeBody$binaryOptionalParams,
   MediaTypesClientAnalyzeBody$jsonOptionalParams,
-  MediaTypesClientAnalyzeBodyResponse
+  MediaTypesClientAnalyzeBodyResponse,
+  MediaTypesClientContentTypeWithEncodingResponse
 } from "./models";
 
 class MediaTypesClient extends MediaTypesClientContext {
@@ -91,6 +92,24 @@ class MediaTypesClient extends MediaTypesClientContext {
       operationSpec
     ) as Promise<MediaTypesClientAnalyzeBodyResponse>;
   }
+
+  /**
+   * Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter
+   * @param input Input parameter.
+   * @param options The options parameters.
+   */
+  contentTypeWithEncoding(
+    input: string,
+    options?: coreHttp.OperationOptions
+  ): Promise<MediaTypesClientContentTypeWithEncodingResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
+    return this.sendOperationRequest(
+      { input, options: operationOptions },
+      contentTypeWithEncodingOperationSpec
+    ) as Promise<MediaTypesClientContentTypeWithEncodingResponse>;
+  }
 }
 // Operation Specifications
 
@@ -122,6 +141,20 @@ const analyzeBody$jsonOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1],
   mediaType: "json",
+  serializer
+};
+const contentTypeWithEncodingOperationSpec: coreHttp.OperationSpec = {
+  path: "/mediatypes/contentTypeWithEncoding",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: { type: { name: "String" } }
+    }
+  },
+  requestBody: Parameters.input2,
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType2],
+  mediaType: "text",
   serializer
 };
 

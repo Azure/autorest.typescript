@@ -320,11 +320,11 @@ describe("Integration tests for BodyArrayClient", () => {
     });
   });
 
-  describe.skip("#putDurationValid", () => {
+  describe("#putDurationValid", () => {
     it(`sends a list of duration strings successfully`, async () => {
       const response = await client.array.putDurationValid([
         "P123DT22H14M12.011S",
-        "P5DT1H0M0S"
+        "P5DT1H"
       ]);
       expect(response._response.status).to.equal(
         200,
@@ -601,9 +601,9 @@ describe("Integration tests for BodyArrayClient", () => {
     });
   });
 
-  describe.skip("#getBooleanInvalidString", () => {
+  describe("#getBooleanInvalidString", () => {
+    // TODO throw error during deserialization. Azure/azure-sdk-for-js/issues/9078
     it("returns [true, 'boolean', false]", async () => {
-      // TODO: Should throw deserialization error
       const response = await client.array.getBooleanInvalidString();
       expect(response).to.deep.equal([true, "boolean", false]);
       expect(response._response.status).to.equal(
@@ -615,6 +615,7 @@ describe("Integration tests for BodyArrayClient", () => {
 
   describe("#getIntInvalidNull", () => {
     it("returns [1, null, 0]", async () => {
+      // TODO throw error during deserialization. Azure/azure-sdk-for-js/issues/9078
       const response = await client.array.getIntInvalidNull();
       expect(response).to.deep.equal([1, null, 0]);
       expect(response._response.status).to.equal(
@@ -624,9 +625,9 @@ describe("Integration tests for BodyArrayClient", () => {
     });
   });
 
-  describe.skip("#getIntInvalidString", () => {
+  describe("#getIntInvalidString", () => {
     it("returns [1, 'integer', 0]", async () => {
-      // TODO: Should throw deserialization error
+      // TODO: Should throw deserialization error. Azure/azure-sdk-for-js/issues/9078
       const response = await client.array.getIntInvalidString();
       expect(response).to.deep.equal([1, "integer", 0]);
       expect(response._response.status).to.equal(
@@ -647,9 +648,8 @@ describe("Integration tests for BodyArrayClient", () => {
     });
   });
 
-  describe.skip("#getLongInvalidString", () => {
+  describe("#getLongInvalidString", () => {
     it("returns [1, 'integer', 0]", async () => {
-      // TODO: Should throw deserialization error
       const response = await client.array.getLongInvalidString();
       expect(response).to.deep.equal([1, "integer", 0]);
       expect(response._response.status).to.equal(
@@ -670,9 +670,9 @@ describe("Integration tests for BodyArrayClient", () => {
     });
   });
 
-  describe.skip("#getFloatInvalidString", () => {
+  describe("#getFloatInvalidString", () => {
     it("returns [1.0, 'number', 0.0]", async () => {
-      // TODO: Should throw deserialization error
+      // TODO throw error during deserialization. Azure/azure-sdk-for-js/issues/9078
       const response = await client.array.getFloatInvalidString();
       expect(response).to.deep.equal([1.0, "number", 0.0]);
       expect(response._response.status).to.equal(
@@ -693,9 +693,9 @@ describe("Integration tests for BodyArrayClient", () => {
     });
   });
 
-  describe.skip("#getDoubleInvalidString", () => {
+  describe("#getDoubleInvalidString", () => {
     it("returns [1.0, 'number', 0.0]", async () => {
-      // TODO: Should throw deserialization error
+      // TODO: Should throw deserialization error. Azure/azure-sdk-for-js/issues/9078
       const response = await client.array.getDoubleInvalidString();
       expect(response).to.deep.equal([1.0, "number", 0.0]);
       expect(response._response.status).to.equal(
@@ -720,11 +720,14 @@ describe("Integration tests for BodyArrayClient", () => {
     });
   });
 
-  describe.skip("#getDateInvalidChars", () => {
+  describe("#getDateInvalidChars", () => {
     it("returns ['2011-03-22', 'date']", async () => {
-      // TODO: Should throw deserialization error
+      // TODO throw error during deserialization. Azure/azure-sdk-for-js/issues/9078
       const response = await client.array.getDateInvalidChars();
-      expect(response).to.deep.equal([new Date("2011-03-22"), "date"]);
+      expect(response).to.deep.equal([
+        new Date("2011-03-22"),
+        new Date("date")
+      ]);
       expect(response._response.status).to.equal(
         200,
         `Unexpected status code.`

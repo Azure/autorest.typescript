@@ -17,6 +17,8 @@ import {
   PagingGetSinglePagesResponse,
   PagingGetMultiplePagesOptionalParams,
   PagingGetMultiplePagesResponse,
+  PagingGetWithQueryParamsResponse,
+  PagingNextOperationWithQueryParamsResponse,
   PagingGetOdataMultiplePagesOptionalParams,
   PagingGetOdataMultiplePagesResponse,
   PagingGetMultiplePagesWithOffsetOptions,
@@ -127,6 +129,41 @@ export class Paging {
       { options: operationOptions },
       getMultiplePagesOperationSpec
     ) as Promise<PagingGetMultiplePagesResponse>;
+  }
+
+  /**
+   * A paging operation that includes a next operation. It has a different query parameter from it's next
+   * operation nextOperationWithQueryParams. Returns a ProductResult
+   * @param requiredQueryParameter A required integer query parameter. Put in value '100' to pass test.
+   * @param options The options parameters.
+   */
+  getWithQueryParams(
+    requiredQueryParameter: number,
+    options?: coreHttp.OperationOptions
+  ): Promise<PagingGetWithQueryParamsResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
+    return this.client.sendOperationRequest(
+      { requiredQueryParameter, options: operationOptions },
+      getWithQueryParamsOperationSpec
+    ) as Promise<PagingGetWithQueryParamsResponse>;
+  }
+
+  /**
+   * Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult
+   * @param options The options parameters.
+   */
+  nextOperationWithQueryParams(
+    options?: coreHttp.OperationOptions
+  ): Promise<PagingNextOperationWithQueryParamsResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
+    return this.client.sendOperationRequest(
+      { options: operationOptions },
+      nextOperationWithQueryParamsOperationSpec
+    ) as Promise<PagingNextOperationWithQueryParamsResponse>;
   }
 
   /**
@@ -652,6 +689,35 @@ const getMultiplePagesOperationSpec: coreHttp.OperationSpec = {
     Parameters.maxresults,
     Parameters.timeout
   ],
+  serializer
+};
+const getWithQueryParamsOperationSpec: coreHttp.OperationSpec = {
+  path: "/paging/multiple/getWithQueryParams",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  queryParameters: [
+    Parameters.requiredQueryParameter,
+    Parameters.queryConstant
+  ],
+  urlParameters: [Parameters.$host],
+  serializer
+};
+const nextOperationWithQueryParamsOperationSpec: coreHttp.OperationSpec = {
+  path: "/paging/multiple/nextOperationWithQueryParams",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  queryParameters: [Parameters.queryConstant],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getOdataMultiplePagesOperationSpec: coreHttp.OperationSpec = {

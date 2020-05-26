@@ -384,8 +384,7 @@ describe("Custom Headers", () => {
     assert.deepInclude(result.name, "foo");
   });
 
-  // TODO: Check why test server returns 202 to final get which is expected to be made
-  it.skip("should handle postAsyncRetrySucceeded with customheaders ", async () => {
+  it("should handle postAsyncRetrySucceeded with customheaders ", async () => {
     const poller = await client.lROsCustomHeader.postAsyncRetrySucceeded(
       options
     );

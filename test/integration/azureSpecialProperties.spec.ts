@@ -227,6 +227,7 @@ describe("AzureSpecialProperties", () => {
 
       try {
         await client.xMsClientRequestId.get(options);
+        assert.fail("Expected error to be thrown");
       } catch (error) {
         const errorHeader = (error as RestError).response?.headers.get(
           "x-ms-request-id"

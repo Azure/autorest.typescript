@@ -222,6 +222,46 @@ export type PagingGetMultiplePagesResponse = ProductResult & {
 };
 
 /**
+ * Contains response data for the getWithQueryParams operation.
+ */
+export type PagingGetWithQueryParamsResponse = ProductResult & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ProductResult;
+  };
+};
+
+/**
+ * Contains response data for the nextOperationWithQueryParams operation.
+ */
+export type PagingNextOperationWithQueryParamsResponse = ProductResult & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ProductResult;
+  };
+};
+
+/**
  * Optional parameters.
  */
 export interface PagingGetOdataMultiplePagesOptionalParams

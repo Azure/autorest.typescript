@@ -52,6 +52,29 @@ export const timeout: coreHttp.OperationParameter = {
   }
 };
 
+export const requiredQueryParameter: coreHttp.OperationQueryParameter = {
+  parameterPath: "requiredQueryParameter",
+  mapper: {
+    serializedName: "requiredQueryParameter",
+    required: true,
+    type: {
+      name: "Number"
+    }
+  }
+};
+
+export const queryConstant: coreHttp.OperationQueryParameter = {
+  parameterPath: "queryConstant",
+  mapper: {
+    defaultValue: true,
+    isConstant: true,
+    serializedName: "queryConstant",
+    type: {
+      name: "Boolean"
+    }
+  }
+};
+
 export const maxresults1: coreHttp.OperationParameter = {
   parameterPath: ["pagingGetOdataMultiplePagesOptions", "maxresults"],
   mapper: {
