@@ -182,9 +182,9 @@ export function getSpecType(responseSchema: Schema, expand = false): SpecType {
       typeName = getSpecType(constantSchema.valueType).name;
       constantProps = expand
         ? {
-            isConstant: true,
-            defaultValue: constantSchema.value.value
-          }
+          isConstant: true,
+          defaultValue: constantSchema.value.value
+        }
         : undefined;
       break;
     case SchemaType.String:
@@ -281,6 +281,15 @@ export function transformOperationResponse(
       ? getMapperForSchema(headersSchema, mediaType)
       : undefined
   };
+
+  if (mediaType === KnownMediaType.Binary && !mappers.bodyMapper) {
+    mappers.bodyMapper = {
+      type: {
+        name: "Stream"
+      },
+      serializedName: "parsedResponse"
+    };
+  }
 
   const types: OperationResponseTypes = {
     bodyType: isSchemaResponse(response)
