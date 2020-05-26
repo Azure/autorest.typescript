@@ -12406,6 +12406,56 @@ export type WebAppsGetConfigurationSnapshotResponse = SiteConfigResource & {
 };
 
 /**
+ * Contains response data for the getWebSiteContainerLogs operation.
+ */
+export type WebAppsGetWebSiteContainerLogsResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always `undefined` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse;
+};
+
+/**
+ * Contains response data for the getContainerLogsZip operation.
+ */
+export type WebAppsGetContainerLogsZipResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always `undefined` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse;
+};
+
+/**
  * Contains response data for the listContinuousWebJobs operation.
  */
 export type WebAppsListContinuousWebJobsResponse = ContinuousWebJobCollection & {
@@ -13231,6 +13281,31 @@ export type WebAppsGetInstanceProcessResponse = ProcessInfo & {
 };
 
 /**
+ * Contains response data for the getInstanceProcessDump operation.
+ */
+export type WebAppsGetInstanceProcessDumpResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always `undefined` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse;
+};
+
+/**
  * Contains response data for the listInstanceProcessModules operation.
  */
 export type WebAppsListInstanceProcessModulesResponse = ProcessModuleInfoCollection & {
@@ -13865,6 +13940,31 @@ export type WebAppsGetProcessResponse = ProcessInfo & {
 };
 
 /**
+ * Contains response data for the getProcessDump operation.
+ */
+export type WebAppsGetProcessDumpResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always `undefined` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse;
+};
+
+/**
  * Contains response data for the listProcessModules operation.
  */
 export type WebAppsListProcessModulesResponse = ProcessModuleInfoCollection & {
@@ -13982,6 +14082,31 @@ export type WebAppsCreateOrUpdatePublicCertificateResponse = PublicCertificate &
      */
     parsedBody: PublicCertificate;
   };
+};
+
+/**
+ * Contains response data for the listPublishingProfileXmlWithSecrets operation.
+ */
+export type WebAppsListPublishingProfileXmlWithSecretsResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always `undefined` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse;
 };
 
 /**
@@ -14723,6 +14848,56 @@ export type WebAppsGetConfigurationSnapshotSlotResponse = SiteConfigResource & {
      */
     parsedBody: SiteConfigResource;
   };
+};
+
+/**
+ * Contains response data for the getWebSiteContainerLogsSlot operation.
+ */
+export type WebAppsGetWebSiteContainerLogsSlotResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always `undefined` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse;
+};
+
+/**
+ * Contains response data for the getContainerLogsZipSlot operation.
+ */
+export type WebAppsGetContainerLogsZipSlotResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always `undefined` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse;
 };
 
 /**
@@ -15551,6 +15726,31 @@ export type WebAppsGetInstanceProcessSlotResponse = ProcessInfo & {
 };
 
 /**
+ * Contains response data for the getInstanceProcessDumpSlot operation.
+ */
+export type WebAppsGetInstanceProcessDumpSlotResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always `undefined` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse;
+};
+
+/**
  * Contains response data for the listInstanceProcessModulesSlot operation.
  */
 export type WebAppsListInstanceProcessModulesSlotResponse = ProcessModuleInfoCollection & {
@@ -16230,6 +16430,31 @@ export type WebAppsGetProcessSlotResponse = ProcessInfo & {
 };
 
 /**
+ * Contains response data for the getProcessDumpSlot operation.
+ */
+export type WebAppsGetProcessDumpSlotResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always `undefined` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse;
+};
+
+/**
  * Contains response data for the listProcessModulesSlot operation.
  */
 export type WebAppsListProcessModulesSlotResponse = ProcessModuleInfoCollection & {
@@ -16347,6 +16572,31 @@ export type WebAppsCreateOrUpdatePublicCertificateSlotResponse = PublicCertifica
      */
     parsedBody: PublicCertificate;
   };
+};
+
+/**
+ * Contains response data for the listPublishingProfileXmlWithSecretsSlot operation.
+ */
+export type WebAppsListPublishingProfileXmlWithSecretsSlotResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always `undefined` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse;
 };
 
 /**
