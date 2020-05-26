@@ -38,7 +38,7 @@ describe("BodyFile Client", () => {
         assert.exists(result.readableStreamBody);
         const byteCount = await countBytesFromStream(result.readableStreamBody!);
         assert.equal(byteCount, 3000 * 1024 * 1024, "Expected a very large file.")
-      });
+      }).timeout(20000);
     });
   } else {
     // TODO: Support running browser tests.
