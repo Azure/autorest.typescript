@@ -72,11 +72,6 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "BodyDateTimeRfc1123Client",
     packageName: "body-datetime-rfc1123"
   },
-  bodyTime: {
-    swagger: "body-time.json",
-    clientName: "BodyTimeClient",
-    packageName: "body-time"
-  },
   bodyDictionary: {
     swagger: "body-dictionary.json",
     clientName: "BodyDictionaryClient",
@@ -86,6 +81,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     swagger: "body-duration.json",
     clientName: "BodyDurationClient",
     packageName: "body-duration"
+  },
+  bodyFile: {
+    swagger: "body-file.json",
+    clientName: "BodyFileClient",
+    packageName: "body-file"
   },
   bodyInteger: {
     swagger: "body-integer.json",
@@ -101,6 +101,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     swagger: "body-string.json",
     clientName: "BodyStringClient",
     packageName: "body-string"
+  },
+  bodyTime: {
+    swagger: "body-time.json",
+    clientName: "BodyTimeClient",
+    packageName: "body-time"
   },
   customUrl: {
     swagger: "custom-baseUrl.json",

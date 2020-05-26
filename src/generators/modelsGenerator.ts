@@ -192,7 +192,6 @@ function writeResponseTypes(
  * the response type
  */
 interface GeneratedResponseDetails {
-  typeName: string;
   mainProperties?: OptionalKind<PropertySignatureStructure>[];
   internalResponseProperties: OptionalKind<PropertySignatureStructure>[];
   intersectionType?: string;
@@ -202,34 +201,29 @@ interface GeneratedResponseDetails {
  * Extracts the necessary data from the response body to generate a response type
  */
 function getBodyProperties({
-  types: { bodyType }
+  types: { bodyType }, mediaType
 }: OperationResponseDetails): GeneratedResponseDetails | undefined {
-  if (!bodyType) {
+  if (!bodyType && mediaType !== KnownMediaType.Binary) {
     return;
   }
 
   const hasBodyProperty =
-    bodyType.kind !== PropertyKind.Composite &&
-    bodyType.kind !== PropertyKind.Dictionary;
+    bodyType?.kind !== PropertyKind.Composite &&
+    bodyType?.kind !== PropertyKind.Dictionary;
+  // Used when the bodyType is not a primitive, or for binary media types with no defined bodyType.
+  const mainProperties: OptionalKind<PropertySignatureStructure>[] = [];
+  // These are the additional default properties to add under the _response property in the response type
+  const internalResponseProperties: OptionalKind<PropertySignatureStructure>[] = [];
 
-  return {
-    typeName: bodyType.typeName,
-    // mainProperties will be used only when the body type is not primitive
-    // adding to the response type a property named body, of the expected type
-    mainProperties: hasBodyProperty
-      ? [
-          {
-            name: "body", // Is there any extension that overrides this?
-            type: bodyType.typeName,
-            docs: ["The parsed response body."]
-          }
-        ]
-      : [],
-    // intersectionType is used when the body is Composite, this means that there is a model
-    // representing this object and the response type will need to be an intersection.
-    ...(!hasBodyProperty && { intersectionType: bodyType.typeName }),
-    // These are the additional default properties to add under the _response property in the response type
-    internalResponseProperties: [
+  if (bodyType) {
+    if (hasBodyProperty) {
+      mainProperties.push({
+        name: "body", // Is there any extension that overrides this?
+        type: bodyType.typeName,
+        docs: ["The parsed response body."]
+      });
+    }
+    internalResponseProperties.push(
       {
         name: "bodyAsText",
         type: "string",
@@ -241,8 +235,29 @@ function getBodyProperties({
         docs: ["The response body as parsed JSON or XML"],
         type: bodyType.typeName,
         leadingTrivia: writer => writer.blankLine()
-      }
-    ]
+      });
+  } else if (mediaType === KnownMediaType.Binary) {
+    mainProperties.push(
+      {
+        name: "blobBody",
+        type: "Promise<Blob>",
+        docs: ["BROWSER ONLY\n\nThe response body as a browser Blob.\nAlways `undefined` in node.js."],
+        hasQuestionToken: true
+      },
+      {
+        name: "readableStreamBody",
+        type: "NodeJS.ReadableStream",
+        docs: ["NODEJS ONLY\n\nThe response body as a node.js Readable stream.\nAlways `undefined` in the browser."],
+        hasQuestionToken: true
+      });
+  }
+
+  return {
+    mainProperties,
+    // intersectionType is used when the body is Composite, this means that there is a model
+    // representing this object and the response type will need to be an intersection.
+    ...(!hasBodyProperty && { intersectionType: bodyType?.typeName }),
+    internalResponseProperties
   };
 }
 
@@ -258,7 +273,6 @@ function getHeadersProperties({
   const { typeName } = headersType;
 
   return {
-    typeName,
     // These are the additional default properties to add under the _response property in the response type
     internalResponseProperties: [
       {
@@ -291,21 +305,22 @@ function buildResponseType(
   const headersProperties = getHeadersProperties(operationResponse);
   const bodyProperties = getBodyProperties(operationResponse);
 
+  const innerResponseProperties = [
+    ...(bodyProperties?.internalResponseProperties || []),
+    ...(headersProperties?.internalResponseProperties || [])
+  ];
   const innerTypeWriter = Writers.objectType({
     properties: [
       ...(bodyProperties?.mainProperties || []),
       {
         name: "_response",
         docs: ["The underlying HTTP response."],
-        type: Writers.intersectionType(
+        type: innerResponseProperties.length ? Writers.intersectionType(
           "coreHttp.HttpResponse",
           Writers.objectType({
-            properties: [
-              ...(bodyProperties?.internalResponseProperties || []),
-              ...(headersProperties?.internalResponseProperties || [])
-            ]
+            properties: innerResponseProperties
           })
-        ),
+        ) : "coreHttp.HttpResponse",
         leadingTrivia: writer => writer.blankLine()
       }
     ]
@@ -340,13 +355,13 @@ function buildResponseType(
    */
   return intersectionTypes.length > 1
     ? // Using apply instead of calling the method directly to be able to conditionally pass
-      // parameters, this way we don't have to have a nested if/else tree to decide which parameters
-      // to pass, we will pass any intersectionTypes availabe plus the innerType. When there are no intersection types
-      // we just return innerType
-      Writers.intersectionType.apply(
-        Writers,
-        intersectionTypes as IntersectionTypeParameters
-      )
+    // parameters, this way we don't have to have a nested if/else tree to decide which parameters
+    // to pass, we will pass any intersectionTypes availabe plus the innerType. When there are no intersection types
+    // we just return innerType
+    Writers.intersectionType.apply(
+      Writers,
+      intersectionTypes as IntersectionTypeParameters
+    )
     : innerTypeWriter;
 }
 

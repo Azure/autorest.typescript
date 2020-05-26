@@ -65,6 +65,8 @@ import {
   WebAppsUpdateConfigurationResponse,
   WebAppsListConfigurationSnapshotInfoResponse,
   WebAppsGetConfigurationSnapshotResponse,
+  WebAppsGetWebSiteContainerLogsResponse,
+  WebAppsGetContainerLogsZipResponse,
   WebAppsListContinuousWebJobsResponse,
   WebAppsGetContinuousWebJobResponse,
   WebAppsListDeploymentsResponse,
@@ -114,6 +116,7 @@ import {
   WebAppsGetInstanceMSDeployLogResponse,
   WebAppsListInstanceProcessesResponse,
   WebAppsGetInstanceProcessResponse,
+  WebAppsGetInstanceProcessDumpResponse,
   WebAppsListInstanceProcessModulesResponse,
   WebAppsGetInstanceProcessModuleResponse,
   WebAppsListInstanceProcessThreadsResponse,
@@ -152,6 +155,7 @@ import {
   WebAppsPutPrivateAccessVnetResponse,
   WebAppsListProcessesResponse,
   WebAppsGetProcessResponse,
+  WebAppsGetProcessDumpResponse,
   WebAppsListProcessModulesResponse,
   WebAppsGetProcessModuleResponse,
   WebAppsListProcessThreadsResponse,
@@ -160,6 +164,7 @@ import {
   PublicCertificate,
   WebAppsCreateOrUpdatePublicCertificateResponse,
   CsmPublishingProfileOptions,
+  WebAppsListPublishingProfileXmlWithSecretsResponse,
   WebAppsRestartOptionalParams,
   DeletedAppRestoreRequest,
   SnapshotRestoreRequest,
@@ -201,6 +206,8 @@ import {
   WebAppsUpdateConfigurationSlotResponse,
   WebAppsListConfigurationSnapshotInfoSlotResponse,
   WebAppsGetConfigurationSnapshotSlotResponse,
+  WebAppsGetWebSiteContainerLogsSlotResponse,
+  WebAppsGetContainerLogsZipSlotResponse,
   WebAppsListContinuousWebJobsSlotResponse,
   WebAppsGetContinuousWebJobSlotResponse,
   WebAppsListDeploymentsSlotResponse,
@@ -242,6 +249,7 @@ import {
   WebAppsGetInstanceMSDeployLogSlotResponse,
   WebAppsListInstanceProcessesSlotResponse,
   WebAppsGetInstanceProcessSlotResponse,
+  WebAppsGetInstanceProcessDumpSlotResponse,
   WebAppsListInstanceProcessModulesSlotResponse,
   WebAppsGetInstanceProcessModuleSlotResponse,
   WebAppsListInstanceProcessThreadsSlotResponse,
@@ -277,12 +285,14 @@ import {
   WebAppsGetPrivateLinkResourcesResponse,
   WebAppsListProcessesSlotResponse,
   WebAppsGetProcessSlotResponse,
+  WebAppsGetProcessDumpSlotResponse,
   WebAppsListProcessModulesSlotResponse,
   WebAppsGetProcessModuleSlotResponse,
   WebAppsListProcessThreadsSlotResponse,
   WebAppsListPublicCertificatesSlotResponse,
   WebAppsGetPublicCertificateSlotResponse,
   WebAppsCreateOrUpdatePublicCertificateSlotResponse,
+  WebAppsListPublishingProfileXmlWithSecretsSlotResponse,
   WebAppsRestartSlotOptionalParams,
   WebAppsListSiteExtensionsSlotResponse,
   WebAppsGetSiteExtensionSlotResponse,
@@ -1402,14 +1412,14 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<WebAppsGetWebSiteContainerLogsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { resourceGroupName, name, options: operationOptions },
       getWebSiteContainerLogsOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    ) as Promise<WebAppsGetWebSiteContainerLogsResponse>;
   }
 
   /**
@@ -1422,14 +1432,14 @@ export class WebApps {
     resourceGroupName: string,
     name: string,
     options?: coreHttp.OperationOptions
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<WebAppsGetContainerLogsZipResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { resourceGroupName, name, options: operationOptions },
       getContainerLogsZipOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    ) as Promise<WebAppsGetContainerLogsZipResponse>;
   }
 
   /**
@@ -2849,7 +2859,7 @@ export class WebApps {
     processId: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<WebAppsGetInstanceProcessDumpResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
@@ -2862,7 +2872,7 @@ export class WebApps {
         options: operationOptions
       },
       getInstanceProcessDumpOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    ) as Promise<WebAppsGetInstanceProcessDumpResponse>;
   }
 
   /**
@@ -3734,14 +3744,14 @@ export class WebApps {
     name: string,
     processId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<WebAppsGetProcessDumpResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { resourceGroupName, name, processId, options: operationOptions },
       getProcessDumpOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    ) as Promise<WebAppsGetProcessDumpResponse>;
   }
 
   /**
@@ -3938,7 +3948,7 @@ export class WebApps {
     name: string,
     publishingProfileOptions: CsmPublishingProfileOptions,
     options?: coreHttp.OperationOptions
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<WebAppsListPublishingProfileXmlWithSecretsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
@@ -3950,7 +3960,7 @@ export class WebApps {
         options: operationOptions
       },
       listPublishingProfileXmlWithSecretsOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    ) as Promise<WebAppsListPublishingProfileXmlWithSecretsResponse>;
   }
 
   /**
@@ -5320,14 +5330,14 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<WebAppsGetWebSiteContainerLogsSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { resourceGroupName, name, slot, options: operationOptions },
       getWebSiteContainerLogsSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    ) as Promise<WebAppsGetWebSiteContainerLogsSlotResponse>;
   }
 
   /**
@@ -5342,14 +5352,14 @@ export class WebApps {
     name: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<WebAppsGetContainerLogsZipSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { resourceGroupName, name, slot, options: operationOptions },
       getContainerLogsZipSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    ) as Promise<WebAppsGetContainerLogsZipSlotResponse>;
   }
 
   /**
@@ -6969,7 +6979,7 @@ export class WebApps {
     slot: string,
     instanceId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<WebAppsGetInstanceProcessDumpSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
@@ -6983,7 +6993,7 @@ export class WebApps {
         options: operationOptions
       },
       getInstanceProcessDumpSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    ) as Promise<WebAppsGetInstanceProcessDumpSlotResponse>;
   }
 
   /**
@@ -8016,14 +8026,14 @@ export class WebApps {
     processId: string,
     slot: string,
     options?: coreHttp.OperationOptions
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<WebAppsGetProcessDumpSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { resourceGroupName, name, processId, slot, options: operationOptions },
       getProcessDumpSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    ) as Promise<WebAppsGetProcessDumpSlotResponse>;
   }
 
   /**
@@ -8248,7 +8258,7 @@ export class WebApps {
     slot: string,
     publishingProfileOptions: CsmPublishingProfileOptions,
     options?: coreHttp.OperationOptions
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<WebAppsListPublishingProfileXmlWithSecretsSlotResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
@@ -8261,7 +8271,7 @@ export class WebApps {
         options: operationOptions
       },
       listPublishingProfileXmlWithSecretsSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    ) as Promise<WebAppsListPublishingProfileXmlWithSecretsSlotResponse>;
   }
 
   /**
@@ -12698,7 +12708,13 @@ const getWebSiteContainerLogsOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/containerlogs",
   httpMethod: "POST",
-  responses: { 200: {}, 204: {}, default: {} },
+  responses: {
+    200: {
+      bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
+    },
+    204: {},
+    default: {}
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -12712,7 +12728,13 @@ const getContainerLogsZipOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/containerlogs/zip/download",
   httpMethod: "POST",
-  responses: { 200: {}, 204: {}, default: {} },
+  responses: {
+    200: {
+      bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
+    },
+    204: {},
+    default: {}
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -13991,7 +14013,9 @@ const getInstanceProcessDumpOperationSpec: coreHttp.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/instances/{instanceId}/processes/{processId}/dump",
   httpMethod: "GET",
   responses: {
-    200: {},
+    200: {
+      bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
+    },
     404: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -14856,7 +14880,9 @@ const getProcessDumpOperationSpec: coreHttp.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/processes/{processId}/dump",
   httpMethod: "GET",
   responses: {
-    200: {},
+    200: {
+      bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
+    },
     404: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -15036,7 +15062,9 @@ const listPublishingProfileXmlWithSecretsOperationSpec: coreHttp.OperationSpec =
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/publishxml",
   httpMethod: "POST",
   responses: {
-    200: {},
+    200: {
+      bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -16159,7 +16187,13 @@ const getWebSiteContainerLogsSlotOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/containerlogs",
   httpMethod: "POST",
-  responses: { 200: {}, 204: {}, default: {} },
+  responses: {
+    200: {
+      bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
+    },
+    204: {},
+    default: {}
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -16174,7 +16208,13 @@ const getContainerLogsZipSlotOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/containerlogs/zip/download",
   httpMethod: "POST",
-  responses: { 200: {}, 204: {}, default: {} },
+  responses: {
+    200: {
+      bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
+    },
+    204: {},
+    default: {}
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -17509,7 +17549,9 @@ const getInstanceProcessDumpSlotOperationSpec: coreHttp.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/instances/{instanceId}/processes/{processId}/dump",
   httpMethod: "GET",
   responses: {
-    200: {},
+    200: {
+      bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
+    },
     404: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -18443,7 +18485,9 @@ const getProcessDumpSlotOperationSpec: coreHttp.OperationSpec = {
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/processes/{processId}/dump",
   httpMethod: "GET",
   responses: {
-    200: {},
+    200: {
+      bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
+    },
     404: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -18631,7 +18675,9 @@ const listPublishingProfileXmlWithSecretsSlotOperationSpec: coreHttp.OperationSp
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/publishxml",
   httpMethod: "POST",
   responses: {
-    200: {},
+    200: {
+      bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
