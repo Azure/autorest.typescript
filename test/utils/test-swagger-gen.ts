@@ -147,6 +147,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "ModelFlatteningClient",
     packageName: "model-flattening"
   },
+  multipleInheritance: {
+    swagger: "multiple-inheritance.json",
+    clientName: "MultipleInheritanceClient",
+    packageName: "multiple-inheritance"
+  },
   noMappers: {
     swagger: "test/integration/swaggers/no-mappers.json",
     clientName: "NoMappersClient",
@@ -182,13 +187,13 @@ const generateSwaggers = async (
   let generationTasks: Promise<void>[] = [];
 
   Object.keys(testSwaggers)
-    .filter(name => {
+    .filter((name) => {
       if (!whiteList || !whiteList.length) {
         return true;
       }
       return whiteList.includes(name);
     })
-    .forEach(name => {
+    .forEach((name) => {
       const { addCredentials, clientName, swagger, packageName } = testSwaggers[
         name
       ];
@@ -249,7 +254,7 @@ const buildWhitelist = () =>
 
     const swaggers = includesValue.split(",");
 
-    swaggers.forEach(swagger => {
+    swaggers.forEach((swagger) => {
       const validSwaggers = Object.keys(testSwaggers);
       if (!validSwaggers.includes(swagger)) {
         throw new Error(
@@ -295,6 +300,6 @@ const run = async () => {
   await generateSwaggers(whiteList, isDebugging);
 };
 
-run().catch(error => {
+run().catch((error) => {
   process.exit(-1000);
 });
