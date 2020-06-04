@@ -23,6 +23,90 @@ describe("BodyDictionary", () => {
     client = new BodyDictionaryClient();
   });
 
+  it("should getArrayItemEmpty", async () => {
+    const {
+      _response,
+      ...result
+    } = await client.dictionary.getArrayItemEmpty();
+    assert.deepEqual(result, {
+      "0": ["1", "2", "3"],
+      "1": [],
+      "2": ["7", "8", "9"]
+    });
+  });
+
+  it("should getArrayNull", async () => {
+    const { _response, ...result } = await client.dictionary.getArrayNull();
+    assert.deepEqual(result, {});
+  });
+
+  it("should getComplexEmpty", async () => {
+    const { _response, ...result } = await client.dictionary.getComplexEmpty();
+    assert.deepEqual(result, {});
+  });
+
+  it("should getComplexItemNull", async () => {
+    const {
+      _response,
+      ...result
+    } = await client.dictionary.getComplexItemNull();
+    assert.deepEqual(result, {
+      "0": { integer: 1, string: "2" },
+      "1": null as any,
+      "2": { integer: 5, string: "6" }
+    });
+  });
+
+  it("should getComplexValid", async () => {
+    const { _response, ...result } = await client.dictionary.getComplexValid();
+    assert.deepEqual(result, {
+      "0": { integer: 1, string: "2" },
+      "1": { integer: 3, string: "4" },
+      "2": { integer: 5, string: "6" }
+    });
+  });
+
+  it("should getComplexItemEmpty", async () => {
+    const {
+      _response,
+      ...result
+    } = await client.dictionary.getComplexItemEmpty();
+    assert.deepEqual(result, {
+      "0": { integer: 1, string: "2" },
+      "1": {},
+      "2": { integer: 5, string: "6" }
+    });
+  });
+
+  it("should getDictionaryNull", async () => {
+    const {
+      _response,
+      ...result
+    } = await client.dictionary.getDictionaryNull();
+    assert.deepEqual(result, {});
+  });
+
+  it("should putArrayValid", async () => {
+    const { _response, ..._result } = await client.dictionary.putArrayValid({
+      "0": ["1", "2", "3"],
+      "1": ["4", "5", "6"],
+      "2": ["7", "8", "9"]
+    });
+    assert.deepEqual(_response.status, 200);
+  });
+
+  it("should putDictionaryValid", async () => {
+    const {
+      _response,
+      ..._result
+    } = await client.dictionary.putDictionaryValid({
+      "0": { "1": "one", "2": "two", "3": "three" },
+      "1": { "4": "four", "5": "five", "6": "six" },
+      "2": { "7": "seven", "8": "eight", "9": "nine" }
+    });
+    assert.deepEqual(_response.status, 200);
+  });
+
   it("should get empty", async () => {
     const result = await client.dictionary.getEmpty();
     assert.lengthOf(Object.keys(result), 0);
