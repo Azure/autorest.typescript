@@ -22,7 +22,8 @@ namespace AutoRest.TypeScript.Azure.Model
 
         public string ItemName { get; private set; }
 
-        public IModelType ItemType {
+        public IModelType ItemType
+        {
             get
             {
                 if (Properties == null)
@@ -59,6 +60,13 @@ namespace AutoRest.TypeScript.Azure.Model
         {
             TSBuilder builder = new TSBuilder();
 
+            string extends = $"Array{ConstructTSItemTypeName()}";
+
+            if (BaseModelType != null && !BaseIsPolymorphic)
+            {
+                extends += $", {BaseModelType.Name}";
+            }
+
             builder.DocumentationComment(comment =>
             {
                 comment.Interface();
@@ -69,9 +77,9 @@ namespace AutoRest.TypeScript.Azure.Model
                 }
                 comment.Description(description);
                 comment.Summary(Summary);
-                comment.Extends($"Array{ConstructTSItemTypeName()}");
+                comment.Extends(extends);
             });
-            builder.ExportInterface(Name, $"Array{ConstructTSItemTypeName()}", tsInterface =>
+            builder.ExportInterface(Name, extends, tsInterface =>
             {
                 foreach (Property property in InterfaceProperties)
                 {
