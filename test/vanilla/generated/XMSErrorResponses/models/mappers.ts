@@ -205,9 +205,9 @@ export const PetHungryOrThirstyError: msRest.CompositeMapper = {
 };
 
 export const discriminators = {
-  'BaseError.NotFoundErrorBase' : NotFoundErrorBase,
-  'BaseError.InvalidResourceLink' : LinkNotFound,
-  'BaseError.AnimalNotFound' : AnimalNotFound,
+  'NotFoundErrorBase' : NotFoundErrorBase,
+  'NotFoundErrorBase.InvalidResourceLink' : LinkNotFound,
+  'NotFoundErrorBase.AnimalNotFound' : AnimalNotFound,
   'PetActionError' : PetActionError,
   'PetActionError.PetSadError' : PetSadError,
   'PetActionError.PetHungryOrThirstyError' : PetHungryOrThirstyError
