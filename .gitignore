@@ -6,3 +6,4 @@ test/**/dist
 test/**/esm
 test/**/node_modules
 .tmp
+coverage
