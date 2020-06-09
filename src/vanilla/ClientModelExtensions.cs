@@ -88,7 +88,8 @@ namespace AutoRest.TypeScript
                 return "string";
             else if (primary.KnownPrimaryType == KnownPrimaryType.Credentials)
                 return "msRest.ServiceClientCredentials"; //TODO: test this, add include for it
-            else {
+            else
+            {
                 throw new NotImplementedException($"Type '{primary}' not implemented");
             }
         }
@@ -120,7 +121,8 @@ namespace AutoRest.TypeScript
         /// <param name="type">IType to query</param>
         /// <param name="inModelsModule">Pass true if generating the code for the models module, thus model types don't need a "models." prefix</param>
         /// <returns>TypeScript type string for type</returns>
-        public static string TSType(this IModelType type, bool inModelsModule) {
+        public static string TSType(this IModelType type, bool inModelsModule)
+        {
             CompositeTypeTS composite = type as CompositeTypeTS;
             SequenceType sequence = type as SequenceType;
             DictionaryType dictionary = type as DictionaryType;
@@ -428,12 +430,12 @@ namespace AutoRest.TypeScript
 
             void applyConstraints(TSObject obj)
             {
-                bool useClientSideValidation = (bool) (Settings.Instance?.CustomSettings[CodeModelTS.ClientSideValidationSettingName] ?? false);
+                bool useClientSideValidation = (bool)(Settings.Instance?.CustomSettings[CodeModelTS.ClientSideValidationSettingName] ?? false);
                 if (useClientSideValidation && constraints != null && constraints.Any())
                 {
                     obj.ObjectProperty("constraints", constraintsObject =>
                     {
-                        foreach (KeyValuePair<Constraint,string> constraintEntry in constraints)
+                        foreach (KeyValuePair<Constraint, string> constraintEntry in constraints)
                         {
                             Constraint constraint = constraintEntry.Key;
                             string constraintValue = constraintEntry.Value;
@@ -537,11 +539,7 @@ namespace AutoRest.TypeScript
                 {
                     if (expandComposite)
                     {
-                        CompositeType baseType = composite;
-                        while (baseType.BaseModelType != null)
-                        {
-                            baseType = baseType.BaseModelType;
-                        }
+                        CompositeType baseType = GetUberParent(composite);
                         if (composite.IsPolymorphic)
                         {
                             // Note: If the polymorphicDiscriminator has a dot in it's name then do not escape that dot for
@@ -617,7 +615,7 @@ namespace AutoRest.TypeScript
                         CompositeTypeTS baseType = composite;
                         while (true)
                         {
-                            baseType = (CompositeTypeTS) baseType.BaseModelType;
+                            baseType = (CompositeTypeTS)baseType.BaseModelType;
                             if (baseType == null)
                             {
                                 break;
@@ -635,6 +633,24 @@ namespace AutoRest.TypeScript
             {
                 throw new NotImplementedException($"{type} is not a supported Type.");
             }
+        }
+
+
+        /// <summary>
+        /// Finds the UberParent for a given Composite type.
+        /// An uber parent is the closest parent that defines the polymorphicDiscriminator
+        /// </summary>
+        /// <param name="composite">The composite type to find the uberParent for</param>
+        /// <returns>The uberParent or itself if it has no uberParent</returns>
+        private static CompositeType GetUberParent(CompositeTypeTS composite)
+        {
+            CompositeType uberParent = composite;
+            while (uberParent.BaseModelType != null && string.IsNullOrWhiteSpace(uberParent.PolymorphicDiscriminator))
+            {
+                uberParent = uberParent.BaseModelType;
+            }
+
+            return uberParent;
         }
 
         private static void AddTypeProperty(TSObject mapper, string mapperTypeName, Action<TSObject> additionalTypeObjectPropertiesAction = null)
