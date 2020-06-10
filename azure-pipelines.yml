@@ -23,6 +23,7 @@ jobs:
     displayName: 'Run npm install'
     inputs:
       command: install
+      verbose: true
   - task: Npm@1
     displayName: 'Run npm pack'
     inputs:
