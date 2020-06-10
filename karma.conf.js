@@ -8,34 +8,32 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ["mocha", "karma-typescript"],
+    frameworks: ["mocha", "karma-typescript", "source-map-support"],
 
     plugins: [
       "karma-mocha",
       "karma-mocha-reporter",
       "karma-typescript",
-      "karma-chrome-launcher"
+      "karma-chrome-launcher",
+      "karma-source-map-support"
     ],
+    // Files that will be processed before being loaded in the browser (compiles TS -> JS)
     preprocessors: {
-      "test/integration/*.spec.ts": "karma-typescript",
-      "test/integration/generated/**/*.ts": "karma-typescript"
+      "test/integration/*.spec.ts": ["karma-typescript"],
+      "test/integration/generated/**/*.ts": ["karma-typescript"],
+      "test/utils/stream-helpers.ts": ["karma-typescript"]
     },
-    files: [
-      //"test/integration/generated/**/*.spec.ts",
-      "test/integration/**/*.ts"
-    ],
-    exclude: [
-      "test/integration/bodyFile.spec.ts", // node.js specific test
-      "**/*.d.ts",
-      "test/testserver-v1/*.ts"
-    ],
+    // Files that should be loaded in the browser.
+    files: ["test/integration/**/*.ts", "test/utils/stream-helpers.ts"],
+    exclude: ["**/*.d.ts", "test/testserver-v1/*.ts"],
     reporters: ["progress", "karma-typescript"],
 
     karmaTypescriptConfig: {
       tsconfig: "./tsconfig.browser-test.json",
       bundlerOptions: {
+        sourceMap: false,
         entryPoints: /test\/integration\/[\w\d]+\.spec\.ts$/,
-        addNodeGlobals: false,
+        addNodeGlobals: true,
         transforms: [require("karma-typescript-es6-transform")()],
         constants: {
           process: {
@@ -44,9 +42,6 @@ module.exports = function(config) {
         }
       }
     },
-
-    // web server port
-    //port: 9876,
 
     // enable / disable colors in the output (reporters and logs)
     colors: true,
@@ -59,7 +54,7 @@ module.exports = function(config) {
     autoWatch: false,
 
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true,
+    singleRun: true, // Set to false when you need to debug.
 
     // Concurrency level
     // how many browser should be started simultaneous
@@ -75,7 +70,12 @@ module.exports = function(config) {
     customLaunchers: {
       chrome_no_cors: {
         base: "ChromeHeadless",
-        flags: ["--disable-web-security"]
+        // base: "Chrome", // Use Chrome when you need to debug.
+        flags: [
+          "--disable-web-security", // disable cors
+          "--disk-cache-dir",
+          "null" // disable browser caching (note: If in regular Chrome, go to Devtools -> Network -> Disable Cache)
+        ]
       }
     },
     browsers: ["chrome_no_cors"],

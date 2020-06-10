@@ -8,7 +8,7 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "declarationMap": false,
     "strict": true,
     "declaration": true,

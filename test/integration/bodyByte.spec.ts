@@ -1,6 +1,7 @@
 import { BodyByteClient } from "./generated/bodyByte/src/bodyByteClient";
 import { expect } from "chai";
-describe("Bool Quirks Client", function() {
+import { isNode } from "@azure/core-http";
+describe("Body Byte Client", function() {
   let testClient: BodyByteClient;
   const testBytes = new Uint8Array([
     255,
@@ -43,13 +44,26 @@ describe("Bool Quirks Client", function() {
     expect(result._response.status).to.equal(200);
   });
 
-  it("should get invalid value", async () => {
-    // Output of Buffer.from(':::SWAGGER::::', 'base64')
-    const expected = new Uint8Array([73, 96, 6, 24, 68]);
+  // This test should cause an error to be thrown during deserialization.
+  if (isNode) {
+    it("should get invalid value", async () => {
+      // Output of Buffer.from(':::SWAGGER::::', 'base64')
+      const expected = new Uint8Array([73, 96, 6, 24, 68]);
 
-    const { body } = await testClient.byte.getInvalid();
-    for (let i = 0; i < body.length; i++) {
-      expect(body[i]).to.equal(expected[i]);
-    }
-  });
+      const { body } = await testClient.byte.getInvalid();
+      for (let i = 0; i < body.length; i++) {
+        expect(body[i]).to.equal(expected[i]);
+      }
+    });
+  } else {
+    it("should throw on get invalid value", async () => {
+      // Browser environments will fail to parse invalid base64 strings.
+      try {
+        await testClient.byte.getInvalid();
+        throw new Error("Test failure");
+      } catch (err) {
+        expect(err.message).to.not.equal("Test failure");
+      }
+    });
+  }
 });
