@@ -1,10 +1,14 @@
 trigger:
-- master
+  batch: true
+  branches:
+    include:
+    - master
 
 pr:
   branches:
-  - master
-  - v4x
+    include:
+    - master
+    - v4x
 
 jobs:
 - job: Build
