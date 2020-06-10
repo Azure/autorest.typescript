@@ -1,6 +1,11 @@
 trigger:
 - master
 
+pr:
+  branches:
+  - master
+  - v4x
+
 jobs:
 - job: Build
   displayName: "Build, regenerate and test on $(node.version)"
