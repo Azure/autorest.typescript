@@ -19,7 +19,10 @@ jobs:
     displayName: 'Install Node 10'
     inputs:
       versionSpec: 10.x
-  - script: npm install
+  - task: Npm@1
+    displayName: 'Run npm install'
+    inputs:
+      command: install
   - task: Npm@1
     displayName: 'Run npm pack'
     inputs:
