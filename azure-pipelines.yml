@@ -41,11 +41,14 @@ jobs:
       targets: regenerate
       verbose: false
   - task: CopyFiles@2
-    displayName: 'Copy Files to: drop'
+    displayName: 'Copy Package to: drop'
     inputs:
-      Contents: |
-        '*.tgz'
-        'package.json'
+      Contents: '*.tgz'
+      TargetFolder: drop
+  - task: CopyFiles@2
+    displayName: 'Copy Package.json to: drop'
+    inputs:
+      Contents: 'package.json'
       TargetFolder: drop
   - task: PublishBuildArtifacts@1
     inputs:
