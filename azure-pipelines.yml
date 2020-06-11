@@ -43,7 +43,9 @@ jobs:
   - task: CopyFiles@2
     displayName: 'Copy Files to: drop'
     inputs:
-      Contents: '*.tgz'
+      Contents: |
+        '*.tgz'
+        'package.json'
       TargetFolder: drop
   - task: PublishBuildArtifacts@1
     inputs:
