@@ -1,7 +1,9 @@
-import { checkEverything } from "@ts-common/azure-js-dev-tools";
+import {
+  checkForSkipCalls,
+  checkForOnlyCalls,
+} from "@ts-common/azure-js-dev-tools";
 
-checkEverything({
-  checkForSkipCallsOptions: {
-    skipIsWarning: true
-  }
+checkForOnlyCalls();
+checkForSkipCalls({
+  skipIsWarning: true,
 });
