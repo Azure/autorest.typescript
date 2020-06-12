@@ -6,7 +6,7 @@
 #    the artifacts from a specific build. This is configured in the Release Pipeline UI
 #
 # This Script should be included manually in the Release Pipeline definition as a "Command Line" task of a "Stage"
-# for example: https://dev.azure.com/azure-sdk/internal/_release?definitionId=89&view=mine&_a=releases
+# for example: https://dev.azure.com/azure-sdk/internal/_release?definitionId=89
 
 DROP_FOLDER=$ARTIFACT_FOLDER/drop
 ls $ARTIFACT_FOLDER
