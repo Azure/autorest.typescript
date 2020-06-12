@@ -320,9 +320,9 @@ namespace AutoRest.TypeScript.Model
                 {
                     string discriminatorField = polymorphicTypes.ElementAt(i).SerializedName;
                     var polymorphicType = polymorphicTypes.ElementAt(i) as CompositeType;
-                    if (polymorphicType.BaseModelType != null)
+                    if (polymorphicType.BaseModelType != null && string.IsNullOrWhiteSpace(polymorphicType.PolymorphicDiscriminator))
                     {
-                        while (polymorphicType.BaseModelType != null)
+                        while (polymorphicType.BaseModelType != null && string.IsNullOrWhiteSpace(polymorphicType.PolymorphicDiscriminator))
                         {
                             polymorphicType = polymorphicType.BaseModelType;
                         }
