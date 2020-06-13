@@ -1,5 +1,15 @@
 trigger:
-- master
+  batch: true
+  branches:
+    include:
+    - master
+    - v4x
+
+pr:
+  branches:
+    include:
+    - master
+    - v4x
 
 jobs:
 - job: Build
@@ -35,6 +45,11 @@ jobs:
     displayName: 'Copy Files to: drop'
     inputs:
       Contents: '*.tgz'
+      TargetFolder: drop
+  - task: CopyFiles@2
+    displayName: 'Copy Package.json to: drop'
+    inputs:
+      Contents: 'package.json'
       TargetFolder: drop
   - task: PublishBuildArtifacts@1
     inputs:

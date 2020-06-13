@@ -292,6 +292,7 @@ __pycache__/
 
 *.tgz
 
+drop/
 package/
 *.tar
 *.tgz
