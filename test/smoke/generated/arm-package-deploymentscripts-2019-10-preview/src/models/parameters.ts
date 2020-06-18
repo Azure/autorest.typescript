@@ -6,10 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import {
+  OperationParameter,
+  OperationURLParameter,
+  OperationQueryParameter
+} from "@azure/core-http";
+import {
+  DeploymentScript as DeploymentScriptMapper,
+  DeploymentScriptUpdateParameter as DeploymentScriptUpdateParameterMapper
+} from "../models/mappers";
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -21,12 +28,12 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const deploymentScript: coreHttp.OperationParameter = {
+export const deploymentScript: OperationParameter = {
   parameterPath: "deploymentScript",
-  mapper: Mappers.DeploymentScript
+  mapper: DeploymentScriptMapper
 };
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -38,7 +45,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const subscriptionId: coreHttp.OperationURLParameter = {
+export const subscriptionId: OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     serializedName: "subscriptionId",
@@ -49,7 +56,7 @@ export const subscriptionId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const resourceGroupName: coreHttp.OperationURLParameter = {
+export const resourceGroupName: OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     constraints: {
@@ -65,7 +72,7 @@ export const resourceGroupName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const scriptName: coreHttp.OperationURLParameter = {
+export const scriptName: OperationURLParameter = {
   parameterPath: "scriptName",
   mapper: {
     constraints: {
@@ -80,7 +87,7 @@ export const scriptName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const apiVersion: coreHttp.OperationQueryParameter = {
+export const apiVersion: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2019-10-01-preview",
@@ -92,12 +99,12 @@ export const apiVersion: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const deploymentScript1: coreHttp.OperationParameter = {
+export const deploymentScript1: OperationParameter = {
   parameterPath: ["options", "deploymentScript"],
-  mapper: Mappers.DeploymentScriptUpdateParameter
+  mapper: DeploymentScriptUpdateParameterMapper
 };
 
-export const tail: coreHttp.OperationQueryParameter = {
+export const tail: OperationQueryParameter = {
   parameterPath: ["options", "tail"],
   mapper: {
     serializedName: "tail",
@@ -107,7 +114,7 @@ export const tail: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const nextLink: coreHttp.OperationURLParameter = {
+export const nextLink: OperationURLParameter = {
   parameterPath: "nextLink",
   mapper: {
     serializedName: "nextLink",

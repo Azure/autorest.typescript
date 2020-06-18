@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import { OperationParameter, OperationURLParameter } from "@azure/core-http";
+import { AzureMetricsDocument as AzureMetricsDocumentMapper } from "../models/mappers";
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -21,12 +21,12 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const body: coreHttp.OperationParameter = {
+export const body: OperationParameter = {
   parameterPath: "body",
-  mapper: Mappers.AzureMetricsDocument
+  mapper: AzureMetricsDocumentMapper
 };
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -38,7 +38,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const contentType1: coreHttp.OperationParameter = {
+export const contentType1: OperationParameter = {
   parameterPath: "contentType",
   mapper: {
     serializedName: "Content-Type",
@@ -49,7 +49,7 @@ export const contentType1: coreHttp.OperationParameter = {
   }
 };
 
-export const contentLength: coreHttp.OperationParameter = {
+export const contentLength: OperationParameter = {
   parameterPath: "contentLength",
   mapper: {
     serializedName: "Content-Length",
@@ -60,7 +60,7 @@ export const contentLength: coreHttp.OperationParameter = {
   }
 };
 
-export const authorization: coreHttp.OperationParameter = {
+export const authorization: OperationParameter = {
   parameterPath: "authorization",
   mapper: {
     serializedName: "Authorization",
@@ -71,7 +71,7 @@ export const authorization: coreHttp.OperationParameter = {
   }
 };
 
-export const subscriptionId: coreHttp.OperationURLParameter = {
+export const subscriptionId: OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     serializedName: "subscriptionId",
@@ -82,7 +82,7 @@ export const subscriptionId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const resourceGroupName: coreHttp.OperationURLParameter = {
+export const resourceGroupName: OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     serializedName: "resourceGroupName",
@@ -93,7 +93,7 @@ export const resourceGroupName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const resourceProvider: coreHttp.OperationURLParameter = {
+export const resourceProvider: OperationURLParameter = {
   parameterPath: "resourceProvider",
   mapper: {
     serializedName: "resourceProvider",
@@ -104,7 +104,7 @@ export const resourceProvider: coreHttp.OperationURLParameter = {
   }
 };
 
-export const resourceTypeName: coreHttp.OperationURLParameter = {
+export const resourceTypeName: OperationURLParameter = {
   parameterPath: "resourceTypeName",
   mapper: {
     serializedName: "resourceTypeName",
@@ -115,7 +115,7 @@ export const resourceTypeName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const resourceName: coreHttp.OperationURLParameter = {
+export const resourceName: OperationURLParameter = {
   parameterPath: "resourceName",
   mapper: {
     serializedName: "resourceName",

@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import { OperationParameter, OperationURLParameter } from "@azure/core-http";
+import { SourcePath as SourcePathMapper } from "../models/mappers";
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: "contentType",
   mapper: {
     serializedName: "Content-Type",
@@ -26,7 +26,7 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const input: coreHttp.OperationParameter = {
+export const input: OperationParameter = {
   parameterPath: "input",
   mapper: {
     serializedName: "input",
@@ -37,7 +37,7 @@ export const input: coreHttp.OperationParameter = {
   }
 };
 
-export const contentType1: coreHttp.OperationParameter = {
+export const contentType1: OperationParameter = {
   parameterPath: "contentType",
   mapper: {
     defaultValue: "application/json",
@@ -49,12 +49,12 @@ export const contentType1: coreHttp.OperationParameter = {
   }
 };
 
-export const input1: coreHttp.OperationParameter = {
+export const input1: OperationParameter = {
   parameterPath: ["options", "input"],
-  mapper: Mappers.SourcePath
+  mapper: SourcePathMapper
 };
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -66,7 +66,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const contentType2: coreHttp.OperationParameter = {
+export const contentType2: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "text/plain",
@@ -78,7 +78,7 @@ export const contentType2: coreHttp.OperationParameter = {
   }
 };
 
-export const input2: coreHttp.OperationParameter = {
+export const input2: OperationParameter = {
   parameterPath: "input",
   mapper: {
     serializedName: "input",

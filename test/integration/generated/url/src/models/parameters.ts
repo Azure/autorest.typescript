@@ -6,10 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import {
+  OperationURLParameter,
+  OperationQueryParameter,
+  QueryCollectionFormat
+} from "@azure/core-http";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -21,7 +24,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const boolPath: coreHttp.OperationURLParameter = {
+export const boolPath: OperationURLParameter = {
   parameterPath: "boolPath",
   mapper: {
     defaultValue: true,
@@ -33,7 +36,7 @@ export const boolPath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const boolPath1: coreHttp.OperationURLParameter = {
+export const boolPath1: OperationURLParameter = {
   parameterPath: "boolPath",
   mapper: {
     defaultValue: false,
@@ -45,7 +48,7 @@ export const boolPath1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const intPath: coreHttp.OperationURLParameter = {
+export const intPath: OperationURLParameter = {
   parameterPath: "intPath",
   mapper: {
     defaultValue: 1000000,
@@ -57,7 +60,7 @@ export const intPath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const intPath1: coreHttp.OperationURLParameter = {
+export const intPath1: OperationURLParameter = {
   parameterPath: "intPath",
   mapper: {
     defaultValue: -1000000,
@@ -69,7 +72,7 @@ export const intPath1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const longPath: coreHttp.OperationURLParameter = {
+export const longPath: OperationURLParameter = {
   parameterPath: "longPath",
   mapper: {
     defaultValue: 10000000000,
@@ -81,7 +84,7 @@ export const longPath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const longPath1: coreHttp.OperationURLParameter = {
+export const longPath1: OperationURLParameter = {
   parameterPath: "longPath",
   mapper: {
     defaultValue: -10000000000,
@@ -93,7 +96,7 @@ export const longPath1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const floatPath: coreHttp.OperationURLParameter = {
+export const floatPath: OperationURLParameter = {
   parameterPath: "floatPath",
   mapper: {
     defaultValue: 103400000000000000000,
@@ -105,7 +108,7 @@ export const floatPath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const floatPath1: coreHttp.OperationURLParameter = {
+export const floatPath1: OperationURLParameter = {
   parameterPath: "floatPath",
   mapper: {
     defaultValue: -1.034e-20,
@@ -117,7 +120,7 @@ export const floatPath1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const doublePath: coreHttp.OperationURLParameter = {
+export const doublePath: OperationURLParameter = {
   parameterPath: "doublePath",
   mapper: {
     defaultValue: 9999999.999,
@@ -129,7 +132,7 @@ export const doublePath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const doublePath1: coreHttp.OperationURLParameter = {
+export const doublePath1: OperationURLParameter = {
   parameterPath: "doublePath",
   mapper: {
     defaultValue: -9999999.999,
@@ -141,7 +144,7 @@ export const doublePath1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const stringPath: coreHttp.OperationURLParameter = {
+export const stringPath: OperationURLParameter = {
   parameterPath: "stringPath",
   mapper: {
     defaultValue: "啊齄丂狛狜隣郎隣兀﨩",
@@ -153,7 +156,7 @@ export const stringPath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const stringPath1: coreHttp.OperationURLParameter = {
+export const stringPath1: OperationURLParameter = {
   parameterPath: "stringPath",
   mapper: {
     defaultValue: "begin!*'();:@ &=+$,/?#[]end",
@@ -165,7 +168,7 @@ export const stringPath1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const stringPath2: coreHttp.OperationURLParameter = {
+export const stringPath2: OperationURLParameter = {
   parameterPath: "stringPath",
   mapper: {
     defaultValue: "begin!*'();:@&=+$,end",
@@ -178,7 +181,7 @@ export const stringPath2: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const stringPath3: coreHttp.OperationURLParameter = {
+export const stringPath3: OperationURLParameter = {
   parameterPath: "stringPath",
   mapper: {
     defaultValue: "",
@@ -190,7 +193,7 @@ export const stringPath3: coreHttp.OperationURLParameter = {
   }
 };
 
-export const stringPath4: coreHttp.OperationURLParameter = {
+export const stringPath4: OperationURLParameter = {
   parameterPath: "stringPath",
   mapper: {
     serializedName: "stringPath",
@@ -201,7 +204,7 @@ export const stringPath4: coreHttp.OperationURLParameter = {
   }
 };
 
-export const enumPath: coreHttp.OperationURLParameter = {
+export const enumPath: OperationURLParameter = {
   parameterPath: "enumPath",
   mapper: {
     serializedName: "enumPath",
@@ -213,7 +216,7 @@ export const enumPath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const bytePath: coreHttp.OperationURLParameter = {
+export const bytePath: OperationURLParameter = {
   parameterPath: "bytePath",
   mapper: {
     serializedName: "bytePath",
@@ -224,7 +227,7 @@ export const bytePath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const bytePath1: coreHttp.OperationURLParameter = {
+export const bytePath1: OperationURLParameter = {
   parameterPath: "bytePath",
   mapper: {
     defaultValue: new Uint8Array(0),
@@ -236,7 +239,7 @@ export const bytePath1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const datePath: coreHttp.OperationURLParameter = {
+export const datePath: OperationURLParameter = {
   parameterPath: "datePath",
   mapper: {
     defaultValue: "2012-01-01",
@@ -248,7 +251,7 @@ export const datePath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const datePath1: coreHttp.OperationURLParameter = {
+export const datePath1: OperationURLParameter = {
   parameterPath: "datePath",
   mapper: {
     serializedName: "datePath",
@@ -259,7 +262,7 @@ export const datePath1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const dateTimePath: coreHttp.OperationURLParameter = {
+export const dateTimePath: OperationURLParameter = {
   parameterPath: "dateTimePath",
   mapper: {
     defaultValue: "2012-01-01T01:01:01Z",
@@ -271,7 +274,7 @@ export const dateTimePath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const dateTimePath1: coreHttp.OperationURLParameter = {
+export const dateTimePath1: OperationURLParameter = {
   parameterPath: "dateTimePath",
   mapper: {
     serializedName: "dateTimePath",
@@ -282,7 +285,7 @@ export const dateTimePath1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const base64UrlPath: coreHttp.OperationURLParameter = {
+export const base64UrlPath: OperationURLParameter = {
   parameterPath: "base64UrlPath",
   mapper: {
     serializedName: "base64UrlPath",
@@ -293,7 +296,7 @@ export const base64UrlPath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const arrayPath: coreHttp.OperationURLParameter = {
+export const arrayPath: OperationURLParameter = {
   parameterPath: "arrayPath",
   mapper: {
     serializedName: "arrayPath",
@@ -305,7 +308,7 @@ export const arrayPath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const unixTimeUrlPath: coreHttp.OperationURLParameter = {
+export const unixTimeUrlPath: OperationURLParameter = {
   parameterPath: "unixTimeUrlPath",
   mapper: {
     serializedName: "unixTimeUrlPath",
@@ -316,7 +319,7 @@ export const unixTimeUrlPath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const boolQuery: coreHttp.OperationQueryParameter = {
+export const boolQuery: OperationQueryParameter = {
   parameterPath: "boolQuery",
   mapper: {
     defaultValue: true,
@@ -328,7 +331,7 @@ export const boolQuery: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const boolQuery1: coreHttp.OperationQueryParameter = {
+export const boolQuery1: OperationQueryParameter = {
   parameterPath: "boolQuery",
   mapper: {
     defaultValue: false,
@@ -340,7 +343,7 @@ export const boolQuery1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const boolQuery2: coreHttp.OperationQueryParameter = {
+export const boolQuery2: OperationQueryParameter = {
   parameterPath: ["options", "boolQuery"],
   mapper: {
     serializedName: "boolQuery",
@@ -350,7 +353,7 @@ export const boolQuery2: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const intQuery: coreHttp.OperationQueryParameter = {
+export const intQuery: OperationQueryParameter = {
   parameterPath: "intQuery",
   mapper: {
     defaultValue: 1000000,
@@ -362,7 +365,7 @@ export const intQuery: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const intQuery1: coreHttp.OperationQueryParameter = {
+export const intQuery1: OperationQueryParameter = {
   parameterPath: "intQuery",
   mapper: {
     defaultValue: -1000000,
@@ -374,7 +377,7 @@ export const intQuery1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const intQuery2: coreHttp.OperationQueryParameter = {
+export const intQuery2: OperationQueryParameter = {
   parameterPath: ["options", "intQuery"],
   mapper: {
     serializedName: "intQuery",
@@ -384,7 +387,7 @@ export const intQuery2: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const longQuery: coreHttp.OperationQueryParameter = {
+export const longQuery: OperationQueryParameter = {
   parameterPath: "longQuery",
   mapper: {
     defaultValue: 10000000000,
@@ -396,7 +399,7 @@ export const longQuery: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const longQuery1: coreHttp.OperationQueryParameter = {
+export const longQuery1: OperationQueryParameter = {
   parameterPath: "longQuery",
   mapper: {
     defaultValue: -10000000000,
@@ -408,7 +411,7 @@ export const longQuery1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const longQuery2: coreHttp.OperationQueryParameter = {
+export const longQuery2: OperationQueryParameter = {
   parameterPath: ["options", "longQuery"],
   mapper: {
     serializedName: "longQuery",
@@ -418,7 +421,7 @@ export const longQuery2: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const floatQuery: coreHttp.OperationQueryParameter = {
+export const floatQuery: OperationQueryParameter = {
   parameterPath: "floatQuery",
   mapper: {
     defaultValue: 103400000000000000000,
@@ -430,7 +433,7 @@ export const floatQuery: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const floatQuery1: coreHttp.OperationQueryParameter = {
+export const floatQuery1: OperationQueryParameter = {
   parameterPath: "floatQuery",
   mapper: {
     defaultValue: -1.034e-20,
@@ -442,7 +445,7 @@ export const floatQuery1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const floatQuery2: coreHttp.OperationQueryParameter = {
+export const floatQuery2: OperationQueryParameter = {
   parameterPath: ["options", "floatQuery"],
   mapper: {
     serializedName: "floatQuery",
@@ -452,7 +455,7 @@ export const floatQuery2: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const doubleQuery: coreHttp.OperationQueryParameter = {
+export const doubleQuery: OperationQueryParameter = {
   parameterPath: "doubleQuery",
   mapper: {
     defaultValue: 9999999.999,
@@ -464,7 +467,7 @@ export const doubleQuery: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const doubleQuery1: coreHttp.OperationQueryParameter = {
+export const doubleQuery1: OperationQueryParameter = {
   parameterPath: "doubleQuery",
   mapper: {
     defaultValue: -9999999.999,
@@ -476,7 +479,7 @@ export const doubleQuery1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const doubleQuery2: coreHttp.OperationQueryParameter = {
+export const doubleQuery2: OperationQueryParameter = {
   parameterPath: ["options", "doubleQuery"],
   mapper: {
     serializedName: "doubleQuery",
@@ -486,7 +489,7 @@ export const doubleQuery2: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const stringQuery: coreHttp.OperationQueryParameter = {
+export const stringQuery: OperationQueryParameter = {
   parameterPath: "stringQuery",
   mapper: {
     defaultValue: "啊齄丂狛狜隣郎隣兀﨩",
@@ -498,7 +501,7 @@ export const stringQuery: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const stringQuery1: coreHttp.OperationQueryParameter = {
+export const stringQuery1: OperationQueryParameter = {
   parameterPath: "stringQuery",
   mapper: {
     defaultValue: "begin!*'();:@ &=+$,/?#[]end",
@@ -510,7 +513,7 @@ export const stringQuery1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const stringQuery2: coreHttp.OperationQueryParameter = {
+export const stringQuery2: OperationQueryParameter = {
   parameterPath: "stringQuery",
   mapper: {
     defaultValue: "",
@@ -522,7 +525,7 @@ export const stringQuery2: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const stringQuery3: coreHttp.OperationQueryParameter = {
+export const stringQuery3: OperationQueryParameter = {
   parameterPath: ["options", "stringQuery"],
   mapper: {
     serializedName: "stringQuery",
@@ -532,7 +535,7 @@ export const stringQuery3: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const enumQuery: coreHttp.OperationQueryParameter = {
+export const enumQuery: OperationQueryParameter = {
   parameterPath: ["options", "enumQuery"],
   mapper: {
     serializedName: "enumQuery",
@@ -543,7 +546,7 @@ export const enumQuery: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const byteQuery: coreHttp.OperationQueryParameter = {
+export const byteQuery: OperationQueryParameter = {
   parameterPath: ["options", "byteQuery"],
   mapper: {
     serializedName: "byteQuery",
@@ -553,7 +556,7 @@ export const byteQuery: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const byteQuery1: coreHttp.OperationQueryParameter = {
+export const byteQuery1: OperationQueryParameter = {
   parameterPath: "byteQuery",
   mapper: {
     defaultValue: new Uint8Array(0),
@@ -565,7 +568,7 @@ export const byteQuery1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const dateQuery: coreHttp.OperationQueryParameter = {
+export const dateQuery: OperationQueryParameter = {
   parameterPath: "dateQuery",
   mapper: {
     defaultValue: "2012-01-01",
@@ -577,7 +580,7 @@ export const dateQuery: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const dateQuery1: coreHttp.OperationQueryParameter = {
+export const dateQuery1: OperationQueryParameter = {
   parameterPath: ["options", "dateQuery"],
   mapper: {
     serializedName: "dateQuery",
@@ -587,7 +590,7 @@ export const dateQuery1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const dateTimeQuery: coreHttp.OperationQueryParameter = {
+export const dateTimeQuery: OperationQueryParameter = {
   parameterPath: "dateTimeQuery",
   mapper: {
     defaultValue: "2012-01-01T01:01:01Z",
@@ -599,7 +602,7 @@ export const dateTimeQuery: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const dateTimeQuery1: coreHttp.OperationQueryParameter = {
+export const dateTimeQuery1: OperationQueryParameter = {
   parameterPath: ["options", "dateTimeQuery"],
   mapper: {
     serializedName: "dateTimeQuery",
@@ -609,7 +612,7 @@ export const dateTimeQuery1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const arrayQuery: coreHttp.OperationQueryParameter = {
+export const arrayQuery: OperationQueryParameter = {
   parameterPath: ["options", "arrayQuery"],
   mapper: {
     serializedName: "arrayQuery",
@@ -618,10 +621,10 @@ export const arrayQuery: coreHttp.OperationQueryParameter = {
       element: { type: { name: "String" } }
     }
   },
-  collectionFormat: coreHttp.QueryCollectionFormat.Csv
+  collectionFormat: QueryCollectionFormat.Csv
 };
 
-export const arrayQuery1: coreHttp.OperationQueryParameter = {
+export const arrayQuery1: OperationQueryParameter = {
   parameterPath: ["options", "arrayQuery"],
   mapper: {
     serializedName: "arrayQuery",
@@ -630,10 +633,10 @@ export const arrayQuery1: coreHttp.OperationQueryParameter = {
       element: { type: { name: "String" } }
     }
   },
-  collectionFormat: coreHttp.QueryCollectionFormat.Ssv
+  collectionFormat: QueryCollectionFormat.Ssv
 };
 
-export const arrayQuery2: coreHttp.OperationQueryParameter = {
+export const arrayQuery2: OperationQueryParameter = {
   parameterPath: ["options", "arrayQuery"],
   mapper: {
     serializedName: "arrayQuery",
@@ -642,10 +645,10 @@ export const arrayQuery2: coreHttp.OperationQueryParameter = {
       element: { type: { name: "String" } }
     }
   },
-  collectionFormat: coreHttp.QueryCollectionFormat.Tsv
+  collectionFormat: QueryCollectionFormat.Tsv
 };
 
-export const arrayQuery3: coreHttp.OperationQueryParameter = {
+export const arrayQuery3: OperationQueryParameter = {
   parameterPath: ["options", "arrayQuery"],
   mapper: {
     serializedName: "arrayQuery",
@@ -654,10 +657,10 @@ export const arrayQuery3: coreHttp.OperationQueryParameter = {
       element: { type: { name: "String" } }
     }
   },
-  collectionFormat: coreHttp.QueryCollectionFormat.Pipes
+  collectionFormat: QueryCollectionFormat.Pipes
 };
 
-export const pathItemStringPath: coreHttp.OperationURLParameter = {
+export const pathItemStringPath: OperationURLParameter = {
   parameterPath: "pathItemStringPath",
   mapper: {
     serializedName: "pathItemStringPath",
@@ -668,7 +671,7 @@ export const pathItemStringPath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const pathItemStringQuery: coreHttp.OperationQueryParameter = {
+export const pathItemStringQuery: OperationQueryParameter = {
   parameterPath: ["options", "pathItemStringQuery"],
   mapper: {
     serializedName: "pathItemStringQuery",
@@ -678,7 +681,7 @@ export const pathItemStringQuery: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const globalStringPath: coreHttp.OperationURLParameter = {
+export const globalStringPath: OperationURLParameter = {
   parameterPath: "globalStringPath",
   mapper: {
     serializedName: "globalStringPath",
@@ -689,7 +692,7 @@ export const globalStringPath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const globalStringQuery: coreHttp.OperationQueryParameter = {
+export const globalStringQuery: OperationQueryParameter = {
   parameterPath: "globalStringQuery",
   mapper: {
     serializedName: "globalStringQuery",
@@ -699,7 +702,7 @@ export const globalStringQuery: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const localStringPath: coreHttp.OperationURLParameter = {
+export const localStringPath: OperationURLParameter = {
   parameterPath: "localStringPath",
   mapper: {
     serializedName: "localStringPath",
@@ -710,7 +713,7 @@ export const localStringPath: coreHttp.OperationURLParameter = {
   }
 };
 
-export const localStringQuery: coreHttp.OperationQueryParameter = {
+export const localStringQuery: OperationQueryParameter = {
   parameterPath: ["options", "localStringQuery"],
   mapper: {
     serializedName: "localStringQuery",

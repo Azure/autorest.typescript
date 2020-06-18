@@ -6,10 +6,23 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import {
+  OperationURLParameter,
+  OperationQueryParameter,
+  OperationParameter
+} from "@azure/core-http";
+import {
+  Deployment as DeploymentMapper,
+  ScopedDeployment as ScopedDeploymentMapper,
+  DeploymentWhatIf as DeploymentWhatIfMapper,
+  ResourcesMoveInfo as ResourcesMoveInfoMapper,
+  GenericResource as GenericResourceMapper,
+  ResourceGroup as ResourceGroupMapper,
+  ResourceGroupPatchable as ResourceGroupPatchableMapper,
+  ExportTemplateRequest as ExportTemplateRequestMapper
+} from "../models/mappers";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -21,7 +34,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const apiVersion: coreHttp.OperationQueryParameter = {
+export const apiVersion: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2019-08-01",
@@ -33,7 +46,7 @@ export const apiVersion: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const nextLink: coreHttp.OperationURLParameter = {
+export const nextLink: OperationURLParameter = {
   parameterPath: "nextLink",
   mapper: {
     serializedName: "nextLink",
@@ -45,7 +58,7 @@ export const nextLink: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const scope: coreHttp.OperationURLParameter = {
+export const scope: OperationURLParameter = {
   parameterPath: "scope",
   mapper: {
     serializedName: "scope",
@@ -56,7 +69,7 @@ export const scope: coreHttp.OperationURLParameter = {
   }
 };
 
-export const deploymentName: coreHttp.OperationURLParameter = {
+export const deploymentName: OperationURLParameter = {
   parameterPath: "deploymentName",
   mapper: {
     constraints: {
@@ -72,7 +85,7 @@ export const deploymentName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -84,12 +97,12 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const parameters: coreHttp.OperationParameter = {
+export const parameters: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.Deployment
+  mapper: DeploymentMapper
 };
 
-export const filter: coreHttp.OperationQueryParameter = {
+export const filter: OperationQueryParameter = {
   parameterPath: ["options", "filter"],
   mapper: {
     serializedName: "$filter",
@@ -99,7 +112,7 @@ export const filter: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const top: coreHttp.OperationQueryParameter = {
+export const top: OperationQueryParameter = {
   parameterPath: ["options", "top"],
   mapper: {
     serializedName: "$top",
@@ -109,12 +122,12 @@ export const top: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const parameters1: coreHttp.OperationParameter = {
+export const parameters1: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.ScopedDeployment
+  mapper: ScopedDeploymentMapper
 };
 
-export const groupId: coreHttp.OperationURLParameter = {
+export const groupId: OperationURLParameter = {
   parameterPath: "groupId",
   mapper: {
     constraints: {
@@ -129,7 +142,7 @@ export const groupId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const subscriptionId: coreHttp.OperationURLParameter = {
+export const subscriptionId: OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     serializedName: "subscriptionId",
@@ -140,12 +153,12 @@ export const subscriptionId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters2: coreHttp.OperationParameter = {
+export const parameters2: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.DeploymentWhatIf
+  mapper: DeploymentWhatIfMapper
 };
 
-export const resourceGroupName: coreHttp.OperationURLParameter = {
+export const resourceGroupName: OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     constraints: {
@@ -161,7 +174,7 @@ export const resourceGroupName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const template: coreHttp.OperationParameter = {
+export const template: OperationParameter = {
   parameterPath: "template",
   mapper: {
     serializedName: "template",
@@ -172,7 +185,7 @@ export const template: coreHttp.OperationParameter = {
   }
 };
 
-export const resourceProviderNamespace: coreHttp.OperationURLParameter = {
+export const resourceProviderNamespace: OperationURLParameter = {
   parameterPath: "resourceProviderNamespace",
   mapper: {
     serializedName: "resourceProviderNamespace",
@@ -183,7 +196,7 @@ export const resourceProviderNamespace: coreHttp.OperationURLParameter = {
   }
 };
 
-export const expand: coreHttp.OperationQueryParameter = {
+export const expand: OperationQueryParameter = {
   parameterPath: ["options", "expand"],
   mapper: {
     serializedName: "$expand",
@@ -193,12 +206,12 @@ export const expand: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const parameters3: coreHttp.OperationParameter = {
+export const parameters3: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.ResourcesMoveInfo
+  mapper: ResourcesMoveInfoMapper
 };
 
-export const sourceResourceGroupName: coreHttp.OperationURLParameter = {
+export const sourceResourceGroupName: OperationURLParameter = {
   parameterPath: "sourceResourceGroupName",
   mapper: {
     constraints: {
@@ -214,7 +227,7 @@ export const sourceResourceGroupName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parentResourcePath: coreHttp.OperationURLParameter = {
+export const parentResourcePath: OperationURLParameter = {
   parameterPath: "parentResourcePath",
   mapper: {
     serializedName: "parentResourcePath",
@@ -226,7 +239,7 @@ export const parentResourcePath: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const resourceType: coreHttp.OperationURLParameter = {
+export const resourceType: OperationURLParameter = {
   parameterPath: "resourceType",
   mapper: {
     serializedName: "resourceType",
@@ -238,7 +251,7 @@ export const resourceType: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const resourceName: coreHttp.OperationURLParameter = {
+export const resourceName: OperationURLParameter = {
   parameterPath: "resourceName",
   mapper: {
     serializedName: "resourceName",
@@ -249,7 +262,7 @@ export const resourceName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const apiVersion1: coreHttp.OperationQueryParameter = {
+export const apiVersion1: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     serializedName: "api-version",
@@ -260,12 +273,12 @@ export const apiVersion1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const parameters4: coreHttp.OperationParameter = {
+export const parameters4: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.GenericResource
+  mapper: GenericResourceMapper
 };
 
-export const resourceId: coreHttp.OperationURLParameter = {
+export const resourceId: OperationURLParameter = {
   parameterPath: "resourceId",
   mapper: {
     serializedName: "resourceId",
@@ -277,22 +290,22 @@ export const resourceId: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const parameters5: coreHttp.OperationParameter = {
+export const parameters5: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.ResourceGroup
+  mapper: ResourceGroupMapper
 };
 
-export const parameters6: coreHttp.OperationParameter = {
+export const parameters6: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.ResourceGroupPatchable
+  mapper: ResourceGroupPatchableMapper
 };
 
-export const parameters7: coreHttp.OperationParameter = {
+export const parameters7: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.ExportTemplateRequest
+  mapper: ExportTemplateRequestMapper
 };
 
-export const tagName: coreHttp.OperationURLParameter = {
+export const tagName: OperationURLParameter = {
   parameterPath: "tagName",
   mapper: {
     serializedName: "tagName",
@@ -303,7 +316,7 @@ export const tagName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const tagValue: coreHttp.OperationURLParameter = {
+export const tagValue: OperationURLParameter = {
   parameterPath: "tagValue",
   mapper: {
     serializedName: "tagValue",
@@ -314,7 +327,7 @@ export const tagValue: coreHttp.OperationURLParameter = {
   }
 };
 
-export const operationId: coreHttp.OperationURLParameter = {
+export const operationId: OperationURLParameter = {
   parameterPath: "operationId",
   mapper: {
     serializedName: "operationId",

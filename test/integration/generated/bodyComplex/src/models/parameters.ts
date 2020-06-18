@@ -6,10 +6,33 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import {
+  OperationURLParameter,
+  OperationParameter,
+  OperationQueryParameter
+} from "@azure/core-http";
+import {
+  Basic as BasicMapper,
+  IntWrapper as IntWrapperMapper,
+  LongWrapper as LongWrapperMapper,
+  FloatWrapper as FloatWrapperMapper,
+  DoubleWrapper as DoubleWrapperMapper,
+  BooleanWrapper as BooleanWrapperMapper,
+  StringWrapper as StringWrapperMapper,
+  DateWrapper as DateWrapperMapper,
+  DatetimeWrapper as DatetimeWrapperMapper,
+  Datetimerfc1123Wrapper as Datetimerfc1123WrapperMapper,
+  DurationWrapper as DurationWrapperMapper,
+  ByteWrapper as ByteWrapperMapper,
+  ArrayWrapper as ArrayWrapperMapper,
+  DictionaryWrapper as DictionaryWrapperMapper,
+  Siamese as SiameseMapper,
+  Fish as FishMapper,
+  Salmon as SalmonMapper,
+  ReadonlyObj as ReadonlyObjMapper
+} from "../models/mappers";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -21,7 +44,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -33,12 +56,12 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const complexBody: coreHttp.OperationParameter = {
+export const complexBody: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.Basic
+  mapper: BasicMapper
 };
 
-export const apiVersion: coreHttp.OperationQueryParameter = {
+export const apiVersion: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2016-02-29",
@@ -50,87 +73,87 @@ export const apiVersion: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const complexBody1: coreHttp.OperationParameter = {
+export const complexBody1: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.IntWrapper
+  mapper: IntWrapperMapper
 };
 
-export const complexBody2: coreHttp.OperationParameter = {
+export const complexBody2: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.LongWrapper
+  mapper: LongWrapperMapper
 };
 
-export const complexBody3: coreHttp.OperationParameter = {
+export const complexBody3: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.FloatWrapper
+  mapper: FloatWrapperMapper
 };
 
-export const complexBody4: coreHttp.OperationParameter = {
+export const complexBody4: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.DoubleWrapper
+  mapper: DoubleWrapperMapper
 };
 
-export const complexBody5: coreHttp.OperationParameter = {
+export const complexBody5: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.BooleanWrapper
+  mapper: BooleanWrapperMapper
 };
 
-export const complexBody6: coreHttp.OperationParameter = {
+export const complexBody6: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.StringWrapper
+  mapper: StringWrapperMapper
 };
 
-export const complexBody7: coreHttp.OperationParameter = {
+export const complexBody7: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.DateWrapper
+  mapper: DateWrapperMapper
 };
 
-export const complexBody8: coreHttp.OperationParameter = {
+export const complexBody8: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.DatetimeWrapper
+  mapper: DatetimeWrapperMapper
 };
 
-export const complexBody9: coreHttp.OperationParameter = {
+export const complexBody9: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.Datetimerfc1123Wrapper
+  mapper: Datetimerfc1123WrapperMapper
 };
 
-export const complexBody10: coreHttp.OperationParameter = {
+export const complexBody10: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.DurationWrapper
+  mapper: DurationWrapperMapper
 };
 
-export const complexBody11: coreHttp.OperationParameter = {
+export const complexBody11: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.ByteWrapper
+  mapper: ByteWrapperMapper
 };
 
-export const complexBody12: coreHttp.OperationParameter = {
+export const complexBody12: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.ArrayWrapper
+  mapper: ArrayWrapperMapper
 };
 
-export const complexBody13: coreHttp.OperationParameter = {
+export const complexBody13: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.DictionaryWrapper
+  mapper: DictionaryWrapperMapper
 };
 
-export const complexBody14: coreHttp.OperationParameter = {
+export const complexBody14: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.Siamese
+  mapper: SiameseMapper
 };
 
-export const complexBody15: coreHttp.OperationParameter = {
+export const complexBody15: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.Fish
+  mapper: FishMapper
 };
 
-export const complexBody16: coreHttp.OperationParameter = {
+export const complexBody16: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.Salmon
+  mapper: SalmonMapper
 };
 
-export const complexBody17: coreHttp.OperationParameter = {
+export const complexBody17: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Mappers.ReadonlyObj
+  mapper: ReadonlyObjMapper
 };

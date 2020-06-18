@@ -6,10 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import { OperationURLParameter, OperationParameter } from "@azure/core-http";
+import {
+  Horse as HorseMapper,
+  Pet as PetMapper,
+  Feline as FelineMapper,
+  Cat as CatMapper,
+  Kitten as KittenMapper
+} from "../models/mappers";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -21,7 +27,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -33,27 +39,27 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const horse: coreHttp.OperationParameter = {
+export const horse: OperationParameter = {
   parameterPath: "horse",
-  mapper: Mappers.Horse
+  mapper: HorseMapper
 };
 
-export const pet: coreHttp.OperationParameter = {
+export const pet: OperationParameter = {
   parameterPath: "pet",
-  mapper: Mappers.Pet
+  mapper: PetMapper
 };
 
-export const feline: coreHttp.OperationParameter = {
+export const feline: OperationParameter = {
   parameterPath: "feline",
-  mapper: Mappers.Feline
+  mapper: FelineMapper
 };
 
-export const cat: coreHttp.OperationParameter = {
+export const cat: OperationParameter = {
   parameterPath: "cat",
-  mapper: Mappers.Cat
+  mapper: CatMapper
 };
 
-export const kitten: coreHttp.OperationParameter = {
+export const kitten: OperationParameter = {
   parameterPath: "kitten",
-  mapper: Mappers.Kitten
+  mapper: KittenMapper
 };
