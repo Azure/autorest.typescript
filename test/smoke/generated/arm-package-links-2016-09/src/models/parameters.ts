@@ -6,10 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import {
+  OperationURLParameter,
+  OperationQueryParameter,
+  OperationParameter
+} from "@azure/core-http";
+import { ResourceLink as ResourceLinkMapper } from "../models/mappers";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -21,7 +25,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const apiVersion: coreHttp.OperationQueryParameter = {
+export const apiVersion: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2016-09-01",
@@ -33,7 +37,7 @@ export const apiVersion: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const nextLink: coreHttp.OperationURLParameter = {
+export const nextLink: OperationURLParameter = {
   parameterPath: "nextLink",
   mapper: {
     serializedName: "nextLink",
@@ -45,7 +49,7 @@ export const nextLink: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const linkId: coreHttp.OperationURLParameter = {
+export const linkId: OperationURLParameter = {
   parameterPath: "linkId",
   mapper: {
     serializedName: "linkId",
@@ -57,7 +61,7 @@ export const linkId: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -69,12 +73,12 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const parameters: coreHttp.OperationParameter = {
+export const parameters: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.ResourceLink
+  mapper: ResourceLinkMapper
 };
 
-export const filter: coreHttp.OperationQueryParameter = {
+export const filter: OperationQueryParameter = {
   parameterPath: ["options", "filter"],
   mapper: {
     serializedName: "$filter",
@@ -84,7 +88,7 @@ export const filter: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const subscriptionId: coreHttp.OperationURLParameter = {
+export const subscriptionId: OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     serializedName: "subscriptionId",
@@ -95,7 +99,7 @@ export const subscriptionId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const scope: coreHttp.OperationURLParameter = {
+export const scope: OperationURLParameter = {
   parameterPath: "scope",
   mapper: {
     serializedName: "scope",
@@ -107,7 +111,7 @@ export const scope: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const filter1: coreHttp.OperationQueryParameter = {
+export const filter1: OperationQueryParameter = {
   parameterPath: ["options", "filter"],
   mapper: {
     defaultValue: "atScope()",

@@ -6,10 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import {
+  OperationURLParameter,
+  OperationQueryParameter
+} from "@azure/core-http";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -21,7 +23,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const apiVersion: coreHttp.OperationQueryParameter = {
+export const apiVersion: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2015-12-01",
@@ -33,7 +35,7 @@ export const apiVersion: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const nextLink: coreHttp.OperationURLParameter = {
+export const nextLink: OperationURLParameter = {
   parameterPath: "nextLink",
   mapper: {
     serializedName: "nextLink",
@@ -45,7 +47,7 @@ export const nextLink: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const subscriptionId: coreHttp.OperationURLParameter = {
+export const subscriptionId: OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     serializedName: "subscriptionId",
@@ -56,7 +58,7 @@ export const subscriptionId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const resourceProviderNamespace: coreHttp.OperationURLParameter = {
+export const resourceProviderNamespace: OperationURLParameter = {
   parameterPath: "resourceProviderNamespace",
   mapper: {
     serializedName: "resourceProviderNamespace",
@@ -67,7 +69,7 @@ export const resourceProviderNamespace: coreHttp.OperationURLParameter = {
   }
 };
 
-export const featureName: coreHttp.OperationURLParameter = {
+export const featureName: OperationURLParameter = {
   parameterPath: "featureName",
   mapper: {
     serializedName: "featureName",

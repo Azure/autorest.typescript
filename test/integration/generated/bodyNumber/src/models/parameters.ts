@@ -6,10 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import { OperationURLParameter, OperationParameter } from "@azure/core-http";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -21,7 +20,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -33,7 +32,7 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const numberBody: coreHttp.OperationParameter = {
+export const numberBody: OperationParameter = {
   parameterPath: "numberBody",
   mapper: {
     serializedName: "numberBody",
@@ -44,7 +43,7 @@ export const numberBody: coreHttp.OperationParameter = {
   }
 };
 
-export const numberBody1: coreHttp.OperationParameter = {
+export const numberBody1: OperationParameter = {
   parameterPath: "numberBody",
   mapper: {
     defaultValue: 99999999.99,
@@ -56,7 +55,7 @@ export const numberBody1: coreHttp.OperationParameter = {
   }
 };
 
-export const numberBody2: coreHttp.OperationParameter = {
+export const numberBody2: OperationParameter = {
   parameterPath: "numberBody",
   mapper: {
     defaultValue: -99999999.99,

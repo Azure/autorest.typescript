@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import { OperationURLParameter } from "@azure/core-http";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -20,7 +20,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const serverName: coreHttp.OperationURLParameter = {
+export const serverName: OperationURLParameter = {
   parameterPath: "serverName",
   mapper: {
     constraints: {

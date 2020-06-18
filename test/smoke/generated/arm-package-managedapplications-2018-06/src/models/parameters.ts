@@ -6,10 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import {
+  OperationURLParameter,
+  OperationQueryParameter,
+  OperationParameter
+} from "@azure/core-http";
+import {
+  Application as ApplicationMapper,
+  ApplicationDefinition as ApplicationDefinitionMapper
+} from "../models/mappers";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -21,7 +28,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const resourceGroupName: coreHttp.OperationURLParameter = {
+export const resourceGroupName: OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     constraints: {
@@ -37,7 +44,7 @@ export const resourceGroupName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const applicationName: coreHttp.OperationURLParameter = {
+export const applicationName: OperationURLParameter = {
   parameterPath: "applicationName",
   mapper: {
     constraints: {
@@ -52,7 +59,7 @@ export const applicationName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const apiVersion: coreHttp.OperationQueryParameter = {
+export const apiVersion: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2018-06-01",
@@ -64,7 +71,7 @@ export const apiVersion: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const subscriptionId: coreHttp.OperationURLParameter = {
+export const subscriptionId: OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     serializedName: "subscriptionId",
@@ -75,7 +82,7 @@ export const subscriptionId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -87,17 +94,17 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const parameters: coreHttp.OperationParameter = {
+export const parameters: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.Application
+  mapper: ApplicationMapper
 };
 
-export const parameters1: coreHttp.OperationParameter = {
+export const parameters1: OperationParameter = {
   parameterPath: ["options", "parameters"],
-  mapper: Mappers.Application
+  mapper: ApplicationMapper
 };
 
-export const applicationId: coreHttp.OperationURLParameter = {
+export const applicationId: OperationURLParameter = {
   parameterPath: "applicationId",
   mapper: {
     serializedName: "applicationId",
@@ -109,7 +116,7 @@ export const applicationId: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const nextLink: coreHttp.OperationURLParameter = {
+export const nextLink: OperationURLParameter = {
   parameterPath: "nextLink",
   mapper: {
     serializedName: "nextLink",
@@ -121,7 +128,7 @@ export const nextLink: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const applicationDefinitionName: coreHttp.OperationURLParameter = {
+export const applicationDefinitionName: OperationURLParameter = {
   parameterPath: "applicationDefinitionName",
   mapper: {
     constraints: {
@@ -136,12 +143,12 @@ export const applicationDefinitionName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters2: coreHttp.OperationParameter = {
+export const parameters2: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.ApplicationDefinition
+  mapper: ApplicationDefinitionMapper
 };
 
-export const applicationDefinitionId: coreHttp.OperationURLParameter = {
+export const applicationDefinitionId: OperationURLParameter = {
   parameterPath: "applicationDefinitionId",
   mapper: {
     serializedName: "applicationDefinitionId",

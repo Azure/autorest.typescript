@@ -6,10 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import { OperationParameter, OperationURLParameter } from "@azure/core-http";
+import {
+  Product as ProductMapper,
+  Sku as SkuMapper,
+  SubProduct as SubProductMapper
+} from "../models/mappers";
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -21,12 +25,12 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const product: coreHttp.OperationParameter = {
+export const product: OperationParameter = {
   parameterPath: ["options", "product"],
-  mapper: Mappers.Product
+  mapper: ProductMapper
 };
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -38,12 +42,12 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const sku: coreHttp.OperationParameter = {
+export const sku: OperationParameter = {
   parameterPath: ["options", "sku"],
-  mapper: Mappers.Sku
+  mapper: SkuMapper
 };
 
-export const product1: coreHttp.OperationParameter = {
+export const product1: OperationParameter = {
   parameterPath: ["options", "product"],
-  mapper: Mappers.SubProduct
+  mapper: SubProductMapper
 };

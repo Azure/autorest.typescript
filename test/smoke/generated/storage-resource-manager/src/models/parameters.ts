@@ -6,10 +6,34 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import {
+  OperationURLParameter,
+  OperationQueryParameter,
+  OperationParameter
+} from "@azure/core-http";
+import {
+  StorageAccountCheckNameAvailabilityParameters as StorageAccountCheckNameAvailabilityParametersMapper,
+  StorageAccountCreateParameters as StorageAccountCreateParametersMapper,
+  StorageAccountUpdateParameters as StorageAccountUpdateParametersMapper,
+  StorageAccountRegenerateKeyParameters as StorageAccountRegenerateKeyParametersMapper,
+  AccountSasParameters as AccountSasParametersMapper,
+  ServiceSasParameters as ServiceSasParametersMapper,
+  BlobRestoreParameters as BlobRestoreParametersMapper,
+  ManagementPolicy as ManagementPolicyMapper,
+  PrivateEndpointConnection as PrivateEndpointConnectionMapper,
+  ObjectReplicationPolicy as ObjectReplicationPolicyMapper,
+  EncryptionScope as EncryptionScopeMapper,
+  BlobServiceProperties as BlobServicePropertiesMapper,
+  BlobContainer as BlobContainerMapper,
+  LegalHold as LegalHoldMapper,
+  ImmutabilityPolicy as ImmutabilityPolicyMapper,
+  LeaseContainerRequest as LeaseContainerRequestMapper,
+  FileServiceProperties as FileServicePropertiesMapper,
+  FileShare as FileShareMapper,
+  DeletedShare as DeletedShareMapper
+} from "../models/mappers";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -21,7 +45,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const apiVersion: coreHttp.OperationQueryParameter = {
+export const apiVersion: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2019-06-01",
@@ -33,7 +57,7 @@ export const apiVersion: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const subscriptionId: coreHttp.OperationURLParameter = {
+export const subscriptionId: OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     constraints: {
@@ -47,7 +71,7 @@ export const subscriptionId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -59,17 +83,17 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const accountName: coreHttp.OperationParameter = {
+export const accountName: OperationParameter = {
   parameterPath: "accountName",
-  mapper: Mappers.StorageAccountCheckNameAvailabilityParameters
+  mapper: StorageAccountCheckNameAvailabilityParametersMapper
 };
 
-export const parameters: coreHttp.OperationParameter = {
+export const parameters: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.StorageAccountCreateParameters
+  mapper: StorageAccountCreateParametersMapper
 };
 
-export const resourceGroupName: coreHttp.OperationURLParameter = {
+export const resourceGroupName: OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     constraints: {
@@ -85,7 +109,7 @@ export const resourceGroupName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const accountName1: coreHttp.OperationURLParameter = {
+export const accountName1: OperationURLParameter = {
   parameterPath: "accountName",
   mapper: {
     constraints: {
@@ -100,7 +124,7 @@ export const accountName1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const expand: coreHttp.OperationQueryParameter = {
+export const expand: OperationQueryParameter = {
   parameterPath: ["options", "expand"],
   mapper: {
     serializedName: "$expand",
@@ -111,12 +135,12 @@ export const expand: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const parameters1: coreHttp.OperationParameter = {
+export const parameters1: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.StorageAccountUpdateParameters
+  mapper: StorageAccountUpdateParametersMapper
 };
 
-export const expand1: coreHttp.OperationQueryParameter = {
+export const expand1: OperationQueryParameter = {
   parameterPath: ["options", "expand"],
   mapper: {
     defaultValue: "kerb",
@@ -128,27 +152,27 @@ export const expand1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const regenerateKey: coreHttp.OperationParameter = {
+export const regenerateKey: OperationParameter = {
   parameterPath: "regenerateKey",
-  mapper: Mappers.StorageAccountRegenerateKeyParameters
+  mapper: StorageAccountRegenerateKeyParametersMapper
 };
 
-export const parameters2: coreHttp.OperationParameter = {
+export const parameters2: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.AccountSasParameters
+  mapper: AccountSasParametersMapper
 };
 
-export const parameters3: coreHttp.OperationParameter = {
+export const parameters3: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.ServiceSasParameters
+  mapper: ServiceSasParametersMapper
 };
 
-export const parameters4: coreHttp.OperationParameter = {
+export const parameters4: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.BlobRestoreParameters
+  mapper: BlobRestoreParametersMapper
 };
 
-export const nextLink: coreHttp.OperationURLParameter = {
+export const nextLink: OperationURLParameter = {
   parameterPath: "nextLink",
   mapper: {
     serializedName: "nextLink",
@@ -160,7 +184,7 @@ export const nextLink: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const location: coreHttp.OperationURLParameter = {
+export const location: OperationURLParameter = {
   parameterPath: "location",
   mapper: {
     serializedName: "location",
@@ -171,7 +195,7 @@ export const location: coreHttp.OperationURLParameter = {
   }
 };
 
-export const managementPolicyName: coreHttp.OperationURLParameter = {
+export const managementPolicyName: OperationURLParameter = {
   parameterPath: "managementPolicyName",
   mapper: {
     defaultValue: "default",
@@ -183,12 +207,12 @@ export const managementPolicyName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const properties: coreHttp.OperationParameter = {
+export const properties: OperationParameter = {
   parameterPath: "properties",
-  mapper: Mappers.ManagementPolicy
+  mapper: ManagementPolicyMapper
 };
 
-export const privateEndpointConnectionName: coreHttp.OperationURLParameter = {
+export const privateEndpointConnectionName: OperationURLParameter = {
   parameterPath: "privateEndpointConnectionName",
   mapper: {
     serializedName: "privateEndpointConnectionName",
@@ -199,12 +223,12 @@ export const privateEndpointConnectionName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const properties1: coreHttp.OperationParameter = {
+export const properties1: OperationParameter = {
   parameterPath: "properties",
-  mapper: Mappers.PrivateEndpointConnection
+  mapper: PrivateEndpointConnectionMapper
 };
 
-export const objectReplicationPolicyId: coreHttp.OperationURLParameter = {
+export const objectReplicationPolicyId: OperationURLParameter = {
   parameterPath: "objectReplicationPolicyId",
   mapper: {
     constraints: {
@@ -218,17 +242,17 @@ export const objectReplicationPolicyId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const properties2: coreHttp.OperationParameter = {
+export const properties2: OperationParameter = {
   parameterPath: "properties",
-  mapper: Mappers.ObjectReplicationPolicy
+  mapper: ObjectReplicationPolicyMapper
 };
 
-export const encryptionScope: coreHttp.OperationParameter = {
+export const encryptionScope: OperationParameter = {
   parameterPath: "encryptionScope",
-  mapper: Mappers.EncryptionScope
+  mapper: EncryptionScopeMapper
 };
 
-export const encryptionScopeName: coreHttp.OperationURLParameter = {
+export const encryptionScopeName: OperationURLParameter = {
   parameterPath: "encryptionScopeName",
   mapper: {
     constraints: {
@@ -243,12 +267,12 @@ export const encryptionScopeName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters5: coreHttp.OperationParameter = {
+export const parameters5: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.BlobServiceProperties
+  mapper: BlobServicePropertiesMapper
 };
 
-export const blobServicesName: coreHttp.OperationURLParameter = {
+export const blobServicesName: OperationURLParameter = {
   parameterPath: "blobServicesName",
   mapper: {
     defaultValue: "default",
@@ -260,7 +284,7 @@ export const blobServicesName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const maxpagesize: coreHttp.OperationQueryParameter = {
+export const maxpagesize: OperationQueryParameter = {
   parameterPath: ["options", "maxpagesize"],
   mapper: {
     serializedName: "$maxpagesize",
@@ -270,7 +294,7 @@ export const maxpagesize: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const filter: coreHttp.OperationQueryParameter = {
+export const filter: OperationQueryParameter = {
   parameterPath: ["options", "filter"],
   mapper: {
     serializedName: "$filter",
@@ -280,12 +304,12 @@ export const filter: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const blobContainer: coreHttp.OperationParameter = {
+export const blobContainer: OperationParameter = {
   parameterPath: "blobContainer",
-  mapper: Mappers.BlobContainer
+  mapper: BlobContainerMapper
 };
 
-export const containerName: coreHttp.OperationURLParameter = {
+export const containerName: OperationURLParameter = {
   parameterPath: "containerName",
   mapper: {
     constraints: {
@@ -300,17 +324,17 @@ export const containerName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const legalHold: coreHttp.OperationParameter = {
+export const legalHold: OperationParameter = {
   parameterPath: "legalHold",
-  mapper: Mappers.LegalHold
+  mapper: LegalHoldMapper
 };
 
-export const parameters6: coreHttp.OperationParameter = {
+export const parameters6: OperationParameter = {
   parameterPath: ["options", "parameters"],
-  mapper: Mappers.ImmutabilityPolicy
+  mapper: ImmutabilityPolicyMapper
 };
 
-export const immutabilityPolicyName: coreHttp.OperationURLParameter = {
+export const immutabilityPolicyName: OperationURLParameter = {
   parameterPath: "immutabilityPolicyName",
   mapper: {
     defaultValue: "default",
@@ -322,7 +346,7 @@ export const immutabilityPolicyName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const ifMatch: coreHttp.OperationParameter = {
+export const ifMatch: OperationParameter = {
   parameterPath: ["options", "ifMatch"],
   mapper: {
     serializedName: "If-Match",
@@ -332,7 +356,7 @@ export const ifMatch: coreHttp.OperationParameter = {
   }
 };
 
-export const ifMatch1: coreHttp.OperationParameter = {
+export const ifMatch1: OperationParameter = {
   parameterPath: "ifMatch",
   mapper: {
     serializedName: "If-Match",
@@ -343,17 +367,17 @@ export const ifMatch1: coreHttp.OperationParameter = {
   }
 };
 
-export const parameters7: coreHttp.OperationParameter = {
+export const parameters7: OperationParameter = {
   parameterPath: ["options", "parameters"],
-  mapper: Mappers.LeaseContainerRequest
+  mapper: LeaseContainerRequestMapper
 };
 
-export const parameters8: coreHttp.OperationParameter = {
+export const parameters8: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.FileServiceProperties
+  mapper: FileServicePropertiesMapper
 };
 
-export const fileServicesName: coreHttp.OperationURLParameter = {
+export const fileServicesName: OperationURLParameter = {
   parameterPath: "fileServicesName",
   mapper: {
     defaultValue: "default",
@@ -365,7 +389,7 @@ export const fileServicesName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const expand2: coreHttp.OperationQueryParameter = {
+export const expand2: OperationQueryParameter = {
   parameterPath: ["options", "expand"],
   mapper: {
     defaultValue: "deleted",
@@ -377,12 +401,12 @@ export const expand2: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const fileShare: coreHttp.OperationParameter = {
+export const fileShare: OperationParameter = {
   parameterPath: "fileShare",
-  mapper: Mappers.FileShare
+  mapper: FileShareMapper
 };
 
-export const shareName: coreHttp.OperationURLParameter = {
+export const shareName: OperationURLParameter = {
   parameterPath: "shareName",
   mapper: {
     constraints: {
@@ -397,7 +421,7 @@ export const shareName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const expand3: coreHttp.OperationQueryParameter = {
+export const expand3: OperationQueryParameter = {
   parameterPath: ["options", "expand"],
   mapper: {
     defaultValue: "stats",
@@ -409,7 +433,7 @@ export const expand3: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const deletedShare: coreHttp.OperationParameter = {
+export const deletedShare: OperationParameter = {
   parameterPath: "deletedShare",
-  mapper: Mappers.DeletedShare
+  mapper: DeletedShareMapper
 };

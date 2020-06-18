@@ -6,10 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import {
+  OperationURLParameter,
+  OperationParameter,
+  OperationQueryParameter
+} from "@azure/core-http";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -21,7 +24,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const clientRequestId: coreHttp.OperationParameter = {
+export const clientRequestId: OperationParameter = {
   parameterPath: ["options", "clientRequestId"],
   mapper: {
     serializedName: "client-request-id",
@@ -31,7 +34,7 @@ export const clientRequestId: coreHttp.OperationParameter = {
   }
 };
 
-export const maxresults: coreHttp.OperationParameter = {
+export const maxresults: OperationParameter = {
   parameterPath: ["pagingGetMultiplePagesOptions", "maxresults"],
   mapper: {
     serializedName: "maxresults",
@@ -41,7 +44,7 @@ export const maxresults: coreHttp.OperationParameter = {
   }
 };
 
-export const timeout: coreHttp.OperationParameter = {
+export const timeout: OperationParameter = {
   parameterPath: ["pagingGetMultiplePagesOptions", "timeout"],
   mapper: {
     defaultValue: 30,
@@ -52,7 +55,7 @@ export const timeout: coreHttp.OperationParameter = {
   }
 };
 
-export const requiredQueryParameter: coreHttp.OperationQueryParameter = {
+export const requiredQueryParameter: OperationQueryParameter = {
   parameterPath: "requiredQueryParameter",
   mapper: {
     serializedName: "requiredQueryParameter",
@@ -63,7 +66,7 @@ export const requiredQueryParameter: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const queryConstant: coreHttp.OperationQueryParameter = {
+export const queryConstant: OperationQueryParameter = {
   parameterPath: "queryConstant",
   mapper: {
     defaultValue: true,
@@ -75,7 +78,7 @@ export const queryConstant: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const maxresults1: coreHttp.OperationParameter = {
+export const maxresults1: OperationParameter = {
   parameterPath: ["pagingGetOdataMultiplePagesOptions", "maxresults"],
   mapper: {
     serializedName: "maxresults",
@@ -85,7 +88,7 @@ export const maxresults1: coreHttp.OperationParameter = {
   }
 };
 
-export const timeout1: coreHttp.OperationParameter = {
+export const timeout1: OperationParameter = {
   parameterPath: ["pagingGetOdataMultiplePagesOptions", "timeout"],
   mapper: {
     defaultValue: 30,
@@ -96,7 +99,7 @@ export const timeout1: coreHttp.OperationParameter = {
   }
 };
 
-export const maxresults2: coreHttp.OperationParameter = {
+export const maxresults2: OperationParameter = {
   parameterPath: ["pagingGetMultiplePagesWithOffsetOptions", "maxresults"],
   mapper: {
     serializedName: "maxresults",
@@ -106,7 +109,7 @@ export const maxresults2: coreHttp.OperationParameter = {
   }
 };
 
-export const offset: coreHttp.OperationURLParameter = {
+export const offset: OperationURLParameter = {
   parameterPath: ["pagingGetMultiplePagesWithOffsetOptions", "offset"],
   mapper: {
     serializedName: "offset",
@@ -117,7 +120,7 @@ export const offset: coreHttp.OperationURLParameter = {
   }
 };
 
-export const timeout2: coreHttp.OperationParameter = {
+export const timeout2: OperationParameter = {
   parameterPath: ["pagingGetMultiplePagesWithOffsetOptions", "timeout"],
   mapper: {
     defaultValue: 30,
@@ -128,7 +131,7 @@ export const timeout2: coreHttp.OperationParameter = {
   }
 };
 
-export const apiVersion: coreHttp.OperationQueryParameter = {
+export const apiVersion: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     serializedName: "api_version",
@@ -139,7 +142,7 @@ export const apiVersion: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const tenant: coreHttp.OperationURLParameter = {
+export const tenant: OperationURLParameter = {
   parameterPath: "tenant",
   mapper: {
     serializedName: "tenant",
@@ -150,7 +153,7 @@ export const tenant: coreHttp.OperationURLParameter = {
   }
 };
 
-export const apiVersion1: coreHttp.OperationQueryParameter = {
+export const apiVersion1: OperationQueryParameter = {
   parameterPath: ["customParameterGroup", "apiVersion"],
   mapper: {
     serializedName: "api_version",
@@ -161,7 +164,7 @@ export const apiVersion1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const tenant1: coreHttp.OperationURLParameter = {
+export const tenant1: OperationURLParameter = {
   parameterPath: ["customParameterGroup", "tenant"],
   mapper: {
     serializedName: "tenant",
@@ -172,7 +175,7 @@ export const tenant1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const maxresults3: coreHttp.OperationParameter = {
+export const maxresults3: OperationParameter = {
   parameterPath: ["pagingGetMultiplePagesLroOptions", "maxresults"],
   mapper: {
     serializedName: "maxresults",
@@ -182,7 +185,7 @@ export const maxresults3: coreHttp.OperationParameter = {
   }
 };
 
-export const timeout3: coreHttp.OperationParameter = {
+export const timeout3: OperationParameter = {
   parameterPath: ["pagingGetMultiplePagesLroOptions", "timeout"],
   mapper: {
     defaultValue: 30,
@@ -193,7 +196,7 @@ export const timeout3: coreHttp.OperationParameter = {
   }
 };
 
-export const nextLink: coreHttp.OperationURLParameter = {
+export const nextLink: OperationURLParameter = {
   parameterPath: "nextLink",
   mapper: {
     serializedName: "nextLink",

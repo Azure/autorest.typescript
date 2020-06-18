@@ -33,14 +33,18 @@ export function generateParameters(
     { overwrite: true }
   );
 
-  parametersFile.addImportDeclaration({
-    namespaceImport: "coreHttp",
-    moduleSpecifier: "@azure/core-http"
-  });
-
-  if (clientDetails.mappers.length) {
+  const importedCoreHttp = getCoreHttpImports(clientDetails);
+  if (importedCoreHttp.length) {
     parametersFile.addImportDeclaration({
-      namespaceImport: "Mappers",
+      namedImports: importedCoreHttp,
+      moduleSpecifier: "@azure/core-http"
+    });
+  }
+
+  const importedMappers = getImportedMappers(clientDetails);
+  if (importedMappers.length) {
+    parametersFile.addImportDeclaration({
+      namedImports: importedMappers,
       moduleSpecifier: "../models/mappers"
     });
   }
@@ -83,8 +87,7 @@ function writeParameterCollectionFormat(
 ) {
   return writer.conditionalWrite(
     !!collectionFormat,
-    () =>
-      `collectionFormat: coreHttp.QueryCollectionFormat.${collectionFormat},`
+    () => `collectionFormat: QueryCollectionFormat.${collectionFormat},`
   );
 }
 
@@ -109,7 +112,7 @@ function writeParameterMapper(
 ) {
   writer.write("mapper: ");
   if (isString(mapper)) {
-    writer.write(`Mappers.${mapper}`);
+    writer.write(`${mapper}Mapper`);
   } else {
     writeMapper(writer, mapper);
   }
@@ -121,10 +124,34 @@ function getParameterType(location: ParameterLocation) {
   switch (location) {
     case ParameterLocation.Path:
     case ParameterLocation.Uri:
-      return "coreHttp.OperationURLParameter";
+      return "OperationURLParameter";
     case ParameterLocation.Query:
-      return "coreHttp.OperationQueryParameter";
+      return "OperationQueryParameter";
     default:
-      return "coreHttp.OperationParameter";
+      return "OperationParameter";
   }
+}
+
+function getCoreHttpImports(clientDetails: ClientDetails) {
+  const parameterTypes: string[] = clientDetails.parameters
+    .filter(p => !p.isSynthetic)
+    .map(p => getParameterType(p.location));
+
+  if (
+    clientDetails.parameters
+      .filter(p => !p.isSynthetic)
+      .some(p => p.collectionFormat)
+  ) {
+    parameterTypes.push("QueryCollectionFormat");
+  }
+
+  return [...new Set<string>(parameterTypes)];
+}
+
+function getImportedMappers(clientDetails: ClientDetails) {
+  const mappers = clientDetails.parameters
+    .filter(p => !p.isSynthetic && isString(p.mapper))
+    .map(p => `${p.mapper} as ${p.mapper}Mapper`);
+
+  return [...new Set<string>(mappers)];
 }

@@ -6,10 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import { OperationURLParameter, OperationParameter } from "@azure/core-http";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -21,7 +20,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -33,7 +32,7 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const arrayBody: coreHttp.OperationParameter = {
+export const arrayBody: OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",
@@ -45,7 +44,7 @@ export const arrayBody: coreHttp.OperationParameter = {
   }
 };
 
-export const arrayBody1: coreHttp.OperationParameter = {
+export const arrayBody1: OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",
@@ -57,7 +56,7 @@ export const arrayBody1: coreHttp.OperationParameter = {
   }
 };
 
-export const arrayBody2: coreHttp.OperationParameter = {
+export const arrayBody2: OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",
@@ -69,7 +68,7 @@ export const arrayBody2: coreHttp.OperationParameter = {
   }
 };
 
-export const arrayBody3: coreHttp.OperationParameter = {
+export const arrayBody3: OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",
@@ -81,7 +80,7 @@ export const arrayBody3: coreHttp.OperationParameter = {
   }
 };
 
-export const arrayBody4: coreHttp.OperationParameter = {
+export const arrayBody4: OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",
@@ -93,7 +92,7 @@ export const arrayBody4: coreHttp.OperationParameter = {
   }
 };
 
-export const arrayBody5: coreHttp.OperationParameter = {
+export const arrayBody5: OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",
@@ -105,7 +104,7 @@ export const arrayBody5: coreHttp.OperationParameter = {
   }
 };
 
-export const arrayBody6: coreHttp.OperationParameter = {
+export const arrayBody6: OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",
@@ -117,7 +116,7 @@ export const arrayBody6: coreHttp.OperationParameter = {
   }
 };
 
-export const arrayBody7: coreHttp.OperationParameter = {
+export const arrayBody7: OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",
@@ -129,7 +128,7 @@ export const arrayBody7: coreHttp.OperationParameter = {
   }
 };
 
-export const arrayBody8: coreHttp.OperationParameter = {
+export const arrayBody8: OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",
@@ -141,7 +140,7 @@ export const arrayBody8: coreHttp.OperationParameter = {
   }
 };
 
-export const arrayBody9: coreHttp.OperationParameter = {
+export const arrayBody9: OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",
@@ -155,7 +154,7 @@ export const arrayBody9: coreHttp.OperationParameter = {
   }
 };
 
-export const arrayBody10: coreHttp.OperationParameter = {
+export const arrayBody10: OperationParameter = {
   parameterPath: "arrayBody",
   mapper: {
     serializedName: "arrayBody",

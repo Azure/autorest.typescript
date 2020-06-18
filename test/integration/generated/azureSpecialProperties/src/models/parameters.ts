@@ -6,10 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import {
+  OperationURLParameter,
+  OperationParameter,
+  OperationQueryParameter
+} from "@azure/core-http";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -21,7 +24,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const xMsClientRequestId: coreHttp.OperationParameter = {
+export const xMsClientRequestId: OperationParameter = {
   parameterPath: "xMsClientRequestId",
   mapper: {
     serializedName: "x-ms-client-request-id",
@@ -32,7 +35,7 @@ export const xMsClientRequestId: coreHttp.OperationParameter = {
   }
 };
 
-export const subscriptionId: coreHttp.OperationURLParameter = {
+export const subscriptionId: OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     serializedName: "subscriptionId",
@@ -43,7 +46,7 @@ export const subscriptionId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const apiVersion: coreHttp.OperationQueryParameter = {
+export const apiVersion: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2015-07-01-preview",
@@ -55,7 +58,7 @@ export const apiVersion: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const subscriptionId1: coreHttp.OperationURLParameter = {
+export const subscriptionId1: OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     serializedName: "subscriptionId",
@@ -66,7 +69,7 @@ export const subscriptionId1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const apiVersion1: coreHttp.OperationQueryParameter = {
+export const apiVersion1: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2.0",
@@ -78,7 +81,7 @@ export const apiVersion1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const apiVersion2: coreHttp.OperationQueryParameter = {
+export const apiVersion2: OperationQueryParameter = {
   parameterPath: ["options", "apiVersion"],
   mapper: {
     serializedName: "api-version",
@@ -88,7 +91,7 @@ export const apiVersion2: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const unencodedPathParam: coreHttp.OperationURLParameter = {
+export const unencodedPathParam: OperationURLParameter = {
   parameterPath: "unencodedPathParam",
   mapper: {
     serializedName: "unencodedPathParam",
@@ -100,7 +103,7 @@ export const unencodedPathParam: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const unencodedPathParam1: coreHttp.OperationURLParameter = {
+export const unencodedPathParam1: OperationURLParameter = {
   parameterPath: "unencodedPathParam",
   mapper: {
     defaultValue: "path1/path2/path3",
@@ -113,7 +116,7 @@ export const unencodedPathParam1: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const q1: coreHttp.OperationQueryParameter = {
+export const q1: OperationQueryParameter = {
   parameterPath: "q1",
   mapper: {
     serializedName: "q1",
@@ -125,7 +128,7 @@ export const q1: coreHttp.OperationQueryParameter = {
   skipEncoding: true
 };
 
-export const q11: coreHttp.OperationQueryParameter = {
+export const q11: OperationQueryParameter = {
   parameterPath: ["options", "q1"],
   mapper: {
     serializedName: "q1",
@@ -136,7 +139,7 @@ export const q11: coreHttp.OperationQueryParameter = {
   skipEncoding: true
 };
 
-export const q12: coreHttp.OperationQueryParameter = {
+export const q12: OperationQueryParameter = {
   parameterPath: "q1",
   mapper: {
     defaultValue: "value1&q2=value2&q3=value3",
@@ -149,7 +152,7 @@ export const q12: coreHttp.OperationQueryParameter = {
   skipEncoding: true
 };
 
-export const filter: coreHttp.OperationQueryParameter = {
+export const filter: OperationQueryParameter = {
   parameterPath: ["options", "filter"],
   mapper: {
     serializedName: "$filter",
@@ -159,7 +162,7 @@ export const filter: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const top: coreHttp.OperationQueryParameter = {
+export const top: OperationQueryParameter = {
   parameterPath: ["options", "top"],
   mapper: {
     serializedName: "$top",
@@ -169,7 +172,7 @@ export const top: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const orderby: coreHttp.OperationQueryParameter = {
+export const orderby: OperationQueryParameter = {
   parameterPath: ["options", "orderby"],
   mapper: {
     serializedName: "$orderby",
@@ -179,7 +182,7 @@ export const orderby: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const fooClientRequestId: coreHttp.OperationParameter = {
+export const fooClientRequestId: OperationParameter = {
   parameterPath: "fooClientRequestId",
   mapper: {
     serializedName: "foo-client-request-id",
@@ -190,7 +193,7 @@ export const fooClientRequestId: coreHttp.OperationParameter = {
   }
 };
 
-export const fooClientRequestId1: coreHttp.OperationParameter = {
+export const fooClientRequestId1: OperationParameter = {
   parameterPath: [
     "headerCustomNamedRequestIdParamGroupingParameters",
     "fooClientRequestId"
