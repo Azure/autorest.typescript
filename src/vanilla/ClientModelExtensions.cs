@@ -553,11 +553,7 @@ namespace AutoRest.TypeScript
                         }
                         else
                         {
-                            CompositeType baseType = composite;
-                            while (baseType.BaseModelType != null)
-                            {
-                                baseType = baseType.BaseModelType;
-                            }
+                            CompositeType baseType = GetUberParent(composite);
                             if (baseType.IsPolymorphic)
                             {
                                 typeObject.TextProperty("polymorphicDiscriminator", baseType.Name + ".type.polymorphicDiscriminator");
@@ -637,6 +633,23 @@ namespace AutoRest.TypeScript
             {
                 throw new NotImplementedException($"{type} is not a supported Type.");
             }
+        }
+
+        /// <summary>
+        /// Finds the UberParent for a given Composite type.
+        /// An uber parent is the closest parent that defines the polymorphicDiscriminator
+        /// </summary>
+        /// <param name="composite">The composite type to find the uberParent for</param>
+        /// <returns>The uberParent or itself if it has no uberParent</returns>
+        private static CompositeType GetUberParent(CompositeTypeTS composite)
+        {
+            CompositeType uberParent = composite;
+            while (uberParent.BaseModelType != null && string.IsNullOrWhiteSpace(uberParent.PolymorphicDiscriminator))
+            {
+                uberParent = uberParent.BaseModelType;
+            }
+
+            return uberParent;
         }
 
         private static void AddTypeProperty(TSObject mapper, string mapperTypeName, Action<TSObject> additionalTypeObjectPropertiesAction = null)
