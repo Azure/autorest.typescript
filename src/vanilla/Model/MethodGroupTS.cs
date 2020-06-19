@@ -202,8 +202,11 @@ namespace AutoRest.TypeScript.Model
         public string GenerateMappers()
         {
             TSBuilder builder = new TSBuilder();
-            builder.Comment(AutoRest.Core.Settings.Instance.Header);
-            builder.Line();
+
+            if (AutoRest.Core.Settings.Instance.Header != "") {
+              builder.Comment(AutoRest.Core.Settings.Instance.Header);
+              builder.Line();
+            }
             builder.Line("export {");
             builder.Indent(() =>
             {

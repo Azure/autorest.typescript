@@ -811,9 +811,11 @@ namespace AutoRest.TypeScript.Model
         public virtual string GenerateMapperIndex()
         {
             TSBuilder builder = new TSBuilder();
-            builder.Comment(AutoRest.Core.Settings.Instance.Header);
-            builder.Line();
 
+            if (AutoRest.Core.Settings.Instance.Header != "") {
+              builder.Comment(AutoRest.Core.Settings.Instance.Header);
+              builder.Line();
+            }
             CompositeTypeTS[] orderedMapperTemplateModels = OrderedMapperTemplateModels.ToArray();
 
             ImportMsRestForMappers(builder, orderedMapperTemplateModels);
@@ -1163,7 +1165,11 @@ namespace AutoRest.TypeScript.Model
                     });
 
                     JSBuilder banner = new JSBuilder();
-                    banner.Comment(AutoRest.Core.Settings.Instance.Header);
+
+                    if (AutoRest.Core.Settings.Instance.Header != "") {
+                      banner.Comment(AutoRest.Core.Settings.Instance.Header);
+                    }
+
                     output.QuotedStringProperty("banner", banner.ToString());
                 });
                 config.ArrayProperty("plugins", plugins =>
@@ -1288,8 +1294,10 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            builder.Comment(AutoRest.Core.Settings.Instance.Header);
-            builder.Line();
+            if (AutoRest.Core.Settings.Instance.Header != "") {
+              builder.Comment(AutoRest.Core.Settings.Instance.Header);
+              builder.Line();
+            }
             builder.Line(ConstructRuntimeImportForModelIndex());
             if (ContainsDurationPropertyInModels() || IsAnyModelInheritingFromRequestOptionsBase() || MethodsWithCustomResponseType.Any())
             {
