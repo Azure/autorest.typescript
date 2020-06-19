@@ -92,6 +92,8 @@ export const LinkNotFound: coreHttp.CompositeMapper = {
   serializedName: "InvalidResourceLink",
   type: {
     name: "Composite",
+    polymorphicDiscriminator: NotFoundErrorBase.type.polymorphicDiscriminator,
+    uberParent: "NotFoundErrorBase",
     className: "LinkNotFound",
     modelProperties: {
       ...NotFoundErrorBase.type.modelProperties,
@@ -109,6 +111,8 @@ export const AnimalNotFound: coreHttp.CompositeMapper = {
   serializedName: "AnimalNotFound",
   type: {
     name: "Composite",
+    polymorphicDiscriminator: NotFoundErrorBase.type.polymorphicDiscriminator,
+    uberParent: "NotFoundErrorBase",
     className: "AnimalNotFound",
     modelProperties: {
       ...NotFoundErrorBase.type.modelProperties,
@@ -205,9 +209,9 @@ export const PetHungryOrThirstyError: coreHttp.CompositeMapper = {
 };
 
 export const discriminators = {
-  'BaseError.NotFoundErrorBase' : NotFoundErrorBase,
-  'BaseError.InvalidResourceLink' : LinkNotFound,
-  'BaseError.AnimalNotFound' : AnimalNotFound,
+  'NotFoundErrorBase' : NotFoundErrorBase,
+  'NotFoundErrorBase.InvalidResourceLink' : LinkNotFound,
+  'NotFoundErrorBase.AnimalNotFound' : AnimalNotFound,
   'PetActionError' : PetActionError,
   'PetActionError.PetSadError' : PetSadError,
   'PetActionError.PetHungryOrThirstyError' : PetHungryOrThirstyError
