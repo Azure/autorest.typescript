@@ -1,8 +1,18 @@
 ﻿@using AutoRest.TypeScript
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.MethodGroupTS>
-/*
-@Header(" * ")
- */
+@{
+  var prefix = "";
+  var header = "";
+  var postfix = "";
+  if (!string.IsNullOrWhiteSpace(Header(""))) {
+    prefix = "/*";
+    header = Header(" * ");
+    postfix = " */";
+  }
+}
+@(prefix)
+@(header)
+@(postfix)
 @EmptyLine
 @(Model.GenerateMethodGroupImports())
 @EmptyLine

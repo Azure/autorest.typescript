@@ -1,6 +1,17 @@
 @using AutoRest.Core.Utilities;
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
-/*
-@Header(" * ")
- */
+@{
+  var prefix = "";
+  var header = "";
+  var postfix = "";
+  if (!string.IsNullOrWhiteSpace(Header(""))) {
+    prefix = "/*";
+    header = Header(" * ");
+    postfix = " */";
+  }
+}
+@(prefix)
+@(header)
+@(postfix)
+@EmptyLine
 export * from "@(Model.Settings.AliasedNpmPackageName)";

@@ -812,7 +812,7 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            if (AutoRest.Core.Settings.Instance.Header != "") {
+            if (!string.IsNullOrWhiteSpace(AutoRest.Core.Settings.Instance.Header)) {
               builder.Comment(AutoRest.Core.Settings.Instance.Header);
               builder.Line();
             }
@@ -1166,7 +1166,7 @@ namespace AutoRest.TypeScript.Model
 
                     JSBuilder banner = new JSBuilder();
 
-                    if (AutoRest.Core.Settings.Instance.Header != "") {
+                    if (!string.IsNullOrWhiteSpace(AutoRest.Core.Settings.Instance.Header)) {
                       banner.Comment(AutoRest.Core.Settings.Instance.Header);
                     }
 
@@ -1294,7 +1294,7 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            if (AutoRest.Core.Settings.Instance.Header != "") {
+            if (!string.IsNullOrWhiteSpace(AutoRest.Core.Settings.Instance.Header)) {
               builder.Comment(AutoRest.Core.Settings.Instance.Header);
               builder.Line();
             }

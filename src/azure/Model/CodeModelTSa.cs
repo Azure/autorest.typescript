@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AutoRest.Core.Model;
@@ -117,7 +118,7 @@ namespace AutoRest.TypeScript.Azure.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            if (AutoRest.Core.Settings.Instance.Header != "") {
+            if (!string.IsNullOrWhiteSpace(AutoRest.Core.Settings.Instance.Header)) {
               builder.Comment(AutoRest.Core.Settings.Instance.Header);
               builder.Line();
             }
@@ -163,7 +164,7 @@ namespace AutoRest.TypeScript.Azure.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            if (AutoRest.Core.Settings.Instance.Header != "") {
+            if (!string.IsNullOrWhiteSpace(AutoRest.Core.Settings.Instance.Header)) {
               builder.Comment(AutoRest.Core.Settings.Instance.Header);
               builder.Line();
             }

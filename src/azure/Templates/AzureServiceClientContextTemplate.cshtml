@@ -3,9 +3,19 @@
 @using AutoRest.Core.Utilities
 @using AutoRest.TypeScript.Azure.Model
 @inherits AutoRest.Core.Template<CodeModelTSa>
-/*
-@Header(" * ")
- */
+@{
+  var prefix = "";
+  var header = "";
+  var postfix = "";
+  if (!string.IsNullOrWhiteSpace(Header(""))) {
+    prefix = "/*";
+    header = Header(" * ");
+    postfix = " */";
+  }
+}
+@(prefix)
+@(header)
+@(postfix)
 @EmptyLine
 @{
 bool usesCustomOptionsType = Model.OptionalParameterTypeForClientConstructor != "AzureServiceClientOptions";

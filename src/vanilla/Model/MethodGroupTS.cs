@@ -5,6 +5,7 @@ using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.TypeScript.DSL;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -203,7 +204,7 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            if (AutoRest.Core.Settings.Instance.Header != "") {
+            if (!string.IsNullOrWhiteSpace(AutoRest.Core.Settings.Instance.Header)) {
               builder.Comment(AutoRest.Core.Settings.Instance.Header);
               builder.Line();
             }
