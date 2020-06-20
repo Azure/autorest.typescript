@@ -5,7 +5,6 @@ using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.TypeScript.DSL;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
