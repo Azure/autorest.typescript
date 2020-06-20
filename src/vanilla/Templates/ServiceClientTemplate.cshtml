@@ -1,19 +1,7 @@
 ﻿@using System.Linq
 @using AutoRest.TypeScript
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
-@{
-  var prefix = "";
-  var header = "";
-  var postfix = "";
-  if (!string.IsNullOrWhiteSpace(Header(""))) {
-    prefix = "/*";
-    header = Header(" * ");
-    postfix = " */";
-  }
-}
-@(prefix)
-@(header)
-@(postfix)
+@(LicenseHeader.GenerateLicenseHeader())
 @EmptyLine
 @(Model.GenerateServiceClientImports())
 @EmptyLine

@@ -2,19 +2,7 @@
 @using System.Text.RegularExpressions
 @using AutoRest.TypeScript.vanilla.Templates
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
-@{
-  var prefix = "";
-  var header = "";
-  var postfix = "";
-  if (!string.IsNullOrWhiteSpace(Header(""))) {
-    prefix = "/*";
-    header = Header(" * ");
-    postfix = " */";
-  }
-}
-@(prefix)
-@(header)
-@(postfix)
+@(LicenseHeader.GenerateLicenseHeader())
 @EmptyLine
 import * as msRest from "@@azure/ms-rest-js";
 @EmptyLine

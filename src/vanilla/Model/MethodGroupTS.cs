@@ -204,10 +204,7 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            if (!string.IsNullOrWhiteSpace(AutoRest.Core.Settings.Instance.Header)) {
-              builder.Comment(AutoRest.Core.Settings.Instance.Header);
-              builder.Line();
-            }
+            builder.Line(LicenseHeader.GenerateLicenseHeader());
             builder.Line("export {");
             builder.Indent(() =>
             {

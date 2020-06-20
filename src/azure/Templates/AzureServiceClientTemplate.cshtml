@@ -2,19 +2,7 @@
 @using AutoRest.TypeScript
 @using AutoRest.TypeScript.Azure.Model
 @inherits AutoRest.Core.Template<CodeModelTSa>
-@{
-  var prefix = "";
-  var header = "";
-  var postfix = "";
-  if (!string.IsNullOrWhiteSpace(Header(""))) {
-    prefix = "/*";
-    header = Header(" * ");
-    postfix = " */";
-  }
-}
-@(prefix)
-@(header)
-@(postfix)
+@(LicenseHeader.GenerateLicenseHeader())
 @EmptyLine
 @(Model.GenerateAzureServiceClientImports())
 @EmptyLine
