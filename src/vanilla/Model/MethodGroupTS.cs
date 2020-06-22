@@ -203,7 +203,7 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            builder.Line(LicenseHeader.GenerateLicenseHeader());
+            builder.Line(LicenseHeader.GenerateLicenseHeaderTS());
             builder.Line("export {");
             builder.Indent(() =>
             {

@@ -118,7 +118,7 @@ namespace AutoRest.TypeScript.Azure.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            builder.Line(LicenseHeader.GenerateLicenseHeader());
+            builder.Line(LicenseHeader.GenerateLicenseHeaderTS());
 
             CompositeTypeTS[] orderedMapperTemplateModels = OrderedMapperTemplateModels.ToArray();
 
@@ -161,7 +161,7 @@ namespace AutoRest.TypeScript.Azure.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            builder.Line(LicenseHeader.GenerateLicenseHeader());
+            builder.Line(LicenseHeader.GenerateLicenseHeaderTS());
             builder.Line(ConstructRuntimeImportForModelIndex());
             if (ContainsDurationPropertyInModels() || IsAnyModelInheritingFromRequestOptionsBase() || MethodsWithCustomResponseType.Any())
             {

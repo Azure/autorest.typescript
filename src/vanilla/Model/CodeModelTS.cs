@@ -812,7 +812,7 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            builder.Line(LicenseHeader.GenerateLicenseHeader());
+            builder.Line(LicenseHeader.GenerateLicenseHeaderTS());
             CompositeTypeTS[] orderedMapperTemplateModels = OrderedMapperTemplateModels.ToArray();
 
             ImportMsRestForMappers(builder, orderedMapperTemplateModels);
@@ -1163,7 +1163,7 @@ namespace AutoRest.TypeScript.Model
 
                     JSBuilder banner = new JSBuilder();
 
-                    builder.Line(LicenseHeader.GenerateLicenseHeader());
+                    banner.Line(LicenseHeader.GenerateLicenseHeaderJS());
                     output.QuotedStringProperty("banner", banner.ToString());
                 });
                 config.ArrayProperty("plugins", plugins =>
@@ -1288,7 +1288,7 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            builder.Line(LicenseHeader.GenerateLicenseHeader());
+            builder.Line(LicenseHeader.GenerateLicenseHeaderTS());
             builder.Line(ConstructRuntimeImportForModelIndex());
             if (ContainsDurationPropertyInModels() || IsAnyModelInheritingFromRequestOptionsBase() || MethodsWithCustomResponseType.Any())
             {
