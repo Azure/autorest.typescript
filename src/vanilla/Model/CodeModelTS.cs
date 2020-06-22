@@ -814,7 +814,7 @@ namespace AutoRest.TypeScript.Model
             TSBuilder builder = new TSBuilder();
             builder.Line(LicenseHeader.GenerateLicenseHeader());
             builder.Line();
-            
+
             CompositeTypeTS[] orderedMapperTemplateModels = OrderedMapperTemplateModels.ToArray();
 
             ImportMsRestForMappers(builder, orderedMapperTemplateModels);
