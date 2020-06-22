@@ -5,6 +5,7 @@ using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.Extensions;
 using AutoRest.TypeScript.DSL;
+using AutoRest.TypeScript.Utilities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -811,8 +812,9 @@ namespace AutoRest.TypeScript.Model
         public virtual string GenerateMapperIndex()
         {
             TSBuilder builder = new TSBuilder();
-
-            builder.Line(LicenseHeader.GenerateLicenseHeaderTS());
+            builder.Line(LicenseHeader.GenerateLicenseHeader());
+            builder.Line();
+            
             CompositeTypeTS[] orderedMapperTemplateModels = OrderedMapperTemplateModels.ToArray();
 
             ImportMsRestForMappers(builder, orderedMapperTemplateModels);
@@ -1162,8 +1164,7 @@ namespace AutoRest.TypeScript.Model
                     });
 
                     JSBuilder banner = new JSBuilder();
-
-                    banner.Line(LicenseHeader.GenerateLicenseHeaderJS());
+                    banner.Line(LicenseHeader.GenerateLicenseHeader());
                     output.QuotedStringProperty("banner", banner.ToString());
                 });
                 config.ArrayProperty("plugins", plugins =>
@@ -1288,7 +1289,8 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            builder.Line(LicenseHeader.GenerateLicenseHeaderTS());
+            builder.Line(LicenseHeader.GenerateLicenseHeader());
+            builder.Line();
             builder.Line(ConstructRuntimeImportForModelIndex());
             if (ContainsDurationPropertyInModels() || IsAnyModelInheritingFromRequestOptionsBase() || MethodsWithCustomResponseType.Any())
             {

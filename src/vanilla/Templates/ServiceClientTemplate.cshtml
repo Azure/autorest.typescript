@@ -1,7 +1,8 @@
 ﻿@using System.Linq
 @using AutoRest.TypeScript
+@using AutoRest.TypeScript.Utilities
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
-@(LicenseHeader.GenerateLicenseHeaderTS())
+@(LicenseHeader.GenerateLicenseHeader(AutoRest.Core.Settings.DefaultMaximumCommentColumns))
 @EmptyLine
 @(Model.GenerateServiceClientImports())
 @EmptyLine

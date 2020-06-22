@@ -4,6 +4,7 @@
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.TypeScript.DSL;
+using AutoRest.TypeScript.Utilities;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
@@ -202,8 +203,8 @@ namespace AutoRest.TypeScript.Model
         public string GenerateMappers()
         {
             TSBuilder builder = new TSBuilder();
-
-            builder.Line(LicenseHeader.GenerateLicenseHeaderTS());
+            builder.Line(LicenseHeader.GenerateLicenseHeader());
+            builder.Line();
             builder.Line("export {");
             builder.Indent(() =>
             {
