@@ -1,10 +1,9 @@
 ﻿@using System.Linq
 @using AutoRest.Core.Model
 @using AutoRest.Core.Utilities
+@using AutoRest.TypeScript.Utilities
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
-/*
-@Header(" * ")
- */
+@(LicenseHeader.GenerateLicenseHeader(AutoRest.Core.Settings.DefaultMaximumCommentColumns))
 @EmptyLine
 import * as msRest from "@@azure/ms-rest-js";
 @{

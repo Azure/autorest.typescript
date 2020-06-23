@@ -1,10 +1,9 @@
 ﻿@using System.Linq
 @using AutoRest.TypeScript
 @using AutoRest.TypeScript.Azure.Model
+@using AutoRest.TypeScript.Utilities
 @inherits AutoRest.Core.Template<CodeModelTSa>
-/*
-@Header(" * ")
- */
+@(LicenseHeader.GenerateLicenseHeader(AutoRest.Core.Settings.DefaultMaximumCommentColumns))
 @EmptyLine
 @(Model.GenerateAzureServiceClientImports())
 @EmptyLine

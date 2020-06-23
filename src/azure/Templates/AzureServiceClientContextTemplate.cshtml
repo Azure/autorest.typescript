@@ -2,10 +2,9 @@
 @using AutoRest.Core.Model
 @using AutoRest.Core.Utilities
 @using AutoRest.TypeScript.Azure.Model
+@using AutoRest.TypeScript.Utilities
 @inherits AutoRest.Core.Template<CodeModelTSa>
-/*
-@Header(" * ")
- */
+@(LicenseHeader.GenerateLicenseHeader(AutoRest.Core.Settings.DefaultMaximumCommentColumns))
 @EmptyLine
 @{
 bool usesCustomOptionsType = Model.OptionalParameterTypeForClientConstructor != "AzureServiceClientOptions";

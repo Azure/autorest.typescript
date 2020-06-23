@@ -1,6 +1,6 @@
 @using AutoRest.Core.Utilities;
+@using AutoRest.TypeScript
+@using AutoRest.TypeScript.Utilities
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
-/*
-@Header(" * ")
- */
+@(LicenseHeader.GenerateLicenseHeader(AutoRest.Core.Settings.DefaultMaximumCommentColumns))
 export * from "@(Model.Settings.AliasedNpmPackageName)";

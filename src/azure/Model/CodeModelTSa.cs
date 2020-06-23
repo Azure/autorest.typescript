@@ -9,6 +9,7 @@ using AutoRest.TypeScript.Model;
 using Newtonsoft.Json;
 using AutoRest.Core.Utilities;
 using AutoRest.TypeScript.DSL;
+using AutoRest.TypeScript.Utilities;
 
 namespace AutoRest.TypeScript.Azure.Model
 {
@@ -116,7 +117,8 @@ namespace AutoRest.TypeScript.Azure.Model
         public override string GenerateMapperIndex()
         {
             TSBuilder builder = new TSBuilder();
-            builder.Comment(AutoRest.Core.Settings.Instance.Header);
+
+            builder.Line(LicenseHeader.GenerateLicenseHeader());
             builder.Line();
 
             CompositeTypeTS[] orderedMapperTemplateModels = OrderedMapperTemplateModels.ToArray();
@@ -159,8 +161,7 @@ namespace AutoRest.TypeScript.Azure.Model
         public override string GenerateModelIndex()
         {
             TSBuilder builder = new TSBuilder();
-
-            builder.Comment(AutoRest.Core.Settings.Instance.Header);
+            builder.Line(LicenseHeader.GenerateLicenseHeader());
             builder.Line();
             builder.Line(ConstructRuntimeImportForModelIndex());
             if (ContainsDurationPropertyInModels() || IsAnyModelInheritingFromRequestOptionsBase() || MethodsWithCustomResponseType.Any())
