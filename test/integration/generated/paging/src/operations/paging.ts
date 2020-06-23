@@ -590,36 +590,17 @@ export class Paging {
    * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesLRO method.
    * @param options The options parameters.
    */
-  async getMultiplePagesLRONext(
+  getMultiplePagesLRONext(
     nextLink: string,
     options?: PagingGetMultiplePagesLRONextOptionalParams
-  ): Promise<LROPoller<PagingGetMultiplePagesLRONextResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
+  ): Promise<PagingGetMultiplePagesLRONextResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
     );
-
-    const args: coreHttp.OperationArguments = {
-      nextLink,
-      options: operationOptions
-    };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
-        PagingGetMultiplePagesLRONextResponse
-      >;
-    const initialOperationResult = await sendOperation(
-      args,
+    return this.client.sendOperationRequest(
+      { nextLink, options: operationOptions },
       getMultiplePagesLRONextOperationSpec
-    );
-
-    return new LROPoller({
-      initialOperationArguments: args,
-      initialOperationSpec: getMultiplePagesLRONextOperationSpec,
-      initialOperationResult,
-      sendOperation
-    });
+    ) as Promise<PagingGetMultiplePagesLRONextResponse>;
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
@@ -1029,18 +1010,12 @@ const getMultiplePagesFailureUriNextOperationSpec: coreHttp.OperationSpec = {
 };
 const getMultiplePagesLRONextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
-  httpMethod: "POST",
+  httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: Mappers.ProductResult
     },
-    201: {
-      bodyMapper: Mappers.ProductResult
-    },
     202: {
-      bodyMapper: Mappers.ProductResult
-    },
-    204: {
       bodyMapper: Mappers.ProductResult
     },
     default: {}
