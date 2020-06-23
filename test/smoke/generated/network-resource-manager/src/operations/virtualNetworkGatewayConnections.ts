@@ -490,6 +490,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.VirtualNetworkGatewayConnection
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters53,
@@ -529,7 +532,15 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -555,6 +566,9 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.VirtualNetworkGatewayConnection
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters1,
@@ -585,6 +599,9 @@ const setSharedKeyOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ConnectionSharedKey
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters54,
@@ -656,6 +673,9 @@ const resetSharedKeyOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ConnectionResetSharedKey
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters55,
@@ -686,6 +706,9 @@ const startPacketCaptureOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: { type: { name: "String" } }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
     }
   },
   requestBody: Parameters.parameters51,
@@ -716,6 +739,9 @@ const stopPacketCaptureOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: { type: { name: "String" } }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
     }
   },
   requestBody: Parameters.parameters52,

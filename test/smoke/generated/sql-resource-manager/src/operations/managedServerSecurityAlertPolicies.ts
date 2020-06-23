@@ -201,7 +201,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ManagedServerSecurityAlertPolicy
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters46,
   queryParameters: [Parameters.apiVersion4],

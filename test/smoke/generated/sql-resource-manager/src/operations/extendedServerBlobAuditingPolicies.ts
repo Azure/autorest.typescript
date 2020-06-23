@@ -196,7 +196,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ExtendedServerBlobAuditingPolicy
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters28,
   queryParameters: [Parameters.apiVersion4],

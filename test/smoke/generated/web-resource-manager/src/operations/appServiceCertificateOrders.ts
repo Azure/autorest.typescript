@@ -728,6 +728,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.AppServiceCertificateOrder
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.certificateDistinguishedName,
@@ -848,6 +851,9 @@ const createOrUpdateCertificateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.AppServiceCertificateResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.keyVaultCertificate,

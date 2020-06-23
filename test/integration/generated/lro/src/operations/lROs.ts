@@ -1494,6 +1494,9 @@ const put200SucceededOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
@@ -1563,6 +1566,9 @@ const post202ListOperationSpec: coreHttp.OperationSpec = {
           element: { type: { name: "Composite", className: "Product" } }
         }
       }
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   urlParameters: [Parameters.$host],
@@ -1635,6 +1641,9 @@ const put201CreatingSucceeded200OperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
@@ -1684,6 +1693,9 @@ const put201CreatingFailed200OperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
@@ -2017,6 +2029,9 @@ const deleteProvisioning202Accepted200SucceededOperationSpec: coreHttp.Operation
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   urlParameters: [Parameters.$host],
@@ -2037,6 +2052,9 @@ const deleteProvisioning202DeletingFailed200OperationSpec: coreHttp.OperationSpe
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   urlParameters: [Parameters.$host],
@@ -2057,6 +2075,9 @@ const deleteProvisioning202Deletingcanceled200OperationSpec: coreHttp.OperationS
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   urlParameters: [Parameters.$host],
@@ -2092,6 +2113,9 @@ const delete202Retry200OperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   urlParameters: [Parameters.$host],
@@ -2112,6 +2136,9 @@ const delete202NoRetry204OperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   urlParameters: [Parameters.$host],
@@ -2132,6 +2159,9 @@ const deleteNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       headersMapper: Mappers.LROsDeleteNoHeaderInRetryHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   urlParameters: [Parameters.$host],
@@ -2152,6 +2182,9 @@ const deleteAsyncNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   urlParameters: [Parameters.$host],
@@ -2264,6 +2297,9 @@ const post200WithPayloadOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Sku
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   urlParameters: [Parameters.$host],
@@ -2409,6 +2445,9 @@ const postAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
@@ -2432,6 +2471,9 @@ const postAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,

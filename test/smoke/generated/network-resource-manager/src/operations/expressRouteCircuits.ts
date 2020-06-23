@@ -457,7 +457,15 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -504,6 +512,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ExpressRouteCircuit
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters7,
@@ -558,6 +569,9 @@ const listArpTableOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ExpressRouteCircuitsArpTableListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -587,6 +601,9 @@ const listRoutesTableOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ExpressRouteCircuitsRoutesTableListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -616,6 +633,9 @@ const listRoutesTableSummaryOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ExpressRouteCircuitsRoutesTableSummaryListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion],

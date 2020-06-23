@@ -925,7 +925,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Database
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters9,
   queryParameters: [Parameters.apiVersion1],
@@ -944,7 +945,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
@@ -971,7 +972,8 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Database
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters10,
   queryParameters: [Parameters.apiVersion1],
@@ -1022,7 +1024,8 @@ const pauseOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Database
-    }
+    },
+    default: {}
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
@@ -1050,7 +1053,8 @@ const resumeOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Database
-    }
+    },
+    default: {}
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
@@ -1066,7 +1070,7 @@ const upgradeDataWarehouseOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/upgradeDataWarehouse",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
@@ -1099,7 +1103,7 @@ const failoverOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/failover",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.replicaType, Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,

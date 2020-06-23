@@ -1015,6 +1015,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.VirtualNetworkGateway
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters48,
@@ -1054,7 +1057,15 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1080,6 +1091,9 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.VirtualNetworkGateway
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters1,
@@ -1151,6 +1165,9 @@ const resetOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.VirtualNetworkGateway
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion, Parameters.gatewayVip],
@@ -1166,7 +1183,15 @@ const resetVpnClientSharedKeyOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/resetvpnclientsharedkey",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1192,6 +1217,9 @@ const generatevpnclientpackageOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: { type: { name: "String" } }
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters49,
@@ -1222,6 +1250,9 @@ const generateVpnProfileOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: { type: { name: "String" } }
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters49,
@@ -1252,6 +1283,9 @@ const getVpnProfilePackageUrlOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: { type: { name: "String" } }
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -1279,6 +1313,9 @@ const getBgpPeerStatusOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.BgpPeerStatusListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion, Parameters.peer],
@@ -1327,6 +1364,9 @@ const getLearnedRoutesOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.GatewayRouteListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -1354,6 +1394,9 @@ const getAdvertisedRoutesOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.GatewayRouteListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion, Parameters.peer1],
@@ -1381,6 +1424,9 @@ const setVpnclientIpsecParametersOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.VpnClientIPsecParameters
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.vpnclientIpsecParams,
@@ -1465,6 +1511,9 @@ const startPacketCaptureOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: { type: { name: "String" } }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
     }
   },
   requestBody: Parameters.parameters51,
@@ -1495,6 +1544,9 @@ const stopPacketCaptureOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: { type: { name: "String" } }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
     }
   },
   requestBody: Parameters.parameters52,
@@ -1525,6 +1577,9 @@ const getVpnclientConnectionHealthOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.VpnClientConnectionHealthDetailListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -1540,7 +1595,15 @@ const disconnectVirtualNetworkGatewayVpnConnectionsOperationSpec: coreHttp.Opera
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/disconnectVirtualNetworkGatewayVpnConnections",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   requestBody: Parameters.request,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [

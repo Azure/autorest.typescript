@@ -287,6 +287,9 @@ const createOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.DeploymentScript
+    },
+    default: {
+      bodyMapper: Mappers.DeploymentScriptsError
     }
   },
   requestBody: Parameters.deploymentScript,

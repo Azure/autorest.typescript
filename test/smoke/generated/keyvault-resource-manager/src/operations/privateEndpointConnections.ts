@@ -215,6 +215,9 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.PrivateEndpointConnection
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion],

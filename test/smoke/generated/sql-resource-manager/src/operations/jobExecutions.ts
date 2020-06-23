@@ -406,7 +406,8 @@ const createOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.JobExecution
-    }
+    },
+    default: {}
   },
   queryParameters: [Parameters.apiVersion4],
   urlParameters: [
@@ -487,7 +488,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.JobExecution
-    }
+    },
+    default: {}
   },
   queryParameters: [Parameters.apiVersion4],
   urlParameters: [

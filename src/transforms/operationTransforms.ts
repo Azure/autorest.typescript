@@ -182,9 +182,9 @@ export function getSpecType(responseSchema: Schema, expand = false): SpecType {
       typeName = getSpecType(constantSchema.valueType).name;
       constantProps = expand
         ? {
-          isConstant: true,
-          defaultValue: constantSchema.value.value
-        }
+            isConstant: true,
+            defaultValue: constantSchema.value.value
+          }
         : undefined;
       break;
     case SchemaType.String:
@@ -369,7 +369,8 @@ export async function transformOperation(
   // this is because LRO operations swagger defines initial and final operation
   // responses in the same operation.
   if (isLRO && hasMultipleResponses) {
-    responses = [responses[0]];
+    const errorResponses = responses.filter(r => r.isError);
+    responses = [responses[0], ...errorResponses];
   }
 
   const mediaTypes = await getOperationMediaTypes(requests, responses);

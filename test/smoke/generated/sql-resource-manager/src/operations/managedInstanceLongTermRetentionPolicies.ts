@@ -228,7 +228,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ManagedInstanceLongTermRetentionPolicy
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters64,
   queryParameters: [Parameters.apiVersion2],
