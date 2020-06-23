@@ -312,7 +312,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.InstancePool
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters56,
   queryParameters: [Parameters.apiVersion2],
@@ -330,7 +331,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools/{instancePoolName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
@@ -356,7 +357,8 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.InstancePool
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters57,
   queryParameters: [Parameters.apiVersion2],

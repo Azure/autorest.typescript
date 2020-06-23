@@ -968,6 +968,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.AppServicePlan
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.appServicePlan,

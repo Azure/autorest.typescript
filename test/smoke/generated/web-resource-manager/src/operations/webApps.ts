@@ -11814,6 +11814,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Site
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.siteEnvelope,
@@ -12040,7 +12043,15 @@ const restoreOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/backups/{backupId}/restore",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
   requestBody: Parameters.request2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -13137,6 +13148,9 @@ const createMSDeployOperationOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.MSDeployStatus
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.mSDeploy,
@@ -13901,6 +13915,9 @@ const createInstanceMSDeployOperationOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.MSDeployStatus
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.mSDeploy,
@@ -14464,6 +14481,9 @@ const startWebSiteNetworkTraceOperationOperationSpec: coreHttp.OperationSpec = {
           element: { type: { name: "Composite", className: "NetworkTrace" } }
         }
       }
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   queryParameters: [
@@ -15127,7 +15147,15 @@ const restoreFromBackupBlobOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/restoreFromBackupBlob",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
   requestBody: Parameters.request2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -15144,7 +15172,15 @@ const restoreFromDeletedAppOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/restoreFromDeletedApp",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
   requestBody: Parameters.restoreRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -15161,7 +15197,15 @@ const restoreSnapshotOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/restoreSnapshot",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
   requestBody: Parameters.restoreRequest1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -15235,6 +15279,9 @@ const installSiteExtensionOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.SiteExtensionInfo
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -15272,7 +15319,15 @@ const copyProductionSlotOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slotcopy",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
   requestBody: Parameters.copySlotEntity,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -15345,6 +15400,9 @@ const createOrUpdateSlotOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Site
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.siteEnvelope,
@@ -15581,7 +15639,15 @@ const restoreSlotOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/backups/{backupId}/restore",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
   requestBody: Parameters.request2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -16635,6 +16701,9 @@ const createMSDeployOperationSlotOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.MSDeployStatus
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.mSDeploy,
@@ -17432,6 +17501,9 @@ const createInstanceMSDeployOperationSlotOperationSpec: coreHttp.OperationSpec =
     },
     204: {
       bodyMapper: Mappers.MSDeployStatus
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.mSDeploy,
@@ -17949,6 +18021,9 @@ const startWebSiteNetworkTraceOperationSlotOperationSpec: coreHttp.OperationSpec
           element: { type: { name: "Composite", className: "NetworkTrace" } }
         }
       }
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   queryParameters: [
@@ -18347,6 +18422,9 @@ const approveOrRejectPrivateEndpointConnectionOperationSpec: coreHttp.OperationS
     },
     204: {
       bodyMapper: Mappers.PrivateEndpointConnectionResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.privateEndpointWrapper,
@@ -18378,6 +18456,9 @@ const deletePrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: { type: { name: "any" } }
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -18743,7 +18824,15 @@ const restoreFromBackupBlobSlotOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/restoreFromBackupBlob",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
   requestBody: Parameters.request2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -18761,7 +18850,15 @@ const restoreFromDeletedAppSlotOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/restoreFromDeletedApp",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
   requestBody: Parameters.restoreRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -18779,7 +18876,15 @@ const restoreSnapshotSlotOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/restoreSnapshot",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
   requestBody: Parameters.restoreRequest1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -18856,6 +18961,9 @@ const installSiteExtensionSlotOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.SiteExtensionInfo
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -18895,7 +19003,15 @@ const copySlotOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/slotcopy",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
   requestBody: Parameters.copySlotEntity,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -18938,7 +19054,15 @@ const swapSlotOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/slotsswap",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
   requestBody: Parameters.slotSwapEntity,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -19040,6 +19164,9 @@ const createOrUpdateSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.SiteSourceControl
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.siteSourceControl,
@@ -19164,6 +19291,9 @@ const startNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
           element: { type: { name: "Composite", className: "NetworkTrace" } }
         }
       }
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   queryParameters: [
@@ -19699,7 +19829,15 @@ const swapSlotWithProductionOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slotsswap",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
   requestBody: Parameters.slotSwapEntity,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -19797,6 +19935,9 @@ const createOrUpdateSourceControlOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.SiteSourceControl
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.siteSourceControl,
@@ -19917,6 +20058,9 @@ const startNetworkTraceOperationSpec: coreHttp.OperationSpec = {
           element: { type: { name: "Composite", className: "NetworkTrace" } }
         }
       }
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   queryParameters: [
@@ -20704,7 +20848,7 @@ const listInstanceProcessThreadsNextOperationSpec: coreHttp.OperationSpec = {
 };
 const listSiteBackupsNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
-  httpMethod: "POST",
+  httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: Mappers.BackupItemCollection
@@ -21151,7 +21295,7 @@ const listInstanceProcessThreadsSlotNextOperationSpec: coreHttp.OperationSpec = 
 };
 const listSiteBackupsSlotNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
-  httpMethod: "POST",
+  httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: Mappers.BackupItemCollection
@@ -21311,7 +21455,7 @@ const listSiteExtensionsSlotNextOperationSpec: coreHttp.OperationSpec = {
 };
 const listSlotDifferencesSlotNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
-  httpMethod: "POST",
+  httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: Mappers.SlotDifferenceCollection
@@ -21320,7 +21464,6 @@ const listSlotDifferencesSlotNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.slotSwapEntity,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -21470,7 +21613,7 @@ const listWebJobsSlotNextOperationSpec: coreHttp.OperationSpec = {
 };
 const listSlotDifferencesFromProductionNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
-  httpMethod: "POST",
+  httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: Mappers.SlotDifferenceCollection
@@ -21479,7 +21622,6 @@ const listSlotDifferencesFromProductionNextOperationSpec: coreHttp.OperationSpec
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.slotSwapEntity,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

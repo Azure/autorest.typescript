@@ -484,6 +484,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.P2SVpnGateway
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.p2SVpnGatewayParameters,
@@ -526,7 +529,15 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/p2svpnGateways/{gatewayName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -588,6 +599,9 @@ const generateVpnProfileOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.VpnProfileResponse
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters60,
@@ -618,6 +632,9 @@ const getP2SVpnConnectionHealthOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.P2SVpnGateway
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -645,6 +662,9 @@ const getP2SVpnConnectionHealthDetailedOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.P2SVpnConnectionHealth
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.request2,
@@ -663,7 +683,15 @@ const disconnectP2SVpnConnectionsOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/p2svpnGateways/{p2sVpnGatewayName}/disconnectP2sVpnConnections",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   requestBody: Parameters.request,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [

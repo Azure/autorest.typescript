@@ -307,6 +307,9 @@ const put201CreatingSucceeded200OperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
@@ -360,6 +363,9 @@ const deleteProvisioning202Accepted200SucceededOperationSpec: coreHttp.Operation
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   urlParameters: [Parameters.$host],

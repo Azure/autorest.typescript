@@ -236,6 +236,9 @@ const put201CreatingSucceeded200OperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,

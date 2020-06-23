@@ -188,7 +188,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.BackupLongTermRetentionPolicy
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters39,
   queryParameters: [Parameters.apiVersion4],

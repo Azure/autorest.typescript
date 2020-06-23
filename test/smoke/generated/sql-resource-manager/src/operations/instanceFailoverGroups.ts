@@ -341,7 +341,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.InstanceFailoverGroup
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters49,
   queryParameters: [Parameters.apiVersion1],
@@ -360,7 +361,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/instanceFailoverGroups/{failoverGroupName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
@@ -406,7 +407,8 @@ const failoverOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.InstanceFailoverGroup
-    }
+    },
+    default: {}
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
@@ -434,7 +436,8 @@ const forceFailoverAllowDataLossOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.InstanceFailoverGroup
-    }
+    },
+    default: {}
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [

@@ -1098,42 +1098,26 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the ChangeVnet method.
    * @param options The options parameters.
    */
-  async changeVnetNext(
+  changeVnetNext(
     resourceGroupName: string,
     name: string,
     vnetInfo: VirtualNetworkProfile,
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<AppServiceEnvironmentsChangeVnetNextResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
+  ): Promise<AppServiceEnvironmentsChangeVnetNextResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
     );
-
-    const args: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetInfo,
-      nextLink,
-      options: operationOptions
-    };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
-        AppServiceEnvironmentsChangeVnetNextResponse
-      >;
-    const initialOperationResult = await sendOperation(
-      args,
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        name,
+        vnetInfo,
+        nextLink,
+        options: operationOptions
+      },
       changeVnetNextOperationSpec
-    );
-
-    return new LROPoller({
-      initialOperationArguments: args,
-      initialOperationSpec: changeVnetNextOperationSpec,
-      initialOperationResult,
-      sendOperation
-    });
+    ) as Promise<AppServiceEnvironmentsChangeVnetNextResponse>;
   }
 
   /**
@@ -1323,40 +1307,19 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the Resume method.
    * @param options The options parameters.
    */
-  async resumeNext(
+  resumeNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<AppServiceEnvironmentsResumeNextResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
+  ): Promise<AppServiceEnvironmentsResumeNextResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
     );
-
-    const args: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: operationOptions
-    };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
-        AppServiceEnvironmentsResumeNextResponse
-      >;
-    const initialOperationResult = await sendOperation(
-      args,
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, nextLink, options: operationOptions },
       resumeNextOperationSpec
-    );
-
-    return new LROPoller({
-      initialOperationArguments: args,
-      initialOperationSpec: resumeNextOperationSpec,
-      initialOperationResult,
-      sendOperation
-    });
+    ) as Promise<AppServiceEnvironmentsResumeNextResponse>;
   }
 
   /**
@@ -1410,40 +1373,19 @@ export class AppServiceEnvironments {
    * @param nextLink The nextLink from the previous successful call to the Suspend method.
    * @param options The options parameters.
    */
-  async suspendNext(
+  suspendNext(
     resourceGroupName: string,
     name: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<AppServiceEnvironmentsSuspendNextResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
+  ): Promise<AppServiceEnvironmentsSuspendNextResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
     );
-
-    const args: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: operationOptions
-    };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
-        AppServiceEnvironmentsSuspendNextResponse
-      >;
-    const initialOperationResult = await sendOperation(
-      args,
+    return this.client.sendOperationRequest(
+      { resourceGroupName, name, nextLink, options: operationOptions },
       suspendNextOperationSpec
-    );
-
-    return new LROPoller({
-      initialOperationArguments: args,
-      initialOperationSpec: suspendNextOperationSpec,
-      initialOperationResult,
-      sendOperation
-    });
+    ) as Promise<AppServiceEnvironmentsSuspendNextResponse>;
   }
 
   /**
@@ -1710,6 +1652,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.AppServiceEnvironmentResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.hostingEnvironmentEnvelope,
@@ -1728,7 +1673,15 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
+    }
+  },
   queryParameters: [Parameters.apiVersion, Parameters.forceDelete],
   urlParameters: [
     Parameters.$host,
@@ -1826,6 +1779,9 @@ const changeVnetOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.WebAppCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.vnetInfo,
@@ -1972,6 +1928,9 @@ const createOrUpdateMultiRolePoolOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.WorkerPoolResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.multiRolePoolEnvelope,
@@ -2180,6 +2139,9 @@ const resumeOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.WebAppCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -2249,6 +2211,9 @@ const suspendOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.WebAppCollection
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -2340,6 +2305,9 @@ const createOrUpdateWorkerPoolOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.WorkerPoolResource
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.workerPoolEnvelope,
@@ -2534,22 +2502,18 @@ const listCapacitiesNextOperationSpec: coreHttp.OperationSpec = {
 };
 const changeVnetNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
-  httpMethod: "POST",
+  httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.WebAppCollection
-    },
-    201: {
       bodyMapper: Mappers.WebAppCollection
     },
     202: {
       bodyMapper: Mappers.WebAppCollection
     },
-    204: {
-      bodyMapper: Mappers.WebAppCollection
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.vnetInfo,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -2712,19 +2676,16 @@ const getOutboundNetworkDependenciesEndpointsNextOperationSpec: coreHttp.Operati
 };
 const resumeNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
-  httpMethod: "POST",
+  httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.WebAppCollection
-    },
-    201: {
       bodyMapper: Mappers.WebAppCollection
     },
     202: {
       bodyMapper: Mappers.WebAppCollection
     },
-    204: {
-      bodyMapper: Mappers.WebAppCollection
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -2781,19 +2742,16 @@ const listWebAppsNextOperationSpec: coreHttp.OperationSpec = {
 };
 const suspendNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
-  httpMethod: "POST",
+  httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.WebAppCollection
-    },
-    201: {
       bodyMapper: Mappers.WebAppCollection
     },
     202: {
       bodyMapper: Mappers.WebAppCollection
     },
-    204: {
-      bodyMapper: Mappers.WebAppCollection
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   queryParameters: [Parameters.apiVersion],

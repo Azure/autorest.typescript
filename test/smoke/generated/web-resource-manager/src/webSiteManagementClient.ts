@@ -859,7 +859,7 @@ const listGeoRegionsNextOperationSpec: coreHttp.OperationSpec = {
 };
 const listSiteIdentifiersAssignedToHostNameNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
-  httpMethod: "POST",
+  httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: Mappers.IdentifierCollection
@@ -868,7 +868,6 @@ const listSiteIdentifiersAssignedToHostNameNextOperationSpec: coreHttp.Operation
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.nameIdentifier,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
