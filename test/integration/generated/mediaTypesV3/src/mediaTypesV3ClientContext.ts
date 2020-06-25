@@ -39,7 +39,7 @@ export class MediaTypesV3ClientContext extends coreHttp.ServiceClient {
 
     this.requestContentType = "application/json; charset=utf-8";
 
-    this.baseUri = options.endpoint;
+    this.baseUri = options.endpoint || "{$host}";
 
     // Parameter assignments
     this.$host = $host;

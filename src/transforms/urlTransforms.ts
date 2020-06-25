@@ -14,7 +14,7 @@ export async function transformBaseUrl(
 
   const $host = (codeModel.globalParameters || []).find(p => {
     const { name } = getLanguageMetadata(p.language);
-    return name === "$host";
+    return name === "$host" && Boolean(p.clientDefaultValue);
   });
 
   if (!$host) {
