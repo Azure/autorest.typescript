@@ -13,8 +13,8 @@ export async function transformBaseUrl(
   let isCustom = false;
 
   const $host = (codeModel.globalParameters || []).find(p => {
-    const { serializedName } = getLanguageMetadata(p.language);
-    serializedName === "$host";
+    const { name } = getLanguageMetadata(p.language);
+    return name === "$host";
   });
 
   if (!$host) {

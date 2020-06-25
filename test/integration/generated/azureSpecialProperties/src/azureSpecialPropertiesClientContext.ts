@@ -50,7 +50,7 @@ export class AzureSpecialPropertiesClientContext extends coreHttp.ServiceClient 
 
     this.requestContentType = "application/json; charset=utf-8";
 
-    this.baseUri = options.endpoint || "{$host}";
+    this.baseUri = options.endpoint || "http://localhost:3000";
 
     // Parameter assignments
     this.subscriptionId = subscriptionId;

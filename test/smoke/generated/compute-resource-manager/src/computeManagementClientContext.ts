@@ -58,7 +58,7 @@ export class ComputeManagementClientContext extends coreHttp.ServiceClient {
 
     this.requestContentType = "application/json; charset=utf-8";
 
-    this.baseUri = options.endpoint || "{$host}";
+    this.baseUri = options.endpoint || "https://management.azure.com";
 
     // Parameter assignments
     this.subscriptionId = subscriptionId;
