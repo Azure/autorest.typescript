@@ -5,4 +5,6 @@ test.json
 test/**/dist
 test/**/esm
 test/**/node_modules
+test-browser
 .tmp
+coverage

@@ -13,15 +13,7 @@ const testClient = new XmlServiceClient({
 });
 
 function getAbortController() {
-  let controller;
-  if (typeof AbortController === "function") {
-    controller = new AbortController();
-  } else {
-    const AbortControllerPonyfill = require("abortcontroller-polyfill/dist/cjs-ponyfill")
-      .AbortController;
-    controller = new AbortControllerPonyfill();
-  }
-  return controller;
+  return new AbortController();
 }
 
 describe("typescript", function() {

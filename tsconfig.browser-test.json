@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "alwaysStrict": true,
+    "forceConsistentCasingInFileNames": false,
+    "module": "commonjs",
+    "noEmitOnError": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "sourceMap": true,
+    "declarationMap": false,
+    "strict": true,
+    "declaration": true,
+    "stripInternal": true,
+    "noEmitHelpers": false,
+    "target": "es2018",
+    "types": ["node", "mocha"],
+    "lib": ["es2018", "DOM"],
+    "experimentalDecorators": true,
+    "newLine": "LF",
+    "outDir": "./test-browser",
+    "rootDir": "./test"
+  },
+  "include": [
+    "test/integration/*.ts",
+    "test/integration/generated/**/*.ts",
+    "test/utils/stream-helpers.ts"
+  ],
+  "exclude": []
+}

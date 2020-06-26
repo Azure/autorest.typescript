@@ -5,7 +5,8 @@ import {
   OperationOptions,
   redirectPolicy,
   exponentialRetryPolicy,
-  deserializationPolicy
+  deserializationPolicy,
+  isNode
 } from "@azure/core-http";
 import { HttpInfrastructureClientOptionalParams } from "./generated/httpInfrastructure/src/models";
 describe("Http infrastructure Client", () => {
@@ -160,7 +161,11 @@ describe("Http infrastructure Client", () => {
         await client.httpClientFailure.delete407();
         assert.fail("Expected error");
       } catch (error) {
-        assert.equal(error.statusCode, 407);
+        if (isNode) {
+          assert.equal(error.statusCode, 407);
+        } else {
+          assert.notEqual(error.message, "Expected error");
+        }
       }
     });
 

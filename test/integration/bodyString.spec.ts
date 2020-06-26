@@ -60,8 +60,10 @@ describe("Integration tests for BodyString", () => {
       const result = await client.string.getBase64Encoded();
       ok(!!result.body);
 
-      const expected = "a string that gets encoded with base64";
-      strictEqual((result.body as Buffer).toString("utf8"), expected);
+      const expected = Buffer.from("a string that gets encoded with base64");
+      for (let i = 0; i < expected.length; i++) {
+        equal(result.body[i], expected[i], "Byte mismatch.");
+      }
     });
 
     it("should correctly handle null base64url encoded string", async () => {
@@ -73,12 +75,12 @@ describe("Integration tests for BodyString", () => {
       const result = await client.string.getBase64UrlEncoded();
       ok(!!result.body, "response should contain a result");
 
-      const decodedString = "a string that gets encoded with base64url";
-      strictEqual((result.body as Buffer).toString("utf8"), decodedString);
-      const result2 = await client.string.putBase64UrlEncoded(
-        Buffer.from(decodedString, "utf-8")
-      );
+      const expected = Buffer.from("a string that gets encoded with base64url");
+      for (let i = 0; i < expected.length; i++) {
+        equal(result.body[i], expected[i], "Byte mismatch.");
+      }
 
+      const result2 = await client.string.putBase64UrlEncoded(expected);
       ok(!result2.body, "response should not contain result");
     });
 
