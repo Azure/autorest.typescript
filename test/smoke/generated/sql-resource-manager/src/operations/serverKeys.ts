@@ -265,7 +265,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ServerKey
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters21,
   queryParameters: [Parameters.apiVersion3],
@@ -284,7 +285,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/keys/{keyName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion3],
   urlParameters: [
     Parameters.$host,

@@ -253,6 +253,22 @@ describe("Integration tests for Paging", () => {
     });
   });
 
+  describe("#getMultiplePagesLRO", () => {
+    it("succeeds and gets 10 pages", async () => {
+      const poller = await client.paging.getMultiplePagesLRO();
+      poller.delay = () => Promise.resolve();
+      let pageCount = 1;
+      let page = await poller.pollUntilDone();
+
+      while (page.nextLink) {
+        page = await client.paging.getMultiplePagesLRONext(page.nextLink);
+        pageCount++;
+      }
+
+      assert.equal(pageCount, 10);
+    });
+  });
+
   describe("#getMultiplePagesFragmentNextLink", () => {
     it("succeeds", async () => {
       const results = [];

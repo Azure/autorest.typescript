@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import { OperationURLParameter, OperationParameter } from "@azure/core-http";
+import { RefColorConstant as RefColorConstantMapper } from "../models/mappers";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -21,7 +21,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -33,7 +33,7 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const stringBody: coreHttp.OperationParameter = {
+export const stringBody: OperationParameter = {
   parameterPath: ["options", "stringBody"],
   mapper: {
     serializedName: "stringBody",
@@ -43,7 +43,7 @@ export const stringBody: coreHttp.OperationParameter = {
   }
 };
 
-export const stringBody1: coreHttp.OperationParameter = {
+export const stringBody1: OperationParameter = {
   parameterPath: "stringBody",
   mapper: {
     defaultValue: "",
@@ -55,7 +55,7 @@ export const stringBody1: coreHttp.OperationParameter = {
   }
 };
 
-export const stringBody2: coreHttp.OperationParameter = {
+export const stringBody2: OperationParameter = {
   parameterPath: "stringBody",
   mapper: {
     defaultValue:
@@ -68,7 +68,7 @@ export const stringBody2: coreHttp.OperationParameter = {
   }
 };
 
-export const stringBody3: coreHttp.OperationParameter = {
+export const stringBody3: OperationParameter = {
   parameterPath: "stringBody",
   mapper: {
     defaultValue:
@@ -81,7 +81,7 @@ export const stringBody3: coreHttp.OperationParameter = {
   }
 };
 
-export const stringBody4: coreHttp.OperationParameter = {
+export const stringBody4: OperationParameter = {
   parameterPath: "stringBody",
   mapper: {
     serializedName: "stringBody",
@@ -92,7 +92,7 @@ export const stringBody4: coreHttp.OperationParameter = {
   }
 };
 
-export const stringBody5: coreHttp.OperationParameter = {
+export const stringBody5: OperationParameter = {
   parameterPath: "stringBody",
   mapper: {
     serializedName: "stringBody",
@@ -104,7 +104,7 @@ export const stringBody5: coreHttp.OperationParameter = {
   }
 };
 
-export const enumStringBody: coreHttp.OperationParameter = {
+export const enumStringBody: OperationParameter = {
   parameterPath: "enumStringBody",
   mapper: {
     serializedName: "enumStringBody",
@@ -116,7 +116,7 @@ export const enumStringBody: coreHttp.OperationParameter = {
   }
 };
 
-export const enumStringBody1: coreHttp.OperationParameter = {
+export const enumStringBody1: OperationParameter = {
   parameterPath: "enumStringBody",
-  mapper: Mappers.RefColorConstant
+  mapper: RefColorConstantMapper
 };

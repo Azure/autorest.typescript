@@ -6,10 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import { OperationURLParameter } from "@azure/core-http";
 
-export const accountName: coreHttp.OperationURLParameter = {
+export const accountName: OperationURLParameter = {
   parameterPath: "accountName",
   mapper: {
     serializedName: "accountName",
@@ -21,7 +20,7 @@ export const accountName: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const host: coreHttp.OperationURLParameter = {
+export const host: OperationURLParameter = {
   parameterPath: "host",
   mapper: {
     serializedName: "host",

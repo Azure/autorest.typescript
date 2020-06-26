@@ -6,10 +6,20 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import {
+  OperationParameter,
+  OperationURLParameter,
+  OperationQueryParameter
+} from "@azure/core-http";
+import {
+  VaultCreateOrUpdateParameters as VaultCreateOrUpdateParametersMapper,
+  VaultPatchParameters as VaultPatchParametersMapper,
+  VaultAccessPolicyParameters as VaultAccessPolicyParametersMapper,
+  VaultCheckNameAvailabilityParameters as VaultCheckNameAvailabilityParametersMapper,
+  PrivateEndpointConnection as PrivateEndpointConnectionMapper
+} from "../models/mappers";
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -21,12 +31,12 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const parameters: coreHttp.OperationParameter = {
+export const parameters: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.VaultCreateOrUpdateParameters
+  mapper: VaultCreateOrUpdateParametersMapper
 };
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -38,7 +48,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const resourceGroupName: coreHttp.OperationURLParameter = {
+export const resourceGroupName: OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     serializedName: "resourceGroupName",
@@ -49,7 +59,7 @@ export const resourceGroupName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const vaultName: coreHttp.OperationURLParameter = {
+export const vaultName: OperationURLParameter = {
   parameterPath: "vaultName",
   mapper: {
     constraints: {
@@ -63,7 +73,7 @@ export const vaultName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const apiVersion: coreHttp.OperationQueryParameter = {
+export const apiVersion: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2019-09-01",
@@ -75,7 +85,7 @@ export const apiVersion: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const subscriptionId: coreHttp.OperationURLParameter = {
+export const subscriptionId: OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     serializedName: "subscriptionId",
@@ -86,12 +96,12 @@ export const subscriptionId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters1: coreHttp.OperationParameter = {
+export const parameters1: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.VaultPatchParameters
+  mapper: VaultPatchParametersMapper
 };
 
-export const vaultName1: coreHttp.OperationURLParameter = {
+export const vaultName1: OperationURLParameter = {
   parameterPath: "vaultName",
   mapper: {
     serializedName: "vaultName",
@@ -102,12 +112,12 @@ export const vaultName1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const parameters2: coreHttp.OperationParameter = {
+export const parameters2: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.VaultAccessPolicyParameters
+  mapper: VaultAccessPolicyParametersMapper
 };
 
-export const operationKind: coreHttp.OperationURLParameter = {
+export const operationKind: OperationURLParameter = {
   parameterPath: "operationKind",
   mapper: {
     serializedName: "operationKind",
@@ -119,7 +129,7 @@ export const operationKind: coreHttp.OperationURLParameter = {
   }
 };
 
-export const top: coreHttp.OperationQueryParameter = {
+export const top: OperationQueryParameter = {
   parameterPath: ["options", "top"],
   mapper: {
     serializedName: "$top",
@@ -129,7 +139,7 @@ export const top: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const location: coreHttp.OperationURLParameter = {
+export const location: OperationURLParameter = {
   parameterPath: "location",
   mapper: {
     serializedName: "location",
@@ -140,7 +150,7 @@ export const location: coreHttp.OperationURLParameter = {
   }
 };
 
-export const filter: coreHttp.OperationQueryParameter = {
+export const filter: OperationQueryParameter = {
   parameterPath: "filter",
   mapper: {
     defaultValue: "resourceType eq 'Microsoft.KeyVault/vaults'",
@@ -152,12 +162,12 @@ export const filter: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const vaultName2: coreHttp.OperationParameter = {
+export const vaultName2: OperationParameter = {
   parameterPath: "vaultName",
-  mapper: Mappers.VaultCheckNameAvailabilityParameters
+  mapper: VaultCheckNameAvailabilityParametersMapper
 };
 
-export const nextLink: coreHttp.OperationURLParameter = {
+export const nextLink: OperationURLParameter = {
   parameterPath: "nextLink",
   mapper: {
     serializedName: "nextLink",
@@ -169,7 +179,7 @@ export const nextLink: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const privateEndpointConnectionName: coreHttp.OperationURLParameter = {
+export const privateEndpointConnectionName: OperationURLParameter = {
   parameterPath: "privateEndpointConnectionName",
   mapper: {
     serializedName: "privateEndpointConnectionName",
@@ -180,7 +190,7 @@ export const privateEndpointConnectionName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const properties: coreHttp.OperationParameter = {
+export const properties: OperationParameter = {
   parameterPath: "properties",
-  mapper: Mappers.PrivateEndpointConnection
+  mapper: PrivateEndpointConnectionMapper
 };

@@ -964,6 +964,9 @@ const putNonRetry400OperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
@@ -987,6 +990,9 @@ const putNonRetry201Creating400OperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
@@ -1010,6 +1016,9 @@ const putNonRetry201Creating400InvalidJsonOperationSpec: coreHttp.OperationSpec 
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
@@ -1210,6 +1219,9 @@ const putError201NoProvisioningStatePayloadOperationSpec: coreHttp.OperationSpec
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
@@ -1383,6 +1395,9 @@ const put200InvalidJsonOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,

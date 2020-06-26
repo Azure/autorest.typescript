@@ -6,10 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import { OperationURLParameter, OperationParameter } from "@azure/core-http";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -21,7 +20,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const userAgent: coreHttp.OperationParameter = {
+export const userAgent: OperationParameter = {
   parameterPath: "userAgent",
   mapper: {
     serializedName: "User-Agent",
@@ -32,7 +31,7 @@ export const userAgent: coreHttp.OperationParameter = {
   }
 };
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: "contentType",
   mapper: {
     serializedName: "Content-Type",
@@ -43,7 +42,7 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const scenario: coreHttp.OperationParameter = {
+export const scenario: OperationParameter = {
   parameterPath: "scenario",
   mapper: {
     serializedName: "scenario",
@@ -54,7 +53,7 @@ export const scenario: coreHttp.OperationParameter = {
   }
 };
 
-export const value: coreHttp.OperationParameter = {
+export const value: OperationParameter = {
   parameterPath: "value",
   mapper: {
     serializedName: "value",
@@ -65,7 +64,7 @@ export const value: coreHttp.OperationParameter = {
   }
 };
 
-export const value1: coreHttp.OperationParameter = {
+export const value1: OperationParameter = {
   parameterPath: "value",
   mapper: {
     serializedName: "value",
@@ -76,7 +75,7 @@ export const value1: coreHttp.OperationParameter = {
   }
 };
 
-export const value2: coreHttp.OperationParameter = {
+export const value2: OperationParameter = {
   parameterPath: "value",
   mapper: {
     serializedName: "value",
@@ -87,7 +86,7 @@ export const value2: coreHttp.OperationParameter = {
   }
 };
 
-export const value3: coreHttp.OperationParameter = {
+export const value3: OperationParameter = {
   parameterPath: ["options", "value"],
   mapper: {
     serializedName: "value",
@@ -97,7 +96,7 @@ export const value3: coreHttp.OperationParameter = {
   }
 };
 
-export const value4: coreHttp.OperationParameter = {
+export const value4: OperationParameter = {
   parameterPath: "value",
   mapper: {
     serializedName: "value",
@@ -108,7 +107,7 @@ export const value4: coreHttp.OperationParameter = {
   }
 };
 
-export const value5: coreHttp.OperationParameter = {
+export const value5: OperationParameter = {
   parameterPath: "value",
   mapper: {
     serializedName: "value",
@@ -119,7 +118,7 @@ export const value5: coreHttp.OperationParameter = {
   }
 };
 
-export const value6: coreHttp.OperationParameter = {
+export const value6: OperationParameter = {
   parameterPath: ["options", "value"],
   mapper: {
     serializedName: "value",
@@ -129,7 +128,7 @@ export const value6: coreHttp.OperationParameter = {
   }
 };
 
-export const value7: coreHttp.OperationParameter = {
+export const value7: OperationParameter = {
   parameterPath: "value",
   mapper: {
     serializedName: "value",
@@ -140,7 +139,7 @@ export const value7: coreHttp.OperationParameter = {
   }
 };
 
-export const value8: coreHttp.OperationParameter = {
+export const value8: OperationParameter = {
   parameterPath: "value",
   mapper: {
     serializedName: "value",
@@ -151,7 +150,7 @@ export const value8: coreHttp.OperationParameter = {
   }
 };
 
-export const value9: coreHttp.OperationParameter = {
+export const value9: OperationParameter = {
   parameterPath: ["options", "value"],
   mapper: {
     serializedName: "value",

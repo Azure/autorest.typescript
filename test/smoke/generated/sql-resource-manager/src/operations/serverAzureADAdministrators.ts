@@ -282,7 +282,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ServerAzureADAdministrator
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters70,
   queryParameters: [Parameters.apiVersion5],
@@ -301,7 +302,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/administrators/{administratorName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion5],
   urlParameters: [
     Parameters.$host,
@@ -347,7 +348,8 @@ const disableAzureADOnlyAuthenticationOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ServerAzureADAdministrator
-    }
+    },
+    default: {}
   },
   queryParameters: [Parameters.apiVersion5],
   urlParameters: [

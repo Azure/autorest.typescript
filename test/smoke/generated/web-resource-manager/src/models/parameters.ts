@@ -6,10 +6,84 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import {
+  OperationURLParameter,
+  OperationQueryParameter,
+  OperationParameter
+} from "@azure/core-http";
+import {
+  AppServiceCertificateOrder as AppServiceCertificateOrderMapper,
+  AppServiceCertificateOrderPatchResource as AppServiceCertificateOrderPatchResourceMapper,
+  AppServiceCertificateResource as AppServiceCertificateResourceMapper,
+  AppServiceCertificatePatchResource as AppServiceCertificatePatchResourceMapper,
+  ReissueCertificateOrderRequest as ReissueCertificateOrderRequestMapper,
+  RenewCertificateOrderRequest as RenewCertificateOrderRequestMapper,
+  NameIdentifier as NameIdentifierMapper,
+  SiteSealRequest as SiteSealRequestMapper,
+  DomainRecommendationSearchParameters as DomainRecommendationSearchParametersMapper,
+  Domain as DomainMapper,
+  DomainPatchResource as DomainPatchResourceMapper,
+  DomainOwnershipIdentifier as DomainOwnershipIdentifierMapper,
+  TopLevelDomainAgreementOption as TopLevelDomainAgreementOptionMapper,
+  Certificate as CertificateMapper,
+  CertificatePatchResource as CertificatePatchResourceMapper,
+  User as UserMapper,
+  SourceControl as SourceControlMapper,
+  ResourceNameAvailabilityRequest as ResourceNameAvailabilityRequestMapper,
+  VnetParameters as VnetParametersMapper,
+  CsmMoveResourceEnvelope as CsmMoveResourceEnvelopeMapper,
+  ValidateRequest as ValidateRequestMapper,
+  Site as SiteMapper,
+  SitePatchResource as SitePatchResourceMapper,
+  CsmSlotEntity as CsmSlotEntityMapper,
+  BackupRequest as BackupRequestMapper,
+  RestoreRequest as RestoreRequestMapper,
+  StringDictionary as StringDictionaryMapper,
+  SiteAuthSettings as SiteAuthSettingsMapper,
+  AzureStoragePropertyDictionaryResource as AzureStoragePropertyDictionaryResourceMapper,
+  ConnectionStringDictionary as ConnectionStringDictionaryMapper,
+  SiteLogsConfig as SiteLogsConfigMapper,
+  PushSettings as PushSettingsMapper,
+  SlotConfigNamesResource as SlotConfigNamesResourceMapper,
+  SiteConfigResource as SiteConfigResourceMapper,
+  Deployment as DeploymentMapper,
+  Identifier as IdentifierMapper,
+  MSDeploy as MSDeployMapper,
+  FunctionEnvelope as FunctionEnvelopeMapper,
+  KeyInfo as KeyInfoMapper,
+  HostNameBinding as HostNameBindingMapper,
+  HybridConnection as HybridConnectionMapper,
+  RelayServiceConnectionEntity as RelayServiceConnectionEntityMapper,
+  StorageMigrationOptions as StorageMigrationOptionsMapper,
+  MigrateMySqlRequest as MigrateMySqlRequestMapper,
+  SwiftVirtualNetwork as SwiftVirtualNetworkMapper,
+  PremierAddOn as PremierAddOnMapper,
+  PremierAddOnPatchResource as PremierAddOnPatchResourceMapper,
+  PrivateAccess as PrivateAccessMapper,
+  PublicCertificate as PublicCertificateMapper,
+  CsmPublishingProfileOptions as CsmPublishingProfileOptionsMapper,
+  DeletedAppRestoreRequest as DeletedAppRestoreRequestMapper,
+  SnapshotRestoreRequest as SnapshotRestoreRequestMapper,
+  CsmCopySlotEntity as CsmCopySlotEntityMapper,
+  PrivateLinkConnectionApprovalRequestResource as PrivateLinkConnectionApprovalRequestResourceMapper,
+  SiteSourceControl as SiteSourceControlMapper,
+  VnetInfo as VnetInfoMapper,
+  VnetGateway as VnetGatewayMapper,
+  StaticSiteARMResource as StaticSiteARMResourceMapper,
+  StaticSitePatchResource as StaticSitePatchResourceMapper,
+  StaticSiteUserARMResource as StaticSiteUserARMResourceMapper,
+  StaticSiteUserInvitationRequestResource as StaticSiteUserInvitationRequestResourceMapper,
+  StaticSiteResetPropertiesARMResource as StaticSiteResetPropertiesARMResourceMapper,
+  AppServiceEnvironmentResource as AppServiceEnvironmentResourceMapper,
+  AppServiceEnvironmentPatchResource as AppServiceEnvironmentPatchResourceMapper,
+  VirtualNetworkProfile as VirtualNetworkProfileMapper,
+  WorkerPoolResource as WorkerPoolResourceMapper,
+  AppServicePlan as AppServicePlanMapper,
+  AppServicePlanPatchResource as AppServicePlanPatchResourceMapper,
+  VnetRoute as VnetRouteMapper
+} from "../models/mappers";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -22,7 +96,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const subscriptionId: coreHttp.OperationURLParameter = {
+export const subscriptionId: OperationURLParameter = {
   parameterPath: "subscriptionId",
   mapper: {
     serializedName: "subscriptionId",
@@ -34,7 +108,7 @@ export const subscriptionId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const apiVersion: coreHttp.OperationQueryParameter = {
+export const apiVersion: OperationQueryParameter = {
   parameterPath: "apiVersion",
   mapper: {
     defaultValue: "2019-08-01",
@@ -46,7 +120,7 @@ export const apiVersion: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -58,12 +132,12 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const appServiceCertificateOrder: coreHttp.OperationParameter = {
+export const appServiceCertificateOrder: OperationParameter = {
   parameterPath: "appServiceCertificateOrder",
-  mapper: Mappers.AppServiceCertificateOrder
+  mapper: AppServiceCertificateOrderMapper
 };
 
-export const resourceGroupName: coreHttp.OperationURLParameter = {
+export const resourceGroupName: OperationURLParameter = {
   parameterPath: "resourceGroupName",
   mapper: {
     constraints: {
@@ -80,7 +154,7 @@ export const resourceGroupName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const certificateOrderName: coreHttp.OperationURLParameter = {
+export const certificateOrderName: OperationURLParameter = {
   parameterPath: "certificateOrderName",
   mapper: {
     serializedName: "certificateOrderName",
@@ -92,17 +166,17 @@ export const certificateOrderName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const certificateDistinguishedName: coreHttp.OperationParameter = {
+export const certificateDistinguishedName: OperationParameter = {
   parameterPath: "certificateDistinguishedName",
-  mapper: Mappers.AppServiceCertificateOrder
+  mapper: AppServiceCertificateOrderMapper
 };
 
-export const certificateDistinguishedName1: coreHttp.OperationParameter = {
+export const certificateDistinguishedName1: OperationParameter = {
   parameterPath: "certificateDistinguishedName",
-  mapper: Mappers.AppServiceCertificateOrderPatchResource
+  mapper: AppServiceCertificateOrderPatchResourceMapper
 };
 
-export const name: coreHttp.OperationURLParameter = {
+export const name: OperationURLParameter = {
   parameterPath: "name",
   mapper: {
     serializedName: "name",
@@ -114,37 +188,37 @@ export const name: coreHttp.OperationURLParameter = {
   }
 };
 
-export const keyVaultCertificate: coreHttp.OperationParameter = {
+export const keyVaultCertificate: OperationParameter = {
   parameterPath: "keyVaultCertificate",
-  mapper: Mappers.AppServiceCertificateResource
+  mapper: AppServiceCertificateResourceMapper
 };
 
-export const keyVaultCertificate1: coreHttp.OperationParameter = {
+export const keyVaultCertificate1: OperationParameter = {
   parameterPath: "keyVaultCertificate",
-  mapper: Mappers.AppServiceCertificatePatchResource
+  mapper: AppServiceCertificatePatchResourceMapper
 };
 
-export const reissueCertificateOrderRequest: coreHttp.OperationParameter = {
+export const reissueCertificateOrderRequest: OperationParameter = {
   parameterPath: "reissueCertificateOrderRequest",
-  mapper: Mappers.ReissueCertificateOrderRequest
+  mapper: ReissueCertificateOrderRequestMapper
 };
 
-export const renewCertificateOrderRequest: coreHttp.OperationParameter = {
+export const renewCertificateOrderRequest: OperationParameter = {
   parameterPath: "renewCertificateOrderRequest",
-  mapper: Mappers.RenewCertificateOrderRequest
+  mapper: RenewCertificateOrderRequestMapper
 };
 
-export const nameIdentifier: coreHttp.OperationParameter = {
+export const nameIdentifier: OperationParameter = {
   parameterPath: "nameIdentifier",
-  mapper: Mappers.NameIdentifier
+  mapper: NameIdentifierMapper
 };
 
-export const siteSealRequest: coreHttp.OperationParameter = {
+export const siteSealRequest: OperationParameter = {
   parameterPath: "siteSealRequest",
-  mapper: Mappers.SiteSealRequest
+  mapper: SiteSealRequestMapper
 };
 
-export const nextLink: coreHttp.OperationURLParameter = {
+export const nextLink: OperationURLParameter = {
   parameterPath: "nextLink",
   mapper: {
     serializedName: "nextLink",
@@ -157,17 +231,17 @@ export const nextLink: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const identifier: coreHttp.OperationParameter = {
+export const identifier: OperationParameter = {
   parameterPath: "identifier",
-  mapper: Mappers.NameIdentifier
+  mapper: NameIdentifierMapper
 };
 
-export const parameters: coreHttp.OperationParameter = {
+export const parameters: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.DomainRecommendationSearchParameters
+  mapper: DomainRecommendationSearchParametersMapper
 };
 
-export const domainName: coreHttp.OperationURLParameter = {
+export const domainName: OperationURLParameter = {
   parameterPath: "domainName",
   mapper: {
     serializedName: "domainName",
@@ -179,12 +253,12 @@ export const domainName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const domain: coreHttp.OperationParameter = {
+export const domain: OperationParameter = {
   parameterPath: "domain",
-  mapper: Mappers.Domain
+  mapper: DomainMapper
 };
 
-export const domainName1: coreHttp.OperationURLParameter = {
+export const domainName1: OperationURLParameter = {
   parameterPath: "domainName",
   mapper: {
     constraints: {
@@ -199,7 +273,7 @@ export const domainName1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const forceHardDeleteDomain: coreHttp.OperationQueryParameter = {
+export const forceHardDeleteDomain: OperationQueryParameter = {
   parameterPath: ["options", "forceHardDeleteDomain"],
   mapper: {
     serializedName: "forceHardDeleteDomain",
@@ -210,17 +284,17 @@ export const forceHardDeleteDomain: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const domain1: coreHttp.OperationParameter = {
+export const domain1: OperationParameter = {
   parameterPath: "domain",
-  mapper: Mappers.DomainPatchResource
+  mapper: DomainPatchResourceMapper
 };
 
-export const domainOwnershipIdentifier: coreHttp.OperationParameter = {
+export const domainOwnershipIdentifier: OperationParameter = {
   parameterPath: "domainOwnershipIdentifier",
-  mapper: Mappers.DomainOwnershipIdentifier
+  mapper: DomainOwnershipIdentifierMapper
 };
 
-export const nextLink1: coreHttp.OperationURLParameter = {
+export const nextLink1: OperationURLParameter = {
   parameterPath: "nextLink",
   mapper: {
     serializedName: "nextLink",
@@ -233,22 +307,22 @@ export const nextLink1: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const agreementOption: coreHttp.OperationParameter = {
+export const agreementOption: OperationParameter = {
   parameterPath: "agreementOption",
-  mapper: Mappers.TopLevelDomainAgreementOption
+  mapper: TopLevelDomainAgreementOptionMapper
 };
 
-export const certificateEnvelope: coreHttp.OperationParameter = {
+export const certificateEnvelope: OperationParameter = {
   parameterPath: "certificateEnvelope",
-  mapper: Mappers.Certificate
+  mapper: CertificateMapper
 };
 
-export const certificateEnvelope1: coreHttp.OperationParameter = {
+export const certificateEnvelope1: OperationParameter = {
   parameterPath: "certificateEnvelope",
-  mapper: Mappers.CertificatePatchResource
+  mapper: CertificatePatchResourceMapper
 };
 
-export const location: coreHttp.OperationURLParameter = {
+export const location: OperationURLParameter = {
   parameterPath: "location",
   mapper: {
     serializedName: "location",
@@ -260,7 +334,7 @@ export const location: coreHttp.OperationURLParameter = {
   }
 };
 
-export const deletedSiteId: coreHttp.OperationURLParameter = {
+export const deletedSiteId: OperationURLParameter = {
   parameterPath: "deletedSiteId",
   mapper: {
     serializedName: "deletedSiteId",
@@ -272,7 +346,7 @@ export const deletedSiteId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const detectorName: coreHttp.OperationURLParameter = {
+export const detectorName: OperationURLParameter = {
   parameterPath: "detectorName",
   mapper: {
     serializedName: "detectorName",
@@ -284,7 +358,7 @@ export const detectorName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const startTime: coreHttp.OperationQueryParameter = {
+export const startTime: OperationQueryParameter = {
   parameterPath: ["options", "startTime"],
   mapper: {
     serializedName: "startTime",
@@ -295,7 +369,7 @@ export const startTime: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const endTime: coreHttp.OperationQueryParameter = {
+export const endTime: OperationQueryParameter = {
   parameterPath: ["options", "endTime"],
   mapper: {
     serializedName: "endTime",
@@ -306,7 +380,7 @@ export const endTime: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const timeGrain: coreHttp.OperationQueryParameter = {
+export const timeGrain: OperationQueryParameter = {
   parameterPath: ["options", "timeGrain"],
   mapper: {
     constraints: {
@@ -320,7 +394,7 @@ export const timeGrain: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const siteName: coreHttp.OperationURLParameter = {
+export const siteName: OperationURLParameter = {
   parameterPath: "siteName",
   mapper: {
     serializedName: "siteName",
@@ -332,7 +406,7 @@ export const siteName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const diagnosticCategory: coreHttp.OperationURLParameter = {
+export const diagnosticCategory: OperationURLParameter = {
   parameterPath: "diagnosticCategory",
   mapper: {
     serializedName: "diagnosticCategory",
@@ -344,7 +418,7 @@ export const diagnosticCategory: coreHttp.OperationURLParameter = {
   }
 };
 
-export const analysisName: coreHttp.OperationURLParameter = {
+export const analysisName: OperationURLParameter = {
   parameterPath: "analysisName",
   mapper: {
     serializedName: "analysisName",
@@ -356,7 +430,7 @@ export const analysisName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const slot: coreHttp.OperationURLParameter = {
+export const slot: OperationURLParameter = {
   parameterPath: "slot",
   mapper: {
     serializedName: "slot",
@@ -368,7 +442,7 @@ export const slot: coreHttp.OperationURLParameter = {
   }
 };
 
-export const osTypeSelected: coreHttp.OperationQueryParameter = {
+export const osTypeSelected: OperationQueryParameter = {
   parameterPath: ["options", "osTypeSelected"],
   mapper: {
     serializedName: "osTypeSelected",
@@ -379,7 +453,7 @@ export const osTypeSelected: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const osTypeSelected1: coreHttp.OperationQueryParameter = {
+export const osTypeSelected1: OperationQueryParameter = {
   parameterPath: ["options", "osTypeSelected"],
   mapper: {
     serializedName: "osTypeSelected",
@@ -390,7 +464,7 @@ export const osTypeSelected1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const featured: coreHttp.OperationQueryParameter = {
+export const featured: OperationQueryParameter = {
   parameterPath: ["options", "featured"],
   mapper: {
     serializedName: "featured",
@@ -401,7 +475,7 @@ export const featured: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const filter: coreHttp.OperationQueryParameter = {
+export const filter: OperationQueryParameter = {
   parameterPath: ["options", "filter"],
   mapper: {
     serializedName: "$filter",
@@ -413,7 +487,7 @@ export const filter: coreHttp.OperationQueryParameter = {
   skipEncoding: true
 };
 
-export const hostingEnvironmentName: coreHttp.OperationURLParameter = {
+export const hostingEnvironmentName: OperationURLParameter = {
   parameterPath: "hostingEnvironmentName",
   mapper: {
     serializedName: "hostingEnvironmentName",
@@ -425,7 +499,7 @@ export const hostingEnvironmentName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const expiredOnly: coreHttp.OperationQueryParameter = {
+export const expiredOnly: OperationQueryParameter = {
   parameterPath: ["options", "expiredOnly"],
   mapper: {
     serializedName: "expiredOnly",
@@ -436,7 +510,7 @@ export const expiredOnly: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const environmentName: coreHttp.OperationQueryParameter = {
+export const environmentName: OperationQueryParameter = {
   parameterPath: "environmentName",
   mapper: {
     serializedName: "environmentName",
@@ -448,7 +522,7 @@ export const environmentName: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const updateSeen: coreHttp.OperationQueryParameter = {
+export const updateSeen: OperationQueryParameter = {
   parameterPath: ["options", "updateSeen"],
   mapper: {
     serializedName: "updateSeen",
@@ -459,7 +533,7 @@ export const updateSeen: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const recommendationId: coreHttp.OperationQueryParameter = {
+export const recommendationId: OperationQueryParameter = {
   parameterPath: ["options", "recommendationId"],
   mapper: {
     serializedName: "recommendationId",
@@ -470,12 +544,12 @@ export const recommendationId: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const userDetails: coreHttp.OperationParameter = {
+export const userDetails: OperationParameter = {
   parameterPath: "userDetails",
-  mapper: Mappers.User
+  mapper: UserMapper
 };
 
-export const sourceControlType: coreHttp.OperationURLParameter = {
+export const sourceControlType: OperationURLParameter = {
   parameterPath: "sourceControlType",
   mapper: {
     serializedName: "sourceControlType",
@@ -487,12 +561,12 @@ export const sourceControlType: coreHttp.OperationURLParameter = {
   }
 };
 
-export const requestMessage: coreHttp.OperationParameter = {
+export const requestMessage: OperationParameter = {
   parameterPath: "requestMessage",
-  mapper: Mappers.SourceControl
+  mapper: SourceControlMapper
 };
 
-export const billingLocation: coreHttp.OperationQueryParameter = {
+export const billingLocation: OperationQueryParameter = {
   parameterPath: ["options", "billingLocation"],
   mapper: {
     serializedName: "billingLocation",
@@ -503,7 +577,7 @@ export const billingLocation: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const osType: coreHttp.OperationQueryParameter = {
+export const osType: OperationQueryParameter = {
   parameterPath: ["options", "osType"],
   mapper: {
     serializedName: "osType",
@@ -514,12 +588,12 @@ export const osType: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const request: coreHttp.OperationParameter = {
+export const request: OperationParameter = {
   parameterPath: "request",
-  mapper: Mappers.ResourceNameAvailabilityRequest
+  mapper: ResourceNameAvailabilityRequestMapper
 };
 
-export const sku: coreHttp.OperationQueryParameter = {
+export const sku: OperationQueryParameter = {
   parameterPath: ["options", "sku"],
   mapper: {
     serializedName: "sku",
@@ -530,7 +604,7 @@ export const sku: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const linuxWorkersEnabled: coreHttp.OperationQueryParameter = {
+export const linuxWorkersEnabled: OperationQueryParameter = {
   parameterPath: ["options", "linuxWorkersEnabled"],
   mapper: {
     serializedName: "linuxWorkersEnabled",
@@ -541,7 +615,7 @@ export const linuxWorkersEnabled: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const xenonWorkersEnabled: coreHttp.OperationQueryParameter = {
+export const xenonWorkersEnabled: OperationQueryParameter = {
   parameterPath: ["options", "xenonWorkersEnabled"],
   mapper: {
     serializedName: "xenonWorkersEnabled",
@@ -552,7 +626,7 @@ export const xenonWorkersEnabled: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const linuxDynamicWorkersEnabled: coreHttp.OperationQueryParameter = {
+export const linuxDynamicWorkersEnabled: OperationQueryParameter = {
   parameterPath: ["options", "linuxDynamicWorkersEnabled"],
   mapper: {
     serializedName: "linuxDynamicWorkersEnabled",
@@ -563,22 +637,22 @@ export const linuxDynamicWorkersEnabled: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const parameters1: coreHttp.OperationParameter = {
+export const parameters1: OperationParameter = {
   parameterPath: "parameters",
-  mapper: Mappers.VnetParameters
+  mapper: VnetParametersMapper
 };
 
-export const moveResourceEnvelope: coreHttp.OperationParameter = {
+export const moveResourceEnvelope: OperationParameter = {
   parameterPath: "moveResourceEnvelope",
-  mapper: Mappers.CsmMoveResourceEnvelope
+  mapper: CsmMoveResourceEnvelopeMapper
 };
 
-export const validateRequest: coreHttp.OperationParameter = {
+export const validateRequest: OperationParameter = {
   parameterPath: "validateRequest",
-  mapper: Mappers.ValidateRequest
+  mapper: ValidateRequestMapper
 };
 
-export const includeSlots: coreHttp.OperationQueryParameter = {
+export const includeSlots: OperationQueryParameter = {
   parameterPath: ["options", "includeSlots"],
   mapper: {
     serializedName: "includeSlots",
@@ -589,12 +663,12 @@ export const includeSlots: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const siteEnvelope: coreHttp.OperationParameter = {
+export const siteEnvelope: OperationParameter = {
   parameterPath: "siteEnvelope",
-  mapper: Mappers.Site
+  mapper: SiteMapper
 };
 
-export const deleteMetrics: coreHttp.OperationQueryParameter = {
+export const deleteMetrics: OperationQueryParameter = {
   parameterPath: ["options", "deleteMetrics"],
   mapper: {
     serializedName: "deleteMetrics",
@@ -605,7 +679,7 @@ export const deleteMetrics: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const deleteEmptyServerFarm: coreHttp.OperationQueryParameter = {
+export const deleteEmptyServerFarm: OperationQueryParameter = {
   parameterPath: ["options", "deleteEmptyServerFarm"],
   mapper: {
     serializedName: "deleteEmptyServerFarm",
@@ -616,12 +690,12 @@ export const deleteEmptyServerFarm: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const siteEnvelope1: coreHttp.OperationParameter = {
+export const siteEnvelope1: OperationParameter = {
   parameterPath: "siteEnvelope",
-  mapper: Mappers.SitePatchResource
+  mapper: SitePatchResourceMapper
 };
 
-export const hostName: coreHttp.OperationQueryParameter = {
+export const hostName: OperationQueryParameter = {
   parameterPath: ["options", "hostName"],
   mapper: {
     serializedName: "hostName",
@@ -632,17 +706,17 @@ export const hostName: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const slotSwapEntity: coreHttp.OperationParameter = {
+export const slotSwapEntity: OperationParameter = {
   parameterPath: "slotSwapEntity",
-  mapper: Mappers.CsmSlotEntity
+  mapper: CsmSlotEntityMapper
 };
 
-export const request1: coreHttp.OperationParameter = {
+export const request1: OperationParameter = {
   parameterPath: "request",
-  mapper: Mappers.BackupRequest
+  mapper: BackupRequestMapper
 };
 
-export const backupId: coreHttp.OperationURLParameter = {
+export const backupId: OperationURLParameter = {
   parameterPath: "backupId",
   mapper: {
     serializedName: "backupId",
@@ -654,27 +728,27 @@ export const backupId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const request2: coreHttp.OperationParameter = {
+export const request2: OperationParameter = {
   parameterPath: "request",
-  mapper: Mappers.RestoreRequest
+  mapper: RestoreRequestMapper
 };
 
-export const appSettings: coreHttp.OperationParameter = {
+export const appSettings: OperationParameter = {
   parameterPath: "appSettings",
-  mapper: Mappers.StringDictionary
+  mapper: StringDictionaryMapper
 };
 
-export const siteAuthSettings: coreHttp.OperationParameter = {
+export const siteAuthSettings: OperationParameter = {
   parameterPath: "siteAuthSettings",
-  mapper: Mappers.SiteAuthSettings
+  mapper: SiteAuthSettingsMapper
 };
 
-export const azureStorageAccounts: coreHttp.OperationParameter = {
+export const azureStorageAccounts: OperationParameter = {
   parameterPath: "azureStorageAccounts",
-  mapper: Mappers.AzureStoragePropertyDictionaryResource
+  mapper: AzureStoragePropertyDictionaryResourceMapper
 };
 
-export const appSettingKey: coreHttp.OperationURLParameter = {
+export const appSettingKey: OperationURLParameter = {
   parameterPath: "appSettingKey",
   mapper: {
     serializedName: "appSettingKey",
@@ -686,37 +760,37 @@ export const appSettingKey: coreHttp.OperationURLParameter = {
   }
 };
 
-export const connectionStrings: coreHttp.OperationParameter = {
+export const connectionStrings: OperationParameter = {
   parameterPath: "connectionStrings",
-  mapper: Mappers.ConnectionStringDictionary
+  mapper: ConnectionStringDictionaryMapper
 };
 
-export const siteLogsConfig: coreHttp.OperationParameter = {
+export const siteLogsConfig: OperationParameter = {
   parameterPath: "siteLogsConfig",
-  mapper: Mappers.SiteLogsConfig
+  mapper: SiteLogsConfigMapper
 };
 
-export const metadata: coreHttp.OperationParameter = {
+export const metadata: OperationParameter = {
   parameterPath: "metadata",
-  mapper: Mappers.StringDictionary
+  mapper: StringDictionaryMapper
 };
 
-export const pushSettings: coreHttp.OperationParameter = {
+export const pushSettings: OperationParameter = {
   parameterPath: "pushSettings",
-  mapper: Mappers.PushSettings
+  mapper: PushSettingsMapper
 };
 
-export const slotConfigNames: coreHttp.OperationParameter = {
+export const slotConfigNames: OperationParameter = {
   parameterPath: "slotConfigNames",
-  mapper: Mappers.SlotConfigNamesResource
+  mapper: SlotConfigNamesResourceMapper
 };
 
-export const siteConfig: coreHttp.OperationParameter = {
+export const siteConfig: OperationParameter = {
   parameterPath: "siteConfig",
-  mapper: Mappers.SiteConfigResource
+  mapper: SiteConfigResourceMapper
 };
 
-export const snapshotId: coreHttp.OperationURLParameter = {
+export const snapshotId: OperationURLParameter = {
   parameterPath: "snapshotId",
   mapper: {
     serializedName: "snapshotId",
@@ -728,7 +802,7 @@ export const snapshotId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const webJobName: coreHttp.OperationURLParameter = {
+export const webJobName: OperationURLParameter = {
   parameterPath: "webJobName",
   mapper: {
     serializedName: "webJobName",
@@ -740,7 +814,7 @@ export const webJobName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const id: coreHttp.OperationURLParameter = {
+export const id: OperationURLParameter = {
   parameterPath: "id",
   mapper: {
     serializedName: "id",
@@ -752,12 +826,12 @@ export const id: coreHttp.OperationURLParameter = {
   }
 };
 
-export const deployment: coreHttp.OperationParameter = {
+export const deployment: OperationParameter = {
   parameterPath: "deployment",
-  mapper: Mappers.Deployment
+  mapper: DeploymentMapper
 };
 
-export const domainOwnershipIdentifierName: coreHttp.OperationURLParameter = {
+export const domainOwnershipIdentifierName: OperationURLParameter = {
   parameterPath: "domainOwnershipIdentifierName",
   mapper: {
     serializedName: "domainOwnershipIdentifierName",
@@ -769,17 +843,17 @@ export const domainOwnershipIdentifierName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const domainOwnershipIdentifier1: coreHttp.OperationParameter = {
+export const domainOwnershipIdentifier1: OperationParameter = {
   parameterPath: "domainOwnershipIdentifier",
-  mapper: Mappers.Identifier
+  mapper: IdentifierMapper
 };
 
-export const mSDeploy: coreHttp.OperationParameter = {
+export const mSDeploy: OperationParameter = {
   parameterPath: "mSDeploy",
-  mapper: Mappers.MSDeploy
+  mapper: MSDeployMapper
 };
 
-export const functionName: coreHttp.OperationURLParameter = {
+export const functionName: OperationURLParameter = {
   parameterPath: "functionName",
   mapper: {
     serializedName: "functionName",
@@ -791,17 +865,17 @@ export const functionName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const functionEnvelope: coreHttp.OperationParameter = {
+export const functionEnvelope: OperationParameter = {
   parameterPath: "functionEnvelope",
-  mapper: Mappers.FunctionEnvelope
+  mapper: FunctionEnvelopeMapper
 };
 
-export const key: coreHttp.OperationParameter = {
+export const key: OperationParameter = {
   parameterPath: "key",
-  mapper: Mappers.KeyInfo
+  mapper: KeyInfoMapper
 };
 
-export const keyName: coreHttp.OperationURLParameter = {
+export const keyName: OperationURLParameter = {
   parameterPath: "keyName",
   mapper: {
     serializedName: "keyName",
@@ -813,7 +887,7 @@ export const keyName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const keyType: coreHttp.OperationURLParameter = {
+export const keyType: OperationURLParameter = {
   parameterPath: "keyType",
   mapper: {
     serializedName: "keyType",
@@ -825,7 +899,7 @@ export const keyType: coreHttp.OperationURLParameter = {
   }
 };
 
-export const hostName1: coreHttp.OperationURLParameter = {
+export const hostName1: OperationURLParameter = {
   parameterPath: "hostName",
   mapper: {
     serializedName: "hostName",
@@ -837,12 +911,12 @@ export const hostName1: coreHttp.OperationURLParameter = {
   }
 };
 
-export const hostNameBinding: coreHttp.OperationParameter = {
+export const hostNameBinding: OperationParameter = {
   parameterPath: "hostNameBinding",
-  mapper: Mappers.HostNameBinding
+  mapper: HostNameBindingMapper
 };
 
-export const namespaceName: coreHttp.OperationURLParameter = {
+export const namespaceName: OperationURLParameter = {
   parameterPath: "namespaceName",
   mapper: {
     serializedName: "namespaceName",
@@ -854,7 +928,7 @@ export const namespaceName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const relayName: coreHttp.OperationURLParameter = {
+export const relayName: OperationURLParameter = {
   parameterPath: "relayName",
   mapper: {
     serializedName: "relayName",
@@ -866,12 +940,12 @@ export const relayName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const connectionEnvelope: coreHttp.OperationParameter = {
+export const connectionEnvelope: OperationParameter = {
   parameterPath: "connectionEnvelope",
-  mapper: Mappers.HybridConnection
+  mapper: HybridConnectionMapper
 };
 
-export const entityName: coreHttp.OperationURLParameter = {
+export const entityName: OperationURLParameter = {
   parameterPath: "entityName",
   mapper: {
     serializedName: "entityName",
@@ -883,12 +957,12 @@ export const entityName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const connectionEnvelope1: coreHttp.OperationParameter = {
+export const connectionEnvelope1: OperationParameter = {
   parameterPath: "connectionEnvelope",
-  mapper: Mappers.RelayServiceConnectionEntity
+  mapper: RelayServiceConnectionEntityMapper
 };
 
-export const instanceId: coreHttp.OperationURLParameter = {
+export const instanceId: OperationURLParameter = {
   parameterPath: "instanceId",
   mapper: {
     serializedName: "instanceId",
@@ -900,7 +974,7 @@ export const instanceId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const processId: coreHttp.OperationURLParameter = {
+export const processId: OperationURLParameter = {
   parameterPath: "processId",
   mapper: {
     serializedName: "processId",
@@ -912,7 +986,7 @@ export const processId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const baseAddress: coreHttp.OperationURLParameter = {
+export const baseAddress: OperationURLParameter = {
   parameterPath: "baseAddress",
   mapper: {
     serializedName: "baseAddress",
@@ -924,12 +998,12 @@ export const baseAddress: coreHttp.OperationURLParameter = {
   }
 };
 
-export const migrationOptions: coreHttp.OperationParameter = {
+export const migrationOptions: OperationParameter = {
   parameterPath: "migrationOptions",
-  mapper: Mappers.StorageMigrationOptions
+  mapper: StorageMigrationOptionsMapper
 };
 
-export const subscriptionName: coreHttp.OperationQueryParameter = {
+export const subscriptionName: OperationQueryParameter = {
   parameterPath: "subscriptionName",
   mapper: {
     serializedName: "subscriptionName",
@@ -941,17 +1015,17 @@ export const subscriptionName: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const migrationRequestEnvelope: coreHttp.OperationParameter = {
+export const migrationRequestEnvelope: OperationParameter = {
   parameterPath: "migrationRequestEnvelope",
-  mapper: Mappers.MigrateMySqlRequest
+  mapper: MigrateMySqlRequestMapper
 };
 
-export const connectionEnvelope2: coreHttp.OperationParameter = {
+export const connectionEnvelope2: OperationParameter = {
   parameterPath: "connectionEnvelope",
-  mapper: Mappers.SwiftVirtualNetwork
+  mapper: SwiftVirtualNetworkMapper
 };
 
-export const view: coreHttp.OperationURLParameter = {
+export const view: OperationURLParameter = {
   parameterPath: "view",
   mapper: {
     serializedName: "view",
@@ -963,7 +1037,7 @@ export const view: coreHttp.OperationURLParameter = {
   }
 };
 
-export const operationId: coreHttp.OperationURLParameter = {
+export const operationId: OperationURLParameter = {
   parameterPath: "operationId",
   mapper: {
     serializedName: "operationId",
@@ -975,7 +1049,7 @@ export const operationId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const durationInSeconds: coreHttp.OperationQueryParameter = {
+export const durationInSeconds: OperationQueryParameter = {
   parameterPath: ["options", "durationInSeconds"],
   mapper: {
     serializedName: "durationInSeconds",
@@ -986,7 +1060,7 @@ export const durationInSeconds: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const maxFrameLength: coreHttp.OperationQueryParameter = {
+export const maxFrameLength: OperationQueryParameter = {
   parameterPath: ["options", "maxFrameLength"],
   mapper: {
     serializedName: "maxFrameLength",
@@ -997,7 +1071,7 @@ export const maxFrameLength: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const sasUrl: coreHttp.OperationQueryParameter = {
+export const sasUrl: OperationQueryParameter = {
   parameterPath: ["options", "sasUrl"],
   mapper: {
     serializedName: "sasUrl",
@@ -1008,7 +1082,7 @@ export const sasUrl: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const premierAddOnName: coreHttp.OperationURLParameter = {
+export const premierAddOnName: OperationURLParameter = {
   parameterPath: "premierAddOnName",
   mapper: {
     serializedName: "premierAddOnName",
@@ -1020,22 +1094,22 @@ export const premierAddOnName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const premierAddOn: coreHttp.OperationParameter = {
+export const premierAddOn: OperationParameter = {
   parameterPath: "premierAddOn",
-  mapper: Mappers.PremierAddOn
+  mapper: PremierAddOnMapper
 };
 
-export const premierAddOn1: coreHttp.OperationParameter = {
+export const premierAddOn1: OperationParameter = {
   parameterPath: "premierAddOn",
-  mapper: Mappers.PremierAddOnPatchResource
+  mapper: PremierAddOnPatchResourceMapper
 };
 
-export const access: coreHttp.OperationParameter = {
+export const access: OperationParameter = {
   parameterPath: "access",
-  mapper: Mappers.PrivateAccess
+  mapper: PrivateAccessMapper
 };
 
-export const publicCertificateName: coreHttp.OperationURLParameter = {
+export const publicCertificateName: OperationURLParameter = {
   parameterPath: "publicCertificateName",
   mapper: {
     serializedName: "publicCertificateName",
@@ -1047,17 +1121,17 @@ export const publicCertificateName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const publicCertificate: coreHttp.OperationParameter = {
+export const publicCertificate: OperationParameter = {
   parameterPath: "publicCertificate",
-  mapper: Mappers.PublicCertificate
+  mapper: PublicCertificateMapper
 };
 
-export const publishingProfileOptions: coreHttp.OperationParameter = {
+export const publishingProfileOptions: OperationParameter = {
   parameterPath: "publishingProfileOptions",
-  mapper: Mappers.CsmPublishingProfileOptions
+  mapper: CsmPublishingProfileOptionsMapper
 };
 
-export const softRestart: coreHttp.OperationQueryParameter = {
+export const softRestart: OperationQueryParameter = {
   parameterPath: ["options", "softRestart"],
   mapper: {
     serializedName: "softRestart",
@@ -1068,7 +1142,7 @@ export const softRestart: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const synchronous: coreHttp.OperationQueryParameter = {
+export const synchronous: OperationQueryParameter = {
   parameterPath: ["options", "synchronous"],
   mapper: {
     serializedName: "synchronous",
@@ -1079,17 +1153,17 @@ export const synchronous: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const restoreRequest: coreHttp.OperationParameter = {
+export const restoreRequest: OperationParameter = {
   parameterPath: "restoreRequest",
-  mapper: Mappers.DeletedAppRestoreRequest
+  mapper: DeletedAppRestoreRequestMapper
 };
 
-export const restoreRequest1: coreHttp.OperationParameter = {
+export const restoreRequest1: OperationParameter = {
   parameterPath: "restoreRequest",
-  mapper: Mappers.SnapshotRestoreRequest
+  mapper: SnapshotRestoreRequestMapper
 };
 
-export const siteExtensionId: coreHttp.OperationURLParameter = {
+export const siteExtensionId: OperationURLParameter = {
   parameterPath: "siteExtensionId",
   mapper: {
     serializedName: "siteExtensionId",
@@ -1101,12 +1175,12 @@ export const siteExtensionId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const copySlotEntity: coreHttp.OperationParameter = {
+export const copySlotEntity: OperationParameter = {
   parameterPath: "copySlotEntity",
-  mapper: Mappers.CsmCopySlotEntity
+  mapper: CsmCopySlotEntityMapper
 };
 
-export const privateEndpointConnectionName: coreHttp.OperationURLParameter = {
+export const privateEndpointConnectionName: OperationURLParameter = {
   parameterPath: "privateEndpointConnectionName",
   mapper: {
     serializedName: "privateEndpointConnectionName",
@@ -1118,17 +1192,17 @@ export const privateEndpointConnectionName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const privateEndpointWrapper: coreHttp.OperationParameter = {
+export const privateEndpointWrapper: OperationParameter = {
   parameterPath: "privateEndpointWrapper",
-  mapper: Mappers.PrivateLinkConnectionApprovalRequestResource
+  mapper: PrivateLinkConnectionApprovalRequestResourceMapper
 };
 
-export const siteSourceControl: coreHttp.OperationParameter = {
+export const siteSourceControl: OperationParameter = {
   parameterPath: "siteSourceControl",
-  mapper: Mappers.SiteSourceControl
+  mapper: SiteSourceControlMapper
 };
 
-export const vnetName: coreHttp.OperationURLParameter = {
+export const vnetName: OperationURLParameter = {
   parameterPath: "vnetName",
   mapper: {
     serializedName: "vnetName",
@@ -1140,12 +1214,12 @@ export const vnetName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const connectionEnvelope3: coreHttp.OperationParameter = {
+export const connectionEnvelope3: OperationParameter = {
   parameterPath: "connectionEnvelope",
-  mapper: Mappers.VnetInfo
+  mapper: VnetInfoMapper
 };
 
-export const gatewayName: coreHttp.OperationURLParameter = {
+export const gatewayName: OperationURLParameter = {
   parameterPath: "gatewayName",
   mapper: {
     serializedName: "gatewayName",
@@ -1157,22 +1231,22 @@ export const gatewayName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const connectionEnvelope4: coreHttp.OperationParameter = {
+export const connectionEnvelope4: OperationParameter = {
   parameterPath: "connectionEnvelope",
-  mapper: Mappers.VnetGateway
+  mapper: VnetGatewayMapper
 };
 
-export const staticSiteEnvelope: coreHttp.OperationParameter = {
+export const staticSiteEnvelope: OperationParameter = {
   parameterPath: "staticSiteEnvelope",
-  mapper: Mappers.StaticSiteARMResource
+  mapper: StaticSiteARMResourceMapper
 };
 
-export const staticSiteEnvelope1: coreHttp.OperationParameter = {
+export const staticSiteEnvelope1: OperationParameter = {
   parameterPath: "staticSiteEnvelope",
-  mapper: Mappers.StaticSitePatchResource
+  mapper: StaticSitePatchResourceMapper
 };
 
-export const authprovider: coreHttp.OperationURLParameter = {
+export const authprovider: OperationURLParameter = {
   parameterPath: "authprovider",
   mapper: {
     serializedName: "authprovider",
@@ -1184,7 +1258,7 @@ export const authprovider: coreHttp.OperationURLParameter = {
   }
 };
 
-export const userid: coreHttp.OperationURLParameter = {
+export const userid: OperationURLParameter = {
   parameterPath: "userid",
   mapper: {
     serializedName: "userid",
@@ -1196,12 +1270,12 @@ export const userid: coreHttp.OperationURLParameter = {
   }
 };
 
-export const staticSiteUserEnvelope: coreHttp.OperationParameter = {
+export const staticSiteUserEnvelope: OperationParameter = {
   parameterPath: "staticSiteUserEnvelope",
-  mapper: Mappers.StaticSiteUserARMResource
+  mapper: StaticSiteUserARMResourceMapper
 };
 
-export const prId: coreHttp.OperationURLParameter = {
+export const prId: OperationURLParameter = {
   parameterPath: "prId",
   mapper: {
     serializedName: "prId",
@@ -1213,22 +1287,22 @@ export const prId: coreHttp.OperationURLParameter = {
   }
 };
 
-export const staticSiteUserRolesInvitationEnvelope: coreHttp.OperationParameter = {
+export const staticSiteUserRolesInvitationEnvelope: OperationParameter = {
   parameterPath: "staticSiteUserRolesInvitationEnvelope",
-  mapper: Mappers.StaticSiteUserInvitationRequestResource
+  mapper: StaticSiteUserInvitationRequestResourceMapper
 };
 
-export const resetPropertiesEnvelope: coreHttp.OperationParameter = {
+export const resetPropertiesEnvelope: OperationParameter = {
   parameterPath: "resetPropertiesEnvelope",
-  mapper: Mappers.StaticSiteResetPropertiesARMResource
+  mapper: StaticSiteResetPropertiesARMResourceMapper
 };
 
-export const hostingEnvironmentEnvelope: coreHttp.OperationParameter = {
+export const hostingEnvironmentEnvelope: OperationParameter = {
   parameterPath: "hostingEnvironmentEnvelope",
-  mapper: Mappers.AppServiceEnvironmentResource
+  mapper: AppServiceEnvironmentResourceMapper
 };
 
-export const forceDelete: coreHttp.OperationQueryParameter = {
+export const forceDelete: OperationQueryParameter = {
   parameterPath: ["options", "forceDelete"],
   mapper: {
     serializedName: "forceDelete",
@@ -1239,17 +1313,17 @@ export const forceDelete: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const hostingEnvironmentEnvelope1: coreHttp.OperationParameter = {
+export const hostingEnvironmentEnvelope1: OperationParameter = {
   parameterPath: "hostingEnvironmentEnvelope",
-  mapper: Mappers.AppServiceEnvironmentPatchResource
+  mapper: AppServiceEnvironmentPatchResourceMapper
 };
 
-export const vnetInfo: coreHttp.OperationParameter = {
+export const vnetInfo: OperationParameter = {
   parameterPath: "vnetInfo",
-  mapper: Mappers.VirtualNetworkProfile
+  mapper: VirtualNetworkProfileMapper
 };
 
-export const diagnosticsName: coreHttp.OperationURLParameter = {
+export const diagnosticsName: OperationURLParameter = {
   parameterPath: "diagnosticsName",
   mapper: {
     serializedName: "diagnosticsName",
@@ -1261,12 +1335,12 @@ export const diagnosticsName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const multiRolePoolEnvelope: coreHttp.OperationParameter = {
+export const multiRolePoolEnvelope: OperationParameter = {
   parameterPath: "multiRolePoolEnvelope",
-  mapper: Mappers.WorkerPoolResource
+  mapper: WorkerPoolResourceMapper
 };
 
-export const instance: coreHttp.OperationURLParameter = {
+export const instance: OperationURLParameter = {
   parameterPath: "instance",
   mapper: {
     serializedName: "instance",
@@ -1278,7 +1352,7 @@ export const instance: coreHttp.OperationURLParameter = {
   }
 };
 
-export const propertiesToInclude: coreHttp.OperationQueryParameter = {
+export const propertiesToInclude: OperationQueryParameter = {
   parameterPath: ["options", "propertiesToInclude"],
   mapper: {
     serializedName: "propertiesToInclude",
@@ -1289,7 +1363,7 @@ export const propertiesToInclude: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const workerPoolName: coreHttp.OperationURLParameter = {
+export const workerPoolName: OperationURLParameter = {
   parameterPath: "workerPoolName",
   mapper: {
     serializedName: "workerPoolName",
@@ -1301,12 +1375,12 @@ export const workerPoolName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const workerPoolEnvelope: coreHttp.OperationParameter = {
+export const workerPoolEnvelope: OperationParameter = {
   parameterPath: "workerPoolEnvelope",
-  mapper: Mappers.WorkerPoolResource
+  mapper: WorkerPoolResourceMapper
 };
 
-export const detailed: coreHttp.OperationQueryParameter = {
+export const detailed: OperationQueryParameter = {
   parameterPath: ["options", "detailed"],
   mapper: {
     serializedName: "detailed",
@@ -1317,17 +1391,17 @@ export const detailed: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const appServicePlan: coreHttp.OperationParameter = {
+export const appServicePlan: OperationParameter = {
   parameterPath: "appServicePlan",
-  mapper: Mappers.AppServicePlan
+  mapper: AppServicePlanMapper
 };
 
-export const appServicePlan1: coreHttp.OperationParameter = {
+export const appServicePlan1: OperationParameter = {
   parameterPath: "appServicePlan",
-  mapper: Mappers.AppServicePlanPatchResource
+  mapper: AppServicePlanPatchResourceMapper
 };
 
-export const skipToken: coreHttp.OperationQueryParameter = {
+export const skipToken: OperationQueryParameter = {
   parameterPath: ["options", "skipToken"],
   mapper: {
     serializedName: "$skipToken",
@@ -1338,7 +1412,7 @@ export const skipToken: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const top: coreHttp.OperationQueryParameter = {
+export const top: OperationQueryParameter = {
   parameterPath: ["options", "top"],
   mapper: {
     serializedName: "$top",
@@ -1349,7 +1423,7 @@ export const top: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const routeName: coreHttp.OperationURLParameter = {
+export const routeName: OperationURLParameter = {
   parameterPath: "routeName",
   mapper: {
     serializedName: "routeName",
@@ -1361,12 +1435,12 @@ export const routeName: coreHttp.OperationURLParameter = {
   }
 };
 
-export const route: coreHttp.OperationParameter = {
+export const route: OperationParameter = {
   parameterPath: "route",
-  mapper: Mappers.VnetRoute
+  mapper: VnetRouteMapper
 };
 
-export const workerName: coreHttp.OperationURLParameter = {
+export const workerName: OperationURLParameter = {
   parameterPath: "workerName",
   mapper: {
     serializedName: "workerName",

@@ -220,7 +220,15 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeTables/{routeTableName}/routes/{routeName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -269,6 +277,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Route
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.routeParameters,

@@ -281,6 +281,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.GalleryImage
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.galleryImage,
@@ -356,7 +359,15 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/images/{galleryImageName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

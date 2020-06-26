@@ -221,7 +221,8 @@ const createOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.RestorePoint
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters44,
   queryParameters: [Parameters.apiVersion4],

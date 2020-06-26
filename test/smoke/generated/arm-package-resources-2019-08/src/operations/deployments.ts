@@ -1335,7 +1335,15 @@ const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 const deleteAtScopeOperationSpec: coreHttp.OperationSpec = {
   path: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1377,6 +1385,9 @@ const createOrUpdateAtScopeOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.DeploymentExtended
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters,
@@ -1491,7 +1502,15 @@ const listAtScopeOperationSpec: coreHttp.OperationSpec = {
 const deleteAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   path: "/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
   serializer
@@ -1525,6 +1544,9 @@ const createOrUpdateAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.DeploymentExtended
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters1,
@@ -1618,7 +1640,15 @@ const deleteAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec = {
   path:
     "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1662,6 +1692,9 @@ const createOrUpdateAtManagementGroupScopeOperationSpec: coreHttp.OperationSpec 
     },
     204: {
       bodyMapper: Mappers.DeploymentExtended
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters1,
@@ -1779,7 +1812,15 @@ const deleteAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1823,6 +1864,9 @@ const createOrUpdateAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.DeploymentExtended
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters,
@@ -1916,6 +1960,9 @@ const whatIfAtSubscriptionScopeOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.WhatIfOperationResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters2,
@@ -1969,7 +2016,15 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -2015,6 +2070,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.DeploymentExtended
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters,
@@ -2112,6 +2170,9 @@ const whatIfOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.WhatIfOperationResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters2,

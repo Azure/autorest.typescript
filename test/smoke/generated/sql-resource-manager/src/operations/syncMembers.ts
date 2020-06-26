@@ -466,7 +466,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.SyncMember
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters24,
   queryParameters: [Parameters.apiVersion3],
@@ -487,7 +488,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/syncGroups/{syncGroupName}/syncMembers/{syncMemberName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion3],
   urlParameters: [
     Parameters.$host,
@@ -516,7 +517,8 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.SyncMember
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters24,
   queryParameters: [Parameters.apiVersion3],
@@ -580,7 +582,7 @@ const refreshMemberSchemaOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/syncGroups/{syncGroupName}/syncMembers/{syncMemberName}/refreshSchema",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion3],
   urlParameters: [
     Parameters.$host,

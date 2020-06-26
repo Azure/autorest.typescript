@@ -203,7 +203,7 @@ const revalidateOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/encryptionProtector/{encryptionProtectorName}/revalidate",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion3],
   urlParameters: [
     Parameters.$host,
@@ -269,7 +269,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.EncryptionProtector
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters18,
   queryParameters: [Parameters.apiVersion3],

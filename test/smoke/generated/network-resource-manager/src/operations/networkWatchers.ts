@@ -809,7 +809,15 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorResponse
+    }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -919,6 +927,9 @@ const verifyIPFlowOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.VerificationIPFlowResult
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse
     }
   },
   requestBody: Parameters.parameters23,
@@ -949,6 +960,9 @@ const getNextHopOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.NextHopResult
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse
     }
   },
   requestBody: Parameters.parameters24,
@@ -979,6 +993,9 @@ const getVMSecurityRulesOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.SecurityGroupViewResult
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse
     }
   },
   requestBody: Parameters.parameters25,
@@ -1009,6 +1026,9 @@ const getTroubleshootingOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.TroubleshootingResult
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse
     }
   },
   requestBody: Parameters.parameters26,
@@ -1039,6 +1059,9 @@ const getTroubleshootingResultOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.TroubleshootingResult
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse
     }
   },
   requestBody: Parameters.parameters27,
@@ -1069,6 +1092,9 @@ const setFlowLogConfigurationOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.FlowLogInformation
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse
     }
   },
   requestBody: Parameters.parameters28,
@@ -1099,6 +1125,9 @@ const getFlowLogStatusOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.FlowLogInformation
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse
     }
   },
   requestBody: Parameters.parameters29,
@@ -1129,6 +1158,9 @@ const checkConnectivityOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ConnectivityInformation
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse
     }
   },
   requestBody: Parameters.parameters30,
@@ -1159,6 +1191,9 @@ const getAzureReachabilityReportOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.AzureReachabilityReport
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse
     }
   },
   requestBody: Parameters.parameters31,
@@ -1189,6 +1224,9 @@ const listAvailableProvidersOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.AvailableProvidersList
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse
     }
   },
   requestBody: Parameters.parameters32,
@@ -1219,6 +1257,9 @@ const getNetworkConfigurationDiagnosticOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.NetworkConfigurationDiagnosticResponse
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse
     }
   },
   requestBody: Parameters.parameters33,

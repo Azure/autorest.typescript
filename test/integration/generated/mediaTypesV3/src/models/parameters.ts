@@ -6,9 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import {
+  OperationParameter,
+  OperationURLParameter,
+  OperationQueryParameter
+} from "@azure/core-http";
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "text/plain",
@@ -20,7 +24,7 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const data: coreHttp.OperationParameter = {
+export const data: OperationParameter = {
   parameterPath: "data",
   mapper: {
     serializedName: "data",
@@ -31,7 +35,7 @@ export const data: coreHttp.OperationParameter = {
   }
 };
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -43,7 +47,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const excluded: coreHttp.OperationQueryParameter = {
+export const excluded: OperationQueryParameter = {
   parameterPath: ["options", "excluded"],
   mapper: {
     serializedName: "excluded",
@@ -54,7 +58,7 @@ export const excluded: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const contentType1: coreHttp.OperationParameter = {
+export const contentType1: OperationParameter = {
   parameterPath: "contentType",
   mapper: {
     defaultValue: "application/octet-stream",
@@ -66,7 +70,7 @@ export const contentType1: coreHttp.OperationParameter = {
   }
 };
 
-export const data1: coreHttp.OperationParameter = {
+export const data1: OperationParameter = {
   parameterPath: "data",
   mapper: {
     serializedName: "data",
@@ -77,7 +81,7 @@ export const data1: coreHttp.OperationParameter = {
   }
 };
 
-export const contentType2: coreHttp.OperationParameter = {
+export const contentType2: OperationParameter = {
   parameterPath: "contentType",
   mapper: {
     defaultValue: "text/plain",
@@ -89,7 +93,7 @@ export const contentType2: coreHttp.OperationParameter = {
   }
 };
 
-export const thing: coreHttp.OperationURLParameter = {
+export const thing: OperationURLParameter = {
   parameterPath: "thing",
   mapper: {
     serializedName: "thing",

@@ -6,10 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import {
+  OperationParameter,
+  OperationURLParameter,
+  OperationQueryParameter
+} from "@azure/core-http";
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -21,7 +24,7 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const body: coreHttp.OperationParameter = {
+export const body: OperationParameter = {
   parameterPath: ["parameterGroupingPostRequiredParameters", "body"],
   mapper: {
     serializedName: "body",
@@ -32,7 +35,7 @@ export const body: coreHttp.OperationParameter = {
   }
 };
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -44,7 +47,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const customHeader: coreHttp.OperationParameter = {
+export const customHeader: OperationParameter = {
   parameterPath: ["parameterGroupingPostRequiredParameters", "customHeader"],
   mapper: {
     serializedName: "customHeader",
@@ -54,7 +57,7 @@ export const customHeader: coreHttp.OperationParameter = {
   }
 };
 
-export const query: coreHttp.OperationQueryParameter = {
+export const query: OperationQueryParameter = {
   parameterPath: ["parameterGroupingPostRequiredParameters", "query"],
   mapper: {
     defaultValue: 30,
@@ -65,7 +68,7 @@ export const query: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const path: coreHttp.OperationURLParameter = {
+export const path: OperationURLParameter = {
   parameterPath: ["parameterGroupingPostRequiredParameters", "path"],
   mapper: {
     serializedName: "path",
@@ -76,7 +79,7 @@ export const path: coreHttp.OperationURLParameter = {
   }
 };
 
-export const customHeader1: coreHttp.OperationParameter = {
+export const customHeader1: OperationParameter = {
   parameterPath: ["parameterGroupingPostOptionalParameters", "customHeader"],
   mapper: {
     serializedName: "customHeader",
@@ -86,7 +89,7 @@ export const customHeader1: coreHttp.OperationParameter = {
   }
 };
 
-export const query1: coreHttp.OperationQueryParameter = {
+export const query1: OperationQueryParameter = {
   parameterPath: ["parameterGroupingPostOptionalParameters", "query"],
   mapper: {
     defaultValue: 30,
@@ -97,7 +100,7 @@ export const query1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const headerOne: coreHttp.OperationParameter = {
+export const headerOne: OperationParameter = {
   parameterPath: ["firstParameterGroup", "headerOne"],
   mapper: {
     serializedName: "header-one",
@@ -107,7 +110,7 @@ export const headerOne: coreHttp.OperationParameter = {
   }
 };
 
-export const queryOne: coreHttp.OperationQueryParameter = {
+export const queryOne: OperationQueryParameter = {
   parameterPath: ["firstParameterGroup", "queryOne"],
   mapper: {
     defaultValue: 30,
@@ -118,7 +121,7 @@ export const queryOne: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const headerTwo: coreHttp.OperationParameter = {
+export const headerTwo: OperationParameter = {
   parameterPath: [
     "parameterGroupingPostMultiParamGroupsSecondParamGroup",
     "headerTwo"
@@ -131,7 +134,7 @@ export const headerTwo: coreHttp.OperationParameter = {
   }
 };
 
-export const queryTwo: coreHttp.OperationQueryParameter = {
+export const queryTwo: OperationQueryParameter = {
   parameterPath: [
     "parameterGroupingPostMultiParamGroupsSecondParamGroup",
     "queryTwo"

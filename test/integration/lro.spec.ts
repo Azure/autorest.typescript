@@ -425,17 +425,24 @@ describe("LRO Sad scenarios", () => {
   });
 
   it("should handle PutNonRetry400 ", async () => {
-    const poller = await client.lrosaDs.putNonRetry400();
-    poller.delay = () => Promise.resolve();
-    const result = await poller.pollUntilDone();
-    assert.equal(result._response.status, 400);
+    try {
+      const poller = await client.lrosaDs.putNonRetry400();
+      poller.delay = () => Promise.resolve();
+      const result = await poller.pollUntilDone();
+      throw new Error("Expected to thorw");
+    } catch (error) {
+      assert.equal(error.statusCode, 400);
+    }
   });
 
   it("should handle putNonRetry201Creating400 ", async () => {
-    const poller = await client.lrosaDs.putNonRetry201Creating400();
-    poller.delay = () => Promise.resolve();
-    const result = await poller.pollUntilDone();
-    assert.equal(result._response.status, 400);
+    try {
+      const poller = await client.lrosaDs.putNonRetry201Creating400();
+      poller.delay = () => Promise.resolve();
+      const result = await poller.pollUntilDone();
+    } catch (error) {
+      assert.equal(error.statusCode, 400);
+    }
   });
 
   it("should throw with putNonRetry201Creating400InvalidJson ", async () => {

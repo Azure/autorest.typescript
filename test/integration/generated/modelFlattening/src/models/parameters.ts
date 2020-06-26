@@ -6,10 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import { OperationParameter, OperationURLParameter } from "@azure/core-http";
+import {
+  ResourceCollection as ResourceCollectionMapper,
+  SimpleProduct as SimpleProductMapper
+} from "../models/mappers";
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -21,7 +24,7 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const resourceArray: coreHttp.OperationParameter = {
+export const resourceArray: OperationParameter = {
   parameterPath: ["options", "resourceArray"],
   mapper: {
     serializedName: "resourceArray",
@@ -32,7 +35,7 @@ export const resourceArray: coreHttp.OperationParameter = {
   }
 };
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -44,7 +47,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const resourceArray1: coreHttp.OperationParameter = {
+export const resourceArray1: OperationParameter = {
   parameterPath: ["options", "resourceArray"],
   mapper: {
     serializedName: "resourceArray",
@@ -55,7 +58,7 @@ export const resourceArray1: coreHttp.OperationParameter = {
   }
 };
 
-export const resourceDictionary: coreHttp.OperationParameter = {
+export const resourceDictionary: OperationParameter = {
   parameterPath: ["options", "resourceDictionary"],
   mapper: {
     serializedName: "resourceDictionary",
@@ -66,22 +69,22 @@ export const resourceDictionary: coreHttp.OperationParameter = {
   }
 };
 
-export const resourceComplexObject: coreHttp.OperationParameter = {
+export const resourceComplexObject: OperationParameter = {
   parameterPath: ["options", "resourceComplexObject"],
-  mapper: Mappers.ResourceCollection
+  mapper: ResourceCollectionMapper
 };
 
-export const simpleBodyProduct: coreHttp.OperationParameter = {
+export const simpleBodyProduct: OperationParameter = {
   parameterPath: ["options", "simpleBodyProduct"],
-  mapper: Mappers.SimpleProduct
+  mapper: SimpleProductMapper
 };
 
-export const simpleBodyProduct1: coreHttp.OperationParameter = {
+export const simpleBodyProduct1: OperationParameter = {
   parameterPath: ["flattenParameterGroup", "simpleBodyProduct"],
-  mapper: Mappers.SimpleProduct
+  mapper: SimpleProductMapper
 };
 
-export const name: coreHttp.OperationURLParameter = {
+export const name: OperationURLParameter = {
   parameterPath: ["flattenParameterGroup", "name"],
   mapper: {
     serializedName: "name",

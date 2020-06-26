@@ -92,7 +92,15 @@ const downloadOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualWans/{virtualWANName}/vpnConfiguration",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   requestBody: Parameters.request1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [

@@ -496,46 +496,26 @@ class NetworkManagementClient extends NetworkManagementClientContext {
    *                 method.
    * @param options The options parameters.
    */
-  async putBastionShareableLinkNext(
+  putBastionShareableLinkNext(
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): Promise<
-    LROPoller<NetworkManagementClientPutBastionShareableLinkNextResponse>
-  > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
+  ): Promise<NetworkManagementClientPutBastionShareableLinkNextResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
     );
-
-    const args: coreHttp.OperationArguments = {
-      resourceGroupName,
-      bastionHostName,
-      bslRequest,
-      nextLink,
-      options: operationOptions
-    };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
-      this.sendOperationRequest(args, spec) as Promise<
-        NetworkManagementClientPutBastionShareableLinkNextResponse
-      >;
-    const initialOperationResult = await sendOperation(
-      args,
+    return this.sendOperationRequest(
+      {
+        resourceGroupName,
+        bastionHostName,
+        bslRequest,
+        nextLink,
+        options: operationOptions
+      },
       putBastionShareableLinkNextOperationSpec
-    );
-
-    return new LROPoller({
-      initialOperationArguments: args,
-      initialOperationSpec: putBastionShareableLinkNextOperationSpec,
-      initialOperationResult,
-      sendOperation,
-      finalStateVia: "location"
-    });
+    ) as Promise<NetworkManagementClientPutBastionShareableLinkNextResponse>;
   }
 
   /**
@@ -576,42 +556,24 @@ class NetworkManagementClient extends NetworkManagementClientContext {
    * @param nextLink The nextLink from the previous successful call to the GetActiveSessions method.
    * @param options The options parameters.
    */
-  async getActiveSessionsNext(
+  getActiveSessionsNext(
     resourceGroupName: string,
     bastionHostName: string,
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): Promise<LROPoller<NetworkManagementClientGetActiveSessionsNextResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options,
-      "location"
+  ): Promise<NetworkManagementClientGetActiveSessionsNextResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
     );
-
-    const args: coreHttp.OperationArguments = {
-      resourceGroupName,
-      bastionHostName,
-      nextLink,
-      options: operationOptions
-    };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
-      this.sendOperationRequest(args, spec) as Promise<
-        NetworkManagementClientGetActiveSessionsNextResponse
-      >;
-    const initialOperationResult = await sendOperation(
-      args,
+    return this.sendOperationRequest(
+      {
+        resourceGroupName,
+        bastionHostName,
+        nextLink,
+        options: operationOptions
+      },
       getActiveSessionsNextOperationSpec
-    );
-
-    return new LROPoller({
-      initialOperationArguments: args,
-      initialOperationSpec: getActiveSessionsNextOperationSpec,
-      initialOperationResult,
-      sendOperation,
-      finalStateVia: "location"
-    });
+    ) as Promise<NetworkManagementClientGetActiveSessionsNextResponse>;
   }
 
   /**
@@ -760,6 +722,9 @@ const putBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.BastionShareableLinkListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.bslRequest,
@@ -778,7 +743,15 @@ const deleteBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts/{bastionHostName}/deleteShareableLinks",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   requestBody: Parameters.bslRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -831,6 +804,9 @@ const getActiveSessionsOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.BastionActiveSessionListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -923,6 +899,9 @@ const generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec: coreHttp.
     },
     204: {
       bodyMapper: Mappers.VpnProfileResponse
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.vpnClientParams,
@@ -939,22 +918,16 @@ const generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec: coreHttp.
 };
 const putBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
-  httpMethod: "POST",
+  httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: Mappers.BastionShareableLinkListResult
     },
-    201: {
-      bodyMapper: Mappers.BastionShareableLinkListResult
-    },
-    202: {
-      bodyMapper: Mappers.BastionShareableLinkListResult
-    },
-    204: {
-      bodyMapper: Mappers.BastionShareableLinkListResult
+    202: {},
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.bslRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -969,7 +942,7 @@ const putBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
 };
 const getBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
-  httpMethod: "POST",
+  httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: Mappers.BastionShareableLinkListResult
@@ -978,7 +951,6 @@ const getBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.bslRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -993,19 +965,14 @@ const getBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
 };
 const getActiveSessionsNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
-  httpMethod: "POST",
+  httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: Mappers.BastionActiveSessionListResult
     },
-    201: {
-      bodyMapper: Mappers.BastionActiveSessionListResult
-    },
-    202: {
-      bodyMapper: Mappers.BastionActiveSessionListResult
-    },
-    204: {
-      bodyMapper: Mappers.BastionActiveSessionListResult
+    202: {},
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -1020,7 +987,7 @@ const getActiveSessionsNextOperationSpec: coreHttp.OperationSpec = {
 };
 const disconnectActiveSessionsNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
-  httpMethod: "POST",
+  httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: Mappers.BastionSessionDeleteResult
@@ -1029,7 +996,6 @@ const disconnectActiveSessionsNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.sessionIds,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

@@ -43,7 +43,7 @@ export class ADHybridHealthServiceContext extends coreHttp.ServiceClient {
 
     this.requestContentType = "application/json; charset=utf-8";
 
-    this.baseUri = options.endpoint || "{$host}";
+    this.baseUri = options.endpoint || "https://management.azure.com";
 
     // Assigning values to Constant parameters
     this.$host = options.$host || "https://management.azure.com";

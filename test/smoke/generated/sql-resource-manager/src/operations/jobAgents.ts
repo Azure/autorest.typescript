@@ -316,7 +316,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.JobAgent
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters33,
   queryParameters: [Parameters.apiVersion4],
@@ -335,7 +336,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion4],
   urlParameters: [
     Parameters.$host,
@@ -362,7 +363,8 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.JobAgent
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters34,
   queryParameters: [Parameters.apiVersion4],

@@ -609,6 +609,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Domain
+    },
+    default: {
+      bodyMapper: Mappers.DefaultErrorResponse
     }
   },
   requestBody: Parameters.domain,
@@ -826,7 +829,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
 };
 const listRecommendationsNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
-  httpMethod: "POST",
+  httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: Mappers.NameIdentifierCollection
@@ -835,7 +838,6 @@ const listRecommendationsNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

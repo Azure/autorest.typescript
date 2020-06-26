@@ -100,6 +100,9 @@ const listOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.VpnServerConfigurationsResponse
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion],

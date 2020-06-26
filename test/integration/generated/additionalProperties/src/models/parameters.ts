@@ -6,10 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import { OperationParameter, OperationURLParameter } from "@azure/core-http";
+import {
+  PetAPTrue as PetAPTrueMapper,
+  CatAPTrue as CatAPTrueMapper,
+  PetAPObject as PetAPObjectMapper,
+  PetAPString as PetAPStringMapper,
+  PetAPInProperties as PetAPInPropertiesMapper,
+  PetAPInPropertiesWithAPString as PetAPInPropertiesWithAPStringMapper
+} from "../models/mappers";
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -21,12 +28,12 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const createParameters: coreHttp.OperationParameter = {
+export const createParameters: OperationParameter = {
   parameterPath: "createParameters",
-  mapper: Mappers.PetAPTrue
+  mapper: PetAPTrueMapper
 };
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -38,27 +45,27 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const createParameters1: coreHttp.OperationParameter = {
+export const createParameters1: OperationParameter = {
   parameterPath: "createParameters",
-  mapper: Mappers.CatAPTrue
+  mapper: CatAPTrueMapper
 };
 
-export const createParameters2: coreHttp.OperationParameter = {
+export const createParameters2: OperationParameter = {
   parameterPath: "createParameters",
-  mapper: Mappers.PetAPObject
+  mapper: PetAPObjectMapper
 };
 
-export const createParameters3: coreHttp.OperationParameter = {
+export const createParameters3: OperationParameter = {
   parameterPath: "createParameters",
-  mapper: Mappers.PetAPString
+  mapper: PetAPStringMapper
 };
 
-export const createParameters4: coreHttp.OperationParameter = {
+export const createParameters4: OperationParameter = {
   parameterPath: "createParameters",
-  mapper: Mappers.PetAPInProperties
+  mapper: PetAPInPropertiesMapper
 };
 
-export const createParameters5: coreHttp.OperationParameter = {
+export const createParameters5: OperationParameter = {
   parameterPath: "createParameters",
-  mapper: Mappers.PetAPInPropertiesWithAPString
+  mapper: PetAPInPropertiesWithAPStringMapper
 };

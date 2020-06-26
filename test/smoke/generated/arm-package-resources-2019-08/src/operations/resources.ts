@@ -662,7 +662,15 @@ const moveResourcesOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{sourceResourceGroupName}/moveResources",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   requestBody: Parameters.parameters3,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -678,7 +686,15 @@ const validateMoveResourcesOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{sourceResourceGroupName}/validateMoveResources",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   requestBody: Parameters.parameters3,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -737,7 +753,15 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
@@ -766,6 +790,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.GenericResource
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters4,
@@ -799,6 +826,9 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.GenericResource
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters4,
@@ -857,7 +887,15 @@ const checkExistenceByIdOperationSpec: coreHttp.OperationSpec = {
 const deleteByIdOperationSpec: coreHttp.OperationSpec = {
   path: "/{resourceId}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.resourceId],
   serializer
@@ -877,6 +915,9 @@ const createOrUpdateByIdOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.GenericResource
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters4,
@@ -901,6 +942,9 @@ const updateByIdOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.GenericResource
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.parameters4,

@@ -13,6 +13,7 @@ import {
 import { cloneOperation } from "../utils/cloneOperation";
 import { extractPaginationDetails } from "../utils/extractPaginationDetails";
 import { getLanguageMetadata } from "../utils/languageHelpers";
+import { cloneDeep } from "lodash";
 
 /**
  * Normalizes the CodeModel based on available Azure extensions.
@@ -138,6 +139,24 @@ function addPageableMethods(codeModel: CodeModel) {
         nextLinkMethod.requests?.[0].protocol.http ?? new Protocol();
       nextLinkRequestProtocol.path = "{nextLink}";
 
+      // NextLink methods should always send GET requests
+      // More info: https://github.com/Azure/autorest/tree/master/docs/extensions#x-ms-pageable
+      nextLinkRequestProtocol.method = "GET";
+      let isLRO = false;
+
+      // NextLink method can not be LRO
+      if (
+        nextLinkMethod.extensions &&
+        "x-ms-long-running-operation" in nextLinkMethod.extensions
+      ) {
+        delete nextLinkMethod.extensions["x-ms-long-running-operation"];
+        isLRO = true;
+      }
+
+      // Make sure there is a 200 response defined since LRO operations
+      // are only required to define the initial response in SWAGGER
+      inject200Response(nextLinkMethod, isLRO);
+
       // Create the nextLink parameter.
       // This will appear as a required parameter to the "Next" operation.
       const httpProtocol = new Protocol();
@@ -172,6 +191,50 @@ function addPageableMethods(codeModel: CodeModel) {
 
       operationGroup.addOperation(nextLinkMethod);
     }
+  }
+}
+
+/**
+ * This function injects a 200 response definition if not present.
+ * This is needed because SWAGGER only requires LRO operations to define
+ * the initial request response. By injecting 200 response definition we
+ * allow core-http deserialization to handle it as success rather that failure
+ * as by default it treats any response not defined as an error
+ * @param nextLinkMethod method to inject the 200 response to
+ * @param isLRO whether or not the operation is LRO
+ */
+function inject200Response(nextLinkMethod: Operation, isLRO: boolean) {
+  // Only inject for LRO operations
+  if (!isLRO) {
+    return;
+  }
+
+  if (
+    nextLinkMethod.responses &&
+    !nextLinkMethod.responses.find(r => {
+      return !!r.protocol.http?.statusCodes.includes("200");
+    })
+  ) {
+    // Find the first response >= 200 <= 299 and clone it as 200
+    const successResponse = nextLinkMethod.responses.find(r => {
+      const statusCodes: string[] = r.protocol.http?.statusCodes || [];
+
+      return statusCodes.find(s => {
+        const status = Number.parseInt(s);
+        return status >= 200 && status < 300;
+      });
+    });
+
+    if (!successResponse) {
+      throw new Error(
+        "Expected nextLink of LRO operation to have a success response defined"
+      );
+    }
+
+    const success200 = cloneDeep(successResponse);
+    success200.protocol.http!.statusCodes = ["200"];
+
+    nextLinkMethod.responses = [...nextLinkMethod.responses, success200];
   }
 }
 

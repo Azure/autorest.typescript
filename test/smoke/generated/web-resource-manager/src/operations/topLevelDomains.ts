@@ -203,7 +203,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
 };
 const listAgreementsNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
-  httpMethod: "POST",
+  httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: Mappers.TldLegalAgreementCollection
@@ -212,7 +212,6 @@ const listAgreementsNextOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.agreementOption,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

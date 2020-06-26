@@ -270,7 +270,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.BackupShortTermRetentionPolicy
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters50,
   queryParameters: [Parameters.apiVersion1],
@@ -302,7 +303,8 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.BackupShortTermRetentionPolicy
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters50,
   queryParameters: [Parameters.apiVersion1],

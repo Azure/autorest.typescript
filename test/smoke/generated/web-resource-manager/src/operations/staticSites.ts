@@ -1445,7 +1445,7 @@ const getStaticSitesByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
 };
 const listStaticSiteUsersNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
-  httpMethod: "POST",
+  httpMethod: "GET",
   responses: {
     200: {
       bodyMapper: Mappers.StaticSiteUserCollection

@@ -6,10 +6,22 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import {
+  OperationURLParameter,
+  OperationParameter,
+  OperationQueryParameter
+} from "@azure/core-http";
+import {
+  RootWithRefAndNoMeta as RootWithRefAndNoMetaMapper,
+  RootWithRefAndMeta as RootWithRefAndMetaMapper,
+  Slideshow as SlideshowMapper,
+  AppleBarrel as AppleBarrelMapper,
+  Banana as BananaMapper,
+  StorageServiceProperties as StorageServicePropertiesMapper,
+  JsonInput as JsonInputMapper
+} from "../models/mappers";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -22,7 +34,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const contentType: coreHttp.OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/xml",
@@ -34,32 +46,32 @@ export const contentType: coreHttp.OperationParameter = {
   }
 };
 
-export const model: coreHttp.OperationParameter = {
+export const model: OperationParameter = {
   parameterPath: "model",
-  mapper: Mappers.RootWithRefAndNoMeta
+  mapper: RootWithRefAndNoMetaMapper
 };
 
-export const model1: coreHttp.OperationParameter = {
+export const model1: OperationParameter = {
   parameterPath: "model",
-  mapper: Mappers.RootWithRefAndMeta
+  mapper: RootWithRefAndMetaMapper
 };
 
-export const slideshow: coreHttp.OperationParameter = {
+export const slideshow: OperationParameter = {
   parameterPath: "slideshow",
-  mapper: Mappers.Slideshow
+  mapper: SlideshowMapper
 };
 
-export const wrappedLists: coreHttp.OperationParameter = {
+export const wrappedLists: OperationParameter = {
   parameterPath: "wrappedLists",
-  mapper: Mappers.AppleBarrel
+  mapper: AppleBarrelMapper
 };
 
-export const appleBarrel: coreHttp.OperationParameter = {
+export const appleBarrel: OperationParameter = {
   parameterPath: "appleBarrel",
-  mapper: Mappers.AppleBarrel
+  mapper: AppleBarrelMapper
 };
 
-export const bananas: coreHttp.OperationParameter = {
+export const bananas: OperationParameter = {
   parameterPath: "bananas",
   mapper: {
     serializedName: "bananas",
@@ -74,12 +86,12 @@ export const bananas: coreHttp.OperationParameter = {
   }
 };
 
-export const banana: coreHttp.OperationParameter = {
+export const banana: OperationParameter = {
   parameterPath: "banana",
-  mapper: Mappers.Banana
+  mapper: BananaMapper
 };
 
-export const comp: coreHttp.OperationQueryParameter = {
+export const comp: OperationQueryParameter = {
   parameterPath: "comp",
   mapper: {
     defaultValue: "list",
@@ -91,7 +103,7 @@ export const comp: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const comp1: coreHttp.OperationQueryParameter = {
+export const comp1: OperationQueryParameter = {
   parameterPath: "comp",
   mapper: {
     defaultValue: "properties",
@@ -103,7 +115,7 @@ export const comp1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const restype: coreHttp.OperationQueryParameter = {
+export const restype: OperationQueryParameter = {
   parameterPath: "restype",
   mapper: {
     defaultValue: "service",
@@ -115,12 +127,12 @@ export const restype: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const properties: coreHttp.OperationParameter = {
+export const properties: OperationParameter = {
   parameterPath: "properties",
-  mapper: Mappers.StorageServiceProperties
+  mapper: StorageServicePropertiesMapper
 };
 
-export const comp2: coreHttp.OperationQueryParameter = {
+export const comp2: OperationQueryParameter = {
   parameterPath: "comp",
   mapper: {
     defaultValue: "acl",
@@ -132,7 +144,7 @@ export const comp2: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const restype1: coreHttp.OperationQueryParameter = {
+export const restype1: OperationQueryParameter = {
   parameterPath: "restype",
   mapper: {
     defaultValue: "container",
@@ -144,7 +156,7 @@ export const restype1: coreHttp.OperationQueryParameter = {
   }
 };
 
-export const properties1: coreHttp.OperationParameter = {
+export const properties1: OperationParameter = {
   parameterPath: "properties",
   mapper: {
     serializedName: "properties",
@@ -159,7 +171,7 @@ export const properties1: coreHttp.OperationParameter = {
   }
 };
 
-export const contentType1: coreHttp.OperationParameter = {
+export const contentType1: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -171,7 +183,7 @@ export const contentType1: coreHttp.OperationParameter = {
   }
 };
 
-export const properties2: coreHttp.OperationParameter = {
+export const properties2: OperationParameter = {
   parameterPath: "properties",
-  mapper: Mappers.JsonInput
+  mapper: JsonInputMapper
 };

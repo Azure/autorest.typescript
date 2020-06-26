@@ -400,7 +400,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ManagedInstance
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters58,
   queryParameters: [Parameters.apiVersion2],
@@ -418,7 +419,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
@@ -444,7 +445,8 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ManagedInstance
-    }
+    },
+    default: {}
   },
   requestBody: Parameters.parameters59,
   queryParameters: [Parameters.apiVersion2],

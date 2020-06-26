@@ -6,10 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import {
+  OperationURLParameter,
+  OperationQueryParameter
+} from "@azure/core-http";
 
-export const $host: coreHttp.OperationURLParameter = {
+export const $host: OperationURLParameter = {
   parameterPath: "$host",
   mapper: {
     serializedName: "$host",
@@ -21,7 +23,7 @@ export const $host: coreHttp.OperationURLParameter = {
   skipEncoding: true
 };
 
-export const qualifier: coreHttp.OperationQueryParameter = {
+export const qualifier: OperationQueryParameter = {
   parameterPath: ["options", "qualifier"],
   mapper: {
     serializedName: "qualifier",

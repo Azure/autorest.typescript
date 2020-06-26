@@ -232,6 +232,9 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.FlowLog
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse
     }
   },
   requestBody: Parameters.parameters36,
@@ -273,7 +276,15 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/flowLogs/{flowLogName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    200: {},
+    201: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.ErrorResponse
+    }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

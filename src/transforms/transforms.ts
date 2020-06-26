@@ -58,11 +58,13 @@ export async function transformCodeModel(
   codeModel: CodeModel,
   host: Host
 ): Promise<ClientDetails> {
+  const { name: clientName } = getLanguageMetadata(codeModel.language);
   const className = normalizeName(
-    codeModel.info.title,
+    clientName,
     NameType.Class,
     true /** shouldGuard */
   );
+
   normalizeModelWithExtensions(codeModel);
 
   const [uberParents, operationGroups] = await Promise.all([

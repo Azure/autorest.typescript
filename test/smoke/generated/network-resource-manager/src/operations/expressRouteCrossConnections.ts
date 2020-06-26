@@ -498,6 +498,9 @@ const listArpTableOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ExpressRouteCircuitsArpTableListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -531,6 +534,9 @@ const listRoutesTableSummaryOperationSpec: coreHttp.OperationSpec = {
     204: {
       bodyMapper:
         Mappers.ExpressRouteCrossConnectionsRoutesTableSummaryListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion],
@@ -560,6 +566,9 @@ const listRoutesTableOperationSpec: coreHttp.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.ExpressRouteCircuitsRoutesTableListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
     }
   },
   queryParameters: [Parameters.apiVersion],
