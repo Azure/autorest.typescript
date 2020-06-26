@@ -8,40 +8,19 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ["mocha", "karma-typescript", "source-map-support"],
+    frameworks: ["mocha", "source-map-support"],
 
     plugins: [
       "karma-mocha",
       "karma-mocha-reporter",
-      "karma-typescript",
       "karma-chrome-launcher",
       "karma-source-map-support"
     ],
-    // Files that will be processed before being loaded in the browser (compiles TS -> JS)
-    preprocessors: {
-      "test/integration/*.spec.ts": ["karma-typescript"],
-      "test/integration/generated/**/*.ts": ["karma-typescript"],
-      "test/utils/stream-helpers.ts": ["karma-typescript"]
-    },
-    // Files that should be loaded in the browser.
-    files: ["test/integration/**/*.ts", "test/utils/stream-helpers.ts"],
-    exclude: ["**/*.d.ts", "test/testserver-v1/*.ts"],
-    reporters: ["progress", "karma-typescript"],
 
-    karmaTypescriptConfig: {
-      tsconfig: "./tsconfig.browser-test.json",
-      bundlerOptions: {
-        sourceMap: false,
-        entryPoints: /test\/integration\/[\w\d]+\.spec\.ts$/,
-        addNodeGlobals: true,
-        transforms: [require("karma-typescript-es6-transform")()],
-        constants: {
-          process: {
-            env: {}
-          }
-        }
-      }
-    },
+    // Files that should be loaded in the browser.
+    files: ["test-browser/index.js"],
+    exclude: [],
+    reporters: ["progress"],
 
     // enable / disable colors in the output (reporters and logs)
     colors: true,

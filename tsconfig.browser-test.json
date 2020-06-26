@@ -19,9 +19,13 @@
     "lib": ["es2018", "DOM"],
     "experimentalDecorators": true,
     "newLine": "LF",
-    "outDir": "./test/integration",
-    "rootDir": "./test/integration"
+    "outDir": "./test-browser",
+    "rootDir": "./test"
   },
-  "include": ["test/integration/*.ts", "test/integration/generated/**/*.ts"],
+  "include": [
+    "test/integration/*.ts",
+    "test/integration/generated/**/*.ts",
+    "test/utils/stream-helpers.ts"
+  ],
   "exclude": []
 }
