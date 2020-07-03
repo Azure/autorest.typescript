@@ -32,24 +32,23 @@ export function generateMappers(
     return;
   }
   const mappersFile = project.createSourceFile(
-    `${clientDetails.srcPath}/models/mappers.ts`,
+    `${clientDetails.srcPath}/mappers/index.ts`,
     undefined,
     { overwrite: true }
   );
 
-  writeMappers(mappersFile, clientDetails);
+  writeMappers(mappersFile, clientDetails, project);
   writeDiscriminatorsMapping(mappersFile, clientDetails);
-
-  mappersFile.addImportDeclaration({
-    namespaceImport: "coreHttp",
-    moduleSpecifier: "@azure/core-http"
-  });
 }
 
 /**
  * This function writes to the mappers.ts file all the mappers to be used by @azure/core-http for serialization
  */
-function writeMappers(sourceFile: SourceFile, { mappers }: ClientDetails) {
+function writeMappers(
+  sourceFile: SourceFile,
+  { mappers, srcPath }: ClientDetails,
+  project: Project
+) {
   const generatedMappers: Map<string, Mapper> = new Map<string, Mapper>();
 
   mappers.forEach(mapper => {
@@ -59,6 +58,13 @@ function writeMappers(sourceFile: SourceFile, { mappers }: ClientDetails) {
       logger.verbose(JSON.stringify(mapper));
       return;
     }
+
+    const fileName = normalizeName(mapperClassName, NameType.File);
+    const mapperFile = project.createSourceFile(
+      `${srcPath}/mappers/${fileName}.ts`,
+      undefined,
+      { overwrite: true }
+    );
 
     const existingMapper = generatedMappers.get(mapperClassName);
 
@@ -73,7 +79,20 @@ function writeMappers(sourceFile: SourceFile, { mappers }: ClientDetails) {
       );
     }
 
-    sourceFile.addVariableStatement({
+    mapperFile.addImportDeclaration({
+      namedImports: ["CompositeMapper"],
+      moduleSpecifier: "@azure/core-http"
+    });
+
+    const parents = extractParents(mapper);
+    if (parents.length) {
+      mapperFile.addImportDeclaration({
+        namedImports: parents,
+        moduleSpecifier: "./"
+      });
+    }
+
+    mapperFile.addVariableStatement({
       isExported: true,
       declarations: [
         {
@@ -81,12 +100,17 @@ function writeMappers(sourceFile: SourceFile, { mappers }: ClientDetails) {
             (mapper as CompositeMapper).type.className || "MISSING_MAPPER",
             NameType.Class
           ),
-          type: "coreHttp.CompositeMapper",
+          type: "CompositeMapper",
           initializer: writer => writeMapper(writer, mapper)
         }
       ],
       declarationKind: VariableDeclarationKind.Const,
       leadingTrivia: writer => writer.blankLine()
+    });
+
+    sourceFile.addExportDeclaration({
+      namedExports: [mapperClassName],
+      moduleSpecifier: `./${fileName}`
     });
 
     // Keep track of the mapper we just generated
@@ -217,6 +241,10 @@ function writeModelProperties(
     // Write all sub-mappers
     if (modelProperties) {
       keys(modelProperties).forEach(key => {
+        if (key === "parentsRefs") {
+          // Don't add parentsRefs, this is handled by writeParentMappers
+          return;
+        }
         writer.write(`"${key}":`);
         writeMapper(writer, modelProperties[key]);
         writer.write(",");
@@ -284,18 +312,12 @@ function writeObjectProps(obj: any, writer: CodeBlockWriter) {
 }
 
 function extractParents(mapper: Mapper) {
-  // TODO(#538): We may need to create a MapperDetails of some sort which contains
-  // the mapper itself and property with its parents for easier manipulation
-  // and avoid the side effect of this function mutating the mapper
   let parents: string[] = [];
   if (mapper.type.name === MapperType.Composite) {
     const compositeMapper = mapper as CompositeMapper;
-    const { parentsRefs, ...modelProperties } = (compositeMapper.type
-      .modelProperties || {}) as ModelProperties;
+    const { parentsRefs } = (compositeMapper.type.modelProperties ||
+      {}) as ModelProperties;
     parents = parentsRefs as string[];
-    compositeMapper.type.modelProperties = modelProperties as {
-      [propertyName: string]: Mapper;
-    };
   }
   return parents;
 }
