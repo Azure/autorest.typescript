@@ -98,7 +98,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   if (hasMappers) {
     clientFile.addImportDeclaration({
       namespaceImport: "Mappers",
-      moduleSpecifier: "./models/mappers"
+      moduleSpecifier: "./mappers"
     });
   }
 

@@ -7,7 +7,7 @@
  */
 
 import { OperationURLParameter, OperationParameter } from "@azure/core-http";
-import { RefColorConstant as RefColorConstantMapper } from "../models/mappers";
+import { RefColorConstant as RefColorConstantMapper } from "../mappers";
 
 export const $host: OperationURLParameter = {
   parameterPath: "$host",

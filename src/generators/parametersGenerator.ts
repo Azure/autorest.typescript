@@ -45,7 +45,7 @@ export function generateParameters(
   if (importedMappers.length) {
     parametersFile.addImportDeclaration({
       namedImports: importedMappers,
-      moduleSpecifier: "../models/mappers"
+      moduleSpecifier: "../mappers"
     });
   }
 

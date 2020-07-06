@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
 import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import * as Mappers from "./mappers";
 import { MediaTypesClientContext } from "./mediaTypesClientContext";
 import {
   MediaTypesClientOptionalParams,

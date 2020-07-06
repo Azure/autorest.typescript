@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import * as operations from "./operations";
 import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import * as Mappers from "./mappers";
 import { AzureSpecialPropertiesClientContext } from "./azureSpecialPropertiesClientContext";
 import { AzureSpecialPropertiesClientOptionalParams } from "./models";
 

@@ -19,7 +19,7 @@ import {
   Banana as BananaMapper,
   StorageServiceProperties as StorageServicePropertiesMapper,
   JsonInput as JsonInputMapper
-} from "../models/mappers";
+} from "../mappers";
 
 export const $host: OperationURLParameter = {
   parameterPath: "$host",

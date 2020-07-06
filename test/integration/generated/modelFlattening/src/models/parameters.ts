@@ -10,7 +10,7 @@ import { OperationParameter, OperationURLParameter } from "@azure/core-http";
 import {
   ResourceCollection as ResourceCollectionMapper,
   SimpleProduct as SimpleProductMapper
-} from "../models/mappers";
+} from "../mappers";
 
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],

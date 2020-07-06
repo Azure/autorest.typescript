@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import * as Mappers from "../mappers";
 import * as Parameters from "../models/parameters";
 import { BodyDateTimeClient } from "../bodyDateTimeClient";
 import {
@@ -125,7 +125,8 @@ export class Datetime {
   }
 
   /**
-   * Put max datetime value 9999-12-31T23:59:59.9999999Z
+   * This is against the recommendation that asks for 3 digits, but allow to test what happens in that
+   * scenario
    * @param datetimeBody
    * @param options The options parameters.
    */
@@ -175,7 +176,8 @@ export class Datetime {
   }
 
   /**
-   * Get max datetime value 9999-12-31T23:59:59.9999999Z
+   * This is against the recommendation that asks for 3 digits, but allow to test what happens in that
+   * scenario
    * @param options The options parameters.
    */
   getUtcUppercaseMaxDateTime7Digits(

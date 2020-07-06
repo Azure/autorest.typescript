@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import * as Mappers from "../mappers";
 import * as Parameters from "../models/parameters";
 import { BodyStringClient } from "../bodyStringClient";
 import {
@@ -381,7 +381,7 @@ const getBase64EncodedOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Base64Url" } }
+      bodyMapper: { type: { name: "ByteArray" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel

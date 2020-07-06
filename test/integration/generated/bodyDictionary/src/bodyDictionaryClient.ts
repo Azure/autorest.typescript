@@ -8,7 +8,7 @@
 
 import * as operations from "./operations";
 import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import * as Mappers from "./mappers";
 import { BodyDictionaryClientContext } from "./bodyDictionaryClientContext";
 import { BodyDictionaryClientOptionalParams } from "./models";
 

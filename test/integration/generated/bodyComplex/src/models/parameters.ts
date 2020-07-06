@@ -30,7 +30,7 @@ import {
   Fish as FishMapper,
   Salmon as SalmonMapper,
   ReadonlyObj as ReadonlyObjMapper
-} from "../models/mappers";
+} from "../mappers";
 
 export const $host: OperationURLParameter = {
   parameterPath: "$host",

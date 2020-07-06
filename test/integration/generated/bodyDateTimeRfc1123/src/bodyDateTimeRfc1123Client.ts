@@ -8,7 +8,7 @@
 
 import * as operations from "./operations";
 import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import * as Mappers from "./mappers";
 import { BodyDateTimeRfc1123ClientContext } from "./bodyDateTimeRfc1123ClientContext";
 import { BodyDateTimeRfc1123ClientOptionalParams } from "./models";
 

@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import * as Mappers from "../mappers";
 import * as Parameters from "../models/parameters";
 import { UrlClient } from "../urlClient";
 import { UriColor } from "../models";
@@ -219,7 +219,7 @@ export class Paths {
   }
 
   /**
-   * Get 'begin!*'();:@&=+$,end
+   * https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded
    * @param options The options parameters.
    */
   stringUrlNonEncoded(

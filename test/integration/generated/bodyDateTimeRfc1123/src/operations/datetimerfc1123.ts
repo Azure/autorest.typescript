@@ -7,7 +7,7 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as Mappers from "../models/mappers";
+import * as Mappers from "../mappers";
 import * as Parameters from "../models/parameters";
 import { BodyDateTimeRfc1123Client } from "../bodyDateTimeRfc1123Client";
 import {

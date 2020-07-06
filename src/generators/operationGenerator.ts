@@ -1012,7 +1012,7 @@ function addImports(
   if (mappers.length) {
     operationGroupFile.addImportDeclaration({
       namespaceImport: "Mappers",
-      moduleSpecifier: "../models/mappers"
+      moduleSpecifier: "../mappers"
     });
   }
 

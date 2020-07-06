@@ -38,7 +38,7 @@ export function generateMappers(
   );
 
   writeMappers(mappersFile, clientDetails, project);
-  writeDiscriminatorsMapping(mappersFile, clientDetails);
+  writeDiscriminatorsMapping(project, mappersFile, clientDetails);
 }
 
 /**
@@ -52,7 +52,8 @@ function writeMappers(
   const generatedMappers: Map<string, Mapper> = new Map<string, Mapper>();
 
   mappers.forEach(mapper => {
-    const mapperClassName = (mapper as CompositeMapper).type.className;
+    const compositeMapper = mapper as CompositeMapper;
+    const mapperClassName = compositeMapper.type.className;
     if (!mapperClassName) {
       logger.warning(`Expected a mapper with a className, skipping generation`);
       logger.verbose(JSON.stringify(mapper));
@@ -69,7 +70,7 @@ function writeMappers(
     const existingMapper = generatedMappers.get(mapperClassName);
 
     if (existingMapper) {
-      if (isEqual(existingMapper, mapper)) {
+      if (isEqual(existingMapper, compositeMapper)) {
         // If we already generated the same mapper, skip
         return;
       }
@@ -79,18 +80,7 @@ function writeMappers(
       );
     }
 
-    mapperFile.addImportDeclaration({
-      namedImports: ["CompositeMapper"],
-      moduleSpecifier: "@azure/core-http"
-    });
-
-    const parents = extractParents(mapper);
-    if (parents.length) {
-      mapperFile.addImportDeclaration({
-        namedImports: parents,
-        moduleSpecifier: "./"
-      });
-    }
+    writeMapperImports(compositeMapper, mapperClassName, mapperFile);
 
     mapperFile.addVariableStatement({
       isExported: true,
@@ -118,6 +108,42 @@ function writeMappers(
   });
 }
 
+/**
+ * Write the necessary imports to build the mapper, these include any referenced mappers
+ * and dependencies such as core-http
+ */
+function writeMapperImports(
+  mapper: CompositeMapper,
+  mapperClassName: string,
+  mapperFile: SourceFile
+) {
+  let uberParent: string[] = [];
+
+  if (mapper.type.uberParent && mapper.type.uberParent !== mapperClassName) {
+    uberParent = [mapper.type.uberParent];
+  }
+
+  const parents = extractParents(mapper) || [];
+
+  const importedParents =
+    [...new Set<string>([...parents, ...uberParent])] || [];
+
+  mapperFile.addImportDeclarations(
+    importedParents.map(parent => {
+      const fileName = normalizeName(parent, NameType.File);
+      return {
+        namedImports: [parent],
+        moduleSpecifier: `./${fileName}`
+      };
+    })
+  );
+
+  mapperFile.addImportDeclaration({
+    namedImports: ["CompositeMapper"],
+    moduleSpecifier: "@azure/core-http"
+  });
+}
+
 function getAllPolymorphicObjects({
   objects
 }: ClientDetails): PolymorphicObjectDetails[] {
@@ -132,7 +158,8 @@ function getAllPolymorphicObjects({
  * discriminator value.
  */
 function writeDiscriminatorsMapping(
-  sourceFile: SourceFile,
+  project: Project,
+  mappersIndex: SourceFile,
   clientDetails: ClientDetails
 ) {
   let discriminatorMappers: { [discriminator: string]: string } = {};
@@ -144,7 +171,14 @@ function writeDiscriminatorsMapping(
   });
 
   if (!isEmpty(discriminatorMappers)) {
-    sourceFile.addVariableStatement({
+    // Create a new discriminators file
+    const discriminatorsFile = project.createSourceFile(
+      `${clientDetails.srcPath}/mappers/discriminators.ts`,
+      undefined,
+      { overwrite: true }
+    );
+
+    discriminatorsFile.addVariableStatement({
       isExported: true,
       declarations: [
         {
@@ -160,9 +194,35 @@ function writeDiscriminatorsMapping(
       ],
       leadingTrivia: writer => writer.blankLine()
     });
+
+    writeDiscriminatorsImports(discriminatorMappers, discriminatorsFile);
+
+    // Export the discriminators map
+    mappersIndex.addExportDeclaration({
+      namedExports: ["discriminators"],
+      moduleSpecifier: `./discriminators`
+    });
   }
 }
 
+/**
+ * Writes all the imports needed by the discriminators map,
+ * these imports include the required mappers
+ */
+function writeDiscriminatorsImports(
+  discriminatorMappers: { [discriminator: string]: string },
+  discriminatorsFile: SourceFile
+) {
+  // Import all mappers necessary to build the discriminators map
+  Object.keys(discriminatorMappers).forEach(key => {
+    const mapper = discriminatorMappers[key];
+    const mapperFileName = normalizeName(mapper, NameType.File);
+    discriminatorsFile.addImportDeclaration({
+      namedImports: [mapper],
+      moduleSpecifier: `./${mapperFileName}`
+    });
+  });
+}
 type ModelPropertiesType =
   | {
       [propertyName: string]: Mapper;

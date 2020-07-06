@@ -96,10 +96,9 @@ export interface DictionaryWrapper {
   defaultProgram?: { [propertyName: string]: string };
 }
 
-export interface Pet {
-  id?: number;
-  name?: string;
-}
+export type Siamese = Cat & {
+  breed?: string;
+};
 
 export type Cat = Pet & {
   color?: string;
@@ -110,9 +109,10 @@ export type Dog = Pet & {
   food?: string;
 };
 
-export type Siamese = Cat & {
-  breed?: string;
-};
+export interface Pet {
+  id?: number;
+  name?: string;
+}
 
 export interface Fish {
   /**
@@ -204,6 +204,10 @@ export type MyDerivedType = MyBaseType & {
  * Defines values for CMYKColors.
  */
 export type CMYKColors = "cyan" | "Magenta" | "YELLOW" | "blacK";
+/**
+ * Defines values for MyKind.
+ */
+export type MyKind = "Kind1";
 /**
  * Defines values for GoblinSharkColor.
  */

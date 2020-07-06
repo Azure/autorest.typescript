@@ -8,7 +8,7 @@
 
 import * as operations from "./operations";
 import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import * as Mappers from "./mappers";
 import { BodyTimeClientContext } from "./bodyTimeClientContext";
 import { BodyTimeClientOptionalParams } from "./models";
 

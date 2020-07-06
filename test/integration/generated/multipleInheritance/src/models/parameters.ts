@@ -13,7 +13,7 @@ import {
   Feline as FelineMapper,
   Cat as CatMapper,
   Kitten as KittenMapper
-} from "../models/mappers";
+} from "../mappers";
 
 export const $host: OperationURLParameter = {
   parameterPath: "$host",

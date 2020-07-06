@@ -32,6 +32,11 @@ export interface OdataProductResult {
   odataNextLink?: string;
 }
 
+export interface ProductResultValueWithXMSClientName {
+  indexes?: Product[];
+  nextLink?: string;
+}
+
 export interface OperationResult {
   /**
    * The status of the request
@@ -542,6 +547,26 @@ export type PagingNextFragmentWithGroupingResponse = OdataProductResult & {
 };
 
 /**
+ * Contains response data for the getPagingModelWithItemNameWithXMSClientName operation.
+ */
+export type PagingGetPagingModelWithItemNameWithXMSClientNameResponse = ProductResultValueWithXMSClientName & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ProductResultValueWithXMSClientName;
+  };
+};
+
+/**
  * Contains response data for the getNoItemNamePagesNext operation.
  */
 export type PagingGetNoItemNamePagesNextResponse = ProductResultValue & {
@@ -810,6 +835,26 @@ export type PagingGetMultiplePagesLRONextResponse = ProductResult & {
      * The response body as parsed JSON or XML
      */
     parsedBody: ProductResult;
+  };
+};
+
+/**
+ * Contains response data for the getPagingModelWithItemNameWithXMSClientNameNext operation.
+ */
+export type PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse = ProductResultValueWithXMSClientName & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: coreHttp.HttpResponse & {
+    /**
+     * The response body as text (string format)
+     */
+    bodyAsText: string;
+
+    /**
+     * The response body as parsed JSON or XML
+     */
+    parsedBody: ProductResultValueWithXMSClientName;
   };
 };
 

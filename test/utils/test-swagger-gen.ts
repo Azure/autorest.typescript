@@ -187,13 +187,13 @@ const generateSwaggers = async (
   let generationTasks: Promise<void>[] = [];
 
   Object.keys(testSwaggers)
-    .filter((name) => {
+    .filter(name => {
       if (!whiteList || !whiteList.length) {
         return true;
       }
       return whiteList.includes(name);
     })
-    .forEach((name) => {
+    .forEach(name => {
       const { addCredentials, clientName, swagger, packageName } = testSwaggers[
         name
       ];
@@ -205,7 +205,7 @@ const generateSwaggers = async (
         swaggerPath = `node_modules/@microsoft.azure/autorest.testserver/swagger/${swagger}`;
       }
 
-      let autorestCommand = `autorest --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version}`;
+      let autorestCommand = `autorest --clear-output-folder=true --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version}`;
 
       if (isDebugging) {
         autorestCommand = `${autorestCommand} --typescript.debugger`;
@@ -254,7 +254,7 @@ const buildWhitelist = () =>
 
     const swaggers = includesValue.split(",");
 
-    swaggers.forEach((swagger) => {
+    swaggers.forEach(swagger => {
       const validSwaggers = Object.keys(testSwaggers);
       if (!validSwaggers.includes(swagger)) {
         throw new Error(
@@ -300,6 +300,6 @@ const run = async () => {
   await generateSwaggers(whiteList, isDebugging);
 };
 
-run().catch((error) => {
+run().catch(error => {
   process.exit(-1000);
 });

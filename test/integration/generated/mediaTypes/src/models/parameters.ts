@@ -7,7 +7,7 @@
  */
 
 import { OperationParameter, OperationURLParameter } from "@azure/core-http";
-import { SourcePath as SourcePathMapper } from "../models/mappers";
+import { SourcePath as SourcePathMapper } from "../mappers";
 
 export const contentType: OperationParameter = {
   parameterPath: "contentType",

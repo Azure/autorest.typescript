@@ -11,7 +11,7 @@ import {
   Product as ProductMapper,
   Sku as SkuMapper,
   SubProduct as SubProductMapper
-} from "../models/mappers";
+} from "../mappers";
 
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],

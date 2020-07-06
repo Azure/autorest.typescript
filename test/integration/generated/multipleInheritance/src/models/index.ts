@@ -8,13 +8,13 @@
 
 import * as coreHttp from "@azure/core-http";
 
-export interface Pet {
-  name: string;
-}
-
 export type Horse = Pet & {
   isAShowHorse?: boolean;
 };
+
+export interface Pet {
+  name: string;
+}
 
 export interface ErrorModel {
   status?: number;
