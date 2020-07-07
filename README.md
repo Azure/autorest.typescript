@@ -28,7 +28,7 @@ More information about these can be found [here](https://github.com/Azure/autore
 ```yaml
 version: 3.0.6258
 use-extension:
-  "@autorest/modelerfour": "http://tinyurl.com/y97bv55s"
+  "@autorest/modelerfour": "4.15.378"
 
 modelerfour:
   # this runs a pre-namer step to clean up names
