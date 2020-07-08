@@ -8,6 +8,11 @@
 
 import * as coreHttp from "@azure/core-http";
 
+export type Product = Resource & {
+  provisioningState?: string;
+  readonly provisioningStateValues?: ProductPropertiesProvisioningStateValues;
+};
+
 export interface Resource {
   /**
    * Resource Id
@@ -31,13 +36,8 @@ export interface Resource {
   readonly name?: string;
 }
 
-export type Product = Resource & {
-  provisioningState?: string;
-  readonly provisioningStateValues?: ProductPropertiesProvisioningStateValues;
-};
-
 export interface CloudError {
-  status?: number;
+  code?: number;
   message?: string;
 }
 
@@ -46,17 +46,17 @@ export interface Sku {
   id?: string;
 }
 
+export type SubProduct = SubResource & {
+  provisioningState?: string;
+  readonly provisioningStateValues?: SubProductPropertiesProvisioningStateValues;
+};
+
 export interface SubResource {
   /**
    * Sub Resource Id
    */
   readonly id?: string;
 }
-
-export type SubProduct = SubResource & {
-  provisioningState?: string;
-  readonly provisioningStateValues?: SubProductPropertiesProvisioningStateValues;
-};
 
 export interface OperationResult {
   /**

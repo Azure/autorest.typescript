@@ -73,6 +73,63 @@ export interface MapperInput {
   options?: EntityOptions;
 }
 
+/**
+ * This function sorts objects in a topographical order
+ * this is to make sure that mappers of parents are generated
+ * before children to avoid issues trying to reference a mapper
+ * before being defined.
+ */
+function getObjectsTopographically(objects: ObjectSchema[]) {
+  // Start processing objects without parents and walk the hierarchy
+  // level by level
+  const stack: ObjectSchema[] = objects.filter(
+    o =>
+      // Get objects that don't have any parents
+      !o.parents ||
+      o.parents.all.length === 0 ||
+      // Or objects that have parents but none of them are Objects
+      // this is to handle the case where an object's parent is a
+      // DictionarySchema, common for additional properties
+      !(
+        o.parents.all.length &&
+        o.parents.all.some(p => p.type === SchemaType.Object)
+      )
+  );
+  const result: ObjectSchema[] = [];
+
+  // Keep track of the processed schemas to avoid inserting one twice
+  const processed = new Set<string>();
+
+  while (stack.length) {
+    const current = stack.shift();
+
+    if (!current) {
+      continue;
+    }
+
+    const name = getMapperClassName(current);
+
+    if (processed.has(name)) {
+      continue;
+    }
+
+    result.push(current);
+    processed.add(name);
+
+    const currentChildren = !current.children
+      ? []
+      : (current.children.immediate.filter(
+          c => c.type === SchemaType.Object
+        ) as ObjectSchema[]);
+
+    if (currentChildren.length) {
+      stack.push(...currentChildren);
+    }
+  }
+
+  return result;
+}
+
 export async function transformMappers(
   codeModel: CodeModel,
   uberParents: ObjectDetails[],
@@ -84,10 +141,12 @@ export async function transformMappers(
     return [];
   }
 
+  const objects = getObjectsTopographically(codeModel.schemas.objects);
+
   const uberParentsNames = uberParents.map(up => up.name);
   const hasXmlMetadata = mediaTypes?.has(KnownMediaType.Xml);
   return [
-    ...codeModel.schemas.objects,
+    ...objects,
     ...extractHeaders(codeModel.operationGroups, clientName)
   ].map(objectSchema =>
     transformMapper({

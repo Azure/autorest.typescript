@@ -381,7 +381,7 @@ const getBase64EncodedOperationSpec: coreHttp.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Base64Url" } }
+      bodyMapper: { type: { name: "ByteArray" } }
     },
     default: {
       bodyMapper: Mappers.ErrorModel

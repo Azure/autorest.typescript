@@ -111,6 +111,28 @@ export const OdataProductResult: coreHttp.CompositeMapper = {
   }
 };
 
+export const ProductResultValueWithXMSClientName: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ProductResultValueWithXMSClientName",
+    modelProperties: {
+      indexes: {
+        serializedName: "values",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Product" } }
+        }
+      },
+      nextLink: {
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const OperationResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",

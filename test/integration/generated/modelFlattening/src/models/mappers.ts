@@ -79,41 +79,6 @@ export const ErrorModel: coreHttp.CompositeMapper = {
   }
 };
 
-export const FlattenedProduct: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "FlattenedProduct",
-    modelProperties: {
-      ...Resource.type.modelProperties,
-      pName: {
-        serializedName: "properties.p\\.name",
-        type: {
-          name: "String"
-        }
-      },
-      typePropertiesType: {
-        serializedName: "properties.type",
-        type: {
-          name: "String"
-        }
-      },
-      provisioningStateValues: {
-        serializedName: "properties.provisioningStateValues",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      provisioningState: {
-        serializedName: "properties.provisioningState",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const WrappedProduct: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -176,6 +141,21 @@ export const ResourceCollection: coreHttp.CompositeMapper = {
   }
 };
 
+export const GenericUrl: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GenericUrl",
+    modelProperties: {
+      genericValue: {
+        serializedName: "generic_value",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const BaseProduct: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -190,6 +170,57 @@ export const BaseProduct: coreHttp.CompositeMapper = {
       },
       description: {
         serializedName: "base_product_description",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const FlattenedProduct: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "FlattenedProduct",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      pName: {
+        serializedName: "properties.p\\.name",
+        type: {
+          name: "String"
+        }
+      },
+      typePropertiesType: {
+        serializedName: "properties.type",
+        type: {
+          name: "String"
+        }
+      },
+      provisioningStateValues: {
+        serializedName: "properties.provisioningStateValues",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      provisioningState: {
+        serializedName: "properties.provisioningState",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const ProductUrl: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ProductUrl",
+    modelProperties: {
+      ...GenericUrl.type.modelProperties,
+      odataValue: {
+        serializedName: "@odata\\.value",
         type: {
           name: "String"
         }
@@ -226,37 +257,6 @@ export const SimpleProduct: coreHttp.CompositeMapper = {
       },
       odataValue: {
         serializedName: "details.max_product_image.@odata\\.value",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const GenericUrl: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GenericUrl",
-    modelProperties: {
-      genericValue: {
-        serializedName: "generic_value",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const ProductUrl: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ProductUrl",
-    modelProperties: {
-      ...GenericUrl.type.modelProperties,
-      odataValue: {
-        serializedName: "@odata\\.value",
         type: {
           name: "String"
         }

@@ -82,20 +82,6 @@ export interface ResourceCollection {
 /**
  * The product documentation.
  */
-export interface BaseProduct {
-  /**
-   * Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
-   */
-  productId: string;
-  /**
-   * Description of product.
-   */
-  description?: string;
-}
-
-/**
- * The product documentation.
- */
 export type SimpleProduct = BaseProduct & {
   /**
    * Display name of product.
@@ -116,6 +102,16 @@ export type SimpleProduct = BaseProduct & {
 };
 
 /**
+ * The product URL.
+ */
+export type ProductUrl = GenericUrl & {
+  /**
+   * URL value.
+   */
+  odataValue?: string;
+};
+
+/**
  * The Generic URL.
  */
 export interface GenericUrl {
@@ -126,14 +122,18 @@ export interface GenericUrl {
 }
 
 /**
- * The product URL.
+ * The product documentation.
  */
-export type ProductUrl = GenericUrl & {
+export interface BaseProduct {
   /**
-   * URL value.
+   * Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
    */
-  odataValue?: string;
-};
+  productId: string;
+  /**
+   * Description of product.
+   */
+  description?: string;
+}
 
 /**
  * Parameter group
