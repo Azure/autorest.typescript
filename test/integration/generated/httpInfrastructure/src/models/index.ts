@@ -17,10 +17,6 @@ export interface MyException {
   statusCode?: string;
 }
 
-export type B = MyException & {
-  textStatusCode?: string;
-};
-
 export interface C {
   httpCode?: string;
 }
@@ -28,6 +24,10 @@ export interface C {
 export interface D {
   httpStatusCode?: string;
 }
+
+export type B = MyException & {
+  textStatusCode?: string;
+};
 
 /**
  * Defines headers for HttpRedirects_head300 operation.

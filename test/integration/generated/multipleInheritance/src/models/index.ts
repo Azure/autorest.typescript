@@ -8,10 +8,6 @@
 
 import * as coreHttp from "@azure/core-http";
 
-export type Horse = Pet & {
-  isAShowHorse?: boolean;
-};
-
 export interface Pet {
   name: string;
 }
@@ -25,6 +21,10 @@ export interface Feline {
   meows?: boolean;
   hisses?: boolean;
 }
+
+export type Horse = Pet & {
+  isAShowHorse?: boolean;
+};
 
 export type Cat = Pet &
   Feline & {

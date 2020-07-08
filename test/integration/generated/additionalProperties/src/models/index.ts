@@ -23,10 +23,6 @@ export interface ErrorModel {
   message?: string;
 }
 
-export type CatAPTrue = PetAPTrue & {
-  friendly?: boolean;
-};
-
 export interface PetAPObject {
   /**
    * Describes unknown properties. The value of an unknown property can be of "any" type.
@@ -71,6 +67,10 @@ export interface PetAPInPropertiesWithAPString {
    */
   additionalProperties?: { [propertyName: string]: number };
 }
+
+export type CatAPTrue = PetAPTrue & {
+  friendly?: boolean;
+};
 
 /**
  * Contains response data for the createAPTrue operation.

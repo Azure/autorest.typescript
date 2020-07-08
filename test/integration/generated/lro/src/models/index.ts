@@ -8,11 +8,6 @@
 
 import * as coreHttp from "@azure/core-http";
 
-export type Product = Resource & {
-  provisioningState?: string;
-  readonly provisioningStateValues?: ProductPropertiesProvisioningStateValues;
-};
-
 export interface Resource {
   /**
    * Resource Id
@@ -46,11 +41,6 @@ export interface Sku {
   id?: string;
 }
 
-export type SubProduct = SubResource & {
-  provisioningState?: string;
-  readonly provisioningStateValues?: SubProductPropertiesProvisioningStateValues;
-};
-
 export interface SubResource {
   /**
    * Sub Resource Id
@@ -76,6 +66,16 @@ export interface OperationResultError {
    */
   message?: string;
 }
+
+export type Product = Resource & {
+  provisioningState?: string;
+  readonly provisioningStateValues?: ProductPropertiesProvisioningStateValues;
+};
+
+export type SubProduct = SubResource & {
+  provisioningState?: string;
+  readonly provisioningStateValues?: SubProductPropertiesProvisioningStateValues;
+};
 
 /**
  * Defines headers for LROs_post202List operation.

@@ -10,8 +10,8 @@ import * as coreHttp from "@azure/core-http";
 
 export type FishUnion = Fish | SalmonUnion | SharkUnion;
 export type DotFishUnion = DotFish | DotSalmon;
-export type SalmonUnion = Salmon | SmartSalmon;
 export type MyBaseTypeUnion = MyBaseType | MyDerivedType;
+export type SalmonUnion = Salmon | SmartSalmon;
 export type SharkUnion = Shark | Sawshark | Goblinshark | Cookiecuttershark;
 
 export interface Basic {
@@ -96,19 +96,6 @@ export interface DictionaryWrapper {
   defaultProgram?: { [propertyName: string]: string };
 }
 
-export type Siamese = Cat & {
-  breed?: string;
-};
-
-export type Cat = Pet & {
-  color?: string;
-  hates?: Dog[];
-};
-
-export type Dog = Pet & {
-  food?: string;
-};
-
 export interface Pet {
   id?: number;
   name?: string;
@@ -146,16 +133,6 @@ export interface DotFishMarket {
   fishes?: DotFishUnion[];
 }
 
-export type DotSalmon = DotFish & {
-  location?: string;
-  iswild?: boolean;
-};
-
-export type Salmon = Fish & {
-  location?: string;
-  iswild?: boolean;
-};
-
 export interface ReadonlyObj {
   readonly id?: string;
   size?: number;
@@ -170,17 +147,44 @@ export interface MyBaseType {
   propBH1?: string;
 }
 
+export type Dog = Pet & {
+  food?: string;
+};
+
+export type Cat = Pet & {
+  color?: string;
+  hates?: Dog[];
+};
+
+export type Salmon = Fish & {
+  location?: string;
+  iswild?: boolean;
+};
+
+export type Shark = Fish & {
+  age?: number;
+  birthday: Date;
+};
+
+export type DotSalmon = DotFish & {
+  location?: string;
+  iswild?: boolean;
+};
+
+export type MyDerivedType = MyBaseType & {
+  propD1?: string;
+};
+
+export type Siamese = Cat & {
+  breed?: string;
+};
+
 export type SmartSalmon = Salmon & {
   /**
    * Describes unknown properties. The value of an unknown property can be of "any" type.
    */
   [property: string]: any;
   collegeDegree?: string;
-};
-
-export type Shark = Fish & {
-  age?: number;
-  birthday: Date;
 };
 
 export type Sawshark = Shark & {
@@ -196,10 +200,6 @@ export type Goblinshark = Shark & {
 };
 
 export type Cookiecuttershark = Shark & {};
-
-export type MyDerivedType = MyBaseType & {
-  propD1?: string;
-};
 /**
  * Defines values for CMYKColors.
  */

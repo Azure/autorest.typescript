@@ -38,16 +38,6 @@ export interface ErrorModel {
 }
 
 /**
- * Flattened product.
- */
-export type FlattenedProduct = Resource & {
-  pName?: string;
-  typePropertiesType?: string;
-  readonly provisioningStateValues?: FlattenedProductPropertiesProvisioningStateValues;
-  provisioningState?: string;
-};
-
-/**
  * The wrapped produc.
  */
 export interface WrappedProduct {
@@ -80,38 +70,6 @@ export interface ResourceCollection {
 }
 
 /**
- * The product documentation.
- */
-export type SimpleProduct = BaseProduct & {
-  /**
-   * Display name of product.
-   */
-  maxProductDisplayName?: string;
-  /**
-   * Capacity of product. For example, 4 people.
-   */
-  capacity?: "Large";
-  /**
-   * Generic URL value.
-   */
-  genericValue?: string;
-  /**
-   * URL value.
-   */
-  odataValue?: string;
-};
-
-/**
- * The product URL.
- */
-export type ProductUrl = GenericUrl & {
-  /**
-   * URL value.
-   */
-  odataValue?: string;
-};
-
-/**
  * The Generic URL.
  */
 export interface GenericUrl {
@@ -134,6 +92,48 @@ export interface BaseProduct {
    */
   description?: string;
 }
+
+/**
+ * Flattened product.
+ */
+export type FlattenedProduct = Resource & {
+  pName?: string;
+  typePropertiesType?: string;
+  readonly provisioningStateValues?: FlattenedProductPropertiesProvisioningStateValues;
+  provisioningState?: string;
+};
+
+/**
+ * The product URL.
+ */
+export type ProductUrl = GenericUrl & {
+  /**
+   * URL value.
+   */
+  odataValue?: string;
+};
+
+/**
+ * The product documentation.
+ */
+export type SimpleProduct = BaseProduct & {
+  /**
+   * Display name of product.
+   */
+  maxProductDisplayName?: string;
+  /**
+   * Capacity of product. For example, 4 people.
+   */
+  capacity?: "Large";
+  /**
+   * Generic URL value.
+   */
+  genericValue?: string;
+  /**
+   * URL value.
+   */
+  odataValue?: string;
+};
 
 /**
  * Parameter group

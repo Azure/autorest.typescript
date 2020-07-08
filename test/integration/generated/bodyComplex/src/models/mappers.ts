@@ -732,13 +732,13 @@ export const Cookiecuttershark: coreHttp.CompositeMapper = {
 export let discriminators = {
   Fish: Fish,
   DotFish: DotFish,
-  "DotFish.DotSalmon": DotSalmon,
-  "Fish.salmon": Salmon,
   MyBaseType: MyBaseType,
-  "Fish.smart_salmon": SmartSalmon,
+  "Fish.salmon": Salmon,
   "Fish.shark": Shark,
+  "DotFish.DotSalmon": DotSalmon,
+  "MyBaseType.Kind1": MyDerivedType,
+  "Fish.smart_salmon": SmartSalmon,
   "Fish.sawshark": Sawshark,
   "Fish.goblin": Goblinshark,
-  "Fish.cookiecuttershark": Cookiecuttershark,
-  "MyBaseType.Kind1": MyDerivedType
+  "Fish.cookiecuttershark": Cookiecuttershark
 };
