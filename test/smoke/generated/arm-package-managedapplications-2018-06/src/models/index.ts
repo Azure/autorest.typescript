@@ -9,48 +9,30 @@
 import * as coreHttp from "@azure/core-http";
 
 /**
- * Resource information.
+ * Plan for the managed application.
  */
-export interface Resource {
+export interface Plan {
   /**
-   * Resource ID
+   * The plan name.
    */
-  readonly id?: string;
+  name: string;
   /**
-   * Resource name
+   * The publisher ID.
    */
-  readonly name?: string;
+  publisher: string;
   /**
-   * Resource type
+   * The product code.
    */
-  readonly type?: string;
+  product: string;
   /**
-   * Resource location
+   * The promotion code.
    */
-  location?: string;
+  promotionCode?: string;
   /**
-   * Resource tags
+   * The plan's version.
    */
-  tags?: { [propertyName: string]: string };
+  version: string;
 }
-
-/**
- * Resource information.
- */
-export type GenericResource = Resource & {
-  /**
-   * ID of the resource that manages this resource.
-   */
-  managedBy?: string;
-  /**
-   * The SKU of the resource.
-   */
-  sku?: Sku;
-  /**
-   * The identity of the resource.
-   */
-  identity?: Identity;
-};
 
 /**
  * SKU for the resource.
@@ -101,63 +83,29 @@ export interface Identity {
 }
 
 /**
- * Information about managed application.
+ * Resource information.
  */
-export type Application = GenericResource & {
+export interface Resource {
   /**
-   * The plan information.
+   * Resource ID
    */
-  plan?: Plan;
+  readonly id?: string;
   /**
-   * The kind of the managed application. Allowed values are MarketPlace and ServiceCatalog.
+   * Resource name
    */
-  kind: string;
+  readonly name?: string;
   /**
-   * The managed resource group Id.
+   * Resource type
    */
-  managedResourceGroupId: string;
+  readonly type?: string;
   /**
-   * The fully qualified path of managed application definition Id.
+   * Resource location
    */
-  applicationDefinitionId?: string;
+  location?: string;
   /**
-   * Name and value pairs that define the managed application parameters. It can be a JObject or a well formed JSON string.
+   * Resource tags
    */
-  parameters?: any;
-  /**
-   * Name and value pairs that define the managed application outputs.
-   */
-  readonly outputs?: any;
-  /**
-   * The managed application provisioning state.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Plan for the managed application.
- */
-export interface Plan {
-  /**
-   * The plan name.
-   */
-  name: string;
-  /**
-   * The publisher ID.
-   */
-  publisher: string;
-  /**
-   * The product code.
-   */
-  product: string;
-  /**
-   * The promotion code.
-   */
-  promotionCode?: string;
-  /**
-   * The plan's version.
-   */
-  version: string;
+  tags?: { [propertyName: string]: string };
 }
 
 /**
@@ -177,48 +125,6 @@ export interface ErrorResponse {
    */
   errorMessage?: string;
 }
-
-/**
- * Information about managed application definition.
- */
-export type ApplicationDefinition = GenericResource & {
-  /**
-   * The managed application lock level.
-   */
-  lockLevel: ApplicationLockLevel;
-  /**
-   * The managed application definition display name.
-   */
-  displayName?: string;
-  /**
-   * A value indicating whether the package is enabled or not.
-   */
-  isEnabled?: string;
-  /**
-   * The managed application provider authorizations.
-   */
-  authorizations: ApplicationProviderAuthorization[];
-  /**
-   * The collection of managed application artifacts. The portal will use the files specified as artifacts to construct the user experience of creating a managed application from a managed application definition.
-   */
-  artifacts?: ApplicationArtifact[];
-  /**
-   * The managed application definition description.
-   */
-  description?: string;
-  /**
-   * The managed application definition package file Uri. Use this element
-   */
-  packageFileUri?: string;
-  /**
-   * The inline main template json which has resources to be provisioned. It can be a JObject or well-formed JSON string.
-   */
-  mainTemplate?: any;
-  /**
-   * The createUiDefinition json for the backing template with Microsoft.Solutions/applications resource. It can be a JObject or well-formed JSON string.
-   */
-  createUiDefinition?: any;
-};
 
 /**
  * The managed application provider authorization.
@@ -281,6 +187,126 @@ export interface ApplicationListResult {
 }
 
 /**
+ * Plan for the managed application.
+ */
+export interface PlanPatchable {
+  /**
+   * The plan name.
+   */
+  name?: string;
+  /**
+   * The publisher ID.
+   */
+  publisher?: string;
+  /**
+   * The product code.
+   */
+  product?: string;
+  /**
+   * The promotion code.
+   */
+  promotionCode?: string;
+  /**
+   * The plan's version.
+   */
+  version?: string;
+}
+
+/**
+ * Resource information.
+ */
+export type GenericResource = Resource & {
+  /**
+   * ID of the resource that manages this resource.
+   */
+  managedBy?: string;
+  /**
+   * The SKU of the resource.
+   */
+  sku?: Sku;
+  /**
+   * The identity of the resource.
+   */
+  identity?: Identity;
+};
+
+/**
+ * Information about managed application.
+ */
+export type Application = GenericResource & {
+  /**
+   * The plan information.
+   */
+  plan?: Plan;
+  /**
+   * The kind of the managed application. Allowed values are MarketPlace and ServiceCatalog.
+   */
+  kind: string;
+  /**
+   * The managed resource group Id.
+   */
+  managedResourceGroupId: string;
+  /**
+   * The fully qualified path of managed application definition Id.
+   */
+  applicationDefinitionId?: string;
+  /**
+   * Name and value pairs that define the managed application parameters. It can be a JObject or a well formed JSON string.
+   */
+  parameters?: any;
+  /**
+   * Name and value pairs that define the managed application outputs.
+   */
+  readonly outputs?: any;
+  /**
+   * The managed application provisioning state.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Information about managed application definition.
+ */
+export type ApplicationDefinition = GenericResource & {
+  /**
+   * The managed application lock level.
+   */
+  lockLevel: ApplicationLockLevel;
+  /**
+   * The managed application definition display name.
+   */
+  displayName?: string;
+  /**
+   * A value indicating whether the package is enabled or not.
+   */
+  isEnabled?: string;
+  /**
+   * The managed application provider authorizations.
+   */
+  authorizations: ApplicationProviderAuthorization[];
+  /**
+   * The collection of managed application artifacts. The portal will use the files specified as artifacts to construct the user experience of creating a managed application from a managed application definition.
+   */
+  artifacts?: ApplicationArtifact[];
+  /**
+   * The managed application definition description.
+   */
+  description?: string;
+  /**
+   * The managed application definition package file Uri. Use this element
+   */
+  packageFileUri?: string;
+  /**
+   * The inline main template json which has resources to be provisioned. It can be a JObject or well-formed JSON string.
+   */
+  mainTemplate?: any;
+  /**
+   * The createUiDefinition json for the backing template with Microsoft.Solutions/applications resource. It can be a JObject or well-formed JSON string.
+   */
+  createUiDefinition?: any;
+};
+
+/**
  * Information about managed application.
  */
 export type ApplicationPatchable = GenericResource & {
@@ -313,33 +339,6 @@ export type ApplicationPatchable = GenericResource & {
    */
   readonly provisioningState?: ProvisioningState;
 };
-
-/**
- * Plan for the managed application.
- */
-export interface PlanPatchable {
-  /**
-   * The plan name.
-   */
-  name?: string;
-  /**
-   * The publisher ID.
-   */
-  publisher?: string;
-  /**
-   * The product code.
-   */
-  product?: string;
-  /**
-   * The promotion code.
-   */
-  promotionCode?: string;
-  /**
-   * The plan's version.
-   */
-  version?: string;
-}
-
 /**
  * Defines values for ProvisioningState.
  */

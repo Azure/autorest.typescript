@@ -27,28 +27,6 @@ export interface Resource {
 }
 
 /**
- * A recoverable database
- */
-export type RecoverableDatabase = Resource & {
-  /**
-   * The edition of the database
-   */
-  readonly edition?: string;
-  /**
-   * The service level objective name of the database
-   */
-  readonly serviceLevelObjective?: string;
-  /**
-   * The elastic pool name of the database
-   */
-  readonly elasticPoolName?: string;
-  /**
-   * The last available backup date of the database (ISO8601 format)
-   */
-  readonly lastAvailableBackupDate?: Date;
-};
-
-/**
  * The response to a list recoverable databases request
  */
 export interface RecoverableDatabaseListResult {
@@ -57,48 +35,6 @@ export interface RecoverableDatabaseListResult {
    */
   value: RecoverableDatabase[];
 }
-
-/**
- * A restorable dropped database
- */
-export type RestorableDroppedDatabase = Resource & {
-  /**
-   * The geo-location where the resource lives
-   */
-  readonly location?: string;
-  /**
-   * The name of the database
-   */
-  readonly databaseName?: string;
-  /**
-   * The edition of the database
-   */
-  readonly edition?: string;
-  /**
-   * The max size in bytes of the database
-   */
-  readonly maxSizeBytes?: string;
-  /**
-   * The service level objective name of the database
-   */
-  readonly serviceLevelObjective?: string;
-  /**
-   * The elastic pool name of the database
-   */
-  readonly elasticPoolName?: string;
-  /**
-   * The creation date of the database (ISO8601 format)
-   */
-  readonly creationDate?: Date;
-  /**
-   * The deletion date of the database (ISO8601 format)
-   */
-  readonly deletionDate?: Date;
-  /**
-   * The earliest restore date of the database (ISO8601 format)
-   */
-  readonly earliestRestoreDate?: Date;
-};
 
 /**
  * The response to a list restorable dropped databases request
@@ -111,162 +47,6 @@ export interface RestorableDroppedDatabaseListResult {
 }
 
 /**
- * A server secure connection policy.
- */
-export type ServerConnectionPolicy = Resource & {
-  /**
-   * Metadata used for the Azure portal experience.
-   */
-  readonly kind?: string;
-  /**
-   * Resource location.
-   */
-  readonly location?: string;
-  /**
-   * The server connection type.
-   */
-  connectionType?: ServerConnectionType;
-};
-
-/**
- * Contains information about a database Threat Detection policy.
- */
-export type DatabaseSecurityAlertPolicy = Resource & {
-  /**
-   * The geo-location where the resource lives
-   */
-  location?: string;
-  /**
-   * Resource kind.
-   */
-  readonly kind?: string;
-  /**
-   * Specifies the state of the policy. If state is Enabled, storageEndpoint and storageAccountAccessKey are required.
-   */
-  state?: SecurityAlertPolicyState;
-  /**
-   * Specifies the semicolon-separated list of alerts that are disabled, or empty string to disable no alerts. Possible values: Sql_Injection; Sql_Injection_Vulnerability; Access_Anomaly; Data_Exfiltration; Unsafe_Action.
-   */
-  disabledAlerts?: string;
-  /**
-   * Specifies the semicolon-separated list of e-mail addresses to which the alert is sent.
-   */
-  emailAddresses?: string;
-  /**
-   * Specifies that the alert is sent to the account administrators.
-   */
-  emailAccountAdmins?: SecurityAlertPolicyEmailAccountAdmins;
-  /**
-   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs. If state is Enabled, storageEndpoint is required.
-   */
-  storageEndpoint?: string;
-  /**
-   * Specifies the identifier key of the Threat Detection audit storage account. If state is Enabled, storageAccountAccessKey is required.
-   */
-  storageAccountAccessKey?: string;
-  /**
-   * Specifies the number of days to keep in the Threat Detection audit logs.
-   */
-  retentionDays?: number;
-  /**
-   * Specifies whether to use the default server policy.
-   */
-  useServerDefault?: SecurityAlertPolicyUseServerDefault;
-};
-
-/**
- * Represents a database data masking policy.
- */
-export type DataMaskingPolicy = Resource & {
-  /**
-   * The location of the data masking policy.
-   */
-  readonly location?: string;
-  /**
-   * The kind of data masking policy. Metadata, used for Azure portal.
-   */
-  readonly kind?: string;
-  /**
-   * The state of the data masking policy.
-   */
-  dataMaskingState?: DataMaskingState;
-  /**
-   * The list of the exempt principals. Specifies the semicolon-separated list of database users for which the data masking policy does not apply. The specified users receive data results without masking for all of the database queries.
-   */
-  exemptPrincipals?: string;
-  /**
-   * The list of the application principals. This is a legacy parameter and is no longer used.
-   */
-  readonly applicationPrincipals?: string;
-  /**
-   * The masking level. This is a legacy parameter and is no longer used.
-   */
-  readonly maskingLevel?: string;
-};
-
-/**
- * Represents a database data masking rule.
- */
-export type DataMaskingRule = Resource & {
-  /**
-   * The location of the data masking rule.
-   */
-  readonly location?: string;
-  /**
-   * The kind of Data Masking Rule. Metadata, used for Azure portal.
-   */
-  readonly kind?: string;
-  /**
-   * The rule Id.
-   */
-  readonly idPropertiesId?: string;
-  /**
-   * The alias name. This is a legacy parameter and is no longer used.
-   */
-  aliasName?: string;
-  /**
-   * The rule state. Used to delete a rule. To delete an existing rule, specify the schemaName, tableName, columnName, maskingFunction, and specify ruleState as disabled. However, if the rule doesn't already exist, the rule will be created with ruleState set to enabled, regardless of the provided value of ruleState.
-   */
-  ruleState?: DataMaskingRuleState;
-  /**
-   * The schema name on which the data masking rule is applied.
-   */
-  schemaName?: string;
-  /**
-   * The table name on which the data masking rule is applied.
-   */
-  tableName?: string;
-  /**
-   * The column name on which the data masking rule is applied.
-   */
-  columnName?: string;
-  /**
-   * The masking function that is used for the data masking rule.
-   */
-  maskingFunction?: DataMaskingFunction;
-  /**
-   * The numberFrom property of the masking rule. Required if maskingFunction is set to Number, otherwise this parameter will be ignored.
-   */
-  numberFrom?: string;
-  /**
-   * The numberTo property of the data masking rule. Required if maskingFunction is set to Number, otherwise this parameter will be ignored.
-   */
-  numberTo?: string;
-  /**
-   * If maskingFunction is set to Text, the number of characters to show unmasked in the beginning of the string. Otherwise, this parameter will be ignored.
-   */
-  prefixSize?: string;
-  /**
-   * If maskingFunction is set to Text, the number of characters to show unmasked at the end of the string. Otherwise, this parameter will be ignored.
-   */
-  suffixSize?: string;
-  /**
-   * If maskingFunction is set to Text, the character to use for masking the unexposed part of the string. Otherwise, this parameter will be ignored.
-   */
-  replacementString?: string;
-};
-
-/**
  * The response to a list data masking rules request.
  */
 export interface DataMaskingRuleListResult {
@@ -277,28 +57,6 @@ export interface DataMaskingRuleListResult {
 }
 
 /**
- * Represents a server firewall rule.
- */
-export type FirewallRule = Resource & {
-  /**
-   * Kind of server that contains this firewall rule.
-   */
-  readonly kind?: string;
-  /**
-   * Location of the server that contains this firewall rule.
-   */
-  readonly location?: string;
-  /**
-   * The start IP address of the firewall rule. Must be IPv4 format. Use value '0.0.0.0' to represent all Azure-internal IP addresses.
-   */
-  startIpAddress?: string;
-  /**
-   * The end IP address of the firewall rule. Must be IPv4 format. Must be greater than or equal to startIpAddress. Use value '0.0.0.0' to represent all Azure-internal IP addresses.
-   */
-  endIpAddress?: string;
-};
-
-/**
  * Represents the response to a List Firewall Rules request.
  */
 export interface FirewallRuleListResult {
@@ -307,28 +65,6 @@ export interface FirewallRuleListResult {
    */
   value?: FirewallRule[];
 }
-
-/**
- * A database geo backup policy.
- */
-export type GeoBackupPolicy = Resource & {
-  /**
-   * Kind of geo backup policy.  This is metadata used for the Azure portal experience.
-   */
-  readonly kind?: string;
-  /**
-   * Backup policy location.
-   */
-  readonly location?: string;
-  /**
-   * The state of the geo backup policy.
-   */
-  state: GeoBackupPolicyState;
-  /**
-   * The storage type of the geo backup policy.
-   */
-  readonly storageType?: string;
-};
 
 /**
  * The response to a list geo backup policies request.
@@ -373,81 +109,6 @@ export interface ExportRequest {
 /**
  * Import database parameters.
  */
-export type ImportRequest = ExportRequest & {
-  /**
-   * The name of the database to import.
-   */
-  databaseName: string;
-  /**
-   * The edition for the database being created.
-   *
-   * The list of SKUs may vary by region and support offer. To determine the SKUs (including the SKU name, tier/edition, family, and capacity) that are available to your subscription in an Azure region, use the `Capabilities_ListByLocation` REST API or one of the following commands:
-   *
-   * ```azurecli
-   * az sql db list-editions -l <location> -o table
-   * ````
-   *
-   * ```powershell
-   * Get-AzSqlServerServiceObjective -Location <location>
-   * ````
-   *
-   */
-  edition: DatabaseEdition;
-  /**
-   * The name of the service objective to assign to the database.
-   */
-  serviceObjectiveName: ServiceObjectiveName;
-  /**
-   * The maximum size for the newly imported database.
-   */
-  maxSizeBytes: string;
-};
-
-/**
- * Response for Import/Export Get operation.
- */
-export type ImportExportResponse = Resource & {
-  /**
-   * The request type of the operation.
-   */
-  readonly requestType?: string;
-  /**
-   * The request type of the operation.
-   */
-  readonly requestId?: string;
-  /**
-   * The name of the server.
-   */
-  readonly serverName?: string;
-  /**
-   * The name of the database.
-   */
-  readonly databaseName?: string;
-  /**
-   * The status message returned from the server.
-   */
-  readonly status?: string;
-  /**
-   * The operation status last modified time.
-   */
-  readonly lastModifiedTime?: string;
-  /**
-   * The operation queued time.
-   */
-  readonly queuedTime?: string;
-  /**
-   * The blob uri.
-   */
-  readonly blobUri?: string;
-  /**
-   * The error message returned from the server.
-   */
-  readonly errorMessage?: string;
-};
-
-/**
- * Import database parameters.
- */
 export interface ImportExtensionRequest {
   /**
    * The name of the extension.
@@ -486,16 +147,6 @@ export interface ImportExtensionRequest {
    */
   operationMode?: "Import";
 }
-
-/**
- * Represents the properties for an import operation
- */
-export type ImportExtensionProperties = ExportRequest & {
-  /**
-   * The type of import operation being performed. This is always Import.
-   */
-  operationMode: "Import";
-};
 
 /**
  * The response to a list database metrics request.
@@ -632,70 +283,6 @@ export interface MetricAvailability {
 }
 
 /**
- * Represents a recommended elastic pool.
- */
-export type RecommendedElasticPool = Resource & {
-  /**
-   * The edition of the recommended elastic pool. The ElasticPoolEdition enumeration contains all the valid editions.
-   */
-  readonly databaseEdition?: ElasticPoolEdition;
-  /**
-   * The DTU for the recommended elastic pool.
-   */
-  dtu?: number;
-  /**
-   * The minimum DTU for the database.
-   */
-  databaseDtuMin?: number;
-  /**
-   * The maximum DTU for the database.
-   */
-  databaseDtuMax?: number;
-  /**
-   * Gets storage size in megabytes.
-   */
-  storageMB?: number;
-  /**
-   * The observation period start (ISO8601 format).
-   */
-  readonly observationPeriodStart?: Date;
-  /**
-   * The observation period start (ISO8601 format).
-   */
-  readonly observationPeriodEnd?: Date;
-  /**
-   * Gets maximum observed DTU.
-   */
-  readonly maxObservedDtu?: number;
-  /**
-   * Gets maximum observed storage in megabytes.
-   */
-  readonly maxObservedStorageMB?: number;
-  /**
-   * The list of databases in this pool. Expanded property
-   */
-  readonly databases?: TrackedResource[];
-  /**
-   * The list of databases housed in the server. Expanded property
-   */
-  readonly metrics?: RecommendedElasticPoolMetric[];
-};
-
-/**
- * ARM tracked top level resource.
- */
-export type TrackedResource = Resource & {
-  /**
-   * Resource location.
-   */
-  location: string;
-  /**
-   * Resource tags.
-   */
-  tags?: { [propertyName: string]: string };
-};
-
-/**
  * Represents recommended elastic pool metric.
  */
 export interface RecommendedElasticPoolMetric {
@@ -734,56 +321,6 @@ export interface RecommendedElasticPoolListMetricsResult {
 }
 
 /**
- * Represents a database replication link.
- */
-export type ReplicationLink = Resource & {
-  /**
-   * Location of the server that contains this firewall rule.
-   */
-  readonly location?: string;
-  /**
-   * Legacy value indicating whether termination is allowed.  Currently always returns true.
-   */
-  readonly isTerminationAllowed?: boolean;
-  /**
-   * Replication mode of this replication link.
-   */
-  readonly replicationMode?: string;
-  /**
-   * The name of the server hosting the partner database.
-   */
-  readonly partnerServer?: string;
-  /**
-   * The name of the partner database.
-   */
-  readonly partnerDatabase?: string;
-  /**
-   * The Azure Region of the partner database.
-   */
-  readonly partnerLocation?: string;
-  /**
-   * The role of the database in the replication link.
-   */
-  readonly role?: ReplicationRole;
-  /**
-   * The role of the partner database in the replication link.
-   */
-  readonly partnerRole?: ReplicationRole;
-  /**
-   * The start time for the replication link.
-   */
-  readonly startTime?: Date;
-  /**
-   * The percentage of seeding complete for the replication link.
-   */
-  readonly percentComplete?: number;
-  /**
-   * The replication state for the replication link.
-   */
-  readonly replicationState?: ReplicationState;
-};
-
-/**
  * Represents the parameters for Unlink Replication Link request.
  */
 export interface UnlinkParameters {
@@ -804,28 +341,6 @@ export interface ReplicationLinkListResult {
 }
 
 /**
- * Server communication link.
- */
-export type ServerCommunicationLink = Resource & {
-  /**
-   * Communication link location.
-   */
-  readonly location?: string;
-  /**
-   * Communication link kind.  This property is used for Azure Portal metadata.
-   */
-  readonly kind?: string;
-  /**
-   * The state.
-   */
-  readonly state?: string;
-  /**
-   * The name of the partner server.
-   */
-  partnerServer?: string;
-};
-
-/**
  * A list of server communication links.
  */
 export interface ServerCommunicationLinkListResult {
@@ -834,32 +349,6 @@ export interface ServerCommunicationLinkListResult {
    */
   value?: ServerCommunicationLink[];
 }
-
-/**
- * Represents a database service objective.
- */
-export type ServiceObjective = Resource & {
-  /**
-   * The name for the service objective.
-   */
-  readonly serviceObjectiveName?: string;
-  /**
-   * Gets whether the service level objective is the default service objective.
-   */
-  readonly isDefault?: boolean;
-  /**
-   * Gets whether the service level objective is a system service objective.
-   */
-  readonly isSystem?: boolean;
-  /**
-   * The description for the service level objective.
-   */
-  readonly description?: string;
-  /**
-   * Gets whether the service level objective is enabled.
-   */
-  readonly enabled?: boolean;
-};
 
 /**
  * Represents the response to a get database service objectives request.
@@ -882,96 +371,6 @@ export interface ElasticPoolActivityListResult {
 }
 
 /**
- * Represents the activity on an elastic pool.
- */
-export type ElasticPoolActivity = Resource & {
-  /**
-   * The geo-location where the resource lives
-   */
-  location?: string;
-  /**
-   * The time the operation finished (ISO8601 format).
-   */
-  readonly endTime?: Date;
-  /**
-   * The error code if available.
-   */
-  readonly errorCode?: number;
-  /**
-   * The error message if available.
-   */
-  readonly errorMessage?: string;
-  /**
-   * The error severity if available.
-   */
-  readonly errorSeverity?: number;
-  /**
-   * The operation name.
-   */
-  readonly operation?: string;
-  /**
-   * The unique operation ID.
-   */
-  readonly operationId?: string;
-  /**
-   * The percentage complete if available.
-   */
-  readonly percentComplete?: number;
-  /**
-   * The requested max DTU per database if available.
-   */
-  readonly requestedDatabaseDtuMax?: number;
-  /**
-   * The requested min DTU per database if available.
-   */
-  readonly requestedDatabaseDtuMin?: number;
-  /**
-   * The requested DTU for the pool if available.
-   */
-  readonly requestedDtu?: number;
-  /**
-   * The requested name for the elastic pool if available.
-   */
-  readonly requestedElasticPoolName?: string;
-  /**
-   * The requested storage limit for the pool in GB if available.
-   */
-  readonly requestedStorageLimitInGB?: number;
-  /**
-   * The name of the elastic pool.
-   */
-  readonly elasticPoolName?: string;
-  /**
-   * The name of the server the elastic pool is in.
-   */
-  readonly serverName?: string;
-  /**
-   * The time the operation started (ISO8601 format).
-   */
-  readonly startTime?: Date;
-  /**
-   * The current state of the operation.
-   */
-  readonly state?: string;
-  /**
-   * The requested storage limit in MB.
-   */
-  readonly requestedStorageLimitInMB?: number;
-  /**
-   * The requested per database DTU guarantee.
-   */
-  readonly requestedDatabaseDtuGuarantee?: number;
-  /**
-   * The requested per database DTU cap.
-   */
-  readonly requestedDatabaseDtuCap?: number;
-  /**
-   * The requested DTU guarantee.
-   */
-  readonly requestedDtuGuarantee?: number;
-};
-
-/**
  * Represents the response to a list elastic pool database activity request.
  */
 export interface ElasticPoolDatabaseActivityListResult {
@@ -980,158 +379,6 @@ export interface ElasticPoolDatabaseActivityListResult {
    */
   value: ElasticPoolDatabaseActivity[];
 }
-
-/**
- * Represents the activity on an elastic pool.
- */
-export type ElasticPoolDatabaseActivity = Resource & {
-  /**
-   * The geo-location where the resource lives
-   */
-  location?: string;
-  /**
-   * The database name.
-   */
-  readonly databaseName?: string;
-  /**
-   * The time the operation finished (ISO8601 format).
-   */
-  readonly endTime?: Date;
-  /**
-   * The error code if available.
-   */
-  readonly errorCode?: number;
-  /**
-   * The error message if available.
-   */
-  readonly errorMessage?: string;
-  /**
-   * The error severity if available.
-   */
-  readonly errorSeverity?: number;
-  /**
-   * The operation name.
-   */
-  readonly operation?: string;
-  /**
-   * The unique operation ID.
-   */
-  readonly operationId?: string;
-  /**
-   * The percentage complete if available.
-   */
-  readonly percentComplete?: number;
-  /**
-   * The name for the elastic pool the database is moving into if available.
-   */
-  readonly requestedElasticPoolName?: string;
-  /**
-   * The name of the current elastic pool the database is in if available.
-   */
-  readonly currentElasticPoolName?: string;
-  /**
-   * The name of the current service objective if available.
-   */
-  readonly currentServiceObjective?: string;
-  /**
-   * The name of the requested service objective if available.
-   */
-  readonly requestedServiceObjective?: string;
-  /**
-   * The name of the server the elastic pool is in.
-   */
-  readonly serverName?: string;
-  /**
-   * The time the operation started (ISO8601 format).
-   */
-  readonly startTime?: Date;
-  /**
-   * The current state of the operation.
-   */
-  readonly state?: string;
-};
-
-/**
- * Represents a Service Tier Advisor.
- */
-export type ServiceTierAdvisor = Resource & {
-  /**
-   * The observation period start (ISO8601 format).
-   */
-  readonly observationPeriodStart?: Date;
-  /**
-   * The observation period start (ISO8601 format).
-   */
-  readonly observationPeriodEnd?: Date;
-  /**
-   * The activeTimeRatio for service tier advisor.
-   */
-  readonly activeTimeRatio?: number;
-  /**
-   * Gets or sets minDtu for service tier advisor.
-   */
-  readonly minDtu?: number;
-  /**
-   * Gets or sets avgDtu for service tier advisor.
-   */
-  readonly avgDtu?: number;
-  /**
-   * Gets or sets maxDtu for service tier advisor.
-   */
-  readonly maxDtu?: number;
-  /**
-   * Gets or sets maxSizeInGB for service tier advisor.
-   */
-  readonly maxSizeInGB?: number;
-  /**
-   * Gets or sets serviceLevelObjectiveUsageMetrics for the service tier advisor.
-   */
-  readonly serviceLevelObjectiveUsageMetrics?: SloUsageMetric[];
-  /**
-   * Gets or sets currentServiceLevelObjective for service tier advisor.
-   */
-  readonly currentServiceLevelObjective?: string;
-  /**
-   * Gets or sets currentServiceLevelObjectiveId for service tier advisor.
-   */
-  readonly currentServiceLevelObjectiveId?: string;
-  /**
-   * Gets or sets usageBasedRecommendationServiceLevelObjective for service tier advisor.
-   */
-  readonly usageBasedRecommendationServiceLevelObjective?: string;
-  /**
-   * Gets or sets usageBasedRecommendationServiceLevelObjectiveId for service tier advisor.
-   */
-  readonly usageBasedRecommendationServiceLevelObjectiveId?: string;
-  /**
-   * Gets or sets databaseSizeBasedRecommendationServiceLevelObjective for service tier advisor.
-   */
-  readonly databaseSizeBasedRecommendationServiceLevelObjective?: string;
-  /**
-   * Gets or sets databaseSizeBasedRecommendationServiceLevelObjectiveId for service tier advisor.
-   */
-  readonly databaseSizeBasedRecommendationServiceLevelObjectiveId?: string;
-  /**
-   * Gets or sets disasterPlanBasedRecommendationServiceLevelObjective for service tier advisor.
-   */
-  readonly disasterPlanBasedRecommendationServiceLevelObjective?: string;
-  /**
-   * Gets or sets disasterPlanBasedRecommendationServiceLevelObjectiveId for service tier advisor.
-   */
-  readonly disasterPlanBasedRecommendationServiceLevelObjectiveId?: string;
-  /**
-   * Gets or sets overallRecommendationServiceLevelObjective for service tier advisor.
-   */
-  readonly overallRecommendationServiceLevelObjective?: string;
-  /**
-   * Gets or sets overallRecommendationServiceLevelObjectiveId for service tier advisor.
-   */
-  readonly overallRecommendationServiceLevelObjectiveId?: string;
-  /**
-   * Gets or sets confidence for service tier advisor.
-   */
-  readonly confidence?: number;
-};
 
 /**
  * A Slo Usage Metric.
@@ -1162,20 +409,6 @@ export interface ServiceTierAdvisorListResult {
 }
 
 /**
- * Represents a database transparent data encryption configuration.
- */
-export type TransparentDataEncryption = Resource & {
-  /**
-   * Resource location.
-   */
-  readonly location?: string;
-  /**
-   * The status of the database transparent data encryption.
-   */
-  status?: TransparentDataEncryptionStatus;
-};
-
-/**
  * Represents the response to a list database transparent data encryption activity request.
  */
 export interface TransparentDataEncryptionActivityListResult {
@@ -1184,24 +417,6 @@ export interface TransparentDataEncryptionActivityListResult {
    */
   value: TransparentDataEncryptionActivity[];
 }
-
-/**
- * Represents a database transparent data encryption Scan.
- */
-export type TransparentDataEncryptionActivity = Resource & {
-  /**
-   * Resource location.
-   */
-  readonly location?: string;
-  /**
-   * The status of the database.
-   */
-  readonly status?: TransparentDataEncryptionActivityStatus;
-  /**
-   * The percent complete of the transparent data encryption scan for a database.
-   */
-  readonly percentComplete?: number;
-};
 
 /**
  * Represents the response to a list server metrics request.
@@ -1292,24 +507,6 @@ export interface DatabaseUsage {
 }
 
 /**
- * Database-level Automatic Tuning.
- */
-export type DatabaseAutomaticTuning = Resource & {
-  /**
-   * Automatic tuning desired state.
-   */
-  desiredState?: AutomaticTuningMode;
-  /**
-   * Automatic tuning actual state.
-   */
-  readonly actualState?: AutomaticTuningMode;
-  /**
-   * Automatic tuning options definition.
-   */
-  options?: { [propertyName: string]: AutomaticTuningOptions };
-};
-
-/**
  * Automatic tuning properties for individual advisors.
  */
 export interface AutomaticTuningOptions {
@@ -1344,78 +541,6 @@ export interface EncryptionProtectorListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * The server encryption protector.
- */
-export type EncryptionProtector = Resource & {
-  /**
-   * Kind of encryption protector. This is metadata used for the Azure portal experience.
-   */
-  readonly kind?: string;
-  /**
-   * Resource location.
-   */
-  readonly location?: string;
-  /**
-   * Subregion of the encryption protector.
-   */
-  readonly subregion?: string;
-  /**
-   * The name of the server key.
-   */
-  serverKeyName?: string;
-  /**
-   * The encryption protector type like 'ServiceManaged', 'AzureKeyVault'.
-   */
-  serverKeyType?: ServerKeyType;
-  /**
-   * The URI of the server key.
-   */
-  readonly uri?: string;
-  /**
-   * Thumbprint of the server key.
-   */
-  readonly thumbprint?: string;
-};
-
-/**
- * A failover group.
- */
-export type FailoverGroup = Resource & {
-  /**
-   * Resource location.
-   */
-  readonly location?: string;
-  /**
-   * Resource tags.
-   */
-  tags?: { [propertyName: string]: string };
-  /**
-   * Read-write endpoint of the failover group instance.
-   */
-  readWriteEndpoint?: FailoverGroupReadWriteEndpoint;
-  /**
-   * Read-only endpoint of the failover group instance.
-   */
-  readOnlyEndpoint?: FailoverGroupReadOnlyEndpoint;
-  /**
-   * Local replication role of the failover group instance.
-   */
-  readonly replicationRole?: FailoverGroupReplicationRole;
-  /**
-   * Replication state of the failover group instance.
-   */
-  readonly replicationState?: string;
-  /**
-   * List of partner server information for the failover group.
-   */
-  partnerServers?: PartnerInfo[];
-  /**
-   * List of databases in the failover group.
-   */
-  databases?: string[];
-};
 
 /**
  * Read-write endpoint of the failover group instance.
@@ -1568,74 +693,6 @@ export interface ServerKeyListResult {
 }
 
 /**
- * A server key.
- */
-export type ServerKey = Resource & {
-  /**
-   * Kind of encryption protector. This is metadata used for the Azure portal experience.
-   */
-  kind?: string;
-  /**
-   * Resource location.
-   */
-  readonly location?: string;
-  /**
-   * Subregion of the server key.
-   */
-  readonly subregion?: string;
-  /**
-   * The server key type like 'ServiceManaged', 'AzureKeyVault'.
-   */
-  serverKeyType?: ServerKeyType;
-  /**
-   * The URI of the server key.
-   */
-  uri?: string;
-  /**
-   * Thumbprint of the server key.
-   */
-  thumbprint?: string;
-  /**
-   * The server key creation date.
-   */
-  creationDate?: Date;
-};
-
-/**
- * An Azure SQL Database sync agent.
- */
-export type SyncAgent = Resource & {
-  /**
-   * Name of the sync agent.
-   */
-  readonly namePropertiesName?: string;
-  /**
-   * ARM resource id of the sync database in the sync agent.
-   */
-  syncDatabaseId?: string;
-  /**
-   * Last alive time of the sync agent.
-   */
-  readonly lastAliveTime?: Date;
-  /**
-   * State of the sync agent.
-   */
-  readonly state?: SyncAgentState;
-  /**
-   * If the sync agent version is up to date.
-   */
-  readonly isUpToDate?: boolean;
-  /**
-   * Expiration time of the sync agent version.
-   */
-  readonly expiryTime?: Date;
-  /**
-   * Version of the sync agent.
-   */
-  readonly version?: string;
-};
-
-/**
  * A list of sync agents.
  */
 export interface SyncAgentListResult {
@@ -1672,36 +729,6 @@ export interface SyncAgentLinkedDatabaseListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * An Azure SQL Database sync agent linked database.
- */
-export type SyncAgentLinkedDatabase = Resource & {
-  /**
-   * Type of the sync agent linked database.
-   */
-  readonly databaseType?: SyncMemberDbType;
-  /**
-   * Id of the sync agent linked database.
-   */
-  readonly databaseId?: string;
-  /**
-   * Description of the sync agent linked database.
-   */
-  readonly description?: string;
-  /**
-   * Server name of the sync agent linked database.
-   */
-  readonly serverName?: string;
-  /**
-   * Database name of the sync agent linked database.
-   */
-  readonly databaseName?: string;
-  /**
-   * User name of the sync agent linked database.
-   */
-  readonly userName?: string;
-};
 
 /**
  * A list of sync database ID properties.
@@ -1860,44 +887,6 @@ export interface SyncGroupLogProperties {
 }
 
 /**
- * An Azure SQL Database sync group.
- */
-export type SyncGroup = Resource & {
-  /**
-   * Sync interval of the sync group.
-   */
-  interval?: number;
-  /**
-   * Last sync time of the sync group.
-   */
-  readonly lastSyncTime?: Date;
-  /**
-   * Conflict resolution policy of the sync group.
-   */
-  conflictResolutionPolicy?: SyncConflictResolutionPolicy;
-  /**
-   * ARM resource id of the sync database in the sync group.
-   */
-  syncDatabaseId?: string;
-  /**
-   * User name for the sync group hub database credential.
-   */
-  hubDatabaseUserName?: string;
-  /**
-   * Password for the sync group hub database credential.
-   */
-  hubDatabasePassword?: string;
-  /**
-   * Sync state of the sync group.
-   */
-  readonly syncState?: SyncGroupState;
-  /**
-   * Sync schema of the sync group.
-   */
-  schema?: SyncGroupSchema;
-};
-
-/**
  * Properties of sync group schema.
  */
 export interface SyncGroupSchema {
@@ -1958,48 +947,6 @@ export interface SyncGroupListResult {
 }
 
 /**
- * An Azure SQL Database sync member.
- */
-export type SyncMember = Resource & {
-  /**
-   * Database type of the sync member.
-   */
-  databaseType?: SyncMemberDbType;
-  /**
-   * ARM resource id of the sync agent in the sync member.
-   */
-  syncAgentId?: string;
-  /**
-   * SQL Server database id of the sync member.
-   */
-  sqlServerDatabaseId?: string;
-  /**
-   * Server name of the member database in the sync member
-   */
-  serverName?: string;
-  /**
-   * Database name of the member database in the sync member.
-   */
-  databaseName?: string;
-  /**
-   * User name of the member database in the sync member.
-   */
-  userName?: string;
-  /**
-   * Password of the member database in the sync member.
-   */
-  password?: string;
-  /**
-   * Sync direction of the sync member.
-   */
-  syncDirection?: SyncDirection;
-  /**
-   * Sync state of the sync member.
-   */
-  readonly syncState?: SyncMemberState;
-};
-
-/**
  * A list of Azure SQL Database sync members.
  */
 export interface SyncMemberListResult {
@@ -2028,28 +975,6 @@ export interface SubscriptionUsageListResult {
 }
 
 /**
- * Usage Metric of a Subscription in a Location.
- */
-export type SubscriptionUsage = Resource & {
-  /**
-   * User-readable name of the metric.
-   */
-  readonly displayName?: string;
-  /**
-   * Current value of the metric.
-   */
-  readonly currentValue?: number;
-  /**
-   * Boundary value of the metric.
-   */
-  readonly limit?: number;
-  /**
-   * Unit of the metric.
-   */
-  readonly unit?: string;
-};
-
-/**
  * A list of virtual clusters.
  */
 export interface VirtualClusterListResult {
@@ -2062,24 +987,6 @@ export interface VirtualClusterListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * An Azure SQL virtual cluster.
- */
-export type VirtualCluster = TrackedResource & {
-  /**
-   * Subnet resource ID for the virtual cluster.
-   */
-  readonly subnetId?: string;
-  /**
-   * If the service has different generations of hardware, for the same SKU, then that can be captured here.
-   */
-  family?: string;
-  /**
-   * List of resources in this virtual cluster.
-   */
-  readonly childResources?: string[];
-};
 
 /**
  * An update request for an Azure SQL Database virtual cluster.
@@ -2104,24 +1011,6 @@ export interface VirtualClusterUpdate {
 }
 
 /**
- * A virtual network rule.
- */
-export type VirtualNetworkRule = Resource & {
-  /**
-   * The ARM resource id of the virtual network subnet.
-   */
-  virtualNetworkSubnetId?: string;
-  /**
-   * Create firewall rule before the virtual network has vnet service endpoint enabled.
-   */
-  ignoreMissingVnetServiceEndpoint?: boolean;
-  /**
-   * Virtual Network Rule State
-   */
-  readonly state?: VirtualNetworkRuleState;
-};
-
-/**
  * A list of virtual network rules.
  */
 export interface VirtualNetworkRuleListResult {
@@ -2134,125 +1023,6 @@ export interface VirtualNetworkRuleListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * An extended database blob auditing policy.
- */
-export type ExtendedDatabaseBlobAuditingPolicy = Resource & {
-  /**
-   * Specifies condition of where clause when creating an audit.
-   */
-  predicateExpression?: string;
-  /**
-   * Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required.
-   */
-  state?: BlobAuditingPolicyState;
-  /**
-   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required.
-   */
-  storageEndpoint?: string;
-  /**
-   * Specifies the identifier key of the auditing storage account.
-   * If state is Enabled and storageEndpoint is specified, not specifying the storageAccountAccessKey will use SQL server system-assigned managed identity to access the storage.
-   * Prerequisites for using managed identity authentication:
-   * 1. Assign SQL Server a system-assigned managed identity in Azure Active Directory (AAD).
-   * 2. Grant SQL Server identity access to the storage account by adding 'Storage Blob Data Contributor' RBAC role to the server identity.
-   * For more information, see [Auditing to storage using Managed Identity authentication](https://go.microsoft.com/fwlink/?linkid=2114355)
-   */
-  storageAccountAccessKey?: string;
-  /**
-   * Specifies the number of days to keep in the audit logs in the storage account.
-   */
-  retentionDays?: number;
-  /**
-   * Specifies the Actions-Groups and Actions to audit.
-   *
-   * The recommended set of action groups to use is the following combination - this will audit all the queries and stored procedures executed against the database, as well as successful and failed logins:
-   *
-   * BATCH_COMPLETED_GROUP,
-   * SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP,
-   * FAILED_DATABASE_AUTHENTICATION_GROUP.
-   *
-   * This above combination is also the set that is configured by default when enabling auditing from the Azure portal.
-   *
-   * The supported action groups to audit are (note: choose only specific groups that cover your auditing needs. Using unnecessary groups could lead to very large quantities of audit records):
-   *
-   * APPLICATION_ROLE_CHANGE_PASSWORD_GROUP
-   * BACKUP_RESTORE_GROUP
-   * DATABASE_LOGOUT_GROUP
-   * DATABASE_OBJECT_CHANGE_GROUP
-   * DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP
-   * DATABASE_OBJECT_PERMISSION_CHANGE_GROUP
-   * DATABASE_OPERATION_GROUP
-   * DATABASE_PERMISSION_CHANGE_GROUP
-   * DATABASE_PRINCIPAL_CHANGE_GROUP
-   * DATABASE_PRINCIPAL_IMPERSONATION_GROUP
-   * DATABASE_ROLE_MEMBER_CHANGE_GROUP
-   * FAILED_DATABASE_AUTHENTICATION_GROUP
-   * SCHEMA_OBJECT_ACCESS_GROUP
-   * SCHEMA_OBJECT_CHANGE_GROUP
-   * SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP
-   * SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP
-   * SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP
-   * USER_CHANGE_PASSWORD_GROUP
-   * BATCH_STARTED_GROUP
-   * BATCH_COMPLETED_GROUP
-   *
-   * These are groups that cover all sql statements and stored procedures executed against the database, and should not be used in combination with other groups as this will result in duplicate audit logs.
-   *
-   * For more information, see [Database-Level Audit Action Groups](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-action-groups).
-   *
-   * For Database auditing policy, specific Actions can also be specified (note that Actions cannot be specified for Server auditing policy). The supported actions to audit are:
-   * SELECT
-   * UPDATE
-   * INSERT
-   * DELETE
-   * EXECUTE
-   * RECEIVE
-   * REFERENCES
-   *
-   * The general form for defining an action to be audited is:
-   * {action} ON {object} BY {principal}
-   *
-   * Note that <object> in the above format can refer to an object like a table, view, or stored procedure, or an entire database or schema. For the latter cases, the forms DATABASE::{db_name} and SCHEMA::{schema_name} are used, respectively.
-   *
-   * For example:
-   * SELECT on dbo.myTable by public
-   * SELECT on DATABASE::myDatabase by public
-   * SELECT on SCHEMA::mySchema by public
-   *
-   * For more information, see [Database-Level Audit Actions](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-actions)
-   */
-  auditActionsAndGroups?: string[];
-  /**
-   * Specifies the blob storage subscription Id.
-   */
-  storageAccountSubscriptionId?: string;
-  /**
-   * Specifies whether storageAccountAccessKey value is the storage's secondary key.
-   */
-  isStorageSecondaryKeyInUse?: boolean;
-  /**
-   * Specifies whether audit events are sent to Azure Monitor.
-   * In order to send the events to Azure Monitor, specify 'state' as 'Enabled' and 'isAzureMonitorTargetEnabled' as true.
-   *
-   * When using REST API to configure auditing, Diagnostic Settings with 'SQLSecurityAuditEvents' diagnostic logs category on the database should be also created.
-   * Note that for server level audit you should use the 'master' database as {databaseName}.
-   *
-   * Diagnostic Settings URI format:
-   * PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/providers/microsoft.insights/diagnosticSettings/{settingsName}?api-version=2017-05-01-preview
-   *
-   * For more information, see [Diagnostic Settings REST API](https://go.microsoft.com/fwlink/?linkid=2033207)
-   * or [Diagnostic Settings PowerShell](https://go.microsoft.com/fwlink/?linkid=2033043)
-   *
-   */
-  isAzureMonitorTargetEnabled?: boolean;
-  /**
-   * Specifies the amount of time in milliseconds that can elapse before audit actions are forced to be processed.
-   * The default minimum value is 1000 (1 second). The maximum is 2,147,483,647.
-   */
-  queueDelayMs?: number;
-};
 
 /**
  * A list of database extended auditing settings.
@@ -2269,125 +1039,6 @@ export interface ExtendedDatabaseBlobAuditingPolicyListResult {
 }
 
 /**
- * An extended server blob auditing policy.
- */
-export type ExtendedServerBlobAuditingPolicy = Resource & {
-  /**
-   * Specifies condition of where clause when creating an audit.
-   */
-  predicateExpression?: string;
-  /**
-   * Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required.
-   */
-  state?: BlobAuditingPolicyState;
-  /**
-   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required.
-   */
-  storageEndpoint?: string;
-  /**
-   * Specifies the identifier key of the auditing storage account.
-   * If state is Enabled and storageEndpoint is specified, not specifying the storageAccountAccessKey will use SQL server system-assigned managed identity to access the storage.
-   * Prerequisites for using managed identity authentication:
-   * 1. Assign SQL Server a system-assigned managed identity in Azure Active Directory (AAD).
-   * 2. Grant SQL Server identity access to the storage account by adding 'Storage Blob Data Contributor' RBAC role to the server identity.
-   * For more information, see [Auditing to storage using Managed Identity authentication](https://go.microsoft.com/fwlink/?linkid=2114355)
-   */
-  storageAccountAccessKey?: string;
-  /**
-   * Specifies the number of days to keep in the audit logs in the storage account.
-   */
-  retentionDays?: number;
-  /**
-   * Specifies the Actions-Groups and Actions to audit.
-   *
-   * The recommended set of action groups to use is the following combination - this will audit all the queries and stored procedures executed against the database, as well as successful and failed logins:
-   *
-   * BATCH_COMPLETED_GROUP,
-   * SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP,
-   * FAILED_DATABASE_AUTHENTICATION_GROUP.
-   *
-   * This above combination is also the set that is configured by default when enabling auditing from the Azure portal.
-   *
-   * The supported action groups to audit are (note: choose only specific groups that cover your auditing needs. Using unnecessary groups could lead to very large quantities of audit records):
-   *
-   * APPLICATION_ROLE_CHANGE_PASSWORD_GROUP
-   * BACKUP_RESTORE_GROUP
-   * DATABASE_LOGOUT_GROUP
-   * DATABASE_OBJECT_CHANGE_GROUP
-   * DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP
-   * DATABASE_OBJECT_PERMISSION_CHANGE_GROUP
-   * DATABASE_OPERATION_GROUP
-   * DATABASE_PERMISSION_CHANGE_GROUP
-   * DATABASE_PRINCIPAL_CHANGE_GROUP
-   * DATABASE_PRINCIPAL_IMPERSONATION_GROUP
-   * DATABASE_ROLE_MEMBER_CHANGE_GROUP
-   * FAILED_DATABASE_AUTHENTICATION_GROUP
-   * SCHEMA_OBJECT_ACCESS_GROUP
-   * SCHEMA_OBJECT_CHANGE_GROUP
-   * SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP
-   * SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP
-   * SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP
-   * USER_CHANGE_PASSWORD_GROUP
-   * BATCH_STARTED_GROUP
-   * BATCH_COMPLETED_GROUP
-   *
-   * These are groups that cover all sql statements and stored procedures executed against the database, and should not be used in combination with other groups as this will result in duplicate audit logs.
-   *
-   * For more information, see [Database-Level Audit Action Groups](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-action-groups).
-   *
-   * For Database auditing policy, specific Actions can also be specified (note that Actions cannot be specified for Server auditing policy). The supported actions to audit are:
-   * SELECT
-   * UPDATE
-   * INSERT
-   * DELETE
-   * EXECUTE
-   * RECEIVE
-   * REFERENCES
-   *
-   * The general form for defining an action to be audited is:
-   * {action} ON {object} BY {principal}
-   *
-   * Note that <object> in the above format can refer to an object like a table, view, or stored procedure, or an entire database or schema. For the latter cases, the forms DATABASE::{db_name} and SCHEMA::{schema_name} are used, respectively.
-   *
-   * For example:
-   * SELECT on dbo.myTable by public
-   * SELECT on DATABASE::myDatabase by public
-   * SELECT on SCHEMA::mySchema by public
-   *
-   * For more information, see [Database-Level Audit Actions](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-actions)
-   */
-  auditActionsAndGroups?: string[];
-  /**
-   * Specifies the blob storage subscription Id.
-   */
-  storageAccountSubscriptionId?: string;
-  /**
-   * Specifies whether storageAccountAccessKey value is the storage's secondary key.
-   */
-  isStorageSecondaryKeyInUse?: boolean;
-  /**
-   * Specifies whether audit events are sent to Azure Monitor.
-   * In order to send the events to Azure Monitor, specify 'state' as 'Enabled' and 'isAzureMonitorTargetEnabled' as true.
-   *
-   * When using REST API to configure auditing, Diagnostic Settings with 'SQLSecurityAuditEvents' diagnostic logs category on the database should be also created.
-   * Note that for server level audit you should use the 'master' database as {databaseName}.
-   *
-   * Diagnostic Settings URI format:
-   * PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/providers/microsoft.insights/diagnosticSettings/{settingsName}?api-version=2017-05-01-preview
-   *
-   * For more information, see [Diagnostic Settings REST API](https://go.microsoft.com/fwlink/?linkid=2033207)
-   * or [Diagnostic Settings PowerShell](https://go.microsoft.com/fwlink/?linkid=2033043)
-   *
-   */
-  isAzureMonitorTargetEnabled?: boolean;
-  /**
-   * Specifies the amount of time in milliseconds that can elapse before audit actions are forced to be processed.
-   * The default minimum value is 1000 (1 second). The maximum is 2,147,483,647.
-   */
-  queueDelayMs?: number;
-};
-
-/**
  * A list of server extended auditing settings.
  */
 export interface ExtendedServerBlobAuditingPolicyListResult {
@@ -2400,121 +1051,6 @@ export interface ExtendedServerBlobAuditingPolicyListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * A server blob auditing policy.
- */
-export type ServerBlobAuditingPolicy = Resource & {
-  /**
-   * Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required.
-   */
-  state?: BlobAuditingPolicyState;
-  /**
-   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required.
-   */
-  storageEndpoint?: string;
-  /**
-   * Specifies the identifier key of the auditing storage account.
-   * If state is Enabled and storageEndpoint is specified, not specifying the storageAccountAccessKey will use SQL server system-assigned managed identity to access the storage.
-   * Prerequisites for using managed identity authentication:
-   * 1. Assign SQL Server a system-assigned managed identity in Azure Active Directory (AAD).
-   * 2. Grant SQL Server identity access to the storage account by adding 'Storage Blob Data Contributor' RBAC role to the server identity.
-   * For more information, see [Auditing to storage using Managed Identity authentication](https://go.microsoft.com/fwlink/?linkid=2114355)
-   */
-  storageAccountAccessKey?: string;
-  /**
-   * Specifies the number of days to keep in the audit logs in the storage account.
-   */
-  retentionDays?: number;
-  /**
-   * Specifies the Actions-Groups and Actions to audit.
-   *
-   * The recommended set of action groups to use is the following combination - this will audit all the queries and stored procedures executed against the database, as well as successful and failed logins:
-   *
-   * BATCH_COMPLETED_GROUP,
-   * SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP,
-   * FAILED_DATABASE_AUTHENTICATION_GROUP.
-   *
-   * This above combination is also the set that is configured by default when enabling auditing from the Azure portal.
-   *
-   * The supported action groups to audit are (note: choose only specific groups that cover your auditing needs. Using unnecessary groups could lead to very large quantities of audit records):
-   *
-   * APPLICATION_ROLE_CHANGE_PASSWORD_GROUP
-   * BACKUP_RESTORE_GROUP
-   * DATABASE_LOGOUT_GROUP
-   * DATABASE_OBJECT_CHANGE_GROUP
-   * DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP
-   * DATABASE_OBJECT_PERMISSION_CHANGE_GROUP
-   * DATABASE_OPERATION_GROUP
-   * DATABASE_PERMISSION_CHANGE_GROUP
-   * DATABASE_PRINCIPAL_CHANGE_GROUP
-   * DATABASE_PRINCIPAL_IMPERSONATION_GROUP
-   * DATABASE_ROLE_MEMBER_CHANGE_GROUP
-   * FAILED_DATABASE_AUTHENTICATION_GROUP
-   * SCHEMA_OBJECT_ACCESS_GROUP
-   * SCHEMA_OBJECT_CHANGE_GROUP
-   * SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP
-   * SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP
-   * SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP
-   * USER_CHANGE_PASSWORD_GROUP
-   * BATCH_STARTED_GROUP
-   * BATCH_COMPLETED_GROUP
-   *
-   * These are groups that cover all sql statements and stored procedures executed against the database, and should not be used in combination with other groups as this will result in duplicate audit logs.
-   *
-   * For more information, see [Database-Level Audit Action Groups](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-action-groups).
-   *
-   * For Database auditing policy, specific Actions can also be specified (note that Actions cannot be specified for Server auditing policy). The supported actions to audit are:
-   * SELECT
-   * UPDATE
-   * INSERT
-   * DELETE
-   * EXECUTE
-   * RECEIVE
-   * REFERENCES
-   *
-   * The general form for defining an action to be audited is:
-   * {action} ON {object} BY {principal}
-   *
-   * Note that <object> in the above format can refer to an object like a table, view, or stored procedure, or an entire database or schema. For the latter cases, the forms DATABASE::{db_name} and SCHEMA::{schema_name} are used, respectively.
-   *
-   * For example:
-   * SELECT on dbo.myTable by public
-   * SELECT on DATABASE::myDatabase by public
-   * SELECT on SCHEMA::mySchema by public
-   *
-   * For more information, see [Database-Level Audit Actions](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-actions)
-   */
-  auditActionsAndGroups?: string[];
-  /**
-   * Specifies the blob storage subscription Id.
-   */
-  storageAccountSubscriptionId?: string;
-  /**
-   * Specifies whether storageAccountAccessKey value is the storage's secondary key.
-   */
-  isStorageSecondaryKeyInUse?: boolean;
-  /**
-   * Specifies whether audit events are sent to Azure Monitor.
-   * In order to send the events to Azure Monitor, specify 'state' as 'Enabled' and 'isAzureMonitorTargetEnabled' as true.
-   *
-   * When using REST API to configure auditing, Diagnostic Settings with 'SQLSecurityAuditEvents' diagnostic logs category on the database should be also created.
-   * Note that for server level audit you should use the 'master' database as {databaseName}.
-   *
-   * Diagnostic Settings URI format:
-   * PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/providers/microsoft.insights/diagnosticSettings/{settingsName}?api-version=2017-05-01-preview
-   *
-   * For more information, see [Diagnostic Settings REST API](https://go.microsoft.com/fwlink/?linkid=2033207)
-   * or [Diagnostic Settings PowerShell](https://go.microsoft.com/fwlink/?linkid=2033043)
-   *
-   */
-  isAzureMonitorTargetEnabled?: boolean;
-  /**
-   * Specifies the amount of time in milliseconds that can elapse before audit actions are forced to be processed.
-   * The default minimum value is 1000 (1 second). The maximum is 2,147,483,647.
-   */
-  queueDelayMs?: number;
-};
 
 /**
  * A list of server auditing settings.
@@ -2531,125 +1067,6 @@ export interface ServerBlobAuditingPolicyListResult {
 }
 
 /**
- * A database blob auditing policy.
- */
-export type DatabaseBlobAuditingPolicy = Resource & {
-  /**
-   * Resource kind.
-   */
-  readonly kind?: string;
-  /**
-   * Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required.
-   */
-  state?: BlobAuditingPolicyState;
-  /**
-   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required.
-   */
-  storageEndpoint?: string;
-  /**
-   * Specifies the identifier key of the auditing storage account.
-   * If state is Enabled and storageEndpoint is specified, not specifying the storageAccountAccessKey will use SQL server system-assigned managed identity to access the storage.
-   * Prerequisites for using managed identity authentication:
-   * 1. Assign SQL Server a system-assigned managed identity in Azure Active Directory (AAD).
-   * 2. Grant SQL Server identity access to the storage account by adding 'Storage Blob Data Contributor' RBAC role to the server identity.
-   * For more information, see [Auditing to storage using Managed Identity authentication](https://go.microsoft.com/fwlink/?linkid=2114355)
-   */
-  storageAccountAccessKey?: string;
-  /**
-   * Specifies the number of days to keep in the audit logs in the storage account.
-   */
-  retentionDays?: number;
-  /**
-   * Specifies the Actions-Groups and Actions to audit.
-   *
-   * The recommended set of action groups to use is the following combination - this will audit all the queries and stored procedures executed against the database, as well as successful and failed logins:
-   *
-   * BATCH_COMPLETED_GROUP,
-   * SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP,
-   * FAILED_DATABASE_AUTHENTICATION_GROUP.
-   *
-   * This above combination is also the set that is configured by default when enabling auditing from the Azure portal.
-   *
-   * The supported action groups to audit are (note: choose only specific groups that cover your auditing needs. Using unnecessary groups could lead to very large quantities of audit records):
-   *
-   * APPLICATION_ROLE_CHANGE_PASSWORD_GROUP
-   * BACKUP_RESTORE_GROUP
-   * DATABASE_LOGOUT_GROUP
-   * DATABASE_OBJECT_CHANGE_GROUP
-   * DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP
-   * DATABASE_OBJECT_PERMISSION_CHANGE_GROUP
-   * DATABASE_OPERATION_GROUP
-   * DATABASE_PERMISSION_CHANGE_GROUP
-   * DATABASE_PRINCIPAL_CHANGE_GROUP
-   * DATABASE_PRINCIPAL_IMPERSONATION_GROUP
-   * DATABASE_ROLE_MEMBER_CHANGE_GROUP
-   * FAILED_DATABASE_AUTHENTICATION_GROUP
-   * SCHEMA_OBJECT_ACCESS_GROUP
-   * SCHEMA_OBJECT_CHANGE_GROUP
-   * SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP
-   * SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP
-   * SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP
-   * USER_CHANGE_PASSWORD_GROUP
-   * BATCH_STARTED_GROUP
-   * BATCH_COMPLETED_GROUP
-   *
-   * These are groups that cover all sql statements and stored procedures executed against the database, and should not be used in combination with other groups as this will result in duplicate audit logs.
-   *
-   * For more information, see [Database-Level Audit Action Groups](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-action-groups).
-   *
-   * For Database auditing policy, specific Actions can also be specified (note that Actions cannot be specified for Server auditing policy). The supported actions to audit are:
-   * SELECT
-   * UPDATE
-   * INSERT
-   * DELETE
-   * EXECUTE
-   * RECEIVE
-   * REFERENCES
-   *
-   * The general form for defining an action to be audited is:
-   * {action} ON {object} BY {principal}
-   *
-   * Note that <object> in the above format can refer to an object like a table, view, or stored procedure, or an entire database or schema. For the latter cases, the forms DATABASE::{db_name} and SCHEMA::{schema_name} are used, respectively.
-   *
-   * For example:
-   * SELECT on dbo.myTable by public
-   * SELECT on DATABASE::myDatabase by public
-   * SELECT on SCHEMA::mySchema by public
-   *
-   * For more information, see [Database-Level Audit Actions](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-actions)
-   */
-  auditActionsAndGroups?: string[];
-  /**
-   * Specifies the blob storage subscription Id.
-   */
-  storageAccountSubscriptionId?: string;
-  /**
-   * Specifies whether storageAccountAccessKey value is the storage's secondary key.
-   */
-  isStorageSecondaryKeyInUse?: boolean;
-  /**
-   * Specifies whether audit events are sent to Azure Monitor.
-   * In order to send the events to Azure Monitor, specify 'state' as 'Enabled' and 'isAzureMonitorTargetEnabled' as true.
-   *
-   * When using REST API to configure auditing, Diagnostic Settings with 'SQLSecurityAuditEvents' diagnostic logs category on the database should be also created.
-   * Note that for server level audit you should use the 'master' database as {databaseName}.
-   *
-   * Diagnostic Settings URI format:
-   * PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/providers/microsoft.insights/diagnosticSettings/{settingsName}?api-version=2017-05-01-preview
-   *
-   * For more information, see [Diagnostic Settings REST API](https://go.microsoft.com/fwlink/?linkid=2033207)
-   * or [Diagnostic Settings PowerShell](https://go.microsoft.com/fwlink/?linkid=2033043)
-   *
-   */
-  isAzureMonitorTargetEnabled?: boolean;
-  /**
-   * Specifies the amount of time in milliseconds that can elapse before audit actions are forced to be processed.
-   * The default minimum value is 1000 (1 second). The maximum is 2,147,483,647.
-   */
-  queueDelayMs?: number;
-};
-
-/**
  * A list of database auditing settings.
  */
 export interface DatabaseBlobAuditingPolicyListResult {
@@ -2664,16 +1081,6 @@ export interface DatabaseBlobAuditingPolicyListResult {
 }
 
 /**
- * A database vulnerability assessment rule baseline.
- */
-export type DatabaseVulnerabilityAssessmentRuleBaseline = Resource & {
-  /**
-   * The rule baseline result
-   */
-  baselineResults?: DatabaseVulnerabilityAssessmentRuleBaselineItem[];
-};
-
-/**
  * Properties for an Azure SQL Database Vulnerability Assessment rule baseline's result.
  */
 export interface DatabaseVulnerabilityAssessmentRuleBaselineItem {
@@ -2682,28 +1089,6 @@ export interface DatabaseVulnerabilityAssessmentRuleBaselineItem {
    */
   result: string[];
 }
-
-/**
- * A database vulnerability assessment.
- */
-export type DatabaseVulnerabilityAssessment = Resource & {
-  /**
-   * A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/).  It is required if server level vulnerability assessment policy doesn't set
-   */
-  storageContainerPath?: string;
-  /**
-   * A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required.
-   */
-  storageContainerSasKey?: string;
-  /**
-   * Specifies the identifier key of the storage account for vulnerability assessment scan results. If 'StorageContainerSasKey' isn't specified, storageAccountAccessKey is required.
-   */
-  storageAccountAccessKey?: string;
-  /**
-   * The recurring scans settings
-   */
-  recurringScans?: VulnerabilityAssessmentRecurringScansProperties;
-};
 
 /**
  * Properties of a Vulnerability Assessment recurring scans.
@@ -2750,24 +1135,6 @@ export interface JobAgentListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * An Azure SQL job agent.
- */
-export type JobAgent = TrackedResource & {
-  /**
-   * The name and tier of the SKU.
-   */
-  sku?: Sku;
-  /**
-   * Resource ID of the database to store job metadata in.
-   */
-  databaseId?: string;
-  /**
-   * The state of the job agent.
-   */
-  readonly state?: JobAgentState;
-};
 
 /**
  * An ARM Resource SKU.
@@ -2820,20 +1187,6 @@ export interface JobCredentialListResult {
 }
 
 /**
- * A stored credential that can be used by a job to connect to target databases.
- */
-export type JobCredential = Resource & {
-  /**
-   * The credential user name.
-   */
-  username?: string;
-  /**
-   * The credential password.
-   */
-  password?: string;
-};
-
-/**
  * A list of job executions.
  */
 export interface JobExecutionListResult {
@@ -2846,64 +1199,6 @@ export interface JobExecutionListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * An execution of a job
- */
-export type JobExecution = Resource & {
-  /**
-   * The job version number.
-   */
-  readonly jobVersion?: number;
-  /**
-   * The job step name.
-   */
-  readonly stepName?: string;
-  /**
-   * The job step id.
-   */
-  readonly stepId?: number;
-  /**
-   * The unique identifier of the job execution.
-   */
-  readonly jobExecutionId?: string;
-  /**
-   * The detailed state of the job execution.
-   */
-  readonly lifecycle?: JobExecutionLifecycle;
-  /**
-   * The ARM provisioning state of the job execution.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The time that the job execution was created.
-   */
-  readonly createTime?: Date;
-  /**
-   * The time that the job execution started.
-   */
-  readonly startTime?: Date;
-  /**
-   * The time that the job execution completed.
-   */
-  readonly endTime?: Date;
-  /**
-   * Number of times the job execution has been attempted.
-   */
-  currentAttempts?: number;
-  /**
-   * Start time of the current attempt.
-   */
-  readonly currentAttemptStartTime?: Date;
-  /**
-   * The last status or error message.
-   */
-  readonly lastMessage?: string;
-  /**
-   * The target that this execution is executed on.
-   */
-  readonly target?: JobExecutionTarget;
-};
 
 /**
  * The target that a job execution is executed on.
@@ -2936,24 +1231,6 @@ export interface JobListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * A job.
- */
-export type Job = Resource & {
-  /**
-   * User-defined description of the job.
-   */
-  description?: string;
-  /**
-   * The job version number.
-   */
-  readonly version?: number;
-  /**
-   * Schedule properties of the job.
-   */
-  schedule?: JobSchedule;
-};
 
 /**
  * Scheduling properties of a job.
@@ -2996,47 +1273,17 @@ export interface JobStepListResult {
 }
 
 /**
- * A job step.
- */
-export type JobStep = Resource & {
-  /**
-   * The job step's index within the job. If not specified when creating the job step, it will be created as the last step. If not specified when updating the job step, the step id is not modified.
-   */
-  stepId?: number;
-  /**
-   * The resource ID of the target group that the job step will be executed on.
-   */
-  targetGroup?: string;
-  /**
-   * The resource ID of the job credential that will be used to connect to the targets.
-   */
-  credential?: string;
-  /**
-   * The action payload of the job step.
-   */
-  action?: JobStepAction;
-  /**
-   * Output destination properties of the job step.
-   */
-  output?: JobStepOutput;
-  /**
-   * Execution options for the job step.
-   */
-  executionOptions?: JobStepExecutionOptions;
-};
-
-/**
  * The action to be executed by a job step.
  */
 export interface JobStepAction {
   /**
    * Type of action being executed by the job step.
    */
-  type?: "TSql";
+  type?: JobStepActionType;
   /**
    * The source of the action to execute.
    */
-  source?: "Inline";
+  source?: JobStepActionSource;
   /**
    * The action value, for example the text of the T-SQL script to execute.
    */
@@ -3050,7 +1297,7 @@ export interface JobStepOutput {
   /**
    * The output destination type.
    */
-  type?: "SqlDatabase";
+  type?: JobStepOutputType;
   /**
    * The output destination subscription id.
    */
@@ -3122,16 +1369,6 @@ export interface JobTargetGroupListResult {
 }
 
 /**
- * A group of job targets.
- */
-export type JobTargetGroup = Resource & {
-  /**
-   * Members of the target group.
-   */
-  members?: JobTarget[];
-};
-
-/**
  * A job target, for example a specific database or a container of databases that is evaluated during job execution.
  */
 export interface JobTarget {
@@ -3180,36 +1417,6 @@ export interface JobVersionListResult {
 }
 
 /**
- * A long term retention backup.
- */
-export type LongTermRetentionBackup = Resource & {
-  /**
-   * The server name that the backup database belong to.
-   */
-  readonly serverName?: string;
-  /**
-   * The create time of the server.
-   */
-  readonly serverCreateTime?: Date;
-  /**
-   * The name of the database the backup belong to
-   */
-  readonly databaseName?: string;
-  /**
-   * The delete time of the database
-   */
-  readonly databaseDeletionTime?: Date;
-  /**
-   * The time the backup was taken
-   */
-  readonly backupTime?: Date;
-  /**
-   * The time the long term retention backup will expire.
-   */
-  readonly backupExpirationTime?: Date;
-};
-
-/**
  * A list of long term retention backups.
  */
 export interface LongTermRetentionBackupListResult {
@@ -3224,38 +1431,6 @@ export interface LongTermRetentionBackupListResult {
 }
 
 /**
- * A long term retention policy.
- */
-export type BackupLongTermRetentionPolicy = Resource & {
-  /**
-   * The weekly retention policy for an LTR backup in an ISO 8601 format.
-   */
-  weeklyRetention?: string;
-  /**
-   * The monthly retention policy for an LTR backup in an ISO 8601 format.
-   */
-  monthlyRetention?: string;
-  /**
-   * The yearly retention policy for an LTR backup in an ISO 8601 format.
-   */
-  yearlyRetention?: string;
-  /**
-   * The week of year to take the yearly backup in an ISO 8601 format.
-   */
-  weekOfYear?: number;
-};
-
-/**
- * A short term retention policy.
- */
-export type ManagedBackupShortTermRetentionPolicy = Resource & {
-  /**
-   * The backup retention period in days. This is how many days Point-in-Time Restore will be supported.
-   */
-  retentionDays?: number;
-};
-
-/**
  * A list of short term retention policies.
  */
 export interface ManagedBackupShortTermRetentionPolicyListResult {
@@ -3268,24 +1443,6 @@ export interface ManagedBackupShortTermRetentionPolicyListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * Server-level Automatic Tuning.
- */
-export type ServerAutomaticTuning = Resource & {
-  /**
-   * Automatic tuning desired state.
-   */
-  desiredState?: AutomaticTuningServerMode;
-  /**
-   * Automatic tuning actual state.
-   */
-  readonly actualState?: AutomaticTuningServerMode;
-  /**
-   * Automatic tuning options definition.
-   */
-  options?: { [propertyName: string]: AutomaticTuningServerOptions };
-};
 
 /**
  * Automatic tuning properties for individual advisors.
@@ -3310,16 +1467,6 @@ export interface AutomaticTuningServerOptions {
 }
 
 /**
- * A server DNS alias.
- */
-export type ServerDnsAlias = Resource & {
-  /**
-   * The fully qualified DNS record for alias
-   */
-  readonly azureDnsRecord?: string;
-};
-
-/**
  * A list of server DNS aliases.
  */
 export interface ServerDnsAliasListResult {
@@ -3342,44 +1489,6 @@ export interface ServerDnsAliasAcquisition {
    */
   oldServerDnsAliasId?: string;
 }
-
-/**
- * A server security alert policy.
- */
-export type ServerSecurityAlertPolicy = Resource & {
-  /**
-   * Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database.
-   */
-  state?: SecurityAlertPolicyState;
-  /**
-   * Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action
-   */
-  disabledAlerts?: string[];
-  /**
-   * Specifies an array of e-mail addresses to which the alert is sent.
-   */
-  emailAddresses?: string[];
-  /**
-   * Specifies that the alert is sent to the account administrators.
-   */
-  emailAccountAdmins?: boolean;
-  /**
-   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs.
-   */
-  storageEndpoint?: string;
-  /**
-   * Specifies the identifier key of the Threat Detection audit storage account.
-   */
-  storageAccountAccessKey?: string;
-  /**
-   * Specifies the number of days to keep in the Threat Detection audit logs.
-   */
-  retentionDays?: number;
-  /**
-   * Specifies the UTC creation time of the policy.
-   */
-  readonly creationTime?: Date;
-};
 
 /**
  * A list of the server's security alert policies.
@@ -3410,28 +1519,6 @@ export interface RestorableDroppedManagedDatabaseListResult {
 }
 
 /**
- * A restorable dropped managed database resource.
- */
-export type RestorableDroppedManagedDatabase = TrackedResource & {
-  /**
-   * The name of the database.
-   */
-  readonly databaseName?: string;
-  /**
-   * The creation date of the database (ISO8601 format).
-   */
-  readonly creationDate?: Date;
-  /**
-   * The deletion date of the database (ISO8601 format).
-   */
-  readonly deletionDate?: Date;
-  /**
-   * The earliest restore date of the database (ISO8601 format).
-   */
-  readonly earliestRestoreDate?: Date;
-};
-
-/**
  * A list of long term retention backups.
  */
 export interface RestorePointListResult {
@@ -3446,32 +1533,6 @@ export interface RestorePointListResult {
 }
 
 /**
- * Database restore points.
- */
-export type RestorePoint = Resource & {
-  /**
-   * Resource location.
-   */
-  readonly location?: string;
-  /**
-   * The type of restore point
-   */
-  readonly restorePointType?: RestorePointType;
-  /**
-   * The earliest time to which this database can be restored
-   */
-  readonly earliestRestoreDate?: Date;
-  /**
-   * The time the backup was taken
-   */
-  readonly restorePointCreationDate?: Date;
-  /**
-   * The label of restore point for backup request by user
-   */
-  readonly restorePointLabel?: string;
-};
-
-/**
  * Contains the information necessary to perform a create database restore point operation.
  */
 export interface CreateDatabaseRestorePointDefinition {
@@ -3480,44 +1541,6 @@ export interface CreateDatabaseRestorePointDefinition {
    */
   restorePointLabel: string;
 }
-
-/**
- * A managed database security alert policy.
- */
-export type ManagedDatabaseSecurityAlertPolicy = Resource & {
-  /**
-   * Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database.
-   */
-  state?: SecurityAlertPolicyState;
-  /**
-   * Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action
-   */
-  disabledAlerts?: string[];
-  /**
-   * Specifies an array of e-mail addresses to which the alert is sent.
-   */
-  emailAddresses?: string[];
-  /**
-   * Specifies that the alert is sent to the account administrators.
-   */
-  emailAccountAdmins?: boolean;
-  /**
-   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs.
-   */
-  storageEndpoint?: string;
-  /**
-   * Specifies the identifier key of the Threat Detection audit storage account.
-   */
-  storageAccountAccessKey?: string;
-  /**
-   * Specifies the number of days to keep in the Threat Detection audit logs.
-   */
-  retentionDays?: number;
-  /**
-   * Specifies the UTC creation time of the policy.
-   */
-  readonly creationTime?: Date;
-};
 
 /**
  * A list of the managed database's security alert policies.
@@ -3532,44 +1555,6 @@ export interface ManagedDatabaseSecurityAlertPolicyListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * A managed server security alert policy.
- */
-export type ManagedServerSecurityAlertPolicy = Resource & {
-  /**
-   * Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database.
-   */
-  state?: SecurityAlertPolicyState;
-  /**
-   * Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action
-   */
-  disabledAlerts?: string[];
-  /**
-   * Specifies an array of e-mail addresses to which the alert is sent.
-   */
-  emailAddresses?: string[];
-  /**
-   * Specifies that the alert is sent to the account administrators.
-   */
-  emailAccountAdmins?: boolean;
-  /**
-   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs.
-   */
-  storageEndpoint?: string;
-  /**
-   * Specifies the identifier key of the Threat Detection audit storage account.
-   */
-  storageAccountAccessKey?: string;
-  /**
-   * Specifies the number of days to keep in the Threat Detection audit logs.
-   */
-  retentionDays?: number;
-  /**
-   * Specifies the UTC creation time of the policy.
-   */
-  readonly creationTime?: Date;
-};
 
 /**
  * A list of the managed Server's security alert policies.
@@ -3600,33 +1585,6 @@ export interface SensitivityLabelListResult {
 }
 
 /**
- * A sensitivity label.
- */
-export type SensitivityLabel = Resource & {
-  /**
-   * The label name.
-   */
-  labelName?: string;
-  /**
-   * The label ID.
-   */
-  labelId?: string;
-  /**
-   * The information type.
-   */
-  informationType?: string;
-  /**
-   * The information type ID.
-   */
-  informationTypeId?: string;
-  /**
-   * Is sensitivity recommendation disabled. Applicable for recommended sensitivity label only. Specifies whether the sensitivity recommendation on this column is disabled (dismissed) or not.
-   */
-  readonly isDisabled?: boolean;
-  rank?: SensitivityLabelRank;
-};
-
-/**
  * A list of managed instance administrators.
  */
 export interface ManagedInstanceAdministratorListResult {
@@ -3639,28 +1597,6 @@ export interface ManagedInstanceAdministratorListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * An Azure SQL managed instance administrator.
- */
-export type ManagedInstanceAdministrator = Resource & {
-  /**
-   * Type of the managed instance administrator.
-   */
-  administratorType?: "ActiveDirectory";
-  /**
-   * Login name of the managed instance administrator.
-   */
-  login?: string;
-  /**
-   * SID (object ID) of the managed instance administrator.
-   */
-  sid?: string;
-  /**
-   * Tenant ID of the managed instance administrator.
-   */
-  tenantId?: string;
-};
 
 /**
  * The response to a list database operations request
@@ -3677,68 +1613,6 @@ export interface DatabaseOperationListResult {
 }
 
 /**
- * A database operation.
- */
-export type DatabaseOperation = Resource & {
-  /**
-   * The name of the database the operation is being performed on.
-   */
-  readonly databaseName?: string;
-  /**
-   * The name of operation.
-   */
-  readonly operation?: string;
-  /**
-   * The friendly name of operation.
-   */
-  readonly operationFriendlyName?: string;
-  /**
-   * The percentage of the operation completed.
-   */
-  readonly percentComplete?: number;
-  /**
-   * The name of the server.
-   */
-  readonly serverName?: string;
-  /**
-   * The operation start time.
-   */
-  readonly startTime?: Date;
-  /**
-   * The operation state.
-   */
-  readonly state?: ManagementOperationState;
-  /**
-   * The operation error code.
-   */
-  readonly errorCode?: number;
-  /**
-   * The operation error description.
-   */
-  readonly errorDescription?: string;
-  /**
-   * The operation error severity.
-   */
-  readonly errorSeverity?: number;
-  /**
-   * Whether or not the error is a user error.
-   */
-  readonly isUserError?: boolean;
-  /**
-   * The estimated completion time of the operation.
-   */
-  readonly estimatedCompletionTime?: Date;
-  /**
-   * The operation description.
-   */
-  readonly description?: string;
-  /**
-   * Whether the operation can be cancelled.
-   */
-  readonly isCancellable?: boolean;
-};
-
-/**
  * The response to a list elastic pool operations request
  */
 export interface ElasticPoolOperationListResult {
@@ -3753,68 +1627,6 @@ export interface ElasticPoolOperationListResult {
 }
 
 /**
- * A elastic pool operation.
- */
-export type ElasticPoolOperation = Resource & {
-  /**
-   * The name of the elastic pool the operation is being performed on.
-   */
-  readonly elasticPoolName?: string;
-  /**
-   * The name of operation.
-   */
-  readonly operation?: string;
-  /**
-   * The friendly name of operation.
-   */
-  readonly operationFriendlyName?: string;
-  /**
-   * The percentage of the operation completed.
-   */
-  readonly percentComplete?: number;
-  /**
-   * The name of the server.
-   */
-  readonly serverName?: string;
-  /**
-   * The operation start time.
-   */
-  readonly startTime?: Date;
-  /**
-   * The operation state.
-   */
-  readonly state?: string;
-  /**
-   * The operation error code.
-   */
-  readonly errorCode?: number;
-  /**
-   * The operation error description.
-   */
-  readonly errorDescription?: string;
-  /**
-   * The operation error severity.
-   */
-  readonly errorSeverity?: number;
-  /**
-   * Whether or not the error is a user error.
-   */
-  readonly isUserError?: boolean;
-  /**
-   * The estimated completion time of the operation.
-   */
-  readonly estimatedCompletionTime?: Date;
-  /**
-   * The operation description.
-   */
-  readonly description?: string;
-  /**
-   * Whether the operation can be cancelled.
-   */
-  readonly isCancellable?: boolean;
-};
-
-/**
  * A list of databases.
  */
 export interface DatabaseListResult {
@@ -3827,175 +1639,6 @@ export interface DatabaseListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * A database resource.
- */
-export type Database = TrackedResource & {
-  /**
-   * The database SKU.
-   *
-   * The list of SKUs may vary by region and support offer. To determine the SKUs (including the SKU name, tier/edition, family, and capacity) that are available to your subscription in an Azure region, use the `Capabilities_ListByLocation` REST API or one of the following commands:
-   *
-   * ```azurecli
-   * az sql db list-editions -l <location> -o table
-   * ````
-   *
-   * ```powershell
-   * Get-AzSqlServerServiceObjective -Location <location>
-   * ````
-   *
-   */
-  sku?: Sku;
-  /**
-   * Kind of database. This is metadata used for the Azure portal experience.
-   */
-  readonly kind?: string;
-  /**
-   * Resource that manages the database.
-   */
-  readonly managedBy?: string;
-  /**
-   * Specifies the mode of database creation.
-   *
-   * Default: regular database creation.
-   *
-   * Copy: creates a database as a copy of an existing database. sourceDatabaseId must be specified as the resource ID of the source database.
-   *
-   * Secondary: creates a database as a secondary replica of an existing database. sourceDatabaseId must be specified as the resource ID of the existing primary database.
-   *
-   * PointInTimeRestore: Creates a database by restoring a point in time backup of an existing database. sourceDatabaseId must be specified as the resource ID of the existing database, and restorePointInTime must be specified.
-   *
-   * Recovery: Creates a database by restoring a geo-replicated backup. sourceDatabaseId must be specified as the recoverable database resource ID to restore.
-   *
-   * Restore: Creates a database by restoring a backup of a deleted database. sourceDatabaseId must be specified. If sourceDatabaseId is the database's original resource ID, then sourceDatabaseDeletionDate must be specified. Otherwise sourceDatabaseId must be the restorable dropped database resource ID and sourceDatabaseDeletionDate is ignored. restorePointInTime may also be specified to restore from an earlier point in time.
-   *
-   * RestoreLongTermRetentionBackup: Creates a database by restoring from a long term retention vault. recoveryServicesRecoveryPointResourceId must be specified as the recovery point resource ID.
-   *
-   * Copy, Secondary, and RestoreLongTermRetentionBackup are not supported for DataWarehouse edition.
-   */
-  createMode?: CreateMode;
-  /**
-   * The collation of the database.
-   */
-  collation?: string;
-  /**
-   * The max size of the database expressed in bytes.
-   */
-  maxSizeBytes?: number;
-  /**
-   * The name of the sample schema to apply when creating this database.
-   */
-  sampleName?: SampleName;
-  /**
-   * The resource identifier of the elastic pool containing this database.
-   */
-  elasticPoolId?: string;
-  /**
-   * The resource identifier of the source database associated with create operation of this database.
-   */
-  sourceDatabaseId?: string;
-  /**
-   * The status of the database.
-   */
-  readonly status?: DatabaseStatus;
-  /**
-   * The ID of the database.
-   */
-  readonly databaseId?: string;
-  /**
-   * The creation date of the database (ISO8601 format).
-   */
-  readonly creationDate?: Date;
-  /**
-   * The current service level objective name of the database.
-   */
-  readonly currentServiceObjectiveName?: string;
-  /**
-   * The requested service level objective name of the database.
-   */
-  readonly requestedServiceObjectiveName?: string;
-  /**
-   * The default secondary region for this database.
-   */
-  readonly defaultSecondaryLocation?: string;
-  /**
-   * Failover Group resource identifier that this database belongs to.
-   */
-  readonly failoverGroupId?: string;
-  /**
-   * Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database.
-   */
-  restorePointInTime?: Date;
-  /**
-   * Specifies the time that the database was deleted.
-   */
-  sourceDatabaseDeletionDate?: Date;
-  /**
-   * The resource identifier of the recovery point associated with create operation of this database.
-   */
-  recoveryServicesRecoveryPointId?: string;
-  /**
-   * The resource identifier of the long term retention backup associated with create operation of this database.
-   */
-  longTermRetentionBackupResourceId?: string;
-  /**
-   * The resource identifier of the recoverable database associated with create operation of this database.
-   */
-  recoverableDatabaseId?: string;
-  /**
-   * The resource identifier of the restorable dropped database associated with create operation of this database.
-   */
-  restorableDroppedDatabaseId?: string;
-  /**
-   * Collation of the metadata catalog.
-   */
-  catalogCollation?: CatalogCollationType;
-  /**
-   * Whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones.
-   */
-  zoneRedundant?: boolean;
-  /**
-   * The license type to apply for this database.
-   */
-  licenseType?: DatabaseLicenseType;
-  /**
-   * The max log size for this database.
-   */
-  readonly maxLogSizeBytes?: number;
-  /**
-   * This records the earliest start date and time that restore is available for this database (ISO8601 format).
-   */
-  readonly earliestRestoreDate?: Date;
-  /**
-   * If enabled, connections that have application intent set to readonly in their connection string may be routed to a readonly secondary replica. This property is only settable for Premium and Business Critical databases.
-   */
-  readScale?: DatabaseReadScale;
-  /**
-   * The number of readonly secondary replicas associated with the database to which readonly application intent connections may be routed. This property is only settable for Hyperscale edition databases.
-   */
-  readReplicaCount?: number;
-  /**
-   * The name and tier of the SKU.
-   */
-  readonly currentSku?: Sku;
-  /**
-   * Time in minutes after which database is automatically paused. A value of -1 means that automatic pause is disabled
-   */
-  autoPauseDelay?: number;
-  /**
-   * Minimal capacity that database will always have allocated, if not paused
-   */
-  minCapacity?: number;
-  /**
-   * The date when database was paused by user configuration or action (ISO8601 format). Null if the database is ready.
-   */
-  readonly pausedDate?: Date;
-  /**
-   * The date when database was resumed by user action or database login (ISO8601 format). Null if the database is paused.
-   */
-  readonly resumedDate?: Date;
-};
 
 /**
  * A database resource.
@@ -4176,51 +1819,6 @@ export interface ElasticPoolListResult {
 }
 
 /**
- * An elastic pool.
- */
-export type ElasticPool = TrackedResource & {
-  /**
-   * The elastic pool SKU.
-   *
-   * The list of SKUs may vary by region and support offer. To determine the SKUs (including the SKU name, tier/edition, family, and capacity) that are available to your subscription in an Azure region, use the `Capabilities_ListByLocation` REST API or the following command:
-   *
-   * ```azurecli
-   * az sql elastic-pool list-editions -l <location> -o table
-   * ````
-   *
-   */
-  sku?: Sku;
-  /**
-   * Kind of elastic pool. This is metadata used for the Azure portal experience.
-   */
-  readonly kind?: string;
-  /**
-   * The state of the elastic pool.
-   */
-  readonly state?: ElasticPoolState;
-  /**
-   * The creation date of the elastic pool (ISO8601 format).
-   */
-  readonly creationDate?: Date;
-  /**
-   * The storage limit for the database elastic pool in bytes.
-   */
-  maxSizeBytes?: number;
-  /**
-   * The per database settings for the elastic pool.
-   */
-  perDatabaseSettings?: ElasticPoolPerDatabaseSettings;
-  /**
-   * Whether or not this elastic pool is zone redundant, which means the replicas of this elastic pool will be spread across multiple availability zones.
-   */
-  zoneRedundant?: boolean;
-  /**
-   * The license type to apply for this elastic pool.
-   */
-  licenseType?: ElasticPoolLicenseType;
-};
-
-/**
  * Per database settings of an elastic pool.
  */
 export interface ElasticPoolPerDatabaseSettings {
@@ -4279,44 +1877,6 @@ export interface VulnerabilityAssessmentScanRecordListResult {
 }
 
 /**
- * A vulnerability assessment scan record.
- */
-export type VulnerabilityAssessmentScanRecord = Resource & {
-  /**
-   * The scan ID.
-   */
-  readonly scanId?: string;
-  /**
-   * The scan trigger type.
-   */
-  readonly triggerType?: VulnerabilityAssessmentScanTriggerType;
-  /**
-   * The scan status.
-   */
-  readonly state?: VulnerabilityAssessmentScanState;
-  /**
-   * The scan start time (UTC).
-   */
-  readonly startTime?: Date;
-  /**
-   * The scan end time (UTC).
-   */
-  readonly endTime?: Date;
-  /**
-   * The scan errors.
-   */
-  readonly errors?: VulnerabilityAssessmentScanError[];
-  /**
-   * The scan results storage container path.
-   */
-  readonly storageContainerPath?: string;
-  /**
-   * The number of failed security checks.
-   */
-  readonly numberOfFailedSecurityChecks?: number;
-};
-
-/**
  * Properties of a vulnerability assessment scan error.
  */
 export interface VulnerabilityAssessmentScanError {
@@ -4329,46 +1889,6 @@ export interface VulnerabilityAssessmentScanError {
    */
   readonly message?: string;
 }
-
-/**
- * A database Vulnerability Assessment scan export resource.
- */
-export type DatabaseVulnerabilityAssessmentScansExport = Resource & {
-  /**
-   * Location of the exported report (e.g. https://myStorage.blob.core.windows.net/VaScans/scans/serverName/databaseName/scan_scanId.xlsx).
-   */
-  readonly exportedReportLocation?: string;
-};
-
-/**
- * An instance failover group.
- */
-export type InstanceFailoverGroup = Resource & {
-  /**
-   * Read-write endpoint of the failover group instance.
-   */
-  readWriteEndpoint?: InstanceFailoverGroupReadWriteEndpoint;
-  /**
-   * Read-only endpoint of the failover group instance.
-   */
-  readOnlyEndpoint?: InstanceFailoverGroupReadOnlyEndpoint;
-  /**
-   * Local replication role of the failover group instance.
-   */
-  readonly replicationRole?: InstanceFailoverGroupReplicationRole;
-  /**
-   * Replication state of the failover group instance.
-   */
-  readonly replicationState?: string;
-  /**
-   * Partner region information for the failover group.
-   */
-  partnerRegions?: PartnerRegionInfo[];
-  /**
-   * List of managed instance pairs in the failover group.
-   */
-  managedInstancePairs?: ManagedInstancePairInfo[];
-};
 
 /**
  * Read-write endpoint of the failover group instance.
@@ -4437,16 +1957,6 @@ export interface InstanceFailoverGroupListResult {
 }
 
 /**
- * A short term retention policy.
- */
-export type BackupShortTermRetentionPolicy = Resource & {
-  /**
-   * The backup retention period in days. This is how many days Point-in-Time Restore will be supported.
-   */
-  retentionDays?: number;
-};
-
-/**
  * A list of short term retention policies.
  */
 export interface BackupShortTermRetentionPolicyListResult {
@@ -4459,20 +1969,6 @@ export interface BackupShortTermRetentionPolicyListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * A TDE certificate that can be uploaded into a server.
- */
-export type TdeCertificate = Resource & {
-  /**
-   * The base64 encoded certificate private blob.
-   */
-  privateBlob?: string;
-  /**
-   * The certificate password.
-   */
-  certPassword?: string;
-};
 
 /**
  * A list of managed instance keys.
@@ -4489,32 +1985,6 @@ export interface ManagedInstanceKeyListResult {
 }
 
 /**
- * A managed instance key.
- */
-export type ManagedInstanceKey = Resource & {
-  /**
-   * Kind of encryption protector. This is metadata used for the Azure portal experience.
-   */
-  readonly kind?: string;
-  /**
-   * The key type like 'ServiceManaged', 'AzureKeyVault'.
-   */
-  serverKeyType?: ServerKeyType;
-  /**
-   * The URI of the key. If the ServerKeyType is AzureKeyVault, then the URI is required.
-   */
-  uri?: string;
-  /**
-   * Thumbprint of the key.
-   */
-  readonly thumbprint?: string;
-  /**
-   * The key creation date.
-   */
-  readonly creationDate?: Date;
-};
-
-/**
  * A list of managed instance encryption protectors.
  */
 export interface ManagedInstanceEncryptionProtectorListResult {
@@ -4527,32 +1997,6 @@ export interface ManagedInstanceEncryptionProtectorListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * The managed instance encryption protector.
- */
-export type ManagedInstanceEncryptionProtector = Resource & {
-  /**
-   * Kind of encryption protector. This is metadata used for the Azure portal experience.
-   */
-  readonly kind?: string;
-  /**
-   * The name of the managed instance key.
-   */
-  serverKeyName?: string;
-  /**
-   * The encryption protector type like 'ServiceManaged', 'AzureKeyVault'.
-   */
-  serverKeyType?: ServerKeyType;
-  /**
-   * The URI of the server key.
-   */
-  readonly uri?: string;
-  /**
-   * Thumbprint of the server key.
-   */
-  readonly thumbprint?: string;
-};
 
 /**
  * A list of recoverable managed databases.
@@ -4569,38 +2013,6 @@ export interface RecoverableManagedDatabaseListResult {
 }
 
 /**
- * A recoverable managed database resource.
- */
-export type RecoverableManagedDatabase = Resource & {
-  /**
-   * The last available backup date.
-   */
-  readonly lastAvailableBackupDate?: string;
-};
-
-/**
- * A managed instance vulnerability assessment.
- */
-export type ManagedInstanceVulnerabilityAssessment = Resource & {
-  /**
-   * A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/).
-   */
-  storageContainerPath?: string;
-  /**
-   * A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required.
-   */
-  storageContainerSasKey?: string;
-  /**
-   * Specifies the identifier key of the storage account for vulnerability assessment scan results. If 'StorageContainerSasKey' isn't specified, storageAccountAccessKey is required.
-   */
-  storageAccountAccessKey?: string;
-  /**
-   * The recurring scans settings
-   */
-  recurringScans?: VulnerabilityAssessmentRecurringScansProperties;
-};
-
-/**
  * A list of the ManagedInstance's vulnerability assessments.
  */
 export interface ManagedInstanceVulnerabilityAssessmentListResult {
@@ -4615,28 +2027,6 @@ export interface ManagedInstanceVulnerabilityAssessmentListResult {
 }
 
 /**
- * A server vulnerability assessment.
- */
-export type ServerVulnerabilityAssessment = Resource & {
-  /**
-   * A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/).
-   */
-  storageContainerPath?: string;
-  /**
-   * A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required.
-   */
-  storageContainerSasKey?: string;
-  /**
-   * Specifies the identifier key of the storage account for vulnerability assessment scan results. If 'StorageContainerSasKey' isn't specified, storageAccountAccessKey is required.
-   */
-  storageAccountAccessKey?: string;
-  /**
-   * The recurring scans settings
-   */
-  recurringScans?: VulnerabilityAssessmentRecurringScansProperties;
-};
-
-/**
  * A list of the server's vulnerability assessments.
  */
 export interface ServerVulnerabilityAssessmentListResult {
@@ -4649,28 +2039,6 @@ export interface ServerVulnerabilityAssessmentListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * An Azure SQL instance pool.
- */
-export type InstancePool = TrackedResource & {
-  /**
-   * The name and tier of the SKU.
-   */
-  sku?: Sku;
-  /**
-   * Resource ID of the subnet to place this instance pool in.
-   */
-  subnetId?: string;
-  /**
-   * Count of vCores belonging to this instance pool.
-   */
-  vCores?: number;
-  /**
-   * The license type. Possible values are 'LicenseIncluded' (price for SQL license is included) and 'BasePrice' (without SQL license price).
-   */
-  licenseType?: InstancePoolLicenseType;
-};
 
 /**
  * An update to an Instance pool.
@@ -4773,105 +2141,6 @@ export interface ManagedInstanceListResult {
 }
 
 /**
- * An Azure SQL managed instance.
- */
-export type ManagedInstance = TrackedResource & {
-  /**
-   * The Azure Active Directory identity of the managed instance.
-   */
-  identity?: ResourceIdentity;
-  /**
-   * Managed instance SKU. Allowed values for sku.name: GP_Gen4, GP_Gen5, BC_Gen4, BC_Gen5
-   */
-  sku?: Sku;
-  /**
-   * Specifies the mode of database creation.
-   *
-   * Default: Regular instance creation.
-   *
-   * Restore: Creates an instance by restoring a set of backups to specific point in time. RestorePointInTime and SourceManagedInstanceId must be specified.
-   */
-  managedInstanceCreateMode?: ManagedServerCreateMode;
-  /**
-   * The fully qualified domain name of the managed instance.
-   */
-  readonly fullyQualifiedDomainName?: string;
-  /**
-   * Administrator username for the managed instance. Can only be specified when the managed instance is being created (and is required for creation).
-   */
-  administratorLogin?: string;
-  /**
-   * The administrator login password (required for managed instance creation).
-   */
-  administratorLoginPassword?: string;
-  /**
-   * Subnet resource ID for the managed instance.
-   */
-  subnetId?: string;
-  /**
-   * The state of the managed instance.
-   */
-  readonly state?: string;
-  /**
-   * The license type. Possible values are 'LicenseIncluded' (regular price inclusive of a new SQL license) and 'BasePrice' (discounted AHB price for bringing your own SQL licenses).
-   */
-  licenseType?: ManagedInstanceLicenseType;
-  /**
-   * The number of vCores. Allowed values: 8, 16, 24, 32, 40, 64, 80.
-   */
-  vCores?: number;
-  /**
-   * Storage size in GB. Minimum value: 32. Maximum value: 8192. Increments of 32 GB allowed only.
-   */
-  storageSizeInGB?: number;
-  /**
-   * Collation of the managed instance.
-   */
-  collation?: string;
-  /**
-   * The Dns Zone that the managed instance is in.
-   */
-  readonly dnsZone?: string;
-  /**
-   * The resource id of another managed instance whose DNS zone this managed instance will share after creation.
-   */
-  dnsZonePartner?: string;
-  /**
-   * Whether or not the public data endpoint is enabled.
-   */
-  publicDataEndpointEnabled?: boolean;
-  /**
-   * The resource identifier of the source managed instance associated with create operation of this instance.
-   */
-  sourceManagedInstanceId?: string;
-  /**
-   * Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database.
-   */
-  restorePointInTime?: Date;
-  /**
-   * Connection type used for connecting to the instance.
-   */
-  proxyOverride?: ManagedInstanceProxyOverride;
-  /**
-   * Id of the timezone. Allowed values are timezones supported by Windows.
-   * Windows keeps details on supported timezones, including the id, in registry under
-   * KEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Time Zones.
-   * You can get those registry values via SQL Server by querying SELECT name AS timezone_id FROM sys.time_zone_info.
-   * List of Ids can also be obtained by executing [System.TimeZoneInfo]::GetSystemTimeZones() in PowerShell.
-   * An example of valid timezone id is "Pacific Standard Time" or "W. Europe Standard Time".
-   */
-  timezoneId?: string;
-  /**
-   * The Id of the instance pool this managed server belongs to.
-   */
-  instancePoolId?: string;
-  /**
-   * Minimal TLS version. Allowed values: 'None', '1.0', '1.1', '1.2'
-   */
-  minimalTlsVersion?: string;
-};
-
-/**
  * Azure Active Directory identity configuration for a resource.
  */
 export interface ResourceIdentity {
@@ -4882,7 +2151,7 @@ export interface ResourceIdentity {
   /**
    * The identity type. Set this to 'SystemAssigned' in order to automatically create and assign an Azure Active Directory principal for the resource.
    */
-  type?: "SystemAssigned";
+  type?: IdentityType;
   /**
    * The Azure Active Directory tenant id.
    */
@@ -4988,24 +2257,6 @@ export interface ManagedInstanceUpdate {
   minimalTlsVersion?: string;
 }
 
-/**
- * A private endpoint connection
- */
-export type PrivateEndpointConnection = Resource & {
-  /**
-   * Private endpoint which the connection belongs to.
-   */
-  privateEndpoint?: PrivateEndpointProperty;
-  /**
-   * Connection state of the private endpoint connection.
-   */
-  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionStateProperty;
-  /**
-   * State of the private endpoint connection.
-   */
-  readonly provisioningState?: string;
-};
-
 export interface PrivateEndpointProperty {
   /**
    * Resource id of the private endpoint.
@@ -5057,16 +2308,6 @@ export interface PrivateLinkResourceListResult {
 }
 
 /**
- * A private link resource
- */
-export type PrivateLinkResource = Resource & {
-  /**
-   * The private link resource group id.
-   */
-  readonly properties?: PrivateLinkResourceProperties;
-};
-
-/**
  * Properties of a private link resource.
  */
 export interface PrivateLinkResourceProperties {
@@ -5093,52 +2334,6 @@ export interface ServerListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * An Azure SQL Database server.
- */
-export type Server = TrackedResource & {
-  /**
-   * The Azure Active Directory identity of the server.
-   */
-  identity?: ResourceIdentity;
-  /**
-   * Kind of sql server. This is metadata used for the Azure portal experience.
-   */
-  readonly kind?: string;
-  /**
-   * Administrator username for the server. Once created it cannot be changed.
-   */
-  administratorLogin?: string;
-  /**
-   * The administrator login password (required for server creation).
-   */
-  administratorLoginPassword?: string;
-  /**
-   * The version of the server.
-   */
-  version?: string;
-  /**
-   * The state of the server.
-   */
-  readonly state?: string;
-  /**
-   * The fully qualified domain name of the server.
-   */
-  readonly fullyQualifiedDomainName?: string;
-  /**
-   * List of private endpoint connections on a server
-   */
-  readonly privateEndpointConnections?: ServerPrivateEndpointConnection[];
-  /**
-   * Minimal TLS version. Allowed values: '1.0', '1.1', '1.2'
-   */
-  minimalTlsVersion?: string;
-  /**
-   * Whether or not public endpoint access is allowed for this server.  Value is optional but if passed in, must be 'Enabled' or 'Disabled'
-   */
-  publicNetworkAccess?: ServerPublicNetworkAccess;
-};
 
 /**
  * A private endpoint connection under a server
@@ -5184,7 +2379,7 @@ export interface PrivateLinkServiceConnectionStatePropertyAutoGenerated {
   /**
    * The actions required for private link service connection.
    */
-  readonly actionsRequired?: "None";
+  readonly actionsRequired?: PrivateLinkServiceConnectionStateActionsRequire;
 }
 
 /**
@@ -5516,7 +2711,7 @@ export interface AutoPauseDelayTimeRange {
   /**
    * Unit of time that delay is expressed in
    */
-  readonly unit?: "Minutes";
+  readonly unit?: PauseDelayTimeUnit;
   /**
    * Value that is used to not pause (infinite delay before pause)
    */
@@ -5892,36 +3087,6 @@ export interface InstancePoolVcoresCapability {
 }
 
 /**
- * A long term retention backup for a managed database.
- */
-export type ManagedInstanceLongTermRetentionBackup = Resource & {
-  /**
-   * The managed instance that the backup database belongs to.
-   */
-  readonly managedInstanceName?: string;
-  /**
-   * The create time of the instance.
-   */
-  readonly managedInstanceCreateTime?: Date;
-  /**
-   * The name of the database the backup belong to
-   */
-  readonly databaseName?: string;
-  /**
-   * The delete time of the database
-   */
-  readonly databaseDeletionTime?: Date;
-  /**
-   * The time the backup was taken
-   */
-  readonly backupTime?: Date;
-  /**
-   * The time the long term retention backup will expire.
-   */
-  readonly backupExpirationTime?: Date;
-};
-
-/**
  * A list of long term retention backups for managed database(s).
  */
 export interface ManagedInstanceLongTermRetentionBackupListResult {
@@ -5934,28 +3099,6 @@ export interface ManagedInstanceLongTermRetentionBackupListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * A long term retention policy.
- */
-export type ManagedInstanceLongTermRetentionPolicy = Resource & {
-  /**
-   * The weekly retention policy for an LTR backup in an ISO 8601 format.
-   */
-  weeklyRetention?: string;
-  /**
-   * The monthly retention policy for an LTR backup in an ISO 8601 format.
-   */
-  monthlyRetention?: string;
-  /**
-   * The yearly retention policy for an LTR backup in an ISO 8601 format.
-   */
-  yearlyRetention?: string;
-  /**
-   * The week of year to take the yearly backup in an ISO 8601 format.
-   */
-  weekOfYear?: number;
-};
 
 /**
  * A list of long term retention policies.
@@ -5972,36 +3115,6 @@ export interface ManagedInstanceLongTermRetentionPolicyListResult {
 }
 
 /**
- * Workload group operations for a data warehouse
- */
-export type WorkloadGroup = Resource & {
-  /**
-   * The workload group minimum percentage resource.
-   */
-  minResourcePercent?: number;
-  /**
-   * The workload group cap percentage resource.
-   */
-  maxResourcePercent?: number;
-  /**
-   * The workload group request minimum grant percentage.
-   */
-  minResourcePercentPerRequest?: number;
-  /**
-   * The workload group request maximum grant percentage.
-   */
-  maxResourcePercentPerRequest?: number;
-  /**
-   * The workload group importance level.
-   */
-  importance?: string;
-  /**
-   * The workload group query execution timeout.
-   */
-  queryExecutionTimeout?: number;
-};
-
-/**
  * A list of workload groups.
  */
 export interface WorkloadGroupListResult {
@@ -6014,36 +3127,6 @@ export interface WorkloadGroupListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * Workload classifier operations for a data warehouse
- */
-export type WorkloadClassifier = Resource & {
-  /**
-   * The workload classifier member name.
-   */
-  memberName?: string;
-  /**
-   * The workload classifier label.
-   */
-  label?: string;
-  /**
-   * The workload classifier context.
-   */
-  context?: string;
-  /**
-   * The workload classifier start time for classification.
-   */
-  startTime?: string;
-  /**
-   * The workload classifier end time for classification.
-   */
-  endTime?: string;
-  /**
-   * The workload classifier importance.
-   */
-  importance?: string;
-};
 
 /**
  * A list of workload classifiers for a workload group.
@@ -6060,52 +3143,6 @@ export interface WorkloadClassifierListResult {
 }
 
 /**
- * A managed database restore details.
- */
-export type ManagedDatabaseRestoreDetailsResult = Resource & {
-  /**
-   * Restore status.
-   */
-  readonly status?: string;
-  /**
-   * Current restoring file name.
-   */
-  readonly currentRestoringFileName?: string;
-  /**
-   * Last restored file name.
-   */
-  readonly lastRestoredFileName?: string;
-  /**
-   * Last restored file time.
-   */
-  readonly lastRestoredFileTime?: Date;
-  /**
-   * Percent completed.
-   */
-  readonly percentCompleted?: number;
-  /**
-   * List of unrestorable files.
-   */
-  readonly unrestorableFiles?: string[];
-  /**
-   * Number of files detected.
-   */
-  readonly numberOfFilesDetected?: number;
-  /**
-   * Last uploaded file name.
-   */
-  readonly lastUploadedFileName?: string;
-  /**
-   * Last uploaded file time.
-   */
-  readonly lastUploadedFileTime?: Date;
-  /**
-   * The reason why restore is in Blocked state.
-   */
-  readonly blockReason?: string;
-};
-
-/**
  * A list of managed databases.
  */
 export interface ManagedDatabaseListResult {
@@ -6118,72 +3155,6 @@ export interface ManagedDatabaseListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * A managed database resource.
- */
-export type ManagedDatabase = TrackedResource & {
-  /**
-   * Collation of the managed database.
-   */
-  collation?: string;
-  /**
-   * Status of the database.
-   */
-  readonly status?: ManagedDatabaseStatus;
-  /**
-   * Creation date of the database.
-   */
-  readonly creationDate?: Date;
-  /**
-   * Earliest restore point in time for point in time restore.
-   */
-  readonly earliestRestorePoint?: Date;
-  /**
-   * Conditional. If createMode is PointInTimeRestore, this value is required. Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database.
-   */
-  restorePointInTime?: Date;
-  /**
-   * Geo paired region.
-   */
-  readonly defaultSecondaryLocation?: string;
-  /**
-   * Collation of the metadata catalog.
-   */
-  catalogCollation?: CatalogCollationType;
-  /**
-   * Managed database create mode. PointInTimeRestore: Create a database by restoring a point in time backup of an existing database. SourceDatabaseName, SourceManagedInstanceName and PointInTime must be specified. RestoreExternalBackup: Create a database by restoring from external backup files. Collation, StorageContainerUri and StorageContainerSasToken must be specified. Recovery: Creates a database by restoring a geo-replicated backup. RecoverableDatabaseId must be specified as the recoverable database resource ID to restore.
-   */
-  createMode?: ManagedDatabaseCreateMode;
-  /**
-   * Conditional. If createMode is RestoreExternalBackup, this value is required. Specifies the uri of the storage container where backups for this restore are stored.
-   */
-  storageContainerUri?: string;
-  /**
-   * The resource identifier of the source database associated with create operation of this database.
-   */
-  sourceDatabaseId?: string;
-  /**
-   * The restorable dropped database resource id to restore when creating this database.
-   */
-  restorableDroppedDatabaseId?: string;
-  /**
-   * Conditional. If createMode is RestoreExternalBackup, this value is required. Specifies the storage container sas token.
-   */
-  storageContainerSasToken?: string;
-  /**
-   * Instance Failover Group resource identifier that this managed database belongs to.
-   */
-  readonly failoverGroupId?: string;
-  /**
-   * The resource identifier of the recoverable database associated with create operation of this database.
-   */
-  recoverableDatabaseId?: string;
-  /**
-   * The name of the Long Term Retention backup to be used for restore of this managed database.
-   */
-  longTermRetentionBackupResourceId?: string;
-};
 
 /**
  * An managed database update.
@@ -6266,32 +3237,6 @@ export interface CompleteDatabaseRestoreDefinition {
 }
 
 /**
- * Azure Active Directory administrator.
- */
-export type ServerAzureADAdministrator = Resource & {
-  /**
-   * Type of the sever administrator.
-   */
-  administratorType?: "ActiveDirectory";
-  /**
-   * Login name of the server administrator.
-   */
-  login?: string;
-  /**
-   * SID (object ID) of the server administrator.
-   */
-  sid?: string;
-  /**
-   * Tenant ID of the administrator.
-   */
-  tenantId?: string;
-  /**
-   * Azure Active Directory only Authentication enabled.
-   */
-  azureADOnlyAuthentication?: boolean;
-};
-
-/**
  * A list of active directory administrators.
  */
 export interface AdministratorListResult {
@@ -6318,6 +3263,2535 @@ export interface ManagedInstanceOperationListResult {
    */
   readonly nextLink?: string;
 }
+
+/**
+ * The impact of an operation, both in absolute and relative terms.
+ */
+export interface OperationImpact {
+  /**
+   * The name of the impact dimension.
+   */
+  readonly name?: string;
+  /**
+   * The unit in which estimated impact to dimension is measured.
+   */
+  readonly unit?: string;
+  /**
+   * The absolute impact to dimension.
+   */
+  readonly changeValueAbsolute?: number;
+  /**
+   * The relative impact to dimension (null if not applicable)
+   */
+  readonly changeValueRelative?: number;
+}
+
+/**
+ * A recoverable database
+ */
+export type RecoverableDatabase = Resource & {
+  /**
+   * The edition of the database
+   */
+  readonly edition?: string;
+  /**
+   * The service level objective name of the database
+   */
+  readonly serviceLevelObjective?: string;
+  /**
+   * The elastic pool name of the database
+   */
+  readonly elasticPoolName?: string;
+  /**
+   * The last available backup date of the database (ISO8601 format)
+   */
+  readonly lastAvailableBackupDate?: Date;
+};
+
+/**
+ * A restorable dropped database
+ */
+export type RestorableDroppedDatabase = Resource & {
+  /**
+   * The geo-location where the resource lives
+   */
+  readonly location?: string;
+  /**
+   * The name of the database
+   */
+  readonly databaseName?: string;
+  /**
+   * The edition of the database
+   */
+  readonly edition?: string;
+  /**
+   * The max size in bytes of the database
+   */
+  readonly maxSizeBytes?: string;
+  /**
+   * The service level objective name of the database
+   */
+  readonly serviceLevelObjective?: string;
+  /**
+   * The elastic pool name of the database
+   */
+  readonly elasticPoolName?: string;
+  /**
+   * The creation date of the database (ISO8601 format)
+   */
+  readonly creationDate?: Date;
+  /**
+   * The deletion date of the database (ISO8601 format)
+   */
+  readonly deletionDate?: Date;
+  /**
+   * The earliest restore date of the database (ISO8601 format)
+   */
+  readonly earliestRestoreDate?: Date;
+};
+
+/**
+ * A server secure connection policy.
+ */
+export type ServerConnectionPolicy = Resource & {
+  /**
+   * Metadata used for the Azure portal experience.
+   */
+  readonly kind?: string;
+  /**
+   * Resource location.
+   */
+  readonly location?: string;
+  /**
+   * The server connection type.
+   */
+  connectionType?: ServerConnectionType;
+};
+
+/**
+ * Contains information about a database Threat Detection policy.
+ */
+export type DatabaseSecurityAlertPolicy = Resource & {
+  /**
+   * The geo-location where the resource lives
+   */
+  location?: string;
+  /**
+   * Resource kind.
+   */
+  readonly kind?: string;
+  /**
+   * Specifies the state of the policy. If state is Enabled, storageEndpoint and storageAccountAccessKey are required.
+   */
+  state?: SecurityAlertPolicyState;
+  /**
+   * Specifies the semicolon-separated list of alerts that are disabled, or empty string to disable no alerts. Possible values: Sql_Injection; Sql_Injection_Vulnerability; Access_Anomaly; Data_Exfiltration; Unsafe_Action.
+   */
+  disabledAlerts?: string;
+  /**
+   * Specifies the semicolon-separated list of e-mail addresses to which the alert is sent.
+   */
+  emailAddresses?: string;
+  /**
+   * Specifies that the alert is sent to the account administrators.
+   */
+  emailAccountAdmins?: SecurityAlertPolicyEmailAccountAdmins;
+  /**
+   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs. If state is Enabled, storageEndpoint is required.
+   */
+  storageEndpoint?: string;
+  /**
+   * Specifies the identifier key of the Threat Detection audit storage account. If state is Enabled, storageAccountAccessKey is required.
+   */
+  storageAccountAccessKey?: string;
+  /**
+   * Specifies the number of days to keep in the Threat Detection audit logs.
+   */
+  retentionDays?: number;
+  /**
+   * Specifies whether to use the default server policy.
+   */
+  useServerDefault?: SecurityAlertPolicyUseServerDefault;
+};
+
+/**
+ * Represents a database data masking policy.
+ */
+export type DataMaskingPolicy = Resource & {
+  /**
+   * The location of the data masking policy.
+   */
+  readonly location?: string;
+  /**
+   * The kind of data masking policy. Metadata, used for Azure portal.
+   */
+  readonly kind?: string;
+  /**
+   * The state of the data masking policy.
+   */
+  dataMaskingState?: DataMaskingState;
+  /**
+   * The list of the exempt principals. Specifies the semicolon-separated list of database users for which the data masking policy does not apply. The specified users receive data results without masking for all of the database queries.
+   */
+  exemptPrincipals?: string;
+  /**
+   * The list of the application principals. This is a legacy parameter and is no longer used.
+   */
+  readonly applicationPrincipals?: string;
+  /**
+   * The masking level. This is a legacy parameter and is no longer used.
+   */
+  readonly maskingLevel?: string;
+};
+
+/**
+ * Represents a database data masking rule.
+ */
+export type DataMaskingRule = Resource & {
+  /**
+   * The location of the data masking rule.
+   */
+  readonly location?: string;
+  /**
+   * The kind of Data Masking Rule. Metadata, used for Azure portal.
+   */
+  readonly kind?: string;
+  /**
+   * The rule Id.
+   */
+  readonly idPropertiesId?: string;
+  /**
+   * The alias name. This is a legacy parameter and is no longer used.
+   */
+  aliasName?: string;
+  /**
+   * The rule state. Used to delete a rule. To delete an existing rule, specify the schemaName, tableName, columnName, maskingFunction, and specify ruleState as disabled. However, if the rule doesn't already exist, the rule will be created with ruleState set to enabled, regardless of the provided value of ruleState.
+   */
+  ruleState?: DataMaskingRuleState;
+  /**
+   * The schema name on which the data masking rule is applied.
+   */
+  schemaName?: string;
+  /**
+   * The table name on which the data masking rule is applied.
+   */
+  tableName?: string;
+  /**
+   * The column name on which the data masking rule is applied.
+   */
+  columnName?: string;
+  /**
+   * The masking function that is used for the data masking rule.
+   */
+  maskingFunction?: DataMaskingFunction;
+  /**
+   * The numberFrom property of the masking rule. Required if maskingFunction is set to Number, otherwise this parameter will be ignored.
+   */
+  numberFrom?: string;
+  /**
+   * The numberTo property of the data masking rule. Required if maskingFunction is set to Number, otherwise this parameter will be ignored.
+   */
+  numberTo?: string;
+  /**
+   * If maskingFunction is set to Text, the number of characters to show unmasked in the beginning of the string. Otherwise, this parameter will be ignored.
+   */
+  prefixSize?: string;
+  /**
+   * If maskingFunction is set to Text, the number of characters to show unmasked at the end of the string. Otherwise, this parameter will be ignored.
+   */
+  suffixSize?: string;
+  /**
+   * If maskingFunction is set to Text, the character to use for masking the unexposed part of the string. Otherwise, this parameter will be ignored.
+   */
+  replacementString?: string;
+};
+
+/**
+ * Represents a server firewall rule.
+ */
+export type FirewallRule = Resource & {
+  /**
+   * Kind of server that contains this firewall rule.
+   */
+  readonly kind?: string;
+  /**
+   * Location of the server that contains this firewall rule.
+   */
+  readonly location?: string;
+  /**
+   * The start IP address of the firewall rule. Must be IPv4 format. Use value '0.0.0.0' to represent all Azure-internal IP addresses.
+   */
+  startIpAddress?: string;
+  /**
+   * The end IP address of the firewall rule. Must be IPv4 format. Must be greater than or equal to startIpAddress. Use value '0.0.0.0' to represent all Azure-internal IP addresses.
+   */
+  endIpAddress?: string;
+};
+
+/**
+ * A database geo backup policy.
+ */
+export type GeoBackupPolicy = Resource & {
+  /**
+   * Kind of geo backup policy.  This is metadata used for the Azure portal experience.
+   */
+  readonly kind?: string;
+  /**
+   * Backup policy location.
+   */
+  readonly location?: string;
+  /**
+   * The state of the geo backup policy.
+   */
+  state: GeoBackupPolicyState;
+  /**
+   * The storage type of the geo backup policy.
+   */
+  readonly storageType?: string;
+};
+
+/**
+ * Response for Import/Export Get operation.
+ */
+export type ImportExportResponse = Resource & {
+  /**
+   * The request type of the operation.
+   */
+  readonly requestType?: string;
+  /**
+   * The request type of the operation.
+   */
+  readonly requestId?: string;
+  /**
+   * The name of the server.
+   */
+  readonly serverName?: string;
+  /**
+   * The name of the database.
+   */
+  readonly databaseName?: string;
+  /**
+   * The status message returned from the server.
+   */
+  readonly status?: string;
+  /**
+   * The operation status last modified time.
+   */
+  readonly lastModifiedTime?: string;
+  /**
+   * The operation queued time.
+   */
+  readonly queuedTime?: string;
+  /**
+   * The blob uri.
+   */
+  readonly blobUri?: string;
+  /**
+   * The error message returned from the server.
+   */
+  readonly errorMessage?: string;
+};
+
+/**
+ * ARM tracked top level resource.
+ */
+export type TrackedResource = Resource & {
+  /**
+   * Resource location.
+   */
+  location: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+};
+
+/**
+ * Represents a recommended elastic pool.
+ */
+export type RecommendedElasticPool = Resource & {
+  /**
+   * The edition of the recommended elastic pool. The ElasticPoolEdition enumeration contains all the valid editions.
+   */
+  readonly databaseEdition?: ElasticPoolEdition;
+  /**
+   * The DTU for the recommended elastic pool.
+   */
+  dtu?: number;
+  /**
+   * The minimum DTU for the database.
+   */
+  databaseDtuMin?: number;
+  /**
+   * The maximum DTU for the database.
+   */
+  databaseDtuMax?: number;
+  /**
+   * Gets storage size in megabytes.
+   */
+  storageMB?: number;
+  /**
+   * The observation period start (ISO8601 format).
+   */
+  readonly observationPeriodStart?: Date;
+  /**
+   * The observation period start (ISO8601 format).
+   */
+  readonly observationPeriodEnd?: Date;
+  /**
+   * Gets maximum observed DTU.
+   */
+  readonly maxObservedDtu?: number;
+  /**
+   * Gets maximum observed storage in megabytes.
+   */
+  readonly maxObservedStorageMB?: number;
+  /**
+   * The list of databases in this pool. Expanded property
+   */
+  readonly databases?: TrackedResource[];
+  /**
+   * The list of databases housed in the server. Expanded property
+   */
+  readonly metrics?: RecommendedElasticPoolMetric[];
+};
+
+/**
+ * Represents a database replication link.
+ */
+export type ReplicationLink = Resource & {
+  /**
+   * Location of the server that contains this firewall rule.
+   */
+  readonly location?: string;
+  /**
+   * Legacy value indicating whether termination is allowed.  Currently always returns true.
+   */
+  readonly isTerminationAllowed?: boolean;
+  /**
+   * Replication mode of this replication link.
+   */
+  readonly replicationMode?: string;
+  /**
+   * The name of the server hosting the partner database.
+   */
+  readonly partnerServer?: string;
+  /**
+   * The name of the partner database.
+   */
+  readonly partnerDatabase?: string;
+  /**
+   * The Azure Region of the partner database.
+   */
+  readonly partnerLocation?: string;
+  /**
+   * The role of the database in the replication link.
+   */
+  readonly role?: ReplicationRole;
+  /**
+   * The role of the partner database in the replication link.
+   */
+  readonly partnerRole?: ReplicationRole;
+  /**
+   * The start time for the replication link.
+   */
+  readonly startTime?: Date;
+  /**
+   * The percentage of seeding complete for the replication link.
+   */
+  readonly percentComplete?: number;
+  /**
+   * The replication state for the replication link.
+   */
+  readonly replicationState?: ReplicationState;
+};
+
+/**
+ * Server communication link.
+ */
+export type ServerCommunicationLink = Resource & {
+  /**
+   * Communication link location.
+   */
+  readonly location?: string;
+  /**
+   * Communication link kind.  This property is used for Azure Portal metadata.
+   */
+  readonly kind?: string;
+  /**
+   * The state.
+   */
+  readonly state?: string;
+  /**
+   * The name of the partner server.
+   */
+  partnerServer?: string;
+};
+
+/**
+ * Represents a database service objective.
+ */
+export type ServiceObjective = Resource & {
+  /**
+   * The name for the service objective.
+   */
+  readonly serviceObjectiveName?: string;
+  /**
+   * Gets whether the service level objective is the default service objective.
+   */
+  readonly isDefault?: boolean;
+  /**
+   * Gets whether the service level objective is a system service objective.
+   */
+  readonly isSystem?: boolean;
+  /**
+   * The description for the service level objective.
+   */
+  readonly description?: string;
+  /**
+   * Gets whether the service level objective is enabled.
+   */
+  readonly enabled?: boolean;
+};
+
+/**
+ * Represents the activity on an elastic pool.
+ */
+export type ElasticPoolActivity = Resource & {
+  /**
+   * The geo-location where the resource lives
+   */
+  location?: string;
+  /**
+   * The time the operation finished (ISO8601 format).
+   */
+  readonly endTime?: Date;
+  /**
+   * The error code if available.
+   */
+  readonly errorCode?: number;
+  /**
+   * The error message if available.
+   */
+  readonly errorMessage?: string;
+  /**
+   * The error severity if available.
+   */
+  readonly errorSeverity?: number;
+  /**
+   * The operation name.
+   */
+  readonly operation?: string;
+  /**
+   * The unique operation ID.
+   */
+  readonly operationId?: string;
+  /**
+   * The percentage complete if available.
+   */
+  readonly percentComplete?: number;
+  /**
+   * The requested max DTU per database if available.
+   */
+  readonly requestedDatabaseDtuMax?: number;
+  /**
+   * The requested min DTU per database if available.
+   */
+  readonly requestedDatabaseDtuMin?: number;
+  /**
+   * The requested DTU for the pool if available.
+   */
+  readonly requestedDtu?: number;
+  /**
+   * The requested name for the elastic pool if available.
+   */
+  readonly requestedElasticPoolName?: string;
+  /**
+   * The requested storage limit for the pool in GB if available.
+   */
+  readonly requestedStorageLimitInGB?: number;
+  /**
+   * The name of the elastic pool.
+   */
+  readonly elasticPoolName?: string;
+  /**
+   * The name of the server the elastic pool is in.
+   */
+  readonly serverName?: string;
+  /**
+   * The time the operation started (ISO8601 format).
+   */
+  readonly startTime?: Date;
+  /**
+   * The current state of the operation.
+   */
+  readonly state?: string;
+  /**
+   * The requested storage limit in MB.
+   */
+  readonly requestedStorageLimitInMB?: number;
+  /**
+   * The requested per database DTU guarantee.
+   */
+  readonly requestedDatabaseDtuGuarantee?: number;
+  /**
+   * The requested per database DTU cap.
+   */
+  readonly requestedDatabaseDtuCap?: number;
+  /**
+   * The requested DTU guarantee.
+   */
+  readonly requestedDtuGuarantee?: number;
+};
+
+/**
+ * Represents the activity on an elastic pool.
+ */
+export type ElasticPoolDatabaseActivity = Resource & {
+  /**
+   * The geo-location where the resource lives
+   */
+  location?: string;
+  /**
+   * The database name.
+   */
+  readonly databaseName?: string;
+  /**
+   * The time the operation finished (ISO8601 format).
+   */
+  readonly endTime?: Date;
+  /**
+   * The error code if available.
+   */
+  readonly errorCode?: number;
+  /**
+   * The error message if available.
+   */
+  readonly errorMessage?: string;
+  /**
+   * The error severity if available.
+   */
+  readonly errorSeverity?: number;
+  /**
+   * The operation name.
+   */
+  readonly operation?: string;
+  /**
+   * The unique operation ID.
+   */
+  readonly operationId?: string;
+  /**
+   * The percentage complete if available.
+   */
+  readonly percentComplete?: number;
+  /**
+   * The name for the elastic pool the database is moving into if available.
+   */
+  readonly requestedElasticPoolName?: string;
+  /**
+   * The name of the current elastic pool the database is in if available.
+   */
+  readonly currentElasticPoolName?: string;
+  /**
+   * The name of the current service objective if available.
+   */
+  readonly currentServiceObjective?: string;
+  /**
+   * The name of the requested service objective if available.
+   */
+  readonly requestedServiceObjective?: string;
+  /**
+   * The name of the server the elastic pool is in.
+   */
+  readonly serverName?: string;
+  /**
+   * The time the operation started (ISO8601 format).
+   */
+  readonly startTime?: Date;
+  /**
+   * The current state of the operation.
+   */
+  readonly state?: string;
+};
+
+/**
+ * Represents a Service Tier Advisor.
+ */
+export type ServiceTierAdvisor = Resource & {
+  /**
+   * The observation period start (ISO8601 format).
+   */
+  readonly observationPeriodStart?: Date;
+  /**
+   * The observation period start (ISO8601 format).
+   */
+  readonly observationPeriodEnd?: Date;
+  /**
+   * The activeTimeRatio for service tier advisor.
+   */
+  readonly activeTimeRatio?: number;
+  /**
+   * Gets or sets minDtu for service tier advisor.
+   */
+  readonly minDtu?: number;
+  /**
+   * Gets or sets avgDtu for service tier advisor.
+   */
+  readonly avgDtu?: number;
+  /**
+   * Gets or sets maxDtu for service tier advisor.
+   */
+  readonly maxDtu?: number;
+  /**
+   * Gets or sets maxSizeInGB for service tier advisor.
+   */
+  readonly maxSizeInGB?: number;
+  /**
+   * Gets or sets serviceLevelObjectiveUsageMetrics for the service tier advisor.
+   */
+  readonly serviceLevelObjectiveUsageMetrics?: SloUsageMetric[];
+  /**
+   * Gets or sets currentServiceLevelObjective for service tier advisor.
+   */
+  readonly currentServiceLevelObjective?: string;
+  /**
+   * Gets or sets currentServiceLevelObjectiveId for service tier advisor.
+   */
+  readonly currentServiceLevelObjectiveId?: string;
+  /**
+   * Gets or sets usageBasedRecommendationServiceLevelObjective for service tier advisor.
+   */
+  readonly usageBasedRecommendationServiceLevelObjective?: string;
+  /**
+   * Gets or sets usageBasedRecommendationServiceLevelObjectiveId for service tier advisor.
+   */
+  readonly usageBasedRecommendationServiceLevelObjectiveId?: string;
+  /**
+   * Gets or sets databaseSizeBasedRecommendationServiceLevelObjective for service tier advisor.
+   */
+  readonly databaseSizeBasedRecommendationServiceLevelObjective?: string;
+  /**
+   * Gets or sets databaseSizeBasedRecommendationServiceLevelObjectiveId for service tier advisor.
+   */
+  readonly databaseSizeBasedRecommendationServiceLevelObjectiveId?: string;
+  /**
+   * Gets or sets disasterPlanBasedRecommendationServiceLevelObjective for service tier advisor.
+   */
+  readonly disasterPlanBasedRecommendationServiceLevelObjective?: string;
+  /**
+   * Gets or sets disasterPlanBasedRecommendationServiceLevelObjectiveId for service tier advisor.
+   */
+  readonly disasterPlanBasedRecommendationServiceLevelObjectiveId?: string;
+  /**
+   * Gets or sets overallRecommendationServiceLevelObjective for service tier advisor.
+   */
+  readonly overallRecommendationServiceLevelObjective?: string;
+  /**
+   * Gets or sets overallRecommendationServiceLevelObjectiveId for service tier advisor.
+   */
+  readonly overallRecommendationServiceLevelObjectiveId?: string;
+  /**
+   * Gets or sets confidence for service tier advisor.
+   */
+  readonly confidence?: number;
+};
+
+/**
+ * Represents a database transparent data encryption configuration.
+ */
+export type TransparentDataEncryption = Resource & {
+  /**
+   * Resource location.
+   */
+  readonly location?: string;
+  /**
+   * The status of the database transparent data encryption.
+   */
+  status?: TransparentDataEncryptionStatus;
+};
+
+/**
+ * Represents a database transparent data encryption Scan.
+ */
+export type TransparentDataEncryptionActivity = Resource & {
+  /**
+   * Resource location.
+   */
+  readonly location?: string;
+  /**
+   * The status of the database.
+   */
+  readonly status?: TransparentDataEncryptionActivityStatus;
+  /**
+   * The percent complete of the transparent data encryption scan for a database.
+   */
+  readonly percentComplete?: number;
+};
+
+/**
+ * Database-level Automatic Tuning.
+ */
+export type DatabaseAutomaticTuning = Resource & {
+  /**
+   * Automatic tuning desired state.
+   */
+  desiredState?: AutomaticTuningMode;
+  /**
+   * Automatic tuning actual state.
+   */
+  readonly actualState?: AutomaticTuningMode;
+  /**
+   * Automatic tuning options definition.
+   */
+  options?: { [propertyName: string]: AutomaticTuningOptions };
+};
+
+/**
+ * The server encryption protector.
+ */
+export type EncryptionProtector = Resource & {
+  /**
+   * Kind of encryption protector. This is metadata used for the Azure portal experience.
+   */
+  readonly kind?: string;
+  /**
+   * Resource location.
+   */
+  readonly location?: string;
+  /**
+   * Subregion of the encryption protector.
+   */
+  readonly subregion?: string;
+  /**
+   * The name of the server key.
+   */
+  serverKeyName?: string;
+  /**
+   * The encryption protector type like 'ServiceManaged', 'AzureKeyVault'.
+   */
+  serverKeyType?: ServerKeyType;
+  /**
+   * The URI of the server key.
+   */
+  readonly uri?: string;
+  /**
+   * Thumbprint of the server key.
+   */
+  readonly thumbprint?: string;
+};
+
+/**
+ * A failover group.
+ */
+export type FailoverGroup = Resource & {
+  /**
+   * Resource location.
+   */
+  readonly location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Read-write endpoint of the failover group instance.
+   */
+  readWriteEndpoint?: FailoverGroupReadWriteEndpoint;
+  /**
+   * Read-only endpoint of the failover group instance.
+   */
+  readOnlyEndpoint?: FailoverGroupReadOnlyEndpoint;
+  /**
+   * Local replication role of the failover group instance.
+   */
+  readonly replicationRole?: FailoverGroupReplicationRole;
+  /**
+   * Replication state of the failover group instance.
+   */
+  readonly replicationState?: string;
+  /**
+   * List of partner server information for the failover group.
+   */
+  partnerServers?: PartnerInfo[];
+  /**
+   * List of databases in the failover group.
+   */
+  databases?: string[];
+};
+
+/**
+ * A server key.
+ */
+export type ServerKey = Resource & {
+  /**
+   * Kind of encryption protector. This is metadata used for the Azure portal experience.
+   */
+  kind?: string;
+  /**
+   * Resource location.
+   */
+  readonly location?: string;
+  /**
+   * Subregion of the server key.
+   */
+  readonly subregion?: string;
+  /**
+   * The server key type like 'ServiceManaged', 'AzureKeyVault'.
+   */
+  serverKeyType?: ServerKeyType;
+  /**
+   * The URI of the server key.
+   */
+  uri?: string;
+  /**
+   * Thumbprint of the server key.
+   */
+  thumbprint?: string;
+  /**
+   * The server key creation date.
+   */
+  creationDate?: Date;
+};
+
+/**
+ * An Azure SQL Database sync agent.
+ */
+export type SyncAgent = Resource & {
+  /**
+   * Name of the sync agent.
+   */
+  readonly namePropertiesName?: string;
+  /**
+   * ARM resource id of the sync database in the sync agent.
+   */
+  syncDatabaseId?: string;
+  /**
+   * Last alive time of the sync agent.
+   */
+  readonly lastAliveTime?: Date;
+  /**
+   * State of the sync agent.
+   */
+  readonly state?: SyncAgentState;
+  /**
+   * If the sync agent version is up to date.
+   */
+  readonly isUpToDate?: boolean;
+  /**
+   * Expiration time of the sync agent version.
+   */
+  readonly expiryTime?: Date;
+  /**
+   * Version of the sync agent.
+   */
+  readonly version?: string;
+};
+
+/**
+ * An Azure SQL Database sync agent linked database.
+ */
+export type SyncAgentLinkedDatabase = Resource & {
+  /**
+   * Type of the sync agent linked database.
+   */
+  readonly databaseType?: SyncMemberDbType;
+  /**
+   * Id of the sync agent linked database.
+   */
+  readonly databaseId?: string;
+  /**
+   * Description of the sync agent linked database.
+   */
+  readonly description?: string;
+  /**
+   * Server name of the sync agent linked database.
+   */
+  readonly serverName?: string;
+  /**
+   * Database name of the sync agent linked database.
+   */
+  readonly databaseName?: string;
+  /**
+   * User name of the sync agent linked database.
+   */
+  readonly userName?: string;
+};
+
+/**
+ * An Azure SQL Database sync group.
+ */
+export type SyncGroup = Resource & {
+  /**
+   * Sync interval of the sync group.
+   */
+  interval?: number;
+  /**
+   * Last sync time of the sync group.
+   */
+  readonly lastSyncTime?: Date;
+  /**
+   * Conflict resolution policy of the sync group.
+   */
+  conflictResolutionPolicy?: SyncConflictResolutionPolicy;
+  /**
+   * ARM resource id of the sync database in the sync group.
+   */
+  syncDatabaseId?: string;
+  /**
+   * User name for the sync group hub database credential.
+   */
+  hubDatabaseUserName?: string;
+  /**
+   * Password for the sync group hub database credential.
+   */
+  hubDatabasePassword?: string;
+  /**
+   * Sync state of the sync group.
+   */
+  readonly syncState?: SyncGroupState;
+  /**
+   * Sync schema of the sync group.
+   */
+  schema?: SyncGroupSchema;
+};
+
+/**
+ * An Azure SQL Database sync member.
+ */
+export type SyncMember = Resource & {
+  /**
+   * Database type of the sync member.
+   */
+  databaseType?: SyncMemberDbType;
+  /**
+   * ARM resource id of the sync agent in the sync member.
+   */
+  syncAgentId?: string;
+  /**
+   * SQL Server database id of the sync member.
+   */
+  sqlServerDatabaseId?: string;
+  /**
+   * Server name of the member database in the sync member
+   */
+  serverName?: string;
+  /**
+   * Database name of the member database in the sync member.
+   */
+  databaseName?: string;
+  /**
+   * User name of the member database in the sync member.
+   */
+  userName?: string;
+  /**
+   * Password of the member database in the sync member.
+   */
+  password?: string;
+  /**
+   * Sync direction of the sync member.
+   */
+  syncDirection?: SyncDirection;
+  /**
+   * Sync state of the sync member.
+   */
+  readonly syncState?: SyncMemberState;
+};
+
+/**
+ * Usage Metric of a Subscription in a Location.
+ */
+export type SubscriptionUsage = Resource & {
+  /**
+   * User-readable name of the metric.
+   */
+  readonly displayName?: string;
+  /**
+   * Current value of the metric.
+   */
+  readonly currentValue?: number;
+  /**
+   * Boundary value of the metric.
+   */
+  readonly limit?: number;
+  /**
+   * Unit of the metric.
+   */
+  readonly unit?: string;
+};
+
+/**
+ * A virtual network rule.
+ */
+export type VirtualNetworkRule = Resource & {
+  /**
+   * The ARM resource id of the virtual network subnet.
+   */
+  virtualNetworkSubnetId?: string;
+  /**
+   * Create firewall rule before the virtual network has vnet service endpoint enabled.
+   */
+  ignoreMissingVnetServiceEndpoint?: boolean;
+  /**
+   * Virtual Network Rule State
+   */
+  readonly state?: VirtualNetworkRuleState;
+};
+
+/**
+ * An extended database blob auditing policy.
+ */
+export type ExtendedDatabaseBlobAuditingPolicy = Resource & {
+  /**
+   * Specifies condition of where clause when creating an audit.
+   */
+  predicateExpression?: string;
+  /**
+   * Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required.
+   */
+  state?: BlobAuditingPolicyState;
+  /**
+   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required.
+   */
+  storageEndpoint?: string;
+  /**
+   * Specifies the identifier key of the auditing storage account.
+   * If state is Enabled and storageEndpoint is specified, not specifying the storageAccountAccessKey will use SQL server system-assigned managed identity to access the storage.
+   * Prerequisites for using managed identity authentication:
+   * 1. Assign SQL Server a system-assigned managed identity in Azure Active Directory (AAD).
+   * 2. Grant SQL Server identity access to the storage account by adding 'Storage Blob Data Contributor' RBAC role to the server identity.
+   * For more information, see [Auditing to storage using Managed Identity authentication](https://go.microsoft.com/fwlink/?linkid=2114355)
+   */
+  storageAccountAccessKey?: string;
+  /**
+   * Specifies the number of days to keep in the audit logs in the storage account.
+   */
+  retentionDays?: number;
+  /**
+   * Specifies the Actions-Groups and Actions to audit.
+   *
+   * The recommended set of action groups to use is the following combination - this will audit all the queries and stored procedures executed against the database, as well as successful and failed logins:
+   *
+   * BATCH_COMPLETED_GROUP,
+   * SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP,
+   * FAILED_DATABASE_AUTHENTICATION_GROUP.
+   *
+   * This above combination is also the set that is configured by default when enabling auditing from the Azure portal.
+   *
+   * The supported action groups to audit are (note: choose only specific groups that cover your auditing needs. Using unnecessary groups could lead to very large quantities of audit records):
+   *
+   * APPLICATION_ROLE_CHANGE_PASSWORD_GROUP
+   * BACKUP_RESTORE_GROUP
+   * DATABASE_LOGOUT_GROUP
+   * DATABASE_OBJECT_CHANGE_GROUP
+   * DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP
+   * DATABASE_OBJECT_PERMISSION_CHANGE_GROUP
+   * DATABASE_OPERATION_GROUP
+   * DATABASE_PERMISSION_CHANGE_GROUP
+   * DATABASE_PRINCIPAL_CHANGE_GROUP
+   * DATABASE_PRINCIPAL_IMPERSONATION_GROUP
+   * DATABASE_ROLE_MEMBER_CHANGE_GROUP
+   * FAILED_DATABASE_AUTHENTICATION_GROUP
+   * SCHEMA_OBJECT_ACCESS_GROUP
+   * SCHEMA_OBJECT_CHANGE_GROUP
+   * SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP
+   * SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP
+   * SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP
+   * USER_CHANGE_PASSWORD_GROUP
+   * BATCH_STARTED_GROUP
+   * BATCH_COMPLETED_GROUP
+   *
+   * These are groups that cover all sql statements and stored procedures executed against the database, and should not be used in combination with other groups as this will result in duplicate audit logs.
+   *
+   * For more information, see [Database-Level Audit Action Groups](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-action-groups).
+   *
+   * For Database auditing policy, specific Actions can also be specified (note that Actions cannot be specified for Server auditing policy). The supported actions to audit are:
+   * SELECT
+   * UPDATE
+   * INSERT
+   * DELETE
+   * EXECUTE
+   * RECEIVE
+   * REFERENCES
+   *
+   * The general form for defining an action to be audited is:
+   * {action} ON {object} BY {principal}
+   *
+   * Note that <object> in the above format can refer to an object like a table, view, or stored procedure, or an entire database or schema. For the latter cases, the forms DATABASE::{db_name} and SCHEMA::{schema_name} are used, respectively.
+   *
+   * For example:
+   * SELECT on dbo.myTable by public
+   * SELECT on DATABASE::myDatabase by public
+   * SELECT on SCHEMA::mySchema by public
+   *
+   * For more information, see [Database-Level Audit Actions](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-actions)
+   */
+  auditActionsAndGroups?: string[];
+  /**
+   * Specifies the blob storage subscription Id.
+   */
+  storageAccountSubscriptionId?: string;
+  /**
+   * Specifies whether storageAccountAccessKey value is the storage's secondary key.
+   */
+  isStorageSecondaryKeyInUse?: boolean;
+  /**
+   * Specifies whether audit events are sent to Azure Monitor.
+   * In order to send the events to Azure Monitor, specify 'state' as 'Enabled' and 'isAzureMonitorTargetEnabled' as true.
+   *
+   * When using REST API to configure auditing, Diagnostic Settings with 'SQLSecurityAuditEvents' diagnostic logs category on the database should be also created.
+   * Note that for server level audit you should use the 'master' database as {databaseName}.
+   *
+   * Diagnostic Settings URI format:
+   * PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/providers/microsoft.insights/diagnosticSettings/{settingsName}?api-version=2017-05-01-preview
+   *
+   * For more information, see [Diagnostic Settings REST API](https://go.microsoft.com/fwlink/?linkid=2033207)
+   * or [Diagnostic Settings PowerShell](https://go.microsoft.com/fwlink/?linkid=2033043)
+   *
+   */
+  isAzureMonitorTargetEnabled?: boolean;
+  /**
+   * Specifies the amount of time in milliseconds that can elapse before audit actions are forced to be processed.
+   * The default minimum value is 1000 (1 second). The maximum is 2,147,483,647.
+   */
+  queueDelayMs?: number;
+};
+
+/**
+ * An extended server blob auditing policy.
+ */
+export type ExtendedServerBlobAuditingPolicy = Resource & {
+  /**
+   * Specifies condition of where clause when creating an audit.
+   */
+  predicateExpression?: string;
+  /**
+   * Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required.
+   */
+  state?: BlobAuditingPolicyState;
+  /**
+   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required.
+   */
+  storageEndpoint?: string;
+  /**
+   * Specifies the identifier key of the auditing storage account.
+   * If state is Enabled and storageEndpoint is specified, not specifying the storageAccountAccessKey will use SQL server system-assigned managed identity to access the storage.
+   * Prerequisites for using managed identity authentication:
+   * 1. Assign SQL Server a system-assigned managed identity in Azure Active Directory (AAD).
+   * 2. Grant SQL Server identity access to the storage account by adding 'Storage Blob Data Contributor' RBAC role to the server identity.
+   * For more information, see [Auditing to storage using Managed Identity authentication](https://go.microsoft.com/fwlink/?linkid=2114355)
+   */
+  storageAccountAccessKey?: string;
+  /**
+   * Specifies the number of days to keep in the audit logs in the storage account.
+   */
+  retentionDays?: number;
+  /**
+   * Specifies the Actions-Groups and Actions to audit.
+   *
+   * The recommended set of action groups to use is the following combination - this will audit all the queries and stored procedures executed against the database, as well as successful and failed logins:
+   *
+   * BATCH_COMPLETED_GROUP,
+   * SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP,
+   * FAILED_DATABASE_AUTHENTICATION_GROUP.
+   *
+   * This above combination is also the set that is configured by default when enabling auditing from the Azure portal.
+   *
+   * The supported action groups to audit are (note: choose only specific groups that cover your auditing needs. Using unnecessary groups could lead to very large quantities of audit records):
+   *
+   * APPLICATION_ROLE_CHANGE_PASSWORD_GROUP
+   * BACKUP_RESTORE_GROUP
+   * DATABASE_LOGOUT_GROUP
+   * DATABASE_OBJECT_CHANGE_GROUP
+   * DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP
+   * DATABASE_OBJECT_PERMISSION_CHANGE_GROUP
+   * DATABASE_OPERATION_GROUP
+   * DATABASE_PERMISSION_CHANGE_GROUP
+   * DATABASE_PRINCIPAL_CHANGE_GROUP
+   * DATABASE_PRINCIPAL_IMPERSONATION_GROUP
+   * DATABASE_ROLE_MEMBER_CHANGE_GROUP
+   * FAILED_DATABASE_AUTHENTICATION_GROUP
+   * SCHEMA_OBJECT_ACCESS_GROUP
+   * SCHEMA_OBJECT_CHANGE_GROUP
+   * SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP
+   * SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP
+   * SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP
+   * USER_CHANGE_PASSWORD_GROUP
+   * BATCH_STARTED_GROUP
+   * BATCH_COMPLETED_GROUP
+   *
+   * These are groups that cover all sql statements and stored procedures executed against the database, and should not be used in combination with other groups as this will result in duplicate audit logs.
+   *
+   * For more information, see [Database-Level Audit Action Groups](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-action-groups).
+   *
+   * For Database auditing policy, specific Actions can also be specified (note that Actions cannot be specified for Server auditing policy). The supported actions to audit are:
+   * SELECT
+   * UPDATE
+   * INSERT
+   * DELETE
+   * EXECUTE
+   * RECEIVE
+   * REFERENCES
+   *
+   * The general form for defining an action to be audited is:
+   * {action} ON {object} BY {principal}
+   *
+   * Note that <object> in the above format can refer to an object like a table, view, or stored procedure, or an entire database or schema. For the latter cases, the forms DATABASE::{db_name} and SCHEMA::{schema_name} are used, respectively.
+   *
+   * For example:
+   * SELECT on dbo.myTable by public
+   * SELECT on DATABASE::myDatabase by public
+   * SELECT on SCHEMA::mySchema by public
+   *
+   * For more information, see [Database-Level Audit Actions](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-actions)
+   */
+  auditActionsAndGroups?: string[];
+  /**
+   * Specifies the blob storage subscription Id.
+   */
+  storageAccountSubscriptionId?: string;
+  /**
+   * Specifies whether storageAccountAccessKey value is the storage's secondary key.
+   */
+  isStorageSecondaryKeyInUse?: boolean;
+  /**
+   * Specifies whether audit events are sent to Azure Monitor.
+   * In order to send the events to Azure Monitor, specify 'state' as 'Enabled' and 'isAzureMonitorTargetEnabled' as true.
+   *
+   * When using REST API to configure auditing, Diagnostic Settings with 'SQLSecurityAuditEvents' diagnostic logs category on the database should be also created.
+   * Note that for server level audit you should use the 'master' database as {databaseName}.
+   *
+   * Diagnostic Settings URI format:
+   * PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/providers/microsoft.insights/diagnosticSettings/{settingsName}?api-version=2017-05-01-preview
+   *
+   * For more information, see [Diagnostic Settings REST API](https://go.microsoft.com/fwlink/?linkid=2033207)
+   * or [Diagnostic Settings PowerShell](https://go.microsoft.com/fwlink/?linkid=2033043)
+   *
+   */
+  isAzureMonitorTargetEnabled?: boolean;
+  /**
+   * Specifies the amount of time in milliseconds that can elapse before audit actions are forced to be processed.
+   * The default minimum value is 1000 (1 second). The maximum is 2,147,483,647.
+   */
+  queueDelayMs?: number;
+};
+
+/**
+ * A server blob auditing policy.
+ */
+export type ServerBlobAuditingPolicy = Resource & {
+  /**
+   * Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required.
+   */
+  state?: BlobAuditingPolicyState;
+  /**
+   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required.
+   */
+  storageEndpoint?: string;
+  /**
+   * Specifies the identifier key of the auditing storage account.
+   * If state is Enabled and storageEndpoint is specified, not specifying the storageAccountAccessKey will use SQL server system-assigned managed identity to access the storage.
+   * Prerequisites for using managed identity authentication:
+   * 1. Assign SQL Server a system-assigned managed identity in Azure Active Directory (AAD).
+   * 2. Grant SQL Server identity access to the storage account by adding 'Storage Blob Data Contributor' RBAC role to the server identity.
+   * For more information, see [Auditing to storage using Managed Identity authentication](https://go.microsoft.com/fwlink/?linkid=2114355)
+   */
+  storageAccountAccessKey?: string;
+  /**
+   * Specifies the number of days to keep in the audit logs in the storage account.
+   */
+  retentionDays?: number;
+  /**
+   * Specifies the Actions-Groups and Actions to audit.
+   *
+   * The recommended set of action groups to use is the following combination - this will audit all the queries and stored procedures executed against the database, as well as successful and failed logins:
+   *
+   * BATCH_COMPLETED_GROUP,
+   * SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP,
+   * FAILED_DATABASE_AUTHENTICATION_GROUP.
+   *
+   * This above combination is also the set that is configured by default when enabling auditing from the Azure portal.
+   *
+   * The supported action groups to audit are (note: choose only specific groups that cover your auditing needs. Using unnecessary groups could lead to very large quantities of audit records):
+   *
+   * APPLICATION_ROLE_CHANGE_PASSWORD_GROUP
+   * BACKUP_RESTORE_GROUP
+   * DATABASE_LOGOUT_GROUP
+   * DATABASE_OBJECT_CHANGE_GROUP
+   * DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP
+   * DATABASE_OBJECT_PERMISSION_CHANGE_GROUP
+   * DATABASE_OPERATION_GROUP
+   * DATABASE_PERMISSION_CHANGE_GROUP
+   * DATABASE_PRINCIPAL_CHANGE_GROUP
+   * DATABASE_PRINCIPAL_IMPERSONATION_GROUP
+   * DATABASE_ROLE_MEMBER_CHANGE_GROUP
+   * FAILED_DATABASE_AUTHENTICATION_GROUP
+   * SCHEMA_OBJECT_ACCESS_GROUP
+   * SCHEMA_OBJECT_CHANGE_GROUP
+   * SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP
+   * SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP
+   * SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP
+   * USER_CHANGE_PASSWORD_GROUP
+   * BATCH_STARTED_GROUP
+   * BATCH_COMPLETED_GROUP
+   *
+   * These are groups that cover all sql statements and stored procedures executed against the database, and should not be used in combination with other groups as this will result in duplicate audit logs.
+   *
+   * For more information, see [Database-Level Audit Action Groups](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-action-groups).
+   *
+   * For Database auditing policy, specific Actions can also be specified (note that Actions cannot be specified for Server auditing policy). The supported actions to audit are:
+   * SELECT
+   * UPDATE
+   * INSERT
+   * DELETE
+   * EXECUTE
+   * RECEIVE
+   * REFERENCES
+   *
+   * The general form for defining an action to be audited is:
+   * {action} ON {object} BY {principal}
+   *
+   * Note that <object> in the above format can refer to an object like a table, view, or stored procedure, or an entire database or schema. For the latter cases, the forms DATABASE::{db_name} and SCHEMA::{schema_name} are used, respectively.
+   *
+   * For example:
+   * SELECT on dbo.myTable by public
+   * SELECT on DATABASE::myDatabase by public
+   * SELECT on SCHEMA::mySchema by public
+   *
+   * For more information, see [Database-Level Audit Actions](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-actions)
+   */
+  auditActionsAndGroups?: string[];
+  /**
+   * Specifies the blob storage subscription Id.
+   */
+  storageAccountSubscriptionId?: string;
+  /**
+   * Specifies whether storageAccountAccessKey value is the storage's secondary key.
+   */
+  isStorageSecondaryKeyInUse?: boolean;
+  /**
+   * Specifies whether audit events are sent to Azure Monitor.
+   * In order to send the events to Azure Monitor, specify 'state' as 'Enabled' and 'isAzureMonitorTargetEnabled' as true.
+   *
+   * When using REST API to configure auditing, Diagnostic Settings with 'SQLSecurityAuditEvents' diagnostic logs category on the database should be also created.
+   * Note that for server level audit you should use the 'master' database as {databaseName}.
+   *
+   * Diagnostic Settings URI format:
+   * PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/providers/microsoft.insights/diagnosticSettings/{settingsName}?api-version=2017-05-01-preview
+   *
+   * For more information, see [Diagnostic Settings REST API](https://go.microsoft.com/fwlink/?linkid=2033207)
+   * or [Diagnostic Settings PowerShell](https://go.microsoft.com/fwlink/?linkid=2033043)
+   *
+   */
+  isAzureMonitorTargetEnabled?: boolean;
+  /**
+   * Specifies the amount of time in milliseconds that can elapse before audit actions are forced to be processed.
+   * The default minimum value is 1000 (1 second). The maximum is 2,147,483,647.
+   */
+  queueDelayMs?: number;
+};
+
+/**
+ * A database blob auditing policy.
+ */
+export type DatabaseBlobAuditingPolicy = Resource & {
+  /**
+   * Resource kind.
+   */
+  readonly kind?: string;
+  /**
+   * Specifies the state of the policy. If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled are required.
+   */
+  state?: BlobAuditingPolicyState;
+  /**
+   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). If state is Enabled, storageEndpoint or isAzureMonitorTargetEnabled is required.
+   */
+  storageEndpoint?: string;
+  /**
+   * Specifies the identifier key of the auditing storage account.
+   * If state is Enabled and storageEndpoint is specified, not specifying the storageAccountAccessKey will use SQL server system-assigned managed identity to access the storage.
+   * Prerequisites for using managed identity authentication:
+   * 1. Assign SQL Server a system-assigned managed identity in Azure Active Directory (AAD).
+   * 2. Grant SQL Server identity access to the storage account by adding 'Storage Blob Data Contributor' RBAC role to the server identity.
+   * For more information, see [Auditing to storage using Managed Identity authentication](https://go.microsoft.com/fwlink/?linkid=2114355)
+   */
+  storageAccountAccessKey?: string;
+  /**
+   * Specifies the number of days to keep in the audit logs in the storage account.
+   */
+  retentionDays?: number;
+  /**
+   * Specifies the Actions-Groups and Actions to audit.
+   *
+   * The recommended set of action groups to use is the following combination - this will audit all the queries and stored procedures executed against the database, as well as successful and failed logins:
+   *
+   * BATCH_COMPLETED_GROUP,
+   * SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP,
+   * FAILED_DATABASE_AUTHENTICATION_GROUP.
+   *
+   * This above combination is also the set that is configured by default when enabling auditing from the Azure portal.
+   *
+   * The supported action groups to audit are (note: choose only specific groups that cover your auditing needs. Using unnecessary groups could lead to very large quantities of audit records):
+   *
+   * APPLICATION_ROLE_CHANGE_PASSWORD_GROUP
+   * BACKUP_RESTORE_GROUP
+   * DATABASE_LOGOUT_GROUP
+   * DATABASE_OBJECT_CHANGE_GROUP
+   * DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP
+   * DATABASE_OBJECT_PERMISSION_CHANGE_GROUP
+   * DATABASE_OPERATION_GROUP
+   * DATABASE_PERMISSION_CHANGE_GROUP
+   * DATABASE_PRINCIPAL_CHANGE_GROUP
+   * DATABASE_PRINCIPAL_IMPERSONATION_GROUP
+   * DATABASE_ROLE_MEMBER_CHANGE_GROUP
+   * FAILED_DATABASE_AUTHENTICATION_GROUP
+   * SCHEMA_OBJECT_ACCESS_GROUP
+   * SCHEMA_OBJECT_CHANGE_GROUP
+   * SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP
+   * SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP
+   * SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP
+   * USER_CHANGE_PASSWORD_GROUP
+   * BATCH_STARTED_GROUP
+   * BATCH_COMPLETED_GROUP
+   *
+   * These are groups that cover all sql statements and stored procedures executed against the database, and should not be used in combination with other groups as this will result in duplicate audit logs.
+   *
+   * For more information, see [Database-Level Audit Action Groups](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-action-groups).
+   *
+   * For Database auditing policy, specific Actions can also be specified (note that Actions cannot be specified for Server auditing policy). The supported actions to audit are:
+   * SELECT
+   * UPDATE
+   * INSERT
+   * DELETE
+   * EXECUTE
+   * RECEIVE
+   * REFERENCES
+   *
+   * The general form for defining an action to be audited is:
+   * {action} ON {object} BY {principal}
+   *
+   * Note that <object> in the above format can refer to an object like a table, view, or stored procedure, or an entire database or schema. For the latter cases, the forms DATABASE::{db_name} and SCHEMA::{schema_name} are used, respectively.
+   *
+   * For example:
+   * SELECT on dbo.myTable by public
+   * SELECT on DATABASE::myDatabase by public
+   * SELECT on SCHEMA::mySchema by public
+   *
+   * For more information, see [Database-Level Audit Actions](https://docs.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions#database-level-audit-actions)
+   */
+  auditActionsAndGroups?: string[];
+  /**
+   * Specifies the blob storage subscription Id.
+   */
+  storageAccountSubscriptionId?: string;
+  /**
+   * Specifies whether storageAccountAccessKey value is the storage's secondary key.
+   */
+  isStorageSecondaryKeyInUse?: boolean;
+  /**
+   * Specifies whether audit events are sent to Azure Monitor.
+   * In order to send the events to Azure Monitor, specify 'state' as 'Enabled' and 'isAzureMonitorTargetEnabled' as true.
+   *
+   * When using REST API to configure auditing, Diagnostic Settings with 'SQLSecurityAuditEvents' diagnostic logs category on the database should be also created.
+   * Note that for server level audit you should use the 'master' database as {databaseName}.
+   *
+   * Diagnostic Settings URI format:
+   * PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/providers/microsoft.insights/diagnosticSettings/{settingsName}?api-version=2017-05-01-preview
+   *
+   * For more information, see [Diagnostic Settings REST API](https://go.microsoft.com/fwlink/?linkid=2033207)
+   * or [Diagnostic Settings PowerShell](https://go.microsoft.com/fwlink/?linkid=2033043)
+   *
+   */
+  isAzureMonitorTargetEnabled?: boolean;
+  /**
+   * Specifies the amount of time in milliseconds that can elapse before audit actions are forced to be processed.
+   * The default minimum value is 1000 (1 second). The maximum is 2,147,483,647.
+   */
+  queueDelayMs?: number;
+};
+
+/**
+ * A database vulnerability assessment rule baseline.
+ */
+export type DatabaseVulnerabilityAssessmentRuleBaseline = Resource & {
+  /**
+   * The rule baseline result
+   */
+  baselineResults?: DatabaseVulnerabilityAssessmentRuleBaselineItem[];
+};
+
+/**
+ * A database vulnerability assessment.
+ */
+export type DatabaseVulnerabilityAssessment = Resource & {
+  /**
+   * A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/).  It is required if server level vulnerability assessment policy doesn't set
+   */
+  storageContainerPath?: string;
+  /**
+   * A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required.
+   */
+  storageContainerSasKey?: string;
+  /**
+   * Specifies the identifier key of the storage account for vulnerability assessment scan results. If 'StorageContainerSasKey' isn't specified, storageAccountAccessKey is required.
+   */
+  storageAccountAccessKey?: string;
+  /**
+   * The recurring scans settings
+   */
+  recurringScans?: VulnerabilityAssessmentRecurringScansProperties;
+};
+
+/**
+ * A stored credential that can be used by a job to connect to target databases.
+ */
+export type JobCredential = Resource & {
+  /**
+   * The credential user name.
+   */
+  username?: string;
+  /**
+   * The credential password.
+   */
+  password?: string;
+};
+
+/**
+ * An execution of a job
+ */
+export type JobExecution = Resource & {
+  /**
+   * The job version number.
+   */
+  readonly jobVersion?: number;
+  /**
+   * The job step name.
+   */
+  readonly stepName?: string;
+  /**
+   * The job step id.
+   */
+  readonly stepId?: number;
+  /**
+   * The unique identifier of the job execution.
+   */
+  readonly jobExecutionId?: string;
+  /**
+   * The detailed state of the job execution.
+   */
+  readonly lifecycle?: JobExecutionLifecycle;
+  /**
+   * The ARM provisioning state of the job execution.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The time that the job execution was created.
+   */
+  readonly createTime?: Date;
+  /**
+   * The time that the job execution started.
+   */
+  readonly startTime?: Date;
+  /**
+   * The time that the job execution completed.
+   */
+  readonly endTime?: Date;
+  /**
+   * Number of times the job execution has been attempted.
+   */
+  currentAttempts?: number;
+  /**
+   * Start time of the current attempt.
+   */
+  readonly currentAttemptStartTime?: Date;
+  /**
+   * The last status or error message.
+   */
+  readonly lastMessage?: string;
+  /**
+   * The target that this execution is executed on.
+   */
+  readonly target?: JobExecutionTarget;
+};
+
+/**
+ * A job.
+ */
+export type Job = Resource & {
+  /**
+   * User-defined description of the job.
+   */
+  description?: string;
+  /**
+   * The job version number.
+   */
+  readonly version?: number;
+  /**
+   * Schedule properties of the job.
+   */
+  schedule?: JobSchedule;
+};
+
+/**
+ * A job step.
+ */
+export type JobStep = Resource & {
+  /**
+   * The job step's index within the job. If not specified when creating the job step, it will be created as the last step. If not specified when updating the job step, the step id is not modified.
+   */
+  stepId?: number;
+  /**
+   * The resource ID of the target group that the job step will be executed on.
+   */
+  targetGroup?: string;
+  /**
+   * The resource ID of the job credential that will be used to connect to the targets.
+   */
+  credential?: string;
+  /**
+   * The action payload of the job step.
+   */
+  action?: JobStepAction;
+  /**
+   * Output destination properties of the job step.
+   */
+  output?: JobStepOutput;
+  /**
+   * Execution options for the job step.
+   */
+  executionOptions?: JobStepExecutionOptions;
+};
+
+/**
+ * A group of job targets.
+ */
+export type JobTargetGroup = Resource & {
+  /**
+   * Members of the target group.
+   */
+  members?: JobTarget[];
+};
+
+/**
+ * A long term retention backup.
+ */
+export type LongTermRetentionBackup = Resource & {
+  /**
+   * The server name that the backup database belong to.
+   */
+  readonly serverName?: string;
+  /**
+   * The create time of the server.
+   */
+  readonly serverCreateTime?: Date;
+  /**
+   * The name of the database the backup belong to
+   */
+  readonly databaseName?: string;
+  /**
+   * The delete time of the database
+   */
+  readonly databaseDeletionTime?: Date;
+  /**
+   * The time the backup was taken
+   */
+  readonly backupTime?: Date;
+  /**
+   * The time the long term retention backup will expire.
+   */
+  readonly backupExpirationTime?: Date;
+};
+
+/**
+ * A long term retention policy.
+ */
+export type BackupLongTermRetentionPolicy = Resource & {
+  /**
+   * The weekly retention policy for an LTR backup in an ISO 8601 format.
+   */
+  weeklyRetention?: string;
+  /**
+   * The monthly retention policy for an LTR backup in an ISO 8601 format.
+   */
+  monthlyRetention?: string;
+  /**
+   * The yearly retention policy for an LTR backup in an ISO 8601 format.
+   */
+  yearlyRetention?: string;
+  /**
+   * The week of year to take the yearly backup in an ISO 8601 format.
+   */
+  weekOfYear?: number;
+};
+
+/**
+ * A short term retention policy.
+ */
+export type ManagedBackupShortTermRetentionPolicy = Resource & {
+  /**
+   * The backup retention period in days. This is how many days Point-in-Time Restore will be supported.
+   */
+  retentionDays?: number;
+};
+
+/**
+ * Server-level Automatic Tuning.
+ */
+export type ServerAutomaticTuning = Resource & {
+  /**
+   * Automatic tuning desired state.
+   */
+  desiredState?: AutomaticTuningServerMode;
+  /**
+   * Automatic tuning actual state.
+   */
+  readonly actualState?: AutomaticTuningServerMode;
+  /**
+   * Automatic tuning options definition.
+   */
+  options?: { [propertyName: string]: AutomaticTuningServerOptions };
+};
+
+/**
+ * A server DNS alias.
+ */
+export type ServerDnsAlias = Resource & {
+  /**
+   * The fully qualified DNS record for alias
+   */
+  readonly azureDnsRecord?: string;
+};
+
+/**
+ * A server security alert policy.
+ */
+export type ServerSecurityAlertPolicy = Resource & {
+  /**
+   * Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database.
+   */
+  state?: SecurityAlertPolicyState;
+  /**
+   * Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action
+   */
+  disabledAlerts?: string[];
+  /**
+   * Specifies an array of e-mail addresses to which the alert is sent.
+   */
+  emailAddresses?: string[];
+  /**
+   * Specifies that the alert is sent to the account administrators.
+   */
+  emailAccountAdmins?: boolean;
+  /**
+   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs.
+   */
+  storageEndpoint?: string;
+  /**
+   * Specifies the identifier key of the Threat Detection audit storage account.
+   */
+  storageAccountAccessKey?: string;
+  /**
+   * Specifies the number of days to keep in the Threat Detection audit logs.
+   */
+  retentionDays?: number;
+  /**
+   * Specifies the UTC creation time of the policy.
+   */
+  readonly creationTime?: Date;
+};
+
+/**
+ * Database restore points.
+ */
+export type RestorePoint = Resource & {
+  /**
+   * Resource location.
+   */
+  readonly location?: string;
+  /**
+   * The type of restore point
+   */
+  readonly restorePointType?: RestorePointType;
+  /**
+   * The earliest time to which this database can be restored
+   */
+  readonly earliestRestoreDate?: Date;
+  /**
+   * The time the backup was taken
+   */
+  readonly restorePointCreationDate?: Date;
+  /**
+   * The label of restore point for backup request by user
+   */
+  readonly restorePointLabel?: string;
+};
+
+/**
+ * A managed database security alert policy.
+ */
+export type ManagedDatabaseSecurityAlertPolicy = Resource & {
+  /**
+   * Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database.
+   */
+  state?: SecurityAlertPolicyState;
+  /**
+   * Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action
+   */
+  disabledAlerts?: string[];
+  /**
+   * Specifies an array of e-mail addresses to which the alert is sent.
+   */
+  emailAddresses?: string[];
+  /**
+   * Specifies that the alert is sent to the account administrators.
+   */
+  emailAccountAdmins?: boolean;
+  /**
+   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs.
+   */
+  storageEndpoint?: string;
+  /**
+   * Specifies the identifier key of the Threat Detection audit storage account.
+   */
+  storageAccountAccessKey?: string;
+  /**
+   * Specifies the number of days to keep in the Threat Detection audit logs.
+   */
+  retentionDays?: number;
+  /**
+   * Specifies the UTC creation time of the policy.
+   */
+  readonly creationTime?: Date;
+};
+
+/**
+ * A managed server security alert policy.
+ */
+export type ManagedServerSecurityAlertPolicy = Resource & {
+  /**
+   * Specifies the state of the policy, whether it is enabled or disabled or a policy has not been applied yet on the specific database.
+   */
+  state?: SecurityAlertPolicyState;
+  /**
+   * Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action
+   */
+  disabledAlerts?: string[];
+  /**
+   * Specifies an array of e-mail addresses to which the alert is sent.
+   */
+  emailAddresses?: string[];
+  /**
+   * Specifies that the alert is sent to the account administrators.
+   */
+  emailAccountAdmins?: boolean;
+  /**
+   * Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs.
+   */
+  storageEndpoint?: string;
+  /**
+   * Specifies the identifier key of the Threat Detection audit storage account.
+   */
+  storageAccountAccessKey?: string;
+  /**
+   * Specifies the number of days to keep in the Threat Detection audit logs.
+   */
+  retentionDays?: number;
+  /**
+   * Specifies the UTC creation time of the policy.
+   */
+  readonly creationTime?: Date;
+};
+
+/**
+ * A sensitivity label.
+ */
+export type SensitivityLabel = Resource & {
+  /**
+   * The label name.
+   */
+  labelName?: string;
+  /**
+   * The label ID.
+   */
+  labelId?: string;
+  /**
+   * The information type.
+   */
+  informationType?: string;
+  /**
+   * The information type ID.
+   */
+  informationTypeId?: string;
+  /**
+   * Is sensitivity recommendation disabled. Applicable for recommended sensitivity label only. Specifies whether the sensitivity recommendation on this column is disabled (dismissed) or not.
+   */
+  readonly isDisabled?: boolean;
+  rank?: SensitivityLabelRank;
+};
+
+/**
+ * An Azure SQL managed instance administrator.
+ */
+export type ManagedInstanceAdministrator = Resource & {
+  /**
+   * Type of the managed instance administrator.
+   */
+  administratorType?: ManagedInstanceAdministratorType;
+  /**
+   * Login name of the managed instance administrator.
+   */
+  login?: string;
+  /**
+   * SID (object ID) of the managed instance administrator.
+   */
+  sid?: string;
+  /**
+   * Tenant ID of the managed instance administrator.
+   */
+  tenantId?: string;
+};
+
+/**
+ * A database operation.
+ */
+export type DatabaseOperation = Resource & {
+  /**
+   * The name of the database the operation is being performed on.
+   */
+  readonly databaseName?: string;
+  /**
+   * The name of operation.
+   */
+  readonly operation?: string;
+  /**
+   * The friendly name of operation.
+   */
+  readonly operationFriendlyName?: string;
+  /**
+   * The percentage of the operation completed.
+   */
+  readonly percentComplete?: number;
+  /**
+   * The name of the server.
+   */
+  readonly serverName?: string;
+  /**
+   * The operation start time.
+   */
+  readonly startTime?: Date;
+  /**
+   * The operation state.
+   */
+  readonly state?: ManagementOperationState;
+  /**
+   * The operation error code.
+   */
+  readonly errorCode?: number;
+  /**
+   * The operation error description.
+   */
+  readonly errorDescription?: string;
+  /**
+   * The operation error severity.
+   */
+  readonly errorSeverity?: number;
+  /**
+   * Whether or not the error is a user error.
+   */
+  readonly isUserError?: boolean;
+  /**
+   * The estimated completion time of the operation.
+   */
+  readonly estimatedCompletionTime?: Date;
+  /**
+   * The operation description.
+   */
+  readonly description?: string;
+  /**
+   * Whether the operation can be cancelled.
+   */
+  readonly isCancellable?: boolean;
+};
+
+/**
+ * A elastic pool operation.
+ */
+export type ElasticPoolOperation = Resource & {
+  /**
+   * The name of the elastic pool the operation is being performed on.
+   */
+  readonly elasticPoolName?: string;
+  /**
+   * The name of operation.
+   */
+  readonly operation?: string;
+  /**
+   * The friendly name of operation.
+   */
+  readonly operationFriendlyName?: string;
+  /**
+   * The percentage of the operation completed.
+   */
+  readonly percentComplete?: number;
+  /**
+   * The name of the server.
+   */
+  readonly serverName?: string;
+  /**
+   * The operation start time.
+   */
+  readonly startTime?: Date;
+  /**
+   * The operation state.
+   */
+  readonly state?: string;
+  /**
+   * The operation error code.
+   */
+  readonly errorCode?: number;
+  /**
+   * The operation error description.
+   */
+  readonly errorDescription?: string;
+  /**
+   * The operation error severity.
+   */
+  readonly errorSeverity?: number;
+  /**
+   * Whether or not the error is a user error.
+   */
+  readonly isUserError?: boolean;
+  /**
+   * The estimated completion time of the operation.
+   */
+  readonly estimatedCompletionTime?: Date;
+  /**
+   * The operation description.
+   */
+  readonly description?: string;
+  /**
+   * Whether the operation can be cancelled.
+   */
+  readonly isCancellable?: boolean;
+};
+
+/**
+ * A vulnerability assessment scan record.
+ */
+export type VulnerabilityAssessmentScanRecord = Resource & {
+  /**
+   * The scan ID.
+   */
+  readonly scanId?: string;
+  /**
+   * The scan trigger type.
+   */
+  readonly triggerType?: VulnerabilityAssessmentScanTriggerType;
+  /**
+   * The scan status.
+   */
+  readonly state?: VulnerabilityAssessmentScanState;
+  /**
+   * The scan start time (UTC).
+   */
+  readonly startTime?: Date;
+  /**
+   * The scan end time (UTC).
+   */
+  readonly endTime?: Date;
+  /**
+   * The scan errors.
+   */
+  readonly errors?: VulnerabilityAssessmentScanError[];
+  /**
+   * The scan results storage container path.
+   */
+  readonly storageContainerPath?: string;
+  /**
+   * The number of failed security checks.
+   */
+  readonly numberOfFailedSecurityChecks?: number;
+};
+
+/**
+ * A database Vulnerability Assessment scan export resource.
+ */
+export type DatabaseVulnerabilityAssessmentScansExport = Resource & {
+  /**
+   * Location of the exported report (e.g. https://myStorage.blob.core.windows.net/VaScans/scans/serverName/databaseName/scan_scanId.xlsx).
+   */
+  readonly exportedReportLocation?: string;
+};
+
+/**
+ * An instance failover group.
+ */
+export type InstanceFailoverGroup = Resource & {
+  /**
+   * Read-write endpoint of the failover group instance.
+   */
+  readWriteEndpoint?: InstanceFailoverGroupReadWriteEndpoint;
+  /**
+   * Read-only endpoint of the failover group instance.
+   */
+  readOnlyEndpoint?: InstanceFailoverGroupReadOnlyEndpoint;
+  /**
+   * Local replication role of the failover group instance.
+   */
+  readonly replicationRole?: InstanceFailoverGroupReplicationRole;
+  /**
+   * Replication state of the failover group instance.
+   */
+  readonly replicationState?: string;
+  /**
+   * Partner region information for the failover group.
+   */
+  partnerRegions?: PartnerRegionInfo[];
+  /**
+   * List of managed instance pairs in the failover group.
+   */
+  managedInstancePairs?: ManagedInstancePairInfo[];
+};
+
+/**
+ * A short term retention policy.
+ */
+export type BackupShortTermRetentionPolicy = Resource & {
+  /**
+   * The backup retention period in days. This is how many days Point-in-Time Restore will be supported.
+   */
+  retentionDays?: number;
+};
+
+/**
+ * A TDE certificate that can be uploaded into a server.
+ */
+export type TdeCertificate = Resource & {
+  /**
+   * The base64 encoded certificate private blob.
+   */
+  privateBlob?: string;
+  /**
+   * The certificate password.
+   */
+  certPassword?: string;
+};
+
+/**
+ * A managed instance key.
+ */
+export type ManagedInstanceKey = Resource & {
+  /**
+   * Kind of encryption protector. This is metadata used for the Azure portal experience.
+   */
+  readonly kind?: string;
+  /**
+   * The key type like 'ServiceManaged', 'AzureKeyVault'.
+   */
+  serverKeyType?: ServerKeyType;
+  /**
+   * The URI of the key. If the ServerKeyType is AzureKeyVault, then the URI is required.
+   */
+  uri?: string;
+  /**
+   * Thumbprint of the key.
+   */
+  readonly thumbprint?: string;
+  /**
+   * The key creation date.
+   */
+  readonly creationDate?: Date;
+};
+
+/**
+ * The managed instance encryption protector.
+ */
+export type ManagedInstanceEncryptionProtector = Resource & {
+  /**
+   * Kind of encryption protector. This is metadata used for the Azure portal experience.
+   */
+  readonly kind?: string;
+  /**
+   * The name of the managed instance key.
+   */
+  serverKeyName?: string;
+  /**
+   * The encryption protector type like 'ServiceManaged', 'AzureKeyVault'.
+   */
+  serverKeyType?: ServerKeyType;
+  /**
+   * The URI of the server key.
+   */
+  readonly uri?: string;
+  /**
+   * Thumbprint of the server key.
+   */
+  readonly thumbprint?: string;
+};
+
+/**
+ * A recoverable managed database resource.
+ */
+export type RecoverableManagedDatabase = Resource & {
+  /**
+   * The last available backup date.
+   */
+  readonly lastAvailableBackupDate?: string;
+};
+
+/**
+ * A managed instance vulnerability assessment.
+ */
+export type ManagedInstanceVulnerabilityAssessment = Resource & {
+  /**
+   * A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/).
+   */
+  storageContainerPath?: string;
+  /**
+   * A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required.
+   */
+  storageContainerSasKey?: string;
+  /**
+   * Specifies the identifier key of the storage account for vulnerability assessment scan results. If 'StorageContainerSasKey' isn't specified, storageAccountAccessKey is required.
+   */
+  storageAccountAccessKey?: string;
+  /**
+   * The recurring scans settings
+   */
+  recurringScans?: VulnerabilityAssessmentRecurringScansProperties;
+};
+
+/**
+ * A server vulnerability assessment.
+ */
+export type ServerVulnerabilityAssessment = Resource & {
+  /**
+   * A blob storage container path to hold the scan results (e.g. https://myStorage.blob.core.windows.net/VaScans/).
+   */
+  storageContainerPath?: string;
+  /**
+   * A shared access signature (SAS Key) that has read and write access to the blob container specified in 'storageContainerPath' parameter. If 'storageAccountAccessKey' isn't specified, StorageContainerSasKey is required.
+   */
+  storageContainerSasKey?: string;
+  /**
+   * Specifies the identifier key of the storage account for vulnerability assessment scan results. If 'StorageContainerSasKey' isn't specified, storageAccountAccessKey is required.
+   */
+  storageAccountAccessKey?: string;
+  /**
+   * The recurring scans settings
+   */
+  recurringScans?: VulnerabilityAssessmentRecurringScansProperties;
+};
+
+/**
+ * A private endpoint connection
+ */
+export type PrivateEndpointConnection = Resource & {
+  /**
+   * Private endpoint which the connection belongs to.
+   */
+  privateEndpoint?: PrivateEndpointProperty;
+  /**
+   * Connection state of the private endpoint connection.
+   */
+  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionStateProperty;
+  /**
+   * State of the private endpoint connection.
+   */
+  readonly provisioningState?: string;
+};
+
+/**
+ * A private link resource
+ */
+export type PrivateLinkResource = Resource & {
+  /**
+   * The private link resource group id.
+   */
+  readonly properties?: PrivateLinkResourceProperties;
+};
+
+/**
+ * A long term retention backup for a managed database.
+ */
+export type ManagedInstanceLongTermRetentionBackup = Resource & {
+  /**
+   * The managed instance that the backup database belongs to.
+   */
+  readonly managedInstanceName?: string;
+  /**
+   * The create time of the instance.
+   */
+  readonly managedInstanceCreateTime?: Date;
+  /**
+   * The name of the database the backup belong to
+   */
+  readonly databaseName?: string;
+  /**
+   * The delete time of the database
+   */
+  readonly databaseDeletionTime?: Date;
+  /**
+   * The time the backup was taken
+   */
+  readonly backupTime?: Date;
+  /**
+   * The time the long term retention backup will expire.
+   */
+  readonly backupExpirationTime?: Date;
+};
+
+/**
+ * A long term retention policy.
+ */
+export type ManagedInstanceLongTermRetentionPolicy = Resource & {
+  /**
+   * The weekly retention policy for an LTR backup in an ISO 8601 format.
+   */
+  weeklyRetention?: string;
+  /**
+   * The monthly retention policy for an LTR backup in an ISO 8601 format.
+   */
+  monthlyRetention?: string;
+  /**
+   * The yearly retention policy for an LTR backup in an ISO 8601 format.
+   */
+  yearlyRetention?: string;
+  /**
+   * The week of year to take the yearly backup in an ISO 8601 format.
+   */
+  weekOfYear?: number;
+};
+
+/**
+ * Workload group operations for a data warehouse
+ */
+export type WorkloadGroup = Resource & {
+  /**
+   * The workload group minimum percentage resource.
+   */
+  minResourcePercent?: number;
+  /**
+   * The workload group cap percentage resource.
+   */
+  maxResourcePercent?: number;
+  /**
+   * The workload group request minimum grant percentage.
+   */
+  minResourcePercentPerRequest?: number;
+  /**
+   * The workload group request maximum grant percentage.
+   */
+  maxResourcePercentPerRequest?: number;
+  /**
+   * The workload group importance level.
+   */
+  importance?: string;
+  /**
+   * The workload group query execution timeout.
+   */
+  queryExecutionTimeout?: number;
+};
+
+/**
+ * Workload classifier operations for a data warehouse
+ */
+export type WorkloadClassifier = Resource & {
+  /**
+   * The workload classifier member name.
+   */
+  memberName?: string;
+  /**
+   * The workload classifier label.
+   */
+  label?: string;
+  /**
+   * The workload classifier context.
+   */
+  context?: string;
+  /**
+   * The workload classifier start time for classification.
+   */
+  startTime?: string;
+  /**
+   * The workload classifier end time for classification.
+   */
+  endTime?: string;
+  /**
+   * The workload classifier importance.
+   */
+  importance?: string;
+};
+
+/**
+ * A managed database restore details.
+ */
+export type ManagedDatabaseRestoreDetailsResult = Resource & {
+  /**
+   * Restore status.
+   */
+  readonly status?: string;
+  /**
+   * Current restoring file name.
+   */
+  readonly currentRestoringFileName?: string;
+  /**
+   * Last restored file name.
+   */
+  readonly lastRestoredFileName?: string;
+  /**
+   * Last restored file time.
+   */
+  readonly lastRestoredFileTime?: Date;
+  /**
+   * Percent completed.
+   */
+  readonly percentCompleted?: number;
+  /**
+   * List of unrestorable files.
+   */
+  readonly unrestorableFiles?: string[];
+  /**
+   * Number of files detected.
+   */
+  readonly numberOfFilesDetected?: number;
+  /**
+   * Last uploaded file name.
+   */
+  readonly lastUploadedFileName?: string;
+  /**
+   * Last uploaded file time.
+   */
+  readonly lastUploadedFileTime?: Date;
+  /**
+   * The reason why restore is in Blocked state.
+   */
+  readonly blockReason?: string;
+};
+
+/**
+ * Azure Active Directory administrator.
+ */
+export type ServerAzureADAdministrator = Resource & {
+  /**
+   * Type of the sever administrator.
+   */
+  administratorType?: AdministratorType;
+  /**
+   * Login name of the server administrator.
+   */
+  login?: string;
+  /**
+   * SID (object ID) of the server administrator.
+   */
+  sid?: string;
+  /**
+   * Tenant ID of the administrator.
+   */
+  tenantId?: string;
+  /**
+   * Azure Active Directory only Authentication enabled.
+   */
+  azureADOnlyAuthentication?: boolean;
+};
 
 /**
  * A managed instance operation.
@@ -6376,28 +5850,6 @@ export type ManagedInstanceOperation = Resource & {
    */
   readonly isCancellable?: boolean;
 };
-
-/**
- * The impact of an operation, both in absolute and relative terms.
- */
-export interface OperationImpact {
-  /**
-   * The name of the impact dimension.
-   */
-  readonly name?: string;
-  /**
-   * The unit in which estimated impact to dimension is measured.
-   */
-  readonly unit?: string;
-  /**
-   * The absolute impact to dimension.
-   */
-  readonly changeValueAbsolute?: number;
-  /**
-   * The relative impact to dimension (null if not applicable)
-   */
-  readonly changeValueRelative?: number;
-}
 
 /**
  * Represents a database recommended index.
@@ -6462,6 +5914,566 @@ export type JobVersion = Resource & {};
  * ARM proxy resource.
  */
 export type ProxyResource = Resource & {};
+
+/**
+ * Import database parameters.
+ */
+export type ImportRequest = ExportRequest & {
+  /**
+   * The name of the database to import.
+   */
+  databaseName: string;
+  /**
+   * The edition for the database being created.
+   *
+   * The list of SKUs may vary by region and support offer. To determine the SKUs (including the SKU name, tier/edition, family, and capacity) that are available to your subscription in an Azure region, use the `Capabilities_ListByLocation` REST API or one of the following commands:
+   *
+   * ```azurecli
+   * az sql db list-editions -l <location> -o table
+   * ````
+   *
+   * ```powershell
+   * Get-AzSqlServerServiceObjective -Location <location>
+   * ````
+   *
+   */
+  edition: DatabaseEdition;
+  /**
+   * The name of the service objective to assign to the database.
+   */
+  serviceObjectiveName: ServiceObjectiveName;
+  /**
+   * The maximum size for the newly imported database.
+   */
+  maxSizeBytes: string;
+};
+
+/**
+ * Represents the properties for an import operation
+ */
+export type ImportExtensionProperties = ExportRequest & {
+  /**
+   * The type of import operation being performed. This is always Import.
+   */
+  operationMode: "Import";
+};
+
+/**
+ * An Azure SQL virtual cluster.
+ */
+export type VirtualCluster = TrackedResource & {
+  /**
+   * Subnet resource ID for the virtual cluster.
+   */
+  readonly subnetId?: string;
+  /**
+   * If the service has different generations of hardware, for the same SKU, then that can be captured here.
+   */
+  family?: string;
+  /**
+   * List of resources in this virtual cluster.
+   */
+  readonly childResources?: string[];
+};
+
+/**
+ * An Azure SQL job agent.
+ */
+export type JobAgent = TrackedResource & {
+  /**
+   * The name and tier of the SKU.
+   */
+  sku?: Sku;
+  /**
+   * Resource ID of the database to store job metadata in.
+   */
+  databaseId?: string;
+  /**
+   * The state of the job agent.
+   */
+  readonly state?: JobAgentState;
+};
+
+/**
+ * A restorable dropped managed database resource.
+ */
+export type RestorableDroppedManagedDatabase = TrackedResource & {
+  /**
+   * The name of the database.
+   */
+  readonly databaseName?: string;
+  /**
+   * The creation date of the database (ISO8601 format).
+   */
+  readonly creationDate?: Date;
+  /**
+   * The deletion date of the database (ISO8601 format).
+   */
+  readonly deletionDate?: Date;
+  /**
+   * The earliest restore date of the database (ISO8601 format).
+   */
+  readonly earliestRestoreDate?: Date;
+};
+
+/**
+ * A database resource.
+ */
+export type Database = TrackedResource & {
+  /**
+   * The database SKU.
+   *
+   * The list of SKUs may vary by region and support offer. To determine the SKUs (including the SKU name, tier/edition, family, and capacity) that are available to your subscription in an Azure region, use the `Capabilities_ListByLocation` REST API or one of the following commands:
+   *
+   * ```azurecli
+   * az sql db list-editions -l <location> -o table
+   * ````
+   *
+   * ```powershell
+   * Get-AzSqlServerServiceObjective -Location <location>
+   * ````
+   *
+   */
+  sku?: Sku;
+  /**
+   * Kind of database. This is metadata used for the Azure portal experience.
+   */
+  readonly kind?: string;
+  /**
+   * Resource that manages the database.
+   */
+  readonly managedBy?: string;
+  /**
+   * Specifies the mode of database creation.
+   *
+   * Default: regular database creation.
+   *
+   * Copy: creates a database as a copy of an existing database. sourceDatabaseId must be specified as the resource ID of the source database.
+   *
+   * Secondary: creates a database as a secondary replica of an existing database. sourceDatabaseId must be specified as the resource ID of the existing primary database.
+   *
+   * PointInTimeRestore: Creates a database by restoring a point in time backup of an existing database. sourceDatabaseId must be specified as the resource ID of the existing database, and restorePointInTime must be specified.
+   *
+   * Recovery: Creates a database by restoring a geo-replicated backup. sourceDatabaseId must be specified as the recoverable database resource ID to restore.
+   *
+   * Restore: Creates a database by restoring a backup of a deleted database. sourceDatabaseId must be specified. If sourceDatabaseId is the database's original resource ID, then sourceDatabaseDeletionDate must be specified. Otherwise sourceDatabaseId must be the restorable dropped database resource ID and sourceDatabaseDeletionDate is ignored. restorePointInTime may also be specified to restore from an earlier point in time.
+   *
+   * RestoreLongTermRetentionBackup: Creates a database by restoring from a long term retention vault. recoveryServicesRecoveryPointResourceId must be specified as the recovery point resource ID.
+   *
+   * Copy, Secondary, and RestoreLongTermRetentionBackup are not supported for DataWarehouse edition.
+   */
+  createMode?: CreateMode;
+  /**
+   * The collation of the database.
+   */
+  collation?: string;
+  /**
+   * The max size of the database expressed in bytes.
+   */
+  maxSizeBytes?: number;
+  /**
+   * The name of the sample schema to apply when creating this database.
+   */
+  sampleName?: SampleName;
+  /**
+   * The resource identifier of the elastic pool containing this database.
+   */
+  elasticPoolId?: string;
+  /**
+   * The resource identifier of the source database associated with create operation of this database.
+   */
+  sourceDatabaseId?: string;
+  /**
+   * The status of the database.
+   */
+  readonly status?: DatabaseStatus;
+  /**
+   * The ID of the database.
+   */
+  readonly databaseId?: string;
+  /**
+   * The creation date of the database (ISO8601 format).
+   */
+  readonly creationDate?: Date;
+  /**
+   * The current service level objective name of the database.
+   */
+  readonly currentServiceObjectiveName?: string;
+  /**
+   * The requested service level objective name of the database.
+   */
+  readonly requestedServiceObjectiveName?: string;
+  /**
+   * The default secondary region for this database.
+   */
+  readonly defaultSecondaryLocation?: string;
+  /**
+   * Failover Group resource identifier that this database belongs to.
+   */
+  readonly failoverGroupId?: string;
+  /**
+   * Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database.
+   */
+  restorePointInTime?: Date;
+  /**
+   * Specifies the time that the database was deleted.
+   */
+  sourceDatabaseDeletionDate?: Date;
+  /**
+   * The resource identifier of the recovery point associated with create operation of this database.
+   */
+  recoveryServicesRecoveryPointId?: string;
+  /**
+   * The resource identifier of the long term retention backup associated with create operation of this database.
+   */
+  longTermRetentionBackupResourceId?: string;
+  /**
+   * The resource identifier of the recoverable database associated with create operation of this database.
+   */
+  recoverableDatabaseId?: string;
+  /**
+   * The resource identifier of the restorable dropped database associated with create operation of this database.
+   */
+  restorableDroppedDatabaseId?: string;
+  /**
+   * Collation of the metadata catalog.
+   */
+  catalogCollation?: CatalogCollationType;
+  /**
+   * Whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones.
+   */
+  zoneRedundant?: boolean;
+  /**
+   * The license type to apply for this database.
+   */
+  licenseType?: DatabaseLicenseType;
+  /**
+   * The max log size for this database.
+   */
+  readonly maxLogSizeBytes?: number;
+  /**
+   * This records the earliest start date and time that restore is available for this database (ISO8601 format).
+   */
+  readonly earliestRestoreDate?: Date;
+  /**
+   * If enabled, connections that have application intent set to readonly in their connection string may be routed to a readonly secondary replica. This property is only settable for Premium and Business Critical databases.
+   */
+  readScale?: DatabaseReadScale;
+  /**
+   * The number of readonly secondary replicas associated with the database to which readonly application intent connections may be routed. This property is only settable for Hyperscale edition databases.
+   */
+  readReplicaCount?: number;
+  /**
+   * The name and tier of the SKU.
+   */
+  readonly currentSku?: Sku;
+  /**
+   * Time in minutes after which database is automatically paused. A value of -1 means that automatic pause is disabled
+   */
+  autoPauseDelay?: number;
+  /**
+   * Minimal capacity that database will always have allocated, if not paused
+   */
+  minCapacity?: number;
+  /**
+   * The date when database was paused by user configuration or action (ISO8601 format). Null if the database is ready.
+   */
+  readonly pausedDate?: Date;
+  /**
+   * The date when database was resumed by user action or database login (ISO8601 format). Null if the database is paused.
+   */
+  readonly resumedDate?: Date;
+};
+
+/**
+ * An elastic pool.
+ */
+export type ElasticPool = TrackedResource & {
+  /**
+   * The elastic pool SKU.
+   *
+   * The list of SKUs may vary by region and support offer. To determine the SKUs (including the SKU name, tier/edition, family, and capacity) that are available to your subscription in an Azure region, use the `Capabilities_ListByLocation` REST API or the following command:
+   *
+   * ```azurecli
+   * az sql elastic-pool list-editions -l <location> -o table
+   * ````
+   *
+   */
+  sku?: Sku;
+  /**
+   * Kind of elastic pool. This is metadata used for the Azure portal experience.
+   */
+  readonly kind?: string;
+  /**
+   * The state of the elastic pool.
+   */
+  readonly state?: ElasticPoolState;
+  /**
+   * The creation date of the elastic pool (ISO8601 format).
+   */
+  readonly creationDate?: Date;
+  /**
+   * The storage limit for the database elastic pool in bytes.
+   */
+  maxSizeBytes?: number;
+  /**
+   * The per database settings for the elastic pool.
+   */
+  perDatabaseSettings?: ElasticPoolPerDatabaseSettings;
+  /**
+   * Whether or not this elastic pool is zone redundant, which means the replicas of this elastic pool will be spread across multiple availability zones.
+   */
+  zoneRedundant?: boolean;
+  /**
+   * The license type to apply for this elastic pool.
+   */
+  licenseType?: ElasticPoolLicenseType;
+};
+
+/**
+ * An Azure SQL instance pool.
+ */
+export type InstancePool = TrackedResource & {
+  /**
+   * The name and tier of the SKU.
+   */
+  sku?: Sku;
+  /**
+   * Resource ID of the subnet to place this instance pool in.
+   */
+  subnetId?: string;
+  /**
+   * Count of vCores belonging to this instance pool.
+   */
+  vCores?: number;
+  /**
+   * The license type. Possible values are 'LicenseIncluded' (price for SQL license is included) and 'BasePrice' (without SQL license price).
+   */
+  licenseType?: InstancePoolLicenseType;
+};
+
+/**
+ * An Azure SQL managed instance.
+ */
+export type ManagedInstance = TrackedResource & {
+  /**
+   * The Azure Active Directory identity of the managed instance.
+   */
+  identity?: ResourceIdentity;
+  /**
+   * Managed instance SKU. Allowed values for sku.name: GP_Gen4, GP_Gen5, BC_Gen4, BC_Gen5
+   */
+  sku?: Sku;
+  /**
+   * Specifies the mode of database creation.
+   *
+   * Default: Regular instance creation.
+   *
+   * Restore: Creates an instance by restoring a set of backups to specific point in time. RestorePointInTime and SourceManagedInstanceId must be specified.
+   */
+  managedInstanceCreateMode?: ManagedServerCreateMode;
+  /**
+   * The fully qualified domain name of the managed instance.
+   */
+  readonly fullyQualifiedDomainName?: string;
+  /**
+   * Administrator username for the managed instance. Can only be specified when the managed instance is being created (and is required for creation).
+   */
+  administratorLogin?: string;
+  /**
+   * The administrator login password (required for managed instance creation).
+   */
+  administratorLoginPassword?: string;
+  /**
+   * Subnet resource ID for the managed instance.
+   */
+  subnetId?: string;
+  /**
+   * The state of the managed instance.
+   */
+  readonly state?: string;
+  /**
+   * The license type. Possible values are 'LicenseIncluded' (regular price inclusive of a new SQL license) and 'BasePrice' (discounted AHB price for bringing your own SQL licenses).
+   */
+  licenseType?: ManagedInstanceLicenseType;
+  /**
+   * The number of vCores. Allowed values: 8, 16, 24, 32, 40, 64, 80.
+   */
+  vCores?: number;
+  /**
+   * Storage size in GB. Minimum value: 32. Maximum value: 8192. Increments of 32 GB allowed only.
+   */
+  storageSizeInGB?: number;
+  /**
+   * Collation of the managed instance.
+   */
+  collation?: string;
+  /**
+   * The Dns Zone that the managed instance is in.
+   */
+  readonly dnsZone?: string;
+  /**
+   * The resource id of another managed instance whose DNS zone this managed instance will share after creation.
+   */
+  dnsZonePartner?: string;
+  /**
+   * Whether or not the public data endpoint is enabled.
+   */
+  publicDataEndpointEnabled?: boolean;
+  /**
+   * The resource identifier of the source managed instance associated with create operation of this instance.
+   */
+  sourceManagedInstanceId?: string;
+  /**
+   * Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database.
+   */
+  restorePointInTime?: Date;
+  /**
+   * Connection type used for connecting to the instance.
+   */
+  proxyOverride?: ManagedInstanceProxyOverride;
+  /**
+   * Id of the timezone. Allowed values are timezones supported by Windows.
+   * Windows keeps details on supported timezones, including the id, in registry under
+   * KEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Time Zones.
+   * You can get those registry values via SQL Server by querying SELECT name AS timezone_id FROM sys.time_zone_info.
+   * List of Ids can also be obtained by executing [System.TimeZoneInfo]::GetSystemTimeZones() in PowerShell.
+   * An example of valid timezone id is "Pacific Standard Time" or "W. Europe Standard Time".
+   */
+  timezoneId?: string;
+  /**
+   * The Id of the instance pool this managed server belongs to.
+   */
+  instancePoolId?: string;
+  /**
+   * Minimal TLS version. Allowed values: 'None', '1.0', '1.1', '1.2'
+   */
+  minimalTlsVersion?: string;
+};
+
+/**
+ * An Azure SQL Database server.
+ */
+export type Server = TrackedResource & {
+  /**
+   * The Azure Active Directory identity of the server.
+   */
+  identity?: ResourceIdentity;
+  /**
+   * Kind of sql server. This is metadata used for the Azure portal experience.
+   */
+  readonly kind?: string;
+  /**
+   * Administrator username for the server. Once created it cannot be changed.
+   */
+  administratorLogin?: string;
+  /**
+   * The administrator login password (required for server creation).
+   */
+  administratorLoginPassword?: string;
+  /**
+   * The version of the server.
+   */
+  version?: string;
+  /**
+   * The state of the server.
+   */
+  readonly state?: string;
+  /**
+   * The fully qualified domain name of the server.
+   */
+  readonly fullyQualifiedDomainName?: string;
+  /**
+   * List of private endpoint connections on a server
+   */
+  readonly privateEndpointConnections?: ServerPrivateEndpointConnection[];
+  /**
+   * Minimal TLS version. Allowed values: '1.0', '1.1', '1.2'
+   */
+  minimalTlsVersion?: string;
+  /**
+   * Whether or not public endpoint access is allowed for this server.  Value is optional but if passed in, must be 'Enabled' or 'Disabled'
+   */
+  publicNetworkAccess?: ServerPublicNetworkAccess;
+};
+
+/**
+ * A managed database resource.
+ */
+export type ManagedDatabase = TrackedResource & {
+  /**
+   * Collation of the managed database.
+   */
+  collation?: string;
+  /**
+   * Status of the database.
+   */
+  readonly status?: ManagedDatabaseStatus;
+  /**
+   * Creation date of the database.
+   */
+  readonly creationDate?: Date;
+  /**
+   * Earliest restore point in time for point in time restore.
+   */
+  readonly earliestRestorePoint?: Date;
+  /**
+   * Conditional. If createMode is PointInTimeRestore, this value is required. Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database.
+   */
+  restorePointInTime?: Date;
+  /**
+   * Geo paired region.
+   */
+  readonly defaultSecondaryLocation?: string;
+  /**
+   * Collation of the metadata catalog.
+   */
+  catalogCollation?: CatalogCollationType;
+  /**
+   * Managed database create mode. PointInTimeRestore: Create a database by restoring a point in time backup of an existing database. SourceDatabaseName, SourceManagedInstanceName and PointInTime must be specified. RestoreExternalBackup: Create a database by restoring from external backup files. Collation, StorageContainerUri and StorageContainerSasToken must be specified. Recovery: Creates a database by restoring a geo-replicated backup. RecoverableDatabaseId must be specified as the recoverable database resource ID to restore.
+   */
+  createMode?: ManagedDatabaseCreateMode;
+  /**
+   * Conditional. If createMode is RestoreExternalBackup, this value is required. Specifies the uri of the storage container where backups for this restore are stored.
+   */
+  storageContainerUri?: string;
+  /**
+   * The resource identifier of the source database associated with create operation of this database.
+   */
+  sourceDatabaseId?: string;
+  /**
+   * The restorable dropped database resource id to restore when creating this database.
+   */
+  restorableDroppedDatabaseId?: string;
+  /**
+   * Conditional. If createMode is RestoreExternalBackup, this value is required. Specifies the storage container sas token.
+   */
+  storageContainerSasToken?: string;
+  /**
+   * Instance Failover Group resource identifier that this managed database belongs to.
+   */
+  readonly failoverGroupId?: string;
+  /**
+   * The resource identifier of the recoverable database associated with create operation of this database.
+   */
+  recoverableDatabaseId?: string;
+  /**
+   * The name of the Long Term Retention backup to be used for restore of this managed database.
+   */
+  longTermRetentionBackupResourceId?: string;
+};
+/**
+ * Defines values for ConnectionPolicyName.
+ */
+export type ConnectionPolicyName = "default";
+/**
+ * Defines values for SecurityAlertPolicyName.
+ */
+export type SecurityAlertPolicyName = "default";
+/**
+ * Defines values for GeoBackupPolicyName.
+ */
+export type GeoBackupPolicyName = "Default";
 /**
  * Defines values for DatabaseEdition.
  */
@@ -6550,6 +6562,10 @@ export type ServiceObjectiveName =
   | "DS2000"
   | "ElasticPool";
 /**
+ * Defines values for ExtensionName.
+ */
+export type ExtensionName = "import";
+/**
  * Defines values for UnitType.
  */
 export type UnitType =
@@ -6593,11 +6609,19 @@ export type ElasticPoolEdition =
  */
 export type ReplicationState = "PENDING" | "SEEDING" | "CATCH_UP" | "SUSPENDED";
 /**
+ * Defines values for TransparentDataEncryptionName.
+ */
+export type TransparentDataEncryptionName = "current";
+/**
  * Defines values for TransparentDataEncryptionActivityStatus.
  */
 export type TransparentDataEncryptionActivityStatus =
   | "Encrypting"
   | "Decrypting";
+/**
+ * Defines values for EncryptionProtectorName.
+ */
+export type EncryptionProtectorName = "current";
 /**
  * Defines values for ServerKeyType.
  */
@@ -6627,9 +6651,9 @@ export type SyncAgentState = "Online" | "Offline" | "NeverConnected";
  */
 export type SyncMemberDbType = "AzureSqlDatabase" | "SqlServerDatabase";
 /**
- * Defines values for Enum15.
+ * Defines values for Enum21.
  */
-export type Enum15 = "All" | "Error" | "Warning" | "Success";
+export type Enum21 = "All" | "Error" | "Warning" | "Success";
 /**
  * Defines values for SyncGroupLogType.
  */
@@ -6686,6 +6710,10 @@ export type VirtualNetworkRuleState =
   | "Deleting"
   | "Unknown";
 /**
+ * Defines values for VulnerabilityAssessmentName.
+ */
+export type VulnerabilityAssessmentName = "default";
+/**
  * Defines values for JobAgentState.
  */
 export type JobAgentState =
@@ -6727,9 +6755,37 @@ export type JobTargetType =
   | "SqlShardMap"
   | "SqlServer";
 /**
+ * Defines values for JobStepActionType.
+ */
+export type JobStepActionType = "TSql";
+/**
+ * Defines values for JobStepActionSource.
+ */
+export type JobStepActionSource = "Inline";
+/**
+ * Defines values for JobStepOutputType.
+ */
+export type JobStepOutputType = "SqlDatabase";
+/**
  * Defines values for LongTermRetentionDatabaseState.
  */
 export type LongTermRetentionDatabaseState = "All" | "Live" | "Deleted";
+/**
+ * Defines values for LongTermRetentionPolicyName.
+ */
+export type LongTermRetentionPolicyName = "default";
+/**
+ * Defines values for ManagedShortTermRetentionPolicyName.
+ */
+export type ManagedShortTermRetentionPolicyName = "default";
+/**
+ * Defines values for SecurityAlertPolicyNameAutoGenerated.
+ */
+export type SecurityAlertPolicyNameAutoGenerated = "Default";
+/**
+ * Defines values for ManagedInstanceAdministratorType.
+ */
+export type ManagedInstanceAdministratorType = "ActiveDirectory";
 /**
  * Defines values for ManagementOperationState.
  */
@@ -6825,9 +6881,17 @@ export type VulnerabilityAssessmentScanState =
  */
 export type InstanceFailoverGroupReplicationRole = "Primary" | "Secondary";
 /**
+ * Defines values for ShortTermRetentionPolicyName.
+ */
+export type ShortTermRetentionPolicyName = "default";
+/**
  * Defines values for InstancePoolLicenseType.
  */
 export type InstancePoolLicenseType = "LicenseIncluded" | "BasePrice";
+/**
+ * Defines values for IdentityType.
+ */
+export type IdentityType = "SystemAssigned";
 /**
  * Defines values for ManagedServerCreateMode.
  */
@@ -6852,6 +6916,10 @@ export type PrivateLinkServiceConnectionStateStatus =
   | "Pending"
   | "Rejected"
   | "Disconnected";
+/**
+ * Defines values for PrivateLinkServiceConnectionStateActionsRequire.
+ */
+export type PrivateLinkServiceConnectionStateActionsRequire = "None";
 /**
  * Defines values for PrivateEndpointProvisioningState.
  */
@@ -6892,6 +6960,10 @@ export type LogSizeUnit =
  */
 export type PerformanceLevelUnit = "DTU" | "VCores";
 /**
+ * Defines values for PauseDelayTimeUnit.
+ */
+export type PauseDelayTimeUnit = "Minutes";
+/**
  * Defines values for StorageCapabilityStorageAccountType.
  */
 export type StorageCapabilityStorageAccountType = "GRS" | "LRS" | "ZRS";
@@ -6899,6 +6971,14 @@ export type StorageCapabilityStorageAccountType = "GRS" | "LRS" | "ZRS";
  * Defines values for DatabaseState.
  */
 export type DatabaseState = "All" | "Live" | "Deleted";
+/**
+ * Defines values for ManagedInstanceLongTermRetentionPolicyName.
+ */
+export type ManagedInstanceLongTermRetentionPolicyName = "default";
+/**
+ * Defines values for RestoreDetailsName.
+ */
+export type RestoreDetailsName = "Default";
 /**
  * Defines values for ManagedDatabaseStatus.
  */
@@ -6919,6 +6999,14 @@ export type ManagedDatabaseCreateMode =
   | "PointInTimeRestore"
   | "Recovery"
   | "RestoreLongTermRetentionBackup";
+/**
+ * Defines values for AdministratorName.
+ */
+export type AdministratorName = "ActiveDirectory";
+/**
+ * Defines values for AdministratorType.
+ */
+export type AdministratorType = "ActiveDirectory";
 /**
  * Defines values for ServerConnectionType.
  */

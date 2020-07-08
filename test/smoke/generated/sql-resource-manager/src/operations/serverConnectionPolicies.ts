@@ -12,6 +12,7 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   ServerConnectionPolicy,
+  ConnectionPolicyName,
   ServerConnectionPoliciesCreateOrUpdateResponse,
   ServerConnectionPoliciesGetResponse
 } from "../models";
@@ -35,12 +36,14 @@ export class ServerConnectionPolicies {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
+   * @param connectionPolicyName The name of the connection policy.
    * @param parameters The required parameters for updating a secure connection policy.
    * @param options The options parameters.
    */
   createOrUpdate(
     resourceGroupName: string,
     serverName: string,
+    connectionPolicyName: ConnectionPolicyName,
     parameters: ServerConnectionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<ServerConnectionPoliciesCreateOrUpdateResponse> {
@@ -48,7 +51,13 @@ export class ServerConnectionPolicies {
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, parameters, options: operationOptions },
+      {
+        resourceGroupName,
+        serverName,
+        connectionPolicyName,
+        parameters,
+        options: operationOptions
+      },
       createOrUpdateOperationSpec
     ) as Promise<ServerConnectionPoliciesCreateOrUpdateResponse>;
   }
@@ -58,18 +67,25 @@ export class ServerConnectionPolicies {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
+   * @param connectionPolicyName The name of the connection policy.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     serverName: string,
+    connectionPolicyName: ConnectionPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<ServerConnectionPoliciesGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options: operationOptions },
+      {
+        resourceGroupName,
+        serverName,
+        connectionPolicyName,
+        options: operationOptions
+      },
       getOperationSpec
     ) as Promise<ServerConnectionPoliciesGetResponse>;
   }

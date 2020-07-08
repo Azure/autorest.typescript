@@ -8,6 +8,28 @@
 
 import * as coreHttp from "@azure/core-http";
 
+export const SignInName: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SignInName",
+    additionalProperties: { type: { name: "Object" } },
+    modelProperties: {
+      type: {
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      },
+      value: {
+        serializedName: "value",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const DirectoryObject: coreHttp.CompositeMapper = {
   serializedName: "DirectoryObject",
   type: {
@@ -39,109 +61,6 @@ export const DirectoryObject: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "DateTime"
-        }
-      }
-    }
-  }
-};
-
-export const User: coreHttp.CompositeMapper = {
-  serializedName: "User",
-  type: {
-    name: "Composite",
-    className: "User",
-    uberParent: "DirectoryObject",
-    additionalProperties: { type: { name: "Object" } },
-    polymorphicDiscriminator: DirectoryObject.type.polymorphicDiscriminator,
-    modelProperties: {
-      ...DirectoryObject.type.modelProperties,
-      immutableId: {
-        serializedName: "immutableId",
-        type: {
-          name: "String"
-        }
-      },
-      usageLocation: {
-        serializedName: "usageLocation",
-        type: {
-          name: "String"
-        }
-      },
-      givenName: {
-        serializedName: "givenName",
-        type: {
-          name: "String"
-        }
-      },
-      surname: {
-        serializedName: "surname",
-        type: {
-          name: "String"
-        }
-      },
-      userType: {
-        serializedName: "userType",
-        type: {
-          name: "String"
-        }
-      },
-      accountEnabled: {
-        serializedName: "accountEnabled",
-        type: {
-          name: "Boolean"
-        }
-      },
-      displayName: {
-        serializedName: "displayName",
-        type: {
-          name: "String"
-        }
-      },
-      userPrincipalName: {
-        serializedName: "userPrincipalName",
-        type: {
-          name: "String"
-        }
-      },
-      mailNickname: {
-        serializedName: "mailNickname",
-        type: {
-          name: "String"
-        }
-      },
-      mail: {
-        serializedName: "mail",
-        type: {
-          name: "String"
-        }
-      },
-      signInNames: {
-        serializedName: "signInNames",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "SignInName" } }
-        }
-      }
-    }
-  }
-};
-
-export const SignInName: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SignInName",
-    additionalProperties: { type: { name: "Object" } },
-    modelProperties: {
-      type: {
-        serializedName: "type",
-        type: {
-          name: "String"
-        }
-      },
-      value: {
-        serializedName: "value",
-        type: {
-          name: "String"
         }
       }
     }
@@ -809,12 +728,178 @@ export const ResourceAccess: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApplicationCreateParameters: coreHttp.CompositeMapper = {
+export const ApplicationListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "ApplicationCreateParameters",
+    className: "ApplicationListResult",
     modelProperties: {
-      ...ApplicationBase.type.modelProperties,
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Application" } }
+        }
+      },
+      odataNextLink: {
+        serializedName: "odata\\.nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const AddOwnerParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "AddOwnerParameters",
+    additionalProperties: { type: { name: "Object" } },
+    modelProperties: {
+      url: {
+        serializedName: "url",
+        required: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const KeyCredentialListResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "KeyCredentialListResult",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "KeyCredential" } }
+        }
+      }
+    }
+  }
+};
+
+export const KeyCredentialsUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "KeyCredentialsUpdateParameters",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        required: true,
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "KeyCredential" } }
+        }
+      }
+    }
+  }
+};
+
+export const PasswordCredentialListResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PasswordCredentialListResult",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "PasswordCredential" }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const PasswordCredentialsUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PasswordCredentialsUpdateParameters",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        required: true,
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "PasswordCredential" }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const CheckGroupMembershipParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "CheckGroupMembershipParameters",
+    additionalProperties: { type: { name: "Object" } },
+    modelProperties: {
+      groupId: {
+        serializedName: "groupId",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      memberId: {
+        serializedName: "memberId",
+        required: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const CheckGroupMembershipResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "CheckGroupMembershipResult",
+    additionalProperties: { type: { name: "Object" } },
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  }
+};
+
+export const GroupAddMemberParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GroupAddMemberParameters",
+    additionalProperties: { type: { name: "Object" } },
+    modelProperties: {
+      url: {
+        serializedName: "url",
+        required: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const GroupCreateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GroupCreateParameters",
+    additionalProperties: { type: { name: "Object" } },
+    modelProperties: {
       displayName: {
         serializedName: "displayName",
         required: true,
@@ -822,11 +907,547 @@ export const ApplicationCreateParameters: coreHttp.CompositeMapper = {
           name: "String"
         }
       },
-      identifierUris: {
-        serializedName: "identifierUris",
+      mailEnabled: {
+        defaultValue: false,
+        isConstant: true,
+        serializedName: "mailEnabled",
+        type: {
+          name: "Boolean"
+        }
+      },
+      mailNickname: {
+        serializedName: "mailNickname",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      securityEnabled: {
+        defaultValue: true,
+        isConstant: true,
+        serializedName: "securityEnabled",
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  }
+};
+
+export const GroupListResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GroupListResult",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "ADGroup" } }
+        }
+      },
+      odataNextLink: {
+        serializedName: "odata\\.nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const GroupGetMemberGroupsParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GroupGetMemberGroupsParameters",
+    additionalProperties: { type: { name: "Object" } },
+    modelProperties: {
+      securityEnabledOnly: {
+        serializedName: "securityEnabledOnly",
+        required: true,
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  }
+};
+
+export const GroupGetMemberGroupsResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GroupGetMemberGroupsResult",
+    modelProperties: {
+      value: {
+        serializedName: "value",
         type: {
           name: "Sequence",
           element: { type: { name: "String" } }
+        }
+      }
+    }
+  }
+};
+
+export const ServicePrincipalBase: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ServicePrincipalBase",
+    modelProperties: {
+      accountEnabled: {
+        serializedName: "accountEnabled",
+        type: {
+          name: "Boolean"
+        }
+      },
+      appRoleAssignmentRequired: {
+        serializedName: "appRoleAssignmentRequired",
+        type: {
+          name: "Boolean"
+        }
+      },
+      keyCredentials: {
+        serializedName: "keyCredentials",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "KeyCredential" } }
+        }
+      },
+      passwordCredentials: {
+        serializedName: "passwordCredentials",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "PasswordCredential" }
+          }
+        }
+      },
+      servicePrincipalType: {
+        serializedName: "servicePrincipalType",
+        type: {
+          name: "String"
+        }
+      },
+      tags: {
+        serializedName: "tags",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      }
+    }
+  }
+};
+
+export const ServicePrincipalListResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ServicePrincipalListResult",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "ServicePrincipal" }
+          }
+        }
+      },
+      odataNextLink: {
+        serializedName: "odata\\.nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const ServicePrincipalObjectResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ServicePrincipalObjectResult",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "String"
+        }
+      },
+      odataMetadata: {
+        serializedName: "odata\\.metadata",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const PasswordProfile: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PasswordProfile",
+    additionalProperties: { type: { name: "Object" } },
+    modelProperties: {
+      password: {
+        serializedName: "password",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      forceChangePasswordNextLogin: {
+        serializedName: "forceChangePasswordNextLogin",
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  }
+};
+
+export const UserBase: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "UserBase",
+    additionalProperties: { type: { name: "Object" } },
+    modelProperties: {
+      immutableId: {
+        serializedName: "immutableId",
+        type: {
+          name: "String"
+        }
+      },
+      usageLocation: {
+        serializedName: "usageLocation",
+        type: {
+          name: "String"
+        }
+      },
+      givenName: {
+        serializedName: "givenName",
+        type: {
+          name: "String"
+        }
+      },
+      surname: {
+        serializedName: "surname",
+        type: {
+          name: "String"
+        }
+      },
+      userType: {
+        serializedName: "userType",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const UserListResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "UserListResult",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "User" } }
+        }
+      },
+      odataNextLink: {
+        serializedName: "odata\\.nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const UserGetMemberGroupsParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "UserGetMemberGroupsParameters",
+    additionalProperties: { type: { name: "Object" } },
+    modelProperties: {
+      securityEnabledOnly: {
+        serializedName: "securityEnabledOnly",
+        required: true,
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  }
+};
+
+export const UserGetMemberGroupsResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "UserGetMemberGroupsResult",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      }
+    }
+  }
+};
+
+export const GetObjectsParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GetObjectsParameters",
+    additionalProperties: { type: { name: "Object" } },
+    modelProperties: {
+      objectIds: {
+        serializedName: "objectIds",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      },
+      types: {
+        serializedName: "types",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      },
+      includeDirectoryObjectReferences: {
+        serializedName: "includeDirectoryObjectReferences",
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  }
+};
+
+export const DomainListResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "DomainListResult",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Domain" } }
+        }
+      }
+    }
+  }
+};
+
+export const Domain: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "Domain",
+    additionalProperties: { type: { name: "Object" } },
+    modelProperties: {
+      authenticationType: {
+        serializedName: "authenticationType",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      isDefault: {
+        serializedName: "isDefault",
+        readOnly: true,
+        type: {
+          name: "Boolean"
+        }
+      },
+      isVerified: {
+        serializedName: "isVerified",
+        readOnly: true,
+        type: {
+          name: "Boolean"
+        }
+      },
+      name: {
+        serializedName: "name",
+        required: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const OAuth2PermissionGrantListResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "OAuth2PermissionGrantListResult",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "OAuth2PermissionGrant" }
+          }
+        }
+      },
+      odataNextLink: {
+        serializedName: "odata\\.nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const OAuth2PermissionGrant: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "OAuth2PermissionGrant",
+    modelProperties: {
+      odataType: {
+        serializedName: "odata\\.type",
+        type: {
+          name: "String"
+        }
+      },
+      clientId: {
+        serializedName: "clientId",
+        type: {
+          name: "String"
+        }
+      },
+      objectId: {
+        serializedName: "objectId",
+        type: {
+          name: "String"
+        }
+      },
+      consentType: {
+        serializedName: "consentType",
+        type: {
+          name: "String"
+        }
+      },
+      principalId: {
+        serializedName: "principalId",
+        type: {
+          name: "String"
+        }
+      },
+      resourceId: {
+        serializedName: "resourceId",
+        type: {
+          name: "String"
+        }
+      },
+      scope: {
+        serializedName: "scope",
+        type: {
+          name: "String"
+        }
+      },
+      startTime: {
+        serializedName: "startTime",
+        type: {
+          name: "String"
+        }
+      },
+      expiryTime: {
+        serializedName: "expiryTime",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const User: coreHttp.CompositeMapper = {
+  serializedName: "User",
+  type: {
+    name: "Composite",
+    className: "User",
+    uberParent: "DirectoryObject",
+    additionalProperties: { type: { name: "Object" } },
+    polymorphicDiscriminator: DirectoryObject.type.polymorphicDiscriminator,
+    modelProperties: {
+      ...DirectoryObject.type.modelProperties,
+      immutableId: {
+        serializedName: "immutableId",
+        type: {
+          name: "String"
+        }
+      },
+      usageLocation: {
+        serializedName: "usageLocation",
+        type: {
+          name: "String"
+        }
+      },
+      givenName: {
+        serializedName: "givenName",
+        type: {
+          name: "String"
+        }
+      },
+      surname: {
+        serializedName: "surname",
+        type: {
+          name: "String"
+        }
+      },
+      userType: {
+        serializedName: "userType",
+        type: {
+          name: "String"
+        }
+      },
+      accountEnabled: {
+        serializedName: "accountEnabled",
+        type: {
+          name: "Boolean"
+        }
+      },
+      displayName: {
+        serializedName: "displayName",
+        type: {
+          name: "String"
+        }
+      },
+      userPrincipalName: {
+        serializedName: "userPrincipalName",
+        type: {
+          name: "String"
+        }
+      },
+      mailNickname: {
+        serializedName: "mailNickname",
+        type: {
+          name: "String"
+        }
+      },
+      mail: {
+        serializedName: "mail",
+        type: {
+          name: "String"
+        }
+      },
+      signInNames: {
+        serializedName: "signInNames",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "SignInName" } }
         }
       }
     }
@@ -1060,235 +1681,6 @@ export const Application: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApplicationListResult: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ApplicationListResult",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Application" } }
-        }
-      },
-      odataNextLink: {
-        serializedName: "odata\\.nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const ApplicationUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ApplicationUpdateParameters",
-    modelProperties: {
-      ...ApplicationBase.type.modelProperties,
-      displayName: {
-        serializedName: "displayName",
-        type: {
-          name: "String"
-        }
-      },
-      identifierUris: {
-        serializedName: "identifierUris",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" } }
-        }
-      }
-    }
-  }
-};
-
-export const AddOwnerParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "AddOwnerParameters",
-    additionalProperties: { type: { name: "Object" } },
-    modelProperties: {
-      url: {
-        serializedName: "url",
-        required: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const KeyCredentialListResult: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "KeyCredentialListResult",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "KeyCredential" } }
-        }
-      }
-    }
-  }
-};
-
-export const KeyCredentialsUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "KeyCredentialsUpdateParameters",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        required: true,
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "KeyCredential" } }
-        }
-      }
-    }
-  }
-};
-
-export const PasswordCredentialListResult: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "PasswordCredentialListResult",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Composite", className: "PasswordCredential" }
-          }
-        }
-      }
-    }
-  }
-};
-
-export const PasswordCredentialsUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "PasswordCredentialsUpdateParameters",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        required: true,
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Composite", className: "PasswordCredential" }
-          }
-        }
-      }
-    }
-  }
-};
-
-export const CheckGroupMembershipParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "CheckGroupMembershipParameters",
-    additionalProperties: { type: { name: "Object" } },
-    modelProperties: {
-      groupId: {
-        serializedName: "groupId",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      memberId: {
-        serializedName: "memberId",
-        required: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const CheckGroupMembershipResult: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "CheckGroupMembershipResult",
-    additionalProperties: { type: { name: "Object" } },
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
-};
-
-export const GroupAddMemberParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GroupAddMemberParameters",
-    additionalProperties: { type: { name: "Object" } },
-    modelProperties: {
-      url: {
-        serializedName: "url",
-        required: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const GroupCreateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GroupCreateParameters",
-    additionalProperties: { type: { name: "Object" } },
-    modelProperties: {
-      displayName: {
-        serializedName: "displayName",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      mailEnabled: {
-        defaultValue: false,
-        isConstant: true,
-        serializedName: "mailEnabled",
-        type: {
-          name: "Boolean"
-        }
-      },
-      mailNickname: {
-        serializedName: "mailNickname",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      securityEnabled: {
-        defaultValue: true,
-        isConstant: true,
-        serializedName: "securityEnabled",
-        type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
-};
-
 export const ADGroup: coreHttp.CompositeMapper = {
   serializedName: "Group",
   type: {
@@ -1325,128 +1717,6 @@ export const ADGroup: coreHttp.CompositeMapper = {
       },
       mail: {
         serializedName: "mail",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const GroupListResult: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GroupListResult",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "ADGroup" } }
-        }
-      },
-      odataNextLink: {
-        serializedName: "odata\\.nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const GroupGetMemberGroupsParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GroupGetMemberGroupsParameters",
-    additionalProperties: { type: { name: "Object" } },
-    modelProperties: {
-      securityEnabledOnly: {
-        serializedName: "securityEnabledOnly",
-        required: true,
-        type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
-};
-
-export const GroupGetMemberGroupsResult: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GroupGetMemberGroupsResult",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" } }
-        }
-      }
-    }
-  }
-};
-
-export const ServicePrincipalBase: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ServicePrincipalBase",
-    modelProperties: {
-      accountEnabled: {
-        serializedName: "accountEnabled",
-        type: {
-          name: "Boolean"
-        }
-      },
-      appRoleAssignmentRequired: {
-        serializedName: "appRoleAssignmentRequired",
-        type: {
-          name: "Boolean"
-        }
-      },
-      keyCredentials: {
-        serializedName: "keyCredentials",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "KeyCredential" } }
-        }
-      },
-      passwordCredentials: {
-        serializedName: "passwordCredentials",
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Composite", className: "PasswordCredential" }
-          }
-        }
-      },
-      servicePrincipalType: {
-        serializedName: "servicePrincipalType",
-        type: {
-          name: "String"
-        }
-      },
-      tags: {
-        serializedName: "tags",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" } }
-        }
-      }
-    }
-  }
-};
-
-export const ServicePrincipalCreateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ServicePrincipalCreateParameters",
-    modelProperties: {
-      ...ServicePrincipalBase.type.modelProperties,
-      appId: {
-        serializedName: "appId",
-        required: true,
         type: {
           name: "String"
         }
@@ -1610,22 +1880,62 @@ export const ServicePrincipal: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServicePrincipalListResult: coreHttp.CompositeMapper = {
+export const ApplicationCreateParameters: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "ServicePrincipalListResult",
+    className: "ApplicationCreateParameters",
     modelProperties: {
-      value: {
-        serializedName: "value",
+      ...ApplicationBase.type.modelProperties,
+      displayName: {
+        serializedName: "displayName",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      identifierUris: {
+        serializedName: "identifierUris",
         type: {
           name: "Sequence",
-          element: {
-            type: { name: "Composite", className: "ServicePrincipal" }
-          }
+          element: { type: { name: "String" } }
+        }
+      }
+    }
+  }
+};
+
+export const ApplicationUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ApplicationUpdateParameters",
+    modelProperties: {
+      ...ApplicationBase.type.modelProperties,
+      displayName: {
+        serializedName: "displayName",
+        type: {
+          name: "String"
         }
       },
-      odataNextLink: {
-        serializedName: "odata\\.nextLink",
+      identifierUris: {
+        serializedName: "identifierUris",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      }
+    }
+  }
+};
+
+export const ServicePrincipalCreateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ServicePrincipalCreateParameters",
+    modelProperties: {
+      ...ServicePrincipalBase.type.modelProperties,
+      appId: {
+        serializedName: "appId",
+        required: true,
         type: {
           name: "String"
         }
@@ -1634,63 +1944,12 @@ export const ServicePrincipalListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServicePrincipalObjectResult: coreHttp.CompositeMapper = {
+export const ServicePrincipalUpdateParameters: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "ServicePrincipalObjectResult",
+    className: "ServicePrincipalUpdateParameters",
     modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "String"
-        }
-      },
-      odataMetadata: {
-        serializedName: "odata\\.metadata",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const UserBase: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "UserBase",
-    additionalProperties: { type: { name: "Object" } },
-    modelProperties: {
-      immutableId: {
-        serializedName: "immutableId",
-        type: {
-          name: "String"
-        }
-      },
-      usageLocation: {
-        serializedName: "usageLocation",
-        type: {
-          name: "String"
-        }
-      },
-      givenName: {
-        serializedName: "givenName",
-        type: {
-          name: "String"
-        }
-      },
-      surname: {
-        serializedName: "surname",
-        type: {
-          name: "String"
-        }
-      },
-      userType: {
-        serializedName: "userType",
-        type: {
-          name: "String"
-        }
-      }
+      ...ServicePrincipalBase.type.modelProperties
     }
   }
 };
@@ -1747,51 +2006,6 @@ export const UserCreateParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const PasswordProfile: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "PasswordProfile",
-    additionalProperties: { type: { name: "Object" } },
-    modelProperties: {
-      password: {
-        serializedName: "password",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      forceChangePasswordNextLogin: {
-        serializedName: "forceChangePasswordNextLogin",
-        type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
-};
-
-export const UserListResult: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "UserListResult",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "User" } }
-        }
-      },
-      odataNextLink: {
-        serializedName: "odata\\.nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const UserUpdateParameters: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -1830,220 +2044,6 @@ export const UserUpdateParameters: coreHttp.CompositeMapper = {
           name: "String"
         }
       }
-    }
-  }
-};
-
-export const UserGetMemberGroupsParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "UserGetMemberGroupsParameters",
-    additionalProperties: { type: { name: "Object" } },
-    modelProperties: {
-      securityEnabledOnly: {
-        serializedName: "securityEnabledOnly",
-        required: true,
-        type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
-};
-
-export const UserGetMemberGroupsResult: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "UserGetMemberGroupsResult",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" } }
-        }
-      }
-    }
-  }
-};
-
-export const GetObjectsParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GetObjectsParameters",
-    additionalProperties: { type: { name: "Object" } },
-    modelProperties: {
-      objectIds: {
-        serializedName: "objectIds",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" } }
-        }
-      },
-      types: {
-        serializedName: "types",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" } }
-        }
-      },
-      includeDirectoryObjectReferences: {
-        serializedName: "includeDirectoryObjectReferences",
-        type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
-};
-
-export const DomainListResult: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "DomainListResult",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Domain" } }
-        }
-      }
-    }
-  }
-};
-
-export const Domain: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "Domain",
-    additionalProperties: { type: { name: "Object" } },
-    modelProperties: {
-      authenticationType: {
-        serializedName: "authenticationType",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      isDefault: {
-        serializedName: "isDefault",
-        readOnly: true,
-        type: {
-          name: "Boolean"
-        }
-      },
-      isVerified: {
-        serializedName: "isVerified",
-        readOnly: true,
-        type: {
-          name: "Boolean"
-        }
-      },
-      name: {
-        serializedName: "name",
-        required: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const OAuth2PermissionGrantListResult: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "OAuth2PermissionGrantListResult",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Composite", className: "OAuth2PermissionGrant" }
-          }
-        }
-      },
-      odataNextLink: {
-        serializedName: "odata\\.nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const OAuth2PermissionGrant: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "OAuth2PermissionGrant",
-    modelProperties: {
-      odataType: {
-        serializedName: "odata\\.type",
-        type: {
-          name: "String"
-        }
-      },
-      clientId: {
-        serializedName: "clientId",
-        type: {
-          name: "String"
-        }
-      },
-      objectId: {
-        serializedName: "objectId",
-        type: {
-          name: "String"
-        }
-      },
-      consentType: {
-        serializedName: "consentType",
-        type: {
-          name: "String"
-        }
-      },
-      principalId: {
-        serializedName: "principalId",
-        type: {
-          name: "String"
-        }
-      },
-      resourceId: {
-        serializedName: "resourceId",
-        type: {
-          name: "String"
-        }
-      },
-      scope: {
-        serializedName: "scope",
-        type: {
-          name: "String"
-        }
-      },
-      startTime: {
-        serializedName: "startTime",
-        type: {
-          name: "String"
-        }
-      },
-      expiryTime: {
-        serializedName: "expiryTime",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const ServicePrincipalUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ServicePrincipalUpdateParameters",
-    modelProperties: {
-      ...ServicePrincipalBase.type.modelProperties
     }
   }
 };

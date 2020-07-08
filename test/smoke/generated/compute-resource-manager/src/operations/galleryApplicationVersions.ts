@@ -16,6 +16,7 @@ import {
   GalleryApplicationVersionsCreateOrUpdateResponse,
   GalleryApplicationVersionUpdate,
   GalleryApplicationVersionsUpdateResponse,
+  GalleryApplicationVersionsGetOptionalParams,
   GalleryApplicationVersionsGetResponse,
   GalleryApplicationVersionsListByGalleryApplicationResponse,
   GalleryApplicationVersionsListByGalleryApplicationNextResponse
@@ -158,7 +159,7 @@ export class GalleryApplicationVersions {
     galleryName: string,
     galleryApplicationName: string,
     galleryApplicationVersionName: string,
-    options?: coreHttp.OperationOptions
+    options?: GalleryApplicationVersionsGetOptionalParams
   ): Promise<GalleryApplicationVersionsGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}

@@ -38,58 +38,6 @@ export const Resource: coreHttp.CompositeMapper = {
   }
 };
 
-export const SystemAssignedIdentity: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SystemAssignedIdentity",
-    modelProperties: {
-      ...Resource.type.modelProperties,
-      location: {
-        serializedName: "location",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      tags: {
-        serializedName: "tags",
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
-      },
-      tenantId: {
-        serializedName: "properties.tenantId",
-        readOnly: true,
-        type: {
-          name: "Uuid"
-        }
-      },
-      principalId: {
-        serializedName: "properties.principalId",
-        readOnly: true,
-        type: {
-          name: "Uuid"
-        }
-      },
-      clientId: {
-        serializedName: "properties.clientId",
-        readOnly: true,
-        type: {
-          name: "Uuid"
-        }
-      },
-      clientSecretUrl: {
-        serializedName: "properties.clientSecretUrl",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const CloudError: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -239,12 +187,19 @@ export const UserAssignedIdentitiesListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const TrackedResource: coreHttp.CompositeMapper = {
+export const SystemAssignedIdentity: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "TrackedResource",
+    className: "SystemAssignedIdentity",
     modelProperties: {
       ...Resource.type.modelProperties,
+      location: {
+        serializedName: "location",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
       tags: {
         serializedName: "tags",
         type: {
@@ -252,23 +207,6 @@ export const TrackedResource: coreHttp.CompositeMapper = {
           value: { type: { name: "String" } }
         }
       },
-      location: {
-        serializedName: "location",
-        required: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const Identity: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "Identity",
-    modelProperties: {
-      ...TrackedResource.type.modelProperties,
       tenantId: {
         serializedName: "properties.tenantId",
         readOnly: true,
@@ -288,6 +226,37 @@ export const Identity: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Uuid"
+        }
+      },
+      clientSecretUrl: {
+        serializedName: "properties.clientSecretUrl",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const TrackedResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "TrackedResource",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      tags: {
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" } }
+        }
+      },
+      location: {
+        serializedName: "location",
+        required: true,
+        type: {
+          name: "String"
         }
       }
     }
@@ -344,6 +313,37 @@ export const ProxyResource: coreHttp.CompositeMapper = {
     className: "ProxyResource",
     modelProperties: {
       ...Resource.type.modelProperties
+    }
+  }
+};
+
+export const Identity: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "Identity",
+    modelProperties: {
+      ...TrackedResource.type.modelProperties,
+      tenantId: {
+        serializedName: "properties.tenantId",
+        readOnly: true,
+        type: {
+          name: "Uuid"
+        }
+      },
+      principalId: {
+        serializedName: "properties.principalId",
+        readOnly: true,
+        type: {
+          name: "Uuid"
+        }
+      },
+      clientId: {
+        serializedName: "properties.clientId",
+        readOnly: true,
+        type: {
+          name: "Uuid"
+        }
+      }
     }
   }
 };

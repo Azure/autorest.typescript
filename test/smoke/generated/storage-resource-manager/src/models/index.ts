@@ -544,141 +544,6 @@ export interface RoutingPreference {
   publishInternetEndpoints?: boolean;
 }
 
-export interface Resource {
-  /**
-   * Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
-   */
-  readonly id?: string;
-  /**
-   * The name of the resource
-   */
-  readonly name?: string;
-  /**
-   * The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
-   */
-  readonly type?: string;
-}
-
-/**
- * The resource model definition for a ARM tracked top level resource
- */
-export type TrackedResource = Resource & {
-  /**
-   * Resource tags.
-   */
-  tags?: { [propertyName: string]: string };
-  /**
-   * The geo-location where the resource lives
-   */
-  location: string;
-};
-
-/**
- * The storage account.
- */
-export type StorageAccount = TrackedResource & {
-  /**
-   * Gets the SKU.
-   */
-  readonly sku?: Sku;
-  /**
-   * Gets the Kind.
-   */
-  readonly kind?: Kind;
-  /**
-   * The identity of the resource.
-   */
-  identity?: Identity;
-  /**
-   * Gets the status of the storage account at the time the operation was called.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Gets the URLs that are used to perform a retrieval of a public blob, queue, or table object. Note that Standard_ZRS and Premium_LRS accounts only return the blob endpoint.
-   */
-  readonly primaryEndpoints?: Endpoints;
-  /**
-   * Gets the location of the primary data center for the storage account.
-   */
-  readonly primaryLocation?: string;
-  /**
-   * Gets the status indicating whether the primary location of the storage account is available or unavailable.
-   */
-  readonly statusOfPrimary?: AccountStatus;
-  /**
-   * Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
-   */
-  readonly lastGeoFailoverTime?: Date;
-  /**
-   * Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
-   */
-  readonly secondaryLocation?: string;
-  /**
-   * Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-   */
-  readonly statusOfSecondary?: AccountStatus;
-  /**
-   * Gets the creation date and time of the storage account in UTC.
-   */
-  readonly creationTime?: Date;
-  /**
-   * Gets the custom domain the user assigned to this storage account.
-   */
-  readonly customDomain?: CustomDomain;
-  /**
-   * Gets the URLs that are used to perform a retrieval of a public blob, queue, or table object from the secondary location of the storage account. Only available if the SKU name is Standard_RAGRS.
-   */
-  readonly secondaryEndpoints?: Endpoints;
-  /**
-   * Gets the encryption settings on the account. If unspecified, the account is unencrypted.
-   */
-  readonly encryption?: Encryption;
-  /**
-   * Required for storage accounts where kind = BlobStorage. The access tier used for billing.
-   */
-  readonly accessTier?: AccessTier;
-  /**
-   * Provides the identity based authentication settings for Azure Files.
-   */
-  azureFilesIdentityBasedAuthentication?: AzureFilesIdentityBasedAuthentication;
-  /**
-   * Allows https traffic only to storage service if sets to true.
-   */
-  enableHttpsTrafficOnly?: boolean;
-  /**
-   * Network rule set
-   */
-  readonly networkRuleSet?: NetworkRuleSet;
-  /**
-   * Account HierarchicalNamespace enabled if sets to true.
-   */
-  isHnsEnabled?: boolean;
-  /**
-   * Geo Replication Stats
-   */
-  readonly geoReplicationStats?: GeoReplicationStats;
-  /**
-   * If the failover is in progress, the value will be true, otherwise, it will be null.
-   */
-  readonly failoverInProgress?: boolean;
-  /**
-   * Allow large file shares if sets to Enabled. It cannot be disabled once it is enabled.
-   */
-  largeFileSharesState?: LargeFileSharesState;
-  /**
-   * List of private endpoint connection associated with the specified storage account
-   */
-  readonly privateEndpointConnections?: PrivateEndpointConnection[];
-  /**
-   * Maintains information about the network routing choice opted by the user for data transfer
-   */
-  routingPreference?: RoutingPreference;
-  /**
-   * Blob restore status
-   */
-  readonly blobRestoreStatus?: BlobRestoreStatus;
-};
-
 /**
  * The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
  */
@@ -788,24 +653,6 @@ export interface GeoReplicationStats {
 }
 
 /**
- * The Private Endpoint Connection resource.
- */
-export type PrivateEndpointConnection = Resource & {
-  /**
-   * The resource of private end point.
-   */
-  privateEndpoint?: PrivateEndpoint;
-  /**
-   * A collection of information about the state of the connection between service consumer and provider.
-   */
-  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
-  /**
-   * The provisioning state of the private endpoint connection resource.
-   */
-  readonly provisioningState?: PrivateEndpointConnectionProvisioningState;
-};
-
-/**
  * The Private Endpoint resource.
  */
 export interface PrivateEndpoint {
@@ -831,6 +678,21 @@ export interface PrivateLinkServiceConnectionState {
    * A message indicating if changes on the service provider require any updates on the consumer.
    */
   actionRequired?: string;
+}
+
+export interface Resource {
+  /**
+   * Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
+   */
+  readonly id?: string;
+  /**
+   * The name of the resource
+   */
+  readonly name?: string;
+  /**
+   * The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
+   */
+  readonly type?: string;
 }
 
 /**
@@ -1172,20 +1034,6 @@ export interface ListServiceSasResponse {
 }
 
 /**
- * The Get Storage Account ManagementPolicies operation response.
- */
-export type ManagementPolicy = Resource & {
-  /**
-   * Returns the date and time the ManagementPolicies was last modified.
-   */
-  readonly lastModifiedTime?: Date;
-  /**
-   * The Storage Account ManagementPolicy, in JSON format. See more details in: https://docs.microsoft.com/en-us/azure/storage/common/storage-lifecycle-managment-concepts.
-   */
-  policy?: ManagementPolicySchema;
-};
-
-/**
  * The Storage Account ManagementPolicies Rules. See more details in: https://docs.microsoft.com/en-us/azure/storage/common/storage-lifecycle-managment-concepts.
  */
 export interface ManagementPolicySchema {
@@ -1210,7 +1058,7 @@ export interface ManagementPolicyRule {
   /**
    * The valid value is Lifecycle
    */
-  type: "Lifecycle";
+  type: RuleType;
   /**
    * An object that defines the Lifecycle rule.
    */
@@ -1364,24 +1212,6 @@ export interface PrivateLinkResourceListResult {
 }
 
 /**
- * A private link resource
- */
-export type PrivateLinkResource = Resource & {
-  /**
-   * The private link resource group id.
-   */
-  readonly groupId?: string;
-  /**
-   * The private link resource required member names.
-   */
-  readonly requiredMembers?: string[];
-  /**
-   * The private link resource Private link DNS zone name.
-   */
-  requiredZoneNames?: string[];
-};
-
-/**
  * List storage account object replication policies.
  */
 export interface ObjectReplicationPolicies {
@@ -1390,32 +1220,6 @@ export interface ObjectReplicationPolicies {
    */
   value?: ObjectReplicationPolicy[];
 }
-
-/**
- * The replication policy between two storage accounts. Multiple rules can be defined in one policy.
- */
-export type ObjectReplicationPolicy = Resource & {
-  /**
-   * A unique id for object replication policy.
-   */
-  readonly policyId?: string;
-  /**
-   * Indicates when the policy is enabled on the source account.
-   */
-  readonly enabledTime?: Date;
-  /**
-   * Required. Source account name.
-   */
-  sourceAccount?: string;
-  /**
-   * Required. Destination account name.
-   */
-  destinationAccount?: string;
-  /**
-   * The storage account object replication rules.
-   */
-  rules?: ObjectReplicationPolicyRule[];
-};
 
 /**
  * The replication policy rule between two containers.
@@ -1454,32 +1258,6 @@ export interface ObjectReplicationPolicyFilter {
 }
 
 /**
- * The Encryption Scope resource.
- */
-export type EncryptionScope = Resource & {
-  /**
-   * The provider for the encryption scope. Possible values (case-insensitive):  Microsoft.Storage, Microsoft.KeyVault.
-   */
-  source?: EncryptionScopeSource;
-  /**
-   * The state of the encryption scope. Possible values (case-insensitive):  Enabled, Disabled.
-   */
-  state?: EncryptionScopeState;
-  /**
-   * Gets the creation date and time of the encryption scope in UTC.
-   */
-  readonly creationTime?: Date;
-  /**
-   * Gets the last modification date and time of the encryption scope in UTC.
-   */
-  readonly lastModifiedTime?: Date;
-  /**
-   * The key vault properties for the encryption scope. This is a required field if encryption scope 'source' attribute is set to 'Microsoft.KeyVault'.
-   */
-  keyVaultProperties?: EncryptionScopeKeyVaultProperties;
-};
-
-/**
  * The key vault properties for the encryption scope. This is a required field if encryption scope 'source' attribute is set to 'Microsoft.KeyVault'.
  */
 export interface EncryptionScopeKeyVaultProperties {
@@ -1509,48 +1287,6 @@ export interface BlobServiceItems {
    */
   readonly value?: BlobServiceProperties[];
 }
-
-/**
- * The properties of a storage account’s Blob service.
- */
-export type BlobServiceProperties = Resource & {
-  /**
-   * Sku name and tier.
-   */
-  readonly sku?: Sku;
-  /**
-   * Specifies CORS rules for the Blob service. You can include up to five CorsRule elements in the request. If no CorsRule elements are included in the request body, all CORS rules will be deleted, and CORS will be disabled for the Blob service.
-   */
-  cors?: CorsRules;
-  /**
-   * DefaultServiceVersion indicates the default version to use for requests to the Blob service if an incoming request’s version is not specified. Possible values include version 2008-10-27 and all more recent versions.
-   */
-  defaultServiceVersion?: string;
-  /**
-   * The blob service properties for blob soft delete.
-   */
-  deleteRetentionPolicy?: DeleteRetentionPolicy;
-  /**
-   * Versioning is enabled if set to true.
-   */
-  isVersioningEnabled?: boolean;
-  /**
-   * Deprecated in favor of isVersioningEnabled property.
-   */
-  automaticSnapshotPolicyEnabled?: boolean;
-  /**
-   * The blob service properties for change feed events.
-   */
-  changeFeed?: ChangeFeed;
-  /**
-   * The blob service properties for blob restore policy.
-   */
-  restorePolicy?: RestorePolicyProperties;
-  /**
-   * The blob service properties for container soft delete.
-   */
-  containerDeleteRetentionPolicy?: DeleteRetentionPolicy;
-};
 
 /**
  * Sets the CORS rules. You can include up to five CorsRule elements in the request.
@@ -1643,70 +1379,6 @@ export interface ListContainerItems {
    */
   readonly nextLink?: string;
 }
-
-/**
- * The resource model definition for a Azure Resource Manager resource with an etag.
- */
-export type AzureEntityResource = Resource & {
-  /**
-   * Resource Etag.
-   */
-  readonly etag?: string;
-};
-
-/**
- * The blob container properties be listed out.
- */
-export type ListContainerItem = AzureEntityResource & {
-  /**
-   * Default the container to use specified encryption scope for all writes.
-   */
-  defaultEncryptionScope?: string;
-  /**
-   * Block override of encryption scope from the container default.
-   */
-  denyEncryptionScopeOverride?: boolean;
-  /**
-   * Specifies whether data in the container may be accessed publicly and the level of access.
-   */
-  publicAccess?: PublicAccess;
-  /**
-   * Returns the date and time the container was last modified.
-   */
-  readonly lastModifiedTime?: Date;
-  /**
-   * The lease status of the container.
-   */
-  readonly leaseStatus?: LeaseStatus;
-  /**
-   * Lease state of the container.
-   */
-  readonly leaseState?: LeaseState;
-  /**
-   * Specifies whether the lease on a container is of infinite or fixed duration, only when the container is leased.
-   */
-  readonly leaseDuration?: LeaseDuration;
-  /**
-   * A name-value pair to associate with the container as metadata.
-   */
-  metadata?: { [propertyName: string]: string };
-  /**
-   * The ImmutabilityPolicy property of the container.
-   */
-  readonly immutabilityPolicy?: ImmutabilityPolicyProperties;
-  /**
-   * The LegalHold property of the container.
-   */
-  readonly legalHold?: LegalHoldProperties;
-  /**
-   * The hasLegalHold public property is set to true by SRP if there are at least one existing tag. The hasLegalHold public property is set to false by SRP if all existing legal hold tags are cleared out. There can be a maximum of 1000 blob containers with hasLegalHold=true for a given account.
-   */
-  readonly hasLegalHold?: boolean;
-  /**
-   * The hasImmutabilityPolicy public property is set to true by SRP if ImmutabilityPolicy has been created for this container. The hasImmutabilityPolicy public property is set to false by SRP if ImmutabilityPolicy has not been created for this container.
-   */
-  readonly hasImmutabilityPolicy?: boolean;
-};
 
 /**
  * The properties of an ImmutabilityPolicy of a blob container.
@@ -1805,6 +1477,473 @@ export interface TagProperty {
 }
 
 /**
+ * The LegalHold property of a blob container.
+ */
+export interface LegalHold {
+  /**
+   * The hasLegalHold public property is set to true by SRP if there are at least one existing tag. The hasLegalHold public property is set to false by SRP if all existing legal hold tags are cleared out. There can be a maximum of 1000 blob containers with hasLegalHold=true for a given account.
+   */
+  readonly hasLegalHold?: boolean;
+  /**
+   * Each tag should be 3 to 23 alphanumeric characters and is normalized to lower case at SRP.
+   */
+  tags: string[];
+}
+
+/**
+ * Lease Container request schema.
+ */
+export interface LeaseContainerRequest {
+  /**
+   * Specifies the lease action. Can be one of the available actions.
+   */
+  action: LeaseContainerRequestAction;
+  /**
+   * Identifies the lease. Can be specified in any valid GUID string format.
+   */
+  leaseId?: string;
+  /**
+   * Optional. For a break action, proposed duration the lease should continue before it is broken, in seconds, between 0 and 60.
+   */
+  breakPeriod?: number;
+  /**
+   * Required for acquire. Specifies the duration of the lease, in seconds, or negative one (-1) for a lease that never expires.
+   */
+  leaseDuration?: number;
+  /**
+   * Optional for acquire, required for change. Proposed lease ID, in a GUID string format.
+   */
+  proposedLeaseId?: string;
+}
+
+/**
+ * Lease Container response schema.
+ */
+export interface LeaseContainerResponse {
+  /**
+   * Returned unique lease ID that must be included with any request to delete the container, or to renew, change, or release the lease.
+   */
+  leaseId?: string;
+  /**
+   * Approximate time remaining in the lease period, in seconds.
+   */
+  leaseTimeSeconds?: string;
+}
+
+export interface FileServiceItems {
+  /**
+   * List of file services returned.
+   */
+  readonly value?: FileServiceProperties[];
+}
+
+/**
+ * An error response from the Storage service.
+ */
+export interface CloudError {
+  /**
+   * An error response from the Storage service.
+   */
+  error?: CloudErrorBody;
+}
+
+/**
+ * An error response from the Storage service.
+ */
+export interface CloudErrorBody {
+  /**
+   * An identifier for the error. Codes are invariant and are intended to be consumed programmatically.
+   */
+  code?: string;
+  /**
+   * A message describing the error, intended to be suitable for display in a user interface.
+   */
+  message?: string;
+  /**
+   * The target of the particular error. For example, the name of the property in error.
+   */
+  target?: string;
+  /**
+   * A list of additional details about the error.
+   */
+  details?: CloudErrorBody[];
+}
+
+/**
+ * Response schema. Contains list of shares returned, and if paging is requested or required, a URL to next page of shares.
+ */
+export interface FileShareItems {
+  /**
+   * List of file shares returned.
+   */
+  readonly value?: FileShareItem[];
+  /**
+   * Request URL that can be used to query next page of shares. Returned when total number of requested shares exceed maximum page size.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * The deleted share to be restored.
+ */
+export interface DeletedShare {
+  /**
+   * Required. Identify the name of the deleted share that will be restored.
+   */
+  deletedShareName: string;
+  /**
+   * Required. Identify the version of the deleted share that will be restored.
+   */
+  deletedShareVersion: string;
+}
+
+/**
+ * The Private Endpoint Connection resource.
+ */
+export type PrivateEndpointConnection = Resource & {
+  /**
+   * The resource of private end point.
+   */
+  privateEndpoint?: PrivateEndpoint;
+  /**
+   * A collection of information about the state of the connection between service consumer and provider.
+   */
+  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
+  /**
+   * The provisioning state of the private endpoint connection resource.
+   */
+  readonly provisioningState?: PrivateEndpointConnectionProvisioningState;
+};
+
+/**
+ * The resource model definition for a ARM tracked top level resource
+ */
+export type TrackedResource = Resource & {
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The geo-location where the resource lives
+   */
+  location: string;
+};
+
+/**
+ * The Get Storage Account ManagementPolicies operation response.
+ */
+export type ManagementPolicy = Resource & {
+  /**
+   * Returns the date and time the ManagementPolicies was last modified.
+   */
+  readonly lastModifiedTime?: Date;
+  /**
+   * The Storage Account ManagementPolicy, in JSON format. See more details in: https://docs.microsoft.com/en-us/azure/storage/common/storage-lifecycle-managment-concepts.
+   */
+  policy?: ManagementPolicySchema;
+};
+
+/**
+ * A private link resource
+ */
+export type PrivateLinkResource = Resource & {
+  /**
+   * The private link resource group id.
+   */
+  readonly groupId?: string;
+  /**
+   * The private link resource required member names.
+   */
+  readonly requiredMembers?: string[];
+  /**
+   * The private link resource Private link DNS zone name.
+   */
+  requiredZoneNames?: string[];
+};
+
+/**
+ * The replication policy between two storage accounts. Multiple rules can be defined in one policy.
+ */
+export type ObjectReplicationPolicy = Resource & {
+  /**
+   * A unique id for object replication policy.
+   */
+  readonly policyId?: string;
+  /**
+   * Indicates when the policy is enabled on the source account.
+   */
+  readonly enabledTime?: Date;
+  /**
+   * Required. Source account name.
+   */
+  sourceAccount?: string;
+  /**
+   * Required. Destination account name.
+   */
+  destinationAccount?: string;
+  /**
+   * The storage account object replication rules.
+   */
+  rules?: ObjectReplicationPolicyRule[];
+};
+
+/**
+ * The Encryption Scope resource.
+ */
+export type EncryptionScope = Resource & {
+  /**
+   * The provider for the encryption scope. Possible values (case-insensitive):  Microsoft.Storage, Microsoft.KeyVault.
+   */
+  source?: EncryptionScopeSource;
+  /**
+   * The state of the encryption scope. Possible values (case-insensitive):  Enabled, Disabled.
+   */
+  state?: EncryptionScopeState;
+  /**
+   * Gets the creation date and time of the encryption scope in UTC.
+   */
+  readonly creationTime?: Date;
+  /**
+   * Gets the last modification date and time of the encryption scope in UTC.
+   */
+  readonly lastModifiedTime?: Date;
+  /**
+   * The key vault properties for the encryption scope. This is a required field if encryption scope 'source' attribute is set to 'Microsoft.KeyVault'.
+   */
+  keyVaultProperties?: EncryptionScopeKeyVaultProperties;
+};
+
+/**
+ * The properties of a storage account’s Blob service.
+ */
+export type BlobServiceProperties = Resource & {
+  /**
+   * Sku name and tier.
+   */
+  readonly sku?: Sku;
+  /**
+   * Specifies CORS rules for the Blob service. You can include up to five CorsRule elements in the request. If no CorsRule elements are included in the request body, all CORS rules will be deleted, and CORS will be disabled for the Blob service.
+   */
+  cors?: CorsRules;
+  /**
+   * DefaultServiceVersion indicates the default version to use for requests to the Blob service if an incoming request’s version is not specified. Possible values include version 2008-10-27 and all more recent versions.
+   */
+  defaultServiceVersion?: string;
+  /**
+   * The blob service properties for blob soft delete.
+   */
+  deleteRetentionPolicy?: DeleteRetentionPolicy;
+  /**
+   * Versioning is enabled if set to true.
+   */
+  isVersioningEnabled?: boolean;
+  /**
+   * Deprecated in favor of isVersioningEnabled property.
+   */
+  automaticSnapshotPolicyEnabled?: boolean;
+  /**
+   * The blob service properties for change feed events.
+   */
+  changeFeed?: ChangeFeed;
+  /**
+   * The blob service properties for blob restore policy.
+   */
+  restorePolicy?: RestorePolicyProperties;
+  /**
+   * The blob service properties for container soft delete.
+   */
+  containerDeleteRetentionPolicy?: DeleteRetentionPolicy;
+};
+
+/**
+ * The resource model definition for a Azure Resource Manager resource with an etag.
+ */
+export type AzureEntityResource = Resource & {
+  /**
+   * Resource Etag.
+   */
+  readonly etag?: string;
+};
+
+/**
+ * The properties of File services in storage account.
+ */
+export type FileServiceProperties = Resource & {
+  /**
+   * Sku name and tier.
+   */
+  readonly sku?: Sku;
+  /**
+   * Specifies CORS rules for the File service. You can include up to five CorsRule elements in the request. If no CorsRule elements are included in the request body, all CORS rules will be deleted, and CORS will be disabled for the File service.
+   */
+  cors?: CorsRules;
+  /**
+   * The file service properties for share soft delete.
+   */
+  shareDeleteRetentionPolicy?: DeleteRetentionPolicy;
+};
+
+/**
+ * The storage account.
+ */
+export type StorageAccount = TrackedResource & {
+  /**
+   * Gets the SKU.
+   */
+  readonly sku?: Sku;
+  /**
+   * Gets the Kind.
+   */
+  readonly kind?: Kind;
+  /**
+   * The identity of the resource.
+   */
+  identity?: Identity;
+  /**
+   * Gets the status of the storage account at the time the operation was called.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Gets the URLs that are used to perform a retrieval of a public blob, queue, or table object. Note that Standard_ZRS and Premium_LRS accounts only return the blob endpoint.
+   */
+  readonly primaryEndpoints?: Endpoints;
+  /**
+   * Gets the location of the primary data center for the storage account.
+   */
+  readonly primaryLocation?: string;
+  /**
+   * Gets the status indicating whether the primary location of the storage account is available or unavailable.
+   */
+  readonly statusOfPrimary?: AccountStatus;
+  /**
+   * Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
+   */
+  readonly lastGeoFailoverTime?: Date;
+  /**
+   * Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
+   */
+  readonly secondaryLocation?: string;
+  /**
+   * Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
+   */
+  readonly statusOfSecondary?: AccountStatus;
+  /**
+   * Gets the creation date and time of the storage account in UTC.
+   */
+  readonly creationTime?: Date;
+  /**
+   * Gets the custom domain the user assigned to this storage account.
+   */
+  readonly customDomain?: CustomDomain;
+  /**
+   * Gets the URLs that are used to perform a retrieval of a public blob, queue, or table object from the secondary location of the storage account. Only available if the SKU name is Standard_RAGRS.
+   */
+  readonly secondaryEndpoints?: Endpoints;
+  /**
+   * Gets the encryption settings on the account. If unspecified, the account is unencrypted.
+   */
+  readonly encryption?: Encryption;
+  /**
+   * Required for storage accounts where kind = BlobStorage. The access tier used for billing.
+   */
+  readonly accessTier?: AccessTier;
+  /**
+   * Provides the identity based authentication settings for Azure Files.
+   */
+  azureFilesIdentityBasedAuthentication?: AzureFilesIdentityBasedAuthentication;
+  /**
+   * Allows https traffic only to storage service if sets to true.
+   */
+  enableHttpsTrafficOnly?: boolean;
+  /**
+   * Network rule set
+   */
+  readonly networkRuleSet?: NetworkRuleSet;
+  /**
+   * Account HierarchicalNamespace enabled if sets to true.
+   */
+  isHnsEnabled?: boolean;
+  /**
+   * Geo Replication Stats
+   */
+  readonly geoReplicationStats?: GeoReplicationStats;
+  /**
+   * If the failover is in progress, the value will be true, otherwise, it will be null.
+   */
+  readonly failoverInProgress?: boolean;
+  /**
+   * Allow large file shares if sets to Enabled. It cannot be disabled once it is enabled.
+   */
+  largeFileSharesState?: LargeFileSharesState;
+  /**
+   * List of private endpoint connection associated with the specified storage account
+   */
+  readonly privateEndpointConnections?: PrivateEndpointConnection[];
+  /**
+   * Maintains information about the network routing choice opted by the user for data transfer
+   */
+  routingPreference?: RoutingPreference;
+  /**
+   * Blob restore status
+   */
+  readonly blobRestoreStatus?: BlobRestoreStatus;
+};
+
+/**
+ * The blob container properties be listed out.
+ */
+export type ListContainerItem = AzureEntityResource & {
+  /**
+   * Default the container to use specified encryption scope for all writes.
+   */
+  defaultEncryptionScope?: string;
+  /**
+   * Block override of encryption scope from the container default.
+   */
+  denyEncryptionScopeOverride?: boolean;
+  /**
+   * Specifies whether data in the container may be accessed publicly and the level of access.
+   */
+  publicAccess?: PublicAccess;
+  /**
+   * Returns the date and time the container was last modified.
+   */
+  readonly lastModifiedTime?: Date;
+  /**
+   * The lease status of the container.
+   */
+  readonly leaseStatus?: LeaseStatus;
+  /**
+   * Lease state of the container.
+   */
+  readonly leaseState?: LeaseState;
+  /**
+   * Specifies whether the lease on a container is of infinite or fixed duration, only when the container is leased.
+   */
+  readonly leaseDuration?: LeaseDuration;
+  /**
+   * A name-value pair to associate with the container as metadata.
+   */
+  metadata?: { [propertyName: string]: string };
+  /**
+   * The ImmutabilityPolicy property of the container.
+   */
+  readonly immutabilityPolicy?: ImmutabilityPolicyProperties;
+  /**
+   * The LegalHold property of the container.
+   */
+  readonly legalHold?: LegalHoldProperties;
+  /**
+   * The hasLegalHold public property is set to true by SRP if there are at least one existing tag. The hasLegalHold public property is set to false by SRP if all existing legal hold tags are cleared out. There can be a maximum of 1000 blob containers with hasLegalHold=true for a given account.
+   */
+  readonly hasLegalHold?: boolean;
+  /**
+   * The hasImmutabilityPolicy public property is set to true by SRP if ImmutabilityPolicy has been created for this container. The hasImmutabilityPolicy public property is set to false by SRP if ImmutabilityPolicy has not been created for this container.
+   */
+  readonly hasImmutabilityPolicy?: boolean;
+};
+
+/**
  * Properties of the blob container, including Id, resource name, resource type, Etag.
  */
 export type BlobContainer = AzureEntityResource & {
@@ -1859,20 +1998,6 @@ export type BlobContainer = AzureEntityResource & {
 };
 
 /**
- * The LegalHold property of a blob container.
- */
-export interface LegalHold {
-  /**
-   * The hasLegalHold public property is set to true by SRP if there are at least one existing tag. The hasLegalHold public property is set to false by SRP if all existing legal hold tags are cleared out. There can be a maximum of 1000 blob containers with hasLegalHold=true for a given account.
-   */
-  readonly hasLegalHold?: boolean;
-  /**
-   * Each tag should be 3 to 23 alphanumeric characters and is normalized to lower case at SRP.
-   */
-  tags: string[];
-}
-
-/**
  * The ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag.
  */
 export type ImmutabilityPolicy = AzureEntityResource & {
@@ -1889,117 +2014,6 @@ export type ImmutabilityPolicy = AzureEntityResource & {
    */
   allowProtectedAppendWrites?: boolean;
 };
-
-/**
- * Lease Container request schema.
- */
-export interface LeaseContainerRequest {
-  /**
-   * Specifies the lease action. Can be one of the available actions.
-   */
-  action: LeaseContainerRequestAction;
-  /**
-   * Identifies the lease. Can be specified in any valid GUID string format.
-   */
-  leaseId?: string;
-  /**
-   * Optional. For a break action, proposed duration the lease should continue before it is broken, in seconds, between 0 and 60.
-   */
-  breakPeriod?: number;
-  /**
-   * Required for acquire. Specifies the duration of the lease, in seconds, or negative one (-1) for a lease that never expires.
-   */
-  leaseDuration?: number;
-  /**
-   * Optional for acquire, required for change. Proposed lease ID, in a GUID string format.
-   */
-  proposedLeaseId?: string;
-}
-
-/**
- * Lease Container response schema.
- */
-export interface LeaseContainerResponse {
-  /**
-   * Returned unique lease ID that must be included with any request to delete the container, or to renew, change, or release the lease.
-   */
-  leaseId?: string;
-  /**
-   * Approximate time remaining in the lease period, in seconds.
-   */
-  leaseTimeSeconds?: string;
-}
-
-export interface FileServiceItems {
-  /**
-   * List of file services returned.
-   */
-  readonly value?: FileServiceProperties[];
-}
-
-/**
- * The properties of File services in storage account.
- */
-export type FileServiceProperties = Resource & {
-  /**
-   * Sku name and tier.
-   */
-  readonly sku?: Sku;
-  /**
-   * Specifies CORS rules for the File service. You can include up to five CorsRule elements in the request. If no CorsRule elements are included in the request body, all CORS rules will be deleted, and CORS will be disabled for the File service.
-   */
-  cors?: CorsRules;
-  /**
-   * The file service properties for share soft delete.
-   */
-  shareDeleteRetentionPolicy?: DeleteRetentionPolicy;
-};
-
-/**
- * An error response from the Storage service.
- */
-export interface CloudError {
-  /**
-   * An error response from the Storage service.
-   */
-  error?: CloudErrorBody;
-}
-
-/**
- * An error response from the Storage service.
- */
-export interface CloudErrorBody {
-  /**
-   * An identifier for the error. Codes are invariant and are intended to be consumed programmatically.
-   */
-  code?: string;
-  /**
-   * A message describing the error, intended to be suitable for display in a user interface.
-   */
-  message?: string;
-  /**
-   * The target of the particular error. For example, the name of the property in error.
-   */
-  target?: string;
-  /**
-   * A list of additional details about the error.
-   */
-  details?: CloudErrorBody[];
-}
-
-/**
- * Response schema. Contains list of shares returned, and if paging is requested or required, a URL to next page of shares.
- */
-export interface FileShareItems {
-  /**
-   * List of file shares returned.
-   */
-  readonly value?: FileShareItem[];
-  /**
-   * Request URL that can be used to query next page of shares. Returned when total number of requested shares exceed maximum page size.
-   */
-  readonly nextLink?: string;
-}
 
 /**
  * The file share properties be listed out.
@@ -2116,20 +2130,6 @@ export type FileShare = AzureEntityResource & {
    */
   readonly shareUsageBytes?: number;
 };
-
-/**
- * The deleted share to be restored.
- */
-export interface DeletedShare {
-  /**
-   * Required. Identify the name of the deleted share that will be restored.
-   */
-  deletedShareName: string;
-  /**
-   * Required. Identify the version of the deleted share that will be restored.
-   */
-  deletedShareVersion: string;
-}
 
 /**
  * Defines headers for BlobContainers_createOrUpdateImmutabilityPolicy operation.
@@ -2254,6 +2254,14 @@ export type Permissions = "r" | "d" | "w" | "l" | "a" | "c" | "u" | "p";
  * Defines values for SignedResource.
  */
 export type SignedResource = "b" | "c" | "f" | "s";
+/**
+ * Defines values for ManagementPolicyName.
+ */
+export type ManagementPolicyName = "default";
+/**
+ * Defines values for RuleType.
+ */
+export type RuleType = "Lifecycle";
 /**
  * Defines values for EncryptionScopeSource.
  */

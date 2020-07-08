@@ -9,122 +9,6 @@
 import * as coreHttp from "@azure/core-http";
 
 /**
- * The core properties of ARM resources.
- */
-export interface ARMResourceProperties {
-  /**
-   * The unique resource identifier of the ARM resource.
-   */
-  readonly id?: string;
-  /**
-   * The name of the ARM resource.
-   */
-  readonly name?: string;
-  /**
-   * The type of Azure resource.
-   */
-  readonly type?: string;
-  /**
-   * The location of the resource group to which the resource belongs.
-   */
-  location?: string;
-  /**
-   * Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB".
-   */
-  tags?: { [propertyName: string]: string };
-}
-
-/**
- * An Azure Cosmos DB database account.
- */
-export type DatabaseAccountGetResults = ARMResourceProperties & {
-  /**
-   * Indicates the type of database account. This can only be set at database account creation.
-   */
-  kind?: DatabaseAccountKind;
-  /**
-   * The status of the Cosmos DB account at the time the operation was called. The status can be one of following. 'Creating' – the Cosmos DB account is being created. When an account is in Creating state, only properties that are specified as input for the Create Cosmos DB account operation are returned. 'Succeeded' – the Cosmos DB account is active for use. 'Updating' – the Cosmos DB account is being updated. 'Deleting' – the Cosmos DB account is being deleted. 'Failed' – the Cosmos DB account failed creation. 'DeletionFailed' – the Cosmos DB account deletion failed.
-   */
-  readonly provisioningState?: string;
-  /**
-   * The connection endpoint for the Cosmos DB database account.
-   */
-  readonly documentEndpoint?: string;
-  /**
-   * The offer type for the Cosmos DB database account. Default value: Standard.
-   */
-  readonly databaseAccountOfferType?: "Standard";
-  /**
-   * Cosmos DB Firewall Support: This value specifies the set of IP addresses or IP address ranges in CIDR form to be included as the allowed list of client IPs for a given database account. IP addresses/ranges must be comma separated and must not contain any spaces.
-   */
-  ipRangeFilter?: string;
-  /**
-   * Flag to indicate whether to enable/disable Virtual Network ACL rules.
-   */
-  isVirtualNetworkFilterEnabled?: boolean;
-  /**
-   * Enables automatic failover of the write region in the rare event that the region is unavailable due to an outage. Automatic failover will result in a new write region for the account and is chosen based on the failover priorities configured for the account.
-   */
-  enableAutomaticFailover?: boolean;
-  /**
-   * The consistency policy for the Cosmos DB database account.
-   */
-  consistencyPolicy?: ConsistencyPolicy;
-  /**
-   * List of Cosmos DB capabilities for the account
-   */
-  capabilities?: Capability[];
-  /**
-   * An array that contains the write location for the Cosmos DB account.
-   */
-  readonly writeLocations?: Location[];
-  /**
-   * An array that contains of the read locations enabled for the Cosmos DB account.
-   */
-  readonly readLocations?: Location[];
-  /**
-   * An array that contains all of the locations enabled for the Cosmos DB account.
-   */
-  readonly locations?: Location[];
-  /**
-   * An array that contains the regions ordered by their failover priorities.
-   */
-  readonly failoverPolicies?: FailoverPolicy[];
-  /**
-   * List of Virtual Network ACL rules configured for the Cosmos DB account.
-   */
-  virtualNetworkRules?: VirtualNetworkRule[];
-  /**
-   * List of Private Endpoint Connections configured for the Cosmos DB account.
-   */
-  readonly privateEndpointConnections?: PrivateEndpointConnection[];
-  /**
-   * Enables the account to write in multiple locations
-   */
-  enableMultipleWriteLocations?: boolean;
-  /**
-   * Enables the cassandra connector on the Cosmos DB C* account
-   */
-  enableCassandraConnector?: boolean;
-  /**
-   * The cassandra connector offer type for the Cosmos DB database C* account.
-   */
-  connectorOffer?: "Small";
-  /**
-   * Disable write operations on metadata resources (databases, containers, throughput) via account keys
-   */
-  disableKeyBasedMetadataWriteAccess?: boolean;
-  /**
-   * The URI of the key vault
-   */
-  keyVaultKeyUri?: string;
-  /**
-   * Whether requests from Public Network are allowed
-   */
-  readonly publicNetworkAccess?: PublicNetworkAccess;
-};
-
-/**
  * The consistency policy for the Cosmos DB database account.
  */
 export interface ConsistencyPolicy {
@@ -214,35 +98,6 @@ export interface VirtualNetworkRule {
   ignoreMissingVNetServiceEndpoint?: boolean;
 }
 
-export interface Resource {
-  /**
-   * Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
-   */
-  readonly id?: string;
-  /**
-   * The name of the resource
-   */
-  readonly name?: string;
-  /**
-   * The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
-   */
-  readonly type?: string;
-}
-
-/**
- * A private endpoint connection
- */
-export type PrivateEndpointConnection = Resource & {
-  /**
-   * Private endpoint which the connection belongs to.
-   */
-  privateEndpoint?: PrivateEndpointProperty;
-  /**
-   * Connection State of the Private Endpoint Connection.
-   */
-  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionStateProperty;
-};
-
 /**
  * Private endpoint which the connection belongs to.
  */
@@ -265,6 +120,47 @@ export interface PrivateLinkServiceConnectionStateProperty {
    * Any action that is required beyond basic workflow (approve/ reject/ disconnect)
    */
   readonly actionsRequired?: string;
+}
+
+export interface Resource {
+  /**
+   * Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
+   */
+  readonly id?: string;
+  /**
+   * The name of the resource
+   */
+  readonly name?: string;
+  /**
+   * The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
+   */
+  readonly type?: string;
+}
+
+/**
+ * The core properties of ARM resources.
+ */
+export interface ARMResourceProperties {
+  /**
+   * The unique resource identifier of the ARM resource.
+   */
+  readonly id?: string;
+  /**
+   * The name of the ARM resource.
+   */
+  readonly name?: string;
+  /**
+   * The type of Azure resource.
+   */
+  readonly type?: string;
+  /**
+   * The location of the resource group to which the resource belongs.
+   */
+  location?: string;
+  /**
+   * Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB".
+   */
+  tags?: { [propertyName: string]: string };
 }
 
 /**
@@ -318,7 +214,7 @@ export interface DatabaseAccountUpdateParameters {
   /**
    * The cassandra connector offer type for the Cosmos DB database C* account.
    */
-  connectorOffer?: "Small";
+  connectorOffer?: ConnectorOffer;
   /**
    * Disable write operations on metadata resources (databases, containers, throughput) via account keys
    */
@@ -332,72 +228,6 @@ export interface DatabaseAccountUpdateParameters {
    */
   readonly publicNetworkAccess?: PublicNetworkAccess;
 }
-
-/**
- * Parameters to create and update Cosmos DB database accounts.
- */
-export type DatabaseAccountCreateUpdateParameters = ARMResourceProperties & {
-  /**
-   * Indicates the type of database account. This can only be set at database account creation.
-   */
-  kind?: DatabaseAccountKind;
-  /**
-   * The consistency policy for the Cosmos DB account.
-   */
-  consistencyPolicy?: ConsistencyPolicy;
-  /**
-   * An array that contains the georeplication locations enabled for the Cosmos DB account.
-   */
-  locations: Location[];
-  /**
-   * The offer type for the database
-   */
-  databaseAccountOfferType: "Standard";
-  /**
-   * Cosmos DB Firewall Support: This value specifies the set of IP addresses or IP address ranges in CIDR form to be included as the allowed list of client IPs for a given database account. IP addresses/ranges must be comma separated and must not contain any spaces.
-   */
-  ipRangeFilter?: string;
-  /**
-   * Flag to indicate whether to enable/disable Virtual Network ACL rules.
-   */
-  isVirtualNetworkFilterEnabled?: boolean;
-  /**
-   * Enables automatic failover of the write region in the rare event that the region is unavailable due to an outage. Automatic failover will result in a new write region for the account and is chosen based on the failover priorities configured for the account.
-   */
-  enableAutomaticFailover?: boolean;
-  /**
-   * List of Cosmos DB capabilities for the account
-   */
-  capabilities?: Capability[];
-  /**
-   * List of Virtual Network ACL rules configured for the Cosmos DB account.
-   */
-  virtualNetworkRules?: VirtualNetworkRule[];
-  /**
-   * Enables the account to write in multiple locations
-   */
-  enableMultipleWriteLocations?: boolean;
-  /**
-   * Enables the cassandra connector on the Cosmos DB C* account
-   */
-  enableCassandraConnector?: boolean;
-  /**
-   * The cassandra connector offer type for the Cosmos DB database C* account.
-   */
-  connectorOffer?: "Small";
-  /**
-   * Disable write operations on metadata resources (databases, containers, throughput) via account keys
-   */
-  disableKeyBasedMetadataWriteAccess?: boolean;
-  /**
-   * The URI of the key vault
-   */
-  keyVaultKeyUri?: string;
-  /**
-   * Whether requests from Public Network are allowed
-   */
-  readonly publicNetworkAccess?: PublicNetworkAccess;
-};
 
 /**
  * The list of new failover policies for the failover priority change.
@@ -432,20 +262,6 @@ export interface DatabaseAccountListReadOnlyKeysResult {
    */
   readonly secondaryReadonlyMasterKey?: string;
 }
-
-/**
- * The access keys for the given database account.
- */
-export type DatabaseAccountListKeysResult = DatabaseAccountListReadOnlyKeysResult & {
-  /**
-   * Base 64 encoded value of the primary read-write key.
-   */
-  readonly primaryMasterKey?: string;
-  /**
-   * Base 64 encoded value of the secondary read-write key.
-   */
-  readonly secondaryMasterKey?: string;
-};
 
 /**
  * The connection strings for the given database account.
@@ -680,40 +496,6 @@ export interface PercentileMetric {
 }
 
 /**
- * Represents percentile metrics values.
- */
-export type PercentileMetricValue = MetricValue & {
-  /**
-   * The 10th percentile value for the metric.
-   */
-  readonly p10?: number;
-  /**
-   * The 25th percentile value for the metric.
-   */
-  readonly p25?: number;
-  /**
-   * The 50th percentile value for the metric.
-   */
-  readonly p50?: number;
-  /**
-   * The 75th percentile value for the metric.
-   */
-  readonly p75?: number;
-  /**
-   * The 90th percentile value for the metric.
-   */
-  readonly p90?: number;
-  /**
-   * The 95th percentile value for the metric.
-   */
-  readonly p95?: number;
-  /**
-   * The 99th percentile value for the metric.
-   */
-  readonly p99?: number;
-};
-
-/**
  * The response to a list partition metrics request.
  */
 export interface PartitionMetricListResult {
@@ -722,20 +504,6 @@ export interface PartitionMetricListResult {
    */
   readonly value?: PartitionMetric[];
 }
-
-/**
- * The metric values for a single partition.
- */
-export type PartitionMetric = Metric & {
-  /**
-   * The partition id (GUID identifier) of the metric values.
-   */
-  readonly partitionId?: string;
-  /**
-   * The partition key range id (integer identifier) of the metric values.
-   */
-  readonly partitionKeyRangeId?: string;
-};
 
 /**
  * The response to a list usage request.
@@ -782,20 +550,6 @@ export interface PartitionUsagesResult {
    */
   readonly value?: PartitionUsage[];
 }
-
-/**
- * The partition level usage data for a usage request.
- */
-export type PartitionUsage = Usage & {
-  /**
-   * The partition id (GUID identifier) of the usages.
-   */
-  readonly partitionId?: string;
-  /**
-   * The partition key range id (integer identifier) of the usages.
-   */
-  readonly partitionKeyRangeId?: string;
-};
 
 /**
  * The response to a list metric definitions request.
@@ -858,17 +612,6 @@ export interface SqlDatabaseListResult {
 }
 
 /**
- * An Azure Cosmos DB SQL database.
- */
-export type SqlDatabaseGetResults = ARMResourceProperties & {
-  resource?: SqlDatabaseGetPropertiesResource;
-  /**
-   * Cosmos DB options resource object
-   */
-  options?: OptionsResource;
-};
-
-/**
  * Cosmos DB SQL database resource object
  */
 export interface SqlDatabaseResource {
@@ -896,18 +639,6 @@ export interface ExtendedResourceProperties {
   readonly etag?: string;
 }
 
-export type SqlDatabaseGetPropertiesResource = SqlDatabaseResource &
-  ExtendedResourceProperties & {
-    /**
-     * A system generated property that specified the addressable path of the collections resource.
-     */
-    colls?: string;
-    /**
-     * A system generated property that specifies the addressable path of the users resource.
-     */
-    users?: string;
-  };
-
 /**
  * Cosmos DB options resource object
  */
@@ -917,20 +648,6 @@ export interface OptionsResource {
    */
   throughput?: number;
 }
-
-/**
- * Parameters to create and update Cosmos DB SQL database.
- */
-export type SqlDatabaseCreateUpdateParameters = ARMResourceProperties & {
-  /**
-   * The standard JSON format of a SQL database
-   */
-  resource: SqlDatabaseResource;
-  /**
-   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
-   */
-  options: CreateUpdateOptions;
-};
 
 /**
  * CreateUpdateOptions are a list of key-value pairs that describe the resource. Supported keys are "If-Match", "If-None-Match", "Session-Token" and "Throughput"
@@ -945,13 +662,6 @@ export interface CreateUpdateOptions {
    */
   throughput?: string;
 }
-
-/**
- * An Azure Cosmos DB resource throughput.
- */
-export type ThroughputSettingsGetResults = ARMResourceProperties & {
-  resource?: ThroughputSettingsGetPropertiesResource;
-};
 
 /**
  * Cosmos DB resource throughput object. Either throughput is required or provisionedThroughputSettings is required, but not both.
@@ -1017,19 +727,6 @@ export interface ThroughputPolicyResource {
   incrementPercent?: number;
 }
 
-export type ThroughputSettingsGetPropertiesResource = ThroughputSettingsResource &
-  ExtendedResourceProperties & {};
-
-/**
- * Parameters to update Cosmos DB resource throughput.
- */
-export type ThroughputSettingsUpdateParameters = ARMResourceProperties & {
-  /**
-   * The standard JSON format of a resource throughput
-   */
-  resource: ThroughputSettingsResource;
-};
-
 /**
  * The List operation response, that contains the containers and their properties.
  */
@@ -1039,17 +736,6 @@ export interface SqlContainerListResult {
    */
   readonly value?: SqlContainerGetResults[];
 }
-
-/**
- * An Azure Cosmos DB container.
- */
-export type SqlContainerGetResults = ARMResourceProperties & {
-  resource?: SqlContainerGetPropertiesResource;
-  /**
-   * Cosmos DB options resource object
-   */
-  options?: OptionsResource;
-};
 
 /**
  * Cosmos DB SQL container resource object
@@ -1228,23 +914,6 @@ export interface ConflictResolutionPolicy {
   conflictResolutionProcedure?: string;
 }
 
-export type SqlContainerGetPropertiesResource = SqlContainerResource &
-  ExtendedResourceProperties & {};
-
-/**
- * Parameters to create and update Cosmos DB container.
- */
-export type SqlContainerCreateUpdateParameters = ARMResourceProperties & {
-  /**
-   * The standard JSON format of a container
-   */
-  resource: SqlContainerResource;
-  /**
-   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
-   */
-  options: CreateUpdateOptions;
-};
-
 /**
  * The List operation response, that contains the storedProcedures and their properties.
  */
@@ -1254,13 +923,6 @@ export interface SqlStoredProcedureListResult {
    */
   readonly value?: SqlStoredProcedureGetResults[];
 }
-
-/**
- * An Azure Cosmos DB storedProcedure.
- */
-export type SqlStoredProcedureGetResults = ARMResourceProperties & {
-  resource?: SqlStoredProcedureGetPropertiesResource;
-};
 
 /**
  * Cosmos DB SQL storedProcedure resource object
@@ -1276,23 +938,6 @@ export interface SqlStoredProcedureResource {
   body?: string;
 }
 
-export type SqlStoredProcedureGetPropertiesResource = SqlStoredProcedureResource &
-  ExtendedResourceProperties & {};
-
-/**
- * Parameters to create and update Cosmos DB storedProcedure.
- */
-export type SqlStoredProcedureCreateUpdateParameters = ARMResourceProperties & {
-  /**
-   * The standard JSON format of a storedProcedure
-   */
-  resource: SqlStoredProcedureResource;
-  /**
-   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
-   */
-  options: CreateUpdateOptions;
-};
-
 /**
  * The List operation response, that contains the userDefinedFunctions and their properties.
  */
@@ -1302,13 +947,6 @@ export interface SqlUserDefinedFunctionListResult {
    */
   readonly value?: SqlUserDefinedFunctionGetResults[];
 }
-
-/**
- * An Azure Cosmos DB userDefinedFunction.
- */
-export type SqlUserDefinedFunctionGetResults = ARMResourceProperties & {
-  resource?: SqlUserDefinedFunctionGetPropertiesResource;
-};
 
 /**
  * Cosmos DB SQL userDefinedFunction resource object
@@ -1324,23 +962,6 @@ export interface SqlUserDefinedFunctionResource {
   body?: string;
 }
 
-export type SqlUserDefinedFunctionGetPropertiesResource = SqlUserDefinedFunctionResource &
-  ExtendedResourceProperties & {};
-
-/**
- * Parameters to create and update Cosmos DB userDefinedFunction.
- */
-export type SqlUserDefinedFunctionCreateUpdateParameters = ARMResourceProperties & {
-  /**
-   * The standard JSON format of a userDefinedFunction
-   */
-  resource: SqlUserDefinedFunctionResource;
-  /**
-   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
-   */
-  options: CreateUpdateOptions;
-};
-
 /**
  * The List operation response, that contains the triggers and their properties.
  */
@@ -1350,13 +971,6 @@ export interface SqlTriggerListResult {
    */
   readonly value?: SqlTriggerGetResults[];
 }
-
-/**
- * An Azure Cosmos DB trigger.
- */
-export type SqlTriggerGetResults = ARMResourceProperties & {
-  resource?: SqlTriggerGetPropertiesResource;
-};
 
 /**
  * Cosmos DB SQL trigger resource object
@@ -1380,23 +994,6 @@ export interface SqlTriggerResource {
   triggerOperation?: TriggerOperation;
 }
 
-export type SqlTriggerGetPropertiesResource = SqlTriggerResource &
-  ExtendedResourceProperties & {};
-
-/**
- * Parameters to create and update Cosmos DB trigger.
- */
-export type SqlTriggerCreateUpdateParameters = ARMResourceProperties & {
-  /**
-   * The standard JSON format of a trigger
-   */
-  resource: SqlTriggerResource;
-  /**
-   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
-   */
-  options: CreateUpdateOptions;
-};
-
 /**
  * The List operation response, that contains the MongoDB databases and their properties.
  */
@@ -1408,17 +1005,6 @@ export interface MongoDBDatabaseListResult {
 }
 
 /**
- * An Azure Cosmos DB MongoDB database.
- */
-export type MongoDBDatabaseGetResults = ARMResourceProperties & {
-  resource?: MongoDBDatabaseGetPropertiesResource;
-  /**
-   * Cosmos DB options resource object
-   */
-  options?: OptionsResource;
-};
-
-/**
  * Cosmos DB MongoDB database resource object
  */
 export interface MongoDBDatabaseResource {
@@ -1427,23 +1013,6 @@ export interface MongoDBDatabaseResource {
    */
   id: string;
 }
-
-export type MongoDBDatabaseGetPropertiesResource = MongoDBDatabaseResource &
-  ExtendedResourceProperties & {};
-
-/**
- * Parameters to create and update Cosmos DB MongoDB database.
- */
-export type MongoDBDatabaseCreateUpdateParameters = ARMResourceProperties & {
-  /**
-   * The standard JSON format of a MongoDB database
-   */
-  resource: MongoDBDatabaseResource;
-  /**
-   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
-   */
-  options: CreateUpdateOptions;
-};
 
 /**
  * The List operation response, that contains the MongoDB collections and their properties.
@@ -1454,17 +1023,6 @@ export interface MongoDBCollectionListResult {
    */
   readonly value?: MongoDBCollectionGetResults[];
 }
-
-/**
- * An Azure Cosmos DB MongoDB collection.
- */
-export type MongoDBCollectionGetResults = ARMResourceProperties & {
-  resource?: MongoDBCollectionGetPropertiesResource;
-  /**
-   * Cosmos DB options resource object
-   */
-  options?: OptionsResource;
-};
 
 /**
  * Cosmos DB MongoDB collection resource object
@@ -1522,23 +1080,6 @@ export interface MongoIndexOptions {
   unique?: boolean;
 }
 
-export type MongoDBCollectionGetPropertiesResource = MongoDBCollectionResource &
-  ExtendedResourceProperties & {};
-
-/**
- * Parameters to create and update Cosmos DB MongoDB collection.
- */
-export type MongoDBCollectionCreateUpdateParameters = ARMResourceProperties & {
-  /**
-   * The standard JSON format of a MongoDB collection
-   */
-  resource: MongoDBCollectionResource;
-  /**
-   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
-   */
-  options: CreateUpdateOptions;
-};
-
 /**
  * The List operation response, that contains the Table and their properties.
  */
@@ -1550,17 +1091,6 @@ export interface TableListResult {
 }
 
 /**
- * An Azure Cosmos DB Table.
- */
-export type TableGetResults = ARMResourceProperties & {
-  resource?: TableGetPropertiesResource;
-  /**
-   * Cosmos DB options resource object
-   */
-  options?: OptionsResource;
-};
-
-/**
  * Cosmos DB table resource object
  */
 export interface TableResource {
@@ -1569,23 +1099,6 @@ export interface TableResource {
    */
   id: string;
 }
-
-export type TableGetPropertiesResource = TableResource &
-  ExtendedResourceProperties & {};
-
-/**
- * Parameters to create and update Cosmos DB Table.
- */
-export type TableCreateUpdateParameters = ARMResourceProperties & {
-  /**
-   * The standard JSON format of a Table
-   */
-  resource: TableResource;
-  /**
-   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
-   */
-  options: CreateUpdateOptions;
-};
 
 /**
  * The List operation response, that contains the Cassandra keyspaces and their properties.
@@ -1598,17 +1111,6 @@ export interface CassandraKeyspaceListResult {
 }
 
 /**
- * An Azure Cosmos DB Cassandra keyspace.
- */
-export type CassandraKeyspaceGetResults = ARMResourceProperties & {
-  resource?: CassandraKeyspaceGetPropertiesResource;
-  /**
-   * Cosmos DB options resource object
-   */
-  options?: OptionsResource;
-};
-
-/**
  * Cosmos DB Cassandra keyspace resource object
  */
 export interface CassandraKeyspaceResource {
@@ -1617,23 +1119,6 @@ export interface CassandraKeyspaceResource {
    */
   id: string;
 }
-
-export type CassandraKeyspaceGetPropertiesResource = CassandraKeyspaceResource &
-  ExtendedResourceProperties & {};
-
-/**
- * Parameters to create and update Cosmos DB Cassandra keyspace.
- */
-export type CassandraKeyspaceCreateUpdateParameters = ARMResourceProperties & {
-  /**
-   * The standard JSON format of a Cassandra keyspace
-   */
-  resource: CassandraKeyspaceResource;
-  /**
-   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
-   */
-  options: CreateUpdateOptions;
-};
 
 /**
  * The List operation response, that contains the Cassandra tables and their properties.
@@ -1644,17 +1129,6 @@ export interface CassandraTableListResult {
    */
   readonly value?: CassandraTableGetResults[];
 }
-
-/**
- * An Azure Cosmos DB Cassandra table.
- */
-export type CassandraTableGetResults = ARMResourceProperties & {
-  resource?: CassandraTableGetPropertiesResource;
-  /**
-   * Cosmos DB options resource object
-   */
-  options?: OptionsResource;
-};
 
 /**
  * Cosmos DB Cassandra table resource object
@@ -1730,23 +1204,6 @@ export interface ClusterKey {
   orderBy?: string;
 }
 
-export type CassandraTableGetPropertiesResource = CassandraTableResource &
-  ExtendedResourceProperties & {};
-
-/**
- * Parameters to create and update Cosmos DB Cassandra table.
- */
-export type CassandraTableCreateUpdateParameters = ARMResourceProperties & {
-  /**
-   * The standard JSON format of a Cassandra table
-   */
-  resource: CassandraTableResource;
-  /**
-   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
-   */
-  options: CreateUpdateOptions;
-};
-
 /**
  * The List operation response, that contains the Gremlin databases and their properties.
  */
@@ -1758,17 +1215,6 @@ export interface GremlinDatabaseListResult {
 }
 
 /**
- * An Azure Cosmos DB Gremlin database.
- */
-export type GremlinDatabaseGetResults = ARMResourceProperties & {
-  resource?: GremlinDatabaseGetPropertiesResource;
-  /**
-   * Cosmos DB options resource object
-   */
-  options?: OptionsResource;
-};
-
-/**
  * Cosmos DB Gremlin database resource object
  */
 export interface GremlinDatabaseResource {
@@ -1777,23 +1223,6 @@ export interface GremlinDatabaseResource {
    */
   id: string;
 }
-
-export type GremlinDatabaseGetPropertiesResource = GremlinDatabaseResource &
-  ExtendedResourceProperties & {};
-
-/**
- * Parameters to create and update Cosmos DB Gremlin database.
- */
-export type GremlinDatabaseCreateUpdateParameters = ARMResourceProperties & {
-  /**
-   * The standard JSON format of a Gremlin database
-   */
-  resource: GremlinDatabaseResource;
-  /**
-   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
-   */
-  options: CreateUpdateOptions;
-};
 
 /**
  * The List operation response, that contains the graphs and their properties.
@@ -1804,17 +1233,6 @@ export interface GremlinGraphListResult {
    */
   readonly value?: GremlinGraphGetResults[];
 }
-
-/**
- * An Azure Cosmos DB Gremlin graph.
- */
-export type GremlinGraphGetResults = ARMResourceProperties & {
-  resource?: GremlinGraphGetPropertiesResource;
-  /**
-   * Cosmos DB options resource object
-   */
-  options?: OptionsResource;
-};
 
 /**
  * Cosmos DB Gremlin graph resource object
@@ -1846,23 +1264,6 @@ export interface GremlinGraphResource {
   conflictResolutionPolicy?: ConflictResolutionPolicy;
 }
 
-export type GremlinGraphGetPropertiesResource = GremlinGraphResource &
-  ExtendedResourceProperties & {};
-
-/**
- * Parameters to create and update Cosmos DB Gremlin graph.
- */
-export type GremlinGraphCreateUpdateParameters = ARMResourceProperties & {
-  /**
-   * The standard JSON format of a Gremlin graph
-   */
-  resource: GremlinGraphResource;
-  /**
-   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
-   */
-  options: CreateUpdateOptions;
-};
-
 /**
  * A list of notebook workspace resources
  */
@@ -1892,20 +1293,6 @@ export interface ARMProxyResource {
 }
 
 /**
- * A notebook workspace resource
- */
-export type NotebookWorkspace = ARMProxyResource & {
-  /**
-   * Specifies the endpoint of Notebook server.
-   */
-  readonly notebookServerEndpoint?: string;
-  /**
-   * Status of the notebook workspace. Possible values are: Creating, Online, Deleting, Failed, Updating.
-   */
-  readonly status?: string;
-};
-
-/**
  * The connection info for the given notebook workspace
  */
 export interface NotebookWorkspaceConnectionInfoResult {
@@ -1930,24 +1317,6 @@ export interface PrivateLinkResourceListResult {
 }
 
 /**
- * A private link resource
- */
-export type PrivateLinkResource = ARMProxyResource & {
-  /**
-   * The private link resource group id.
-   */
-  readonly groupId?: string;
-  /**
-   * The private link resource required member names.
-   */
-  readonly requiredMembers?: string[];
-  /**
-   * The private link resource required zone names.
-   */
-  readonly requiredZoneNames?: string[];
-};
-
-/**
  * A list of private endpoint connections
  */
 export interface PrivateEndpointConnectionListResult {
@@ -1956,6 +1325,38 @@ export interface PrivateEndpointConnectionListResult {
    */
   value?: PrivateEndpointConnectionAutoGenerated[];
 }
+
+/**
+ * Connection State of the Private Endpoint Connection.
+ */
+export interface PrivateLinkServiceConnectionStatePropertyAutoGenerated {
+  /**
+   * The private link service connection status.
+   */
+  status?: string;
+  /**
+   * The private link service connection description.
+   */
+  description?: string;
+  /**
+   * Any action that is required beyond basic workflow (approve/ reject/ disconnect)
+   */
+  readonly actionsRequired?: string;
+}
+
+/**
+ * A private endpoint connection
+ */
+export type PrivateEndpointConnection = Resource & {
+  /**
+   * Private endpoint which the connection belongs to.
+   */
+  privateEndpoint?: PrivateEndpointProperty;
+  /**
+   * Connection State of the Private Endpoint Connection.
+   */
+  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionStateProperty;
+};
 
 /**
  * A private endpoint connection
@@ -1980,22 +1381,594 @@ export type PrivateEndpointConnectionAutoGenerated = Resource & {
 };
 
 /**
- * Connection State of the Private Endpoint Connection.
+ * The resource model definition for a ARM proxy resource. It will have everything other than required location and tags
  */
-export interface PrivateLinkServiceConnectionStatePropertyAutoGenerated {
+export type ProxyResource = Resource & {};
+
+/**
+ * An Azure Cosmos DB database account.
+ */
+export type DatabaseAccountGetResults = ARMResourceProperties & {
   /**
-   * The private link service connection status.
+   * Indicates the type of database account. This can only be set at database account creation.
    */
-  status?: string;
+  kind?: DatabaseAccountKind;
   /**
-   * The private link service connection description.
+   * The status of the Cosmos DB account at the time the operation was called. The status can be one of following. 'Creating' – the Cosmos DB account is being created. When an account is in Creating state, only properties that are specified as input for the Create Cosmos DB account operation are returned. 'Succeeded' – the Cosmos DB account is active for use. 'Updating' – the Cosmos DB account is being updated. 'Deleting' – the Cosmos DB account is being deleted. 'Failed' – the Cosmos DB account failed creation. 'DeletionFailed' – the Cosmos DB account deletion failed.
    */
-  description?: string;
+  readonly provisioningState?: string;
   /**
-   * Any action that is required beyond basic workflow (approve/ reject/ disconnect)
+   * The connection endpoint for the Cosmos DB database account.
    */
-  readonly actionsRequired?: string;
-}
+  readonly documentEndpoint?: string;
+  /**
+   * The offer type for the Cosmos DB database account. Default value: Standard.
+   */
+  readonly databaseAccountOfferType?: "Standard";
+  /**
+   * Cosmos DB Firewall Support: This value specifies the set of IP addresses or IP address ranges in CIDR form to be included as the allowed list of client IPs for a given database account. IP addresses/ranges must be comma separated and must not contain any spaces.
+   */
+  ipRangeFilter?: string;
+  /**
+   * Flag to indicate whether to enable/disable Virtual Network ACL rules.
+   */
+  isVirtualNetworkFilterEnabled?: boolean;
+  /**
+   * Enables automatic failover of the write region in the rare event that the region is unavailable due to an outage. Automatic failover will result in a new write region for the account and is chosen based on the failover priorities configured for the account.
+   */
+  enableAutomaticFailover?: boolean;
+  /**
+   * The consistency policy for the Cosmos DB database account.
+   */
+  consistencyPolicy?: ConsistencyPolicy;
+  /**
+   * List of Cosmos DB capabilities for the account
+   */
+  capabilities?: Capability[];
+  /**
+   * An array that contains the write location for the Cosmos DB account.
+   */
+  readonly writeLocations?: Location[];
+  /**
+   * An array that contains of the read locations enabled for the Cosmos DB account.
+   */
+  readonly readLocations?: Location[];
+  /**
+   * An array that contains all of the locations enabled for the Cosmos DB account.
+   */
+  readonly locations?: Location[];
+  /**
+   * An array that contains the regions ordered by their failover priorities.
+   */
+  readonly failoverPolicies?: FailoverPolicy[];
+  /**
+   * List of Virtual Network ACL rules configured for the Cosmos DB account.
+   */
+  virtualNetworkRules?: VirtualNetworkRule[];
+  /**
+   * List of Private Endpoint Connections configured for the Cosmos DB account.
+   */
+  readonly privateEndpointConnections?: PrivateEndpointConnection[];
+  /**
+   * Enables the account to write in multiple locations
+   */
+  enableMultipleWriteLocations?: boolean;
+  /**
+   * Enables the cassandra connector on the Cosmos DB C* account
+   */
+  enableCassandraConnector?: boolean;
+  /**
+   * The cassandra connector offer type for the Cosmos DB database C* account.
+   */
+  connectorOffer?: ConnectorOffer;
+  /**
+   * Disable write operations on metadata resources (databases, containers, throughput) via account keys
+   */
+  disableKeyBasedMetadataWriteAccess?: boolean;
+  /**
+   * The URI of the key vault
+   */
+  keyVaultKeyUri?: string;
+  /**
+   * Whether requests from Public Network are allowed
+   */
+  readonly publicNetworkAccess?: PublicNetworkAccess;
+};
+
+/**
+ * Parameters to create and update Cosmos DB database accounts.
+ */
+export type DatabaseAccountCreateUpdateParameters = ARMResourceProperties & {
+  /**
+   * Indicates the type of database account. This can only be set at database account creation.
+   */
+  kind?: DatabaseAccountKind;
+  /**
+   * The consistency policy for the Cosmos DB account.
+   */
+  consistencyPolicy?: ConsistencyPolicy;
+  /**
+   * An array that contains the georeplication locations enabled for the Cosmos DB account.
+   */
+  locations: Location[];
+  /**
+   * The offer type for the database
+   */
+  databaseAccountOfferType: "Standard";
+  /**
+   * Cosmos DB Firewall Support: This value specifies the set of IP addresses or IP address ranges in CIDR form to be included as the allowed list of client IPs for a given database account. IP addresses/ranges must be comma separated and must not contain any spaces.
+   */
+  ipRangeFilter?: string;
+  /**
+   * Flag to indicate whether to enable/disable Virtual Network ACL rules.
+   */
+  isVirtualNetworkFilterEnabled?: boolean;
+  /**
+   * Enables automatic failover of the write region in the rare event that the region is unavailable due to an outage. Automatic failover will result in a new write region for the account and is chosen based on the failover priorities configured for the account.
+   */
+  enableAutomaticFailover?: boolean;
+  /**
+   * List of Cosmos DB capabilities for the account
+   */
+  capabilities?: Capability[];
+  /**
+   * List of Virtual Network ACL rules configured for the Cosmos DB account.
+   */
+  virtualNetworkRules?: VirtualNetworkRule[];
+  /**
+   * Enables the account to write in multiple locations
+   */
+  enableMultipleWriteLocations?: boolean;
+  /**
+   * Enables the cassandra connector on the Cosmos DB C* account
+   */
+  enableCassandraConnector?: boolean;
+  /**
+   * The cassandra connector offer type for the Cosmos DB database C* account.
+   */
+  connectorOffer?: ConnectorOffer;
+  /**
+   * Disable write operations on metadata resources (databases, containers, throughput) via account keys
+   */
+  disableKeyBasedMetadataWriteAccess?: boolean;
+  /**
+   * The URI of the key vault
+   */
+  keyVaultKeyUri?: string;
+  /**
+   * Whether requests from Public Network are allowed
+   */
+  readonly publicNetworkAccess?: PublicNetworkAccess;
+};
+
+/**
+ * An Azure Cosmos DB SQL database.
+ */
+export type SqlDatabaseGetResults = ARMResourceProperties & {
+  resource?: SqlDatabaseGetPropertiesResource;
+  /**
+   * Cosmos DB options resource object
+   */
+  options?: OptionsResource;
+};
+
+/**
+ * Parameters to create and update Cosmos DB SQL database.
+ */
+export type SqlDatabaseCreateUpdateParameters = ARMResourceProperties & {
+  /**
+   * The standard JSON format of a SQL database
+   */
+  resource: SqlDatabaseResource;
+  /**
+   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
+   */
+  options: CreateUpdateOptions;
+};
+
+/**
+ * An Azure Cosmos DB resource throughput.
+ */
+export type ThroughputSettingsGetResults = ARMResourceProperties & {
+  resource?: ThroughputSettingsGetPropertiesResource;
+};
+
+/**
+ * Parameters to update Cosmos DB resource throughput.
+ */
+export type ThroughputSettingsUpdateParameters = ARMResourceProperties & {
+  /**
+   * The standard JSON format of a resource throughput
+   */
+  resource: ThroughputSettingsResource;
+};
+
+/**
+ * An Azure Cosmos DB container.
+ */
+export type SqlContainerGetResults = ARMResourceProperties & {
+  resource?: SqlContainerGetPropertiesResource;
+  /**
+   * Cosmos DB options resource object
+   */
+  options?: OptionsResource;
+};
+
+/**
+ * Parameters to create and update Cosmos DB container.
+ */
+export type SqlContainerCreateUpdateParameters = ARMResourceProperties & {
+  /**
+   * The standard JSON format of a container
+   */
+  resource: SqlContainerResource;
+  /**
+   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
+   */
+  options: CreateUpdateOptions;
+};
+
+/**
+ * An Azure Cosmos DB storedProcedure.
+ */
+export type SqlStoredProcedureGetResults = ARMResourceProperties & {
+  resource?: SqlStoredProcedureGetPropertiesResource;
+};
+
+/**
+ * Parameters to create and update Cosmos DB storedProcedure.
+ */
+export type SqlStoredProcedureCreateUpdateParameters = ARMResourceProperties & {
+  /**
+   * The standard JSON format of a storedProcedure
+   */
+  resource: SqlStoredProcedureResource;
+  /**
+   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
+   */
+  options: CreateUpdateOptions;
+};
+
+/**
+ * An Azure Cosmos DB userDefinedFunction.
+ */
+export type SqlUserDefinedFunctionGetResults = ARMResourceProperties & {
+  resource?: SqlUserDefinedFunctionGetPropertiesResource;
+};
+
+/**
+ * Parameters to create and update Cosmos DB userDefinedFunction.
+ */
+export type SqlUserDefinedFunctionCreateUpdateParameters = ARMResourceProperties & {
+  /**
+   * The standard JSON format of a userDefinedFunction
+   */
+  resource: SqlUserDefinedFunctionResource;
+  /**
+   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
+   */
+  options: CreateUpdateOptions;
+};
+
+/**
+ * An Azure Cosmos DB trigger.
+ */
+export type SqlTriggerGetResults = ARMResourceProperties & {
+  resource?: SqlTriggerGetPropertiesResource;
+};
+
+/**
+ * Parameters to create and update Cosmos DB trigger.
+ */
+export type SqlTriggerCreateUpdateParameters = ARMResourceProperties & {
+  /**
+   * The standard JSON format of a trigger
+   */
+  resource: SqlTriggerResource;
+  /**
+   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
+   */
+  options: CreateUpdateOptions;
+};
+
+/**
+ * An Azure Cosmos DB MongoDB database.
+ */
+export type MongoDBDatabaseGetResults = ARMResourceProperties & {
+  resource?: MongoDBDatabaseGetPropertiesResource;
+  /**
+   * Cosmos DB options resource object
+   */
+  options?: OptionsResource;
+};
+
+/**
+ * Parameters to create and update Cosmos DB MongoDB database.
+ */
+export type MongoDBDatabaseCreateUpdateParameters = ARMResourceProperties & {
+  /**
+   * The standard JSON format of a MongoDB database
+   */
+  resource: MongoDBDatabaseResource;
+  /**
+   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
+   */
+  options: CreateUpdateOptions;
+};
+
+/**
+ * An Azure Cosmos DB MongoDB collection.
+ */
+export type MongoDBCollectionGetResults = ARMResourceProperties & {
+  resource?: MongoDBCollectionGetPropertiesResource;
+  /**
+   * Cosmos DB options resource object
+   */
+  options?: OptionsResource;
+};
+
+/**
+ * Parameters to create and update Cosmos DB MongoDB collection.
+ */
+export type MongoDBCollectionCreateUpdateParameters = ARMResourceProperties & {
+  /**
+   * The standard JSON format of a MongoDB collection
+   */
+  resource: MongoDBCollectionResource;
+  /**
+   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
+   */
+  options: CreateUpdateOptions;
+};
+
+/**
+ * An Azure Cosmos DB Table.
+ */
+export type TableGetResults = ARMResourceProperties & {
+  resource?: TableGetPropertiesResource;
+  /**
+   * Cosmos DB options resource object
+   */
+  options?: OptionsResource;
+};
+
+/**
+ * Parameters to create and update Cosmos DB Table.
+ */
+export type TableCreateUpdateParameters = ARMResourceProperties & {
+  /**
+   * The standard JSON format of a Table
+   */
+  resource: TableResource;
+  /**
+   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
+   */
+  options: CreateUpdateOptions;
+};
+
+/**
+ * An Azure Cosmos DB Cassandra keyspace.
+ */
+export type CassandraKeyspaceGetResults = ARMResourceProperties & {
+  resource?: CassandraKeyspaceGetPropertiesResource;
+  /**
+   * Cosmos DB options resource object
+   */
+  options?: OptionsResource;
+};
+
+/**
+ * Parameters to create and update Cosmos DB Cassandra keyspace.
+ */
+export type CassandraKeyspaceCreateUpdateParameters = ARMResourceProperties & {
+  /**
+   * The standard JSON format of a Cassandra keyspace
+   */
+  resource: CassandraKeyspaceResource;
+  /**
+   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
+   */
+  options: CreateUpdateOptions;
+};
+
+/**
+ * An Azure Cosmos DB Cassandra table.
+ */
+export type CassandraTableGetResults = ARMResourceProperties & {
+  resource?: CassandraTableGetPropertiesResource;
+  /**
+   * Cosmos DB options resource object
+   */
+  options?: OptionsResource;
+};
+
+/**
+ * Parameters to create and update Cosmos DB Cassandra table.
+ */
+export type CassandraTableCreateUpdateParameters = ARMResourceProperties & {
+  /**
+   * The standard JSON format of a Cassandra table
+   */
+  resource: CassandraTableResource;
+  /**
+   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
+   */
+  options: CreateUpdateOptions;
+};
+
+/**
+ * An Azure Cosmos DB Gremlin database.
+ */
+export type GremlinDatabaseGetResults = ARMResourceProperties & {
+  resource?: GremlinDatabaseGetPropertiesResource;
+  /**
+   * Cosmos DB options resource object
+   */
+  options?: OptionsResource;
+};
+
+/**
+ * Parameters to create and update Cosmos DB Gremlin database.
+ */
+export type GremlinDatabaseCreateUpdateParameters = ARMResourceProperties & {
+  /**
+   * The standard JSON format of a Gremlin database
+   */
+  resource: GremlinDatabaseResource;
+  /**
+   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
+   */
+  options: CreateUpdateOptions;
+};
+
+/**
+ * An Azure Cosmos DB Gremlin graph.
+ */
+export type GremlinGraphGetResults = ARMResourceProperties & {
+  resource?: GremlinGraphGetPropertiesResource;
+  /**
+   * Cosmos DB options resource object
+   */
+  options?: OptionsResource;
+};
+
+/**
+ * Parameters to create and update Cosmos DB Gremlin graph.
+ */
+export type GremlinGraphCreateUpdateParameters = ARMResourceProperties & {
+  /**
+   * The standard JSON format of a Gremlin graph
+   */
+  resource: GremlinGraphResource;
+  /**
+   * A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request.
+   */
+  options: CreateUpdateOptions;
+};
+
+/**
+ * The access keys for the given database account.
+ */
+export type DatabaseAccountListKeysResult = DatabaseAccountListReadOnlyKeysResult & {
+  /**
+   * Base 64 encoded value of the primary read-write key.
+   */
+  readonly primaryMasterKey?: string;
+  /**
+   * Base 64 encoded value of the secondary read-write key.
+   */
+  readonly secondaryMasterKey?: string;
+};
+
+/**
+ * The metric values for a single partition.
+ */
+export type PartitionMetric = Metric & {
+  /**
+   * The partition id (GUID identifier) of the metric values.
+   */
+  readonly partitionId?: string;
+  /**
+   * The partition key range id (integer identifier) of the metric values.
+   */
+  readonly partitionKeyRangeId?: string;
+};
+
+/**
+ * Represents percentile metrics values.
+ */
+export type PercentileMetricValue = MetricValue & {
+  /**
+   * The 10th percentile value for the metric.
+   */
+  readonly p10?: number;
+  /**
+   * The 25th percentile value for the metric.
+   */
+  readonly p25?: number;
+  /**
+   * The 50th percentile value for the metric.
+   */
+  readonly p50?: number;
+  /**
+   * The 75th percentile value for the metric.
+   */
+  readonly p75?: number;
+  /**
+   * The 90th percentile value for the metric.
+   */
+  readonly p90?: number;
+  /**
+   * The 95th percentile value for the metric.
+   */
+  readonly p95?: number;
+  /**
+   * The 99th percentile value for the metric.
+   */
+  readonly p99?: number;
+};
+
+/**
+ * The partition level usage data for a usage request.
+ */
+export type PartitionUsage = Usage & {
+  /**
+   * The partition id (GUID identifier) of the usages.
+   */
+  readonly partitionId?: string;
+  /**
+   * The partition key range id (integer identifier) of the usages.
+   */
+  readonly partitionKeyRangeId?: string;
+};
+
+export type SqlDatabaseGetPropertiesResource = SqlDatabaseResource &
+  ExtendedResourceProperties & {
+    /**
+     * A system generated property that specified the addressable path of the collections resource.
+     */
+    colls?: string;
+    /**
+     * A system generated property that specifies the addressable path of the users resource.
+     */
+    users?: string;
+  };
+
+export type ThroughputSettingsGetPropertiesResource = ThroughputSettingsResource &
+  ExtendedResourceProperties & {};
+
+export type SqlContainerGetPropertiesResource = SqlContainerResource &
+  ExtendedResourceProperties & {};
+
+export type SqlStoredProcedureGetPropertiesResource = SqlStoredProcedureResource &
+  ExtendedResourceProperties & {};
+
+export type SqlUserDefinedFunctionGetPropertiesResource = SqlUserDefinedFunctionResource &
+  ExtendedResourceProperties & {};
+
+export type SqlTriggerGetPropertiesResource = SqlTriggerResource &
+  ExtendedResourceProperties & {};
+
+export type MongoDBDatabaseGetPropertiesResource = MongoDBDatabaseResource &
+  ExtendedResourceProperties & {};
+
+export type MongoDBCollectionGetPropertiesResource = MongoDBCollectionResource &
+  ExtendedResourceProperties & {};
+
+export type TableGetPropertiesResource = TableResource &
+  ExtendedResourceProperties & {};
+
+export type CassandraKeyspaceGetPropertiesResource = CassandraKeyspaceResource &
+  ExtendedResourceProperties & {};
+
+export type CassandraTableGetPropertiesResource = CassandraTableResource &
+  ExtendedResourceProperties & {};
+
+export type GremlinDatabaseGetPropertiesResource = GremlinDatabaseResource &
+  ExtendedResourceProperties & {};
+
+export type GremlinGraphGetPropertiesResource = GremlinGraphResource &
+  ExtendedResourceProperties & {};
 
 export type SqlDatabaseGetPropertiesOptions = OptionsResource & {};
 
@@ -2016,18 +1989,49 @@ export type GremlinDatabaseGetPropertiesOptions = OptionsResource & {};
 export type GremlinGraphGetPropertiesOptions = OptionsResource & {};
 
 /**
+ * A notebook workspace resource
+ */
+export type NotebookWorkspace = ARMProxyResource & {
+  /**
+   * Specifies the endpoint of Notebook server.
+   */
+  readonly notebookServerEndpoint?: string;
+  /**
+   * Status of the notebook workspace. Possible values are: Creating, Online, Deleting, Failed, Updating.
+   */
+  readonly status?: string;
+};
+
+/**
+ * A private link resource
+ */
+export type PrivateLinkResource = ARMProxyResource & {
+  /**
+   * The private link resource group id.
+   */
+  readonly groupId?: string;
+  /**
+   * The private link resource required member names.
+   */
+  readonly requiredMembers?: string[];
+  /**
+   * The private link resource required zone names.
+   */
+  readonly requiredZoneNames?: string[];
+};
+
+/**
  * Parameters to create a notebook workspace resource
  */
 export type NotebookWorkspaceCreateUpdateParameters = ARMProxyResource & {};
-
-/**
- * The resource model definition for a ARM proxy resource. It will have everything other than required location and tags
- */
-export type ProxyResource = Resource & {};
 /**
  * Defines values for DatabaseAccountKind.
  */
 export type DatabaseAccountKind = "GlobalDocumentDB" | "MongoDB" | "Parse";
+/**
+ * Defines values for ConnectorOffer.
+ */
+export type ConnectorOffer = "Small";
 /**
  * Defines values for PublicNetworkAccess.
  */
@@ -2108,6 +2112,10 @@ export type TriggerOperation =
   | "Update"
   | "Delete"
   | "Replace";
+/**
+ * Defines values for NotebookWorkspaceName.
+ */
+export type NotebookWorkspaceName = "default";
 /**
  * Defines values for DefaultConsistencyLevel.
  */

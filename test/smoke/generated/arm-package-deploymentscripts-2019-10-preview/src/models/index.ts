@@ -14,57 +14,13 @@ export type DeploymentScriptUnion =
   | AzureCliScript;
 
 /**
- * Common properties for all Azure resources.
- */
-export interface AzureResourceBase {
-  /**
-   * String Id used to locate any resource on Azure.
-   */
-  readonly id?: string;
-  /**
-   * Name of this resource.
-   */
-  readonly name?: string;
-  /**
-   * Type of this resource.
-   */
-  readonly type?: string;
-}
-
-/**
- * Deployment script object.
- */
-export type DeploymentScript = AzureResourceBase & {
-  /**
-   * Managed identity to be used for this deployment script. Currently, only user-assigned MSI is supported.
-   */
-  identity: ManagedServiceIdentity;
-  /**
-   * The location of the ACI and the storage account for the deployment script.
-   */
-  location: string;
-  /**
-   * Resource tags.
-   */
-  tags?: { [propertyName: string]: string };
-  /**
-   * Type of the script.
-   */
-  kind: ScriptType;
-  /**
-   * The system metadata related to this resource.
-   */
-  readonly systemData?: SystemData;
-};
-
-/**
  * Managed identity generic object.
  */
 export interface ManagedServiceIdentity {
   /**
    * Type of the managed identity.
    */
-  type?: "UserAssigned";
+  type?: ManagedServiceIdentityType;
   /**
    * The list of user-assigned managed identities associated with the resource. Key is the Azure resource Id of the managed identity.
    */
@@ -113,6 +69,24 @@ export interface SystemData {
    * The type of identity that last modified the resource.
    */
   lastModifiedAt?: Date;
+}
+
+/**
+ * Common properties for all Azure resources.
+ */
+export interface AzureResourceBase {
+  /**
+   * String Id used to locate any resource on Azure.
+   */
+  readonly id?: string;
+  /**
+   * Name of this resource.
+   */
+  readonly name?: string;
+  /**
+   * Type of this resource.
+   */
+  readonly type?: string;
 }
 
 /**
@@ -166,16 +140,6 @@ export interface ErrorAdditionalInfo {
 }
 
 /**
- * Deployment script parameters to be updated.
- */
-export type DeploymentScriptUpdateParameter = AzureResourceBase & {
-  /**
-   * Resource tags to be updated.
-   */
-  tags?: { [propertyName: string]: string };
-};
-
-/**
  * List of deployment scripts.
  */
 export interface DeploymentScriptListResult {
@@ -198,82 +162,6 @@ export interface ScriptLogsList {
    */
   value?: ScriptLog[];
 }
-
-/**
- * Script execution log object.
- */
-export type ScriptLog = AzureResourceBase & {
-  /**
-   * Script execution logs in text format.
-   */
-  readonly log?: string;
-};
-
-/**
- * Object model for the Azure PowerShell script.
- */
-export type AzurePowerShellScript = DeploymentScript & {
-  /**
-   * Container settings.
-   */
-  containerSettings?: ContainerConfiguration;
-  /**
-   * Storage Account settings.
-   */
-  storageAccountSettings?: StorageAccountConfiguration;
-  /**
-   * The clean up preference when the script execution gets in a terminal state. Default setting is 'Always'.
-   */
-  cleanupPreference?: CleanupOptions;
-  /**
-   * State of the script execution. This only appears in the response.
-   */
-  readonly provisioningState?: ScriptProvisioningState;
-  /**
-   * Contains the results of script execution.
-   */
-  readonly status?: ScriptStatus;
-  /**
-   * List of script outputs.
-   */
-  readonly outputs?: { [propertyName: string]: any };
-  /**
-   * Uri for the script. This is the entry point for the external script.
-   */
-  primaryScriptUri?: string;
-  /**
-   * Supporting files for the external script.
-   */
-  supportingScriptUris?: string[];
-  /**
-   * Script body.
-   */
-  scriptContent?: string;
-  /**
-   * Command line arguments to pass to the script. Arguments are separated by spaces. ex: -Name blue* -Location 'West US 2'
-   */
-  arguments?: string;
-  /**
-   * The environment variables to pass over to the script.
-   */
-  environmentVariables?: EnvironmentVariable[];
-  /**
-   * Gets or sets how the deployment script should be forced to execute even if the script resource has not changed. Can be current time stamp or a GUID.
-   */
-  forceUpdateTag?: string;
-  /**
-   * Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P7D means one week).
-   */
-  retentionInterval: string;
-  /**
-   * Maximum allowed script execution time specified in ISO 8601 format. Default value is PT1H
-   */
-  timeout?: string;
-  /**
-   * Azure PowerShell module version to be used.
-   */
-  azPowerShellVersion: string;
-};
 
 /**
  * Common properties for the deployment script.
@@ -416,6 +304,52 @@ export interface EnvironmentVariable {
 }
 
 /**
+ * Deployment script object.
+ */
+export type DeploymentScript = AzureResourceBase & {
+  /**
+   * Managed identity to be used for this deployment script. Currently, only user-assigned MSI is supported.
+   */
+  identity: ManagedServiceIdentity;
+  /**
+   * The location of the ACI and the storage account for the deployment script.
+   */
+  location: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Type of the script.
+   */
+  kind: ScriptType;
+  /**
+   * The system metadata related to this resource.
+   */
+  readonly systemData?: SystemData;
+};
+
+/**
+ * Deployment script parameters to be updated.
+ */
+export type DeploymentScriptUpdateParameter = AzureResourceBase & {
+  /**
+   * Resource tags to be updated.
+   */
+  tags?: { [propertyName: string]: string };
+};
+
+/**
+ * Script execution log object.
+ */
+export type ScriptLog = AzureResourceBase & {
+  /**
+   * Script execution logs in text format.
+   */
+  readonly log?: string;
+};
+
+/**
  * Properties of the Azure PowerShell script object.
  */
 export type AzurePowerShellScriptProperties = DeploymentScriptPropertiesBase &
@@ -425,6 +359,83 @@ export type AzurePowerShellScriptProperties = DeploymentScriptPropertiesBase &
      */
     azPowerShellVersion: string;
   };
+
+/**
+ * Properties of the Azure CLI script object.
+ */
+export type AzureCliScriptProperties = DeploymentScriptPropertiesBase &
+  ScriptConfigurationBase & {
+    /**
+     * Azure CLI module version to be used.
+     */
+    azCliVersion: string;
+  };
+
+/**
+ * Object model for the Azure PowerShell script.
+ */
+export type AzurePowerShellScript = DeploymentScript & {
+  /**
+   * Container settings.
+   */
+  containerSettings?: ContainerConfiguration;
+  /**
+   * Storage Account settings.
+   */
+  storageAccountSettings?: StorageAccountConfiguration;
+  /**
+   * The clean up preference when the script execution gets in a terminal state. Default setting is 'Always'.
+   */
+  cleanupPreference?: CleanupOptions;
+  /**
+   * State of the script execution. This only appears in the response.
+   */
+  readonly provisioningState?: ScriptProvisioningState;
+  /**
+   * Contains the results of script execution.
+   */
+  readonly status?: ScriptStatus;
+  /**
+   * List of script outputs.
+   */
+  readonly outputs?: { [propertyName: string]: any };
+  /**
+   * Uri for the script. This is the entry point for the external script.
+   */
+  primaryScriptUri?: string;
+  /**
+   * Supporting files for the external script.
+   */
+  supportingScriptUris?: string[];
+  /**
+   * Script body.
+   */
+  scriptContent?: string;
+  /**
+   * Command line arguments to pass to the script. Arguments are separated by spaces. ex: -Name blue* -Location 'West US 2'
+   */
+  arguments?: string;
+  /**
+   * The environment variables to pass over to the script.
+   */
+  environmentVariables?: EnvironmentVariable[];
+  /**
+   * Gets or sets how the deployment script should be forced to execute even if the script resource has not changed. Can be current time stamp or a GUID.
+   */
+  forceUpdateTag?: string;
+  /**
+   * Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P7D means one week).
+   */
+  retentionInterval: string;
+  /**
+   * Maximum allowed script execution time specified in ISO 8601 format. Default value is PT1H
+   */
+  timeout?: string;
+  /**
+   * Azure PowerShell module version to be used.
+   */
+  azPowerShellVersion: string;
+};
 
 /**
  * Object model for the Azure CLI script.
@@ -491,17 +502,10 @@ export type AzureCliScript = DeploymentScript & {
    */
   azCliVersion: string;
 };
-
 /**
- * Properties of the Azure CLI script object.
+ * Defines values for ManagedServiceIdentityType.
  */
-export type AzureCliScriptProperties = DeploymentScriptPropertiesBase &
-  ScriptConfigurationBase & {
-    /**
-     * Azure CLI module version to be used.
-     */
-    azCliVersion: string;
-  };
+export type ManagedServiceIdentityType = "UserAssigned";
 /**
  * Defines values for ScriptType.
  */

@@ -48,62 +48,6 @@ export interface ComputeOperationValue {
   readonly provider?: string;
 }
 
-/**
- * The Resource model definition.
- */
-export interface Resource {
-  /**
-   * Resource Id
-   */
-  readonly id?: string;
-  /**
-   * Resource name
-   */
-  readonly name?: string;
-  /**
-   * Resource type
-   */
-  readonly type?: string;
-  /**
-   * Resource location
-   */
-  location: string;
-  /**
-   * Resource tags
-   */
-  tags?: { [propertyName: string]: string };
-}
-
-/**
- * Specifies information about the availability set that the virtual machine should be assigned to. Virtual machines specified in the same availability set are allocated to different nodes to maximize availability. For more information about availability sets, see [Manage the availability of virtual machines](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-manage-availability?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). <br><br> For more information on Azure planned maintenance, see [Planned maintenance for virtual machines in Azure](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-planned-maintenance?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Currently, a VM can only be added to availability set at creation time. An existing VM cannot be added to an availability set.
- */
-export type AvailabilitySet = Resource & {
-  /**
-   * Sku of the availability set, only name is required to be set. See AvailabilitySetSkuTypes for possible set of values. Use 'Aligned' for virtual machines with managed disks and 'Classic' for virtual machines with unmanaged disks. Default value is 'Classic'.
-   */
-  sku?: Sku;
-  /**
-   * Update Domain count.
-   */
-  platformUpdateDomainCount?: number;
-  /**
-   * Fault Domain count.
-   */
-  platformFaultDomainCount?: number;
-  /**
-   * A list of references to all virtual machines in the availability set.
-   */
-  virtualMachines?: SubResource[];
-  /**
-   * Specifies information about the proximity placement group that the availability set should be assigned to. <br><br>Minimum api-version: 2018-04-01.
-   */
-  proximityPlacementGroup?: SubResource;
-  /**
-   * The resource status information.
-   */
-  readonly statuses?: InstanceViewStatus[];
-};
-
 export interface SubResource {
   /**
    * Resource Id
@@ -156,6 +100,32 @@ export interface Sku {
 }
 
 /**
+ * The Resource model definition.
+ */
+export interface Resource {
+  /**
+   * Resource Id
+   */
+  readonly id?: string;
+  /**
+   * Resource name
+   */
+  readonly name?: string;
+  /**
+   * Resource type
+   */
+  readonly type?: string;
+  /**
+   * Resource location
+   */
+  location: string;
+  /**
+   * Resource tags
+   */
+  tags?: { [propertyName: string]: string };
+}
+
+/**
  * The Update Resource model definition.
  */
 export interface UpdateResource {
@@ -164,36 +134,6 @@ export interface UpdateResource {
    */
   tags?: { [propertyName: string]: string };
 }
-
-/**
- * Specifies information about the availability set that the virtual machine should be assigned to. Only tags may be updated.
- */
-export type AvailabilitySetUpdate = UpdateResource & {
-  /**
-   * Sku of the availability set
-   */
-  sku?: Sku;
-  /**
-   * Update Domain count.
-   */
-  platformUpdateDomainCount?: number;
-  /**
-   * Fault Domain count.
-   */
-  platformFaultDomainCount?: number;
-  /**
-   * A list of references to all virtual machines in the availability set.
-   */
-  virtualMachines?: SubResource[];
-  /**
-   * Specifies information about the proximity placement group that the availability set should be assigned to. <br><br>Minimum api-version: 2018-04-01.
-   */
-  proximityPlacementGroup?: SubResource;
-  /**
-   * The resource status information.
-   */
-  readonly statuses?: InstanceViewStatus[];
-};
 
 /**
  * The List Availability Set operation response.
@@ -250,39 +190,6 @@ export interface VirtualMachineSize {
 }
 
 /**
- * Specifies information about the proximity placement group.
- */
-export type ProximityPlacementGroup = Resource & {
-  /**
-   * Specifies the type of the proximity placement group. <br><br> Possible values are: <br><br> **Standard** : Co-locate resources within an Azure region or Availability Zone. <br><br> **Ultra** : For future use.
-   */
-  proximityPlacementGroupType?: ProximityPlacementGroupType;
-  /**
-   * A list of references to all virtual machines in the proximity placement group.
-   */
-  readonly virtualMachines?: SubResourceWithColocationStatus[];
-  /**
-   * A list of references to all virtual machine scale sets in the proximity placement group.
-   */
-  readonly virtualMachineScaleSets?: SubResourceWithColocationStatus[];
-  /**
-   * A list of references to all availability sets in the proximity placement group.
-   */
-  readonly availabilitySets?: SubResourceWithColocationStatus[];
-  /**
-   * Describes colocation status of the Proximity Placement Group.
-   */
-  colocationStatus?: InstanceViewStatus;
-};
-
-export type SubResourceWithColocationStatus = SubResource & {
-  /**
-   * Describes colocation status of a resource in the Proximity Placement Group.
-   */
-  colocationStatus?: InstanceViewStatus;
-};
-
-/**
  * The List Proximity Placement Group operation response.
  */
 export interface ProximityPlacementGroupListResult {
@@ -296,48 +203,12 @@ export interface ProximityPlacementGroupListResult {
   nextLink?: string;
 }
 
-/**
- * Specifies information about the dedicated host group that the dedicated hosts should be assigned to. <br><br> Currently, a dedicated host can only be added to a dedicated host group at creation time. An existing dedicated host cannot be added to another dedicated host group.
- */
-export type DedicatedHostGroup = Resource & {
-  /**
-   * Availability Zone to use for this host group. Only single zone is supported. The zone can be assigned only during creation. If not provided, the group supports all zones in the region. If provided, enforces each host in the group to be in the same zone.
-   */
-  zones?: string[];
-  /**
-   * Number of fault domains that the host group can span.
-   */
-  platformFaultDomainCount?: number;
-  /**
-   * A list of references to all dedicated hosts in the dedicated host group.
-   */
-  readonly hosts?: SubResourceReadOnly[];
-};
-
 export interface SubResourceReadOnly {
   /**
    * Resource Id
    */
   readonly id?: string;
 }
-
-/**
- * Specifies information about the dedicated host group that the dedicated host should be assigned to. Only tags may be updated.
- */
-export type DedicatedHostGroupUpdate = UpdateResource & {
-  /**
-   * Availability Zone to use for this host group. Only single zone is supported. The zone can be assigned only during creation. If not provided, the group supports all zones in the region. If provided, enforces each host in the group to be in the same zone.
-   */
-  zones?: string[];
-  /**
-   * Number of fault domains that the host group can span.
-   */
-  platformFaultDomainCount?: number;
-  /**
-   * A list of references to all dedicated hosts in the dedicated host group.
-   */
-  readonly hosts?: SubResourceReadOnly[];
-};
 
 /**
  * The List Dedicated Host Group with resource group response.
@@ -352,48 +223,6 @@ export interface DedicatedHostGroupListResult {
    */
   nextLink?: string;
 }
-
-/**
- * Specifies information about the Dedicated host.
- */
-export type DedicatedHost = Resource & {
-  /**
-   * SKU of the dedicated host for Hardware Generation and VM family. Only name is required to be set. List Microsoft.Compute SKUs for a list of possible values.
-   */
-  sku: Sku;
-  /**
-   * Fault domain of the dedicated host within a dedicated host group.
-   */
-  platformFaultDomain?: number;
-  /**
-   * Specifies whether the dedicated host should be replaced automatically in case of a failure. The value is defaulted to 'true' when not provided.
-   */
-  autoReplaceOnFailure?: boolean;
-  /**
-   * A unique id generated and assigned to the dedicated host by the platform. <br><br> Does not change throughout the lifetime of the host.
-   */
-  readonly hostId?: string;
-  /**
-   * A list of references to all virtual machines in the Dedicated Host.
-   */
-  readonly virtualMachines?: SubResourceReadOnly[];
-  /**
-   * Specifies the software license type that will be applied to the VMs deployed on the dedicated host. <br><br> Possible values are: <br><br> **None** <br><br> **Windows_Server_Hybrid** <br><br> **Windows_Server_Perpetual** <br><br> Default: **None**
-   */
-  licenseType?: DedicatedHostLicenseTypes;
-  /**
-   * The date when the host was first provisioned.
-   */
-  readonly provisioningTime?: Date;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: string;
-  /**
-   * The dedicated host instance view.
-   */
-  readonly instanceView?: DedicatedHostInstanceView;
-};
 
 /**
  * The instance view of a dedicated host.
@@ -438,44 +267,6 @@ export interface DedicatedHostAllocatableVM {
 }
 
 /**
- * Specifies information about the dedicated host. Only tags, autoReplaceOnFailure and licenseType may be updated.
- */
-export type DedicatedHostUpdate = UpdateResource & {
-  /**
-   * Fault domain of the dedicated host within a dedicated host group.
-   */
-  platformFaultDomain?: number;
-  /**
-   * Specifies whether the dedicated host should be replaced automatically in case of a failure. The value is defaulted to 'true' when not provided.
-   */
-  autoReplaceOnFailure?: boolean;
-  /**
-   * A unique id generated and assigned to the dedicated host by the platform. <br><br> Does not change throughout the lifetime of the host.
-   */
-  readonly hostId?: string;
-  /**
-   * A list of references to all virtual machines in the Dedicated Host.
-   */
-  readonly virtualMachines?: SubResourceReadOnly[];
-  /**
-   * Specifies the software license type that will be applied to the VMs deployed on the dedicated host. <br><br> Possible values are: <br><br> **None** <br><br> **Windows_Server_Hybrid** <br><br> **Windows_Server_Perpetual** <br><br> Default: **None**
-   */
-  licenseType?: DedicatedHostLicenseTypes;
-  /**
-   * The date when the host was first provisioned.
-   */
-  readonly provisioningTime?: Date;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: string;
-  /**
-   * The dedicated host instance view.
-   */
-  readonly instanceView?: DedicatedHostInstanceView;
-};
-
-/**
  * The list dedicated host operation response.
  */
 export interface DedicatedHostListResult {
@@ -504,26 +295,6 @@ export interface SshPublicKeysGroupListResult {
 }
 
 /**
- * Specifies information about the SSH public key.
- */
-export type SshPublicKeyResource = Resource & {
-  /**
-   * SSH public key used to authenticate to a virtual machine through ssh. If this property is not initially provided when the resource is created, the publicKey property will be populated when generateKeyPair is called. If the public key is provided upon resource creation, the provided public key needs to be at least 2048-bit and in ssh-rsa format.
-   */
-  publicKey?: string;
-};
-
-/**
- * Specifies information about the SSH public key.
- */
-export type SshPublicKeyUpdateResource = UpdateResource & {
-  /**
-   * SSH public key used to authenticate to a virtual machine through ssh. If this property is not initially provided when the resource is created, the publicKey property will be populated when generateKeyPair is called. If the public key is provided upon resource creation, the provided public key needs to be at least 2048-bit and in ssh-rsa format.
-   */
-  publicKey?: string;
-};
-
-/**
  * Response from generation of an SSH key pair.
  */
 export interface SshPublicKeyGenerateKeyPairResult {
@@ -540,74 +311,6 @@ export interface SshPublicKeyGenerateKeyPairResult {
    */
   id: string;
 }
-
-/**
- * Describes a Virtual Machine Extension Image.
- */
-export type VirtualMachineExtensionImage = Resource & {
-  /**
-   * The operating system this extension supports.
-   */
-  operatingSystem?: string;
-  /**
-   * The type of role (IaaS or PaaS) this extension supports.
-   */
-  computeRole?: string;
-  /**
-   * The schema defined by publisher, where extension consumers should provide settings in a matching schema.
-   */
-  handlerSchema?: string;
-  /**
-   * Whether the extension can be used on xRP VMScaleSets. By default existing extensions are usable on scalesets, but there might be cases where a publisher wants to explicitly indicate the extension is only enabled for CRP VMs but not VMSS.
-   */
-  vmScaleSetEnabled?: boolean;
-  /**
-   * Whether the handler can support multiple extensions.
-   */
-  supportsMultipleExtensions?: boolean;
-};
-
-/**
- * Describes a Virtual Machine Extension.
- */
-export type VirtualMachineExtension = Resource & {
-  /**
-   * How the extension handler should be forced to update even if the extension configuration has not changed.
-   */
-  forceUpdateTag?: string;
-  /**
-   * The name of the extension handler publisher.
-   */
-  publisher?: string;
-  /**
-   * Specifies the type of the extension; an example is "CustomScriptExtension".
-   */
-  typePropertiesType?: string;
-  /**
-   * Specifies the version of the script handler.
-   */
-  typeHandlerVersion?: string;
-  /**
-   * Indicates whether the extension should use a newer minor version if one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless redeployed, even with this property set to true.
-   */
-  autoUpgradeMinorVersion?: boolean;
-  /**
-   * Json formatted public settings for the extension.
-   */
-  settings?: any;
-  /**
-   * The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at all.
-   */
-  protectedSettings?: any;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: string;
-  /**
-   * The virtual machine extension instance view.
-   */
-  instanceView?: VirtualMachineExtensionInstanceView;
-};
 
 /**
  * The instance view of a virtual machine extension.
@@ -636,40 +339,6 @@ export interface VirtualMachineExtensionInstanceView {
 }
 
 /**
- * Describes a Virtual Machine Extension.
- */
-export type VirtualMachineExtensionUpdate = UpdateResource & {
-  /**
-   * How the extension handler should be forced to update even if the extension configuration has not changed.
-   */
-  forceUpdateTag?: string;
-  /**
-   * The name of the extension handler publisher.
-   */
-  publisher?: string;
-  /**
-   * Specifies the type of the extension; an example is "CustomScriptExtension".
-   */
-  type?: string;
-  /**
-   * Specifies the version of the script handler.
-   */
-  typeHandlerVersion?: string;
-  /**
-   * Indicates whether the extension should use a newer minor version if one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless redeployed, even with this property set to true.
-   */
-  autoUpgradeMinorVersion?: boolean;
-  /**
-   * Json formatted public settings for the extension.
-   */
-  settings?: any;
-  /**
-   * The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at all.
-   */
-  protectedSettings?: any;
-};
-
-/**
  * The List Extension operation response
  */
 export interface VirtualMachineExtensionsListResult {
@@ -678,47 +347,6 @@ export interface VirtualMachineExtensionsListResult {
    */
   value?: VirtualMachineExtension[];
 }
-
-/**
- * Virtual machine image resource information.
- */
-export type VirtualMachineImageResource = SubResource & {
-  /**
-   * The name of the resource.
-   */
-  name: string;
-  /**
-   * The supported Azure location of the resource.
-   */
-  location: string;
-  /**
-   * Specifies the tags that are assigned to the virtual machine. For more information about using tags, see [Using tags to organize your Azure resources](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-using-tags.md).
-   */
-  tags?: { [propertyName: string]: string };
-};
-
-/**
- * Describes a Virtual Machine Image.
- */
-export type VirtualMachineImage = VirtualMachineImageResource & {
-  /**
-   * Used for establishing the purchase context of any 3rd Party artifact through MarketPlace.
-   */
-  plan?: PurchasePlan;
-  /**
-   * Contains the os disk image information.
-   */
-  osDiskImage?: OSDiskImage;
-  dataDiskImages?: DataDiskImage[];
-  /**
-   * Describes automatic OS upgrade properties on the image.
-   */
-  automaticOSUpgradeProperties?: AutomaticOSUpgradeProperties;
-  /**
-   * Specifies the HyperVGeneration Type
-   */
-  hyperVGeneration?: HyperVGenerationTypes;
-};
 
 /**
  * Used for establishing the purchase context of any 3rd Party artifact through MarketPlace.
@@ -833,96 +461,6 @@ export interface VirtualMachineListResult {
 }
 
 /**
- * Describes a Virtual Machine.
- */
-export type VirtualMachine = Resource & {
-  /**
-   * Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use.  In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**.
-   */
-  plan?: Plan;
-  /**
-   * The virtual machine child extension resources.
-   */
-  readonly resources?: VirtualMachineExtension[];
-  /**
-   * The identity of the virtual machine, if configured.
-   */
-  identity?: VirtualMachineIdentity;
-  /**
-   * The virtual machine zones.
-   */
-  zones?: string[];
-  /**
-   * Specifies the hardware settings for the virtual machine.
-   */
-  hardwareProfile?: HardwareProfile;
-  /**
-   * Specifies the storage settings for the virtual machine disks.
-   */
-  storageProfile?: StorageProfile;
-  /**
-   * Specifies additional capabilities enabled or disabled on the virtual machine.
-   */
-  additionalCapabilities?: AdditionalCapabilities;
-  /**
-   * Specifies the operating system settings used while creating the virtual machine. Some of the settings cannot be changed once VM is provisioned.
-   */
-  osProfile?: OSProfile;
-  /**
-   * Specifies the network interfaces of the virtual machine.
-   */
-  networkProfile?: NetworkProfile;
-  /**
-   * Specifies the boot diagnostic settings state. <br><br>Minimum api-version: 2015-06-15.
-   */
-  diagnosticsProfile?: DiagnosticsProfile;
-  /**
-   * Specifies information about the availability set that the virtual machine should be assigned to. Virtual machines specified in the same availability set are allocated to different nodes to maximize availability. For more information about availability sets, see [Manage the availability of virtual machines](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-manage-availability?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). <br><br> For more information on Azure planned maintenance, see [Planned maintenance for virtual machines in Azure](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-planned-maintenance?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Currently, a VM can only be added to availability set at creation time. The availability set to which the VM is being added should be under the same resource group as the availability set resource. An existing VM cannot be added to an availability set. <br><br>This property cannot exist along with a non-null properties.virtualMachineScaleSet reference.
-   */
-  availabilitySet?: SubResource;
-  /**
-   * Specifies information about the virtual machine scale set that the virtual machine should be assigned to. Virtual machines specified in the same virtual machine scale set are allocated to different nodes to maximize availability. Currently, a VM can only be added to virtual machine scale set at creation time. An existing VM cannot be added to a virtual machine scale set. <br><br>This property cannot exist along with a non-null properties.availabilitySet reference. <br><br>Minimum api‐version: 2019‐03‐01
-   */
-  virtualMachineScaleSet?: SubResource;
-  /**
-   * Specifies information about the proximity placement group that the virtual machine should be assigned to. <br><br>Minimum api-version: 2018-04-01.
-   */
-  proximityPlacementGroup?: SubResource;
-  /**
-   * Specifies the priority for the virtual machine. <br><br>Minimum api-version: 2019-03-01
-   */
-  priority?: VirtualMachinePriorityTypes;
-  /**
-   * Specifies the eviction policy for the Azure Spot virtual machine and Azure Spot scale set. <br><br>For Azure Spot virtual machines, the only supported value is 'Deallocate' and the minimum api-version is 2019-03-01. <br><br>For Azure Spot scale sets, both 'Deallocate' and 'Delete' are supported and the minimum api-version is 2017-10-30-preview.
-   */
-  evictionPolicy?: VirtualMachineEvictionPolicyTypes;
-  /**
-   * Specifies the billing related details of a Azure Spot virtual machine. <br><br>Minimum api-version: 2019-03-01.
-   */
-  billingProfile?: BillingProfile;
-  /**
-   * Specifies information about the dedicated host that the virtual machine resides in. <br><br>Minimum api-version: 2018-10-01.
-   */
-  host?: SubResource;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: string;
-  /**
-   * The virtual machine instance view.
-   */
-  readonly instanceView?: VirtualMachineInstanceView;
-  /**
-   * Specifies that the image or disk that is being used was licensed on-premises. This element is only used for images that contain the Windows Server operating system. <br><br> Possible values are: <br><br> Windows_Client <br><br> Windows_Server <br><br> If this element is included in a request for an update, the value must match the initial value. This value cannot be updated. <br><br> For more information, see [Azure Hybrid Use Benefit for Windows Server](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-hybrid-use-benefit-licensing?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Minimum api-version: 2015-06-15
-   */
-  licenseType?: string;
-  /**
-   * Specifies the VM unique ID which is a 128-bits identifier that is encoded and stored in all Azure IaaS VMs SMBIOS and can be read using platform BIOS commands.
-   */
-  readonly vmId?: string;
-};
-
-/**
  * Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use.  In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**.
  */
 export interface Plan {
@@ -971,32 +509,6 @@ export interface StorageProfile {
    */
   dataDisks?: DataDisk[];
 }
-
-/**
- * Specifies information about the image to use. You can specify information about platform images, marketplace images, or virtual machine images. This element is required when you want to use a platform image, marketplace image, or virtual machine image, but is not used in other creation operations. NOTE: Image reference publisher and offer can only be set when you create the scale set.
- */
-export type ImageReference = SubResource & {
-  /**
-   * The image publisher.
-   */
-  publisher?: string;
-  /**
-   * Specifies the offer of the platform image or marketplace image used to create the virtual machine.
-   */
-  offer?: string;
-  /**
-   * The image SKU.
-   */
-  sku?: string;
-  /**
-   * Specifies the version of the platform image or marketplace image used to create the virtual machine. The allowed formats are Major.Minor.Build or 'latest'. Major, Minor, and Build are decimal numbers. Specify 'latest' to use the latest version of an image available at deploy time. Even if you use 'latest', the VM image will not automatically update after deploy time even if a new version becomes available.
-   */
-  version?: string;
-  /**
-   * Specifies in decimal numbers, the version of platform image or marketplace image used to create the virtual machine. This readonly field differs from 'version', only if the value specified in 'version' field is 'latest'.
-   */
-  readonly exactVersion?: string;
-};
 
 /**
  * Specifies information about the operating system disk used by the virtual machine. <br><br> For more information about disks, see [About disks and VHDs for Azure virtual machines](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-about-disks-vhds?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
@@ -1111,26 +623,12 @@ export interface DiffDiskSettings {
   /**
    * Specifies the ephemeral disk settings for operating system disk.
    */
-  option?: "Local";
+  option?: DiffDiskOptions;
   /**
    * Specifies the ephemeral disk placement for operating system disk.<br><br> Possible values are: <br><br> **CacheDisk** <br><br> **ResourceDisk** <br><br> Default: **CacheDisk** if one is configured for the VM size otherwise **ResourceDisk** is used.<br><br> Refer to VM size documentation for Windows VM at https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes and Linux VM at https://docs.microsoft.com/en-us/azure/virtual-machines/linux/sizes to check which VM sizes exposes a cache disk.
    */
   placement?: DiffDiskPlacement;
 }
-
-/**
- * The parameters of a managed disk.
- */
-export type ManagedDiskParameters = SubResource & {
-  /**
-   * Specifies the storage account type for the managed disk. NOTE: UltraSSD_LRS can only be used with data disks, it cannot be used with OS Disk.
-   */
-  storageAccountType?: StorageAccountTypes;
-  /**
-   * Specifies the customer managed disk encryption set resource id for the managed disk.
-   */
-  diskEncryptionSet?: SubResource;
-};
 
 /**
  * Describes a data disk.
@@ -1391,16 +889,6 @@ export interface NetworkProfile {
 }
 
 /**
- * Describes a network interface reference.
- */
-export type NetworkInterfaceReference = SubResource & {
-  /**
-   * Specifies the primary network interface in case the virtual machine has more than 1 network interface.
-   */
-  primary?: boolean;
-};
-
-/**
  * Specifies the boot diagnostic settings state. <br><br>Minimum api-version: 2015-06-15.
  */
 export interface DiagnosticsProfile {
@@ -1634,28 +1122,6 @@ export interface Components1H8M3EpSchemasVirtualmachineidentityPropertiesUserass
 }
 
 /**
- * The source user image virtual hard disk. The virtual hard disk will be copied before being attached to the virtual machine. If SourceImage is provided, the destination virtual hard drive must not exist.
- */
-export type Image = Resource & {
-  /**
-   * The source virtual machine from which Image is created.
-   */
-  sourceVirtualMachine?: SubResource;
-  /**
-   * Specifies the storage settings for the virtual machine disks.
-   */
-  storageProfile?: ImageStorageProfile;
-  /**
-   * The provisioning state.
-   */
-  readonly provisioningState?: string;
-  /**
-   * Gets the HyperVGenerationType of the VirtualMachine created from the image
-   */
-  hyperVGeneration?: HyperVGenerationTypes;
-};
-
-/**
  * Describes a storage profile.
  */
 export interface ImageStorageProfile {
@@ -1708,52 +1174,6 @@ export interface ImageDisk {
 }
 
 /**
- * Describes an Operating System disk.
- */
-export type ImageOSDisk = ImageDisk & {
-  /**
-   * This property allows you to specify the type of the OS that is included in the disk if creating a VM from a custom image. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux**
-   */
-  osType: OperatingSystemTypes;
-  /**
-   * The OS State.
-   */
-  osState: OperatingSystemStateTypes;
-};
-
-/**
- * Describes a data disk.
- */
-export type ImageDataDisk = ImageDisk & {
-  /**
-   * Specifies the logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM.
-   */
-  lun: number;
-};
-
-/**
- * The source user image virtual hard disk. Only tags may be updated.
- */
-export type ImageUpdate = UpdateResource & {
-  /**
-   * The source virtual machine from which Image is created.
-   */
-  sourceVirtualMachine?: SubResource;
-  /**
-   * Specifies the storage settings for the virtual machine disks.
-   */
-  storageProfile?: ImageStorageProfile;
-  /**
-   * The provisioning state.
-   */
-  readonly provisioningState?: string;
-  /**
-   * Gets the HyperVGenerationType of the VirtualMachine created from the image
-   */
-  hyperVGeneration?: HyperVGenerationTypes;
-};
-
-/**
  * The List Image operation response.
  */
 export interface ImageListResult {
@@ -1784,114 +1204,6 @@ export interface VirtualMachineCaptureParameters {
    */
   overwriteVhds: boolean;
 }
-
-/**
- * Output of virtual machine capture operation.
- */
-export type VirtualMachineCaptureResult = SubResource & {
-  /**
-   * the schema of the captured virtual machine
-   */
-  readonly schema?: string;
-  /**
-   * the version of the content
-   */
-  readonly contentVersion?: string;
-  /**
-   * parameters of the captured virtual machine
-   */
-  readonly parameters?: any;
-  /**
-   * a list of resource items of the captured virtual machine
-   */
-  readonly resources?: any[];
-};
-
-/**
- * Describes a Virtual Machine Update.
- */
-export type VirtualMachineUpdate = UpdateResource & {
-  /**
-   * Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use.  In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**.
-   */
-  plan?: Plan;
-  /**
-   * The identity of the virtual machine, if configured.
-   */
-  identity?: VirtualMachineIdentity;
-  /**
-   * The virtual machine zones.
-   */
-  zones?: string[];
-  /**
-   * Specifies the hardware settings for the virtual machine.
-   */
-  hardwareProfile?: HardwareProfile;
-  /**
-   * Specifies the storage settings for the virtual machine disks.
-   */
-  storageProfile?: StorageProfile;
-  /**
-   * Specifies additional capabilities enabled or disabled on the virtual machine.
-   */
-  additionalCapabilities?: AdditionalCapabilities;
-  /**
-   * Specifies the operating system settings used while creating the virtual machine. Some of the settings cannot be changed once VM is provisioned.
-   */
-  osProfile?: OSProfile;
-  /**
-   * Specifies the network interfaces of the virtual machine.
-   */
-  networkProfile?: NetworkProfile;
-  /**
-   * Specifies the boot diagnostic settings state. <br><br>Minimum api-version: 2015-06-15.
-   */
-  diagnosticsProfile?: DiagnosticsProfile;
-  /**
-   * Specifies information about the availability set that the virtual machine should be assigned to. Virtual machines specified in the same availability set are allocated to different nodes to maximize availability. For more information about availability sets, see [Manage the availability of virtual machines](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-manage-availability?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). <br><br> For more information on Azure planned maintenance, see [Planned maintenance for virtual machines in Azure](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-planned-maintenance?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Currently, a VM can only be added to availability set at creation time. The availability set to which the VM is being added should be under the same resource group as the availability set resource. An existing VM cannot be added to an availability set. <br><br>This property cannot exist along with a non-null properties.virtualMachineScaleSet reference.
-   */
-  availabilitySet?: SubResource;
-  /**
-   * Specifies information about the virtual machine scale set that the virtual machine should be assigned to. Virtual machines specified in the same virtual machine scale set are allocated to different nodes to maximize availability. Currently, a VM can only be added to virtual machine scale set at creation time. An existing VM cannot be added to a virtual machine scale set. <br><br>This property cannot exist along with a non-null properties.availabilitySet reference. <br><br>Minimum api‐version: 2019‐03‐01
-   */
-  virtualMachineScaleSet?: SubResource;
-  /**
-   * Specifies information about the proximity placement group that the virtual machine should be assigned to. <br><br>Minimum api-version: 2018-04-01.
-   */
-  proximityPlacementGroup?: SubResource;
-  /**
-   * Specifies the priority for the virtual machine. <br><br>Minimum api-version: 2019-03-01
-   */
-  priority?: VirtualMachinePriorityTypes;
-  /**
-   * Specifies the eviction policy for the Azure Spot virtual machine and Azure Spot scale set. <br><br>For Azure Spot virtual machines, the only supported value is 'Deallocate' and the minimum api-version is 2019-03-01. <br><br>For Azure Spot scale sets, both 'Deallocate' and 'Delete' are supported and the minimum api-version is 2017-10-30-preview.
-   */
-  evictionPolicy?: VirtualMachineEvictionPolicyTypes;
-  /**
-   * Specifies the billing related details of a Azure Spot virtual machine. <br><br>Minimum api-version: 2019-03-01.
-   */
-  billingProfile?: BillingProfile;
-  /**
-   * Specifies information about the dedicated host that the virtual machine resides in. <br><br>Minimum api-version: 2018-10-01.
-   */
-  host?: SubResource;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: string;
-  /**
-   * The virtual machine instance view.
-   */
-  readonly instanceView?: VirtualMachineInstanceView;
-  /**
-   * Specifies that the image or disk that is being used was licensed on-premises. This element is only used for images that contain the Windows Server operating system. <br><br> Possible values are: <br><br> Windows_Client <br><br> Windows_Server <br><br> If this element is included in a request for an update, the value must match the initial value. This value cannot be updated. <br><br> For more information, see [Azure Hybrid Use Benefit for Windows Server](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-hybrid-use-benefit-licensing?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Minimum api-version: 2015-06-15
-   */
-  licenseType?: string;
-  /**
-   * Specifies the VM unique ID which is a 128-bits identifier that is encoded and stored in all Azure IaaS VMs SMBIOS and can be read using platform BIOS commands.
-   */
-  readonly vmId?: string;
-};
 
 /**
  * An error response from the Compute service.
@@ -1970,80 +1282,6 @@ export interface VirtualMachineReimageParameters {
    */
   tempDisk?: boolean;
 }
-
-/**
- * Describes a Virtual Machine Scale Set.
- */
-export type VirtualMachineScaleSet = Resource & {
-  /**
-   * The virtual machine scale set sku.
-   */
-  sku?: Sku;
-  /**
-   * Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use.  In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**.
-   */
-  plan?: Plan;
-  /**
-   * The identity of the virtual machine scale set, if configured.
-   */
-  identity?: VirtualMachineScaleSetIdentity;
-  /**
-   * The virtual machine scale set zones. NOTE: Availability zones can only be set when you create the scale set
-   */
-  zones?: string[];
-  /**
-   * The upgrade policy.
-   */
-  upgradePolicy?: UpgradePolicy;
-  /**
-   * Policy for automatic repairs.
-   */
-  automaticRepairsPolicy?: AutomaticRepairsPolicy;
-  /**
-   * The virtual machine profile.
-   */
-  virtualMachineProfile?: VirtualMachineScaleSetVMProfile;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: string;
-  /**
-   * Specifies whether the Virtual Machine Scale Set should be overprovisioned.
-   */
-  overprovision?: boolean;
-  /**
-   * When Overprovision is enabled, extensions are launched only on the requested number of VMs which are finally kept. This property will hence ensure that the extensions do not run on the extra overprovisioned VMs.
-   */
-  doNotRunExtensionsOnOverprovisionedVMs?: boolean;
-  /**
-   * Specifies the ID which uniquely identifies a Virtual Machine Scale Set.
-   */
-  readonly uniqueId?: string;
-  /**
-   * When true this limits the scale set to a single placement group, of max size 100 virtual machines. NOTE: If singlePlacementGroup is true, it may be modified to false. However, if singlePlacementGroup is false, it may not be modified to true.
-   */
-  singlePlacementGroup?: boolean;
-  /**
-   * Whether to force strictly even Virtual Machine distribution cross x-zones in case there is zone outage.
-   */
-  zoneBalance?: boolean;
-  /**
-   * Fault Domain count for each placement group.
-   */
-  platformFaultDomainCount?: number;
-  /**
-   * Specifies information about the proximity placement group that the virtual machine scale set should be assigned to. <br><br>Minimum api-version: 2018-04-01.
-   */
-  proximityPlacementGroup?: SubResource;
-  /**
-   * Specifies additional capabilities enabled or disabled on the Virtual Machines in the Virtual Machine Scale Set. For instance: whether the Virtual Machines have the capability to support attaching managed data disks with UltraSSD_LRS storage account type.
-   */
-  additionalCapabilities?: AdditionalCapabilities;
-  /**
-   * Specifies the scale-in policy that decides which virtual machines are chosen for removal when a Virtual Machine Scale Set is scaled-in.
-   */
-  scaleInPolicy?: ScaleInPolicy;
-};
 
 /**
  * Describes an upgrade policy - automatic, manual, or rolling.
@@ -2338,40 +1576,6 @@ export interface ApiEntityReference {
 }
 
 /**
- * Describes a virtual machine scale set network profile's network configurations.
- */
-export type VirtualMachineScaleSetNetworkConfiguration = SubResource & {
-  /**
-   * The network configuration name.
-   */
-  name: string;
-  /**
-   * Specifies the primary network interface in case the virtual machine has more than 1 network interface.
-   */
-  primary?: boolean;
-  /**
-   * Specifies whether the network interface is accelerated networking-enabled.
-   */
-  enableAcceleratedNetworking?: boolean;
-  /**
-   * The network security group.
-   */
-  networkSecurityGroup?: SubResource;
-  /**
-   * The dns settings to be applied on the network interfaces.
-   */
-  dnsSettings?: VirtualMachineScaleSetNetworkConfigurationDnsSettings;
-  /**
-   * Specifies the IP configurations of the network interface.
-   */
-  ipConfigurations?: VirtualMachineScaleSetIPConfiguration[];
-  /**
-   * Whether IP forwarding enabled on this NIC.
-   */
-  enableIPForwarding?: boolean;
-};
-
-/**
  * Describes a virtual machines scale sets network configuration's DNS settings.
  */
 export interface VirtualMachineScaleSetNetworkConfigurationDnsSettings {
@@ -2380,48 +1584,6 @@ export interface VirtualMachineScaleSetNetworkConfigurationDnsSettings {
    */
   dnsServers?: string[];
 }
-
-/**
- * Describes a virtual machine scale set network profile's IP configuration.
- */
-export type VirtualMachineScaleSetIPConfiguration = SubResource & {
-  /**
-   * The IP configuration name.
-   */
-  name: string;
-  /**
-   * Specifies the identifier of the subnet.
-   */
-  subnet?: ApiEntityReference;
-  /**
-   * Specifies the primary network interface in case the virtual machine has more than 1 network interface.
-   */
-  primary?: boolean;
-  /**
-   * The publicIPAddressConfiguration.
-   */
-  publicIPAddressConfiguration?: VirtualMachineScaleSetPublicIPAddressConfiguration;
-  /**
-   * Available from Api-Version 2017-03-30 onwards, it represents whether the specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4.  Possible values are: 'IPv4' and 'IPv6'.
-   */
-  privateIPAddressVersion?: IPVersion;
-  /**
-   * Specifies an array of references to backend address pools of application gateways. A scale set can reference backend address pools of multiple application gateways. Multiple scale sets cannot use the same application gateway.
-   */
-  applicationGatewayBackendAddressPools?: SubResource[];
-  /**
-   * Specifies an array of references to application security group.
-   */
-  applicationSecurityGroups?: SubResource[];
-  /**
-   * Specifies an array of references to backend address pools of load balancers. A scale set can reference backend address pools of one public and one internal load balancer. Multiple scale sets cannot use the same load balancer.
-   */
-  loadBalancerBackendAddressPools?: SubResource[];
-  /**
-   * Specifies an array of references to inbound Nat pools of the load balancers. A scale set can reference inbound nat pools of one public and one internal load balancer. Multiple scale sets cannot use the same load balancer
-   */
-  loadBalancerInboundNatPools?: SubResource[];
-};
 
 /**
  * Describes a virtual machines scale set IP Configuration's PublicIPAddress configuration
@@ -2487,56 +1649,6 @@ export interface VirtualMachineScaleSetExtensionProfile {
   extensions?: VirtualMachineScaleSetExtension[];
 }
 
-/**
- * Describes a Virtual Machine Scale Set Extension.
- */
-export type VirtualMachineScaleSetExtension = SubResourceReadOnly & {
-  /**
-   * The name of the extension.
-   */
-  name?: string;
-  /**
-   * Resource type
-   */
-  readonly type?: string;
-  /**
-   * If a value is provided and is different from the previous value, the extension handler will be forced to update even if the extension configuration has not changed.
-   */
-  forceUpdateTag?: string;
-  /**
-   * The name of the extension handler publisher.
-   */
-  publisher?: string;
-  /**
-   * Specifies the type of the extension; an example is "CustomScriptExtension".
-   */
-  typePropertiesType?: string;
-  /**
-   * Specifies the version of the script handler.
-   */
-  typeHandlerVersion?: string;
-  /**
-   * Indicates whether the extension should use a newer minor version if one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless redeployed, even with this property set to true.
-   */
-  autoUpgradeMinorVersion?: boolean;
-  /**
-   * Json formatted public settings for the extension.
-   */
-  settings?: any;
-  /**
-   * The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at all.
-   */
-  protectedSettings?: any;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: string;
-  /**
-   * Collection of extension names after which this extension needs to be provisioned.
-   */
-  provisionAfterExtensions?: string[];
-};
-
 export interface ScheduledEventsProfile {
   /**
    * Specifies Terminate Scheduled Event related configurations.
@@ -2599,60 +1711,6 @@ export interface ComponentsNj115SSchemasVirtualmachinescalesetidentityProperties
    */
   readonly clientId?: string;
 }
-
-/**
- * Describes a Virtual Machine Scale Set.
- */
-export type VirtualMachineScaleSetUpdate = UpdateResource & {
-  /**
-   * The virtual machine scale set sku.
-   */
-  sku?: Sku;
-  /**
-   * The purchase plan when deploying a virtual machine scale set from VM Marketplace images.
-   */
-  plan?: Plan;
-  /**
-   * The identity of the virtual machine scale set, if configured.
-   */
-  identity?: VirtualMachineScaleSetIdentity;
-  /**
-   * The upgrade policy.
-   */
-  upgradePolicy?: UpgradePolicy;
-  /**
-   * Policy for automatic repairs.
-   */
-  automaticRepairsPolicy?: AutomaticRepairsPolicy;
-  /**
-   * The virtual machine profile.
-   */
-  virtualMachineProfile?: VirtualMachineScaleSetUpdateVMProfile;
-  /**
-   * Specifies whether the Virtual Machine Scale Set should be overprovisioned.
-   */
-  overprovision?: boolean;
-  /**
-   * When Overprovision is enabled, extensions are launched only on the requested number of VMs which are finally kept. This property will hence ensure that the extensions do not run on the extra overprovisioned VMs.
-   */
-  doNotRunExtensionsOnOverprovisionedVMs?: boolean;
-  /**
-   * When true this limits the scale set to a single placement group, of max size 100 virtual machines. NOTE: If singlePlacementGroup is true, it may be modified to false. However, if singlePlacementGroup is false, it may not be modified to true.
-   */
-  singlePlacementGroup?: boolean;
-  /**
-   * Specifies additional capabilities enabled or disabled on the Virtual Machines in the Virtual Machine Scale Set. For instance: whether the Virtual Machines have the capability to support attaching managed data disks with UltraSSD_LRS storage account type.
-   */
-  additionalCapabilities?: AdditionalCapabilities;
-  /**
-   * Specifies the scale-in policy that decides which virtual machines are chosen for removal when a Virtual Machine Scale Set is scaled-in.
-   */
-  scaleInPolicy?: ScaleInPolicy;
-  /**
-   * Specifies information about the proximity placement group that the virtual machine scale set should be assigned to. <br><br>Minimum api-version: 2018-04-01.
-   */
-  proximityPlacementGroup?: SubResource;
-};
 
 /**
  * Describes a virtual machine scale set virtual machine profile.
@@ -2777,82 +1835,6 @@ export interface VirtualMachineScaleSetUpdateNetworkProfile {
 }
 
 /**
- * Describes a virtual machine scale set network profile's network configurations.
- */
-export type VirtualMachineScaleSetUpdateNetworkConfiguration = SubResource & {
-  /**
-   * The network configuration name.
-   */
-  name?: string;
-  /**
-   * Whether this is a primary NIC on a virtual machine.
-   */
-  primary?: boolean;
-  /**
-   * Specifies whether the network interface is accelerated networking-enabled.
-   */
-  enableAcceleratedNetworking?: boolean;
-  /**
-   * The network security group.
-   */
-  networkSecurityGroup?: SubResource;
-  /**
-   * The dns settings to be applied on the network interfaces.
-   */
-  dnsSettings?: VirtualMachineScaleSetNetworkConfigurationDnsSettings;
-  /**
-   * The virtual machine scale set IP Configuration.
-   */
-  ipConfigurations?: VirtualMachineScaleSetUpdateIPConfiguration[];
-  /**
-   * Whether IP forwarding enabled on this NIC.
-   */
-  enableIPForwarding?: boolean;
-};
-
-/**
- * Describes a virtual machine scale set network profile's IP configuration. NOTE: The subnet of a scale set may be modified as long as the original subnet and the new subnet are in the same virtual network
- */
-export type VirtualMachineScaleSetUpdateIPConfiguration = SubResource & {
-  /**
-   * The IP configuration name.
-   */
-  name?: string;
-  /**
-   * The subnet.
-   */
-  subnet?: ApiEntityReference;
-  /**
-   * Specifies the primary IP Configuration in case the network interface has more than one IP Configuration.
-   */
-  primary?: boolean;
-  /**
-   * The publicIPAddressConfiguration.
-   */
-  publicIPAddressConfiguration?: VirtualMachineScaleSetUpdatePublicIPAddressConfiguration;
-  /**
-   * Available from Api-Version 2017-03-30 onwards, it represents whether the specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4.  Possible values are: 'IPv4' and 'IPv6'.
-   */
-  privateIPAddressVersion?: IPVersion;
-  /**
-   * The application gateway backend address pools.
-   */
-  applicationGatewayBackendAddressPools?: SubResource[];
-  /**
-   * Specifies an array of references to application security group.
-   */
-  applicationSecurityGroups?: SubResource[];
-  /**
-   * The load balancer backend address pools.
-   */
-  loadBalancerBackendAddressPools?: SubResource[];
-  /**
-   * The load balancer inbound nat pools.
-   */
-  loadBalancerInboundNatPools?: SubResource[];
-};
-
-/**
  * Describes a virtual machines scale set IP Configuration's PublicIPAddress configuration
  */
 export interface VirtualMachineScaleSetUpdatePublicIPAddressConfiguration {
@@ -2957,7 +1939,7 @@ export interface OrchestrationServiceSummary {
   /**
    * The name of the service.
    */
-  readonly serviceName?: "AutomaticRepairs";
+  readonly serviceName?: OrchestrationServiceNames;
   /**
    * The current state of the service.
    */
@@ -2977,56 +1959,6 @@ export interface VirtualMachineScaleSetListResult {
    */
   nextLink?: string;
 }
-
-/**
- * Describes a Virtual Machine Scale Set Extension.
- */
-export type VirtualMachineScaleSetExtensionUpdate = SubResourceReadOnly & {
-  /**
-   * The name of the extension.
-   */
-  readonly name?: string;
-  /**
-   * Resource type
-   */
-  readonly type?: string;
-  /**
-   * If a value is provided and is different from the previous value, the extension handler will be forced to update even if the extension configuration has not changed.
-   */
-  forceUpdateTag?: string;
-  /**
-   * The name of the extension handler publisher.
-   */
-  publisher?: string;
-  /**
-   * Specifies the type of the extension; an example is "CustomScriptExtension".
-   */
-  typePropertiesType?: string;
-  /**
-   * Specifies the version of the script handler.
-   */
-  typeHandlerVersion?: string;
-  /**
-   * Indicates whether the extension should use a newer minor version if one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless redeployed, even with this property set to true.
-   */
-  autoUpgradeMinorVersion?: boolean;
-  /**
-   * Json formatted public settings for the extension.
-   */
-  settings?: any;
-  /**
-   * The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at all.
-   */
-  protectedSettings?: any;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: string;
-  /**
-   * Collection of extension names after which this extension needs to be provisioned.
-   */
-  provisionAfterExtensions?: string[];
-};
 
 /**
  * The List VM scale set extension operation response.
@@ -3231,38 +2163,6 @@ export interface RollbackStatusInfo {
 }
 
 /**
- * Describes a Virtual Machine Scale Set VM Reimage Parameters.
- */
-export type VirtualMachineScaleSetReimageParameters = VirtualMachineReimageParameters & {
-  /**
-   * The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set.
-   */
-  instanceIds?: string[];
-};
-
-/**
- * The status of the latest virtual machine scale set rolling upgrade.
- */
-export type RollingUpgradeStatusInfo = Resource & {
-  /**
-   * The rolling upgrade policies applied for this upgrade.
-   */
-  readonly policy?: RollingUpgradePolicy;
-  /**
-   * Information about the current running state of the overall upgrade.
-   */
-  readonly runningStatus?: RollingUpgradeRunningStatus;
-  /**
-   * Information about the number of virtual machine instances in each upgrade state.
-   */
-  readonly progress?: RollingUpgradeProgressInfo;
-  /**
-   * Error details for this upgrade, if there are any.
-   */
-  readonly error?: ApiError;
-};
-
-/**
  * Information about the current running state of the overall upgrade.
  */
 export interface RollingUpgradeRunningStatus {
@@ -3312,98 +2212,12 @@ export interface OrchestrationServiceStateInput {
   /**
    * The name of the service.
    */
-  serviceName: "AutomaticRepairs";
+  serviceName: OrchestrationServiceNames;
   /**
    * The action to be performed.
    */
   action: OrchestrationServiceStateAction;
 }
-
-/**
- * Describes a virtual machine scale set virtual machine.
- */
-export type VirtualMachineScaleSetVM = Resource & {
-  /**
-   * The virtual machine instance ID.
-   */
-  readonly instanceId?: string;
-  /**
-   * The virtual machine SKU.
-   */
-  readonly sku?: Sku;
-  /**
-   * Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use.  In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**.
-   */
-  plan?: Plan;
-  /**
-   * The virtual machine child extension resources.
-   */
-  readonly resources?: VirtualMachineExtension[];
-  /**
-   * The virtual machine zones.
-   */
-  readonly zones?: string[];
-  /**
-   * Specifies whether the latest model has been applied to the virtual machine.
-   */
-  readonly latestModelApplied?: boolean;
-  /**
-   * Azure VM unique ID.
-   */
-  readonly vmId?: string;
-  /**
-   * The virtual machine instance view.
-   */
-  readonly instanceView?: VirtualMachineScaleSetVMInstanceView;
-  /**
-   * Specifies the hardware settings for the virtual machine.
-   */
-  hardwareProfile?: HardwareProfile;
-  /**
-   * Specifies the storage settings for the virtual machine disks.
-   */
-  storageProfile?: StorageProfile;
-  /**
-   * Specifies additional capabilities enabled or disabled on the virtual machine in the scale set. For instance: whether the virtual machine has the capability to support attaching managed data disks with UltraSSD_LRS storage account type.
-   */
-  additionalCapabilities?: AdditionalCapabilities;
-  /**
-   * Specifies the operating system settings for the virtual machine.
-   */
-  osProfile?: OSProfile;
-  /**
-   * Specifies the network interfaces of the virtual machine.
-   */
-  networkProfile?: NetworkProfile;
-  /**
-   * Specifies the network profile configuration of the virtual machine.
-   */
-  networkProfileConfiguration?: VirtualMachineScaleSetVMNetworkProfileConfiguration;
-  /**
-   * Specifies the boot diagnostic settings state. <br><br>Minimum api-version: 2015-06-15.
-   */
-  diagnosticsProfile?: DiagnosticsProfile;
-  /**
-   * Specifies information about the availability set that the virtual machine should be assigned to. Virtual machines specified in the same availability set are allocated to different nodes to maximize availability. For more information about availability sets, see [Manage the availability of virtual machines](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-manage-availability?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). <br><br> For more information on Azure planned maintenance, see [Planned maintenance for virtual machines in Azure](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-planned-maintenance?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Currently, a VM can only be added to availability set at creation time. An existing VM cannot be added to an availability set.
-   */
-  availabilitySet?: SubResource;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: string;
-  /**
-   * Specifies that the image or disk that is being used was licensed on-premises. This element is only used for images that contain the Windows Server operating system. <br><br> Possible values are: <br><br> Windows_Client <br><br> Windows_Server <br><br> If this element is included in a request for an update, the value must match the initial value. This value cannot be updated. <br><br> For more information, see [Azure Hybrid Use Benefit for Windows Server](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-hybrid-use-benefit-licensing?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Minimum api-version: 2015-06-15
-   */
-  licenseType?: string;
-  /**
-   * Specifies whether the model applied to the virtual machine is the model of the virtual machine scale set or the customized model for the virtual machine.
-   */
-  readonly modelDefinitionApplied?: string;
-  /**
-   * Specifies the protection policy of the virtual machine.
-   */
-  protectionPolicy?: VirtualMachineScaleSetVMProtectionPolicy;
-};
 
 /**
  * The instance view of a virtual machine scale set VM.
@@ -3534,16 +2348,6 @@ export interface LogAnalyticsInputBase {
 }
 
 /**
- * Api request input for LogAnalytics getRequestRateByInterval Api.
- */
-export type RequestRateByIntervalInput = LogAnalyticsInputBase & {
-  /**
-   * Interval value in minutes used to create LogAnalytics call rate logs.
-   */
-  intervalLength: IntervalInMins;
-};
-
-/**
  * LogAnalytics operation status response
  */
 export interface LogAnalyticsOperationResult {
@@ -3602,20 +2406,6 @@ export interface RunCommandDocumentBase {
    */
   description: string;
 }
-
-/**
- * Describes the properties of a Run Command.
- */
-export type RunCommandDocument = RunCommandDocumentBase & {
-  /**
-   * The script to be executed.
-   */
-  script: string[];
-  /**
-   * The parameters used by the script.
-   */
-  parameters?: RunCommandParameterDefinition[];
-};
 
 /**
  * Describes the properties of a run command parameter.
@@ -3867,96 +2657,6 @@ export interface ResourceSkuRestrictionInfo {
 }
 
 /**
- * Disk resource.
- */
-export type Disk = Resource & {
-  /**
-   * A relative URI containing the ID of the VM that has the disk attached.
-   */
-  readonly managedBy?: string;
-  /**
-   * List of relative URIs containing the IDs of the VMs that have the disk attached. maxShares should be set to a value greater than one for disks to allow attaching them to multiple VMs.
-   */
-  readonly managedByExtended?: string[];
-  /**
-   * The disks sku name. Can be Standard_LRS, Premium_LRS, StandardSSD_LRS, or UltraSSD_LRS.
-   */
-  sku?: DiskSku;
-  /**
-   * The Logical zone list for Disk.
-   */
-  zones?: string[];
-  /**
-   * The time when the disk was created.
-   */
-  readonly timeCreated?: Date;
-  /**
-   * The Operating System type.
-   */
-  osType?: OperatingSystemTypes;
-  /**
-   * The hypervisor generation of the Virtual Machine. Applicable to OS disks only.
-   */
-  hyperVGeneration?: HyperVGeneration;
-  /**
-   * Disk source information. CreationData information cannot be changed after the disk has been created.
-   */
-  creationData?: CreationData;
-  /**
-   * If creationData.createOption is Empty, this field is mandatory and it indicates the size of the disk to create. If this field is present for updates or creation with other options, it indicates a resize. Resizes are only allowed if the disk is not attached to a running VM, and can only increase the disk's size.
-   */
-  diskSizeGB?: number;
-  /**
-   * The size of the disk in bytes. This field is read only.
-   */
-  readonly diskSizeBytes?: number;
-  /**
-   * Unique Guid identifying the resource.
-   */
-  readonly uniqueId?: string;
-  /**
-   * Encryption settings collection used for Azure Disk Encryption, can contain multiple encryption settings per disk or snapshot.
-   */
-  encryptionSettingsCollection?: EncryptionSettingsCollection;
-  /**
-   * The disk provisioning state.
-   */
-  readonly provisioningState?: string;
-  /**
-   * The number of IOPS allowed for this disk; only settable for UltraSSD disks. One operation can transfer between 4k and 256k bytes.
-   */
-  diskIopsReadWrite?: number;
-  /**
-   * The bandwidth allowed for this disk; only settable for UltraSSD disks. MBps means millions of bytes per second - MB here uses the ISO notation, of powers of 10.
-   */
-  diskMBpsReadWrite?: number;
-  /**
-   * The total number of IOPS that will be allowed across all VMs mounting the shared disk as ReadOnly. One operation can transfer between 4k and 256k bytes.
-   */
-  diskIopsReadOnly?: number;
-  /**
-   * The total throughput (MBps) that will be allowed across all VMs mounting the shared disk as ReadOnly. MBps means millions of bytes per second - MB here uses the ISO notation, of powers of 10.
-   */
-  diskMBpsReadOnly?: number;
-  /**
-   * The state of the disk.
-   */
-  readonly diskState?: DiskState;
-  /**
-   * Encryption property can be used to encrypt data at rest with customer managed keys or platform managed keys.
-   */
-  encryption?: Encryption;
-  /**
-   * The maximum number of VMs that can attach to the disk at the same time. Value greater than one indicates a disk that can be mounted on multiple VMs at the same time.
-   */
-  maxShares?: number;
-  /**
-   * Details of the list of all VMs that have the disk attached. maxShares should be set to a value greater than one for disks to allow attaching them to multiple VMs.
-   */
-  readonly shareInfo?: ShareInfoElement[];
-};
-
-/**
  * The disks sku name. Can be Standard_LRS, Premium_LRS, StandardSSD_LRS, or UltraSSD_LRS.
  */
 export interface DiskSku {
@@ -4199,64 +2899,6 @@ export interface AccessUri {
 }
 
 /**
- * Snapshot resource.
- */
-export type Snapshot = Resource & {
-  /**
-   * Unused. Always Null.
-   */
-  readonly managedBy?: string;
-  /**
-   * The snapshots sku name. Can be Standard_LRS, Premium_LRS, or Standard_ZRS.
-   */
-  sku?: SnapshotSku;
-  /**
-   * The time when the disk was created.
-   */
-  readonly timeCreated?: Date;
-  /**
-   * The Operating System type.
-   */
-  osType?: OperatingSystemTypes;
-  /**
-   * The hypervisor generation of the Virtual Machine. Applicable to OS disks only.
-   */
-  hyperVGeneration?: HyperVGeneration;
-  /**
-   * Disk source information. CreationData information cannot be changed after the disk has been created.
-   */
-  creationData?: CreationData;
-  /**
-   * If creationData.createOption is Empty, this field is mandatory and it indicates the size of the disk to create. If this field is present for updates or creation with other options, it indicates a resize. Resizes are only allowed if the disk is not attached to a running VM, and can only increase the disk's size.
-   */
-  diskSizeGB?: number;
-  /**
-   * The size of the disk in bytes. This field is read only.
-   */
-  readonly diskSizeBytes?: number;
-  /**
-   * Unique Guid identifying the resource.
-   */
-  readonly uniqueId?: string;
-  /**
-   * Encryption settings collection used be Azure Disk Encryption, can contain multiple encryption settings per disk or snapshot.
-   */
-  encryptionSettingsCollection?: EncryptionSettingsCollection;
-  /**
-   * The disk provisioning state.
-   */
-  readonly provisioningState?: string;
-  /**
-   * Whether a snapshot is incremental. Incremental snapshots on the same disk occupy less space than full snapshots and can be diffed.
-   */
-  incremental?: boolean;
-  /**
-   * Encryption property can be used to encrypt data at rest with customer managed keys or platform managed keys.
-   */
-  encryption?: Encryption;
-};
-
-/**
  * The snapshots sku name. Can be Standard_LRS, Premium_LRS, or Standard_ZRS.
  */
 export interface SnapshotSku {
@@ -4315,35 +2957,13 @@ export interface SnapshotList {
 }
 
 /**
- * disk encryption set resource.
- */
-export type DiskEncryptionSet = Resource & {
-  /**
-   * The managed identity for the disk encryption set. It should be given permission on the key vault before it can be used to encrypt disks.
-   */
-  identity?: EncryptionSetIdentity;
-  /**
-   * The key vault key which is currently used by this disk encryption set.
-   */
-  activeKey?: KeyVaultAndKeyReference;
-  /**
-   * A readonly collection of key vault keys previously used by this disk encryption set while a key rotation is in progress. It will be empty if there is no ongoing key rotation.
-   */
-  readonly previousKeys?: KeyVaultAndKeyReference[];
-  /**
-   * The disk encryption set provisioning state.
-   */
-  readonly provisioningState?: string;
-};
-
-/**
  * The managed identity for the disk encryption set. It should be given permission on the key vault before it can be used to encrypt disks.
  */
 export interface EncryptionSetIdentity {
   /**
    * The type of Managed Identity used by the DiskEncryptionSet. Only SystemAssigned is supported.
    */
-  type?: "SystemAssigned";
+  type?: DiskEncryptionSetIdentityType;
   /**
    * The object id of the Managed Identity Resource. This will be sent to the RP from ARM via the x-ms-identity-principal-id header in the PUT request if the resource has a systemAssigned(implicit) identity
    */
@@ -4383,24 +3003,6 @@ export interface DiskEncryptionSetList {
 }
 
 /**
- * Specifies information about the Shared Image Gallery that you want to create or update.
- */
-export type Gallery = Resource & {
-  /**
-   * The description of this Shared Image Gallery resource. This property is updatable.
-   */
-  description?: string;
-  /**
-   * Describes the gallery unique name.
-   */
-  identifier?: GalleryIdentifier;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: GalleryPropertiesProvisioningState;
-};
-
-/**
  * Describes the gallery unique name.
  */
 export interface GalleryIdentifier {
@@ -4431,82 +3033,6 @@ export interface UpdateResourceDefinition {
    */
   tags?: { [propertyName: string]: string };
 }
-
-/**
- * Specifies information about the Shared Image Gallery that you want to update.
- */
-export type GalleryUpdate = UpdateResourceDefinition & {
-  /**
-   * The description of this Shared Image Gallery resource. This property is updatable.
-   */
-  description?: string;
-  /**
-   * Describes the gallery unique name.
-   */
-  identifier?: GalleryIdentifier;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: GalleryPropertiesProvisioningState;
-};
-
-/**
- * Specifies information about the gallery Image Definition that you want to create or update.
- */
-export type GalleryImage = Resource & {
-  /**
-   * The description of this gallery Image Definition resource. This property is updatable.
-   */
-  description?: string;
-  /**
-   * The Eula agreement for the gallery Image Definition.
-   */
-  eula?: string;
-  /**
-   * The privacy statement uri.
-   */
-  privacyStatementUri?: string;
-  /**
-   * The release note uri.
-   */
-  releaseNoteUri?: string;
-  /**
-   * This property allows you to specify the type of the OS that is included in the disk when creating a VM from a managed image. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux**
-   */
-  osType?: OperatingSystemTypes;
-  /**
-   * This property allows the user to specify whether the virtual machines created under this image are 'Generalized' or 'Specialized'.
-   */
-  osState?: OperatingSystemStateTypes;
-  /**
-   * The hypervisor generation of the Virtual Machine. Applicable to OS disks only.
-   */
-  hyperVGeneration?: HyperVGeneration;
-  /**
-   * The end of life date of the gallery Image Definition. This property can be used for decommissioning purposes. This property is updatable.
-   */
-  endOfLifeDate?: Date;
-  /**
-   * This is the gallery Image Definition identifier.
-   */
-  identifier?: GalleryImageIdentifier;
-  /**
-   * The properties describe the recommended machine configuration for this Image Definition. These properties are updatable.
-   */
-  recommended?: RecommendedMachineConfiguration;
-  /**
-   * Describes the disallowed disk types.
-   */
-  disallowed?: Disallowed;
-  /**
-   * Describes the gallery Image Definition purchase plan. This is used by marketplace images.
-   */
-  purchasePlan?: ImagePurchasePlan;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: GalleryImagePropertiesProvisioningState;
-};
 
 /**
  * This is the gallery Image Definition identifier.
@@ -4581,86 +3107,6 @@ export interface ImagePurchasePlan {
    */
   product?: string;
 }
-
-/**
- * Specifies information about the gallery Image Definition that you want to update.
- */
-export type GalleryImageUpdate = UpdateResourceDefinition & {
-  /**
-   * The description of this gallery Image Definition resource. This property is updatable.
-   */
-  description?: string;
-  /**
-   * The Eula agreement for the gallery Image Definition.
-   */
-  eula?: string;
-  /**
-   * The privacy statement uri.
-   */
-  privacyStatementUri?: string;
-  /**
-   * The release note uri.
-   */
-  releaseNoteUri?: string;
-  /**
-   * This property allows you to specify the type of the OS that is included in the disk when creating a VM from a managed image. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux**
-   */
-  osType?: OperatingSystemTypes;
-  /**
-   * This property allows the user to specify whether the virtual machines created under this image are 'Generalized' or 'Specialized'.
-   */
-  osState?: OperatingSystemStateTypes;
-  /**
-   * The hypervisor generation of the Virtual Machine. Applicable to OS disks only.
-   */
-  hyperVGeneration?: HyperVGeneration;
-  /**
-   * The end of life date of the gallery Image Definition. This property can be used for decommissioning purposes. This property is updatable.
-   */
-  endOfLifeDate?: Date;
-  /**
-   * This is the gallery Image Definition identifier.
-   */
-  identifier?: GalleryImageIdentifier;
-  /**
-   * The properties describe the recommended machine configuration for this Image Definition. These properties are updatable.
-   */
-  recommended?: RecommendedMachineConfiguration;
-  /**
-   * Describes the disallowed disk types.
-   */
-  disallowed?: Disallowed;
-  /**
-   * Describes the gallery Image Definition purchase plan. This is used by marketplace images.
-   */
-  purchasePlan?: ImagePurchasePlan;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: GalleryImagePropertiesProvisioningState;
-};
-
-/**
- * Specifies information about the gallery Image Version that you want to create or update.
- */
-export type GalleryImageVersion = Resource & {
-  /**
-   * Describes the basic gallery artifact publishing profile.
-   */
-  publishingProfile?: GalleryArtifactPublishingProfileBase;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: GalleryImageVersionPropertiesProvisioningState;
-  /**
-   * This is the storage profile of a Gallery Image Version.
-   */
-  storageProfile?: GalleryImageVersionStorageProfile;
-  /**
-   * This is the replication status of the gallery Image Version.
-   */
-  readonly replicationStatus?: ReplicationStatus;
-};
 
 /**
  * Describes the basic gallery artifact publishing profile.
@@ -4739,16 +3185,6 @@ export interface DiskImageEncryption {
 }
 
 /**
- * Contains encryption settings for a data disk image.
- */
-export type DataDiskImageEncryption = DiskImageEncryption & {
-  /**
-   * This property specifies the logical unit number of the data disk. This value is used to identify data disks within the Virtual Machine and therefore must be unique for each data disk attached to the Virtual Machine.
-   */
-  lun: number;
-};
-
-/**
  * This is the storage profile of a Gallery Image Version.
  */
 export interface GalleryImageVersionStorageProfile {
@@ -4795,16 +3231,6 @@ export interface GalleryDiskImage {
 }
 
 /**
- * This is the data disk image.
- */
-export type GalleryDataDiskImage = GalleryDiskImage & {
-  /**
-   * This property specifies the logical unit number of the data disk. This value is used to identify data disks within the Virtual Machine and therefore must be unique for each data disk attached to the Virtual Machine.
-   */
-  lun: number;
-};
-
-/**
  * This is the replication status of the gallery Image Version.
  */
 export interface ReplicationStatus {
@@ -4841,124 +3267,6 @@ export interface RegionalReplicationStatus {
 }
 
 /**
- * Specifies information about the gallery Image Version that you want to update.
- */
-export type GalleryImageVersionUpdate = UpdateResourceDefinition & {
-  /**
-   * Describes the basic gallery artifact publishing profile.
-   */
-  publishingProfile?: GalleryArtifactPublishingProfileBase;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: GalleryImageVersionPropertiesProvisioningState;
-  /**
-   * This is the storage profile of a Gallery Image Version.
-   */
-  storageProfile?: GalleryImageVersionStorageProfile;
-  /**
-   * This is the replication status of the gallery Image Version.
-   */
-  readonly replicationStatus?: ReplicationStatus;
-};
-
-/**
- * Specifies information about the gallery Application Definition that you want to create or update.
- */
-export type GalleryApplication = Resource & {
-  /**
-   * The description of this gallery Application Definition resource. This property is updatable.
-   */
-  description?: string;
-  /**
-   * The Eula agreement for the gallery Application Definition.
-   */
-  eula?: string;
-  /**
-   * The privacy statement uri.
-   */
-  privacyStatementUri?: string;
-  /**
-   * The release note uri.
-   */
-  releaseNoteUri?: string;
-  /**
-   * The end of life date of the gallery Application Definition. This property can be used for decommissioning purposes. This property is updatable.
-   */
-  endOfLifeDate?: Date;
-  /**
-   * This property allows you to specify the supported type of the OS that application is built for. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux**
-   */
-  supportedOSType?: OperatingSystemTypes;
-};
-
-/**
- * Specifies information about the gallery Application Definition that you want to update.
- */
-export type GalleryApplicationUpdate = UpdateResourceDefinition & {
-  /**
-   * The description of this gallery Application Definition resource. This property is updatable.
-   */
-  description?: string;
-  /**
-   * The Eula agreement for the gallery Application Definition.
-   */
-  eula?: string;
-  /**
-   * The privacy statement uri.
-   */
-  privacyStatementUri?: string;
-  /**
-   * The release note uri.
-   */
-  releaseNoteUri?: string;
-  /**
-   * The end of life date of the gallery Application Definition. This property can be used for decommissioning purposes. This property is updatable.
-   */
-  endOfLifeDate?: Date;
-  /**
-   * This property allows you to specify the supported type of the OS that application is built for. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux**
-   */
-  supportedOSType?: OperatingSystemTypes;
-};
-
-/**
- * Specifies information about the gallery Application Version that you want to create or update.
- */
-export type GalleryApplicationVersion = Resource & {
-  /**
-   * The publishing profile of a gallery Image Version.
-   */
-  publishingProfile?: GalleryApplicationVersionPublishingProfile;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: GalleryApplicationVersionPropertiesProvisioningState;
-  /**
-   * This is the replication status of the gallery Image Version.
-   */
-  readonly replicationStatus?: ReplicationStatus;
-};
-
-/**
- * The publishing profile of a gallery Image Version.
- */
-export type GalleryApplicationVersionPublishingProfile = GalleryArtifactPublishingProfileBase & {
-  /**
-   * The source image from which the Image Version is going to be created.
-   */
-  source: UserArtifactSource;
-  /**
-   * Optional. May be used to help process this file. The type of file contained in the source, e.g. zip, json, etc.
-   */
-  contentType?: string;
-  /**
-   * Optional. Whether or not this application reports health.
-   */
-  enableHealthCheck?: boolean;
-};
-
-/**
  * The source image from which the Image Version is going to be created.
  */
 export interface UserArtifactSource {
@@ -4971,24 +3279,6 @@ export interface UserArtifactSource {
    */
   mediaLink: string;
 }
-
-/**
- * Specifies information about the gallery Application Version that you want to update.
- */
-export type GalleryApplicationVersionUpdate = UpdateResourceDefinition & {
-  /**
-   * The publishing profile of a gallery Image Version.
-   */
-  publishingProfile?: GalleryApplicationVersionPublishingProfile;
-  /**
-   * The provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: GalleryApplicationVersionPropertiesProvisioningState;
-  /**
-   * This is the replication status of the gallery Image Version.
-   */
-  readonly replicationStatus?: ReplicationStatus;
-};
 
 /**
  * The List Galleries operation response.
@@ -5075,48 +3365,6 @@ export interface ContainerServiceListResult {
 }
 
 /**
- * Container service.
- */
-export type ContainerService = Resource & {
-  /**
-   * the current deployment or provisioning state, which only appears in the response.
-   */
-  readonly provisioningState?: string;
-  /**
-   * Properties of the orchestrator.
-   */
-  orchestratorProfile?: ContainerServiceOrchestratorProfile;
-  /**
-   * Properties for custom clusters.
-   */
-  customProfile?: ContainerServiceCustomProfile;
-  /**
-   * Properties for cluster service principals.
-   */
-  servicePrincipalProfile?: ContainerServicePrincipalProfile;
-  /**
-   * Properties of master agents.
-   */
-  masterProfile?: ContainerServiceMasterProfile;
-  /**
-   * Properties of the agent pool.
-   */
-  agentPoolProfiles?: ContainerServiceAgentPoolProfile[];
-  /**
-   * Properties of Windows VMs.
-   */
-  windowsProfile?: ContainerServiceWindowsProfile;
-  /**
-   * Properties of Linux VMs.
-   */
-  linuxProfile?: ContainerServiceLinuxProfile;
-  /**
-   * Properties of the diagnostic agent.
-   */
-  diagnosticsProfile?: ContainerServiceDiagnosticsProfile;
-};
-
-/**
  * Profile for the container service orchestrator.
  */
 export interface ContainerServiceOrchestratorProfile {
@@ -5157,7 +3405,7 @@ export interface ContainerServiceMasterProfile {
   /**
    * Number of masters (VMs) in the container service cluster. Allowed values are 1, 3, and 5. The default value is 1.
    */
-  count?: Enum27;
+  count?: Enum31;
   /**
    * DNS prefix to be used to create the FQDN for master.
    */
@@ -5264,31 +3512,6 @@ export interface ContainerServiceVMDiagnostics {
 }
 
 /**
- * Specifies information about the proximity placement group.
- */
-export type ProximityPlacementGroupUpdate = UpdateResource & {};
-
-/**
- * Describes the parameter of customer managed disk encryption set resource id that can be specified for disk. <br><br> NOTE: The disk encryption set resource id can only be specified for managed disk. Please refer https://aka.ms/mdssewithcmkoverview for more details.
- */
-export type DiskEncryptionSetParameters = SubResource & {};
-
-/**
- * Describes a Virtual Machine Scale Set VM Reimage Parameters.
- */
-export type VirtualMachineScaleSetVMReimageParameters = VirtualMachineReimageParameters & {};
-
-/**
- * Api request input for LogAnalytics getThrottledRequests Api.
- */
-export type ThrottledRequestsInput = LogAnalyticsInputBase & {};
-
-/**
- * Contains encryption settings for an OS disk image.
- */
-export type OSDiskImageEncryption = DiskImageEncryption & {};
-
-/**
  * The source image from which the Image Version is going to be created.
  */
 export interface GalleryArtifactSource {
@@ -5308,15 +3531,1792 @@ export interface ManagedArtifact {
   id: string;
 }
 
+export type SubResourceWithColocationStatus = SubResource & {
+  /**
+   * Describes colocation status of a resource in the Proximity Placement Group.
+   */
+  colocationStatus?: InstanceViewStatus;
+};
+
+/**
+ * Virtual machine image resource information.
+ */
+export type VirtualMachineImageResource = SubResource & {
+  /**
+   * The name of the resource.
+   */
+  name: string;
+  /**
+   * The supported Azure location of the resource.
+   */
+  location: string;
+  /**
+   * Specifies the tags that are assigned to the virtual machine. For more information about using tags, see [Using tags to organize your Azure resources](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-using-tags.md).
+   */
+  tags?: { [propertyName: string]: string };
+};
+
+/**
+ * Specifies information about the image to use. You can specify information about platform images, marketplace images, or virtual machine images. This element is required when you want to use a platform image, marketplace image, or virtual machine image, but is not used in other creation operations. NOTE: Image reference publisher and offer can only be set when you create the scale set.
+ */
+export type ImageReference = SubResource & {
+  /**
+   * The image publisher.
+   */
+  publisher?: string;
+  /**
+   * Specifies the offer of the platform image or marketplace image used to create the virtual machine.
+   */
+  offer?: string;
+  /**
+   * The image SKU.
+   */
+  sku?: string;
+  /**
+   * Specifies the version of the platform image or marketplace image used to create the virtual machine. The allowed formats are Major.Minor.Build or 'latest'. Major, Minor, and Build are decimal numbers. Specify 'latest' to use the latest version of an image available at deploy time. Even if you use 'latest', the VM image will not automatically update after deploy time even if a new version becomes available.
+   */
+  version?: string;
+  /**
+   * Specifies in decimal numbers, the version of platform image or marketplace image used to create the virtual machine. This readonly field differs from 'version', only if the value specified in 'version' field is 'latest'.
+   */
+  readonly exactVersion?: string;
+};
+
+/**
+ * The parameters of a managed disk.
+ */
+export type ManagedDiskParameters = SubResource & {
+  /**
+   * Specifies the storage account type for the managed disk. NOTE: UltraSSD_LRS can only be used with data disks, it cannot be used with OS Disk.
+   */
+  storageAccountType?: StorageAccountTypes;
+  /**
+   * Specifies the customer managed disk encryption set resource id for the managed disk.
+   */
+  diskEncryptionSet?: SubResource;
+};
+
+/**
+ * Describes a network interface reference.
+ */
+export type NetworkInterfaceReference = SubResource & {
+  /**
+   * Specifies the primary network interface in case the virtual machine has more than 1 network interface.
+   */
+  primary?: boolean;
+};
+
+/**
+ * Output of virtual machine capture operation.
+ */
+export type VirtualMachineCaptureResult = SubResource & {
+  /**
+   * the schema of the captured virtual machine
+   */
+  readonly schema?: string;
+  /**
+   * the version of the content
+   */
+  readonly contentVersion?: string;
+  /**
+   * parameters of the captured virtual machine
+   */
+  readonly parameters?: any;
+  /**
+   * a list of resource items of the captured virtual machine
+   */
+  readonly resources?: any[];
+};
+
+/**
+ * Describes a virtual machine scale set network profile's IP configuration.
+ */
+export type VirtualMachineScaleSetIPConfiguration = SubResource & {
+  /**
+   * The IP configuration name.
+   */
+  name: string;
+  /**
+   * Specifies the identifier of the subnet.
+   */
+  subnet?: ApiEntityReference;
+  /**
+   * Specifies the primary network interface in case the virtual machine has more than 1 network interface.
+   */
+  primary?: boolean;
+  /**
+   * The publicIPAddressConfiguration.
+   */
+  publicIPAddressConfiguration?: VirtualMachineScaleSetPublicIPAddressConfiguration;
+  /**
+   * Available from Api-Version 2017-03-30 onwards, it represents whether the specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4.  Possible values are: 'IPv4' and 'IPv6'.
+   */
+  privateIPAddressVersion?: IPVersion;
+  /**
+   * Specifies an array of references to backend address pools of application gateways. A scale set can reference backend address pools of multiple application gateways. Multiple scale sets cannot use the same application gateway.
+   */
+  applicationGatewayBackendAddressPools?: SubResource[];
+  /**
+   * Specifies an array of references to application security group.
+   */
+  applicationSecurityGroups?: SubResource[];
+  /**
+   * Specifies an array of references to backend address pools of load balancers. A scale set can reference backend address pools of one public and one internal load balancer. Multiple scale sets cannot use the same load balancer.
+   */
+  loadBalancerBackendAddressPools?: SubResource[];
+  /**
+   * Specifies an array of references to inbound Nat pools of the load balancers. A scale set can reference inbound nat pools of one public and one internal load balancer. Multiple scale sets cannot use the same load balancer
+   */
+  loadBalancerInboundNatPools?: SubResource[];
+};
+
+/**
+ * Describes a virtual machine scale set network profile's network configurations.
+ */
+export type VirtualMachineScaleSetNetworkConfiguration = SubResource & {
+  /**
+   * The network configuration name.
+   */
+  name: string;
+  /**
+   * Specifies the primary network interface in case the virtual machine has more than 1 network interface.
+   */
+  primary?: boolean;
+  /**
+   * Specifies whether the network interface is accelerated networking-enabled.
+   */
+  enableAcceleratedNetworking?: boolean;
+  /**
+   * The network security group.
+   */
+  networkSecurityGroup?: SubResource;
+  /**
+   * The dns settings to be applied on the network interfaces.
+   */
+  dnsSettings?: VirtualMachineScaleSetNetworkConfigurationDnsSettings;
+  /**
+   * Specifies the IP configurations of the network interface.
+   */
+  ipConfigurations?: VirtualMachineScaleSetIPConfiguration[];
+  /**
+   * Whether IP forwarding enabled on this NIC.
+   */
+  enableIPForwarding?: boolean;
+};
+
+/**
+ * Describes a virtual machine scale set network profile's IP configuration. NOTE: The subnet of a scale set may be modified as long as the original subnet and the new subnet are in the same virtual network
+ */
+export type VirtualMachineScaleSetUpdateIPConfiguration = SubResource & {
+  /**
+   * The IP configuration name.
+   */
+  name?: string;
+  /**
+   * The subnet.
+   */
+  subnet?: ApiEntityReference;
+  /**
+   * Specifies the primary IP Configuration in case the network interface has more than one IP Configuration.
+   */
+  primary?: boolean;
+  /**
+   * The publicIPAddressConfiguration.
+   */
+  publicIPAddressConfiguration?: VirtualMachineScaleSetUpdatePublicIPAddressConfiguration;
+  /**
+   * Available from Api-Version 2017-03-30 onwards, it represents whether the specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4.  Possible values are: 'IPv4' and 'IPv6'.
+   */
+  privateIPAddressVersion?: IPVersion;
+  /**
+   * The application gateway backend address pools.
+   */
+  applicationGatewayBackendAddressPools?: SubResource[];
+  /**
+   * Specifies an array of references to application security group.
+   */
+  applicationSecurityGroups?: SubResource[];
+  /**
+   * The load balancer backend address pools.
+   */
+  loadBalancerBackendAddressPools?: SubResource[];
+  /**
+   * The load balancer inbound nat pools.
+   */
+  loadBalancerInboundNatPools?: SubResource[];
+};
+
+/**
+ * Describes a virtual machine scale set network profile's network configurations.
+ */
+export type VirtualMachineScaleSetUpdateNetworkConfiguration = SubResource & {
+  /**
+   * The network configuration name.
+   */
+  name?: string;
+  /**
+   * Whether this is a primary NIC on a virtual machine.
+   */
+  primary?: boolean;
+  /**
+   * Specifies whether the network interface is accelerated networking-enabled.
+   */
+  enableAcceleratedNetworking?: boolean;
+  /**
+   * The network security group.
+   */
+  networkSecurityGroup?: SubResource;
+  /**
+   * The dns settings to be applied on the network interfaces.
+   */
+  dnsSettings?: VirtualMachineScaleSetNetworkConfigurationDnsSettings;
+  /**
+   * The virtual machine scale set IP Configuration.
+   */
+  ipConfigurations?: VirtualMachineScaleSetUpdateIPConfiguration[];
+  /**
+   * Whether IP forwarding enabled on this NIC.
+   */
+  enableIPForwarding?: boolean;
+};
+
+/**
+ * Describes the parameter of customer managed disk encryption set resource id that can be specified for disk. <br><br> NOTE: The disk encryption set resource id can only be specified for managed disk. Please refer https://aka.ms/mdssewithcmkoverview for more details.
+ */
+export type DiskEncryptionSetParameters = SubResource & {};
+
+/**
+ * Specifies information about the availability set that the virtual machine should be assigned to. Virtual machines specified in the same availability set are allocated to different nodes to maximize availability. For more information about availability sets, see [Manage the availability of virtual machines](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-manage-availability?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). <br><br> For more information on Azure planned maintenance, see [Planned maintenance for virtual machines in Azure](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-planned-maintenance?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Currently, a VM can only be added to availability set at creation time. An existing VM cannot be added to an availability set.
+ */
+export type AvailabilitySet = Resource & {
+  /**
+   * Sku of the availability set, only name is required to be set. See AvailabilitySetSkuTypes for possible set of values. Use 'Aligned' for virtual machines with managed disks and 'Classic' for virtual machines with unmanaged disks. Default value is 'Classic'.
+   */
+  sku?: Sku;
+  /**
+   * Update Domain count.
+   */
+  platformUpdateDomainCount?: number;
+  /**
+   * Fault Domain count.
+   */
+  platformFaultDomainCount?: number;
+  /**
+   * A list of references to all virtual machines in the availability set.
+   */
+  virtualMachines?: SubResource[];
+  /**
+   * Specifies information about the proximity placement group that the availability set should be assigned to. <br><br>Minimum api-version: 2018-04-01.
+   */
+  proximityPlacementGroup?: SubResource;
+  /**
+   * The resource status information.
+   */
+  readonly statuses?: InstanceViewStatus[];
+};
+
+/**
+ * Specifies information about the proximity placement group.
+ */
+export type ProximityPlacementGroup = Resource & {
+  /**
+   * Specifies the type of the proximity placement group. <br><br> Possible values are: <br><br> **Standard** : Co-locate resources within an Azure region or Availability Zone. <br><br> **Ultra** : For future use.
+   */
+  proximityPlacementGroupType?: ProximityPlacementGroupType;
+  /**
+   * A list of references to all virtual machines in the proximity placement group.
+   */
+  readonly virtualMachines?: SubResourceWithColocationStatus[];
+  /**
+   * A list of references to all virtual machine scale sets in the proximity placement group.
+   */
+  readonly virtualMachineScaleSets?: SubResourceWithColocationStatus[];
+  /**
+   * A list of references to all availability sets in the proximity placement group.
+   */
+  readonly availabilitySets?: SubResourceWithColocationStatus[];
+  /**
+   * Describes colocation status of the Proximity Placement Group.
+   */
+  colocationStatus?: InstanceViewStatus;
+};
+
+/**
+ * Specifies information about the dedicated host group that the dedicated hosts should be assigned to. <br><br> Currently, a dedicated host can only be added to a dedicated host group at creation time. An existing dedicated host cannot be added to another dedicated host group.
+ */
+export type DedicatedHostGroup = Resource & {
+  /**
+   * Availability Zone to use for this host group. Only single zone is supported. The zone can be assigned only during creation. If not provided, the group supports all zones in the region. If provided, enforces each host in the group to be in the same zone.
+   */
+  zones?: string[];
+  /**
+   * Number of fault domains that the host group can span.
+   */
+  platformFaultDomainCount?: number;
+  /**
+   * A list of references to all dedicated hosts in the dedicated host group.
+   */
+  readonly hosts?: SubResourceReadOnly[];
+};
+
+/**
+ * Specifies information about the Dedicated host.
+ */
+export type DedicatedHost = Resource & {
+  /**
+   * SKU of the dedicated host for Hardware Generation and VM family. Only name is required to be set. List Microsoft.Compute SKUs for a list of possible values.
+   */
+  sku: Sku;
+  /**
+   * Fault domain of the dedicated host within a dedicated host group.
+   */
+  platformFaultDomain?: number;
+  /**
+   * Specifies whether the dedicated host should be replaced automatically in case of a failure. The value is defaulted to 'true' when not provided.
+   */
+  autoReplaceOnFailure?: boolean;
+  /**
+   * A unique id generated and assigned to the dedicated host by the platform. <br><br> Does not change throughout the lifetime of the host.
+   */
+  readonly hostId?: string;
+  /**
+   * A list of references to all virtual machines in the Dedicated Host.
+   */
+  readonly virtualMachines?: SubResourceReadOnly[];
+  /**
+   * Specifies the software license type that will be applied to the VMs deployed on the dedicated host. <br><br> Possible values are: <br><br> **None** <br><br> **Windows_Server_Hybrid** <br><br> **Windows_Server_Perpetual** <br><br> Default: **None**
+   */
+  licenseType?: DedicatedHostLicenseTypes;
+  /**
+   * The date when the host was first provisioned.
+   */
+  readonly provisioningTime?: Date;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: string;
+  /**
+   * The dedicated host instance view.
+   */
+  readonly instanceView?: DedicatedHostInstanceView;
+};
+
+/**
+ * Specifies information about the SSH public key.
+ */
+export type SshPublicKeyResource = Resource & {
+  /**
+   * SSH public key used to authenticate to a virtual machine through ssh. If this property is not initially provided when the resource is created, the publicKey property will be populated when generateKeyPair is called. If the public key is provided upon resource creation, the provided public key needs to be at least 2048-bit and in ssh-rsa format.
+   */
+  publicKey?: string;
+};
+
+/**
+ * Describes a Virtual Machine Extension Image.
+ */
+export type VirtualMachineExtensionImage = Resource & {
+  /**
+   * The operating system this extension supports.
+   */
+  operatingSystem?: string;
+  /**
+   * The type of role (IaaS or PaaS) this extension supports.
+   */
+  computeRole?: string;
+  /**
+   * The schema defined by publisher, where extension consumers should provide settings in a matching schema.
+   */
+  handlerSchema?: string;
+  /**
+   * Whether the extension can be used on xRP VMScaleSets. By default existing extensions are usable on scalesets, but there might be cases where a publisher wants to explicitly indicate the extension is only enabled for CRP VMs but not VMSS.
+   */
+  vmScaleSetEnabled?: boolean;
+  /**
+   * Whether the handler can support multiple extensions.
+   */
+  supportsMultipleExtensions?: boolean;
+};
+
+/**
+ * Describes a Virtual Machine Extension.
+ */
+export type VirtualMachineExtension = Resource & {
+  /**
+   * How the extension handler should be forced to update even if the extension configuration has not changed.
+   */
+  forceUpdateTag?: string;
+  /**
+   * The name of the extension handler publisher.
+   */
+  publisher?: string;
+  /**
+   * Specifies the type of the extension; an example is "CustomScriptExtension".
+   */
+  typePropertiesType?: string;
+  /**
+   * Specifies the version of the script handler.
+   */
+  typeHandlerVersion?: string;
+  /**
+   * Indicates whether the extension should use a newer minor version if one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless redeployed, even with this property set to true.
+   */
+  autoUpgradeMinorVersion?: boolean;
+  /**
+   * Json formatted public settings for the extension.
+   */
+  settings?: any;
+  /**
+   * The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at all.
+   */
+  protectedSettings?: any;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: string;
+  /**
+   * The virtual machine extension instance view.
+   */
+  instanceView?: VirtualMachineExtensionInstanceView;
+};
+
+/**
+ * Describes a Virtual Machine.
+ */
+export type VirtualMachine = Resource & {
+  /**
+   * Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use.  In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**.
+   */
+  plan?: Plan;
+  /**
+   * The virtual machine child extension resources.
+   */
+  readonly resources?: VirtualMachineExtension[];
+  /**
+   * The identity of the virtual machine, if configured.
+   */
+  identity?: VirtualMachineIdentity;
+  /**
+   * The virtual machine zones.
+   */
+  zones?: string[];
+  /**
+   * Specifies the hardware settings for the virtual machine.
+   */
+  hardwareProfile?: HardwareProfile;
+  /**
+   * Specifies the storage settings for the virtual machine disks.
+   */
+  storageProfile?: StorageProfile;
+  /**
+   * Specifies additional capabilities enabled or disabled on the virtual machine.
+   */
+  additionalCapabilities?: AdditionalCapabilities;
+  /**
+   * Specifies the operating system settings used while creating the virtual machine. Some of the settings cannot be changed once VM is provisioned.
+   */
+  osProfile?: OSProfile;
+  /**
+   * Specifies the network interfaces of the virtual machine.
+   */
+  networkProfile?: NetworkProfile;
+  /**
+   * Specifies the boot diagnostic settings state. <br><br>Minimum api-version: 2015-06-15.
+   */
+  diagnosticsProfile?: DiagnosticsProfile;
+  /**
+   * Specifies information about the availability set that the virtual machine should be assigned to. Virtual machines specified in the same availability set are allocated to different nodes to maximize availability. For more information about availability sets, see [Manage the availability of virtual machines](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-manage-availability?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). <br><br> For more information on Azure planned maintenance, see [Planned maintenance for virtual machines in Azure](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-planned-maintenance?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Currently, a VM can only be added to availability set at creation time. The availability set to which the VM is being added should be under the same resource group as the availability set resource. An existing VM cannot be added to an availability set. <br><br>This property cannot exist along with a non-null properties.virtualMachineScaleSet reference.
+   */
+  availabilitySet?: SubResource;
+  /**
+   * Specifies information about the virtual machine scale set that the virtual machine should be assigned to. Virtual machines specified in the same virtual machine scale set are allocated to different nodes to maximize availability. Currently, a VM can only be added to virtual machine scale set at creation time. An existing VM cannot be added to a virtual machine scale set. <br><br>This property cannot exist along with a non-null properties.availabilitySet reference. <br><br>Minimum api‐version: 2019‐03‐01
+   */
+  virtualMachineScaleSet?: SubResource;
+  /**
+   * Specifies information about the proximity placement group that the virtual machine should be assigned to. <br><br>Minimum api-version: 2018-04-01.
+   */
+  proximityPlacementGroup?: SubResource;
+  /**
+   * Specifies the priority for the virtual machine. <br><br>Minimum api-version: 2019-03-01
+   */
+  priority?: VirtualMachinePriorityTypes;
+  /**
+   * Specifies the eviction policy for the Azure Spot virtual machine and Azure Spot scale set. <br><br>For Azure Spot virtual machines, the only supported value is 'Deallocate' and the minimum api-version is 2019-03-01. <br><br>For Azure Spot scale sets, both 'Deallocate' and 'Delete' are supported and the minimum api-version is 2017-10-30-preview.
+   */
+  evictionPolicy?: VirtualMachineEvictionPolicyTypes;
+  /**
+   * Specifies the billing related details of a Azure Spot virtual machine. <br><br>Minimum api-version: 2019-03-01.
+   */
+  billingProfile?: BillingProfile;
+  /**
+   * Specifies information about the dedicated host that the virtual machine resides in. <br><br>Minimum api-version: 2018-10-01.
+   */
+  host?: SubResource;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: string;
+  /**
+   * The virtual machine instance view.
+   */
+  readonly instanceView?: VirtualMachineInstanceView;
+  /**
+   * Specifies that the image or disk that is being used was licensed on-premises. This element is only used for images that contain the Windows Server operating system. <br><br> Possible values are: <br><br> Windows_Client <br><br> Windows_Server <br><br> If this element is included in a request for an update, the value must match the initial value. This value cannot be updated. <br><br> For more information, see [Azure Hybrid Use Benefit for Windows Server](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-hybrid-use-benefit-licensing?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Minimum api-version: 2015-06-15
+   */
+  licenseType?: string;
+  /**
+   * Specifies the VM unique ID which is a 128-bits identifier that is encoded and stored in all Azure IaaS VMs SMBIOS and can be read using platform BIOS commands.
+   */
+  readonly vmId?: string;
+};
+
+/**
+ * The source user image virtual hard disk. The virtual hard disk will be copied before being attached to the virtual machine. If SourceImage is provided, the destination virtual hard drive must not exist.
+ */
+export type Image = Resource & {
+  /**
+   * The source virtual machine from which Image is created.
+   */
+  sourceVirtualMachine?: SubResource;
+  /**
+   * Specifies the storage settings for the virtual machine disks.
+   */
+  storageProfile?: ImageStorageProfile;
+  /**
+   * The provisioning state.
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets the HyperVGenerationType of the VirtualMachine created from the image
+   */
+  hyperVGeneration?: HyperVGenerationTypes;
+};
+
+/**
+ * Describes a Virtual Machine Scale Set.
+ */
+export type VirtualMachineScaleSet = Resource & {
+  /**
+   * The virtual machine scale set sku.
+   */
+  sku?: Sku;
+  /**
+   * Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use.  In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**.
+   */
+  plan?: Plan;
+  /**
+   * The identity of the virtual machine scale set, if configured.
+   */
+  identity?: VirtualMachineScaleSetIdentity;
+  /**
+   * The virtual machine scale set zones. NOTE: Availability zones can only be set when you create the scale set
+   */
+  zones?: string[];
+  /**
+   * The upgrade policy.
+   */
+  upgradePolicy?: UpgradePolicy;
+  /**
+   * Policy for automatic repairs.
+   */
+  automaticRepairsPolicy?: AutomaticRepairsPolicy;
+  /**
+   * The virtual machine profile.
+   */
+  virtualMachineProfile?: VirtualMachineScaleSetVMProfile;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: string;
+  /**
+   * Specifies whether the Virtual Machine Scale Set should be overprovisioned.
+   */
+  overprovision?: boolean;
+  /**
+   * When Overprovision is enabled, extensions are launched only on the requested number of VMs which are finally kept. This property will hence ensure that the extensions do not run on the extra overprovisioned VMs.
+   */
+  doNotRunExtensionsOnOverprovisionedVMs?: boolean;
+  /**
+   * Specifies the ID which uniquely identifies a Virtual Machine Scale Set.
+   */
+  readonly uniqueId?: string;
+  /**
+   * When true this limits the scale set to a single placement group, of max size 100 virtual machines. NOTE: If singlePlacementGroup is true, it may be modified to false. However, if singlePlacementGroup is false, it may not be modified to true.
+   */
+  singlePlacementGroup?: boolean;
+  /**
+   * Whether to force strictly even Virtual Machine distribution cross x-zones in case there is zone outage.
+   */
+  zoneBalance?: boolean;
+  /**
+   * Fault Domain count for each placement group.
+   */
+  platformFaultDomainCount?: number;
+  /**
+   * Specifies information about the proximity placement group that the virtual machine scale set should be assigned to. <br><br>Minimum api-version: 2018-04-01.
+   */
+  proximityPlacementGroup?: SubResource;
+  /**
+   * Specifies additional capabilities enabled or disabled on the Virtual Machines in the Virtual Machine Scale Set. For instance: whether the Virtual Machines have the capability to support attaching managed data disks with UltraSSD_LRS storage account type.
+   */
+  additionalCapabilities?: AdditionalCapabilities;
+  /**
+   * Specifies the scale-in policy that decides which virtual machines are chosen for removal when a Virtual Machine Scale Set is scaled-in.
+   */
+  scaleInPolicy?: ScaleInPolicy;
+};
+
+/**
+ * The status of the latest virtual machine scale set rolling upgrade.
+ */
+export type RollingUpgradeStatusInfo = Resource & {
+  /**
+   * The rolling upgrade policies applied for this upgrade.
+   */
+  readonly policy?: RollingUpgradePolicy;
+  /**
+   * Information about the current running state of the overall upgrade.
+   */
+  readonly runningStatus?: RollingUpgradeRunningStatus;
+  /**
+   * Information about the number of virtual machine instances in each upgrade state.
+   */
+  readonly progress?: RollingUpgradeProgressInfo;
+  /**
+   * Error details for this upgrade, if there are any.
+   */
+  readonly error?: ApiError;
+};
+
+/**
+ * Describes a virtual machine scale set virtual machine.
+ */
+export type VirtualMachineScaleSetVM = Resource & {
+  /**
+   * The virtual machine instance ID.
+   */
+  readonly instanceId?: string;
+  /**
+   * The virtual machine SKU.
+   */
+  readonly sku?: Sku;
+  /**
+   * Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use.  In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**.
+   */
+  plan?: Plan;
+  /**
+   * The virtual machine child extension resources.
+   */
+  readonly resources?: VirtualMachineExtension[];
+  /**
+   * The virtual machine zones.
+   */
+  readonly zones?: string[];
+  /**
+   * Specifies whether the latest model has been applied to the virtual machine.
+   */
+  readonly latestModelApplied?: boolean;
+  /**
+   * Azure VM unique ID.
+   */
+  readonly vmId?: string;
+  /**
+   * The virtual machine instance view.
+   */
+  readonly instanceView?: VirtualMachineScaleSetVMInstanceView;
+  /**
+   * Specifies the hardware settings for the virtual machine.
+   */
+  hardwareProfile?: HardwareProfile;
+  /**
+   * Specifies the storage settings for the virtual machine disks.
+   */
+  storageProfile?: StorageProfile;
+  /**
+   * Specifies additional capabilities enabled or disabled on the virtual machine in the scale set. For instance: whether the virtual machine has the capability to support attaching managed data disks with UltraSSD_LRS storage account type.
+   */
+  additionalCapabilities?: AdditionalCapabilities;
+  /**
+   * Specifies the operating system settings for the virtual machine.
+   */
+  osProfile?: OSProfile;
+  /**
+   * Specifies the network interfaces of the virtual machine.
+   */
+  networkProfile?: NetworkProfile;
+  /**
+   * Specifies the network profile configuration of the virtual machine.
+   */
+  networkProfileConfiguration?: VirtualMachineScaleSetVMNetworkProfileConfiguration;
+  /**
+   * Specifies the boot diagnostic settings state. <br><br>Minimum api-version: 2015-06-15.
+   */
+  diagnosticsProfile?: DiagnosticsProfile;
+  /**
+   * Specifies information about the availability set that the virtual machine should be assigned to. Virtual machines specified in the same availability set are allocated to different nodes to maximize availability. For more information about availability sets, see [Manage the availability of virtual machines](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-manage-availability?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). <br><br> For more information on Azure planned maintenance, see [Planned maintenance for virtual machines in Azure](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-planned-maintenance?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Currently, a VM can only be added to availability set at creation time. An existing VM cannot be added to an availability set.
+   */
+  availabilitySet?: SubResource;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: string;
+  /**
+   * Specifies that the image or disk that is being used was licensed on-premises. This element is only used for images that contain the Windows Server operating system. <br><br> Possible values are: <br><br> Windows_Client <br><br> Windows_Server <br><br> If this element is included in a request for an update, the value must match the initial value. This value cannot be updated. <br><br> For more information, see [Azure Hybrid Use Benefit for Windows Server](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-hybrid-use-benefit-licensing?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Minimum api-version: 2015-06-15
+   */
+  licenseType?: string;
+  /**
+   * Specifies whether the model applied to the virtual machine is the model of the virtual machine scale set or the customized model for the virtual machine.
+   */
+  readonly modelDefinitionApplied?: string;
+  /**
+   * Specifies the protection policy of the virtual machine.
+   */
+  protectionPolicy?: VirtualMachineScaleSetVMProtectionPolicy;
+};
+
+/**
+ * Disk resource.
+ */
+export type Disk = Resource & {
+  /**
+   * A relative URI containing the ID of the VM that has the disk attached.
+   */
+  readonly managedBy?: string;
+  /**
+   * List of relative URIs containing the IDs of the VMs that have the disk attached. maxShares should be set to a value greater than one for disks to allow attaching them to multiple VMs.
+   */
+  readonly managedByExtended?: string[];
+  /**
+   * The disks sku name. Can be Standard_LRS, Premium_LRS, StandardSSD_LRS, or UltraSSD_LRS.
+   */
+  sku?: DiskSku;
+  /**
+   * The Logical zone list for Disk.
+   */
+  zones?: string[];
+  /**
+   * The time when the disk was created.
+   */
+  readonly timeCreated?: Date;
+  /**
+   * The Operating System type.
+   */
+  osType?: OperatingSystemTypes;
+  /**
+   * The hypervisor generation of the Virtual Machine. Applicable to OS disks only.
+   */
+  hyperVGeneration?: HyperVGeneration;
+  /**
+   * Disk source information. CreationData information cannot be changed after the disk has been created.
+   */
+  creationData?: CreationData;
+  /**
+   * If creationData.createOption is Empty, this field is mandatory and it indicates the size of the disk to create. If this field is present for updates or creation with other options, it indicates a resize. Resizes are only allowed if the disk is not attached to a running VM, and can only increase the disk's size.
+   */
+  diskSizeGB?: number;
+  /**
+   * The size of the disk in bytes. This field is read only.
+   */
+  readonly diskSizeBytes?: number;
+  /**
+   * Unique Guid identifying the resource.
+   */
+  readonly uniqueId?: string;
+  /**
+   * Encryption settings collection used for Azure Disk Encryption, can contain multiple encryption settings per disk or snapshot.
+   */
+  encryptionSettingsCollection?: EncryptionSettingsCollection;
+  /**
+   * The disk provisioning state.
+   */
+  readonly provisioningState?: string;
+  /**
+   * The number of IOPS allowed for this disk; only settable for UltraSSD disks. One operation can transfer between 4k and 256k bytes.
+   */
+  diskIopsReadWrite?: number;
+  /**
+   * The bandwidth allowed for this disk; only settable for UltraSSD disks. MBps means millions of bytes per second - MB here uses the ISO notation, of powers of 10.
+   */
+  diskMBpsReadWrite?: number;
+  /**
+   * The total number of IOPS that will be allowed across all VMs mounting the shared disk as ReadOnly. One operation can transfer between 4k and 256k bytes.
+   */
+  diskIopsReadOnly?: number;
+  /**
+   * The total throughput (MBps) that will be allowed across all VMs mounting the shared disk as ReadOnly. MBps means millions of bytes per second - MB here uses the ISO notation, of powers of 10.
+   */
+  diskMBpsReadOnly?: number;
+  /**
+   * The state of the disk.
+   */
+  readonly diskState?: DiskState;
+  /**
+   * Encryption property can be used to encrypt data at rest with customer managed keys or platform managed keys.
+   */
+  encryption?: Encryption;
+  /**
+   * The maximum number of VMs that can attach to the disk at the same time. Value greater than one indicates a disk that can be mounted on multiple VMs at the same time.
+   */
+  maxShares?: number;
+  /**
+   * Details of the list of all VMs that have the disk attached. maxShares should be set to a value greater than one for disks to allow attaching them to multiple VMs.
+   */
+  readonly shareInfo?: ShareInfoElement[];
+};
+
+/**
+ * Snapshot resource.
+ */
+export type Snapshot = Resource & {
+  /**
+   * Unused. Always Null.
+   */
+  readonly managedBy?: string;
+  /**
+   * The snapshots sku name. Can be Standard_LRS, Premium_LRS, or Standard_ZRS.
+   */
+  sku?: SnapshotSku;
+  /**
+   * The time when the disk was created.
+   */
+  readonly timeCreated?: Date;
+  /**
+   * The Operating System type.
+   */
+  osType?: OperatingSystemTypes;
+  /**
+   * The hypervisor generation of the Virtual Machine. Applicable to OS disks only.
+   */
+  hyperVGeneration?: HyperVGeneration;
+  /**
+   * Disk source information. CreationData information cannot be changed after the disk has been created.
+   */
+  creationData?: CreationData;
+  /**
+   * If creationData.createOption is Empty, this field is mandatory and it indicates the size of the disk to create. If this field is present for updates or creation with other options, it indicates a resize. Resizes are only allowed if the disk is not attached to a running VM, and can only increase the disk's size.
+   */
+  diskSizeGB?: number;
+  /**
+   * The size of the disk in bytes. This field is read only.
+   */
+  readonly diskSizeBytes?: number;
+  /**
+   * Unique Guid identifying the resource.
+   */
+  readonly uniqueId?: string;
+  /**
+   * Encryption settings collection used be Azure Disk Encryption, can contain multiple encryption settings per disk or snapshot.
+   */
+  encryptionSettingsCollection?: EncryptionSettingsCollection;
+  /**
+   * The disk provisioning state.
+   */
+  readonly provisioningState?: string;
+  /**
+   * Whether a snapshot is incremental. Incremental snapshots on the same disk occupy less space than full snapshots and can be diffed.
+   */
+  incremental?: boolean;
+  /**
+   * Encryption property can be used to encrypt data at rest with customer managed keys or platform managed keys.
+   */
+  encryption?: Encryption;
+};
+
+/**
+ * disk encryption set resource.
+ */
+export type DiskEncryptionSet = Resource & {
+  /**
+   * The managed identity for the disk encryption set. It should be given permission on the key vault before it can be used to encrypt disks.
+   */
+  identity?: EncryptionSetIdentity;
+  /**
+   * The key vault key which is currently used by this disk encryption set.
+   */
+  activeKey?: KeyVaultAndKeyReference;
+  /**
+   * A readonly collection of key vault keys previously used by this disk encryption set while a key rotation is in progress. It will be empty if there is no ongoing key rotation.
+   */
+  readonly previousKeys?: KeyVaultAndKeyReference[];
+  /**
+   * The disk encryption set provisioning state.
+   */
+  readonly provisioningState?: string;
+};
+
+/**
+ * Specifies information about the Shared Image Gallery that you want to create or update.
+ */
+export type Gallery = Resource & {
+  /**
+   * The description of this Shared Image Gallery resource. This property is updatable.
+   */
+  description?: string;
+  /**
+   * Describes the gallery unique name.
+   */
+  identifier?: GalleryIdentifier;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: GalleryPropertiesProvisioningState;
+};
+
+/**
+ * Specifies information about the gallery Image Definition that you want to create or update.
+ */
+export type GalleryImage = Resource & {
+  /**
+   * The description of this gallery Image Definition resource. This property is updatable.
+   */
+  description?: string;
+  /**
+   * The Eula agreement for the gallery Image Definition.
+   */
+  eula?: string;
+  /**
+   * The privacy statement uri.
+   */
+  privacyStatementUri?: string;
+  /**
+   * The release note uri.
+   */
+  releaseNoteUri?: string;
+  /**
+   * This property allows you to specify the type of the OS that is included in the disk when creating a VM from a managed image. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux**
+   */
+  osType?: OperatingSystemTypes;
+  /**
+   * This property allows the user to specify whether the virtual machines created under this image are 'Generalized' or 'Specialized'.
+   */
+  osState?: OperatingSystemStateTypes;
+  /**
+   * The hypervisor generation of the Virtual Machine. Applicable to OS disks only.
+   */
+  hyperVGeneration?: HyperVGeneration;
+  /**
+   * The end of life date of the gallery Image Definition. This property can be used for decommissioning purposes. This property is updatable.
+   */
+  endOfLifeDate?: Date;
+  /**
+   * This is the gallery Image Definition identifier.
+   */
+  identifier?: GalleryImageIdentifier;
+  /**
+   * The properties describe the recommended machine configuration for this Image Definition. These properties are updatable.
+   */
+  recommended?: RecommendedMachineConfiguration;
+  /**
+   * Describes the disallowed disk types.
+   */
+  disallowed?: Disallowed;
+  /**
+   * Describes the gallery Image Definition purchase plan. This is used by marketplace images.
+   */
+  purchasePlan?: ImagePurchasePlan;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: GalleryImagePropertiesProvisioningState;
+};
+
+/**
+ * Specifies information about the gallery Image Version that you want to create or update.
+ */
+export type GalleryImageVersion = Resource & {
+  /**
+   * Describes the basic gallery artifact publishing profile.
+   */
+  publishingProfile?: GalleryArtifactPublishingProfileBase;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: GalleryImageVersionPropertiesProvisioningState;
+  /**
+   * This is the storage profile of a Gallery Image Version.
+   */
+  storageProfile?: GalleryImageVersionStorageProfile;
+  /**
+   * This is the replication status of the gallery Image Version.
+   */
+  readonly replicationStatus?: ReplicationStatus;
+};
+
+/**
+ * Specifies information about the gallery Application Definition that you want to create or update.
+ */
+export type GalleryApplication = Resource & {
+  /**
+   * The description of this gallery Application Definition resource. This property is updatable.
+   */
+  description?: string;
+  /**
+   * The Eula agreement for the gallery Application Definition.
+   */
+  eula?: string;
+  /**
+   * The privacy statement uri.
+   */
+  privacyStatementUri?: string;
+  /**
+   * The release note uri.
+   */
+  releaseNoteUri?: string;
+  /**
+   * The end of life date of the gallery Application Definition. This property can be used for decommissioning purposes. This property is updatable.
+   */
+  endOfLifeDate?: Date;
+  /**
+   * This property allows you to specify the supported type of the OS that application is built for. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux**
+   */
+  supportedOSType?: OperatingSystemTypes;
+};
+
+/**
+ * Specifies information about the gallery Application Version that you want to create or update.
+ */
+export type GalleryApplicationVersion = Resource & {
+  /**
+   * The publishing profile of a gallery Image Version.
+   */
+  publishingProfile?: GalleryApplicationVersionPublishingProfile;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: GalleryApplicationVersionPropertiesProvisioningState;
+  /**
+   * This is the replication status of the gallery Image Version.
+   */
+  readonly replicationStatus?: ReplicationStatus;
+};
+
+/**
+ * Container service.
+ */
+export type ContainerService = Resource & {
+  /**
+   * the current deployment or provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: string;
+  /**
+   * Properties of the orchestrator.
+   */
+  orchestratorProfile?: ContainerServiceOrchestratorProfile;
+  /**
+   * Properties for custom clusters.
+   */
+  customProfile?: ContainerServiceCustomProfile;
+  /**
+   * Properties for cluster service principals.
+   */
+  servicePrincipalProfile?: ContainerServicePrincipalProfile;
+  /**
+   * Properties of master agents.
+   */
+  masterProfile?: ContainerServiceMasterProfile;
+  /**
+   * Properties of the agent pool.
+   */
+  agentPoolProfiles?: ContainerServiceAgentPoolProfile[];
+  /**
+   * Properties of Windows VMs.
+   */
+  windowsProfile?: ContainerServiceWindowsProfile;
+  /**
+   * Properties of Linux VMs.
+   */
+  linuxProfile?: ContainerServiceLinuxProfile;
+  /**
+   * Properties of the diagnostic agent.
+   */
+  diagnosticsProfile?: ContainerServiceDiagnosticsProfile;
+};
+
+/**
+ * Specifies information about the availability set that the virtual machine should be assigned to. Only tags may be updated.
+ */
+export type AvailabilitySetUpdate = UpdateResource & {
+  /**
+   * Sku of the availability set
+   */
+  sku?: Sku;
+  /**
+   * Update Domain count.
+   */
+  platformUpdateDomainCount?: number;
+  /**
+   * Fault Domain count.
+   */
+  platformFaultDomainCount?: number;
+  /**
+   * A list of references to all virtual machines in the availability set.
+   */
+  virtualMachines?: SubResource[];
+  /**
+   * Specifies information about the proximity placement group that the availability set should be assigned to. <br><br>Minimum api-version: 2018-04-01.
+   */
+  proximityPlacementGroup?: SubResource;
+  /**
+   * The resource status information.
+   */
+  readonly statuses?: InstanceViewStatus[];
+};
+
+/**
+ * Specifies information about the dedicated host group that the dedicated host should be assigned to. Only tags may be updated.
+ */
+export type DedicatedHostGroupUpdate = UpdateResource & {
+  /**
+   * Availability Zone to use for this host group. Only single zone is supported. The zone can be assigned only during creation. If not provided, the group supports all zones in the region. If provided, enforces each host in the group to be in the same zone.
+   */
+  zones?: string[];
+  /**
+   * Number of fault domains that the host group can span.
+   */
+  platformFaultDomainCount?: number;
+  /**
+   * A list of references to all dedicated hosts in the dedicated host group.
+   */
+  readonly hosts?: SubResourceReadOnly[];
+};
+
+/**
+ * Specifies information about the dedicated host. Only tags, autoReplaceOnFailure and licenseType may be updated.
+ */
+export type DedicatedHostUpdate = UpdateResource & {
+  /**
+   * Fault domain of the dedicated host within a dedicated host group.
+   */
+  platformFaultDomain?: number;
+  /**
+   * Specifies whether the dedicated host should be replaced automatically in case of a failure. The value is defaulted to 'true' when not provided.
+   */
+  autoReplaceOnFailure?: boolean;
+  /**
+   * A unique id generated and assigned to the dedicated host by the platform. <br><br> Does not change throughout the lifetime of the host.
+   */
+  readonly hostId?: string;
+  /**
+   * A list of references to all virtual machines in the Dedicated Host.
+   */
+  readonly virtualMachines?: SubResourceReadOnly[];
+  /**
+   * Specifies the software license type that will be applied to the VMs deployed on the dedicated host. <br><br> Possible values are: <br><br> **None** <br><br> **Windows_Server_Hybrid** <br><br> **Windows_Server_Perpetual** <br><br> Default: **None**
+   */
+  licenseType?: DedicatedHostLicenseTypes;
+  /**
+   * The date when the host was first provisioned.
+   */
+  readonly provisioningTime?: Date;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: string;
+  /**
+   * The dedicated host instance view.
+   */
+  readonly instanceView?: DedicatedHostInstanceView;
+};
+
+/**
+ * Specifies information about the SSH public key.
+ */
+export type SshPublicKeyUpdateResource = UpdateResource & {
+  /**
+   * SSH public key used to authenticate to a virtual machine through ssh. If this property is not initially provided when the resource is created, the publicKey property will be populated when generateKeyPair is called. If the public key is provided upon resource creation, the provided public key needs to be at least 2048-bit and in ssh-rsa format.
+   */
+  publicKey?: string;
+};
+
+/**
+ * Describes a Virtual Machine Extension.
+ */
+export type VirtualMachineExtensionUpdate = UpdateResource & {
+  /**
+   * How the extension handler should be forced to update even if the extension configuration has not changed.
+   */
+  forceUpdateTag?: string;
+  /**
+   * The name of the extension handler publisher.
+   */
+  publisher?: string;
+  /**
+   * Specifies the type of the extension; an example is "CustomScriptExtension".
+   */
+  type?: string;
+  /**
+   * Specifies the version of the script handler.
+   */
+  typeHandlerVersion?: string;
+  /**
+   * Indicates whether the extension should use a newer minor version if one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless redeployed, even with this property set to true.
+   */
+  autoUpgradeMinorVersion?: boolean;
+  /**
+   * Json formatted public settings for the extension.
+   */
+  settings?: any;
+  /**
+   * The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at all.
+   */
+  protectedSettings?: any;
+};
+
+/**
+ * The source user image virtual hard disk. Only tags may be updated.
+ */
+export type ImageUpdate = UpdateResource & {
+  /**
+   * The source virtual machine from which Image is created.
+   */
+  sourceVirtualMachine?: SubResource;
+  /**
+   * Specifies the storage settings for the virtual machine disks.
+   */
+  storageProfile?: ImageStorageProfile;
+  /**
+   * The provisioning state.
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets the HyperVGenerationType of the VirtualMachine created from the image
+   */
+  hyperVGeneration?: HyperVGenerationTypes;
+};
+
+/**
+ * Describes a Virtual Machine Update.
+ */
+export type VirtualMachineUpdate = UpdateResource & {
+  /**
+   * Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use.  In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**.
+   */
+  plan?: Plan;
+  /**
+   * The identity of the virtual machine, if configured.
+   */
+  identity?: VirtualMachineIdentity;
+  /**
+   * The virtual machine zones.
+   */
+  zones?: string[];
+  /**
+   * Specifies the hardware settings for the virtual machine.
+   */
+  hardwareProfile?: HardwareProfile;
+  /**
+   * Specifies the storage settings for the virtual machine disks.
+   */
+  storageProfile?: StorageProfile;
+  /**
+   * Specifies additional capabilities enabled or disabled on the virtual machine.
+   */
+  additionalCapabilities?: AdditionalCapabilities;
+  /**
+   * Specifies the operating system settings used while creating the virtual machine. Some of the settings cannot be changed once VM is provisioned.
+   */
+  osProfile?: OSProfile;
+  /**
+   * Specifies the network interfaces of the virtual machine.
+   */
+  networkProfile?: NetworkProfile;
+  /**
+   * Specifies the boot diagnostic settings state. <br><br>Minimum api-version: 2015-06-15.
+   */
+  diagnosticsProfile?: DiagnosticsProfile;
+  /**
+   * Specifies information about the availability set that the virtual machine should be assigned to. Virtual machines specified in the same availability set are allocated to different nodes to maximize availability. For more information about availability sets, see [Manage the availability of virtual machines](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-manage-availability?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). <br><br> For more information on Azure planned maintenance, see [Planned maintenance for virtual machines in Azure](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-planned-maintenance?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Currently, a VM can only be added to availability set at creation time. The availability set to which the VM is being added should be under the same resource group as the availability set resource. An existing VM cannot be added to an availability set. <br><br>This property cannot exist along with a non-null properties.virtualMachineScaleSet reference.
+   */
+  availabilitySet?: SubResource;
+  /**
+   * Specifies information about the virtual machine scale set that the virtual machine should be assigned to. Virtual machines specified in the same virtual machine scale set are allocated to different nodes to maximize availability. Currently, a VM can only be added to virtual machine scale set at creation time. An existing VM cannot be added to a virtual machine scale set. <br><br>This property cannot exist along with a non-null properties.availabilitySet reference. <br><br>Minimum api‐version: 2019‐03‐01
+   */
+  virtualMachineScaleSet?: SubResource;
+  /**
+   * Specifies information about the proximity placement group that the virtual machine should be assigned to. <br><br>Minimum api-version: 2018-04-01.
+   */
+  proximityPlacementGroup?: SubResource;
+  /**
+   * Specifies the priority for the virtual machine. <br><br>Minimum api-version: 2019-03-01
+   */
+  priority?: VirtualMachinePriorityTypes;
+  /**
+   * Specifies the eviction policy for the Azure Spot virtual machine and Azure Spot scale set. <br><br>For Azure Spot virtual machines, the only supported value is 'Deallocate' and the minimum api-version is 2019-03-01. <br><br>For Azure Spot scale sets, both 'Deallocate' and 'Delete' are supported and the minimum api-version is 2017-10-30-preview.
+   */
+  evictionPolicy?: VirtualMachineEvictionPolicyTypes;
+  /**
+   * Specifies the billing related details of a Azure Spot virtual machine. <br><br>Minimum api-version: 2019-03-01.
+   */
+  billingProfile?: BillingProfile;
+  /**
+   * Specifies information about the dedicated host that the virtual machine resides in. <br><br>Minimum api-version: 2018-10-01.
+   */
+  host?: SubResource;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: string;
+  /**
+   * The virtual machine instance view.
+   */
+  readonly instanceView?: VirtualMachineInstanceView;
+  /**
+   * Specifies that the image or disk that is being used was licensed on-premises. This element is only used for images that contain the Windows Server operating system. <br><br> Possible values are: <br><br> Windows_Client <br><br> Windows_Server <br><br> If this element is included in a request for an update, the value must match the initial value. This value cannot be updated. <br><br> For more information, see [Azure Hybrid Use Benefit for Windows Server](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-hybrid-use-benefit-licensing?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Minimum api-version: 2015-06-15
+   */
+  licenseType?: string;
+  /**
+   * Specifies the VM unique ID which is a 128-bits identifier that is encoded and stored in all Azure IaaS VMs SMBIOS and can be read using platform BIOS commands.
+   */
+  readonly vmId?: string;
+};
+
+/**
+ * Describes a Virtual Machine Scale Set.
+ */
+export type VirtualMachineScaleSetUpdate = UpdateResource & {
+  /**
+   * The virtual machine scale set sku.
+   */
+  sku?: Sku;
+  /**
+   * The purchase plan when deploying a virtual machine scale set from VM Marketplace images.
+   */
+  plan?: Plan;
+  /**
+   * The identity of the virtual machine scale set, if configured.
+   */
+  identity?: VirtualMachineScaleSetIdentity;
+  /**
+   * The upgrade policy.
+   */
+  upgradePolicy?: UpgradePolicy;
+  /**
+   * Policy for automatic repairs.
+   */
+  automaticRepairsPolicy?: AutomaticRepairsPolicy;
+  /**
+   * The virtual machine profile.
+   */
+  virtualMachineProfile?: VirtualMachineScaleSetUpdateVMProfile;
+  /**
+   * Specifies whether the Virtual Machine Scale Set should be overprovisioned.
+   */
+  overprovision?: boolean;
+  /**
+   * When Overprovision is enabled, extensions are launched only on the requested number of VMs which are finally kept. This property will hence ensure that the extensions do not run on the extra overprovisioned VMs.
+   */
+  doNotRunExtensionsOnOverprovisionedVMs?: boolean;
+  /**
+   * When true this limits the scale set to a single placement group, of max size 100 virtual machines. NOTE: If singlePlacementGroup is true, it may be modified to false. However, if singlePlacementGroup is false, it may not be modified to true.
+   */
+  singlePlacementGroup?: boolean;
+  /**
+   * Specifies additional capabilities enabled or disabled on the Virtual Machines in the Virtual Machine Scale Set. For instance: whether the Virtual Machines have the capability to support attaching managed data disks with UltraSSD_LRS storage account type.
+   */
+  additionalCapabilities?: AdditionalCapabilities;
+  /**
+   * Specifies the scale-in policy that decides which virtual machines are chosen for removal when a Virtual Machine Scale Set is scaled-in.
+   */
+  scaleInPolicy?: ScaleInPolicy;
+  /**
+   * Specifies information about the proximity placement group that the virtual machine scale set should be assigned to. <br><br>Minimum api-version: 2018-04-01.
+   */
+  proximityPlacementGroup?: SubResource;
+};
+
+/**
+ * Specifies information about the proximity placement group.
+ */
+export type ProximityPlacementGroupUpdate = UpdateResource & {};
+
+/**
+ * Describes a Virtual Machine Scale Set Extension.
+ */
+export type VirtualMachineScaleSetExtension = SubResourceReadOnly & {
+  /**
+   * The name of the extension.
+   */
+  name?: string;
+  /**
+   * Resource type
+   */
+  readonly type?: string;
+  /**
+   * If a value is provided and is different from the previous value, the extension handler will be forced to update even if the extension configuration has not changed.
+   */
+  forceUpdateTag?: string;
+  /**
+   * The name of the extension handler publisher.
+   */
+  publisher?: string;
+  /**
+   * Specifies the type of the extension; an example is "CustomScriptExtension".
+   */
+  typePropertiesType?: string;
+  /**
+   * Specifies the version of the script handler.
+   */
+  typeHandlerVersion?: string;
+  /**
+   * Indicates whether the extension should use a newer minor version if one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless redeployed, even with this property set to true.
+   */
+  autoUpgradeMinorVersion?: boolean;
+  /**
+   * Json formatted public settings for the extension.
+   */
+  settings?: any;
+  /**
+   * The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at all.
+   */
+  protectedSettings?: any;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: string;
+  /**
+   * Collection of extension names after which this extension needs to be provisioned.
+   */
+  provisionAfterExtensions?: string[];
+};
+
+/**
+ * Describes a Virtual Machine Scale Set Extension.
+ */
+export type VirtualMachineScaleSetExtensionUpdate = SubResourceReadOnly & {
+  /**
+   * The name of the extension.
+   */
+  readonly name?: string;
+  /**
+   * Resource type
+   */
+  readonly type?: string;
+  /**
+   * If a value is provided and is different from the previous value, the extension handler will be forced to update even if the extension configuration has not changed.
+   */
+  forceUpdateTag?: string;
+  /**
+   * The name of the extension handler publisher.
+   */
+  publisher?: string;
+  /**
+   * Specifies the type of the extension; an example is "CustomScriptExtension".
+   */
+  typePropertiesType?: string;
+  /**
+   * Specifies the version of the script handler.
+   */
+  typeHandlerVersion?: string;
+  /**
+   * Indicates whether the extension should use a newer minor version if one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless redeployed, even with this property set to true.
+   */
+  autoUpgradeMinorVersion?: boolean;
+  /**
+   * Json formatted public settings for the extension.
+   */
+  settings?: any;
+  /**
+   * The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at all.
+   */
+  protectedSettings?: any;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: string;
+  /**
+   * Collection of extension names after which this extension needs to be provisioned.
+   */
+  provisionAfterExtensions?: string[];
+};
+
+/**
+ * Describes an Operating System disk.
+ */
+export type ImageOSDisk = ImageDisk & {
+  /**
+   * This property allows you to specify the type of the OS that is included in the disk if creating a VM from a custom image. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux**
+   */
+  osType: OperatingSystemTypes;
+  /**
+   * The OS State.
+   */
+  osState: OperatingSystemStateTypes;
+};
+
+/**
+ * Describes a data disk.
+ */
+export type ImageDataDisk = ImageDisk & {
+  /**
+   * Specifies the logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM.
+   */
+  lun: number;
+};
+
+/**
+ * Describes a Virtual Machine Scale Set VM Reimage Parameters.
+ */
+export type VirtualMachineScaleSetReimageParameters = VirtualMachineReimageParameters & {
+  /**
+   * The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set.
+   */
+  instanceIds?: string[];
+};
+
+/**
+ * Describes a Virtual Machine Scale Set VM Reimage Parameters.
+ */
+export type VirtualMachineScaleSetVMReimageParameters = VirtualMachineReimageParameters & {};
+
+/**
+ * Api request input for LogAnalytics getRequestRateByInterval Api.
+ */
+export type RequestRateByIntervalInput = LogAnalyticsInputBase & {
+  /**
+   * Interval value in minutes used to create LogAnalytics call rate logs.
+   */
+  intervalLength: IntervalInMins;
+};
+
+/**
+ * Api request input for LogAnalytics getThrottledRequests Api.
+ */
+export type ThrottledRequestsInput = LogAnalyticsInputBase & {};
+
+/**
+ * Describes the properties of a Run Command.
+ */
+export type RunCommandDocument = RunCommandDocumentBase & {
+  /**
+   * The script to be executed.
+   */
+  script: string[];
+  /**
+   * The parameters used by the script.
+   */
+  parameters?: RunCommandParameterDefinition[];
+};
+
+/**
+ * Specifies information about the Shared Image Gallery that you want to update.
+ */
+export type GalleryUpdate = UpdateResourceDefinition & {
+  /**
+   * The description of this Shared Image Gallery resource. This property is updatable.
+   */
+  description?: string;
+  /**
+   * Describes the gallery unique name.
+   */
+  identifier?: GalleryIdentifier;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: GalleryPropertiesProvisioningState;
+};
+
+/**
+ * Specifies information about the gallery Image Definition that you want to update.
+ */
+export type GalleryImageUpdate = UpdateResourceDefinition & {
+  /**
+   * The description of this gallery Image Definition resource. This property is updatable.
+   */
+  description?: string;
+  /**
+   * The Eula agreement for the gallery Image Definition.
+   */
+  eula?: string;
+  /**
+   * The privacy statement uri.
+   */
+  privacyStatementUri?: string;
+  /**
+   * The release note uri.
+   */
+  releaseNoteUri?: string;
+  /**
+   * This property allows you to specify the type of the OS that is included in the disk when creating a VM from a managed image. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux**
+   */
+  osType?: OperatingSystemTypes;
+  /**
+   * This property allows the user to specify whether the virtual machines created under this image are 'Generalized' or 'Specialized'.
+   */
+  osState?: OperatingSystemStateTypes;
+  /**
+   * The hypervisor generation of the Virtual Machine. Applicable to OS disks only.
+   */
+  hyperVGeneration?: HyperVGeneration;
+  /**
+   * The end of life date of the gallery Image Definition. This property can be used for decommissioning purposes. This property is updatable.
+   */
+  endOfLifeDate?: Date;
+  /**
+   * This is the gallery Image Definition identifier.
+   */
+  identifier?: GalleryImageIdentifier;
+  /**
+   * The properties describe the recommended machine configuration for this Image Definition. These properties are updatable.
+   */
+  recommended?: RecommendedMachineConfiguration;
+  /**
+   * Describes the disallowed disk types.
+   */
+  disallowed?: Disallowed;
+  /**
+   * Describes the gallery Image Definition purchase plan. This is used by marketplace images.
+   */
+  purchasePlan?: ImagePurchasePlan;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: GalleryImagePropertiesProvisioningState;
+};
+
+/**
+ * Specifies information about the gallery Image Version that you want to update.
+ */
+export type GalleryImageVersionUpdate = UpdateResourceDefinition & {
+  /**
+   * Describes the basic gallery artifact publishing profile.
+   */
+  publishingProfile?: GalleryArtifactPublishingProfileBase;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: GalleryImageVersionPropertiesProvisioningState;
+  /**
+   * This is the storage profile of a Gallery Image Version.
+   */
+  storageProfile?: GalleryImageVersionStorageProfile;
+  /**
+   * This is the replication status of the gallery Image Version.
+   */
+  readonly replicationStatus?: ReplicationStatus;
+};
+
+/**
+ * Specifies information about the gallery Application Definition that you want to update.
+ */
+export type GalleryApplicationUpdate = UpdateResourceDefinition & {
+  /**
+   * The description of this gallery Application Definition resource. This property is updatable.
+   */
+  description?: string;
+  /**
+   * The Eula agreement for the gallery Application Definition.
+   */
+  eula?: string;
+  /**
+   * The privacy statement uri.
+   */
+  privacyStatementUri?: string;
+  /**
+   * The release note uri.
+   */
+  releaseNoteUri?: string;
+  /**
+   * The end of life date of the gallery Application Definition. This property can be used for decommissioning purposes. This property is updatable.
+   */
+  endOfLifeDate?: Date;
+  /**
+   * This property allows you to specify the supported type of the OS that application is built for. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux**
+   */
+  supportedOSType?: OperatingSystemTypes;
+};
+
+/**
+ * Specifies information about the gallery Application Version that you want to update.
+ */
+export type GalleryApplicationVersionUpdate = UpdateResourceDefinition & {
+  /**
+   * The publishing profile of a gallery Image Version.
+   */
+  publishingProfile?: GalleryApplicationVersionPublishingProfile;
+  /**
+   * The provisioning state, which only appears in the response.
+   */
+  readonly provisioningState?: GalleryApplicationVersionPropertiesProvisioningState;
+  /**
+   * This is the replication status of the gallery Image Version.
+   */
+  readonly replicationStatus?: ReplicationStatus;
+};
+
+/**
+ * The publishing profile of a gallery Image Version.
+ */
+export type GalleryApplicationVersionPublishingProfile = GalleryArtifactPublishingProfileBase & {
+  /**
+   * The source image from which the Image Version is going to be created.
+   */
+  source: UserArtifactSource;
+  /**
+   * Optional. May be used to help process this file. The type of file contained in the source, e.g. zip, json, etc.
+   */
+  contentType?: string;
+  /**
+   * Optional. Whether or not this application reports health.
+   */
+  enableHealthCheck?: boolean;
+};
+
 /**
  * The publishing profile of a gallery Image Version.
  */
 export type GalleryImageVersionPublishingProfile = GalleryArtifactPublishingProfileBase & {};
 
 /**
+ * Contains encryption settings for a data disk image.
+ */
+export type DataDiskImageEncryption = DiskImageEncryption & {
+  /**
+   * This property specifies the logical unit number of the data disk. This value is used to identify data disks within the Virtual Machine and therefore must be unique for each data disk attached to the Virtual Machine.
+   */
+  lun: number;
+};
+
+/**
+ * Contains encryption settings for an OS disk image.
+ */
+export type OSDiskImageEncryption = DiskImageEncryption & {};
+
+/**
+ * This is the data disk image.
+ */
+export type GalleryDataDiskImage = GalleryDiskImage & {
+  /**
+   * This property specifies the logical unit number of the data disk. This value is used to identify data disks within the Virtual Machine and therefore must be unique for each data disk attached to the Virtual Machine.
+   */
+  lun: number;
+};
+
+/**
  * This is the OS disk image.
  */
 export type GalleryOSDiskImage = GalleryDiskImage & {};
+
+/**
+ * Describes a Virtual Machine Image.
+ */
+export type VirtualMachineImage = VirtualMachineImageResource & {
+  /**
+   * Used for establishing the purchase context of any 3rd Party artifact through MarketPlace.
+   */
+  plan?: PurchasePlan;
+  /**
+   * Contains the os disk image information.
+   */
+  osDiskImage?: OSDiskImage;
+  dataDiskImages?: DataDiskImage[];
+  /**
+   * Describes automatic OS upgrade properties on the image.
+   */
+  automaticOSUpgradeProperties?: AutomaticOSUpgradeProperties;
+  /**
+   * Specifies the HyperVGeneration Type
+   */
+  hyperVGeneration?: HyperVGenerationTypes;
+};
 /**
  * Defines values for ProximityPlacementGroupType.
  */
@@ -5496,6 +5496,10 @@ export type VirtualMachineSizeTypes =
   | "Standard_NV12"
   | "Standard_NV24";
 /**
+ * Defines values for DiffDiskOptions.
+ */
+export type DiffDiskOptions = "Local";
+/**
  * Defines values for DiffDiskPlacement.
  */
 export type DiffDiskPlacement = "CacheDisk" | "ResourceDisk";
@@ -5534,6 +5538,10 @@ export type VirtualMachineScaleSetScaleInRules =
   | "Default"
   | "OldestVM"
   | "NewestVM";
+/**
+ * Defines values for OrchestrationServiceNames.
+ */
+export type OrchestrationServiceNames = "AutomaticRepairs";
 /**
  * Defines values for OrchestrationServiceState.
  */
@@ -5593,6 +5601,10 @@ export type SnapshotStorageAccountTypes =
   | "Premium_LRS"
   | "Standard_ZRS";
 /**
+ * Defines values for DiskEncryptionSetIdentityType.
+ */
+export type DiskEncryptionSetIdentityType = "SystemAssigned";
+/**
  * Defines values for GalleryPropertiesProvisioningState.
  */
 export type GalleryPropertiesProvisioningState =
@@ -5646,6 +5658,10 @@ export type ReplicationState =
   | "Completed"
   | "Failed";
 /**
+ * Defines values for ReplicationStatusTypes.
+ */
+export type ReplicationStatusTypes = "ReplicationStatus";
+/**
  * Defines values for GalleryApplicationVersionPropertiesProvisioningState.
  */
 export type GalleryApplicationVersionPropertiesProvisioningState =
@@ -5656,9 +5672,9 @@ export type GalleryApplicationVersionPropertiesProvisioningState =
   | "Deleting"
   | "Migrating";
 /**
- * Defines values for Enum27.
+ * Defines values for Enum31.
  */
-export type Enum27 = 1 | 3 | 5;
+export type Enum31 = 1 | 3 | 5;
 /**
  * Defines values for ContainerServiceVMSizeTypes.
  */
@@ -9051,6 +9067,17 @@ export type GalleryImageVersionsUpdateResponse = GalleryImageVersion & {
 };
 
 /**
+ * Optional parameters.
+ */
+export interface GalleryImageVersionsGetOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * The expand expression to apply on the operation.
+   */
+  expand?: ReplicationStatusTypes;
+}
+
+/**
  * Contains response data for the get operation.
  */
 export type GalleryImageVersionsGetResponse = GalleryImageVersion & {
@@ -9249,6 +9276,17 @@ export type GalleryApplicationVersionsUpdateResponse = GalleryApplicationVersion
     parsedBody: GalleryApplicationVersion;
   };
 };
+
+/**
+ * Optional parameters.
+ */
+export interface GalleryApplicationVersionsGetOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * The expand expression to apply on the operation.
+   */
+  expand?: ReplicationStatusTypes;
+}
 
 /**
  * Contains response data for the get operation.

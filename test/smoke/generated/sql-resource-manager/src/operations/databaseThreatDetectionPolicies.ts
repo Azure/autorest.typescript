@@ -11,6 +11,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
+  SecurityAlertPolicyName,
   DatabaseThreatDetectionPoliciesGetResponse,
   DatabaseSecurityAlertPolicy,
   DatabaseThreatDetectionPoliciesCreateOrUpdateResponse
@@ -36,12 +37,14 @@ export class DatabaseThreatDetectionPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
    * @param databaseName The name of the database for which database Threat Detection policy is defined.
+   * @param securityAlertPolicyName The name of the security alert policy.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
+    securityAlertPolicyName: SecurityAlertPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<DatabaseThreatDetectionPoliciesGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -52,6 +55,7 @@ export class DatabaseThreatDetectionPolicies {
         resourceGroupName,
         serverName,
         databaseName,
+        securityAlertPolicyName,
         options: operationOptions
       },
       getOperationSpec
@@ -64,6 +68,7 @@ export class DatabaseThreatDetectionPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
    * @param databaseName The name of the database for which database Threat Detection policy is defined.
+   * @param securityAlertPolicyName The name of the security alert policy.
    * @param parameters The database Threat Detection policy.
    * @param options The options parameters.
    */
@@ -71,6 +76,7 @@ export class DatabaseThreatDetectionPolicies {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
+    securityAlertPolicyName: SecurityAlertPolicyName,
     parameters: DatabaseSecurityAlertPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<DatabaseThreatDetectionPoliciesCreateOrUpdateResponse> {
@@ -82,6 +88,7 @@ export class DatabaseThreatDetectionPolicies {
         resourceGroupName,
         serverName,
         databaseName,
+        securityAlertPolicyName,
         parameters,
         options: operationOptions
       },

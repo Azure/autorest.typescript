@@ -902,249 +902,6 @@ export const RoutingPreference: coreHttp.CompositeMapper = {
   }
 };
 
-export const Resource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "Resource",
-    modelProperties: {
-      id: {
-        serializedName: "id",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      name: {
-        serializedName: "name",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      type: {
-        serializedName: "type",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const TrackedResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "TrackedResource",
-    modelProperties: {
-      ...Resource.type.modelProperties,
-      tags: {
-        serializedName: "tags",
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
-      },
-      location: {
-        serializedName: "location",
-        required: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const StorageAccount: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "StorageAccount",
-    modelProperties: {
-      ...TrackedResource.type.modelProperties,
-      sku: {
-        serializedName: "sku",
-        type: {
-          name: "Composite",
-          className: "Sku"
-        }
-      },
-      kind: {
-        serializedName: "kind",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      identity: {
-        serializedName: "identity",
-        type: {
-          name: "Composite",
-          className: "Identity"
-        }
-      },
-      provisioningState: {
-        serializedName: "properties.provisioningState",
-        readOnly: true,
-        type: {
-          name: "Enum",
-          allowedValues: ["Creating", "ResolvingDNS", "Succeeded"]
-        }
-      },
-      primaryEndpoints: {
-        serializedName: "primaryEndpoints",
-        type: {
-          name: "Composite",
-          className: "Endpoints"
-        }
-      },
-      primaryLocation: {
-        serializedName: "properties.primaryLocation",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      statusOfPrimary: {
-        serializedName: "properties.statusOfPrimary",
-        readOnly: true,
-        type: {
-          name: "Enum",
-          allowedValues: ["available", "unavailable"]
-        }
-      },
-      lastGeoFailoverTime: {
-        serializedName: "properties.lastGeoFailoverTime",
-        readOnly: true,
-        type: {
-          name: "DateTime"
-        }
-      },
-      secondaryLocation: {
-        serializedName: "properties.secondaryLocation",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      statusOfSecondary: {
-        serializedName: "properties.statusOfSecondary",
-        readOnly: true,
-        type: {
-          name: "Enum",
-          allowedValues: ["available", "unavailable"]
-        }
-      },
-      creationTime: {
-        serializedName: "properties.creationTime",
-        readOnly: true,
-        type: {
-          name: "DateTime"
-        }
-      },
-      customDomain: {
-        serializedName: "customDomain",
-        type: {
-          name: "Composite",
-          className: "CustomDomain"
-        }
-      },
-      secondaryEndpoints: {
-        serializedName: "secondaryEndpoints",
-        type: {
-          name: "Composite",
-          className: "Endpoints"
-        }
-      },
-      encryption: {
-        serializedName: "encryption",
-        type: {
-          name: "Composite",
-          className: "Encryption"
-        }
-      },
-      accessTier: {
-        serializedName: "properties.accessTier",
-        readOnly: true,
-        type: {
-          name: "Enum",
-          allowedValues: ["Hot", "Cool"]
-        }
-      },
-      azureFilesIdentityBasedAuthentication: {
-        serializedName: "azureFilesIdentityBasedAuthentication",
-        type: {
-          name: "Composite",
-          className: "AzureFilesIdentityBasedAuthentication"
-        }
-      },
-      enableHttpsTrafficOnly: {
-        serializedName: "properties.supportsHttpsTrafficOnly",
-        type: {
-          name: "Boolean"
-        }
-      },
-      networkRuleSet: {
-        serializedName: "networkAcls",
-        type: {
-          name: "Composite",
-          className: "NetworkRuleSet"
-        }
-      },
-      isHnsEnabled: {
-        serializedName: "properties.isHnsEnabled",
-        type: {
-          name: "Boolean"
-        }
-      },
-      geoReplicationStats: {
-        serializedName: "geoReplicationStats",
-        type: {
-          name: "Composite",
-          className: "GeoReplicationStats"
-        }
-      },
-      failoverInProgress: {
-        serializedName: "properties.failoverInProgress",
-        readOnly: true,
-        type: {
-          name: "Boolean"
-        }
-      },
-      largeFileSharesState: {
-        serializedName: "properties.largeFileSharesState",
-        type: {
-          name: "String"
-        }
-      },
-      privateEndpointConnections: {
-        serializedName: "properties.privateEndpointConnections",
-        readOnly: true,
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Composite", className: "PrivateEndpointConnection" }
-          }
-        }
-      },
-      routingPreference: {
-        serializedName: "routingPreference",
-        type: {
-          name: "Composite",
-          className: "RoutingPreference"
-        }
-      },
-      blobRestoreStatus: {
-        serializedName: "blobRestoreStatus",
-        type: {
-          name: "Composite",
-          className: "BlobRestoreStatus"
-        }
-      }
-    }
-  }
-};
-
 export const Endpoints: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -1328,37 +1085,6 @@ export const GeoReplicationStats: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateEndpointConnection: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "PrivateEndpointConnection",
-    modelProperties: {
-      ...Resource.type.modelProperties,
-      privateEndpoint: {
-        serializedName: "privateEndpoint",
-        type: {
-          name: "Composite",
-          className: "PrivateEndpoint"
-        }
-      },
-      privateLinkServiceConnectionState: {
-        serializedName: "privateLinkServiceConnectionState",
-        type: {
-          name: "Composite",
-          className: "PrivateLinkServiceConnectionState"
-        }
-      },
-      provisioningState: {
-        serializedName: "properties.provisioningState",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const PrivateEndpoint: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -1394,6 +1120,36 @@ export const PrivateLinkServiceConnectionState: coreHttp.CompositeMapper = {
       },
       actionRequired: {
         serializedName: "actionRequired",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const Resource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "Resource",
+    modelProperties: {
+      id: {
+        serializedName: "id",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      name: {
+        serializedName: "name",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      type: {
+        serializedName: "type",
+        readOnly: true,
         type: {
           name: "String"
         }
@@ -1968,30 +1724,6 @@ export const ListServiceSasResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagementPolicy: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ManagementPolicy",
-    modelProperties: {
-      ...Resource.type.modelProperties,
-      lastModifiedTime: {
-        serializedName: "properties.lastModifiedTime",
-        readOnly: true,
-        type: {
-          name: "DateTime"
-        }
-      },
-      policy: {
-        serializedName: "policy",
-        type: {
-          name: "Composite",
-          className: "ManagementPolicySchema"
-        }
-      }
-    }
-  }
-};
-
 export const ManagementPolicySchema: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -2030,9 +1762,8 @@ export const ManagementPolicyRule: coreHttp.CompositeMapper = {
         }
       },
       type: {
-        defaultValue: "Lifecycle",
-        isConstant: true,
         serializedName: "type",
+        required: true,
         type: {
           name: "String"
         }
@@ -2303,38 +2034,6 @@ export const PrivateLinkResourceListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateLinkResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "PrivateLinkResource",
-    modelProperties: {
-      ...Resource.type.modelProperties,
-      groupId: {
-        serializedName: "properties.groupId",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      requiredMembers: {
-        serializedName: "properties.requiredMembers",
-        readOnly: true,
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" } }
-        }
-      },
-      requiredZoneNames: {
-        serializedName: "properties.requiredZoneNames",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" } }
-        }
-      }
-    }
-  }
-};
-
 export const ObjectReplicationPolicies: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -2346,54 +2045,6 @@ export const ObjectReplicationPolicies: coreHttp.CompositeMapper = {
           name: "Sequence",
           element: {
             type: { name: "Composite", className: "ObjectReplicationPolicy" }
-          }
-        }
-      }
-    }
-  }
-};
-
-export const ObjectReplicationPolicy: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ObjectReplicationPolicy",
-    modelProperties: {
-      ...Resource.type.modelProperties,
-      policyId: {
-        serializedName: "properties.policyId",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      enabledTime: {
-        serializedName: "properties.enabledTime",
-        readOnly: true,
-        type: {
-          name: "DateTime"
-        }
-      },
-      sourceAccount: {
-        serializedName: "properties.sourceAccount",
-        type: {
-          name: "String"
-        }
-      },
-      destinationAccount: {
-        serializedName: "properties.destinationAccount",
-        type: {
-          name: "String"
-        }
-      },
-      rules: {
-        serializedName: "properties.rules",
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Composite",
-              className: "ObjectReplicationPolicyRule"
-            }
           }
         }
       }
@@ -2459,49 +2110,6 @@ export const ObjectReplicationPolicyFilter: coreHttp.CompositeMapper = {
   }
 };
 
-export const EncryptionScope: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "EncryptionScope",
-    modelProperties: {
-      ...Resource.type.modelProperties,
-      source: {
-        serializedName: "properties.source",
-        type: {
-          name: "String"
-        }
-      },
-      state: {
-        serializedName: "properties.state",
-        type: {
-          name: "String"
-        }
-      },
-      creationTime: {
-        serializedName: "properties.creationTime",
-        readOnly: true,
-        type: {
-          name: "DateTime"
-        }
-      },
-      lastModifiedTime: {
-        serializedName: "properties.lastModifiedTime",
-        readOnly: true,
-        type: {
-          name: "DateTime"
-        }
-      },
-      keyVaultProperties: {
-        serializedName: "keyVaultProperties",
-        type: {
-          name: "Composite",
-          className: "EncryptionScopeKeyVaultProperties"
-        }
-      }
-    }
-  }
-};
-
 export const EncryptionScopeKeyVaultProperties: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -2554,76 +2162,6 @@ export const BlobServiceItems: coreHttp.CompositeMapper = {
           element: {
             type: { name: "Composite", className: "BlobServiceProperties" }
           }
-        }
-      }
-    }
-  }
-};
-
-export const BlobServiceProperties: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "BlobServiceProperties",
-    modelProperties: {
-      ...Resource.type.modelProperties,
-      sku: {
-        serializedName: "sku",
-        type: {
-          name: "Composite",
-          className: "Sku"
-        }
-      },
-      cors: {
-        serializedName: "cors",
-        type: {
-          name: "Composite",
-          className: "CorsRules"
-        }
-      },
-      defaultServiceVersion: {
-        serializedName: "properties.defaultServiceVersion",
-        type: {
-          name: "String"
-        }
-      },
-      deleteRetentionPolicy: {
-        serializedName: "deleteRetentionPolicy",
-        type: {
-          name: "Composite",
-          className: "DeleteRetentionPolicy"
-        }
-      },
-      isVersioningEnabled: {
-        serializedName: "properties.isVersioningEnabled",
-        type: {
-          name: "Boolean"
-        }
-      },
-      automaticSnapshotPolicyEnabled: {
-        serializedName: "properties.automaticSnapshotPolicyEnabled",
-        type: {
-          name: "Boolean"
-        }
-      },
-      changeFeed: {
-        serializedName: "changeFeed",
-        type: {
-          name: "Composite",
-          className: "ChangeFeed"
-        }
-      },
-      restorePolicy: {
-        serializedName: "restorePolicy",
-        type: {
-          name: "Composite",
-          className: "RestorePolicyProperties"
-        }
-      },
-      containerDeleteRetentionPolicy: {
-        serializedName: "containerDeleteRetentionPolicy",
-        type: {
-          name: "Composite",
-          className: "DeleteRetentionPolicy"
         }
       }
     }
@@ -2793,115 +2331,6 @@ export const ListContainerItems: coreHttp.CompositeMapper = {
   }
 };
 
-export const AzureEntityResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "AzureEntityResource",
-    modelProperties: {
-      ...Resource.type.modelProperties,
-      etag: {
-        serializedName: "etag",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const ListContainerItem: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ListContainerItem",
-    modelProperties: {
-      ...AzureEntityResource.type.modelProperties,
-      defaultEncryptionScope: {
-        serializedName: "properties.defaultEncryptionScope",
-        type: {
-          name: "String"
-        }
-      },
-      denyEncryptionScopeOverride: {
-        serializedName: "properties.denyEncryptionScopeOverride",
-        type: {
-          name: "Boolean"
-        }
-      },
-      publicAccess: {
-        serializedName: "properties.publicAccess",
-        type: {
-          name: "Enum",
-          allowedValues: ["Container", "Blob", "None"]
-        }
-      },
-      lastModifiedTime: {
-        serializedName: "properties.lastModifiedTime",
-        readOnly: true,
-        type: {
-          name: "DateTime"
-        }
-      },
-      leaseStatus: {
-        serializedName: "properties.leaseStatus",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      leaseState: {
-        serializedName: "properties.leaseState",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      leaseDuration: {
-        serializedName: "properties.leaseDuration",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      metadata: {
-        serializedName: "properties.metadata",
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
-      },
-      immutabilityPolicy: {
-        serializedName: "immutabilityPolicy",
-        type: {
-          name: "Composite",
-          className: "ImmutabilityPolicyProperties"
-        }
-      },
-      legalHold: {
-        serializedName: "legalHold",
-        type: {
-          name: "Composite",
-          className: "LegalHoldProperties"
-        }
-      },
-      hasLegalHold: {
-        serializedName: "properties.hasLegalHold",
-        readOnly: true,
-        type: {
-          name: "Boolean"
-        }
-      },
-      hasImmutabilityPolicy: {
-        serializedName: "properties.hasImmutabilityPolicy",
-        readOnly: true,
-        type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
-};
-
 export const ImmutabilityPolicyProperties: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -3065,6 +2494,811 @@ export const TagProperty: coreHttp.CompositeMapper = {
   }
 };
 
+export const LegalHold: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LegalHold",
+    modelProperties: {
+      hasLegalHold: {
+        serializedName: "hasLegalHold",
+        readOnly: true,
+        type: {
+          name: "Boolean"
+        }
+      },
+      tags: {
+        serializedName: "tags",
+        required: true,
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "String" },
+            constraints: { MaxLength: 23, MinLength: 3 }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const LeaseContainerRequest: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LeaseContainerRequest",
+    modelProperties: {
+      action: {
+        serializedName: "action",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      leaseId: {
+        serializedName: "leaseId",
+        type: {
+          name: "String"
+        }
+      },
+      breakPeriod: {
+        serializedName: "breakPeriod",
+        type: {
+          name: "Number"
+        }
+      },
+      leaseDuration: {
+        serializedName: "leaseDuration",
+        type: {
+          name: "Number"
+        }
+      },
+      proposedLeaseId: {
+        serializedName: "proposedLeaseId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const LeaseContainerResponse: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LeaseContainerResponse",
+    modelProperties: {
+      leaseId: {
+        serializedName: "leaseId",
+        type: {
+          name: "String"
+        }
+      },
+      leaseTimeSeconds: {
+        serializedName: "leaseTimeSeconds",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const FileServiceItems: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "FileServiceItems",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        readOnly: true,
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "FileServiceProperties" }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const CloudError: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "CloudError",
+    modelProperties: {
+      error: {
+        serializedName: "error",
+        type: {
+          name: "Composite",
+          className: "CloudErrorBody"
+        }
+      }
+    }
+  }
+};
+
+export const CloudErrorBody: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "CloudErrorBody",
+    modelProperties: {
+      code: {
+        serializedName: "code",
+        type: {
+          name: "String"
+        }
+      },
+      message: {
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      },
+      target: {
+        serializedName: "target",
+        type: {
+          name: "String"
+        }
+      },
+      details: {
+        serializedName: "details",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "CloudErrorBody" } }
+        }
+      }
+    }
+  }
+};
+
+export const FileShareItems: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "FileShareItems",
+    modelProperties: {
+      value: {
+        serializedName: "value",
+        readOnly: true,
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "FileShareItem" } }
+        }
+      },
+      nextLink: {
+        serializedName: "nextLink",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const DeletedShare: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "DeletedShare",
+    modelProperties: {
+      deletedShareName: {
+        serializedName: "deletedShareName",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      deletedShareVersion: {
+        serializedName: "deletedShareVersion",
+        required: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const PrivateEndpointConnection: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PrivateEndpointConnection",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      privateEndpoint: {
+        serializedName: "privateEndpoint",
+        type: {
+          name: "Composite",
+          className: "PrivateEndpoint"
+        }
+      },
+      privateLinkServiceConnectionState: {
+        serializedName: "privateLinkServiceConnectionState",
+        type: {
+          name: "Composite",
+          className: "PrivateLinkServiceConnectionState"
+        }
+      },
+      provisioningState: {
+        serializedName: "properties.provisioningState",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const TrackedResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "TrackedResource",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      tags: {
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" } }
+        }
+      },
+      location: {
+        serializedName: "location",
+        required: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const ManagementPolicy: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ManagementPolicy",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      lastModifiedTime: {
+        serializedName: "properties.lastModifiedTime",
+        readOnly: true,
+        type: {
+          name: "DateTime"
+        }
+      },
+      policy: {
+        serializedName: "policy",
+        type: {
+          name: "Composite",
+          className: "ManagementPolicySchema"
+        }
+      }
+    }
+  }
+};
+
+export const PrivateLinkResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PrivateLinkResource",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      groupId: {
+        serializedName: "properties.groupId",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      requiredMembers: {
+        serializedName: "properties.requiredMembers",
+        readOnly: true,
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      },
+      requiredZoneNames: {
+        serializedName: "properties.requiredZoneNames",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      }
+    }
+  }
+};
+
+export const ObjectReplicationPolicy: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ObjectReplicationPolicy",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      policyId: {
+        serializedName: "properties.policyId",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      enabledTime: {
+        serializedName: "properties.enabledTime",
+        readOnly: true,
+        type: {
+          name: "DateTime"
+        }
+      },
+      sourceAccount: {
+        serializedName: "properties.sourceAccount",
+        type: {
+          name: "String"
+        }
+      },
+      destinationAccount: {
+        serializedName: "properties.destinationAccount",
+        type: {
+          name: "String"
+        }
+      },
+      rules: {
+        serializedName: "properties.rules",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "Composite",
+              className: "ObjectReplicationPolicyRule"
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const EncryptionScope: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "EncryptionScope",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      source: {
+        serializedName: "properties.source",
+        type: {
+          name: "String"
+        }
+      },
+      state: {
+        serializedName: "properties.state",
+        type: {
+          name: "String"
+        }
+      },
+      creationTime: {
+        serializedName: "properties.creationTime",
+        readOnly: true,
+        type: {
+          name: "DateTime"
+        }
+      },
+      lastModifiedTime: {
+        serializedName: "properties.lastModifiedTime",
+        readOnly: true,
+        type: {
+          name: "DateTime"
+        }
+      },
+      keyVaultProperties: {
+        serializedName: "keyVaultProperties",
+        type: {
+          name: "Composite",
+          className: "EncryptionScopeKeyVaultProperties"
+        }
+      }
+    }
+  }
+};
+
+export const BlobServiceProperties: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "BlobServiceProperties",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      sku: {
+        serializedName: "sku",
+        type: {
+          name: "Composite",
+          className: "Sku"
+        }
+      },
+      cors: {
+        serializedName: "cors",
+        type: {
+          name: "Composite",
+          className: "CorsRules"
+        }
+      },
+      defaultServiceVersion: {
+        serializedName: "properties.defaultServiceVersion",
+        type: {
+          name: "String"
+        }
+      },
+      deleteRetentionPolicy: {
+        serializedName: "deleteRetentionPolicy",
+        type: {
+          name: "Composite",
+          className: "DeleteRetentionPolicy"
+        }
+      },
+      isVersioningEnabled: {
+        serializedName: "properties.isVersioningEnabled",
+        type: {
+          name: "Boolean"
+        }
+      },
+      automaticSnapshotPolicyEnabled: {
+        serializedName: "properties.automaticSnapshotPolicyEnabled",
+        type: {
+          name: "Boolean"
+        }
+      },
+      changeFeed: {
+        serializedName: "changeFeed",
+        type: {
+          name: "Composite",
+          className: "ChangeFeed"
+        }
+      },
+      restorePolicy: {
+        serializedName: "restorePolicy",
+        type: {
+          name: "Composite",
+          className: "RestorePolicyProperties"
+        }
+      },
+      containerDeleteRetentionPolicy: {
+        serializedName: "containerDeleteRetentionPolicy",
+        type: {
+          name: "Composite",
+          className: "DeleteRetentionPolicy"
+        }
+      }
+    }
+  }
+};
+
+export const AzureEntityResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "AzureEntityResource",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      etag: {
+        serializedName: "etag",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const FileServiceProperties: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "FileServiceProperties",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      sku: {
+        serializedName: "sku",
+        type: {
+          name: "Composite",
+          className: "Sku"
+        }
+      },
+      cors: {
+        serializedName: "cors",
+        type: {
+          name: "Composite",
+          className: "CorsRules"
+        }
+      },
+      shareDeleteRetentionPolicy: {
+        serializedName: "shareDeleteRetentionPolicy",
+        type: {
+          name: "Composite",
+          className: "DeleteRetentionPolicy"
+        }
+      }
+    }
+  }
+};
+
+export const StorageAccount: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "StorageAccount",
+    modelProperties: {
+      ...TrackedResource.type.modelProperties,
+      sku: {
+        serializedName: "sku",
+        type: {
+          name: "Composite",
+          className: "Sku"
+        }
+      },
+      kind: {
+        serializedName: "kind",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      identity: {
+        serializedName: "identity",
+        type: {
+          name: "Composite",
+          className: "Identity"
+        }
+      },
+      provisioningState: {
+        serializedName: "properties.provisioningState",
+        readOnly: true,
+        type: {
+          name: "Enum",
+          allowedValues: ["Creating", "ResolvingDNS", "Succeeded"]
+        }
+      },
+      primaryEndpoints: {
+        serializedName: "primaryEndpoints",
+        type: {
+          name: "Composite",
+          className: "Endpoints"
+        }
+      },
+      primaryLocation: {
+        serializedName: "properties.primaryLocation",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      statusOfPrimary: {
+        serializedName: "properties.statusOfPrimary",
+        readOnly: true,
+        type: {
+          name: "Enum",
+          allowedValues: ["available", "unavailable"]
+        }
+      },
+      lastGeoFailoverTime: {
+        serializedName: "properties.lastGeoFailoverTime",
+        readOnly: true,
+        type: {
+          name: "DateTime"
+        }
+      },
+      secondaryLocation: {
+        serializedName: "properties.secondaryLocation",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      statusOfSecondary: {
+        serializedName: "properties.statusOfSecondary",
+        readOnly: true,
+        type: {
+          name: "Enum",
+          allowedValues: ["available", "unavailable"]
+        }
+      },
+      creationTime: {
+        serializedName: "properties.creationTime",
+        readOnly: true,
+        type: {
+          name: "DateTime"
+        }
+      },
+      customDomain: {
+        serializedName: "customDomain",
+        type: {
+          name: "Composite",
+          className: "CustomDomain"
+        }
+      },
+      secondaryEndpoints: {
+        serializedName: "secondaryEndpoints",
+        type: {
+          name: "Composite",
+          className: "Endpoints"
+        }
+      },
+      encryption: {
+        serializedName: "encryption",
+        type: {
+          name: "Composite",
+          className: "Encryption"
+        }
+      },
+      accessTier: {
+        serializedName: "properties.accessTier",
+        readOnly: true,
+        type: {
+          name: "Enum",
+          allowedValues: ["Hot", "Cool"]
+        }
+      },
+      azureFilesIdentityBasedAuthentication: {
+        serializedName: "azureFilesIdentityBasedAuthentication",
+        type: {
+          name: "Composite",
+          className: "AzureFilesIdentityBasedAuthentication"
+        }
+      },
+      enableHttpsTrafficOnly: {
+        serializedName: "properties.supportsHttpsTrafficOnly",
+        type: {
+          name: "Boolean"
+        }
+      },
+      networkRuleSet: {
+        serializedName: "networkAcls",
+        type: {
+          name: "Composite",
+          className: "NetworkRuleSet"
+        }
+      },
+      isHnsEnabled: {
+        serializedName: "properties.isHnsEnabled",
+        type: {
+          name: "Boolean"
+        }
+      },
+      geoReplicationStats: {
+        serializedName: "geoReplicationStats",
+        type: {
+          name: "Composite",
+          className: "GeoReplicationStats"
+        }
+      },
+      failoverInProgress: {
+        serializedName: "properties.failoverInProgress",
+        readOnly: true,
+        type: {
+          name: "Boolean"
+        }
+      },
+      largeFileSharesState: {
+        serializedName: "properties.largeFileSharesState",
+        type: {
+          name: "String"
+        }
+      },
+      privateEndpointConnections: {
+        serializedName: "properties.privateEndpointConnections",
+        readOnly: true,
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "PrivateEndpointConnection" }
+          }
+        }
+      },
+      routingPreference: {
+        serializedName: "routingPreference",
+        type: {
+          name: "Composite",
+          className: "RoutingPreference"
+        }
+      },
+      blobRestoreStatus: {
+        serializedName: "blobRestoreStatus",
+        type: {
+          name: "Composite",
+          className: "BlobRestoreStatus"
+        }
+      }
+    }
+  }
+};
+
+export const ListContainerItem: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ListContainerItem",
+    modelProperties: {
+      ...AzureEntityResource.type.modelProperties,
+      defaultEncryptionScope: {
+        serializedName: "properties.defaultEncryptionScope",
+        type: {
+          name: "String"
+        }
+      },
+      denyEncryptionScopeOverride: {
+        serializedName: "properties.denyEncryptionScopeOverride",
+        type: {
+          name: "Boolean"
+        }
+      },
+      publicAccess: {
+        serializedName: "properties.publicAccess",
+        type: {
+          name: "Enum",
+          allowedValues: ["Container", "Blob", "None"]
+        }
+      },
+      lastModifiedTime: {
+        serializedName: "properties.lastModifiedTime",
+        readOnly: true,
+        type: {
+          name: "DateTime"
+        }
+      },
+      leaseStatus: {
+        serializedName: "properties.leaseStatus",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      leaseState: {
+        serializedName: "properties.leaseState",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      leaseDuration: {
+        serializedName: "properties.leaseDuration",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      metadata: {
+        serializedName: "properties.metadata",
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" } }
+        }
+      },
+      immutabilityPolicy: {
+        serializedName: "immutabilityPolicy",
+        type: {
+          name: "Composite",
+          className: "ImmutabilityPolicyProperties"
+        }
+      },
+      legalHold: {
+        serializedName: "legalHold",
+        type: {
+          name: "Composite",
+          className: "LegalHoldProperties"
+        }
+      },
+      hasLegalHold: {
+        serializedName: "properties.hasLegalHold",
+        readOnly: true,
+        type: {
+          name: "Boolean"
+        }
+      },
+      hasImmutabilityPolicy: {
+        serializedName: "properties.hasImmutabilityPolicy",
+        readOnly: true,
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  }
+};
+
 export const BlobContainer: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -3157,33 +3391,6 @@ export const BlobContainer: coreHttp.CompositeMapper = {
   }
 };
 
-export const LegalHold: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LegalHold",
-    modelProperties: {
-      hasLegalHold: {
-        serializedName: "hasLegalHold",
-        readOnly: true,
-        type: {
-          name: "Boolean"
-        }
-      },
-      tags: {
-        serializedName: "tags",
-        required: true,
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "String" },
-            constraints: { MaxLength: 23, MinLength: 3 }
-          }
-        }
-      }
-    }
-  }
-};
-
 export const ImmutabilityPolicy: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -3207,191 +3414,6 @@ export const ImmutabilityPolicy: coreHttp.CompositeMapper = {
         serializedName: "properties.allowProtectedAppendWrites",
         type: {
           name: "Boolean"
-        }
-      }
-    }
-  }
-};
-
-export const LeaseContainerRequest: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LeaseContainerRequest",
-    modelProperties: {
-      action: {
-        serializedName: "action",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      leaseId: {
-        serializedName: "leaseId",
-        type: {
-          name: "String"
-        }
-      },
-      breakPeriod: {
-        serializedName: "breakPeriod",
-        type: {
-          name: "Number"
-        }
-      },
-      leaseDuration: {
-        serializedName: "leaseDuration",
-        type: {
-          name: "Number"
-        }
-      },
-      proposedLeaseId: {
-        serializedName: "proposedLeaseId",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const LeaseContainerResponse: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LeaseContainerResponse",
-    modelProperties: {
-      leaseId: {
-        serializedName: "leaseId",
-        type: {
-          name: "String"
-        }
-      },
-      leaseTimeSeconds: {
-        serializedName: "leaseTimeSeconds",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const FileServiceItems: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "FileServiceItems",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        readOnly: true,
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Composite", className: "FileServiceProperties" }
-          }
-        }
-      }
-    }
-  }
-};
-
-export const FileServiceProperties: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "FileServiceProperties",
-    modelProperties: {
-      ...Resource.type.modelProperties,
-      sku: {
-        serializedName: "sku",
-        type: {
-          name: "Composite",
-          className: "Sku"
-        }
-      },
-      cors: {
-        serializedName: "cors",
-        type: {
-          name: "Composite",
-          className: "CorsRules"
-        }
-      },
-      shareDeleteRetentionPolicy: {
-        serializedName: "shareDeleteRetentionPolicy",
-        type: {
-          name: "Composite",
-          className: "DeleteRetentionPolicy"
-        }
-      }
-    }
-  }
-};
-
-export const CloudError: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "CloudError",
-    modelProperties: {
-      error: {
-        serializedName: "error",
-        type: {
-          name: "Composite",
-          className: "CloudErrorBody"
-        }
-      }
-    }
-  }
-};
-
-export const CloudErrorBody: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "CloudErrorBody",
-    modelProperties: {
-      code: {
-        serializedName: "code",
-        type: {
-          name: "String"
-        }
-      },
-      message: {
-        serializedName: "message",
-        type: {
-          name: "String"
-        }
-      },
-      target: {
-        serializedName: "target",
-        type: {
-          name: "String"
-        }
-      },
-      details: {
-        serializedName: "details",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "CloudErrorBody" } }
-        }
-      }
-    }
-  }
-};
-
-export const FileShareItems: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "FileShareItems",
-    modelProperties: {
-      value: {
-        serializedName: "value",
-        readOnly: true,
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "FileShareItem" } }
-        }
-      },
-      nextLink: {
-        serializedName: "nextLink",
-        readOnly: true,
-        type: {
-          name: "String"
         }
       }
     }
@@ -3594,29 +3616,6 @@ export const FileShare: coreHttp.CompositeMapper = {
         readOnly: true,
         type: {
           name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const DeletedShare: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "DeletedShare",
-    modelProperties: {
-      deletedShareName: {
-        serializedName: "deletedShareName",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      deletedShareVersion: {
-        serializedName: "deletedShareVersion",
-        required: true,
-        type: {
-          name: "String"
         }
       }
     }
