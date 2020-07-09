@@ -28,7 +28,7 @@ import { transformBaseUrl } from "./urlTransforms";
 import { normalizeModelWithExtensions } from "./extensions";
 import { transformGroups } from "./groupTransforms";
 import { getSchemaParents } from "../utils/schemaHelpers";
-import { sortObjectSchemasHierarchically } from "../utils/sortObjectSchemashierarchically";
+import { sortObjectSchemasHierarchically } from "../utils/sortObjectSchemasHierarchically";
 
 export async function transformChoices(codeModel: CodeModel) {
   const choices = [
