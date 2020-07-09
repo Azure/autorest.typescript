@@ -51,9 +51,7 @@ export function sortObjectSchemasHierarchically(codeModel: CodeModel) {
           c => c.type === SchemaType.Object
         ) as ObjectSchema[]);
 
-    if (currentChildren.length) {
-      stack.push(...currentChildren);
-    }
+    stack.push(...currentChildren);
   }
 
   codeModel.schemas.objects = result;
