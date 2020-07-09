@@ -19,9 +19,9 @@ export function headersToSchema(
       headersSchema.properties = [];
     }
 
-    const { description } = getLanguageMetadata(schema.language);
+    const { description, name } = getLanguageMetadata(schema.language);
     headersSchema.properties.push(
-      new Property(header, description, schema, {
+      new Property(name, description, schema, {
         // core-http serializer requires Header serialized names to be lowercase
         serializedName: header.toLocaleLowerCase()
       })
