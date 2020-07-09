@@ -12,7 +12,6 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   GeoBackupPolicy,
-  GeoBackupPolicyName,
   GeoBackupPoliciesCreateOrUpdateResponse,
   GeoBackupPoliciesGetResponse,
   GeoBackupPoliciesListByDatabaseResponse
@@ -38,7 +37,6 @@ export class GeoBackupPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
    * @param databaseName The name of the database.
-   * @param geoBackupPolicyName The name of the geo backup policy.
    * @param parameters The required parameters for creating or updating the geo backup policy.
    * @param options The options parameters.
    */
@@ -46,7 +44,6 @@ export class GeoBackupPolicies {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    geoBackupPolicyName: GeoBackupPolicyName,
     parameters: GeoBackupPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<GeoBackupPoliciesCreateOrUpdateResponse> {
@@ -58,7 +55,6 @@ export class GeoBackupPolicies {
         resourceGroupName,
         serverName,
         databaseName,
-        geoBackupPolicyName,
         parameters,
         options: operationOptions
       },
@@ -72,14 +68,12 @@ export class GeoBackupPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
    * @param databaseName The name of the database.
-   * @param geoBackupPolicyName The name of the geo backup policy.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    geoBackupPolicyName: GeoBackupPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<GeoBackupPoliciesGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -90,7 +84,6 @@ export class GeoBackupPolicies {
         resourceGroupName,
         serverName,
         databaseName,
-        geoBackupPolicyName,
         options: operationOptions
       },
       getOperationSpec

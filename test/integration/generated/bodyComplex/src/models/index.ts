@@ -205,10 +205,6 @@ export type Cookiecuttershark = Shark & {};
  */
 export type CMYKColors = "cyan" | "Magenta" | "YELLOW" | "blacK";
 /**
- * Defines values for MyKind.
- */
-export type MyKind = "Kind1";
-/**
  * Defines values for GoblinSharkColor.
  */
 export type GoblinSharkColor = "pink" | "gray" | "brown" | "RED" | "red";

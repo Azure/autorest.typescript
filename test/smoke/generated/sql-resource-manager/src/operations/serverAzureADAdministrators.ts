@@ -12,7 +12,6 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  AdministratorName,
   ServerAzureADAdministratorsGetResponse,
   ServerAzureADAdministrator,
   ServerAzureADAdministratorsCreateOrUpdateResponse,
@@ -40,25 +39,18 @@ export class ServerAzureADAdministrators {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param administratorName The name of server active directory administrator.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     serverName: string,
-    administratorName: AdministratorName,
     options?: coreHttp.OperationOptions
   ): Promise<ServerAzureADAdministratorsGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      {
-        resourceGroupName,
-        serverName,
-        administratorName,
-        options: operationOptions
-      },
+      { resourceGroupName, serverName, options: operationOptions },
       getOperationSpec
     ) as Promise<ServerAzureADAdministratorsGetResponse>;
   }
@@ -68,7 +60,6 @@ export class ServerAzureADAdministrators {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param administratorName
    * @param parameters The required parameters for creating or updating an Active Directory
    *                   Administrator.
    * @param options The options parameters.
@@ -76,7 +67,6 @@ export class ServerAzureADAdministrators {
   async createOrUpdate(
     resourceGroupName: string,
     serverName: string,
-    administratorName: AdministratorName,
     parameters: ServerAzureADAdministrator,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ServerAzureADAdministratorsCreateOrUpdateResponse>> {
@@ -87,7 +77,6 @@ export class ServerAzureADAdministrators {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
-      administratorName,
       parameters,
       options: operationOptions
     };
@@ -116,13 +105,11 @@ export class ServerAzureADAdministrators {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
-   * @param administratorName The name of server active directory administrator.
    * @param options The options parameters.
    */
   async delete(
     resourceGroupName: string,
     serverName: string,
-    administratorName: AdministratorName,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -132,7 +119,6 @@ export class ServerAzureADAdministrators {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
-      administratorName,
       options: operationOptions
     };
     const sendOperation = (
@@ -276,7 +262,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.administratorName1
+    Parameters.administratorName
   ],
   serializer
 };
@@ -306,7 +292,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.administratorName1
+    Parameters.administratorName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -323,7 +309,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.administratorName1
+    Parameters.administratorName
   ],
   serializer
 };

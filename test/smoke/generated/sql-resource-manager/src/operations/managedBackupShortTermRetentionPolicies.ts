@@ -12,7 +12,6 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  ManagedShortTermRetentionPolicyName,
   ManagedBackupShortTermRetentionPoliciesGetResponse,
   ManagedBackupShortTermRetentionPolicy,
   ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse,
@@ -41,14 +40,12 @@ export class ManagedBackupShortTermRetentionPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param databaseName The name of the database.
-   * @param policyName The policy name.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    policyName: ManagedShortTermRetentionPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedBackupShortTermRetentionPoliciesGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -59,7 +56,6 @@ export class ManagedBackupShortTermRetentionPolicies {
         resourceGroupName,
         managedInstanceName,
         databaseName,
-        policyName,
         options: operationOptions
       },
       getOperationSpec
@@ -72,7 +68,6 @@ export class ManagedBackupShortTermRetentionPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be "default".
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
@@ -80,7 +75,6 @@ export class ManagedBackupShortTermRetentionPolicies {
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    policyName: ManagedShortTermRetentionPolicyName,
     parameters: ManagedBackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<
@@ -94,7 +88,6 @@ export class ManagedBackupShortTermRetentionPolicies {
       resourceGroupName,
       managedInstanceName,
       databaseName,
-      policyName,
       parameters,
       options: operationOptions
     };
@@ -124,7 +117,6 @@ export class ManagedBackupShortTermRetentionPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be "default".
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
@@ -132,7 +124,6 @@ export class ManagedBackupShortTermRetentionPolicies {
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    policyName: ManagedShortTermRetentionPolicyName,
     parameters: ManagedBackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<ManagedBackupShortTermRetentionPoliciesUpdateResponse>> {
@@ -144,7 +135,6 @@ export class ManagedBackupShortTermRetentionPolicies {
       resourceGroupName,
       managedInstanceName,
       databaseName,
-      policyName,
       parameters,
       options: operationOptions
     };
@@ -263,8 +253,8 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.databaseName,
-    Parameters.managedInstanceName,
-    Parameters.policyName1
+    Parameters.policyName,
+    Parameters.managedInstanceName
   ],
   serializer
 };
@@ -294,8 +284,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.databaseName,
-    Parameters.managedInstanceName,
-    Parameters.policyName1
+    Parameters.policyName,
+    Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -327,8 +317,8 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.databaseName,
-    Parameters.managedInstanceName,
-    Parameters.policyName1
+    Parameters.policyName,
+    Parameters.managedInstanceName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",

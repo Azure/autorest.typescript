@@ -12,7 +12,6 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  LongTermRetentionPolicyName,
   BackupLongTermRetentionPoliciesGetResponse,
   BackupLongTermRetentionPolicy,
   BackupLongTermRetentionPoliciesCreateOrUpdateResponse,
@@ -39,14 +38,12 @@ export class BackupLongTermRetentionPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
    * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be Default.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    policyName: LongTermRetentionPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<BackupLongTermRetentionPoliciesGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -57,7 +54,6 @@ export class BackupLongTermRetentionPolicies {
         resourceGroupName,
         serverName,
         databaseName,
-        policyName,
         options: operationOptions
       },
       getOperationSpec
@@ -70,7 +66,6 @@ export class BackupLongTermRetentionPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
    * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be Default.
    * @param parameters The long term retention policy info.
    * @param options The options parameters.
    */
@@ -78,7 +73,6 @@ export class BackupLongTermRetentionPolicies {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    policyName: LongTermRetentionPolicyName,
     parameters: BackupLongTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<BackupLongTermRetentionPoliciesCreateOrUpdateResponse>> {
@@ -90,7 +84,6 @@ export class BackupLongTermRetentionPolicies {
       resourceGroupName,
       serverName,
       databaseName,
-      policyName,
       parameters,
       options: operationOptions
     };

@@ -12,7 +12,6 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  ManagedShortTermRetentionPolicyName,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse,
   ManagedBackupShortTermRetentionPolicy,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse,
@@ -41,14 +40,12 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param restorableDroppedDatabaseId
-   * @param policyName The policy name.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,
-    policyName: ManagedShortTermRetentionPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<
     ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse
@@ -61,7 +58,6 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
         resourceGroupName,
         managedInstanceName,
         restorableDroppedDatabaseId,
-        policyName,
         options: operationOptions
       },
       getOperationSpec
@@ -76,7 +72,6 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param restorableDroppedDatabaseId
-   * @param policyName The policy name. Should always be "default".
    * @param parameters The long term retention policy info.
    * @param options The options parameters.
    */
@@ -84,7 +79,6 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
     resourceGroupName: string,
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,
-    policyName: ManagedShortTermRetentionPolicyName,
     parameters: ManagedBackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<
@@ -100,7 +94,6 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
       resourceGroupName,
       managedInstanceName,
       restorableDroppedDatabaseId,
-      policyName,
       parameters,
       options: operationOptions
     };
@@ -130,7 +123,6 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param restorableDroppedDatabaseId
-   * @param policyName The policy name. Should always be "default".
    * @param parameters The long term retention policy info.
    * @param options The options parameters.
    */
@@ -138,7 +130,6 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
     resourceGroupName: string,
     managedInstanceName: string,
     restorableDroppedDatabaseId: string,
-    policyName: ManagedShortTermRetentionPolicyName,
     parameters: ManagedBackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<
@@ -154,7 +145,6 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies {
       resourceGroupName,
       managedInstanceName,
       restorableDroppedDatabaseId,
-      policyName,
       parameters,
       options: operationOptions
     };
@@ -277,8 +267,8 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
+    Parameters.policyName,
     Parameters.managedInstanceName,
-    Parameters.policyName1,
     Parameters.restorableDroppedDatabaseId
   ],
   serializer
@@ -308,8 +298,8 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
+    Parameters.policyName,
     Parameters.managedInstanceName,
-    Parameters.policyName1,
     Parameters.restorableDroppedDatabaseId
   ],
   headerParameters: [Parameters.contentType],
@@ -341,8 +331,8 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
+    Parameters.policyName,
     Parameters.managedInstanceName,
-    Parameters.policyName1,
     Parameters.restorableDroppedDatabaseId
   ],
   headerParameters: [Parameters.contentType],

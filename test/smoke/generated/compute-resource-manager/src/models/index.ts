@@ -623,7 +623,7 @@ export interface DiffDiskSettings {
   /**
    * Specifies the ephemeral disk settings for operating system disk.
    */
-  option?: DiffDiskOptions;
+  option?: "Local";
   /**
    * Specifies the ephemeral disk placement for operating system disk.<br><br> Possible values are: <br><br> **CacheDisk** <br><br> **ResourceDisk** <br><br> Default: **CacheDisk** if one is configured for the VM size otherwise **ResourceDisk** is used.<br><br> Refer to VM size documentation for Windows VM at https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes and Linux VM at https://docs.microsoft.com/en-us/azure/virtual-machines/linux/sizes to check which VM sizes exposes a cache disk.
    */
@@ -1939,7 +1939,7 @@ export interface OrchestrationServiceSummary {
   /**
    * The name of the service.
    */
-  readonly serviceName?: OrchestrationServiceNames;
+  readonly serviceName?: "AutomaticRepairs";
   /**
    * The current state of the service.
    */
@@ -2212,7 +2212,7 @@ export interface OrchestrationServiceStateInput {
   /**
    * The name of the service.
    */
-  serviceName: OrchestrationServiceNames;
+  serviceName: "AutomaticRepairs";
   /**
    * The action to be performed.
    */
@@ -2963,7 +2963,7 @@ export interface EncryptionSetIdentity {
   /**
    * The type of Managed Identity used by the DiskEncryptionSet. Only SystemAssigned is supported.
    */
-  type?: DiskEncryptionSetIdentityType;
+  type?: "SystemAssigned";
   /**
    * The object id of the Managed Identity Resource. This will be sent to the RP from ARM via the x-ms-identity-principal-id header in the PUT request if the resource has a systemAssigned(implicit) identity
    */
@@ -3405,7 +3405,7 @@ export interface ContainerServiceMasterProfile {
   /**
    * Number of masters (VMs) in the container service cluster. Allowed values are 1, 3, and 5. The default value is 1.
    */
-  count?: Enum31;
+  count?: Enum27;
   /**
    * DNS prefix to be used to create the FQDN for master.
    */
@@ -5496,10 +5496,6 @@ export type VirtualMachineSizeTypes =
   | "Standard_NV12"
   | "Standard_NV24";
 /**
- * Defines values for DiffDiskOptions.
- */
-export type DiffDiskOptions = "Local";
-/**
  * Defines values for DiffDiskPlacement.
  */
 export type DiffDiskPlacement = "CacheDisk" | "ResourceDisk";
@@ -5538,10 +5534,6 @@ export type VirtualMachineScaleSetScaleInRules =
   | "Default"
   | "OldestVM"
   | "NewestVM";
-/**
- * Defines values for OrchestrationServiceNames.
- */
-export type OrchestrationServiceNames = "AutomaticRepairs";
 /**
  * Defines values for OrchestrationServiceState.
  */
@@ -5601,10 +5593,6 @@ export type SnapshotStorageAccountTypes =
   | "Premium_LRS"
   | "Standard_ZRS";
 /**
- * Defines values for DiskEncryptionSetIdentityType.
- */
-export type DiskEncryptionSetIdentityType = "SystemAssigned";
-/**
  * Defines values for GalleryPropertiesProvisioningState.
  */
 export type GalleryPropertiesProvisioningState =
@@ -5658,10 +5646,6 @@ export type ReplicationState =
   | "Completed"
   | "Failed";
 /**
- * Defines values for ReplicationStatusTypes.
- */
-export type ReplicationStatusTypes = "ReplicationStatus";
-/**
  * Defines values for GalleryApplicationVersionPropertiesProvisioningState.
  */
 export type GalleryApplicationVersionPropertiesProvisioningState =
@@ -5672,9 +5656,9 @@ export type GalleryApplicationVersionPropertiesProvisioningState =
   | "Deleting"
   | "Migrating";
 /**
- * Defines values for Enum31.
+ * Defines values for Enum27.
  */
-export type Enum31 = 1 | 3 | 5;
+export type Enum27 = 1 | 3 | 5;
 /**
  * Defines values for ContainerServiceVMSizeTypes.
  */
@@ -9067,17 +9051,6 @@ export type GalleryImageVersionsUpdateResponse = GalleryImageVersion & {
 };
 
 /**
- * Optional parameters.
- */
-export interface GalleryImageVersionsGetOptionalParams
-  extends coreHttp.OperationOptions {
-  /**
-   * The expand expression to apply on the operation.
-   */
-  expand?: ReplicationStatusTypes;
-}
-
-/**
  * Contains response data for the get operation.
  */
 export type GalleryImageVersionsGetResponse = GalleryImageVersion & {
@@ -9276,17 +9249,6 @@ export type GalleryApplicationVersionsUpdateResponse = GalleryApplicationVersion
     parsedBody: GalleryApplicationVersion;
   };
 };
-
-/**
- * Optional parameters.
- */
-export interface GalleryApplicationVersionsGetOptionalParams
-  extends coreHttp.OperationOptions {
-  /**
-   * The expand expression to apply on the operation.
-   */
-  expand?: ReplicationStatusTypes;
-}
 
 /**
  * Contains response data for the get operation.

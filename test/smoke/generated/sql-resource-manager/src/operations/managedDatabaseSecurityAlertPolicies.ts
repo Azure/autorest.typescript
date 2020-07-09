@@ -11,7 +11,6 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
-  SecurityAlertPolicyName,
   ManagedDatabaseSecurityAlertPoliciesGetResponse,
   ManagedDatabaseSecurityAlertPolicy,
   ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse,
@@ -39,14 +38,12 @@ export class ManagedDatabaseSecurityAlertPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param databaseName The name of the managed database for which the security alert policy is defined.
-   * @param securityAlertPolicyName The name of the security alert policy.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    securityAlertPolicyName: SecurityAlertPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabaseSecurityAlertPoliciesGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -57,7 +54,6 @@ export class ManagedDatabaseSecurityAlertPolicies {
         resourceGroupName,
         managedInstanceName,
         databaseName,
-        securityAlertPolicyName,
         options: operationOptions
       },
       getOperationSpec
@@ -70,7 +66,6 @@ export class ManagedDatabaseSecurityAlertPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param databaseName The name of the managed database for which the security alert policy is defined.
-   * @param securityAlertPolicyName The name of the security alert policy.
    * @param parameters The database security alert policy.
    * @param options The options parameters.
    */
@@ -78,7 +73,6 @@ export class ManagedDatabaseSecurityAlertPolicies {
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    securityAlertPolicyName: SecurityAlertPolicyName,
     parameters: ManagedDatabaseSecurityAlertPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse> {
@@ -90,7 +84,6 @@ export class ManagedDatabaseSecurityAlertPolicies {
         resourceGroupName,
         managedInstanceName,
         databaseName,
-        securityAlertPolicyName,
         parameters,
         options: operationOptions
       },

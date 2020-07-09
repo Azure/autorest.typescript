@@ -15,7 +15,6 @@ import {
   ImportRequest,
   DatabasesImportResponse,
   ImportExtensionRequest,
-  ExtensionName,
   DatabasesCreateImportOperationResponse,
   ExportRequest,
   DatabasesExportResponse,
@@ -101,7 +100,6 @@ export class Databases {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
    * @param databaseName The name of the database to import into
-   * @param extensionName The name of the operation to perform
    * @param parameters The required parameters for importing a Bacpac into a database.
    * @param options The options parameters.
    */
@@ -109,7 +107,6 @@ export class Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    extensionName: ExtensionName,
     parameters: ImportExtensionRequest,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DatabasesCreateImportOperationResponse>> {
@@ -121,7 +118,6 @@ export class Databases {
       resourceGroupName,
       serverName,
       databaseName,
-      extensionName,
       parameters,
       options: operationOptions
     };

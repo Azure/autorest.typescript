@@ -214,7 +214,7 @@ export interface DatabaseAccountUpdateParameters {
   /**
    * The cassandra connector offer type for the Cosmos DB database C* account.
    */
-  connectorOffer?: ConnectorOffer;
+  connectorOffer?: "Small";
   /**
    * Disable write operations on metadata resources (databases, containers, throughput) via account keys
    */
@@ -1460,7 +1460,7 @@ export type DatabaseAccountGetResults = ARMResourceProperties & {
   /**
    * The cassandra connector offer type for the Cosmos DB database C* account.
    */
-  connectorOffer?: ConnectorOffer;
+  connectorOffer?: "Small";
   /**
    * Disable write operations on metadata resources (databases, containers, throughput) via account keys
    */
@@ -1526,7 +1526,7 @@ export type DatabaseAccountCreateUpdateParameters = ARMResourceProperties & {
   /**
    * The cassandra connector offer type for the Cosmos DB database C* account.
    */
-  connectorOffer?: ConnectorOffer;
+  connectorOffer?: "Small";
   /**
    * Disable write operations on metadata resources (databases, containers, throughput) via account keys
    */
@@ -2029,10 +2029,6 @@ export type NotebookWorkspaceCreateUpdateParameters = ARMProxyResource & {};
  */
 export type DatabaseAccountKind = "GlobalDocumentDB" | "MongoDB" | "Parse";
 /**
- * Defines values for ConnectorOffer.
- */
-export type ConnectorOffer = "Small";
-/**
  * Defines values for PublicNetworkAccess.
  */
 export type PublicNetworkAccess = "Enabled" | "Disabled";
@@ -2112,10 +2108,6 @@ export type TriggerOperation =
   | "Update"
   | "Delete"
   | "Replace";
-/**
- * Defines values for NotebookWorkspaceName.
- */
-export type NotebookWorkspaceName = "default";
 /**
  * Defines values for DefaultConsistencyLevel.
  */

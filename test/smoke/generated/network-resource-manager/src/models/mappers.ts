@@ -325,6 +325,8 @@ export const FlowLogFormatParameters: coreHttp.CompositeMapper = {
     className: "FlowLogFormatParameters",
     modelProperties: {
       type: {
+        defaultValue: "JSON",
+        isConstant: true,
         serializedName: "type",
         type: {
           name: "String"
@@ -3784,6 +3786,8 @@ export const NatGatewaySku: coreHttp.CompositeMapper = {
     className: "NatGatewaySku",
     modelProperties: {
       name: {
+        defaultValue: "Standard",
+        isConstant: true,
         serializedName: "name",
         type: {
           name: "String"
@@ -5464,6 +5468,8 @@ export const HttpConfiguration: coreHttp.CompositeMapper = {
     className: "HttpConfiguration",
     modelProperties: {
       method: {
+        defaultValue: "Get",
+        isConstant: true,
         serializedName: "method",
         type: {
           name: "String"
@@ -6497,6 +6503,8 @@ export const ConnectionMonitorEndpointFilter: coreHttp.CompositeMapper = {
     className: "ConnectionMonitorEndpointFilter",
     modelProperties: {
       type: {
+        defaultValue: "Include",
+        isConstant: true,
         serializedName: "type",
         type: {
           name: "String"
@@ -6524,6 +6532,8 @@ export const ConnectionMonitorEndpointFilterItem: coreHttp.CompositeMapper = {
     className: "ConnectionMonitorEndpointFilterItem",
     modelProperties: {
       type: {
+        defaultValue: "AgentAddress",
+        isConstant: true,
         serializedName: "type",
         type: {
           name: "String"
@@ -6758,6 +6768,8 @@ export const ConnectionMonitorOutput: coreHttp.CompositeMapper = {
     className: "ConnectionMonitorOutput",
     modelProperties: {
       type: {
+        defaultValue: "Workspace",
+        isConstant: true,
         serializedName: "type",
         type: {
           name: "String"
@@ -7721,6 +7733,8 @@ export const PublicIPPrefixSku: coreHttp.CompositeMapper = {
     className: "PublicIPPrefixSku",
     modelProperties: {
       name: {
+        defaultValue: "Standard",
+        isConstant: true,
         serializedName: "name",
         type: {
           name: "String"
@@ -8158,8 +8172,9 @@ export const Usage: coreHttp.CompositeMapper = {
         }
       },
       unit: {
+        defaultValue: "Count",
+        isConstant: true,
         serializedName: "unit",
-        required: true,
         type: {
           name: "String"
         }
@@ -10822,6 +10837,8 @@ export const ManagedRuleOverride: coreHttp.CompositeMapper = {
         }
       },
       state: {
+        defaultValue: "Disabled",
+        isConstant: true,
         serializedName: "state",
         type: {
           name: "String"
@@ -10837,6 +10854,8 @@ export const FirewallPolicyNatRuleAction: coreHttp.CompositeMapper = {
     className: "FirewallPolicyNatRuleAction",
     modelProperties: {
       type: {
+        defaultValue: "DNAT",
+        isConstant: true,
         serializedName: "type",
         type: {
           name: "String"
@@ -14879,6 +14898,8 @@ export const RouteFilterRule: coreHttp.CompositeMapper = {
         }
       },
       routeFilterRuleType: {
+        defaultValue: "Community",
+        isConstant: true,
         serializedName: "properties.routeFilterRuleType",
         type: {
           name: "String"
@@ -15737,6 +15758,8 @@ export const PatchRouteFilterRule: coreHttp.CompositeMapper = {
         }
       },
       routeFilterRuleType: {
+        defaultValue: "Community",
+        isConstant: true,
         serializedName: "properties.routeFilterRuleType",
         type: {
           name: "String"

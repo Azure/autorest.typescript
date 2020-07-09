@@ -424,8 +424,9 @@ export const apiVersion1: OperationQueryParameter = {
 export const notebookWorkspaceName: OperationURLParameter = {
   parameterPath: "notebookWorkspaceName",
   mapper: {
+    defaultValue: "default",
+    isConstant: true,
     serializedName: "notebookWorkspaceName",
-    required: true,
     type: {
       name: "String"
     }

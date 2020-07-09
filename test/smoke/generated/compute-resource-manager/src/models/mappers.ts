@@ -1025,6 +1025,8 @@ export const DiffDiskSettings: coreHttp.CompositeMapper = {
     className: "DiffDiskSettings",
     modelProperties: {
       option: {
+        defaultValue: "Local",
+        isConstant: true,
         serializedName: "option",
         type: {
           name: "String"
@@ -3279,8 +3281,9 @@ export const OrchestrationServiceSummary: coreHttp.CompositeMapper = {
     className: "OrchestrationServiceSummary",
     modelProperties: {
       serviceName: {
+        defaultValue: "AutomaticRepairs",
+        isConstant: true,
         serializedName: "serviceName",
-        readOnly: true,
         type: {
           name: "String"
         }
@@ -3758,8 +3761,9 @@ export const OrchestrationServiceStateInput: coreHttp.CompositeMapper = {
     className: "OrchestrationServiceStateInput",
     modelProperties: {
       serviceName: {
+        defaultValue: "AutomaticRepairs",
+        isConstant: true,
         serializedName: "serviceName",
-        required: true,
         type: {
           name: "String"
         }
@@ -5061,6 +5065,8 @@ export const EncryptionSetIdentity: coreHttp.CompositeMapper = {
     className: "EncryptionSetIdentity",
     modelProperties: {
       type: {
+        defaultValue: "SystemAssigned",
+        isConstant: true,
         serializedName: "type",
         type: {
           name: "String"

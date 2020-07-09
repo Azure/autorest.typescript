@@ -12,7 +12,6 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
-  ShortTermRetentionPolicyName,
   BackupShortTermRetentionPoliciesGetResponse,
   BackupShortTermRetentionPolicy,
   BackupShortTermRetentionPoliciesCreateOrUpdateResponse,
@@ -41,14 +40,12 @@ export class BackupShortTermRetentionPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
    * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be "default".
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    policyName: ShortTermRetentionPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<BackupShortTermRetentionPoliciesGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -59,7 +56,6 @@ export class BackupShortTermRetentionPolicies {
         resourceGroupName,
         serverName,
         databaseName,
-        policyName,
         options: operationOptions
       },
       getOperationSpec
@@ -72,7 +68,6 @@ export class BackupShortTermRetentionPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
    * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be "default".
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
@@ -80,7 +75,6 @@ export class BackupShortTermRetentionPolicies {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    policyName: ShortTermRetentionPolicyName,
     parameters: BackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<
@@ -94,7 +88,6 @@ export class BackupShortTermRetentionPolicies {
       resourceGroupName,
       serverName,
       databaseName,
-      policyName,
       parameters,
       options: operationOptions
     };
@@ -124,7 +117,6 @@ export class BackupShortTermRetentionPolicies {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
    * @param databaseName The name of the database.
-   * @param policyName The policy name. Should always be "default".
    * @param parameters The short term retention policy info.
    * @param options The options parameters.
    */
@@ -132,7 +124,6 @@ export class BackupShortTermRetentionPolicies {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    policyName: ShortTermRetentionPolicyName,
     parameters: BackupShortTermRetentionPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<BackupShortTermRetentionPoliciesUpdateResponse>> {
@@ -144,7 +135,6 @@ export class BackupShortTermRetentionPolicies {
       resourceGroupName,
       serverName,
       databaseName,
-      policyName,
       parameters,
       options: operationOptions
     };
@@ -260,7 +250,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName,
     Parameters.databaseName,
-    Parameters.policyName2
+    Parameters.policyName
   ],
   serializer
 };
@@ -291,7 +281,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName,
     Parameters.databaseName,
-    Parameters.policyName2
+    Parameters.policyName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
@@ -324,7 +314,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName,
     Parameters.databaseName,
-    Parameters.policyName2
+    Parameters.policyName
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",

@@ -10,10 +10,7 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import {
-  RestoreDetailsName,
-  ManagedDatabaseRestoreDetailsGetResponse
-} from "../models";
+import { ManagedDatabaseRestoreDetailsGetResponse } from "../models";
 
 /**
  * Class representing a ManagedDatabaseRestoreDetails.
@@ -35,14 +32,12 @@ export class ManagedDatabaseRestoreDetails {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
    * @param databaseName The name of the database.
-   * @param restoreDetailsName The name of the restore details to retrieve.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    restoreDetailsName: RestoreDetailsName,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedDatabaseRestoreDetailsGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -53,7 +48,6 @@ export class ManagedDatabaseRestoreDetails {
         resourceGroupName,
         managedInstanceName,
         databaseName,
-        restoreDetailsName,
         options: operationOptions
       },
       getOperationSpec

@@ -223,7 +223,7 @@ export interface FlowLogFormatParameters {
   /**
    * The file type of flow log.
    */
-  type?: FlowLogFormatType;
+  type?: "JSON";
   /**
    * The version (revision) of the flow log.
    */
@@ -2274,7 +2274,7 @@ export interface NatGatewaySku {
   /**
    * Name of Nat Gateway SKU.
    */
-  name?: NatGatewaySkuName;
+  name?: "Standard";
 }
 
 /**
@@ -3290,7 +3290,7 @@ export interface HttpConfiguration {
   /**
    * HTTP method.
    */
-  method?: HttpMethod;
+  method?: "Get";
   /**
    * List of HTTP headers.
    */
@@ -3878,7 +3878,7 @@ export interface ConnectionMonitorEndpointFilter {
   /**
    * The behavior of the endpoint filter. Currently only 'Include' is supported.
    */
-  type?: ConnectionMonitorEndpointFilterType;
+  type?: "Include";
   /**
    * List of items in the filter.
    */
@@ -3892,7 +3892,7 @@ export interface ConnectionMonitorEndpointFilterItem {
   /**
    * The type of item included in the filter. Currently only 'AgentAddress' is supported.
    */
-  type?: ConnectionMonitorEndpointFilterItemType;
+  type?: "AgentAddress";
   /**
    * The address of the filter item.
    */
@@ -4038,7 +4038,7 @@ export interface ConnectionMonitorOutput {
   /**
    * Connection monitor output destination type. Currently, only "Workspace" is supported.
    */
-  type?: OutputType;
+  type?: "Workspace";
   /**
    * Describes the settings for producing output into a log analytics workspace.
    */
@@ -4624,7 +4624,7 @@ export interface PublicIPPrefixSku {
   /**
    * Name of a public IP prefix SKU.
    */
-  name?: PublicIPPrefixSkuName;
+  name?: "Standard";
 }
 
 /**
@@ -4888,7 +4888,7 @@ export interface Usage {
   /**
    * An enum describing the unit of measurement.
    */
-  unit: UsageUnit;
+  unit: "Count";
   /**
    * The current value of the usage.
    */
@@ -6484,7 +6484,7 @@ export interface ManagedRuleOverride {
   /**
    * The state of the managed rule. Defaults to Disabled if not specified.
    */
-  state?: ManagedRuleEnabledState;
+  state?: "Disabled";
 }
 
 /**
@@ -6494,7 +6494,7 @@ export interface FirewallPolicyNatRuleAction {
   /**
    * The type of action.
    */
-  type?: FirewallPolicyNatRuleActionType;
+  type?: "DNAT";
 }
 
 /**
@@ -8861,7 +8861,7 @@ export type RouteFilterRule = SubResource & {
   /**
    * The rule type of the rule.
    */
-  routeFilterRuleType?: RouteFilterRuleType;
+  routeFilterRuleType?: "Community";
   /**
    * The collection for bgp community values to filter on. e.g. ['12076:5010','12076:5020'].
    */
@@ -9374,7 +9374,7 @@ export type PatchRouteFilterRule = SubResource & {
   /**
    * The rule type of the rule.
    */
-  routeFilterRuleType?: RouteFilterRuleType;
+  routeFilterRuleType?: "Community";
   /**
    * The collection for bgp community values to filter on. e.g. ['12076:5010','12076:5020'].
    */
@@ -11764,10 +11764,6 @@ export type SecurityRuleAccess = "Allow" | "Deny";
  */
 export type SecurityRuleDirection = "Inbound" | "Outbound";
 /**
- * Defines values for FlowLogFormatType.
- */
-export type FlowLogFormatType = "JSON";
-/**
  * Defines values for RouteNextHopType.
  */
 export type RouteNextHopType =
@@ -11980,10 +11976,6 @@ export type ProbeProtocol = "Http" | "Tcp" | "Https";
  */
 export type LoadBalancerOutboundRuleProtocol = "Tcp" | "Udp" | "All";
 /**
- * Defines values for NatGatewaySkuName.
- */
-export type NatGatewaySkuName = "Standard";
-/**
  * Defines values for EffectiveRouteSource.
  */
 export type EffectiveRouteSource =
@@ -12052,10 +12044,6 @@ export type PcError =
  */
 export type Protocol = "Tcp" | "Http" | "Https" | "Icmp";
 /**
- * Defines values for HttpMethod.
- */
-export type HttpMethod = "Get";
-/**
  * Defines values for Origin.
  */
 export type Origin = "Local" | "Inbound" | "Outbound";
@@ -12089,14 +12077,6 @@ export type ConnectionStatus =
  */
 export type VerbosityLevel = "Normal" | "Minimum" | "Full";
 /**
- * Defines values for ConnectionMonitorEndpointFilterType.
- */
-export type ConnectionMonitorEndpointFilterType = "Include";
-/**
- * Defines values for ConnectionMonitorEndpointFilterItemType.
- */
-export type ConnectionMonitorEndpointFilterItemType = "AgentAddress";
-/**
  * Defines values for ConnectionMonitorTestConfigurationProtocol.
  */
 export type ConnectionMonitorTestConfigurationProtocol =
@@ -12111,10 +12091,6 @@ export type PreferredIPVersion = "IPv4" | "IPv6";
  * Defines values for HttpConfigurationMethod.
  */
 export type HttpConfigurationMethod = "Get" | "Post";
-/**
- * Defines values for OutputType.
- */
-export type OutputType = "Workspace";
 /**
  * Defines values for ConnectionMonitorType.
  */
@@ -12132,14 +12108,6 @@ export type ConnectionState = "Reachable" | "Unreachable" | "Unknown";
  */
 export type EvaluationState = "NotStarted" | "InProgress" | "Completed";
 /**
- * Defines values for PublicIPPrefixSkuName.
- */
-export type PublicIPPrefixSkuName = "Standard";
-/**
- * Defines values for RouteFilterRuleType.
- */
-export type RouteFilterRuleType = "Community";
-/**
  * Defines values for SecurityProviderName.
  */
 export type SecurityProviderName = "ZScaler" | "IBoss" | "Checkpoint";
@@ -12151,10 +12119,6 @@ export type SecurityPartnerProviderConnectionStatus =
   | "PartiallyConnected"
   | "Connected"
   | "NotConnected";
-/**
- * Defines values for UsageUnit.
- */
-export type UsageUnit = "Count";
 /**
  * Defines values for VirtualNetworkGatewayType.
  */
@@ -12426,14 +12390,6 @@ export type OwaspCrsExclusionEntrySelectorMatchOperator =
   | "StartsWith"
   | "EndsWith"
   | "EqualsAny";
-/**
- * Defines values for ManagedRuleEnabledState.
- */
-export type ManagedRuleEnabledState = "Disabled";
-/**
- * Defines values for FirewallPolicyNatRuleActionType.
- */
-export type FirewallPolicyNatRuleActionType = "DNAT";
 /**
  * Defines values for FirewallPolicyRuleConditionType.
  */

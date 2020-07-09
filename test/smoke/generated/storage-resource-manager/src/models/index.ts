@@ -1058,7 +1058,7 @@ export interface ManagementPolicyRule {
   /**
    * The valid value is Lifecycle
    */
-  type: RuleType;
+  type: "Lifecycle";
   /**
    * An object that defines the Lifecycle rule.
    */
@@ -2254,14 +2254,6 @@ export type Permissions = "r" | "d" | "w" | "l" | "a" | "c" | "u" | "p";
  * Defines values for SignedResource.
  */
 export type SignedResource = "b" | "c" | "f" | "s";
-/**
- * Defines values for ManagementPolicyName.
- */
-export type ManagementPolicyName = "default";
-/**
- * Defines values for RuleType.
- */
-export type RuleType = "Lifecycle";
 /**
  * Defines values for EncryptionScopeSource.
  */

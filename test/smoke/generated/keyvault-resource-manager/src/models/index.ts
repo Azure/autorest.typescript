@@ -95,7 +95,7 @@ export interface Sku {
   /**
    * SKU family name
    */
-  family: SkuFamily;
+  family: "A";
   /**
    * SKU name to specify whether the key vault is a standard vault or a premium vault.
    */
@@ -688,10 +688,6 @@ export interface PrivateEndpointConnectionsDeleteHeaders {
   location?: string;
 }
 
-/**
- * Defines values for SkuFamily.
- */
-export type SkuFamily = "A";
 /**
  * Defines values for KeyPermissions.
  */

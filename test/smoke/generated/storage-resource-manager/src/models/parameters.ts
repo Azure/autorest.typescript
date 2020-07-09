@@ -198,8 +198,9 @@ export const location: OperationURLParameter = {
 export const managementPolicyName: OperationURLParameter = {
   parameterPath: "managementPolicyName",
   mapper: {
+    defaultValue: "default",
+    isConstant: true,
     serializedName: "managementPolicyName",
-    required: true,
     type: {
       name: "String"
     }

@@ -153,8 +153,9 @@ export const Sku: coreHttp.CompositeMapper = {
     className: "Sku",
     modelProperties: {
       family: {
+        defaultValue: "A",
+        isConstant: true,
         serializedName: "family",
-        required: true,
         type: {
           name: "String"
         }

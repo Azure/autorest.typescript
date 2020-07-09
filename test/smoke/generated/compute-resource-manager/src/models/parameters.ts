@@ -777,6 +777,8 @@ export const galleryImageVersion1: OperationParameter = {
 export const expand2: OperationQueryParameter = {
   parameterPath: ["options", "expand"],
   mapper: {
+    defaultValue: "ReplicationStatus",
+    isConstant: true,
     serializedName: "$expand",
     type: {
       name: "String"
