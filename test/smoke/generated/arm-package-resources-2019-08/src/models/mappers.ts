@@ -816,23 +816,6 @@ export const DeploymentWhatIf: coreHttp.CompositeMapper = {
   }
 };
 
-export const DeploymentWhatIfProperties: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "DeploymentWhatIfProperties",
-    modelProperties: {
-      ...DeploymentProperties.type.modelProperties,
-      whatIfSettings: {
-        serializedName: "whatIfSettings",
-        type: {
-          name: "Composite",
-          className: "DeploymentWhatIfSettings"
-        }
-      }
-    }
-  }
-};
-
 export const DeploymentWhatIfSettings: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -1023,101 +1006,6 @@ export const ResourceListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const Resource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "Resource",
-    modelProperties: {
-      id: {
-        serializedName: "id",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      name: {
-        serializedName: "name",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      type: {
-        serializedName: "type",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      tags: {
-        serializedName: "tags",
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
-      }
-    }
-  }
-};
-
-export const GenericResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GenericResource",
-    modelProperties: {
-      ...Resource.type.modelProperties,
-      plan: {
-        serializedName: "plan",
-        type: {
-          name: "Composite",
-          className: "Plan"
-        }
-      },
-      properties: {
-        serializedName: "properties",
-        type: {
-          name: "any"
-        }
-      },
-      kind: {
-        constraints: {
-          Pattern: new RegExp("^[-w._,()]+$")
-        },
-        serializedName: "kind",
-        type: {
-          name: "String"
-        }
-      },
-      managedBy: {
-        serializedName: "managedBy",
-        type: {
-          name: "String"
-        }
-      },
-      sku: {
-        serializedName: "sku",
-        type: {
-          name: "Composite",
-          className: "Sku"
-        }
-      },
-      identity: {
-        serializedName: "identity",
-        type: {
-          name: "Composite",
-          className: "Identity"
-        }
-      }
-    }
-  }
-};
-
 export const Plan: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -1274,31 +1162,43 @@ export const ComponentsSgqdofSchemasIdentityPropertiesUserassignedidentitiesAddi
   }
 };
 
-export const GenericResourceExpanded: coreHttp.CompositeMapper = {
+export const Resource: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "GenericResourceExpanded",
+    className: "Resource",
     modelProperties: {
-      ...GenericResource.type.modelProperties,
-      createdTime: {
-        serializedName: "createdTime",
-        readOnly: true,
-        type: {
-          name: "DateTime"
-        }
-      },
-      changedTime: {
-        serializedName: "changedTime",
-        readOnly: true,
-        type: {
-          name: "DateTime"
-        }
-      },
-      provisioningState: {
-        serializedName: "provisioningState",
+      id: {
+        serializedName: "id",
         readOnly: true,
         type: {
           name: "String"
+        }
+      },
+      name: {
+        serializedName: "name",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      type: {
+        serializedName: "type",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
+      tags: {
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" } }
         }
       }
     }
@@ -1910,6 +1810,106 @@ export const SubResource: coreHttp.CompositeMapper = {
     modelProperties: {
       id: {
         serializedName: "id",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const DeploymentWhatIfProperties: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "DeploymentWhatIfProperties",
+    modelProperties: {
+      ...DeploymentProperties.type.modelProperties,
+      whatIfSettings: {
+        serializedName: "whatIfSettings",
+        type: {
+          name: "Composite",
+          className: "DeploymentWhatIfSettings"
+        }
+      }
+    }
+  }
+};
+
+export const GenericResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GenericResource",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      plan: {
+        serializedName: "plan",
+        type: {
+          name: "Composite",
+          className: "Plan"
+        }
+      },
+      properties: {
+        serializedName: "properties",
+        type: {
+          name: "any"
+        }
+      },
+      kind: {
+        constraints: {
+          Pattern: new RegExp("^[-w._,()]+$")
+        },
+        serializedName: "kind",
+        type: {
+          name: "String"
+        }
+      },
+      managedBy: {
+        serializedName: "managedBy",
+        type: {
+          name: "String"
+        }
+      },
+      sku: {
+        serializedName: "sku",
+        type: {
+          name: "Composite",
+          className: "Sku"
+        }
+      },
+      identity: {
+        serializedName: "identity",
+        type: {
+          name: "Composite",
+          className: "Identity"
+        }
+      }
+    }
+  }
+};
+
+export const GenericResourceExpanded: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GenericResourceExpanded",
+    modelProperties: {
+      ...GenericResource.type.modelProperties,
+      createdTime: {
+        serializedName: "createdTime",
+        readOnly: true,
+        type: {
+          name: "DateTime"
+        }
+      },
+      changedTime: {
+        serializedName: "changedTime",
+        readOnly: true,
+        type: {
+          name: "DateTime"
+        }
+      },
+      provisioningState: {
+        serializedName: "provisioningState",
+        readOnly: true,
         type: {
           name: "String"
         }

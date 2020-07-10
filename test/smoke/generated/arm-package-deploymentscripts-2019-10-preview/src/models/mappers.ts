@@ -8,87 +8,6 @@
 
 import * as coreHttp from "@azure/core-http";
 
-export const AzureResourceBase: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "AzureResourceBase",
-    modelProperties: {
-      id: {
-        serializedName: "id",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      name: {
-        serializedName: "name",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      type: {
-        serializedName: "type",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const DeploymentScript: coreHttp.CompositeMapper = {
-  serializedName: "DeploymentScript",
-  type: {
-    name: "Composite",
-    className: "DeploymentScript",
-    uberParent: "AzureResourceBase",
-    polymorphicDiscriminator: {
-      serializedName: "kind",
-      clientName: "kind"
-    },
-    modelProperties: {
-      ...AzureResourceBase.type.modelProperties,
-      identity: {
-        serializedName: "identity",
-        type: {
-          name: "Composite",
-          className: "ManagedServiceIdentity"
-        }
-      },
-      location: {
-        serializedName: "location",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      tags: {
-        serializedName: "tags",
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
-      },
-      kind: {
-        serializedName: "kind",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      systemData: {
-        serializedName: "systemData",
-        type: {
-          name: "Composite",
-          className: "SystemData"
-        }
-      }
-    }
-  }
-};
-
 export const ManagedServiceIdentity: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -175,6 +94,36 @@ export const SystemData: coreHttp.CompositeMapper = {
         serializedName: "lastModifiedAt",
         type: {
           name: "DateTime"
+        }
+      }
+    }
+  }
+};
+
+export const AzureResourceBase: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "AzureResourceBase",
+    modelProperties: {
+      id: {
+        serializedName: "id",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      name: {
+        serializedName: "name",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      type: {
+        serializedName: "type",
+        readOnly: true,
+        type: {
+          name: "String"
         }
       }
     }
@@ -268,23 +217,6 @@ export const ErrorAdditionalInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const DeploymentScriptUpdateParameter: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "DeploymentScriptUpdateParameter",
-    modelProperties: {
-      ...AzureResourceBase.type.modelProperties,
-      tags: {
-        serializedName: "tags",
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
-      }
-    }
-  }
-};
-
 export const DeploymentScriptListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -320,141 +252,6 @@ export const ScriptLogsList: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "ScriptLog" } }
-        }
-      }
-    }
-  }
-};
-
-export const ScriptLog: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ScriptLog",
-    modelProperties: {
-      ...AzureResourceBase.type.modelProperties,
-      log: {
-        serializedName: "properties.log",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const AzurePowerShellScript: coreHttp.CompositeMapper = {
-  serializedName: "AzurePowerShell",
-  type: {
-    name: "Composite",
-    className: "AzurePowerShellScript",
-    uberParent: "AzureResourceBase",
-    polymorphicDiscriminator: AzureResourceBase.type.polymorphicDiscriminator,
-    modelProperties: {
-      ...DeploymentScript.type.modelProperties,
-      containerSettings: {
-        serializedName: "containerSettings",
-        type: {
-          name: "Composite",
-          className: "ContainerConfiguration"
-        }
-      },
-      storageAccountSettings: {
-        serializedName: "storageAccountSettings",
-        type: {
-          name: "Composite",
-          className: "StorageAccountConfiguration"
-        }
-      },
-      cleanupPreference: {
-        serializedName: "properties.cleanupPreference",
-        type: {
-          name: "String"
-        }
-      },
-      provisioningState: {
-        serializedName: "properties.provisioningState",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      status: {
-        serializedName: "status",
-        type: {
-          name: "Composite",
-          className: "ScriptStatus"
-        }
-      },
-      outputs: {
-        serializedName: "properties.outputs",
-        readOnly: true,
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "any" } }
-        }
-      },
-      primaryScriptUri: {
-        serializedName: "properties.primaryScriptUri",
-        type: {
-          name: "String"
-        }
-      },
-      supportingScriptUris: {
-        serializedName: "properties.supportingScriptUris",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" } }
-        }
-      },
-      scriptContent: {
-        constraints: {
-          MaxLength: 32000
-        },
-        serializedName: "properties.scriptContent",
-        type: {
-          name: "String"
-        }
-      },
-      arguments: {
-        serializedName: "properties.arguments",
-        type: {
-          name: "String"
-        }
-      },
-      environmentVariables: {
-        serializedName: "properties.environmentVariables",
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Composite", className: "EnvironmentVariable" }
-          }
-        }
-      },
-      forceUpdateTag: {
-        serializedName: "properties.forceUpdateTag",
-        type: {
-          name: "String"
-        }
-      },
-      retentionInterval: {
-        serializedName: "properties.retentionInterval",
-        required: true,
-        type: {
-          name: "TimeSpan"
-        }
-      },
-      timeout: {
-        serializedName: "properties.timeout",
-        type: {
-          name: "TimeSpan"
-        }
-      },
-      azPowerShellVersion: {
-        serializedName: "properties.azPowerShellVersion",
-        required: true,
-        type: {
-          name: "String"
         }
       }
     }
@@ -696,6 +493,91 @@ export const EnvironmentVariable: coreHttp.CompositeMapper = {
   }
 };
 
+export const DeploymentScript: coreHttp.CompositeMapper = {
+  serializedName: "DeploymentScript",
+  type: {
+    name: "Composite",
+    className: "DeploymentScript",
+    uberParent: "AzureResourceBase",
+    polymorphicDiscriminator: {
+      serializedName: "kind",
+      clientName: "kind"
+    },
+    modelProperties: {
+      ...AzureResourceBase.type.modelProperties,
+      identity: {
+        serializedName: "identity",
+        type: {
+          name: "Composite",
+          className: "ManagedServiceIdentity"
+        }
+      },
+      location: {
+        serializedName: "location",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      tags: {
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" } }
+        }
+      },
+      kind: {
+        serializedName: "kind",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      systemData: {
+        serializedName: "systemData",
+        type: {
+          name: "Composite",
+          className: "SystemData"
+        }
+      }
+    }
+  }
+};
+
+export const DeploymentScriptUpdateParameter: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "DeploymentScriptUpdateParameter",
+    modelProperties: {
+      ...AzureResourceBase.type.modelProperties,
+      tags: {
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" } }
+        }
+      }
+    }
+  }
+};
+
+export const ScriptLog: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ScriptLog",
+    modelProperties: {
+      ...AzureResourceBase.type.modelProperties,
+      log: {
+        serializedName: "properties.log",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const AzurePowerShellScriptProperties: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -705,6 +587,142 @@ export const AzurePowerShellScriptProperties: coreHttp.CompositeMapper = {
       ...ScriptConfigurationBase.type.modelProperties,
       azPowerShellVersion: {
         serializedName: "azPowerShellVersion",
+        required: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const AzureCliScriptProperties: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "AzureCliScriptProperties",
+    modelProperties: {
+      ...DeploymentScriptPropertiesBase.type.modelProperties,
+      ...ScriptConfigurationBase.type.modelProperties,
+      azCliVersion: {
+        serializedName: "azCliVersion",
+        required: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const AzurePowerShellScript: coreHttp.CompositeMapper = {
+  serializedName: "AzurePowerShell",
+  type: {
+    name: "Composite",
+    className: "AzurePowerShellScript",
+    uberParent: "AzureResourceBase",
+    polymorphicDiscriminator: AzureResourceBase.type.polymorphicDiscriminator,
+    modelProperties: {
+      ...DeploymentScript.type.modelProperties,
+      containerSettings: {
+        serializedName: "containerSettings",
+        type: {
+          name: "Composite",
+          className: "ContainerConfiguration"
+        }
+      },
+      storageAccountSettings: {
+        serializedName: "storageAccountSettings",
+        type: {
+          name: "Composite",
+          className: "StorageAccountConfiguration"
+        }
+      },
+      cleanupPreference: {
+        serializedName: "properties.cleanupPreference",
+        type: {
+          name: "String"
+        }
+      },
+      provisioningState: {
+        serializedName: "properties.provisioningState",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      status: {
+        serializedName: "status",
+        type: {
+          name: "Composite",
+          className: "ScriptStatus"
+        }
+      },
+      outputs: {
+        serializedName: "properties.outputs",
+        readOnly: true,
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "any" } }
+        }
+      },
+      primaryScriptUri: {
+        serializedName: "properties.primaryScriptUri",
+        type: {
+          name: "String"
+        }
+      },
+      supportingScriptUris: {
+        serializedName: "properties.supportingScriptUris",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      },
+      scriptContent: {
+        constraints: {
+          MaxLength: 32000
+        },
+        serializedName: "properties.scriptContent",
+        type: {
+          name: "String"
+        }
+      },
+      arguments: {
+        serializedName: "properties.arguments",
+        type: {
+          name: "String"
+        }
+      },
+      environmentVariables: {
+        serializedName: "properties.environmentVariables",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "EnvironmentVariable" }
+          }
+        }
+      },
+      forceUpdateTag: {
+        serializedName: "properties.forceUpdateTag",
+        type: {
+          name: "String"
+        }
+      },
+      retentionInterval: {
+        serializedName: "properties.retentionInterval",
+        required: true,
+        type: {
+          name: "TimeSpan"
+        }
+      },
+      timeout: {
+        serializedName: "properties.timeout",
+        type: {
+          name: "TimeSpan"
+        }
+      },
+      azPowerShellVersion: {
+        serializedName: "properties.azPowerShellVersion",
         required: true,
         type: {
           name: "String"
@@ -823,24 +841,6 @@ export const AzureCliScript: coreHttp.CompositeMapper = {
       },
       azCliVersion: {
         serializedName: "properties.azCliVersion",
-        required: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const AzureCliScriptProperties: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "AzureCliScriptProperties",
-    modelProperties: {
-      ...DeploymentScriptPropertiesBase.type.modelProperties,
-      ...ScriptConfigurationBase.type.modelProperties,
-      azCliVersion: {
-        serializedName: "azCliVersion",
         required: true,
         type: {
           name: "String"

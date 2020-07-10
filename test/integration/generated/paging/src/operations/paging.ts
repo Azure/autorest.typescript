@@ -36,6 +36,7 @@ import {
   PagingGetMultiplePagesLROResponse,
   PagingNextFragmentResponse,
   PagingNextFragmentWithGroupingResponse,
+  PagingGetPagingModelWithItemNameWithXMSClientNameResponse,
   PagingGetNoItemNamePagesNextResponse,
   PagingGetSinglePagesNextResponse,
   PagingGetMultiplePagesNextOptionalParams,
@@ -50,7 +51,8 @@ import {
   PagingGetMultiplePagesFailureNextResponse,
   PagingGetMultiplePagesFailureUriNextResponse,
   PagingGetMultiplePagesLRONextOptionalParams,
-  PagingGetMultiplePagesLRONextResponse
+  PagingGetMultiplePagesLRONextResponse,
+  PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse
 } from "../models";
 
 /**
@@ -395,6 +397,23 @@ export class Paging {
   }
 
   /**
+   * A paging operation that returns a paging model whose item name is is overriden by x-ms-client-name
+   * 'indexes'.
+   * @param options The options parameters.
+   */
+  getPagingModelWithItemNameWithXMSClientName(
+    options?: coreHttp.OperationOptions
+  ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
+    return this.client.sendOperationRequest(
+      { options: operationOptions },
+      getPagingModelWithItemNameWithXMSClientNameOperationSpec
+    ) as Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse>;
+  }
+
+  /**
    * GetNoItemNamePagesNext
    * @param nextLink The nextLink from the previous successful call to the GetNoItemNamePages method.
    * @param options The options parameters.
@@ -601,6 +620,25 @@ export class Paging {
       { nextLink, options: operationOptions },
       getMultiplePagesLRONextOperationSpec
     ) as Promise<PagingGetMultiplePagesLRONextResponse>;
+  }
+
+  /**
+   * GetPagingModelWithItemNameWithXMSClientNameNext
+   * @param nextLink The nextLink from the previous successful call to the
+   *                 GetPagingModelWithItemNameWithXMSClientName method.
+   * @param options The options parameters.
+   */
+  getPagingModelWithItemNameWithXMSClientNameNext(
+    nextLink: string,
+    options?: coreHttp.OperationOptions
+  ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
+    return this.client.sendOperationRequest(
+      { nextLink, options: operationOptions },
+      getPagingModelWithItemNameWithXMSClientNameNextOperationSpec
+    ) as Promise<PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse>;
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
@@ -873,6 +911,18 @@ const nextFragmentWithGroupingOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host, Parameters.tenant1, Parameters.nextLink],
   serializer
 };
+const getPagingModelWithItemNameWithXMSClientNameOperationSpec: coreHttp.OperationSpec = {
+  path: "/paging/itemNameWithXMSClientName",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResultValueWithXMSClientName
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host],
+  serializer
+};
 const getNoItemNamePagesNextOperationSpec: coreHttp.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
@@ -1026,5 +1076,17 @@ const getMultiplePagesLRONextOperationSpec: coreHttp.OperationSpec = {
     Parameters.maxresults3,
     Parameters.timeout3
   ],
+  serializer
+};
+const getPagingModelWithItemNameWithXMSClientNameNextOperationSpec: coreHttp.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResultValueWithXMSClientName
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   serializer
 };

@@ -219,7 +219,7 @@ export class Paths {
   }
 
   /**
-   * Get 'begin!*'();:@&=+$,end
+   * https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded
    * @param options The options parameters.
    */
   stringUrlNonEncoded(

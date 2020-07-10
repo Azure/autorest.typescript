@@ -24,22 +24,6 @@ export const Pet: coreHttp.CompositeMapper = {
   }
 };
 
-export const Horse: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "Horse",
-    modelProperties: {
-      ...Pet.type.modelProperties,
-      isAShowHorse: {
-        serializedName: "isAShowHorse",
-        type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
-};
-
 export const ErrorModel: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -74,6 +58,22 @@ export const Feline: coreHttp.CompositeMapper = {
       },
       hisses: {
         serializedName: "hisses",
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  }
+};
+
+export const Horse: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "Horse",
+    modelProperties: {
+      ...Pet.type.modelProperties,
+      isAShowHorse: {
+        serializedName: "isAShowHorse",
         type: {
           name: "Boolean"
         }

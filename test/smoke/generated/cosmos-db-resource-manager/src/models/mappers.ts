@@ -8,209 +8,6 @@
 
 import * as coreHttp from "@azure/core-http";
 
-export const ARMResourceProperties: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ARMResourceProperties",
-    modelProperties: {
-      id: {
-        serializedName: "id",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      name: {
-        serializedName: "name",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      type: {
-        serializedName: "type",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      tags: {
-        serializedName: "tags",
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
-      }
-    }
-  }
-};
-
-export const DatabaseAccountGetResults: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "DatabaseAccountGetResults",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      kind: {
-        serializedName: "kind",
-        type: {
-          name: "String"
-        }
-      },
-      provisioningState: {
-        serializedName: "properties.provisioningState",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      documentEndpoint: {
-        serializedName: "properties.documentEndpoint",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      databaseAccountOfferType: {
-        defaultValue: "Standard",
-        isConstant: true,
-        serializedName: "properties.databaseAccountOfferType",
-        type: {
-          name: "String"
-        }
-      },
-      ipRangeFilter: {
-        serializedName: "properties.ipRangeFilter",
-        type: {
-          name: "String"
-        }
-      },
-      isVirtualNetworkFilterEnabled: {
-        serializedName: "properties.isVirtualNetworkFilterEnabled",
-        type: {
-          name: "Boolean"
-        }
-      },
-      enableAutomaticFailover: {
-        serializedName: "properties.enableAutomaticFailover",
-        type: {
-          name: "Boolean"
-        }
-      },
-      consistencyPolicy: {
-        serializedName: "consistencyPolicy",
-        type: {
-          name: "Composite",
-          className: "ConsistencyPolicy"
-        }
-      },
-      capabilities: {
-        serializedName: "properties.capabilities",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Capability" } }
-        }
-      },
-      writeLocations: {
-        serializedName: "properties.writeLocations",
-        readOnly: true,
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Location" } }
-        }
-      },
-      readLocations: {
-        serializedName: "properties.readLocations",
-        readOnly: true,
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Location" } }
-        }
-      },
-      locations: {
-        serializedName: "properties.locations",
-        readOnly: true,
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Location" } }
-        }
-      },
-      failoverPolicies: {
-        serializedName: "properties.failoverPolicies",
-        readOnly: true,
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "FailoverPolicy" } }
-        }
-      },
-      virtualNetworkRules: {
-        serializedName: "properties.virtualNetworkRules",
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Composite", className: "VirtualNetworkRule" }
-          }
-        }
-      },
-      privateEndpointConnections: {
-        serializedName: "properties.privateEndpointConnections",
-        readOnly: true,
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Composite", className: "PrivateEndpointConnection" }
-          }
-        }
-      },
-      enableMultipleWriteLocations: {
-        serializedName: "properties.enableMultipleWriteLocations",
-        type: {
-          name: "Boolean"
-        }
-      },
-      enableCassandraConnector: {
-        serializedName: "properties.enableCassandraConnector",
-        type: {
-          name: "Boolean"
-        }
-      },
-      connectorOffer: {
-        defaultValue: "Small",
-        isConstant: true,
-        serializedName: "properties.connectorOffer",
-        type: {
-          name: "String"
-        }
-      },
-      disableKeyBasedMetadataWriteAccess: {
-        serializedName: "properties.disableKeyBasedMetadataWriteAccess",
-        type: {
-          name: "Boolean"
-        }
-      },
-      keyVaultKeyUri: {
-        serializedName: "properties.keyVaultKeyUri",
-        type: {
-          name: "String"
-        }
-      },
-      publicNetworkAccess: {
-        serializedName: "properties.publicNetworkAccess",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const ConsistencyPolicy: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -368,60 +165,6 @@ export const VirtualNetworkRule: coreHttp.CompositeMapper = {
   }
 };
 
-export const Resource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "Resource",
-    modelProperties: {
-      id: {
-        serializedName: "id",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      name: {
-        serializedName: "name",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      type: {
-        serializedName: "type",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const PrivateEndpointConnection: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "PrivateEndpointConnection",
-    modelProperties: {
-      ...Resource.type.modelProperties,
-      privateEndpoint: {
-        serializedName: "privateEndpoint",
-        type: {
-          name: "Composite",
-          className: "PrivateEndpointProperty"
-        }
-      },
-      privateLinkServiceConnectionState: {
-        serializedName: "privateLinkServiceConnectionState",
-        type: {
-          name: "Composite",
-          className: "PrivateLinkServiceConnectionStateProperty"
-        }
-      }
-    }
-  }
-};
-
 export const PrivateEndpointProperty: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -459,6 +202,79 @@ export const PrivateLinkServiceConnectionStateProperty: coreHttp.CompositeMapper
   }
 };
 
+export const Resource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "Resource",
+    modelProperties: {
+      id: {
+        serializedName: "id",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      name: {
+        serializedName: "name",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      type: {
+        serializedName: "type",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const ARMResourceProperties: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ARMResourceProperties",
+    modelProperties: {
+      id: {
+        serializedName: "id",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      name: {
+        serializedName: "name",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      type: {
+        serializedName: "type",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
+      tags: {
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" } }
+        }
+      }
+    }
+  }
+};
+
 export const DatabaseAccountUpdateParameters: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -489,118 +305,6 @@ export const DatabaseAccountUpdateParameters: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "Location" } }
-        }
-      },
-      ipRangeFilter: {
-        serializedName: "properties.ipRangeFilter",
-        type: {
-          name: "String"
-        }
-      },
-      isVirtualNetworkFilterEnabled: {
-        serializedName: "properties.isVirtualNetworkFilterEnabled",
-        type: {
-          name: "Boolean"
-        }
-      },
-      enableAutomaticFailover: {
-        serializedName: "properties.enableAutomaticFailover",
-        type: {
-          name: "Boolean"
-        }
-      },
-      capabilities: {
-        serializedName: "properties.capabilities",
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Capability" } }
-        }
-      },
-      virtualNetworkRules: {
-        serializedName: "properties.virtualNetworkRules",
-        type: {
-          name: "Sequence",
-          element: {
-            type: { name: "Composite", className: "VirtualNetworkRule" }
-          }
-        }
-      },
-      enableMultipleWriteLocations: {
-        serializedName: "properties.enableMultipleWriteLocations",
-        type: {
-          name: "Boolean"
-        }
-      },
-      enableCassandraConnector: {
-        serializedName: "properties.enableCassandraConnector",
-        type: {
-          name: "Boolean"
-        }
-      },
-      connectorOffer: {
-        defaultValue: "Small",
-        isConstant: true,
-        serializedName: "properties.connectorOffer",
-        type: {
-          name: "String"
-        }
-      },
-      disableKeyBasedMetadataWriteAccess: {
-        serializedName: "properties.disableKeyBasedMetadataWriteAccess",
-        type: {
-          name: "Boolean"
-        }
-      },
-      keyVaultKeyUri: {
-        serializedName: "properties.keyVaultKeyUri",
-        type: {
-          name: "String"
-        }
-      },
-      publicNetworkAccess: {
-        serializedName: "properties.publicNetworkAccess",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const DatabaseAccountCreateUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "DatabaseAccountCreateUpdateParameters",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      kind: {
-        serializedName: "kind",
-        type: {
-          name: "String"
-        }
-      },
-      consistencyPolicy: {
-        serializedName: "consistencyPolicy",
-        type: {
-          name: "Composite",
-          className: "ConsistencyPolicy"
-        }
-      },
-      locations: {
-        serializedName: "properties.locations",
-        required: true,
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Location" } }
-        }
-      },
-      databaseAccountOfferType: {
-        defaultValue: "Standard",
-        isConstant: true,
-        serializedName: "properties.databaseAccountOfferType",
-        type: {
-          name: "String"
         }
       },
       ipRangeFilter: {
@@ -730,30 +434,6 @@ export const DatabaseAccountListReadOnlyKeysResult: coreHttp.CompositeMapper = {
       },
       secondaryReadonlyMasterKey: {
         serializedName: "secondaryReadonlyMasterKey",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const DatabaseAccountListKeysResult: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "DatabaseAccountListKeysResult",
-    modelProperties: {
-      ...DatabaseAccountListReadOnlyKeysResult.type.modelProperties,
-      primaryMasterKey: {
-        serializedName: "primaryMasterKey",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      secondaryMasterKey: {
-        serializedName: "secondaryMasterKey",
         readOnly: true,
         type: {
           name: "String"
@@ -1153,65 +833,6 @@ export const PercentileMetric: coreHttp.CompositeMapper = {
   }
 };
 
-export const PercentileMetricValue: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "PercentileMetricValue",
-    modelProperties: {
-      ...MetricValue.type.modelProperties,
-      p10: {
-        serializedName: "P10",
-        readOnly: true,
-        type: {
-          name: "Number"
-        }
-      },
-      p25: {
-        serializedName: "P25",
-        readOnly: true,
-        type: {
-          name: "Number"
-        }
-      },
-      p50: {
-        serializedName: "P50",
-        readOnly: true,
-        type: {
-          name: "Number"
-        }
-      },
-      p75: {
-        serializedName: "P75",
-        readOnly: true,
-        type: {
-          name: "Number"
-        }
-      },
-      p90: {
-        serializedName: "P90",
-        readOnly: true,
-        type: {
-          name: "Number"
-        }
-      },
-      p95: {
-        serializedName: "P95",
-        readOnly: true,
-        type: {
-          name: "Number"
-        }
-      },
-      p99: {
-        serializedName: "P99",
-        readOnly: true,
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
 export const PartitionMetricListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -1223,30 +844,6 @@ export const PartitionMetricListResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "PartitionMetric" } }
-        }
-      }
-    }
-  }
-};
-
-export const PartitionMetric: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "PartitionMetric",
-    modelProperties: {
-      ...Metric.type.modelProperties,
-      partitionId: {
-        serializedName: "partitionId",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      partitionKeyRangeId: {
-        serializedName: "partitionKeyRangeId",
-        readOnly: true,
-        type: {
-          name: "String"
         }
       }
     }
@@ -1325,30 +922,6 @@ export const PartitionUsagesResult: coreHttp.CompositeMapper = {
         type: {
           name: "Sequence",
           element: { type: { name: "Composite", className: "PartitionUsage" } }
-        }
-      }
-    }
-  }
-};
-
-export const PartitionUsage: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "PartitionUsage",
-    modelProperties: {
-      ...Usage.type.modelProperties,
-      partitionId: {
-        serializedName: "partitionId",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      partitionKeyRangeId: {
-        serializedName: "partitionKeyRangeId",
-        readOnly: true,
-        type: {
-          name: "String"
         }
       }
     }
@@ -1463,30 +1036,6 @@ export const SqlDatabaseListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SqlDatabaseGetResults: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SqlDatabaseGetResults",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "SqlDatabaseGetPropertiesResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "OptionsResource"
-        }
-      }
-    }
-  }
-};
-
 export const SqlDatabaseResource: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -1533,29 +1082,6 @@ export const ExtendedResourceProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const SqlDatabaseGetPropertiesResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SqlDatabaseGetPropertiesResource",
-    modelProperties: {
-      ...SqlDatabaseResource.type.modelProperties,
-      ...ExtendedResourceProperties.type.modelProperties,
-      colls: {
-        serializedName: "_colls",
-        type: {
-          name: "String"
-        }
-      },
-      users: {
-        serializedName: "_users",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const OptionsResource: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -1565,30 +1091,6 @@ export const OptionsResource: coreHttp.CompositeMapper = {
         serializedName: "throughput",
         type: {
           name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const SqlDatabaseCreateUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SqlDatabaseCreateUpdateParameters",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "SqlDatabaseResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "CreateUpdateOptions"
         }
       }
     }
@@ -1605,23 +1107,6 @@ export const CreateUpdateOptions: coreHttp.CompositeMapper = {
         serializedName: "throughput",
         type: {
           name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const ThroughputSettingsGetResults: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ThroughputSettingsGetResults",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "ThroughputSettingsGetPropertiesResource"
         }
       }
     }
@@ -1731,34 +1216,6 @@ export const ThroughputPolicyResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const ThroughputSettingsGetPropertiesResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ThroughputSettingsGetPropertiesResource",
-    modelProperties: {
-      ...ThroughputSettingsResource.type.modelProperties,
-      ...ExtendedResourceProperties.type.modelProperties
-    }
-  }
-};
-
-export const ThroughputSettingsUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ThroughputSettingsUpdateParameters",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "ThroughputSettingsResource"
-        }
-      }
-    }
-  }
-};
-
 export const SqlContainerListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -1772,30 +1229,6 @@ export const SqlContainerListResult: coreHttp.CompositeMapper = {
           element: {
             type: { name: "Composite", className: "SqlContainerGetResults" }
           }
-        }
-      }
-    }
-  }
-};
-
-export const SqlContainerGetResults: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SqlContainerGetResults",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "SqlContainerGetPropertiesResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "OptionsResource"
         }
       }
     }
@@ -2111,41 +1544,6 @@ export const ConflictResolutionPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const SqlContainerGetPropertiesResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SqlContainerGetPropertiesResource",
-    modelProperties: {
-      ...SqlContainerResource.type.modelProperties,
-      ...ExtendedResourceProperties.type.modelProperties
-    }
-  }
-};
-
-export const SqlContainerCreateUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SqlContainerCreateUpdateParameters",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "SqlContainerResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "CreateUpdateOptions"
-        }
-      }
-    }
-  }
-};
-
 export const SqlStoredProcedureListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -2162,23 +1560,6 @@ export const SqlStoredProcedureListResult: coreHttp.CompositeMapper = {
               className: "SqlStoredProcedureGetResults"
             }
           }
-        }
-      }
-    }
-  }
-};
-
-export const SqlStoredProcedureGetResults: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SqlStoredProcedureGetResults",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "SqlStoredProcedureGetPropertiesResource"
         }
       }
     }
@@ -2207,41 +1588,6 @@ export const SqlStoredProcedureResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const SqlStoredProcedureGetPropertiesResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SqlStoredProcedureGetPropertiesResource",
-    modelProperties: {
-      ...SqlStoredProcedureResource.type.modelProperties,
-      ...ExtendedResourceProperties.type.modelProperties
-    }
-  }
-};
-
-export const SqlStoredProcedureCreateUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SqlStoredProcedureCreateUpdateParameters",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "SqlStoredProcedureResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "CreateUpdateOptions"
-        }
-      }
-    }
-  }
-};
-
 export const SqlUserDefinedFunctionListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -2258,23 +1604,6 @@ export const SqlUserDefinedFunctionListResult: coreHttp.CompositeMapper = {
               className: "SqlUserDefinedFunctionGetResults"
             }
           }
-        }
-      }
-    }
-  }
-};
-
-export const SqlUserDefinedFunctionGetResults: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SqlUserDefinedFunctionGetResults",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "SqlUserDefinedFunctionGetPropertiesResource"
         }
       }
     }
@@ -2303,41 +1632,6 @@ export const SqlUserDefinedFunctionResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const SqlUserDefinedFunctionGetPropertiesResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SqlUserDefinedFunctionGetPropertiesResource",
-    modelProperties: {
-      ...SqlUserDefinedFunctionResource.type.modelProperties,
-      ...ExtendedResourceProperties.type.modelProperties
-    }
-  }
-};
-
-export const SqlUserDefinedFunctionCreateUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SqlUserDefinedFunctionCreateUpdateParameters",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "SqlUserDefinedFunctionResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "CreateUpdateOptions"
-        }
-      }
-    }
-  }
-};
-
 export const SqlTriggerListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -2351,23 +1645,6 @@ export const SqlTriggerListResult: coreHttp.CompositeMapper = {
           element: {
             type: { name: "Composite", className: "SqlTriggerGetResults" }
           }
-        }
-      }
-    }
-  }
-};
-
-export const SqlTriggerGetResults: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SqlTriggerGetResults",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "SqlTriggerGetPropertiesResource"
         }
       }
     }
@@ -2408,41 +1685,6 @@ export const SqlTriggerResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const SqlTriggerGetPropertiesResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SqlTriggerGetPropertiesResource",
-    modelProperties: {
-      ...SqlTriggerResource.type.modelProperties,
-      ...ExtendedResourceProperties.type.modelProperties
-    }
-  }
-};
-
-export const SqlTriggerCreateUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SqlTriggerCreateUpdateParameters",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "SqlTriggerResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "CreateUpdateOptions"
-        }
-      }
-    }
-  }
-};
-
 export const MongoDBDatabaseListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -2456,30 +1698,6 @@ export const MongoDBDatabaseListResult: coreHttp.CompositeMapper = {
           element: {
             type: { name: "Composite", className: "MongoDBDatabaseGetResults" }
           }
-        }
-      }
-    }
-  }
-};
-
-export const MongoDBDatabaseGetResults: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "MongoDBDatabaseGetResults",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "MongoDBDatabaseGetPropertiesResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "OptionsResource"
         }
       }
     }
@@ -2502,41 +1720,6 @@ export const MongoDBDatabaseResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const MongoDBDatabaseGetPropertiesResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "MongoDBDatabaseGetPropertiesResource",
-    modelProperties: {
-      ...MongoDBDatabaseResource.type.modelProperties,
-      ...ExtendedResourceProperties.type.modelProperties
-    }
-  }
-};
-
-export const MongoDBDatabaseCreateUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "MongoDBDatabaseCreateUpdateParameters",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "MongoDBDatabaseResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "CreateUpdateOptions"
-        }
-      }
-    }
-  }
-};
-
 export const MongoDBCollectionListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -2553,30 +1736,6 @@ export const MongoDBCollectionListResult: coreHttp.CompositeMapper = {
               className: "MongoDBCollectionGetResults"
             }
           }
-        }
-      }
-    }
-  }
-};
-
-export const MongoDBCollectionGetResults: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "MongoDBCollectionGetResults",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "MongoDBCollectionGetPropertiesResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "OptionsResource"
         }
       }
     }
@@ -2673,41 +1832,6 @@ export const MongoIndexOptions: coreHttp.CompositeMapper = {
   }
 };
 
-export const MongoDBCollectionGetPropertiesResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "MongoDBCollectionGetPropertiesResource",
-    modelProperties: {
-      ...MongoDBCollectionResource.type.modelProperties,
-      ...ExtendedResourceProperties.type.modelProperties
-    }
-  }
-};
-
-export const MongoDBCollectionCreateUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "MongoDBCollectionCreateUpdateParameters",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "MongoDBCollectionResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "CreateUpdateOptions"
-        }
-      }
-    }
-  }
-};
-
 export const TableListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -2725,30 +1849,6 @@ export const TableListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const TableGetResults: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "TableGetResults",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "TableGetPropertiesResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "OptionsResource"
-        }
-      }
-    }
-  }
-};
-
 export const TableResource: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -2759,41 +1859,6 @@ export const TableResource: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const TableGetPropertiesResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "TableGetPropertiesResource",
-    modelProperties: {
-      ...TableResource.type.modelProperties,
-      ...ExtendedResourceProperties.type.modelProperties
-    }
-  }
-};
-
-export const TableCreateUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "TableCreateUpdateParameters",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "TableResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "CreateUpdateOptions"
         }
       }
     }
@@ -2822,30 +1887,6 @@ export const CassandraKeyspaceListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const CassandraKeyspaceGetResults: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "CassandraKeyspaceGetResults",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "CassandraKeyspaceGetPropertiesResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "OptionsResource"
-        }
-      }
-    }
-  }
-};
-
 export const CassandraKeyspaceResource: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -2856,41 +1897,6 @@ export const CassandraKeyspaceResource: coreHttp.CompositeMapper = {
         required: true,
         type: {
           name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const CassandraKeyspaceGetPropertiesResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "CassandraKeyspaceGetPropertiesResource",
-    modelProperties: {
-      ...CassandraKeyspaceResource.type.modelProperties,
-      ...ExtendedResourceProperties.type.modelProperties
-    }
-  }
-};
-
-export const CassandraKeyspaceCreateUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "CassandraKeyspaceCreateUpdateParameters",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "CassandraKeyspaceResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "CreateUpdateOptions"
         }
       }
     }
@@ -2910,30 +1916,6 @@ export const CassandraTableListResult: coreHttp.CompositeMapper = {
           element: {
             type: { name: "Composite", className: "CassandraTableGetResults" }
           }
-        }
-      }
-    }
-  }
-};
-
-export const CassandraTableGetResults: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "CassandraTableGetResults",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "CassandraTableGetPropertiesResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "OptionsResource"
         }
       }
     }
@@ -3058,41 +2040,6 @@ export const ClusterKey: coreHttp.CompositeMapper = {
   }
 };
 
-export const CassandraTableGetPropertiesResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "CassandraTableGetPropertiesResource",
-    modelProperties: {
-      ...CassandraTableResource.type.modelProperties,
-      ...ExtendedResourceProperties.type.modelProperties
-    }
-  }
-};
-
-export const CassandraTableCreateUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "CassandraTableCreateUpdateParameters",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "CassandraTableResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "CreateUpdateOptions"
-        }
-      }
-    }
-  }
-};
-
 export const GremlinDatabaseListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -3106,30 +2053,6 @@ export const GremlinDatabaseListResult: coreHttp.CompositeMapper = {
           element: {
             type: { name: "Composite", className: "GremlinDatabaseGetResults" }
           }
-        }
-      }
-    }
-  }
-};
-
-export const GremlinDatabaseGetResults: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GremlinDatabaseGetResults",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "GremlinDatabaseGetPropertiesResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "OptionsResource"
         }
       }
     }
@@ -3152,41 +2075,6 @@ export const GremlinDatabaseResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const GremlinDatabaseGetPropertiesResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GremlinDatabaseGetPropertiesResource",
-    modelProperties: {
-      ...GremlinDatabaseResource.type.modelProperties,
-      ...ExtendedResourceProperties.type.modelProperties
-    }
-  }
-};
-
-export const GremlinDatabaseCreateUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GremlinDatabaseCreateUpdateParameters",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "GremlinDatabaseResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "CreateUpdateOptions"
-        }
-      }
-    }
-  }
-};
-
 export const GremlinGraphListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -3200,30 +2088,6 @@ export const GremlinGraphListResult: coreHttp.CompositeMapper = {
           element: {
             type: { name: "Composite", className: "GremlinGraphGetResults" }
           }
-        }
-      }
-    }
-  }
-};
-
-export const GremlinGraphGetResults: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GremlinGraphGetResults",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "GremlinGraphGetPropertiesResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "OptionsResource"
         }
       }
     }
@@ -3280,41 +2144,6 @@ export const GremlinGraphResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const GremlinGraphGetPropertiesResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GremlinGraphGetPropertiesResource",
-    modelProperties: {
-      ...GremlinGraphResource.type.modelProperties,
-      ...ExtendedResourceProperties.type.modelProperties
-    }
-  }
-};
-
-export const GremlinGraphCreateUpdateParameters: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GremlinGraphCreateUpdateParameters",
-    modelProperties: {
-      ...ARMResourceProperties.type.modelProperties,
-      resource: {
-        serializedName: "resource",
-        type: {
-          name: "Composite",
-          className: "GremlinGraphResource"
-        }
-      },
-      options: {
-        serializedName: "options",
-        type: {
-          name: "Composite",
-          className: "CreateUpdateOptions"
-        }
-      }
-    }
-  }
-};
-
 export const NotebookWorkspaceListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -3354,30 +2183,6 @@ export const ARMProxyResource: coreHttp.CompositeMapper = {
       },
       type: {
         serializedName: "type",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const NotebookWorkspace: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "NotebookWorkspace",
-    modelProperties: {
-      ...ARMProxyResource.type.modelProperties,
-      notebookServerEndpoint: {
-        serializedName: "properties.notebookServerEndpoint",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      status: {
-        serializedName: "properties.status",
         readOnly: true,
         type: {
           name: "String"
@@ -3428,39 +2233,6 @@ export const PrivateLinkResourceListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateLinkResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "PrivateLinkResource",
-    modelProperties: {
-      ...ARMProxyResource.type.modelProperties,
-      groupId: {
-        serializedName: "properties.groupId",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      requiredMembers: {
-        serializedName: "properties.requiredMembers",
-        readOnly: true,
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" } }
-        }
-      },
-      requiredZoneNames: {
-        serializedName: "properties.requiredZoneNames",
-        readOnly: true,
-        type: {
-          name: "Sequence",
-          element: { type: { name: "String" } }
-        }
-      }
-    }
-  }
-};
-
 export const PrivateEndpointConnectionListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -3476,6 +2248,58 @@ export const PrivateEndpointConnectionListResult: coreHttp.CompositeMapper = {
               className: "PrivateEndpointConnectionAutoGenerated"
             }
           }
+        }
+      }
+    }
+  }
+};
+
+export const PrivateLinkServiceConnectionStatePropertyAutoGenerated: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PrivateLinkServiceConnectionStatePropertyAutoGenerated",
+    modelProperties: {
+      status: {
+        serializedName: "status",
+        type: {
+          name: "String"
+        }
+      },
+      description: {
+        serializedName: "description",
+        type: {
+          name: "String"
+        }
+      },
+      actionsRequired: {
+        serializedName: "actionsRequired",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const PrivateEndpointConnection: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PrivateEndpointConnection",
+    modelProperties: {
+      ...Resource.type.modelProperties,
+      privateEndpoint: {
+        serializedName: "privateEndpoint",
+        type: {
+          name: "Composite",
+          className: "PrivateEndpointProperty"
+        }
+      },
+      privateLinkServiceConnectionState: {
+        serializedName: "privateLinkServiceConnectionState",
+        type: {
+          name: "Composite",
+          className: "PrivateLinkServiceConnectionStateProperty"
         }
       }
     }
@@ -3518,30 +2342,1159 @@ export const PrivateEndpointConnectionAutoGenerated: coreHttp.CompositeMapper = 
   }
 };
 
-export const PrivateLinkServiceConnectionStatePropertyAutoGenerated: coreHttp.CompositeMapper = {
+export const ProxyResource: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "PrivateLinkServiceConnectionStatePropertyAutoGenerated",
+    className: "ProxyResource",
     modelProperties: {
-      status: {
-        serializedName: "status",
+      ...Resource.type.modelProperties
+    }
+  }
+};
+
+export const DatabaseAccountGetResults: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "DatabaseAccountGetResults",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      kind: {
+        serializedName: "kind",
         type: {
           name: "String"
         }
       },
-      description: {
-        serializedName: "description",
+      provisioningState: {
+        serializedName: "properties.provisioningState",
+        readOnly: true,
         type: {
           name: "String"
         }
       },
-      actionsRequired: {
-        serializedName: "actionsRequired",
+      documentEndpoint: {
+        serializedName: "properties.documentEndpoint",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      databaseAccountOfferType: {
+        defaultValue: "Standard",
+        isConstant: true,
+        serializedName: "properties.databaseAccountOfferType",
+        type: {
+          name: "String"
+        }
+      },
+      ipRangeFilter: {
+        serializedName: "properties.ipRangeFilter",
+        type: {
+          name: "String"
+        }
+      },
+      isVirtualNetworkFilterEnabled: {
+        serializedName: "properties.isVirtualNetworkFilterEnabled",
+        type: {
+          name: "Boolean"
+        }
+      },
+      enableAutomaticFailover: {
+        serializedName: "properties.enableAutomaticFailover",
+        type: {
+          name: "Boolean"
+        }
+      },
+      consistencyPolicy: {
+        serializedName: "consistencyPolicy",
+        type: {
+          name: "Composite",
+          className: "ConsistencyPolicy"
+        }
+      },
+      capabilities: {
+        serializedName: "properties.capabilities",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Capability" } }
+        }
+      },
+      writeLocations: {
+        serializedName: "properties.writeLocations",
+        readOnly: true,
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Location" } }
+        }
+      },
+      readLocations: {
+        serializedName: "properties.readLocations",
+        readOnly: true,
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Location" } }
+        }
+      },
+      locations: {
+        serializedName: "properties.locations",
+        readOnly: true,
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Location" } }
+        }
+      },
+      failoverPolicies: {
+        serializedName: "properties.failoverPolicies",
+        readOnly: true,
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "FailoverPolicy" } }
+        }
+      },
+      virtualNetworkRules: {
+        serializedName: "properties.virtualNetworkRules",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "VirtualNetworkRule" }
+          }
+        }
+      },
+      privateEndpointConnections: {
+        serializedName: "properties.privateEndpointConnections",
+        readOnly: true,
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "PrivateEndpointConnection" }
+          }
+        }
+      },
+      enableMultipleWriteLocations: {
+        serializedName: "properties.enableMultipleWriteLocations",
+        type: {
+          name: "Boolean"
+        }
+      },
+      enableCassandraConnector: {
+        serializedName: "properties.enableCassandraConnector",
+        type: {
+          name: "Boolean"
+        }
+      },
+      connectorOffer: {
+        defaultValue: "Small",
+        isConstant: true,
+        serializedName: "properties.connectorOffer",
+        type: {
+          name: "String"
+        }
+      },
+      disableKeyBasedMetadataWriteAccess: {
+        serializedName: "properties.disableKeyBasedMetadataWriteAccess",
+        type: {
+          name: "Boolean"
+        }
+      },
+      keyVaultKeyUri: {
+        serializedName: "properties.keyVaultKeyUri",
+        type: {
+          name: "String"
+        }
+      },
+      publicNetworkAccess: {
+        serializedName: "properties.publicNetworkAccess",
         readOnly: true,
         type: {
           name: "String"
         }
       }
+    }
+  }
+};
+
+export const DatabaseAccountCreateUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "DatabaseAccountCreateUpdateParameters",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      kind: {
+        serializedName: "kind",
+        type: {
+          name: "String"
+        }
+      },
+      consistencyPolicy: {
+        serializedName: "consistencyPolicy",
+        type: {
+          name: "Composite",
+          className: "ConsistencyPolicy"
+        }
+      },
+      locations: {
+        serializedName: "properties.locations",
+        required: true,
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Location" } }
+        }
+      },
+      databaseAccountOfferType: {
+        defaultValue: "Standard",
+        isConstant: true,
+        serializedName: "properties.databaseAccountOfferType",
+        type: {
+          name: "String"
+        }
+      },
+      ipRangeFilter: {
+        serializedName: "properties.ipRangeFilter",
+        type: {
+          name: "String"
+        }
+      },
+      isVirtualNetworkFilterEnabled: {
+        serializedName: "properties.isVirtualNetworkFilterEnabled",
+        type: {
+          name: "Boolean"
+        }
+      },
+      enableAutomaticFailover: {
+        serializedName: "properties.enableAutomaticFailover",
+        type: {
+          name: "Boolean"
+        }
+      },
+      capabilities: {
+        serializedName: "properties.capabilities",
+        type: {
+          name: "Sequence",
+          element: { type: { name: "Composite", className: "Capability" } }
+        }
+      },
+      virtualNetworkRules: {
+        serializedName: "properties.virtualNetworkRules",
+        type: {
+          name: "Sequence",
+          element: {
+            type: { name: "Composite", className: "VirtualNetworkRule" }
+          }
+        }
+      },
+      enableMultipleWriteLocations: {
+        serializedName: "properties.enableMultipleWriteLocations",
+        type: {
+          name: "Boolean"
+        }
+      },
+      enableCassandraConnector: {
+        serializedName: "properties.enableCassandraConnector",
+        type: {
+          name: "Boolean"
+        }
+      },
+      connectorOffer: {
+        defaultValue: "Small",
+        isConstant: true,
+        serializedName: "properties.connectorOffer",
+        type: {
+          name: "String"
+        }
+      },
+      disableKeyBasedMetadataWriteAccess: {
+        serializedName: "properties.disableKeyBasedMetadataWriteAccess",
+        type: {
+          name: "Boolean"
+        }
+      },
+      keyVaultKeyUri: {
+        serializedName: "properties.keyVaultKeyUri",
+        type: {
+          name: "String"
+        }
+      },
+      publicNetworkAccess: {
+        serializedName: "properties.publicNetworkAccess",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const SqlDatabaseGetResults: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SqlDatabaseGetResults",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "SqlDatabaseGetPropertiesResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "OptionsResource"
+        }
+      }
+    }
+  }
+};
+
+export const SqlDatabaseCreateUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SqlDatabaseCreateUpdateParameters",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "SqlDatabaseResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "CreateUpdateOptions"
+        }
+      }
+    }
+  }
+};
+
+export const ThroughputSettingsGetResults: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ThroughputSettingsGetResults",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "ThroughputSettingsGetPropertiesResource"
+        }
+      }
+    }
+  }
+};
+
+export const ThroughputSettingsUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ThroughputSettingsUpdateParameters",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "ThroughputSettingsResource"
+        }
+      }
+    }
+  }
+};
+
+export const SqlContainerGetResults: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SqlContainerGetResults",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "SqlContainerGetPropertiesResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "OptionsResource"
+        }
+      }
+    }
+  }
+};
+
+export const SqlContainerCreateUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SqlContainerCreateUpdateParameters",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "SqlContainerResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "CreateUpdateOptions"
+        }
+      }
+    }
+  }
+};
+
+export const SqlStoredProcedureGetResults: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SqlStoredProcedureGetResults",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "SqlStoredProcedureGetPropertiesResource"
+        }
+      }
+    }
+  }
+};
+
+export const SqlStoredProcedureCreateUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SqlStoredProcedureCreateUpdateParameters",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "SqlStoredProcedureResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "CreateUpdateOptions"
+        }
+      }
+    }
+  }
+};
+
+export const SqlUserDefinedFunctionGetResults: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SqlUserDefinedFunctionGetResults",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "SqlUserDefinedFunctionGetPropertiesResource"
+        }
+      }
+    }
+  }
+};
+
+export const SqlUserDefinedFunctionCreateUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SqlUserDefinedFunctionCreateUpdateParameters",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "SqlUserDefinedFunctionResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "CreateUpdateOptions"
+        }
+      }
+    }
+  }
+};
+
+export const SqlTriggerGetResults: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SqlTriggerGetResults",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "SqlTriggerGetPropertiesResource"
+        }
+      }
+    }
+  }
+};
+
+export const SqlTriggerCreateUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SqlTriggerCreateUpdateParameters",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "SqlTriggerResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "CreateUpdateOptions"
+        }
+      }
+    }
+  }
+};
+
+export const MongoDBDatabaseGetResults: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "MongoDBDatabaseGetResults",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "MongoDBDatabaseGetPropertiesResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "OptionsResource"
+        }
+      }
+    }
+  }
+};
+
+export const MongoDBDatabaseCreateUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "MongoDBDatabaseCreateUpdateParameters",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "MongoDBDatabaseResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "CreateUpdateOptions"
+        }
+      }
+    }
+  }
+};
+
+export const MongoDBCollectionGetResults: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "MongoDBCollectionGetResults",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "MongoDBCollectionGetPropertiesResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "OptionsResource"
+        }
+      }
+    }
+  }
+};
+
+export const MongoDBCollectionCreateUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "MongoDBCollectionCreateUpdateParameters",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "MongoDBCollectionResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "CreateUpdateOptions"
+        }
+      }
+    }
+  }
+};
+
+export const TableGetResults: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "TableGetResults",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "TableGetPropertiesResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "OptionsResource"
+        }
+      }
+    }
+  }
+};
+
+export const TableCreateUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "TableCreateUpdateParameters",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "TableResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "CreateUpdateOptions"
+        }
+      }
+    }
+  }
+};
+
+export const CassandraKeyspaceGetResults: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "CassandraKeyspaceGetResults",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "CassandraKeyspaceGetPropertiesResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "OptionsResource"
+        }
+      }
+    }
+  }
+};
+
+export const CassandraKeyspaceCreateUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "CassandraKeyspaceCreateUpdateParameters",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "CassandraKeyspaceResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "CreateUpdateOptions"
+        }
+      }
+    }
+  }
+};
+
+export const CassandraTableGetResults: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "CassandraTableGetResults",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "CassandraTableGetPropertiesResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "OptionsResource"
+        }
+      }
+    }
+  }
+};
+
+export const CassandraTableCreateUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "CassandraTableCreateUpdateParameters",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "CassandraTableResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "CreateUpdateOptions"
+        }
+      }
+    }
+  }
+};
+
+export const GremlinDatabaseGetResults: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GremlinDatabaseGetResults",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "GremlinDatabaseGetPropertiesResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "OptionsResource"
+        }
+      }
+    }
+  }
+};
+
+export const GremlinDatabaseCreateUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GremlinDatabaseCreateUpdateParameters",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "GremlinDatabaseResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "CreateUpdateOptions"
+        }
+      }
+    }
+  }
+};
+
+export const GremlinGraphGetResults: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GremlinGraphGetResults",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "GremlinGraphGetPropertiesResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "OptionsResource"
+        }
+      }
+    }
+  }
+};
+
+export const GremlinGraphCreateUpdateParameters: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GremlinGraphCreateUpdateParameters",
+    modelProperties: {
+      ...ARMResourceProperties.type.modelProperties,
+      resource: {
+        serializedName: "resource",
+        type: {
+          name: "Composite",
+          className: "GremlinGraphResource"
+        }
+      },
+      options: {
+        serializedName: "options",
+        type: {
+          name: "Composite",
+          className: "CreateUpdateOptions"
+        }
+      }
+    }
+  }
+};
+
+export const DatabaseAccountListKeysResult: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "DatabaseAccountListKeysResult",
+    modelProperties: {
+      ...DatabaseAccountListReadOnlyKeysResult.type.modelProperties,
+      primaryMasterKey: {
+        serializedName: "primaryMasterKey",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      secondaryMasterKey: {
+        serializedName: "secondaryMasterKey",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const PartitionMetric: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PartitionMetric",
+    modelProperties: {
+      ...Metric.type.modelProperties,
+      partitionId: {
+        serializedName: "partitionId",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      partitionKeyRangeId: {
+        serializedName: "partitionKeyRangeId",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const PercentileMetricValue: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PercentileMetricValue",
+    modelProperties: {
+      ...MetricValue.type.modelProperties,
+      p10: {
+        serializedName: "P10",
+        readOnly: true,
+        type: {
+          name: "Number"
+        }
+      },
+      p25: {
+        serializedName: "P25",
+        readOnly: true,
+        type: {
+          name: "Number"
+        }
+      },
+      p50: {
+        serializedName: "P50",
+        readOnly: true,
+        type: {
+          name: "Number"
+        }
+      },
+      p75: {
+        serializedName: "P75",
+        readOnly: true,
+        type: {
+          name: "Number"
+        }
+      },
+      p90: {
+        serializedName: "P90",
+        readOnly: true,
+        type: {
+          name: "Number"
+        }
+      },
+      p95: {
+        serializedName: "P95",
+        readOnly: true,
+        type: {
+          name: "Number"
+        }
+      },
+      p99: {
+        serializedName: "P99",
+        readOnly: true,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const PartitionUsage: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PartitionUsage",
+    modelProperties: {
+      ...Usage.type.modelProperties,
+      partitionId: {
+        serializedName: "partitionId",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      partitionKeyRangeId: {
+        serializedName: "partitionKeyRangeId",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const SqlDatabaseGetPropertiesResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SqlDatabaseGetPropertiesResource",
+    modelProperties: {
+      ...SqlDatabaseResource.type.modelProperties,
+      ...ExtendedResourceProperties.type.modelProperties,
+      colls: {
+        serializedName: "_colls",
+        type: {
+          name: "String"
+        }
+      },
+      users: {
+        serializedName: "_users",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const ThroughputSettingsGetPropertiesResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ThroughputSettingsGetPropertiesResource",
+    modelProperties: {
+      ...ThroughputSettingsResource.type.modelProperties,
+      ...ExtendedResourceProperties.type.modelProperties
+    }
+  }
+};
+
+export const SqlContainerGetPropertiesResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SqlContainerGetPropertiesResource",
+    modelProperties: {
+      ...SqlContainerResource.type.modelProperties,
+      ...ExtendedResourceProperties.type.modelProperties
+    }
+  }
+};
+
+export const SqlStoredProcedureGetPropertiesResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SqlStoredProcedureGetPropertiesResource",
+    modelProperties: {
+      ...SqlStoredProcedureResource.type.modelProperties,
+      ...ExtendedResourceProperties.type.modelProperties
+    }
+  }
+};
+
+export const SqlUserDefinedFunctionGetPropertiesResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SqlUserDefinedFunctionGetPropertiesResource",
+    modelProperties: {
+      ...SqlUserDefinedFunctionResource.type.modelProperties,
+      ...ExtendedResourceProperties.type.modelProperties
+    }
+  }
+};
+
+export const SqlTriggerGetPropertiesResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SqlTriggerGetPropertiesResource",
+    modelProperties: {
+      ...SqlTriggerResource.type.modelProperties,
+      ...ExtendedResourceProperties.type.modelProperties
+    }
+  }
+};
+
+export const MongoDBDatabaseGetPropertiesResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "MongoDBDatabaseGetPropertiesResource",
+    modelProperties: {
+      ...MongoDBDatabaseResource.type.modelProperties,
+      ...ExtendedResourceProperties.type.modelProperties
+    }
+  }
+};
+
+export const MongoDBCollectionGetPropertiesResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "MongoDBCollectionGetPropertiesResource",
+    modelProperties: {
+      ...MongoDBCollectionResource.type.modelProperties,
+      ...ExtendedResourceProperties.type.modelProperties
+    }
+  }
+};
+
+export const TableGetPropertiesResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "TableGetPropertiesResource",
+    modelProperties: {
+      ...TableResource.type.modelProperties,
+      ...ExtendedResourceProperties.type.modelProperties
+    }
+  }
+};
+
+export const CassandraKeyspaceGetPropertiesResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "CassandraKeyspaceGetPropertiesResource",
+    modelProperties: {
+      ...CassandraKeyspaceResource.type.modelProperties,
+      ...ExtendedResourceProperties.type.modelProperties
+    }
+  }
+};
+
+export const CassandraTableGetPropertiesResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "CassandraTableGetPropertiesResource",
+    modelProperties: {
+      ...CassandraTableResource.type.modelProperties,
+      ...ExtendedResourceProperties.type.modelProperties
+    }
+  }
+};
+
+export const GremlinDatabaseGetPropertiesResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GremlinDatabaseGetPropertiesResource",
+    modelProperties: {
+      ...GremlinDatabaseResource.type.modelProperties,
+      ...ExtendedResourceProperties.type.modelProperties
+    }
+  }
+};
+
+export const GremlinGraphGetPropertiesResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GremlinGraphGetPropertiesResource",
+    modelProperties: {
+      ...GremlinGraphResource.type.modelProperties,
+      ...ExtendedResourceProperties.type.modelProperties
     }
   }
 };
@@ -3636,22 +3589,69 @@ export const GremlinGraphGetPropertiesOptions: coreHttp.CompositeMapper = {
   }
 };
 
+export const NotebookWorkspace: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "NotebookWorkspace",
+    modelProperties: {
+      ...ARMProxyResource.type.modelProperties,
+      notebookServerEndpoint: {
+        serializedName: "properties.notebookServerEndpoint",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      status: {
+        serializedName: "properties.status",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const PrivateLinkResource: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PrivateLinkResource",
+    modelProperties: {
+      ...ARMProxyResource.type.modelProperties,
+      groupId: {
+        serializedName: "properties.groupId",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      requiredMembers: {
+        serializedName: "properties.requiredMembers",
+        readOnly: true,
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      },
+      requiredZoneNames: {
+        serializedName: "properties.requiredZoneNames",
+        readOnly: true,
+        type: {
+          name: "Sequence",
+          element: { type: { name: "String" } }
+        }
+      }
+    }
+  }
+};
+
 export const NotebookWorkspaceCreateUpdateParameters: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "NotebookWorkspaceCreateUpdateParameters",
     modelProperties: {
       ...ARMProxyResource.type.modelProperties
-    }
-  }
-};
-
-export const ProxyResource: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ProxyResource",
-    modelProperties: {
-      ...Resource.type.modelProperties
     }
   }
 };

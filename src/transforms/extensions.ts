@@ -243,8 +243,10 @@ function findOperation(
   operationGroupName: string,
   operationName: string
 ): Operation | undefined {
-  const operationGroup = codeModel.getOperationGroup(operationGroupName);
-  return operationGroup?.operations.find(operation => {
+  const operationGroup = codeModel.operationGroups.find(
+    og => og.language.default.name === operationGroupName
+  );
+  return (operationGroup?.operations || []).find(operation => {
     const languageMetadata = getLanguageMetadata(operation.language);
     return languageMetadata.name === operationName;
   });

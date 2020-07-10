@@ -31,13 +31,8 @@ export interface Resource {
   readonly name?: string;
 }
 
-export type Product = Resource & {
-  provisioningState?: string;
-  readonly provisioningStateValues?: ProductPropertiesProvisioningStateValues;
-};
-
 export interface CloudError {
-  status?: number;
+  code?: number;
   message?: string;
 }
 
@@ -52,11 +47,6 @@ export interface SubResource {
    */
   readonly id?: string;
 }
-
-export type SubProduct = SubResource & {
-  provisioningState?: string;
-  readonly provisioningStateValues?: SubProductPropertiesProvisioningStateValues;
-};
 
 export interface OperationResult {
   /**
@@ -76,6 +66,16 @@ export interface OperationResultError {
    */
   message?: string;
 }
+
+export type Product = Resource & {
+  provisioningState?: string;
+  readonly provisioningStateValues?: ProductPropertiesProvisioningStateValues;
+};
+
+export type SubProduct = SubResource & {
+  provisioningState?: string;
+  readonly provisioningStateValues?: SubProductPropertiesProvisioningStateValues;
+};
 
 /**
  * Defines headers for LROs_post202List operation.

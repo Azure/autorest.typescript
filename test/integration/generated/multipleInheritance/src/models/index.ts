@@ -12,10 +12,6 @@ export interface Pet {
   name: string;
 }
 
-export type Horse = Pet & {
-  isAShowHorse?: boolean;
-};
-
 export interface ErrorModel {
   status?: number;
   message?: string;
@@ -25,6 +21,10 @@ export interface Feline {
   meows?: boolean;
   hisses?: boolean;
 }
+
+export type Horse = Pet & {
+  isAShowHorse?: boolean;
+};
 
 export type Cat = Pet &
   Feline & {

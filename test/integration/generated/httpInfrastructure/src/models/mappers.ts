@@ -44,22 +44,6 @@ export const MyException: coreHttp.CompositeMapper = {
   }
 };
 
-export const B: coreHttp.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "B",
-    modelProperties: {
-      ...MyException.type.modelProperties,
-      textStatusCode: {
-        serializedName: "textStatusCode",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const C: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
@@ -82,6 +66,22 @@ export const D: coreHttp.CompositeMapper = {
     modelProperties: {
       httpStatusCode: {
         serializedName: "httpStatusCode",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const B: coreHttp.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "B",
+    modelProperties: {
+      ...MyException.type.modelProperties,
+      textStatusCode: {
+        serializedName: "textStatusCode",
         type: {
           name: "String"
         }

@@ -51,154 +51,6 @@ export interface CloudErrorBody {
 }
 
 /**
- * Common resource representation.
- */
-export interface Resource {
-  /**
-   * Resource ID.
-   */
-  id?: string;
-  /**
-   * Resource name.
-   */
-  readonly name?: string;
-  /**
-   * Resource type.
-   */
-  readonly type?: string;
-  /**
-   * Resource location.
-   */
-  location?: string;
-  /**
-   * Resource tags.
-   */
-  tags?: { [propertyName: string]: string };
-}
-
-/**
- * Application gateway resource.
- */
-export type ApplicationGateway = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * A list of availability zones denoting where the resource needs to come from.
-   */
-  zones?: string[];
-  /**
-   * The identity of the application gateway, if configured.
-   */
-  identity?: ManagedServiceIdentity;
-  /**
-   * SKU of the application gateway resource.
-   */
-  sku?: ApplicationGatewaySku;
-  /**
-   * SSL policy of the application gateway resource.
-   */
-  sslPolicy?: ApplicationGatewaySslPolicy;
-  /**
-   * Operational state of the application gateway resource.
-   */
-  readonly operationalState?: ApplicationGatewayOperationalState;
-  /**
-   * Subnets of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
-   */
-  gatewayIPConfigurations?: ApplicationGatewayIPConfiguration[];
-  /**
-   * Authentication certificates of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
-   */
-  authenticationCertificates?: ApplicationGatewayAuthenticationCertificate[];
-  /**
-   * Trusted Root certificates of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
-   */
-  trustedRootCertificates?: ApplicationGatewayTrustedRootCertificate[];
-  /**
-   * SSL certificates of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
-   */
-  sslCertificates?: ApplicationGatewaySslCertificate[];
-  /**
-   * Frontend IP addresses of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
-   */
-  frontendIPConfigurations?: ApplicationGatewayFrontendIPConfiguration[];
-  /**
-   * Frontend ports of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
-   */
-  frontendPorts?: ApplicationGatewayFrontendPort[];
-  /**
-   * Probes of the application gateway resource.
-   */
-  probes?: ApplicationGatewayProbe[];
-  /**
-   * Backend address pool of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
-   */
-  backendAddressPools?: ApplicationGatewayBackendAddressPool[];
-  /**
-   * Backend http settings of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
-   */
-  backendHttpSettingsCollection?: ApplicationGatewayBackendHttpSettings[];
-  /**
-   * Http listeners of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
-   */
-  httpListeners?: ApplicationGatewayHttpListener[];
-  /**
-   * URL path map of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
-   */
-  urlPathMaps?: ApplicationGatewayUrlPathMap[];
-  /**
-   * Request routing rules of the application gateway resource.
-   */
-  requestRoutingRules?: ApplicationGatewayRequestRoutingRule[];
-  /**
-   * Rewrite rules for the application gateway resource.
-   */
-  rewriteRuleSets?: ApplicationGatewayRewriteRuleSet[];
-  /**
-   * Redirect configurations of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
-   */
-  redirectConfigurations?: ApplicationGatewayRedirectConfiguration[];
-  /**
-   * Web application firewall configuration.
-   */
-  webApplicationFirewallConfiguration?: ApplicationGatewayWebApplicationFirewallConfiguration;
-  /**
-   * Reference to the FirewallPolicy resource.
-   */
-  firewallPolicy?: SubResource;
-  /**
-   * Whether HTTP2 is enabled on the application gateway resource.
-   */
-  enableHttp2?: boolean;
-  /**
-   * Whether FIPS is enabled on the application gateway resource.
-   */
-  enableFips?: boolean;
-  /**
-   * Autoscale Configuration.
-   */
-  autoscaleConfiguration?: ApplicationGatewayAutoscaleConfiguration;
-  /**
-   * The resource GUID property of the application gateway resource.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the application gateway resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Custom error configurations of the application gateway resource.
-   */
-  customErrorConfigurations?: ApplicationGatewayCustomError[];
-  /**
-   * If true, associates a firewall policy with an application gateway regardless whether the policy differs from the WAF Config.
-   */
-  forceFirewallPolicyAssociation?: boolean;
-};
-
-/**
  * SKU of an application gateway.
  */
 export interface ApplicationGatewaySku {
@@ -253,252 +105,6 @@ export interface SubResource {
 }
 
 /**
- * IP configuration of an application gateway. Currently 1 public and 1 private IP configuration is allowed.
- */
-export type ApplicationGatewayIPConfiguration = SubResource & {
-  /**
-   * Name of the IP configuration that is unique within an Application Gateway.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * Reference to the subnet resource. A subnet from where application gateway gets its private address.
-   */
-  subnet?: SubResource;
-  /**
-   * The provisioning state of the application gateway IP configuration resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Authentication certificates of an application gateway.
- */
-export type ApplicationGatewayAuthenticationCertificate = SubResource & {
-  /**
-   * Name of the authentication certificate that is unique within an Application Gateway.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * Certificate public data.
-   */
-  data?: string;
-  /**
-   * The provisioning state of the authentication certificate resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Trusted Root certificates of an application gateway.
- */
-export type ApplicationGatewayTrustedRootCertificate = SubResource & {
-  /**
-   * Name of the trusted root certificate that is unique within an Application Gateway.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * Certificate public data.
-   */
-  data?: string;
-  /**
-   * Secret Id of (base-64 encoded unencrypted pfx) 'Secret' or 'Certificate' object stored in KeyVault.
-   */
-  keyVaultSecretId?: string;
-  /**
-   * The provisioning state of the trusted root certificate resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * SSL certificates of an application gateway.
- */
-export type ApplicationGatewaySslCertificate = SubResource & {
-  /**
-   * Name of the SSL certificate that is unique within an Application Gateway.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * Base-64 encoded pfx certificate. Only applicable in PUT Request.
-   */
-  data?: string;
-  /**
-   * Password for the pfx file specified in data. Only applicable in PUT request.
-   */
-  password?: string;
-  /**
-   * Base-64 encoded Public cert data corresponding to pfx specified in data. Only applicable in GET request.
-   */
-  readonly publicCertData?: string;
-  /**
-   * Secret Id of (base-64 encoded unencrypted pfx) 'Secret' or 'Certificate' object stored in KeyVault.
-   */
-  keyVaultSecretId?: string;
-  /**
-   * The provisioning state of the SSL certificate resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Frontend IP configuration of an application gateway.
- */
-export type ApplicationGatewayFrontendIPConfiguration = SubResource & {
-  /**
-   * Name of the frontend IP configuration that is unique within an Application Gateway.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * PrivateIPAddress of the network interface IP Configuration.
-   */
-  privateIPAddress?: string;
-  /**
-   * The private IP address allocation method.
-   */
-  privateIPAllocationMethod?: IPAllocationMethod;
-  /**
-   * Reference to the subnet resource.
-   */
-  subnet?: SubResource;
-  /**
-   * Reference to the PublicIP resource.
-   */
-  publicIPAddress?: SubResource;
-  /**
-   * The provisioning state of the frontend IP configuration resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Frontend port of an application gateway.
- */
-export type ApplicationGatewayFrontendPort = SubResource & {
-  /**
-   * Name of the frontend port that is unique within an Application Gateway.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * Frontend port.
-   */
-  port?: number;
-  /**
-   * The provisioning state of the frontend port resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Probe of the application gateway.
- */
-export type ApplicationGatewayProbe = SubResource & {
-  /**
-   * Name of the probe that is unique within an Application Gateway.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * The protocol used for the probe.
-   */
-  protocol?: ApplicationGatewayProtocol;
-  /**
-   * Host name to send the probe to.
-   */
-  host?: string;
-  /**
-   * Relative path of probe. Valid path starts from '/'. Probe is sent to <Protocol>://<host>:<port><path>.
-   */
-  path?: string;
-  /**
-   * The probing interval in seconds. This is the time interval between two consecutive probes. Acceptable values are from 1 second to 86400 seconds.
-   */
-  interval?: number;
-  /**
-   * The probe timeout in seconds. Probe marked as failed if valid response is not received with this timeout period. Acceptable values are from 1 second to 86400 seconds.
-   */
-  timeout?: number;
-  /**
-   * The probe retry count. Backend server is marked down after consecutive probe failure count reaches UnhealthyThreshold. Acceptable values are from 1 second to 20.
-   */
-  unhealthyThreshold?: number;
-  /**
-   * Whether the host header should be picked from the backend http settings. Default value is false.
-   */
-  pickHostNameFromBackendHttpSettings?: boolean;
-  /**
-   * Minimum number of servers that are always marked healthy. Default value is 0.
-   */
-  minServers?: number;
-  /**
-   * Criterion for classifying a healthy probe response.
-   */
-  match?: ApplicationGatewayProbeHealthResponseMatch;
-  /**
-   * The provisioning state of the probe resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Custom port which will be used for probing the backend servers. The valid value ranges from 1 to 65535. In case not set, port from http settings will be used. This property is valid for Standard_v2 and WAF_v2 only.
-   */
-  port?: number;
-};
-
-/**
  * Application gateway probe health response match.
  */
 export interface ApplicationGatewayProbeHealthResponseMatch {
@@ -513,580 +119,30 @@ export interface ApplicationGatewayProbeHealthResponseMatch {
 }
 
 /**
- * Backend Address Pool of an application gateway.
+ * Common resource representation.
  */
-export type ApplicationGatewayBackendAddressPool = SubResource & {
+export interface Resource {
   /**
-   * Name of the backend address pool that is unique within an Application Gateway.
+   * Resource ID.
    */
-  name?: string;
+  id?: string;
   /**
-   * A unique read-only string that changes whenever the resource is updated.
+   * Resource name.
    */
-  readonly etag?: string;
+  readonly name?: string;
   /**
-   * Type of the resource.
+   * Resource type.
    */
   readonly type?: string;
   /**
-   * Collection of references to IPs defined in network interfaces.
+   * Resource location.
    */
-  readonly backendIPConfigurations?: NetworkInterfaceIPConfiguration[];
+  location?: string;
   /**
-   * Backend addresses.
+   * Resource tags.
    */
-  backendAddresses?: ApplicationGatewayBackendAddress[];
-  /**
-   * The provisioning state of the backend address pool resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * IPConfiguration in a network interface.
- */
-export type NetworkInterfaceIPConfiguration = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The reference to Virtual Network Taps.
-   */
-  virtualNetworkTaps?: VirtualNetworkTap[];
-  /**
-   * The reference to ApplicationGatewayBackendAddressPool resource.
-   */
-  applicationGatewayBackendAddressPools?: ApplicationGatewayBackendAddressPool[];
-  /**
-   * The reference to LoadBalancerBackendAddressPool resource.
-   */
-  loadBalancerBackendAddressPools?: BackendAddressPool[];
-  /**
-   * A list of references of LoadBalancerInboundNatRules.
-   */
-  loadBalancerInboundNatRules?: InboundNatRule[];
-  /**
-   * Private IP address of the IP configuration.
-   */
-  privateIPAddress?: string;
-  /**
-   * The private IP address allocation method.
-   */
-  privateIPAllocationMethod?: IPAllocationMethod;
-  /**
-   * Whether the specific IP configuration is IPv4 or IPv6. Default is IPv4.
-   */
-  privateIPAddressVersion?: IPVersion;
-  /**
-   * Subnet bound to the IP configuration.
-   */
-  subnet?: Subnet;
-  /**
-   * Whether this is a primary customer address on the network interface.
-   */
-  primary?: boolean;
-  /**
-   * Public IP address bound to the IP configuration.
-   */
-  publicIPAddress?: PublicIPAddress;
-  /**
-   * Application security groups in which the IP configuration is included.
-   */
-  applicationSecurityGroups?: ApplicationSecurityGroup[];
-  /**
-   * The provisioning state of the network interface IP configuration.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * PrivateLinkConnection properties for the network interface.
-   */
-  readonly privateLinkConnectionProperties?: NetworkInterfaceIPConfigurationPrivateLinkConnectionProperties;
-};
-
-/**
- * Virtual Network Tap resource.
- */
-export type VirtualNetworkTap = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Specifies the list of resource IDs for the network interface IP configuration that needs to be tapped.
-   */
-  readonly networkInterfaceTapConfigurations?: NetworkInterfaceTapConfiguration[];
-  /**
-   * The resource GUID property of the virtual network tap resource.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the virtual network tap resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The reference to the private IP Address of the collector nic that will receive the tap.
-   */
-  destinationNetworkInterfaceIPConfiguration?: NetworkInterfaceIPConfiguration;
-  /**
-   * The reference to the private IP address on the internal Load Balancer that will receive the tap.
-   */
-  destinationLoadBalancerFrontEndIPConfiguration?: FrontendIPConfiguration;
-  /**
-   * The VXLAN destination port that will receive the tapped traffic.
-   */
-  destinationPort?: number;
-};
-
-/**
- * Tap configuration in a Network Interface.
- */
-export type NetworkInterfaceTapConfiguration = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Sub Resource type.
-   */
-  readonly type?: string;
-  /**
-   * The reference to the Virtual Network Tap resource.
-   */
-  virtualNetworkTap?: VirtualNetworkTap;
-  /**
-   * The provisioning state of the network interface tap configuration resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Frontend IP address of the load balancer.
- */
-export type FrontendIPConfiguration = SubResource & {
-  /**
-   * The name of the resource that is unique within the set of frontend IP configurations used by the load balancer. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * A list of availability zones denoting the IP allocated for the resource needs to come from.
-   */
-  zones?: string[];
-  /**
-   * An array of references to inbound rules that use this frontend IP.
-   */
-  readonly inboundNatRules?: SubResource[];
-  /**
-   * An array of references to inbound pools that use this frontend IP.
-   */
-  readonly inboundNatPools?: SubResource[];
-  /**
-   * An array of references to outbound rules that use this frontend IP.
-   */
-  readonly outboundRules?: SubResource[];
-  /**
-   * An array of references to load balancing rules that use this frontend IP.
-   */
-  readonly loadBalancingRules?: SubResource[];
-  /**
-   * The private IP address of the IP configuration.
-   */
-  privateIPAddress?: string;
-  /**
-   * The Private IP allocation method.
-   */
-  privateIPAllocationMethod?: IPAllocationMethod;
-  /**
-   * Whether the specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4.
-   */
-  privateIPAddressVersion?: IPVersion;
-  /**
-   * The reference to the subnet resource.
-   */
-  subnet?: Subnet;
-  /**
-   * The reference to the Public IP resource.
-   */
-  publicIPAddress?: PublicIPAddress;
-  /**
-   * The reference to the Public IP Prefix resource.
-   */
-  publicIPPrefix?: SubResource;
-  /**
-   * The provisioning state of the frontend IP configuration resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Subnet in a virtual network resource.
- */
-export type Subnet = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The address prefix for the subnet.
-   */
-  addressPrefix?: string;
-  /**
-   * List of address prefixes for the subnet.
-   */
-  addressPrefixes?: string[];
-  /**
-   * The reference to the NetworkSecurityGroup resource.
-   */
-  networkSecurityGroup?: NetworkSecurityGroup;
-  /**
-   * The reference to the RouteTable resource.
-   */
-  routeTable?: RouteTable;
-  /**
-   * Nat gateway associated with this subnet.
-   */
-  natGateway?: SubResource;
-  /**
-   * An array of service endpoints.
-   */
-  serviceEndpoints?: ServiceEndpointPropertiesFormat[];
-  /**
-   * An array of service endpoint policies.
-   */
-  serviceEndpointPolicies?: ServiceEndpointPolicy[];
-  /**
-   * An array of references to private endpoints.
-   */
-  readonly privateEndpoints?: PrivateEndpoint[];
-  /**
-   * An array of references to the network interface IP configurations using subnet.
-   */
-  readonly ipConfigurations?: IPConfiguration[];
-  /**
-   * Array of IP configuration profiles which reference this subnet.
-   */
-  readonly ipConfigurationProfiles?: IPConfigurationProfile[];
-  /**
-   * Array of IpAllocation which reference this subnet.
-   */
-  ipAllocations?: SubResource[];
-  /**
-   * An array of references to the external resources using subnet.
-   */
-  readonly resourceNavigationLinks?: ResourceNavigationLink[];
-  /**
-   * An array of references to services injecting into this subnet.
-   */
-  readonly serviceAssociationLinks?: ServiceAssociationLink[];
-  /**
-   * An array of references to the delegations on the subnet.
-   */
-  delegations?: Delegation[];
-  /**
-   * A read-only string identifying the intention of use for this subnet based on delegations and other user-defined properties.
-   */
-  readonly purpose?: string;
-  /**
-   * The provisioning state of the subnet resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Enable or Disable apply network policies on private end point in the subnet.
-   */
-  privateEndpointNetworkPolicies?: string;
-  /**
-   * Enable or Disable apply network policies on private link service in the subnet.
-   */
-  privateLinkServiceNetworkPolicies?: string;
-};
-
-/**
- * NetworkSecurityGroup resource.
- */
-export type NetworkSecurityGroup = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * A collection of security rules of the network security group.
-   */
-  securityRules?: SecurityRule[];
-  /**
-   * The default security rules of network security group.
-   */
-  readonly defaultSecurityRules?: SecurityRule[];
-  /**
-   * A collection of references to network interfaces.
-   */
-  readonly networkInterfaces?: NetworkInterface[];
-  /**
-   * A collection of references to subnets.
-   */
-  readonly subnets?: Subnet[];
-  /**
-   * A collection of references to flow log resources.
-   */
-  readonly flowLogs?: FlowLog[];
-  /**
-   * The resource GUID property of the network security group resource.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the network security group resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Network security rule.
- */
-export type SecurityRule = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * A description for this rule. Restricted to 140 chars.
-   */
-  description?: string;
-  /**
-   * Network protocol this rule applies to.
-   */
-  protocol?: SecurityRuleProtocol;
-  /**
-   * The source port or range. Integer or range between 0 and 65535. Asterisk '*' can also be used to match all ports.
-   */
-  sourcePortRange?: string;
-  /**
-   * The destination port or range. Integer or range between 0 and 65535. Asterisk '*' can also be used to match all ports.
-   */
-  destinationPortRange?: string;
-  /**
-   * The CIDR or source IP range. Asterisk '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. If this is an ingress rule, specifies where network traffic originates from.
-   */
-  sourceAddressPrefix?: string;
-  /**
-   * The CIDR or source IP ranges.
-   */
-  sourceAddressPrefixes?: string[];
-  /**
-   * The application security group specified as source.
-   */
-  sourceApplicationSecurityGroups?: ApplicationSecurityGroup[];
-  /**
-   * The destination address prefix. CIDR or destination IP range. Asterisk '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used.
-   */
-  destinationAddressPrefix?: string;
-  /**
-   * The destination address prefixes. CIDR or destination IP ranges.
-   */
-  destinationAddressPrefixes?: string[];
-  /**
-   * The application security group specified as destination.
-   */
-  destinationApplicationSecurityGroups?: ApplicationSecurityGroup[];
-  /**
-   * The source port ranges.
-   */
-  sourcePortRanges?: string[];
-  /**
-   * The destination port ranges.
-   */
-  destinationPortRanges?: string[];
-  /**
-   * The network traffic is allowed or denied.
-   */
-  access?: SecurityRuleAccess;
-  /**
-   * The priority of the rule. The value can be between 100 and 4096. The priority number must be unique for each rule in the collection. The lower the priority number, the higher the priority of the rule.
-   */
-  priority?: number;
-  /**
-   * The direction of the rule. The direction specifies if rule will be evaluated on incoming or outgoing traffic.
-   */
-  direction?: SecurityRuleDirection;
-  /**
-   * The provisioning state of the security rule resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * An application security group in a resource group.
- */
-export type ApplicationSecurityGroup = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The resource GUID property of the application security group resource. It uniquely identifies a resource, even if the user changes its name or migrate the resource across subscriptions or resource groups.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the application security group resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * A network interface in a resource group.
- */
-export type NetworkInterface = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The reference to a virtual machine.
-   */
-  readonly virtualMachine?: SubResource;
-  /**
-   * The reference to the NetworkSecurityGroup resource.
-   */
-  networkSecurityGroup?: NetworkSecurityGroup;
-  /**
-   * A reference to the private endpoint to which the network interface is linked.
-   */
-  readonly privateEndpoint?: PrivateEndpoint;
-  /**
-   * A list of IPConfigurations of the network interface.
-   */
-  ipConfigurations?: NetworkInterfaceIPConfiguration[];
-  /**
-   * A list of TapConfigurations of the network interface.
-   */
-  readonly tapConfigurations?: NetworkInterfaceTapConfiguration[];
-  /**
-   * The DNS settings in network interface.
-   */
-  dnsSettings?: NetworkInterfaceDnsSettings;
-  /**
-   * The MAC address of the network interface.
-   */
-  readonly macAddress?: string;
-  /**
-   * Whether this is a primary network interface on a virtual machine.
-   */
-  readonly primary?: boolean;
-  /**
-   * If the network interface is accelerated networking enabled.
-   */
-  enableAcceleratedNetworking?: boolean;
-  /**
-   * Indicates whether IP forwarding is enabled on this network interface.
-   */
-  enableIPForwarding?: boolean;
-  /**
-   * A list of references to linked BareMetal resources.
-   */
-  readonly hostedWorkloads?: string[];
-  /**
-   * The resource GUID property of the network interface resource.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the network interface resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Private endpoint resource.
- */
-export type PrivateEndpoint = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The ID of the subnet from which the private IP will be allocated.
-   */
-  subnet?: Subnet;
-  /**
-   * An array of references to the network interfaces created for this private endpoint.
-   */
-  readonly networkInterfaces?: NetworkInterface[];
-  /**
-   * The provisioning state of the private endpoint resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * A grouping of information about the connection to the remote resource.
-   */
-  privateLinkServiceConnections?: PrivateLinkServiceConnection[];
-  /**
-   * A grouping of information about the connection to the remote resource. Used when the network admin does not have access to approve connections to the remote resource.
-   */
-  manualPrivateLinkServiceConnections?: PrivateLinkServiceConnection[];
-  /**
-   * An array of custom dns configurations.
-   */
-  customDnsConfigs?: CustomDnsConfigPropertiesFormat[];
-};
-
-/**
- * PrivateLinkServiceConnection resource.
- */
-export type PrivateLinkServiceConnection = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * The resource type.
-   */
-  readonly type?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The provisioning state of the private link service connection resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The resource id of private link service.
-   */
-  privateLinkServiceId?: string;
-  /**
-   * The ID(s) of the group(s) obtained from the remote resource that this private endpoint should connect to.
-   */
-  groupIds?: string[];
-  /**
-   * A message passed to the owner of the remote resource with this connection request. Restricted to 140 chars.
-   */
-  requestMessage?: string;
-  /**
-   * A collection of read-only information about the state of the connection to the remote resource.
-   */
-  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
-};
+  tags?: { [propertyName: string]: string };
+}
 
 /**
  * A collection of information about the state of the connection between service consumer and provider.
@@ -1145,48 +201,6 @@ export interface NetworkInterfaceDnsSettings {
    */
   readonly internalDomainNameSuffix?: string;
 }
-
-/**
- * A flow log resource.
- */
-export type FlowLog = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * ID of network security group to which flow log will be applied.
-   */
-  targetResourceId?: string;
-  /**
-   * Guid of network security group to which flow log will be applied.
-   */
-  readonly targetResourceGuid?: string;
-  /**
-   * ID of the storage account which is used to store the flow log.
-   */
-  storageId?: string;
-  /**
-   * Flag to enable/disable flow logging.
-   */
-  enabled?: boolean;
-  /**
-   * Parameters that define the retention policy for flow log.
-   */
-  retentionPolicy?: RetentionPolicyParameters;
-  /**
-   * Parameters that define the flow log format.
-   */
-  format?: FlowLogFormatParameters;
-  /**
-   * Parameters that define the configuration of traffic analytics.
-   */
-  flowAnalyticsConfiguration?: TrafficAnalyticsProperties;
-  /**
-   * The provisioning state of the flow log.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * Parameters that define the retention policy for flow log.
@@ -1253,62 +267,6 @@ export interface TrafficAnalyticsConfigurationProperties {
 }
 
 /**
- * Route table resource.
- */
-export type RouteTable = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Collection of routes contained within a route table.
-   */
-  routes?: Route[];
-  /**
-   * A collection of references to subnets.
-   */
-  readonly subnets?: Subnet[];
-  /**
-   * Whether to disable the routes learned by BGP on that route table. True means disable.
-   */
-  disableBgpRoutePropagation?: boolean;
-  /**
-   * The provisioning state of the route table resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Route resource.
- */
-export type Route = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The destination CIDR to which the route applies.
-   */
-  addressPrefix?: string;
-  /**
-   * The type of Azure hop the packet should be sent to.
-   */
-  nextHopType?: RouteNextHopType;
-  /**
-   * The IP address packets should be forwarded to. Next hop values are only allowed in routes where the next hop type is VirtualAppliance.
-   */
-  nextHopIpAddress?: string;
-  /**
-   * The provisioning state of the route resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * The service endpoint properties.
  */
 export interface ServiceEndpointPropertiesFormat {
@@ -1325,158 +283,6 @@ export interface ServiceEndpointPropertiesFormat {
    */
   readonly provisioningState?: ProvisioningState;
 }
-
-/**
- * Service End point policy resource.
- */
-export type ServiceEndpointPolicy = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * A collection of service endpoint policy definitions of the service endpoint policy.
-   */
-  serviceEndpointPolicyDefinitions?: ServiceEndpointPolicyDefinition[];
-  /**
-   * A collection of references to subnets.
-   */
-  readonly subnets?: Subnet[];
-  /**
-   * The resource GUID property of the service endpoint policy resource.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the service endpoint policy resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Service Endpoint policy definitions.
- */
-export type ServiceEndpointPolicyDefinition = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * A description for this rule. Restricted to 140 chars.
-   */
-  description?: string;
-  /**
-   * Service endpoint name.
-   */
-  service?: string;
-  /**
-   * A list of service resources.
-   */
-  serviceResources?: string[];
-  /**
-   * The provisioning state of the service endpoint policy definition resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * IP configuration.
- */
-export type IPConfiguration = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The private IP address of the IP configuration.
-   */
-  privateIPAddress?: string;
-  /**
-   * The private IP address allocation method.
-   */
-  privateIPAllocationMethod?: IPAllocationMethod;
-  /**
-   * The reference to the subnet resource.
-   */
-  subnet?: Subnet;
-  /**
-   * The reference to the public IP resource.
-   */
-  publicIPAddress?: PublicIPAddress;
-  /**
-   * The provisioning state of the IP configuration resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Public IP address resource.
- */
-export type PublicIPAddress = Resource & {
-  /**
-   * The public IP address SKU.
-   */
-  sku?: PublicIPAddressSku;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * A list of availability zones denoting the IP allocated for the resource needs to come from.
-   */
-  zones?: string[];
-  /**
-   * The public IP address allocation method.
-   */
-  publicIPAllocationMethod?: IPAllocationMethod;
-  /**
-   * The public IP address version.
-   */
-  publicIPAddressVersion?: IPVersion;
-  /**
-   * The IP configuration associated with the public IP address.
-   */
-  readonly ipConfiguration?: IPConfiguration;
-  /**
-   * The FQDN of the DNS record associated with the public IP address.
-   */
-  dnsSettings?: PublicIPAddressDnsSettings;
-  /**
-   * The DDoS protection custom policy associated with the public IP address.
-   */
-  ddosSettings?: DdosSettings;
-  /**
-   * The list of tags associated with the public IP address.
-   */
-  ipTags?: IpTag[];
-  /**
-   * The IP address associated with the public IP address resource.
-   */
-  ipAddress?: string;
-  /**
-   * The Public IP Prefix this Public IP Address should be allocated from.
-   */
-  publicIPPrefix?: SubResource;
-  /**
-   * The idle timeout of the public IP address.
-   */
-  idleTimeoutInMinutes?: number;
-  /**
-   * The resource GUID property of the public IP address resource.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the public IP address resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * SKU of a public IP address.
@@ -1539,168 +345,6 @@ export interface IpTag {
 }
 
 /**
- * IP configuration profile child resource.
- */
-export type IPConfigurationProfile = SubResource & {
-  /**
-   * The name of the resource. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * Sub Resource type.
-   */
-  readonly type?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The reference to the subnet resource to create a container network interface ip configuration.
-   */
-  subnet?: Subnet;
-  /**
-   * The provisioning state of the IP configuration profile resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * ResourceNavigationLink resource.
- */
-export type ResourceNavigationLink = SubResource & {
-  /**
-   * Name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Resource type.
-   */
-  readonly type?: string;
-  /**
-   * Resource type of the linked resource.
-   */
-  linkedResourceType?: string;
-  /**
-   * Link to the external resource.
-   */
-  link?: string;
-  /**
-   * The provisioning state of the resource navigation link resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * ServiceAssociationLink resource.
- */
-export type ServiceAssociationLink = SubResource & {
-  /**
-   * Name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Resource type.
-   */
-  readonly type?: string;
-  /**
-   * Resource type of the linked resource.
-   */
-  linkedResourceType?: string;
-  /**
-   * Link to the external resource.
-   */
-  link?: string;
-  /**
-   * The provisioning state of the service association link resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * If true, the resource can be deleted.
-   */
-  allowDelete?: boolean;
-  /**
-   * A list of locations.
-   */
-  locations?: string[];
-};
-
-/**
- * Details the service to which the subnet is delegated.
- */
-export type Delegation = SubResource & {
-  /**
-   * The name of the resource that is unique within a subnet. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The name of the service to whom the subnet should be delegated (e.g. Microsoft.Sql/servers).
-   */
-  serviceName?: string;
-  /**
-   * The actions permitted to the service upon delegation.
-   */
-  readonly actions?: string[];
-  /**
-   * The provisioning state of the service delegation resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Pool of backend IP addresses.
- */
-export type BackendAddressPool = SubResource & {
-  /**
-   * The name of the resource that is unique within the set of backend address pools used by the load balancer. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * An array of references to IP addresses defined in network interfaces.
-   */
-  readonly backendIPConfigurations?: NetworkInterfaceIPConfiguration[];
-  /**
-   * An array of backend addresses.
-   */
-  loadBalancerBackendAddresses?: LoadBalancerBackendAddress[];
-  /**
-   * An array of references to load balancing rules that use this backend address pool.
-   */
-  readonly loadBalancingRules?: SubResource[];
-  /**
-   * A reference to an outbound rule that uses this backend address pool.
-   */
-  readonly outboundRule?: SubResource;
-  /**
-   * An array of references to outbound rules that use this backend address pool.
-   */
-  readonly outboundRules?: SubResource[];
-  /**
-   * The provisioning state of the backend address pool resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * Load balancer backend addresses.
  */
 export interface LoadBalancerBackendAddress {
@@ -1723,60 +367,6 @@ export interface LoadBalancerBackendAddress {
 }
 
 /**
- * Virtual Network resource.
- */
-export type VirtualNetwork = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The AddressSpace that contains an array of IP address ranges that can be used by subnets.
-   */
-  addressSpace?: AddressSpace;
-  /**
-   * The dhcpOptions that contains an array of DNS servers available to VMs deployed in the virtual network.
-   */
-  dhcpOptions?: DhcpOptions;
-  /**
-   * A list of subnets in a Virtual Network.
-   */
-  subnets?: Subnet[];
-  /**
-   * A list of peerings in a Virtual Network.
-   */
-  virtualNetworkPeerings?: VirtualNetworkPeering[];
-  /**
-   * The resourceGuid property of the Virtual Network resource.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the virtual network resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Indicates if DDoS protection is enabled for all the protected resources in the virtual network. It requires a DDoS protection plan associated with the resource.
-   */
-  enableDdosProtection?: boolean;
-  /**
-   * Indicates if VM protection is enabled for all the subnets in the virtual network.
-   */
-  enableVmProtection?: boolean;
-  /**
-   * The DDoS protection plan associated with the virtual network.
-   */
-  ddosProtectionPlan?: SubResource;
-  /**
-   * Bgp Communities sent over ExpressRoute with each route corresponding to a prefix in this VNET.
-   */
-  bgpCommunities?: VirtualNetworkBgpCommunities;
-  /**
-   * Array of IpAllocation which reference this VNET.
-   */
-  ipAllocations?: SubResource[];
-};
-
-/**
  * AddressSpace contains an array of IP address ranges that can be used by subnets of the virtual network.
  */
 export interface AddressSpace {
@@ -1797,52 +387,6 @@ export interface DhcpOptions {
 }
 
 /**
- * Peerings in a virtual network resource.
- */
-export type VirtualNetworkPeering = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Whether the VMs in the local virtual network space would be able to access the VMs in remote virtual network space.
-   */
-  allowVirtualNetworkAccess?: boolean;
-  /**
-   * Whether the forwarded traffic from the VMs in the local virtual network will be allowed/disallowed in remote virtual network.
-   */
-  allowForwardedTraffic?: boolean;
-  /**
-   * If gateway links can be used in remote virtual networking to link to this virtual network.
-   */
-  allowGatewayTransit?: boolean;
-  /**
-   * If remote gateways can be used on this virtual network. If the flag is set to true, and allowGatewayTransit on remote peering is also true, virtual network will use gateways of remote virtual network for transit. Only one peering can have this flag set to true. This flag cannot be set if virtual network already has a gateway.
-   */
-  useRemoteGateways?: boolean;
-  /**
-   * The reference to the remote virtual network. The remote virtual network can be in the same or different region (preview). See here to register for the preview and learn more (https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-create-peering).
-   */
-  remoteVirtualNetwork?: SubResource;
-  /**
-   * The reference to the remote virtual network address space.
-   */
-  remoteAddressSpace?: AddressSpace;
-  /**
-   * The status of the virtual network peering.
-   */
-  peeringState?: VirtualNetworkPeeringState;
-  /**
-   * The provisioning state of the virtual network peering resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * Bgp Communities sent over ExpressRoute with each route corresponding to a prefix in this VNET.
  */
 export interface VirtualNetworkBgpCommunities {
@@ -1855,60 +399,6 @@ export interface VirtualNetworkBgpCommunities {
    */
   readonly regionalCommunity?: string;
 }
-
-/**
- * Inbound NAT rule of the load balancer.
- */
-export type InboundNatRule = SubResource & {
-  /**
-   * The name of the resource that is unique within the set of inbound NAT rules used by the load balancer. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * A reference to frontend IP addresses.
-   */
-  frontendIPConfiguration?: SubResource;
-  /**
-   * A reference to a private IP address defined on a network interface of a VM. Traffic sent to the frontend port of each of the frontend IP configurations is forwarded to the backend IP.
-   */
-  readonly backendIPConfiguration?: NetworkInterfaceIPConfiguration;
-  /**
-   * The reference to the transport protocol used by the load balancing rule.
-   */
-  protocol?: TransportProtocol;
-  /**
-   * The port for the external endpoint. Port numbers for each rule must be unique within the Load Balancer. Acceptable values range from 1 to 65534.
-   */
-  frontendPort?: number;
-  /**
-   * The port used for the internal endpoint. Acceptable values range from 1 to 65535.
-   */
-  backendPort?: number;
-  /**
-   * The timeout for the TCP idle connection. The value can be set between 4 and 30 minutes. The default value is 4 minutes. This element is only used when the protocol is set to TCP.
-   */
-  idleTimeoutInMinutes?: number;
-  /**
-   * Configures a virtual machine's endpoint for the floating IP capability required to configure a SQL AlwaysOn Availability Group. This setting is required when using the SQL AlwaysOn Availability Groups in SQL server. This setting can't be changed after you create the endpoint.
-   */
-  enableFloatingIP?: boolean;
-  /**
-   * Receive bidirectional TCP Reset on TCP flow idle timeout or unexpected connection termination. This element is only used when the protocol is set to TCP.
-   */
-  enableTcpReset?: boolean;
-  /**
-   * The provisioning state of the inbound NAT rule resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * PrivateLinkConnection properties for the network interface.
@@ -1943,80 +433,6 @@ export interface ApplicationGatewayBackendAddress {
 }
 
 /**
- * Backend address pool settings of an application gateway.
- */
-export type ApplicationGatewayBackendHttpSettings = SubResource & {
-  /**
-   * Name of the backend http settings that is unique within an Application Gateway.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * The destination port on the backend.
-   */
-  port?: number;
-  /**
-   * The protocol used to communicate with the backend.
-   */
-  protocol?: ApplicationGatewayProtocol;
-  /**
-   * Cookie based affinity.
-   */
-  cookieBasedAffinity?: ApplicationGatewayCookieBasedAffinity;
-  /**
-   * Request timeout in seconds. Application Gateway will fail the request if response is not received within RequestTimeout. Acceptable values are from 1 second to 86400 seconds.
-   */
-  requestTimeout?: number;
-  /**
-   * Probe resource of an application gateway.
-   */
-  probe?: SubResource;
-  /**
-   * Array of references to application gateway authentication certificates.
-   */
-  authenticationCertificates?: SubResource[];
-  /**
-   * Array of references to application gateway trusted root certificates.
-   */
-  trustedRootCertificates?: SubResource[];
-  /**
-   * Connection draining of the backend http settings resource.
-   */
-  connectionDraining?: ApplicationGatewayConnectionDraining;
-  /**
-   * Host header to be sent to the backend servers.
-   */
-  hostName?: string;
-  /**
-   * Whether to pick host header should be picked from the host name of the backend server. Default value is false.
-   */
-  pickHostNameFromBackendAddress?: boolean;
-  /**
-   * Cookie name to use for the affinity cookie.
-   */
-  affinityCookieName?: string;
-  /**
-   * Whether the probe is enabled. Default value is false.
-   */
-  probeEnabled?: boolean;
-  /**
-   * Path which should be used as a prefix for all HTTP requests. Null means no path will be prefixed. Default value is null.
-   */
-  path?: string;
-  /**
-   * The provisioning state of the backend HTTP settings resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * Connection draining allows open connections to a backend server to be active for a specified time after the backend server got removed from the configuration.
  */
 export interface ApplicationGatewayConnectionDraining {
@@ -2031,64 +447,6 @@ export interface ApplicationGatewayConnectionDraining {
 }
 
 /**
- * Http listener of an application gateway.
- */
-export type ApplicationGatewayHttpListener = SubResource & {
-  /**
-   * Name of the HTTP listener that is unique within an Application Gateway.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * Frontend IP configuration resource of an application gateway.
-   */
-  frontendIPConfiguration?: SubResource;
-  /**
-   * Frontend port resource of an application gateway.
-   */
-  frontendPort?: SubResource;
-  /**
-   * Protocol of the HTTP listener.
-   */
-  protocol?: ApplicationGatewayProtocol;
-  /**
-   * Host name of HTTP listener.
-   */
-  hostName?: string;
-  /**
-   * SSL certificate resource of an application gateway.
-   */
-  sslCertificate?: SubResource;
-  /**
-   * Applicable only if protocol is https. Enables SNI for multi-hosting.
-   */
-  requireServerNameIndication?: boolean;
-  /**
-   * The provisioning state of the HTTP listener resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Custom error configurations of the HTTP listener.
-   */
-  customErrorConfigurations?: ApplicationGatewayCustomError[];
-  /**
-   * Reference to the FirewallPolicy resource.
-   */
-  firewallPolicy?: SubResource;
-  /**
-   * List of Host names for HTTP Listener that allows special wildcard characters as well.
-   */
-  hostNames?: string[];
-};
-
-/**
  * Customer error of an application gateway.
  */
 export interface ApplicationGatewayCustomError {
@@ -2101,170 +459,6 @@ export interface ApplicationGatewayCustomError {
    */
   customErrorPageUrl?: string;
 }
-
-/**
- * UrlPathMaps give a url path to the backend mapping information for PathBasedRouting.
- */
-export type ApplicationGatewayUrlPathMap = SubResource & {
-  /**
-   * Name of the URL path map that is unique within an Application Gateway.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * Default backend address pool resource of URL path map.
-   */
-  defaultBackendAddressPool?: SubResource;
-  /**
-   * Default backend http settings resource of URL path map.
-   */
-  defaultBackendHttpSettings?: SubResource;
-  /**
-   * Default Rewrite rule set resource of URL path map.
-   */
-  defaultRewriteRuleSet?: SubResource;
-  /**
-   * Default redirect configuration resource of URL path map.
-   */
-  defaultRedirectConfiguration?: SubResource;
-  /**
-   * Path rule of URL path map resource.
-   */
-  pathRules?: ApplicationGatewayPathRule[];
-  /**
-   * The provisioning state of the URL path map resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Path rule of URL path map of an application gateway.
- */
-export type ApplicationGatewayPathRule = SubResource & {
-  /**
-   * Name of the path rule that is unique within an Application Gateway.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * Path rules of URL path map.
-   */
-  paths?: string[];
-  /**
-   * Backend address pool resource of URL path map path rule.
-   */
-  backendAddressPool?: SubResource;
-  /**
-   * Backend http settings resource of URL path map path rule.
-   */
-  backendHttpSettings?: SubResource;
-  /**
-   * Redirect configuration resource of URL path map path rule.
-   */
-  redirectConfiguration?: SubResource;
-  /**
-   * Rewrite rule set resource of URL path map path rule.
-   */
-  rewriteRuleSet?: SubResource;
-  /**
-   * The provisioning state of the path rule resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Reference to the FirewallPolicy resource.
-   */
-  firewallPolicy?: SubResource;
-};
-
-/**
- * Request routing rule of an application gateway.
- */
-export type ApplicationGatewayRequestRoutingRule = SubResource & {
-  /**
-   * Name of the request routing rule that is unique within an Application Gateway.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * Rule type.
-   */
-  ruleType?: ApplicationGatewayRequestRoutingRuleType;
-  /**
-   * Priority of the request routing rule.
-   */
-  priority?: number;
-  /**
-   * Backend address pool resource of the application gateway.
-   */
-  backendAddressPool?: SubResource;
-  /**
-   * Backend http settings resource of the application gateway.
-   */
-  backendHttpSettings?: SubResource;
-  /**
-   * Http listener resource of the application gateway.
-   */
-  httpListener?: SubResource;
-  /**
-   * URL path map resource of the application gateway.
-   */
-  urlPathMap?: SubResource;
-  /**
-   * Rewrite Rule Set resource in Basic rule of the application gateway.
-   */
-  rewriteRuleSet?: SubResource;
-  /**
-   * Redirect configuration resource of the application gateway.
-   */
-  redirectConfiguration?: SubResource;
-  /**
-   * The provisioning state of the request routing rule resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Rewrite rule set of an application gateway.
- */
-export type ApplicationGatewayRewriteRuleSet = SubResource & {
-  /**
-   * Name of the rewrite rule set that is unique within an Application Gateway.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Rewrite rules in the rewrite rule set.
-   */
-  rewriteRules?: ApplicationGatewayRewriteRule[];
-  /**
-   * The provisioning state of the rewrite rule set resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * Rewrite rule of an application gateway.
@@ -2359,56 +553,6 @@ export interface ApplicationGatewayUrlConfiguration {
    */
   reroute?: boolean;
 }
-
-/**
- * Redirect configuration of an application gateway.
- */
-export type ApplicationGatewayRedirectConfiguration = SubResource & {
-  /**
-   * Name of the redirect configuration that is unique within an Application Gateway.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * HTTP redirection type.
-   */
-  redirectType?: ApplicationGatewayRedirectType;
-  /**
-   * Reference to a listener to redirect the request to.
-   */
-  targetListener?: SubResource;
-  /**
-   * Url to redirect the request to.
-   */
-  targetUrl?: string;
-  /**
-   * Include path in the redirected url.
-   */
-  includePath?: boolean;
-  /**
-   * Include query string in the redirected url.
-   */
-  includeQueryString?: boolean;
-  /**
-   * Request routing specifying redirect configuration.
-   */
-  requestRoutingRules?: SubResource[];
-  /**
-   * Url path maps specifying default redirect configuration.
-   */
-  urlPathMaps?: SubResource[];
-  /**
-   * Path rules specifying redirect configuration.
-   */
-  pathRules?: SubResource[];
-};
 
 /**
  * Application gateway web application firewall configuration.
@@ -2728,28 +872,6 @@ export interface ApplicationGatewayAvailableWafRuleSetsResult {
 }
 
 /**
- * A web application firewall rule set.
- */
-export type ApplicationGatewayFirewallRuleSet = Resource & {
-  /**
-   * The provisioning state of the web application firewall rule set.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The type of the web application firewall rule set.
-   */
-  ruleSetType?: string;
-  /**
-   * The version of the web application firewall rule set type.
-   */
-  ruleSetVersion?: string;
-  /**
-   * The rule groups of the web application firewall rule set.
-   */
-  ruleGroups?: ApplicationGatewayFirewallRuleGroup[];
-};
-
-/**
  * A web application firewall rule group.
  */
 export interface ApplicationGatewayFirewallRuleGroup {
@@ -2784,28 +906,6 @@ export interface ApplicationGatewayFirewallRule {
 /**
  * Response for ApplicationGatewayAvailableSslOptions API service call.
  */
-export type ApplicationGatewayAvailableSslOptions = Resource & {
-  /**
-   * List of available Ssl predefined policy.
-   */
-  predefinedPolicies?: SubResource[];
-  /**
-   * Name of the Ssl predefined policy applied by default to application gateway.
-   */
-  defaultPolicy?: ApplicationGatewaySslPolicyName;
-  /**
-   * List of available Ssl cipher suites.
-   */
-  availableCipherSuites?: ApplicationGatewaySslCipherSuite[];
-  /**
-   * List of available Ssl protocols.
-   */
-  availableProtocols?: ApplicationGatewaySslProtocol[];
-};
-
-/**
- * Response for ApplicationGatewayAvailableSslOptions API service call.
- */
 export interface ApplicationGatewayAvailableSslPredefinedPolicies {
   /**
    * List of available Ssl predefined policy.
@@ -2816,24 +916,6 @@ export interface ApplicationGatewayAvailableSslPredefinedPolicies {
    */
   nextLink?: string;
 }
-
-/**
- * An Ssl predefined policy.
- */
-export type ApplicationGatewaySslPredefinedPolicy = SubResource & {
-  /**
-   * Name of the Ssl predefined policy.
-   */
-  name?: string;
-  /**
-   * Ssl cipher suites to be enabled in the specified order for application gateway.
-   */
-  cipherSuites?: ApplicationGatewaySslCipherSuite[];
-  /**
-   * Minimum version of Ssl protocol to be supported on application gateway.
-   */
-  minProtocolVersion?: ApplicationGatewaySslProtocol;
-};
 
 /**
  * A list of application security groups.
@@ -2926,102 +1008,6 @@ export interface AvailableServiceAlias {
 }
 
 /**
- * Azure Firewall resource.
- */
-export type AzureFirewall = Resource & {
-  /**
-   * A list of availability zones denoting where the resource needs to come from.
-   */
-  zones?: string[];
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Collection of application rule collections used by Azure Firewall.
-   */
-  applicationRuleCollections?: AzureFirewallApplicationRuleCollection[];
-  /**
-   * Collection of NAT rule collections used by Azure Firewall.
-   */
-  natRuleCollections?: AzureFirewallNatRuleCollection[];
-  /**
-   * Collection of network rule collections used by Azure Firewall.
-   */
-  networkRuleCollections?: AzureFirewallNetworkRuleCollection[];
-  /**
-   * IP configuration of the Azure Firewall resource.
-   */
-  ipConfigurations?: AzureFirewallIPConfiguration[];
-  /**
-   * IP configuration of the Azure Firewall used for management traffic.
-   */
-  managementIpConfiguration?: AzureFirewallIPConfiguration;
-  /**
-   * The provisioning state of the Azure firewall resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The operation mode for Threat Intelligence.
-   */
-  threatIntelMode?: AzureFirewallThreatIntelMode;
-  /**
-   * The virtualHub to which the firewall belongs.
-   */
-  virtualHub?: SubResource;
-  /**
-   * The firewallPolicy associated with this azure firewall.
-   */
-  firewallPolicy?: SubResource;
-  /**
-   * IP addresses associated with AzureFirewall.
-   */
-  readonly hubIpAddresses?: HubIPAddresses;
-  /**
-   * IpGroups associated with AzureFirewall.
-   */
-  readonly ipGroups?: AzureFirewallIpGroups[];
-  /**
-   * The Azure Firewall Resource SKU.
-   */
-  sku?: AzureFirewallSku;
-  /**
-   * The additional properties used to further config this azure firewall.
-   */
-  additionalProperties?: { [propertyName: string]: string };
-};
-
-/**
- * Application rule collection resource.
- */
-export type AzureFirewallApplicationRuleCollection = SubResource & {
-  /**
-   * The name of the resource that is unique within the Azure firewall. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Priority of the application rule collection resource.
-   */
-  priority?: number;
-  /**
-   * The action type of a rule collection.
-   */
-  action?: AzureFirewallRCAction;
-  /**
-   * Collection of rules used by a application rule collection.
-   */
-  rules?: AzureFirewallApplicationRule[];
-  /**
-   * The provisioning state of the application rule collection resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * Properties of the AzureFirewallRCAction.
  */
 export interface AzureFirewallRCAction {
@@ -3080,36 +1066,6 @@ export interface AzureFirewallApplicationRuleProtocol {
 }
 
 /**
- * NAT rule collection resource.
- */
-export type AzureFirewallNatRuleCollection = SubResource & {
-  /**
-   * The name of the resource that is unique within the Azure firewall. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Priority of the NAT rule collection resource.
-   */
-  priority?: number;
-  /**
-   * The action type of a NAT rule collection.
-   */
-  action?: AzureFirewallNatRCAction;
-  /**
-   * Collection of rules used by a NAT rule collection.
-   */
-  rules?: AzureFirewallNatRule[];
-  /**
-   * The provisioning state of the NAT rule collection resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * AzureFirewall NAT Rule Collection Action.
  */
 export interface AzureFirewallNatRCAction {
@@ -3166,36 +1122,6 @@ export interface AzureFirewallNatRule {
 }
 
 /**
- * Network rule collection resource.
- */
-export type AzureFirewallNetworkRuleCollection = SubResource & {
-  /**
-   * The name of the resource that is unique within the Azure firewall. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Priority of the network rule collection resource.
-   */
-  priority?: number;
-  /**
-   * The action type of a rule collection.
-   */
-  action?: AzureFirewallRCAction;
-  /**
-   * Collection of rules used by a network rule collection.
-   */
-  rules?: AzureFirewallNetworkRule[];
-  /**
-   * The provisioning state of the network rule collection resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * Properties of the network rule.
  */
 export interface AzureFirewallNetworkRule {
@@ -3236,40 +1162,6 @@ export interface AzureFirewallNetworkRule {
    */
   destinationIpGroups?: string[];
 }
-
-/**
- * IP configuration of an Azure Firewall.
- */
-export type AzureFirewallIPConfiguration = SubResource & {
-  /**
-   * Name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * The Firewall Internal Load Balancer IP to be used as the next hop in User Defined Routes.
-   */
-  readonly privateIPAddress?: string;
-  /**
-   * Reference to the subnet resource. This resource must be named 'AzureFirewallSubnet' or 'AzureFirewallManagementSubnet'.
-   */
-  subnet?: SubResource;
-  /**
-   * Reference to the PublicIP resource. This field is a mandatory input if subnet is not null.
-   */
-  publicIPAddress?: SubResource;
-  /**
-   * The provisioning state of the Azure firewall IP configuration resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * IP addresses associated with azure firewall.
@@ -3350,80 +1242,6 @@ export interface AzureFirewallFqdnTagListResult {
    */
   nextLink?: string;
 }
-
-/**
- * Azure Firewall FQDN Tag Resource.
- */
-export type AzureFirewallFqdnTag = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The provisioning state of the Azure firewall FQDN tag resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The name of this FQDN Tag.
-   */
-  readonly fqdnTagName?: string;
-};
-
-/**
- * Bastion Host resource.
- */
-export type BastionHost = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * IP configuration of the Bastion Host resource.
-   */
-  ipConfigurations?: BastionHostIPConfiguration[];
-  /**
-   * FQDN for the endpoint on which bastion host is accessible.
-   */
-  dnsName?: string;
-  /**
-   * The provisioning state of the bastion host resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * IP configuration of an Bastion Host.
- */
-export type BastionHostIPConfiguration = SubResource & {
-  /**
-   * Name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Ip configuration type.
-   */
-  readonly type?: string;
-  /**
-   * Reference of the subnet resource.
-   */
-  subnet?: SubResource;
-  /**
-   * Reference of the PublicIP resource.
-   */
-  publicIPAddress?: SubResource;
-  /**
-   * The provisioning state of the bastion host IP configuration resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Private IP allocation method.
-   */
-  privateIPAllocationMethod?: IPAllocationMethod;
-};
 
 /**
  * Response for ListBastionHosts API service call.
@@ -3602,32 +1420,6 @@ export interface DnsNameAvailabilityResult {
 }
 
 /**
- * A DDoS custom policy in a resource group.
- */
-export type DdosCustomPolicy = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The resource GUID property of the DDoS custom policy resource. It uniquely identifies the resource, even if the user changes its name or migrate the resource across subscriptions or resource groups.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the DDoS custom policy resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The list of public IPs associated with the DDoS custom policy resource. This list is read-only.
-   */
-  readonly publicIPAddresses?: SubResource[];
-  /**
-   * The protocol-specific DDoS policy customization parameters.
-   */
-  protocolCustomSettings?: ProtocolCustomSettingsFormat[];
-};
-
-/**
  * DDoS custom policy properties.
  */
 export interface ProtocolCustomSettingsFormat {
@@ -3720,50 +1512,6 @@ export interface EndpointServicesListResult {
 }
 
 /**
- * Endpoint service.
- */
-export type EndpointServiceResult = SubResource & {
-  /**
-   * Name of the endpoint service.
-   */
-  readonly name?: string;
-  /**
-   * Type of the endpoint service.
-   */
-  readonly type?: string;
-};
-
-/**
- * Authorization in an ExpressRouteCircuit resource.
- */
-export type ExpressRouteCircuitAuthorization = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * The authorization key.
-   */
-  authorizationKey?: string;
-  /**
-   * The authorization use status.
-   */
-  authorizationUseStatus?: AuthorizationUseStatus;
-  /**
-   * The provisioning state of the authorization resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * Response for ListAuthorizations API service call retrieves all authorizations that belongs to an ExpressRouteCircuit.
  */
 export interface AuthorizationListResult {
@@ -3776,104 +1524,6 @@ export interface AuthorizationListResult {
    */
   nextLink?: string;
 }
-
-/**
- * Peering in an ExpressRouteCircuit resource.
- */
-export type ExpressRouteCircuitPeering = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * The peering type.
-   */
-  peeringType?: ExpressRoutePeeringType;
-  /**
-   * The peering state.
-   */
-  state?: ExpressRoutePeeringState;
-  /**
-   * The Azure ASN.
-   */
-  azureASN?: number;
-  /**
-   * The peer ASN.
-   */
-  peerASN?: number;
-  /**
-   * The primary address prefix.
-   */
-  primaryPeerAddressPrefix?: string;
-  /**
-   * The secondary address prefix.
-   */
-  secondaryPeerAddressPrefix?: string;
-  /**
-   * The primary port.
-   */
-  primaryAzurePort?: string;
-  /**
-   * The secondary port.
-   */
-  secondaryAzurePort?: string;
-  /**
-   * The shared key.
-   */
-  sharedKey?: string;
-  /**
-   * The VLAN ID.
-   */
-  vlanId?: number;
-  /**
-   * The Microsoft peering configuration.
-   */
-  microsoftPeeringConfig?: ExpressRouteCircuitPeeringConfig;
-  /**
-   * The peering stats of express route circuit.
-   */
-  stats?: ExpressRouteCircuitStats;
-  /**
-   * The provisioning state of the express route circuit peering resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The GatewayManager Etag.
-   */
-  gatewayManagerEtag?: string;
-  /**
-   * Who was the last to modify the peering.
-   */
-  readonly lastModifiedBy?: string;
-  /**
-   * The reference to the RouteFilter resource.
-   */
-  routeFilter?: SubResource;
-  /**
-   * The IPv6 peering configuration.
-   */
-  ipv6PeeringConfig?: Ipv6ExpressRouteCircuitPeeringConfig;
-  /**
-   * The ExpressRoute connection.
-   */
-  expressRouteConnection?: ExpressRouteConnectionId;
-  /**
-   * The list of circuit connections associated with Azure Private Peering for this circuit.
-   */
-  connections?: ExpressRouteCircuitConnection[];
-  /**
-   * The list of peered circuit connections associated with Azure Private Peering for this circuit.
-   */
-  readonly peeredConnections?: PeerExpressRouteCircuitConnection[];
-};
 
 /**
  * Specifies the peering configuration.
@@ -3964,52 +1614,6 @@ export interface ExpressRouteConnectionId {
 }
 
 /**
- * Express Route Circuit Connection in an ExpressRouteCircuitPeering resource.
- */
-export type ExpressRouteCircuitConnection = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * Reference to Express Route Circuit Private Peering Resource of the circuit initiating connection.
-   */
-  expressRouteCircuitPeering?: SubResource;
-  /**
-   * Reference to Express Route Circuit Private Peering Resource of the peered circuit.
-   */
-  peerExpressRouteCircuitPeering?: SubResource;
-  /**
-   * /29 IP address space to carve out Customer addresses for tunnels.
-   */
-  addressPrefix?: string;
-  /**
-   * The authorization key.
-   */
-  authorizationKey?: string;
-  /**
-   * IPv6 Address PrefixProperties of the express route circuit connection.
-   */
-  ipv6CircuitConnectionConfig?: Ipv6CircuitConnectionConfig;
-  /**
-   * Express Route Circuit connection state.
-   */
-  readonly circuitConnectionStatus?: CircuitConnectionStatus;
-  /**
-   * The provisioning state of the express route circuit connection resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * IPv6 Circuit Connection properties for global reach.
  */
 export interface Ipv6CircuitConnectionConfig {
@@ -4022,52 +1626,6 @@ export interface Ipv6CircuitConnectionConfig {
    */
   readonly circuitConnectionStatus?: CircuitConnectionStatus;
 }
-
-/**
- * Peer Express Route Circuit Connection in an ExpressRouteCircuitPeering resource.
- */
-export type PeerExpressRouteCircuitConnection = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * Reference to Express Route Circuit Private Peering Resource of the circuit.
-   */
-  expressRouteCircuitPeering?: SubResource;
-  /**
-   * Reference to Express Route Circuit Private Peering Resource of the peered circuit.
-   */
-  peerExpressRouteCircuitPeering?: SubResource;
-  /**
-   * /29 IP address space to carve out Customer addresses for tunnels.
-   */
-  addressPrefix?: string;
-  /**
-   * Express Route Circuit connection state.
-   */
-  readonly circuitConnectionStatus?: CircuitConnectionStatus;
-  /**
-   * The name of the express route circuit connection resource.
-   */
-  connectionName?: string;
-  /**
-   * The resource guid of the authorization used for the express route circuit connection.
-   */
-  authResourceGuid?: string;
-  /**
-   * The provisioning state of the peer express route circuit connection resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * Response for ListPeering API service call retrieves all peerings that belong to an ExpressRouteCircuit.
@@ -4110,76 +1668,6 @@ export interface PeerExpressRouteCircuitConnectionListResult {
    */
   nextLink?: string;
 }
-
-/**
- * ExpressRouteCircuit resource.
- */
-export type ExpressRouteCircuit = Resource & {
-  /**
-   * The SKU.
-   */
-  sku?: ExpressRouteCircuitSku;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Allow classic operations.
-   */
-  allowClassicOperations?: boolean;
-  /**
-   * The CircuitProvisioningState state of the resource.
-   */
-  circuitProvisioningState?: string;
-  /**
-   * The ServiceProviderProvisioningState state of the resource.
-   */
-  serviceProviderProvisioningState?: ServiceProviderProvisioningState;
-  /**
-   * The list of authorizations.
-   */
-  authorizations?: ExpressRouteCircuitAuthorization[];
-  /**
-   * The list of peerings.
-   */
-  peerings?: ExpressRouteCircuitPeering[];
-  /**
-   * The ServiceKey.
-   */
-  serviceKey?: string;
-  /**
-   * The ServiceProviderNotes.
-   */
-  serviceProviderNotes?: string;
-  /**
-   * The ServiceProviderProperties.
-   */
-  serviceProviderProperties?: ExpressRouteCircuitServiceProviderProperties;
-  /**
-   * The reference to the ExpressRoutePort resource when the circuit is provisioned on an ExpressRoutePort resource.
-   */
-  expressRoutePort?: SubResource;
-  /**
-   * The bandwidth of the circuit when the circuit is provisioned on an ExpressRoutePort resource.
-   */
-  bandwidthInGbps?: number;
-  /**
-   * The identifier of the circuit traffic. Outer tag for QinQ encapsulation.
-   */
-  readonly stag?: number;
-  /**
-   * The provisioning state of the express route circuit resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The GatewayManager Etag.
-   */
-  gatewayManagerEtag?: string;
-  /**
-   * Flag denoting global reach status.
-   */
-  globalReachEnabled?: boolean;
-};
 
 /**
  * Contains SKU in an ExpressRouteCircuit.
@@ -4362,24 +1850,6 @@ export interface ExpressRouteServiceProviderListResult {
 }
 
 /**
- * A ExpressRouteResourceProvider object.
- */
-export type ExpressRouteServiceProvider = Resource & {
-  /**
-   * A list of peering locations.
-   */
-  peeringLocations?: string[];
-  /**
-   * A list of bandwidths offered.
-   */
-  bandwidthsOffered?: ExpressRouteServiceProviderBandwidthsOffered[];
-  /**
-   * The provisioning state of the express route service provider resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * Contains bandwidths offered in ExpressRouteServiceProvider resources.
  */
 export interface ExpressRouteServiceProviderBandwidthsOffered {
@@ -4408,56 +1878,6 @@ export interface ExpressRouteCrossConnectionListResult {
 }
 
 /**
- * ExpressRouteCrossConnection resource.
- */
-export type ExpressRouteCrossConnection = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The name of the primary port.
-   */
-  readonly primaryAzurePort?: string;
-  /**
-   * The name of the secondary port.
-   */
-  readonly secondaryAzurePort?: string;
-  /**
-   * The identifier of the circuit traffic.
-   */
-  readonly sTag?: number;
-  /**
-   * The peering location of the ExpressRoute circuit.
-   */
-  peeringLocation?: string;
-  /**
-   * The circuit bandwidth In Mbps.
-   */
-  bandwidthInMbps?: number;
-  /**
-   * The ExpressRouteCircuit.
-   */
-  expressRouteCircuit?: ExpressRouteCircuitReference;
-  /**
-   * The provisioning state of the circuit in the connectivity provider system.
-   */
-  serviceProviderProvisioningState?: ServiceProviderProvisioningState;
-  /**
-   * Additional read only notes set by the connectivity provider.
-   */
-  serviceProviderNotes?: string;
-  /**
-   * The provisioning state of the express route cross connection resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The list of peerings.
-   */
-  peerings?: ExpressRouteCrossConnectionPeering[];
-};
-
-/**
  * Reference to an express route circuit.
  */
 export interface ExpressRouteCircuitReference {
@@ -4466,80 +1886,6 @@ export interface ExpressRouteCircuitReference {
    */
   id?: string;
 }
-
-/**
- * Peering in an ExpressRoute Cross Connection resource.
- */
-export type ExpressRouteCrossConnectionPeering = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The peering type.
-   */
-  peeringType?: ExpressRoutePeeringType;
-  /**
-   * The peering state.
-   */
-  state?: ExpressRoutePeeringState;
-  /**
-   * The Azure ASN.
-   */
-  readonly azureASN?: number;
-  /**
-   * The peer ASN.
-   */
-  peerASN?: number;
-  /**
-   * The primary address prefix.
-   */
-  primaryPeerAddressPrefix?: string;
-  /**
-   * The secondary address prefix.
-   */
-  secondaryPeerAddressPrefix?: string;
-  /**
-   * The primary port.
-   */
-  readonly primaryAzurePort?: string;
-  /**
-   * The secondary port.
-   */
-  readonly secondaryAzurePort?: string;
-  /**
-   * The shared key.
-   */
-  sharedKey?: string;
-  /**
-   * The VLAN ID.
-   */
-  vlanId?: number;
-  /**
-   * The Microsoft peering configuration.
-   */
-  microsoftPeeringConfig?: ExpressRouteCircuitPeeringConfig;
-  /**
-   * The provisioning state of the express route cross connection peering resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The GatewayManager Etag.
-   */
-  gatewayManagerEtag?: string;
-  /**
-   * Who was the last to modify the peering.
-   */
-  readonly lastModifiedBy?: string;
-  /**
-   * The IPv6 peering configuration.
-   */
-  ipv6PeeringConfig?: Ipv6ExpressRouteCircuitPeeringConfig;
-};
 
 /**
  * Response for ListPeering API service call retrieves all peerings that belong to an ExpressRouteCrossConnection.
@@ -4606,28 +1952,6 @@ export interface ExpressRoutePortsLocationListResult {
 }
 
 /**
- * Definition of the ExpressRoutePorts peering location resource.
- */
-export type ExpressRoutePortsLocation = Resource & {
-  /**
-   * Address of peering location.
-   */
-  readonly address?: string;
-  /**
-   * Contact details of peering locations.
-   */
-  readonly contact?: string;
-  /**
-   * The inventory of available ExpressRoutePort bandwidths.
-   */
-  availableBandwidths?: ExpressRoutePortsLocationBandwidths[];
-  /**
-   * The provisioning state of the express route port location resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * Real-time inventory of available ExpressRoute port bandwidths.
  */
 export interface ExpressRoutePortsLocationBandwidths {
@@ -4640,110 +1964,6 @@ export interface ExpressRoutePortsLocationBandwidths {
    */
   readonly valueInGbps?: number;
 }
-
-/**
- * ExpressRoutePort resource definition.
- */
-export type ExpressRoutePort = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The identity of ExpressRoutePort, if configured.
-   */
-  identity?: ManagedServiceIdentity;
-  /**
-   * The name of the peering location that the ExpressRoutePort is mapped to physically.
-   */
-  peeringLocation?: string;
-  /**
-   * Bandwidth of procured ports in Gbps.
-   */
-  bandwidthInGbps?: number;
-  /**
-   * Aggregate Gbps of associated circuit bandwidths.
-   */
-  readonly provisionedBandwidthInGbps?: number;
-  /**
-   * Maximum transmission unit of the physical port pair(s).
-   */
-  readonly mtu?: string;
-  /**
-   * Encapsulation method on physical ports.
-   */
-  encapsulation?: ExpressRoutePortsEncapsulation;
-  /**
-   * Ether type of the physical port.
-   */
-  readonly etherType?: string;
-  /**
-   * Date of the physical port allocation to be used in Letter of Authorization.
-   */
-  readonly allocationDate?: string;
-  /**
-   * The set of physical links of the ExpressRoutePort resource.
-   */
-  links?: ExpressRouteLink[];
-  /**
-   * Reference the ExpressRoute circuit(s) that are provisioned on this ExpressRoutePort resource.
-   */
-  readonly circuits?: SubResource[];
-  /**
-   * The provisioning state of the express route port resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The resource GUID property of the express route port resource.
-   */
-  readonly resourceGuid?: string;
-};
-
-/**
- * ExpressRouteLink child resource definition.
- */
-export type ExpressRouteLink = SubResource & {
-  /**
-   * Name of child port resource that is unique among child port resources of the parent.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Name of Azure router associated with physical port.
-   */
-  readonly routerName?: string;
-  /**
-   * Name of Azure router interface.
-   */
-  readonly interfaceName?: string;
-  /**
-   * Mapping between physical port to patch panel port.
-   */
-  readonly patchPanelId?: string;
-  /**
-   * Mapping of physical patch panel to rack.
-   */
-  readonly rackId?: string;
-  /**
-   * Physical fiber port type.
-   */
-  readonly connectorType?: ExpressRouteLinkConnectorType;
-  /**
-   * Administrative state of the physical port.
-   */
-  adminState?: ExpressRouteLinkAdminState;
-  /**
-   * The provisioning state of the express route link resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * MacSec configuration.
-   */
-  macSecConfig?: ExpressRouteLinkMacSecConfig;
-};
 
 /**
  * ExpressRouteLink Mac Security Configuration.
@@ -4790,56 +2010,6 @@ export interface ExpressRouteLinkListResult {
    */
   nextLink?: string;
 }
-
-/**
- * FirewallPolicy Resource.
- */
-export type FirewallPolicy = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The identity of the firewall policy.
-   */
-  identity?: ManagedServiceIdentity;
-  /**
-   * List of references to FirewallPolicyRuleGroups.
-   */
-  readonly ruleGroups?: SubResource[];
-  /**
-   * The provisioning state of the firewall policy resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The parent firewall policy from which rules are inherited.
-   */
-  basePolicy?: SubResource;
-  /**
-   * List of references to Azure Firewalls that this Firewall Policy is associated with.
-   */
-  readonly firewalls?: SubResource[];
-  /**
-   * List of references to Child Firewall Policies.
-   */
-  readonly childPolicies?: SubResource[];
-  /**
-   * The operation mode for Threat Intelligence.
-   */
-  threatIntelMode?: AzureFirewallThreatIntelMode;
-  /**
-   * ThreatIntel Whitelist for Firewall Policy.
-   */
-  threatIntelWhitelist?: FirewallPolicyThreatIntelWhitelist;
-  /**
-   * The operation mode for Intrusion system.
-   */
-  intrusionSystemMode?: FirewallPolicyIntrusionSystemMode;
-  /**
-   * TLS Configuration definition.
-   */
-  transportSecurity?: FirewallPolicyTransportSecurity;
-};
 
 /**
  * ThreatIntel Whitelist for Firewall Policy.
@@ -4916,36 +2086,6 @@ export interface FirewallPolicyListResult {
 }
 
 /**
- * Rule Group resource.
- */
-export type FirewallPolicyRuleGroup = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Rule Group type.
-   */
-  readonly type?: string;
-  /**
-   * Priority of the Firewall Policy Rule Group resource.
-   */
-  priority?: number;
-  /**
-   * Group of Firewall Policy rules.
-   */
-  rules?: FirewallPolicyRuleUnion[];
-  /**
-   * The provisioning state of the firewall policy rule group resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * Properties of the rule.
  */
 export interface FirewallPolicyRule {
@@ -4978,48 +2118,6 @@ export interface FirewallPolicyRuleGroupListResult {
 }
 
 /**
- * IpAllocation resource.
- */
-export type IpAllocation = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The Subnet that using the prefix of this IpAllocation resource.
-   */
-  readonly subnet?: SubResource;
-  /**
-   * The VirtualNetwork that using the prefix of this IpAllocation resource.
-   */
-  readonly virtualNetwork?: SubResource;
-  /**
-   * The type for the IpAllocation.
-   */
-  typePropertiesType?: IpAllocationType;
-  /**
-   * The address prefix for the IpAllocation.
-   */
-  prefix?: string;
-  /**
-   * The address prefix length for the IpAllocation.
-   */
-  prefixLength?: number;
-  /**
-   * The address prefix Type for the IpAllocation.
-   */
-  prefixType?: IPVersion;
-  /**
-   * The IPAM allocation ID.
-   */
-  ipamAllocationId?: string;
-  /**
-   * IpAllocation tags.
-   */
-  allocationTags?: { [propertyName: string]: string };
-};
-
-/**
  * Response for the ListIpAllocations API service call.
  */
 export interface IpAllocationListResult {
@@ -5032,28 +2130,6 @@ export interface IpAllocationListResult {
    */
   nextLink?: string;
 }
-
-/**
- * The IpGroups resource information.
- */
-export type IpGroup = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The provisioning state of the IpGroups resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * IpAddresses/IpAddressPrefixes in the IpGroups resource.
-   */
-  ipAddresses?: string[];
-  /**
-   * List of references to Azure resources that this IpGroups is associated with.
-   */
-  readonly firewalls?: SubResource[];
-};
 
 /**
  * Response for the ListIpGroups API service call.
@@ -5070,56 +2146,6 @@ export interface IpGroupListResult {
 }
 
 /**
- * LoadBalancer resource.
- */
-export type LoadBalancer = Resource & {
-  /**
-   * The load balancer SKU.
-   */
-  sku?: LoadBalancerSku;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Object representing the frontend IPs to be used for the load balancer.
-   */
-  frontendIPConfigurations?: FrontendIPConfiguration[];
-  /**
-   * Collection of backend address pools used by a load balancer.
-   */
-  backendAddressPools?: BackendAddressPool[];
-  /**
-   * Object collection representing the load balancing rules Gets the provisioning.
-   */
-  loadBalancingRules?: LoadBalancingRule[];
-  /**
-   * Collection of probe objects used in the load balancer.
-   */
-  probes?: Probe[];
-  /**
-   * Collection of inbound NAT Rules used by a load balancer. Defining inbound NAT rules on your load balancer is mutually exclusive with defining an inbound NAT pool. Inbound NAT pools are referenced from virtual machine scale sets. NICs that are associated with individual virtual machines cannot reference an Inbound NAT pool. They have to reference individual inbound NAT rules.
-   */
-  inboundNatRules?: InboundNatRule[];
-  /**
-   * Defines an external port range for inbound NAT to a single backend port on NICs associated with a load balancer. Inbound NAT rules are created automatically for each NIC associated with the Load Balancer using an external port from this range. Defining an Inbound NAT pool on your Load Balancer is mutually exclusive with defining inbound Nat rules. Inbound NAT pools are referenced from virtual machine scale sets. NICs that are associated with individual virtual machines cannot reference an inbound NAT pool. They have to reference individual inbound NAT rules.
-   */
-  inboundNatPools?: InboundNatPool[];
-  /**
-   * The outbound rules.
-   */
-  outboundRules?: OutboundRule[];
-  /**
-   * The resource GUID property of the load balancer resource.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the load balancer resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * SKU of a load balancer.
  */
 export interface LoadBalancerSku {
@@ -5128,218 +2154,6 @@ export interface LoadBalancerSku {
    */
   name?: LoadBalancerSkuName;
 }
-
-/**
- * A load balancing rule for a load balancer.
- */
-export type LoadBalancingRule = SubResource & {
-  /**
-   * The name of the resource that is unique within the set of load balancing rules used by the load balancer. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * A reference to frontend IP addresses.
-   */
-  frontendIPConfiguration?: SubResource;
-  /**
-   * A reference to a pool of DIPs. Inbound traffic is randomly load balanced across IPs in the backend IPs.
-   */
-  backendAddressPool?: SubResource;
-  /**
-   * The reference to the load balancer probe used by the load balancing rule.
-   */
-  probe?: SubResource;
-  /**
-   * The reference to the transport protocol used by the load balancing rule.
-   */
-  protocol?: TransportProtocol;
-  /**
-   * The load distribution policy for this rule.
-   */
-  loadDistribution?: LoadDistribution;
-  /**
-   * The port for the external endpoint. Port numbers for each rule must be unique within the Load Balancer. Acceptable values are between 0 and 65534. Note that value 0 enables "Any Port".
-   */
-  frontendPort?: number;
-  /**
-   * The port used for internal connections on the endpoint. Acceptable values are between 0 and 65535. Note that value 0 enables "Any Port".
-   */
-  backendPort?: number;
-  /**
-   * The timeout for the TCP idle connection. The value can be set between 4 and 30 minutes. The default value is 4 minutes. This element is only used when the protocol is set to TCP.
-   */
-  idleTimeoutInMinutes?: number;
-  /**
-   * Configures a virtual machine's endpoint for the floating IP capability required to configure a SQL AlwaysOn Availability Group. This setting is required when using the SQL AlwaysOn Availability Groups in SQL server. This setting can't be changed after you create the endpoint.
-   */
-  enableFloatingIP?: boolean;
-  /**
-   * Receive bidirectional TCP Reset on TCP flow idle timeout or unexpected connection termination. This element is only used when the protocol is set to TCP.
-   */
-  enableTcpReset?: boolean;
-  /**
-   * Configures SNAT for the VMs in the backend pool to use the publicIP address specified in the frontend of the load balancing rule.
-   */
-  disableOutboundSnat?: boolean;
-  /**
-   * The provisioning state of the load balancing rule resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * A load balancer probe.
- */
-export type Probe = SubResource & {
-  /**
-   * The name of the resource that is unique within the set of probes used by the load balancer. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * The load balancer rules that use this probe.
-   */
-  readonly loadBalancingRules?: SubResource[];
-  /**
-   * The protocol of the end point. If 'Tcp' is specified, a received ACK is required for the probe to be successful. If 'Http' or 'Https' is specified, a 200 OK response from the specifies URI is required for the probe to be successful.
-   */
-  protocol?: ProbeProtocol;
-  /**
-   * The port for communicating the probe. Possible values range from 1 to 65535, inclusive.
-   */
-  port?: number;
-  /**
-   * The interval, in seconds, for how frequently to probe the endpoint for health status. Typically, the interval is slightly less than half the allocated timeout period (in seconds) which allows two full probes before taking the instance out of rotation. The default value is 15, the minimum value is 5.
-   */
-  intervalInSeconds?: number;
-  /**
-   * The number of probes where if no response, will result in stopping further traffic from being delivered to the endpoint. This values allows endpoints to be taken out of rotation faster or slower than the typical times used in Azure.
-   */
-  numberOfProbes?: number;
-  /**
-   * The URI used for requesting health status from the VM. Path is required if a protocol is set to http. Otherwise, it is not allowed. There is no default value.
-   */
-  requestPath?: string;
-  /**
-   * The provisioning state of the probe resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Inbound NAT pool of the load balancer.
- */
-export type InboundNatPool = SubResource & {
-  /**
-   * The name of the resource that is unique within the set of inbound NAT pools used by the load balancer. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * A reference to frontend IP addresses.
-   */
-  frontendIPConfiguration?: SubResource;
-  /**
-   * The reference to the transport protocol used by the inbound NAT pool.
-   */
-  protocol?: TransportProtocol;
-  /**
-   * The first port number in the range of external ports that will be used to provide Inbound Nat to NICs associated with a load balancer. Acceptable values range between 1 and 65534.
-   */
-  frontendPortRangeStart?: number;
-  /**
-   * The last port number in the range of external ports that will be used to provide Inbound Nat to NICs associated with a load balancer. Acceptable values range between 1 and 65535.
-   */
-  frontendPortRangeEnd?: number;
-  /**
-   * The port used for internal connections on the endpoint. Acceptable values are between 1 and 65535.
-   */
-  backendPort?: number;
-  /**
-   * The timeout for the TCP idle connection. The value can be set between 4 and 30 minutes. The default value is 4 minutes. This element is only used when the protocol is set to TCP.
-   */
-  idleTimeoutInMinutes?: number;
-  /**
-   * Configures a virtual machine's endpoint for the floating IP capability required to configure a SQL AlwaysOn Availability Group. This setting is required when using the SQL AlwaysOn Availability Groups in SQL server. This setting can't be changed after you create the endpoint.
-   */
-  enableFloatingIP?: boolean;
-  /**
-   * Receive bidirectional TCP Reset on TCP flow idle timeout or unexpected connection termination. This element is only used when the protocol is set to TCP.
-   */
-  enableTcpReset?: boolean;
-  /**
-   * The provisioning state of the inbound NAT pool resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Outbound rule of the load balancer.
- */
-export type OutboundRule = SubResource & {
-  /**
-   * The name of the resource that is unique within the set of outbound rules used by the load balancer. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Type of the resource.
-   */
-  readonly type?: string;
-  /**
-   * The number of outbound ports to be used for NAT.
-   */
-  allocatedOutboundPorts?: number;
-  /**
-   * The Frontend IP addresses of the load balancer.
-   */
-  frontendIPConfigurations?: SubResource[];
-  /**
-   * A reference to a pool of DIPs. Outbound traffic is randomly load balanced across IPs in the backend IPs.
-   */
-  backendAddressPool?: SubResource;
-  /**
-   * The provisioning state of the outbound rule resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The protocol for the outbound rule in load balancer.
-   */
-  protocol?: LoadBalancerOutboundRuleProtocol;
-  /**
-   * Receive bidirectional TCP Reset on TCP flow idle timeout or unexpected connection termination. This element is only used when the protocol is set to TCP.
-   */
-  enableTcpReset?: boolean;
-  /**
-   * The timeout for the TCP idle connection.
-   */
-  idleTimeoutInMinutes?: number;
-};
 
 /**
  * Response for ListLoadBalancers API service call.
@@ -5452,48 +2266,6 @@ export interface LoadBalancerProbeListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * Nat Gateway resource.
- */
-export type NatGateway = Resource & {
-  /**
-   * The nat gateway SKU.
-   */
-  sku?: NatGatewaySku;
-  /**
-   * A list of availability zones denoting the zone in which Nat Gateway should be deployed.
-   */
-  zones?: string[];
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The idle timeout of the nat gateway.
-   */
-  idleTimeoutInMinutes?: number;
-  /**
-   * An array of public ip addresses associated with the nat gateway resource.
-   */
-  publicIpAddresses?: SubResource[];
-  /**
-   * An array of public ip prefixes associated with the nat gateway resource.
-   */
-  publicIpPrefixes?: SubResource[];
-  /**
-   * An array of references to the subnets using this nat gateway resource.
-   */
-  readonly subnets?: SubResource[];
-  /**
-   * The resource GUID property of the NAT gateway resource.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the NAT gateway resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * SKU of nat gateway.
@@ -5726,96 +2498,6 @@ export interface NetworkInterfaceTapConfigurationListResult {
 }
 
 /**
- * Network profile resource.
- */
-export type NetworkProfile = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * List of child container network interfaces.
-   */
-  readonly containerNetworkInterfaces?: ContainerNetworkInterface[];
-  /**
-   * List of chid container network interface configurations.
-   */
-  containerNetworkInterfaceConfigurations?: ContainerNetworkInterfaceConfiguration[];
-  /**
-   * The resource GUID property of the network profile resource.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the network profile resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Container network interface child resource.
- */
-export type ContainerNetworkInterface = SubResource & {
-  /**
-   * The name of the resource. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * Sub Resource type.
-   */
-  readonly type?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Container network interface configuration from which this container network interface is created.
-   */
-  readonly containerNetworkInterfaceConfiguration?: ContainerNetworkInterfaceConfiguration;
-  /**
-   * Reference to the container to which this container network interface is attached.
-   */
-  container?: SubResource;
-  /**
-   * Reference to the ip configuration on this container nic.
-   */
-  readonly ipConfigurations?: ContainerNetworkInterfaceIpConfiguration[];
-  /**
-   * The provisioning state of the container network interface resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Container network interface configuration child resource.
- */
-export type ContainerNetworkInterfaceConfiguration = SubResource & {
-  /**
-   * The name of the resource. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * Sub Resource type.
-   */
-  readonly type?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * A list of ip configurations of the container network interface configuration.
-   */
-  ipConfigurations?: IPConfigurationProfile[];
-  /**
-   * A list of container network interfaces created from this container network interface configuration.
-   */
-  containerNetworkInterfaces?: SubResource[];
-  /**
-   * The provisioning state of the container network interface configuration resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * The ip configuration for a container network interface.
  */
 export interface ContainerNetworkInterfaceIpConfiguration {
@@ -5880,48 +2562,6 @@ export interface SecurityRuleListResult {
 }
 
 /**
- * NetworkVirtualAppliance Resource.
- */
-export type NetworkVirtualAppliance = Resource & {
-  /**
-   * The service principal that has read access to cloud-init and config blob.
-   */
-  identity?: ManagedServiceIdentity;
-  /**
-   * Network Virtual Appliance SKU.
-   */
-  sku?: VirtualApplianceSkuProperties;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * BootStrapConfigurationBlob storage URLs.
-   */
-  bootStrapConfigurationBlob?: string[];
-  /**
-   * The Virtual Hub where Network Virtual Appliance is being deployed.
-   */
-  virtualHub?: SubResource;
-  /**
-   * CloudInitConfigurationBlob storage URLs.
-   */
-  cloudInitConfigurationBlob?: string[];
-  /**
-   * VirtualAppliance ASN.
-   */
-  virtualApplianceAsn?: number;
-  /**
-   * List of Virtual Appliance Network Interfaces.
-   */
-  readonly virtualApplianceNics?: VirtualApplianceNicProperties[];
-  /**
-   * The provisioning state of the resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * Network Virtual Appliance NIC properties.
  */
 export interface VirtualApplianceNicProperties {
@@ -5970,20 +2610,6 @@ export interface NetworkVirtualApplianceListResult {
    */
   nextLink?: string;
 }
-
-/**
- * Network watcher in a resource group.
- */
-export type NetworkWatcher = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The provisioning state of the network watcher resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * The error object.
@@ -6410,16 +3036,6 @@ export interface PacketCaptureResult {
    */
   readonly provisioningState?: ProvisioningState;
 }
-
-/**
- * The properties of a packet capture session.
- */
-export type PacketCaptureResultProperties = PacketCaptureParameters & {
-  /**
-   * The provisioning state of the packet capture session.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * Status of packet capture session.
@@ -7522,28 +4138,6 @@ export interface ConnectionMonitorResult {
 }
 
 /**
- * Describes the properties of a connection monitor.
- */
-export type ConnectionMonitorResultProperties = ConnectionMonitorParameters & {
-  /**
-   * The provisioning state of the connection monitor.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The date and time when the connection monitor was started.
-   */
-  readonly startTime?: Date;
-  /**
-   * The monitoring status of the connection monitor.
-   */
-  readonly monitoringStatus?: string;
-  /**
-   * Type of connection monitor.
-   */
-  readonly connectionMonitorType?: ConnectionMonitorType;
-};
-
-/**
  * List of connection states snapshots.
  */
 export interface ConnectionMonitorQueryResult {
@@ -7866,28 +4460,6 @@ export interface AvailablePrivateEndpointType {
 }
 
 /**
- * Private dns zone group resource.
- */
-export type PrivateDnsZoneGroup = SubResource & {
-  /**
-   * Name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The provisioning state of the private dns zone group resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * A collection of private dns zone configurations of the private dns zone group.
-   */
-  privateDnsZoneConfigs?: PrivateDnsZoneConfig[];
-};
-
-/**
  * PrivateDnsZoneConfig resource.
  */
 export interface PrivateDnsZoneConfig {
@@ -7948,132 +4520,6 @@ export interface PrivateDnsZoneGroupListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * Private link service resource.
- */
-export type PrivateLinkService = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * An array of references to the load balancer IP configurations.
-   */
-  loadBalancerFrontendIpConfigurations?: FrontendIPConfiguration[];
-  /**
-   * An array of private link service IP configurations.
-   */
-  ipConfigurations?: PrivateLinkServiceIpConfiguration[];
-  /**
-   * An array of references to the network interfaces created for this private link service.
-   */
-  readonly networkInterfaces?: NetworkInterface[];
-  /**
-   * The provisioning state of the private link service resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * An array of list about connections to the private endpoint.
-   */
-  readonly privateEndpointConnections?: PrivateEndpointConnection[];
-  /**
-   * The visibility list of the private link service.
-   */
-  visibility?: ResourceSet;
-  /**
-   * The auto-approval list of the private link service.
-   */
-  autoApproval?: ResourceSet;
-  /**
-   * The list of Fqdn.
-   */
-  fqdns?: string[];
-  /**
-   * The alias of the private link service.
-   */
-  readonly alias?: string;
-  /**
-   * Whether the private link service is enabled for proxy protocol or not.
-   */
-  enableProxyProtocol?: boolean;
-};
-
-/**
- * The private link service ip configuration.
- */
-export type PrivateLinkServiceIpConfiguration = SubResource & {
-  /**
-   * The name of private link service ip configuration.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The resource type.
-   */
-  readonly type?: string;
-  /**
-   * The private IP address of the IP configuration.
-   */
-  privateIPAddress?: string;
-  /**
-   * The private IP address allocation method.
-   */
-  privateIPAllocationMethod?: IPAllocationMethod;
-  /**
-   * The reference to the subnet resource.
-   */
-  subnet?: Subnet;
-  /**
-   * Whether the ip configuration is primary or not.
-   */
-  primary?: boolean;
-  /**
-   * The provisioning state of the private link service IP configuration resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Whether the specific IP configuration is IPv4 or IPv6. Default is IPv4.
-   */
-  privateIPAddressVersion?: IPVersion;
-};
-
-/**
- * PrivateEndpointConnection resource.
- */
-export type PrivateEndpointConnection = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * The resource type.
-   */
-  readonly type?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The resource of private end point.
-   */
-  readonly privateEndpoint?: PrivateEndpoint;
-  /**
-   * A collection of information about the state of the connection between service consumer and provider.
-   */
-  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
-  /**
-   * The provisioning state of the private endpoint connection resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The consumer link id.
-   */
-  readonly linkIdentifier?: string;
-};
 
 /**
  * The base resource set for visibility and auto-approval.
@@ -8172,56 +4618,6 @@ export interface PublicIPAddressListResult {
 }
 
 /**
- * Public IP prefix resource.
- */
-export type PublicIPPrefix = Resource & {
-  /**
-   * The public IP prefix SKU.
-   */
-  sku?: PublicIPPrefixSku;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * A list of availability zones denoting the IP allocated for the resource needs to come from.
-   */
-  zones?: string[];
-  /**
-   * The public IP address version.
-   */
-  publicIPAddressVersion?: IPVersion;
-  /**
-   * The list of tags associated with the public IP prefix.
-   */
-  ipTags?: IpTag[];
-  /**
-   * The Length of the Public IP Prefix.
-   */
-  prefixLength?: number;
-  /**
-   * The allocated Prefix.
-   */
-  readonly ipPrefix?: string;
-  /**
-   * The list of all referenced PublicIPAddresses.
-   */
-  readonly publicIPAddresses?: ReferencedPublicIpAddress[];
-  /**
-   * The reference to load balancer frontend IP configuration associated with the public IP prefix.
-   */
-  readonly loadBalancerFrontendIpConfiguration?: SubResource;
-  /**
-   * The resource GUID property of the public IP prefix resource.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the public IP prefix resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * SKU of a public IP prefix.
  */
 export interface PublicIPPrefixSku {
@@ -8254,66 +4650,6 @@ export interface PublicIPPrefixListResult {
    */
   nextLink?: string;
 }
-
-/**
- * Route Filter Resource.
- */
-export type RouteFilter = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Collection of RouteFilterRules contained within a route filter.
-   */
-  rules?: RouteFilterRule[];
-  /**
-   * A collection of references to express route circuit peerings.
-   */
-  readonly peerings?: ExpressRouteCircuitPeering[];
-  /**
-   * A collection of references to express route circuit ipv6 peerings.
-   */
-  readonly ipv6Peerings?: ExpressRouteCircuitPeering[];
-  /**
-   * The provisioning state of the route filter resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Route Filter Rule Resource.
- */
-export type RouteFilterRule = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * Resource location.
-   */
-  location?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The access type of the rule.
-   */
-  access?: Access;
-  /**
-   * The rule type of the rule.
-   */
-  routeFilterRuleType?: "Community";
-  /**
-   * The collection for bgp community values to filter on. e.g. ['12076:5010','12076:5020'].
-   */
-  communities?: string[];
-  /**
-   * The provisioning state of the route filter rule resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * Response for the ListRouteFilters API service call.
@@ -8372,32 +4708,6 @@ export interface RouteListResult {
 }
 
 /**
- * Security Partner Provider resource.
- */
-export type SecurityPartnerProvider = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The provisioning state of the Security Partner Provider resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The security provider name.
-   */
-  securityProviderName?: SecurityProviderName;
-  /**
-   * The connection status with the Security Partner Provider.
-   */
-  readonly connectionStatus?: SecurityPartnerProviderConnectionStatus;
-  /**
-   * The virtualHub to which the Security Partner Provider belongs.
-   */
-  virtualHub?: SubResource;
-};
-
-/**
  * Response for ListSecurityPartnerProviders API service call.
  */
 export interface SecurityPartnerProviderListResult {
@@ -8424,20 +4734,6 @@ export interface BgpServiceCommunityListResult {
    */
   nextLink?: string;
 }
-
-/**
- * Service Community Properties.
- */
-export type BgpServiceCommunity = Resource & {
-  /**
-   * The name of the bgp community. e.g. Skype.
-   */
-  serviceName?: string;
-  /**
-   * A list of bgp communities.
-   */
-  bgpCommunities?: BGPCommunity[];
-};
 
 /**
  * Contains bgp community information offered in Service Community resources.
@@ -8664,16 +4960,6 @@ export interface NetworkIntentPolicyConfiguration {
 }
 
 /**
- * Network Intent Policy resource.
- */
-export type NetworkIntentPolicy = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-};
-
-/**
  * Details of UnprepareNetworkPolicies for Subnet.
  */
 export interface UnprepareNetworkPoliciesRequest {
@@ -8808,114 +5094,6 @@ export interface VirtualNetworkUsageName {
 }
 
 /**
- * A common class for general resource information.
- */
-export type VirtualNetworkGateway = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * IP configurations for virtual network gateway.
-   */
-  ipConfigurations?: VirtualNetworkGatewayIPConfiguration[];
-  /**
-   * The type of this virtual network gateway.
-   */
-  gatewayType?: VirtualNetworkGatewayType;
-  /**
-   * The type of this virtual network gateway.
-   */
-  vpnType?: VpnType;
-  /**
-   * The generation for this VirtualNetworkGateway. Must be None if gatewayType is not VPN.
-   */
-  vpnGatewayGeneration?: VpnGatewayGeneration;
-  /**
-   * Whether BGP is enabled for this virtual network gateway or not.
-   */
-  enableBgp?: boolean;
-  /**
-   * Whether private IP needs to be enabled on this gateway for connections or not.
-   */
-  enablePrivateIpAddress?: boolean;
-  /**
-   * ActiveActive flag.
-   */
-  active?: boolean;
-  /**
-   * The reference to the LocalNetworkGateway resource which represents local network site having default routes. Assign Null value in case of removing existing default site setting.
-   */
-  gatewayDefaultSite?: SubResource;
-  /**
-   * The reference to the VirtualNetworkGatewaySku resource which represents the SKU selected for Virtual network gateway.
-   */
-  sku?: VirtualNetworkGatewaySku;
-  /**
-   * The reference to the VpnClientConfiguration resource which represents the P2S VpnClient configurations.
-   */
-  vpnClientConfiguration?: VpnClientConfiguration;
-  /**
-   * Virtual network gateway's BGP speaker settings.
-   */
-  bgpSettings?: BgpSettings;
-  /**
-   * The reference to the address space resource which represents the custom routes address space specified by the customer for virtual network gateway and VpnClient.
-   */
-  customRoutes?: AddressSpace;
-  /**
-   * The resource GUID property of the virtual network gateway resource.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the virtual network gateway resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Whether dns forwarding is enabled or not.
-   */
-  enableDnsForwarding?: boolean;
-  /**
-   * The IP address allocated by the gateway to which dns requests can be sent.
-   */
-  readonly inboundDnsForwardingEndpoint?: string;
-};
-
-/**
- * IP configuration for virtual network gateway.
- */
-export type VirtualNetworkGatewayIPConfiguration = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The private IP address allocation method.
-   */
-  privateIPAllocationMethod?: IPAllocationMethod;
-  /**
-   * The reference to the subnet resource.
-   */
-  subnet?: SubResource;
-  /**
-   * The reference to the public IP resource.
-   */
-  publicIPAddress?: SubResource;
-  /**
-   * Private IP Address for this gateway.
-   */
-  readonly privateIPAddress?: string;
-  /**
-   * The provisioning state of the virtual network gateway IP configuration resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * VirtualNetworkGatewaySku details.
  */
 export interface VirtualNetworkGatewaySku {
@@ -8982,50 +5160,6 @@ export interface VpnClientConfiguration {
    */
   aadIssuer?: string;
 }
-
-/**
- * VPN client root certificate of virtual network gateway.
- */
-export type VpnClientRootCertificate = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The certificate public data.
-   */
-  publicCertData: string;
-  /**
-   * The provisioning state of the VPN client root certificate resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * VPN client revoked certificate of virtual network gateway.
- */
-export type VpnClientRevokedCertificate = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The revoked VPN client certificate thumbprint.
-   */
-  thumbprint?: string;
-  /**
-   * The provisioning state of the VPN client revoked certificate resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * An IPSec Policy configuration for a virtual network gateway connection.
@@ -9154,96 +5288,6 @@ export interface VirtualNetworkGatewayListConnectionsResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * A common class for general resource information.
- */
-export type VirtualNetworkGatewayConnectionListEntity = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The authorizationKey.
-   */
-  authorizationKey?: string;
-  /**
-   * The reference to virtual network gateway resource.
-   */
-  virtualNetworkGateway1: VirtualNetworkConnectionGatewayReference;
-  /**
-   * The reference to virtual network gateway resource.
-   */
-  virtualNetworkGateway2?: VirtualNetworkConnectionGatewayReference;
-  /**
-   * The reference to local network gateway resource.
-   */
-  localNetworkGateway2?: VirtualNetworkConnectionGatewayReference;
-  /**
-   * Gateway connection type.
-   */
-  connectionType: VirtualNetworkGatewayConnectionType;
-  /**
-   * Connection protocol used for this connection.
-   */
-  connectionProtocol?: VirtualNetworkGatewayConnectionProtocol;
-  /**
-   * The routing weight.
-   */
-  routingWeight?: number;
-  /**
-   * The IPSec shared key.
-   */
-  sharedKey?: string;
-  /**
-   * Virtual Network Gateway connection status.
-   */
-  readonly connectionStatus?: VirtualNetworkGatewayConnectionStatus;
-  /**
-   * Collection of all tunnels' connection health status.
-   */
-  readonly tunnelConnectionStatus?: TunnelConnectionHealth[];
-  /**
-   * The egress bytes transferred in this connection.
-   */
-  readonly egressBytesTransferred?: number;
-  /**
-   * The ingress bytes transferred in this connection.
-   */
-  readonly ingressBytesTransferred?: number;
-  /**
-   * The reference to peerings resource.
-   */
-  peer?: SubResource;
-  /**
-   * EnableBgp flag.
-   */
-  enableBgp?: boolean;
-  /**
-   * Enable policy-based traffic selectors.
-   */
-  usePolicyBasedTrafficSelectors?: boolean;
-  /**
-   * The IPSec Policies to be considered by this connection.
-   */
-  ipsecPolicies?: IpsecPolicy[];
-  /**
-   * The Traffic Selector Policies to be considered by this connection.
-   */
-  trafficSelectorPolicies?: TrafficSelectorPolicy[];
-  /**
-   * The resource GUID property of the virtual network gateway connection resource.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the virtual network gateway connection resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Bypass ExpressRoute Gateway for data forwarding.
-   */
-  expressRouteGatewayBypass?: boolean;
-};
 
 /**
  * A reference to VirtualNetworkGateway or LocalNetworkGateway resource.
@@ -9486,148 +5530,6 @@ export interface VpnPacketCaptureStopParameters {
 }
 
 /**
- * A common class for general resource information.
- */
-export type VirtualNetworkGatewayConnection = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The authorizationKey.
-   */
-  authorizationKey?: string;
-  /**
-   * The reference to virtual network gateway resource.
-   */
-  virtualNetworkGateway1: VirtualNetworkGateway;
-  /**
-   * The reference to virtual network gateway resource.
-   */
-  virtualNetworkGateway2?: VirtualNetworkGateway;
-  /**
-   * The reference to local network gateway resource.
-   */
-  localNetworkGateway2?: LocalNetworkGateway;
-  /**
-   * Gateway connection type.
-   */
-  connectionType: VirtualNetworkGatewayConnectionType;
-  /**
-   * Connection protocol used for this connection.
-   */
-  connectionProtocol?: VirtualNetworkGatewayConnectionProtocol;
-  /**
-   * The routing weight.
-   */
-  routingWeight?: number;
-  /**
-   * The dead peer detection timeout of this connection in seconds.
-   */
-  dpdTimeoutSeconds?: number;
-  /**
-   * The IPSec shared key.
-   */
-  sharedKey?: string;
-  /**
-   * Virtual Network Gateway connection status.
-   */
-  readonly connectionStatus?: VirtualNetworkGatewayConnectionStatus;
-  /**
-   * Collection of all tunnels' connection health status.
-   */
-  readonly tunnelConnectionStatus?: TunnelConnectionHealth[];
-  /**
-   * The egress bytes transferred in this connection.
-   */
-  readonly egressBytesTransferred?: number;
-  /**
-   * The ingress bytes transferred in this connection.
-   */
-  readonly ingressBytesTransferred?: number;
-  /**
-   * The reference to peerings resource.
-   */
-  peer?: SubResource;
-  /**
-   * EnableBgp flag.
-   */
-  enableBgp?: boolean;
-  /**
-   * Use private local Azure IP for the connection.
-   */
-  useLocalAzureIpAddress?: boolean;
-  /**
-   * Enable policy-based traffic selectors.
-   */
-  usePolicyBasedTrafficSelectors?: boolean;
-  /**
-   * The IPSec Policies to be considered by this connection.
-   */
-  ipsecPolicies?: IpsecPolicy[];
-  /**
-   * The Traffic Selector Policies to be considered by this connection.
-   */
-  trafficSelectorPolicies?: TrafficSelectorPolicy[];
-  /**
-   * The resource GUID property of the virtual network gateway connection resource.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the virtual network gateway connection resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Bypass ExpressRoute Gateway for data forwarding.
-   */
-  expressRouteGatewayBypass?: boolean;
-};
-
-/**
- * A common class for general resource information.
- */
-export type LocalNetworkGateway = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Local network site address space.
-   */
-  localNetworkAddressSpace?: AddressSpace;
-  /**
-   * IP address of local network gateway.
-   */
-  gatewayIpAddress?: string;
-  /**
-   * FQDN of local network gateway.
-   */
-  fqdn?: string;
-  /**
-   * Local network gateway's BGP speaker settings.
-   */
-  bgpSettings?: BgpSettings;
-  /**
-   * The resource GUID property of the local network gateway resource.
-   */
-  readonly resourceGuid?: string;
-  /**
-   * The provisioning state of the local network gateway resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
- * Response for GetConnectionSharedKey API service call.
- */
-export type ConnectionSharedKey = SubResource & {
-  /**
-   * The virtual network connection shared key value.
-   */
-  value: string;
-};
-
-/**
  * Response for the ListVirtualNetworkGatewayConnections API service call.
  */
 export interface VirtualNetworkGatewayConnectionListResult {
@@ -9754,40 +5656,6 @@ export interface VirtualNetworkTapListResult {
 }
 
 /**
- * VirtualRouter Resource.
- */
-export type VirtualRouter = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * VirtualRouter ASN.
-   */
-  virtualRouterAsn?: number;
-  /**
-   * VirtualRouter IPs.
-   */
-  virtualRouterIps?: string[];
-  /**
-   * The Subnet on which VirtualRouter is hosted.
-   */
-  hostedSubnet?: SubResource;
-  /**
-   * The Gateway on which VirtualRouter is hosted.
-   */
-  hostedGateway?: SubResource;
-  /**
-   * List of references to VirtualRouterPeerings.
-   */
-  readonly peerings?: SubResource[];
-  /**
-   * The provisioning state of the resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * Response for ListVirtualRouters API service call.
  */
 export interface VirtualRouterListResult {
@@ -9800,36 +5668,6 @@ export interface VirtualRouterListResult {
    */
   nextLink?: string;
 }
-
-/**
- * Virtual Router Peering resource.
- */
-export type VirtualRouterPeering = SubResource & {
-  /**
-   * Name of the virtual router peering that is unique within a virtual router.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Peering type.
-   */
-  readonly type?: string;
-  /**
-   * Peer ASN.
-   */
-  peerAsn?: number;
-  /**
-   * Peer IP.
-   */
-  peerIp?: string;
-  /**
-   * The provisioning state of the resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * Response for ListVirtualRouterPeerings API service call.
@@ -9846,48 +5684,6 @@ export interface VirtualRouterPeeringListResult {
 }
 
 /**
- * VirtualWAN Resource.
- */
-export type VirtualWAN = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Vpn encryption to be disabled or not.
-   */
-  disableVpnEncryption?: boolean;
-  /**
-   * List of VirtualHubs in the VirtualWAN.
-   */
-  readonly virtualHubs?: SubResource[];
-  /**
-   * List of VpnSites in the VirtualWAN.
-   */
-  readonly vpnSites?: SubResource[];
-  /**
-   * True if branch to branch traffic is allowed.
-   */
-  allowBranchToBranchTraffic?: boolean;
-  /**
-   * True if Vnet to Vnet traffic is allowed.
-   */
-  allowVnetToVnetTraffic?: boolean;
-  /**
-   * The office local breakout category.
-   */
-  readonly office365LocalBreakoutCategory?: OfficeTrafficCategory;
-  /**
-   * The provisioning state of the virtual WAN resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The type of the VirtualWAN.
-   */
-  typePropertiesType?: string;
-};
-
-/**
  * Result of the request to list VirtualWANs. It contains a list of VirtualWANs and a URL nextLink to get the next set of results.
  */
 export interface ListVirtualWANsResult {
@@ -9900,52 +5696,6 @@ export interface ListVirtualWANsResult {
    */
   nextLink?: string;
 }
-
-/**
- * VpnSite Resource.
- */
-export type VpnSite = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The VirtualWAN to which the vpnSite belongs.
-   */
-  virtualWan?: SubResource;
-  /**
-   * The device properties.
-   */
-  deviceProperties?: DeviceProperties;
-  /**
-   * The ip-address for the vpn-site.
-   */
-  ipAddress?: string;
-  /**
-   * The key for vpn-site that can be used for connections.
-   */
-  siteKey?: string;
-  /**
-   * The AddressSpace that contains an array of IP address ranges.
-   */
-  addressSpace?: AddressSpace;
-  /**
-   * The set of bgp properties.
-   */
-  bgpProperties?: BgpSettings;
-  /**
-   * The provisioning state of the VPN site resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * IsSecuritySite flag.
-   */
-  isSecuritySite?: boolean;
-  /**
-   * List of all vpn site links.
-   */
-  vpnSiteLinks?: VpnSiteLink[];
-};
 
 /**
  * List of properties of the device.
@@ -9964,44 +5714,6 @@ export interface DeviceProperties {
    */
   linkSpeedInMbps?: number;
 }
-
-/**
- * VpnSiteLink Resource.
- */
-export type VpnSiteLink = SubResource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * Resource type.
-   */
-  readonly type?: string;
-  /**
-   * The link provider properties.
-   */
-  linkProperties?: VpnLinkProviderProperties;
-  /**
-   * The ip-address for the vpn-site-link.
-   */
-  ipAddress?: string;
-  /**
-   * FQDN of vpn-site-link.
-   */
-  fqdn?: string;
-  /**
-   * The set of bgp properties.
-   */
-  bgpProperties?: VpnLinkBgpSettings;
-  /**
-   * The provisioning state of the VPN site link resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * List of properties of a link provider.
@@ -10102,76 +5814,6 @@ export interface VirtualWanSecurityProvider {
 }
 
 /**
- * VpnServerConfiguration Resource.
- */
-export type VpnServerConfiguration = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The name of the VpnServerConfiguration that is unique within a resource group.
-   */
-  namePropertiesName?: string;
-  /**
-   * VPN protocols for the VpnServerConfiguration.
-   */
-  vpnProtocols?: VpnGatewayTunnelingProtocol[];
-  /**
-   * VPN authentication types for the VpnServerConfiguration.
-   */
-  vpnAuthenticationTypes?: VpnAuthenticationType[];
-  /**
-   * VPN client root certificate of VpnServerConfiguration.
-   */
-  vpnClientRootCertificates?: VpnServerConfigVpnClientRootCertificate[];
-  /**
-   * VPN client revoked certificate of VpnServerConfiguration.
-   */
-  vpnClientRevokedCertificates?: VpnServerConfigVpnClientRevokedCertificate[];
-  /**
-   * Radius Server root certificate of VpnServerConfiguration.
-   */
-  radiusServerRootCertificates?: VpnServerConfigRadiusServerRootCertificate[];
-  /**
-   * Radius client root certificate of VpnServerConfiguration.
-   */
-  radiusClientRootCertificates?: VpnServerConfigRadiusClientRootCertificate[];
-  /**
-   * VpnClientIpsecPolicies for VpnServerConfiguration.
-   */
-  vpnClientIpsecPolicies?: IpsecPolicy[];
-  /**
-   * The radius server address property of the VpnServerConfiguration resource for point to site client connection.
-   */
-  radiusServerAddress?: string;
-  /**
-   * The radius secret property of the VpnServerConfiguration resource for point to site client connection.
-   */
-  radiusServerSecret?: string;
-  /**
-   * Multiple Radius Server configuration for VpnServerConfiguration.
-   */
-  radiusServers?: RadiusServer[];
-  /**
-   * The set of aad vpn authentication parameters.
-   */
-  aadAuthenticationParameters?: AadAuthenticationParameters;
-  /**
-   * The provisioning state of the VpnServerConfiguration resource. Possible values are: 'Updating', 'Deleting', and 'Failed'.
-   */
-  readonly provisioningState?: string;
-  /**
-   * List of references to P2SVpnGateways.
-   */
-  readonly p2SVpnGateways?: P2SVpnGateway[];
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etagPropertiesEtag?: string;
-};
-
-/**
  * Properties of VPN client root certificate of VpnServerConfiguration.
  */
 export interface VpnServerConfigVpnClientRootCertificate {
@@ -10244,66 +5886,6 @@ export interface AadAuthenticationParameters {
    */
   aadIssuer?: string;
 }
-
-/**
- * P2SVpnGateway Resource.
- */
-export type P2SVpnGateway = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The VirtualHub to which the gateway belongs.
-   */
-  virtualHub?: SubResource;
-  /**
-   * List of all p2s connection configurations of the gateway.
-   */
-  p2SConnectionConfigurations?: P2SConnectionConfiguration[];
-  /**
-   * The provisioning state of the P2S VPN gateway resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The scale unit for this p2s vpn gateway.
-   */
-  vpnGatewayScaleUnit?: number;
-  /**
-   * The VpnServerConfiguration to which the p2sVpnGateway is attached to.
-   */
-  vpnServerConfiguration?: SubResource;
-  /**
-   * All P2S VPN clients' connection health status.
-   */
-  readonly vpnClientConnectionHealth?: VpnClientConnectionHealth;
-};
-
-/**
- * P2SConnectionConfiguration Resource.
- */
-export type P2SConnectionConfiguration = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The reference to the address space resource which represents Address space for P2S VpnClient.
-   */
-  vpnClientAddressPool?: AddressSpace;
-  /**
-   * The Routing Configuration indicating the associated and propagated route tables on this connection.
-   */
-  routingConfiguration?: RoutingConfiguration;
-  /**
-   * The provisioning state of the P2SConnectionConfiguration resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * Routing Configuration indicating the associated and propagated route tables for this connection.
@@ -10402,106 +5984,6 @@ export interface ListVpnServerConfigurationsResult {
 }
 
 /**
- * VirtualHub Resource.
- */
-export type VirtualHub = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The VirtualWAN to which the VirtualHub belongs.
-   */
-  virtualWan?: SubResource;
-  /**
-   * The VpnGateway associated with this VirtualHub.
-   */
-  vpnGateway?: SubResource;
-  /**
-   * The P2SVpnGateway associated with this VirtualHub.
-   */
-  p2SVpnGateway?: SubResource;
-  /**
-   * The expressRouteGateway associated with this VirtualHub.
-   */
-  expressRouteGateway?: SubResource;
-  /**
-   * The azureFirewall associated with this VirtualHub.
-   */
-  azureFirewall?: SubResource;
-  /**
-   * The securityPartnerProvider associated with this VirtualHub.
-   */
-  securityPartnerProvider?: SubResource;
-  /**
-   * List of all vnet connections with this VirtualHub.
-   */
-  virtualNetworkConnections?: HubVirtualNetworkConnection[];
-  /**
-   * Address-prefix for this VirtualHub.
-   */
-  addressPrefix?: string;
-  /**
-   * The routeTable associated with this virtual hub.
-   */
-  routeTable?: VirtualHubRouteTable;
-  /**
-   * The provisioning state of the virtual hub resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The Security Provider name.
-   */
-  securityProviderName?: string;
-  /**
-   * List of all virtual hub route table v2s associated with this VirtualHub.
-   */
-  virtualHubRouteTableV2S?: VirtualHubRouteTableV2[];
-  /**
-   * The sku of this VirtualHub.
-   */
-  sku?: string;
-};
-
-/**
- * HubVirtualNetworkConnection Resource.
- */
-export type HubVirtualNetworkConnection = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Reference to the remote virtual network.
-   */
-  remoteVirtualNetwork?: SubResource;
-  /**
-   * VirtualHub to RemoteVnet transit to enabled or not.
-   */
-  allowHubToRemoteVnetTransit?: boolean;
-  /**
-   * Allow RemoteVnet to use Virtual Hub's gateways.
-   */
-  allowRemoteVnetToUseHubVnetGateways?: boolean;
-  /**
-   * Enable internet security.
-   */
-  enableInternetSecurity?: boolean;
-  /**
-   * The Routing Configuration indicating the associated and propagated route tables on this connection.
-   */
-  routingConfiguration?: RoutingConfiguration;
-  /**
-   * The provisioning state of the hub virtual network connection resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
-
-/**
  * VirtualHub route table.
  */
 export interface VirtualHubRouteTable {
@@ -10524,32 +6006,6 @@ export interface VirtualHubRoute {
    */
   nextHopIpAddress?: string;
 }
-
-/**
- * VirtualHubRouteTableV2 Resource.
- */
-export type VirtualHubRouteTableV2 = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * List of all routes.
-   */
-  routes?: VirtualHubRouteV2[];
-  /**
-   * List of all connections attached to this route table v2.
-   */
-  attachedConnections?: string[];
-  /**
-   * The provisioning state of the virtual hub route table v2 resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * VirtualHubRouteTableV2 route.
@@ -10600,196 +6056,6 @@ export interface ListHubVirtualNetworkConnectionsResult {
    */
   nextLink?: string;
 }
-
-/**
- * VpnGateway Resource.
- */
-export type VpnGateway = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The VirtualHub to which the gateway belongs.
-   */
-  virtualHub?: SubResource;
-  /**
-   * List of all vpn connections to the gateway.
-   */
-  connections?: VpnConnection[];
-  /**
-   * Local network gateway's BGP speaker settings.
-   */
-  bgpSettings?: BgpSettings;
-  /**
-   * The provisioning state of the VPN gateway resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The scale unit for this vpn gateway.
-   */
-  vpnGatewayScaleUnit?: number;
-};
-
-/**
- * VpnConnection Resource.
- */
-export type VpnConnection = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Id of the connected vpn site.
-   */
-  remoteVpnSite?: SubResource;
-  /**
-   * Routing weight for vpn connection.
-   */
-  routingWeight?: number;
-  /**
-   * The dead peer detection timeout for a vpn connection in seconds.
-   */
-  dpdTimeoutSeconds?: number;
-  /**
-   * The connection status.
-   */
-  readonly connectionStatus?: VpnConnectionStatus;
-  /**
-   * Connection protocol used for this connection.
-   */
-  vpnConnectionProtocolType?: VirtualNetworkGatewayConnectionProtocol;
-  /**
-   * Ingress bytes transferred.
-   */
-  readonly ingressBytesTransferred?: number;
-  /**
-   * Egress bytes transferred.
-   */
-  readonly egressBytesTransferred?: number;
-  /**
-   * Expected bandwidth in MBPS.
-   */
-  connectionBandwidth?: number;
-  /**
-   * SharedKey for the vpn connection.
-   */
-  sharedKey?: string;
-  /**
-   * EnableBgp flag.
-   */
-  enableBgp?: boolean;
-  /**
-   * Enable policy-based traffic selectors.
-   */
-  usePolicyBasedTrafficSelectors?: boolean;
-  /**
-   * The IPSec Policies to be considered by this connection.
-   */
-  ipsecPolicies?: IpsecPolicy[];
-  /**
-   * EnableBgp flag.
-   */
-  enableRateLimiting?: boolean;
-  /**
-   * Enable internet security.
-   */
-  enableInternetSecurity?: boolean;
-  /**
-   * Use local azure ip to initiate connection.
-   */
-  useLocalAzureIpAddress?: boolean;
-  /**
-   * The provisioning state of the VPN connection resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * List of all vpn site link connections to the gateway.
-   */
-  vpnLinkConnections?: VpnSiteLinkConnection[];
-  /**
-   * The Routing Configuration indicating the associated and propagated route tables on this connection.
-   */
-  routingConfiguration?: RoutingConfiguration;
-};
-
-/**
- * VpnSiteLinkConnection Resource.
- */
-export type VpnSiteLinkConnection = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Resource type.
-   */
-  readonly type?: string;
-  /**
-   * Id of the connected vpn site link.
-   */
-  vpnSiteLink?: SubResource;
-  /**
-   * Routing weight for vpn connection.
-   */
-  routingWeight?: number;
-  /**
-   * The connection status.
-   */
-  readonly connectionStatus?: VpnConnectionStatus;
-  /**
-   * Connection protocol used for this connection.
-   */
-  vpnConnectionProtocolType?: VirtualNetworkGatewayConnectionProtocol;
-  /**
-   * Ingress bytes transferred.
-   */
-  readonly ingressBytesTransferred?: number;
-  /**
-   * Egress bytes transferred.
-   */
-  readonly egressBytesTransferred?: number;
-  /**
-   * Expected bandwidth in MBPS.
-   */
-  connectionBandwidth?: number;
-  /**
-   * SharedKey for the vpn connection.
-   */
-  sharedKey?: string;
-  /**
-   * EnableBgp flag.
-   */
-  enableBgp?: boolean;
-  /**
-   * Enable policy-based traffic selectors.
-   */
-  usePolicyBasedTrafficSelectors?: boolean;
-  /**
-   * The IPSec Policies to be considered by this connection.
-   */
-  ipsecPolicies?: IpsecPolicy[];
-  /**
-   * EnableBgp flag.
-   */
-  enableRateLimiting?: boolean;
-  /**
-   * Use local azure ip to initiate connection.
-   */
-  useLocalAzureIpAddress?: boolean;
-  /**
-   * The provisioning state of the VPN site link connection resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * Result of the request to list VpnGateways. It contains a list of VpnGateways and a URL nextLink to get the next set of results.
@@ -10940,32 +6206,6 @@ export interface ExpressRouteGatewayList {
 }
 
 /**
- * ExpressRoute gateway resource.
- */
-export type ExpressRouteGateway = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Configuration for auto scaling.
-   */
-  autoScaleConfiguration?: ExpressRouteGatewayPropertiesAutoScaleConfiguration;
-  /**
-   * List of ExpressRoute connections to the ExpressRoute gateway.
-   */
-  readonly expressRouteConnections?: ExpressRouteConnection[];
-  /**
-   * The provisioning state of the express route gateway resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The Virtual Hub where the ExpressRoute gateway is or will be deployed.
-   */
-  virtualHub?: VirtualHubId;
-};
-
-/**
  * Configuration for auto scaling.
  */
 export interface ExpressRouteGatewayPropertiesAutoScaleConfiguration {
@@ -10988,40 +6228,6 @@ export interface ExpressRouteGatewayPropertiesAutoScaleConfigurationBounds {
    */
   max?: number;
 }
-
-/**
- * ExpressRouteConnection resource.
- */
-export type ExpressRouteConnection = SubResource & {
-  /**
-   * The name of the resource.
-   */
-  name: string;
-  /**
-   * The provisioning state of the express route connection resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * The ExpressRoute circuit peering.
-   */
-  expressRouteCircuitPeering?: ExpressRouteCircuitPeeringId;
-  /**
-   * Authorization key to establish the connection.
-   */
-  authorizationKey?: string;
-  /**
-   * The routing weight associated to the connection.
-   */
-  routingWeight?: number;
-  /**
-   * Enable internet security.
-   */
-  enableInternetSecurity?: boolean;
-  /**
-   * The Routing Configuration indicating the associated and propagated route tables on this connection.
-   */
-  routingConfiguration?: RoutingConfiguration;
-};
 
 /**
  * ExpressRoute circuit peering identifier.
@@ -11052,44 +6258,6 @@ export interface ExpressRouteConnectionList {
    */
   value?: ExpressRouteConnection[];
 }
-
-/**
- * RouteTable resource in a virtual hub.
- */
-export type HubRouteTable = SubResource & {
-  /**
-   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
-   */
-  name?: string;
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * Resource type.
-   */
-  readonly type?: string;
-  /**
-   * List of all routes.
-   */
-  routes?: HubRoute[];
-  /**
-   * List of labels associated with this route table.
-   */
-  labels?: string[];
-  /**
-   * List of all connections associated with this route table.
-   */
-  readonly associatedConnections?: SubResource[];
-  /**
-   * List of all connections that advertise to this route table.
-   */
-  readonly propagatingConnections?: SubResource[];
-  /**
-   * The provisioning state of the RouteTable resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-};
 
 /**
  * RouteTable route.
@@ -11144,48 +6312,6 @@ export interface WebApplicationFirewallPolicyListResult {
    */
   readonly nextLink?: string;
 }
-
-/**
- * Defines web application firewall policy.
- */
-export type WebApplicationFirewallPolicy = Resource & {
-  /**
-   * A unique read-only string that changes whenever the resource is updated.
-   */
-  readonly etag?: string;
-  /**
-   * The PolicySettings for policy.
-   */
-  policySettings?: PolicySettings;
-  /**
-   * The custom rules inside the policy.
-   */
-  customRules?: WebApplicationFirewallCustomRule[];
-  /**
-   * A collection of references to application gateways.
-   */
-  readonly applicationGateways?: ApplicationGateway[];
-  /**
-   * The provisioning state of the web application firewall policy resource.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Resource status of the policy.
-   */
-  readonly resourceState?: WebApplicationFirewallPolicyResourceState;
-  /**
-   * Describes the managedRules structure.
-   */
-  managedRules?: ManagedRulesDefinition;
-  /**
-   * A collection of references to application gateway http listeners.
-   */
-  readonly httpListeners?: SubResource[];
-  /**
-   * A collection of references to application gateway path rules.
-   */
-  readonly pathBasedRules?: SubResource[];
-};
 
 /**
  * Defines contents of a web application firewall global configuration.
@@ -11362,33 +6488,6 @@ export interface ManagedRuleOverride {
 }
 
 /**
- * Describes a Virtual Machine.
- */
-export type Vm = Resource & {};
-
-/**
- * Firewall Policy NAT Rule.
- */
-export type FirewallPolicyNatRule = FirewallPolicyRule & {
-  /**
-   * The action type of a Nat rule.
-   */
-  action?: FirewallPolicyNatRuleAction;
-  /**
-   * The translated address for this NAT rule.
-   */
-  translatedAddress?: string;
-  /**
-   * The translated port for this NAT rule.
-   */
-  translatedPort?: string;
-  /**
-   * The match conditions for incoming traffic.
-   */
-  ruleCondition?: FirewallPolicyRuleConditionUnion;
-};
-
-/**
  * Properties of the FirewallPolicyNatRuleAction.
  */
 export interface FirewallPolicyNatRuleAction {
@@ -11420,20 +6519,6 @@ export interface FirewallPolicyRuleCondition {
 }
 
 /**
- * Firewall Policy Filter Rule.
- */
-export type FirewallPolicyFilterRule = FirewallPolicyRule & {
-  /**
-   * The action type of a Filter rule.
-   */
-  action?: FirewallPolicyFilterRuleAction;
-  /**
-   * Collection of rule conditions used by a rule.
-   */
-  ruleConditions?: FirewallPolicyRuleConditionUnion[];
-};
-
-/**
  * Properties of the FirewallPolicyFilterRuleAction.
  */
 export interface FirewallPolicyFilterRuleAction {
@@ -11442,40 +6527,6 @@ export interface FirewallPolicyFilterRuleAction {
    */
   type?: FirewallPolicyFilterRuleActionType;
 }
-
-/**
- * Rule condition of type application.
- */
-export type ApplicationRuleCondition = FirewallPolicyRuleCondition & {
-  /**
-   * List of source IP addresses for this rule.
-   */
-  sourceAddresses?: string[];
-  /**
-   * List of destination IP addresses or Service Tags.
-   */
-  destinationAddresses?: string[];
-  /**
-   * Array of Application Protocols.
-   */
-  protocols?: FirewallPolicyRuleConditionApplicationProtocol[];
-  /**
-   * List of Urls for this rule condition.
-   */
-  targetUrls?: string[];
-  /**
-   * List of FQDNs for this rule condition.
-   */
-  targetFqdns?: string[];
-  /**
-   * List of FQDN Tags for this rule condition.
-   */
-  fqdnTags?: string[];
-  /**
-   * List of source IpGroups for this rule.
-   */
-  sourceIpGroups?: string[];
-};
 
 /**
  * Properties of the application rule protocol.
@@ -11492,66 +6543,6 @@ export interface FirewallPolicyRuleConditionApplicationProtocol {
 }
 
 /**
- * Rule condition of type nat.
- */
-export type NatRuleCondition = FirewallPolicyRuleCondition & {
-  /**
-   * Array of FirewallPolicyRuleConditionNetworkProtocols.
-   */
-  ipProtocols?: FirewallPolicyRuleConditionNetworkProtocol[];
-  /**
-   * List of source IP addresses for this rule.
-   */
-  sourceAddresses?: string[];
-  /**
-   * List of destination IP addresses or Service Tags.
-   */
-  destinationAddresses?: string[];
-  /**
-   * List of destination ports.
-   */
-  destinationPorts?: string[];
-  /**
-   * List of source IpGroups for this rule.
-   */
-  sourceIpGroups?: string[];
-  /**
-   * Terminate TLS connections for this rule.
-   */
-  terminateTLS?: boolean;
-};
-
-/**
- * Rule condition of type network.
- */
-export type NetworkRuleCondition = FirewallPolicyRuleCondition & {
-  /**
-   * Array of FirewallPolicyRuleConditionNetworkProtocols.
-   */
-  ipProtocols?: FirewallPolicyRuleConditionNetworkProtocol[];
-  /**
-   * List of source IP addresses for this rule.
-   */
-  sourceAddresses?: string[];
-  /**
-   * List of destination IP addresses or Service Tags.
-   */
-  destinationAddresses?: string[];
-  /**
-   * List of destination ports.
-   */
-  destinationPorts?: string[];
-  /**
-   * List of source IpGroups for this rule.
-   */
-  sourceIpGroups?: string[];
-  /**
-   * List of destination IpGroups for this rule.
-   */
-  destinationIpGroups?: string[];
-};
-
-/**
  * The response body contains the status of the specified asynchronous operation, indicating whether it has succeeded, is in progress, or has failed. Note that this status is distinct from the HTTP status code returned for the Get Operation Status operation itself. If the asynchronous operation succeeded, the response body includes the HTTP status code for the successful request. If the asynchronous operation failed, the response body includes the HTTP status code for the failed request and error information regarding the failure.
  */
 export interface AzureAsyncOperationResult {
@@ -11566,19 +6557,2803 @@ export interface AzureAsyncOperationResult {
 }
 
 /**
+ * VpnSite Resource.
+ */
+export interface VpnSiteId {
+  /**
+   * The resource-uri of the vpn-site for which config is to be fetched.
+   */
+  readonly vpnSite?: string;
+}
+
+/**
+ * IP configuration of an application gateway. Currently 1 public and 1 private IP configuration is allowed.
+ */
+export type ApplicationGatewayIPConfiguration = SubResource & {
+  /**
+   * Name of the IP configuration that is unique within an Application Gateway.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * Reference to the subnet resource. A subnet from where application gateway gets its private address.
+   */
+  subnet?: SubResource;
+  /**
+   * The provisioning state of the application gateway IP configuration resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Authentication certificates of an application gateway.
+ */
+export type ApplicationGatewayAuthenticationCertificate = SubResource & {
+  /**
+   * Name of the authentication certificate that is unique within an Application Gateway.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * Certificate public data.
+   */
+  data?: string;
+  /**
+   * The provisioning state of the authentication certificate resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Trusted Root certificates of an application gateway.
+ */
+export type ApplicationGatewayTrustedRootCertificate = SubResource & {
+  /**
+   * Name of the trusted root certificate that is unique within an Application Gateway.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * Certificate public data.
+   */
+  data?: string;
+  /**
+   * Secret Id of (base-64 encoded unencrypted pfx) 'Secret' or 'Certificate' object stored in KeyVault.
+   */
+  keyVaultSecretId?: string;
+  /**
+   * The provisioning state of the trusted root certificate resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * SSL certificates of an application gateway.
+ */
+export type ApplicationGatewaySslCertificate = SubResource & {
+  /**
+   * Name of the SSL certificate that is unique within an Application Gateway.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * Base-64 encoded pfx certificate. Only applicable in PUT Request.
+   */
+  data?: string;
+  /**
+   * Password for the pfx file specified in data. Only applicable in PUT request.
+   */
+  password?: string;
+  /**
+   * Base-64 encoded Public cert data corresponding to pfx specified in data. Only applicable in GET request.
+   */
+  readonly publicCertData?: string;
+  /**
+   * Secret Id of (base-64 encoded unencrypted pfx) 'Secret' or 'Certificate' object stored in KeyVault.
+   */
+  keyVaultSecretId?: string;
+  /**
+   * The provisioning state of the SSL certificate resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Frontend IP configuration of an application gateway.
+ */
+export type ApplicationGatewayFrontendIPConfiguration = SubResource & {
+  /**
+   * Name of the frontend IP configuration that is unique within an Application Gateway.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * PrivateIPAddress of the network interface IP Configuration.
+   */
+  privateIPAddress?: string;
+  /**
+   * The private IP address allocation method.
+   */
+  privateIPAllocationMethod?: IPAllocationMethod;
+  /**
+   * Reference to the subnet resource.
+   */
+  subnet?: SubResource;
+  /**
+   * Reference to the PublicIP resource.
+   */
+  publicIPAddress?: SubResource;
+  /**
+   * The provisioning state of the frontend IP configuration resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Frontend port of an application gateway.
+ */
+export type ApplicationGatewayFrontendPort = SubResource & {
+  /**
+   * Name of the frontend port that is unique within an Application Gateway.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * Frontend port.
+   */
+  port?: number;
+  /**
+   * The provisioning state of the frontend port resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Probe of the application gateway.
+ */
+export type ApplicationGatewayProbe = SubResource & {
+  /**
+   * Name of the probe that is unique within an Application Gateway.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * The protocol used for the probe.
+   */
+  protocol?: ApplicationGatewayProtocol;
+  /**
+   * Host name to send the probe to.
+   */
+  host?: string;
+  /**
+   * Relative path of probe. Valid path starts from '/'. Probe is sent to <Protocol>://<host>:<port><path>.
+   */
+  path?: string;
+  /**
+   * The probing interval in seconds. This is the time interval between two consecutive probes. Acceptable values are from 1 second to 86400 seconds.
+   */
+  interval?: number;
+  /**
+   * The probe timeout in seconds. Probe marked as failed if valid response is not received with this timeout period. Acceptable values are from 1 second to 86400 seconds.
+   */
+  timeout?: number;
+  /**
+   * The probe retry count. Backend server is marked down after consecutive probe failure count reaches UnhealthyThreshold. Acceptable values are from 1 second to 20.
+   */
+  unhealthyThreshold?: number;
+  /**
+   * Whether the host header should be picked from the backend http settings. Default value is false.
+   */
+  pickHostNameFromBackendHttpSettings?: boolean;
+  /**
+   * Minimum number of servers that are always marked healthy. Default value is 0.
+   */
+  minServers?: number;
+  /**
+   * Criterion for classifying a healthy probe response.
+   */
+  match?: ApplicationGatewayProbeHealthResponseMatch;
+  /**
+   * The provisioning state of the probe resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Custom port which will be used for probing the backend servers. The valid value ranges from 1 to 65535. In case not set, port from http settings will be used. This property is valid for Standard_v2 and WAF_v2 only.
+   */
+  port?: number;
+};
+
+/**
+ * Tap configuration in a Network Interface.
+ */
+export type NetworkInterfaceTapConfiguration = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Sub Resource type.
+   */
+  readonly type?: string;
+  /**
+   * The reference to the Virtual Network Tap resource.
+   */
+  virtualNetworkTap?: VirtualNetworkTap;
+  /**
+   * The provisioning state of the network interface tap configuration resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Network security rule.
+ */
+export type SecurityRule = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * A description for this rule. Restricted to 140 chars.
+   */
+  description?: string;
+  /**
+   * Network protocol this rule applies to.
+   */
+  protocol?: SecurityRuleProtocol;
+  /**
+   * The source port or range. Integer or range between 0 and 65535. Asterisk '*' can also be used to match all ports.
+   */
+  sourcePortRange?: string;
+  /**
+   * The destination port or range. Integer or range between 0 and 65535. Asterisk '*' can also be used to match all ports.
+   */
+  destinationPortRange?: string;
+  /**
+   * The CIDR or source IP range. Asterisk '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. If this is an ingress rule, specifies where network traffic originates from.
+   */
+  sourceAddressPrefix?: string;
+  /**
+   * The CIDR or source IP ranges.
+   */
+  sourceAddressPrefixes?: string[];
+  /**
+   * The application security group specified as source.
+   */
+  sourceApplicationSecurityGroups?: ApplicationSecurityGroup[];
+  /**
+   * The destination address prefix. CIDR or destination IP range. Asterisk '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used.
+   */
+  destinationAddressPrefix?: string;
+  /**
+   * The destination address prefixes. CIDR or destination IP ranges.
+   */
+  destinationAddressPrefixes?: string[];
+  /**
+   * The application security group specified as destination.
+   */
+  destinationApplicationSecurityGroups?: ApplicationSecurityGroup[];
+  /**
+   * The source port ranges.
+   */
+  sourcePortRanges?: string[];
+  /**
+   * The destination port ranges.
+   */
+  destinationPortRanges?: string[];
+  /**
+   * The network traffic is allowed or denied.
+   */
+  access?: SecurityRuleAccess;
+  /**
+   * The priority of the rule. The value can be between 100 and 4096. The priority number must be unique for each rule in the collection. The lower the priority number, the higher the priority of the rule.
+   */
+  priority?: number;
+  /**
+   * The direction of the rule. The direction specifies if rule will be evaluated on incoming or outgoing traffic.
+   */
+  direction?: SecurityRuleDirection;
+  /**
+   * The provisioning state of the security rule resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * PrivateLinkServiceConnection resource.
+ */
+export type PrivateLinkServiceConnection = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * The resource type.
+   */
+  readonly type?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The provisioning state of the private link service connection resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The resource id of private link service.
+   */
+  privateLinkServiceId?: string;
+  /**
+   * The ID(s) of the group(s) obtained from the remote resource that this private endpoint should connect to.
+   */
+  groupIds?: string[];
+  /**
+   * A message passed to the owner of the remote resource with this connection request. Restricted to 140 chars.
+   */
+  requestMessage?: string;
+  /**
+   * A collection of read-only information about the state of the connection to the remote resource.
+   */
+  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
+};
+
+/**
+ * Route resource.
+ */
+export type Route = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The destination CIDR to which the route applies.
+   */
+  addressPrefix?: string;
+  /**
+   * The type of Azure hop the packet should be sent to.
+   */
+  nextHopType?: RouteNextHopType;
+  /**
+   * The IP address packets should be forwarded to. Next hop values are only allowed in routes where the next hop type is VirtualAppliance.
+   */
+  nextHopIpAddress?: string;
+  /**
+   * The provisioning state of the route resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Service Endpoint policy definitions.
+ */
+export type ServiceEndpointPolicyDefinition = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * A description for this rule. Restricted to 140 chars.
+   */
+  description?: string;
+  /**
+   * Service endpoint name.
+   */
+  service?: string;
+  /**
+   * A list of service resources.
+   */
+  serviceResources?: string[];
+  /**
+   * The provisioning state of the service endpoint policy definition resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * IP configuration.
+ */
+export type IPConfiguration = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The private IP address of the IP configuration.
+   */
+  privateIPAddress?: string;
+  /**
+   * The private IP address allocation method.
+   */
+  privateIPAllocationMethod?: IPAllocationMethod;
+  /**
+   * The reference to the subnet resource.
+   */
+  subnet?: Subnet;
+  /**
+   * The reference to the public IP resource.
+   */
+  publicIPAddress?: PublicIPAddress;
+  /**
+   * The provisioning state of the IP configuration resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * IP configuration profile child resource.
+ */
+export type IPConfigurationProfile = SubResource & {
+  /**
+   * The name of the resource. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * Sub Resource type.
+   */
+  readonly type?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The reference to the subnet resource to create a container network interface ip configuration.
+   */
+  subnet?: Subnet;
+  /**
+   * The provisioning state of the IP configuration profile resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * ResourceNavigationLink resource.
+ */
+export type ResourceNavigationLink = SubResource & {
+  /**
+   * Name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Resource type.
+   */
+  readonly type?: string;
+  /**
+   * Resource type of the linked resource.
+   */
+  linkedResourceType?: string;
+  /**
+   * Link to the external resource.
+   */
+  link?: string;
+  /**
+   * The provisioning state of the resource navigation link resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * ServiceAssociationLink resource.
+ */
+export type ServiceAssociationLink = SubResource & {
+  /**
+   * Name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Resource type.
+   */
+  readonly type?: string;
+  /**
+   * Resource type of the linked resource.
+   */
+  linkedResourceType?: string;
+  /**
+   * Link to the external resource.
+   */
+  link?: string;
+  /**
+   * The provisioning state of the service association link resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * If true, the resource can be deleted.
+   */
+  allowDelete?: boolean;
+  /**
+   * A list of locations.
+   */
+  locations?: string[];
+};
+
+/**
+ * Details the service to which the subnet is delegated.
+ */
+export type Delegation = SubResource & {
+  /**
+   * The name of the resource that is unique within a subnet. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The name of the service to whom the subnet should be delegated (e.g. Microsoft.Sql/servers).
+   */
+  serviceName?: string;
+  /**
+   * The actions permitted to the service upon delegation.
+   */
+  readonly actions?: string[];
+  /**
+   * The provisioning state of the service delegation resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Subnet in a virtual network resource.
+ */
+export type Subnet = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The address prefix for the subnet.
+   */
+  addressPrefix?: string;
+  /**
+   * List of address prefixes for the subnet.
+   */
+  addressPrefixes?: string[];
+  /**
+   * The reference to the NetworkSecurityGroup resource.
+   */
+  networkSecurityGroup?: NetworkSecurityGroup;
+  /**
+   * The reference to the RouteTable resource.
+   */
+  routeTable?: RouteTable;
+  /**
+   * Nat gateway associated with this subnet.
+   */
+  natGateway?: SubResource;
+  /**
+   * An array of service endpoints.
+   */
+  serviceEndpoints?: ServiceEndpointPropertiesFormat[];
+  /**
+   * An array of service endpoint policies.
+   */
+  serviceEndpointPolicies?: ServiceEndpointPolicy[];
+  /**
+   * An array of references to private endpoints.
+   */
+  readonly privateEndpoints?: PrivateEndpoint[];
+  /**
+   * An array of references to the network interface IP configurations using subnet.
+   */
+  readonly ipConfigurations?: IPConfiguration[];
+  /**
+   * Array of IP configuration profiles which reference this subnet.
+   */
+  readonly ipConfigurationProfiles?: IPConfigurationProfile[];
+  /**
+   * Array of IpAllocation which reference this subnet.
+   */
+  ipAllocations?: SubResource[];
+  /**
+   * An array of references to the external resources using subnet.
+   */
+  readonly resourceNavigationLinks?: ResourceNavigationLink[];
+  /**
+   * An array of references to services injecting into this subnet.
+   */
+  readonly serviceAssociationLinks?: ServiceAssociationLink[];
+  /**
+   * An array of references to the delegations on the subnet.
+   */
+  delegations?: Delegation[];
+  /**
+   * A read-only string identifying the intention of use for this subnet based on delegations and other user-defined properties.
+   */
+  readonly purpose?: string;
+  /**
+   * The provisioning state of the subnet resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Enable or Disable apply network policies on private end point in the subnet.
+   */
+  privateEndpointNetworkPolicies?: string;
+  /**
+   * Enable or Disable apply network policies on private link service in the subnet.
+   */
+  privateLinkServiceNetworkPolicies?: string;
+};
+
+/**
+ * Frontend IP address of the load balancer.
+ */
+export type FrontendIPConfiguration = SubResource & {
+  /**
+   * The name of the resource that is unique within the set of frontend IP configurations used by the load balancer. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * A list of availability zones denoting the IP allocated for the resource needs to come from.
+   */
+  zones?: string[];
+  /**
+   * An array of references to inbound rules that use this frontend IP.
+   */
+  readonly inboundNatRules?: SubResource[];
+  /**
+   * An array of references to inbound pools that use this frontend IP.
+   */
+  readonly inboundNatPools?: SubResource[];
+  /**
+   * An array of references to outbound rules that use this frontend IP.
+   */
+  readonly outboundRules?: SubResource[];
+  /**
+   * An array of references to load balancing rules that use this frontend IP.
+   */
+  readonly loadBalancingRules?: SubResource[];
+  /**
+   * The private IP address of the IP configuration.
+   */
+  privateIPAddress?: string;
+  /**
+   * The Private IP allocation method.
+   */
+  privateIPAllocationMethod?: IPAllocationMethod;
+  /**
+   * Whether the specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4.
+   */
+  privateIPAddressVersion?: IPVersion;
+  /**
+   * The reference to the subnet resource.
+   */
+  subnet?: Subnet;
+  /**
+   * The reference to the Public IP resource.
+   */
+  publicIPAddress?: PublicIPAddress;
+  /**
+   * The reference to the Public IP Prefix resource.
+   */
+  publicIPPrefix?: SubResource;
+  /**
+   * The provisioning state of the frontend IP configuration resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Peerings in a virtual network resource.
+ */
+export type VirtualNetworkPeering = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Whether the VMs in the local virtual network space would be able to access the VMs in remote virtual network space.
+   */
+  allowVirtualNetworkAccess?: boolean;
+  /**
+   * Whether the forwarded traffic from the VMs in the local virtual network will be allowed/disallowed in remote virtual network.
+   */
+  allowForwardedTraffic?: boolean;
+  /**
+   * If gateway links can be used in remote virtual networking to link to this virtual network.
+   */
+  allowGatewayTransit?: boolean;
+  /**
+   * If remote gateways can be used on this virtual network. If the flag is set to true, and allowGatewayTransit on remote peering is also true, virtual network will use gateways of remote virtual network for transit. Only one peering can have this flag set to true. This flag cannot be set if virtual network already has a gateway.
+   */
+  useRemoteGateways?: boolean;
+  /**
+   * The reference to the remote virtual network. The remote virtual network can be in the same or different region (preview). See here to register for the preview and learn more (https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-create-peering).
+   */
+  remoteVirtualNetwork?: SubResource;
+  /**
+   * The reference to the remote virtual network address space.
+   */
+  remoteAddressSpace?: AddressSpace;
+  /**
+   * The status of the virtual network peering.
+   */
+  peeringState?: VirtualNetworkPeeringState;
+  /**
+   * The provisioning state of the virtual network peering resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Pool of backend IP addresses.
+ */
+export type BackendAddressPool = SubResource & {
+  /**
+   * The name of the resource that is unique within the set of backend address pools used by the load balancer. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * An array of references to IP addresses defined in network interfaces.
+   */
+  readonly backendIPConfigurations?: NetworkInterfaceIPConfiguration[];
+  /**
+   * An array of backend addresses.
+   */
+  loadBalancerBackendAddresses?: LoadBalancerBackendAddress[];
+  /**
+   * An array of references to load balancing rules that use this backend address pool.
+   */
+  readonly loadBalancingRules?: SubResource[];
+  /**
+   * A reference to an outbound rule that uses this backend address pool.
+   */
+  readonly outboundRule?: SubResource;
+  /**
+   * An array of references to outbound rules that use this backend address pool.
+   */
+  readonly outboundRules?: SubResource[];
+  /**
+   * The provisioning state of the backend address pool resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Inbound NAT rule of the load balancer.
+ */
+export type InboundNatRule = SubResource & {
+  /**
+   * The name of the resource that is unique within the set of inbound NAT rules used by the load balancer. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * A reference to frontend IP addresses.
+   */
+  frontendIPConfiguration?: SubResource;
+  /**
+   * A reference to a private IP address defined on a network interface of a VM. Traffic sent to the frontend port of each of the frontend IP configurations is forwarded to the backend IP.
+   */
+  readonly backendIPConfiguration?: NetworkInterfaceIPConfiguration;
+  /**
+   * The reference to the transport protocol used by the load balancing rule.
+   */
+  protocol?: TransportProtocol;
+  /**
+   * The port for the external endpoint. Port numbers for each rule must be unique within the Load Balancer. Acceptable values range from 1 to 65534.
+   */
+  frontendPort?: number;
+  /**
+   * The port used for the internal endpoint. Acceptable values range from 1 to 65535.
+   */
+  backendPort?: number;
+  /**
+   * The timeout for the TCP idle connection. The value can be set between 4 and 30 minutes. The default value is 4 minutes. This element is only used when the protocol is set to TCP.
+   */
+  idleTimeoutInMinutes?: number;
+  /**
+   * Configures a virtual machine's endpoint for the floating IP capability required to configure a SQL AlwaysOn Availability Group. This setting is required when using the SQL AlwaysOn Availability Groups in SQL server. This setting can't be changed after you create the endpoint.
+   */
+  enableFloatingIP?: boolean;
+  /**
+   * Receive bidirectional TCP Reset on TCP flow idle timeout or unexpected connection termination. This element is only used when the protocol is set to TCP.
+   */
+  enableTcpReset?: boolean;
+  /**
+   * The provisioning state of the inbound NAT rule resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * IPConfiguration in a network interface.
+ */
+export type NetworkInterfaceIPConfiguration = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The reference to Virtual Network Taps.
+   */
+  virtualNetworkTaps?: VirtualNetworkTap[];
+  /**
+   * The reference to ApplicationGatewayBackendAddressPool resource.
+   */
+  applicationGatewayBackendAddressPools?: ApplicationGatewayBackendAddressPool[];
+  /**
+   * The reference to LoadBalancerBackendAddressPool resource.
+   */
+  loadBalancerBackendAddressPools?: BackendAddressPool[];
+  /**
+   * A list of references of LoadBalancerInboundNatRules.
+   */
+  loadBalancerInboundNatRules?: InboundNatRule[];
+  /**
+   * Private IP address of the IP configuration.
+   */
+  privateIPAddress?: string;
+  /**
+   * The private IP address allocation method.
+   */
+  privateIPAllocationMethod?: IPAllocationMethod;
+  /**
+   * Whether the specific IP configuration is IPv4 or IPv6. Default is IPv4.
+   */
+  privateIPAddressVersion?: IPVersion;
+  /**
+   * Subnet bound to the IP configuration.
+   */
+  subnet?: Subnet;
+  /**
+   * Whether this is a primary customer address on the network interface.
+   */
+  primary?: boolean;
+  /**
+   * Public IP address bound to the IP configuration.
+   */
+  publicIPAddress?: PublicIPAddress;
+  /**
+   * Application security groups in which the IP configuration is included.
+   */
+  applicationSecurityGroups?: ApplicationSecurityGroup[];
+  /**
+   * The provisioning state of the network interface IP configuration.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * PrivateLinkConnection properties for the network interface.
+   */
+  readonly privateLinkConnectionProperties?: NetworkInterfaceIPConfigurationPrivateLinkConnectionProperties;
+};
+
+/**
+ * Backend Address Pool of an application gateway.
+ */
+export type ApplicationGatewayBackendAddressPool = SubResource & {
+  /**
+   * Name of the backend address pool that is unique within an Application Gateway.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * Collection of references to IPs defined in network interfaces.
+   */
+  readonly backendIPConfigurations?: NetworkInterfaceIPConfiguration[];
+  /**
+   * Backend addresses.
+   */
+  backendAddresses?: ApplicationGatewayBackendAddress[];
+  /**
+   * The provisioning state of the backend address pool resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Backend address pool settings of an application gateway.
+ */
+export type ApplicationGatewayBackendHttpSettings = SubResource & {
+  /**
+   * Name of the backend http settings that is unique within an Application Gateway.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * The destination port on the backend.
+   */
+  port?: number;
+  /**
+   * The protocol used to communicate with the backend.
+   */
+  protocol?: ApplicationGatewayProtocol;
+  /**
+   * Cookie based affinity.
+   */
+  cookieBasedAffinity?: ApplicationGatewayCookieBasedAffinity;
+  /**
+   * Request timeout in seconds. Application Gateway will fail the request if response is not received within RequestTimeout. Acceptable values are from 1 second to 86400 seconds.
+   */
+  requestTimeout?: number;
+  /**
+   * Probe resource of an application gateway.
+   */
+  probe?: SubResource;
+  /**
+   * Array of references to application gateway authentication certificates.
+   */
+  authenticationCertificates?: SubResource[];
+  /**
+   * Array of references to application gateway trusted root certificates.
+   */
+  trustedRootCertificates?: SubResource[];
+  /**
+   * Connection draining of the backend http settings resource.
+   */
+  connectionDraining?: ApplicationGatewayConnectionDraining;
+  /**
+   * Host header to be sent to the backend servers.
+   */
+  hostName?: string;
+  /**
+   * Whether to pick host header should be picked from the host name of the backend server. Default value is false.
+   */
+  pickHostNameFromBackendAddress?: boolean;
+  /**
+   * Cookie name to use for the affinity cookie.
+   */
+  affinityCookieName?: string;
+  /**
+   * Whether the probe is enabled. Default value is false.
+   */
+  probeEnabled?: boolean;
+  /**
+   * Path which should be used as a prefix for all HTTP requests. Null means no path will be prefixed. Default value is null.
+   */
+  path?: string;
+  /**
+   * The provisioning state of the backend HTTP settings resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Http listener of an application gateway.
+ */
+export type ApplicationGatewayHttpListener = SubResource & {
+  /**
+   * Name of the HTTP listener that is unique within an Application Gateway.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * Frontend IP configuration resource of an application gateway.
+   */
+  frontendIPConfiguration?: SubResource;
+  /**
+   * Frontend port resource of an application gateway.
+   */
+  frontendPort?: SubResource;
+  /**
+   * Protocol of the HTTP listener.
+   */
+  protocol?: ApplicationGatewayProtocol;
+  /**
+   * Host name of HTTP listener.
+   */
+  hostName?: string;
+  /**
+   * SSL certificate resource of an application gateway.
+   */
+  sslCertificate?: SubResource;
+  /**
+   * Applicable only if protocol is https. Enables SNI for multi-hosting.
+   */
+  requireServerNameIndication?: boolean;
+  /**
+   * The provisioning state of the HTTP listener resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Custom error configurations of the HTTP listener.
+   */
+  customErrorConfigurations?: ApplicationGatewayCustomError[];
+  /**
+   * Reference to the FirewallPolicy resource.
+   */
+  firewallPolicy?: SubResource;
+  /**
+   * List of Host names for HTTP Listener that allows special wildcard characters as well.
+   */
+  hostNames?: string[];
+};
+
+/**
+ * Path rule of URL path map of an application gateway.
+ */
+export type ApplicationGatewayPathRule = SubResource & {
+  /**
+   * Name of the path rule that is unique within an Application Gateway.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * Path rules of URL path map.
+   */
+  paths?: string[];
+  /**
+   * Backend address pool resource of URL path map path rule.
+   */
+  backendAddressPool?: SubResource;
+  /**
+   * Backend http settings resource of URL path map path rule.
+   */
+  backendHttpSettings?: SubResource;
+  /**
+   * Redirect configuration resource of URL path map path rule.
+   */
+  redirectConfiguration?: SubResource;
+  /**
+   * Rewrite rule set resource of URL path map path rule.
+   */
+  rewriteRuleSet?: SubResource;
+  /**
+   * The provisioning state of the path rule resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Reference to the FirewallPolicy resource.
+   */
+  firewallPolicy?: SubResource;
+};
+
+/**
+ * UrlPathMaps give a url path to the backend mapping information for PathBasedRouting.
+ */
+export type ApplicationGatewayUrlPathMap = SubResource & {
+  /**
+   * Name of the URL path map that is unique within an Application Gateway.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * Default backend address pool resource of URL path map.
+   */
+  defaultBackendAddressPool?: SubResource;
+  /**
+   * Default backend http settings resource of URL path map.
+   */
+  defaultBackendHttpSettings?: SubResource;
+  /**
+   * Default Rewrite rule set resource of URL path map.
+   */
+  defaultRewriteRuleSet?: SubResource;
+  /**
+   * Default redirect configuration resource of URL path map.
+   */
+  defaultRedirectConfiguration?: SubResource;
+  /**
+   * Path rule of URL path map resource.
+   */
+  pathRules?: ApplicationGatewayPathRule[];
+  /**
+   * The provisioning state of the URL path map resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Request routing rule of an application gateway.
+ */
+export type ApplicationGatewayRequestRoutingRule = SubResource & {
+  /**
+   * Name of the request routing rule that is unique within an Application Gateway.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * Rule type.
+   */
+  ruleType?: ApplicationGatewayRequestRoutingRuleType;
+  /**
+   * Priority of the request routing rule.
+   */
+  priority?: number;
+  /**
+   * Backend address pool resource of the application gateway.
+   */
+  backendAddressPool?: SubResource;
+  /**
+   * Backend http settings resource of the application gateway.
+   */
+  backendHttpSettings?: SubResource;
+  /**
+   * Http listener resource of the application gateway.
+   */
+  httpListener?: SubResource;
+  /**
+   * URL path map resource of the application gateway.
+   */
+  urlPathMap?: SubResource;
+  /**
+   * Rewrite Rule Set resource in Basic rule of the application gateway.
+   */
+  rewriteRuleSet?: SubResource;
+  /**
+   * Redirect configuration resource of the application gateway.
+   */
+  redirectConfiguration?: SubResource;
+  /**
+   * The provisioning state of the request routing rule resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Rewrite rule set of an application gateway.
+ */
+export type ApplicationGatewayRewriteRuleSet = SubResource & {
+  /**
+   * Name of the rewrite rule set that is unique within an Application Gateway.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Rewrite rules in the rewrite rule set.
+   */
+  rewriteRules?: ApplicationGatewayRewriteRule[];
+  /**
+   * The provisioning state of the rewrite rule set resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Redirect configuration of an application gateway.
+ */
+export type ApplicationGatewayRedirectConfiguration = SubResource & {
+  /**
+   * Name of the redirect configuration that is unique within an Application Gateway.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * HTTP redirection type.
+   */
+  redirectType?: ApplicationGatewayRedirectType;
+  /**
+   * Reference to a listener to redirect the request to.
+   */
+  targetListener?: SubResource;
+  /**
+   * Url to redirect the request to.
+   */
+  targetUrl?: string;
+  /**
+   * Include path in the redirected url.
+   */
+  includePath?: boolean;
+  /**
+   * Include query string in the redirected url.
+   */
+  includeQueryString?: boolean;
+  /**
+   * Request routing specifying redirect configuration.
+   */
+  requestRoutingRules?: SubResource[];
+  /**
+   * Url path maps specifying default redirect configuration.
+   */
+  urlPathMaps?: SubResource[];
+  /**
+   * Path rules specifying redirect configuration.
+   */
+  pathRules?: SubResource[];
+};
+
+/**
+ * An Ssl predefined policy.
+ */
+export type ApplicationGatewaySslPredefinedPolicy = SubResource & {
+  /**
+   * Name of the Ssl predefined policy.
+   */
+  name?: string;
+  /**
+   * Ssl cipher suites to be enabled in the specified order for application gateway.
+   */
+  cipherSuites?: ApplicationGatewaySslCipherSuite[];
+  /**
+   * Minimum version of Ssl protocol to be supported on application gateway.
+   */
+  minProtocolVersion?: ApplicationGatewaySslProtocol;
+};
+
+/**
+ * Application rule collection resource.
+ */
+export type AzureFirewallApplicationRuleCollection = SubResource & {
+  /**
+   * The name of the resource that is unique within the Azure firewall. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Priority of the application rule collection resource.
+   */
+  priority?: number;
+  /**
+   * The action type of a rule collection.
+   */
+  action?: AzureFirewallRCAction;
+  /**
+   * Collection of rules used by a application rule collection.
+   */
+  rules?: AzureFirewallApplicationRule[];
+  /**
+   * The provisioning state of the application rule collection resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * NAT rule collection resource.
+ */
+export type AzureFirewallNatRuleCollection = SubResource & {
+  /**
+   * The name of the resource that is unique within the Azure firewall. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Priority of the NAT rule collection resource.
+   */
+  priority?: number;
+  /**
+   * The action type of a NAT rule collection.
+   */
+  action?: AzureFirewallNatRCAction;
+  /**
+   * Collection of rules used by a NAT rule collection.
+   */
+  rules?: AzureFirewallNatRule[];
+  /**
+   * The provisioning state of the NAT rule collection resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Network rule collection resource.
+ */
+export type AzureFirewallNetworkRuleCollection = SubResource & {
+  /**
+   * The name of the resource that is unique within the Azure firewall. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Priority of the network rule collection resource.
+   */
+  priority?: number;
+  /**
+   * The action type of a rule collection.
+   */
+  action?: AzureFirewallRCAction;
+  /**
+   * Collection of rules used by a network rule collection.
+   */
+  rules?: AzureFirewallNetworkRule[];
+  /**
+   * The provisioning state of the network rule collection resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * IP configuration of an Azure Firewall.
+ */
+export type AzureFirewallIPConfiguration = SubResource & {
+  /**
+   * Name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * The Firewall Internal Load Balancer IP to be used as the next hop in User Defined Routes.
+   */
+  readonly privateIPAddress?: string;
+  /**
+   * Reference to the subnet resource. This resource must be named 'AzureFirewallSubnet' or 'AzureFirewallManagementSubnet'.
+   */
+  subnet?: SubResource;
+  /**
+   * Reference to the PublicIP resource. This field is a mandatory input if subnet is not null.
+   */
+  publicIPAddress?: SubResource;
+  /**
+   * The provisioning state of the Azure firewall IP configuration resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * IP configuration of an Bastion Host.
+ */
+export type BastionHostIPConfiguration = SubResource & {
+  /**
+   * Name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Ip configuration type.
+   */
+  readonly type?: string;
+  /**
+   * Reference of the subnet resource.
+   */
+  subnet?: SubResource;
+  /**
+   * Reference of the PublicIP resource.
+   */
+  publicIPAddress?: SubResource;
+  /**
+   * The provisioning state of the bastion host IP configuration resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Private IP allocation method.
+   */
+  privateIPAllocationMethod?: IPAllocationMethod;
+};
+
+/**
+ * Endpoint service.
+ */
+export type EndpointServiceResult = SubResource & {
+  /**
+   * Name of the endpoint service.
+   */
+  readonly name?: string;
+  /**
+   * Type of the endpoint service.
+   */
+  readonly type?: string;
+};
+
+/**
+ * Authorization in an ExpressRouteCircuit resource.
+ */
+export type ExpressRouteCircuitAuthorization = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * The authorization key.
+   */
+  authorizationKey?: string;
+  /**
+   * The authorization use status.
+   */
+  authorizationUseStatus?: AuthorizationUseStatus;
+  /**
+   * The provisioning state of the authorization resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Express Route Circuit Connection in an ExpressRouteCircuitPeering resource.
+ */
+export type ExpressRouteCircuitConnection = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * Reference to Express Route Circuit Private Peering Resource of the circuit initiating connection.
+   */
+  expressRouteCircuitPeering?: SubResource;
+  /**
+   * Reference to Express Route Circuit Private Peering Resource of the peered circuit.
+   */
+  peerExpressRouteCircuitPeering?: SubResource;
+  /**
+   * /29 IP address space to carve out Customer addresses for tunnels.
+   */
+  addressPrefix?: string;
+  /**
+   * The authorization key.
+   */
+  authorizationKey?: string;
+  /**
+   * IPv6 Address PrefixProperties of the express route circuit connection.
+   */
+  ipv6CircuitConnectionConfig?: Ipv6CircuitConnectionConfig;
+  /**
+   * Express Route Circuit connection state.
+   */
+  readonly circuitConnectionStatus?: CircuitConnectionStatus;
+  /**
+   * The provisioning state of the express route circuit connection resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Peer Express Route Circuit Connection in an ExpressRouteCircuitPeering resource.
+ */
+export type PeerExpressRouteCircuitConnection = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * Reference to Express Route Circuit Private Peering Resource of the circuit.
+   */
+  expressRouteCircuitPeering?: SubResource;
+  /**
+   * Reference to Express Route Circuit Private Peering Resource of the peered circuit.
+   */
+  peerExpressRouteCircuitPeering?: SubResource;
+  /**
+   * /29 IP address space to carve out Customer addresses for tunnels.
+   */
+  addressPrefix?: string;
+  /**
+   * Express Route Circuit connection state.
+   */
+  readonly circuitConnectionStatus?: CircuitConnectionStatus;
+  /**
+   * The name of the express route circuit connection resource.
+   */
+  connectionName?: string;
+  /**
+   * The resource guid of the authorization used for the express route circuit connection.
+   */
+  authResourceGuid?: string;
+  /**
+   * The provisioning state of the peer express route circuit connection resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Peering in an ExpressRouteCircuit resource.
+ */
+export type ExpressRouteCircuitPeering = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * The peering type.
+   */
+  peeringType?: ExpressRoutePeeringType;
+  /**
+   * The peering state.
+   */
+  state?: ExpressRoutePeeringState;
+  /**
+   * The Azure ASN.
+   */
+  azureASN?: number;
+  /**
+   * The peer ASN.
+   */
+  peerASN?: number;
+  /**
+   * The primary address prefix.
+   */
+  primaryPeerAddressPrefix?: string;
+  /**
+   * The secondary address prefix.
+   */
+  secondaryPeerAddressPrefix?: string;
+  /**
+   * The primary port.
+   */
+  primaryAzurePort?: string;
+  /**
+   * The secondary port.
+   */
+  secondaryAzurePort?: string;
+  /**
+   * The shared key.
+   */
+  sharedKey?: string;
+  /**
+   * The VLAN ID.
+   */
+  vlanId?: number;
+  /**
+   * The Microsoft peering configuration.
+   */
+  microsoftPeeringConfig?: ExpressRouteCircuitPeeringConfig;
+  /**
+   * The peering stats of express route circuit.
+   */
+  stats?: ExpressRouteCircuitStats;
+  /**
+   * The provisioning state of the express route circuit peering resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The GatewayManager Etag.
+   */
+  gatewayManagerEtag?: string;
+  /**
+   * Who was the last to modify the peering.
+   */
+  readonly lastModifiedBy?: string;
+  /**
+   * The reference to the RouteFilter resource.
+   */
+  routeFilter?: SubResource;
+  /**
+   * The IPv6 peering configuration.
+   */
+  ipv6PeeringConfig?: Ipv6ExpressRouteCircuitPeeringConfig;
+  /**
+   * The ExpressRoute connection.
+   */
+  expressRouteConnection?: ExpressRouteConnectionId;
+  /**
+   * The list of circuit connections associated with Azure Private Peering for this circuit.
+   */
+  connections?: ExpressRouteCircuitConnection[];
+  /**
+   * The list of peered circuit connections associated with Azure Private Peering for this circuit.
+   */
+  readonly peeredConnections?: PeerExpressRouteCircuitConnection[];
+};
+
+/**
+ * Peering in an ExpressRoute Cross Connection resource.
+ */
+export type ExpressRouteCrossConnectionPeering = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The peering type.
+   */
+  peeringType?: ExpressRoutePeeringType;
+  /**
+   * The peering state.
+   */
+  state?: ExpressRoutePeeringState;
+  /**
+   * The Azure ASN.
+   */
+  readonly azureASN?: number;
+  /**
+   * The peer ASN.
+   */
+  peerASN?: number;
+  /**
+   * The primary address prefix.
+   */
+  primaryPeerAddressPrefix?: string;
+  /**
+   * The secondary address prefix.
+   */
+  secondaryPeerAddressPrefix?: string;
+  /**
+   * The primary port.
+   */
+  readonly primaryAzurePort?: string;
+  /**
+   * The secondary port.
+   */
+  readonly secondaryAzurePort?: string;
+  /**
+   * The shared key.
+   */
+  sharedKey?: string;
+  /**
+   * The VLAN ID.
+   */
+  vlanId?: number;
+  /**
+   * The Microsoft peering configuration.
+   */
+  microsoftPeeringConfig?: ExpressRouteCircuitPeeringConfig;
+  /**
+   * The provisioning state of the express route cross connection peering resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The GatewayManager Etag.
+   */
+  gatewayManagerEtag?: string;
+  /**
+   * Who was the last to modify the peering.
+   */
+  readonly lastModifiedBy?: string;
+  /**
+   * The IPv6 peering configuration.
+   */
+  ipv6PeeringConfig?: Ipv6ExpressRouteCircuitPeeringConfig;
+};
+
+/**
+ * ExpressRouteLink child resource definition.
+ */
+export type ExpressRouteLink = SubResource & {
+  /**
+   * Name of child port resource that is unique among child port resources of the parent.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Name of Azure router associated with physical port.
+   */
+  readonly routerName?: string;
+  /**
+   * Name of Azure router interface.
+   */
+  readonly interfaceName?: string;
+  /**
+   * Mapping between physical port to patch panel port.
+   */
+  readonly patchPanelId?: string;
+  /**
+   * Mapping of physical patch panel to rack.
+   */
+  readonly rackId?: string;
+  /**
+   * Physical fiber port type.
+   */
+  readonly connectorType?: ExpressRouteLinkConnectorType;
+  /**
+   * Administrative state of the physical port.
+   */
+  adminState?: ExpressRouteLinkAdminState;
+  /**
+   * The provisioning state of the express route link resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * MacSec configuration.
+   */
+  macSecConfig?: ExpressRouteLinkMacSecConfig;
+};
+
+/**
+ * Rule Group resource.
+ */
+export type FirewallPolicyRuleGroup = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Rule Group type.
+   */
+  readonly type?: string;
+  /**
+   * Priority of the Firewall Policy Rule Group resource.
+   */
+  priority?: number;
+  /**
+   * Group of Firewall Policy rules.
+   */
+  rules?: FirewallPolicyRuleUnion[];
+  /**
+   * The provisioning state of the firewall policy rule group resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * A load balancing rule for a load balancer.
+ */
+export type LoadBalancingRule = SubResource & {
+  /**
+   * The name of the resource that is unique within the set of load balancing rules used by the load balancer. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * A reference to frontend IP addresses.
+   */
+  frontendIPConfiguration?: SubResource;
+  /**
+   * A reference to a pool of DIPs. Inbound traffic is randomly load balanced across IPs in the backend IPs.
+   */
+  backendAddressPool?: SubResource;
+  /**
+   * The reference to the load balancer probe used by the load balancing rule.
+   */
+  probe?: SubResource;
+  /**
+   * The reference to the transport protocol used by the load balancing rule.
+   */
+  protocol?: TransportProtocol;
+  /**
+   * The load distribution policy for this rule.
+   */
+  loadDistribution?: LoadDistribution;
+  /**
+   * The port for the external endpoint. Port numbers for each rule must be unique within the Load Balancer. Acceptable values are between 0 and 65534. Note that value 0 enables "Any Port".
+   */
+  frontendPort?: number;
+  /**
+   * The port used for internal connections on the endpoint. Acceptable values are between 0 and 65535. Note that value 0 enables "Any Port".
+   */
+  backendPort?: number;
+  /**
+   * The timeout for the TCP idle connection. The value can be set between 4 and 30 minutes. The default value is 4 minutes. This element is only used when the protocol is set to TCP.
+   */
+  idleTimeoutInMinutes?: number;
+  /**
+   * Configures a virtual machine's endpoint for the floating IP capability required to configure a SQL AlwaysOn Availability Group. This setting is required when using the SQL AlwaysOn Availability Groups in SQL server. This setting can't be changed after you create the endpoint.
+   */
+  enableFloatingIP?: boolean;
+  /**
+   * Receive bidirectional TCP Reset on TCP flow idle timeout or unexpected connection termination. This element is only used when the protocol is set to TCP.
+   */
+  enableTcpReset?: boolean;
+  /**
+   * Configures SNAT for the VMs in the backend pool to use the publicIP address specified in the frontend of the load balancing rule.
+   */
+  disableOutboundSnat?: boolean;
+  /**
+   * The provisioning state of the load balancing rule resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * A load balancer probe.
+ */
+export type Probe = SubResource & {
+  /**
+   * The name of the resource that is unique within the set of probes used by the load balancer. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * The load balancer rules that use this probe.
+   */
+  readonly loadBalancingRules?: SubResource[];
+  /**
+   * The protocol of the end point. If 'Tcp' is specified, a received ACK is required for the probe to be successful. If 'Http' or 'Https' is specified, a 200 OK response from the specifies URI is required for the probe to be successful.
+   */
+  protocol?: ProbeProtocol;
+  /**
+   * The port for communicating the probe. Possible values range from 1 to 65535, inclusive.
+   */
+  port?: number;
+  /**
+   * The interval, in seconds, for how frequently to probe the endpoint for health status. Typically, the interval is slightly less than half the allocated timeout period (in seconds) which allows two full probes before taking the instance out of rotation. The default value is 15, the minimum value is 5.
+   */
+  intervalInSeconds?: number;
+  /**
+   * The number of probes where if no response, will result in stopping further traffic from being delivered to the endpoint. This values allows endpoints to be taken out of rotation faster or slower than the typical times used in Azure.
+   */
+  numberOfProbes?: number;
+  /**
+   * The URI used for requesting health status from the VM. Path is required if a protocol is set to http. Otherwise, it is not allowed. There is no default value.
+   */
+  requestPath?: string;
+  /**
+   * The provisioning state of the probe resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Inbound NAT pool of the load balancer.
+ */
+export type InboundNatPool = SubResource & {
+  /**
+   * The name of the resource that is unique within the set of inbound NAT pools used by the load balancer. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * A reference to frontend IP addresses.
+   */
+  frontendIPConfiguration?: SubResource;
+  /**
+   * The reference to the transport protocol used by the inbound NAT pool.
+   */
+  protocol?: TransportProtocol;
+  /**
+   * The first port number in the range of external ports that will be used to provide Inbound Nat to NICs associated with a load balancer. Acceptable values range between 1 and 65534.
+   */
+  frontendPortRangeStart?: number;
+  /**
+   * The last port number in the range of external ports that will be used to provide Inbound Nat to NICs associated with a load balancer. Acceptable values range between 1 and 65535.
+   */
+  frontendPortRangeEnd?: number;
+  /**
+   * The port used for internal connections on the endpoint. Acceptable values are between 1 and 65535.
+   */
+  backendPort?: number;
+  /**
+   * The timeout for the TCP idle connection. The value can be set between 4 and 30 minutes. The default value is 4 minutes. This element is only used when the protocol is set to TCP.
+   */
+  idleTimeoutInMinutes?: number;
+  /**
+   * Configures a virtual machine's endpoint for the floating IP capability required to configure a SQL AlwaysOn Availability Group. This setting is required when using the SQL AlwaysOn Availability Groups in SQL server. This setting can't be changed after you create the endpoint.
+   */
+  enableFloatingIP?: boolean;
+  /**
+   * Receive bidirectional TCP Reset on TCP flow idle timeout or unexpected connection termination. This element is only used when the protocol is set to TCP.
+   */
+  enableTcpReset?: boolean;
+  /**
+   * The provisioning state of the inbound NAT pool resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Outbound rule of the load balancer.
+ */
+export type OutboundRule = SubResource & {
+  /**
+   * The name of the resource that is unique within the set of outbound rules used by the load balancer. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Type of the resource.
+   */
+  readonly type?: string;
+  /**
+   * The number of outbound ports to be used for NAT.
+   */
+  allocatedOutboundPorts?: number;
+  /**
+   * The Frontend IP addresses of the load balancer.
+   */
+  frontendIPConfigurations?: SubResource[];
+  /**
+   * A reference to a pool of DIPs. Outbound traffic is randomly load balanced across IPs in the backend IPs.
+   */
+  backendAddressPool?: SubResource;
+  /**
+   * The provisioning state of the outbound rule resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The protocol for the outbound rule in load balancer.
+   */
+  protocol?: LoadBalancerOutboundRuleProtocol;
+  /**
+   * Receive bidirectional TCP Reset on TCP flow idle timeout or unexpected connection termination. This element is only used when the protocol is set to TCP.
+   */
+  enableTcpReset?: boolean;
+  /**
+   * The timeout for the TCP idle connection.
+   */
+  idleTimeoutInMinutes?: number;
+};
+
+/**
+ * Container network interface configuration child resource.
+ */
+export type ContainerNetworkInterfaceConfiguration = SubResource & {
+  /**
+   * The name of the resource. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * Sub Resource type.
+   */
+  readonly type?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * A list of ip configurations of the container network interface configuration.
+   */
+  ipConfigurations?: IPConfigurationProfile[];
+  /**
+   * A list of container network interfaces created from this container network interface configuration.
+   */
+  containerNetworkInterfaces?: SubResource[];
+  /**
+   * The provisioning state of the container network interface configuration resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Container network interface child resource.
+ */
+export type ContainerNetworkInterface = SubResource & {
+  /**
+   * The name of the resource. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * Sub Resource type.
+   */
+  readonly type?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Container network interface configuration from which this container network interface is created.
+   */
+  readonly containerNetworkInterfaceConfiguration?: ContainerNetworkInterfaceConfiguration;
+  /**
+   * Reference to the container to which this container network interface is attached.
+   */
+  container?: SubResource;
+  /**
+   * Reference to the ip configuration on this container nic.
+   */
+  readonly ipConfigurations?: ContainerNetworkInterfaceIpConfiguration[];
+  /**
+   * The provisioning state of the container network interface resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Private dns zone group resource.
+ */
+export type PrivateDnsZoneGroup = SubResource & {
+  /**
+   * Name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The provisioning state of the private dns zone group resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * A collection of private dns zone configurations of the private dns zone group.
+   */
+  privateDnsZoneConfigs?: PrivateDnsZoneConfig[];
+};
+
+/**
+ * The private link service ip configuration.
+ */
+export type PrivateLinkServiceIpConfiguration = SubResource & {
+  /**
+   * The name of private link service ip configuration.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The resource type.
+   */
+  readonly type?: string;
+  /**
+   * The private IP address of the IP configuration.
+   */
+  privateIPAddress?: string;
+  /**
+   * The private IP address allocation method.
+   */
+  privateIPAllocationMethod?: IPAllocationMethod;
+  /**
+   * The reference to the subnet resource.
+   */
+  subnet?: Subnet;
+  /**
+   * Whether the ip configuration is primary or not.
+   */
+  primary?: boolean;
+  /**
+   * The provisioning state of the private link service IP configuration resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Whether the specific IP configuration is IPv4 or IPv6. Default is IPv4.
+   */
+  privateIPAddressVersion?: IPVersion;
+};
+
+/**
+ * PrivateEndpointConnection resource.
+ */
+export type PrivateEndpointConnection = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * The resource type.
+   */
+  readonly type?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The resource of private end point.
+   */
+  readonly privateEndpoint?: PrivateEndpoint;
+  /**
+   * A collection of information about the state of the connection between service consumer and provider.
+   */
+  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
+  /**
+   * The provisioning state of the private endpoint connection resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The consumer link id.
+   */
+  readonly linkIdentifier?: string;
+};
+
+/**
+ * Route Filter Rule Resource.
+ */
+export type RouteFilterRule = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The access type of the rule.
+   */
+  access?: Access;
+  /**
+   * The rule type of the rule.
+   */
+  routeFilterRuleType?: "Community";
+  /**
+   * The collection for bgp community values to filter on. e.g. ['12076:5010','12076:5020'].
+   */
+  communities?: string[];
+  /**
+   * The provisioning state of the route filter rule resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * IP configuration for virtual network gateway.
+ */
+export type VirtualNetworkGatewayIPConfiguration = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The private IP address allocation method.
+   */
+  privateIPAllocationMethod?: IPAllocationMethod;
+  /**
+   * The reference to the subnet resource.
+   */
+  subnet?: SubResource;
+  /**
+   * The reference to the public IP resource.
+   */
+  publicIPAddress?: SubResource;
+  /**
+   * Private IP Address for this gateway.
+   */
+  readonly privateIPAddress?: string;
+  /**
+   * The provisioning state of the virtual network gateway IP configuration resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * VPN client root certificate of virtual network gateway.
+ */
+export type VpnClientRootCertificate = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The certificate public data.
+   */
+  publicCertData: string;
+  /**
+   * The provisioning state of the VPN client root certificate resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * VPN client revoked certificate of virtual network gateway.
+ */
+export type VpnClientRevokedCertificate = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The revoked VPN client certificate thumbprint.
+   */
+  thumbprint?: string;
+  /**
+   * The provisioning state of the VPN client revoked certificate resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Response for GetConnectionSharedKey API service call.
+ */
+export type ConnectionSharedKey = SubResource & {
+  /**
+   * The virtual network connection shared key value.
+   */
+  value: string;
+};
+
+/**
+ * Virtual Router Peering resource.
+ */
+export type VirtualRouterPeering = SubResource & {
+  /**
+   * Name of the virtual router peering that is unique within a virtual router.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Peering type.
+   */
+  readonly type?: string;
+  /**
+   * Peer ASN.
+   */
+  peerAsn?: number;
+  /**
+   * Peer IP.
+   */
+  peerIp?: string;
+  /**
+   * The provisioning state of the resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * VpnSiteLink Resource.
+ */
+export type VpnSiteLink = SubResource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * Resource type.
+   */
+  readonly type?: string;
+  /**
+   * The link provider properties.
+   */
+  linkProperties?: VpnLinkProviderProperties;
+  /**
+   * The ip-address for the vpn-site-link.
+   */
+  ipAddress?: string;
+  /**
+   * FQDN of vpn-site-link.
+   */
+  fqdn?: string;
+  /**
+   * The set of bgp properties.
+   */
+  bgpProperties?: VpnLinkBgpSettings;
+  /**
+   * The provisioning state of the VPN site link resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * P2SConnectionConfiguration Resource.
+ */
+export type P2SConnectionConfiguration = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The reference to the address space resource which represents Address space for P2S VpnClient.
+   */
+  vpnClientAddressPool?: AddressSpace;
+  /**
+   * The Routing Configuration indicating the associated and propagated route tables on this connection.
+   */
+  routingConfiguration?: RoutingConfiguration;
+  /**
+   * The provisioning state of the P2SConnectionConfiguration resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * HubVirtualNetworkConnection Resource.
+ */
+export type HubVirtualNetworkConnection = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Reference to the remote virtual network.
+   */
+  remoteVirtualNetwork?: SubResource;
+  /**
+   * VirtualHub to RemoteVnet transit to enabled or not.
+   */
+  allowHubToRemoteVnetTransit?: boolean;
+  /**
+   * Allow RemoteVnet to use Virtual Hub's gateways.
+   */
+  allowRemoteVnetToUseHubVnetGateways?: boolean;
+  /**
+   * Enable internet security.
+   */
+  enableInternetSecurity?: boolean;
+  /**
+   * The Routing Configuration indicating the associated and propagated route tables on this connection.
+   */
+  routingConfiguration?: RoutingConfiguration;
+  /**
+   * The provisioning state of the hub virtual network connection resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * VirtualHubRouteTableV2 Resource.
+ */
+export type VirtualHubRouteTableV2 = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * List of all routes.
+   */
+  routes?: VirtualHubRouteV2[];
+  /**
+   * List of all connections attached to this route table v2.
+   */
+  attachedConnections?: string[];
+  /**
+   * The provisioning state of the virtual hub route table v2 resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * VpnSiteLinkConnection Resource.
+ */
+export type VpnSiteLinkConnection = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Resource type.
+   */
+  readonly type?: string;
+  /**
+   * Id of the connected vpn site link.
+   */
+  vpnSiteLink?: SubResource;
+  /**
+   * Routing weight for vpn connection.
+   */
+  routingWeight?: number;
+  /**
+   * The connection status.
+   */
+  readonly connectionStatus?: VpnConnectionStatus;
+  /**
+   * Connection protocol used for this connection.
+   */
+  vpnConnectionProtocolType?: VirtualNetworkGatewayConnectionProtocol;
+  /**
+   * Ingress bytes transferred.
+   */
+  readonly ingressBytesTransferred?: number;
+  /**
+   * Egress bytes transferred.
+   */
+  readonly egressBytesTransferred?: number;
+  /**
+   * Expected bandwidth in MBPS.
+   */
+  connectionBandwidth?: number;
+  /**
+   * SharedKey for the vpn connection.
+   */
+  sharedKey?: string;
+  /**
+   * EnableBgp flag.
+   */
+  enableBgp?: boolean;
+  /**
+   * Enable policy-based traffic selectors.
+   */
+  usePolicyBasedTrafficSelectors?: boolean;
+  /**
+   * The IPSec Policies to be considered by this connection.
+   */
+  ipsecPolicies?: IpsecPolicy[];
+  /**
+   * EnableBgp flag.
+   */
+  enableRateLimiting?: boolean;
+  /**
+   * Use local azure ip to initiate connection.
+   */
+  useLocalAzureIpAddress?: boolean;
+  /**
+   * The provisioning state of the VPN site link connection resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * VpnConnection Resource.
+ */
+export type VpnConnection = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Id of the connected vpn site.
+   */
+  remoteVpnSite?: SubResource;
+  /**
+   * Routing weight for vpn connection.
+   */
+  routingWeight?: number;
+  /**
+   * The dead peer detection timeout for a vpn connection in seconds.
+   */
+  dpdTimeoutSeconds?: number;
+  /**
+   * The connection status.
+   */
+  readonly connectionStatus?: VpnConnectionStatus;
+  /**
+   * Connection protocol used for this connection.
+   */
+  vpnConnectionProtocolType?: VirtualNetworkGatewayConnectionProtocol;
+  /**
+   * Ingress bytes transferred.
+   */
+  readonly ingressBytesTransferred?: number;
+  /**
+   * Egress bytes transferred.
+   */
+  readonly egressBytesTransferred?: number;
+  /**
+   * Expected bandwidth in MBPS.
+   */
+  connectionBandwidth?: number;
+  /**
+   * SharedKey for the vpn connection.
+   */
+  sharedKey?: string;
+  /**
+   * EnableBgp flag.
+   */
+  enableBgp?: boolean;
+  /**
+   * Enable policy-based traffic selectors.
+   */
+  usePolicyBasedTrafficSelectors?: boolean;
+  /**
+   * The IPSec Policies to be considered by this connection.
+   */
+  ipsecPolicies?: IpsecPolicy[];
+  /**
+   * EnableBgp flag.
+   */
+  enableRateLimiting?: boolean;
+  /**
+   * Enable internet security.
+   */
+  enableInternetSecurity?: boolean;
+  /**
+   * Use local azure ip to initiate connection.
+   */
+  useLocalAzureIpAddress?: boolean;
+  /**
+   * The provisioning state of the VPN connection resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * List of all vpn site link connections to the gateway.
+   */
+  vpnLinkConnections?: VpnSiteLinkConnection[];
+  /**
+   * The Routing Configuration indicating the associated and propagated route tables on this connection.
+   */
+  routingConfiguration?: RoutingConfiguration;
+};
+
+/**
+ * ExpressRouteConnection resource.
+ */
+export type ExpressRouteConnection = SubResource & {
+  /**
+   * The name of the resource.
+   */
+  name: string;
+  /**
+   * The provisioning state of the express route connection resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The ExpressRoute circuit peering.
+   */
+  expressRouteCircuitPeering?: ExpressRouteCircuitPeeringId;
+  /**
+   * Authorization key to establish the connection.
+   */
+  authorizationKey?: string;
+  /**
+   * The routing weight associated to the connection.
+   */
+  routingWeight?: number;
+  /**
+   * Enable internet security.
+   */
+  enableInternetSecurity?: boolean;
+  /**
+   * The Routing Configuration indicating the associated and propagated route tables on this connection.
+   */
+  routingConfiguration?: RoutingConfiguration;
+};
+
+/**
+ * RouteTable resource in a virtual hub.
+ */
+export type HubRouteTable = SubResource & {
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Resource type.
+   */
+  readonly type?: string;
+  /**
+   * List of all routes.
+   */
+  routes?: HubRoute[];
+  /**
+   * List of labels associated with this route table.
+   */
+  labels?: string[];
+  /**
+   * List of all connections associated with this route table.
+   */
+  readonly associatedConnections?: SubResource[];
+  /**
+   * List of all connections that advertise to this route table.
+   */
+  readonly propagatingConnections?: SubResource[];
+  /**
+   * The provisioning state of the RouteTable resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
  * Reference to container resource in remote resource provider.
  */
 export type Container = SubResource & {};
-
-/**
- * The visibility list of the private link service.
- */
-export type PrivateLinkServicePropertiesVisibility = ResourceSet & {};
-
-/**
- * The auto-approval list of the private link service.
- */
-export type PrivateLinkServicePropertiesAutoApproval = ResourceSet & {};
 
 /**
  * Route Filter Rule Resource.
@@ -11649,15 +9424,2239 @@ export type PatchRouteFilter = SubResource & {
 };
 
 /**
+ * An application security group in a resource group.
+ */
+export type ApplicationSecurityGroup = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The resource GUID property of the application security group resource. It uniquely identifies a resource, even if the user changes its name or migrate the resource across subscriptions or resource groups.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the application security group resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Private endpoint resource.
+ */
+export type PrivateEndpoint = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The ID of the subnet from which the private IP will be allocated.
+   */
+  subnet?: Subnet;
+  /**
+   * An array of references to the network interfaces created for this private endpoint.
+   */
+  readonly networkInterfaces?: NetworkInterface[];
+  /**
+   * The provisioning state of the private endpoint resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * A grouping of information about the connection to the remote resource.
+   */
+  privateLinkServiceConnections?: PrivateLinkServiceConnection[];
+  /**
+   * A grouping of information about the connection to the remote resource. Used when the network admin does not have access to approve connections to the remote resource.
+   */
+  manualPrivateLinkServiceConnections?: PrivateLinkServiceConnection[];
+  /**
+   * An array of custom dns configurations.
+   */
+  customDnsConfigs?: CustomDnsConfigPropertiesFormat[];
+};
+
+/**
+ * A network interface in a resource group.
+ */
+export type NetworkInterface = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The reference to a virtual machine.
+   */
+  readonly virtualMachine?: SubResource;
+  /**
+   * The reference to the NetworkSecurityGroup resource.
+   */
+  networkSecurityGroup?: NetworkSecurityGroup;
+  /**
+   * A reference to the private endpoint to which the network interface is linked.
+   */
+  readonly privateEndpoint?: PrivateEndpoint;
+  /**
+   * A list of IPConfigurations of the network interface.
+   */
+  ipConfigurations?: NetworkInterfaceIPConfiguration[];
+  /**
+   * A list of TapConfigurations of the network interface.
+   */
+  readonly tapConfigurations?: NetworkInterfaceTapConfiguration[];
+  /**
+   * The DNS settings in network interface.
+   */
+  dnsSettings?: NetworkInterfaceDnsSettings;
+  /**
+   * The MAC address of the network interface.
+   */
+  readonly macAddress?: string;
+  /**
+   * Whether this is a primary network interface on a virtual machine.
+   */
+  readonly primary?: boolean;
+  /**
+   * If the network interface is accelerated networking enabled.
+   */
+  enableAcceleratedNetworking?: boolean;
+  /**
+   * Indicates whether IP forwarding is enabled on this network interface.
+   */
+  enableIPForwarding?: boolean;
+  /**
+   * A list of references to linked BareMetal resources.
+   */
+  readonly hostedWorkloads?: string[];
+  /**
+   * The resource GUID property of the network interface resource.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the network interface resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * A flow log resource.
+ */
+export type FlowLog = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * ID of network security group to which flow log will be applied.
+   */
+  targetResourceId?: string;
+  /**
+   * Guid of network security group to which flow log will be applied.
+   */
+  readonly targetResourceGuid?: string;
+  /**
+   * ID of the storage account which is used to store the flow log.
+   */
+  storageId?: string;
+  /**
+   * Flag to enable/disable flow logging.
+   */
+  enabled?: boolean;
+  /**
+   * Parameters that define the retention policy for flow log.
+   */
+  retentionPolicy?: RetentionPolicyParameters;
+  /**
+   * Parameters that define the flow log format.
+   */
+  format?: FlowLogFormatParameters;
+  /**
+   * Parameters that define the configuration of traffic analytics.
+   */
+  flowAnalyticsConfiguration?: TrafficAnalyticsProperties;
+  /**
+   * The provisioning state of the flow log.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * NetworkSecurityGroup resource.
+ */
+export type NetworkSecurityGroup = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * A collection of security rules of the network security group.
+   */
+  securityRules?: SecurityRule[];
+  /**
+   * The default security rules of network security group.
+   */
+  readonly defaultSecurityRules?: SecurityRule[];
+  /**
+   * A collection of references to network interfaces.
+   */
+  readonly networkInterfaces?: NetworkInterface[];
+  /**
+   * A collection of references to subnets.
+   */
+  readonly subnets?: Subnet[];
+  /**
+   * A collection of references to flow log resources.
+   */
+  readonly flowLogs?: FlowLog[];
+  /**
+   * The resource GUID property of the network security group resource.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the network security group resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Route table resource.
+ */
+export type RouteTable = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Collection of routes contained within a route table.
+   */
+  routes?: Route[];
+  /**
+   * A collection of references to subnets.
+   */
+  readonly subnets?: Subnet[];
+  /**
+   * Whether to disable the routes learned by BGP on that route table. True means disable.
+   */
+  disableBgpRoutePropagation?: boolean;
+  /**
+   * The provisioning state of the route table resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Service End point policy resource.
+ */
+export type ServiceEndpointPolicy = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * A collection of service endpoint policy definitions of the service endpoint policy.
+   */
+  serviceEndpointPolicyDefinitions?: ServiceEndpointPolicyDefinition[];
+  /**
+   * A collection of references to subnets.
+   */
+  readonly subnets?: Subnet[];
+  /**
+   * The resource GUID property of the service endpoint policy resource.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the service endpoint policy resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Public IP address resource.
+ */
+export type PublicIPAddress = Resource & {
+  /**
+   * The public IP address SKU.
+   */
+  sku?: PublicIPAddressSku;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * A list of availability zones denoting the IP allocated for the resource needs to come from.
+   */
+  zones?: string[];
+  /**
+   * The public IP address allocation method.
+   */
+  publicIPAllocationMethod?: IPAllocationMethod;
+  /**
+   * The public IP address version.
+   */
+  publicIPAddressVersion?: IPVersion;
+  /**
+   * The IP configuration associated with the public IP address.
+   */
+  readonly ipConfiguration?: IPConfiguration;
+  /**
+   * The FQDN of the DNS record associated with the public IP address.
+   */
+  dnsSettings?: PublicIPAddressDnsSettings;
+  /**
+   * The DDoS protection custom policy associated with the public IP address.
+   */
+  ddosSettings?: DdosSettings;
+  /**
+   * The list of tags associated with the public IP address.
+   */
+  ipTags?: IpTag[];
+  /**
+   * The IP address associated with the public IP address resource.
+   */
+  ipAddress?: string;
+  /**
+   * The Public IP Prefix this Public IP Address should be allocated from.
+   */
+  publicIPPrefix?: SubResource;
+  /**
+   * The idle timeout of the public IP address.
+   */
+  idleTimeoutInMinutes?: number;
+  /**
+   * The resource GUID property of the public IP address resource.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the public IP address resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Virtual Network Tap resource.
+ */
+export type VirtualNetworkTap = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Specifies the list of resource IDs for the network interface IP configuration that needs to be tapped.
+   */
+  readonly networkInterfaceTapConfigurations?: NetworkInterfaceTapConfiguration[];
+  /**
+   * The resource GUID property of the virtual network tap resource.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the virtual network tap resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The reference to the private IP Address of the collector nic that will receive the tap.
+   */
+  destinationNetworkInterfaceIPConfiguration?: NetworkInterfaceIPConfiguration;
+  /**
+   * The reference to the private IP address on the internal Load Balancer that will receive the tap.
+   */
+  destinationLoadBalancerFrontEndIPConfiguration?: FrontendIPConfiguration;
+  /**
+   * The VXLAN destination port that will receive the tapped traffic.
+   */
+  destinationPort?: number;
+};
+
+/**
+ * Virtual Network resource.
+ */
+export type VirtualNetwork = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The AddressSpace that contains an array of IP address ranges that can be used by subnets.
+   */
+  addressSpace?: AddressSpace;
+  /**
+   * The dhcpOptions that contains an array of DNS servers available to VMs deployed in the virtual network.
+   */
+  dhcpOptions?: DhcpOptions;
+  /**
+   * A list of subnets in a Virtual Network.
+   */
+  subnets?: Subnet[];
+  /**
+   * A list of peerings in a Virtual Network.
+   */
+  virtualNetworkPeerings?: VirtualNetworkPeering[];
+  /**
+   * The resourceGuid property of the Virtual Network resource.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the virtual network resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Indicates if DDoS protection is enabled for all the protected resources in the virtual network. It requires a DDoS protection plan associated with the resource.
+   */
+  enableDdosProtection?: boolean;
+  /**
+   * Indicates if VM protection is enabled for all the subnets in the virtual network.
+   */
+  enableVmProtection?: boolean;
+  /**
+   * The DDoS protection plan associated with the virtual network.
+   */
+  ddosProtectionPlan?: SubResource;
+  /**
+   * Bgp Communities sent over ExpressRoute with each route corresponding to a prefix in this VNET.
+   */
+  bgpCommunities?: VirtualNetworkBgpCommunities;
+  /**
+   * Array of IpAllocation which reference this VNET.
+   */
+  ipAllocations?: SubResource[];
+};
+
+/**
+ * Application gateway resource.
+ */
+export type ApplicationGateway = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * A list of availability zones denoting where the resource needs to come from.
+   */
+  zones?: string[];
+  /**
+   * The identity of the application gateway, if configured.
+   */
+  identity?: ManagedServiceIdentity;
+  /**
+   * SKU of the application gateway resource.
+   */
+  sku?: ApplicationGatewaySku;
+  /**
+   * SSL policy of the application gateway resource.
+   */
+  sslPolicy?: ApplicationGatewaySslPolicy;
+  /**
+   * Operational state of the application gateway resource.
+   */
+  readonly operationalState?: ApplicationGatewayOperationalState;
+  /**
+   * Subnets of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
+   */
+  gatewayIPConfigurations?: ApplicationGatewayIPConfiguration[];
+  /**
+   * Authentication certificates of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
+   */
+  authenticationCertificates?: ApplicationGatewayAuthenticationCertificate[];
+  /**
+   * Trusted Root certificates of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
+   */
+  trustedRootCertificates?: ApplicationGatewayTrustedRootCertificate[];
+  /**
+   * SSL certificates of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
+   */
+  sslCertificates?: ApplicationGatewaySslCertificate[];
+  /**
+   * Frontend IP addresses of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
+   */
+  frontendIPConfigurations?: ApplicationGatewayFrontendIPConfiguration[];
+  /**
+   * Frontend ports of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
+   */
+  frontendPorts?: ApplicationGatewayFrontendPort[];
+  /**
+   * Probes of the application gateway resource.
+   */
+  probes?: ApplicationGatewayProbe[];
+  /**
+   * Backend address pool of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
+   */
+  backendAddressPools?: ApplicationGatewayBackendAddressPool[];
+  /**
+   * Backend http settings of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
+   */
+  backendHttpSettingsCollection?: ApplicationGatewayBackendHttpSettings[];
+  /**
+   * Http listeners of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
+   */
+  httpListeners?: ApplicationGatewayHttpListener[];
+  /**
+   * URL path map of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
+   */
+  urlPathMaps?: ApplicationGatewayUrlPathMap[];
+  /**
+   * Request routing rules of the application gateway resource.
+   */
+  requestRoutingRules?: ApplicationGatewayRequestRoutingRule[];
+  /**
+   * Rewrite rules for the application gateway resource.
+   */
+  rewriteRuleSets?: ApplicationGatewayRewriteRuleSet[];
+  /**
+   * Redirect configurations of the application gateway resource. For default limits, see [Application Gateway limits](https://docs.microsoft.com/azure/azure-subscription-service-limits#application-gateway-limits).
+   */
+  redirectConfigurations?: ApplicationGatewayRedirectConfiguration[];
+  /**
+   * Web application firewall configuration.
+   */
+  webApplicationFirewallConfiguration?: ApplicationGatewayWebApplicationFirewallConfiguration;
+  /**
+   * Reference to the FirewallPolicy resource.
+   */
+  firewallPolicy?: SubResource;
+  /**
+   * Whether HTTP2 is enabled on the application gateway resource.
+   */
+  enableHttp2?: boolean;
+  /**
+   * Whether FIPS is enabled on the application gateway resource.
+   */
+  enableFips?: boolean;
+  /**
+   * Autoscale Configuration.
+   */
+  autoscaleConfiguration?: ApplicationGatewayAutoscaleConfiguration;
+  /**
+   * The resource GUID property of the application gateway resource.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the application gateway resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Custom error configurations of the application gateway resource.
+   */
+  customErrorConfigurations?: ApplicationGatewayCustomError[];
+  /**
+   * If true, associates a firewall policy with an application gateway regardless whether the policy differs from the WAF Config.
+   */
+  forceFirewallPolicyAssociation?: boolean;
+};
+
+/**
+ * A web application firewall rule set.
+ */
+export type ApplicationGatewayFirewallRuleSet = Resource & {
+  /**
+   * The provisioning state of the web application firewall rule set.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The type of the web application firewall rule set.
+   */
+  ruleSetType?: string;
+  /**
+   * The version of the web application firewall rule set type.
+   */
+  ruleSetVersion?: string;
+  /**
+   * The rule groups of the web application firewall rule set.
+   */
+  ruleGroups?: ApplicationGatewayFirewallRuleGroup[];
+};
+
+/**
+ * Response for ApplicationGatewayAvailableSslOptions API service call.
+ */
+export type ApplicationGatewayAvailableSslOptions = Resource & {
+  /**
+   * List of available Ssl predefined policy.
+   */
+  predefinedPolicies?: SubResource[];
+  /**
+   * Name of the Ssl predefined policy applied by default to application gateway.
+   */
+  defaultPolicy?: ApplicationGatewaySslPolicyName;
+  /**
+   * List of available Ssl cipher suites.
+   */
+  availableCipherSuites?: ApplicationGatewaySslCipherSuite[];
+  /**
+   * List of available Ssl protocols.
+   */
+  availableProtocols?: ApplicationGatewaySslProtocol[];
+};
+
+/**
+ * Azure Firewall resource.
+ */
+export type AzureFirewall = Resource & {
+  /**
+   * A list of availability zones denoting where the resource needs to come from.
+   */
+  zones?: string[];
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Collection of application rule collections used by Azure Firewall.
+   */
+  applicationRuleCollections?: AzureFirewallApplicationRuleCollection[];
+  /**
+   * Collection of NAT rule collections used by Azure Firewall.
+   */
+  natRuleCollections?: AzureFirewallNatRuleCollection[];
+  /**
+   * Collection of network rule collections used by Azure Firewall.
+   */
+  networkRuleCollections?: AzureFirewallNetworkRuleCollection[];
+  /**
+   * IP configuration of the Azure Firewall resource.
+   */
+  ipConfigurations?: AzureFirewallIPConfiguration[];
+  /**
+   * IP configuration of the Azure Firewall used for management traffic.
+   */
+  managementIpConfiguration?: AzureFirewallIPConfiguration;
+  /**
+   * The provisioning state of the Azure firewall resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The operation mode for Threat Intelligence.
+   */
+  threatIntelMode?: AzureFirewallThreatIntelMode;
+  /**
+   * The virtualHub to which the firewall belongs.
+   */
+  virtualHub?: SubResource;
+  /**
+   * The firewallPolicy associated with this azure firewall.
+   */
+  firewallPolicy?: SubResource;
+  /**
+   * IP addresses associated with AzureFirewall.
+   */
+  readonly hubIpAddresses?: HubIPAddresses;
+  /**
+   * IpGroups associated with AzureFirewall.
+   */
+  readonly ipGroups?: AzureFirewallIpGroups[];
+  /**
+   * The Azure Firewall Resource SKU.
+   */
+  sku?: AzureFirewallSku;
+  /**
+   * The additional properties used to further config this azure firewall.
+   */
+  additionalProperties?: { [propertyName: string]: string };
+};
+
+/**
+ * Azure Firewall FQDN Tag Resource.
+ */
+export type AzureFirewallFqdnTag = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The provisioning state of the Azure firewall FQDN tag resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The name of this FQDN Tag.
+   */
+  readonly fqdnTagName?: string;
+};
+
+/**
+ * Bastion Host resource.
+ */
+export type BastionHost = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * IP configuration of the Bastion Host resource.
+   */
+  ipConfigurations?: BastionHostIPConfiguration[];
+  /**
+   * FQDN for the endpoint on which bastion host is accessible.
+   */
+  dnsName?: string;
+  /**
+   * The provisioning state of the bastion host resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * A DDoS custom policy in a resource group.
+ */
+export type DdosCustomPolicy = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The resource GUID property of the DDoS custom policy resource. It uniquely identifies the resource, even if the user changes its name or migrate the resource across subscriptions or resource groups.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the DDoS custom policy resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The list of public IPs associated with the DDoS custom policy resource. This list is read-only.
+   */
+  readonly publicIPAddresses?: SubResource[];
+  /**
+   * The protocol-specific DDoS policy customization parameters.
+   */
+  protocolCustomSettings?: ProtocolCustomSettingsFormat[];
+};
+
+/**
+ * ExpressRouteCircuit resource.
+ */
+export type ExpressRouteCircuit = Resource & {
+  /**
+   * The SKU.
+   */
+  sku?: ExpressRouteCircuitSku;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Allow classic operations.
+   */
+  allowClassicOperations?: boolean;
+  /**
+   * The CircuitProvisioningState state of the resource.
+   */
+  circuitProvisioningState?: string;
+  /**
+   * The ServiceProviderProvisioningState state of the resource.
+   */
+  serviceProviderProvisioningState?: ServiceProviderProvisioningState;
+  /**
+   * The list of authorizations.
+   */
+  authorizations?: ExpressRouteCircuitAuthorization[];
+  /**
+   * The list of peerings.
+   */
+  peerings?: ExpressRouteCircuitPeering[];
+  /**
+   * The ServiceKey.
+   */
+  serviceKey?: string;
+  /**
+   * The ServiceProviderNotes.
+   */
+  serviceProviderNotes?: string;
+  /**
+   * The ServiceProviderProperties.
+   */
+  serviceProviderProperties?: ExpressRouteCircuitServiceProviderProperties;
+  /**
+   * The reference to the ExpressRoutePort resource when the circuit is provisioned on an ExpressRoutePort resource.
+   */
+  expressRoutePort?: SubResource;
+  /**
+   * The bandwidth of the circuit when the circuit is provisioned on an ExpressRoutePort resource.
+   */
+  bandwidthInGbps?: number;
+  /**
+   * The identifier of the circuit traffic. Outer tag for QinQ encapsulation.
+   */
+  readonly stag?: number;
+  /**
+   * The provisioning state of the express route circuit resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The GatewayManager Etag.
+   */
+  gatewayManagerEtag?: string;
+  /**
+   * Flag denoting global reach status.
+   */
+  globalReachEnabled?: boolean;
+};
+
+/**
+ * A ExpressRouteResourceProvider object.
+ */
+export type ExpressRouteServiceProvider = Resource & {
+  /**
+   * A list of peering locations.
+   */
+  peeringLocations?: string[];
+  /**
+   * A list of bandwidths offered.
+   */
+  bandwidthsOffered?: ExpressRouteServiceProviderBandwidthsOffered[];
+  /**
+   * The provisioning state of the express route service provider resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * ExpressRouteCrossConnection resource.
+ */
+export type ExpressRouteCrossConnection = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The name of the primary port.
+   */
+  readonly primaryAzurePort?: string;
+  /**
+   * The name of the secondary port.
+   */
+  readonly secondaryAzurePort?: string;
+  /**
+   * The identifier of the circuit traffic.
+   */
+  readonly sTag?: number;
+  /**
+   * The peering location of the ExpressRoute circuit.
+   */
+  peeringLocation?: string;
+  /**
+   * The circuit bandwidth In Mbps.
+   */
+  bandwidthInMbps?: number;
+  /**
+   * The ExpressRouteCircuit.
+   */
+  expressRouteCircuit?: ExpressRouteCircuitReference;
+  /**
+   * The provisioning state of the circuit in the connectivity provider system.
+   */
+  serviceProviderProvisioningState?: ServiceProviderProvisioningState;
+  /**
+   * Additional read only notes set by the connectivity provider.
+   */
+  serviceProviderNotes?: string;
+  /**
+   * The provisioning state of the express route cross connection resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The list of peerings.
+   */
+  peerings?: ExpressRouteCrossConnectionPeering[];
+};
+
+/**
+ * Definition of the ExpressRoutePorts peering location resource.
+ */
+export type ExpressRoutePortsLocation = Resource & {
+  /**
+   * Address of peering location.
+   */
+  readonly address?: string;
+  /**
+   * Contact details of peering locations.
+   */
+  readonly contact?: string;
+  /**
+   * The inventory of available ExpressRoutePort bandwidths.
+   */
+  availableBandwidths?: ExpressRoutePortsLocationBandwidths[];
+  /**
+   * The provisioning state of the express route port location resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * ExpressRoutePort resource definition.
+ */
+export type ExpressRoutePort = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The identity of ExpressRoutePort, if configured.
+   */
+  identity?: ManagedServiceIdentity;
+  /**
+   * The name of the peering location that the ExpressRoutePort is mapped to physically.
+   */
+  peeringLocation?: string;
+  /**
+   * Bandwidth of procured ports in Gbps.
+   */
+  bandwidthInGbps?: number;
+  /**
+   * Aggregate Gbps of associated circuit bandwidths.
+   */
+  readonly provisionedBandwidthInGbps?: number;
+  /**
+   * Maximum transmission unit of the physical port pair(s).
+   */
+  readonly mtu?: string;
+  /**
+   * Encapsulation method on physical ports.
+   */
+  encapsulation?: ExpressRoutePortsEncapsulation;
+  /**
+   * Ether type of the physical port.
+   */
+  readonly etherType?: string;
+  /**
+   * Date of the physical port allocation to be used in Letter of Authorization.
+   */
+  readonly allocationDate?: string;
+  /**
+   * The set of physical links of the ExpressRoutePort resource.
+   */
+  links?: ExpressRouteLink[];
+  /**
+   * Reference the ExpressRoute circuit(s) that are provisioned on this ExpressRoutePort resource.
+   */
+  readonly circuits?: SubResource[];
+  /**
+   * The provisioning state of the express route port resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The resource GUID property of the express route port resource.
+   */
+  readonly resourceGuid?: string;
+};
+
+/**
+ * FirewallPolicy Resource.
+ */
+export type FirewallPolicy = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The identity of the firewall policy.
+   */
+  identity?: ManagedServiceIdentity;
+  /**
+   * List of references to FirewallPolicyRuleGroups.
+   */
+  readonly ruleGroups?: SubResource[];
+  /**
+   * The provisioning state of the firewall policy resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The parent firewall policy from which rules are inherited.
+   */
+  basePolicy?: SubResource;
+  /**
+   * List of references to Azure Firewalls that this Firewall Policy is associated with.
+   */
+  readonly firewalls?: SubResource[];
+  /**
+   * List of references to Child Firewall Policies.
+   */
+  readonly childPolicies?: SubResource[];
+  /**
+   * The operation mode for Threat Intelligence.
+   */
+  threatIntelMode?: AzureFirewallThreatIntelMode;
+  /**
+   * ThreatIntel Whitelist for Firewall Policy.
+   */
+  threatIntelWhitelist?: FirewallPolicyThreatIntelWhitelist;
+  /**
+   * The operation mode for Intrusion system.
+   */
+  intrusionSystemMode?: FirewallPolicyIntrusionSystemMode;
+  /**
+   * TLS Configuration definition.
+   */
+  transportSecurity?: FirewallPolicyTransportSecurity;
+};
+
+/**
+ * IpAllocation resource.
+ */
+export type IpAllocation = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The Subnet that using the prefix of this IpAllocation resource.
+   */
+  readonly subnet?: SubResource;
+  /**
+   * The VirtualNetwork that using the prefix of this IpAllocation resource.
+   */
+  readonly virtualNetwork?: SubResource;
+  /**
+   * The type for the IpAllocation.
+   */
+  typePropertiesType?: IpAllocationType;
+  /**
+   * The address prefix for the IpAllocation.
+   */
+  prefix?: string;
+  /**
+   * The address prefix length for the IpAllocation.
+   */
+  prefixLength?: number;
+  /**
+   * The address prefix Type for the IpAllocation.
+   */
+  prefixType?: IPVersion;
+  /**
+   * The IPAM allocation ID.
+   */
+  ipamAllocationId?: string;
+  /**
+   * IpAllocation tags.
+   */
+  allocationTags?: { [propertyName: string]: string };
+};
+
+/**
+ * The IpGroups resource information.
+ */
+export type IpGroup = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The provisioning state of the IpGroups resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * IpAddresses/IpAddressPrefixes in the IpGroups resource.
+   */
+  ipAddresses?: string[];
+  /**
+   * List of references to Azure resources that this IpGroups is associated with.
+   */
+  readonly firewalls?: SubResource[];
+};
+
+/**
+ * LoadBalancer resource.
+ */
+export type LoadBalancer = Resource & {
+  /**
+   * The load balancer SKU.
+   */
+  sku?: LoadBalancerSku;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Object representing the frontend IPs to be used for the load balancer.
+   */
+  frontendIPConfigurations?: FrontendIPConfiguration[];
+  /**
+   * Collection of backend address pools used by a load balancer.
+   */
+  backendAddressPools?: BackendAddressPool[];
+  /**
+   * Object collection representing the load balancing rules Gets the provisioning.
+   */
+  loadBalancingRules?: LoadBalancingRule[];
+  /**
+   * Collection of probe objects used in the load balancer.
+   */
+  probes?: Probe[];
+  /**
+   * Collection of inbound NAT Rules used by a load balancer. Defining inbound NAT rules on your load balancer is mutually exclusive with defining an inbound NAT pool. Inbound NAT pools are referenced from virtual machine scale sets. NICs that are associated with individual virtual machines cannot reference an Inbound NAT pool. They have to reference individual inbound NAT rules.
+   */
+  inboundNatRules?: InboundNatRule[];
+  /**
+   * Defines an external port range for inbound NAT to a single backend port on NICs associated with a load balancer. Inbound NAT rules are created automatically for each NIC associated with the Load Balancer using an external port from this range. Defining an Inbound NAT pool on your Load Balancer is mutually exclusive with defining inbound Nat rules. Inbound NAT pools are referenced from virtual machine scale sets. NICs that are associated with individual virtual machines cannot reference an inbound NAT pool. They have to reference individual inbound NAT rules.
+   */
+  inboundNatPools?: InboundNatPool[];
+  /**
+   * The outbound rules.
+   */
+  outboundRules?: OutboundRule[];
+  /**
+   * The resource GUID property of the load balancer resource.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the load balancer resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Nat Gateway resource.
+ */
+export type NatGateway = Resource & {
+  /**
+   * The nat gateway SKU.
+   */
+  sku?: NatGatewaySku;
+  /**
+   * A list of availability zones denoting the zone in which Nat Gateway should be deployed.
+   */
+  zones?: string[];
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The idle timeout of the nat gateway.
+   */
+  idleTimeoutInMinutes?: number;
+  /**
+   * An array of public ip addresses associated with the nat gateway resource.
+   */
+  publicIpAddresses?: SubResource[];
+  /**
+   * An array of public ip prefixes associated with the nat gateway resource.
+   */
+  publicIpPrefixes?: SubResource[];
+  /**
+   * An array of references to the subnets using this nat gateway resource.
+   */
+  readonly subnets?: SubResource[];
+  /**
+   * The resource GUID property of the NAT gateway resource.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the NAT gateway resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Network profile resource.
+ */
+export type NetworkProfile = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * List of child container network interfaces.
+   */
+  readonly containerNetworkInterfaces?: ContainerNetworkInterface[];
+  /**
+   * List of chid container network interface configurations.
+   */
+  containerNetworkInterfaceConfigurations?: ContainerNetworkInterfaceConfiguration[];
+  /**
+   * The resource GUID property of the network profile resource.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the network profile resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * NetworkVirtualAppliance Resource.
+ */
+export type NetworkVirtualAppliance = Resource & {
+  /**
+   * The service principal that has read access to cloud-init and config blob.
+   */
+  identity?: ManagedServiceIdentity;
+  /**
+   * Network Virtual Appliance SKU.
+   */
+  sku?: VirtualApplianceSkuProperties;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * BootStrapConfigurationBlob storage URLs.
+   */
+  bootStrapConfigurationBlob?: string[];
+  /**
+   * The Virtual Hub where Network Virtual Appliance is being deployed.
+   */
+  virtualHub?: SubResource;
+  /**
+   * CloudInitConfigurationBlob storage URLs.
+   */
+  cloudInitConfigurationBlob?: string[];
+  /**
+   * VirtualAppliance ASN.
+   */
+  virtualApplianceAsn?: number;
+  /**
+   * List of Virtual Appliance Network Interfaces.
+   */
+  readonly virtualApplianceNics?: VirtualApplianceNicProperties[];
+  /**
+   * The provisioning state of the resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Network watcher in a resource group.
+ */
+export type NetworkWatcher = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The provisioning state of the network watcher resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Private link service resource.
+ */
+export type PrivateLinkService = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * An array of references to the load balancer IP configurations.
+   */
+  loadBalancerFrontendIpConfigurations?: FrontendIPConfiguration[];
+  /**
+   * An array of private link service IP configurations.
+   */
+  ipConfigurations?: PrivateLinkServiceIpConfiguration[];
+  /**
+   * An array of references to the network interfaces created for this private link service.
+   */
+  readonly networkInterfaces?: NetworkInterface[];
+  /**
+   * The provisioning state of the private link service resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * An array of list about connections to the private endpoint.
+   */
+  readonly privateEndpointConnections?: PrivateEndpointConnection[];
+  /**
+   * The visibility list of the private link service.
+   */
+  visibility?: ResourceSet;
+  /**
+   * The auto-approval list of the private link service.
+   */
+  autoApproval?: ResourceSet;
+  /**
+   * The list of Fqdn.
+   */
+  fqdns?: string[];
+  /**
+   * The alias of the private link service.
+   */
+  readonly alias?: string;
+  /**
+   * Whether the private link service is enabled for proxy protocol or not.
+   */
+  enableProxyProtocol?: boolean;
+};
+
+/**
+ * Public IP prefix resource.
+ */
+export type PublicIPPrefix = Resource & {
+  /**
+   * The public IP prefix SKU.
+   */
+  sku?: PublicIPPrefixSku;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * A list of availability zones denoting the IP allocated for the resource needs to come from.
+   */
+  zones?: string[];
+  /**
+   * The public IP address version.
+   */
+  publicIPAddressVersion?: IPVersion;
+  /**
+   * The list of tags associated with the public IP prefix.
+   */
+  ipTags?: IpTag[];
+  /**
+   * The Length of the Public IP Prefix.
+   */
+  prefixLength?: number;
+  /**
+   * The allocated Prefix.
+   */
+  readonly ipPrefix?: string;
+  /**
+   * The list of all referenced PublicIPAddresses.
+   */
+  readonly publicIPAddresses?: ReferencedPublicIpAddress[];
+  /**
+   * The reference to load balancer frontend IP configuration associated with the public IP prefix.
+   */
+  readonly loadBalancerFrontendIpConfiguration?: SubResource;
+  /**
+   * The resource GUID property of the public IP prefix resource.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the public IP prefix resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Route Filter Resource.
+ */
+export type RouteFilter = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Collection of RouteFilterRules contained within a route filter.
+   */
+  rules?: RouteFilterRule[];
+  /**
+   * A collection of references to express route circuit peerings.
+   */
+  readonly peerings?: ExpressRouteCircuitPeering[];
+  /**
+   * A collection of references to express route circuit ipv6 peerings.
+   */
+  readonly ipv6Peerings?: ExpressRouteCircuitPeering[];
+  /**
+   * The provisioning state of the route filter resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Security Partner Provider resource.
+ */
+export type SecurityPartnerProvider = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The provisioning state of the Security Partner Provider resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The security provider name.
+   */
+  securityProviderName?: SecurityProviderName;
+  /**
+   * The connection status with the Security Partner Provider.
+   */
+  readonly connectionStatus?: SecurityPartnerProviderConnectionStatus;
+  /**
+   * The virtualHub to which the Security Partner Provider belongs.
+   */
+  virtualHub?: SubResource;
+};
+
+/**
+ * Service Community Properties.
+ */
+export type BgpServiceCommunity = Resource & {
+  /**
+   * The name of the bgp community. e.g. Skype.
+   */
+  serviceName?: string;
+  /**
+   * A list of bgp communities.
+   */
+  bgpCommunities?: BGPCommunity[];
+};
+
+/**
+ * Network Intent Policy resource.
+ */
+export type NetworkIntentPolicy = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+};
+
+/**
+ * A common class for general resource information.
+ */
+export type VirtualNetworkGateway = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * IP configurations for virtual network gateway.
+   */
+  ipConfigurations?: VirtualNetworkGatewayIPConfiguration[];
+  /**
+   * The type of this virtual network gateway.
+   */
+  gatewayType?: VirtualNetworkGatewayType;
+  /**
+   * The type of this virtual network gateway.
+   */
+  vpnType?: VpnType;
+  /**
+   * The generation for this VirtualNetworkGateway. Must be None if gatewayType is not VPN.
+   */
+  vpnGatewayGeneration?: VpnGatewayGeneration;
+  /**
+   * Whether BGP is enabled for this virtual network gateway or not.
+   */
+  enableBgp?: boolean;
+  /**
+   * Whether private IP needs to be enabled on this gateway for connections or not.
+   */
+  enablePrivateIpAddress?: boolean;
+  /**
+   * ActiveActive flag.
+   */
+  active?: boolean;
+  /**
+   * The reference to the LocalNetworkGateway resource which represents local network site having default routes. Assign Null value in case of removing existing default site setting.
+   */
+  gatewayDefaultSite?: SubResource;
+  /**
+   * The reference to the VirtualNetworkGatewaySku resource which represents the SKU selected for Virtual network gateway.
+   */
+  sku?: VirtualNetworkGatewaySku;
+  /**
+   * The reference to the VpnClientConfiguration resource which represents the P2S VpnClient configurations.
+   */
+  vpnClientConfiguration?: VpnClientConfiguration;
+  /**
+   * Virtual network gateway's BGP speaker settings.
+   */
+  bgpSettings?: BgpSettings;
+  /**
+   * The reference to the address space resource which represents the custom routes address space specified by the customer for virtual network gateway and VpnClient.
+   */
+  customRoutes?: AddressSpace;
+  /**
+   * The resource GUID property of the virtual network gateway resource.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the virtual network gateway resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Whether dns forwarding is enabled or not.
+   */
+  enableDnsForwarding?: boolean;
+  /**
+   * The IP address allocated by the gateway to which dns requests can be sent.
+   */
+  readonly inboundDnsForwardingEndpoint?: string;
+};
+
+/**
+ * A common class for general resource information.
+ */
+export type VirtualNetworkGatewayConnectionListEntity = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The authorizationKey.
+   */
+  authorizationKey?: string;
+  /**
+   * The reference to virtual network gateway resource.
+   */
+  virtualNetworkGateway1: VirtualNetworkConnectionGatewayReference;
+  /**
+   * The reference to virtual network gateway resource.
+   */
+  virtualNetworkGateway2?: VirtualNetworkConnectionGatewayReference;
+  /**
+   * The reference to local network gateway resource.
+   */
+  localNetworkGateway2?: VirtualNetworkConnectionGatewayReference;
+  /**
+   * Gateway connection type.
+   */
+  connectionType: VirtualNetworkGatewayConnectionType;
+  /**
+   * Connection protocol used for this connection.
+   */
+  connectionProtocol?: VirtualNetworkGatewayConnectionProtocol;
+  /**
+   * The routing weight.
+   */
+  routingWeight?: number;
+  /**
+   * The IPSec shared key.
+   */
+  sharedKey?: string;
+  /**
+   * Virtual Network Gateway connection status.
+   */
+  readonly connectionStatus?: VirtualNetworkGatewayConnectionStatus;
+  /**
+   * Collection of all tunnels' connection health status.
+   */
+  readonly tunnelConnectionStatus?: TunnelConnectionHealth[];
+  /**
+   * The egress bytes transferred in this connection.
+   */
+  readonly egressBytesTransferred?: number;
+  /**
+   * The ingress bytes transferred in this connection.
+   */
+  readonly ingressBytesTransferred?: number;
+  /**
+   * The reference to peerings resource.
+   */
+  peer?: SubResource;
+  /**
+   * EnableBgp flag.
+   */
+  enableBgp?: boolean;
+  /**
+   * Enable policy-based traffic selectors.
+   */
+  usePolicyBasedTrafficSelectors?: boolean;
+  /**
+   * The IPSec Policies to be considered by this connection.
+   */
+  ipsecPolicies?: IpsecPolicy[];
+  /**
+   * The Traffic Selector Policies to be considered by this connection.
+   */
+  trafficSelectorPolicies?: TrafficSelectorPolicy[];
+  /**
+   * The resource GUID property of the virtual network gateway connection resource.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the virtual network gateway connection resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Bypass ExpressRoute Gateway for data forwarding.
+   */
+  expressRouteGatewayBypass?: boolean;
+};
+
+/**
+ * A common class for general resource information.
+ */
+export type LocalNetworkGateway = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Local network site address space.
+   */
+  localNetworkAddressSpace?: AddressSpace;
+  /**
+   * IP address of local network gateway.
+   */
+  gatewayIpAddress?: string;
+  /**
+   * FQDN of local network gateway.
+   */
+  fqdn?: string;
+  /**
+   * Local network gateway's BGP speaker settings.
+   */
+  bgpSettings?: BgpSettings;
+  /**
+   * The resource GUID property of the local network gateway resource.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the local network gateway resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * A common class for general resource information.
+ */
+export type VirtualNetworkGatewayConnection = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The authorizationKey.
+   */
+  authorizationKey?: string;
+  /**
+   * The reference to virtual network gateway resource.
+   */
+  virtualNetworkGateway1: VirtualNetworkGateway;
+  /**
+   * The reference to virtual network gateway resource.
+   */
+  virtualNetworkGateway2?: VirtualNetworkGateway;
+  /**
+   * The reference to local network gateway resource.
+   */
+  localNetworkGateway2?: LocalNetworkGateway;
+  /**
+   * Gateway connection type.
+   */
+  connectionType: VirtualNetworkGatewayConnectionType;
+  /**
+   * Connection protocol used for this connection.
+   */
+  connectionProtocol?: VirtualNetworkGatewayConnectionProtocol;
+  /**
+   * The routing weight.
+   */
+  routingWeight?: number;
+  /**
+   * The dead peer detection timeout of this connection in seconds.
+   */
+  dpdTimeoutSeconds?: number;
+  /**
+   * The IPSec shared key.
+   */
+  sharedKey?: string;
+  /**
+   * Virtual Network Gateway connection status.
+   */
+  readonly connectionStatus?: VirtualNetworkGatewayConnectionStatus;
+  /**
+   * Collection of all tunnels' connection health status.
+   */
+  readonly tunnelConnectionStatus?: TunnelConnectionHealth[];
+  /**
+   * The egress bytes transferred in this connection.
+   */
+  readonly egressBytesTransferred?: number;
+  /**
+   * The ingress bytes transferred in this connection.
+   */
+  readonly ingressBytesTransferred?: number;
+  /**
+   * The reference to peerings resource.
+   */
+  peer?: SubResource;
+  /**
+   * EnableBgp flag.
+   */
+  enableBgp?: boolean;
+  /**
+   * Use private local Azure IP for the connection.
+   */
+  useLocalAzureIpAddress?: boolean;
+  /**
+   * Enable policy-based traffic selectors.
+   */
+  usePolicyBasedTrafficSelectors?: boolean;
+  /**
+   * The IPSec Policies to be considered by this connection.
+   */
+  ipsecPolicies?: IpsecPolicy[];
+  /**
+   * The Traffic Selector Policies to be considered by this connection.
+   */
+  trafficSelectorPolicies?: TrafficSelectorPolicy[];
+  /**
+   * The resource GUID property of the virtual network gateway connection resource.
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the virtual network gateway connection resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Bypass ExpressRoute Gateway for data forwarding.
+   */
+  expressRouteGatewayBypass?: boolean;
+};
+
+/**
+ * VirtualRouter Resource.
+ */
+export type VirtualRouter = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * VirtualRouter ASN.
+   */
+  virtualRouterAsn?: number;
+  /**
+   * VirtualRouter IPs.
+   */
+  virtualRouterIps?: string[];
+  /**
+   * The Subnet on which VirtualRouter is hosted.
+   */
+  hostedSubnet?: SubResource;
+  /**
+   * The Gateway on which VirtualRouter is hosted.
+   */
+  hostedGateway?: SubResource;
+  /**
+   * List of references to VirtualRouterPeerings.
+   */
+  readonly peerings?: SubResource[];
+  /**
+   * The provisioning state of the resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * VirtualWAN Resource.
+ */
+export type VirtualWAN = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Vpn encryption to be disabled or not.
+   */
+  disableVpnEncryption?: boolean;
+  /**
+   * List of VirtualHubs in the VirtualWAN.
+   */
+  readonly virtualHubs?: SubResource[];
+  /**
+   * List of VpnSites in the VirtualWAN.
+   */
+  readonly vpnSites?: SubResource[];
+  /**
+   * True if branch to branch traffic is allowed.
+   */
+  allowBranchToBranchTraffic?: boolean;
+  /**
+   * True if Vnet to Vnet traffic is allowed.
+   */
+  allowVnetToVnetTraffic?: boolean;
+  /**
+   * The office local breakout category.
+   */
+  readonly office365LocalBreakoutCategory?: OfficeTrafficCategory;
+  /**
+   * The provisioning state of the virtual WAN resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The type of the VirtualWAN.
+   */
+  typePropertiesType?: string;
+};
+
+/**
  * VpnSite Resource.
  */
-export interface VpnSiteId {
+export type VpnSite = Resource & {
   /**
-   * The resource-uri of the vpn-site for which config is to be fetched.
+   * A unique read-only string that changes whenever the resource is updated.
    */
-  readonly vpnSite?: string;
-}
+  readonly etag?: string;
+  /**
+   * The VirtualWAN to which the vpnSite belongs.
+   */
+  virtualWan?: SubResource;
+  /**
+   * The device properties.
+   */
+  deviceProperties?: DeviceProperties;
+  /**
+   * The ip-address for the vpn-site.
+   */
+  ipAddress?: string;
+  /**
+   * The key for vpn-site that can be used for connections.
+   */
+  siteKey?: string;
+  /**
+   * The AddressSpace that contains an array of IP address ranges.
+   */
+  addressSpace?: AddressSpace;
+  /**
+   * The set of bgp properties.
+   */
+  bgpProperties?: BgpSettings;
+  /**
+   * The provisioning state of the VPN site resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * IsSecuritySite flag.
+   */
+  isSecuritySite?: boolean;
+  /**
+   * List of all vpn site links.
+   */
+  vpnSiteLinks?: VpnSiteLink[];
+};
 
+/**
+ * P2SVpnGateway Resource.
+ */
+export type P2SVpnGateway = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The VirtualHub to which the gateway belongs.
+   */
+  virtualHub?: SubResource;
+  /**
+   * List of all p2s connection configurations of the gateway.
+   */
+  p2SConnectionConfigurations?: P2SConnectionConfiguration[];
+  /**
+   * The provisioning state of the P2S VPN gateway resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The scale unit for this p2s vpn gateway.
+   */
+  vpnGatewayScaleUnit?: number;
+  /**
+   * The VpnServerConfiguration to which the p2sVpnGateway is attached to.
+   */
+  vpnServerConfiguration?: SubResource;
+  /**
+   * All P2S VPN clients' connection health status.
+   */
+  readonly vpnClientConnectionHealth?: VpnClientConnectionHealth;
+};
+
+/**
+ * VpnServerConfiguration Resource.
+ */
+export type VpnServerConfiguration = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The name of the VpnServerConfiguration that is unique within a resource group.
+   */
+  namePropertiesName?: string;
+  /**
+   * VPN protocols for the VpnServerConfiguration.
+   */
+  vpnProtocols?: VpnGatewayTunnelingProtocol[];
+  /**
+   * VPN authentication types for the VpnServerConfiguration.
+   */
+  vpnAuthenticationTypes?: VpnAuthenticationType[];
+  /**
+   * VPN client root certificate of VpnServerConfiguration.
+   */
+  vpnClientRootCertificates?: VpnServerConfigVpnClientRootCertificate[];
+  /**
+   * VPN client revoked certificate of VpnServerConfiguration.
+   */
+  vpnClientRevokedCertificates?: VpnServerConfigVpnClientRevokedCertificate[];
+  /**
+   * Radius Server root certificate of VpnServerConfiguration.
+   */
+  radiusServerRootCertificates?: VpnServerConfigRadiusServerRootCertificate[];
+  /**
+   * Radius client root certificate of VpnServerConfiguration.
+   */
+  radiusClientRootCertificates?: VpnServerConfigRadiusClientRootCertificate[];
+  /**
+   * VpnClientIpsecPolicies for VpnServerConfiguration.
+   */
+  vpnClientIpsecPolicies?: IpsecPolicy[];
+  /**
+   * The radius server address property of the VpnServerConfiguration resource for point to site client connection.
+   */
+  radiusServerAddress?: string;
+  /**
+   * The radius secret property of the VpnServerConfiguration resource for point to site client connection.
+   */
+  radiusServerSecret?: string;
+  /**
+   * Multiple Radius Server configuration for VpnServerConfiguration.
+   */
+  radiusServers?: RadiusServer[];
+  /**
+   * The set of aad vpn authentication parameters.
+   */
+  aadAuthenticationParameters?: AadAuthenticationParameters;
+  /**
+   * The provisioning state of the VpnServerConfiguration resource. Possible values are: 'Updating', 'Deleting', and 'Failed'.
+   */
+  readonly provisioningState?: string;
+  /**
+   * List of references to P2SVpnGateways.
+   */
+  readonly p2SVpnGateways?: P2SVpnGateway[];
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etagPropertiesEtag?: string;
+};
+
+/**
+ * VirtualHub Resource.
+ */
+export type VirtualHub = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The VirtualWAN to which the VirtualHub belongs.
+   */
+  virtualWan?: SubResource;
+  /**
+   * The VpnGateway associated with this VirtualHub.
+   */
+  vpnGateway?: SubResource;
+  /**
+   * The P2SVpnGateway associated with this VirtualHub.
+   */
+  p2SVpnGateway?: SubResource;
+  /**
+   * The expressRouteGateway associated with this VirtualHub.
+   */
+  expressRouteGateway?: SubResource;
+  /**
+   * The azureFirewall associated with this VirtualHub.
+   */
+  azureFirewall?: SubResource;
+  /**
+   * The securityPartnerProvider associated with this VirtualHub.
+   */
+  securityPartnerProvider?: SubResource;
+  /**
+   * List of all vnet connections with this VirtualHub.
+   */
+  virtualNetworkConnections?: HubVirtualNetworkConnection[];
+  /**
+   * Address-prefix for this VirtualHub.
+   */
+  addressPrefix?: string;
+  /**
+   * The routeTable associated with this virtual hub.
+   */
+  routeTable?: VirtualHubRouteTable;
+  /**
+   * The provisioning state of the virtual hub resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The Security Provider name.
+   */
+  securityProviderName?: string;
+  /**
+   * List of all virtual hub route table v2s associated with this VirtualHub.
+   */
+  virtualHubRouteTableV2S?: VirtualHubRouteTableV2[];
+  /**
+   * The sku of this VirtualHub.
+   */
+  sku?: string;
+};
+
+/**
+ * VpnGateway Resource.
+ */
+export type VpnGateway = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The VirtualHub to which the gateway belongs.
+   */
+  virtualHub?: SubResource;
+  /**
+   * List of all vpn connections to the gateway.
+   */
+  connections?: VpnConnection[];
+  /**
+   * Local network gateway's BGP speaker settings.
+   */
+  bgpSettings?: BgpSettings;
+  /**
+   * The provisioning state of the VPN gateway resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The scale unit for this vpn gateway.
+   */
+  vpnGatewayScaleUnit?: number;
+};
+
+/**
+ * ExpressRoute gateway resource.
+ */
+export type ExpressRouteGateway = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * Configuration for auto scaling.
+   */
+  autoScaleConfiguration?: ExpressRouteGatewayPropertiesAutoScaleConfiguration;
+  /**
+   * List of ExpressRoute connections to the ExpressRoute gateway.
+   */
+  readonly expressRouteConnections?: ExpressRouteConnection[];
+  /**
+   * The provisioning state of the express route gateway resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The Virtual Hub where the ExpressRoute gateway is or will be deployed.
+   */
+  virtualHub?: VirtualHubId;
+};
+
+/**
+ * Defines web application firewall policy.
+ */
+export type WebApplicationFirewallPolicy = Resource & {
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  readonly etag?: string;
+  /**
+   * The PolicySettings for policy.
+   */
+  policySettings?: PolicySettings;
+  /**
+   * The custom rules inside the policy.
+   */
+  customRules?: WebApplicationFirewallCustomRule[];
+  /**
+   * A collection of references to application gateways.
+   */
+  readonly applicationGateways?: ApplicationGateway[];
+  /**
+   * The provisioning state of the web application firewall policy resource.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Resource status of the policy.
+   */
+  readonly resourceState?: WebApplicationFirewallPolicyResourceState;
+  /**
+   * Describes the managedRules structure.
+   */
+  managedRules?: ManagedRulesDefinition;
+  /**
+   * A collection of references to application gateway http listeners.
+   */
+  readonly httpListeners?: SubResource[];
+  /**
+   * A collection of references to application gateway path rules.
+   */
+  readonly pathBasedRules?: SubResource[];
+};
+
+/**
+ * Describes a Virtual Machine.
+ */
+export type Vm = Resource & {};
+
+/**
+ * Firewall Policy NAT Rule.
+ */
+export type FirewallPolicyNatRule = FirewallPolicyRule & {
+  /**
+   * The action type of a Nat rule.
+   */
+  action?: FirewallPolicyNatRuleAction;
+  /**
+   * The translated address for this NAT rule.
+   */
+  translatedAddress?: string;
+  /**
+   * The translated port for this NAT rule.
+   */
+  translatedPort?: string;
+  /**
+   * The match conditions for incoming traffic.
+   */
+  ruleCondition?: FirewallPolicyRuleConditionUnion;
+};
+
+/**
+ * Firewall Policy Filter Rule.
+ */
+export type FirewallPolicyFilterRule = FirewallPolicyRule & {
+  /**
+   * The action type of a Filter rule.
+   */
+  action?: FirewallPolicyFilterRuleAction;
+  /**
+   * Collection of rule conditions used by a rule.
+   */
+  ruleConditions?: FirewallPolicyRuleConditionUnion[];
+};
+
+/**
+ * The properties of a packet capture session.
+ */
+export type PacketCaptureResultProperties = PacketCaptureParameters & {
+  /**
+   * The provisioning state of the packet capture session.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * Describes the properties of a connection monitor.
+ */
+export type ConnectionMonitorResultProperties = ConnectionMonitorParameters & {
+  /**
+   * The provisioning state of the connection monitor.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The date and time when the connection monitor was started.
+   */
+  readonly startTime?: Date;
+  /**
+   * The monitoring status of the connection monitor.
+   */
+  readonly monitoringStatus?: string;
+  /**
+   * Type of connection monitor.
+   */
+  readonly connectionMonitorType?: ConnectionMonitorType;
+};
+
+/**
+ * The visibility list of the private link service.
+ */
+export type PrivateLinkServicePropertiesVisibility = ResourceSet & {};
+
+/**
+ * The auto-approval list of the private link service.
+ */
+export type PrivateLinkServicePropertiesAutoApproval = ResourceSet & {};
+
+/**
+ * Rule condition of type application.
+ */
+export type ApplicationRuleCondition = FirewallPolicyRuleCondition & {
+  /**
+   * List of source IP addresses for this rule.
+   */
+  sourceAddresses?: string[];
+  /**
+   * List of destination IP addresses or Service Tags.
+   */
+  destinationAddresses?: string[];
+  /**
+   * Array of Application Protocols.
+   */
+  protocols?: FirewallPolicyRuleConditionApplicationProtocol[];
+  /**
+   * List of Urls for this rule condition.
+   */
+  targetUrls?: string[];
+  /**
+   * List of FQDNs for this rule condition.
+   */
+  targetFqdns?: string[];
+  /**
+   * List of FQDN Tags for this rule condition.
+   */
+  fqdnTags?: string[];
+  /**
+   * List of source IpGroups for this rule.
+   */
+  sourceIpGroups?: string[];
+};
+
+/**
+ * Rule condition of type nat.
+ */
+export type NatRuleCondition = FirewallPolicyRuleCondition & {
+  /**
+   * Array of FirewallPolicyRuleConditionNetworkProtocols.
+   */
+  ipProtocols?: FirewallPolicyRuleConditionNetworkProtocol[];
+  /**
+   * List of source IP addresses for this rule.
+   */
+  sourceAddresses?: string[];
+  /**
+   * List of destination IP addresses or Service Tags.
+   */
+  destinationAddresses?: string[];
+  /**
+   * List of destination ports.
+   */
+  destinationPorts?: string[];
+  /**
+   * List of source IpGroups for this rule.
+   */
+  sourceIpGroups?: string[];
+  /**
+   * Terminate TLS connections for this rule.
+   */
+  terminateTLS?: boolean;
+};
+
+/**
+ * Rule condition of type network.
+ */
+export type NetworkRuleCondition = FirewallPolicyRuleCondition & {
+  /**
+   * Array of FirewallPolicyRuleConditionNetworkProtocols.
+   */
+  ipProtocols?: FirewallPolicyRuleConditionNetworkProtocol[];
+  /**
+   * List of source IP addresses for this rule.
+   */
+  sourceAddresses?: string[];
+  /**
+   * List of destination IP addresses or Service Tags.
+   */
+  destinationAddresses?: string[];
+  /**
+   * List of destination ports.
+   */
+  destinationPorts?: string[];
+  /**
+   * List of source IpGroups for this rule.
+   */
+  sourceIpGroups?: string[];
+  /**
+   * List of destination IpGroups for this rule.
+   */
+  destinationIpGroups?: string[];
+};
 /**
  * Defines values for ApplicationGatewaySkuName.
  */

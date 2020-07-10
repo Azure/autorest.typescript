@@ -28,6 +28,7 @@ import { transformBaseUrl } from "./urlTransforms";
 import { normalizeModelWithExtensions } from "./extensions";
 import { transformGroups } from "./groupTransforms";
 import { getSchemaParents } from "../utils/schemaHelpers";
+import { sortObjectSchemasHierarchically } from "../utils/sortObjectSchemasHierarchically";
 
 export async function transformChoices(codeModel: CodeModel) {
   const choices = [
@@ -65,6 +66,7 @@ export async function transformCodeModel(
     true /** shouldGuard */
   );
 
+  sortObjectSchemasHierarchically(codeModel);
   normalizeModelWithExtensions(codeModel);
 
   const [uberParents, operationGroups] = await Promise.all([

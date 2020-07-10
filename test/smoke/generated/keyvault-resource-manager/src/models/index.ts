@@ -517,24 +517,6 @@ export interface CheckNameAvailabilityResult {
 }
 
 /**
- * Private endpoint connection resource.
- */
-export type PrivateEndpointConnection = Resource & {
-  /**
-   * Properties of the private endpoint object.
-   */
-  privateEndpoint?: PrivateEndpoint;
-  /**
-   * Approval state of the private link connection.
-   */
-  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
-  /**
-   * Provisioning state of the private endpoint connection.
-   */
-  readonly provisioningState?: PrivateEndpointConnectionProvisioningState;
-};
-
-/**
  * An error response from Key Vault resource provider
  */
 export interface CloudError {
@@ -567,24 +549,6 @@ export interface PrivateLinkResourceListResult {
    */
   value?: PrivateLinkResource[];
 }
-
-/**
- * A private link resource
- */
-export type PrivateLinkResource = Resource & {
-  /**
-   * Group identifier of private link resource.
-   */
-  readonly groupId?: string;
-  /**
-   * Required member names of private link resource.
-   */
-  readonly requiredMembers?: string[];
-  /**
-   * Required DNS zone names of the the private link resource.
-   */
-  requiredZoneNames?: string[];
-};
 
 /**
  * Result of the request to list Storage operations. It contains a list of operations and a URL link to get the next set of results.
@@ -671,6 +635,42 @@ export interface LogSpecification {
    */
   blobDuration?: string;
 }
+
+/**
+ * Private endpoint connection resource.
+ */
+export type PrivateEndpointConnection = Resource & {
+  /**
+   * Properties of the private endpoint object.
+   */
+  privateEndpoint?: PrivateEndpoint;
+  /**
+   * Approval state of the private link connection.
+   */
+  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
+  /**
+   * Provisioning state of the private endpoint connection.
+   */
+  readonly provisioningState?: PrivateEndpointConnectionProvisioningState;
+};
+
+/**
+ * A private link resource
+ */
+export type PrivateLinkResource = Resource & {
+  /**
+   * Group identifier of private link resource.
+   */
+  readonly groupId?: string;
+  /**
+   * Required member names of private link resource.
+   */
+  readonly requiredMembers?: string[];
+  /**
+   * Required DNS zone names of the the private link resource.
+   */
+  requiredZoneNames?: string[];
+};
 
 /**
  * Defines headers for PrivateEndpointConnections_put operation.

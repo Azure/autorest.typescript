@@ -23,118 +23,6 @@ export interface AppServiceCertificateOrderCollection {
 }
 
 /**
- * Azure resource. This resource is tracked in Azure Resource Manager
- */
-export interface Resource {
-  /**
-   * Resource Id.
-   */
-  readonly id?: string;
-  /**
-   * Resource Name.
-   */
-  readonly name?: string;
-  /**
-   * Kind of resource.
-   */
-  kind?: string;
-  /**
-   * Resource Location.
-   */
-  location: string;
-  /**
-   * Resource type.
-   */
-  readonly type?: string;
-  /**
-   * Resource tags.
-   */
-  tags?: { [propertyName: string]: string };
-}
-
-/**
- * SSL certificate purchase order.
- */
-export type AppServiceCertificateOrder = Resource & {
-  /**
-   * State of the Key Vault secret.
-   */
-  certificates?: { [propertyName: string]: AppServiceCertificate };
-  /**
-   * Certificate distinguished name.
-   */
-  distinguishedName?: string;
-  /**
-   * Domain verification token.
-   */
-  readonly domainVerificationToken?: string;
-  /**
-   * Duration in years (must be between 1 and 3).
-   */
-  validityInYears?: number;
-  /**
-   * Certificate key size.
-   */
-  keySize?: number;
-  /**
-   * Certificate product type.
-   */
-  productType?: CertificateProductType;
-  /**
-   * <code>true</code> if the certificate should be automatically renewed when it expires; otherwise, <code>false</code>.
-   */
-  autoRenew?: boolean;
-  /**
-   * Status of certificate order.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Current order status.
-   */
-  readonly status?: CertificateOrderStatus;
-  /**
-   * Signed certificate.
-   */
-  readonly signedCertificate?: CertificateDetails;
-  /**
-   * Last CSR that was created for this order.
-   */
-  csr?: string;
-  /**
-   * Intermediate certificate.
-   */
-  readonly intermediate?: CertificateDetails;
-  /**
-   * Root certificate.
-   */
-  readonly root?: CertificateDetails;
-  /**
-   * Current serial number of the certificate.
-   */
-  readonly serialNumber?: string;
-  /**
-   * Certificate last issuance time.
-   */
-  readonly lastCertificateIssuanceTime?: Date;
-  /**
-   * Certificate expiration time.
-   */
-  readonly expirationTime?: Date;
-  /**
-   * <code>true</code> if private key is external; otherwise, <code>false</code>.
-   */
-  readonly isPrivateKeyExternal?: boolean;
-  /**
-   * Reasons why App Service Certificate is not renewable at the current moment.
-   */
-  readonly appServiceCertificateNotRenewableReasons?: AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem[];
-  /**
-   * Time stamp when the certificate would be auto renewed next
-   */
-  readonly nextAutoRenewalTimeStamp?: Date;
-};
-
-/**
  * Key Vault container for a certificate that is purchased through Azure.
  */
 export interface AppServiceCertificate {
@@ -192,6 +80,36 @@ export interface CertificateDetails {
    * Raw certificate data.
    */
   readonly rawData?: string;
+}
+
+/**
+ * Azure resource. This resource is tracked in Azure Resource Manager
+ */
+export interface Resource {
+  /**
+   * Resource Id.
+   */
+  readonly id?: string;
+  /**
+   * Resource Name.
+   */
+  readonly name?: string;
+  /**
+   * Kind of resource.
+   */
+  kind?: string;
+  /**
+   * Resource Location.
+   */
+  location: string;
+  /**
+   * Resource type.
+   */
+  readonly type?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
 }
 
 /**
@@ -268,88 +186,6 @@ export interface ProxyOnlyResource {
 }
 
 /**
- * ARM resource for a certificate order that is purchased through Azure.
- */
-export type AppServiceCertificateOrderPatchResource = ProxyOnlyResource & {
-  /**
-   * State of the Key Vault secret.
-   */
-  certificates?: { [propertyName: string]: AppServiceCertificate };
-  /**
-   * Certificate distinguished name.
-   */
-  distinguishedName?: string;
-  /**
-   * Domain verification token.
-   */
-  readonly domainVerificationToken?: string;
-  /**
-   * Duration in years (must be between 1 and 3).
-   */
-  validityInYears?: number;
-  /**
-   * Certificate key size.
-   */
-  keySize?: number;
-  /**
-   * Certificate product type.
-   */
-  productType?: CertificateProductType;
-  /**
-   * <code>true</code> if the certificate should be automatically renewed when it expires; otherwise, <code>false</code>.
-   */
-  autoRenew?: boolean;
-  /**
-   * Status of certificate order.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Current order status.
-   */
-  readonly status?: CertificateOrderStatus;
-  /**
-   * Signed certificate.
-   */
-  readonly signedCertificate?: CertificateDetails;
-  /**
-   * Last CSR that was created for this order.
-   */
-  csr?: string;
-  /**
-   * Intermediate certificate.
-   */
-  readonly intermediate?: CertificateDetails;
-  /**
-   * Root certificate.
-   */
-  readonly root?: CertificateDetails;
-  /**
-   * Current serial number of the certificate.
-   */
-  readonly serialNumber?: string;
-  /**
-   * Certificate last issuance time.
-   */
-  readonly lastCertificateIssuanceTime?: Date;
-  /**
-   * Certificate expiration time.
-   */
-  readonly expirationTime?: Date;
-  /**
-   * <code>true</code> if private key is external; otherwise, <code>false</code>.
-   */
-  readonly isPrivateKeyExternal?: boolean;
-  /**
-   * Reasons why App Service Certificate is not renewable at the current moment.
-   */
-  readonly appServiceCertificateNotRenewableReasons?: AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem[];
-  /**
-   * Time stamp when the certificate would be auto renewed next
-   */
-  readonly nextAutoRenewalTimeStamp?: Date;
-};
-
-/**
  * Collection of certificate order certificates.
  */
 export interface AppServiceCertificateCollection {
@@ -362,82 +198,6 @@ export interface AppServiceCertificateCollection {
    */
   readonly nextLink?: string;
 }
-
-/**
- * Key Vault container ARM resource for a certificate that is purchased through Azure.
- */
-export type AppServiceCertificateResource = Resource & {
-  /**
-   * Key Vault resource Id.
-   */
-  keyVaultId?: string;
-  /**
-   * Key Vault secret name.
-   */
-  keyVaultSecretName?: string;
-  /**
-   * Status of the Key Vault secret.
-   */
-  readonly provisioningState?: KeyVaultSecretStatus;
-};
-
-/**
- * Key Vault container ARM resource for a certificate that is purchased through Azure.
- */
-export type AppServiceCertificatePatchResource = ProxyOnlyResource & {
-  /**
-   * Key Vault resource Id.
-   */
-  keyVaultId?: string;
-  /**
-   * Key Vault secret name.
-   */
-  keyVaultSecretName?: string;
-  /**
-   * Status of the Key Vault secret.
-   */
-  readonly provisioningState?: KeyVaultSecretStatus;
-};
-
-/**
- * Class representing certificate reissue request.
- */
-export type ReissueCertificateOrderRequest = ProxyOnlyResource & {
-  /**
-   * Certificate Key Size.
-   */
-  keySize?: number;
-  /**
-   * Delay in hours to revoke existing certificate after the new certificate is issued.
-   */
-  delayExistingRevokeInHours?: number;
-  /**
-   * Csr to be used for re-key operation.
-   */
-  csr?: string;
-  /**
-   * Should we change the ASC type (from managed private key to external private key and vice versa).
-   */
-  isPrivateKeyExternal?: boolean;
-};
-
-/**
- * Class representing certificate renew request.
- */
-export type RenewCertificateOrderRequest = ProxyOnlyResource & {
-  /**
-   * Certificate Key Size.
-   */
-  keySize?: number;
-  /**
-   * Csr to be used for re-key operation.
-   */
-  csr?: string;
-  /**
-   * Should we change the ASC type (from managed private key to external private key and vice versa).
-   */
-  isPrivateKeyExternal?: boolean;
-};
 
 /**
  * Identifies an object.
@@ -472,34 +232,6 @@ export interface SiteSeal {
    */
   html: string;
 }
-
-/**
- * Certificate order action.
- */
-export type CertificateOrderAction = ProxyOnlyResource & {
-  /**
-   * Action type.
-   */
-  readonly actionType?: CertificateOrderActionType;
-  /**
-   * Time at which the certificate action was performed.
-   */
-  readonly createdAt?: Date;
-};
-
-/**
- * SSL certificate email.
- */
-export type CertificateEmail = ProxyOnlyResource & {
-  /**
-   * Email id.
-   */
-  emailId?: string;
-  /**
-   * Time stamp.
-   */
-  timeStamp?: Date;
-};
 
 /**
  * Collection of Azure resource manager operation metadata.
@@ -640,90 +372,6 @@ export interface DomainCollection {
    */
   readonly nextLink?: string;
 }
-
-/**
- * Information about a domain.
- */
-export type Domain = Resource & {
-  /**
-   * Administrative contact.
-   */
-  contactAdmin?: Contact;
-  /**
-   * Billing contact.
-   */
-  contactBilling?: Contact;
-  /**
-   * Registrant contact.
-   */
-  contactRegistrant?: Contact;
-  /**
-   * Technical contact.
-   */
-  contactTech?: Contact;
-  /**
-   * Domain registration status.
-   */
-  readonly registrationStatus?: DomainStatus;
-  /**
-   * Domain provisioning state.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Name servers.
-   */
-  readonly nameServers?: string[];
-  /**
-   * <code>true</code> if domain privacy is enabled for this domain; otherwise, <code>false</code>.
-   */
-  privacy?: boolean;
-  /**
-   * Domain creation timestamp.
-   */
-  readonly createdTime?: Date;
-  /**
-   * Domain expiration timestamp.
-   */
-  readonly expirationTime?: Date;
-  /**
-   * Timestamp when the domain was renewed last time.
-   */
-  readonly lastRenewedTime?: Date;
-  /**
-   * <code>true</code> if the domain should be automatically renewed; otherwise, <code>false</code>.
-   */
-  autoRenew?: boolean;
-  /**
-   * <code>true</code> if Azure can assign this domain to App Service apps; otherwise, <code>false</code>. This value will be <code>true</code> if domain registration status is active and
-   *  it is hosted on name servers Azure has programmatic access to.
-   */
-  readonly readyForDnsRecordManagement?: boolean;
-  /**
-   * All hostnames derived from the domain and assigned to Azure resources.
-   */
-  readonly managedHostNames?: HostName[];
-  /**
-   * Legal agreement consent.
-   */
-  consent?: DomainPurchaseConsent;
-  /**
-   * Reasons why domain is not renewable.
-   */
-  readonly domainNotRenewableReasons?: DomainPropertiesDomainNotRenewableReasonsItem[];
-  /**
-   * Current DNS type
-   */
-  dnsType?: DnsType;
-  /**
-   * Azure DNS Zone to use
-   */
-  dnsZoneId?: string;
-  /**
-   * Target DNS type (would be used for migration)
-   */
-  targetDnsType?: DnsType;
-  authCode?: string;
-};
 
 /**
  * Contact information for domain registration. If 'Domain Privacy' option is not selected then the contact information is made publicly available through the Whois
@@ -893,90 +541,6 @@ export interface NameIdentifierCollection {
 }
 
 /**
- * ARM resource for a domain.
- */
-export type DomainPatchResource = ProxyOnlyResource & {
-  /**
-   * Administrative contact.
-   */
-  contactAdmin?: Contact;
-  /**
-   * Billing contact.
-   */
-  contactBilling?: Contact;
-  /**
-   * Registrant contact.
-   */
-  contactRegistrant?: Contact;
-  /**
-   * Technical contact.
-   */
-  contactTech?: Contact;
-  /**
-   * Domain registration status.
-   */
-  readonly registrationStatus?: DomainStatus;
-  /**
-   * Domain provisioning state.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Name servers.
-   */
-  readonly nameServers?: string[];
-  /**
-   * <code>true</code> if domain privacy is enabled for this domain; otherwise, <code>false</code>.
-   */
-  privacy?: boolean;
-  /**
-   * Domain creation timestamp.
-   */
-  readonly createdTime?: Date;
-  /**
-   * Domain expiration timestamp.
-   */
-  readonly expirationTime?: Date;
-  /**
-   * Timestamp when the domain was renewed last time.
-   */
-  readonly lastRenewedTime?: Date;
-  /**
-   * <code>true</code> if the domain should be automatically renewed; otherwise, <code>false</code>.
-   */
-  autoRenew?: boolean;
-  /**
-   * <code>true</code> if Azure can assign this domain to App Service apps; otherwise, <code>false</code>. This value will be <code>true</code> if domain registration status is active and
-   *  it is hosted on name servers Azure has programmatic access to.
-   */
-  readonly readyForDnsRecordManagement?: boolean;
-  /**
-   * All hostnames derived from the domain and assigned to Azure resources.
-   */
-  readonly managedHostNames?: HostName[];
-  /**
-   * Legal agreement consent.
-   */
-  consent?: DomainPurchaseConsent;
-  /**
-   * Reasons why domain is not renewable.
-   */
-  readonly domainNotRenewableReasons?: DomainPatchResourcePropertiesDomainNotRenewableReasonsItem[];
-  /**
-   * Current DNS type
-   */
-  dnsType?: DnsType;
-  /**
-   * Azure DNS Zone to use
-   */
-  dnsZoneId?: string;
-  /**
-   * Target DNS type (would be used for migration)
-   */
-  targetDnsType?: DnsType;
-  authCode?: string;
-};
-
-/**
  * Collection of domain ownership identifiers.
  */
 export interface DomainOwnershipIdentifierCollection {
@@ -991,16 +555,6 @@ export interface DomainOwnershipIdentifierCollection {
 }
 
 /**
- * Domain ownership Identifier.
- */
-export type DomainOwnershipIdentifier = ProxyOnlyResource & {
-  /**
-   * Ownership Id.
-   */
-  ownershipId?: string;
-};
-
-/**
  * Collection of Top-level domains.
  */
 export interface TopLevelDomainCollection {
@@ -1013,16 +567,6 @@ export interface TopLevelDomainCollection {
    */
   readonly nextLink?: string;
 }
-
-/**
- * A top level domain object.
- */
-export type TopLevelDomain = ProxyOnlyResource & {
-  /**
-   * If <code>true</code>, then the top level domain supports domain privacy; otherwise, <code>false</code>.
-   */
-  privacy?: boolean;
-};
 
 /**
  * Options for retrieving the list of top level domain legal agreements.
@@ -1089,92 +633,6 @@ export interface CertificateCollection {
 }
 
 /**
- * SSL certificate for an app.
- */
-export type Certificate = Resource & {
-  /**
-   * Friendly name of the certificate.
-   */
-  readonly friendlyName?: string;
-  /**
-   * Subject name of the certificate.
-   */
-  readonly subjectName?: string;
-  /**
-   * Host names the certificate applies to.
-   */
-  hostNames?: string[];
-  /**
-   * Pfx blob.
-   */
-  pfxBlob?: Uint8Array;
-  /**
-   * App name.
-   */
-  readonly siteName?: string;
-  /**
-   * Self link.
-   */
-  readonly selfLink?: string;
-  /**
-   * Certificate issuer.
-   */
-  readonly issuer?: string;
-  /**
-   * Certificate issue Date.
-   */
-  readonly issueDate?: Date;
-  /**
-   * Certificate expiration date.
-   */
-  readonly expirationDate?: Date;
-  /**
-   * Certificate password.
-   */
-  password?: string;
-  /**
-   * Certificate thumbprint.
-   */
-  readonly thumbprint?: string;
-  /**
-   * Is the certificate valid?.
-   */
-  readonly valid?: boolean;
-  /**
-   * Raw bytes of .cer file
-   */
-  readonly cerBlob?: Uint8Array;
-  /**
-   * Public key hash.
-   */
-  readonly publicKeyHash?: string;
-  /**
-   * Specification for the App Service Environment to use for the certificate.
-   */
-  readonly hostingEnvironmentProfile?: HostingEnvironmentProfile;
-  /**
-   * Key Vault Csm resource Id.
-   */
-  keyVaultId?: string;
-  /**
-   * Key Vault secret name.
-   */
-  keyVaultSecretName?: string;
-  /**
-   * Status of the Key Vault secret.
-   */
-  readonly keyVaultSecretStatus?: KeyVaultSecretStatus;
-  /**
-   * Resource ID of the associated App Service plan, formatted as: "/subscriptions/{subscriptionID}/resourceGroups/{groupName}/providers/Microsoft.Web/serverfarms/{appServicePlanName}".
-   */
-  serverFarmId?: string;
-  /**
-   * CNAME of the certificate to be issued via free certificate
-   */
-  canonicalName?: string;
-};
-
-/**
  * Specification for an App Service Environment to use for this resource.
  */
 export interface HostingEnvironmentProfile {
@@ -1193,92 +651,6 @@ export interface HostingEnvironmentProfile {
 }
 
 /**
- * ARM resource for a certificate.
- */
-export type CertificatePatchResource = ProxyOnlyResource & {
-  /**
-   * Friendly name of the certificate.
-   */
-  readonly friendlyName?: string;
-  /**
-   * Subject name of the certificate.
-   */
-  readonly subjectName?: string;
-  /**
-   * Host names the certificate applies to.
-   */
-  hostNames?: string[];
-  /**
-   * Pfx blob.
-   */
-  pfxBlob?: Uint8Array;
-  /**
-   * App name.
-   */
-  readonly siteName?: string;
-  /**
-   * Self link.
-   */
-  readonly selfLink?: string;
-  /**
-   * Certificate issuer.
-   */
-  readonly issuer?: string;
-  /**
-   * Certificate issue Date.
-   */
-  readonly issueDate?: Date;
-  /**
-   * Certificate expiration date.
-   */
-  readonly expirationDate?: Date;
-  /**
-   * Certificate password.
-   */
-  password?: string;
-  /**
-   * Certificate thumbprint.
-   */
-  readonly thumbprint?: string;
-  /**
-   * Is the certificate valid?.
-   */
-  readonly valid?: boolean;
-  /**
-   * Raw bytes of .cer file
-   */
-  readonly cerBlob?: Uint8Array;
-  /**
-   * Public key hash.
-   */
-  readonly publicKeyHash?: string;
-  /**
-   * Specification for the App Service Environment to use for the certificate.
-   */
-  readonly hostingEnvironmentProfile?: HostingEnvironmentProfile;
-  /**
-   * Key Vault Csm resource Id.
-   */
-  keyVaultId?: string;
-  /**
-   * Key Vault secret name.
-   */
-  keyVaultSecretName?: string;
-  /**
-   * Status of the Key Vault secret.
-   */
-  readonly keyVaultSecretStatus?: KeyVaultSecretStatus;
-  /**
-   * Resource ID of the associated App Service plan, formatted as: "/subscriptions/{subscriptionID}/resourceGroups/{groupName}/providers/Microsoft.Web/serverfarms/{appServicePlanName}".
-   */
-  serverFarmId?: string;
-  /**
-   * CNAME of the certificate to be issued via free certificate
-   */
-  canonicalName?: string;
-};
-
-/**
  * Collection of deleted apps.
  */
 export interface DeletedWebAppCollection {
@@ -1293,44 +665,6 @@ export interface DeletedWebAppCollection {
 }
 
 /**
- * A deleted app.
- */
-export type DeletedSite = ProxyOnlyResource & {
-  /**
-   * Numeric id for the deleted site
-   */
-  readonly deletedSiteId?: number;
-  /**
-   * Time in UTC when the app was deleted.
-   */
-  readonly deletedTimestamp?: string;
-  /**
-   * Subscription containing the deleted site
-   */
-  readonly subscription?: string;
-  /**
-   * ResourceGroup that contained the deleted site
-   */
-  readonly resourceGroup?: string;
-  /**
-   * Name of the deleted site
-   */
-  readonly deletedSiteName?: string;
-  /**
-   * Slot of the deleted site
-   */
-  readonly slot?: string;
-  /**
-   * Kind of site that was deleted
-   */
-  readonly kindPropertiesKind?: string;
-  /**
-   * Geo Region of the deleted site
-   */
-  readonly geoRegionName?: string;
-};
-
-/**
  * Collection of detector responses
  */
 export interface DetectorResponseCollection {
@@ -1343,20 +677,6 @@ export interface DetectorResponseCollection {
    */
   readonly nextLink?: string;
 }
-
-/**
- * Class representing Response from Detector
- */
-export type DetectorResponse = ProxyOnlyResource & {
-  /**
-   * metadata for the detector
-   */
-  metadata?: DetectorInfo;
-  /**
-   * Data Set
-   */
-  dataset?: DiagnosticData[];
-};
 
 /**
  * Definition of Detector
@@ -1463,16 +783,6 @@ export interface DiagnosticCategoryCollection {
 }
 
 /**
- * Class representing detector definition
- */
-export type DiagnosticCategory = ProxyOnlyResource & {
-  /**
-   * Description of the diagnostic category
-   */
-  readonly description?: string;
-};
-
-/**
  * Collection of Diagnostic Analyses
  */
 export interface DiagnosticAnalysisCollection {
@@ -1485,42 +795,6 @@ export interface DiagnosticAnalysisCollection {
    */
   readonly nextLink?: string;
 }
-
-/**
- * Definition of Analysis
- */
-export type AnalysisDefinition = ProxyOnlyResource & {
-  /**
-   * Description of the Analysis
-   */
-  readonly description?: string;
-};
-
-/**
- * Class representing a diagnostic analysis done on an application
- */
-export type DiagnosticAnalysis = ProxyOnlyResource & {
-  /**
-   * Start time of the period
-   */
-  startTime?: Date;
-  /**
-   * End time of the period
-   */
-  endTime?: Date;
-  /**
-   * List of time periods.
-   */
-  abnormalTimePeriods?: AbnormalTimePeriod[];
-  /**
-   * Data by each detector
-   */
-  payload?: AnalysisData[];
-  /**
-   * Data by each detector for detectors that did not corelate
-   */
-  nonCorrelatedDetectors?: DetectorDefinition[];
-};
 
 /**
  * Class representing Abnormal Time Period identified in diagnosis
@@ -1657,28 +931,6 @@ export interface AnalysisData {
 }
 
 /**
- * Class representing detector definition
- */
-export type DetectorDefinition = ProxyOnlyResource & {
-  /**
-   * Display name of the detector
-   */
-  readonly displayName?: string;
-  /**
-   * Description of the detector
-   */
-  readonly description?: string;
-  /**
-   * Detector Rank
-   */
-  readonly rank?: number;
-  /**
-   * Flag representing whether detector is enabled or not.
-   */
-  readonly isEnabled?: boolean;
-};
-
-/**
  * Class representing Diagnostic Metric information
  */
 export interface DiagnosticMetricSet {
@@ -1777,44 +1029,6 @@ export interface DiagnosticDetectorCollection {
 }
 
 /**
- * Class representing Response from Diagnostic Detectors
- */
-export type DiagnosticDetectorResponse = ProxyOnlyResource & {
-  /**
-   * Start time of the period
-   */
-  startTime?: Date;
-  /**
-   * End time of the period
-   */
-  endTime?: Date;
-  /**
-   * Flag representing Issue was detected.
-   */
-  issueDetected?: boolean;
-  /**
-   * Detector's definition
-   */
-  detectorDefinition?: DetectorDefinition;
-  /**
-   * Metrics provided by the detector
-   */
-  metrics?: DiagnosticMetricSet[];
-  /**
-   * List of Correlated events found by the detector
-   */
-  abnormalTimePeriods?: DetectorAbnormalTimePeriod[];
-  /**
-   * Additional Data that detector wants to send.
-   */
-  data?: NameValuePair[][];
-  /**
-   * Meta Data
-   */
-  responseMetaData?: ResponseMetaData;
-};
-
-/**
  * Collection of Application Stacks
  */
 export interface ApplicationStackCollection {
@@ -1827,32 +1041,6 @@ export interface ApplicationStackCollection {
    */
   readonly nextLink?: string;
 }
-
-/**
- * ARM resource for a ApplicationStack.
- */
-export type ApplicationStackResource = ProxyOnlyResource & {
-  /**
-   * Application stack name.
-   */
-  namePropertiesName?: string;
-  /**
-   * Application stack display name.
-   */
-  display?: string;
-  /**
-   * Application stack dependency.
-   */
-  dependency?: string;
-  /**
-   * List of major versions available.
-   */
-  majorVersions?: StackMajorVersion[];
-  /**
-   * List of frameworks associated with application stack.
-   */
-  frameworks?: ApplicationStack[];
-};
 
 /**
  * Application stack.
@@ -1955,192 +1143,6 @@ export interface RecommendationCollection {
 }
 
 /**
- * Represents a recommendation result generated by the recommendation engine.
- */
-export type Recommendation = ProxyOnlyResource & {
-  /**
-   * Timestamp when this instance was created.
-   */
-  creationTime?: Date;
-  /**
-   * A GUID value that each recommendation object is associated with.
-   */
-  recommendationId?: string;
-  /**
-   * Full ARM resource ID string that this recommendation object is associated with.
-   */
-  resourceId?: string;
-  /**
-   * Name of a resource type this recommendation applies, e.g. Subscription, ServerFarm, Site.
-   */
-  resourceScope?: ResourceScopeType;
-  /**
-   * Unique name of the rule.
-   */
-  ruleName?: string;
-  /**
-   * UI friendly name of the rule (may not be unique).
-   */
-  displayName?: string;
-  /**
-   * Recommendation text.
-   */
-  message?: string;
-  /**
-   * Level indicating how critical this recommendation can impact.
-   */
-  level?: NotificationLevel;
-  /**
-   * List of channels that this recommendation can apply.
-   */
-  channels?: Channels;
-  /**
-   * The list of category tags that this recommendation belongs to.
-   */
-  readonly categoryTags?: string[];
-  /**
-   * Name of action recommended by this object.
-   */
-  actionName?: string;
-  /**
-   * True if this recommendation is still valid (i.e. "actionable"). False if it is invalid.
-   */
-  enabled?: number;
-  /**
-   * The list of states of this recommendation. If it's null then it should be considered "Active".
-   */
-  states?: string[];
-  /**
-   * The beginning time in UTC of a range that the recommendation refers to.
-   */
-  startTime?: Date;
-  /**
-   * The end time in UTC of a range that the recommendation refers to.
-   */
-  endTime?: Date;
-  /**
-   * When to notify this recommendation next in UTC. Null means that this will never be notified anymore.
-   */
-  nextNotificationTime?: Date;
-  /**
-   * Date and time in UTC when this notification expires.
-   */
-  notificationExpirationTime?: Date;
-  /**
-   * Last timestamp in UTC this instance was actually notified. Null means that this recommendation hasn't been notified yet.
-   */
-  notifiedTime?: Date;
-  /**
-   * A metric value measured by the rule.
-   */
-  score?: number;
-  /**
-   * True if this is associated with a dynamically added rule
-   */
-  isDynamic?: boolean;
-  /**
-   * Extension name of the portal if exists.
-   */
-  extensionName?: string;
-  /**
-   * Deep link to a blade on the portal.
-   */
-  bladeName?: string;
-  /**
-   * Forward link to an external document associated with the rule.
-   */
-  forwardLink?: string;
-};
-
-/**
- * Represents a recommendation rule that the recommendation engine can perform.
- */
-export type RecommendationRule = ProxyOnlyResource & {
-  /**
-   * Unique name of the rule.
-   */
-  recommendationName?: string;
-  /**
-   * UI friendly name of the rule.
-   */
-  displayName?: string;
-  /**
-   * Localized name of the rule (Good for UI).
-   */
-  message?: string;
-  /**
-   * Recommendation ID of an associated recommendation object tied to the rule, if exists.
-   * If such an object doesn't exist, it is set to null.
-   */
-  recommendationId?: string;
-  /**
-   * Localized detailed description of the rule.
-   */
-  description?: string;
-  /**
-   * Name of action that is recommended by this rule in string.
-   */
-  actionName?: string;
-  /**
-   * Level of impact indicating how critical this rule is.
-   */
-  level?: NotificationLevel;
-  /**
-   * List of available channels that this rule applies.
-   */
-  channels?: Channels;
-  /**
-   * The list of category tags that this recommendation rule belongs to.
-   */
-  readonly categoryTags?: string[];
-  /**
-   * True if this is associated with a dynamically added rule
-   */
-  isDynamic?: boolean;
-  /**
-   * Extension name of the portal if exists. Applicable to dynamic rule only.
-   */
-  extensionName?: string;
-  /**
-   * Deep link to a blade on the portal. Applicable to dynamic rule only.
-   */
-  bladeName?: string;
-  /**
-   * Forward link to an external document associated with the rule. Applicable to dynamic rule only.
-   */
-  forwardLink?: string;
-};
-
-/**
- * User credentials used for publishing activity.
- */
-export type User = ProxyOnlyResource & {
-  /**
-   * Username used for publishing.
-   */
-  publishingUserName?: string;
-  /**
-   * Password used for publishing.
-   * This value contains a credential. Consider obscuring before showing to users
-   */
-  publishingPassword?: string;
-  /**
-   * Password hash used for publishing.
-   * This value contains a credential. Consider obscuring before showing to users
-   */
-  publishingPasswordHash?: string;
-  /**
-   * Password hash salt used for publishing.
-   * This value contains a credential. Consider obscuring before showing to users
-   */
-  publishingPasswordHashSalt?: string;
-  /**
-   * Url of SCM site.
-   */
-  scmUri?: string;
-};
-
-/**
  * Collection of source controls.
  */
 export interface SourceControlCollection {
@@ -2155,28 +1157,6 @@ export interface SourceControlCollection {
 }
 
 /**
- * The source control OAuth token.
- */
-export type SourceControl = ProxyOnlyResource & {
-  /**
-   * OAuth access token.
-   */
-  token?: string;
-  /**
-   * OAuth access token secret.
-   */
-  tokenSecret?: string;
-  /**
-   * OAuth refresh token.
-   */
-  refreshToken?: string;
-  /**
-   * OAuth token expiration.
-   */
-  expirationTime?: Date;
-};
-
-/**
  * Collection of Billing Meters
  */
 export interface BillingMeterCollection {
@@ -2189,36 +1169,6 @@ export interface BillingMeterCollection {
    */
   readonly nextLink?: string;
 }
-
-/**
- * App Service billing entity that contains information about meter which the Azure billing system utilizes to charge users for services.
- */
-export type BillingMeter = ProxyOnlyResource & {
-  /**
-   * Meter GUID onboarded in Commerce
-   */
-  meterId?: string;
-  /**
-   * Azure Location of billable resource
-   */
-  billingLocation?: string;
-  /**
-   * Short Name from App Service Azure pricing Page
-   */
-  shortName?: string;
-  /**
-   * Friendly name of the meter
-   */
-  friendlyName?: string;
-  /**
-   * App Service ResourceType meter used for
-   */
-  resourceType?: string;
-  /**
-   * App Service OS type meter used for
-   */
-  osType?: string;
-};
 
 /**
  * Resource name availability request content.
@@ -2274,24 +1224,6 @@ export interface DeploymentLocations {
    */
   hostingEnvironmentDeploymentInfos?: HostingEnvironmentDeploymentInfo[];
 }
-
-/**
- * Geographical region.
- */
-export type GeoRegion = ProxyOnlyResource & {
-  /**
-   * Region description.
-   */
-  readonly description?: string;
-  /**
-   * Display name for region.
-   */
-  readonly displayName?: string;
-  /**
-   * Display name for region.
-   */
-  readonly orgDomain?: string;
-};
 
 /**
  * Description of an App Service Environment.
@@ -2650,16 +1582,6 @@ export interface IdentifierCollection {
 }
 
 /**
- * A domain specific resource identifier.
- */
-export type Identifier = ProxyOnlyResource & {
-  /**
-   * String representation of the identity.
-   */
-  value?: string;
-};
-
-/**
  * Collection of premier add-on offers.
  */
 export interface PremierAddOnOfferCollection {
@@ -2672,52 +1594,6 @@ export interface PremierAddOnOfferCollection {
    */
   readonly nextLink?: string;
 }
-
-/**
- * Premier add-on offer.
- */
-export type PremierAddOnOffer = ProxyOnlyResource & {
-  /**
-   * Premier add on SKU.
-   */
-  sku?: string;
-  /**
-   * Premier add on offer Product.
-   */
-  product?: string;
-  /**
-   * Premier add on offer Vendor.
-   */
-  vendor?: string;
-  /**
-   * <code>true</code> if promotion code is required; otherwise, <code>false</code>.
-   */
-  promoCodeRequired?: boolean;
-  /**
-   * Premier add on offer Quota.
-   */
-  quota?: number;
-  /**
-   * App Service plans this offer is restricted to.
-   */
-  webHostingPlanRestrictions?: AppServicePlanRestrictions;
-  /**
-   * Privacy policy URL.
-   */
-  privacyPolicyUrl?: string;
-  /**
-   * Legal terms URL.
-   */
-  legalTermsUrl?: string;
-  /**
-   * Marketplace publisher.
-   */
-  marketplacePublisher?: string;
-  /**
-   * Marketplace offer.
-   */
-  marketplaceOffer?: string;
-};
 
 /**
  * Collection of SKU information.
@@ -2806,52 +1682,6 @@ export interface Capability {
    */
   reason?: string;
 }
-
-/**
- * The required set of inputs to validate a VNET
- */
-export type VnetParameters = ProxyOnlyResource & {
-  /**
-   * The Resource Group of the VNET to be validated
-   */
-  vnetResourceGroup?: string;
-  /**
-   * The name of the VNET to be validated
-   */
-  vnetName?: string;
-  /**
-   * The subnet name to be validated
-   */
-  vnetSubnetName?: string;
-};
-
-/**
- * A class that describes the reason for a validation failure.
- */
-export type VnetValidationFailureDetails = ProxyOnlyResource & {
-  /**
-   * A flag describing whether or not validation failed.
-   */
-  failed?: boolean;
-  /**
-   * A list of tests that failed in the validation.
-   */
-  failedTests?: VnetValidationTestFailure[];
-};
-
-/**
- * A class that describes a test that failed during NSG and UDR validation.
- */
-export type VnetValidationTestFailure = ProxyOnlyResource & {
-  /**
-   * The name of the test that failed.
-   */
-  testName?: string;
-  /**
-   * The details of what caused the failure, e.g. the blocking rule name, etc.
-   */
-  details?: string;
-};
 
 /**
  * Object with a list of the resources that need to be moved and the resource group they should be moved to.
@@ -2972,164 +1802,6 @@ export interface WebAppCollection {
    */
   readonly nextLink?: string;
 }
-
-/**
- * A web app, a mobile app backend, or an API app.
- */
-export type Site = Resource & {
-  /**
-   * Managed service identity.
-   */
-  identity?: ManagedServiceIdentity;
-  /**
-   * Current state of the app.
-   */
-  readonly state?: string;
-  /**
-   * Hostnames associated with the app.
-   */
-  readonly hostNames?: string[];
-  /**
-   * Name of the repository site.
-   */
-  readonly repositorySiteName?: string;
-  /**
-   * State indicating whether the app has exceeded its quota usage. Read-only.
-   */
-  readonly usageState?: UsageState;
-  /**
-   * <code>true</code> if the app is enabled; otherwise, <code>false</code>. Setting this value to false disables the app (takes the app offline).
-   */
-  enabled?: boolean;
-  /**
-   * Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,
-   * the app is not served on those hostnames.
-   */
-  readonly enabledHostNames?: string[];
-  /**
-   * Management information availability state for the app.
-   */
-  readonly availabilityState?: SiteAvailabilityState;
-  /**
-   * Hostname SSL states are used to manage the SSL bindings for app's hostnames.
-   */
-  hostNameSslStates?: HostNameSslState[];
-  /**
-   * Resource ID of the associated App Service plan, formatted as: "/subscriptions/{subscriptionID}/resourceGroups/{groupName}/providers/Microsoft.Web/serverfarms/{appServicePlanName}".
-   */
-  serverFarmId?: string;
-  /**
-   * <code>true</code> if reserved; otherwise, <code>false</code>.
-   */
-  reserved?: boolean;
-  /**
-   * Obsolete: Hyper-V sandbox.
-   */
-  isXenon?: boolean;
-  /**
-   * Hyper-V sandbox.
-   */
-  hyperV?: boolean;
-  /**
-   * Last time the app was modified, in UTC. Read-only.
-   */
-  readonly lastModifiedTimeUtc?: Date;
-  /**
-   * Configuration of the app.
-   */
-  siteConfig?: SiteConfig;
-  /**
-   * Azure Traffic Manager hostnames associated with the app. Read-only.
-   */
-  readonly trafficManagerHostNames?: string[];
-  /**
-   * <code>true</code> to stop SCM (KUDU) site when the app is stopped; otherwise, <code>false</code>. The default is <code>false</code>.
-   */
-  scmSiteAlsoStopped?: boolean;
-  /**
-   * Specifies which deployment slot this app will swap into. Read-only.
-   */
-  readonly targetSwapSlot?: string;
-  /**
-   * App Service Environment to use for the app.
-   */
-  hostingEnvironmentProfile?: HostingEnvironmentProfile;
-  /**
-   * <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same instance. Default is <code>true</code>.
-   */
-  clientAffinityEnabled?: boolean;
-  /**
-   * <code>true</code> to enable client certificate authentication (TLS mutual authentication); otherwise, <code>false</code>. Default is <code>false</code>.
-   */
-  clientCertEnabled?: boolean;
-  /**
-   * client certificate authentication comma-separated exclusion paths
-   */
-  clientCertExclusionPaths?: string;
-  /**
-   * <code>true</code> to disable the public hostnames of the app; otherwise, <code>false</code>.
-   *  If <code>true</code>, the app is only accessible via API management process.
-   */
-  hostNamesDisabled?: boolean;
-  /**
-   * List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. Read-only.
-   */
-  readonly outboundIpAddresses?: string;
-  /**
-   * List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from all tenants except dataComponent. Read-only.
-   */
-  readonly possibleOutboundIpAddresses?: string;
-  /**
-   * Size of the function container.
-   */
-  containerSize?: number;
-  /**
-   * Maximum allowed daily memory-time quota (applicable on dynamic apps only).
-   */
-  dailyMemoryTimeQuota?: number;
-  /**
-   * App suspended till in case memory-time quota is exceeded.
-   */
-  readonly suspendedTill?: Date;
-  /**
-   * Maximum number of workers.
-   * This only applies to Functions container.
-   */
-  readonly maxNumberOfWorkers?: number;
-  /**
-   * If specified during app creation, the app is cloned from a source app.
-   */
-  cloningInfo?: CloningInfo;
-  /**
-   * Name of the resource group the app belongs to. Read-only.
-   */
-  readonly resourceGroup?: string;
-  /**
-   * <code>true</code> if the app is a default container; otherwise, <code>false</code>.
-   */
-  readonly isDefaultContainer?: boolean;
-  /**
-   * Default hostname of the app. Read-only.
-   */
-  readonly defaultHostName?: string;
-  /**
-   * Status of the last deployment slot swap operation.
-   */
-  readonly slotSwapStatus?: SlotSwapStatus;
-  /**
-   * HttpsOnly: configures a web site to accept only https requests. Issues redirect for
-   * http requests
-   */
-  httpsOnly?: boolean;
-  /**
-   * Site redundancy mode
-   */
-  redundancyMode?: RedundancyMode;
-  /**
-   * Specifies an operation id if this site has a pending operation.
-   */
-  readonly inProgressOperationId?: string;
-};
 
 /**
  * SSL-enabled hostname.
@@ -3698,31 +2370,6 @@ export interface CorsSettings {
 }
 
 /**
- * Push settings for the App.
- */
-export type PushSettings = ProxyOnlyResource & {
-  /**
-   * Gets or sets a flag indicating whether the Push endpoint is enabled.
-   */
-  isPushEnabled?: boolean;
-  /**
-   * Gets or sets a JSON string containing a list of tags that are whitelisted for use by the push registration endpoint.
-   */
-  tagWhitelistJson?: string;
-  /**
-   * Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.
-   * Tags can consist of alphanumeric characters and the following:
-   * '_', '@', '#', '.', ':', '-'.
-   * Validation should be performed at the PushRequestHandler.
-   */
-  tagsRequiringAuth?: string;
-  /**
-   * Gets or sets a JSON string containing a list of dynamic tags that will be evaluated from user claims in the push registration endpoint.
-   */
-  dynamicTagsJson?: string;
-};
-
-/**
  * Information about the formal API definition for the app.
  */
 export interface ApiDefinitionInfo {
@@ -3898,6 +2545,3087 @@ export interface Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserass
    */
   readonly clientId?: string;
 }
+
+/**
+ * Body of the error response returned from the API.
+ */
+export interface ErrorEntity {
+  /**
+   * Type of error.
+   */
+  extendedCode?: string;
+  /**
+   * Message template.
+   */
+  messageTemplate?: string;
+  /**
+   * Parameters for the template.
+   */
+  parameters?: string[];
+  /**
+   * Inner errors.
+   */
+  innerErrors?: ErrorEntity[];
+  /**
+   * Basic error code.
+   */
+  code?: string;
+  /**
+   * Any details of the error.
+   */
+  message?: string;
+}
+
+/**
+ * Deployment slot parameters.
+ */
+export interface CsmSlotEntity {
+  /**
+   * Destination deployment slot during swap operation.
+   */
+  targetSlot: string;
+  /**
+   * <code>true</code> to preserve Virtual Network to the slot during swap; otherwise, <code>false</code>.
+   */
+  preserveVnet: boolean;
+}
+
+/**
+ * Description of a backup schedule. Describes how often should be the backup performed and what should be the retention policy.
+ */
+export interface BackupSchedule {
+  /**
+   * How often the backup should be executed (e.g. for weekly backup, this should be set to 7 and FrequencyUnit should be set to Day)
+   */
+  frequencyInterval: number;
+  /**
+   * The unit of time for how often the backup should be executed (e.g. for weekly backup, this should be set to Day and FrequencyInterval should be set to 7)
+   */
+  frequencyUnit: FrequencyUnit;
+  /**
+   * True if the retention policy should always keep at least one backup in the storage account, regardless how old it is; false otherwise.
+   */
+  keepAtLeastOneBackup: boolean;
+  /**
+   * After how many days backups should be deleted.
+   */
+  retentionPeriodInDays: number;
+  /**
+   * When the schedule should start working.
+   */
+  startTime?: Date;
+  /**
+   * Last time when this schedule was triggered.
+   */
+  readonly lastExecutionTime?: Date;
+}
+
+/**
+ * Database backup settings.
+ */
+export interface DatabaseBackupSetting {
+  /**
+   * Database type (e.g. SqlAzure / MySql).
+   */
+  databaseType: DatabaseType;
+  name?: string;
+  /**
+   * Contains a connection string name that is linked to the SiteConfig.ConnectionStrings.
+   * This is used during restore with overwrite connection strings options.
+   */
+  connectionStringName?: string;
+  /**
+   * Contains a connection string to a database which is being backed up or restored. If the restore should happen to a new database, the database name inside is the new one.
+   */
+  connectionString?: string;
+}
+
+/**
+ * Collection of backup items.
+ */
+export interface BackupItemCollection {
+  /**
+   * Collection of resources.
+   */
+  value: BackupItem[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of site configurations.
+ */
+export interface SiteConfigResourceCollection {
+  /**
+   * Collection of resources.
+   */
+  value: SiteConfigResource[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Azure Files or Blob Storage access information value for dictionary storage.
+ */
+export interface AzureStorageInfoValue {
+  /**
+   * Type of storage.
+   */
+  type?: AzureStorageType;
+  /**
+   * Name of the storage account.
+   */
+  accountName?: string;
+  /**
+   * Name of the file share (container name, for Blob storage).
+   */
+  shareName?: string;
+  /**
+   * Access key for the storage account.
+   */
+  accessKey?: string;
+  /**
+   * Path to mount the storage within the site's runtime environment.
+   */
+  mountPath?: string;
+  /**
+   * State of the storage account.
+   */
+  readonly state?: AzureStorageState;
+}
+
+/**
+ * Description of site key vault references.
+ */
+export interface ApiKVReference {
+  reference?: string;
+  status?: ResolveStatus;
+  vaultName?: string;
+  secretName?: string;
+  secretVersion?: string;
+  /**
+   * Type of managed service identity.
+   */
+  identityType?: ManagedServiceIdentityType;
+  details?: string;
+  source?: "KeyVault";
+  location?: "ApplicationSetting";
+}
+
+/**
+ * Database connection string value to type pair.
+ */
+export interface ConnStringValueTypePair {
+  /**
+   * Value of pair.
+   */
+  value: string;
+  /**
+   * Type of database.
+   */
+  type: ConnectionStringType;
+}
+
+/**
+ * Application logs configuration.
+ */
+export interface ApplicationLogsConfig {
+  /**
+   * Application logs to file system configuration.
+   */
+  fileSystem?: FileSystemApplicationLogsConfig;
+  /**
+   * Application logs to azure table storage configuration.
+   */
+  azureTableStorage?: AzureTableStorageApplicationLogsConfig;
+  /**
+   * Application logs to blob storage configuration.
+   */
+  azureBlobStorage?: AzureBlobStorageApplicationLogsConfig;
+}
+
+/**
+ * Application logs to file system configuration.
+ */
+export interface FileSystemApplicationLogsConfig {
+  /**
+   * Log level.
+   */
+  level?: LogLevel;
+}
+
+/**
+ * Application logs to Azure table storage configuration.
+ */
+export interface AzureTableStorageApplicationLogsConfig {
+  /**
+   * Log level.
+   */
+  level?: LogLevel;
+  /**
+   * SAS URL to an Azure table with add/query/delete permissions.
+   */
+  sasUrl: string;
+}
+
+/**
+ * Application logs azure blob storage configuration.
+ */
+export interface AzureBlobStorageApplicationLogsConfig {
+  /**
+   * Log level.
+   */
+  level?: LogLevel;
+  /**
+   * SAS url to a azure blob container with read/write/list/delete permissions.
+   */
+  sasUrl?: string;
+  /**
+   * Retention in days.
+   * Remove blobs older than X days.
+   * 0 or lower means no retention.
+   */
+  retentionInDays?: number;
+}
+
+/**
+ * Http logs configuration.
+ */
+export interface HttpLogsConfig {
+  /**
+   * Http logs to file system configuration.
+   */
+  fileSystem?: FileSystemHttpLogsConfig;
+  /**
+   * Http logs to azure blob storage configuration.
+   */
+  azureBlobStorage?: AzureBlobStorageHttpLogsConfig;
+}
+
+/**
+ * Http logs to file system configuration.
+ */
+export interface FileSystemHttpLogsConfig {
+  /**
+   * Maximum size in megabytes that http log files can use.
+   * When reached old log files will be removed to make space for new ones.
+   * Value can range between 25 and 100.
+   */
+  retentionInMb?: number;
+  /**
+   * Retention in days.
+   * Remove files older than X days.
+   * 0 or lower means no retention.
+   */
+  retentionInDays?: number;
+  /**
+   * True if configuration is enabled, false if it is disabled and null if configuration is not set.
+   */
+  enabled?: boolean;
+}
+
+/**
+ * Http logs to azure blob storage configuration.
+ */
+export interface AzureBlobStorageHttpLogsConfig {
+  /**
+   * SAS url to a azure blob container with read/write/list/delete permissions.
+   */
+  sasUrl?: string;
+  /**
+   * Retention in days.
+   * Remove blobs older than X days.
+   * 0 or lower means no retention.
+   */
+  retentionInDays?: number;
+  /**
+   * True if configuration is enabled, false if it is disabled and null if configuration is not set.
+   */
+  enabled?: boolean;
+}
+
+/**
+ * Enabled configuration.
+ */
+export interface EnabledConfig {
+  /**
+   * True if configuration is enabled, false if it is disabled and null if configuration is not set.
+   */
+  enabled?: boolean;
+}
+
+/**
+ * Collection of metadata for the app configuration snapshots that can be restored.
+ */
+export interface SiteConfigurationSnapshotInfoCollection {
+  /**
+   * Collection of resources.
+   */
+  value: SiteConfigurationSnapshotInfo[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of Kudu continuous web job information elements.
+ */
+export interface ContinuousWebJobCollection {
+  /**
+   * Collection of resources.
+   */
+  value: ContinuousWebJob[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of app deployments.
+ */
+export interface DeploymentCollection {
+  /**
+   * Collection of resources.
+   */
+  value: Deployment[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * MSDeploy log entry
+ */
+export interface MSDeployLogEntry {
+  /**
+   * Timestamp of log entry
+   */
+  readonly time?: Date;
+  /**
+   * Log entry type
+   */
+  readonly type?: MSDeployLogEntryType;
+  /**
+   * Log entry message
+   */
+  readonly message?: string;
+}
+
+/**
+ * Collection of Kudu function information elements.
+ */
+export interface FunctionEnvelopeCollection {
+  /**
+   * Collection of resources.
+   */
+  value: FunctionEnvelope[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Function key info.
+ */
+export interface KeyInfo {
+  /**
+   * Key name
+   */
+  name?: string;
+  /**
+   * Key value
+   */
+  value?: string;
+}
+
+/**
+ * Functions host level keys.
+ */
+export interface HostKeys {
+  /**
+   * Secret key.
+   */
+  masterKey?: string;
+  /**
+   * Host level function keys.
+   */
+  functionKeys?: { [propertyName: string]: string };
+  /**
+   * System keys.
+   */
+  systemKeys?: { [propertyName: string]: string };
+}
+
+/**
+ * Collection of hostname bindings.
+ */
+export interface HostNameBindingCollection {
+  /**
+   * Collection of resources.
+   */
+  value: HostNameBinding[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of app instances.
+ */
+export interface WebAppInstanceCollection {
+  /**
+   * Collection of resources.
+   */
+  value: SiteInstance[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+export interface ContainerInfo {
+  currentTimeStamp?: Date;
+  previousTimeStamp?: Date;
+  currentCpuStats?: ContainerCpuStatistics;
+  previousCpuStats?: ContainerCpuStatistics;
+  memoryStats?: ContainerMemoryStatistics;
+  name?: string;
+  id?: string;
+  eth0?: ContainerNetworkInterfaceStatistics;
+}
+
+export interface ContainerCpuStatistics {
+  cpuUsage?: ContainerCpuUsage;
+  systemCpuUsage?: number;
+  onlineCpuCount?: number;
+  throttlingData?: ContainerThrottlingData;
+}
+
+export interface ContainerCpuUsage {
+  totalUsage?: number;
+  perCpuUsage?: number[];
+  kernelModeUsage?: number;
+  userModeUsage?: number;
+}
+
+export interface ContainerThrottlingData {
+  periods?: number;
+  throttledPeriods?: number;
+  throttledTime?: number;
+}
+
+export interface ContainerMemoryStatistics {
+  usage?: number;
+  maxUsage?: number;
+  limit?: number;
+}
+
+export interface ContainerNetworkInterfaceStatistics {
+  rxBytes?: number;
+  rxPackets?: number;
+  rxErrors?: number;
+  rxDropped?: number;
+  txBytes?: number;
+  txPackets?: number;
+  txErrors?: number;
+  txDropped?: number;
+}
+
+/**
+ * Collection of Kudu process information elements.
+ */
+export interface ProcessInfoCollection {
+  /**
+   * Collection of resources.
+   */
+  value: ProcessInfo[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of Kudu thread information elements.
+ */
+export interface ProcessModuleInfoCollection {
+  /**
+   * Collection of resources.
+   */
+  value: ProcessModuleInfo[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of Kudu thread information elements.
+ */
+export interface ProcessThreadInfoCollection {
+  /**
+   * Collection of resources.
+   */
+  value: ProcessThreadInfo[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Represents whether or not an app is cloneable.
+ */
+export interface SiteCloneability {
+  /**
+   * Name of app.
+   */
+  result?: CloneAbilityResult;
+  /**
+   * List of features enabled on app that prevent cloning.
+   */
+  blockingFeatures?: SiteCloneabilityCriterion[];
+  /**
+   * List of features enabled on app that are non-blocking but cannot be cloned. The app can still be cloned
+   * but the features in this list will not be set up on cloned app.
+   */
+  unsupportedFeatures?: SiteCloneabilityCriterion[];
+  /**
+   * List of blocking application characteristics.
+   */
+  blockingCharacteristics?: SiteCloneabilityCriterion[];
+}
+
+/**
+ * An app cloneability criterion.
+ */
+export interface SiteCloneabilityCriterion {
+  /**
+   * Name of criterion.
+   */
+  name?: string;
+  /**
+   * Description of criterion.
+   */
+  description?: string;
+}
+
+/**
+ * An operation on a resource.
+ */
+export interface Operation {
+  /**
+   * Operation ID.
+   */
+  id?: string;
+  /**
+   * Operation name.
+   */
+  name?: string;
+  /**
+   * The current status of the operation.
+   */
+  status?: OperationStatus;
+  /**
+   * Any errors associate with the operation.
+   */
+  errors?: ErrorEntity[];
+  /**
+   * Time when operation has started.
+   */
+  createdTime?: Date;
+  /**
+   * Time when operation has been updated.
+   */
+  modifiedTime?: Date;
+  /**
+   * Time when operation will expire.
+   */
+  expirationTime?: Date;
+  /**
+   * Applicable only for stamp operation ids.
+   */
+  geoMasterOperationId?: string;
+}
+
+/**
+ * Network trace
+ */
+export interface NetworkTrace {
+  /**
+   * Local file path for the captured network trace file.
+   */
+  path?: string;
+  /**
+   * Current status of the network trace operation, same as Operation.Status (InProgress/Succeeded/Failed).
+   */
+  status?: string;
+  /**
+   * Detailed message of a network trace operation, e.g. error message in case of failure.
+   */
+  message?: string;
+}
+
+/**
+ * Collection of performance monitor counters.
+ */
+export interface PerfMonCounterCollection {
+  /**
+   * Collection of resources.
+   */
+  value: PerfMonResponse[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Performance monitor API response.
+ */
+export interface PerfMonResponse {
+  /**
+   * The response code.
+   */
+  code?: string;
+  /**
+   * The message.
+   */
+  message?: string;
+  /**
+   * The performance monitor counters.
+   */
+  data?: PerfMonSet;
+}
+
+/**
+ * Metric information.
+ */
+export interface PerfMonSet {
+  /**
+   * Unique key name of the counter.
+   */
+  name?: string;
+  /**
+   * Start time of the period.
+   */
+  startTime?: Date;
+  /**
+   * End time of the period.
+   */
+  endTime?: Date;
+  /**
+   * Presented time grain.
+   */
+  timeGrain?: string;
+  /**
+   * Collection of workers that are active during this time.
+   */
+  values?: PerfMonSample[];
+}
+
+/**
+ * Performance monitor sample in a set.
+ */
+export interface PerfMonSample {
+  /**
+   * Point in time for which counter was measured.
+   */
+  time?: Date;
+  /**
+   * Name of the server on which the measurement is made.
+   */
+  instanceName?: string;
+  /**
+   * Value of counter at a certain time.
+   */
+  value?: number;
+}
+
+/**
+ * Description of a Virtual Network that is useable for private site access.
+ */
+export interface PrivateAccessVirtualNetwork {
+  /**
+   * The name of the Virtual Network.
+   */
+  name?: string;
+  /**
+   * The key (ID) of the Virtual Network.
+   */
+  key?: number;
+  /**
+   * The ARM uri of the Virtual Network
+   */
+  resourceId?: string;
+  /**
+   * A List of subnets that access is allowed to on this Virtual Network. An empty array (but not null) is interpreted to mean that all subnets are allowed within this Virtual Network.
+   */
+  subnets?: PrivateAccessSubnet[];
+}
+
+/**
+ * Description of a Virtual Network subnet that is useable for private site access.
+ */
+export interface PrivateAccessSubnet {
+  /**
+   * The name of the subnet.
+   */
+  name?: string;
+  /**
+   * The key (ID) of the subnet.
+   */
+  key?: number;
+}
+
+/**
+ * Collection of public certificates
+ */
+export interface PublicCertificateCollection {
+  /**
+   * Collection of resources.
+   */
+  value: PublicCertificate[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Publishing options for requested profile.
+ */
+export interface CsmPublishingProfileOptions {
+  /**
+   * Name of the format. Valid values are:
+   * FileZilla3
+   * WebDeploy -- default
+   * Ftp
+   */
+  format?: PublishingProfileFormat;
+  /**
+   * Include the DisasterRecover endpoint if true
+   */
+  includeDisasterRecoveryEndpoints?: boolean;
+}
+
+/**
+ * Specifies the web app that snapshot contents will be retrieved from.
+ */
+export interface SnapshotRecoverySource {
+  /**
+   * Geographical location of the source web app, e.g. SouthEastAsia, SouthCentralUS
+   */
+  location?: string;
+  /**
+   * ARM resource ID of the source app.
+   * /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName} for production slots and
+   * /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots.
+   */
+  id?: string;
+}
+
+/**
+ * Collection of Kudu site extension information elements.
+ */
+export interface SiteExtensionInfoCollection {
+  /**
+   * Collection of resources.
+   */
+  value: SiteExtensionInfo[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Copy deployment slot parameters.
+ */
+export interface CsmCopySlotEntity {
+  /**
+   * Destination deployment slot during copy operation.
+   */
+  targetSlot: string;
+  /**
+   * The site object which will be merged with the source slot site
+   * to produce new destination slot site object.
+   * <code>null</code> to just copy source slot content. Otherwise a <code>Site</code>
+   * object with properties to override source slot site.
+   */
+  siteConfig: SiteConfig;
+}
+
+/**
+ * A wrapper for an ARM resource id
+ */
+export interface ArmIdWrapper {
+  readonly id?: string;
+}
+
+/**
+ * The state of a private link connection
+ */
+export interface PrivateLinkConnectionState {
+  /**
+   * Status of a private link connection
+   */
+  status?: string;
+  /**
+   * Description of a private link connection
+   */
+  description?: string;
+  /**
+   * ActionsRequired for a private link connection
+   */
+  actionsRequired?: string;
+}
+
+/**
+ * Wrapper for a collection of private link resources
+ */
+export interface PrivateLinkResourcesWrapper {
+  value: PrivateLinkResource[];
+}
+
+/**
+ * A private link resource
+ */
+export interface PrivateLinkResource {
+  id: string;
+  /**
+   * Name of a private link resource
+   */
+  name: string;
+  type: string;
+  /**
+   * Properties of a private link resource
+   */
+  properties: PrivateLinkResourceProperties;
+}
+
+/**
+ * Properties of a private link resource
+ */
+export interface PrivateLinkResourceProperties {
+  /**
+   * GroupId of a private link resource
+   */
+  readonly groupId?: string;
+  /**
+   * RequiredMembers of a private link resource
+   */
+  readonly requiredMembers?: string[];
+  /**
+   * RequiredZoneNames of a private link resource
+   */
+  readonly requiredZoneNames?: string[];
+}
+
+/**
+ * Collection of slot differences.
+ */
+export interface SlotDifferenceCollection {
+  /**
+   * Collection of resources.
+   */
+  value: SlotDifference[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of snapshots which can be used to revert an app to a previous time.
+ */
+export interface SnapshotCollection {
+  /**
+   * Collection of resources.
+   */
+  value: Snapshot[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of Kudu continuous web job information elements.
+ */
+export interface TriggeredWebJobCollection {
+  /**
+   * Collection of resources.
+   */
+  value: TriggeredWebJob[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of Kudu continuous web job information elements.
+ */
+export interface TriggeredJobHistoryCollection {
+  /**
+   * Collection of resources.
+   */
+  value: TriggeredJobHistory[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of CSM usage quotas.
+ */
+export interface CsmUsageQuotaCollection {
+  /**
+   * Collection of resources.
+   */
+  value: CsmUsageQuota[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Usage of the quota resource.
+ */
+export interface CsmUsageQuota {
+  /**
+   * Units of measurement for the quota resource.
+   */
+  unit?: string;
+  /**
+   * Next reset time for the resource counter.
+   */
+  nextResetTime?: Date;
+  /**
+   * The current value of the resource counter.
+   */
+  currentValue?: number;
+  /**
+   * The resource limit.
+   */
+  limit?: number;
+  /**
+   * Quota name.
+   */
+  name?: LocalizableString;
+}
+
+/**
+ * Localizable string object containing the name and a localized value.
+ */
+export interface LocalizableString {
+  /**
+   * Non-localized name.
+   */
+  value?: string;
+  /**
+   * Localized name.
+   */
+  localizedValue?: string;
+}
+
+/**
+ * Collection of Kudu web job information elements.
+ */
+export interface WebJobCollection {
+  /**
+   * Collection of resources.
+   */
+  value: WebJob[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of static sites.
+ */
+export interface StaticSiteCollection {
+  /**
+   * Collection of resources.
+   */
+  value: StaticSiteARMResource[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Build properties for the static site.
+ */
+export interface StaticSiteBuildProperties {
+  /**
+   * The path to the app code within the repository.
+   */
+  appLocation?: string;
+  /**
+   * The path to the api code within the repository.
+   */
+  apiLocation?: string;
+  /**
+   * The path of the app artifacts after building.
+   */
+  appArtifactLocation?: string;
+}
+
+/**
+ * Description of a SKU for a scalable resource.
+ */
+export interface SkuDescription {
+  /**
+   * Name of the resource SKU.
+   */
+  name?: string;
+  /**
+   * Service tier of the resource SKU.
+   */
+  tier?: string;
+  /**
+   * Size specifier of the resource SKU.
+   */
+  size?: string;
+  /**
+   * Family code of the resource SKU.
+   */
+  family?: string;
+  /**
+   * Current number of instances assigned to the resource.
+   */
+  capacity?: number;
+  /**
+   * Min, max, and default scale values of the SKU.
+   */
+  skuCapacity?: SkuCapacity;
+  /**
+   * Locations of the SKU.
+   */
+  locations?: string[];
+  /**
+   * Capabilities of the SKU, e.g., is traffic manager enabled?
+   */
+  capabilities?: Capability[];
+}
+
+/**
+ * Collection of static site custom users.
+ */
+export interface StaticSiteUserCollection {
+  /**
+   * Collection of resources.
+   */
+  value: StaticSiteUserARMResource[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of static site builds.
+ */
+export interface StaticSiteBuildCollection {
+  /**
+   * Collection of resources.
+   */
+  value: StaticSiteBuildARMResource[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of static site functions.
+ */
+export interface StaticSiteFunctionOverviewCollection {
+  /**
+   * Collection of resources.
+   */
+  value: StaticSiteFunctionOverviewARMResource[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of static site custom domains.
+ */
+export interface StaticSiteCustomDomainOverviewCollection {
+  /**
+   * Collection of resources.
+   */
+  value: StaticSiteCustomDomainOverviewARMResource[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of App Service Environments.
+ */
+export interface AppServiceEnvironmentCollection {
+  /**
+   * Collection of resources.
+   */
+  value: AppServiceEnvironmentResource[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of stamp capacities.
+ */
+export interface StampCapacityCollection {
+  /**
+   * Collection of resources.
+   */
+  value: StampCapacity[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Diagnostics for an App Service Environment.
+ */
+export interface HostingEnvironmentDiagnostics {
+  /**
+   * Name/identifier of the diagnostics.
+   */
+  name?: string;
+  /**
+   * Diagnostics output.
+   */
+  diagnosticsOutput?: string;
+}
+
+/**
+ * Collection of Inbound Environment Endpoints
+ */
+export interface InboundEnvironmentEndpointCollection {
+  /**
+   * Collection of resources.
+   */
+  value: InboundEnvironmentEndpoint[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * The IP Addresses and Ports that require inbound network access to and within the subnet of the App Service Environment.
+ */
+export interface InboundEnvironmentEndpoint {
+  /**
+   * Short text describing the purpose of the network traffic.
+   */
+  description?: string;
+  /**
+   * The IP addresses that network traffic will originate from in cidr notation.
+   */
+  endpoints?: string[];
+  /**
+   * The ports that network traffic will arrive to the App Service Environment at.
+   */
+  ports?: string[];
+}
+
+/**
+ * Collection of worker pools.
+ */
+export interface WorkerPoolCollection {
+  /**
+   * Collection of resources.
+   */
+  value: WorkerPoolResource[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of metric definitions.
+ */
+export interface ResourceMetricDefinitionCollection {
+  /**
+   * Collection of resources.
+   */
+  value: ResourceMetricDefinition[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Metrics availability and retention.
+ */
+export interface ResourceMetricAvailability {
+  /**
+   * Time grain .
+   */
+  readonly timeGrain?: string;
+  /**
+   * Retention period for the current time grain.
+   */
+  readonly retention?: string;
+}
+
+/**
+ * Collection of SKU information.
+ */
+export interface SkuInfoCollection {
+  /**
+   * Collection of resources.
+   */
+  value: SkuInfo[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * SKU discovery information.
+ */
+export interface SkuInfo {
+  /**
+   * Resource type that this SKU applies to.
+   */
+  resourceType?: string;
+  /**
+   * Name and tier of the SKU.
+   */
+  sku?: SkuDescription;
+  /**
+   * Min, max, and default scale values of the SKU.
+   */
+  capacity?: SkuCapacity;
+}
+
+/**
+ * Collection of usages.
+ */
+export interface UsageCollection {
+  /**
+   * Collection of resources.
+   */
+  value: Usage[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of Outbound Environment Endpoints
+ */
+export interface OutboundEnvironmentEndpointCollection {
+  /**
+   * Collection of resources.
+   */
+  value: OutboundEnvironmentEndpoint[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Endpoints accessed for a common purpose that the App Service Environment requires outbound network access to.
+ */
+export interface OutboundEnvironmentEndpoint {
+  /**
+   * The type of service accessed by the App Service Environment, e.g., Azure Storage, Azure SQL Database, and Azure Active Directory.
+   */
+  category?: string;
+  /**
+   * The endpoints that the App Service Environment reaches the service at.
+   */
+  endpoints?: EndpointDependency[];
+}
+
+/**
+ * A domain name that a service is reached at, including details of the current connection status.
+ */
+export interface EndpointDependency {
+  /**
+   * The domain name of the dependency.
+   */
+  domainName?: string;
+  /**
+   * The IP Addresses and Ports used when connecting to DomainName.
+   */
+  endpointDetails?: EndpointDetail[];
+}
+
+/**
+ * Current TCP connectivity information from the App Service Environment to a single endpoint.
+ */
+export interface EndpointDetail {
+  /**
+   * An IP Address that Domain Name currently resolves to.
+   */
+  ipAddress?: string;
+  /**
+   * The port an endpoint is connected to.
+   */
+  port?: number;
+  /**
+   * The time in milliseconds it takes for a TCP connection to be created from the App Service Environment to this IpAddress at this Port.
+   */
+  latency?: number;
+  /**
+   * Whether it is possible to create a TCP connection from the App Service Environment to this IpAddress at this Port.
+   */
+  isAccessible?: boolean;
+}
+
+/**
+ * Collection of App Service plans.
+ */
+export interface AppServicePlanCollection {
+  /**
+   * Collection of resources.
+   */
+  value: AppServicePlan[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of resources.
+ */
+export interface ResourceCollection {
+  /**
+   * Collection of resources.
+   */
+  value: string[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of hostname bindings.
+ */
+export interface HybridConnectionCollection {
+  /**
+   * Collection of resources.
+   */
+  value: HybridConnection[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * Collection of resource health metadata.
+ */
+export interface ResourceHealthMetadataCollection {
+  /**
+   * Collection of resources.
+   */
+  value: ResourceHealthMetadata[];
+  /**
+   * Link to next page of resources.
+   */
+  readonly nextLink?: string;
+}
+
+/**
+ * SSL certificate purchase order.
+ */
+export type AppServiceCertificateOrder = Resource & {
+  /**
+   * State of the Key Vault secret.
+   */
+  certificates?: { [propertyName: string]: AppServiceCertificate };
+  /**
+   * Certificate distinguished name.
+   */
+  distinguishedName?: string;
+  /**
+   * Domain verification token.
+   */
+  readonly domainVerificationToken?: string;
+  /**
+   * Duration in years (must be between 1 and 3).
+   */
+  validityInYears?: number;
+  /**
+   * Certificate key size.
+   */
+  keySize?: number;
+  /**
+   * Certificate product type.
+   */
+  productType?: CertificateProductType;
+  /**
+   * <code>true</code> if the certificate should be automatically renewed when it expires; otherwise, <code>false</code>.
+   */
+  autoRenew?: boolean;
+  /**
+   * Status of certificate order.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Current order status.
+   */
+  readonly status?: CertificateOrderStatus;
+  /**
+   * Signed certificate.
+   */
+  readonly signedCertificate?: CertificateDetails;
+  /**
+   * Last CSR that was created for this order.
+   */
+  csr?: string;
+  /**
+   * Intermediate certificate.
+   */
+  readonly intermediate?: CertificateDetails;
+  /**
+   * Root certificate.
+   */
+  readonly root?: CertificateDetails;
+  /**
+   * Current serial number of the certificate.
+   */
+  readonly serialNumber?: string;
+  /**
+   * Certificate last issuance time.
+   */
+  readonly lastCertificateIssuanceTime?: Date;
+  /**
+   * Certificate expiration time.
+   */
+  readonly expirationTime?: Date;
+  /**
+   * <code>true</code> if private key is external; otherwise, <code>false</code>.
+   */
+  readonly isPrivateKeyExternal?: boolean;
+  /**
+   * Reasons why App Service Certificate is not renewable at the current moment.
+   */
+  readonly appServiceCertificateNotRenewableReasons?: AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem[];
+  /**
+   * Time stamp when the certificate would be auto renewed next
+   */
+  readonly nextAutoRenewalTimeStamp?: Date;
+};
+
+/**
+ * Key Vault container ARM resource for a certificate that is purchased through Azure.
+ */
+export type AppServiceCertificateResource = Resource & {
+  /**
+   * Key Vault resource Id.
+   */
+  keyVaultId?: string;
+  /**
+   * Key Vault secret name.
+   */
+  keyVaultSecretName?: string;
+  /**
+   * Status of the Key Vault secret.
+   */
+  readonly provisioningState?: KeyVaultSecretStatus;
+};
+
+/**
+ * Information about a domain.
+ */
+export type Domain = Resource & {
+  /**
+   * Administrative contact.
+   */
+  contactAdmin?: Contact;
+  /**
+   * Billing contact.
+   */
+  contactBilling?: Contact;
+  /**
+   * Registrant contact.
+   */
+  contactRegistrant?: Contact;
+  /**
+   * Technical contact.
+   */
+  contactTech?: Contact;
+  /**
+   * Domain registration status.
+   */
+  readonly registrationStatus?: DomainStatus;
+  /**
+   * Domain provisioning state.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Name servers.
+   */
+  readonly nameServers?: string[];
+  /**
+   * <code>true</code> if domain privacy is enabled for this domain; otherwise, <code>false</code>.
+   */
+  privacy?: boolean;
+  /**
+   * Domain creation timestamp.
+   */
+  readonly createdTime?: Date;
+  /**
+   * Domain expiration timestamp.
+   */
+  readonly expirationTime?: Date;
+  /**
+   * Timestamp when the domain was renewed last time.
+   */
+  readonly lastRenewedTime?: Date;
+  /**
+   * <code>true</code> if the domain should be automatically renewed; otherwise, <code>false</code>.
+   */
+  autoRenew?: boolean;
+  /**
+   * <code>true</code> if Azure can assign this domain to App Service apps; otherwise, <code>false</code>. This value will be <code>true</code> if domain registration status is active and
+   *  it is hosted on name servers Azure has programmatic access to.
+   */
+  readonly readyForDnsRecordManagement?: boolean;
+  /**
+   * All hostnames derived from the domain and assigned to Azure resources.
+   */
+  readonly managedHostNames?: HostName[];
+  /**
+   * Legal agreement consent.
+   */
+  consent?: DomainPurchaseConsent;
+  /**
+   * Reasons why domain is not renewable.
+   */
+  readonly domainNotRenewableReasons?: DomainPropertiesDomainNotRenewableReasonsItem[];
+  /**
+   * Current DNS type
+   */
+  dnsType?: DnsType;
+  /**
+   * Azure DNS Zone to use
+   */
+  dnsZoneId?: string;
+  /**
+   * Target DNS type (would be used for migration)
+   */
+  targetDnsType?: DnsType;
+  authCode?: string;
+};
+
+/**
+ * SSL certificate for an app.
+ */
+export type Certificate = Resource & {
+  /**
+   * Friendly name of the certificate.
+   */
+  readonly friendlyName?: string;
+  /**
+   * Subject name of the certificate.
+   */
+  readonly subjectName?: string;
+  /**
+   * Host names the certificate applies to.
+   */
+  hostNames?: string[];
+  /**
+   * Pfx blob.
+   */
+  pfxBlob?: Uint8Array;
+  /**
+   * App name.
+   */
+  readonly siteName?: string;
+  /**
+   * Self link.
+   */
+  readonly selfLink?: string;
+  /**
+   * Certificate issuer.
+   */
+  readonly issuer?: string;
+  /**
+   * Certificate issue Date.
+   */
+  readonly issueDate?: Date;
+  /**
+   * Certificate expiration date.
+   */
+  readonly expirationDate?: Date;
+  /**
+   * Certificate password.
+   */
+  password?: string;
+  /**
+   * Certificate thumbprint.
+   */
+  readonly thumbprint?: string;
+  /**
+   * Is the certificate valid?.
+   */
+  readonly valid?: boolean;
+  /**
+   * Raw bytes of .cer file
+   */
+  readonly cerBlob?: Uint8Array;
+  /**
+   * Public key hash.
+   */
+  readonly publicKeyHash?: string;
+  /**
+   * Specification for the App Service Environment to use for the certificate.
+   */
+  readonly hostingEnvironmentProfile?: HostingEnvironmentProfile;
+  /**
+   * Key Vault Csm resource Id.
+   */
+  keyVaultId?: string;
+  /**
+   * Key Vault secret name.
+   */
+  keyVaultSecretName?: string;
+  /**
+   * Status of the Key Vault secret.
+   */
+  readonly keyVaultSecretStatus?: KeyVaultSecretStatus;
+  /**
+   * Resource ID of the associated App Service plan, formatted as: "/subscriptions/{subscriptionID}/resourceGroups/{groupName}/providers/Microsoft.Web/serverfarms/{appServicePlanName}".
+   */
+  serverFarmId?: string;
+  /**
+   * CNAME of the certificate to be issued via free certificate
+   */
+  canonicalName?: string;
+};
+
+/**
+ * A web app, a mobile app backend, or an API app.
+ */
+export type Site = Resource & {
+  /**
+   * Managed service identity.
+   */
+  identity?: ManagedServiceIdentity;
+  /**
+   * Current state of the app.
+   */
+  readonly state?: string;
+  /**
+   * Hostnames associated with the app.
+   */
+  readonly hostNames?: string[];
+  /**
+   * Name of the repository site.
+   */
+  readonly repositorySiteName?: string;
+  /**
+   * State indicating whether the app has exceeded its quota usage. Read-only.
+   */
+  readonly usageState?: UsageState;
+  /**
+   * <code>true</code> if the app is enabled; otherwise, <code>false</code>. Setting this value to false disables the app (takes the app offline).
+   */
+  enabled?: boolean;
+  /**
+   * Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,
+   * the app is not served on those hostnames.
+   */
+  readonly enabledHostNames?: string[];
+  /**
+   * Management information availability state for the app.
+   */
+  readonly availabilityState?: SiteAvailabilityState;
+  /**
+   * Hostname SSL states are used to manage the SSL bindings for app's hostnames.
+   */
+  hostNameSslStates?: HostNameSslState[];
+  /**
+   * Resource ID of the associated App Service plan, formatted as: "/subscriptions/{subscriptionID}/resourceGroups/{groupName}/providers/Microsoft.Web/serverfarms/{appServicePlanName}".
+   */
+  serverFarmId?: string;
+  /**
+   * <code>true</code> if reserved; otherwise, <code>false</code>.
+   */
+  reserved?: boolean;
+  /**
+   * Obsolete: Hyper-V sandbox.
+   */
+  isXenon?: boolean;
+  /**
+   * Hyper-V sandbox.
+   */
+  hyperV?: boolean;
+  /**
+   * Last time the app was modified, in UTC. Read-only.
+   */
+  readonly lastModifiedTimeUtc?: Date;
+  /**
+   * Configuration of the app.
+   */
+  siteConfig?: SiteConfig;
+  /**
+   * Azure Traffic Manager hostnames associated with the app. Read-only.
+   */
+  readonly trafficManagerHostNames?: string[];
+  /**
+   * <code>true</code> to stop SCM (KUDU) site when the app is stopped; otherwise, <code>false</code>. The default is <code>false</code>.
+   */
+  scmSiteAlsoStopped?: boolean;
+  /**
+   * Specifies which deployment slot this app will swap into. Read-only.
+   */
+  readonly targetSwapSlot?: string;
+  /**
+   * App Service Environment to use for the app.
+   */
+  hostingEnvironmentProfile?: HostingEnvironmentProfile;
+  /**
+   * <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same instance. Default is <code>true</code>.
+   */
+  clientAffinityEnabled?: boolean;
+  /**
+   * <code>true</code> to enable client certificate authentication (TLS mutual authentication); otherwise, <code>false</code>. Default is <code>false</code>.
+   */
+  clientCertEnabled?: boolean;
+  /**
+   * client certificate authentication comma-separated exclusion paths
+   */
+  clientCertExclusionPaths?: string;
+  /**
+   * <code>true</code> to disable the public hostnames of the app; otherwise, <code>false</code>.
+   *  If <code>true</code>, the app is only accessible via API management process.
+   */
+  hostNamesDisabled?: boolean;
+  /**
+   * List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. Read-only.
+   */
+  readonly outboundIpAddresses?: string;
+  /**
+   * List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from all tenants except dataComponent. Read-only.
+   */
+  readonly possibleOutboundIpAddresses?: string;
+  /**
+   * Size of the function container.
+   */
+  containerSize?: number;
+  /**
+   * Maximum allowed daily memory-time quota (applicable on dynamic apps only).
+   */
+  dailyMemoryTimeQuota?: number;
+  /**
+   * App suspended till in case memory-time quota is exceeded.
+   */
+  readonly suspendedTill?: Date;
+  /**
+   * Maximum number of workers.
+   * This only applies to Functions container.
+   */
+  readonly maxNumberOfWorkers?: number;
+  /**
+   * If specified during app creation, the app is cloned from a source app.
+   */
+  cloningInfo?: CloningInfo;
+  /**
+   * Name of the resource group the app belongs to. Read-only.
+   */
+  readonly resourceGroup?: string;
+  /**
+   * <code>true</code> if the app is a default container; otherwise, <code>false</code>.
+   */
+  readonly isDefaultContainer?: boolean;
+  /**
+   * Default hostname of the app. Read-only.
+   */
+  readonly defaultHostName?: string;
+  /**
+   * Status of the last deployment slot swap operation.
+   */
+  readonly slotSwapStatus?: SlotSwapStatus;
+  /**
+   * HttpsOnly: configures a web site to accept only https requests. Issues redirect for
+   * http requests
+   */
+  httpsOnly?: boolean;
+  /**
+   * Site redundancy mode
+   */
+  redundancyMode?: RedundancyMode;
+  /**
+   * Specifies an operation id if this site has a pending operation.
+   */
+  readonly inProgressOperationId?: string;
+};
+
+/**
+ * Premier add-on.
+ */
+export type PremierAddOn = Resource & {
+  /**
+   * Premier add on SKU.
+   */
+  sku?: string;
+  /**
+   * Premier add on Product.
+   */
+  product?: string;
+  /**
+   * Premier add on Vendor.
+   */
+  vendor?: string;
+  /**
+   * Premier add on Marketplace publisher.
+   */
+  marketplacePublisher?: string;
+  /**
+   * Premier add on Marketplace offer.
+   */
+  marketplaceOffer?: string;
+};
+
+/**
+ * Static Site ARM resource.
+ */
+export type StaticSiteARMResource = Resource & {
+  /**
+   * Description of a SKU for a scalable resource.
+   */
+  sku?: SkuDescription;
+  /**
+   * The default autogenerated hostname for the static site.
+   */
+  readonly defaultHostname?: string;
+  /**
+   * URL for the repository of the static site.
+   */
+  repositoryUrl?: string;
+  /**
+   * The target branch in the repository.
+   */
+  branch?: string;
+  /**
+   * The custom domains associated with this static site.
+   */
+  readonly customDomains?: string[];
+  /**
+   * A user's github repository token. This is used to setup the Github Actions workflow file and API secrets.
+   */
+  repositoryToken?: string;
+  /**
+   * Build properties to configure on the repository.
+   */
+  buildProperties?: StaticSiteBuildProperties;
+};
+
+/**
+ * App Service Environment ARM resource.
+ */
+export type AppServiceEnvironmentResource = Resource & {
+  /**
+   * Name of the App Service Environment.
+   */
+  namePropertiesName?: string;
+  /**
+   * Location of the App Service Environment, e.g. "West US".
+   */
+  locationPropertiesLocation?: string;
+  /**
+   * Provisioning state of the App Service Environment.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Current status of the App Service Environment.
+   */
+  readonly status?: HostingEnvironmentStatus;
+  /**
+   * Name of the Virtual Network for the App Service Environment.
+   */
+  vnetName?: string;
+  /**
+   * Resource group of the Virtual Network.
+   */
+  vnetResourceGroupName?: string;
+  /**
+   * Subnet of the Virtual Network.
+   */
+  vnetSubnetName?: string;
+  /**
+   * Description of the Virtual Network.
+   */
+  virtualNetwork?: VirtualNetworkProfile;
+  /**
+   * Specifies which endpoints to serve internally in the Virtual Network for the App Service Environment.
+   */
+  internalLoadBalancingMode?: InternalLoadBalancingMode;
+  /**
+   * Front-end VM size, e.g. "Medium", "Large".
+   */
+  multiSize?: string;
+  /**
+   * Number of front-end instances.
+   */
+  multiRoleCount?: number;
+  /**
+   * Description of worker pools with worker size IDs, VM sizes, and number of workers in each pool.
+   */
+  workerPools?: WorkerPool[];
+  /**
+   * Number of IP SSL addresses reserved for the App Service Environment.
+   */
+  ipsslAddressCount?: number;
+  /**
+   * Edition of the metadata database for the App Service Environment, e.g. "Standard".
+   */
+  readonly databaseEdition?: string;
+  /**
+   * Service objective of the metadata database for the App Service Environment, e.g. "S0".
+   */
+  readonly databaseServiceObjective?: string;
+  /**
+   * Number of upgrade domains of the App Service Environment.
+   */
+  readonly upgradeDomains?: number;
+  /**
+   * Subscription of the App Service Environment.
+   */
+  readonly subscriptionId?: string;
+  /**
+   * DNS suffix of the App Service Environment.
+   */
+  dnsSuffix?: string;
+  /**
+   * Last deployment action on the App Service Environment.
+   */
+  readonly lastAction?: string;
+  /**
+   * Result of the last deployment action on the App Service Environment.
+   */
+  readonly lastActionResult?: string;
+  /**
+   * List of comma separated strings describing which VM sizes are allowed for front-ends.
+   */
+  readonly allowedMultiSizes?: string;
+  /**
+   * List of comma separated strings describing which VM sizes are allowed for workers.
+   */
+  readonly allowedWorkerSizes?: string;
+  /**
+   * Maximum number of VMs in the App Service Environment.
+   */
+  readonly maximumNumberOfMachines?: number;
+  /**
+   * Description of IP SSL mapping for the App Service Environment.
+   */
+  readonly vipMappings?: VirtualIPMapping[];
+  /**
+   * Current total, used, and available worker capacities.
+   */
+  readonly environmentCapacities?: StampCapacity[];
+  /**
+   * Access control list for controlling traffic to the App Service Environment.
+   */
+  networkAccessControlList?: NetworkAccessControlEntry[];
+  /**
+   * True/false indicating whether the App Service Environment is healthy.
+   */
+  readonly environmentIsHealthy?: boolean;
+  /**
+   * Detailed message about with results of the last check of the App Service Environment.
+   */
+  readonly environmentStatus?: string;
+  /**
+   * Resource group of the App Service Environment.
+   */
+  readonly resourceGroup?: string;
+  /**
+   * Scale factor for front-ends.
+   */
+  frontEndScaleFactor?: number;
+  /**
+   * Default Scale Factor for FrontEnds.
+   */
+  readonly defaultFrontEndScaleFactor?: number;
+  /**
+   * API Management Account associated with the App Service Environment.
+   */
+  apiManagementAccountId?: string;
+  /**
+   * <code>true</code> if the App Service Environment is suspended; otherwise, <code>false</code>. The environment can be suspended, e.g. when the management endpoint is no longer available
+   *  (most likely because NSG blocked the incoming traffic).
+   */
+  suspended?: boolean;
+  /**
+   * True/false indicating whether the App Service Environment is suspended. The environment can be suspended e.g. when the management endpoint is no longer available
+   * (most likely because NSG blocked the incoming traffic).
+   */
+  dynamicCacheEnabled?: boolean;
+  /**
+   * Custom settings for changing the behavior of the App Service Environment.
+   */
+  clusterSettings?: NameValuePair[];
+  /**
+   * User added ip ranges to whitelist on ASE db
+   */
+  userWhitelistedIpRanges?: string[];
+  /**
+   * Flag that displays whether an ASE has linux workers or not
+   */
+  hasLinuxWorkers?: boolean;
+  /**
+   * Key Vault ID for ILB App Service Environment default SSL certificate
+   */
+  sslCertKeyVaultId?: string;
+  /**
+   * Key Vault Secret Name for ILB App Service Environment default SSL certificate
+   */
+  sslCertKeyVaultSecretName?: string;
+};
+
+/**
+ * App Service plan.
+ */
+export type AppServicePlan = Resource & {
+  /**
+   * Description of a SKU for a scalable resource.
+   */
+  sku?: SkuDescription;
+  /**
+   * Target worker tier assigned to the App Service plan.
+   */
+  workerTierName?: string;
+  /**
+   * App Service plan status.
+   */
+  readonly status?: StatusOptions;
+  /**
+   * App Service plan subscription.
+   */
+  readonly subscription?: string;
+  /**
+   * Specification for the App Service Environment to use for the App Service plan.
+   */
+  hostingEnvironmentProfile?: HostingEnvironmentProfile;
+  /**
+   * Maximum number of instances that can be assigned to this App Service plan.
+   */
+  readonly maximumNumberOfWorkers?: number;
+  /**
+   * Geographical location for the App Service plan.
+   */
+  readonly geoRegion?: string;
+  /**
+   * If <code>true</code>, apps assigned to this App Service plan can be scaled independently.
+   * If <code>false</code>, apps assigned to this App Service plan will scale to all instances of the plan.
+   */
+  perSiteScaling?: boolean;
+  /**
+   * Maximum number of total workers allowed for this ElasticScaleEnabled App Service Plan
+   */
+  maximumElasticWorkerCount?: number;
+  /**
+   * Number of apps assigned to this App Service plan.
+   */
+  readonly numberOfSites?: number;
+  /**
+   * If <code>true</code>, this App Service Plan owns spot instances.
+   */
+  isSpot?: boolean;
+  /**
+   * The time when the server farm expires. Valid only if it is a spot server farm.
+   */
+  spotExpirationTime?: Date;
+  /**
+   * The time when the server farm free offer expires.
+   */
+  freeOfferExpirationTime?: Date;
+  /**
+   * Resource group of the App Service plan.
+   */
+  readonly resourceGroup?: string;
+  /**
+   * If Linux app service plan <code>true</code>, <code>false</code> otherwise.
+   */
+  reserved?: boolean;
+  /**
+   * Obsolete: If Hyper-V container app service plan <code>true</code>, <code>false</code> otherwise.
+   */
+  isXenon?: boolean;
+  /**
+   * If Hyper-V container app service plan <code>true</code>, <code>false</code> otherwise.
+   */
+  hyperV?: boolean;
+  /**
+   * Scaling worker count.
+   */
+  targetWorkerCount?: number;
+  /**
+   * Scaling worker size ID.
+   */
+  targetWorkerSizeId?: number;
+  /**
+   * Provisioning state of the App Service Environment.
+   */
+  readonly provisioningState?: ProvisioningState;
+};
+
+/**
+ * ARM resource for a certificate order that is purchased through Azure.
+ */
+export type AppServiceCertificateOrderPatchResource = ProxyOnlyResource & {
+  /**
+   * State of the Key Vault secret.
+   */
+  certificates?: { [propertyName: string]: AppServiceCertificate };
+  /**
+   * Certificate distinguished name.
+   */
+  distinguishedName?: string;
+  /**
+   * Domain verification token.
+   */
+  readonly domainVerificationToken?: string;
+  /**
+   * Duration in years (must be between 1 and 3).
+   */
+  validityInYears?: number;
+  /**
+   * Certificate key size.
+   */
+  keySize?: number;
+  /**
+   * Certificate product type.
+   */
+  productType?: CertificateProductType;
+  /**
+   * <code>true</code> if the certificate should be automatically renewed when it expires; otherwise, <code>false</code>.
+   */
+  autoRenew?: boolean;
+  /**
+   * Status of certificate order.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Current order status.
+   */
+  readonly status?: CertificateOrderStatus;
+  /**
+   * Signed certificate.
+   */
+  readonly signedCertificate?: CertificateDetails;
+  /**
+   * Last CSR that was created for this order.
+   */
+  csr?: string;
+  /**
+   * Intermediate certificate.
+   */
+  readonly intermediate?: CertificateDetails;
+  /**
+   * Root certificate.
+   */
+  readonly root?: CertificateDetails;
+  /**
+   * Current serial number of the certificate.
+   */
+  readonly serialNumber?: string;
+  /**
+   * Certificate last issuance time.
+   */
+  readonly lastCertificateIssuanceTime?: Date;
+  /**
+   * Certificate expiration time.
+   */
+  readonly expirationTime?: Date;
+  /**
+   * <code>true</code> if private key is external; otherwise, <code>false</code>.
+   */
+  readonly isPrivateKeyExternal?: boolean;
+  /**
+   * Reasons why App Service Certificate is not renewable at the current moment.
+   */
+  readonly appServiceCertificateNotRenewableReasons?: AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem[];
+  /**
+   * Time stamp when the certificate would be auto renewed next
+   */
+  readonly nextAutoRenewalTimeStamp?: Date;
+};
+
+/**
+ * Key Vault container ARM resource for a certificate that is purchased through Azure.
+ */
+export type AppServiceCertificatePatchResource = ProxyOnlyResource & {
+  /**
+   * Key Vault resource Id.
+   */
+  keyVaultId?: string;
+  /**
+   * Key Vault secret name.
+   */
+  keyVaultSecretName?: string;
+  /**
+   * Status of the Key Vault secret.
+   */
+  readonly provisioningState?: KeyVaultSecretStatus;
+};
+
+/**
+ * Class representing certificate reissue request.
+ */
+export type ReissueCertificateOrderRequest = ProxyOnlyResource & {
+  /**
+   * Certificate Key Size.
+   */
+  keySize?: number;
+  /**
+   * Delay in hours to revoke existing certificate after the new certificate is issued.
+   */
+  delayExistingRevokeInHours?: number;
+  /**
+   * Csr to be used for re-key operation.
+   */
+  csr?: string;
+  /**
+   * Should we change the ASC type (from managed private key to external private key and vice versa).
+   */
+  isPrivateKeyExternal?: boolean;
+};
+
+/**
+ * Class representing certificate renew request.
+ */
+export type RenewCertificateOrderRequest = ProxyOnlyResource & {
+  /**
+   * Certificate Key Size.
+   */
+  keySize?: number;
+  /**
+   * Csr to be used for re-key operation.
+   */
+  csr?: string;
+  /**
+   * Should we change the ASC type (from managed private key to external private key and vice versa).
+   */
+  isPrivateKeyExternal?: boolean;
+};
+
+/**
+ * Certificate order action.
+ */
+export type CertificateOrderAction = ProxyOnlyResource & {
+  /**
+   * Action type.
+   */
+  readonly actionType?: CertificateOrderActionType;
+  /**
+   * Time at which the certificate action was performed.
+   */
+  readonly createdAt?: Date;
+};
+
+/**
+ * SSL certificate email.
+ */
+export type CertificateEmail = ProxyOnlyResource & {
+  /**
+   * Email id.
+   */
+  emailId?: string;
+  /**
+   * Time stamp.
+   */
+  timeStamp?: Date;
+};
+
+/**
+ * ARM resource for a domain.
+ */
+export type DomainPatchResource = ProxyOnlyResource & {
+  /**
+   * Administrative contact.
+   */
+  contactAdmin?: Contact;
+  /**
+   * Billing contact.
+   */
+  contactBilling?: Contact;
+  /**
+   * Registrant contact.
+   */
+  contactRegistrant?: Contact;
+  /**
+   * Technical contact.
+   */
+  contactTech?: Contact;
+  /**
+   * Domain registration status.
+   */
+  readonly registrationStatus?: DomainStatus;
+  /**
+   * Domain provisioning state.
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * Name servers.
+   */
+  readonly nameServers?: string[];
+  /**
+   * <code>true</code> if domain privacy is enabled for this domain; otherwise, <code>false</code>.
+   */
+  privacy?: boolean;
+  /**
+   * Domain creation timestamp.
+   */
+  readonly createdTime?: Date;
+  /**
+   * Domain expiration timestamp.
+   */
+  readonly expirationTime?: Date;
+  /**
+   * Timestamp when the domain was renewed last time.
+   */
+  readonly lastRenewedTime?: Date;
+  /**
+   * <code>true</code> if the domain should be automatically renewed; otherwise, <code>false</code>.
+   */
+  autoRenew?: boolean;
+  /**
+   * <code>true</code> if Azure can assign this domain to App Service apps; otherwise, <code>false</code>. This value will be <code>true</code> if domain registration status is active and
+   *  it is hosted on name servers Azure has programmatic access to.
+   */
+  readonly readyForDnsRecordManagement?: boolean;
+  /**
+   * All hostnames derived from the domain and assigned to Azure resources.
+   */
+  readonly managedHostNames?: HostName[];
+  /**
+   * Legal agreement consent.
+   */
+  consent?: DomainPurchaseConsent;
+  /**
+   * Reasons why domain is not renewable.
+   */
+  readonly domainNotRenewableReasons?: DomainPatchResourcePropertiesDomainNotRenewableReasonsItem[];
+  /**
+   * Current DNS type
+   */
+  dnsType?: DnsType;
+  /**
+   * Azure DNS Zone to use
+   */
+  dnsZoneId?: string;
+  /**
+   * Target DNS type (would be used for migration)
+   */
+  targetDnsType?: DnsType;
+  authCode?: string;
+};
+
+/**
+ * Domain ownership Identifier.
+ */
+export type DomainOwnershipIdentifier = ProxyOnlyResource & {
+  /**
+   * Ownership Id.
+   */
+  ownershipId?: string;
+};
+
+/**
+ * A top level domain object.
+ */
+export type TopLevelDomain = ProxyOnlyResource & {
+  /**
+   * If <code>true</code>, then the top level domain supports domain privacy; otherwise, <code>false</code>.
+   */
+  privacy?: boolean;
+};
+
+/**
+ * ARM resource for a certificate.
+ */
+export type CertificatePatchResource = ProxyOnlyResource & {
+  /**
+   * Friendly name of the certificate.
+   */
+  readonly friendlyName?: string;
+  /**
+   * Subject name of the certificate.
+   */
+  readonly subjectName?: string;
+  /**
+   * Host names the certificate applies to.
+   */
+  hostNames?: string[];
+  /**
+   * Pfx blob.
+   */
+  pfxBlob?: Uint8Array;
+  /**
+   * App name.
+   */
+  readonly siteName?: string;
+  /**
+   * Self link.
+   */
+  readonly selfLink?: string;
+  /**
+   * Certificate issuer.
+   */
+  readonly issuer?: string;
+  /**
+   * Certificate issue Date.
+   */
+  readonly issueDate?: Date;
+  /**
+   * Certificate expiration date.
+   */
+  readonly expirationDate?: Date;
+  /**
+   * Certificate password.
+   */
+  password?: string;
+  /**
+   * Certificate thumbprint.
+   */
+  readonly thumbprint?: string;
+  /**
+   * Is the certificate valid?.
+   */
+  readonly valid?: boolean;
+  /**
+   * Raw bytes of .cer file
+   */
+  readonly cerBlob?: Uint8Array;
+  /**
+   * Public key hash.
+   */
+  readonly publicKeyHash?: string;
+  /**
+   * Specification for the App Service Environment to use for the certificate.
+   */
+  readonly hostingEnvironmentProfile?: HostingEnvironmentProfile;
+  /**
+   * Key Vault Csm resource Id.
+   */
+  keyVaultId?: string;
+  /**
+   * Key Vault secret name.
+   */
+  keyVaultSecretName?: string;
+  /**
+   * Status of the Key Vault secret.
+   */
+  readonly keyVaultSecretStatus?: KeyVaultSecretStatus;
+  /**
+   * Resource ID of the associated App Service plan, formatted as: "/subscriptions/{subscriptionID}/resourceGroups/{groupName}/providers/Microsoft.Web/serverfarms/{appServicePlanName}".
+   */
+  serverFarmId?: string;
+  /**
+   * CNAME of the certificate to be issued via free certificate
+   */
+  canonicalName?: string;
+};
+
+/**
+ * A deleted app.
+ */
+export type DeletedSite = ProxyOnlyResource & {
+  /**
+   * Numeric id for the deleted site
+   */
+  readonly deletedSiteId?: number;
+  /**
+   * Time in UTC when the app was deleted.
+   */
+  readonly deletedTimestamp?: string;
+  /**
+   * Subscription containing the deleted site
+   */
+  readonly subscription?: string;
+  /**
+   * ResourceGroup that contained the deleted site
+   */
+  readonly resourceGroup?: string;
+  /**
+   * Name of the deleted site
+   */
+  readonly deletedSiteName?: string;
+  /**
+   * Slot of the deleted site
+   */
+  readonly slot?: string;
+  /**
+   * Kind of site that was deleted
+   */
+  readonly kindPropertiesKind?: string;
+  /**
+   * Geo Region of the deleted site
+   */
+  readonly geoRegionName?: string;
+};
+
+/**
+ * Class representing Response from Detector
+ */
+export type DetectorResponse = ProxyOnlyResource & {
+  /**
+   * metadata for the detector
+   */
+  metadata?: DetectorInfo;
+  /**
+   * Data Set
+   */
+  dataset?: DiagnosticData[];
+};
+
+/**
+ * Class representing detector definition
+ */
+export type DiagnosticCategory = ProxyOnlyResource & {
+  /**
+   * Description of the diagnostic category
+   */
+  readonly description?: string;
+};
+
+/**
+ * Definition of Analysis
+ */
+export type AnalysisDefinition = ProxyOnlyResource & {
+  /**
+   * Description of the Analysis
+   */
+  readonly description?: string;
+};
+
+/**
+ * Class representing detector definition
+ */
+export type DetectorDefinition = ProxyOnlyResource & {
+  /**
+   * Display name of the detector
+   */
+  readonly displayName?: string;
+  /**
+   * Description of the detector
+   */
+  readonly description?: string;
+  /**
+   * Detector Rank
+   */
+  readonly rank?: number;
+  /**
+   * Flag representing whether detector is enabled or not.
+   */
+  readonly isEnabled?: boolean;
+};
+
+/**
+ * Class representing a diagnostic analysis done on an application
+ */
+export type DiagnosticAnalysis = ProxyOnlyResource & {
+  /**
+   * Start time of the period
+   */
+  startTime?: Date;
+  /**
+   * End time of the period
+   */
+  endTime?: Date;
+  /**
+   * List of time periods.
+   */
+  abnormalTimePeriods?: AbnormalTimePeriod[];
+  /**
+   * Data by each detector
+   */
+  payload?: AnalysisData[];
+  /**
+   * Data by each detector for detectors that did not corelate
+   */
+  nonCorrelatedDetectors?: DetectorDefinition[];
+};
+
+/**
+ * Class representing Response from Diagnostic Detectors
+ */
+export type DiagnosticDetectorResponse = ProxyOnlyResource & {
+  /**
+   * Start time of the period
+   */
+  startTime?: Date;
+  /**
+   * End time of the period
+   */
+  endTime?: Date;
+  /**
+   * Flag representing Issue was detected.
+   */
+  issueDetected?: boolean;
+  /**
+   * Detector's definition
+   */
+  detectorDefinition?: DetectorDefinition;
+  /**
+   * Metrics provided by the detector
+   */
+  metrics?: DiagnosticMetricSet[];
+  /**
+   * List of Correlated events found by the detector
+   */
+  abnormalTimePeriods?: DetectorAbnormalTimePeriod[];
+  /**
+   * Additional Data that detector wants to send.
+   */
+  data?: NameValuePair[][];
+  /**
+   * Meta Data
+   */
+  responseMetaData?: ResponseMetaData;
+};
+
+/**
+ * ARM resource for a ApplicationStack.
+ */
+export type ApplicationStackResource = ProxyOnlyResource & {
+  /**
+   * Application stack name.
+   */
+  namePropertiesName?: string;
+  /**
+   * Application stack display name.
+   */
+  display?: string;
+  /**
+   * Application stack dependency.
+   */
+  dependency?: string;
+  /**
+   * List of major versions available.
+   */
+  majorVersions?: StackMajorVersion[];
+  /**
+   * List of frameworks associated with application stack.
+   */
+  frameworks?: ApplicationStack[];
+};
+
+/**
+ * Represents a recommendation result generated by the recommendation engine.
+ */
+export type Recommendation = ProxyOnlyResource & {
+  /**
+   * Timestamp when this instance was created.
+   */
+  creationTime?: Date;
+  /**
+   * A GUID value that each recommendation object is associated with.
+   */
+  recommendationId?: string;
+  /**
+   * Full ARM resource ID string that this recommendation object is associated with.
+   */
+  resourceId?: string;
+  /**
+   * Name of a resource type this recommendation applies, e.g. Subscription, ServerFarm, Site.
+   */
+  resourceScope?: ResourceScopeType;
+  /**
+   * Unique name of the rule.
+   */
+  ruleName?: string;
+  /**
+   * UI friendly name of the rule (may not be unique).
+   */
+  displayName?: string;
+  /**
+   * Recommendation text.
+   */
+  message?: string;
+  /**
+   * Level indicating how critical this recommendation can impact.
+   */
+  level?: NotificationLevel;
+  /**
+   * List of channels that this recommendation can apply.
+   */
+  channels?: Channels;
+  /**
+   * The list of category tags that this recommendation belongs to.
+   */
+  readonly categoryTags?: string[];
+  /**
+   * Name of action recommended by this object.
+   */
+  actionName?: string;
+  /**
+   * True if this recommendation is still valid (i.e. "actionable"). False if it is invalid.
+   */
+  enabled?: number;
+  /**
+   * The list of states of this recommendation. If it's null then it should be considered "Active".
+   */
+  states?: string[];
+  /**
+   * The beginning time in UTC of a range that the recommendation refers to.
+   */
+  startTime?: Date;
+  /**
+   * The end time in UTC of a range that the recommendation refers to.
+   */
+  endTime?: Date;
+  /**
+   * When to notify this recommendation next in UTC. Null means that this will never be notified anymore.
+   */
+  nextNotificationTime?: Date;
+  /**
+   * Date and time in UTC when this notification expires.
+   */
+  notificationExpirationTime?: Date;
+  /**
+   * Last timestamp in UTC this instance was actually notified. Null means that this recommendation hasn't been notified yet.
+   */
+  notifiedTime?: Date;
+  /**
+   * A metric value measured by the rule.
+   */
+  score?: number;
+  /**
+   * True if this is associated with a dynamically added rule
+   */
+  isDynamic?: boolean;
+  /**
+   * Extension name of the portal if exists.
+   */
+  extensionName?: string;
+  /**
+   * Deep link to a blade on the portal.
+   */
+  bladeName?: string;
+  /**
+   * Forward link to an external document associated with the rule.
+   */
+  forwardLink?: string;
+};
+
+/**
+ * Represents a recommendation rule that the recommendation engine can perform.
+ */
+export type RecommendationRule = ProxyOnlyResource & {
+  /**
+   * Unique name of the rule.
+   */
+  recommendationName?: string;
+  /**
+   * UI friendly name of the rule.
+   */
+  displayName?: string;
+  /**
+   * Localized name of the rule (Good for UI).
+   */
+  message?: string;
+  /**
+   * Recommendation ID of an associated recommendation object tied to the rule, if exists.
+   * If such an object doesn't exist, it is set to null.
+   */
+  recommendationId?: string;
+  /**
+   * Localized detailed description of the rule.
+   */
+  description?: string;
+  /**
+   * Name of action that is recommended by this rule in string.
+   */
+  actionName?: string;
+  /**
+   * Level of impact indicating how critical this rule is.
+   */
+  level?: NotificationLevel;
+  /**
+   * List of available channels that this rule applies.
+   */
+  channels?: Channels;
+  /**
+   * The list of category tags that this recommendation rule belongs to.
+   */
+  readonly categoryTags?: string[];
+  /**
+   * True if this is associated with a dynamically added rule
+   */
+  isDynamic?: boolean;
+  /**
+   * Extension name of the portal if exists. Applicable to dynamic rule only.
+   */
+  extensionName?: string;
+  /**
+   * Deep link to a blade on the portal. Applicable to dynamic rule only.
+   */
+  bladeName?: string;
+  /**
+   * Forward link to an external document associated with the rule. Applicable to dynamic rule only.
+   */
+  forwardLink?: string;
+};
+
+/**
+ * User credentials used for publishing activity.
+ */
+export type User = ProxyOnlyResource & {
+  /**
+   * Username used for publishing.
+   */
+  publishingUserName?: string;
+  /**
+   * Password used for publishing.
+   * This value contains a credential. Consider obscuring before showing to users
+   */
+  publishingPassword?: string;
+  /**
+   * Password hash used for publishing.
+   * This value contains a credential. Consider obscuring before showing to users
+   */
+  publishingPasswordHash?: string;
+  /**
+   * Password hash salt used for publishing.
+   * This value contains a credential. Consider obscuring before showing to users
+   */
+  publishingPasswordHashSalt?: string;
+  /**
+   * Url of SCM site.
+   */
+  scmUri?: string;
+};
+
+/**
+ * The source control OAuth token.
+ */
+export type SourceControl = ProxyOnlyResource & {
+  /**
+   * OAuth access token.
+   */
+  token?: string;
+  /**
+   * OAuth access token secret.
+   */
+  tokenSecret?: string;
+  /**
+   * OAuth refresh token.
+   */
+  refreshToken?: string;
+  /**
+   * OAuth token expiration.
+   */
+  expirationTime?: Date;
+};
+
+/**
+ * App Service billing entity that contains information about meter which the Azure billing system utilizes to charge users for services.
+ */
+export type BillingMeter = ProxyOnlyResource & {
+  /**
+   * Meter GUID onboarded in Commerce
+   */
+  meterId?: string;
+  /**
+   * Azure Location of billable resource
+   */
+  billingLocation?: string;
+  /**
+   * Short Name from App Service Azure pricing Page
+   */
+  shortName?: string;
+  /**
+   * Friendly name of the meter
+   */
+  friendlyName?: string;
+  /**
+   * App Service ResourceType meter used for
+   */
+  resourceType?: string;
+  /**
+   * App Service OS type meter used for
+   */
+  osType?: string;
+};
+
+/**
+ * Geographical region.
+ */
+export type GeoRegion = ProxyOnlyResource & {
+  /**
+   * Region description.
+   */
+  readonly description?: string;
+  /**
+   * Display name for region.
+   */
+  readonly displayName?: string;
+  /**
+   * Display name for region.
+   */
+  readonly orgDomain?: string;
+};
+
+/**
+ * A domain specific resource identifier.
+ */
+export type Identifier = ProxyOnlyResource & {
+  /**
+   * String representation of the identity.
+   */
+  value?: string;
+};
+
+/**
+ * Premier add-on offer.
+ */
+export type PremierAddOnOffer = ProxyOnlyResource & {
+  /**
+   * Premier add on SKU.
+   */
+  sku?: string;
+  /**
+   * Premier add on offer Product.
+   */
+  product?: string;
+  /**
+   * Premier add on offer Vendor.
+   */
+  vendor?: string;
+  /**
+   * <code>true</code> if promotion code is required; otherwise, <code>false</code>.
+   */
+  promoCodeRequired?: boolean;
+  /**
+   * Premier add on offer Quota.
+   */
+  quota?: number;
+  /**
+   * App Service plans this offer is restricted to.
+   */
+  webHostingPlanRestrictions?: AppServicePlanRestrictions;
+  /**
+   * Privacy policy URL.
+   */
+  privacyPolicyUrl?: string;
+  /**
+   * Legal terms URL.
+   */
+  legalTermsUrl?: string;
+  /**
+   * Marketplace publisher.
+   */
+  marketplacePublisher?: string;
+  /**
+   * Marketplace offer.
+   */
+  marketplaceOffer?: string;
+};
+
+/**
+ * The required set of inputs to validate a VNET
+ */
+export type VnetParameters = ProxyOnlyResource & {
+  /**
+   * The Resource Group of the VNET to be validated
+   */
+  vnetResourceGroup?: string;
+  /**
+   * The name of the VNET to be validated
+   */
+  vnetName?: string;
+  /**
+   * The subnet name to be validated
+   */
+  vnetSubnetName?: string;
+};
+
+/**
+ * A class that describes a test that failed during NSG and UDR validation.
+ */
+export type VnetValidationTestFailure = ProxyOnlyResource & {
+  /**
+   * The name of the test that failed.
+   */
+  testName?: string;
+  /**
+   * The details of what caused the failure, e.g. the blocking rule name, etc.
+   */
+  details?: string;
+};
+
+/**
+ * A class that describes the reason for a validation failure.
+ */
+export type VnetValidationFailureDetails = ProxyOnlyResource & {
+  /**
+   * A flag describing whether or not validation failed.
+   */
+  failed?: boolean;
+  /**
+   * A list of tests that failed in the validation.
+   */
+  failedTests?: VnetValidationTestFailure[];
+};
+
+/**
+ * Push settings for the App.
+ */
+export type PushSettings = ProxyOnlyResource & {
+  /**
+   * Gets or sets a flag indicating whether the Push endpoint is enabled.
+   */
+  isPushEnabled?: boolean;
+  /**
+   * Gets or sets a JSON string containing a list of tags that are whitelisted for use by the push registration endpoint.
+   */
+  tagWhitelistJson?: string;
+  /**
+   * Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.
+   * Tags can consist of alphanumeric characters and the following:
+   * '_', '@', '#', '.', ':', '-'.
+   * Validation should be performed at the PushRequestHandler.
+   */
+  tagsRequiringAuth?: string;
+  /**
+   * Gets or sets a JSON string containing a list of dynamic tags that will be evaluated from user claims in the push registration endpoint.
+   */
+  dynamicTagsJson?: string;
+};
 
 /**
  * ARM resource for a site.
@@ -4108,50 +5836,6 @@ export type CustomHostnameAnalysisResult = ProxyOnlyResource & {
 };
 
 /**
- * Body of the error response returned from the API.
- */
-export interface ErrorEntity {
-  /**
-   * Type of error.
-   */
-  extendedCode?: string;
-  /**
-   * Message template.
-   */
-  messageTemplate?: string;
-  /**
-   * Parameters for the template.
-   */
-  parameters?: string[];
-  /**
-   * Inner errors.
-   */
-  innerErrors?: ErrorEntity[];
-  /**
-   * Basic error code.
-   */
-  code?: string;
-  /**
-   * Any details of the error.
-   */
-  message?: string;
-}
-
-/**
- * Deployment slot parameters.
- */
-export interface CsmSlotEntity {
-  /**
-   * Destination deployment slot during swap operation.
-   */
-  targetSlot: string;
-  /**
-   * <code>true</code> to preserve Virtual Network to the slot during swap; otherwise, <code>false</code>.
-   */
-  preserveVnet: boolean;
-}
-
-/**
  * Description of a backup which will be performed.
  */
 export type BackupRequest = ProxyOnlyResource & {
@@ -4176,56 +5860,6 @@ export type BackupRequest = ProxyOnlyResource & {
    */
   databases?: DatabaseBackupSetting[];
 };
-
-/**
- * Description of a backup schedule. Describes how often should be the backup performed and what should be the retention policy.
- */
-export interface BackupSchedule {
-  /**
-   * How often the backup should be executed (e.g. for weekly backup, this should be set to 7 and FrequencyUnit should be set to Day)
-   */
-  frequencyInterval: number;
-  /**
-   * The unit of time for how often the backup should be executed (e.g. for weekly backup, this should be set to Day and FrequencyInterval should be set to 7)
-   */
-  frequencyUnit: FrequencyUnit;
-  /**
-   * True if the retention policy should always keep at least one backup in the storage account, regardless how old it is; false otherwise.
-   */
-  keepAtLeastOneBackup: boolean;
-  /**
-   * After how many days backups should be deleted.
-   */
-  retentionPeriodInDays: number;
-  /**
-   * When the schedule should start working.
-   */
-  startTime?: Date;
-  /**
-   * Last time when this schedule was triggered.
-   */
-  readonly lastExecutionTime?: Date;
-}
-
-/**
- * Database backup settings.
- */
-export interface DatabaseBackupSetting {
-  /**
-   * Database type (e.g. SqlAzure / MySql).
-   */
-  databaseType: DatabaseType;
-  name?: string;
-  /**
-   * Contains a connection string name that is linked to the SiteConfig.ConnectionStrings.
-   * This is used during restore with overwrite connection strings options.
-   */
-  connectionStringName?: string;
-  /**
-   * Contains a connection string to a database which is being backed up or restored. If the restore should happen to a new database, the database name inside is the new one.
-   */
-  connectionString?: string;
-}
 
 /**
  * Backup description.
@@ -4290,20 +5924,6 @@ export type BackupItem = ProxyOnlyResource & {
 };
 
 /**
- * Collection of backup items.
- */
-export interface BackupItemCollection {
-  /**
-   * Collection of resources.
-   */
-  value: BackupItem[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
  * Description of a restore request.
  */
 export type RestoreRequest = ProxyOnlyResource & {
@@ -4353,20 +5973,6 @@ export type RestoreRequest = ProxyOnlyResource & {
    */
   hostingEnvironment?: string;
 };
-
-/**
- * Collection of site configurations.
- */
-export interface SiteConfigResourceCollection {
-  /**
-   * Collection of resources.
-   */
-  value: SiteConfigResource[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
 
 /**
  * Web app configuration ARM resource.
@@ -4764,36 +6370,6 @@ export type AzureStoragePropertyDictionaryResource = ProxyOnlyResource & {
 };
 
 /**
- * Azure Files or Blob Storage access information value for dictionary storage.
- */
-export interface AzureStorageInfoValue {
-  /**
-   * Type of storage.
-   */
-  type?: AzureStorageType;
-  /**
-   * Name of the storage account.
-   */
-  accountName?: string;
-  /**
-   * Name of the file share (container name, for Blob storage).
-   */
-  shareName?: string;
-  /**
-   * Access key for the storage account.
-   */
-  accessKey?: string;
-  /**
-   * Path to mount the storage within the site's runtime environment.
-   */
-  mountPath?: string;
-  /**
-   * State of the storage account.
-   */
-  readonly state?: AzureStorageState;
-}
-
-/**
  * Web app key vault reference and status ARM resource.
  */
 export type KeyVaultReferenceCollection = ProxyOnlyResource & {
@@ -4802,24 +6378,6 @@ export type KeyVaultReferenceCollection = ProxyOnlyResource & {
    */
   keyToReferenceStatuses?: { [propertyName: string]: ApiKVReference };
 };
-
-/**
- * Description of site key vault references.
- */
-export interface ApiKVReference {
-  reference?: string;
-  status?: ResolveStatus;
-  vaultName?: string;
-  secretName?: string;
-  secretVersion?: string;
-  /**
-   * Type of managed service identity.
-   */
-  identityType?: ManagedServiceIdentityType;
-  details?: string;
-  source?: "KeyVault";
-  location?: "ApplicationSetting";
-}
 
 /**
  * Web app key vault reference and status ARM resource.
@@ -4850,20 +6408,6 @@ export type ConnectionStringDictionary = ProxyOnlyResource & {
 };
 
 /**
- * Database connection string value to type pair.
- */
-export interface ConnStringValueTypePair {
-  /**
-   * Value of pair.
-   */
-  value: string;
-  /**
-   * Type of database.
-   */
-  type: ConnectionStringType;
-}
-
-/**
  * Configuration of App Service site logs.
  */
 export type SiteLogsConfig = ProxyOnlyResource & {
@@ -4886,134 +6430,6 @@ export type SiteLogsConfig = ProxyOnlyResource & {
 };
 
 /**
- * Application logs configuration.
- */
-export interface ApplicationLogsConfig {
-  /**
-   * Application logs to file system configuration.
-   */
-  fileSystem?: FileSystemApplicationLogsConfig;
-  /**
-   * Application logs to azure table storage configuration.
-   */
-  azureTableStorage?: AzureTableStorageApplicationLogsConfig;
-  /**
-   * Application logs to blob storage configuration.
-   */
-  azureBlobStorage?: AzureBlobStorageApplicationLogsConfig;
-}
-
-/**
- * Application logs to file system configuration.
- */
-export interface FileSystemApplicationLogsConfig {
-  /**
-   * Log level.
-   */
-  level?: LogLevel;
-}
-
-/**
- * Application logs to Azure table storage configuration.
- */
-export interface AzureTableStorageApplicationLogsConfig {
-  /**
-   * Log level.
-   */
-  level?: LogLevel;
-  /**
-   * SAS URL to an Azure table with add/query/delete permissions.
-   */
-  sasUrl: string;
-}
-
-/**
- * Application logs azure blob storage configuration.
- */
-export interface AzureBlobStorageApplicationLogsConfig {
-  /**
-   * Log level.
-   */
-  level?: LogLevel;
-  /**
-   * SAS url to a azure blob container with read/write/list/delete permissions.
-   */
-  sasUrl?: string;
-  /**
-   * Retention in days.
-   * Remove blobs older than X days.
-   * 0 or lower means no retention.
-   */
-  retentionInDays?: number;
-}
-
-/**
- * Http logs configuration.
- */
-export interface HttpLogsConfig {
-  /**
-   * Http logs to file system configuration.
-   */
-  fileSystem?: FileSystemHttpLogsConfig;
-  /**
-   * Http logs to azure blob storage configuration.
-   */
-  azureBlobStorage?: AzureBlobStorageHttpLogsConfig;
-}
-
-/**
- * Http logs to file system configuration.
- */
-export interface FileSystemHttpLogsConfig {
-  /**
-   * Maximum size in megabytes that http log files can use.
-   * When reached old log files will be removed to make space for new ones.
-   * Value can range between 25 and 100.
-   */
-  retentionInMb?: number;
-  /**
-   * Retention in days.
-   * Remove files older than X days.
-   * 0 or lower means no retention.
-   */
-  retentionInDays?: number;
-  /**
-   * True if configuration is enabled, false if it is disabled and null if configuration is not set.
-   */
-  enabled?: boolean;
-}
-
-/**
- * Http logs to azure blob storage configuration.
- */
-export interface AzureBlobStorageHttpLogsConfig {
-  /**
-   * SAS url to a azure blob container with read/write/list/delete permissions.
-   */
-  sasUrl?: string;
-  /**
-   * Retention in days.
-   * Remove blobs older than X days.
-   * 0 or lower means no retention.
-   */
-  retentionInDays?: number;
-  /**
-   * True if configuration is enabled, false if it is disabled and null if configuration is not set.
-   */
-  enabled?: boolean;
-}
-
-/**
- * Enabled configuration.
- */
-export interface EnabledConfig {
-  /**
-   * True if configuration is enabled, false if it is disabled and null if configuration is not set.
-   */
-  enabled?: boolean;
-}
-
-/**
  * Slot Config names azure resource.
  */
 export type SlotConfigNamesResource = ProxyOnlyResource & {
@@ -5032,20 +6448,6 @@ export type SlotConfigNamesResource = ProxyOnlyResource & {
 };
 
 /**
- * Collection of metadata for the app configuration snapshots that can be restored.
- */
-export interface SiteConfigurationSnapshotInfoCollection {
-  /**
-   * Collection of resources.
-   */
-  value: SiteConfigurationSnapshotInfo[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
  * A snapshot of a web app configuration.
  */
 export type SiteConfigurationSnapshotInfo = ProxyOnlyResource & {
@@ -5058,20 +6460,6 @@ export type SiteConfigurationSnapshotInfo = ProxyOnlyResource & {
    */
   readonly snapshotId?: number;
 };
-
-/**
- * Collection of Kudu continuous web job information elements.
- */
-export interface ContinuousWebJobCollection {
-  /**
-   * Collection of resources.
-   */
-  value: ContinuousWebJob[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
 
 /**
  * Continuous Web Job Information.
@@ -5118,20 +6506,6 @@ export type ContinuousWebJob = ProxyOnlyResource & {
    */
   settings?: { [propertyName: string]: any };
 };
-
-/**
- * Collection of app deployments.
- */
-export interface DeploymentCollection {
-  /**
-   * Collection of resources.
-   */
-  value: Deployment[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
 
 /**
  * User credentials used for publishing activity.
@@ -5250,38 +6624,6 @@ export type MSDeployLog = ProxyOnlyResource & {
 };
 
 /**
- * MSDeploy log entry
- */
-export interface MSDeployLogEntry {
-  /**
-   * Timestamp of log entry
-   */
-  readonly time?: Date;
-  /**
-   * Log entry type
-   */
-  readonly type?: MSDeployLogEntryType;
-  /**
-   * Log entry message
-   */
-  readonly message?: string;
-}
-
-/**
- * Collection of Kudu function information elements.
- */
-export interface FunctionEnvelopeCollection {
-  /**
-   * Collection of resources.
-   */
-  value: FunctionEnvelope[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
  * Function information.
  */
 export type FunctionEnvelope = ProxyOnlyResource & {
@@ -5340,20 +6682,6 @@ export type FunctionEnvelope = ProxyOnlyResource & {
 };
 
 /**
- * Function key info.
- */
-export interface KeyInfo {
-  /**
-   * Key name
-   */
-  name?: string;
-  /**
-   * Key value
-   */
-  value?: string;
-}
-
-/**
  * Function secrets.
  */
 export type FunctionSecrets = ProxyOnlyResource & {
@@ -5366,38 +6694,6 @@ export type FunctionSecrets = ProxyOnlyResource & {
    */
   triggerUrl?: string;
 };
-
-/**
- * Functions host level keys.
- */
-export interface HostKeys {
-  /**
-   * Secret key.
-   */
-  masterKey?: string;
-  /**
-   * Host level function keys.
-   */
-  functionKeys?: { [propertyName: string]: string };
-  /**
-   * System keys.
-   */
-  systemKeys?: { [propertyName: string]: string };
-}
-
-/**
- * Collection of hostname bindings.
- */
-export interface HostNameBindingCollection {
-  /**
-   * Collection of resources.
-   */
-  value: HostNameBinding[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
 
 /**
  * A hostname binding object.
@@ -5494,20 +6790,6 @@ export type RelayServiceConnectionEntity = ProxyOnlyResource & {
 };
 
 /**
- * Collection of app instances.
- */
-export interface WebAppInstanceCollection {
-  /**
-   * Collection of resources.
-   */
-  value: SiteInstance[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
  * Instance of an app.
  */
 export type SiteInstance = ProxyOnlyResource & {
@@ -5537,67 +6819,109 @@ export type WebSiteInstanceStatus = ProxyOnlyResource & {
   containers?: { [propertyName: string]: ContainerInfo };
 };
 
-export interface ContainerInfo {
-  currentTimeStamp?: Date;
-  previousTimeStamp?: Date;
-  currentCpuStats?: ContainerCpuStatistics;
-  previousCpuStats?: ContainerCpuStatistics;
-  memoryStats?: ContainerMemoryStatistics;
-  name?: string;
-  id?: string;
-  eth0?: ContainerNetworkInterfaceStatistics;
-}
-
-export interface ContainerCpuStatistics {
-  cpuUsage?: ContainerCpuUsage;
-  systemCpuUsage?: number;
-  onlineCpuCount?: number;
-  throttlingData?: ContainerThrottlingData;
-}
-
-export interface ContainerCpuUsage {
-  totalUsage?: number;
-  perCpuUsage?: number[];
-  kernelModeUsage?: number;
-  userModeUsage?: number;
-}
-
-export interface ContainerThrottlingData {
-  periods?: number;
-  throttledPeriods?: number;
-  throttledTime?: number;
-}
-
-export interface ContainerMemoryStatistics {
-  usage?: number;
-  maxUsage?: number;
-  limit?: number;
-}
-
-export interface ContainerNetworkInterfaceStatistics {
-  rxBytes?: number;
-  rxPackets?: number;
-  rxErrors?: number;
-  rxDropped?: number;
-  txBytes?: number;
-  txPackets?: number;
-  txErrors?: number;
-  txDropped?: number;
-}
+/**
+ * Process Thread Information.
+ */
+export type ProcessThreadInfo = ProxyOnlyResource & {
+  /**
+   * Site extension ID.
+   */
+  readonly identifier?: number;
+  /**
+   * HRef URI.
+   */
+  href?: string;
+  /**
+   * Process URI.
+   */
+  process?: string;
+  /**
+   * Start address.
+   */
+  startAddress?: string;
+  /**
+   * Current thread priority.
+   */
+  currentPriority?: number;
+  /**
+   * Thread priority level.
+   */
+  priorityLevel?: string;
+  /**
+   * Base priority.
+   */
+  basePriority?: number;
+  /**
+   * Start time.
+   */
+  startTime?: Date;
+  /**
+   * Total processor time.
+   */
+  totalProcessorTime?: string;
+  /**
+   * User processor time.
+   */
+  userProcessorTime?: string;
+  /**
+   * Thread state.
+   */
+  state?: string;
+  /**
+   * Wait reason.
+   */
+  waitReason?: string;
+};
 
 /**
- * Collection of Kudu process information elements.
+ * Process Module Information.
  */
-export interface ProcessInfoCollection {
+export type ProcessModuleInfo = ProxyOnlyResource & {
   /**
-   * Collection of resources.
+   * Base address. Used as module identifier in ARM resource URI.
    */
-  value: ProcessInfo[];
+  baseAddress?: string;
   /**
-   * Link to next page of resources.
+   * File name.
    */
-  readonly nextLink?: string;
-}
+  fileName?: string;
+  /**
+   * HRef URI.
+   */
+  href?: string;
+  /**
+   * File path.
+   */
+  filePath?: string;
+  /**
+   * Module memory size.
+   */
+  moduleMemorySize?: number;
+  /**
+   * File version.
+   */
+  fileVersion?: string;
+  /**
+   * File description.
+   */
+  fileDescription?: string;
+  /**
+   * Product name.
+   */
+  product?: string;
+  /**
+   * Product version.
+   */
+  productVersion?: string;
+  /**
+   * Is debug?
+   */
+  isDebug?: boolean;
+  /**
+   * Module language (locale).
+   */
+  language?: string;
+};
 
 /**
  * Process Information.
@@ -5750,175 +7074,6 @@ export type ProcessInfo = ProxyOnlyResource & {
 };
 
 /**
- * Process Thread Information.
- */
-export type ProcessThreadInfo = ProxyOnlyResource & {
-  /**
-   * Site extension ID.
-   */
-  readonly identifier?: number;
-  /**
-   * HRef URI.
-   */
-  href?: string;
-  /**
-   * Process URI.
-   */
-  process?: string;
-  /**
-   * Start address.
-   */
-  startAddress?: string;
-  /**
-   * Current thread priority.
-   */
-  currentPriority?: number;
-  /**
-   * Thread priority level.
-   */
-  priorityLevel?: string;
-  /**
-   * Base priority.
-   */
-  basePriority?: number;
-  /**
-   * Start time.
-   */
-  startTime?: Date;
-  /**
-   * Total processor time.
-   */
-  totalProcessorTime?: string;
-  /**
-   * User processor time.
-   */
-  userProcessorTime?: string;
-  /**
-   * Thread state.
-   */
-  state?: string;
-  /**
-   * Wait reason.
-   */
-  waitReason?: string;
-};
-
-/**
- * Process Module Information.
- */
-export type ProcessModuleInfo = ProxyOnlyResource & {
-  /**
-   * Base address. Used as module identifier in ARM resource URI.
-   */
-  baseAddress?: string;
-  /**
-   * File name.
-   */
-  fileName?: string;
-  /**
-   * HRef URI.
-   */
-  href?: string;
-  /**
-   * File path.
-   */
-  filePath?: string;
-  /**
-   * Module memory size.
-   */
-  moduleMemorySize?: number;
-  /**
-   * File version.
-   */
-  fileVersion?: string;
-  /**
-   * File description.
-   */
-  fileDescription?: string;
-  /**
-   * Product name.
-   */
-  product?: string;
-  /**
-   * Product version.
-   */
-  productVersion?: string;
-  /**
-   * Is debug?
-   */
-  isDebug?: boolean;
-  /**
-   * Module language (locale).
-   */
-  language?: string;
-};
-
-/**
- * Collection of Kudu thread information elements.
- */
-export interface ProcessModuleInfoCollection {
-  /**
-   * Collection of resources.
-   */
-  value: ProcessModuleInfo[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
- * Collection of Kudu thread information elements.
- */
-export interface ProcessThreadInfoCollection {
-  /**
-   * Collection of resources.
-   */
-  value: ProcessThreadInfo[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
- * Represents whether or not an app is cloneable.
- */
-export interface SiteCloneability {
-  /**
-   * Name of app.
-   */
-  result?: CloneAbilityResult;
-  /**
-   * List of features enabled on app that prevent cloning.
-   */
-  blockingFeatures?: SiteCloneabilityCriterion[];
-  /**
-   * List of features enabled on app that are non-blocking but cannot be cloned. The app can still be cloned
-   * but the features in this list will not be set up on cloned app.
-   */
-  unsupportedFeatures?: SiteCloneabilityCriterion[];
-  /**
-   * List of blocking application characteristics.
-   */
-  blockingCharacteristics?: SiteCloneabilityCriterion[];
-}
-
-/**
- * An app cloneability criterion.
- */
-export interface SiteCloneabilityCriterion {
-  /**
-   * Name of criterion.
-   */
-  name?: string;
-  /**
-   * Description of criterion.
-   */
-  description?: string;
-}
-
-/**
  * Options for app content migration.
  */
 export type StorageMigrationOptions = ProxyOnlyResource & {
@@ -5965,44 +7120,6 @@ export type MigrateMySqlRequest = ProxyOnlyResource & {
 };
 
 /**
- * An operation on a resource.
- */
-export interface Operation {
-  /**
-   * Operation ID.
-   */
-  id?: string;
-  /**
-   * Operation name.
-   */
-  name?: string;
-  /**
-   * The current status of the operation.
-   */
-  status?: OperationStatus;
-  /**
-   * Any errors associate with the operation.
-   */
-  errors?: ErrorEntity[];
-  /**
-   * Time when operation has started.
-   */
-  createdTime?: Date;
-  /**
-   * Time when operation has been updated.
-   */
-  modifiedTime?: Date;
-  /**
-   * Time when operation will expire.
-   */
-  expirationTime?: Date;
-  /**
-   * Applicable only for stamp operation ids.
-   */
-  geoMasterOperationId?: string;
-}
-
-/**
  * MySQL migration status.
  */
 export type MigrateMySqlStatus = ProxyOnlyResource & {
@@ -6035,25 +7152,26 @@ export type SwiftVirtualNetwork = ProxyOnlyResource & {
 };
 
 /**
- * Full view of network features for an app (presently VNET integration and Hybrid Connections).
+ * Virtual Network route contract used to pass routing information for a Virtual Network.
  */
-export type NetworkFeatures = ProxyOnlyResource & {
+export type VnetRoute = ProxyOnlyResource & {
   /**
-   * The Virtual Network name.
+   * The starting address for this route. This may also include a CIDR notation, in which case the end address must not be specified.
    */
-  readonly virtualNetworkName?: string;
+  startAddress?: string;
   /**
-   * The Virtual Network summary view.
+   * The ending address for this route. If the start address is specified in CIDR notation, this must be omitted.
    */
-  readonly virtualNetworkConnection?: VnetInfo;
+  endAddress?: string;
   /**
-   * The Hybrid Connections summary view.
+   * The type of route this is:
+   * DEFAULT - By default, every app has routes to the local address ranges specified by RFC1918
+   * INHERITED - Routes inherited from the real Virtual Network routes
+   * STATIC - Static route set on the app only
+   *
+   * These values will be used for syncing an app's routes with those from a Virtual Network.
    */
-  readonly hybridConnections?: RelayServiceConnectionEntity[];
-  /**
-   * The Hybrid Connection V2 (Service Bus) view.
-   */
-  readonly hybridConnectionsV2?: HybridConnection[];
+  routeType?: RouteType;
 };
 
 /**
@@ -6092,121 +7210,26 @@ export type VnetInfo = ProxyOnlyResource & {
 };
 
 /**
- * Virtual Network route contract used to pass routing information for a Virtual Network.
+ * Full view of network features for an app (presently VNET integration and Hybrid Connections).
  */
-export type VnetRoute = ProxyOnlyResource & {
+export type NetworkFeatures = ProxyOnlyResource & {
   /**
-   * The starting address for this route. This may also include a CIDR notation, in which case the end address must not be specified.
+   * The Virtual Network name.
    */
-  startAddress?: string;
+  readonly virtualNetworkName?: string;
   /**
-   * The ending address for this route. If the start address is specified in CIDR notation, this must be omitted.
+   * The Virtual Network summary view.
    */
-  endAddress?: string;
+  readonly virtualNetworkConnection?: VnetInfo;
   /**
-   * The type of route this is:
-   * DEFAULT - By default, every app has routes to the local address ranges specified by RFC1918
-   * INHERITED - Routes inherited from the real Virtual Network routes
-   * STATIC - Static route set on the app only
-   *
-   * These values will be used for syncing an app's routes with those from a Virtual Network.
+   * The Hybrid Connections summary view.
    */
-  routeType?: RouteType;
+  readonly hybridConnections?: RelayServiceConnectionEntity[];
+  /**
+   * The Hybrid Connection V2 (Service Bus) view.
+   */
+  readonly hybridConnectionsV2?: HybridConnection[];
 };
-
-/**
- * Network trace
- */
-export interface NetworkTrace {
-  /**
-   * Local file path for the captured network trace file.
-   */
-  path?: string;
-  /**
-   * Current status of the network trace operation, same as Operation.Status (InProgress/Succeeded/Failed).
-   */
-  status?: string;
-  /**
-   * Detailed message of a network trace operation, e.g. error message in case of failure.
-   */
-  message?: string;
-}
-
-/**
- * Collection of performance monitor counters.
- */
-export interface PerfMonCounterCollection {
-  /**
-   * Collection of resources.
-   */
-  value: PerfMonResponse[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
- * Performance monitor API response.
- */
-export interface PerfMonResponse {
-  /**
-   * The response code.
-   */
-  code?: string;
-  /**
-   * The message.
-   */
-  message?: string;
-  /**
-   * The performance monitor counters.
-   */
-  data?: PerfMonSet;
-}
-
-/**
- * Metric information.
- */
-export interface PerfMonSet {
-  /**
-   * Unique key name of the counter.
-   */
-  name?: string;
-  /**
-   * Start time of the period.
-   */
-  startTime?: Date;
-  /**
-   * End time of the period.
-   */
-  endTime?: Date;
-  /**
-   * Presented time grain.
-   */
-  timeGrain?: string;
-  /**
-   * Collection of workers that are active during this time.
-   */
-  values?: PerfMonSample[];
-}
-
-/**
- * Performance monitor sample in a set.
- */
-export interface PerfMonSample {
-  /**
-   * Point in time for which counter was measured.
-   */
-  time?: Date;
-  /**
-   * Name of the server on which the measurement is made.
-   */
-  instanceName?: string;
-  /**
-   * Value of counter at a certain time.
-   */
-  value?: number;
-}
 
 /**
  * Used for getting PHP error logging flag.
@@ -6228,32 +7251,6 @@ export type SitePhpErrorLogFlag = ProxyOnlyResource & {
    * Master log_errors_max_len setting.
    */
   masterLogErrorsMaxLength?: string;
-};
-
-/**
- * Premier add-on.
- */
-export type PremierAddOn = Resource & {
-  /**
-   * Premier add on SKU.
-   */
-  sku?: string;
-  /**
-   * Premier add on Product.
-   */
-  product?: string;
-  /**
-   * Premier add on Vendor.
-   */
-  vendor?: string;
-  /**
-   * Premier add on Marketplace publisher.
-   */
-  marketplacePublisher?: string;
-  /**
-   * Premier add on Marketplace offer.
-   */
-  marketplaceOffer?: string;
 };
 
 /**
@@ -6297,56 +7294,6 @@ export type PrivateAccess = ProxyOnlyResource & {
 };
 
 /**
- * Description of a Virtual Network that is useable for private site access.
- */
-export interface PrivateAccessVirtualNetwork {
-  /**
-   * The name of the Virtual Network.
-   */
-  name?: string;
-  /**
-   * The key (ID) of the Virtual Network.
-   */
-  key?: number;
-  /**
-   * The ARM uri of the Virtual Network
-   */
-  resourceId?: string;
-  /**
-   * A List of subnets that access is allowed to on this Virtual Network. An empty array (but not null) is interpreted to mean that all subnets are allowed within this Virtual Network.
-   */
-  subnets?: PrivateAccessSubnet[];
-}
-
-/**
- * Description of a Virtual Network subnet that is useable for private site access.
- */
-export interface PrivateAccessSubnet {
-  /**
-   * The name of the subnet.
-   */
-  name?: string;
-  /**
-   * The key (ID) of the subnet.
-   */
-  key?: number;
-}
-
-/**
- * Collection of public certificates
- */
-export interface PublicCertificateCollection {
-  /**
-   * Collection of resources.
-   */
-  value: PublicCertificate[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
  * Public certificate object
  */
 export type PublicCertificate = ProxyOnlyResource & {
@@ -6363,23 +7310,6 @@ export type PublicCertificate = ProxyOnlyResource & {
    */
   readonly thumbprint?: string;
 };
-
-/**
- * Publishing options for requested profile.
- */
-export interface CsmPublishingProfileOptions {
-  /**
-   * Name of the format. Valid values are:
-   * FileZilla3
-   * WebDeploy -- default
-   * Ftp
-   */
-  format?: PublishingProfileFormat;
-  /**
-   * Include the DisasterRecover endpoint if true
-   */
-  includeDisasterRecoveryEndpoints?: boolean;
-}
 
 /**
  * Details about restoring a deleted app.
@@ -6436,36 +7366,6 @@ export type SnapshotRestoreRequest = ProxyOnlyResource & {
    */
   useDRSecondary?: boolean;
 };
-
-/**
- * Specifies the web app that snapshot contents will be retrieved from.
- */
-export interface SnapshotRecoverySource {
-  /**
-   * Geographical location of the source web app, e.g. SouthEastAsia, SouthCentralUS
-   */
-  location?: string;
-  /**
-   * ARM resource ID of the source app.
-   * /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName} for production slots and
-   * /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots.
-   */
-  id?: string;
-}
-
-/**
- * Collection of Kudu site extension information elements.
- */
-export interface SiteExtensionInfoCollection {
-  /**
-   * Collection of resources.
-   */
-  value: SiteExtensionInfo[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
 
 /**
  * Site Extension Information.
@@ -6551,23 +7451,6 @@ export type SiteExtensionInfo = ProxyOnlyResource & {
 };
 
 /**
- * Copy deployment slot parameters.
- */
-export interface CsmCopySlotEntity {
-  /**
-   * Destination deployment slot during copy operation.
-   */
-  targetSlot: string;
-  /**
-   * The site object which will be merged with the source slot site
-   * to produce new destination slot site object.
-   * <code>null</code> to just copy source slot content. Otherwise a <code>Site</code>
-   * object with properties to override source slot site.
-   */
-  siteConfig: SiteConfig;
-}
-
-/**
  * Private Endpoint Connection ARM resource.
  */
 export type PrivateEndpointConnectionResource = ProxyOnlyResource & {
@@ -6583,31 +7466,6 @@ export type PrivateEndpointConnectionResource = ProxyOnlyResource & {
 };
 
 /**
- * A wrapper for an ARM resource id
- */
-export interface ArmIdWrapper {
-  readonly id?: string;
-}
-
-/**
- * The state of a private link connection
- */
-export interface PrivateLinkConnectionState {
-  /**
-   * Status of a private link connection
-   */
-  status?: string;
-  /**
-   * Description of a private link connection
-   */
-  description?: string;
-  /**
-   * ActionsRequired for a private link connection
-   */
-  actionsRequired?: string;
-}
-
-/**
  * Private Endpoint Connection Approval ARM resource.
  */
 export type PrivateLinkConnectionApprovalRequestResource = ProxyOnlyResource & {
@@ -6616,61 +7474,6 @@ export type PrivateLinkConnectionApprovalRequestResource = ProxyOnlyResource & {
    */
   privateLinkServiceConnectionState?: PrivateLinkConnectionState;
 };
-
-/**
- * Wrapper for a collection of private link resources
- */
-export interface PrivateLinkResourcesWrapper {
-  value: PrivateLinkResource[];
-}
-
-/**
- * A private link resource
- */
-export interface PrivateLinkResource {
-  id: string;
-  /**
-   * Name of a private link resource
-   */
-  name: string;
-  type: string;
-  /**
-   * Properties of a private link resource
-   */
-  properties: PrivateLinkResourceProperties;
-}
-
-/**
- * Properties of a private link resource
- */
-export interface PrivateLinkResourceProperties {
-  /**
-   * GroupId of a private link resource
-   */
-  readonly groupId?: string;
-  /**
-   * RequiredMembers of a private link resource
-   */
-  readonly requiredMembers?: string[];
-  /**
-   * RequiredZoneNames of a private link resource
-   */
-  readonly requiredZoneNames?: string[];
-}
-
-/**
- * Collection of slot differences.
- */
-export interface SlotDifferenceCollection {
-  /**
-   * Collection of resources.
-   */
-  value: SlotDifference[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
 
 /**
  * A setting difference between two deployment slots of an app.
@@ -6707,20 +7510,6 @@ export type SlotDifference = ProxyOnlyResource & {
 };
 
 /**
- * Collection of snapshots which can be used to revert an app to a previous time.
- */
-export interface SnapshotCollection {
-  /**
-   * Collection of resources.
-   */
-  value: Snapshot[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
  * A snapshot of an app.
  */
 export type Snapshot = ProxyOnlyResource & {
@@ -6754,66 +7543,6 @@ export type SiteSourceControl = ProxyOnlyResource & {
    * <code>true</code> for a Mercurial repository; <code>false</code> for a Git repository.
    */
   isMercurial?: boolean;
-};
-
-/**
- * Collection of Kudu continuous web job information elements.
- */
-export interface TriggeredWebJobCollection {
-  /**
-   * Collection of resources.
-   */
-  value: TriggeredWebJob[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
- * Triggered Web Job Information.
- */
-export type TriggeredWebJob = ProxyOnlyResource & {
-  /**
-   * Latest job run information.
-   */
-  latestRun?: TriggeredJobRun;
-  /**
-   * History URL.
-   */
-  historyUrl?: string;
-  /**
-   * Scheduler Logs URL.
-   */
-  schedulerLogsUrl?: string;
-  /**
-   * Run command.
-   */
-  runCommand?: string;
-  /**
-   * Job URL.
-   */
-  url?: string;
-  /**
-   * Extra Info URL.
-   */
-  extraInfoUrl?: string;
-  /**
-   * Job type.
-   */
-  webJobType?: WebJobType;
-  /**
-   * Error information.
-   */
-  error?: string;
-  /**
-   * Using SDK?
-   */
-  usingSdk?: boolean;
-  /**
-   * Job settings.
-   */
-  settings?: { [propertyName: string]: any };
 };
 
 /**
@@ -6867,18 +7596,50 @@ export type TriggeredJobRun = ProxyOnlyResource & {
 };
 
 /**
- * Collection of Kudu continuous web job information elements.
+ * Triggered Web Job Information.
  */
-export interface TriggeredJobHistoryCollection {
+export type TriggeredWebJob = ProxyOnlyResource & {
   /**
-   * Collection of resources.
+   * Latest job run information.
    */
-  value: TriggeredJobHistory[];
+  latestRun?: TriggeredJobRun;
   /**
-   * Link to next page of resources.
+   * History URL.
    */
-  readonly nextLink?: string;
-}
+  historyUrl?: string;
+  /**
+   * Scheduler Logs URL.
+   */
+  schedulerLogsUrl?: string;
+  /**
+   * Run command.
+   */
+  runCommand?: string;
+  /**
+   * Job URL.
+   */
+  url?: string;
+  /**
+   * Extra Info URL.
+   */
+  extraInfoUrl?: string;
+  /**
+   * Job type.
+   */
+  webJobType?: WebJobType;
+  /**
+   * Error information.
+   */
+  error?: string;
+  /**
+   * Using SDK?
+   */
+  usingSdk?: boolean;
+  /**
+   * Job settings.
+   */
+  settings?: { [propertyName: string]: any };
+};
 
 /**
  * Triggered Web Job History. List of Triggered Web Job Run Information elements.
@@ -6889,60 +7650,6 @@ export type TriggeredJobHistory = ProxyOnlyResource & {
    */
   runs?: TriggeredJobRun[];
 };
-
-/**
- * Collection of CSM usage quotas.
- */
-export interface CsmUsageQuotaCollection {
-  /**
-   * Collection of resources.
-   */
-  value: CsmUsageQuota[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
- * Usage of the quota resource.
- */
-export interface CsmUsageQuota {
-  /**
-   * Units of measurement for the quota resource.
-   */
-  unit?: string;
-  /**
-   * Next reset time for the resource counter.
-   */
-  nextResetTime?: Date;
-  /**
-   * The current value of the resource counter.
-   */
-  currentValue?: number;
-  /**
-   * The resource limit.
-   */
-  limit?: number;
-  /**
-   * Quota name.
-   */
-  name?: LocalizableString;
-}
-
-/**
- * Localizable string object containing the name and a localized value.
- */
-export interface LocalizableString {
-  /**
-   * Non-localized name.
-   */
-  value?: string;
-  /**
-   * Localized name.
-   */
-  localizedValue?: string;
-}
 
 /**
  * The Virtual Network gateway contract. This is used to give the Virtual Network gateway access to the VPN package.
@@ -6957,20 +7664,6 @@ export type VnetGateway = ProxyOnlyResource & {
    */
   vpnPackageUri?: string;
 };
-
-/**
- * Collection of Kudu web job information elements.
- */
-export interface WebJobCollection {
-  /**
-   * Collection of resources.
-   */
-  value: WebJob[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
 
 /**
  * Web Job Information.
@@ -7007,110 +7700,6 @@ export type WebJob = ProxyOnlyResource & {
 };
 
 /**
- * Collection of static sites.
- */
-export interface StaticSiteCollection {
-  /**
-   * Collection of resources.
-   */
-  value: StaticSiteARMResource[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
- * Static Site ARM resource.
- */
-export type StaticSiteARMResource = Resource & {
-  /**
-   * Description of a SKU for a scalable resource.
-   */
-  sku?: SkuDescription;
-  /**
-   * The default autogenerated hostname for the static site.
-   */
-  readonly defaultHostname?: string;
-  /**
-   * URL for the repository of the static site.
-   */
-  repositoryUrl?: string;
-  /**
-   * The target branch in the repository.
-   */
-  branch?: string;
-  /**
-   * The custom domains associated with this static site.
-   */
-  readonly customDomains?: string[];
-  /**
-   * A user's github repository token. This is used to setup the Github Actions workflow file and API secrets.
-   */
-  repositoryToken?: string;
-  /**
-   * Build properties to configure on the repository.
-   */
-  buildProperties?: StaticSiteBuildProperties;
-};
-
-/**
- * Build properties for the static site.
- */
-export interface StaticSiteBuildProperties {
-  /**
-   * The path to the app code within the repository.
-   */
-  appLocation?: string;
-  /**
-   * The path to the api code within the repository.
-   */
-  apiLocation?: string;
-  /**
-   * The path of the app artifacts after building.
-   */
-  appArtifactLocation?: string;
-}
-
-/**
- * Description of a SKU for a scalable resource.
- */
-export interface SkuDescription {
-  /**
-   * Name of the resource SKU.
-   */
-  name?: string;
-  /**
-   * Service tier of the resource SKU.
-   */
-  tier?: string;
-  /**
-   * Size specifier of the resource SKU.
-   */
-  size?: string;
-  /**
-   * Family code of the resource SKU.
-   */
-  family?: string;
-  /**
-   * Current number of instances assigned to the resource.
-   */
-  capacity?: number;
-  /**
-   * Min, max, and default scale values of the SKU.
-   */
-  skuCapacity?: SkuCapacity;
-  /**
-   * Locations of the SKU.
-   */
-  locations?: string[];
-  /**
-   * Capabilities of the SKU, e.g., is traffic manager enabled?
-   */
-  capabilities?: Capability[];
-}
-
-/**
  * ARM resource for a static site when patching
  */
 export type StaticSitePatchResource = ProxyOnlyResource & {
@@ -7141,20 +7730,6 @@ export type StaticSitePatchResource = ProxyOnlyResource & {
 };
 
 /**
- * Collection of static site custom users.
- */
-export interface StaticSiteUserCollection {
-  /**
-   * Collection of resources.
-   */
-  value: StaticSiteUserARMResource[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
  * Static Site User ARM resource.
  */
 export type StaticSiteUserARMResource = ProxyOnlyResource & {
@@ -7175,20 +7750,6 @@ export type StaticSiteUserARMResource = ProxyOnlyResource & {
    */
   roles?: string;
 };
-
-/**
- * Collection of static site builds.
- */
-export interface StaticSiteBuildCollection {
-  /**
-   * Collection of resources.
-   */
-  value: StaticSiteBuildARMResource[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
 
 /**
  * Static Site Build ARM resource.
@@ -7223,20 +7784,6 @@ export type StaticSiteBuildARMResource = ProxyOnlyResource & {
    */
   readonly status?: BuildStatus;
 };
-
-/**
- * Collection of static site functions.
- */
-export interface StaticSiteFunctionOverviewCollection {
-  /**
-   * Collection of resources.
-   */
-  value: StaticSiteFunctionOverviewARMResource[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
 
 /**
  * Static Site Function Overview ARM resource.
@@ -7293,20 +7840,6 @@ export type StaticSiteUserInvitationResponseResource = ProxyOnlyResource & {
 };
 
 /**
- * Collection of static site custom domains.
- */
-export interface StaticSiteCustomDomainOverviewCollection {
-  /**
-   * Collection of resources.
-   */
-  value: StaticSiteCustomDomainOverviewARMResource[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
  * Static Site Custom Domain Overview ARM resource.
  */
 export type StaticSiteCustomDomainOverviewARMResource = ProxyOnlyResource & {
@@ -7332,184 +7865,6 @@ export type StaticSiteResetPropertiesARMResource = ProxyOnlyResource & {
    * Determines whether the repository should be updated with the new properties.
    */
   shouldUpdateRepository?: boolean;
-};
-
-/**
- * Collection of App Service Environments.
- */
-export interface AppServiceEnvironmentCollection {
-  /**
-   * Collection of resources.
-   */
-  value: AppServiceEnvironmentResource[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
- * App Service Environment ARM resource.
- */
-export type AppServiceEnvironmentResource = Resource & {
-  /**
-   * Name of the App Service Environment.
-   */
-  namePropertiesName?: string;
-  /**
-   * Location of the App Service Environment, e.g. "West US".
-   */
-  locationPropertiesLocation?: string;
-  /**
-   * Provisioning state of the App Service Environment.
-   */
-  readonly provisioningState?: ProvisioningState;
-  /**
-   * Current status of the App Service Environment.
-   */
-  readonly status?: HostingEnvironmentStatus;
-  /**
-   * Name of the Virtual Network for the App Service Environment.
-   */
-  vnetName?: string;
-  /**
-   * Resource group of the Virtual Network.
-   */
-  vnetResourceGroupName?: string;
-  /**
-   * Subnet of the Virtual Network.
-   */
-  vnetSubnetName?: string;
-  /**
-   * Description of the Virtual Network.
-   */
-  virtualNetwork?: VirtualNetworkProfile;
-  /**
-   * Specifies which endpoints to serve internally in the Virtual Network for the App Service Environment.
-   */
-  internalLoadBalancingMode?: InternalLoadBalancingMode;
-  /**
-   * Front-end VM size, e.g. "Medium", "Large".
-   */
-  multiSize?: string;
-  /**
-   * Number of front-end instances.
-   */
-  multiRoleCount?: number;
-  /**
-   * Description of worker pools with worker size IDs, VM sizes, and number of workers in each pool.
-   */
-  workerPools?: WorkerPool[];
-  /**
-   * Number of IP SSL addresses reserved for the App Service Environment.
-   */
-  ipsslAddressCount?: number;
-  /**
-   * Edition of the metadata database for the App Service Environment, e.g. "Standard".
-   */
-  readonly databaseEdition?: string;
-  /**
-   * Service objective of the metadata database for the App Service Environment, e.g. "S0".
-   */
-  readonly databaseServiceObjective?: string;
-  /**
-   * Number of upgrade domains of the App Service Environment.
-   */
-  readonly upgradeDomains?: number;
-  /**
-   * Subscription of the App Service Environment.
-   */
-  readonly subscriptionId?: string;
-  /**
-   * DNS suffix of the App Service Environment.
-   */
-  dnsSuffix?: string;
-  /**
-   * Last deployment action on the App Service Environment.
-   */
-  readonly lastAction?: string;
-  /**
-   * Result of the last deployment action on the App Service Environment.
-   */
-  readonly lastActionResult?: string;
-  /**
-   * List of comma separated strings describing which VM sizes are allowed for front-ends.
-   */
-  readonly allowedMultiSizes?: string;
-  /**
-   * List of comma separated strings describing which VM sizes are allowed for workers.
-   */
-  readonly allowedWorkerSizes?: string;
-  /**
-   * Maximum number of VMs in the App Service Environment.
-   */
-  readonly maximumNumberOfMachines?: number;
-  /**
-   * Description of IP SSL mapping for the App Service Environment.
-   */
-  readonly vipMappings?: VirtualIPMapping[];
-  /**
-   * Current total, used, and available worker capacities.
-   */
-  readonly environmentCapacities?: StampCapacity[];
-  /**
-   * Access control list for controlling traffic to the App Service Environment.
-   */
-  networkAccessControlList?: NetworkAccessControlEntry[];
-  /**
-   * True/false indicating whether the App Service Environment is healthy.
-   */
-  readonly environmentIsHealthy?: boolean;
-  /**
-   * Detailed message about with results of the last check of the App Service Environment.
-   */
-  readonly environmentStatus?: string;
-  /**
-   * Resource group of the App Service Environment.
-   */
-  readonly resourceGroup?: string;
-  /**
-   * Scale factor for front-ends.
-   */
-  frontEndScaleFactor?: number;
-  /**
-   * Default Scale Factor for FrontEnds.
-   */
-  readonly defaultFrontEndScaleFactor?: number;
-  /**
-   * API Management Account associated with the App Service Environment.
-   */
-  apiManagementAccountId?: string;
-  /**
-   * <code>true</code> if the App Service Environment is suspended; otherwise, <code>false</code>. The environment can be suspended, e.g. when the management endpoint is no longer available
-   *  (most likely because NSG blocked the incoming traffic).
-   */
-  suspended?: boolean;
-  /**
-   * True/false indicating whether the App Service Environment is suspended. The environment can be suspended e.g. when the management endpoint is no longer available
-   * (most likely because NSG blocked the incoming traffic).
-   */
-  dynamicCacheEnabled?: boolean;
-  /**
-   * Custom settings for changing the behavior of the App Service Environment.
-   */
-  clusterSettings?: NameValuePair[];
-  /**
-   * User added ip ranges to whitelist on ASE db
-   */
-  userWhitelistedIpRanges?: string[];
-  /**
-   * Flag that displays whether an ASE has linux workers or not
-   */
-  hasLinuxWorkers?: boolean;
-  /**
-   * Key Vault ID for ILB App Service Environment default SSL certificate
-   */
-  sslCertKeyVaultId?: string;
-  /**
-   * Key Vault Secret Name for ILB App Service Environment default SSL certificate
-   */
-  sslCertKeyVaultSecretName?: string;
 };
 
 /**
@@ -7677,20 +8032,6 @@ export type AppServiceEnvironmentPatchResource = ProxyOnlyResource & {
 };
 
 /**
- * Collection of stamp capacities.
- */
-export interface StampCapacityCollection {
-  /**
-   * Collection of resources.
-   */
-  value: StampCapacity[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
  * Describes main public IP address and any extra virtual IPs.
  */
 export type AddressResponse = ProxyOnlyResource & {
@@ -7711,66 +8052,6 @@ export type AddressResponse = ProxyOnlyResource & {
    */
   vipMappings?: VirtualIPMapping[];
 };
-
-/**
- * Diagnostics for an App Service Environment.
- */
-export interface HostingEnvironmentDiagnostics {
-  /**
-   * Name/identifier of the diagnostics.
-   */
-  name?: string;
-  /**
-   * Diagnostics output.
-   */
-  diagnosticsOutput?: string;
-}
-
-/**
- * Collection of Inbound Environment Endpoints
- */
-export interface InboundEnvironmentEndpointCollection {
-  /**
-   * Collection of resources.
-   */
-  value: InboundEnvironmentEndpoint[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
- * The IP Addresses and Ports that require inbound network access to and within the subnet of the App Service Environment.
- */
-export interface InboundEnvironmentEndpoint {
-  /**
-   * Short text describing the purpose of the network traffic.
-   */
-  description?: string;
-  /**
-   * The IP addresses that network traffic will originate from in cidr notation.
-   */
-  endpoints?: string[];
-  /**
-   * The ports that network traffic will arrive to the App Service Environment at.
-   */
-  ports?: string[];
-}
-
-/**
- * Collection of worker pools.
- */
-export interface WorkerPoolCollection {
-  /**
-   * Collection of resources.
-   */
-  value: WorkerPoolResource[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
 
 /**
  * Worker pool of an App Service Environment ARM resource.
@@ -7803,20 +8084,6 @@ export type WorkerPoolResource = ProxyOnlyResource & {
 };
 
 /**
- * Collection of metric definitions.
- */
-export interface ResourceMetricDefinitionCollection {
-  /**
-   * Collection of resources.
-   */
-  value: ResourceMetricDefinition[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
  * Metadata for the metrics.
  */
 export type ResourceMetricDefinition = ProxyOnlyResource & {
@@ -7841,66 +8108,6 @@ export type ResourceMetricDefinition = ProxyOnlyResource & {
    */
   readonly properties?: { [propertyName: string]: string };
 };
-
-/**
- * Metrics availability and retention.
- */
-export interface ResourceMetricAvailability {
-  /**
-   * Time grain .
-   */
-  readonly timeGrain?: string;
-  /**
-   * Retention period for the current time grain.
-   */
-  readonly retention?: string;
-}
-
-/**
- * Collection of SKU information.
- */
-export interface SkuInfoCollection {
-  /**
-   * Collection of resources.
-   */
-  value: SkuInfo[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
- * SKU discovery information.
- */
-export interface SkuInfo {
-  /**
-   * Resource type that this SKU applies to.
-   */
-  resourceType?: string;
-  /**
-   * Name and tier of the SKU.
-   */
-  sku?: SkuDescription;
-  /**
-   * Min, max, and default scale values of the SKU.
-   */
-  capacity?: SkuCapacity;
-}
-
-/**
- * Collection of usages.
- */
-export interface UsageCollection {
-  /**
-   * Collection of resources.
-   */
-  value: Usage[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
 
 /**
  * Usage of the quota resource.
@@ -7938,171 +8145,6 @@ export type Usage = ProxyOnlyResource & {
    * Site mode used for this usage.
    */
   readonly siteMode?: string;
-};
-
-/**
- * Collection of Outbound Environment Endpoints
- */
-export interface OutboundEnvironmentEndpointCollection {
-  /**
-   * Collection of resources.
-   */
-  value: OutboundEnvironmentEndpoint[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
- * Endpoints accessed for a common purpose that the App Service Environment requires outbound network access to.
- */
-export interface OutboundEnvironmentEndpoint {
-  /**
-   * The type of service accessed by the App Service Environment, e.g., Azure Storage, Azure SQL Database, and Azure Active Directory.
-   */
-  category?: string;
-  /**
-   * The endpoints that the App Service Environment reaches the service at.
-   */
-  endpoints?: EndpointDependency[];
-}
-
-/**
- * A domain name that a service is reached at, including details of the current connection status.
- */
-export interface EndpointDependency {
-  /**
-   * The domain name of the dependency.
-   */
-  domainName?: string;
-  /**
-   * The IP Addresses and Ports used when connecting to DomainName.
-   */
-  endpointDetails?: EndpointDetail[];
-}
-
-/**
- * Current TCP connectivity information from the App Service Environment to a single endpoint.
- */
-export interface EndpointDetail {
-  /**
-   * An IP Address that Domain Name currently resolves to.
-   */
-  ipAddress?: string;
-  /**
-   * The port an endpoint is connected to.
-   */
-  port?: number;
-  /**
-   * The time in milliseconds it takes for a TCP connection to be created from the App Service Environment to this IpAddress at this Port.
-   */
-  latency?: number;
-  /**
-   * Whether it is possible to create a TCP connection from the App Service Environment to this IpAddress at this Port.
-   */
-  isAccessible?: boolean;
-}
-
-/**
- * Collection of App Service plans.
- */
-export interface AppServicePlanCollection {
-  /**
-   * Collection of resources.
-   */
-  value: AppServicePlan[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
- * App Service plan.
- */
-export type AppServicePlan = Resource & {
-  /**
-   * Description of a SKU for a scalable resource.
-   */
-  sku?: SkuDescription;
-  /**
-   * Target worker tier assigned to the App Service plan.
-   */
-  workerTierName?: string;
-  /**
-   * App Service plan status.
-   */
-  readonly status?: StatusOptions;
-  /**
-   * App Service plan subscription.
-   */
-  readonly subscription?: string;
-  /**
-   * Specification for the App Service Environment to use for the App Service plan.
-   */
-  hostingEnvironmentProfile?: HostingEnvironmentProfile;
-  /**
-   * Maximum number of instances that can be assigned to this App Service plan.
-   */
-  readonly maximumNumberOfWorkers?: number;
-  /**
-   * Geographical location for the App Service plan.
-   */
-  readonly geoRegion?: string;
-  /**
-   * If <code>true</code>, apps assigned to this App Service plan can be scaled independently.
-   * If <code>false</code>, apps assigned to this App Service plan will scale to all instances of the plan.
-   */
-  perSiteScaling?: boolean;
-  /**
-   * Maximum number of total workers allowed for this ElasticScaleEnabled App Service Plan
-   */
-  maximumElasticWorkerCount?: number;
-  /**
-   * Number of apps assigned to this App Service plan.
-   */
-  readonly numberOfSites?: number;
-  /**
-   * If <code>true</code>, this App Service Plan owns spot instances.
-   */
-  isSpot?: boolean;
-  /**
-   * The time when the server farm expires. Valid only if it is a spot server farm.
-   */
-  spotExpirationTime?: Date;
-  /**
-   * The time when the server farm free offer expires.
-   */
-  freeOfferExpirationTime?: Date;
-  /**
-   * Resource group of the App Service plan.
-   */
-  readonly resourceGroup?: string;
-  /**
-   * If Linux app service plan <code>true</code>, <code>false</code> otherwise.
-   */
-  reserved?: boolean;
-  /**
-   * Obsolete: If Hyper-V container app service plan <code>true</code>, <code>false</code> otherwise.
-   */
-  isXenon?: boolean;
-  /**
-   * If Hyper-V container app service plan <code>true</code>, <code>false</code> otherwise.
-   */
-  hyperV?: boolean;
-  /**
-   * Scaling worker count.
-   */
-  targetWorkerCount?: number;
-  /**
-   * Scaling worker size ID.
-   */
-  targetWorkerSizeId?: number;
-  /**
-   * Provisioning state of the App Service Environment.
-   */
-  readonly provisioningState?: ProvisioningState;
 };
 
 /**
@@ -8203,20 +8245,6 @@ export type HybridConnectionKey = ProxyOnlyResource & {
 };
 
 /**
- * Collection of resources.
- */
-export interface ResourceCollection {
-  /**
-   * Collection of resources.
-   */
-  value: string[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
  * Hybrid Connection limits contract. This is used to return the plan limits of Hybrid Connections.
  */
 export type HybridConnectionLimits = ProxyOnlyResource & {
@@ -8229,34 +8257,6 @@ export type HybridConnectionLimits = ProxyOnlyResource & {
    */
   readonly maximum?: number;
 };
-
-/**
- * Collection of hostname bindings.
- */
-export interface HybridConnectionCollection {
-  /**
-   * Collection of resources.
-   */
-  value: HybridConnection[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
-
-/**
- * Collection of resource health metadata.
- */
-export interface ResourceHealthMetadataCollection {
-  /**
-   * Collection of resources.
-   */
-  value: ResourceHealthMetadata[];
-  /**
-   * Link to next page of resources.
-   */
-  readonly nextLink?: string;
-}
 
 /**
  * Used for getting ResourceHealthCheck settings.

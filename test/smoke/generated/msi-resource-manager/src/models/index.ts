@@ -24,36 +24,6 @@ export interface Resource {
 }
 
 /**
- * Describes a system assigned identity resource.
- */
-export type SystemAssignedIdentity = Resource & {
-  /**
-   * The geo-location where the resource lives
-   */
-  location: string;
-  /**
-   * Resource tags
-   */
-  tags?: { [propertyName: string]: string };
-  /**
-   * The id of the tenant which the identity belongs to.
-   */
-  readonly tenantId?: string;
-  /**
-   * The id of the service principal object associated with the created identity.
-   */
-  readonly principalId?: string;
-  /**
-   * The id of the app associated with the identity. This is a random generated UUID by MSI.
-   */
-  readonly clientId?: string;
-  /**
-   *  The ManagedServiceIdentity DataPlane URL that can be queried to obtain the identity credentials.
-   */
-  readonly clientSecretUrl?: string;
-};
-
-/**
  * An error response from the ManagedServiceIdentity service.
  */
 export interface CloudError {
@@ -150,23 +120,17 @@ export interface UserAssignedIdentitiesListResult {
 }
 
 /**
- * The resource model definition for a ARM tracked top level resource
+ * Describes a system assigned identity resource.
  */
-export type TrackedResource = Resource & {
-  /**
-   * Resource tags.
-   */
-  tags?: { [propertyName: string]: string };
+export type SystemAssignedIdentity = Resource & {
   /**
    * The geo-location where the resource lives
    */
   location: string;
-};
-
-/**
- * Describes an identity resource.
- */
-export type Identity = TrackedResource & {
+  /**
+   * Resource tags
+   */
+  tags?: { [propertyName: string]: string };
   /**
    * The id of the tenant which the identity belongs to.
    */
@@ -179,6 +143,24 @@ export type Identity = TrackedResource & {
    * The id of the app associated with the identity. This is a random generated UUID by MSI.
    */
   readonly clientId?: string;
+  /**
+   *  The ManagedServiceIdentity DataPlane URL that can be queried to obtain the identity credentials.
+   */
+  readonly clientSecretUrl?: string;
+};
+
+/**
+ * The resource model definition for a ARM tracked top level resource
+ */
+export type TrackedResource = Resource & {
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The geo-location where the resource lives
+   */
+  location: string;
 };
 
 /**
@@ -211,6 +193,24 @@ export type IdentityUpdate = Resource & {
  * The resource model definition for a ARM proxy resource. It will have everything other than required location and tags
  */
 export type ProxyResource = Resource & {};
+
+/**
+ * Describes an identity resource.
+ */
+export type Identity = TrackedResource & {
+  /**
+   * The id of the tenant which the identity belongs to.
+   */
+  readonly tenantId?: string;
+  /**
+   * The id of the service principal object associated with the created identity.
+   */
+  readonly principalId?: string;
+  /**
+   * The id of the app associated with the identity. This is a random generated UUID by MSI.
+   */
+  readonly clientId?: string;
+};
 
 /**
  * Contains response data for the getByScope operation.

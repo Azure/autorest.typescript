@@ -505,16 +505,6 @@ export interface DeploymentWhatIf {
 }
 
 /**
- * Deployment What-if properties.
- */
-export type DeploymentWhatIfProperties = DeploymentProperties & {
-  /**
-   * Optional What-If operation settings.
-   */
-  whatIfSettings?: DeploymentWhatIfSettings;
-};
-
-/**
  * Deployment What-If operation settings.
  */
 export interface DeploymentWhatIfSettings {
@@ -623,62 +613,6 @@ export interface ResourceListResult {
 }
 
 /**
- * Specified resource.
- */
-export interface Resource {
-  /**
-   * Resource ID
-   */
-  readonly id?: string;
-  /**
-   * Resource name
-   */
-  readonly name?: string;
-  /**
-   * Resource type
-   */
-  readonly type?: string;
-  /**
-   * Resource location
-   */
-  location?: string;
-  /**
-   * Resource tags
-   */
-  tags?: { [propertyName: string]: string };
-}
-
-/**
- * Resource information.
- */
-export type GenericResource = Resource & {
-  /**
-   * The plan of the resource.
-   */
-  plan?: Plan;
-  /**
-   * The resource properties.
-   */
-  properties?: any;
-  /**
-   * The kind of the resource.
-   */
-  kind?: string;
-  /**
-   * ID of the resource that manages this resource.
-   */
-  managedBy?: string;
-  /**
-   * The SKU of the resource.
-   */
-  sku?: Sku;
-  /**
-   * The identity of the resource.
-   */
-  identity?: Identity;
-};
-
-/**
  * Plan for the resource.
  */
 export interface Plan {
@@ -770,22 +704,30 @@ export interface ComponentsSgqdofSchemasIdentityPropertiesUserassignedidentities
 }
 
 /**
- * Resource information.
+ * Specified resource.
  */
-export type GenericResourceExpanded = GenericResource & {
+export interface Resource {
   /**
-   * The created time of the resource. This is only present if requested via the $expand query parameter.
+   * Resource ID
    */
-  readonly createdTime?: Date;
+  readonly id?: string;
   /**
-   * The changed time of the resource. This is only present if requested via the $expand query parameter.
+   * Resource name
    */
-  readonly changedTime?: Date;
+  readonly name?: string;
   /**
-   * The provisioning state of the resource. This is only present if requested via the $expand query parameter.
+   * Resource type
    */
-  readonly provisioningState?: string;
-};
+  readonly type?: string;
+  /**
+   * Resource location
+   */
+  location?: string;
+  /**
+   * Resource tags
+   */
+  tags?: { [propertyName: string]: string };
+}
 
 /**
  * Resource group information.
@@ -1170,6 +1112,64 @@ export interface SubResource {
    */
   id?: string;
 }
+
+/**
+ * Deployment What-if properties.
+ */
+export type DeploymentWhatIfProperties = DeploymentProperties & {
+  /**
+   * Optional What-If operation settings.
+   */
+  whatIfSettings?: DeploymentWhatIfSettings;
+};
+
+/**
+ * Resource information.
+ */
+export type GenericResource = Resource & {
+  /**
+   * The plan of the resource.
+   */
+  plan?: Plan;
+  /**
+   * The resource properties.
+   */
+  properties?: any;
+  /**
+   * The kind of the resource.
+   */
+  kind?: string;
+  /**
+   * ID of the resource that manages this resource.
+   */
+  managedBy?: string;
+  /**
+   * The SKU of the resource.
+   */
+  sku?: Sku;
+  /**
+   * The identity of the resource.
+   */
+  identity?: Identity;
+};
+
+/**
+ * Resource information.
+ */
+export type GenericResourceExpanded = GenericResource & {
+  /**
+   * The created time of the resource. This is only present if requested via the $expand query parameter.
+   */
+  readonly createdTime?: Date;
+  /**
+   * The changed time of the resource. This is only present if requested via the $expand query parameter.
+   */
+  readonly changedTime?: Date;
+  /**
+   * The provisioning state of the resource. This is only present if requested via the $expand query parameter.
+   */
+  readonly provisioningState?: string;
+};
 
 /**
  * Defines headers for Deployments_whatIfAtSubscriptionScope operation.
