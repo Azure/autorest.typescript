@@ -151,12 +151,13 @@ function buildSpec(spec: OperationSpecDetails): string {
   const mediaType = buildMediaType(spec);
 
   const isXML = spec.isXML ? "isXML: true," : "";
+  const serializerName = spec.isXML ? "xmlSerializer" : "serializer";
 
   return `{ path: "${spec.path}", httpMethod: "${
     spec.httpMethod
   }", responses: {${responses.join(
     ", "
-  )}},${requestBody}${queryParams}${urlParams}${headerParams}${isXML}${contentType}${mediaType}serializer
+  )}},${requestBody}${queryParams}${urlParams}${headerParams}${isXML}${contentType}${mediaType}${serializerName}
     }`;
 }
 
@@ -961,20 +962,22 @@ export function addOperationSpecs(
   parameters: ParameterDetails[],
   hasMappers: boolean
 ): void {
-  const isXml = operationGroupDetails.operations.some(o =>
+  const hasXml = operationGroupDetails.operations.some(o =>
     o.mediaTypes.has(KnownMediaType.Xml)
   );
-  const mappers = hasMappers ? "Mappers" : "{}";
+
+  const hasJson = operationGroupDetails.operations.some(o =>
+    o.mediaTypes.has(KnownMediaType.Json)
+  );
   file.addStatements("// Operation Specifications");
-  file.addVariableStatement({
-    declarationKind: VariableDeclarationKind.Const,
-    declarations: [
-      {
-        name: "serializer",
-        initializer: `new coreHttp.Serializer(${mappers}, /* isXml */ ${isXml});`
-      }
-    ]
-  });
+
+  if (hasXml) {
+    writeSerializer(hasMappers, file, SerializerKind.Xml);
+  }
+
+  if (hasJson) {
+    writeSerializer(hasMappers, file, SerializerKind.Json);
+  }
 
   operationGroupDetails.operations.forEach(operation => {
     const operationSpecs = transformOperationSpec(operation, parameters);
@@ -991,6 +994,30 @@ export function addOperationSpecs(
         ]
       });
     }
+  });
+}
+
+enum SerializerKind {
+  Json,
+  Xml
+}
+
+function writeSerializer(
+  hasMappers: boolean,
+  file: SourceFile,
+  kind: SerializerKind = SerializerKind.Json
+) {
+  const isXml = kind === SerializerKind.Xml;
+  const mappers = hasMappers ? "Mappers" : "{}";
+  const name = isXml ? "xmlSerializer" : "serializer";
+  file.addVariableStatement({
+    declarationKind: VariableDeclarationKind.Const,
+    declarations: [
+      {
+        name: "serializer",
+        initializer: `new coreHttp.Serializer(${mappers}, /* isXml */ ${isXml});`
+      }
+    ]
   });
 }
 
