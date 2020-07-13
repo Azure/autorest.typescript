@@ -542,7 +542,9 @@ export class Xml {
 }
 // Operation Specifications
 
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ true);
+const xmlSerializer = new coreHttp.Serializer(Mappers, /* isXml */ true);
+
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
 const getComplexTypeRefNoMetaOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/complex-type-ref-no-meta",
@@ -554,7 +556,7 @@ const getComplexTypeRefNoMetaOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host],
   isXML: true,
-  serializer
+  serializer: xmlSerializer
 };
 const putComplexTypeRefNoMetaOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/complex-type-ref-no-meta",
@@ -566,7 +568,7 @@ const putComplexTypeRefNoMetaOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "xml",
-  serializer
+  serializer: xmlSerializer
 };
 const getComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/complex-type-ref-with-meta",
@@ -578,7 +580,7 @@ const getComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host],
   isXML: true,
-  serializer
+  serializer: xmlSerializer
 };
 const putComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/complex-type-ref-with-meta",
@@ -590,7 +592,7 @@ const putComplexTypeRefWithMetaOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "xml",
-  serializer
+  serializer: xmlSerializer
 };
 const getSimpleOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/simple",
@@ -605,7 +607,7 @@ const getSimpleOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host],
   isXML: true,
-  serializer
+  serializer: xmlSerializer
 };
 const putSimpleOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/simple",
@@ -622,7 +624,7 @@ const putSimpleOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "xml",
-  serializer
+  serializer: xmlSerializer
 };
 const getWrappedListsOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/wrapped-lists",
@@ -634,7 +636,7 @@ const getWrappedListsOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host],
   isXML: true,
-  serializer
+  serializer: xmlSerializer
 };
 const putWrappedListsOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/wrapped-lists",
@@ -651,7 +653,7 @@ const putWrappedListsOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "xml",
-  serializer
+  serializer: xmlSerializer
 };
 const getHeadersOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/headers",
@@ -674,7 +676,7 @@ const getEmptyListOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host],
   isXML: true,
-  serializer
+  serializer: xmlSerializer
 };
 const putEmptyListOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/empty-list",
@@ -686,7 +688,7 @@ const putEmptyListOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "xml",
-  serializer
+  serializer: xmlSerializer
 };
 const getEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/empty-wrapped-lists",
@@ -698,7 +700,7 @@ const getEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host],
   isXML: true,
-  serializer
+  serializer: xmlSerializer
 };
 const putEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/empty-wrapped-lists",
@@ -710,7 +712,7 @@ const putEmptyWrappedListsOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "xml",
-  serializer
+  serializer: xmlSerializer
 };
 const getRootListOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/root-list",
@@ -730,7 +732,7 @@ const getRootListOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host],
   isXML: true,
-  serializer
+  serializer: xmlSerializer
 };
 const putRootListOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/root-list",
@@ -742,7 +744,7 @@ const putRootListOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "xml",
-  serializer
+  serializer: xmlSerializer
 };
 const getRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/root-list-single-item",
@@ -762,7 +764,7 @@ const getRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host],
   isXML: true,
-  serializer
+  serializer: xmlSerializer
 };
 const putRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/root-list-single-item",
@@ -774,7 +776,7 @@ const putRootListSingleItemOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "xml",
-  serializer
+  serializer: xmlSerializer
 };
 const getEmptyRootListOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/empty-root-list",
@@ -794,7 +796,7 @@ const getEmptyRootListOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host],
   isXML: true,
-  serializer
+  serializer: xmlSerializer
 };
 const putEmptyRootListOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/empty-root-list",
@@ -806,7 +808,7 @@ const putEmptyRootListOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "xml",
-  serializer
+  serializer: xmlSerializer
 };
 const getEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/empty-child-element",
@@ -818,7 +820,7 @@ const getEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host],
   isXML: true,
-  serializer
+  serializer: xmlSerializer
 };
 const putEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/empty-child-element",
@@ -830,7 +832,7 @@ const putEmptyChildElementOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "xml",
-  serializer
+  serializer: xmlSerializer
 };
 const listContainersOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/",
@@ -843,7 +845,7 @@ const listContainersOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.comp],
   urlParameters: [Parameters.$host],
   isXML: true,
-  serializer
+  serializer: xmlSerializer
 };
 const getServicePropertiesOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/",
@@ -856,7 +858,7 @@ const getServicePropertiesOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.comp1, Parameters.restype],
   urlParameters: [Parameters.$host],
   isXML: true,
-  serializer
+  serializer: xmlSerializer
 };
 const putServicePropertiesOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/",
@@ -869,7 +871,7 @@ const putServicePropertiesOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "xml",
-  serializer
+  serializer: xmlSerializer
 };
 const getAclsOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/mycontainer",
@@ -893,7 +895,7 @@ const getAclsOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.comp2, Parameters.restype1],
   urlParameters: [Parameters.$host],
   isXML: true,
-  serializer
+  serializer: xmlSerializer
 };
 const putAclsOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/mycontainer",
@@ -906,7 +908,7 @@ const putAclsOperationSpec: coreHttp.OperationSpec = {
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "xml",
-  serializer
+  serializer: xmlSerializer
 };
 const listBlobsOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/mycontainer",
@@ -919,7 +921,7 @@ const listBlobsOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.comp, Parameters.restype1],
   urlParameters: [Parameters.$host],
   isXML: true,
-  serializer
+  serializer: xmlSerializer
 };
 const jsonInputOperationSpec: coreHttp.OperationSpec = {
   path: "/xml/jsoninput",

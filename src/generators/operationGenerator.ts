@@ -151,7 +151,9 @@ function buildSpec(spec: OperationSpecDetails): string {
   const mediaType = buildMediaType(spec);
 
   const isXML = spec.isXML ? "isXML: true," : "";
-  const serializerName = spec.isXML ? "xmlSerializer" : "serializer";
+  const serializerName = spec.isXML
+    ? "serializer: xmlSerializer"
+    : "serializer";
 
   return `{ path: "${spec.path}", httpMethod: "${
     spec.httpMethod
@@ -966,8 +968,8 @@ export function addOperationSpecs(
     o.mediaTypes.has(KnownMediaType.Xml)
   );
 
-  const hasJson = operationGroupDetails.operations.some(o =>
-    o.mediaTypes.has(KnownMediaType.Json)
+  const hasNonXml = operationGroupDetails.operations.some(
+    o => !o.mediaTypes.has(KnownMediaType.Xml)
   );
   file.addStatements("// Operation Specifications");
 
@@ -975,7 +977,7 @@ export function addOperationSpecs(
     writeSerializer(hasMappers, file, SerializerKind.Xml);
   }
 
-  if (hasJson) {
+  if (hasNonXml) {
     writeSerializer(hasMappers, file, SerializerKind.Json);
   }
 
@@ -1014,7 +1016,7 @@ function writeSerializer(
     declarationKind: VariableDeclarationKind.Const,
     declarations: [
       {
-        name: "serializer",
+        name,
         initializer: `new coreHttp.Serializer(${mappers}, /* isXml */ ${isXml});`
       }
     ]
