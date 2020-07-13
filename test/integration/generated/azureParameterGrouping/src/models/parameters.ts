@@ -48,7 +48,11 @@ export const $host: OperationURLParameter = {
 };
 
 export const customHeader: OperationParameter = {
-  parameterPath: ["parameterGroupingPostRequiredParameters", "customHeader"],
+  parameterPath: [
+    "options",
+    "parameterGroupingPostRequiredParameters",
+    "customHeader"
+  ],
   mapper: {
     serializedName: "customHeader",
     type: {
@@ -58,7 +62,11 @@ export const customHeader: OperationParameter = {
 };
 
 export const query: OperationQueryParameter = {
-  parameterPath: ["parameterGroupingPostRequiredParameters", "query"],
+  parameterPath: [
+    "options",
+    "parameterGroupingPostRequiredParameters",
+    "query"
+  ],
   mapper: {
     defaultValue: 30,
     serializedName: "query",
@@ -80,7 +88,11 @@ export const path: OperationURLParameter = {
 };
 
 export const customHeader1: OperationParameter = {
-  parameterPath: ["parameterGroupingPostOptionalParameters", "customHeader"],
+  parameterPath: [
+    "options",
+    "parameterGroupingPostOptionalParameters",
+    "customHeader"
+  ],
   mapper: {
     serializedName: "customHeader",
     type: {
@@ -90,7 +102,11 @@ export const customHeader1: OperationParameter = {
 };
 
 export const query1: OperationQueryParameter = {
-  parameterPath: ["parameterGroupingPostOptionalParameters", "query"],
+  parameterPath: [
+    "options",
+    "parameterGroupingPostOptionalParameters",
+    "query"
+  ],
   mapper: {
     defaultValue: 30,
     serializedName: "query",
@@ -101,7 +117,7 @@ export const query1: OperationQueryParameter = {
 };
 
 export const headerOne: OperationParameter = {
-  parameterPath: ["firstParameterGroup", "headerOne"],
+  parameterPath: ["options", "firstParameterGroup", "headerOne"],
   mapper: {
     serializedName: "header-one",
     type: {
@@ -111,7 +127,7 @@ export const headerOne: OperationParameter = {
 };
 
 export const queryOne: OperationQueryParameter = {
-  parameterPath: ["firstParameterGroup", "queryOne"],
+  parameterPath: ["options", "firstParameterGroup", "queryOne"],
   mapper: {
     defaultValue: 30,
     serializedName: "query-one",
@@ -123,6 +139,7 @@ export const queryOne: OperationQueryParameter = {
 
 export const headerTwo: OperationParameter = {
   parameterPath: [
+    "options",
     "parameterGroupingPostMultiParamGroupsSecondParamGroup",
     "headerTwo"
   ],
@@ -136,6 +153,7 @@ export const headerTwo: OperationParameter = {
 
 export const queryTwo: OperationQueryParameter = {
   parameterPath: [
+    "options",
     "parameterGroupingPostMultiParamGroupsSecondParamGroup",
     "queryTwo"
   ],

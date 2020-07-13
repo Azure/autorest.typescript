@@ -954,6 +954,17 @@ function generateOperationJSDoc(
   }${paramJSDoc}`;
 }
 
+function hasMediaType(
+  operationDetails: OperationDetails,
+  mediaType: KnownMediaType
+) {
+  if (!operationDetails.requests) {
+    return operationDetails.mediaTypes.has(mediaType);
+  }
+
+  return operationDetails.requests.some(r => r.mediaType === mediaType);
+}
+
 /**
  * Generates and inserts into the file the operation specs
  * for a given operation group
@@ -964,13 +975,14 @@ export function addOperationSpecs(
   parameters: ParameterDetails[],
   hasMappers: boolean
 ): void {
-  const hasXml = operationGroupDetails.operations.some(o =>
-    o.mediaTypes.has(KnownMediaType.Xml)
+  const hasXml = operationGroupDetails.operations.some(operation =>
+    hasMediaType(operation, KnownMediaType.Xml)
   );
 
   const hasNonXml = operationGroupDetails.operations.some(
-    o => !o.mediaTypes.has(KnownMediaType.Xml)
+    operation => !hasMediaType(operation, KnownMediaType.Xml)
   );
+
   file.addStatements("// Operation Specifications");
 
   if (hasXml) {

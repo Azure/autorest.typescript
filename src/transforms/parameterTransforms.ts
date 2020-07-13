@@ -300,6 +300,7 @@ function getParameterPath(parameter: Parameter) {
     const groupedByName = getLanguageMetadata(parameter.groupedBy.language)
       .name;
     return [
+      ...(!parameter.required ? ["options"] : []),
       normalizeName(groupedByName, NameType.Parameter, true /** shouldGuard */),
       name
     ];
