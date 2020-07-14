@@ -84,8 +84,9 @@ export async function generateTypeScriptLibrary(
   generateParameters(clientDetails, project);
   await generateLROFiles(clientDetails, project);
 
-  // TODO: Get this from the "license-header" setting:
-  //   await this.host.GetValue("license-header");
+  const shouldGenerateLicenseHeader: boolean =
+    (await host.GetValue("license-header")) || false;
+
   const licenseHeader = `
 /*
  * Copyright (c) Microsoft Corporation.
@@ -108,7 +109,7 @@ export async function generateTypeScriptLibrary(
     let fileContents = fs.readFileSync(filePath);
 
     // Add the license header to source code files
-    if (licenseHeader && isSourceCode) {
+    if (shouldGenerateLicenseHeader && isSourceCode) {
       fileContents = `${licenseHeader.trimLeft()}\n${fileContents}`;
     }
 
