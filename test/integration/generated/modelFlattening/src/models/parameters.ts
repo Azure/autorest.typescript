@@ -80,7 +80,7 @@ export const simpleBodyProduct: OperationParameter = {
 };
 
 export const simpleBodyProduct1: OperationParameter = {
-  parameterPath: ["flattenParameterGroup", "simpleBodyProduct"],
+  parameterPath: ["options", "flattenParameterGroup", "simpleBodyProduct"],
   mapper: SimpleProductMapper
 };
 

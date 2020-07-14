@@ -35,7 +35,7 @@ export const clientRequestId: OperationParameter = {
 };
 
 export const maxresults: OperationParameter = {
-  parameterPath: ["pagingGetMultiplePagesOptions", "maxresults"],
+  parameterPath: ["options", "pagingGetMultiplePagesOptions", "maxresults"],
   mapper: {
     serializedName: "maxresults",
     type: {
@@ -45,7 +45,7 @@ export const maxresults: OperationParameter = {
 };
 
 export const timeout: OperationParameter = {
-  parameterPath: ["pagingGetMultiplePagesOptions", "timeout"],
+  parameterPath: ["options", "pagingGetMultiplePagesOptions", "timeout"],
   mapper: {
     defaultValue: 30,
     serializedName: "timeout",
@@ -79,7 +79,11 @@ export const queryConstant: OperationQueryParameter = {
 };
 
 export const maxresults1: OperationParameter = {
-  parameterPath: ["pagingGetOdataMultiplePagesOptions", "maxresults"],
+  parameterPath: [
+    "options",
+    "pagingGetOdataMultiplePagesOptions",
+    "maxresults"
+  ],
   mapper: {
     serializedName: "maxresults",
     type: {
@@ -89,7 +93,7 @@ export const maxresults1: OperationParameter = {
 };
 
 export const timeout1: OperationParameter = {
-  parameterPath: ["pagingGetOdataMultiplePagesOptions", "timeout"],
+  parameterPath: ["options", "pagingGetOdataMultiplePagesOptions", "timeout"],
   mapper: {
     defaultValue: 30,
     serializedName: "timeout",
@@ -100,7 +104,11 @@ export const timeout1: OperationParameter = {
 };
 
 export const maxresults2: OperationParameter = {
-  parameterPath: ["pagingGetMultiplePagesWithOffsetOptions", "maxresults"],
+  parameterPath: [
+    "options",
+    "pagingGetMultiplePagesWithOffsetOptions",
+    "maxresults"
+  ],
   mapper: {
     serializedName: "maxresults",
     type: {
@@ -121,7 +129,11 @@ export const offset: OperationURLParameter = {
 };
 
 export const timeout2: OperationParameter = {
-  parameterPath: ["pagingGetMultiplePagesWithOffsetOptions", "timeout"],
+  parameterPath: [
+    "options",
+    "pagingGetMultiplePagesWithOffsetOptions",
+    "timeout"
+  ],
   mapper: {
     defaultValue: 30,
     serializedName: "timeout",
@@ -176,7 +188,7 @@ export const tenant1: OperationURLParameter = {
 };
 
 export const maxresults3: OperationParameter = {
-  parameterPath: ["pagingGetMultiplePagesLroOptions", "maxresults"],
+  parameterPath: ["options", "pagingGetMultiplePagesLroOptions", "maxresults"],
   mapper: {
     serializedName: "maxresults",
     type: {
@@ -186,7 +198,7 @@ export const maxresults3: OperationParameter = {
 };
 
 export const timeout3: OperationParameter = {
-  parameterPath: ["pagingGetMultiplePagesLroOptions", "timeout"],
+  parameterPath: ["options", "pagingGetMultiplePagesLroOptions", "timeout"],
   mapper: {
     defaultValue: 30,
     serializedName: "timeout",

@@ -151,12 +151,15 @@ function buildSpec(spec: OperationSpecDetails): string {
   const mediaType = buildMediaType(spec);
 
   const isXML = spec.isXML ? "isXML: true," : "";
+  const serializerName = spec.isXML
+    ? "serializer: xmlSerializer"
+    : "serializer";
 
   return `{ path: "${spec.path}", httpMethod: "${
     spec.httpMethod
   }", responses: {${responses.join(
     ", "
-  )}},${requestBody}${queryParams}${urlParams}${headerParams}${isXML}${contentType}${mediaType}serializer
+  )}},${requestBody}${queryParams}${urlParams}${headerParams}${isXML}${contentType}${mediaType}${serializerName}
     }`;
 }
 
@@ -951,6 +954,17 @@ function generateOperationJSDoc(
   }${paramJSDoc}`;
 }
 
+function hasMediaType(
+  operationDetails: OperationDetails,
+  mediaType: KnownMediaType
+) {
+  if (!operationDetails.requests) {
+    return operationDetails.mediaTypes.has(mediaType);
+  }
+
+  return operationDetails.requests.some(r => r.mediaType === mediaType);
+}
+
 /**
  * Generates and inserts into the file the operation specs
  * for a given operation group
@@ -961,20 +975,23 @@ export function addOperationSpecs(
   parameters: ParameterDetails[],
   hasMappers: boolean
 ): void {
-  const isXml = operationGroupDetails.operations.some(o =>
-    o.mediaTypes.has(KnownMediaType.Xml)
+  const hasXml = operationGroupDetails.operations.some(operation =>
+    hasMediaType(operation, KnownMediaType.Xml)
   );
-  const mappers = hasMappers ? "Mappers" : "{}";
+
+  const hasNonXml = operationGroupDetails.operations.some(
+    operation => !hasMediaType(operation, KnownMediaType.Xml)
+  );
+
   file.addStatements("// Operation Specifications");
-  file.addVariableStatement({
-    declarationKind: VariableDeclarationKind.Const,
-    declarations: [
-      {
-        name: "serializer",
-        initializer: `new coreHttp.Serializer(${mappers}, /* isXml */ ${isXml});`
-      }
-    ]
-  });
+
+  if (hasXml) {
+    writeSerializer(hasMappers, file, SerializerKind.Xml);
+  }
+
+  if (hasNonXml) {
+    writeSerializer(hasMappers, file, SerializerKind.Json);
+  }
 
   operationGroupDetails.operations.forEach(operation => {
     const operationSpecs = transformOperationSpec(operation, parameters);
@@ -991,6 +1008,30 @@ export function addOperationSpecs(
         ]
       });
     }
+  });
+}
+
+enum SerializerKind {
+  Json,
+  Xml
+}
+
+function writeSerializer(
+  hasMappers: boolean,
+  file: SourceFile,
+  kind: SerializerKind = SerializerKind.Json
+) {
+  const isXml = kind === SerializerKind.Xml;
+  const mappers = hasMappers ? "Mappers" : "{}";
+  const name = isXml ? "xmlSerializer" : "serializer";
+  file.addVariableStatement({
+    declarationKind: VariableDeclarationKind.Const,
+    declarations: [
+      {
+        name,
+        initializer: `new coreHttp.Serializer(${mappers}, /* isXml */ ${isXml});`
+      }
+    ]
   });
 }
 
