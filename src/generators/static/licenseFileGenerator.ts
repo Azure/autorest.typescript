@@ -27,8 +27,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 `;
 
-export function generateLicenseFile(project: Project) {
-  project.createSourceFile("LICENSE.txt", mitLicenseText.trim(), {
-    overwrite: true
-  });
+export function generateLicenseFile(
+  project: Project,
+  shouldGenerateLicense: boolean
+) {
+  if (shouldGenerateLicense) {
+    project.createSourceFile("LICENSE.txt", mitLicenseText.trim(), {
+      overwrite: true
+    });
+  }
 }
