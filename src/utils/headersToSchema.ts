@@ -1,11 +1,9 @@
 import {
   HttpHeader,
   ObjectSchema,
-  Property,
-  Languages
+  Property
 } from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
-import { normalizeName, NameType } from "./nameUtils";
 
 export function headersToSchema(
   headers: HttpHeader[] | undefined,
@@ -23,15 +21,6 @@ export function headersToSchema(
   headers.forEach(({ header, language, schema }) => {
     if (!headersSchema.properties) {
       headersSchema.properties = [];
-    }
-
-    if (!language) {
-      language = {
-        default: {
-          name: normalizeName(header, NameType.Property),
-          description: ""
-        }
-      };
     }
 
     const { description, name } = getLanguageMetadata(language);
