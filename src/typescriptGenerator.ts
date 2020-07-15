@@ -67,10 +67,13 @@ export async function generateTypeScriptLibrary(
     version: (await host.GetValue("package-version")) || "1.0.0"
   };
 
+  const shouldGenerateLicenseHeader: boolean =
+    (await host.GetValue("license-header")) || false;
+
   // Skip metadata generation if `generate-metadata` is explicitly false
   if ((await host.GetValue("generate-metadata")) !== false) {
     generatePackageJson(clientDetails, packageDetails, project);
-    generateLicenseFile(project);
+    if (shouldGenerateLicenseHeader) generateLicenseFile(project);
     generateReadmeFile(clientDetails, packageDetails, project);
     generateTsConfig(project);
     generateRollupConfig(clientDetails, packageDetails, project);
@@ -83,9 +86,6 @@ export async function generateTypeScriptLibrary(
   generateOperations(clientDetails, project);
   generateParameters(clientDetails, project);
   await generateLROFiles(clientDetails, project);
-
-  const shouldGenerateLicenseHeader: boolean =
-    (await host.GetValue("license-header")) || false;
 
   const licenseHeader = `
 /*
