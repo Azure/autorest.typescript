@@ -12,6 +12,7 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  EncryptionProtectorName,
   ManagedInstanceEncryptionProtectorsListByInstanceResponse,
   ManagedInstanceEncryptionProtectorsGetResponse,
   ManagedInstanceEncryptionProtector,
@@ -38,11 +39,13 @@ export class ManagedInstanceEncryptionProtectors {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
+   * @param encryptionProtectorName The name of the encryption protector to be updated.
    * @param options The options parameters.
    */
   async revalidate(
     resourceGroupName: string,
     managedInstanceName: string,
+    encryptionProtectorName: EncryptionProtectorName,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -52,6 +55,7 @@ export class ManagedInstanceEncryptionProtectors {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
+      encryptionProtectorName,
       options: operationOptions
     };
     const sendOperation = (
@@ -100,18 +104,25 @@ export class ManagedInstanceEncryptionProtectors {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
+   * @param encryptionProtectorName The name of the encryption protector to be retrieved.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     managedInstanceName: string,
+    encryptionProtectorName: EncryptionProtectorName,
     options?: coreHttp.OperationOptions
   ): Promise<ManagedInstanceEncryptionProtectorsGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, managedInstanceName, options: operationOptions },
+      {
+        resourceGroupName,
+        managedInstanceName,
+        encryptionProtectorName,
+        options: operationOptions
+      },
       getOperationSpec
     ) as Promise<ManagedInstanceEncryptionProtectorsGetResponse>;
   }
@@ -121,12 +132,14 @@ export class ManagedInstanceEncryptionProtectors {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param managedInstanceName The name of the managed instance.
+   * @param encryptionProtectorName The name of the encryption protector to be updated.
    * @param parameters The requested encryption protector resource state.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
     managedInstanceName: string,
+    encryptionProtectorName: EncryptionProtectorName,
     parameters: ManagedInstanceEncryptionProtector,
     options?: coreHttp.OperationOptions
   ): Promise<
@@ -139,6 +152,7 @@ export class ManagedInstanceEncryptionProtectors {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       managedInstanceName,
+      encryptionProtectorName,
       parameters,
       options: operationOptions
     };

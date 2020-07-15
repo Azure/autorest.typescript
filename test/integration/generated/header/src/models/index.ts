@@ -17,6 +17,9 @@ export interface ErrorModel {
  * Defines headers for Header_responseExistingKey operation.
  */
 export interface HeaderResponseExistingKeyHeaders {
+  /**
+   * response with header value "User-Agent": "overwrite"
+   */
   userAgent?: string;
 }
 
@@ -24,6 +27,9 @@ export interface HeaderResponseExistingKeyHeaders {
  * Defines headers for Header_responseProtectedKey operation.
  */
 export interface HeaderResponseProtectedKeyHeaders {
+  /**
+   * response with header value "Content-Type": "text/html"
+   */
   contentType?: string;
 }
 
@@ -31,6 +37,9 @@ export interface HeaderResponseProtectedKeyHeaders {
  * Defines headers for Header_responseInteger operation.
  */
 export interface HeaderResponseIntegerHeaders {
+  /**
+   * response with header value "value": 1 or -2
+   */
   value?: number;
 }
 
@@ -38,6 +47,9 @@ export interface HeaderResponseIntegerHeaders {
  * Defines headers for Header_responseLong operation.
  */
 export interface HeaderResponseLongHeaders {
+  /**
+   * response with header value "value": 105 or -2
+   */
   value?: number;
 }
 
@@ -45,6 +57,9 @@ export interface HeaderResponseLongHeaders {
  * Defines headers for Header_responseFloat operation.
  */
 export interface HeaderResponseFloatHeaders {
+  /**
+   * response with header value "value": 0.07 or -3.0
+   */
   value?: number;
 }
 
@@ -52,6 +67,9 @@ export interface HeaderResponseFloatHeaders {
  * Defines headers for Header_responseDouble operation.
  */
 export interface HeaderResponseDoubleHeaders {
+  /**
+   * response with header value "value": 7e120 or -3.0
+   */
   value?: number;
 }
 
@@ -59,6 +77,9 @@ export interface HeaderResponseDoubleHeaders {
  * Defines headers for Header_responseBool operation.
  */
 export interface HeaderResponseBoolHeaders {
+  /**
+   * response with header value "value": true or false
+   */
   value?: boolean;
 }
 
@@ -66,6 +87,9 @@ export interface HeaderResponseBoolHeaders {
  * Defines headers for Header_responseString operation.
  */
 export interface HeaderResponseStringHeaders {
+  /**
+   * response with header values "The quick brown fox jumps over the lazy dog" or null or ""
+   */
   value?: string;
 }
 
@@ -73,6 +97,9 @@ export interface HeaderResponseStringHeaders {
  * Defines headers for Header_responseDate operation.
  */
 export interface HeaderResponseDateHeaders {
+  /**
+   * response with header values "2010-01-01" or "0001-01-01"
+   */
   value?: Date;
 }
 
@@ -80,6 +107,9 @@ export interface HeaderResponseDateHeaders {
  * Defines headers for Header_responseDatetime operation.
  */
 export interface HeaderResponseDatetimeHeaders {
+  /**
+   * response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
+   */
   value?: Date;
 }
 
@@ -87,6 +117,9 @@ export interface HeaderResponseDatetimeHeaders {
  * Defines headers for Header_responseDatetimeRfc1123 operation.
  */
 export interface HeaderResponseDatetimeRfc1123Headers {
+  /**
+   * response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
+   */
   value?: Date;
 }
 
@@ -94,6 +127,9 @@ export interface HeaderResponseDatetimeRfc1123Headers {
  * Defines headers for Header_responseDuration operation.
  */
 export interface HeaderResponseDurationHeaders {
+  /**
+   * response with header values "P123DT22H14M12.011S"
+   */
   value?: string;
 }
 
@@ -101,6 +137,9 @@ export interface HeaderResponseDurationHeaders {
  * Defines headers for Header_responseByte operation.
  */
 export interface HeaderResponseByteHeaders {
+  /**
+   * response with header values "啊齄丂狛狜隣郎隣兀﨩"
+   */
   value?: Uint8Array;
 }
 
@@ -108,6 +147,9 @@ export interface HeaderResponseByteHeaders {
  * Defines headers for Header_responseEnum operation.
  */
 export interface HeaderResponseEnumHeaders {
+  /**
+   * response with header values "GREY" or null
+   */
   value?: GreyscaleColors;
 }
 

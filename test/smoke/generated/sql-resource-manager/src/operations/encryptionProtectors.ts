@@ -12,6 +12,7 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
+  EncryptionProtectorName,
   EncryptionProtectorsListByServerResponse,
   EncryptionProtectorsGetResponse,
   EncryptionProtector,
@@ -38,11 +39,13 @@ export class EncryptionProtectors {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
+   * @param encryptionProtectorName The name of the encryption protector to be updated.
    * @param options The options parameters.
    */
   async revalidate(
     resourceGroupName: string,
     serverName: string,
+    encryptionProtectorName: EncryptionProtectorName,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -52,6 +55,7 @@ export class EncryptionProtectors {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
+      encryptionProtectorName,
       options: operationOptions
     };
     const sendOperation = (
@@ -100,18 +104,25 @@ export class EncryptionProtectors {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
+   * @param encryptionProtectorName The name of the encryption protector to be retrieved.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     serverName: string,
+    encryptionProtectorName: EncryptionProtectorName,
     options?: coreHttp.OperationOptions
   ): Promise<EncryptionProtectorsGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, serverName, options: operationOptions },
+      {
+        resourceGroupName,
+        serverName,
+        encryptionProtectorName,
+        options: operationOptions
+      },
       getOperationSpec
     ) as Promise<EncryptionProtectorsGetResponse>;
   }
@@ -121,12 +132,14 @@ export class EncryptionProtectors {
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
+   * @param encryptionProtectorName The name of the encryption protector to be updated.
    * @param parameters The requested encryption protector resource state.
    * @param options The options parameters.
    */
   async createOrUpdate(
     resourceGroupName: string,
     serverName: string,
+    encryptionProtectorName: EncryptionProtectorName,
     parameters: EncryptionProtector,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<EncryptionProtectorsCreateOrUpdateResponse>> {
@@ -137,6 +150,7 @@ export class EncryptionProtectors {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       serverName,
+      encryptionProtectorName,
       parameters,
       options: operationOptions
     };

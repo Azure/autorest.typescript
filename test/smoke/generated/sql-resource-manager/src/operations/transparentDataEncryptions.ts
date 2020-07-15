@@ -12,6 +12,7 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
 import {
   TransparentDataEncryption,
+  TransparentDataEncryptionName,
   TransparentDataEncryptionsCreateOrUpdateResponse,
   TransparentDataEncryptionsGetResponse
 } from "../models";
@@ -37,6 +38,7 @@ export class TransparentDataEncryptions {
    * @param serverName The name of the server.
    * @param databaseName The name of the database for which setting the transparent data encryption
    *                     applies.
+   * @param transparentDataEncryptionName The name of the transparent data encryption configuration.
    * @param parameters The required parameters for creating or updating transparent data encryption.
    * @param options The options parameters.
    */
@@ -44,6 +46,7 @@ export class TransparentDataEncryptions {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
+    transparentDataEncryptionName: TransparentDataEncryptionName,
     parameters: TransparentDataEncryption,
     options?: coreHttp.OperationOptions
   ): Promise<TransparentDataEncryptionsCreateOrUpdateResponse> {
@@ -55,6 +58,7 @@ export class TransparentDataEncryptions {
         resourceGroupName,
         serverName,
         databaseName,
+        transparentDataEncryptionName,
         parameters,
         options: operationOptions
       },
@@ -68,12 +72,14 @@ export class TransparentDataEncryptions {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
    * @param databaseName The name of the database for which the transparent data encryption applies.
+   * @param transparentDataEncryptionName The name of the transparent data encryption configuration.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
+    transparentDataEncryptionName: TransparentDataEncryptionName,
     options?: coreHttp.OperationOptions
   ): Promise<TransparentDataEncryptionsGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -84,6 +90,7 @@ export class TransparentDataEncryptions {
         resourceGroupName,
         serverName,
         databaseName,
+        transparentDataEncryptionName,
         options: operationOptions
       },
       getOperationSpec

@@ -1,4 +1,8 @@
-import { HttpHeader, ObjectSchema, Property } from "@azure-tools/codemodel";
+import {
+  HttpHeader,
+  ObjectSchema,
+  Property
+} from "@azure-tools/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 
 export function headersToSchema(
@@ -14,14 +18,14 @@ export function headersToSchema(
     `Defines headers for ${operationFullName} operation.`
   );
 
-  headers.forEach(({ header, schema }) => {
+  headers.forEach(({ header, language, schema }) => {
     if (!headersSchema.properties) {
       headersSchema.properties = [];
     }
 
-    const { description } = getLanguageMetadata(schema.language);
+    const { description, name } = getLanguageMetadata(language);
     headersSchema.properties.push(
-      new Property(header, description, schema, {
+      new Property(name, description, schema, {
         // core-http serializer requires Header serialized names to be lowercase
         serializedName: header.toLocaleLowerCase()
       })

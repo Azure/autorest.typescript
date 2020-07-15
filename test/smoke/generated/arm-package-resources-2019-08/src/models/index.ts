@@ -1175,7 +1175,13 @@ export type GenericResourceExpanded = GenericResource & {
  * Defines headers for Deployments_whatIfAtSubscriptionScope operation.
  */
 export interface DeploymentsWhatIfAtSubscriptionScopeHeaders {
+  /**
+   * URL to get status of this long-running operation.
+   */
   location?: string;
+  /**
+   * Number of seconds to wait before polling for status.
+   */
   retryAfter?: string;
 }
 
@@ -1183,7 +1189,13 @@ export interface DeploymentsWhatIfAtSubscriptionScopeHeaders {
  * Defines headers for Deployments_whatIf operation.
  */
 export interface DeploymentsWhatIfHeaders {
+  /**
+   * URL to get status of this long-running operation.
+   */
   location?: string;
+  /**
+   * Number of seconds to wait before polling for status.
+   */
   retryAfter?: string;
 }
 

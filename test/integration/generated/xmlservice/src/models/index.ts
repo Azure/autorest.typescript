@@ -375,6 +375,9 @@ export interface JsonOutput {
  * Defines headers for Xml_getHeaders operation.
  */
 export interface XmlGetHeadersHeaders {
+  /**
+   * A custom response header.
+   */
   customHeader?: string;
 }
 

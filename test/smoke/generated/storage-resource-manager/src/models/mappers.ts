@@ -1762,9 +1762,8 @@ export const ManagementPolicyRule: coreHttp.CompositeMapper = {
         }
       },
       type: {
-        defaultValue: "Lifecycle",
-        isConstant: true,
         serializedName: "type",
+        required: true,
         type: {
           name: "String"
         }

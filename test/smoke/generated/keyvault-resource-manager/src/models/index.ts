@@ -95,7 +95,7 @@ export interface Sku {
   /**
    * SKU family name
    */
-  family: "A";
+  family: SkuFamily;
   /**
    * SKU name to specify whether the key vault is a standard vault or a premium vault.
    */
@@ -676,7 +676,13 @@ export type PrivateLinkResource = Resource & {
  * Defines headers for PrivateEndpointConnections_put operation.
  */
 export interface PrivateEndpointConnectionsPutHeaders {
+  /**
+   * (specified only if operation does not finish synchronously) The recommended number of seconds to wait before calling the URI specified in Azure-AsyncOperation.
+   */
   retryAfter?: number;
+  /**
+   * (specified only if operation does not finish synchronously) The URI to poll for completion status. The response of this URI may be synchronous or asynchronous.
+   */
   azureAsyncOperation?: string;
 }
 
@@ -684,10 +690,20 @@ export interface PrivateEndpointConnectionsPutHeaders {
  * Defines headers for PrivateEndpointConnections_delete operation.
  */
 export interface PrivateEndpointConnectionsDeleteHeaders {
+  /**
+   * The recommended number of seconds to wait before calling the URI specified in the location header.
+   */
   retryAfter?: number;
+  /**
+   * The URI to poll for completion status.
+   */
   location?: string;
 }
 
+/**
+ * Defines values for SkuFamily.
+ */
+export type SkuFamily = "A";
 /**
  * Defines values for KeyPermissions.
  */

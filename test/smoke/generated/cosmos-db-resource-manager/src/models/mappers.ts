@@ -354,8 +354,6 @@ export const DatabaseAccountUpdateParameters: coreHttp.CompositeMapper = {
         }
       },
       connectorOffer: {
-        defaultValue: "Small",
-        isConstant: true,
         serializedName: "properties.connectorOffer",
         type: {
           name: "String"
@@ -2482,8 +2480,6 @@ export const DatabaseAccountGetResults: coreHttp.CompositeMapper = {
         }
       },
       connectorOffer: {
-        defaultValue: "Small",
-        isConstant: true,
         serializedName: "properties.connectorOffer",
         type: {
           name: "String"
@@ -2594,8 +2590,6 @@ export const DatabaseAccountCreateUpdateParameters: coreHttp.CompositeMapper = {
         }
       },
       connectorOffer: {
-        defaultValue: "Small",
-        isConstant: true,
         serializedName: "properties.connectorOffer",
         type: {
           name: "String"

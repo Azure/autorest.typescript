@@ -20,7 +20,7 @@ export interface ManagedServiceIdentity {
   /**
    * Type of the managed identity.
    */
-  type?: "UserAssigned";
+  type?: ManagedServiceIdentityType;
   /**
    * The list of user-assigned managed identities associated with the resource. Key is the Azure resource Id of the managed identity.
    */
@@ -502,6 +502,10 @@ export type AzureCliScript = DeploymentScript & {
    */
   azCliVersion: string;
 };
+/**
+ * Defines values for ManagedServiceIdentityType.
+ */
+export type ManagedServiceIdentityType = "UserAssigned";
 /**
  * Defines values for ScriptType.
  */

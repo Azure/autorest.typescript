@@ -23,6 +23,9 @@ export interface OdataFilter {
  * Defines headers for Header_customNamedRequestId operation.
  */
 export interface HeaderCustomNamedRequestIdHeaders {
+  /**
+   * Gets the foo-request-id.
+   */
   fooRequestId?: string;
 }
 
@@ -30,6 +33,9 @@ export interface HeaderCustomNamedRequestIdHeaders {
  * Defines headers for Header_customNamedRequestIdParamGrouping operation.
  */
 export interface HeaderCustomNamedRequestIdParamGroupingHeaders {
+  /**
+   * Gets the foo-request-id.
+   */
   fooRequestId?: string;
 }
 
@@ -37,6 +43,9 @@ export interface HeaderCustomNamedRequestIdParamGroupingHeaders {
  * Defines headers for Header_customNamedRequestIdHead operation.
  */
 export interface HeaderCustomNamedRequestIdHeadHeaders {
+  /**
+   * Gets the foo-request-id.
+   */
   fooRequestId?: string;
 }
 

@@ -14,7 +14,7 @@ import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   SyncGroupsListSyncDatabaseIdsResponse,
   SyncGroupsListHubSchemasResponse,
-  Enum15,
+  Enum21,
   SyncGroupsListLogsOptionalParams,
   SyncGroupsListLogsResponse,
   SyncGroupsGetResponse,
@@ -158,7 +158,7 @@ export class SyncGroups {
     syncGroupName: string,
     startTime: string,
     endTime: string,
-    typeParam: Enum15,
+    typeParam: Enum21,
     options?: SyncGroupsListLogsOptionalParams
   ): Promise<SyncGroupsListLogsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -522,7 +522,7 @@ export class SyncGroups {
     startTime: string,
     endTime: string,
     nextLink: string,
-    typeParam: Enum15,
+    typeParam: Enum21,
     options?: SyncGroupsListLogsNextOptionalParams
   ): Promise<SyncGroupsListLogsNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
