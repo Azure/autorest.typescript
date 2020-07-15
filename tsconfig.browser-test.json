@@ -27,5 +27,9 @@
     "test/integration/generated/**/*.ts",
     "test/utils/stream-helpers.ts"
   ],
-  "exclude": []
+  "exclude": [
+    "test/integration/generated/noLicenseHeader/*.ts",
+    "test/integration/generated/licenseHeader/*.ts",
+    "test/integration/licenseHeader.spec.ts"
+  ]
 }

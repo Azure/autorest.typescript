@@ -58,6 +58,7 @@ const generateFromReadme = async ({
       `--typescript`,
       `--package-name=${projectName}`,
       `--output-folder=${output}`,
+      `--license-header=true`,
       `--use=.`,
       ...(params || [])
     ],

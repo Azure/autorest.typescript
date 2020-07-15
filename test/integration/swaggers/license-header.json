@@ -1,0 +1,33 @@
+{
+  "swagger": "2.0",
+  "info": { "version": "v1", "title": "My API" },
+  "parameters": {
+    "globalApiVersion": {
+      "name": "api-version",
+      "in": "header",
+      "type": "string",
+      "enum": ["one", "two"],
+      "required": true
+    }
+  },
+  "paths": {
+    "/api/v1/value": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/globalApiVersion"
+        }
+      ],
+      "get": {
+        "tags": ["ValueApi"],
+        "operationId": "ApiV1ValueGet",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": { "description": "Success", "schema": { "type": "string" } }
+        }
+      }
+    }
+  },
+  "definitions": {}
+}
