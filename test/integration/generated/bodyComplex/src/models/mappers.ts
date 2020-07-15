@@ -473,9 +473,8 @@ export const MyBaseType: coreHttp.CompositeMapper = {
     },
     modelProperties: {
       kind: {
-        defaultValue: "Kind1",
-        isConstant: true,
         serializedName: "kind",
+        required: true,
         type: {
           name: "String"
         }

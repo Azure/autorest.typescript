@@ -33,6 +33,9 @@ export type B = MyException & {
  * Defines headers for HttpRedirects_head300 operation.
  */
 export interface HttpRedirectsHead300Headers {
+  /**
+   * The redirect location for this request
+   */
   location?: "/http/success/head/200";
 }
 
@@ -40,6 +43,9 @@ export interface HttpRedirectsHead300Headers {
  * Defines headers for HttpRedirects_get300 operation.
  */
 export interface HttpRedirectsGet300Headers {
+  /**
+   * The redirect location for this request
+   */
   location?: "/http/success/get/200";
 }
 
@@ -47,6 +53,9 @@ export interface HttpRedirectsGet300Headers {
  * Defines headers for HttpRedirects_head301 operation.
  */
 export interface HttpRedirectsHead301Headers {
+  /**
+   * The redirect location for this request
+   */
   location?: "/http/success/head/200";
 }
 
@@ -54,6 +63,9 @@ export interface HttpRedirectsHead301Headers {
  * Defines headers for HttpRedirects_get301 operation.
  */
 export interface HttpRedirectsGet301Headers {
+  /**
+   * The redirect location for this request
+   */
   location?: "/http/success/get/200";
 }
 
@@ -61,6 +73,9 @@ export interface HttpRedirectsGet301Headers {
  * Defines headers for HttpRedirects_put301 operation.
  */
 export interface HttpRedirectsPut301Headers {
+  /**
+   * The redirect location for this request
+   */
   location?: "/http/failure/500";
 }
 
@@ -68,6 +83,9 @@ export interface HttpRedirectsPut301Headers {
  * Defines headers for HttpRedirects_head302 operation.
  */
 export interface HttpRedirectsHead302Headers {
+  /**
+   * The redirect location for this request
+   */
   location?: "/http/success/head/200";
 }
 
@@ -75,6 +93,9 @@ export interface HttpRedirectsHead302Headers {
  * Defines headers for HttpRedirects_get302 operation.
  */
 export interface HttpRedirectsGet302Headers {
+  /**
+   * The redirect location for this request
+   */
   location?: "/http/success/get/200";
 }
 
@@ -82,6 +103,9 @@ export interface HttpRedirectsGet302Headers {
  * Defines headers for HttpRedirects_patch302 operation.
  */
 export interface HttpRedirectsPatch302Headers {
+  /**
+   * The redirect location for this request
+   */
   location?: "/http/failure/500";
 }
 
@@ -89,6 +113,9 @@ export interface HttpRedirectsPatch302Headers {
  * Defines headers for HttpRedirects_post303 operation.
  */
 export interface HttpRedirectsPost303Headers {
+  /**
+   * The redirect location for this request
+   */
   location?: "/http/success/get/200";
 }
 
@@ -96,6 +123,9 @@ export interface HttpRedirectsPost303Headers {
  * Defines headers for HttpRedirects_head307 operation.
  */
 export interface HttpRedirectsHead307Headers {
+  /**
+   * The redirect location for this request
+   */
   location?: "/http/success/head/200";
 }
 
@@ -103,6 +133,9 @@ export interface HttpRedirectsHead307Headers {
  * Defines headers for HttpRedirects_get307 operation.
  */
 export interface HttpRedirectsGet307Headers {
+  /**
+   * The redirect location for this request
+   */
   location?: "/http/success/get/200";
 }
 
@@ -110,6 +143,9 @@ export interface HttpRedirectsGet307Headers {
  * Defines headers for HttpRedirects_options307 operation.
  */
 export interface HttpRedirectsOptions307Headers {
+  /**
+   * The redirect location for this request
+   */
   location?: "/http/success/options/200";
 }
 
@@ -117,6 +153,9 @@ export interface HttpRedirectsOptions307Headers {
  * Defines headers for HttpRedirects_put307 operation.
  */
 export interface HttpRedirectsPut307Headers {
+  /**
+   * The redirect location for this request
+   */
   location?: "/http/success/put/200";
 }
 
@@ -124,6 +163,9 @@ export interface HttpRedirectsPut307Headers {
  * Defines headers for HttpRedirects_patch307 operation.
  */
 export interface HttpRedirectsPatch307Headers {
+  /**
+   * The redirect location for this request
+   */
   location?: "/http/success/patch/200";
 }
 
@@ -131,6 +173,9 @@ export interface HttpRedirectsPatch307Headers {
  * Defines headers for HttpRedirects_post307 operation.
  */
 export interface HttpRedirectsPost307Headers {
+  /**
+   * The redirect location for this request
+   */
   location?: "/http/success/post/200";
 }
 
@@ -138,6 +183,9 @@ export interface HttpRedirectsPost307Headers {
  * Defines headers for HttpRedirects_delete307 operation.
  */
 export interface HttpRedirectsDelete307Headers {
+  /**
+   * The redirect location for this request
+   */
   location?: "/http/success/delete/200";
 }
 
