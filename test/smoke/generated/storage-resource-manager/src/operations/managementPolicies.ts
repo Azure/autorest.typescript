@@ -11,6 +11,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClient } from "../storageManagementClient";
 import {
+  ManagementPolicyName,
   ManagementPoliciesGetResponse,
   ManagementPolicy,
   ManagementPoliciesCreateOrUpdateResponse
@@ -37,18 +38,26 @@ export class ManagementPolicies {
    * @param accountName The name of the storage account within the specified resource group. Storage
    *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
    *                    only.
+   * @param managementPolicyName The name of the Storage Account Management Policy. It should always be
+   *                             'default'
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     accountName: string,
+    managementPolicyName: ManagementPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<ManagementPoliciesGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      {
+        resourceGroupName,
+        accountName,
+        managementPolicyName,
+        options: operationOptions
+      },
       getOperationSpec
     ) as Promise<ManagementPoliciesGetResponse>;
   }
@@ -60,12 +69,15 @@ export class ManagementPolicies {
    * @param accountName The name of the storage account within the specified resource group. Storage
    *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
    *                    only.
+   * @param managementPolicyName The name of the Storage Account Management Policy. It should always be
+   *                             'default'
    * @param properties The ManagementPolicy set to a storage account.
    * @param options The options parameters.
    */
   createOrUpdate(
     resourceGroupName: string,
     accountName: string,
+    managementPolicyName: ManagementPolicyName,
     properties: ManagementPolicy,
     options?: coreHttp.OperationOptions
   ): Promise<ManagementPoliciesCreateOrUpdateResponse> {
@@ -73,7 +85,13 @@ export class ManagementPolicies {
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, properties, options: operationOptions },
+      {
+        resourceGroupName,
+        accountName,
+        managementPolicyName,
+        properties,
+        options: operationOptions
+      },
       createOrUpdateOperationSpec
     ) as Promise<ManagementPoliciesCreateOrUpdateResponse>;
   }
@@ -85,18 +103,26 @@ export class ManagementPolicies {
    * @param accountName The name of the storage account within the specified resource group. Storage
    *                    account names must be between 3 and 24 characters in length and use numbers and lower-case letters
    *                    only.
+   * @param managementPolicyName The name of the Storage Account Management Policy. It should always be
+   *                             'default'
    * @param options The options parameters.
    */
   delete(
     resourceGroupName: string,
     accountName: string,
+    managementPolicyName: ManagementPolicyName,
     options?: coreHttp.OperationOptions
   ): Promise<coreHttp.RestResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      {
+        resourceGroupName,
+        accountName,
+        managementPolicyName,
+        options: operationOptions
+      },
       deleteOperationSpec
     ) as Promise<coreHttp.RestResponse>;
   }

@@ -184,9 +184,8 @@ export const parameters: OperationParameter = {
 export const connectionPolicyName: OperationURLParameter = {
   parameterPath: "connectionPolicyName",
   mapper: {
-    defaultValue: "default",
-    isConstant: true,
     serializedName: "connectionPolicyName",
+    required: true,
     type: {
       name: "String"
     }
@@ -196,9 +195,8 @@ export const connectionPolicyName: OperationURLParameter = {
 export const securityAlertPolicyName: OperationURLParameter = {
   parameterPath: "securityAlertPolicyName",
   mapper: {
-    defaultValue: "default",
-    isConstant: true,
     serializedName: "securityAlertPolicyName",
+    required: true,
     type: {
       name: "String"
     }
@@ -267,9 +265,8 @@ export const parameters5: OperationParameter = {
 export const geoBackupPolicyName: OperationURLParameter = {
   parameterPath: "geoBackupPolicyName",
   mapper: {
-    defaultValue: "Default",
-    isConstant: true,
     serializedName: "geoBackupPolicyName",
+    required: true,
     type: {
       name: "String"
     }
@@ -289,9 +286,8 @@ export const parameters7: OperationParameter = {
 export const extensionName: OperationURLParameter = {
   parameterPath: "extensionName",
   mapper: {
-    defaultValue: "import",
-    isConstant: true,
     serializedName: "extensionName",
+    required: true,
     type: {
       name: "String"
     }
@@ -479,9 +475,8 @@ export const parameters16: OperationParameter = {
 export const transparentDataEncryptionName: OperationURLParameter = {
   parameterPath: "transparentDataEncryptionName",
   mapper: {
-    defaultValue: "current",
-    isConstant: true,
     serializedName: "transparentDataEncryptionName",
+    required: true,
     type: {
       name: "String"
     }
@@ -508,9 +503,8 @@ export const parameters17: OperationParameter = {
 export const encryptionProtectorName: OperationURLParameter = {
   parameterPath: "encryptionProtectorName",
   mapper: {
-    defaultValue: "current",
-    isConstant: true,
     serializedName: "encryptionProtectorName",
+    required: true,
     type: {
       name: "String"
     }
@@ -751,9 +745,8 @@ export const parameters30: OperationParameter = {
 export const vulnerabilityAssessmentName: OperationURLParameter = {
   parameterPath: "vulnerabilityAssessmentName",
   mapper: {
-    defaultValue: "default",
-    isConstant: true,
     serializedName: "vulnerabilityAssessmentName",
+    required: true,
     type: {
       name: "String"
     }
@@ -1027,9 +1020,8 @@ export const databaseState: OperationQueryParameter = {
 export const policyName: OperationURLParameter = {
   parameterPath: "policyName",
   mapper: {
-    defaultValue: "default",
-    isConstant: true,
     serializedName: "policyName",
+    required: true,
     type: {
       name: "String"
     }
@@ -1045,6 +1037,17 @@ export const managedInstanceName: OperationURLParameter = {
   parameterPath: "managedInstanceName",
   mapper: {
     serializedName: "managedInstanceName",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const policyName1: OperationURLParameter = {
+  parameterPath: "policyName",
+  mapper: {
+    serializedName: "policyName",
     required: true,
     type: {
       name: "String"
@@ -1092,9 +1095,8 @@ export const parameters42: OperationParameter = {
 export const securityAlertPolicyName1: OperationURLParameter = {
   parameterPath: "securityAlertPolicyName",
   mapper: {
-    defaultValue: "Default",
-    isConstant: true,
     serializedName: "securityAlertPolicyName",
+    required: true,
     type: {
       name: "String"
     }
@@ -1280,6 +1282,17 @@ export const parameters49: OperationParameter = {
   mapper: InstanceFailoverGroupMapper
 };
 
+export const policyName2: OperationURLParameter = {
+  parameterPath: "policyName",
+  mapper: {
+    serializedName: "policyName",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const parameters50: OperationParameter = {
   parameterPath: "parameters",
   mapper: BackupShortTermRetentionPolicyMapper
@@ -1436,6 +1449,17 @@ export const databaseState1: OperationQueryParameter = {
   }
 };
 
+export const policyName3: OperationURLParameter = {
+  parameterPath: "policyName",
+  mapper: {
+    serializedName: "policyName",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const parameters64: OperationParameter = {
   parameterPath: "parameters",
   mapper: ManagedInstanceLongTermRetentionPolicyMapper
@@ -1476,9 +1500,8 @@ export const parameters66: OperationParameter = {
 export const restoreDetailsName: OperationURLParameter = {
   parameterPath: "restoreDetailsName",
   mapper: {
-    defaultValue: "Default",
-    isConstant: true,
     serializedName: "restoreDetailsName",
+    required: true,
     type: {
       name: "String"
     }
@@ -1498,6 +1521,17 @@ export const parameters68: OperationParameter = {
 export const parameters69: OperationParameter = {
   parameterPath: "parameters",
   mapper: CompleteDatabaseRestoreDefinitionMapper
+};
+
+export const administratorName1: OperationURLParameter = {
+  parameterPath: "administratorName",
+  mapper: {
+    serializedName: "administratorName",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
 };
 
 export const parameters70: OperationParameter = {

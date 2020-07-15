@@ -14,8 +14,6 @@ export const ManagedServiceIdentity: coreHttp.CompositeMapper = {
     className: "ManagedServiceIdentity",
     modelProperties: {
       type: {
-        defaultValue: "UserAssigned",
-        isConstant: true,
         serializedName: "type",
         type: {
           name: "String"

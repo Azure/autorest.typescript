@@ -13,6 +13,7 @@ import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
 import { LROPoller, shouldDeserializeLRO } from "../lro";
 import {
   NotebookWorkspacesListByDatabaseAccountResponse,
+  NotebookWorkspaceName,
   NotebookWorkspacesGetResponse,
   ARMProxyResource,
   NotebookWorkspacesCreateOrUpdateResponse,
@@ -57,18 +58,25 @@ export class NotebookWorkspaces {
    * Gets the notebook workspace for a Cosmos DB account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
+   * @param notebookWorkspaceName The name of the notebook workspace resource.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     accountName: string,
+    notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
   ): Promise<NotebookWorkspacesGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      {
+        resourceGroupName,
+        accountName,
+        notebookWorkspaceName,
+        options: operationOptions
+      },
       getOperationSpec
     ) as Promise<NotebookWorkspacesGetResponse>;
   }
@@ -77,6 +85,7 @@ export class NotebookWorkspaces {
    * Creates the notebook workspace for a Cosmos DB account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
+   * @param notebookWorkspaceName The name of the notebook workspace resource.
    * @param notebookCreateUpdateParameters The notebook workspace to create for the current database
    *                                       account.
    * @param options The options parameters.
@@ -84,6 +93,7 @@ export class NotebookWorkspaces {
   async createOrUpdate(
     resourceGroupName: string,
     accountName: string,
+    notebookWorkspaceName: NotebookWorkspaceName,
     notebookCreateUpdateParameters: ARMProxyResource,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<NotebookWorkspacesCreateOrUpdateResponse>> {
@@ -94,6 +104,7 @@ export class NotebookWorkspaces {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
+      notebookWorkspaceName,
       notebookCreateUpdateParameters,
       options: operationOptions
     };
@@ -121,11 +132,13 @@ export class NotebookWorkspaces {
    * Deletes the notebook workspace for a Cosmos DB account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
+   * @param notebookWorkspaceName The name of the notebook workspace resource.
    * @param options The options parameters.
    */
   async delete(
     resourceGroupName: string,
     accountName: string,
+    notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -135,6 +148,7 @@ export class NotebookWorkspaces {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
+      notebookWorkspaceName,
       options: operationOptions
     };
     const sendOperation = (
@@ -161,18 +175,25 @@ export class NotebookWorkspaces {
    * Retrieves the connection info for the notebook workspace
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
+   * @param notebookWorkspaceName The name of the notebook workspace resource.
    * @param options The options parameters.
    */
   listConnectionInfo(
     resourceGroupName: string,
     accountName: string,
+    notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
   ): Promise<NotebookWorkspacesListConnectionInfoResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
-      { resourceGroupName, accountName, options: operationOptions },
+      {
+        resourceGroupName,
+        accountName,
+        notebookWorkspaceName,
+        options: operationOptions
+      },
       listConnectionInfoOperationSpec
     ) as Promise<NotebookWorkspacesListConnectionInfoResponse>;
   }
@@ -181,11 +202,13 @@ export class NotebookWorkspaces {
    * Regenerates the auth token for the notebook workspace
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
+   * @param notebookWorkspaceName The name of the notebook workspace resource.
    * @param options The options parameters.
    */
   async regenerateAuthToken(
     resourceGroupName: string,
     accountName: string,
+    notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -195,6 +218,7 @@ export class NotebookWorkspaces {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
+      notebookWorkspaceName,
       options: operationOptions
     };
     const sendOperation = (
@@ -221,11 +245,13 @@ export class NotebookWorkspaces {
    * Starts the notebook workspace
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
    * @param accountName Cosmos DB database account name.
+   * @param notebookWorkspaceName The name of the notebook workspace resource.
    * @param options The options parameters.
    */
   async start(
     resourceGroupName: string,
     accountName: string,
+    notebookWorkspaceName: NotebookWorkspaceName,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
     const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
@@ -235,6 +261,7 @@ export class NotebookWorkspaces {
     const args: coreHttp.OperationArguments = {
       resourceGroupName,
       accountName,
+      notebookWorkspaceName,
       options: operationOptions
     };
     const sendOperation = (

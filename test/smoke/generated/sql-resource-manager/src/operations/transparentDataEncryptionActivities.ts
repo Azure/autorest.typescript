@@ -10,7 +10,10 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import { TransparentDataEncryptionActivitiesListByConfigurationResponse } from "../models";
+import {
+  TransparentDataEncryptionName,
+  TransparentDataEncryptionActivitiesListByConfigurationResponse
+} from "../models";
 
 /**
  * Class representing a TransparentDataEncryptionActivities.
@@ -32,12 +35,14 @@ export class TransparentDataEncryptionActivities {
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
    * @param databaseName The name of the database for which the transparent data encryption applies.
+   * @param transparentDataEncryptionName The name of the transparent data encryption configuration.
    * @param options The options parameters.
    */
   listByConfiguration(
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
+    transparentDataEncryptionName: TransparentDataEncryptionName,
     options?: coreHttp.OperationOptions
   ): Promise<TransparentDataEncryptionActivitiesListByConfigurationResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
@@ -48,6 +53,7 @@ export class TransparentDataEncryptionActivities {
         resourceGroupName,
         serverName,
         databaseName,
+        transparentDataEncryptionName,
         options: operationOptions
       },
       listByConfigurationOperationSpec

@@ -1058,7 +1058,7 @@ export interface ManagementPolicyRule {
   /**
    * The valid value is Lifecycle
    */
-  type: "Lifecycle";
+  type: RuleType;
   /**
    * An object that defines the Lifecycle rule.
    */
@@ -2135,6 +2135,9 @@ export type FileShare = AzureEntityResource & {
  * Defines headers for BlobContainers_createOrUpdateImmutabilityPolicy operation.
  */
 export interface BlobContainersCreateOrUpdateImmutabilityPolicyHeaders {
+  /**
+   * The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Match or If-None-Match headers.
+   */
   eTag?: string;
 }
 
@@ -2142,6 +2145,9 @@ export interface BlobContainersCreateOrUpdateImmutabilityPolicyHeaders {
  * Defines headers for BlobContainers_getImmutabilityPolicy operation.
  */
 export interface BlobContainersGetImmutabilityPolicyHeaders {
+  /**
+   * The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Match or If-None-Match headers.
+   */
   eTag?: string;
 }
 
@@ -2149,6 +2155,9 @@ export interface BlobContainersGetImmutabilityPolicyHeaders {
  * Defines headers for BlobContainers_deleteImmutabilityPolicy operation.
  */
 export interface BlobContainersDeleteImmutabilityPolicyHeaders {
+  /**
+   * The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Match or If-None-Match headers.
+   */
   eTag?: string;
 }
 
@@ -2156,6 +2165,9 @@ export interface BlobContainersDeleteImmutabilityPolicyHeaders {
  * Defines headers for BlobContainers_lockImmutabilityPolicy operation.
  */
 export interface BlobContainersLockImmutabilityPolicyHeaders {
+  /**
+   * The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Match or If-None-Match headers.
+   */
   eTag?: string;
 }
 
@@ -2163,6 +2175,9 @@ export interface BlobContainersLockImmutabilityPolicyHeaders {
  * Defines headers for BlobContainers_extendImmutabilityPolicy operation.
  */
 export interface BlobContainersExtendImmutabilityPolicyHeaders {
+  /**
+   * The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Match or If-None-Match headers.
+   */
   eTag?: string;
 }
 
@@ -2254,6 +2269,14 @@ export type Permissions = "r" | "d" | "w" | "l" | "a" | "c" | "u" | "p";
  * Defines values for SignedResource.
  */
 export type SignedResource = "b" | "c" | "f" | "s";
+/**
+ * Defines values for ManagementPolicyName.
+ */
+export type ManagementPolicyName = "default";
+/**
+ * Defines values for RuleType.
+ */
+export type RuleType = "Lifecycle";
 /**
  * Defines values for EncryptionScopeSource.
  */
