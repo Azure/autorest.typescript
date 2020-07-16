@@ -2,13 +2,11 @@ import { HttpInfrastructureClient } from "./generated/httpInfrastructure/src/htt
 import { assert } from "chai";
 import {
   RequestPolicyFactory,
-  OperationOptions,
   redirectPolicy,
   exponentialRetryPolicy,
   deserializationPolicy,
   isNode
 } from "@azure/core-http";
-import { HttpInfrastructureClientOptionalParams } from "./generated/httpInfrastructure/src/models";
 describe("Http infrastructure Client", () => {
   let client: HttpInfrastructureClient;
 
@@ -156,13 +154,13 @@ describe("Http infrastructure Client", () => {
       }
     });
 
-    it("delete407 should throw error", async () => {
+    it("patch414 should throw error", async () => {
       try {
-        await client.httpClientFailure.delete407();
+        await client.httpClientFailure.patch414();
         assert.fail("Expected error");
       } catch (error) {
         if (isNode) {
-          assert.equal(error.statusCode, 407);
+          assert.equal(error.statusCode, 414);
         } else {
           assert.notEqual(error.message, "Expected error");
         }
@@ -259,6 +257,15 @@ describe("Http infrastructure Client", () => {
       }
     });
 
+    it("delete407 should throw error", async () => {
+      try {
+        await client.httpClientFailure.delete407();
+        assert.fail("Expected error");
+      } catch (error) {
+        assert.equal(error.statusCode, 407);
+      }
+    });
+
     it("head429 should throw error", async () => {
       try {
         await client.httpClientFailure.head429();
@@ -302,6 +309,15 @@ describe("Http infrastructure Client", () => {
         assert.fail("Expected error");
       } catch (error) {
         assert.equal(error.statusCode, 400);
+      }
+    });
+
+    it("patch405 should throw error", async () => {
+      try {
+        await client.httpClientFailure.patch405();
+        assert.fail("Expected error");
+      } catch (error) {
+        assert.equal(error.statusCode, 405);
       }
     });
 
@@ -424,6 +440,12 @@ describe("Http infrastructure Client", () => {
       assert.equal(result._response.status, 200);
     });
 
+    // Enable when Azure/azure-sdk-for-js/issues/10103 is fixed
+    it.skip("patch302 should return 200", async () => {
+      const result = await client.httpRedirects.patch302();
+      assert.equal(result._response.status, 200);
+    });
+
     it("patch307 should return 200", async () => {
       const result = await client.httpRedirects.patch307();
       assert.equal(result._response.status, 200);
@@ -441,6 +463,12 @@ describe("Http infrastructure Client", () => {
 
     it("put307 should return 200", async () => {
       const result = await client.httpRedirects.put307();
+      assert.equal(result._response.status, 200);
+    });
+
+    // Enable when Azure/azure-sdk-for-js/issues/10103 is fixed
+    it.skip("put301 should return 200", async () => {
+      const result = await client.httpRedirects.put301();
       assert.equal(result._response.status, 200);
     });
   });
