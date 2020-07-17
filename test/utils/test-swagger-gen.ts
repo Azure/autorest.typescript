@@ -133,6 +133,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "custom-url",
     licenseHeader: true
   },
+  customUrlMoreOptions: {
+    swagger: "custom-baseUrl-more-options.json",
+    clientName: "CustomUrlMoreOptionsClient",
+    packageName: "custom-url-MoreOptions",
+    licenseHeader: true
+  },
   customUrlPaging: {
     swagger: "custom-baseUrl-paging.json",
     clientName: "CustomUrlPagingClient",
