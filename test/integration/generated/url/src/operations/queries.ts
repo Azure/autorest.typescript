@@ -26,6 +26,7 @@ import {
   QueriesArrayStringCsvValidOptionalParams,
   QueriesArrayStringCsvNullOptionalParams,
   QueriesArrayStringCsvEmptyOptionalParams,
+  QueriesArrayStringNoCollectionFormatEmptyOptionalParams,
   QueriesArrayStringSsvValidOptionalParams,
   QueriesArrayStringTsvValidOptionalParams,
   QueriesArrayStringPipesValidOptionalParams
@@ -543,6 +544,23 @@ export class Queries {
   }
 
   /**
+   * Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao',
+   * 'bonjour'] for the 'arrayQuery' parameter to the service
+   * @param options The options parameters.
+   */
+  arrayStringNoCollectionFormatEmpty(
+    options?: QueriesArrayStringNoCollectionFormatEmptyOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
+      options || {}
+    );
+    return this.client.sendOperationRequest(
+      { options: operationOptions },
+      arrayStringNoCollectionFormatEmptyOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
+  }
+
+  /**
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array
    * format
    * @param options The options parameters.
@@ -1001,6 +1019,19 @@ const arrayStringCsvEmptyOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   serializer
 };
+const arrayStringNoCollectionFormatEmptyOperationSpec: coreHttp.OperationSpec = {
+  path: "/queries/array/none/string/empty",
+  httpMethod: "GET",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  queryParameters: [Parameters.arrayQuery1],
+  urlParameters: [Parameters.$host],
+  serializer
+};
 const arrayStringSsvValidOperationSpec: coreHttp.OperationSpec = {
   path: "/queries/array/ssv/string/valid",
   httpMethod: "GET",
@@ -1010,7 +1041,7 @@ const arrayStringSsvValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.arrayQuery1],
+  queryParameters: [Parameters.arrayQuery2],
   urlParameters: [Parameters.$host],
   serializer
 };
@@ -1023,7 +1054,7 @@ const arrayStringTsvValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.arrayQuery2],
+  queryParameters: [Parameters.arrayQuery3],
   urlParameters: [Parameters.$host],
   serializer
 };
@@ -1036,7 +1067,7 @@ const arrayStringPipesValidOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.arrayQuery3],
+  queryParameters: [Parameters.arrayQuery4],
   urlParameters: [Parameters.$host],
   serializer
 };

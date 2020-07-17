@@ -186,6 +186,17 @@ export interface QueriesArrayStringCsvEmptyOptionalParams
 /**
  * Optional parameters.
  */
+export interface QueriesArrayStringNoCollectionFormatEmptyOptionalParams
+  extends coreHttp.OperationOptions {
+  /**
+   * Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour'].
+   */
+  arrayQuery?: string[];
+}
+
+/**
+ * Optional parameters.
+ */
 export interface QueriesArrayStringSsvValidOptionalParams
   extends coreHttp.OperationOptions {
   /**

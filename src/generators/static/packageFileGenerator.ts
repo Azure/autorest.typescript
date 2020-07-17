@@ -22,7 +22,7 @@ export function generatePackageJson(
     version: packageDetails.version,
     dependencies: {
       ...(hasLRO && { "@azure/core-lro": "^1.0.1" }),
-      "@azure/core-http": "1.1.3-dev.20200520.1",
+      "@azure/core-http": "^1.1.4",
       tslib: "^1.9.3"
     },
     keywords: ["node", "azure", "typescript", "browser", "isomorphic"],
