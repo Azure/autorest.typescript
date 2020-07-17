@@ -20,6 +20,98 @@ describe("Integration tests for Paging", () => {
     client = new PagingClient(pipelineOptions);
   });
 
+  describe("getMultiplePagesRetrySecond", () => {
+    it("should retry and succeed the second time calling the next operation", async () => {
+      const result = await client.paging.getPagingModelWithItemNameWithXMSClientName();
+
+      assert.deepEqual(result.indexes, [
+        { properties: { id: 1, name: "Product" } }
+      ]);
+    });
+
+    it("should retry and succeed the second time calling the next operation", async () => {
+      let response = await client.paging.getMultiplePagesRetrySecond();
+      let values: any[] = [];
+
+      if (response.values) {
+        values.push(...response.values);
+      }
+
+      while (response.nextLink) {
+        response = await client.paging.getMultiplePagesRetrySecondNext(
+          response.nextLink
+        );
+
+        if (response.values) {
+          values.push(...response.values);
+        }
+      }
+
+      assert.deepEqual(values, [
+        {
+          properties: {
+            id: 1,
+            name: "Product"
+          }
+        },
+        {
+          properties: {
+            id: 1,
+            name: "Product"
+          }
+        },
+        {
+          properties: {
+            id: 3,
+            name: "product"
+          }
+        },
+        {
+          properties: {
+            id: 4,
+            name: "product"
+          }
+        },
+        {
+          properties: {
+            id: 5,
+            name: "product"
+          }
+        },
+        {
+          properties: {
+            id: 6,
+            name: "product"
+          }
+        },
+        {
+          properties: {
+            id: 7,
+            name: "product"
+          }
+        },
+        {
+          properties: {
+            id: 8,
+            name: "product"
+          }
+        },
+        {
+          properties: {
+            id: 9,
+            name: "product"
+          }
+        },
+        {
+          properties: {
+            id: 10,
+            name: "product"
+          }
+        }
+      ]);
+    });
+  });
+
   describe("#getNoItemNamePages", () => {
     it("should return result of the default 'value' node", async () => {
       const response = await client.paging.getNoItemNamePages();
@@ -30,8 +122,7 @@ describe("Integration tests for Paging", () => {
     });
   });
 
-  // Azure/autorest.typescript/issues/648
-  describe.skip("#getNullNextLinkNamePages", () => {
+  describe("#getNullNextLinkNamePages", () => {
     it("should ignore any kind of nextLink, and stop after page 1", async () => {
       const expected: Product[] = [
         {
@@ -42,6 +133,10 @@ describe("Integration tests for Paging", () => {
         }
       ];
       const response = await client.paging.getNullNextLinkNamePages();
+
+      assert.deepEqual(response.values, expected);
+
+      // Azure/autorest.typescript/issues/648
       // assert.deepEqual(response, expected);
     });
   });
@@ -154,7 +249,7 @@ describe("Integration tests for Paging", () => {
         throw new Error("Test failure");
       } catch (err) {
         expect(err.message).to.not.equal("Test failure");
-        // TODO: update core-http to 1.0.4 once released
+        // TODO: update corehttp to 1.0.4 once released
         // expect(err.statusCode).to.equal(400);
       }
     });

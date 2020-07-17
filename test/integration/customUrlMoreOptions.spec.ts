@@ -2,12 +2,12 @@ import { CustomUrlMoreOptionsClient } from "./generated/customUrlMoreOptions/src
 import { assert } from "chai";
 import { CustomUrlMoreOptionsClientOptionalParams } from "./generated/customUrlMoreOptions/src/models";
 
-describe("Custom URL + Paging", () => {
+describe("Custom URL More Options", () => {
   let client: CustomUrlMoreOptionsClient;
 
   beforeEach(() => {
     const clientOptions: CustomUrlMoreOptionsClientOptionalParams = {
-      endpoint: "localhost:3000",
+      endpoint: "http://localhost:3000",
       dnsSuffix: ""
     };
     client = new CustomUrlMoreOptionsClient("test12", clientOptions);
