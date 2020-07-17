@@ -248,9 +248,8 @@ describe("Integration tests for Paging", () => {
         await client.paging.getSinglePagesFailure();
         throw new Error("Test failure");
       } catch (err) {
-        expect(err.message).to.not.equal("Test failure");
-        // TODO: update corehttp to 1.0.4 once released
-        // expect(err.statusCode).to.equal(400);
+        // expect(err.message).to.not.equal("Test failure");
+        expect(err.statusCode).to.equal(400);
       }
     });
   });
