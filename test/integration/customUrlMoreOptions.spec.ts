@@ -13,8 +13,8 @@ describe("Custom URL More Options", () => {
     client = new CustomUrlMoreOptionsClient("test12", clientOptions);
   });
 
-  describe("Paging", () => {
-    it("getPagesPartialUrl", async () => {
+  describe("Paths", () => {
+    it("getEmpty", async () => {
       let result = await client.paths.getEmpty(
         "testVault",
         "testSecret",
