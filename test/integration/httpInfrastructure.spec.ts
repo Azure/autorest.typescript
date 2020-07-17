@@ -257,13 +257,16 @@ describe("Http infrastructure Client", () => {
       }
     });
 
-    // TODO: Browser failure?
     it("delete407 should throw error", async () => {
       try {
         await client.httpClientFailure.delete407();
         assert.fail("Expected error");
       } catch (error) {
-        assert.equal(error.statusCode, 407);
+        if (isNode) {
+          assert.equal(error.statusCode, 407);
+        } else {
+          assert.equal(error.code, "REQUEST_SEND_ERROR");
+        }
       }
     });
 

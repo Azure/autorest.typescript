@@ -3,17 +3,8 @@
   "author": "Microsoft Corporation",
   "description": "Test Infrastructure for AutoRest",
   "version": "1.0.0-preview1",
-  "dependencies": {
-    "@azure/core-http": "^1.1.4",
-    "tslib": "^1.9.3"
-  },
-  "keywords": [
-    "node",
-    "azure",
-    "typescript",
-    "browser",
-    "isomorphic"
-  ],
+  "dependencies": { "@azure/core-http": "^1.1.4", "tslib": "^1.9.3" },
+  "keywords": ["node", "azure", "typescript", "browser", "isomorphic"],
   "license": "MIT",
   "main": "./dist/url.js",
   "module": "./esm/urlClient.js",
@@ -30,9 +21,7 @@
     "type": "git",
     "url": "https://github.com/Azure/azure-sdk-for-js.git"
   },
-  "bugs": {
-    "url": "https://github.com/Azure/azure-sdk-for-js/issues"
-  },
+  "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
   "files": [
     "dist/**/*.js",
     "dist/**/*.js.map",
