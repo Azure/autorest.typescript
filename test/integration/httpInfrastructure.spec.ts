@@ -257,6 +257,7 @@ describe("Http infrastructure Client", () => {
       }
     });
 
+    // TODO: Browser failure?
     it("delete407 should throw error", async () => {
       try {
         await client.httpClientFailure.delete407();

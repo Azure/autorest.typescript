@@ -174,6 +174,13 @@ describe("Integration tests for Url", () => {
   });
   describe("queries", () => {
     it("should work when query has bool", async function() {
+      const result = await client.queries.arrayStringNoCollectionFormatEmpty({arrayQuery: ['hello', 'nihao', 'bonjour']});
+
+      assert.equal(result._response.status, 200);
+    });
+
+
+    it("should work when query has bool", async function() {
       await client.queries.getBooleanTrue();
       await client.queries.getBooleanFalse();
       assert.ok("Call succeeded");
