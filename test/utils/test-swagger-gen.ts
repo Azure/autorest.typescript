@@ -217,6 +217,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "zzzReport",
     licenseHeader: true
   },
+  uuid: {
+    swagger: "test/integration/swaggers/uuid.json",
+    clientName: "UuidClient",
+    packageName: "uuid",
+    licenseHeader: true
+  },
   url: {
     swagger: "url.json",
     clientName: "UrlClient",
