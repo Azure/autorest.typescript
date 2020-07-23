@@ -1,0 +1,64 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "UuidClient",
+    "version": "v1.0.0.0"
+  },
+  "paths": {
+    "/Uuid": {
+      "description": "Uuid test",
+      "get": {
+        "operationId": "GET_Uuid",
+        "parameters": [
+          {
+            "name": "Test-Uuid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "default": "df79f5ce-4bf7-4680-8552-2317893986ed"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a string.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "encoding": {
+                  "text/plain": {
+                    "contentType": "text/plain"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "encoding": {
+                  "application/json": {
+                    "contentType": "application/json"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "encoding": {
+                  "text/json": {
+                    "contentType": "text/json"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

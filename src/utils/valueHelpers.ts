@@ -45,6 +45,8 @@ export function getStringForValue(
     case SchemaType.Boolean:
     case MapperTypes.Boolean:
       return value;
+    case SchemaType.Uuid:
+    case MapperTypes.Uuid:
     case SchemaType.Date:
     case MapperTypes.Date:
     case SchemaType.DateTime:
