@@ -11,6 +11,7 @@ export enum MapperTypes {
   Date = "Date",
   DateTime = "DateTime",
   DateTimeRfc1123 = "DateTimeRfc1123",
+  Enum = "Enum",
   Object = "Object",
   Stream = "Stream",
   String = "String",
@@ -56,7 +57,7 @@ export function getStringForValue(
     case MapperTypes.String:
     case MapperTypes.TimeSpan:
     case SchemaType.Choice:
-    case "Enum":
+    case MapperTypes.Enum:
       const valueString = !!value ? value.toString() : "";
       return quotedStrings ? `"${valueString}"` : `${valueString}`;
     default:
