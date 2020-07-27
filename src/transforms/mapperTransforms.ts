@@ -531,7 +531,7 @@ function transformStringMapper(pipelineValue: PipelineValue) {
    */
   if (
     !isSchemaType(
-      [SchemaType.String, SchemaType.Choice, SchemaType.Credential],
+      [SchemaType.String, SchemaType.Choice, SchemaType.Credential, SchemaType.Uri],
       schema
     )
   ) {
@@ -719,6 +719,7 @@ export function getMapperTypeFromSchema(type: SchemaType, format?: string) {
     case SchemaType.Char:
     case SchemaType.Credential:
     case SchemaType.String:
+    case SchemaType.Uri:
       return MapperType.String;
     case SchemaType.Choice:
       return MapperType.String;

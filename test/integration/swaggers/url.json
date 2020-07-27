@@ -1,0 +1,64 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "UrlClient",
+    "version": "v1.0.0.0"
+  },
+  "paths": {
+    "/Url": {
+      "description": "Url test",
+      "get": {
+        "operationId": "GET_Url",
+        "parameters": [
+          {
+            "name": "Test-Url",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "url",
+              "default": "https://example.com"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a string.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "encoding": {
+                  "text/plain": {
+                    "contentType": "text/plain"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "encoding": {
+                  "application/json": {
+                    "contentType": "application/json"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "encoding": {
+                  "text/json": {
+                    "contentType": "text/json"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

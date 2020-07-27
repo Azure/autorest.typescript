@@ -156,6 +156,7 @@ export function getTypeForSchema(schema: Schema): TypeDetails {
     case SchemaType.String:
     case SchemaType.Time:
     case SchemaType.Uuid:
+    case SchemaType.Uri:
     case SchemaType.Credential:
       typeName = "string";
       break;
