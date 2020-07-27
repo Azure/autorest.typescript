@@ -229,6 +229,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "url",
     licenseHeader: true
   },
+  url2: {
+    swagger: "test/integration/swaggers/url.json",
+    clientName: "UrlClient",
+    packageName: "url",
+    licenseHeader: true
+  },
   xmlservice: {
     swagger: "xml-service.json",
     clientName: "XmlServiceClient",
