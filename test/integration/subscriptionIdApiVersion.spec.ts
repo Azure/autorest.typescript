@@ -1,7 +1,6 @@
-import { expect } from "chai";
 import { SubscriptionIdApiVersionClient } from "./generated/subscriptionIdApiVersion/src/subscriptionIdApiVersionClient";
 import { GroupGetSampleResourceGroupResponse } from "./generated/subscriptionIdApiVersion/src/models/index";
-import { subscriptionId } from "./generated/subscriptionIdApiVersion/src/models/parameters";
+import { assert } from "chai";
 
 describe("Integration tests for SubscriptionId-ApiVersion", () => {
   let client: SubscriptionIdApiVersionClient;
@@ -12,11 +11,9 @@ describe("Integration tests for SubscriptionId-ApiVersion", () => {
     const result: GroupGetSampleResourceGroupResponse = await client.group.getSampleResourceGroup(
       "testgroup101"
     );
-    expect(result.name).to.equal(
-      "testgroup101",
-      "Unexpected resource group name"
-    );
-    expect(result.location).to.equal(
+    assert.equal(result.name, "testgroup101", "Unexpected resource group name");
+    assert.equal(
+      result.location,
       "West US",
       "Unexpected resource group location"
     );
