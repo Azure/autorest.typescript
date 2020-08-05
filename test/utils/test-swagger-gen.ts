@@ -251,6 +251,12 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "LicenseHeaderClient",
     packageName: "license-header",
     licenseHeader: true
+  },
+  subscriptionIdApiVersion: {
+    swagger: "subscriptionId-apiVersion.json",
+    clientName: "SubscriptionIdApiVersionClient",
+    packageName: "subscriptionid-apiversion",
+    licenseHeader: true
   }
 };
 
