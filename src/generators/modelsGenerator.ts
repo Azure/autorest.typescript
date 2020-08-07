@@ -473,7 +473,7 @@ function getOptionalGroups(
   return optionalGroups.map(group => {
     const { name, description } = getLanguageMetadata(group.language);
     return {
-      name: name,
+      name: normalizeName(name, NameType.Parameter, true),
       hasQuestionToken: !group.required,
       type: normalizeName(name, NameType.Interface),
       docs: [description],

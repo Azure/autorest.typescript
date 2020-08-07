@@ -65,6 +65,7 @@ const ReservedModelNames: ReservedName[] = [
   { name: "private", reservedFor: [NameType.Parameter] },
   { name: "protected", reservedFor: [NameType.Parameter] },
   { name: "public", reservedFor: [NameType.Parameter] },
+  { name: "requestoptions", reservedFor: [NameType.Parameter] },
   { name: "require", reservedFor: [NameType.Parameter] },
   { name: "return", reservedFor: [NameType.Parameter] },
   { name: "set", reservedFor: [NameType.Parameter, ...Newable] },
