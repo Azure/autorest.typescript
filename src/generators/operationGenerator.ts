@@ -979,9 +979,11 @@ export function addOperationSpecs(
     hasMediaType(operation, KnownMediaType.Xml)
   );
 
-  const hasNonXml = operationGroupDetails.operations.some(
-    operation => !hasMediaType(operation, KnownMediaType.Xml)
+  const hasJson = operationGroupDetails.operations.some(operation =>
+    hasMediaType(operation, KnownMediaType.Json)
   );
+
+  const needsDefault = !hasXml && !hasJson;
 
   file.addStatements("// Operation Specifications");
 
@@ -989,7 +991,7 @@ export function addOperationSpecs(
     writeSerializer(hasMappers, file, SerializerKind.Xml);
   }
 
-  if (hasNonXml) {
+  if (hasJson || needsDefault) {
     writeSerializer(hasMappers, file, SerializerKind.Json);
   }
 
