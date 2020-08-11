@@ -1,4 +1,4 @@
-import { BodyDateClient } from "./generated/bodyDate/src/bodyDateClient";
+import { BodyDateClient } from "./generated/bodyDate/src";
 import { expect } from "chai";
 describe("BodyDateClient", function() {
   let testClient: BodyDateClient;

@@ -1,4 +1,4 @@
-import { MediaTypesV3Client } from "./generated/mediaTypesV3/src/mediaTypesV3Client";
+import { MediaTypesV3Client } from "./generated/mediaTypesV3/src";
 import { assert } from "chai";
 describe("OpenAPI V3 model that supports multiple media-types", () => {
   it("should expose optional parameters that have no media-type", () => {

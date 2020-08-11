@@ -8,7 +8,6 @@
 
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
-import * as Models from "./models";
 import { LicenseHeaderClientContext } from "./licenseHeaderClientContext";
 import {
   LicenseHeaderClientOptionalParams,
@@ -16,7 +15,7 @@ import {
   LicenseHeaderClientApiV1ValueGetResponse
 } from "./models";
 
-class LicenseHeaderClient extends LicenseHeaderClientContext {
+export class LicenseHeaderClient extends LicenseHeaderClientContext {
   /**
    * Initializes a new instance of the LicenseHeaderClient class.
    * @param $host server parameter
@@ -61,12 +60,4 @@ const apiV1ValueGetOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.apiVersion],
   serializer
-};
-
-// Operation Specifications
-
-export {
-  LicenseHeaderClient,
-  LicenseHeaderClientContext,
-  Models as LicenseHeaderModels
 };

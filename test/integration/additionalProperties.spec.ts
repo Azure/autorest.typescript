@@ -1,6 +1,6 @@
 import { assert } from "chai";
-import { AdditionalPropertiesClient } from "./generated/additionalProperties/src/additionalPropertiesClient";
 import {
+  AdditionalPropertiesClient,
   PetAPTrue,
   PetsCreateAPTrueResponse,
   CatAPTrue,
@@ -13,7 +13,7 @@ import {
   PetsCreateAPInPropertiesResponse,
   PetAPInPropertiesWithAPString,
   PetsCreateAPInPropertiesWithAPStringResponse
-} from "./generated/additionalProperties/src/models";
+} from "./generated/additionalProperties/src";
 
 /**
  * Returns an interface that omits the _response field.

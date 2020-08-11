@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { HeaderClientContext } from "./headerClientContext";
 import { HeaderClientOptionalParams } from "./models";
 
-class HeaderClient extends HeaderClientContext {
+export class HeaderClient extends HeaderClientContext {
   /**
    * Initializes a new instance of the HeaderClient class.
    * @param options The parameter options
@@ -24,13 +22,3 @@ class HeaderClient extends HeaderClientContext {
 
   header: operations.Header;
 }
-
-// Operation Specifications
-
-export {
-  HeaderClient,
-  HeaderClientContext,
-  Models as HeaderModels,
-  Mappers as HeaderMappers
-};
-export * from "./operations";

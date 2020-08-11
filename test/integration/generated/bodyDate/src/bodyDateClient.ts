@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { BodyDateClientContext } from "./bodyDateClientContext";
 import { BodyDateClientOptionalParams } from "./models";
 
-class BodyDateClient extends BodyDateClientContext {
+export class BodyDateClient extends BodyDateClientContext {
   /**
    * Initializes a new instance of the BodyDateClient class.
    * @param options The parameter options
@@ -24,13 +22,3 @@ class BodyDateClient extends BodyDateClientContext {
 
   date: operations.DateOperations;
 }
-
-// Operation Specifications
-
-export {
-  BodyDateClient,
-  BodyDateClientContext,
-  Models as BodyDateModels,
-  Mappers as BodyDateMappers
-};
-export * from "./operations";

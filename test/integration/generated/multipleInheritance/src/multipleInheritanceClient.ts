@@ -8,7 +8,6 @@
 
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
-import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { MultipleInheritanceClientContext } from "./multipleInheritanceClientContext";
 import {
@@ -30,7 +29,7 @@ import {
   MultipleInheritanceClientPutKittenResponse
 } from "./models";
 
-class MultipleInheritanceClient extends MultipleInheritanceClientContext {
+export class MultipleInheritanceClient extends MultipleInheritanceClientContext {
   /**
    * Initializes a new instance of the MultipleInheritanceClient class.
    * @param options The parameter options
@@ -354,13 +353,4 @@ const putKittenOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType],
   mediaType: "json",
   serializer
-};
-
-// Operation Specifications
-
-export {
-  MultipleInheritanceClient,
-  MultipleInheritanceClientContext,
-  Models as MultipleInheritanceModels,
-  Mappers as MultipleInheritanceMappers
 };

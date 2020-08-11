@@ -7,11 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
 import { UrlClientContext } from "./urlClientContext";
 import { UrlClientOptionalParams } from "./models";
 
-class UrlClient extends UrlClientContext {
+export class UrlClient extends UrlClientContext {
   /**
    * Initializes a new instance of the UrlClient class.
    * @param $host server parameter
@@ -24,8 +23,3 @@ class UrlClient extends UrlClientContext {
 
   get: operations.Get;
 }
-
-// Operation Specifications
-
-export { UrlClient, UrlClientContext, Models as UrlModels };
-export * from "./operations";

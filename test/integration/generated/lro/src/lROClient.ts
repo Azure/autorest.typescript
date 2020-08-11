@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { LROClientContext } from "./lROClientContext";
 import { LROClientOptionalParams } from "./models";
 
-class LROClient extends LROClientContext {
+export class LROClient extends LROClientContext {
   /**
    * Initializes a new instance of the LROClient class.
    * @param options The parameter options
@@ -30,13 +28,3 @@ class LROClient extends LROClientContext {
   lrosaDs: operations.LrosaDs;
   lROsCustomHeader: operations.LROsCustomHeader;
 }
-
-// Operation Specifications
-
-export {
-  LROClient,
-  LROClientContext,
-  Models as LROModels,
-  Mappers as LROMappers
-};
-export * from "./operations";

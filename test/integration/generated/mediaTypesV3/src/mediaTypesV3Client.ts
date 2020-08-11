@@ -7,11 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
 import { MediaTypesV3ClientContext } from "./mediaTypesV3ClientContext";
 import { MediaTypesV3ClientOptionalParams } from "./models";
 
-class MediaTypesV3Client extends MediaTypesV3ClientContext {
+export class MediaTypesV3Client extends MediaTypesV3ClientContext {
   /**
    * Initializes a new instance of the MediaTypesV3Client class.
    * @param $host server parameter
@@ -26,12 +25,3 @@ class MediaTypesV3Client extends MediaTypesV3ClientContext {
   barApi: operations.BarApi;
   fooApi: operations.FooApi;
 }
-
-// Operation Specifications
-
-export {
-  MediaTypesV3Client,
-  MediaTypesV3ClientContext,
-  Models as MediaTypesV3Models
-};
-export * from "./operations";

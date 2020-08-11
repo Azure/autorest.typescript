@@ -8,14 +8,13 @@
 
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
-import * as Models from "./models";
 import { RegexConstraintContext } from "./regexConstraintContext";
 import {
   RegexConstraintOptionalParams,
   RegexConstraintApiV1ValueGetResponse
 } from "./models";
 
-class RegexConstraint extends RegexConstraintContext {
+export class RegexConstraint extends RegexConstraintContext {
   /**
    * Initializes a new instance of the RegexConstraint class.
    * @param $host server parameter
@@ -57,12 +56,4 @@ const apiV1ValueGetOperationSpec: coreHttp.OperationSpec = {
   },
   urlParameters: [Parameters.$host, Parameters.serverName],
   serializer
-};
-
-// Operation Specifications
-
-export {
-  RegexConstraint,
-  RegexConstraintContext,
-  Models as RegexConstraintModels
 };

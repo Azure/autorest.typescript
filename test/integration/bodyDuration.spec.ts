@@ -1,4 +1,4 @@
-import { BodyDurationClient } from "./generated/bodyDuration/src/bodyDurationClient";
+import { BodyDurationClient } from "./generated/bodyDuration/src";
 import { expect } from "chai";
 import { fail } from "assert";
 

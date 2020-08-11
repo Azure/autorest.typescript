@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { PagingClientContext } from "./pagingClientContext";
 import { PagingClientOptionalParams } from "./models";
 
-class PagingClient extends PagingClientContext {
+export class PagingClient extends PagingClientContext {
   /**
    * Initializes a new instance of the PagingClient class.
    * @param options The parameter options
@@ -24,13 +22,3 @@ class PagingClient extends PagingClientContext {
 
   paging: operations.Paging;
 }
-
-// Operation Specifications
-
-export {
-  PagingClient,
-  PagingClientContext,
-  Models as PagingModels,
-  Mappers as PagingMappers
-};
-export * from "./operations";

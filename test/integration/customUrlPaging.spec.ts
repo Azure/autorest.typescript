@@ -1,6 +1,8 @@
-import { CustomUrlPagingClient } from "./generated/customUrlPaging/src/customUrlPagingClient";
+import {
+  CustomUrlPagingClient,
+  CustomUrlPagingClientOptionalParams
+} from "./generated/customUrlPaging/src";
 import { assert } from "chai";
-import { CustomUrlPagingClientOptionalParams } from "./generated/customUrlPaging/src/models";
 
 describe("Custom URL + Paging", () => {
   let client: CustomUrlPagingClient;

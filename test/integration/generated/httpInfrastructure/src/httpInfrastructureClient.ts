@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { HttpInfrastructureClientContext } from "./httpInfrastructureClientContext";
 import { HttpInfrastructureClientOptionalParams } from "./models";
 
-class HttpInfrastructureClient extends HttpInfrastructureClientContext {
+export class HttpInfrastructureClient extends HttpInfrastructureClientContext {
   /**
    * Initializes a new instance of the HttpInfrastructureClient class.
    * @param options The parameter options
@@ -36,13 +34,3 @@ class HttpInfrastructureClient extends HttpInfrastructureClientContext {
   httpRetry: operations.HttpRetry;
   multipleResponses: operations.MultipleResponses;
 }
-
-// Operation Specifications
-
-export {
-  HttpInfrastructureClient,
-  HttpInfrastructureClientContext,
-  Models as HttpInfrastructureModels,
-  Mappers as HttpInfrastructureMappers
-};
-export * from "./operations";

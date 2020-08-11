@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { BodyDateTimeRfc1123ClientContext } from "./bodyDateTimeRfc1123ClientContext";
 import { BodyDateTimeRfc1123ClientOptionalParams } from "./models";
 
-class BodyDateTimeRfc1123Client extends BodyDateTimeRfc1123ClientContext {
+export class BodyDateTimeRfc1123Client extends BodyDateTimeRfc1123ClientContext {
   /**
    * Initializes a new instance of the BodyDateTimeRfc1123Client class.
    * @param options The parameter options
@@ -24,13 +22,3 @@ class BodyDateTimeRfc1123Client extends BodyDateTimeRfc1123ClientContext {
 
   datetimerfc1123: operations.Datetimerfc1123;
 }
-
-// Operation Specifications
-
-export {
-  BodyDateTimeRfc1123Client,
-  BodyDateTimeRfc1123ClientContext,
-  Models as BodyDateTimeRfc1123Models,
-  Mappers as BodyDateTimeRfc1123Mappers
-};
-export * from "./operations";

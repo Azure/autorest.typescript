@@ -1,6 +1,6 @@
 import { assert } from "chai";
-import { BodyDictionaryClient } from "./generated/bodyDictionary/src/bodyDictionaryClient";
 import {
+  BodyDictionaryClient,
   DictionaryGetBase64UrlResponse,
   DictionaryGetBooleanTfftResponse,
   DictionaryGetBooleanInvalidNullResponse,
@@ -14,7 +14,7 @@ import {
   DictionaryGetFloatValidResponse,
   DictionaryGetFloatInvalidNullResponse,
   DictionaryGetFloatInvalidStringResponse
-} from "./generated/bodyDictionary/src/models";
+} from "./generated/bodyDictionary/src";
 
 describe("BodyDictionary", () => {
   let client: BodyDictionaryClient;

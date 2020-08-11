@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { UrlClient, UrlModels } from "./generated/url/src/urlClient";
+import { UrlClient, UriColor } from "./generated/url/src";
 
 describe("Integration tests for Url", () => {
   let client: UrlClient;
@@ -61,7 +61,7 @@ describe("Integration tests for Url", () => {
 
     it("should work when path has enum", async function() {
       try {
-        await client.paths.enumValid(<UrlModels.UriColor>"");
+        await client.paths.enumValid(<UriColor>"");
         assert.fail("Expected to throw");
       } catch (error) {
         assert.equal(
@@ -174,11 +174,11 @@ describe("Integration tests for Url", () => {
   });
   describe("queries", () => {
     it("should work when query has bool", async function() {
-      const result = await client.queries.arrayStringNoCollectionFormatEmpty({arrayQuery: ['hello', 'nihao', 'bonjour']});
-
+      const result = await client.queries.arrayStringNoCollectionFormatEmpty({
+        arrayQuery: ["hello", "nihao", "bonjour"]
+      });
       assert.equal(result._response.status, 200);
     });
-
 
     it("should work when query has bool", async function() {
       await client.queries.getBooleanTrue();
@@ -224,7 +224,7 @@ describe("Integration tests for Url", () => {
 
     it("should work when query has enum values", async function() {
       await shouldThrow(() =>
-        client.queries.enumValid({ enumQuery: <UrlModels.UriColor>"" })
+        client.queries.enumValid({ enumQuery: <UriColor>"" })
       );
       await client.queries.enumNull({ enumQuery: null as any });
       await client.queries.enumValid({ enumQuery: "green color" });

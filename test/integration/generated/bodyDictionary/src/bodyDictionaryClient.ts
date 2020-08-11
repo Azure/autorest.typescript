@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { BodyDictionaryClientContext } from "./bodyDictionaryClientContext";
 import { BodyDictionaryClientOptionalParams } from "./models";
 
-class BodyDictionaryClient extends BodyDictionaryClientContext {
+export class BodyDictionaryClient extends BodyDictionaryClientContext {
   /**
    * Initializes a new instance of the BodyDictionaryClient class.
    * @param options The parameter options
@@ -24,13 +22,3 @@ class BodyDictionaryClient extends BodyDictionaryClientContext {
 
   dictionary: operations.Dictionary;
 }
-
-// Operation Specifications
-
-export {
-  BodyDictionaryClient,
-  BodyDictionaryClientContext,
-  Models as BodyDictionaryModels,
-  Mappers as BodyDictionaryMappers
-};
-export * from "./operations";

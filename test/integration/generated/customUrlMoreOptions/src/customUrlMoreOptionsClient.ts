@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { CustomUrlMoreOptionsClientContext } from "./customUrlMoreOptionsClientContext";
 import { CustomUrlMoreOptionsClientOptionalParams } from "./models";
 
-class CustomUrlMoreOptionsClient extends CustomUrlMoreOptionsClientContext {
+export class CustomUrlMoreOptionsClient extends CustomUrlMoreOptionsClientContext {
   /**
    * Initializes a new instance of the CustomUrlMoreOptionsClient class.
    * @param subscriptionId The subscription id with value 'test12'.
@@ -28,13 +26,3 @@ class CustomUrlMoreOptionsClient extends CustomUrlMoreOptionsClientContext {
 
   paths: operations.Paths;
 }
-
-// Operation Specifications
-
-export {
-  CustomUrlMoreOptionsClient,
-  CustomUrlMoreOptionsClientContext,
-  Models as CustomUrlMoreOptionsModels,
-  Mappers as CustomUrlMoreOptionsMappers
-};
-export * from "./operations";

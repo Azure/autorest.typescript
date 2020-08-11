@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { BodyBooleanClientContext } from "./bodyBooleanClientContext";
 import { BodyBooleanClientOptionalParams } from "./models";
 
-class BodyBooleanClient extends BodyBooleanClientContext {
+export class BodyBooleanClient extends BodyBooleanClientContext {
   /**
    * Initializes a new instance of the BodyBooleanClient class.
    * @param options The parameter options
@@ -24,13 +22,3 @@ class BodyBooleanClient extends BodyBooleanClientContext {
 
   bool: operations.Bool;
 }
-
-// Operation Specifications
-
-export {
-  BodyBooleanClient,
-  BodyBooleanClientContext,
-  Models as BodyBooleanModels,
-  Mappers as BodyBooleanMappers
-};
-export * from "./operations";

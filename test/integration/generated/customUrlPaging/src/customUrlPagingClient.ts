@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { CustomUrlPagingClientContext } from "./customUrlPagingClientContext";
 import { CustomUrlPagingClientOptionalParams } from "./models";
 
-class CustomUrlPagingClient extends CustomUrlPagingClientContext {
+export class CustomUrlPagingClient extends CustomUrlPagingClientContext {
   /**
    * Initializes a new instance of the CustomUrlPagingClient class.
    * @param options The parameter options
@@ -24,13 +22,3 @@ class CustomUrlPagingClient extends CustomUrlPagingClientContext {
 
   paging: operations.Paging;
 }
-
-// Operation Specifications
-
-export {
-  CustomUrlPagingClient,
-  CustomUrlPagingClientContext,
-  Models as CustomUrlPagingModels,
-  Mappers as CustomUrlPagingMappers
-};
-export * from "./operations";

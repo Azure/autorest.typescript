@@ -1,8 +1,5 @@
-import { equal, fail, ok, deepStrictEqual, throws, strictEqual } from "assert";
-import {
-  BodyStringClient,
-  BodyStringModels
-} from "./generated/bodyString/src/bodyStringClient";
+import { equal, fail, ok, deepStrictEqual } from "assert";
+import { BodyStringClient, Colors } from "./generated/bodyString/src";
 
 describe("Integration tests for BodyString", () => {
   let client: BodyStringClient;
@@ -47,9 +44,7 @@ describe("Integration tests for BodyString", () => {
 
     it("should correctly handle invalid values for enum", async function() {
       try {
-        await client.enum.putNotExpandable(
-          "orange color" as BodyStringModels.Colors
-        );
+        await client.enum.putNotExpandable("orange color" as Colors);
         fail("should have thrown error 'is not a valid value'");
       } catch (error) {
         ok(error.message.match(/.*is not a valid value.*/gi));

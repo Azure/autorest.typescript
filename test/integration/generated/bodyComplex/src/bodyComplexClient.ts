@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { BodyComplexClientContext } from "./bodyComplexClientContext";
 import { BodyComplexClientOptionalParams } from "./models";
 
-class BodyComplexClient extends BodyComplexClientContext {
+export class BodyComplexClient extends BodyComplexClientContext {
   /**
    * Initializes a new instance of the BodyComplexClient class.
    * @param options The parameter options
@@ -40,13 +38,3 @@ class BodyComplexClient extends BodyComplexClientContext {
   readonlyproperty: operations.Readonlyproperty;
   flattencomplex: operations.Flattencomplex;
 }
-
-// Operation Specifications
-
-export {
-  BodyComplexClient,
-  BodyComplexClientContext,
-  Models as BodyComplexModels,
-  Mappers as BodyComplexMappers
-};
-export * from "./operations";

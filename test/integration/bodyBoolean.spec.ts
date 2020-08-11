@@ -1,4 +1,4 @@
-import { BodyBooleanClient } from "./generated/bodyBoolean/src/bodyBooleanClient";
+import { BodyBooleanClient } from "./generated/bodyBoolean/src";
 import { expect } from "chai";
 describe("Bool Client", function() {
   let testClient: BodyBooleanClient;

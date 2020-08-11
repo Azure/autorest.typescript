@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { BodyFileClientContext } from "./bodyFileClientContext";
 import { BodyFileClientOptionalParams } from "./models";
 
-class BodyFileClient extends BodyFileClientContext {
+export class BodyFileClient extends BodyFileClientContext {
   /**
    * Initializes a new instance of the BodyFileClient class.
    * @param options The parameter options
@@ -24,13 +22,3 @@ class BodyFileClient extends BodyFileClientContext {
 
   files: operations.Files;
 }
-
-// Operation Specifications
-
-export {
-  BodyFileClient,
-  BodyFileClientContext,
-  Models as BodyFileModels,
-  Mappers as BodyFileMappers
-};
-export * from "./operations";

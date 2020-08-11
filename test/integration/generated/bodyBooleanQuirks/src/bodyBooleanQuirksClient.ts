@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { BodyBooleanQuirksClientContext } from "./bodyBooleanQuirksClientContext";
 import { BodyBooleanQuirksClientOptionalParams } from "./models";
 
-class BodyBooleanQuirksClient extends BodyBooleanQuirksClientContext {
+export class BodyBooleanQuirksClient extends BodyBooleanQuirksClientContext {
   /**
    * Initializes a new instance of the BodyBooleanQuirksClient class.
    * @param options The parameter options
@@ -24,13 +22,3 @@ class BodyBooleanQuirksClient extends BodyBooleanQuirksClientContext {
 
   bool: operations.Bool;
 }
-
-// Operation Specifications
-
-export {
-  BodyBooleanQuirksClient,
-  BodyBooleanQuirksClientContext,
-  Models as BodyBooleanQuirksModels,
-  Mappers as BodyBooleanQuirksMappers
-};
-export * from "./operations";

@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { BodyArrayClient } from "./generated/bodyArray/src/bodyArrayClient";
+import { BodyArrayClient } from "./generated/bodyArray/src";
 
 describe("Integration tests for BodyArrayClient", () => {
   let client: BodyArrayClient;

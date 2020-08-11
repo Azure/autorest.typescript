@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { XmlServiceClientContext } from "./xmlServiceClientContext";
 import { XmlServiceClientOptionalParams } from "./models";
 
-class XmlServiceClient extends XmlServiceClientContext {
+export class XmlServiceClient extends XmlServiceClientContext {
   /**
    * Initializes a new instance of the XmlServiceClient class.
    * @param options The parameter options
@@ -24,13 +22,3 @@ class XmlServiceClient extends XmlServiceClientContext {
 
   xml: operations.Xml;
 }
-
-// Operation Specifications
-
-export {
-  XmlServiceClient,
-  XmlServiceClientContext,
-  Models as XmlServiceModels,
-  Mappers as XmlServiceMappers
-};
-export * from "./operations";

@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { BodyStringClientContext } from "./bodyStringClientContext";
 import { BodyStringClientOptionalParams } from "./models";
 
-class BodyStringClient extends BodyStringClientContext {
+export class BodyStringClient extends BodyStringClientContext {
   /**
    * Initializes a new instance of the BodyStringClient class.
    * @param options The parameter options
@@ -26,13 +24,3 @@ class BodyStringClient extends BodyStringClientContext {
   string: operations.StringOperations;
   enum: operations.Enum;
 }
-
-// Operation Specifications
-
-export {
-  BodyStringClient,
-  BodyStringClientContext,
-  Models as BodyStringModels,
-  Mappers as BodyStringMappers
-};
-export * from "./operations";

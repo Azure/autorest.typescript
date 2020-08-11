@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { BodyArrayClientContext } from "./bodyArrayClientContext";
 import { BodyArrayClientOptionalParams } from "./models";
 
-class BodyArrayClient extends BodyArrayClientContext {
+export class BodyArrayClient extends BodyArrayClientContext {
   /**
    * Initializes a new instance of the BodyArrayClient class.
    * @param options The parameter options
@@ -24,13 +22,3 @@ class BodyArrayClient extends BodyArrayClientContext {
 
   array: operations.Array;
 }
-
-// Operation Specifications
-
-export {
-  BodyArrayClient,
-  BodyArrayClientContext,
-  Models as BodyArrayModels,
-  Mappers as BodyArrayMappers
-};
-export * from "./operations";

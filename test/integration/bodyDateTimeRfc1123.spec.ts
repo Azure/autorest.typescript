@@ -1,4 +1,4 @@
-import { BodyDateTimeRfc1123Client } from "./generated/bodyDateTimeRfc1123/src/bodyDateTimeRfc1123Client";
+import { BodyDateTimeRfc1123Client } from "./generated/bodyDateTimeRfc1123/src";
 import { expect } from "chai";
 import { isNil } from "lodash";
 describe("BodyDateTimeRfc1123Client", function() {

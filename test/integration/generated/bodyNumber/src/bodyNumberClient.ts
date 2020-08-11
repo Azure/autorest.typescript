@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { BodyNumberClientContext } from "./bodyNumberClientContext";
 import { BodyNumberClientOptionalParams } from "./models";
 
-class BodyNumberClient extends BodyNumberClientContext {
+export class BodyNumberClient extends BodyNumberClientContext {
   /**
    * Initializes a new instance of the BodyNumberClient class.
    * @param options The parameter options
@@ -24,13 +22,3 @@ class BodyNumberClient extends BodyNumberClientContext {
 
   number: operations.NumberOperations;
 }
-
-// Operation Specifications
-
-export {
-  BodyNumberClient,
-  BodyNumberClientContext,
-  Models as BodyNumberModels,
-  Mappers as BodyNumberMappers
-};
-export * from "./operations";

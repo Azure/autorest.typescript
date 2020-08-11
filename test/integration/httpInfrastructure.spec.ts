@@ -1,4 +1,4 @@
-import { HttpInfrastructureClient } from "./generated/httpInfrastructure/src/httpInfrastructureClient";
+import { HttpInfrastructureClient } from "./generated/httpInfrastructure/src";
 import { assert } from "chai";
 import {
   RequestPolicyFactory,

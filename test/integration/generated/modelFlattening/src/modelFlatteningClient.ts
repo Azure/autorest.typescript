@@ -8,7 +8,6 @@
 
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
-import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { ModelFlatteningClientContext } from "./modelFlatteningClientContext";
 import {
@@ -29,7 +28,7 @@ import {
   ModelFlatteningClientPutSimpleProductWithGroupingResponse
 } from "./models";
 
-class ModelFlatteningClient extends ModelFlatteningClientContext {
+export class ModelFlatteningClient extends ModelFlatteningClientContext {
   /**
    * Initializes a new instance of the ModelFlatteningClient class.
    * @param options The parameter options
@@ -405,13 +404,4 @@ const putSimpleProductWithGroupingOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType],
   mediaType: "json",
   serializer
-};
-
-// Operation Specifications
-
-export {
-  ModelFlatteningClient,
-  ModelFlatteningClientContext,
-  Models as ModelFlatteningModels,
-  Mappers as ModelFlatteningMappers
 };

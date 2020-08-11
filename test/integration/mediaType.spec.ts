@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { MediaTypesClient } from "./generated/mediaTypes/src/mediaTypesClient";
+import { MediaTypesClient } from "./generated/mediaTypes/src";
 
 describe("Integration tests for MediaTypes", () => {
   let client: MediaTypesClient;

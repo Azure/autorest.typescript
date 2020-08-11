@@ -1,5 +1,7 @@
-import { SubscriptionIdApiVersionClient } from "./generated/subscriptionIdApiVersion/src/subscriptionIdApiVersionClient";
-import { GroupGetSampleResourceGroupResponse } from "./generated/subscriptionIdApiVersion/src/models/index";
+import {
+  SubscriptionIdApiVersionClient,
+  GroupGetSampleResourceGroupResponse
+} from "./generated/subscriptionIdApiVersion/src";
 import { assert } from "chai";
 
 describe("Integration tests for SubscriptionId-ApiVersion", () => {

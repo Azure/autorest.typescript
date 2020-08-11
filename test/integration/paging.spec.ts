@@ -1,11 +1,11 @@
 import { expect, assert } from "chai";
-import { PagingClient } from "./generated/paging/src/pagingClient";
 import {
+  PagingClient,
   PagingGetMultiplePagesResponse,
   PagingGetMultiplePagesWithOffsetResponse,
   PagingGetMultiplePagesFragmentNextLinkResponse,
   Product
-} from "./generated/paging/src/models";
+} from "./generated/paging/src";
 import { InternalPipelineOptions } from "@azure/core-http";
 
 describe("Integration tests for Paging", () => {

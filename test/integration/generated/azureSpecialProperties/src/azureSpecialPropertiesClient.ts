@@ -8,12 +8,10 @@
 
 import * as coreHttp from "@azure/core-http";
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { AzureSpecialPropertiesClientContext } from "./azureSpecialPropertiesClientContext";
 import { AzureSpecialPropertiesClientOptionalParams } from "./models";
 
-class AzureSpecialPropertiesClient extends AzureSpecialPropertiesClientContext {
+export class AzureSpecialPropertiesClient extends AzureSpecialPropertiesClientContext {
   /**
    * Initializes a new instance of the AzureSpecialPropertiesClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -48,13 +46,3 @@ class AzureSpecialPropertiesClient extends AzureSpecialPropertiesClientContext {
   odata: operations.Odata;
   header: operations.Header;
 }
-
-// Operation Specifications
-
-export {
-  AzureSpecialPropertiesClient,
-  AzureSpecialPropertiesClientContext,
-  Models as AzureSpecialPropertiesModels,
-  Mappers as AzureSpecialPropertiesMappers
-};
-export * from "./operations";

@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { BodyByteClientContext } from "./bodyByteClientContext";
 import { BodyByteClientOptionalParams } from "./models";
 
-class BodyByteClient extends BodyByteClientContext {
+export class BodyByteClient extends BodyByteClientContext {
   /**
    * Initializes a new instance of the BodyByteClient class.
    * @param options The parameter options
@@ -24,13 +22,3 @@ class BodyByteClient extends BodyByteClientContext {
 
   byte: operations.Byte;
 }
-
-// Operation Specifications
-
-export {
-  BodyByteClient,
-  BodyByteClientContext,
-  Models as BodyByteModels,
-  Mappers as BodyByteMappers
-};
-export * from "./operations";

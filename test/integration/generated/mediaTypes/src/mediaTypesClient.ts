@@ -8,7 +8,6 @@
 
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
-import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { MediaTypesClientContext } from "./mediaTypesClientContext";
 import {
@@ -20,7 +19,7 @@ import {
   MediaTypesClientContentTypeWithEncodingResponse
 } from "./models";
 
-class MediaTypesClient extends MediaTypesClientContext {
+export class MediaTypesClient extends MediaTypesClientContext {
   /**
    * Initializes a new instance of the MediaTypesClient class.
    * @param options The parameter options
@@ -156,13 +155,4 @@ const contentTypeWithEncodingOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType2],
   mediaType: "text",
   serializer
-};
-
-// Operation Specifications
-
-export {
-  MediaTypesClient,
-  MediaTypesClientContext,
-  Models as MediaTypesModels,
-  Mappers as MediaTypesMappers
 };

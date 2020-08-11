@@ -1,4 +1,7 @@
-import { AzureSpecialPropertiesClient } from "./generated/azureSpecialProperties/src/azureSpecialPropertiesClient";
+import {
+  AzureSpecialPropertiesClient,
+  AzureSpecialPropertiesClientOptionalParams
+} from "./generated/azureSpecialProperties/src";
 import { assert } from "chai";
 import {
   OperationOptions,
@@ -8,7 +11,7 @@ import {
   TokenCredential,
   HttpHeaders
 } from "@azure/core-http";
-import { AzureSpecialPropertiesClientOptionalParams } from "./generated/azureSpecialProperties/src/models";
+
 describe("AzureSpecialProperties", () => {
   let client: AzureSpecialPropertiesClient;
   let dummySubscriptionId: string;

@@ -5,8 +5,12 @@ import { should } from "chai";
 import { AbortController, AbortError } from "@azure/abort-controller";
 import {
   XmlServiceClient,
-  XmlServiceModels
-} from "./generated/xmlservice/src/xmlServiceClient";
+  Slideshow,
+  AppleBarrel,
+  Banana,
+  StorageServiceProperties,
+  SignedIdentifier
+} from "./generated/xmlservice/src";
 should();
 const testClient = new XmlServiceClient({
   endpoint: "http://localhost:3000"
@@ -58,7 +62,7 @@ describe("typescript", function() {
     });
 
     it("should correctly serialize a simple XML document", async function() {
-      const slideshow: XmlServiceModels.Slideshow = {
+      const slideshow: Slideshow = {
         author: "Yours Truly",
         date: "Date of publication",
         title: "Sample Slide Show",
@@ -87,7 +91,7 @@ describe("typescript", function() {
     });
 
     it("should correctly serialize XML wrapped lists", async function() {
-      const appleBarrel: XmlServiceModels.AppleBarrel = {
+      const appleBarrel: AppleBarrel = {
         goodApples: ["Fuji", "Gala"],
         badApples: ["Red Delicious"]
       };
@@ -105,10 +109,10 @@ describe("typescript", function() {
     });
 
     it("should correctly serialize an empty XML list", async function() {
-      const emptyObject: XmlServiceModels.Slideshow = {};
+      const emptyObject: Slideshow = {};
       await testClient.xml.putEmptyList(emptyObject);
 
-      const emptyList: XmlServiceModels.Slideshow = { slides: [] };
+      const emptyList: Slideshow = { slides: [] };
       await testClient.xml.putEmptyList(emptyList);
     });
 
@@ -120,7 +124,7 @@ describe("typescript", function() {
     });
 
     it("should correctly serialize empty wrapped XML lists", async function() {
-      const wrappedLists: XmlServiceModels.AppleBarrel = {
+      const wrappedLists: AppleBarrel = {
         goodApples: [],
         badApples: []
       };
@@ -146,7 +150,7 @@ describe("typescript", function() {
     });
 
     it("should correctly serialize a root XML list", async function() {
-      const rootList: XmlServiceModels.Banana[] = [
+      const rootList: Banana[] = [
         {
           name: "Cavendish",
           flavor: "Sweet",
@@ -176,7 +180,7 @@ describe("typescript", function() {
     });
 
     it("should correctly serialize a root XML list of one element", async function() {
-      const rootList: XmlServiceModels.Banana[] = [
+      const rootList: Banana[] = [
         {
           name: "Cavendish",
           flavor: "Sweet",
@@ -206,7 +210,7 @@ describe("typescript", function() {
     });
 
     it("should correctly serialize an XML document with an empty child element", async function() {
-      const banana: XmlServiceModels.Banana = {
+      const banana: Banana = {
         name: "Unknown Banana",
         flavor: "",
         expiration: new Date("2012-02-24T00:53:52.789Z")
@@ -323,7 +327,7 @@ describe("typescript", function() {
     });
 
     it("should put service properties in a storage account", async function() {
-      const serviceProperties: XmlServiceModels.StorageServiceProperties = {
+      const serviceProperties: StorageServiceProperties = {
         logging: {
           version: "1.0",
           delete: true,
@@ -371,7 +375,7 @@ describe("typescript", function() {
     });
 
     it("should put storage ACLs for a container", async function() {
-      const acls: XmlServiceModels.SignedIdentifier[] = [
+      const acls: SignedIdentifier[] = [
         {
           id: "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=",
           accessPolicy: {

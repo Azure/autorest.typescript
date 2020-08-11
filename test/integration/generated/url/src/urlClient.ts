@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { UrlClientContext } from "./urlClientContext";
 import { UrlClientOptionalParams } from "./models";
 
-class UrlClient extends UrlClientContext {
+export class UrlClient extends UrlClientContext {
   /**
    * Initializes a new instance of the UrlClient class.
    * @param globalStringPath A string value 'globalItemStringPath' that appears in the path
@@ -29,13 +27,3 @@ class UrlClient extends UrlClientContext {
   queries: operations.Queries;
   pathItems: operations.PathItems;
 }
-
-// Operation Specifications
-
-export {
-  UrlClient,
-  UrlClientContext,
-  Models as UrlModels,
-  Mappers as UrlMappers
-};
-export * from "./operations";

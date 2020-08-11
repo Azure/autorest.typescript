@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { BodyDurationClientContext } from "./bodyDurationClientContext";
 import { BodyDurationClientOptionalParams } from "./models";
 
-class BodyDurationClient extends BodyDurationClientContext {
+export class BodyDurationClient extends BodyDurationClientContext {
   /**
    * Initializes a new instance of the BodyDurationClient class.
    * @param options The parameter options
@@ -24,13 +22,3 @@ class BodyDurationClient extends BodyDurationClientContext {
 
   duration: operations.Duration;
 }
-
-// Operation Specifications
-
-export {
-  BodyDurationClient,
-  BodyDurationClientContext,
-  Models as BodyDurationModels,
-  Mappers as BodyDurationMappers
-};
-export * from "./operations";

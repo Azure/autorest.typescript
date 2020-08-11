@@ -7,12 +7,10 @@
  */
 
 import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import { CustomUrlClientContext } from "./customUrlClientContext";
 import { CustomUrlClientOptionalParams } from "./models";
 
-class CustomUrlClient extends CustomUrlClientContext {
+export class CustomUrlClient extends CustomUrlClientContext {
   /**
    * Initializes a new instance of the CustomUrlClient class.
    * @param options The parameter options
@@ -24,13 +22,3 @@ class CustomUrlClient extends CustomUrlClientContext {
 
   paths: operations.Paths;
 }
-
-// Operation Specifications
-
-export {
-  CustomUrlClient,
-  CustomUrlClientContext,
-  Models as CustomUrlModels,
-  Mappers as CustomUrlMappers
-};
-export * from "./operations";
