@@ -958,7 +958,7 @@ function hasMediaType(
   operationDetails: OperationDetails,
   mediaType: KnownMediaType
 ) {
-  if (!operationDetails.requests) {
+  if (!operationDetails.requests.some(r => !!r.mediaType)) {
     return operationDetails.mediaTypes.has(mediaType);
   }
 
