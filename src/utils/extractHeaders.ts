@@ -9,8 +9,12 @@ export function extractHeaders(
   let responseHeaders: ObjectSchema[] = [];
 
   operationGroups.forEach(operationGroup =>
-    operationGroup.operations.forEach(operation =>
-      operation.responses?.forEach(response => {
+    operationGroup.operations.forEach(operation => {
+      const responsesAndExceptions = [
+        ...(operation.responses || []),
+        ...(operation.exceptions || [])
+      ];
+      responsesAndExceptions.forEach(response => {
         const operationName = getOperationFullName(
           operationGroup,
           operation,
@@ -21,8 +25,8 @@ export function extractHeaders(
           const headerSchema = headersToSchema(headers, operationName);
           headerSchema && responseHeaders.push(headerSchema);
         }
-      })
-    )
+      });
+    })
   );
 
   return responseHeaders;
