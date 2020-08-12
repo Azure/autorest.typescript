@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
+import { Pets } from "./operations";
 import { AdditionalPropertiesClientContext } from "./additionalPropertiesClientContext";
 import { AdditionalPropertiesClientOptionalParams } from "./models";
 
@@ -17,8 +17,8 @@ export class AdditionalPropertiesClient extends AdditionalPropertiesClientContex
    */
   constructor(options?: AdditionalPropertiesClientOptionalParams) {
     super(options);
-    this.pets = new operations.Pets(this);
+    this.pets = new Pets(this);
   }
 
-  pets: operations.Pets;
+  pets: Pets;
 }

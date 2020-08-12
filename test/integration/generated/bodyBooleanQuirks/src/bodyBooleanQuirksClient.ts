@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
+import { Bool } from "./operations";
 import { BodyBooleanQuirksClientContext } from "./bodyBooleanQuirksClientContext";
 import { BodyBooleanQuirksClientOptionalParams } from "./models";
 
@@ -17,8 +17,8 @@ export class BodyBooleanQuirksClient extends BodyBooleanQuirksClientContext {
    */
   constructor(options?: BodyBooleanQuirksClientOptionalParams) {
     super(options);
-    this.bool = new operations.Bool(this);
+    this.bool = new Bool(this);
   }
 
-  bool: operations.Bool;
+  bool: Bool;
 }

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
+import { Array } from "./operations";
 import { BodyArrayClientContext } from "./bodyArrayClientContext";
 import { BodyArrayClientOptionalParams } from "./models";
 
@@ -17,8 +17,8 @@ export class BodyArrayClient extends BodyArrayClientContext {
    */
   constructor(options?: BodyArrayClientOptionalParams) {
     super(options);
-    this.array = new operations.Array(this);
+    this.array = new Array(this);
   }
 
-  array: operations.Array;
+  array: Array;
 }

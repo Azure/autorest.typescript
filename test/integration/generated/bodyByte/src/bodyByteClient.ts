@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
+import { Byte } from "./operations";
 import { BodyByteClientContext } from "./bodyByteClientContext";
 import { BodyByteClientOptionalParams } from "./models";
 
@@ -17,8 +17,8 @@ export class BodyByteClient extends BodyByteClientContext {
    */
   constructor(options?: BodyByteClientOptionalParams) {
     super(options);
-    this.byte = new operations.Byte(this);
+    this.byte = new Byte(this);
   }
 
-  byte: operations.Byte;
+  byte: Byte;
 }

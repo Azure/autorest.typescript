@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
+import { Files } from "./operations";
 import { BodyFileClientContext } from "./bodyFileClientContext";
 import { BodyFileClientOptionalParams } from "./models";
 
@@ -17,8 +17,8 @@ export class BodyFileClient extends BodyFileClientContext {
    */
   constructor(options?: BodyFileClientOptionalParams) {
     super(options);
-    this.files = new operations.Files(this);
+    this.files = new Files(this);
   }
 
-  files: operations.Files;
+  files: Files;
 }

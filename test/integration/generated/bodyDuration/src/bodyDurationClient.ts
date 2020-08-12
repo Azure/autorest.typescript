@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
+import { Duration } from "./operations";
 import { BodyDurationClientContext } from "./bodyDurationClientContext";
 import { BodyDurationClientOptionalParams } from "./models";
 
@@ -17,8 +17,8 @@ export class BodyDurationClient extends BodyDurationClientContext {
    */
   constructor(options?: BodyDurationClientOptionalParams) {
     super(options);
-    this.duration = new operations.Duration(this);
+    this.duration = new Duration(this);
   }
 
-  duration: operations.Duration;
+  duration: Duration;
 }

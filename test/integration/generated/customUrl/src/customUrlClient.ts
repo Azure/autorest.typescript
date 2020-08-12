@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
+import { Paths } from "./operations";
 import { CustomUrlClientContext } from "./customUrlClientContext";
 import { CustomUrlClientOptionalParams } from "./models";
 
@@ -17,8 +17,8 @@ export class CustomUrlClient extends CustomUrlClientContext {
    */
   constructor(options?: CustomUrlClientOptionalParams) {
     super(options);
-    this.paths = new operations.Paths(this);
+    this.paths = new Paths(this);
   }
 
-  paths: operations.Paths;
+  paths: Paths;
 }

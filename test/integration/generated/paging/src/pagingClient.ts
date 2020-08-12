@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
+import { Paging } from "./operations";
 import { PagingClientContext } from "./pagingClientContext";
 import { PagingClientOptionalParams } from "./models";
 
@@ -17,8 +17,8 @@ export class PagingClient extends PagingClientContext {
    */
   constructor(options?: PagingClientOptionalParams) {
     super(options);
-    this.paging = new operations.Paging(this);
+    this.paging = new Paging(this);
   }
 
-  paging: operations.Paging;
+  paging: Paging;
 }

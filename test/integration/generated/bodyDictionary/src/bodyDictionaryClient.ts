@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
+import { Dictionary } from "./operations";
 import { BodyDictionaryClientContext } from "./bodyDictionaryClientContext";
 import { BodyDictionaryClientOptionalParams } from "./models";
 
@@ -17,8 +17,8 @@ export class BodyDictionaryClient extends BodyDictionaryClientContext {
    */
   constructor(options?: BodyDictionaryClientOptionalParams) {
     super(options);
-    this.dictionary = new operations.Dictionary(this);
+    this.dictionary = new Dictionary(this);
   }
 
-  dictionary: operations.Dictionary;
+  dictionary: Dictionary;
 }

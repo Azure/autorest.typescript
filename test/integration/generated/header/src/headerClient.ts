@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
+import { Header } from "./operations";
 import { HeaderClientContext } from "./headerClientContext";
 import { HeaderClientOptionalParams } from "./models";
 
@@ -17,8 +17,8 @@ export class HeaderClient extends HeaderClientContext {
    */
   constructor(options?: HeaderClientOptionalParams) {
     super(options);
-    this.header = new operations.Header(this);
+    this.header = new Header(this);
   }
 
-  header: operations.Header;
+  header: Header;
 }

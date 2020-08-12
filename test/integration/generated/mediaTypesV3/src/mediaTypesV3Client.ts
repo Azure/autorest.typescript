@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
+import { BarApi, FooApi } from "./operations";
 import { MediaTypesV3ClientContext } from "./mediaTypesV3ClientContext";
 import { MediaTypesV3ClientOptionalParams } from "./models";
 
@@ -18,10 +18,10 @@ export class MediaTypesV3Client extends MediaTypesV3ClientContext {
    */
   constructor($host: string, options?: MediaTypesV3ClientOptionalParams) {
     super($host, options);
-    this.barApi = new operations.BarApi(this);
-    this.fooApi = new operations.FooApi(this);
+    this.barApi = new BarApi(this);
+    this.fooApi = new FooApi(this);
   }
 
-  barApi: operations.BarApi;
-  fooApi: operations.FooApi;
+  barApi: BarApi;
+  fooApi: FooApi;
 }

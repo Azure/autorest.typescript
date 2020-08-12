@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
+import { Paths } from "./operations";
 import { CustomUrlMoreOptionsClientContext } from "./customUrlMoreOptionsClientContext";
 import { CustomUrlMoreOptionsClientOptionalParams } from "./models";
 
@@ -21,8 +21,8 @@ export class CustomUrlMoreOptionsClient extends CustomUrlMoreOptionsClientContex
     options?: CustomUrlMoreOptionsClientOptionalParams
   ) {
     super(subscriptionId, options);
-    this.paths = new operations.Paths(this);
+    this.paths = new Paths(this);
   }
 
-  paths: operations.Paths;
+  paths: Paths;
 }
