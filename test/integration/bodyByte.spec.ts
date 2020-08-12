@@ -1,4 +1,4 @@
-import { BodyByteClient } from "./generated/bodyByte/src/bodyByteClient";
+import { BodyByteClient } from "./generated/bodyByte/src";
 import { expect } from "chai";
 import { isNode } from "@azure/core-http";
 describe("Body Byte Client", function() {

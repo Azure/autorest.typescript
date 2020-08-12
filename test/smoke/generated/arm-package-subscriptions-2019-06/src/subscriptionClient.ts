@@ -7,13 +7,11 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { Operations, Subscriptions, Tenants } from "./operations";
 import { SubscriptionClientContext } from "./subscriptionClientContext";
 import { SubscriptionClientOptionalParams } from "./models";
 
-class SubscriptionClient extends SubscriptionClientContext {
+export class SubscriptionClient extends SubscriptionClientContext {
   /**
    * Initializes a new instance of the SubscriptionClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -24,22 +22,12 @@ class SubscriptionClient extends SubscriptionClientContext {
     options?: SubscriptionClientOptionalParams
   ) {
     super(credentials, options);
-    this.operations = new operations.Operations(this);
-    this.subscriptions = new operations.Subscriptions(this);
-    this.tenants = new operations.Tenants(this);
+    this.operations = new Operations(this);
+    this.subscriptions = new Subscriptions(this);
+    this.tenants = new Tenants(this);
   }
 
-  operations: operations.Operations;
-  subscriptions: operations.Subscriptions;
-  tenants: operations.Tenants;
+  operations: Operations;
+  subscriptions: Subscriptions;
+  tenants: Tenants;
 }
-
-// Operation Specifications
-
-export {
-  SubscriptionClient,
-  SubscriptionClientContext,
-  Models as SubscriptionModels,
-  Mappers as SubscriptionMappers
-};
-export * from "./operations";

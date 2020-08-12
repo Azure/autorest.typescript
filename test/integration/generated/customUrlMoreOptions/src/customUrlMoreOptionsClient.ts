@@ -6,13 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { Paths } from "./operations";
 import { CustomUrlMoreOptionsClientContext } from "./customUrlMoreOptionsClientContext";
 import { CustomUrlMoreOptionsClientOptionalParams } from "./models";
 
-class CustomUrlMoreOptionsClient extends CustomUrlMoreOptionsClientContext {
+export class CustomUrlMoreOptionsClient extends CustomUrlMoreOptionsClientContext {
   /**
    * Initializes a new instance of the CustomUrlMoreOptionsClient class.
    * @param subscriptionId The subscription id with value 'test12'.
@@ -23,18 +21,8 @@ class CustomUrlMoreOptionsClient extends CustomUrlMoreOptionsClientContext {
     options?: CustomUrlMoreOptionsClientOptionalParams
   ) {
     super(subscriptionId, options);
-    this.paths = new operations.Paths(this);
+    this.paths = new Paths(this);
   }
 
-  paths: operations.Paths;
+  paths: Paths;
 }
-
-// Operation Specifications
-
-export {
-  CustomUrlMoreOptionsClient,
-  CustomUrlMoreOptionsClientContext,
-  Models as CustomUrlMoreOptionsModels,
-  Mappers as CustomUrlMoreOptionsMappers
-};
-export * from "./operations";

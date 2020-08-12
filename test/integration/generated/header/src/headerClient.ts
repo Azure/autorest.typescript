@@ -6,31 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { Header } from "./operations";
 import { HeaderClientContext } from "./headerClientContext";
 import { HeaderClientOptionalParams } from "./models";
 
-class HeaderClient extends HeaderClientContext {
+export class HeaderClient extends HeaderClientContext {
   /**
    * Initializes a new instance of the HeaderClient class.
    * @param options The parameter options
    */
   constructor(options?: HeaderClientOptionalParams) {
     super(options);
-    this.header = new operations.Header(this);
+    this.header = new Header(this);
   }
 
-  header: operations.Header;
+  header: Header;
 }
-
-// Operation Specifications
-
-export {
-  HeaderClient,
-  HeaderClientContext,
-  Models as HeaderModels,
-  Mappers as HeaderMappers
-};
-export * from "./operations";

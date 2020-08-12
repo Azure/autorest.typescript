@@ -6,31 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { DateOperations } from "./operations";
 import { BodyDateClientContext } from "./bodyDateClientContext";
 import { BodyDateClientOptionalParams } from "./models";
 
-class BodyDateClient extends BodyDateClientContext {
+export class BodyDateClient extends BodyDateClientContext {
   /**
    * Initializes a new instance of the BodyDateClient class.
    * @param options The parameter options
    */
   constructor(options?: BodyDateClientOptionalParams) {
     super(options);
-    this.date = new operations.DateOperations(this);
+    this.date = new DateOperations(this);
   }
 
-  date: operations.DateOperations;
+  date: DateOperations;
 }
-
-// Operation Specifications
-
-export {
-  BodyDateClient,
-  BodyDateClientContext,
-  Models as BodyDateModels,
-  Mappers as BodyDateMappers
-};
-export * from "./operations";

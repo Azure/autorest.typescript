@@ -6,13 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { Group } from "./operations";
 import { SubscriptionIdApiVersionClientContext } from "./subscriptionIdApiVersionClientContext";
 import { SubscriptionIdApiVersionClientOptionalParams } from "./models";
 
-class SubscriptionIdApiVersionClient extends SubscriptionIdApiVersionClientContext {
+export class SubscriptionIdApiVersionClient extends SubscriptionIdApiVersionClientContext {
   /**
    * Initializes a new instance of the SubscriptionIdApiVersionClient class.
    * @param subscriptionId Subscription Id.
@@ -23,18 +21,8 @@ class SubscriptionIdApiVersionClient extends SubscriptionIdApiVersionClientConte
     options?: SubscriptionIdApiVersionClientOptionalParams
   ) {
     super(subscriptionId, options);
-    this.group = new operations.Group(this);
+    this.group = new Group(this);
   }
 
-  group: operations.Group;
+  group: Group;
 }
-
-// Operation Specifications
-
-export {
-  SubscriptionIdApiVersionClient,
-  SubscriptionIdApiVersionClientContext,
-  Models as SubscriptionIdApiVersionModels,
-  Mappers as SubscriptionIdApiVersionMappers
-};
-export * from "./operations";

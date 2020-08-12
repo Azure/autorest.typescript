@@ -1,7 +1,7 @@
 import * as coreHttp from "@azure/core-http";
 import { should } from "chai";
 import { isEqual } from "lodash";
-import { HeaderClient } from "./generated/header/src/headerClient";
+import { HeaderClient } from "./generated/header/src";
 
 should();
 

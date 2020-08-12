@@ -7,13 +7,11 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { Applications, ApplicationDefinitions } from "./operations";
 import { ApplicationClientContext } from "./applicationClientContext";
 import { ApplicationClientOptionalParams } from "./models";
 
-class ApplicationClient extends ApplicationClientContext {
+export class ApplicationClient extends ApplicationClientContext {
   /**
    * Initializes a new instance of the ApplicationClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -26,20 +24,10 @@ class ApplicationClient extends ApplicationClientContext {
     options?: ApplicationClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.applications = new operations.Applications(this);
-    this.applicationDefinitions = new operations.ApplicationDefinitions(this);
+    this.applications = new Applications(this);
+    this.applicationDefinitions = new ApplicationDefinitions(this);
   }
 
-  applications: operations.Applications;
-  applicationDefinitions: operations.ApplicationDefinitions;
+  applications: Applications;
+  applicationDefinitions: ApplicationDefinitions;
 }
-
-// Operation Specifications
-
-export {
-  ApplicationClient,
-  ApplicationClientContext,
-  Models as ApplicationModels,
-  Mappers as ApplicationMappers
-};
-export * from "./operations";

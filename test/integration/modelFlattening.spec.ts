@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { ModelFlatteningClient } from "./generated/modelFlattening/src/modelFlatteningClient";
+import { ModelFlatteningClient } from "./generated/modelFlattening/src";
 import {
   FlattenedProduct,
   ResourceCollection,

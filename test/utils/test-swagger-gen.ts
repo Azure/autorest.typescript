@@ -264,61 +264,57 @@ const generateSwaggers = async (
   whiteList?: string[],
   isDebugging?: boolean
 ) => {
-  let generationTasks: Promise<void>[] = [];
+  const swaggers = Object.keys(testSwaggers).filter(name => {
+    if (!whiteList || !whiteList.length) {
+      return true;
+    }
+    return whiteList.includes(name);
+  });
 
-  Object.keys(testSwaggers)
-    .filter(name => {
-      if (!whiteList || !whiteList.length) {
-        return true;
-      }
-      return whiteList.includes(name);
-    })
-    .forEach(name => {
-      const {
-        addCredentials,
-        clientName,
-        swagger,
-        packageName,
-        licenseHeader
-      } = testSwaggers[name];
+  for (let name of swaggers) {
+    const {
+      addCredentials,
+      clientName,
+      swagger,
+      packageName,
+      licenseHeader
+    } = testSwaggers[name];
 
-      let swaggerPath = swagger;
+    let swaggerPath = swagger;
 
-      if (swagger.split("/").length === 1) {
-        // When given a filename look for it in test server, otherwise use the path
-        swaggerPath = `node_modules/@microsoft.azure/autorest.testserver/swagger/${swagger}`;
-      }
+    if (swagger.split("/").length === 1) {
+      // When given a filename look for it in test server, otherwise use the path
+      swaggerPath = `node_modules/@microsoft.azure/autorest.testserver/swagger/${swagger}`;
+    }
 
-      let autorestCommand = `autorest --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version}`;
+    let autorestCommand = `autorest --clear-output-folder=true --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version}`;
 
-      if (isDebugging) {
-        autorestCommand = `${autorestCommand} --typescript.debugger`;
-      }
+    if (isDebugging) {
+      autorestCommand = `${autorestCommand} --typescript.debugger`;
+    }
 
-      const generationTask = () => {
-        return new Promise<void>((resolve, reject) => {
-          exec(autorestCommand, (error, stdout, stderr) => {
-            if (error) {
-              reject(`Failed to generate ${name} with error: \n ${error}`);
-              return;
-            }
-            console.log(`=== Start ${name} ===`);
-            console.log(stdout);
-            stderr && console.error(stderr);
-            console.log(`=== End ${name} ===`);
-            resolve();
-          });
+    const generationTask = () => {
+      return new Promise<void>((resolve, reject) => {
+        exec(autorestCommand, (error, stdout, stderr) => {
+          if (error) {
+            reject(`Failed to generate ${name} with error: \n ${error}`);
+            return;
+          }
+          console.log(`=== Start ${name} ===`);
+          console.log(stdout);
+          stderr && console.error(stderr);
+          console.log(`=== End ${name} ===`);
+          resolve();
         });
-      };
+      });
+    };
 
-      generationTasks.push(generationTask());
-    });
-
-  try {
-    await Promise.all(generationTasks);
-  } catch (error) {
-    console.error(error);
-    throw error;
+    try {
+      await generationTask();
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
 };
 

@@ -6,31 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { Paging } from "./operations";
 import { CustomUrlPagingClientContext } from "./customUrlPagingClientContext";
 import { CustomUrlPagingClientOptionalParams } from "./models";
 
-class CustomUrlPagingClient extends CustomUrlPagingClientContext {
+export class CustomUrlPagingClient extends CustomUrlPagingClientContext {
   /**
    * Initializes a new instance of the CustomUrlPagingClient class.
    * @param options The parameter options
    */
   constructor(options?: CustomUrlPagingClientOptionalParams) {
     super(options);
-    this.paging = new operations.Paging(this);
+    this.paging = new Paging(this);
   }
 
-  paging: operations.Paging;
+  paging: Paging;
 }
-
-// Operation Specifications
-
-export {
-  CustomUrlPagingClient,
-  CustomUrlPagingClientContext,
-  Models as CustomUrlPagingModels,
-  Mappers as CustomUrlPagingMappers
-};
-export * from "./operations";

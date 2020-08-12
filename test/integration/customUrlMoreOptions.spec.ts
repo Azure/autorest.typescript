@@ -1,6 +1,8 @@
-import { CustomUrlMoreOptionsClient } from "./generated/customUrlMoreOptions/src/customUrlMoreOptionsClient";
+import {
+  CustomUrlMoreOptionsClient,
+  CustomUrlMoreOptionsClientOptionalParams
+} from "./generated/customUrlMoreOptions/src";
 import { assert } from "chai";
-import { CustomUrlMoreOptionsClientOptionalParams } from "./generated/customUrlMoreOptions/src/models";
 
 describe("Custom URL More Options", () => {
   let client: CustomUrlMoreOptionsClient;

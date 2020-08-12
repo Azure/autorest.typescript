@@ -7,13 +7,15 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import {
+  PolicyAssignments,
+  PolicyDefinitions,
+  PolicySetDefinitions
+} from "./operations";
 import { PolicyClientContext } from "./policyClientContext";
 import { PolicyClientOptionalParams } from "./models";
 
-class PolicyClient extends PolicyClientContext {
+export class PolicyClient extends PolicyClientContext {
   /**
    * Initializes a new instance of the PolicyClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -26,22 +28,12 @@ class PolicyClient extends PolicyClientContext {
     options?: PolicyClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.policyAssignments = new operations.PolicyAssignments(this);
-    this.policyDefinitions = new operations.PolicyDefinitions(this);
-    this.policySetDefinitions = new operations.PolicySetDefinitions(this);
+    this.policyAssignments = new PolicyAssignments(this);
+    this.policyDefinitions = new PolicyDefinitions(this);
+    this.policySetDefinitions = new PolicySetDefinitions(this);
   }
 
-  policyAssignments: operations.PolicyAssignments;
-  policyDefinitions: operations.PolicyDefinitions;
-  policySetDefinitions: operations.PolicySetDefinitions;
+  policyAssignments: PolicyAssignments;
+  policyDefinitions: PolicyDefinitions;
+  policySetDefinitions: PolicySetDefinitions;
 }
-
-// Operation Specifications
-
-export {
-  PolicyClient,
-  PolicyClientContext,
-  Models as PolicyModels,
-  Mappers as PolicyMappers
-};
-export * from "./operations";

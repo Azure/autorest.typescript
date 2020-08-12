@@ -8,7 +8,6 @@
 
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
-import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { ReportClientContext } from "./reportClientContext";
 import {
@@ -19,7 +18,7 @@ import {
   ReportClientGetOptionalReportResponse
 } from "./models";
 
-class ReportClient extends ReportClientContext {
+export class ReportClient extends ReportClientContext {
   /**
    * Initializes a new instance of the ReportClient class.
    * @param options The parameter options
@@ -97,13 +96,4 @@ const getOptionalReportOperationSpec: coreHttp.OperationSpec = {
   queryParameters: [Parameters.qualifier],
   urlParameters: [Parameters.$host],
   serializer
-};
-
-// Operation Specifications
-
-export {
-  ReportClient,
-  ReportClientContext,
-  Models as ReportModels,
-  Mappers as ReportMappers
 };

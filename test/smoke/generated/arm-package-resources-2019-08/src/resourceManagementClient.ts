@@ -7,13 +7,19 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import {
+  Operations,
+  Deployments,
+  Providers,
+  Resources,
+  ResourceGroups,
+  Tags,
+  DeploymentOperations
+} from "./operations";
 import { ResourceManagementClientContext } from "./resourceManagementClientContext";
 import { ResourceManagementClientOptionalParams } from "./models";
 
-class ResourceManagementClient extends ResourceManagementClientContext {
+export class ResourceManagementClient extends ResourceManagementClientContext {
   /**
    * Initializes a new instance of the ResourceManagementClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -26,30 +32,20 @@ class ResourceManagementClient extends ResourceManagementClientContext {
     options?: ResourceManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.operations = new operations.Operations(this);
-    this.deployments = new operations.Deployments(this);
-    this.providers = new operations.Providers(this);
-    this.resources = new operations.Resources(this);
-    this.resourceGroups = new operations.ResourceGroups(this);
-    this.tags = new operations.Tags(this);
-    this.deploymentOperations = new operations.DeploymentOperations(this);
+    this.operations = new Operations(this);
+    this.deployments = new Deployments(this);
+    this.providers = new Providers(this);
+    this.resources = new Resources(this);
+    this.resourceGroups = new ResourceGroups(this);
+    this.tags = new Tags(this);
+    this.deploymentOperations = new DeploymentOperations(this);
   }
 
-  operations: operations.Operations;
-  deployments: operations.Deployments;
-  providers: operations.Providers;
-  resources: operations.Resources;
-  resourceGroups: operations.ResourceGroups;
-  tags: operations.Tags;
-  deploymentOperations: operations.DeploymentOperations;
+  operations: Operations;
+  deployments: Deployments;
+  providers: Providers;
+  resources: Resources;
+  resourceGroups: ResourceGroups;
+  tags: Tags;
+  deploymentOperations: DeploymentOperations;
 }
-
-// Operation Specifications
-
-export {
-  ResourceManagementClient,
-  ResourceManagementClientContext,
-  Models as ResourceManagementModels,
-  Mappers as ResourceManagementMappers
-};
-export * from "./operations";

@@ -6,37 +6,25 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { LROs, LRORetrys, LrosaDs, LROsCustomHeader } from "./operations";
 import { LROClientContext } from "./lROClientContext";
 import { LROClientOptionalParams } from "./models";
 
-class LROClient extends LROClientContext {
+export class LROClient extends LROClientContext {
   /**
    * Initializes a new instance of the LROClient class.
    * @param options The parameter options
    */
   constructor(options?: LROClientOptionalParams) {
     super(options);
-    this.lROs = new operations.LROs(this);
-    this.lRORetrys = new operations.LRORetrys(this);
-    this.lrosaDs = new operations.LrosaDs(this);
-    this.lROsCustomHeader = new operations.LROsCustomHeader(this);
+    this.lROs = new LROs(this);
+    this.lRORetrys = new LRORetrys(this);
+    this.lrosaDs = new LrosaDs(this);
+    this.lROsCustomHeader = new LROsCustomHeader(this);
   }
 
-  lROs: operations.LROs;
-  lRORetrys: operations.LRORetrys;
-  lrosaDs: operations.LrosaDs;
-  lROsCustomHeader: operations.LROsCustomHeader;
+  lROs: LROs;
+  lRORetrys: LRORetrys;
+  lrosaDs: LrosaDs;
+  lROsCustomHeader: LROsCustomHeader;
 }
-
-// Operation Specifications
-
-export {
-  LROClient,
-  LROClientContext,
-  Models as LROModels,
-  Mappers as LROMappers
-};
-export * from "./operations";

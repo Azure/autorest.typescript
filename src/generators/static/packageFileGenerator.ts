@@ -28,14 +28,15 @@ export function generatePackageJson(
     keywords: ["node", "azure", "typescript", "browser", "isomorphic"],
     license: "MIT",
     main: `./dist/${packageDetails.nameWithoutScope}.js`,
-    module: `./esm/${clientDetails.sourceFileName}.js`,
-    types: `./esm/${clientDetails.sourceFileName}.d.ts`,
+    module: `./esm/index.js`,
+    types: `./esm/index.d.ts`,
     devDependencies: {
       typescript: "^3.1.1",
       rollup: "^0.66.2",
       "rollup-plugin-node-resolve": "^3.4.0",
       "rollup-plugin-sourcemaps": "^0.4.2",
-      "uglify-js": "^3.4.9"
+      "uglify-js": "^3.4.9",
+      "@microsoft/api-extractor": "^7.9.3"
     },
     // TODO: Calculate the SDK path for the package
     homepage: `https://github.com/Azure/azure-sdk-for-js`,
@@ -61,9 +62,11 @@ export function generatePackageJson(
       "tsconfig.json"
     ],
     scripts: {
-      build: "tsc && rollup -c rollup.config.js && npm run minify",
+      build:
+        "tsc && rollup -c rollup.config.js && npm run minify && npm run extract-api",
       minify: `uglifyjs -c -m --comments --source-map "content='./dist/${packageDetails.nameWithoutScope}.js.map'" -o ./dist/${packageDetails.nameWithoutScope}.min.js ./dist/${packageDetails.nameWithoutScope}.js`,
-      prepack: "npm install && npm run build"
+      prepack: "npm install && npm run build",
+      "extract-api": "api-extractor run --local"
     },
     sideEffects: false,
     autoPublish: true

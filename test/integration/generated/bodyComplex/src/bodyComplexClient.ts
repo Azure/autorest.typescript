@@ -6,47 +6,45 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import {
+  Basic,
+  Primitive,
+  Array,
+  Dictionary,
+  Inheritance,
+  Polymorphism,
+  Polymorphicrecursive,
+  Readonlyproperty,
+  Flattencomplex
+} from "./operations";
 import { BodyComplexClientContext } from "./bodyComplexClientContext";
 import { BodyComplexClientOptionalParams } from "./models";
 
-class BodyComplexClient extends BodyComplexClientContext {
+export class BodyComplexClient extends BodyComplexClientContext {
   /**
    * Initializes a new instance of the BodyComplexClient class.
    * @param options The parameter options
    */
   constructor(options?: BodyComplexClientOptionalParams) {
     super(options);
-    this.basic = new operations.Basic(this);
-    this.primitive = new operations.Primitive(this);
-    this.array = new operations.Array(this);
-    this.dictionary = new operations.Dictionary(this);
-    this.inheritance = new operations.Inheritance(this);
-    this.polymorphism = new operations.Polymorphism(this);
-    this.polymorphicrecursive = new operations.Polymorphicrecursive(this);
-    this.readonlyproperty = new operations.Readonlyproperty(this);
-    this.flattencomplex = new operations.Flattencomplex(this);
+    this.basic = new Basic(this);
+    this.primitive = new Primitive(this);
+    this.array = new Array(this);
+    this.dictionary = new Dictionary(this);
+    this.inheritance = new Inheritance(this);
+    this.polymorphism = new Polymorphism(this);
+    this.polymorphicrecursive = new Polymorphicrecursive(this);
+    this.readonlyproperty = new Readonlyproperty(this);
+    this.flattencomplex = new Flattencomplex(this);
   }
 
-  basic: operations.Basic;
-  primitive: operations.Primitive;
-  array: operations.Array;
-  dictionary: operations.Dictionary;
-  inheritance: operations.Inheritance;
-  polymorphism: operations.Polymorphism;
-  polymorphicrecursive: operations.Polymorphicrecursive;
-  readonlyproperty: operations.Readonlyproperty;
-  flattencomplex: operations.Flattencomplex;
+  basic: Basic;
+  primitive: Primitive;
+  array: Array;
+  dictionary: Dictionary;
+  inheritance: Inheritance;
+  polymorphism: Polymorphism;
+  polymorphicrecursive: Polymorphicrecursive;
+  readonlyproperty: Readonlyproperty;
+  flattencomplex: Flattencomplex;
 }
-
-// Operation Specifications
-
-export {
-  BodyComplexClient,
-  BodyComplexClientContext,
-  Models as BodyComplexModels,
-  Mappers as BodyComplexMappers
-};
-export * from "./operations";

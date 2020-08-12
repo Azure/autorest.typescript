@@ -6,12 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
+import { Get } from "./operations";
 import { UuidClientContext } from "./uuidClientContext";
 import { UuidClientOptionalParams } from "./models";
 
-class UuidClient extends UuidClientContext {
+export class UuidClient extends UuidClientContext {
   /**
    * Initializes a new instance of the UuidClient class.
    * @param $host server parameter
@@ -19,13 +18,8 @@ class UuidClient extends UuidClientContext {
    */
   constructor($host: string, options?: UuidClientOptionalParams) {
     super($host, options);
-    this.get = new operations.Get(this);
+    this.get = new Get(this);
   }
 
-  get: operations.Get;
+  get: Get;
 }
-
-// Operation Specifications
-
-export { UuidClient, UuidClientContext, Models as UuidModels };
-export * from "./operations";

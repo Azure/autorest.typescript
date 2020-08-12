@@ -1,4 +1,4 @@
-import { CustomUrlClient } from "./generated/customUrl/src/customUrlClient";
+import { CustomUrlClient } from "./generated/customUrl/src";
 import * as assert from "assert";
 
 describe("Custom Endpoint", () => {

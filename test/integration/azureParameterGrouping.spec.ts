@@ -1,4 +1,4 @@
-import { AzureParameterGroupingClient } from "./generated/azureParameterGrouping/src/azureParameterGroupingClient";
+import { AzureParameterGroupingClient } from "./generated/azureParameterGrouping/src";
 import { assert } from "chai";
 
 describe("AzureParameterGrouping", () => {

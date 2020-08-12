@@ -6,31 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { Byte } from "./operations";
 import { BodyByteClientContext } from "./bodyByteClientContext";
 import { BodyByteClientOptionalParams } from "./models";
 
-class BodyByteClient extends BodyByteClientContext {
+export class BodyByteClient extends BodyByteClientContext {
   /**
    * Initializes a new instance of the BodyByteClient class.
    * @param options The parameter options
    */
   constructor(options?: BodyByteClientOptionalParams) {
     super(options);
-    this.byte = new operations.Byte(this);
+    this.byte = new Byte(this);
   }
 
-  byte: operations.Byte;
+  byte: Byte;
 }
-
-// Operation Specifications
-
-export {
-  BodyByteClient,
-  BodyByteClientContext,
-  Models as BodyByteModels,
-  Mappers as BodyByteMappers
-};
-export * from "./operations";

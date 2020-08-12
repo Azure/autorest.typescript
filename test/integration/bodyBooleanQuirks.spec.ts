@@ -1,4 +1,4 @@
-import { BodyBooleanQuirksClient } from "./generated/bodyBooleanQuirks/src/bodyBooleanQuirksClient";
+import { BodyBooleanQuirksClient } from "./generated/bodyBooleanQuirks/src";
 import { expect } from "chai";
 describe("Bool Quirks Client", function() {
   let testClient: BodyBooleanQuirksClient;

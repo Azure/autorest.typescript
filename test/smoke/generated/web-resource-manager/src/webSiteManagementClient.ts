@@ -8,9 +8,24 @@
 
 import * as coreHttp from "@azure/core-http";
 import { LROPoller, shouldDeserializeLRO } from "./lro";
-import * as operations from "./operations";
+import {
+  AppServiceCertificateOrders,
+  CertificateRegistrationProvider,
+  Domains,
+  TopLevelDomains,
+  DomainRegistrationProvider,
+  Certificates,
+  DeletedWebApps,
+  Diagnostics,
+  Provider,
+  Recommendations,
+  WebApps,
+  StaticSites,
+  AppServiceEnvironments,
+  AppServicePlans,
+  ResourceHealthMetadata
+} from "./operations";
 import * as Parameters from "./models/parameters";
-import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import { WebSiteManagementClientContext } from "./webSiteManagementClientContext";
 import {
@@ -47,7 +62,7 @@ import {
   WebSiteManagementClientListPremierAddOnOffersNextResponse
 } from "./models";
 
-class WebSiteManagementClient extends WebSiteManagementClientContext {
+export class WebSiteManagementClient extends WebSiteManagementClientContext {
   /**
    * Initializes a new instance of the WebSiteManagementClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -61,27 +76,23 @@ class WebSiteManagementClient extends WebSiteManagementClientContext {
     options?: WebSiteManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.appServiceCertificateOrders = new operations.AppServiceCertificateOrders(
+    this.appServiceCertificateOrders = new AppServiceCertificateOrders(this);
+    this.certificateRegistrationProvider = new CertificateRegistrationProvider(
       this
     );
-    this.certificateRegistrationProvider = new operations.CertificateRegistrationProvider(
-      this
-    );
-    this.domains = new operations.Domains(this);
-    this.topLevelDomains = new operations.TopLevelDomains(this);
-    this.domainRegistrationProvider = new operations.DomainRegistrationProvider(
-      this
-    );
-    this.certificates = new operations.Certificates(this);
-    this.deletedWebApps = new operations.DeletedWebApps(this);
-    this.diagnostics = new operations.Diagnostics(this);
-    this.provider = new operations.Provider(this);
-    this.recommendations = new operations.Recommendations(this);
-    this.webApps = new operations.WebApps(this);
-    this.staticSites = new operations.StaticSites(this);
-    this.appServiceEnvironments = new operations.AppServiceEnvironments(this);
-    this.appServicePlans = new operations.AppServicePlans(this);
-    this.resourceHealthMetadata = new operations.ResourceHealthMetadata(this);
+    this.domains = new Domains(this);
+    this.topLevelDomains = new TopLevelDomains(this);
+    this.domainRegistrationProvider = new DomainRegistrationProvider(this);
+    this.certificates = new Certificates(this);
+    this.deletedWebApps = new DeletedWebApps(this);
+    this.diagnostics = new Diagnostics(this);
+    this.provider = new Provider(this);
+    this.recommendations = new Recommendations(this);
+    this.webApps = new WebApps(this);
+    this.staticSites = new StaticSites(this);
+    this.appServiceEnvironments = new AppServiceEnvironments(this);
+    this.appServicePlans = new AppServicePlans(this);
+    this.resourceHealthMetadata = new ResourceHealthMetadata(this);
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
@@ -484,21 +495,21 @@ class WebSiteManagementClient extends WebSiteManagementClientContext {
     ) as Promise<WebSiteManagementClientListPremierAddOnOffersNextResponse>;
   }
 
-  appServiceCertificateOrders: operations.AppServiceCertificateOrders;
-  certificateRegistrationProvider: operations.CertificateRegistrationProvider;
-  domains: operations.Domains;
-  topLevelDomains: operations.TopLevelDomains;
-  domainRegistrationProvider: operations.DomainRegistrationProvider;
-  certificates: operations.Certificates;
-  deletedWebApps: operations.DeletedWebApps;
-  diagnostics: operations.Diagnostics;
-  provider: operations.Provider;
-  recommendations: operations.Recommendations;
-  webApps: operations.WebApps;
-  staticSites: operations.StaticSites;
-  appServiceEnvironments: operations.AppServiceEnvironments;
-  appServicePlans: operations.AppServicePlans;
-  resourceHealthMetadata: operations.ResourceHealthMetadata;
+  appServiceCertificateOrders: AppServiceCertificateOrders;
+  certificateRegistrationProvider: CertificateRegistrationProvider;
+  domains: Domains;
+  topLevelDomains: TopLevelDomains;
+  domainRegistrationProvider: DomainRegistrationProvider;
+  certificates: Certificates;
+  deletedWebApps: DeletedWebApps;
+  diagnostics: Diagnostics;
+  provider: Provider;
+  recommendations: Recommendations;
+  webApps: WebApps;
+  staticSites: StaticSites;
+  appServiceEnvironments: AppServiceEnvironments;
+  appServicePlans: AppServicePlans;
+  resourceHealthMetadata: ResourceHealthMetadata;
 }
 // Operation Specifications
 
@@ -897,13 +908,3 @@ const listPremierAddOnOffersNextOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-
-// Operation Specifications
-
-export {
-  WebSiteManagementClient,
-  WebSiteManagementClientContext,
-  Models as WebSiteManagementModels,
-  Mappers as WebSiteManagementMappers
-};
-export * from "./operations";

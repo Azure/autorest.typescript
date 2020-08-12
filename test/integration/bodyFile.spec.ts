@@ -6,7 +6,7 @@ import {
   readStreamToBuffer,
   countBytesFromStream
 } from "../utils/stream-helpers";
-import { BodyFileClient } from "./generated/bodyFile/src/bodyFileClient";
+import { BodyFileClient } from "./generated/bodyFile/src";
 
 describe("BodyFile Client", () => {
   let client: BodyFileClient;

@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { BodyIntegerClient } from "./generated/bodyInteger/src/bodyIntegerClient";
+import { BodyIntegerClient } from "./generated/bodyInteger/src";
 
 describe("Integration tests for BodyInteger", () => {
   let client: BodyIntegerClient;

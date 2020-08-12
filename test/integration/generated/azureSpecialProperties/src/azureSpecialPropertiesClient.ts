@@ -7,13 +7,20 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import {
+  XMsClientRequestId,
+  SubscriptionInCredentials,
+  SubscriptionInMethod,
+  ApiVersionDefault,
+  ApiVersionLocal,
+  SkipUrlEncoding,
+  Odata,
+  Header
+} from "./operations";
 import { AzureSpecialPropertiesClientContext } from "./azureSpecialPropertiesClientContext";
 import { AzureSpecialPropertiesClientOptionalParams } from "./models";
 
-class AzureSpecialPropertiesClient extends AzureSpecialPropertiesClientContext {
+export class AzureSpecialPropertiesClient extends AzureSpecialPropertiesClientContext {
   /**
    * Initializes a new instance of the AzureSpecialPropertiesClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -27,34 +34,22 @@ class AzureSpecialPropertiesClient extends AzureSpecialPropertiesClientContext {
     options?: AzureSpecialPropertiesClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.xMsClientRequestId = new operations.XMsClientRequestId(this);
-    this.subscriptionInCredentials = new operations.SubscriptionInCredentials(
-      this
-    );
-    this.subscriptionInMethod = new operations.SubscriptionInMethod(this);
-    this.apiVersionDefault = new operations.ApiVersionDefault(this);
-    this.apiVersionLocal = new operations.ApiVersionLocal(this);
-    this.skipUrlEncoding = new operations.SkipUrlEncoding(this);
-    this.odata = new operations.Odata(this);
-    this.header = new operations.Header(this);
+    this.xMsClientRequestId = new XMsClientRequestId(this);
+    this.subscriptionInCredentials = new SubscriptionInCredentials(this);
+    this.subscriptionInMethod = new SubscriptionInMethod(this);
+    this.apiVersionDefault = new ApiVersionDefault(this);
+    this.apiVersionLocal = new ApiVersionLocal(this);
+    this.skipUrlEncoding = new SkipUrlEncoding(this);
+    this.odata = new Odata(this);
+    this.header = new Header(this);
   }
 
-  xMsClientRequestId: operations.XMsClientRequestId;
-  subscriptionInCredentials: operations.SubscriptionInCredentials;
-  subscriptionInMethod: operations.SubscriptionInMethod;
-  apiVersionDefault: operations.ApiVersionDefault;
-  apiVersionLocal: operations.ApiVersionLocal;
-  skipUrlEncoding: operations.SkipUrlEncoding;
-  odata: operations.Odata;
-  header: operations.Header;
+  xMsClientRequestId: XMsClientRequestId;
+  subscriptionInCredentials: SubscriptionInCredentials;
+  subscriptionInMethod: SubscriptionInMethod;
+  apiVersionDefault: ApiVersionDefault;
+  apiVersionLocal: ApiVersionLocal;
+  skipUrlEncoding: SkipUrlEncoding;
+  odata: Odata;
+  header: Header;
 }
-
-// Operation Specifications
-
-export {
-  AzureSpecialPropertiesClient,
-  AzureSpecialPropertiesClientContext,
-  Models as AzureSpecialPropertiesModels,
-  Mappers as AzureSpecialPropertiesMappers
-};
-export * from "./operations";

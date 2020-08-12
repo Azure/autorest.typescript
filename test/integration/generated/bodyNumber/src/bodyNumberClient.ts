@@ -6,31 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { NumberOperations } from "./operations";
 import { BodyNumberClientContext } from "./bodyNumberClientContext";
 import { BodyNumberClientOptionalParams } from "./models";
 
-class BodyNumberClient extends BodyNumberClientContext {
+export class BodyNumberClient extends BodyNumberClientContext {
   /**
    * Initializes a new instance of the BodyNumberClient class.
    * @param options The parameter options
    */
   constructor(options?: BodyNumberClientOptionalParams) {
     super(options);
-    this.number = new operations.NumberOperations(this);
+    this.number = new NumberOperations(this);
   }
 
-  number: operations.NumberOperations;
+  number: NumberOperations;
 }
-
-// Operation Specifications
-
-export {
-  BodyNumberClient,
-  BodyNumberClientContext,
-  Models as BodyNumberModels,
-  Mappers as BodyNumberMappers
-};
-export * from "./operations";

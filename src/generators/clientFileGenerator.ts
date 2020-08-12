@@ -40,9 +40,11 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   );
 
   // Check if there are any non client-level operations to import
-  const hasImportedOperations = clientDetails.operationGroups.some(
+  const importedOperations = clientDetails.operationGroups.filter(
     og => !og.isTopLevel
   );
+
+  const hasImportedOperations = importedOperations.length > 0;
 
   const hasCredentials = !!clientDetails.options.addCredentials;
   const hasClientOptionalParams = clientDetails.parameters.some(
@@ -77,7 +79,9 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
 
   if (hasImportedOperations) {
     clientFile.addImportDeclaration({
-      namespaceImport: "operations",
+      namedImports: importedOperations.map(o =>
+        normalizeName(o.name, NameType.OperationGroup, true /* shouldGuard */)
+      ),
       moduleSpecifier: "./operations"
     });
   }
@@ -89,13 +93,8 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     });
   }
 
-  clientFile.addImportDeclaration({
-    namespaceImport: "Models",
-    moduleSpecifier: "./models"
-  });
-
   // Only import mappers if there are any
-  if (hasMappers) {
+  if (hasInlineOperations && hasMappers) {
     clientFile.addImportDeclaration({
       namespaceImport: "Mappers",
       moduleSpecifier: "./models/mappers"
@@ -109,7 +108,8 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
 
   const clientClass = clientFile.addClass({
     name: clientDetails.className,
-    extends: clientContextClassName
+    extends: clientContextClassName,
+    isExported: true
   });
 
   const importedModels = new Set<string>();
@@ -130,22 +130,6 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       moduleSpecifier: "./models"
     });
   }
-
-  clientFile.addExportDeclaration({
-    leadingTrivia: (writer: CodeBlockWriter) =>
-      writer.write("// Operation Specifications\n\n"),
-    namedExports: [
-      { name: clientDetails.className },
-      { name: clientContextClassName },
-      { name: "Models", alias: modelsName },
-      ...(hasMappers ? [{ name: "Mappers", alias: mappersName }] : [])
-    ]
-  });
-
-  clientDetails.operationGroups.some(og => !og.isTopLevel) &&
-    clientFile.addExportDeclaration({
-      moduleSpecifier: "./operations"
-    });
 }
 
 function writeConstructor(
@@ -224,7 +208,7 @@ function getOperationGroupsDeclarationDetails(
   return operationGroups.map(og => {
     return {
       name: normalizeName(og.name, NameType.Property),
-      typeName: `operations.${normalizeName(
+      typeName: `${normalizeName(
         og.name,
         NameType.OperationGroup,
         true /* shouldGuard */

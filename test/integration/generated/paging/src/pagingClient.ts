@@ -6,31 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { Paging } from "./operations";
 import { PagingClientContext } from "./pagingClientContext";
 import { PagingClientOptionalParams } from "./models";
 
-class PagingClient extends PagingClientContext {
+export class PagingClient extends PagingClientContext {
   /**
    * Initializes a new instance of the PagingClient class.
    * @param options The parameter options
    */
   constructor(options?: PagingClientOptionalParams) {
     super(options);
-    this.paging = new operations.Paging(this);
+    this.paging = new Paging(this);
   }
 
-  paging: operations.Paging;
+  paging: Paging;
 }
-
-// Operation Specifications
-
-export {
-  PagingClient,
-  PagingClientContext,
-  Models as PagingModels,
-  Mappers as PagingMappers
-};
-export * from "./operations";

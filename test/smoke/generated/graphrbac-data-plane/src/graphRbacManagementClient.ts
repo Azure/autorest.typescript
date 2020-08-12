@@ -7,13 +7,21 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import {
+  SignedInUser,
+  Applications,
+  DeletedApplications,
+  Groups,
+  ServicePrincipals,
+  Users,
+  Objects,
+  Domains,
+  OAuth2PermissionGrant
+} from "./operations";
 import { GraphRbacManagementClientContext } from "./graphRbacManagementClientContext";
 import { GraphRbacManagementClientOptionalParams } from "./models";
 
-class GraphRbacManagementClient extends GraphRbacManagementClientContext {
+export class GraphRbacManagementClient extends GraphRbacManagementClientContext {
   /**
    * Initializes a new instance of the GraphRbacManagementClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -26,34 +34,24 @@ class GraphRbacManagementClient extends GraphRbacManagementClientContext {
     options?: GraphRbacManagementClientOptionalParams
   ) {
     super(credentials, tenantID, options);
-    this.signedInUser = new operations.SignedInUser(this);
-    this.applications = new operations.Applications(this);
-    this.deletedApplications = new operations.DeletedApplications(this);
-    this.groups = new operations.Groups(this);
-    this.servicePrincipals = new operations.ServicePrincipals(this);
-    this.users = new operations.Users(this);
-    this.objects = new operations.Objects(this);
-    this.domains = new operations.Domains(this);
-    this.oAuth2PermissionGrant = new operations.OAuth2PermissionGrant(this);
+    this.signedInUser = new SignedInUser(this);
+    this.applications = new Applications(this);
+    this.deletedApplications = new DeletedApplications(this);
+    this.groups = new Groups(this);
+    this.servicePrincipals = new ServicePrincipals(this);
+    this.users = new Users(this);
+    this.objects = new Objects(this);
+    this.domains = new Domains(this);
+    this.oAuth2PermissionGrant = new OAuth2PermissionGrant(this);
   }
 
-  signedInUser: operations.SignedInUser;
-  applications: operations.Applications;
-  deletedApplications: operations.DeletedApplications;
-  groups: operations.Groups;
-  servicePrincipals: operations.ServicePrincipals;
-  users: operations.Users;
-  objects: operations.Objects;
-  domains: operations.Domains;
-  oAuth2PermissionGrant: operations.OAuth2PermissionGrant;
+  signedInUser: SignedInUser;
+  applications: Applications;
+  deletedApplications: DeletedApplications;
+  groups: Groups;
+  servicePrincipals: ServicePrincipals;
+  users: Users;
+  objects: Objects;
+  domains: Domains;
+  oAuth2PermissionGrant: OAuth2PermissionGrant;
 }
-
-// Operation Specifications
-
-export {
-  GraphRbacManagementClient,
-  GraphRbacManagementClientContext,
-  Models as GraphRbacManagementModels,
-  Mappers as GraphRbacManagementMappers
-};
-export * from "./operations";

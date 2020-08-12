@@ -7,13 +7,11 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { AuthorizationOperations, ManagementLocks } from "./operations";
 import { ManagementLockClientContext } from "./managementLockClientContext";
 import { ManagementLockClientOptionalParams } from "./models";
 
-class ManagementLockClient extends ManagementLockClientContext {
+export class ManagementLockClient extends ManagementLockClientContext {
   /**
    * Initializes a new instance of the ManagementLockClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -26,20 +24,10 @@ class ManagementLockClient extends ManagementLockClientContext {
     options?: ManagementLockClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.authorizationOperations = new operations.AuthorizationOperations(this);
-    this.managementLocks = new operations.ManagementLocks(this);
+    this.authorizationOperations = new AuthorizationOperations(this);
+    this.managementLocks = new ManagementLocks(this);
   }
 
-  authorizationOperations: operations.AuthorizationOperations;
-  managementLocks: operations.ManagementLocks;
+  authorizationOperations: AuthorizationOperations;
+  managementLocks: ManagementLocks;
 }
-
-// Operation Specifications
-
-export {
-  ManagementLockClient,
-  ManagementLockClientContext,
-  Models as ManagementLockModels,
-  Mappers as ManagementLockMappers
-};
-export * from "./operations";

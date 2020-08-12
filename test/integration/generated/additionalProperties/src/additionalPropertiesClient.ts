@@ -6,31 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { Pets } from "./operations";
 import { AdditionalPropertiesClientContext } from "./additionalPropertiesClientContext";
 import { AdditionalPropertiesClientOptionalParams } from "./models";
 
-class AdditionalPropertiesClient extends AdditionalPropertiesClientContext {
+export class AdditionalPropertiesClient extends AdditionalPropertiesClientContext {
   /**
    * Initializes a new instance of the AdditionalPropertiesClient class.
    * @param options The parameter options
    */
   constructor(options?: AdditionalPropertiesClientOptionalParams) {
     super(options);
-    this.pets = new operations.Pets(this);
+    this.pets = new Pets(this);
   }
 
-  pets: operations.Pets;
+  pets: Pets;
 }
-
-// Operation Specifications
-
-export {
-  AdditionalPropertiesClient,
-  AdditionalPropertiesClientContext,
-  Models as AdditionalPropertiesModels,
-  Mappers as AdditionalPropertiesMappers
-};
-export * from "./operations";

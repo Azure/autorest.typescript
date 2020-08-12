@@ -1,6 +1,5 @@
-import { MultipleInheritanceClient } from "./generated/multipleInheritance/src/multipleInheritanceClient";
+import { MultipleInheritanceClient } from "./generated/multipleInheritance/src";
 import { assert } from "chai";
-import { MultipleInheritanceClientGetCatResponse } from "./generated/multipleInheritance/src/models";
 
 describe("MultipleInheritance", () => {
   let client: MultipleInheritanceClient;

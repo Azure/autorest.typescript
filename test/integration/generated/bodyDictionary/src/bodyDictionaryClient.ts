@@ -6,31 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { Dictionary } from "./operations";
 import { BodyDictionaryClientContext } from "./bodyDictionaryClientContext";
 import { BodyDictionaryClientOptionalParams } from "./models";
 
-class BodyDictionaryClient extends BodyDictionaryClientContext {
+export class BodyDictionaryClient extends BodyDictionaryClientContext {
   /**
    * Initializes a new instance of the BodyDictionaryClient class.
    * @param options The parameter options
    */
   constructor(options?: BodyDictionaryClientOptionalParams) {
     super(options);
-    this.dictionary = new operations.Dictionary(this);
+    this.dictionary = new Dictionary(this);
   }
 
-  dictionary: operations.Dictionary;
+  dictionary: Dictionary;
 }
-
-// Operation Specifications
-
-export {
-  BodyDictionaryClient,
-  BodyDictionaryClientContext,
-  Models as BodyDictionaryModels,
-  Mappers as BodyDictionaryMappers
-};
-export * from "./operations";

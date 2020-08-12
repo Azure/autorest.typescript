@@ -1,4 +1,4 @@
-import { RegexConstraint } from "./generated/regexConstraint/src/regexConstraint";
+import { RegexConstraint } from "./generated/regexConstraint/src";
 import { assert } from "chai";
 describe("Smoke test for regexConstraint", () => {
   it("should be able to instantiate a new client", () => {

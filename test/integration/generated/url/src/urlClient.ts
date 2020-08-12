@@ -6,13 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { Paths, Queries, PathItems } from "./operations";
 import { UrlClientContext } from "./urlClientContext";
 import { UrlClientOptionalParams } from "./models";
 
-class UrlClient extends UrlClientContext {
+export class UrlClient extends UrlClientContext {
   /**
    * Initializes a new instance of the UrlClient class.
    * @param globalStringPath A string value 'globalItemStringPath' that appears in the path
@@ -20,22 +18,12 @@ class UrlClient extends UrlClientContext {
    */
   constructor(globalStringPath: string, options?: UrlClientOptionalParams) {
     super(globalStringPath, options);
-    this.paths = new operations.Paths(this);
-    this.queries = new operations.Queries(this);
-    this.pathItems = new operations.PathItems(this);
+    this.paths = new Paths(this);
+    this.queries = new Queries(this);
+    this.pathItems = new PathItems(this);
   }
 
-  paths: operations.Paths;
-  queries: operations.Queries;
-  pathItems: operations.PathItems;
+  paths: Paths;
+  queries: Queries;
+  pathItems: PathItems;
 }
-
-// Operation Specifications
-
-export {
-  UrlClient,
-  UrlClientContext,
-  Models as UrlModels,
-  Mappers as UrlMappers
-};
-export * from "./operations";

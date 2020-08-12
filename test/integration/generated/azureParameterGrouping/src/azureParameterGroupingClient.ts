@@ -6,31 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { ParameterGrouping } from "./operations";
 import { AzureParameterGroupingClientContext } from "./azureParameterGroupingClientContext";
 import { AzureParameterGroupingClientOptionalParams } from "./models";
 
-class AzureParameterGroupingClient extends AzureParameterGroupingClientContext {
+export class AzureParameterGroupingClient extends AzureParameterGroupingClientContext {
   /**
    * Initializes a new instance of the AzureParameterGroupingClient class.
    * @param options The parameter options
    */
   constructor(options?: AzureParameterGroupingClientOptionalParams) {
     super(options);
-    this.parameterGrouping = new operations.ParameterGrouping(this);
+    this.parameterGrouping = new ParameterGrouping(this);
   }
 
-  parameterGrouping: operations.ParameterGrouping;
+  parameterGrouping: ParameterGrouping;
 }
-
-// Operation Specifications
-
-export {
-  AzureParameterGroupingClient,
-  AzureParameterGroupingClientContext,
-  Models as AzureParameterGroupingModels,
-  Mappers as AzureParameterGroupingMappers
-};
-export * from "./operations";

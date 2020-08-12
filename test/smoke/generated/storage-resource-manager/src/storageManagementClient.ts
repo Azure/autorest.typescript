@@ -7,13 +7,25 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import {
+  Operations,
+  Skus,
+  StorageAccounts,
+  Usages,
+  ManagementPolicies,
+  PrivateEndpointConnections,
+  PrivateLinkResources,
+  ObjectReplicationPolicies,
+  EncryptionScopes,
+  BlobServices,
+  BlobContainers,
+  FileServices,
+  FileShares
+} from "./operations";
 import { StorageManagementClientContext } from "./storageManagementClientContext";
 import { StorageManagementClientOptionalParams } from "./models";
 
-class StorageManagementClient extends StorageManagementClientContext {
+export class StorageManagementClient extends StorageManagementClientContext {
   /**
    * Initializes a new instance of the StorageManagementClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -26,46 +38,32 @@ class StorageManagementClient extends StorageManagementClientContext {
     options?: StorageManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.operations = new operations.Operations(this);
-    this.skus = new operations.Skus(this);
-    this.storageAccounts = new operations.StorageAccounts(this);
-    this.usages = new operations.Usages(this);
-    this.managementPolicies = new operations.ManagementPolicies(this);
-    this.privateEndpointConnections = new operations.PrivateEndpointConnections(
-      this
-    );
-    this.privateLinkResources = new operations.PrivateLinkResources(this);
-    this.objectReplicationPolicies = new operations.ObjectReplicationPolicies(
-      this
-    );
-    this.encryptionScopes = new operations.EncryptionScopes(this);
-    this.blobServices = new operations.BlobServices(this);
-    this.blobContainers = new operations.BlobContainers(this);
-    this.fileServices = new operations.FileServices(this);
-    this.fileShares = new operations.FileShares(this);
+    this.operations = new Operations(this);
+    this.skus = new Skus(this);
+    this.storageAccounts = new StorageAccounts(this);
+    this.usages = new Usages(this);
+    this.managementPolicies = new ManagementPolicies(this);
+    this.privateEndpointConnections = new PrivateEndpointConnections(this);
+    this.privateLinkResources = new PrivateLinkResources(this);
+    this.objectReplicationPolicies = new ObjectReplicationPolicies(this);
+    this.encryptionScopes = new EncryptionScopes(this);
+    this.blobServices = new BlobServices(this);
+    this.blobContainers = new BlobContainers(this);
+    this.fileServices = new FileServices(this);
+    this.fileShares = new FileShares(this);
   }
 
-  operations: operations.Operations;
-  skus: operations.Skus;
-  storageAccounts: operations.StorageAccounts;
-  usages: operations.Usages;
-  managementPolicies: operations.ManagementPolicies;
-  privateEndpointConnections: operations.PrivateEndpointConnections;
-  privateLinkResources: operations.PrivateLinkResources;
-  objectReplicationPolicies: operations.ObjectReplicationPolicies;
-  encryptionScopes: operations.EncryptionScopes;
-  blobServices: operations.BlobServices;
-  blobContainers: operations.BlobContainers;
-  fileServices: operations.FileServices;
-  fileShares: operations.FileShares;
+  operations: Operations;
+  skus: Skus;
+  storageAccounts: StorageAccounts;
+  usages: Usages;
+  managementPolicies: ManagementPolicies;
+  privateEndpointConnections: PrivateEndpointConnections;
+  privateLinkResources: PrivateLinkResources;
+  objectReplicationPolicies: ObjectReplicationPolicies;
+  encryptionScopes: EncryptionScopes;
+  blobServices: BlobServices;
+  blobContainers: BlobContainers;
+  fileServices: FileServices;
+  fileShares: FileShares;
 }
-
-// Operation Specifications
-
-export {
-  StorageManagementClient,
-  StorageManagementClientContext,
-  Models as StorageManagementModels,
-  Mappers as StorageManagementMappers
-};
-export * from "./operations";

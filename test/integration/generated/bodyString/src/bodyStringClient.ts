@@ -6,33 +6,21 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { StringOperations, Enum } from "./operations";
 import { BodyStringClientContext } from "./bodyStringClientContext";
 import { BodyStringClientOptionalParams } from "./models";
 
-class BodyStringClient extends BodyStringClientContext {
+export class BodyStringClient extends BodyStringClientContext {
   /**
    * Initializes a new instance of the BodyStringClient class.
    * @param options The parameter options
    */
   constructor(options?: BodyStringClientOptionalParams) {
     super(options);
-    this.string = new operations.StringOperations(this);
-    this.enum = new operations.Enum(this);
+    this.string = new StringOperations(this);
+    this.enum = new Enum(this);
   }
 
-  string: operations.StringOperations;
-  enum: operations.Enum;
+  string: StringOperations;
+  enum: Enum;
 }
-
-// Operation Specifications
-
-export {
-  BodyStringClient,
-  BodyStringClientContext,
-  Models as BodyStringModels,
-  Mappers as BodyStringMappers
-};
-export * from "./operations";

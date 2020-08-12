@@ -7,13 +7,11 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { Metrics } from "./operations";
 import { MonitorClientContext } from "./monitorClientContext";
 import { MonitorClientOptionalParams } from "./models";
 
-class MonitorClient extends MonitorClientContext {
+export class MonitorClient extends MonitorClientContext {
   /**
    * Initializes a new instance of the MonitorClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -24,18 +22,8 @@ class MonitorClient extends MonitorClientContext {
     options?: MonitorClientOptionalParams
   ) {
     super(credentials, options);
-    this.metrics = new operations.Metrics(this);
+    this.metrics = new Metrics(this);
   }
 
-  metrics: operations.Metrics;
+  metrics: Metrics;
 }
-
-// Operation Specifications
-
-export {
-  MonitorClient,
-  MonitorClientContext,
-  Models as MonitorModels,
-  Mappers as MonitorMappers
-};
-export * from "./operations";

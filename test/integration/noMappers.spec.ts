@@ -1,4 +1,4 @@
-import { NoMappersClient } from "./generated/noMappers/src/noMappersClient";
+import { NoMappersClient } from "./generated/noMappers/src";
 import { assert } from "chai";
 describe("Swagger that needs no mapper", () => {
   it("should be able to instantiate a new client without Typescript errors", () => {

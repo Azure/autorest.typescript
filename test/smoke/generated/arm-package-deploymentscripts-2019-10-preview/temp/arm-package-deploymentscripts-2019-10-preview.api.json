@@ -1,0 +1,3069 @@
+{
+  "metadata": {
+    "toolPackage": "@microsoft/api-extractor",
+    "toolVersion": "7.9.4",
+    "schemaVersion": 1003,
+    "oldestForwardsCompatibleVersion": 1001
+  },
+  "kind": "Package",
+  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!",
+  "docComment": "",
+  "name": "arm-package-deploymentscripts-2019-10-preview",
+  "members": [
+    {
+      "kind": "EntryPoint",
+      "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!",
+      "name": "",
+      "members": [
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureCliScript:type",
+          "docComment": "/**\n * Object model for the Azure CLI script.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type AzureCliScript = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScript",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScript:type"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    containerSettings?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ContainerConfiguration",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ContainerConfiguration:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    storageAccountSettings?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "StorageAccountConfiguration",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    cleanupPreference?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "CleanupOptions",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CleanupOptions:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    readonly provisioningState?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ScriptProvisioningState",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptProvisioningState:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    readonly status?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ScriptStatus",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    readonly outputs?: {\n        [propertyName: string]: any;\n    };\n    primaryScriptUri?: string;\n    supportingScriptUris?: string[];\n    scriptContent?: string;\n    arguments?: string;\n    environmentVariables?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "EnvironmentVariable",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "[];\n    forceUpdateTag?: string;\n    retentionInterval: string;\n    timeout?: string;\n    azCliVersion: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "AzureCliScript",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 15
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureCliScriptProperties:type",
+          "docComment": "/**\n * Properties of the Azure CLI script object.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type AzureCliScriptProperties = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptPropertiesBase",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
+            },
+            {
+              "kind": "Reference",
+              "text": "ScriptConfigurationBase",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    azCliVersion: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "AzureCliScriptProperties",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 5
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzurePowerShellScript:type",
+          "docComment": "/**\n * Object model for the Azure PowerShell script.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type AzurePowerShellScript = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScript",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScript:type"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    containerSettings?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ContainerConfiguration",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ContainerConfiguration:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    storageAccountSettings?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "StorageAccountConfiguration",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    cleanupPreference?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "CleanupOptions",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CleanupOptions:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    readonly provisioningState?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ScriptProvisioningState",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptProvisioningState:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    readonly status?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ScriptStatus",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    readonly outputs?: {\n        [propertyName: string]: any;\n    };\n    primaryScriptUri?: string;\n    supportingScriptUris?: string[];\n    scriptContent?: string;\n    arguments?: string;\n    environmentVariables?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "EnvironmentVariable",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "[];\n    forceUpdateTag?: string;\n    retentionInterval: string;\n    timeout?: string;\n    azPowerShellVersion: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "AzurePowerShellScript",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 15
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzurePowerShellScriptProperties:type",
+          "docComment": "/**\n * Properties of the Azure PowerShell script object.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type AzurePowerShellScriptProperties = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptPropertiesBase",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
+            },
+            {
+              "kind": "Reference",
+              "text": "ScriptConfigurationBase",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    azPowerShellVersion: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "AzurePowerShellScriptProperties",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 5
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureResourceBase:interface",
+          "docComment": "/**\n * Common properties for all Azure resources.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface AzureResourceBase "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "AzureResourceBase",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureResourceBase#id:member",
+              "docComment": "/**\n * String Id used to locate any resource on Azure.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly id?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "id",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureResourceBase#name:member",
+              "docComment": "/**\n * Name of this resource.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly name?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureResourceBase#type:member",
+              "docComment": "/**\n * Type of this resource.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly type?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "type",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CleanupOptions:type",
+          "docComment": "/**\n * Defines values for CleanupOptions.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type CleanupOptions = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"Always\" | \"OnSuccess\" | \"OnExpiration\""
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "CleanupOptions",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ContainerConfiguration:interface",
+          "docComment": "/**\n * Settings to customize ACI container instance.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ContainerConfiguration "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ContainerConfiguration",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ContainerConfiguration#containerGroupName:member",
+              "docComment": "/**\n * Container group name, if not specified then the name will get auto-generated. Not specifying a 'containerGroupName' indicates the system to generate a unique name which might end up flagging an Azure Policy as non-compliant. Use 'containerGroupName' when you have an Azure Policy that expects a specific naming convention or when you want to fully control the name. 'containerGroupName' property must be between 1 and 63 characters long, must contain only lowercase letters, numbers, and dashes and it cannot start or end with a dash and consecutive dashes are not allowed. To specify a 'containerGroupName', add the following object to properties: { \"containerSettings\": { \"containerGroupName\": \"contoso-container\" } }. If you do not want to specify a 'containerGroupName' then do not add 'containerSettings' property.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "containerGroupName?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "containerGroupName",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CreatedByType:type",
+          "docComment": "/**\n * Defines values for CreatedByType.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type CreatedByType = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"User\" | \"Application\" | \"ManagedIdentity\" | \"Key\""
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "CreatedByType",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScript:type",
+          "docComment": "/**\n * Deployment script object.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScript = "
+            },
+            {
+              "kind": "Reference",
+              "text": "AzureResourceBase",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureResourceBase:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    identity: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagedServiceIdentity",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentity:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    location: string;\n    tags?: {\n        [propertyName: string]: string;\n    };\n    kind: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ScriptType",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptType:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    readonly systemData?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "SystemData",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!SystemData:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScript",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 9
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface",
+          "docComment": "/**\n * List of deployment scripts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptListResult "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptListResult",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult#nextLink:member",
+              "docComment": "/**\n * The URL to use for getting the next set of results.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly nextLink?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "nextLink",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult#value:member",
+              "docComment": "/**\n * An array of deployment scripts.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "value?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUnion",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "value",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase:interface",
+          "docComment": "/**\n * Common properties for the deployment script.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptPropertiesBase "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptPropertiesBase",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#cleanupPreference:member",
+              "docComment": "/**\n * The clean up preference when the script execution gets in a terminal state. Default setting is 'Always'.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "cleanupPreference?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CleanupOptions",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CleanupOptions:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "cleanupPreference",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#containerSettings:member",
+              "docComment": "/**\n * Container settings.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "containerSettings?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ContainerConfiguration",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ContainerConfiguration:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "containerSettings",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#outputs:member",
+              "docComment": "/**\n * List of script outputs.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly outputs?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "{\n        [propertyName: string]: any;\n    }"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "outputs",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#provisioningState:member",
+              "docComment": "/**\n * State of the script execution. This only appears in the response.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly provisioningState?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ScriptProvisioningState",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptProvisioningState:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "provisioningState",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#status:member",
+              "docComment": "/**\n * Contains the results of script execution.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly status?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ScriptStatus",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "status",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#storageAccountSettings:member",
+              "docComment": "/**\n * Storage Account settings.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "storageAccountSettings?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StorageAccountConfiguration",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "storageAccountSettings",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClient:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class DeploymentScriptsClient extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptsClientContext",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext:class"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsClient",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClient:constructor(1)",
+              "docComment": "/**\n * Initializes a new instance of the DeploymentScriptsClient class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - Subscription Id which forms part of the URI for every service call.\n *\n * @param options - The parameter options\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(credentials: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TokenCredential",
+                  "canonicalReference": "@azure/core-auth!TokenCredential:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceClientCredentials",
+                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", subscriptionId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsClientOptionalParams",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "credentials",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 5
+                  }
+                },
+                {
+                  "parameterName": "subscriptionId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 6,
+                    "endIndex": 7
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 8,
+                    "endIndex": 9
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClient#deploymentScripts:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "deploymentScripts: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScripts",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "deploymentScripts",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class DeploymentScriptsClientContext extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceClient",
+              "canonicalReference": "@azure/core-http!ServiceClient:class"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsClientContext",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext:constructor(1)",
+              "docComment": "/**\n * Initializes a new instance of the DeploymentScriptsClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - Subscription Id which forms part of the URI for every service call.\n *\n * @param options - The parameter options\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(credentials: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TokenCredential",
+                  "canonicalReference": "@azure/core-auth!TokenCredential:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceClientCredentials",
+                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", subscriptionId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptsClientOptionalParams",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "credentials",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 5
+                  }
+                },
+                {
+                  "parameterName": "subscriptionId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 6,
+                    "endIndex": 7
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 8,
+                    "endIndex": 9
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext#$host:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "$host: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "$host",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext#apiVersion:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "apiVersion: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "apiVersion",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext#subscriptionId:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "subscriptionId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "subscriptionId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsClientOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceClientOptions",
+              "canonicalReference": "@azure/core-http!ServiceClientOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsClientOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams#$host:member",
+              "docComment": "/**\n * server parameter\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "$host?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "$host",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams#apiVersion:member",
+              "docComment": "/**\n * Api Version\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "apiVersion?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "apiVersion",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams#endpoint:member",
+              "docComment": "/**\n * Overrides client endpoint.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "endpoint?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "endpoint",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateResponse:type",
+          "docComment": "/**\n * Contains response data for the create operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsCreateResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptUnion",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptUnion",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsCreateResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsError:interface",
+          "docComment": "/**\n * Deployment scripts error response.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsError "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsError",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsError#error:member",
+              "docComment": "/**\n * The resource management error response.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "error?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ErrorResponse",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "error",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsDefaultOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsGetLogsDefaultOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsGetLogsDefaultOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsDefaultOptionalParams#tail:member",
+              "docComment": "/**\n * The number of lines to show from the tail of the deployment script log. Valid value is a positive number up to 1000. If 'tail' is not provided, all available logs are shown up to container instance log capacity of 4mb.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "tail?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "tail",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsDefaultResponse:type",
+          "docComment": "/**\n * Contains response data for the getLogsDefault operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsGetLogsDefaultResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ScriptLog",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptLog:type"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ScriptLog",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptLog:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsGetLogsDefaultResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsResponse:type",
+          "docComment": "/**\n * Contains response data for the getLogs operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsGetLogsResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ScriptLogsList",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptLogsList:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ScriptLogsList",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptLogsList:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsGetLogsResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetResponse:type",
+          "docComment": "/**\n * Contains response data for the get operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsGetResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptUnion",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptUnion",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsGetResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroupNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListByResourceGroupNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListByResourceGroupNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupResponse:type",
+          "docComment": "/**\n * Contains response data for the listByResourceGroup operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListByResourceGroupResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListByResourceGroupResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listBySubscriptionNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListBySubscriptionNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListBySubscriptionNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionResponse:type",
+          "docComment": "/**\n * Contains response data for the listBySubscription operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsListBySubscriptionResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptListResult",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsListBySubscriptionResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsUpdateOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DeploymentScriptsUpdateOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsUpdateOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsUpdateOptionalParams#deploymentScript:member",
+              "docComment": "/**\n * Deployment script resource with the tags to be updated.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "deploymentScript?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScriptUpdateParameter",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUpdateParameter:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "deploymentScript",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsUpdateResponse:type",
+          "docComment": "/**\n * Contains response data for the update operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptsUpdateResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptUnion",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScriptUnion",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptsUpdateResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptUnion = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeploymentScript",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScript:type"
+            },
+            {
+              "kind": "Content",
+              "text": " | "
+            },
+            {
+              "kind": "Reference",
+              "text": "AzurePowerShellScript",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzurePowerShellScript:type"
+            },
+            {
+              "kind": "Content",
+              "text": " | "
+            },
+            {
+              "kind": "Reference",
+              "text": "AzureCliScript",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureCliScript:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptUnion",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 6
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUpdateParameter:type",
+          "docComment": "/**\n * Deployment script parameters to be updated.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DeploymentScriptUpdateParameter = "
+            },
+            {
+              "kind": "Reference",
+              "text": "AzureResourceBase",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureResourceBase:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    tags?: {\n        [propertyName: string]: string;\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DeploymentScriptUpdateParameter",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable:interface",
+          "docComment": "/**\n * The environment variable to pass to the script in the container instance.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface EnvironmentVariable "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "EnvironmentVariable",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable#name:member",
+              "docComment": "/**\n * The name of the environment variable.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "name: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable#secureValue:member",
+              "docComment": "/**\n * The value of the secure environment variable.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "secureValue?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "secureValue",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable#value:member",
+              "docComment": "/**\n * The value of the environment variable.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "value?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "value",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorAdditionalInfo:interface",
+          "docComment": "/**\n * The resource management error additional info.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ErrorAdditionalInfo "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ErrorAdditionalInfo",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorAdditionalInfo#info:member",
+              "docComment": "/**\n * The additional info.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly info?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "any"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "info",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorAdditionalInfo#type:member",
+              "docComment": "/**\n * The additional info type.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly type?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "type",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse:interface",
+          "docComment": "/**\n * The resource management error response.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ErrorResponse "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ErrorResponse",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse#additionalInfo:member",
+              "docComment": "/**\n * The error additional info.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly additionalInfo?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ErrorAdditionalInfo",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorAdditionalInfo:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "additionalInfo",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse#code:member",
+              "docComment": "/**\n * The error code.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly code?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "code",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse#details:member",
+              "docComment": "/**\n * The error details.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly details?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ErrorResponse",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "details",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse#message:member",
+              "docComment": "/**\n * The error message.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly message?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "message",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse#target:member",
+              "docComment": "/**\n * The error target.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly target?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "target",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentity:interface",
+          "docComment": "/**\n * Managed identity generic object.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ManagedServiceIdentity "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagedServiceIdentity",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentity#type:member",
+              "docComment": "/**\n * Type of the managed identity.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "type?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ManagedServiceIdentityType",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentityType:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "type",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentity#userAssignedIdentities:member",
+              "docComment": "/**\n * The list of user-assigned managed identities associated with the resource. Key is the Azure resource Id of the managed identity.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "userAssignedIdentities?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "{\n        [propertyName: string]: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "UserAssignedIdentity",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!UserAssignedIdentity:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";\n    }"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "userAssignedIdentities",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 4
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentityType:type",
+          "docComment": "/**\n * Defines values for ManagedServiceIdentityType.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagedServiceIdentityType = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"UserAssigned\""
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagedServiceIdentityType",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase:interface",
+          "docComment": "/**\n * Common configuration settings for both Azure PowerShell and Azure CLI scripts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ScriptConfigurationBase "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ScriptConfigurationBase",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#arguments:member",
+              "docComment": "/**\n * Command line arguments to pass to the script. Arguments are separated by spaces. ex: -Name blue* -Location 'West US 2'\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "arguments?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "arguments",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#environmentVariables:member",
+              "docComment": "/**\n * The environment variables to pass over to the script.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "environmentVariables?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "EnvironmentVariable",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "environmentVariables",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#forceUpdateTag:member",
+              "docComment": "/**\n * Gets or sets how the deployment script should be forced to execute even if the script resource has not changed. Can be current time stamp or a GUID.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "forceUpdateTag?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "forceUpdateTag",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#primaryScriptUri:member",
+              "docComment": "/**\n * Uri for the script. This is the entry point for the external script.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "primaryScriptUri?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "primaryScriptUri",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#retentionInterval:member",
+              "docComment": "/**\n * Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P7D means one week).\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "retentionInterval: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "retentionInterval",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#scriptContent:member",
+              "docComment": "/**\n * Script body.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "scriptContent?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "scriptContent",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#supportingScriptUris:member",
+              "docComment": "/**\n * Supporting files for the external script.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "supportingScriptUris?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "supportingScriptUris",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#timeout:member",
+              "docComment": "/**\n * Maximum allowed script execution time specified in ISO 8601 format. Default value is PT1H\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "timeout?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "timeout",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptLog:type",
+          "docComment": "/**\n * Script execution log object.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ScriptLog = "
+            },
+            {
+              "kind": "Reference",
+              "text": "AzureResourceBase",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureResourceBase:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    readonly log?: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ScriptLog",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptLogsList:interface",
+          "docComment": "/**\n * Deployment script execution logs.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ScriptLogsList "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ScriptLogsList",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptLogsList#value:member",
+              "docComment": "/**\n * Deployment scripts logs.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "value?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ScriptLog",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptLog:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "value",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptProvisioningState:type",
+          "docComment": "/**\n * Defines values for ScriptProvisioningState.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ScriptProvisioningState = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"Creating\" | \"ProvisioningResources\" | \"Running\" | \"Succeeded\" | \"Failed\" | \"Canceled\""
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ScriptProvisioningState",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus:interface",
+          "docComment": "/**\n * Generic object modeling results of script execution.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ScriptStatus "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ScriptStatus",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus#containerInstanceId:member",
+              "docComment": "/**\n * ACI resource Id.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly containerInstanceId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "containerInstanceId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus#endTime:member",
+              "docComment": "/**\n * End time of the script execution.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly endTime?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Date",
+                  "canonicalReference": "!Date:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "endTime",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus#error:member",
+              "docComment": "/**\n * Error that is relayed from the script execution.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "error?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ErrorResponse",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "error",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus#expirationTime:member",
+              "docComment": "/**\n * Time the deployment script resource will expire.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly expirationTime?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Date",
+                  "canonicalReference": "!Date:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "expirationTime",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus#startTime:member",
+              "docComment": "/**\n * Start time of the script execution.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly startTime?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Date",
+                  "canonicalReference": "!Date:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "startTime",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus#storageAccountId:member",
+              "docComment": "/**\n * Storage account resource Id.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly storageAccountId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "storageAccountId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptType:type",
+          "docComment": "/**\n * Defines values for ScriptType.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ScriptType = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"AzurePowerShell\" | \"AzureCLI\""
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ScriptType",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration:interface",
+          "docComment": "/**\n * Settings to use an existing storage account. Valid storage account kinds are: Storage, StorageV2 and FileStorage\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface StorageAccountConfiguration "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "StorageAccountConfiguration",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration#storageAccountKey:member",
+              "docComment": "/**\n * The storage account access key.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "storageAccountKey?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "storageAccountKey",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration#storageAccountName:member",
+              "docComment": "/**\n * The storage account name.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "storageAccountName?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "storageAccountName",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!SystemData:interface",
+          "docComment": "/**\n * Metadata pertaining to creation and last modification of the resource.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface SystemData "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SystemData",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!SystemData#createdAt:member",
+              "docComment": "/**\n * The timestamp of resource creation (UTC).\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "createdAt?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Date",
+                  "canonicalReference": "!Date:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "createdAt",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!SystemData#createdBy:member",
+              "docComment": "/**\n * The identity that created the resource.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "createdBy?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "createdBy",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!SystemData#createdByType:member",
+              "docComment": "/**\n * The type of identity that created the resource.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "createdByType?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CreatedByType",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CreatedByType:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "createdByType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!SystemData#lastModifiedAt:member",
+              "docComment": "/**\n * The type of identity that last modified the resource.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "lastModifiedAt?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Date",
+                  "canonicalReference": "!Date:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "lastModifiedAt",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!SystemData#lastModifiedBy:member",
+              "docComment": "/**\n * The identity that last modified the resource.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "lastModifiedBy?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "lastModifiedBy",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!SystemData#lastModifiedByType:member",
+              "docComment": "/**\n * The type of identity that last modified the resource.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "lastModifiedByType?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CreatedByType",
+                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CreatedByType:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "lastModifiedByType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!UserAssignedIdentity:interface",
+          "docComment": "/**\n * User-assigned managed identity.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface UserAssignedIdentity "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "UserAssignedIdentity",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!UserAssignedIdentity#clientId:member",
+              "docComment": "/**\n * Client App Id associated with this identity.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "clientId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "clientId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!UserAssignedIdentity#principalId:member",
+              "docComment": "/**\n * Azure Active Directory principal ID associated with this identity.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "principalId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "principalId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        }
+      ]
+    }
+  ]
+}

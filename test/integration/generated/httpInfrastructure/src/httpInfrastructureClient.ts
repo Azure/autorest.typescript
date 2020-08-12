@@ -6,43 +6,39 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import {
+  HttpFailure,
+  HttpSuccess,
+  HttpRedirects,
+  HttpClientFailure,
+  HttpServerFailure,
+  HttpRetry,
+  MultipleResponses
+} from "./operations";
 import { HttpInfrastructureClientContext } from "./httpInfrastructureClientContext";
 import { HttpInfrastructureClientOptionalParams } from "./models";
 
-class HttpInfrastructureClient extends HttpInfrastructureClientContext {
+export class HttpInfrastructureClient extends HttpInfrastructureClientContext {
   /**
    * Initializes a new instance of the HttpInfrastructureClient class.
    * @param options The parameter options
    */
   constructor(options?: HttpInfrastructureClientOptionalParams) {
     super(options);
-    this.httpFailure = new operations.HttpFailure(this);
-    this.httpSuccess = new operations.HttpSuccess(this);
-    this.httpRedirects = new operations.HttpRedirects(this);
-    this.httpClientFailure = new operations.HttpClientFailure(this);
-    this.httpServerFailure = new operations.HttpServerFailure(this);
-    this.httpRetry = new operations.HttpRetry(this);
-    this.multipleResponses = new operations.MultipleResponses(this);
+    this.httpFailure = new HttpFailure(this);
+    this.httpSuccess = new HttpSuccess(this);
+    this.httpRedirects = new HttpRedirects(this);
+    this.httpClientFailure = new HttpClientFailure(this);
+    this.httpServerFailure = new HttpServerFailure(this);
+    this.httpRetry = new HttpRetry(this);
+    this.multipleResponses = new MultipleResponses(this);
   }
 
-  httpFailure: operations.HttpFailure;
-  httpSuccess: operations.HttpSuccess;
-  httpRedirects: operations.HttpRedirects;
-  httpClientFailure: operations.HttpClientFailure;
-  httpServerFailure: operations.HttpServerFailure;
-  httpRetry: operations.HttpRetry;
-  multipleResponses: operations.MultipleResponses;
+  httpFailure: HttpFailure;
+  httpSuccess: HttpSuccess;
+  httpRedirects: HttpRedirects;
+  httpClientFailure: HttpClientFailure;
+  httpServerFailure: HttpServerFailure;
+  httpRetry: HttpRetry;
+  multipleResponses: MultipleResponses;
 }
-
-// Operation Specifications
-
-export {
-  HttpInfrastructureClient,
-  HttpInfrastructureClientContext,
-  Models as HttpInfrastructureModels,
-  Mappers as HttpInfrastructureMappers
-};
-export * from "./operations";

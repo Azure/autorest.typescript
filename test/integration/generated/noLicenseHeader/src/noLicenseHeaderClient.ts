@@ -1,6 +1,5 @@
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
-import * as Models from "./models";
 import { NoLicenseHeaderClientContext } from "./noLicenseHeaderClientContext";
 import {
   NoLicenseHeaderClientOptionalParams,
@@ -8,7 +7,7 @@ import {
   NoLicenseHeaderClientApiV1ValueGetResponse
 } from "./models";
 
-class NoLicenseHeaderClient extends NoLicenseHeaderClientContext {
+export class NoLicenseHeaderClient extends NoLicenseHeaderClientContext {
   /**
    * Initializes a new instance of the NoLicenseHeaderClient class.
    * @param $host server parameter
@@ -53,12 +52,4 @@ const apiV1ValueGetOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.apiVersion],
   serializer
-};
-
-// Operation Specifications
-
-export {
-  NoLicenseHeaderClient,
-  NoLicenseHeaderClientContext,
-  Models as NoLicenseHeaderModels
 };

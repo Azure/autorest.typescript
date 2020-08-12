@@ -12,7 +12,9 @@ import { generateClient } from "./generators/clientFileGenerator";
 import { generateClientContext } from "./generators/clientContextFileGenerator";
 import { generateModels } from "./generators/modelsGenerator";
 import { generateMappers } from "./generators/mappersGenerator";
+import { generateIndexFile } from "./generators/indexGenerator";
 import { generatePackageJson } from "./generators/static/packageFileGenerator";
+import { generateApiExtractorConfig } from "./generators/static/apiExtractorConfig";
 import { generateLicenseFile } from "./generators/static/licenseFileGenerator";
 import { generateReadmeFile } from "./generators/static/readmeFileGenerator";
 import { generateTsConfig } from "./generators/static/tsConfigFileGenerator";
@@ -77,14 +79,17 @@ export async function generateTypeScriptLibrary(
     generateReadmeFile(clientDetails, packageDetails, project);
     generateTsConfig(project);
     generateRollupConfig(clientDetails, packageDetails, project);
+    generateApiExtractorConfig(clientDetails, project);
   }
 
   generateClient(clientDetails, project);
   generateClientContext(clientDetails, packageDetails, project);
   generateModels(clientDetails, project);
+
   generateMappers(clientDetails, project);
   generateOperations(clientDetails, project);
   generateParameters(clientDetails, project);
+  generateIndexFile(clientDetails, project);
   await generateLROFiles(clientDetails, project);
 
   const licenseHeader = `

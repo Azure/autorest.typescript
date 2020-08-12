@@ -6,31 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { Files } from "./operations";
 import { BodyFileClientContext } from "./bodyFileClientContext";
 import { BodyFileClientOptionalParams } from "./models";
 
-class BodyFileClient extends BodyFileClientContext {
+export class BodyFileClient extends BodyFileClientContext {
   /**
    * Initializes a new instance of the BodyFileClient class.
    * @param options The parameter options
    */
   constructor(options?: BodyFileClientOptionalParams) {
     super(options);
-    this.files = new operations.Files(this);
+    this.files = new Files(this);
   }
 
-  files: operations.Files;
+  files: Files;
 }
-
-// Operation Specifications
-
-export {
-  BodyFileClient,
-  BodyFileClientContext,
-  Models as BodyFileModels,
-  Mappers as BodyFileMappers
-};
-export * from "./operations";

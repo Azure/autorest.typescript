@@ -1,6 +1,5 @@
 import { assert } from "chai";
-import { BodyTimeClient } from "./generated/bodyTime/src/bodyTimeClient";
-import { TimeGetResponse } from "./generated/bodyTime/src/models";
+import { BodyTimeClient, TimeGetResponse } from "./generated/bodyTime/src";
 
 /**
  * Returns an interface that omits the _response field.

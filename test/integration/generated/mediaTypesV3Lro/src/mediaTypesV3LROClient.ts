@@ -9,7 +9,6 @@
 import * as coreHttp from "@azure/core-http";
 import { LROPoller, shouldDeserializeLRO } from "./lro";
 import * as Parameters from "./models/parameters";
-import * as Models from "./models";
 import { MediaTypesV3LROClientContext } from "./mediaTypesV3LROClientContext";
 import {
   MediaTypesV3LROClientOptionalParams,
@@ -19,7 +18,7 @@ import {
   MediaTypesV3LROClientSend$textOptionalParams
 } from "./models";
 
-class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
+export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
   /**
    * Initializes a new instance of the MediaTypesV3LROClient class.
    * @param $host server parameter
@@ -240,12 +239,4 @@ const send$textOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.contentType1],
   mediaType: "text",
   serializer
-};
-
-// Operation Specifications
-
-export {
-  MediaTypesV3LROClient,
-  MediaTypesV3LROClientContext,
-  Models as MediaTypesV3LROModels
 };

@@ -6,31 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { Xml } from "./operations";
 import { XmlServiceClientContext } from "./xmlServiceClientContext";
 import { XmlServiceClientOptionalParams } from "./models";
 
-class XmlServiceClient extends XmlServiceClientContext {
+export class XmlServiceClient extends XmlServiceClientContext {
   /**
    * Initializes a new instance of the XmlServiceClient class.
    * @param options The parameter options
    */
   constructor(options?: XmlServiceClientOptionalParams) {
     super(options);
-    this.xml = new operations.Xml(this);
+    this.xml = new Xml(this);
   }
 
-  xml: operations.Xml;
+  xml: Xml;
 }
-
-// Operation Specifications
-
-export {
-  XmlServiceClient,
-  XmlServiceClientContext,
-  Models as XmlServiceModels,
-  Mappers as XmlServiceMappers
-};
-export * from "./operations";

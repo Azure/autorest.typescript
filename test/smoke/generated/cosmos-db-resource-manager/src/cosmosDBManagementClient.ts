@@ -7,13 +7,33 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import {
+  DatabaseAccounts,
+  Operations,
+  Database,
+  Collection,
+  CollectionRegion,
+  DatabaseAccountRegion,
+  PercentileSourceTarget,
+  PercentileTarget,
+  Percentile,
+  CollectionPartitionRegion,
+  CollectionPartition,
+  PartitionKeyRangeId,
+  PartitionKeyRangeIdRegion,
+  SqlResources,
+  MongoDBResources,
+  TableResources,
+  CassandraResources,
+  GremlinResources,
+  NotebookWorkspaces,
+  PrivateLinkResources,
+  PrivateEndpointConnections
+} from "./operations";
 import { CosmosDBManagementClientContext } from "./cosmosDBManagementClientContext";
 import { CosmosDBManagementClientOptionalParams } from "./models";
 
-class CosmosDBManagementClient extends CosmosDBManagementClientContext {
+export class CosmosDBManagementClient extends CosmosDBManagementClientContext {
   /**
    * Initializes a new instance of the CosmosDBManagementClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -26,64 +46,48 @@ class CosmosDBManagementClient extends CosmosDBManagementClientContext {
     options?: CosmosDBManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.databaseAccounts = new operations.DatabaseAccounts(this);
-    this.operations = new operations.Operations(this);
-    this.database = new operations.Database(this);
-    this.collection = new operations.Collection(this);
-    this.collectionRegion = new operations.CollectionRegion(this);
-    this.databaseAccountRegion = new operations.DatabaseAccountRegion(this);
-    this.percentileSourceTarget = new operations.PercentileSourceTarget(this);
-    this.percentileTarget = new operations.PercentileTarget(this);
-    this.percentile = new operations.Percentile(this);
-    this.collectionPartitionRegion = new operations.CollectionPartitionRegion(
-      this
-    );
-    this.collectionPartition = new operations.CollectionPartition(this);
-    this.partitionKeyRangeId = new operations.PartitionKeyRangeId(this);
-    this.partitionKeyRangeIdRegion = new operations.PartitionKeyRangeIdRegion(
-      this
-    );
-    this.sqlResources = new operations.SqlResources(this);
-    this.mongoDBResources = new operations.MongoDBResources(this);
-    this.tableResources = new operations.TableResources(this);
-    this.cassandraResources = new operations.CassandraResources(this);
-    this.gremlinResources = new operations.GremlinResources(this);
-    this.notebookWorkspaces = new operations.NotebookWorkspaces(this);
-    this.privateLinkResources = new operations.PrivateLinkResources(this);
-    this.privateEndpointConnections = new operations.PrivateEndpointConnections(
-      this
-    );
+    this.databaseAccounts = new DatabaseAccounts(this);
+    this.operations = new Operations(this);
+    this.database = new Database(this);
+    this.collection = new Collection(this);
+    this.collectionRegion = new CollectionRegion(this);
+    this.databaseAccountRegion = new DatabaseAccountRegion(this);
+    this.percentileSourceTarget = new PercentileSourceTarget(this);
+    this.percentileTarget = new PercentileTarget(this);
+    this.percentile = new Percentile(this);
+    this.collectionPartitionRegion = new CollectionPartitionRegion(this);
+    this.collectionPartition = new CollectionPartition(this);
+    this.partitionKeyRangeId = new PartitionKeyRangeId(this);
+    this.partitionKeyRangeIdRegion = new PartitionKeyRangeIdRegion(this);
+    this.sqlResources = new SqlResources(this);
+    this.mongoDBResources = new MongoDBResources(this);
+    this.tableResources = new TableResources(this);
+    this.cassandraResources = new CassandraResources(this);
+    this.gremlinResources = new GremlinResources(this);
+    this.notebookWorkspaces = new NotebookWorkspaces(this);
+    this.privateLinkResources = new PrivateLinkResources(this);
+    this.privateEndpointConnections = new PrivateEndpointConnections(this);
   }
 
-  databaseAccounts: operations.DatabaseAccounts;
-  operations: operations.Operations;
-  database: operations.Database;
-  collection: operations.Collection;
-  collectionRegion: operations.CollectionRegion;
-  databaseAccountRegion: operations.DatabaseAccountRegion;
-  percentileSourceTarget: operations.PercentileSourceTarget;
-  percentileTarget: operations.PercentileTarget;
-  percentile: operations.Percentile;
-  collectionPartitionRegion: operations.CollectionPartitionRegion;
-  collectionPartition: operations.CollectionPartition;
-  partitionKeyRangeId: operations.PartitionKeyRangeId;
-  partitionKeyRangeIdRegion: operations.PartitionKeyRangeIdRegion;
-  sqlResources: operations.SqlResources;
-  mongoDBResources: operations.MongoDBResources;
-  tableResources: operations.TableResources;
-  cassandraResources: operations.CassandraResources;
-  gremlinResources: operations.GremlinResources;
-  notebookWorkspaces: operations.NotebookWorkspaces;
-  privateLinkResources: operations.PrivateLinkResources;
-  privateEndpointConnections: operations.PrivateEndpointConnections;
+  databaseAccounts: DatabaseAccounts;
+  operations: Operations;
+  database: Database;
+  collection: Collection;
+  collectionRegion: CollectionRegion;
+  databaseAccountRegion: DatabaseAccountRegion;
+  percentileSourceTarget: PercentileSourceTarget;
+  percentileTarget: PercentileTarget;
+  percentile: Percentile;
+  collectionPartitionRegion: CollectionPartitionRegion;
+  collectionPartition: CollectionPartition;
+  partitionKeyRangeId: PartitionKeyRangeId;
+  partitionKeyRangeIdRegion: PartitionKeyRangeIdRegion;
+  sqlResources: SqlResources;
+  mongoDBResources: MongoDBResources;
+  tableResources: TableResources;
+  cassandraResources: CassandraResources;
+  gremlinResources: GremlinResources;
+  notebookWorkspaces: NotebookWorkspaces;
+  privateLinkResources: PrivateLinkResources;
+  privateEndpointConnections: PrivateEndpointConnections;
 }
-
-// Operation Specifications
-
-export {
-  CosmosDBManagementClient,
-  CosmosDBManagementClientContext,
-  Models as CosmosDBManagementModels,
-  Mappers as CosmosDBManagementMappers
-};
-export * from "./operations";
