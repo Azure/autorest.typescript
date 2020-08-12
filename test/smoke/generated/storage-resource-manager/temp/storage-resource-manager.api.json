@@ -2078,7 +2078,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"InProgress\" | \"Complete\" | \"Failed\""
+              "text": "\"InProgress\" | \"Complete\" | \"Failed\" | string"
             },
             {
               "kind": "Content",
@@ -2561,7 +2561,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"None\" | \"Logging\" | \"Metrics\" | \"AzureServices\""
+              "text": "\"None\" | \"Logging\" | \"Metrics\" | \"AzureServices\" | string"
             },
             {
               "kind": "Content",
@@ -3028,7 +3028,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"DELETE\" | \"GET\" | \"HEAD\" | \"MERGE\" | \"POST\" | \"OPTIONS\" | \"PUT\""
+              "text": "\"DELETE\" | \"GET\" | \"HEAD\" | \"MERGE\" | \"POST\" | \"OPTIONS\" | \"PUT\" | string"
             },
             {
               "kind": "Content",
@@ -3470,7 +3470,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"None\" | \"AADDS\" | \"AD\""
+              "text": "\"None\" | \"AADDS\" | \"AD\" | string"
             },
             {
               "kind": "Content",
@@ -3495,7 +3495,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"SMB\" | \"NFS\""
+              "text": "\"SMB\" | \"NFS\" | string"
             },
             {
               "kind": "Content",
@@ -3945,7 +3945,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Microsoft.Storage\" | \"Microsoft.KeyVault\""
+              "text": "\"Microsoft.Storage\" | \"Microsoft.KeyVault\" | string"
             },
             {
               "kind": "Content",
@@ -4066,7 +4066,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Enabled\" | \"Disabled\""
+              "text": "\"Enabled\" | \"Disabled\" | string"
             },
             {
               "kind": "Content",
@@ -5575,7 +5575,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Live\" | \"Bootstrap\" | \"Unavailable\""
+              "text": "\"Live\" | \"Bootstrap\" | \"Unavailable\" | string"
             },
             {
               "kind": "Content",
@@ -5902,7 +5902,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Locked\" | \"Unlocked\""
+              "text": "\"Locked\" | \"Unlocked\" | string"
             },
             {
               "kind": "Content",
@@ -5927,7 +5927,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"put\" | \"lock\" | \"extend\""
+              "text": "\"put\" | \"lock\" | \"extend\" | string"
             },
             {
               "kind": "Content",
@@ -6043,7 +6043,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Microsoft.Storage\" | \"Microsoft.Keyvault\""
+              "text": "\"Microsoft.Storage\" | \"Microsoft.Keyvault\" | string"
             },
             {
               "kind": "Content",
@@ -6068,7 +6068,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Service\" | \"Account\""
+              "text": "\"Service\" | \"Account\" | string"
             },
             {
               "kind": "Content",
@@ -6235,7 +6235,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Storage\" | \"StorageV2\" | \"BlobStorage\" | \"FileStorage\" | \"BlockBlobStorage\""
+              "text": "\"Storage\" | \"StorageV2\" | \"BlobStorage\" | \"FileStorage\" | \"BlockBlobStorage\" | string"
             },
             {
               "kind": "Content",
@@ -6260,7 +6260,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Disabled\" | \"Enabled\""
+              "text": "\"Disabled\" | \"Enabled\" | string"
             },
             {
               "kind": "Content",
@@ -6427,7 +6427,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Acquire\" | \"Renew\" | \"Change\" | \"Release\" | \"Break\""
+              "text": "\"Acquire\" | \"Renew\" | \"Change\" | \"Release\" | \"Break\" | string"
             },
             {
               "kind": "Content",
@@ -6518,7 +6518,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Infinite\" | \"Fixed\""
+              "text": "\"Infinite\" | \"Fixed\" | string"
             },
             {
               "kind": "Content",
@@ -6543,7 +6543,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Available\" | \"Leased\" | \"Expired\" | \"Breaking\" | \"Broken\""
+              "text": "\"Available\" | \"Leased\" | \"Expired\" | \"Breaking\" | \"Broken\" | string"
             },
             {
               "kind": "Content",
@@ -6568,7 +6568,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Locked\" | \"Unlocked\""
+              "text": "\"Locked\" | \"Unlocked\" | string"
             },
             {
               "kind": "Content",
@@ -7446,7 +7446,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"default\""
+              "text": "\"default\" | string"
             },
             {
               "kind": "Content",
@@ -8800,7 +8800,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"r\" | \"d\" | \"w\" | \"l\" | \"a\" | \"c\" | \"u\" | \"p\""
+              "text": "\"r\" | \"d\" | \"w\" | \"l\" | \"a\" | \"c\" | \"u\" | \"p\" | string"
             },
             {
               "kind": "Content",
@@ -8969,7 +8969,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Succeeded\" | \"Creating\" | \"Deleting\" | \"Failed\""
+              "text": "\"Succeeded\" | \"Creating\" | \"Deleting\" | \"Failed\" | string"
             },
             {
               "kind": "Content",
@@ -9138,7 +9138,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Pending\" | \"Approved\" | \"Rejected\""
+              "text": "\"Pending\" | \"Approved\" | \"Rejected\" | string"
             },
             {
               "kind": "Content",
@@ -9454,7 +9454,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"QuotaId\" | \"NotAvailableForSubscription\""
+              "text": "\"QuotaId\" | \"NotAvailableForSubscription\" | string"
             },
             {
               "kind": "Content",
@@ -9754,7 +9754,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"NoRootSquash\" | \"RootSquash\" | \"AllSquash\""
+              "text": "\"NoRootSquash\" | \"RootSquash\" | \"AllSquash\" | string"
             },
             {
               "kind": "Content",
@@ -9779,7 +9779,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"MicrosoftRouting\" | \"InternetRouting\""
+              "text": "\"MicrosoftRouting\" | \"InternetRouting\" | string"
             },
             {
               "kind": "Content",
@@ -9896,7 +9896,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Lifecycle\""
+              "text": "\"Lifecycle\" | string"
             },
             {
               "kind": "Content",
@@ -9921,7 +9921,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"b\" | \"q\" | \"t\" | \"f\""
+              "text": "\"b\" | \"q\" | \"t\" | \"f\" | string"
             },
             {
               "kind": "Content",
@@ -10463,7 +10463,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"TransactionOptimized\" | \"Hot\" | \"Cool\" | \"Premium\""
+              "text": "\"TransactionOptimized\" | \"Hot\" | \"Cool\" | \"Premium\" | string"
             },
             {
               "kind": "Content",
@@ -10488,7 +10488,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"b\" | \"c\" | \"f\" | \"s\""
+              "text": "\"b\" | \"c\" | \"f\" | \"s\" | string"
             },
             {
               "kind": "Content",
@@ -10513,7 +10513,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"s\" | \"c\" | \"o\""
+              "text": "\"s\" | \"c\" | \"o\" | string"
             },
             {
               "kind": "Content",
@@ -10876,7 +10876,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Standard_LRS\" | \"Standard_GRS\" | \"Standard_RAGRS\" | \"Standard_ZRS\" | \"Premium_LRS\" | \"Premium_ZRS\" | \"Standard_GZRS\" | \"Standard_RAGZRS\""
+              "text": "\"Standard_LRS\" | \"Standard_GRS\" | \"Standard_RAGRS\" | \"Standard_ZRS\" | \"Premium_LRS\" | \"Premium_ZRS\" | \"Standard_GZRS\" | \"Standard_RAGZRS\" | string"
             },
             {
               "kind": "Content",

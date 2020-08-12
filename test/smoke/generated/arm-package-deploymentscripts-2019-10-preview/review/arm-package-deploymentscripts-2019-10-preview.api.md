@@ -72,7 +72,7 @@ export interface AzureResourceBase {
 }
 
 // @public
-export type CleanupOptions = "Always" | "OnSuccess" | "OnExpiration";
+export type CleanupOptions = "Always" | "OnSuccess" | "OnExpiration" | string;
 
 // @public
 export interface ContainerConfiguration {
@@ -80,7 +80,7 @@ export interface ContainerConfiguration {
 }
 
 // @public
-export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
+export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key" | string;
 
 // @public
 export type DeploymentScript = AzureResourceBase & {
@@ -266,7 +266,7 @@ export interface ManagedServiceIdentity {
 }
 
 // @public
-export type ManagedServiceIdentityType = "UserAssigned";
+export type ManagedServiceIdentityType = "UserAssigned" | string;
 
 // @public
 export interface ScriptConfigurationBase {
@@ -291,7 +291,7 @@ export interface ScriptLogsList {
 }
 
 // @public
-export type ScriptProvisioningState = "Creating" | "ProvisioningResources" | "Running" | "Succeeded" | "Failed" | "Canceled";
+export type ScriptProvisioningState = "Creating" | "ProvisioningResources" | "Running" | "Succeeded" | "Failed" | "Canceled" | string;
 
 // @public
 export interface ScriptStatus {
@@ -304,7 +304,7 @@ export interface ScriptStatus {
 }
 
 // @public
-export type ScriptType = "AzurePowerShell" | "AzureCLI";
+export type ScriptType = "AzurePowerShell" | "AzureCLI" | string;
 
 // @public
 export interface StorageAccountConfiguration {

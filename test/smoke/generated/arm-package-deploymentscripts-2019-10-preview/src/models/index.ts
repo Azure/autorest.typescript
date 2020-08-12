@@ -505,19 +505,24 @@ export type AzureCliScript = DeploymentScript & {
 /**
  * Defines values for ManagedServiceIdentityType.
  */
-export type ManagedServiceIdentityType = "UserAssigned";
+export type ManagedServiceIdentityType = "UserAssigned" | string;
 /**
  * Defines values for ScriptType.
  */
-export type ScriptType = "AzurePowerShell" | "AzureCLI";
+export type ScriptType = "AzurePowerShell" | "AzureCLI" | string;
 /**
  * Defines values for CreatedByType.
  */
-export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
+export type CreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key"
+  | string;
 /**
  * Defines values for CleanupOptions.
  */
-export type CleanupOptions = "Always" | "OnSuccess" | "OnExpiration";
+export type CleanupOptions = "Always" | "OnSuccess" | "OnExpiration" | string;
 /**
  * Defines values for ScriptProvisioningState.
  */
@@ -527,7 +532,8 @@ export type ScriptProvisioningState =
   | "Running"
   | "Succeeded"
   | "Failed"
-  | "Canceled";
+  | "Canceled"
+  | string;
 
 /**
  * Contains response data for the create operation.

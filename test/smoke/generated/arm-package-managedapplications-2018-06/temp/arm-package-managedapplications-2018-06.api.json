@@ -2382,7 +2382,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Accepted\" | \"Running\" | \"Ready\" | \"Creating\" | \"Created\" | \"Deleting\" | \"Deleted\" | \"Canceled\" | \"Failed\" | \"Succeeded\" | \"Updating\""
+              "text": "\"Accepted\" | \"Running\" | \"Ready\" | \"Creating\" | \"Created\" | \"Deleting\" | \"Deleted\" | \"Canceled\" | \"Failed\" | \"Succeeded\" | \"Updating\" | string"
             },
             {
               "kind": "Content",

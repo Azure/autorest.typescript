@@ -12,7 +12,7 @@ export interface CloudError {
 }
 
 // @public
-export type EnforcementMode = "Default" | "DoNotEnforce";
+export type EnforcementMode = "Default" | "DoNotEnforce" | string;
 
 // @public
 export interface ErrorAdditionalInfo {
@@ -52,7 +52,7 @@ export interface ParameterDefinitionsValueMetadata {
 }
 
 // @public
-export type ParameterType = "String" | "Array" | "Object" | "Boolean" | "Integer" | "Float" | "DateTime";
+export type ParameterType = "String" | "Array" | "Object" | "Boolean" | "Integer" | "Float" | "DateTime" | string;
 
 // @public
 export interface ParameterValuesValue {
@@ -508,7 +508,7 @@ export interface PolicySku {
 }
 
 // @public
-export type PolicyType = "NotSpecified" | "BuiltIn" | "Custom" | "Static";
+export type PolicyType = "NotSpecified" | "BuiltIn" | "Custom" | "Static" | string;
 
 // @public
 export type ResourceIdentityType = "SystemAssigned" | "None";

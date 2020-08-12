@@ -97,7 +97,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"ActiveDirectory\""
+              "text": "\"ActiveDirectory\" | string"
             },
             {
               "kind": "Content",
@@ -122,7 +122,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"ActiveDirectory\""
+              "text": "\"ActiveDirectory\" | string"
             },
             {
               "kind": "Content",
@@ -1375,7 +1375,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"supportedEditions\" | \"supportedElasticPoolEditions\" | \"supportedManagedInstanceVersions\" | \"supportedInstancePoolEditions\" | \"supportedManagedInstanceEditions\""
+              "text": "\"supportedEditions\" | \"supportedElasticPoolEditions\" | \"supportedManagedInstanceVersions\" | \"supportedInstancePoolEditions\" | \"supportedManagedInstanceEditions\" | string"
             },
             {
               "kind": "Content",
@@ -1425,7 +1425,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"DATABASE_DEFAULT\" | \"SQL_Latin1_General_CP1_CI_AS\""
+              "text": "\"DATABASE_DEFAULT\" | \"SQL_Latin1_General_CP1_CI_AS\" | string"
             },
             {
               "kind": "Content",
@@ -1699,7 +1699,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"default\""
+              "text": "\"default\" | string"
             },
             {
               "kind": "Content",
@@ -1765,7 +1765,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Default\" | \"Copy\" | \"Secondary\" | \"PointInTimeRestore\" | \"Restore\" | \"Recovery\" | \"RestoreExternalBackup\" | \"RestoreExternalBackupSecondary\" | \"RestoreLongTermRetentionBackup\" | \"OnlineSecondary\""
+              "text": "\"Default\" | \"Copy\" | \"Secondary\" | \"PointInTimeRestore\" | \"Restore\" | \"Recovery\" | \"RestoreExternalBackup\" | \"RestoreExternalBackupSecondary\" | \"RestoreLongTermRetentionBackup\" | \"OnlineSecondary\" | string"
             },
             {
               "kind": "Content",
@@ -2401,7 +2401,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Web\" | \"Business\" | \"Basic\" | \"Standard\" | \"Premium\" | \"PremiumRS\" | \"Free\" | \"Stretch\" | \"DataWarehouse\" | \"System\" | \"System2\" | \"GeneralPurpose\" | \"BusinessCritical\" | \"Hyperscale\""
+              "text": "\"Web\" | \"Business\" | \"Basic\" | \"Standard\" | \"Premium\" | \"PremiumRS\" | \"Free\" | \"Stretch\" | \"DataWarehouse\" | \"System\" | \"System2\" | \"GeneralPurpose\" | \"BusinessCritical\" | \"Hyperscale\" | string"
             },
             {
               "kind": "Content",
@@ -2426,7 +2426,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"LicenseIncluded\" | \"BasePrice\""
+              "text": "\"LicenseIncluded\" | \"BasePrice\" | string"
             },
             {
               "kind": "Content",
@@ -2746,7 +2746,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Enabled\" | \"Disabled\""
+              "text": "\"Enabled\" | \"Disabled\" | string"
             },
             {
               "kind": "Content",
@@ -3512,7 +3512,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"All\" | \"Live\" | \"Deleted\""
+              "text": "\"All\" | \"Live\" | \"Deleted\" | string"
             },
             {
               "kind": "Content",
@@ -3537,7 +3537,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Online\" | \"Restoring\" | \"RecoveryPending\" | \"Recovering\" | \"Suspect\" | \"Offline\" | \"Standby\" | \"Shutdown\" | \"EmergencyMode\" | \"AutoClosed\" | \"Copying\" | \"Creating\" | \"Inaccessible\" | \"OfflineSecondary\" | \"Pausing\" | \"Paused\" | \"Resuming\" | \"Scaling\" | \"OfflineChangingDwPerformanceTiers\" | \"OnlineChangingDwPerformanceTiers\" | \"Disabled\""
+              "text": "\"Online\" | \"Restoring\" | \"RecoveryPending\" | \"Recovering\" | \"Suspect\" | \"Offline\" | \"Standby\" | \"Shutdown\" | \"EmergencyMode\" | \"AutoClosed\" | \"Copying\" | \"Creating\" | \"Inaccessible\" | \"OfflineSecondary\" | \"Pausing\" | \"Paused\" | \"Resuming\" | \"Scaling\" | \"OfflineChangingDwPerformanceTiers\" | \"OnlineChangingDwPerformanceTiers\" | \"Disabled\" | string"
             },
             {
               "kind": "Content",
@@ -6509,7 +6509,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Basic\" | \"Standard\" | \"Premium\" | \"GeneralPurpose\" | \"BusinessCritical\""
+              "text": "\"Basic\" | \"Standard\" | \"Premium\" | \"GeneralPurpose\" | \"BusinessCritical\" | string"
             },
             {
               "kind": "Content",
@@ -6681,7 +6681,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"LicenseIncluded\" | \"BasePrice\""
+              "text": "\"LicenseIncluded\" | \"BasePrice\" | string"
             },
             {
               "kind": "Content",
@@ -8045,7 +8045,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Creating\" | \"Ready\" | \"Disabled\""
+              "text": "\"Creating\" | \"Ready\" | \"Disabled\" | string"
             },
             {
               "kind": "Content",
@@ -8397,7 +8397,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"current\""
+              "text": "\"current\" | string"
             },
             {
               "kind": "Content",
@@ -8614,7 +8614,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"All\" | \"Error\" | \"Warning\" | \"Success\""
+              "text": "\"All\" | \"Error\" | \"Warning\" | \"Success\" | string"
             },
             {
               "kind": "Content",
@@ -9411,7 +9411,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"import\""
+              "text": "\"import\" | string"
             },
             {
               "kind": "Content",
@@ -9682,7 +9682,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Primary\" | \"Secondary\""
+              "text": "\"Primary\" | \"Secondary\" | string"
             },
             {
               "kind": "Content",
@@ -10610,7 +10610,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Default\""
+              "text": "\"Default\" | string"
             },
             {
               "kind": "Content",
@@ -10660,7 +10660,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"SystemAssigned\""
+              "text": "\"SystemAssigned\" | string"
             },
             {
               "kind": "Content",
@@ -11291,7 +11291,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Primary\" | \"Secondary\""
+              "text": "\"Primary\" | \"Secondary\" | string"
             },
             {
               "kind": "Content",
@@ -11926,7 +11926,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"LicenseIncluded\" | \"BasePrice\""
+              "text": "\"LicenseIncluded\" | \"BasePrice\" | string"
             },
             {
               "kind": "Content",
@@ -12892,7 +12892,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Creating\" | \"Ready\" | \"Updating\" | \"Deleting\" | \"Disabled\""
+              "text": "\"Creating\" | \"Ready\" | \"Updating\" | \"Deleting\" | \"Disabled\" | string"
             },
             {
               "kind": "Content",
@@ -13392,7 +13392,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Created\" | \"InProgress\" | \"WaitingForChildJobExecutions\" | \"WaitingForRetry\" | \"Succeeded\" | \"SucceededWithSkipped\" | \"Failed\" | \"TimedOut\" | \"Canceled\" | \"Skipped\""
+              "text": "\"Created\" | \"InProgress\" | \"WaitingForChildJobExecutions\" | \"WaitingForRetry\" | \"Succeeded\" | \"SucceededWithSkipped\" | \"Failed\" | \"TimedOut\" | \"Canceled\" | \"Skipped\" | string"
             },
             {
               "kind": "Content",
@@ -15350,7 +15350,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Inline\""
+              "text": "\"Inline\" | string"
             },
             {
               "kind": "Content",
@@ -15375,7 +15375,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"TSql\""
+              "text": "\"TSql\" | string"
             },
             {
               "kind": "Content",
@@ -16399,7 +16399,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"SqlDatabase\""
+              "text": "\"SqlDatabase\" | string"
             },
             {
               "kind": "Content",
@@ -18372,7 +18372,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"TargetGroup\" | \"SqlDatabase\" | \"SqlElasticPool\" | \"SqlShardMap\" | \"SqlServer\""
+              "text": "\"TargetGroup\" | \"SqlDatabase\" | \"SqlElasticPool\" | \"SqlShardMap\" | \"SqlServer\" | string"
             },
             {
               "kind": "Content",
@@ -19024,7 +19024,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Megabytes\" | \"Gigabytes\" | \"Terabytes\" | \"Petabytes\" | \"Percent\""
+              "text": "\"Megabytes\" | \"Gigabytes\" | \"Terabytes\" | \"Petabytes\" | \"Percent\" | string"
             },
             {
               "kind": "Content",
@@ -20878,7 +20878,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"All\" | \"Live\" | \"Deleted\""
+              "text": "\"All\" | \"Live\" | \"Deleted\" | string"
             },
             {
               "kind": "Content",
@@ -22595,7 +22595,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"default\""
+              "text": "\"default\" | string"
             },
             {
               "kind": "Content",
@@ -23045,7 +23045,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Default\" | \"RestoreExternalBackup\" | \"PointInTimeRestore\" | \"Recovery\" | \"RestoreLongTermRetentionBackup\""
+              "text": "\"Default\" | \"RestoreExternalBackup\" | \"PointInTimeRestore\" | \"Recovery\" | \"RestoreLongTermRetentionBackup\" | string"
             },
             {
               "kind": "Content",
@@ -24460,7 +24460,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Online\" | \"Offline\" | \"Shutdown\" | \"Creating\" | \"Inaccessible\" | \"Restoring\" | \"Updating\""
+              "text": "\"Online\" | \"Offline\" | \"Shutdown\" | \"Creating\" | \"Inaccessible\" | \"Restoring\" | \"Updating\" | string"
             },
             {
               "kind": "Content",
@@ -25821,7 +25821,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"ActiveDirectory\""
+              "text": "\"ActiveDirectory\" | string"
             },
             {
               "kind": "Content",
@@ -26876,7 +26876,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"LicenseIncluded\" | \"BasePrice\""
+              "text": "\"LicenseIncluded\" | \"BasePrice\" | string"
             },
             {
               "kind": "Content",
@@ -27402,7 +27402,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"default\""
+              "text": "\"default\" | string"
             },
             {
               "kind": "Content",
@@ -27765,7 +27765,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Proxy\" | \"Redirect\" | \"Default\""
+              "text": "\"Proxy\" | \"Redirect\" | \"Default\" | string"
             },
             {
               "kind": "Content",
@@ -29685,7 +29685,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Default\" | \"PointInTimeRestore\""
+              "text": "\"Default\" | \"PointInTimeRestore\" | string"
             },
             {
               "kind": "Content",
@@ -30021,7 +30021,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"default\""
+              "text": "\"default\" | string"
             },
             {
               "kind": "Content",
@@ -30046,7 +30046,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Pending\" | \"InProgress\" | \"Succeeded\" | \"Failed\" | \"CancelInProgress\" | \"Cancelled\""
+              "text": "\"Pending\" | \"InProgress\" | \"Succeeded\" | \"Failed\" | \"CancelInProgress\" | \"Cancelled\" | string"
             },
             {
               "kind": "Content",
@@ -30309,7 +30309,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Megabytes\" | \"Gigabytes\" | \"Terabytes\" | \"Petabytes\""
+              "text": "\"Megabytes\" | \"Gigabytes\" | \"Terabytes\" | \"Petabytes\" | string"
             },
             {
               "kind": "Content",
@@ -31628,7 +31628,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"user\" | \"system\""
+              "text": "\"user\" | \"system\" | string"
             },
             {
               "kind": "Content",
@@ -31908,7 +31908,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Minutes\""
+              "text": "\"Minutes\" | string"
             },
             {
               "kind": "Content",
@@ -32000,7 +32000,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"DTU\" | \"VCores\""
+              "text": "\"DTU\" | \"VCores\" | string"
             },
             {
               "kind": "Content",
@@ -32025,7 +32025,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"None\" | \"Average\" | \"Count\" | \"Minimum\" | \"Maximum\" | \"Total\""
+              "text": "\"None\" | \"Average\" | \"Count\" | \"Minimum\" | \"Maximum\" | \"Total\" | string"
             },
             {
               "kind": "Content",
@@ -32496,7 +32496,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Approving\" | \"Ready\" | \"Dropping\" | \"Failed\" | \"Rejecting\""
+              "text": "\"Approving\" | \"Ready\" | \"Dropping\" | \"Failed\" | \"Rejecting\" | string"
             },
             {
               "kind": "Content",
@@ -32841,7 +32841,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"None\""
+              "text": "\"None\" | string"
             },
             {
               "kind": "Content",
@@ -33050,7 +33050,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Approved\" | \"Pending\" | \"Rejected\" | \"Disconnected\""
+              "text": "\"Approved\" | \"Pending\" | \"Rejected\" | \"Disconnected\" | string"
             },
             {
               "kind": "Content",
@@ -33075,7 +33075,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Created\" | \"InProgress\" | \"Succeeded\" | \"Failed\" | \"Canceled\""
+              "text": "\"Created\" | \"InProgress\" | \"Succeeded\" | \"Failed\" | \"Canceled\" | string"
             },
             {
               "kind": "Content",
@@ -33130,7 +33130,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Disabled\" | \"Enabled\""
+              "text": "\"Disabled\" | \"Enabled\" | string"
             },
             {
               "kind": "Content",
@@ -33247,7 +33247,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Manual\" | \"Automatic\""
+              "text": "\"Manual\" | \"Automatic\" | string"
             },
             {
               "kind": "Content",
@@ -34502,7 +34502,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"PENDING\" | \"SEEDING\" | \"CATCH_UP\" | \"SUSPENDED\""
+              "text": "\"PENDING\" | \"SEEDING\" | \"CATCH_UP\" | \"SUSPENDED\" | string"
             },
             {
               "kind": "Content",
@@ -34527,7 +34527,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Primary\" | \"ReadableSecondary\""
+              "text": "\"Primary\" | \"ReadableSecondary\" | string"
             },
             {
               "kind": "Content",
@@ -35247,7 +35247,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Default\""
+              "text": "\"Default\" | string"
             },
             {
               "kind": "Content",
@@ -35569,7 +35569,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"AdventureWorksLT\" | \"WideWorldImportersStd\" | \"WideWorldImportersFull\""
+              "text": "\"AdventureWorksLT\" | \"WideWorldImportersStd\" | \"WideWorldImportersFull\" | string"
             },
             {
               "kind": "Content",
@@ -35619,7 +35619,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"default\""
+              "text": "\"default\" | string"
             },
             {
               "kind": "Content",
@@ -35644,7 +35644,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Default\""
+              "text": "\"Default\" | string"
             },
             {
               "kind": "Content",
@@ -38319,7 +38319,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"ServiceManaged\" | \"AzureKeyVault\""
+              "text": "\"ServiceManaged\" | \"AzureKeyVault\" | string"
             },
             {
               "kind": "Content",
@@ -38482,7 +38482,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Enabled\" | \"Disabled\""
+              "text": "\"Enabled\" | \"Disabled\" | string"
             },
             {
               "kind": "Content",
@@ -40555,7 +40555,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"System\" | \"System0\" | \"System1\" | \"System2\" | \"System3\" | \"System4\" | \"System2L\" | \"System3L\" | \"System4L\" | \"Free\" | \"Basic\" | \"S0\" | \"S1\" | \"S2\" | \"S3\" | \"S4\" | \"S6\" | \"S7\" | \"S9\" | \"S12\" | \"P1\" | \"P2\" | \"P3\" | \"P4\" | \"P6\" | \"P11\" | \"P15\" | \"PRS1\" | \"PRS2\" | \"PRS4\" | \"PRS6\" | \"DW100\" | \"DW200\" | \"DW300\" | \"DW400\" | \"DW500\" | \"DW600\" | \"DW1000\" | \"DW1200\" | \"DW1000c\" | \"DW1500\" | \"DW1500c\" | \"DW2000\" | \"DW2000c\" | \"DW3000\" | \"DW2500c\" | \"DW3000c\" | \"DW6000\" | \"DW5000c\" | \"DW6000c\" | \"DW7500c\" | \"DW10000c\" | \"DW15000c\" | \"DW30000c\" | \"DS100\" | \"DS200\" | \"DS300\" | \"DS400\" | \"DS500\" | \"DS600\" | \"DS1000\" | \"DS1200\" | \"DS1500\" | \"DS2000\" | \"ElasticPool\""
+              "text": "\"System\" | \"System0\" | \"System1\" | \"System2\" | \"System3\" | \"System4\" | \"System2L\" | \"System3L\" | \"System4L\" | \"Free\" | \"Basic\" | \"S0\" | \"S1\" | \"S2\" | \"S3\" | \"S4\" | \"S6\" | \"S7\" | \"S9\" | \"S12\" | \"P1\" | \"P2\" | \"P3\" | \"P4\" | \"P6\" | \"P11\" | \"P15\" | \"PRS1\" | \"PRS2\" | \"PRS4\" | \"PRS6\" | \"DW100\" | \"DW200\" | \"DW300\" | \"DW400\" | \"DW500\" | \"DW600\" | \"DW1000\" | \"DW1200\" | \"DW1000c\" | \"DW1500\" | \"DW1500c\" | \"DW2000\" | \"DW2000c\" | \"DW3000\" | \"DW2500c\" | \"DW3000c\" | \"DW6000\" | \"DW5000c\" | \"DW6000c\" | \"DW7500c\" | \"DW10000c\" | \"DW15000c\" | \"DW30000c\" | \"DS100\" | \"DS200\" | \"DS300\" | \"DS400\" | \"DS500\" | \"DS600\" | \"DS1000\" | \"DS1200\" | \"DS1500\" | \"DS2000\" | \"ElasticPool\" | string"
             },
             {
               "kind": "Content",
@@ -40875,7 +40875,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"default\""
+              "text": "\"default\" | string"
             },
             {
               "kind": "Content",
@@ -44031,7 +44031,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"GRS\" | \"LRS\" | \"ZRS\""
+              "text": "\"GRS\" | \"LRS\" | \"ZRS\" | string"
             },
             {
               "kind": "Content",
@@ -44941,7 +44941,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Online\" | \"Offline\" | \"NeverConnected\""
+              "text": "\"Online\" | \"Offline\" | \"NeverConnected\" | string"
             },
             {
               "kind": "Content",
@@ -44966,7 +44966,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"HubWin\" | \"MemberWin\""
+              "text": "\"HubWin\" | \"MemberWin\" | string"
             },
             {
               "kind": "Content",
@@ -45103,7 +45103,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Bidirectional\" | \"OneWayMemberToHub\" | \"OneWayHubToMember\""
+              "text": "\"Bidirectional\" | \"OneWayMemberToHub\" | \"OneWayHubToMember\" | string"
             },
             {
               "kind": "Content",
@@ -45984,7 +45984,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"All\" | \"Error\" | \"Warning\" | \"Success\""
+              "text": "\"All\" | \"Error\" | \"Warning\" | \"Success\" | string"
             },
             {
               "kind": "Content",
@@ -46840,7 +46840,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"NotReady\" | \"Error\" | \"Warning\" | \"Progressing\" | \"Good\""
+              "text": "\"NotReady\" | \"Error\" | \"Warning\" | \"Progressing\" | \"Good\" | string"
             },
             {
               "kind": "Content",
@@ -46970,7 +46970,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"AzureSqlDatabase\" | \"SqlServerDatabase\""
+              "text": "\"AzureSqlDatabase\" | \"SqlServerDatabase\" | string"
             },
             {
               "kind": "Content",
@@ -47354,7 +47354,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"SyncInProgress\" | \"SyncSucceeded\" | \"SyncFailed\" | \"DisabledTombstoneCleanup\" | \"DisabledBackupRestore\" | \"SyncSucceededWithWarnings\" | \"SyncCancelling\" | \"SyncCancelled\" | \"UnProvisioned\" | \"Provisioning\" | \"Provisioned\" | \"ProvisionFailed\" | \"DeProvisioning\" | \"DeProvisioned\" | \"DeProvisionFailed\" | \"Reprovisioning\" | \"ReprovisionFailed\" | \"UnReprovisioned\""
+              "text": "\"SyncInProgress\" | \"SyncSucceeded\" | \"SyncFailed\" | \"DisabledTombstoneCleanup\" | \"DisabledBackupRestore\" | \"SyncSucceededWithWarnings\" | \"SyncCancelling\" | \"SyncCancelled\" | \"UnProvisioned\" | \"Provisioning\" | \"Provisioned\" | \"ProvisionFailed\" | \"DeProvisioning\" | \"DeProvisioned\" | \"DeProvisionFailed\" | \"Reprovisioning\" | \"ReprovisionFailed\" | \"UnReprovisioned\" | string"
             },
             {
               "kind": "Content",
@@ -47659,7 +47659,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Encrypting\" | \"Decrypting\""
+              "text": "\"Encrypting\" | \"Decrypting\" | string"
             },
             {
               "kind": "Content",
@@ -47684,7 +47684,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"current\""
+              "text": "\"current\" | string"
             },
             {
               "kind": "Content",
@@ -47830,7 +47830,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Count\" | \"Bytes\" | \"Seconds\" | \"Percent\" | \"CountPerSecond\" | \"BytesPerSecond\""
+              "text": "\"Count\" | \"Bytes\" | \"Seconds\" | \"Percent\" | \"CountPerSecond\" | \"BytesPerSecond\" | string"
             },
             {
               "kind": "Content",
@@ -47855,7 +47855,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"count\" | \"bytes\" | \"seconds\" | \"percent\" | \"countPerSecond\" | \"bytesPerSecond\""
+              "text": "\"count\" | \"bytes\" | \"seconds\" | \"percent\" | \"countPerSecond\" | \"bytesPerSecond\" | string"
             },
             {
               "kind": "Content",
@@ -49205,7 +49205,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Initializing\" | \"InProgress\" | \"Ready\" | \"Deleting\" | \"Unknown\""
+              "text": "\"Initializing\" | \"InProgress\" | \"Ready\" | \"Deleting\" | \"Unknown\" | string"
             },
             {
               "kind": "Content",
@@ -49230,7 +49230,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"default\""
+              "text": "\"default\" | string"
             },
             {
               "kind": "Content",
@@ -49583,7 +49583,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Passed\" | \"Failed\" | \"FailedToRun\" | \"InProgress\""
+              "text": "\"Passed\" | \"Failed\" | \"FailedToRun\" | \"InProgress\" | string"
             },
             {
               "kind": "Content",
@@ -49608,7 +49608,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"OnDemand\" | \"Recurring\""
+              "text": "\"OnDemand\" | \"Recurring\" | string"
             },
             {
               "kind": "Content",

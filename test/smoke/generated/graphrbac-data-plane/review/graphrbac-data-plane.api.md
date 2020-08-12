@@ -209,7 +209,7 @@ export interface CheckGroupMembershipResult {
 }
 
 // @public
-export type ConsentType = "AllPrincipals" | "Principal";
+export type ConsentType = "AllPrincipals" | "Principal" | string;
 
 // @public
 export type DeletedApplicationsListNextResponse = ApplicationListResult & {
@@ -398,7 +398,7 @@ export interface GroupListResult {
 }
 
 // @public
-export type GroupMembershipClaimTypes = "None" | "SecurityGroup" | "All";
+export type GroupMembershipClaimTypes = "None" | "SecurityGroup" | "All" | string;
 
 // @public
 export type GroupsCreateResponse = ADGroup & {
@@ -924,7 +924,7 @@ export type UsersListResponse = UserListResult & {
 };
 
 // @public
-export type UserType = "Member" | "Guest";
+export type UserType = "Member" | "Guest" | string;
 
 // @public
 export type UserUpdateParameters = UserBase & {

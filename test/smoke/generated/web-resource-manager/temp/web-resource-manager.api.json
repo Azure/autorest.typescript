@@ -1748,7 +1748,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"RegistrationStatusNotSupportedForRenewal\" | \"ExpirationNotInRenewalTimeRange\" | \"SubscriptionNotActive\""
+              "text": "\"RegistrationStatusNotSupportedForRenewal\" | \"ExpirationNotInRenewalTimeRange\" | \"SubscriptionNotActive\" | string"
             },
             {
               "kind": "Content",
@@ -1773,7 +1773,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"RegistrationStatusNotSupportedForRenewal\" | \"ExpirationNotInRenewalTimeRange\" | \"SubscriptionNotActive\""
+              "text": "\"RegistrationStatusNotSupportedForRenewal\" | \"ExpirationNotInRenewalTimeRange\" | \"SubscriptionNotActive\" | string"
             },
             {
               "kind": "Content",
@@ -10404,7 +10404,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"WaitingForDeployment\" | \"Uploading\" | \"Deploying\" | \"Ready\" | \"Failed\" | \"Deleting\" | \"Detached\""
+              "text": "\"WaitingForDeployment\" | \"Uploading\" | \"Deploying\" | \"Ready\" | \"Failed\" | \"Deleting\" | \"Detached\" | string"
             },
             {
               "kind": "Content",
@@ -11646,7 +11646,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Site\" | \"Slot\" | \"HostingEnvironment\" | \"PublishingUser\" | \"Microsoft.Web/sites\" | \"Microsoft.Web/sites/slots\" | \"Microsoft.Web/hostingEnvironments\" | \"Microsoft.Web/publishingUsers\""
+              "text": "\"Site\" | \"Slot\" | \"HostingEnvironment\" | \"PublishingUser\" | \"Microsoft.Web/sites\" | \"Microsoft.Web/sites/slots\" | \"Microsoft.Web/hostingEnvironments\" | \"Microsoft.Web/publishingUsers\" | string"
             },
             {
               "kind": "Content",
@@ -14624,7 +14624,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"SqlAzure\" | \"MySql\" | \"LocalMySql\" | \"PostgreSql\""
+              "text": "\"SqlAzure\" | \"MySql\" | \"LocalMySql\" | \"PostgreSql\" | string"
             },
             {
               "kind": "Content",
@@ -20193,7 +20193,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"RegistrationStatusNotSupportedForRenewal\" | \"ExpirationNotInRenewalTimeRange\" | \"SubscriptionNotActive\""
+              "text": "\"RegistrationStatusNotSupportedForRenewal\" | \"ExpirationNotInRenewalTimeRange\" | \"SubscriptionNotActive\" | string"
             },
             {
               "kind": "Content",
@@ -20218,7 +20218,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"RegistrationStatusNotSupportedForRenewal\" | \"ExpirationNotInRenewalTimeRange\" | \"SubscriptionNotActive\""
+              "text": "\"RegistrationStatusNotSupportedForRenewal\" | \"ExpirationNotInRenewalTimeRange\" | \"SubscriptionNotActive\" | string"
             },
             {
               "kind": "Content",
@@ -21602,7 +21602,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Windows\" | \"Linux\" | \"WindowsFunctions\" | \"LinuxFunctions\""
+              "text": "\"Windows\" | \"Linux\" | \"WindowsFunctions\" | \"LinuxFunctions\" | string"
             },
             {
               "kind": "Content",
@@ -21627,7 +21627,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Windows\" | \"Linux\" | \"WindowsFunctions\" | \"LinuxFunctions\""
+              "text": "\"Windows\" | \"Linux\" | \"WindowsFunctions\" | \"LinuxFunctions\" | string"
             },
             {
               "kind": "Content",
@@ -22027,7 +22027,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"AllAllowed\" | \"FtpsOnly\" | \"Disabled\""
+              "text": "\"AllAllowed\" | \"FtpsOnly\" | \"Disabled\" | string"
             },
             {
               "kind": "Content",
@@ -23765,7 +23765,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Invalid\" | \"AlreadyExists\""
+              "text": "\"Invalid\" | \"AlreadyExists\" | string"
             },
             {
               "kind": "Content",
@@ -28946,7 +28946,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"FileZilla3\" | \"WebDeploy\" | \"Ftp\""
+              "text": "\"FileZilla3\" | \"WebDeploy\" | \"Ftp\" | string"
             },
             {
               "kind": "Content",
@@ -32527,7 +32527,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"ServerFarm\" | \"Subscription\" | \"WebSite\""
+              "text": "\"ServerFarm\" | \"Subscription\" | \"WebSite\" | string"
             },
             {
               "kind": "Content",
@@ -32642,7 +32642,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"DEFAULT\" | \"INHERITED\" | \"STATIC\""
+              "text": "\"DEFAULT\" | \"INHERITED\" | \"STATIC\" | string"
             },
             {
               "kind": "Content",
@@ -32667,7 +32667,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"None\" | \"Dropbox\" | \"Tfs\" | \"LocalGit\" | \"GitHub\" | \"CodePlexGit\" | \"CodePlexHg\" | \"BitbucketGit\" | \"BitbucketHg\" | \"ExternalGit\" | \"ExternalHg\" | \"OneDrive\" | \"VSO\" | \"VSTSRM\""
+              "text": "\"None\" | \"Dropbox\" | \"Tfs\" | \"LocalGit\" | \"GitHub\" | \"CodePlexGit\" | \"CodePlexHg\" | \"BitbucketGit\" | \"BitbucketHg\" | \"ExternalGit\" | \"ExternalHg\" | \"OneDrive\" | \"VSO\" | \"VSTSRM\" | string"
             },
             {
               "kind": "Content",
@@ -36369,7 +36369,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Free\" | \"Shared\" | \"Basic\" | \"Standard\" | \"Premium\" | \"Dynamic\" | \"Isolated\" | \"PremiumV2\" | \"ElasticPremium\" | \"ElasticIsolated\""
+              "text": "\"Free\" | \"Shared\" | \"Basic\" | \"Standard\" | \"Premium\" | \"Dynamic\" | \"Isolated\" | \"PremiumV2\" | \"ElasticPremium\" | \"ElasticIsolated\" | string"
             },
             {
               "kind": "Content",
@@ -40278,7 +40278,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"1.0\" | \"1.1\" | \"1.2\""
+              "text": "\"1.0\" | \"1.1\" | \"1.2\" | string"
             },
             {
               "kind": "Content",
@@ -41238,7 +41238,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"HttpTrigger\" | \"Unknown\""
+              "text": "\"HttpTrigger\" | \"Unknown\" | string"
             },
             {
               "kind": "Content",
@@ -41879,7 +41879,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"ServerFarm\" | \"Site\""
+              "text": "\"ServerFarm\" | \"Site\" | string"
             },
             {
               "kind": "Content",

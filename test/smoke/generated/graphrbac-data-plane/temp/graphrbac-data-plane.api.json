@@ -2003,7 +2003,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"AllPrincipals\" | \"Principal\""
+              "text": "\"AllPrincipals\" | \"Principal\" | string"
             },
             {
               "kind": "Content",
@@ -4134,7 +4134,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"None\" | \"SecurityGroup\" | \"All\""
+              "text": "\"None\" | \"SecurityGroup\" | \"All\" | string"
             },
             {
               "kind": "Content",
@@ -8990,7 +8990,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Member\" | \"Guest\""
+              "text": "\"Member\" | \"Guest\" | string"
             },
             {
               "kind": "Content",

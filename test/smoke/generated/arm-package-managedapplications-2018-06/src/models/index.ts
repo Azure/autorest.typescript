@@ -353,7 +353,8 @@ export type ProvisioningState =
   | "Canceled"
   | "Failed"
   | "Succeeded"
-  | "Updating";
+  | "Updating"
+  | string;
 /**
  * Defines values for ApplicationLockLevel.
  */

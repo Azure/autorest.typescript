@@ -11667,7 +11667,8 @@ export type ApplicationGatewaySkuName =
   | "WAF_Medium"
   | "WAF_Large"
   | "Standard_v2"
-  | "WAF_v2";
+  | "WAF_v2"
+  | string;
 /**
  * Defines values for ApplicationGatewayTier.
  */
@@ -11675,22 +11676,28 @@ export type ApplicationGatewayTier =
   | "Standard"
   | "WAF"
   | "Standard_v2"
-  | "WAF_v2";
+  | "WAF_v2"
+  | string;
 /**
  * Defines values for ApplicationGatewaySslProtocol.
  */
-export type ApplicationGatewaySslProtocol = "TLSv1_0" | "TLSv1_1" | "TLSv1_2";
+export type ApplicationGatewaySslProtocol =
+  | "TLSv1_0"
+  | "TLSv1_1"
+  | "TLSv1_2"
+  | string;
 /**
  * Defines values for ApplicationGatewaySslPolicyType.
  */
-export type ApplicationGatewaySslPolicyType = "Predefined" | "Custom";
+export type ApplicationGatewaySslPolicyType = "Predefined" | "Custom" | string;
 /**
  * Defines values for ApplicationGatewaySslPolicyName.
  */
 export type ApplicationGatewaySslPolicyName =
   | "AppGwSslPolicy20150501"
   | "AppGwSslPolicy20170401"
-  | "AppGwSslPolicy20170401S";
+  | "AppGwSslPolicy20170401S"
+  | string;
 /**
  * Defines values for ApplicationGatewaySslCipherSuite.
  */
@@ -11722,7 +11729,8 @@ export type ApplicationGatewaySslCipherSuite =
   | "TLS_RSA_WITH_3DES_EDE_CBC_SHA"
   | "TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA"
   | "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
-  | "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384";
+  | "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
+  | string;
 /**
  * Defines values for ApplicationGatewayOperationalState.
  */
@@ -11730,7 +11738,8 @@ export type ApplicationGatewayOperationalState =
   | "Stopped"
   | "Starting"
   | "Running"
-  | "Stopping";
+  | "Stopping"
+  | string;
 /**
  * Defines values for ProvisioningState.
  */
@@ -11738,35 +11747,43 @@ export type ProvisioningState =
   | "Succeeded"
   | "Updating"
   | "Deleting"
-  | "Failed";
+  | "Failed"
+  | string;
 /**
  * Defines values for IPAllocationMethod.
  */
-export type IPAllocationMethod = "Static" | "Dynamic";
+export type IPAllocationMethod = "Static" | "Dynamic" | string;
 /**
  * Defines values for ApplicationGatewayProtocol.
  */
-export type ApplicationGatewayProtocol = "Http" | "Https";
+export type ApplicationGatewayProtocol = "Http" | "Https" | string;
 /**
  * Defines values for IPVersion.
  */
-export type IPVersion = "IPv4" | "IPv6";
+export type IPVersion = "IPv4" | "IPv6" | string;
 /**
  * Defines values for SecurityRuleProtocol.
  */
-export type SecurityRuleProtocol = "Tcp" | "Udp" | "Icmp" | "Esp" | "*" | "Ah";
+export type SecurityRuleProtocol =
+  | "Tcp"
+  | "Udp"
+  | "Icmp"
+  | "Esp"
+  | "*"
+  | "Ah"
+  | string;
 /**
  * Defines values for SecurityRuleAccess.
  */
-export type SecurityRuleAccess = "Allow" | "Deny";
+export type SecurityRuleAccess = "Allow" | "Deny" | string;
 /**
  * Defines values for SecurityRuleDirection.
  */
-export type SecurityRuleDirection = "Inbound" | "Outbound";
+export type SecurityRuleDirection = "Inbound" | "Outbound" | string;
 /**
  * Defines values for FlowLogFormatType.
  */
-export type FlowLogFormatType = "JSON";
+export type FlowLogFormatType = "JSON" | string;
 /**
  * Defines values for RouteNextHopType.
  */
@@ -11775,42 +11792,49 @@ export type RouteNextHopType =
   | "VnetLocal"
   | "Internet"
   | "VirtualAppliance"
-  | "None";
+  | "None"
+  | string;
 /**
  * Defines values for PublicIPAddressSkuName.
  */
-export type PublicIPAddressSkuName = "Basic" | "Standard";
+export type PublicIPAddressSkuName = "Basic" | "Standard" | string;
 /**
  * Defines values for DdosSettingsProtectionCoverage.
  */
-export type DdosSettingsProtectionCoverage = "Basic" | "Standard";
+export type DdosSettingsProtectionCoverage = "Basic" | "Standard" | string;
 /**
  * Defines values for VirtualNetworkPeeringState.
  */
 export type VirtualNetworkPeeringState =
   | "Initiated"
   | "Connected"
-  | "Disconnected";
+  | "Disconnected"
+  | string;
 /**
  * Defines values for TransportProtocol.
  */
-export type TransportProtocol = "Udp" | "Tcp" | "All";
+export type TransportProtocol = "Udp" | "Tcp" | "All" | string;
 /**
  * Defines values for ApplicationGatewayCookieBasedAffinity.
  */
-export type ApplicationGatewayCookieBasedAffinity = "Enabled" | "Disabled";
+export type ApplicationGatewayCookieBasedAffinity =
+  | "Enabled"
+  | "Disabled"
+  | string;
 /**
  * Defines values for ApplicationGatewayCustomErrorStatusCode.
  */
 export type ApplicationGatewayCustomErrorStatusCode =
   | "HttpStatus403"
-  | "HttpStatus502";
+  | "HttpStatus502"
+  | string;
 /**
  * Defines values for ApplicationGatewayRequestRoutingRuleType.
  */
 export type ApplicationGatewayRequestRoutingRuleType =
   | "Basic"
-  | "PathBasedRouting";
+  | "PathBasedRouting"
+  | string;
 /**
  * Defines values for ApplicationGatewayRedirectType.
  */
@@ -11818,11 +11842,15 @@ export type ApplicationGatewayRedirectType =
   | "Permanent"
   | "Found"
   | "SeeOther"
-  | "Temporary";
+  | "Temporary"
+  | string;
 /**
  * Defines values for ApplicationGatewayFirewallMode.
  */
-export type ApplicationGatewayFirewallMode = "Detection" | "Prevention";
+export type ApplicationGatewayFirewallMode =
+  | "Detection"
+  | "Prevention"
+  | string;
 /**
  * Defines values for ApplicationGatewayBackendHealthServerHealth.
  */
@@ -11831,46 +11859,53 @@ export type ApplicationGatewayBackendHealthServerHealth =
   | "Up"
   | "Down"
   | "Partial"
-  | "Draining";
+  | "Draining"
+  | string;
 /**
  * Defines values for AzureFirewallRCActionType.
  */
-export type AzureFirewallRCActionType = "Allow" | "Deny";
+export type AzureFirewallRCActionType = "Allow" | "Deny" | string;
 /**
  * Defines values for AzureFirewallApplicationRuleProtocolType.
  */
 export type AzureFirewallApplicationRuleProtocolType =
   | "Http"
   | "Https"
-  | "Mssql";
+  | "Mssql"
+  | string;
 /**
  * Defines values for AzureFirewallNatRCActionType.
  */
-export type AzureFirewallNatRCActionType = "Snat" | "Dnat";
+export type AzureFirewallNatRCActionType = "Snat" | "Dnat" | string;
 /**
  * Defines values for AzureFirewallNetworkRuleProtocol.
  */
-export type AzureFirewallNetworkRuleProtocol = "TCP" | "UDP" | "Any" | "ICMP";
+export type AzureFirewallNetworkRuleProtocol =
+  | "TCP"
+  | "UDP"
+  | "Any"
+  | "ICMP"
+  | string;
 /**
  * Defines values for AzureFirewallThreatIntelMode.
  */
-export type AzureFirewallThreatIntelMode = "Alert" | "Deny" | "Off";
+export type AzureFirewallThreatIntelMode = "Alert" | "Deny" | "Off" | string;
 /**
  * Defines values for AzureFirewallSkuName.
  */
-export type AzureFirewallSkuName = "AZFW_VNet" | "AZFW_Hub";
+export type AzureFirewallSkuName = "AZFW_VNet" | "AZFW_Hub" | string;
 /**
  * Defines values for AzureFirewallSkuTier.
  */
-export type AzureFirewallSkuTier = "Standard" | "Premium";
+export type AzureFirewallSkuTier = "Standard" | "Premium" | string;
 /**
  * Defines values for BastionConnectProtocol.
  */
-export type BastionConnectProtocol = "SSH" | "RDP";
+export type BastionConnectProtocol = "SSH" | "RDP" | string;
 /**
  * Defines values for DdosCustomPolicyProtocol.
  */
-export type DdosCustomPolicyProtocol = "Tcp" | "Udp" | "Syn";
+export type DdosCustomPolicyProtocol = "Tcp" | "Udp" | "Syn" | string;
 /**
  * Defines values for DdosCustomPolicyTriggerSensitivityOverride.
  */
@@ -11878,22 +11913,24 @@ export type DdosCustomPolicyTriggerSensitivityOverride =
   | "Relaxed"
   | "Low"
   | "Default"
-  | "High";
+  | "High"
+  | string;
 /**
  * Defines values for AuthorizationUseStatus.
  */
-export type AuthorizationUseStatus = "Available" | "InUse";
+export type AuthorizationUseStatus = "Available" | "InUse" | string;
 /**
  * Defines values for ExpressRoutePeeringType.
  */
 export type ExpressRoutePeeringType =
   | "AzurePublicPeering"
   | "AzurePrivatePeering"
-  | "MicrosoftPeering";
+  | "MicrosoftPeering"
+  | string;
 /**
  * Defines values for ExpressRoutePeeringState.
  */
-export type ExpressRoutePeeringState = "Disabled" | "Enabled";
+export type ExpressRoutePeeringState = "Disabled" | "Enabled" | string;
 /**
  * Defines values for ExpressRouteCircuitPeeringAdvertisedPublicPrefixState.
  */
@@ -11901,18 +11938,20 @@ export type ExpressRouteCircuitPeeringAdvertisedPublicPrefixState =
   | "NotConfigured"
   | "Configuring"
   | "Configured"
-  | "ValidationNeeded";
+  | "ValidationNeeded"
+  | string;
 /**
  * Defines values for ExpressRouteCircuitPeeringState.
  */
-export type ExpressRouteCircuitPeeringState = "Disabled" | "Enabled";
+export type ExpressRouteCircuitPeeringState = "Disabled" | "Enabled" | string;
 /**
  * Defines values for CircuitConnectionStatus.
  */
 export type CircuitConnectionStatus =
   | "Connected"
   | "Connecting"
-  | "Disconnected";
+  | "Disconnected"
+  | string;
 /**
  * Defines values for ExpressRouteCircuitSkuTier.
  */
@@ -11920,11 +11959,15 @@ export type ExpressRouteCircuitSkuTier =
   | "Standard"
   | "Premium"
   | "Basic"
-  | "Local";
+  | "Local"
+  | string;
 /**
  * Defines values for ExpressRouteCircuitSkuFamily.
  */
-export type ExpressRouteCircuitSkuFamily = "UnlimitedData" | "MeteredData";
+export type ExpressRouteCircuitSkuFamily =
+  | "UnlimitedData"
+  | "MeteredData"
+  | string;
 /**
  * Defines values for ServiceProviderProvisioningState.
  */
@@ -11932,57 +11975,66 @@ export type ServiceProviderProvisioningState =
   | "NotProvisioned"
   | "Provisioning"
   | "Provisioned"
-  | "Deprovisioning";
+  | "Deprovisioning"
+  | string;
 /**
  * Defines values for ExpressRoutePortsEncapsulation.
  */
-export type ExpressRoutePortsEncapsulation = "Dot1Q" | "QinQ";
+export type ExpressRoutePortsEncapsulation = "Dot1Q" | "QinQ" | string;
 /**
  * Defines values for ExpressRouteLinkConnectorType.
  */
-export type ExpressRouteLinkConnectorType = "LC" | "SC";
+export type ExpressRouteLinkConnectorType = "LC" | "SC" | string;
 /**
  * Defines values for ExpressRouteLinkAdminState.
  */
-export type ExpressRouteLinkAdminState = "Enabled" | "Disabled";
+export type ExpressRouteLinkAdminState = "Enabled" | "Disabled" | string;
 /**
  * Defines values for ExpressRouteLinkMacSecCipher.
  */
-export type ExpressRouteLinkMacSecCipher = "gcm-aes-128" | "gcm-aes-256";
+export type ExpressRouteLinkMacSecCipher =
+  | "gcm-aes-128"
+  | "gcm-aes-256"
+  | string;
 /**
  * Defines values for FirewallPolicyIntrusionSystemMode.
  */
-export type FirewallPolicyIntrusionSystemMode = "Enabled" | "Disabled";
+export type FirewallPolicyIntrusionSystemMode = "Enabled" | "Disabled" | string;
 /**
  * Defines values for FirewallPolicyRuleType.
  */
 export type FirewallPolicyRuleType =
   | "FirewallPolicyNatRule"
-  | "FirewallPolicyFilterRule";
+  | "FirewallPolicyFilterRule"
+  | string;
 /**
  * Defines values for IpAllocationType.
  */
-export type IpAllocationType = "Undefined" | "Hypernet";
+export type IpAllocationType = "Undefined" | "Hypernet" | string;
 /**
  * Defines values for LoadBalancerSkuName.
  */
-export type LoadBalancerSkuName = "Basic" | "Standard";
+export type LoadBalancerSkuName = "Basic" | "Standard" | string;
 /**
  * Defines values for LoadDistribution.
  */
-export type LoadDistribution = "Default" | "SourceIP" | "SourceIPProtocol";
+export type LoadDistribution =
+  | "Default"
+  | "SourceIP"
+  | "SourceIPProtocol"
+  | string;
 /**
  * Defines values for ProbeProtocol.
  */
-export type ProbeProtocol = "Http" | "Tcp" | "Https";
+export type ProbeProtocol = "Http" | "Tcp" | "Https" | string;
 /**
  * Defines values for LoadBalancerOutboundRuleProtocol.
  */
-export type LoadBalancerOutboundRuleProtocol = "Tcp" | "Udp" | "All";
+export type LoadBalancerOutboundRuleProtocol = "Tcp" | "Udp" | "All" | string;
 /**
  * Defines values for NatGatewaySkuName.
  */
-export type NatGatewaySkuName = "Standard";
+export type NatGatewaySkuName = "Standard" | string;
 /**
  * Defines values for EffectiveRouteSource.
  */
@@ -11990,31 +12042,32 @@ export type EffectiveRouteSource =
   | "Unknown"
   | "User"
   | "VirtualNetworkGateway"
-  | "Default";
+  | "Default"
+  | string;
 /**
  * Defines values for EffectiveRouteState.
  */
-export type EffectiveRouteState = "Active" | "Invalid";
+export type EffectiveRouteState = "Active" | "Invalid" | string;
 /**
  * Defines values for EffectiveSecurityRuleProtocol.
  */
-export type EffectiveSecurityRuleProtocol = "Tcp" | "Udp" | "All";
+export type EffectiveSecurityRuleProtocol = "Tcp" | "Udp" | "All" | string;
 /**
  * Defines values for AssociationType.
  */
-export type AssociationType = "Associated" | "Contains";
+export type AssociationType = "Associated" | "Contains" | string;
 /**
  * Defines values for Direction.
  */
-export type Direction = "Inbound" | "Outbound";
+export type Direction = "Inbound" | "Outbound" | string;
 /**
  * Defines values for IpFlowProtocol.
  */
-export type IpFlowProtocol = "TCP" | "UDP";
+export type IpFlowProtocol = "TCP" | "UDP" | string;
 /**
  * Defines values for Access.
  */
-export type Access = "Allow" | "Deny";
+export type Access = "Allow" | "Deny" | string;
 /**
  * Defines values for NextHopType.
  */
@@ -12024,11 +12077,12 @@ export type NextHopType =
   | "VirtualNetworkGateway"
   | "VnetLocal"
   | "HyperNetGateway"
-  | "None";
+  | "None"
+  | string;
 /**
  * Defines values for PcProtocol.
  */
-export type PcProtocol = "TCP" | "UDP" | "Any";
+export type PcProtocol = "TCP" | "UDP" | "Any" | string;
 /**
  * Defines values for PcStatus.
  */
@@ -12037,7 +12091,8 @@ export type PcStatus =
   | "Running"
   | "Stopped"
   | "Error"
-  | "Unknown";
+  | "Unknown"
+  | string;
 /**
  * Defines values for PcError.
  */
@@ -12046,23 +12101,24 @@ export type PcError =
   | "AgentStopped"
   | "CaptureFailed"
   | "LocalFileFailed"
-  | "StorageFailed";
+  | "StorageFailed"
+  | string;
 /**
  * Defines values for Protocol.
  */
-export type Protocol = "Tcp" | "Http" | "Https" | "Icmp";
+export type Protocol = "Tcp" | "Http" | "Https" | "Icmp" | string;
 /**
  * Defines values for HttpMethod.
  */
-export type HttpMethod = "Get";
+export type HttpMethod = "Get" | string;
 /**
  * Defines values for Origin.
  */
-export type Origin = "Local" | "Inbound" | "Outbound";
+export type Origin = "Local" | "Inbound" | "Outbound" | string;
 /**
  * Defines values for Severity.
  */
-export type Severity = "Error" | "Warning";
+export type Severity = "Error" | "Warning" | string;
 /**
  * Defines values for IssueType.
  */
@@ -12075,7 +12131,8 @@ export type IssueType =
   | "NetworkSecurityRule"
   | "UserDefinedRoute"
   | "PortThrottled"
-  | "Platform";
+  | "Platform"
+  | string;
 /**
  * Defines values for ConnectionStatus.
  */
@@ -12083,66 +12140,79 @@ export type ConnectionStatus =
   | "Unknown"
   | "Connected"
   | "Disconnected"
-  | "Degraded";
+  | "Degraded"
+  | string;
 /**
  * Defines values for VerbosityLevel.
  */
-export type VerbosityLevel = "Normal" | "Minimum" | "Full";
+export type VerbosityLevel = "Normal" | "Minimum" | "Full" | string;
 /**
  * Defines values for ConnectionMonitorEndpointFilterType.
  */
-export type ConnectionMonitorEndpointFilterType = "Include";
+export type ConnectionMonitorEndpointFilterType = "Include" | string;
 /**
  * Defines values for ConnectionMonitorEndpointFilterItemType.
  */
-export type ConnectionMonitorEndpointFilterItemType = "AgentAddress";
+export type ConnectionMonitorEndpointFilterItemType = "AgentAddress" | string;
 /**
  * Defines values for ConnectionMonitorTestConfigurationProtocol.
  */
 export type ConnectionMonitorTestConfigurationProtocol =
   | "Tcp"
   | "Http"
-  | "Icmp";
+  | "Icmp"
+  | string;
 /**
  * Defines values for PreferredIPVersion.
  */
-export type PreferredIPVersion = "IPv4" | "IPv6";
+export type PreferredIPVersion = "IPv4" | "IPv6" | string;
 /**
  * Defines values for HttpConfigurationMethod.
  */
-export type HttpConfigurationMethod = "Get" | "Post";
+export type HttpConfigurationMethod = "Get" | "Post" | string;
 /**
  * Defines values for OutputType.
  */
-export type OutputType = "Workspace";
+export type OutputType = "Workspace" | string;
 /**
  * Defines values for ConnectionMonitorType.
  */
-export type ConnectionMonitorType = "MultiEndpoint" | "SingleSourceDestination";
+export type ConnectionMonitorType =
+  | "MultiEndpoint"
+  | "SingleSourceDestination"
+  | string;
 /**
  * Defines values for ConnectionMonitorSourceStatus.
  */
-export type ConnectionMonitorSourceStatus = "Unknown" | "Active" | "Inactive";
+export type ConnectionMonitorSourceStatus =
+  | "Unknown"
+  | "Active"
+  | "Inactive"
+  | string;
 /**
  * Defines values for ConnectionState.
  */
-export type ConnectionState = "Reachable" | "Unreachable" | "Unknown";
+export type ConnectionState = "Reachable" | "Unreachable" | "Unknown" | string;
 /**
  * Defines values for EvaluationState.
  */
-export type EvaluationState = "NotStarted" | "InProgress" | "Completed";
+export type EvaluationState =
+  | "NotStarted"
+  | "InProgress"
+  | "Completed"
+  | string;
 /**
  * Defines values for PublicIPPrefixSkuName.
  */
-export type PublicIPPrefixSkuName = "Standard";
+export type PublicIPPrefixSkuName = "Standard" | string;
 /**
  * Defines values for RouteFilterRuleType.
  */
-export type RouteFilterRuleType = "Community";
+export type RouteFilterRuleType = "Community" | string;
 /**
  * Defines values for SecurityProviderName.
  */
-export type SecurityProviderName = "ZScaler" | "IBoss" | "Checkpoint";
+export type SecurityProviderName = "ZScaler" | "IBoss" | "Checkpoint" | string;
 /**
  * Defines values for SecurityPartnerProviderConnectionStatus.
  */
@@ -12150,23 +12220,28 @@ export type SecurityPartnerProviderConnectionStatus =
   | "Unknown"
   | "PartiallyConnected"
   | "Connected"
-  | "NotConnected";
+  | "NotConnected"
+  | string;
 /**
  * Defines values for UsageUnit.
  */
-export type UsageUnit = "Count";
+export type UsageUnit = "Count" | string;
 /**
  * Defines values for VirtualNetworkGatewayType.
  */
-export type VirtualNetworkGatewayType = "Vpn" | "ExpressRoute";
+export type VirtualNetworkGatewayType = "Vpn" | "ExpressRoute" | string;
 /**
  * Defines values for VpnType.
  */
-export type VpnType = "PolicyBased" | "RouteBased";
+export type VpnType = "PolicyBased" | "RouteBased" | string;
 /**
  * Defines values for VpnGatewayGeneration.
  */
-export type VpnGatewayGeneration = "None" | "Generation1" | "Generation2";
+export type VpnGatewayGeneration =
+  | "None"
+  | "Generation1"
+  | "Generation2"
+  | string;
 /**
  * Defines values for VirtualNetworkGatewaySkuName.
  */
@@ -12187,7 +12262,8 @@ export type VirtualNetworkGatewaySkuName =
   | "VpnGw5AZ"
   | "ErGw1AZ"
   | "ErGw2AZ"
-  | "ErGw3AZ";
+  | "ErGw3AZ"
+  | string;
 /**
  * Defines values for VirtualNetworkGatewaySkuTier.
  */
@@ -12208,11 +12284,12 @@ export type VirtualNetworkGatewaySkuTier =
   | "VpnGw5AZ"
   | "ErGw1AZ"
   | "ErGw2AZ"
-  | "ErGw3AZ";
+  | "ErGw3AZ"
+  | string;
 /**
  * Defines values for VpnClientProtocol.
  */
-export type VpnClientProtocol = "IkeV2" | "SSTP" | "OpenVPN";
+export type VpnClientProtocol = "IkeV2" | "SSTP" | "OpenVPN" | string;
 /**
  * Defines values for IpsecEncryption.
  */
@@ -12225,7 +12302,8 @@ export type IpsecEncryption =
   | "AES256"
   | "GCMAES128"
   | "GCMAES192"
-  | "GCMAES256";
+  | "GCMAES256"
+  | string;
 /**
  * Defines values for IpsecIntegrity.
  */
@@ -12235,7 +12313,8 @@ export type IpsecIntegrity =
   | "SHA256"
   | "GCMAES128"
   | "GCMAES192"
-  | "GCMAES256";
+  | "GCMAES256"
+  | string;
 /**
  * Defines values for IkeEncryption.
  */
@@ -12246,7 +12325,8 @@ export type IkeEncryption =
   | "AES192"
   | "AES256"
   | "GCMAES256"
-  | "GCMAES128";
+  | "GCMAES128"
+  | string;
 /**
  * Defines values for IkeIntegrity.
  */
@@ -12256,7 +12336,8 @@ export type IkeIntegrity =
   | "SHA256"
   | "SHA384"
   | "GCMAES256"
-  | "GCMAES128";
+  | "GCMAES128"
+  | string;
 /**
  * Defines values for DhGroup.
  */
@@ -12268,7 +12349,8 @@ export type DhGroup =
   | "DHGroup2048"
   | "ECP256"
   | "ECP384"
-  | "DHGroup24";
+  | "DHGroup24"
+  | string;
 /**
  * Defines values for PfsGroup.
  */
@@ -12281,7 +12363,8 @@ export type PfsGroup =
   | "ECP384"
   | "PFS24"
   | "PFS14"
-  | "PFSMM";
+  | "PFSMM"
+  | string;
 /**
  * Defines values for VirtualNetworkGatewayConnectionType.
  */
@@ -12289,11 +12372,15 @@ export type VirtualNetworkGatewayConnectionType =
   | "IPsec"
   | "Vnet2Vnet"
   | "ExpressRoute"
-  | "VPNClient";
+  | "VPNClient"
+  | string;
 /**
  * Defines values for VirtualNetworkGatewayConnectionProtocol.
  */
-export type VirtualNetworkGatewayConnectionProtocol = "IKEv2" | "IKEv1";
+export type VirtualNetworkGatewayConnectionProtocol =
+  | "IKEv2"
+  | "IKEv1"
+  | string;
 /**
  * Defines values for VirtualNetworkGatewayConnectionStatus.
  */
@@ -12301,15 +12388,16 @@ export type VirtualNetworkGatewayConnectionStatus =
   | "Unknown"
   | "Connecting"
   | "Connected"
-  | "NotConnected";
+  | "NotConnected"
+  | string;
 /**
  * Defines values for ProcessorArchitecture.
  */
-export type ProcessorArchitecture = "Amd64" | "X86";
+export type ProcessorArchitecture = "Amd64" | "X86" | string;
 /**
  * Defines values for AuthenticationMethod.
  */
-export type AuthenticationMethod = "EAPTLS" | "EAPMSCHAPv2";
+export type AuthenticationMethod = "EAPTLS" | "EAPMSCHAPv2" | string;
 /**
  * Defines values for BgpPeerState.
  */
@@ -12318,7 +12406,8 @@ export type BgpPeerState =
   | "Stopped"
   | "Idle"
   | "Connecting"
-  | "Connected";
+  | "Connected"
+  | string;
 /**
  * Defines values for OfficeTrafficCategory.
  */
@@ -12326,19 +12415,20 @@ export type OfficeTrafficCategory =
   | "Optimize"
   | "OptimizeAndAllow"
   | "All"
-  | "None";
+  | "None"
+  | string;
 /**
  * Defines values for VirtualWanSecurityProviderType.
  */
-export type VirtualWanSecurityProviderType = "External" | "Native";
+export type VirtualWanSecurityProviderType = "External" | "Native" | string;
 /**
  * Defines values for VpnGatewayTunnelingProtocol.
  */
-export type VpnGatewayTunnelingProtocol = "IkeV2" | "OpenVPN";
+export type VpnGatewayTunnelingProtocol = "IkeV2" | "OpenVPN" | string;
 /**
  * Defines values for VpnAuthenticationType.
  */
-export type VpnAuthenticationType = "Certificate" | "Radius" | "AAD";
+export type VpnAuthenticationType = "Certificate" | "Radius" | "AAD" | string;
 /**
  * Defines values for VpnConnectionStatus.
  */
@@ -12346,19 +12436,23 @@ export type VpnConnectionStatus =
   | "Unknown"
   | "Connecting"
   | "Connected"
-  | "NotConnected";
+  | "NotConnected"
+  | string;
 /**
  * Defines values for WebApplicationFirewallEnabledState.
  */
-export type WebApplicationFirewallEnabledState = "Disabled" | "Enabled";
+export type WebApplicationFirewallEnabledState =
+  | "Disabled"
+  | "Enabled"
+  | string;
 /**
  * Defines values for WebApplicationFirewallMode.
  */
-export type WebApplicationFirewallMode = "Prevention" | "Detection";
+export type WebApplicationFirewallMode = "Prevention" | "Detection" | string;
 /**
  * Defines values for WebApplicationFirewallRuleType.
  */
-export type WebApplicationFirewallRuleType = "MatchRule" | "Invalid";
+export type WebApplicationFirewallRuleType = "MatchRule" | "Invalid" | string;
 /**
  * Defines values for WebApplicationFirewallMatchVariable.
  */
@@ -12370,7 +12464,8 @@ export type WebApplicationFirewallMatchVariable =
   | "RequestUri"
   | "RequestHeaders"
   | "RequestBody"
-  | "RequestCookies";
+  | "RequestCookies"
+  | string;
 /**
  * Defines values for WebApplicationFirewallOperator.
  */
@@ -12385,7 +12480,8 @@ export type WebApplicationFirewallOperator =
   | "BeginsWith"
   | "EndsWith"
   | "Regex"
-  | "GeoMatch";
+  | "GeoMatch"
+  | string;
 /**
  * Defines values for WebApplicationFirewallTransform.
  */
@@ -12395,11 +12491,12 @@ export type WebApplicationFirewallTransform =
   | "UrlDecode"
   | "UrlEncode"
   | "RemoveNulls"
-  | "HtmlEntityDecode";
+  | "HtmlEntityDecode"
+  | string;
 /**
  * Defines values for WebApplicationFirewallAction.
  */
-export type WebApplicationFirewallAction = "Allow" | "Block" | "Log";
+export type WebApplicationFirewallAction = "Allow" | "Block" | "Log" | string;
 /**
  * Defines values for WebApplicationFirewallPolicyResourceState.
  */
@@ -12409,14 +12506,16 @@ export type WebApplicationFirewallPolicyResourceState =
   | "Enabled"
   | "Disabling"
   | "Disabled"
-  | "Deleting";
+  | "Deleting"
+  | string;
 /**
  * Defines values for OwaspCrsExclusionEntryMatchVariable.
  */
 export type OwaspCrsExclusionEntryMatchVariable =
   | "RequestHeaderNames"
   | "RequestCookieNames"
-  | "RequestArgNames";
+  | "RequestArgNames"
+  | string;
 /**
  * Defines values for OwaspCrsExclusionEntrySelectorMatchOperator.
  */
@@ -12425,32 +12524,35 @@ export type OwaspCrsExclusionEntrySelectorMatchOperator =
   | "Contains"
   | "StartsWith"
   | "EndsWith"
-  | "EqualsAny";
+  | "EqualsAny"
+  | string;
 /**
  * Defines values for ManagedRuleEnabledState.
  */
-export type ManagedRuleEnabledState = "Disabled";
+export type ManagedRuleEnabledState = "Disabled" | string;
 /**
  * Defines values for FirewallPolicyNatRuleActionType.
  */
-export type FirewallPolicyNatRuleActionType = "DNAT";
+export type FirewallPolicyNatRuleActionType = "DNAT" | string;
 /**
  * Defines values for FirewallPolicyRuleConditionType.
  */
 export type FirewallPolicyRuleConditionType =
   | "ApplicationRuleCondition"
   | "NetworkRuleCondition"
-  | "NatRuleCondition";
+  | "NatRuleCondition"
+  | string;
 /**
  * Defines values for FirewallPolicyFilterRuleActionType.
  */
-export type FirewallPolicyFilterRuleActionType = "Allow" | "Deny";
+export type FirewallPolicyFilterRuleActionType = "Allow" | "Deny" | string;
 /**
  * Defines values for FirewallPolicyRuleConditionApplicationProtocolType.
  */
 export type FirewallPolicyRuleConditionApplicationProtocolType =
   | "Http"
-  | "Https";
+  | "Https"
+  | string;
 /**
  * Defines values for FirewallPolicyRuleConditionNetworkProtocol.
  */
@@ -12458,11 +12560,16 @@ export type FirewallPolicyRuleConditionNetworkProtocol =
   | "TCP"
   | "UDP"
   | "Any"
-  | "ICMP";
+  | "ICMP"
+  | string;
 /**
  * Defines values for NetworkOperationStatus.
  */
-export type NetworkOperationStatus = "InProgress" | "Succeeded" | "Failed";
+export type NetworkOperationStatus =
+  | "InProgress"
+  | "Succeeded"
+  | "Failed"
+  | string;
 /**
  * Defines values for TunnelConnectionStatus.
  */
@@ -12470,7 +12577,8 @@ export type TunnelConnectionStatus =
   | "Unknown"
   | "Connecting"
   | "Connected"
-  | "NotConnected";
+  | "NotConnected"
+  | string;
 /**
  * Defines values for HubVirtualNetworkConnectionStatus.
  */
@@ -12478,7 +12586,8 @@ export type HubVirtualNetworkConnectionStatus =
   | "Unknown"
   | "Connecting"
   | "Connected"
-  | "NotConnected";
+  | "NotConnected"
+  | string;
 /**
  * Defines values for ResourceIdentityType.
  */

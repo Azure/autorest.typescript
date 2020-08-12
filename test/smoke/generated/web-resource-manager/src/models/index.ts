@@ -8277,40 +8277,58 @@ export type ResourceHealthMetadata = ProxyOnlyResource & {
 export type AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem =
   | "RegistrationStatusNotSupportedForRenewal"
   | "ExpirationNotInRenewalTimeRange"
-  | "SubscriptionNotActive";
+  | "SubscriptionNotActive"
+  | string;
 /**
  * Defines values for AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem.
  */
 export type AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem =
   | "RegistrationStatusNotSupportedForRenewal"
   | "ExpirationNotInRenewalTimeRange"
-  | "SubscriptionNotActive";
+  | "SubscriptionNotActive"
+  | string;
 /**
  * Defines values for DomainPropertiesDomainNotRenewableReasonsItem.
  */
 export type DomainPropertiesDomainNotRenewableReasonsItem =
   | "RegistrationStatusNotSupportedForRenewal"
   | "ExpirationNotInRenewalTimeRange"
-  | "SubscriptionNotActive";
+  | "SubscriptionNotActive"
+  | string;
 /**
  * Defines values for DomainPatchResourcePropertiesDomainNotRenewableReasonsItem.
  */
 export type DomainPatchResourcePropertiesDomainNotRenewableReasonsItem =
   | "RegistrationStatusNotSupportedForRenewal"
   | "ExpirationNotInRenewalTimeRange"
-  | "SubscriptionNotActive";
+  | "SubscriptionNotActive"
+  | string;
 /**
  * Defines values for Enum4.
  */
-export type Enum4 = "Windows" | "Linux" | "WindowsFunctions" | "LinuxFunctions";
+export type Enum4 =
+  | "Windows"
+  | "Linux"
+  | "WindowsFunctions"
+  | "LinuxFunctions"
+  | string;
 /**
  * Defines values for Enum5.
  */
-export type Enum5 = "Windows" | "Linux" | "WindowsFunctions" | "LinuxFunctions";
+export type Enum5 =
+  | "Windows"
+  | "Linux"
+  | "WindowsFunctions"
+  | "LinuxFunctions"
+  | string;
 /**
  * Defines values for ResourceScopeType.
  */
-export type ResourceScopeType = "ServerFarm" | "Subscription" | "WebSite";
+export type ResourceScopeType =
+  | "ServerFarm"
+  | "Subscription"
+  | "WebSite"
+  | string;
 /**
  * Defines values for CheckNameResourceTypes.
  */
@@ -8322,11 +8340,12 @@ export type CheckNameResourceTypes =
   | "Microsoft.Web/sites"
   | "Microsoft.Web/sites/slots"
   | "Microsoft.Web/hostingEnvironments"
-  | "Microsoft.Web/publishingUsers";
+  | "Microsoft.Web/publishingUsers"
+  | string;
 /**
  * Defines values for InAvailabilityReasonType.
  */
-export type InAvailabilityReasonType = "Invalid" | "AlreadyExists";
+export type InAvailabilityReasonType = "Invalid" | "AlreadyExists" | string;
 /**
  * Defines values for SkuName.
  */
@@ -8340,11 +8359,12 @@ export type SkuName =
   | "Isolated"
   | "PremiumV2"
   | "ElasticPremium"
-  | "ElasticIsolated";
+  | "ElasticIsolated"
+  | string;
 /**
  * Defines values for ValidateResourceTypes.
  */
-export type ValidateResourceTypes = "ServerFarm" | "Site";
+export type ValidateResourceTypes = "ServerFarm" | "Site" | string;
 /**
  * Defines values for ScmType.
  */
@@ -8362,27 +8382,37 @@ export type ScmType =
   | "ExternalHg"
   | "OneDrive"
   | "VSO"
-  | "VSTSRM";
+  | "VSTSRM"
+  | string;
 /**
  * Defines values for SupportedTlsVersions.
  */
-export type SupportedTlsVersions = "1.0" | "1.1" | "1.2";
+export type SupportedTlsVersions = "1.0" | "1.1" | "1.2" | string;
 /**
  * Defines values for FtpsState.
  */
-export type FtpsState = "AllAllowed" | "FtpsOnly" | "Disabled";
+export type FtpsState = "AllAllowed" | "FtpsOnly" | "Disabled" | string;
 /**
  * Defines values for DatabaseType.
  */
-export type DatabaseType = "SqlAzure" | "MySql" | "LocalMySql" | "PostgreSql";
+export type DatabaseType =
+  | "SqlAzure"
+  | "MySql"
+  | "LocalMySql"
+  | "PostgreSql"
+  | string;
 /**
  * Defines values for RouteType.
  */
-export type RouteType = "DEFAULT" | "INHERITED" | "STATIC";
+export type RouteType = "DEFAULT" | "INHERITED" | "STATIC" | string;
 /**
  * Defines values for PublishingProfileFormat.
  */
-export type PublishingProfileFormat = "FileZilla3" | "WebDeploy" | "Ftp";
+export type PublishingProfileFormat =
+  | "FileZilla3"
+  | "WebDeploy"
+  | "Ftp"
+  | string;
 /**
  * Defines values for BuildStatus.
  */
@@ -8393,11 +8423,12 @@ export type BuildStatus =
   | "Ready"
   | "Failed"
   | "Deleting"
-  | "Detached";
+  | "Detached"
+  | string;
 /**
  * Defines values for TriggerTypes.
  */
-export type TriggerTypes = "HttpTrigger" | "Unknown";
+export type TriggerTypes = "HttpTrigger" | "Unknown" | string;
 /**
  * Defines values for KeyVaultSecretStatus.
  */

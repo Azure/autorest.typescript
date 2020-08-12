@@ -2027,15 +2027,19 @@ export type NotebookWorkspaceCreateUpdateParameters = ARMProxyResource & {};
 /**
  * Defines values for DatabaseAccountKind.
  */
-export type DatabaseAccountKind = "GlobalDocumentDB" | "MongoDB" | "Parse";
+export type DatabaseAccountKind =
+  | "GlobalDocumentDB"
+  | "MongoDB"
+  | "Parse"
+  | string;
 /**
  * Defines values for ConnectorOffer.
  */
-export type ConnectorOffer = "Small";
+export type ConnectorOffer = "Small" | string;
 /**
  * Defines values for PublicNetworkAccess.
  */
-export type PublicNetworkAccess = "Enabled" | "Disabled";
+export type PublicNetworkAccess = "Enabled" | "Disabled" | string;
 /**
  * Defines values for KeyKind.
  */
@@ -2043,7 +2047,8 @@ export type KeyKind =
   | "primary"
   | "secondary"
   | "primaryReadonly"
-  | "secondaryReadonly";
+  | "secondaryReadonly"
+  | string;
 /**
  * Defines values for UnitType.
  */
@@ -2054,7 +2059,8 @@ export type UnitType =
   | "Percent"
   | "CountPerSecond"
   | "BytesPerSecond"
-  | "Milliseconds";
+  | "Milliseconds"
+  | string;
 /**
  * Defines values for PrimaryAggregationType.
  */
@@ -2064,11 +2070,12 @@ export type PrimaryAggregationType =
   | "Total"
   | "Minimum"
   | "Maximum"
-  | "Last";
+  | "Last"
+  | string;
 /**
  * Defines values for IndexingMode.
  */
-export type IndexingMode = "Consistent" | "Lazy" | "None";
+export type IndexingMode = "Consistent" | "Lazy" | "None" | string;
 /**
  * Defines values for DataType.
  */
@@ -2078,31 +2085,37 @@ export type DataType =
   | "Point"
   | "Polygon"
   | "LineString"
-  | "MultiPolygon";
+  | "MultiPolygon"
+  | string;
 /**
  * Defines values for IndexKind.
  */
-export type IndexKind = "Hash" | "Range" | "Spatial";
+export type IndexKind = "Hash" | "Range" | "Spatial" | string;
 /**
  * Defines values for CompositePathSortOrder.
  */
-export type CompositePathSortOrder = "Ascending" | "Descending";
+export type CompositePathSortOrder = "Ascending" | "Descending" | string;
 /**
  * Defines values for SpatialType.
  */
-export type SpatialType = "Point" | "LineString" | "Polygon" | "MultiPolygon";
+export type SpatialType =
+  | "Point"
+  | "LineString"
+  | "Polygon"
+  | "MultiPolygon"
+  | string;
 /**
  * Defines values for PartitionKind.
  */
-export type PartitionKind = "Hash" | "Range";
+export type PartitionKind = "Hash" | "Range" | string;
 /**
  * Defines values for ConflictResolutionMode.
  */
-export type ConflictResolutionMode = "LastWriterWins" | "Custom";
+export type ConflictResolutionMode = "LastWriterWins" | "Custom" | string;
 /**
  * Defines values for TriggerType.
  */
-export type TriggerType = "Pre" | "Post";
+export type TriggerType = "Pre" | "Post" | string;
 /**
  * Defines values for TriggerOperation.
  */
@@ -2111,11 +2124,12 @@ export type TriggerOperation =
   | "Create"
   | "Update"
   | "Delete"
-  | "Replace";
+  | "Replace"
+  | string;
 /**
  * Defines values for NotebookWorkspaceName.
  */
-export type NotebookWorkspaceName = "default";
+export type NotebookWorkspaceName = "default" | string;
 /**
  * Defines values for DefaultConsistencyLevel.
  */

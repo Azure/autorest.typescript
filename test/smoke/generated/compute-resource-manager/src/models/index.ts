@@ -5320,11 +5320,11 @@ export type VirtualMachineImage = VirtualMachineImageResource & {
 /**
  * Defines values for ProximityPlacementGroupType.
  */
-export type ProximityPlacementGroupType = "Standard" | "Ultra";
+export type ProximityPlacementGroupType = "Standard" | "Ultra" | string;
 /**
  * Defines values for HyperVGenerationTypes.
  */
-export type HyperVGenerationTypes = "V1" | "V2";
+export type HyperVGenerationTypes = "V1" | "V2" | string;
 /**
  * Defines values for VirtualMachineSizeTypes.
  */
@@ -5494,19 +5494,20 @@ export type VirtualMachineSizeTypes =
   | "Standard_ND24rs"
   | "Standard_NV6"
   | "Standard_NV12"
-  | "Standard_NV24";
+  | "Standard_NV24"
+  | string;
 /**
  * Defines values for DiffDiskOptions.
  */
-export type DiffDiskOptions = "Local";
+export type DiffDiskOptions = "Local" | string;
 /**
  * Defines values for DiffDiskPlacement.
  */
-export type DiffDiskPlacement = "CacheDisk" | "ResourceDisk";
+export type DiffDiskPlacement = "CacheDisk" | "ResourceDisk" | string;
 /**
  * Defines values for DiskCreateOptionTypes.
  */
-export type DiskCreateOptionTypes = "FromImage" | "Empty" | "Attach";
+export type DiskCreateOptionTypes = "FromImage" | "Empty" | "Attach" | string;
 /**
  * Defines values for StorageAccountTypes.
  */
@@ -5514,42 +5515,51 @@ export type StorageAccountTypes =
   | "Standard_LRS"
   | "Premium_LRS"
   | "StandardSSD_LRS"
-  | "UltraSSD_LRS";
+  | "UltraSSD_LRS"
+  | string;
 /**
  * Defines values for VirtualMachinePriorityTypes.
  */
-export type VirtualMachinePriorityTypes = "Regular" | "Low" | "Spot";
+export type VirtualMachinePriorityTypes = "Regular" | "Low" | "Spot" | string;
 /**
  * Defines values for VirtualMachineEvictionPolicyTypes.
  */
-export type VirtualMachineEvictionPolicyTypes = "Deallocate" | "Delete";
+export type VirtualMachineEvictionPolicyTypes =
+  | "Deallocate"
+  | "Delete"
+  | string;
 /**
  * Defines values for HyperVGenerationType.
  */
-export type HyperVGenerationType = "V1" | "V2";
+export type HyperVGenerationType = "V1" | "V2" | string;
 /**
  * Defines values for IPVersion.
  */
-export type IPVersion = "IPv4" | "IPv6";
+export type IPVersion = "IPv4" | "IPv6" | string;
 /**
  * Defines values for VirtualMachineScaleSetScaleInRules.
  */
 export type VirtualMachineScaleSetScaleInRules =
   | "Default"
   | "OldestVM"
-  | "NewestVM";
+  | "NewestVM"
+  | string;
 /**
  * Defines values for OrchestrationServiceNames.
  */
-export type OrchestrationServiceNames = "AutomaticRepairs";
+export type OrchestrationServiceNames = "AutomaticRepairs" | string;
 /**
  * Defines values for OrchestrationServiceState.
  */
-export type OrchestrationServiceState = "NotRunning" | "Running" | "Suspended";
+export type OrchestrationServiceState =
+  | "NotRunning"
+  | "Running"
+  | "Suspended"
+  | string;
 /**
  * Defines values for OrchestrationServiceStateAction.
  */
-export type OrchestrationServiceStateAction = "Resume" | "Suspend";
+export type OrchestrationServiceStateAction = "Resume" | "Suspend" | string;
 /**
  * Defines values for DiskStorageAccountTypes.
  */
@@ -5557,11 +5567,12 @@ export type DiskStorageAccountTypes =
   | "Standard_LRS"
   | "Premium_LRS"
   | "StandardSSD_LRS"
-  | "UltraSSD_LRS";
+  | "UltraSSD_LRS"
+  | string;
 /**
  * Defines values for HyperVGeneration.
  */
-export type HyperVGeneration = "V1" | "V2";
+export type HyperVGeneration = "V1" | "V2" | string;
 /**
  * Defines values for DiskCreateOption.
  */
@@ -5572,7 +5583,8 @@ export type DiskCreateOption =
   | "Import"
   | "Copy"
   | "Restore"
-  | "Upload";
+  | "Upload"
+  | string;
 /**
  * Defines values for DiskState.
  */
@@ -5582,28 +5594,31 @@ export type DiskState =
   | "Reserved"
   | "ActiveSAS"
   | "ReadyToUpload"
-  | "ActiveUpload";
+  | "ActiveUpload"
+  | string;
 /**
  * Defines values for EncryptionType.
  */
 export type EncryptionType =
   | "EncryptionAtRestWithPlatformKey"
-  | "EncryptionAtRestWithCustomerKey";
+  | "EncryptionAtRestWithCustomerKey"
+  | string;
 /**
  * Defines values for AccessLevel.
  */
-export type AccessLevel = "None" | "Read" | "Write";
+export type AccessLevel = "None" | "Read" | "Write" | string;
 /**
  * Defines values for SnapshotStorageAccountTypes.
  */
 export type SnapshotStorageAccountTypes =
   | "Standard_LRS"
   | "Premium_LRS"
-  | "Standard_ZRS";
+  | "Standard_ZRS"
+  | string;
 /**
  * Defines values for DiskEncryptionSetIdentityType.
  */
-export type DiskEncryptionSetIdentityType = "SystemAssigned";
+export type DiskEncryptionSetIdentityType = "SystemAssigned" | string;
 /**
  * Defines values for GalleryPropertiesProvisioningState.
  */
@@ -5613,7 +5628,8 @@ export type GalleryPropertiesProvisioningState =
   | "Failed"
   | "Succeeded"
   | "Deleting"
-  | "Migrating";
+  | "Migrating"
+  | string;
 /**
  * Defines values for GalleryImagePropertiesProvisioningState.
  */
@@ -5623,14 +5639,16 @@ export type GalleryImagePropertiesProvisioningState =
   | "Failed"
   | "Succeeded"
   | "Deleting"
-  | "Migrating";
+  | "Migrating"
+  | string;
 /**
  * Defines values for StorageAccountType.
  */
 export type StorageAccountType =
   | "Standard_LRS"
   | "Standard_ZRS"
-  | "Premium_LRS";
+  | "Premium_LRS"
+  | string;
 /**
  * Defines values for GalleryImageVersionPropertiesProvisioningState.
  */
@@ -5640,7 +5658,8 @@ export type GalleryImageVersionPropertiesProvisioningState =
   | "Failed"
   | "Succeeded"
   | "Deleting"
-  | "Migrating";
+  | "Migrating"
+  | string;
 /**
  * Defines values for AggregatedReplicationState.
  */
@@ -5648,7 +5667,8 @@ export type AggregatedReplicationState =
   | "Unknown"
   | "InProgress"
   | "Completed"
-  | "Failed";
+  | "Failed"
+  | string;
 /**
  * Defines values for ReplicationState.
  */
@@ -5656,11 +5676,12 @@ export type ReplicationState =
   | "Unknown"
   | "Replicating"
   | "Completed"
-  | "Failed";
+  | "Failed"
+  | string;
 /**
  * Defines values for ReplicationStatusTypes.
  */
-export type ReplicationStatusTypes = "ReplicationStatus";
+export type ReplicationStatusTypes = "ReplicationStatus" | string;
 /**
  * Defines values for GalleryApplicationVersionPropertiesProvisioningState.
  */
@@ -5670,11 +5691,12 @@ export type GalleryApplicationVersionPropertiesProvisioningState =
   | "Failed"
   | "Succeeded"
   | "Deleting"
-  | "Migrating";
+  | "Migrating"
+  | string;
 /**
  * Defines values for Enum31.
  */
-export type Enum31 = 1 | 3 | 5;
+export type Enum31 = 1 | 3 | 5 | string;
 /**
  * Defines values for ContainerServiceVMSizeTypes.
  */
@@ -5725,11 +5747,12 @@ export type ContainerServiceVMSizeTypes =
   | "Standard_GS2"
   | "Standard_GS3"
   | "Standard_GS4"
-  | "Standard_GS5";
+  | "Standard_GS5"
+  | string;
 /**
  * Defines values for AvailabilitySetSkuTypes.
  */
-export type AvailabilitySetSkuTypes = "Classic" | "Aligned";
+export type AvailabilitySetSkuTypes = "Classic" | "Aligned" | string;
 /**
  * Defines values for StatusLevelTypes.
  */

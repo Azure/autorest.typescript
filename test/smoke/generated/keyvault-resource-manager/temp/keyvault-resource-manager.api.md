@@ -24,7 +24,7 @@ export interface AccessPolicyEntry {
 export type AccessPolicyUpdateKind = "add" | "replace" | "remove";
 
 // @public
-export type CertificatePermissions = "get" | "list" | "delete" | "create" | "import" | "update" | "managecontacts" | "getissuers" | "listissuers" | "setissuers" | "deleteissuers" | "manageissuers" | "recover" | "purge" | "backup" | "restore";
+export type CertificatePermissions = "get" | "list" | "delete" | "create" | "import" | "update" | "managecontacts" | "getissuers" | "listissuers" | "setissuers" | "deleteissuers" | "manageissuers" | "recover" | "purge" | "backup" | "restore" | string;
 
 // @public
 export interface CheckNameAvailabilityResult {
@@ -78,7 +78,7 @@ export interface IPRule {
 }
 
 // @public
-export type KeyPermissions = "encrypt" | "decrypt" | "wrapKey" | "unwrapKey" | "sign" | "verify" | "get" | "list" | "create" | "update" | "import" | "delete" | "backup" | "restore" | "recover" | "purge";
+export type KeyPermissions = "encrypt" | "decrypt" | "wrapKey" | "unwrapKey" | "sign" | "verify" | "get" | "list" | "create" | "update" | "import" | "delete" | "backup" | "restore" | "recover" | "purge" | string;
 
 // @public (undocumented)
 export class KeyVaultManagementClient extends KeyVaultManagementClientContext {
@@ -127,10 +127,10 @@ export interface LogSpecification {
 }
 
 // @public
-export type NetworkRuleAction = "Allow" | "Deny";
+export type NetworkRuleAction = "Allow" | "Deny" | string;
 
 // @public
-export type NetworkRuleBypassOptions = "AzureServices" | "None";
+export type NetworkRuleBypassOptions = "AzureServices" | "None" | string;
 
 // @public
 export interface NetworkRuleSet {
@@ -208,7 +208,7 @@ export interface PrivateEndpointConnectionItem {
 }
 
 // @public
-export type PrivateEndpointConnectionProvisioningState = "Succeeded" | "Creating" | "Updating" | "Deleting" | "Failed" | "Disconnected";
+export type PrivateEndpointConnectionProvisioningState = "Succeeded" | "Creating" | "Updating" | "Deleting" | "Failed" | "Disconnected" | string;
 
 // @public
 export interface PrivateEndpointConnectionsDeleteHeaders {
@@ -248,7 +248,7 @@ export type PrivateEndpointConnectionsPutResponse = PrivateEndpointConnectionsPu
 };
 
 // @public
-export type PrivateEndpointServiceConnectionStatus = "Pending" | "Approved" | "Rejected" | "Disconnected";
+export type PrivateEndpointServiceConnectionStatus = "Pending" | "Approved" | "Rejected" | "Disconnected" | string;
 
 // @public
 export type PrivateLinkResource = Resource & {
@@ -298,7 +298,7 @@ export interface ResourceListResult {
 }
 
 // @public
-export type SecretPermissions = "get" | "list" | "set" | "delete" | "backup" | "restore" | "recover" | "purge";
+export type SecretPermissions = "get" | "list" | "set" | "delete" | "backup" | "restore" | "recover" | "purge" | string;
 
 // @public
 export interface ServiceSpecification {
@@ -312,13 +312,13 @@ export interface Sku {
 }
 
 // @public
-export type SkuFamily = "A";
+export type SkuFamily = "A" | string;
 
 // @public
 export type SkuName = "standard" | "premium";
 
 // @public
-export type StoragePermissions = "get" | "list" | "delete" | "set" | "update" | "regeneratekey" | "recover" | "purge" | "backup" | "restore" | "setsas" | "listsas" | "getsas" | "deletesas";
+export type StoragePermissions = "get" | "list" | "delete" | "set" | "update" | "regeneratekey" | "recover" | "purge" | "backup" | "restore" | "setsas" | "listsas" | "getsas" | "deletesas" | string;
 
 // @public
 export interface Vault {

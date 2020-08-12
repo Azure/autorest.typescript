@@ -243,7 +243,7 @@ export interface BlobRestoreParameters {
 }
 
 // @public
-export type BlobRestoreProgressStatus = "InProgress" | "Complete" | "Failed";
+export type BlobRestoreProgressStatus = "InProgress" | "Complete" | "Failed" | string;
 
 // @public
 export interface BlobRestoreRange {
@@ -302,7 +302,7 @@ export type BlobServicesSetServicePropertiesResponse = BlobServiceProperties & {
 };
 
 // @public
-export type Bypass = "None" | "Logging" | "Metrics" | "AzureServices";
+export type Bypass = "None" | "Logging" | "Metrics" | "AzureServices" | string;
 
 // @public
 export interface ChangeFeed {
@@ -339,7 +339,7 @@ export interface CorsRule {
 }
 
 // @public
-export type CorsRuleAllowedMethodsItem = "DELETE" | "GET" | "HEAD" | "MERGE" | "POST" | "OPTIONS" | "PUT";
+export type CorsRuleAllowedMethodsItem = "DELETE" | "GET" | "HEAD" | "MERGE" | "POST" | "OPTIONS" | "PUT" | string;
 
 // @public
 export interface CorsRules {
@@ -384,10 +384,10 @@ export interface Dimension {
 }
 
 // @public
-export type DirectoryServiceOptions = "None" | "AADDS" | "AD";
+export type DirectoryServiceOptions = "None" | "AADDS" | "AD" | string;
 
 // @public
-export type EnabledProtocols = "SMB" | "NFS";
+export type EnabledProtocols = "SMB" | "NFS" | string;
 
 // @public
 export interface Encryption {
@@ -441,7 +441,7 @@ export type EncryptionScopesListResponse = EncryptionScopeListResult & {
 };
 
 // @public
-export type EncryptionScopeSource = "Microsoft.Storage" | "Microsoft.KeyVault";
+export type EncryptionScopeSource = "Microsoft.Storage" | "Microsoft.KeyVault" | string;
 
 // @public
 export type EncryptionScopesPatchResponse = EncryptionScope & {
@@ -460,7 +460,7 @@ export type EncryptionScopesPutResponse = EncryptionScope & {
 };
 
 // @public
-export type EncryptionScopeState = "Enabled" | "Disabled";
+export type EncryptionScopeState = "Enabled" | "Disabled" | string;
 
 // @public
 export interface EncryptionService {
@@ -635,7 +635,7 @@ export interface GeoReplicationStats {
 }
 
 // @public
-export type GeoReplicationStatus = "Live" | "Bootstrap" | "Unavailable";
+export type GeoReplicationStatus = "Live" | "Bootstrap" | "Unavailable" | string;
 
 // @public
 export type HttpProtocol = "https,http" | "https";
@@ -664,10 +664,10 @@ export interface ImmutabilityPolicyProperties {
 }
 
 // @public
-export type ImmutabilityPolicyState = "Locked" | "Unlocked";
+export type ImmutabilityPolicyState = "Locked" | "Unlocked" | string;
 
 // @public
-export type ImmutabilityPolicyUpdateType = "put" | "lock" | "extend";
+export type ImmutabilityPolicyUpdateType = "put" | "lock" | "extend" | string;
 
 // @public
 export interface IPRule {
@@ -679,10 +679,10 @@ export interface IPRule {
 export type KeyPermission = "Read" | "Full";
 
 // @public
-export type KeySource = "Microsoft.Storage" | "Microsoft.Keyvault";
+export type KeySource = "Microsoft.Storage" | "Microsoft.Keyvault" | string;
 
 // @public
-type KeyType_2 = "Service" | "Account";
+type KeyType_2 = "Service" | "Account" | string;
 
 export { KeyType_2 as KeyType }
 
@@ -696,10 +696,10 @@ export interface KeyVaultProperties {
 }
 
 // @public
-export type Kind = "Storage" | "StorageV2" | "BlobStorage" | "FileStorage" | "BlockBlobStorage";
+export type Kind = "Storage" | "StorageV2" | "BlobStorage" | "FileStorage" | "BlockBlobStorage" | string;
 
 // @public
-export type LargeFileSharesState = "Disabled" | "Enabled";
+export type LargeFileSharesState = "Disabled" | "Enabled" | string;
 
 // @public
 export interface LeaseContainerRequest {
@@ -711,7 +711,7 @@ export interface LeaseContainerRequest {
 }
 
 // @public
-export type LeaseContainerRequestAction = "Acquire" | "Renew" | "Change" | "Release" | "Break";
+export type LeaseContainerRequestAction = "Acquire" | "Renew" | "Change" | "Release" | "Break" | string;
 
 // @public
 export interface LeaseContainerResponse {
@@ -720,13 +720,13 @@ export interface LeaseContainerResponse {
 }
 
 // @public
-export type LeaseDuration = "Infinite" | "Fixed";
+export type LeaseDuration = "Infinite" | "Fixed" | string;
 
 // @public
-export type LeaseState = "Available" | "Leased" | "Expired" | "Breaking" | "Broken";
+export type LeaseState = "Available" | "Leased" | "Expired" | "Breaking" | "Broken" | string;
 
 // @public
-export type LeaseStatus = "Locked" | "Unlocked";
+export type LeaseStatus = "Locked" | "Unlocked" | string;
 
 // @public
 export interface LegalHold {
@@ -823,7 +823,7 @@ export interface ManagementPolicyFilter {
 }
 
 // @public
-export type ManagementPolicyName = "default";
+export type ManagementPolicyName = "default" | string;
 
 // @public
 export interface ManagementPolicyRule {
@@ -946,7 +946,7 @@ export type OperationsListResponse = OperationListResult & {
 };
 
 // @public
-type Permissions_2 = "r" | "d" | "w" | "l" | "a" | "c" | "u" | "p";
+type Permissions_2 = "r" | "d" | "w" | "l" | "a" | "c" | "u" | "p" | string;
 
 export { Permissions_2 as Permissions }
 
@@ -968,7 +968,7 @@ export interface PrivateEndpointConnectionListResult {
 }
 
 // @public
-export type PrivateEndpointConnectionProvisioningState = "Succeeded" | "Creating" | "Deleting" | "Failed";
+export type PrivateEndpointConnectionProvisioningState = "Succeeded" | "Creating" | "Deleting" | "Failed" | string;
 
 // @public
 export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & {
@@ -995,7 +995,7 @@ export type PrivateEndpointConnectionsPutResponse = PrivateEndpointConnection & 
 };
 
 // @public
-export type PrivateEndpointServiceConnectionStatus = "Pending" | "Approved" | "Rejected";
+export type PrivateEndpointServiceConnectionStatus = "Pending" | "Approved" | "Rejected" | string;
 
 // @public
 export type PrivateLinkResource = Resource & {
@@ -1034,7 +1034,7 @@ export type PublicAccess = "Container" | "Blob" | "None";
 export type Reason = "AccountNameInvalid" | "AlreadyExists";
 
 // @public
-export type ReasonCode = "QuotaId" | "NotAvailableForSubscription";
+export type ReasonCode = "QuotaId" | "NotAvailableForSubscription" | string;
 
 // @public (undocumented)
 export interface Resource {
@@ -1058,10 +1058,10 @@ export interface Restriction {
 }
 
 // @public
-export type RootSquashType = "NoRootSquash" | "RootSquash" | "AllSquash";
+export type RootSquashType = "NoRootSquash" | "RootSquash" | "AllSquash" | string;
 
 // @public
-export type RoutingChoice = "MicrosoftRouting" | "InternetRouting";
+export type RoutingChoice = "MicrosoftRouting" | "InternetRouting" | string;
 
 // @public
 export interface RoutingPreference {
@@ -1071,10 +1071,10 @@ export interface RoutingPreference {
 }
 
 // @public
-export type RuleType = "Lifecycle";
+export type RuleType = "Lifecycle" | string;
 
 // @public
-export type Services = "b" | "q" | "t" | "f";
+export type Services = "b" | "q" | "t" | "f" | string;
 
 // @public
 export interface ServiceSasParameters {
@@ -1104,13 +1104,13 @@ export interface ServiceSpecification {
 }
 
 // @public
-export type ShareAccessTier = "TransactionOptimized" | "Hot" | "Cool" | "Premium";
+export type ShareAccessTier = "TransactionOptimized" | "Hot" | "Cool" | "Premium" | string;
 
 // @public
-export type SignedResource = "b" | "c" | "f" | "s";
+export type SignedResource = "b" | "c" | "f" | "s" | string;
 
 // @public
-export type SignedResourceTypes = "s" | "c" | "o";
+export type SignedResourceTypes = "s" | "c" | "o" | string;
 
 // @public
 export interface Sku {
@@ -1136,7 +1136,7 @@ export interface SkuInformation {
 }
 
 // @public
-export type SkuName = "Standard_LRS" | "Standard_GRS" | "Standard_RAGRS" | "Standard_ZRS" | "Premium_LRS" | "Premium_ZRS" | "Standard_GZRS" | "Standard_RAGZRS";
+export type SkuName = "Standard_LRS" | "Standard_GRS" | "Standard_RAGRS" | "Standard_ZRS" | "Premium_LRS" | "Premium_ZRS" | "Standard_GZRS" | "Standard_RAGZRS" | string;
 
 // @public
 export type SkusListResponse = StorageSkuListResult & {
