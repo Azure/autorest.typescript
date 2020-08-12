@@ -926,7 +926,8 @@ export type ProductPropertiesProvisioningStateValues =
   | "Updated"
   | "Deleting"
   | "Deleted"
-  | "OK";
+  | "OK"
+  | string;
 /**
  * Defines values for SubProductPropertiesProvisioningStateValues.
  */
@@ -941,7 +942,8 @@ export type SubProductPropertiesProvisioningStateValues =
   | "Updated"
   | "Deleting"
   | "Deleted"
-  | "OK";
+  | "OK"
+  | string;
 /**
  * Defines values for OperationResultStatus.
  */
@@ -956,7 +958,8 @@ export type OperationResultStatus =
   | "Updated"
   | "Deleting"
   | "Deleted"
-  | "OK";
+  | "OK"
+  | string;
 
 /**
  * Optional parameters.

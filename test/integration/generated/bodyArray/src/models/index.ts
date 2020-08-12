@@ -21,11 +21,11 @@ export interface Product {
 /**
  * Defines values for Enum0.
  */
-export type Enum0 = "foo1" | "foo2" | "foo3";
+export type Enum0 = "foo1" | "foo2" | "foo3" | string;
 /**
  * Defines values for Enum1.
  */
-export type Enum1 = "foo1" | "foo2" | "foo3";
+export type Enum1 = "foo1" | "foo2" | "foo3" | string;
 /**
  * Defines values for FooEnum.
  */

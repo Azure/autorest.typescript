@@ -132,7 +132,8 @@ export type OperationResultStatus =
   | "Updated"
   | "Deleting"
   | "Deleted"
-  | "OK";
+  | "OK"
+  | string;
 
 /**
  * Contains response data for the getNoItemNamePages operation.

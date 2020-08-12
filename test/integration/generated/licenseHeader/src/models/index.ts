@@ -11,7 +11,7 @@ import * as coreHttp from "@azure/core-http";
 /**
  * Defines values for Enum0.
  */
-export type Enum0 = "one" | "two";
+export type Enum0 = "one" | "two" | string;
 
 /**
  * Contains response data for the apiV1ValueGet operation.

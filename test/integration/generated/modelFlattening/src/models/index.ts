@@ -163,7 +163,8 @@ export type FlattenedProductPropertiesProvisioningStateValues =
   | "Updated"
   | "Deleting"
   | "Deleted"
-  | "OK";
+  | "OK"
+  | string;
 
 /**
  * Optional parameters.
