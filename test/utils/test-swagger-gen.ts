@@ -289,7 +289,7 @@ const generateSwaggers = async (
         swaggerPath = `node_modules/@microsoft.azure/autorest.testserver/swagger/${swagger}`;
       }
 
-      let autorestCommand = `autorest --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version}`;
+      let autorestCommand = `autorest --clear-output-folder=true --license-header=${!!licenseHeader} --add-credentials=${!!addCredentials} --typescript --output-folder=./test/integration/generated/${name} --use=. --title=${clientName} --input-file=${swaggerPath} --package-name=${packageName} --package-version=${package_version}`;
 
       if (isDebugging) {
         autorestCommand = `${autorestCommand} --typescript.debugger`;
