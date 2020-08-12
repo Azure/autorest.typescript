@@ -1,0 +1,2060 @@
+{
+  "metadata": {
+    "toolPackage": "@microsoft/api-extractor",
+    "toolVersion": "7.9.4",
+    "schemaVersion": 1003,
+    "oldestForwardsCompatibleVersion": 1001
+  },
+  "kind": "Package",
+  "canonicalReference": "arm-package-subscriptions-2019-06!",
+  "docComment": "",
+  "name": "arm-package-subscriptions-2019-06",
+  "members": [
+    {
+      "kind": "EntryPoint",
+      "canonicalReference": "arm-package-subscriptions-2019-06!",
+      "name": "",
+      "members": [
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-subscriptions-2019-06!Location_2:interface",
+          "docComment": "/**\n * Location information.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface Location "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "Location_2",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#displayName:member",
+              "docComment": "/**\n * The display name of the location.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly displayName?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "displayName",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#id:member",
+              "docComment": "/**\n * The fully qualified ID of the location. For example, /subscriptions/00000000-0000-0000-0000-000000000000/locations/westus.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly id?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "id",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#latitude:member",
+              "docComment": "/**\n * The latitude of the location.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly latitude?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "latitude",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#longitude:member",
+              "docComment": "/**\n * The longitude of the location.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly longitude?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "longitude",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#name:member",
+              "docComment": "/**\n * The location name.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly name?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#subscriptionId:member",
+              "docComment": "/**\n * The subscription ID.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly subscriptionId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "subscriptionId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-subscriptions-2019-06!LocationListResult:interface",
+          "docComment": "/**\n * Location list operation response.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface LocationListResult "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "LocationListResult",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!LocationListResult#value:member",
+              "docComment": "/**\n * An array of locations.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "value?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Location",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!Location:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "value",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-subscriptions-2019-06!ManagedByTenant:interface",
+          "docComment": "/**\n * Information about a tenant managing the subscription.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ManagedByTenant "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagedByTenant",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!ManagedByTenant#tenantId:member",
+              "docComment": "/**\n * The tenant ID of the managing tenant. This is a GUID.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly tenantId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "tenantId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-subscriptions-2019-06!Operation:interface",
+          "docComment": "/**\n * Microsoft.Resources operation\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface Operation "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "Operation",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Operation#display:member",
+              "docComment": "/**\n * The object that represents the operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "display?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationDisplay",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!OperationDisplay:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "display",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Operation#name:member",
+              "docComment": "/**\n * Operation name: {provider}/{resource}/{operation}\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "name?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-subscriptions-2019-06!OperationDisplay:interface",
+          "docComment": "/**\n * The object that represents the operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OperationDisplay "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationDisplay",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!OperationDisplay#description:member",
+              "docComment": "/**\n * Description of the operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "description?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "description",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!OperationDisplay#operation:member",
+              "docComment": "/**\n * Operation type: Read, write, delete, etc.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "operation?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "operation",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!OperationDisplay#provider:member",
+              "docComment": "/**\n * Service provider: Microsoft.Resources\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "provider?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "provider",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!OperationDisplay#resource:member",
+              "docComment": "/**\n * Resource on which the operation is performed: Profile, endpoint, etc.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "resource?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "resource",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-subscriptions-2019-06!OperationListResult:interface",
+          "docComment": "/**\n * Result of the request to list Microsoft.Resources operations. It contains a list of operations and a URL link to get the next set of results.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OperationListResult "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationListResult",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!OperationListResult#nextLink:member",
+              "docComment": "/**\n * URL to get the next set of operation list results if there are any.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "nextLink?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "nextLink",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!OperationListResult#value:member",
+              "docComment": "/**\n * List of Microsoft.Resources operations.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "value?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "value",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-subscriptions-2019-06!OperationsListNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type OperationsListNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "arm-package-subscriptions-2019-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "arm-package-subscriptions-2019-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-subscriptions-2019-06!OperationsListResponse:type",
+          "docComment": "/**\n * Contains response data for the list operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type OperationsListResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "arm-package-subscriptions-2019-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "arm-package-subscriptions-2019-06!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-subscriptions-2019-06!SpendingLimit:type",
+          "docComment": "/**\n * Defines values for SpendingLimit.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type SpendingLimit = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"On\" | \"Off\" | \"CurrentPeriodOff\""
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SpendingLimit",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-subscriptions-2019-06!Subscription:interface",
+          "docComment": "/**\n * Subscription information.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface Subscription "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "Subscription",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#authorizationSource:member",
+              "docComment": "/**\n * The authorization source of the request. Valid values are one or more combinations of Legacy, RoleBased, Bypassed, Direct and Management. For example, 'Legacy, RoleBased'.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "authorizationSource?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "authorizationSource",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#displayName:member",
+              "docComment": "/**\n * The subscription display name.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly displayName?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "displayName",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#id:member",
+              "docComment": "/**\n * The fully qualified ID for the subscription. For example, /subscriptions/00000000-0000-0000-0000-000000000000.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly id?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "id",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#managedByTenants:member",
+              "docComment": "/**\n * An array containing the tenants managing the subscription.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "managedByTenants?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ManagedByTenant",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!ManagedByTenant:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "managedByTenants",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#state:member",
+              "docComment": "/**\n * The subscription state. Possible values are Enabled, Warned, PastDue, Disabled, and Deleted.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly state?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SubscriptionState",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionState:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "state",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#subscriptionId:member",
+              "docComment": "/**\n * The subscription ID.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly subscriptionId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "subscriptionId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#subscriptionPolicies:member",
+              "docComment": "/**\n * The subscription policies.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "subscriptionPolicies?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SubscriptionPolicies",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionPolicies:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "subscriptionPolicies",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#tenantId:member",
+              "docComment": "/**\n * The subscription tenant ID.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly tenantId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "tenantId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClient:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class SubscriptionClient extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "SubscriptionClientContext",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientContext:class"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionClient",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClient:constructor(1)",
+              "docComment": "/**\n * Initializes a new instance of the SubscriptionClient class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param options - The parameter options\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(credentials: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TokenCredential",
+                  "canonicalReference": "@azure/core-auth!TokenCredential:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceClientCredentials",
+                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SubscriptionClientOptionalParams",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "credentials",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 5
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 6,
+                    "endIndex": 7
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClient#operations:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "operations: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operations",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!Operations:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "operations",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClient#subscriptions:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "subscriptions: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Subscriptions",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!Subscriptions:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "subscriptions",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClient#tenants:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "tenants: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Tenants",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!Tenants:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "tenants",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientContext:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class SubscriptionClientContext extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceClient",
+              "canonicalReference": "@azure/core-http!ServiceClient:class"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionClientContext",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientContext:constructor(1)",
+              "docComment": "/**\n * Initializes a new instance of the SubscriptionClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param options - The parameter options\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(credentials: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TokenCredential",
+                  "canonicalReference": "@azure/core-auth!TokenCredential:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceClientCredentials",
+                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SubscriptionClientOptionalParams",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "credentials",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 5
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 6,
+                    "endIndex": 7
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientContext#$host:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "$host: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "$host",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientContext#apiVersion:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "apiVersion: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "apiVersion",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface SubscriptionClientOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceClientOptions",
+              "canonicalReference": "@azure/core-http!ServiceClientOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionClientOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams#$host:member",
+              "docComment": "/**\n * server parameter\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "$host?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "$host",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams#apiVersion:member",
+              "docComment": "/**\n * Api Version\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "apiVersion?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "apiVersion",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams#endpoint:member",
+              "docComment": "/**\n * Overrides client endpoint.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "endpoint?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "endpoint",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionListResult:interface",
+          "docComment": "/**\n * Subscription list operation response.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface SubscriptionListResult "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionListResult",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionListResult#nextLink:member",
+              "docComment": "/**\n * The URL to get the next set of results.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "nextLink",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionListResult#value:member",
+              "docComment": "/**\n * An array of subscriptions.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "value?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Subscription",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!Subscription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "value",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionPolicies:interface",
+          "docComment": "/**\n * Subscription policies.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface SubscriptionPolicies "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionPolicies",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionPolicies#locationPlacementId:member",
+              "docComment": "/**\n * The subscription location placement ID. The ID indicates which regions are visible for a subscription. For example, a subscription with a location placement Id of Public_2014-09-01 has access to Azure public regions.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly locationPlacementId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "locationPlacementId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionPolicies#quotaId:member",
+              "docComment": "/**\n * The subscription quota ID.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly quotaId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "quotaId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionPolicies#spendingLimit:member",
+              "docComment": "/**\n * The subscription spending limit.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly spendingLimit?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SpendingLimit",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!SpendingLimit:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "spendingLimit",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsGetResponse:type",
+          "docComment": "/**\n * Contains response data for the get operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type SubscriptionsGetResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "Subscription",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Subscription",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsGetResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsListLocationsResponse:type",
+          "docComment": "/**\n * Contains response data for the listLocations operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type SubscriptionsListLocationsResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "LocationListResult",
+              "canonicalReference": "arm-package-subscriptions-2019-06!LocationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LocationListResult",
+              "canonicalReference": "arm-package-subscriptions-2019-06!LocationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListLocationsResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsListNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type SubscriptionsListNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "SubscriptionListResult",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "SubscriptionListResult",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsListResponse:type",
+          "docComment": "/**\n * Contains response data for the list operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type SubscriptionsListResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "SubscriptionListResult",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "SubscriptionListResult",
+              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionsListResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionState:type",
+          "docComment": "/**\n * Defines values for SubscriptionState.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type SubscriptionState = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"Enabled\" | \"Warned\" | \"PastDue\" | \"Disabled\" | \"Deleted\""
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubscriptionState",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-subscriptions-2019-06!TenantCategory:type",
+          "docComment": "/**\n * Defines values for TenantCategory.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type TenantCategory = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"Home\" | \"ProjectedBy\" | \"ManagedBy\""
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantCategory",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription:interface",
+          "docComment": "/**\n * Tenant Id information.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface TenantIdDescription "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantIdDescription",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#country:member",
+              "docComment": "/**\n * Country/region name of the address for the tenant.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly country?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "country",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#countryCode:member",
+              "docComment": "/**\n * Country/region abbreviation for the tenant.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly countryCode?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "countryCode",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#displayName:member",
+              "docComment": "/**\n * The display name of the tenant.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly displayName?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "displayName",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#domains:member",
+              "docComment": "/**\n * The list of domains for the tenant.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly domains?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "domains",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#id:member",
+              "docComment": "/**\n * The fully qualified ID of the tenant. For example, /tenants/00000000-0000-0000-0000-000000000000.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly id?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "id",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#tenantCategory:member",
+              "docComment": "/**\n * The tenant category.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly tenantCategory?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantCategory",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!TenantCategory:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "tenantCategory",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#tenantId:member",
+              "docComment": "/**\n * The tenant ID. For example, 00000000-0000-0000-0000-000000000000.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly tenantId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "tenantId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-subscriptions-2019-06!TenantListResult:interface",
+          "docComment": "/**\n * Tenant Ids information.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface TenantListResult "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantListResult",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!TenantListResult#nextLink:member",
+              "docComment": "/**\n * The URL to use for getting the next set of results.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "nextLink: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "nextLink",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-subscriptions-2019-06!TenantListResult#value:member",
+              "docComment": "/**\n * An array of tenants.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "value?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TenantIdDescription",
+                  "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "value",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-subscriptions-2019-06!TenantsListNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type TenantsListNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "TenantListResult",
+              "canonicalReference": "arm-package-subscriptions-2019-06!TenantListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "TenantListResult",
+              "canonicalReference": "arm-package-subscriptions-2019-06!TenantListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantsListNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-subscriptions-2019-06!TenantsListResponse:type",
+          "docComment": "/**\n * Contains response data for the list operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type TenantsListResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "TenantListResult",
+              "canonicalReference": "arm-package-subscriptions-2019-06!TenantListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "TenantListResult",
+              "canonicalReference": "arm-package-subscriptions-2019-06!TenantListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TenantsListResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        }
+      ]
+    }
+  ]
+}

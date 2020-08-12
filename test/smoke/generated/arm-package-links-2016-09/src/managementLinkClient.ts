@@ -7,13 +7,11 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { Operations, ResourceLinks } from "./operations";
 import { ManagementLinkClientContext } from "./managementLinkClientContext";
 import { ManagementLinkClientOptionalParams } from "./models";
 
-class ManagementLinkClient extends ManagementLinkClientContext {
+export class ManagementLinkClient extends ManagementLinkClientContext {
   /**
    * Initializes a new instance of the ManagementLinkClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -26,20 +24,10 @@ class ManagementLinkClient extends ManagementLinkClientContext {
     options?: ManagementLinkClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.operations = new operations.Operations(this);
-    this.resourceLinks = new operations.ResourceLinks(this);
+    this.operations = new Operations(this);
+    this.resourceLinks = new ResourceLinks(this);
   }
 
-  operations: operations.Operations;
-  resourceLinks: operations.ResourceLinks;
+  operations: Operations;
+  resourceLinks: ResourceLinks;
 }
-
-// Operation Specifications
-
-export {
-  ManagementLinkClient,
-  ManagementLinkClientContext,
-  Models as ManagementLinkModels,
-  Mappers as ManagementLinkMappers
-};
-export * from "./operations";

@@ -1,0 +1,2348 @@
+{
+  "metadata": {
+    "toolPackage": "@microsoft/api-extractor",
+    "toolVersion": "7.9.4",
+    "schemaVersion": 1003,
+    "oldestForwardsCompatibleVersion": 1001
+  },
+  "kind": "Package",
+  "canonicalReference": "arm-package-locks-2016-09!",
+  "docComment": "",
+  "name": "arm-package-locks-2016-09",
+  "members": [
+    {
+      "kind": "EntryPoint",
+      "canonicalReference": "arm-package-locks-2016-09!",
+      "name": "",
+      "members": [
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!AuthorizationOperationsListNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type AuthorizationOperationsListNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "arm-package-locks-2016-09!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "arm-package-locks-2016-09!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "AuthorizationOperationsListNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!AuthorizationOperationsListResponse:type",
+          "docComment": "/**\n * Contains response data for the list operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type AuthorizationOperationsListResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "arm-package-locks-2016-09!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "arm-package-locks-2016-09!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "AuthorizationOperationsListResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!LockLevel:type",
+          "docComment": "/**\n * Defines values for LockLevel.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type LockLevel = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"NotSpecified\" | \"CanNotDelete\" | \"ReadOnly\""
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "LockLevel",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLockClient:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class ManagementLockClient extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockClientContext",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientContext:class"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLockClient",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClient:constructor(1)",
+              "docComment": "/**\n * Initializes a new instance of the ManagementLockClient class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The parameter options\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(credentials: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TokenCredential",
+                  "canonicalReference": "@azure/core-auth!TokenCredential:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceClientCredentials",
+                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", subscriptionId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ManagementLockClientOptionalParams",
+                  "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "credentials",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 5
+                  }
+                },
+                {
+                  "parameterName": "subscriptionId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 6,
+                    "endIndex": 7
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 8,
+                    "endIndex": 9
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClient#authorizationOperations:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "authorizationOperations: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AuthorizationOperations",
+                  "canonicalReference": "arm-package-locks-2016-09!AuthorizationOperations:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "authorizationOperations",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClient#managementLocks:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "managementLocks: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ManagementLocks",
+                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocks:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "managementLocks",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientContext:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class ManagementLockClientContext extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceClient",
+              "canonicalReference": "@azure/core-http!ServiceClient:class"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLockClientContext",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientContext:constructor(1)",
+              "docComment": "/**\n * Initializes a new instance of the ManagementLockClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The parameter options\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(credentials: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TokenCredential",
+                  "canonicalReference": "@azure/core-auth!TokenCredential:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceClientCredentials",
+                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", subscriptionId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ManagementLockClientOptionalParams",
+                  "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "credentials",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 5
+                  }
+                },
+                {
+                  "parameterName": "subscriptionId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 6,
+                    "endIndex": 7
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 8,
+                    "endIndex": 9
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientContext#$host:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "$host: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "$host",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientContext#apiVersion:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "apiVersion: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "apiVersion",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientContext#subscriptionId:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "subscriptionId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "subscriptionId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ManagementLockClientOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceClientOptions",
+              "canonicalReference": "@azure/core-http!ServiceClientOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLockClientOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientOptionalParams#$host:member",
+              "docComment": "/**\n * server parameter\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "$host?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "$host",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientOptionalParams#apiVersion:member",
+              "docComment": "/**\n * Api Version\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "apiVersion?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "apiVersion",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientOptionalParams#endpoint:member",
+              "docComment": "/**\n * Overrides client endpoint.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "endpoint?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "endpoint",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface",
+          "docComment": "/**\n * The list of locks.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ManagementLockListResult "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLockListResult",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult#nextLink:member",
+              "docComment": "/**\n * The URL to use for getting the next set of results.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "nextLink?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "nextLink",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult#value:member",
+              "docComment": "/**\n * The list of locks.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "value?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ManagementLockObject",
+                  "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "value",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface",
+          "docComment": "/**\n * The lock information.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ManagementLockObject "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLockObject",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject#id:member",
+              "docComment": "/**\n * The resource ID of the lock.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly id?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "id",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject#level:member",
+              "docComment": "/**\n * The level of the lock. Possible values are: NotSpecified, CanNotDelete, ReadOnly. CanNotDelete means authorized users are able to read and modify the resources, but not delete. ReadOnly means authorized users can only read from a resource, but they can't modify or delete it.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "level: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LockLevel",
+                  "canonicalReference": "arm-package-locks-2016-09!LockLevel:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "level",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject#name:member",
+              "docComment": "/**\n * The name of the lock.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly name?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject#notes:member",
+              "docComment": "/**\n * Notes about the lock. Maximum of 512 characters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "notes?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "notes",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject#owners:member",
+              "docComment": "/**\n * The owners of the lock.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "owners?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ManagementLockOwner",
+                  "canonicalReference": "arm-package-locks-2016-09!ManagementLockOwner:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "owners",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject#type:member",
+              "docComment": "/**\n * The resource type of the lock - Microsoft.Authorization/locks.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly type?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "type",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLockOwner:interface",
+          "docComment": "/**\n * Lock owner properties.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ManagementLockOwner "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLockOwner",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockOwner#applicationId:member",
+              "docComment": "/**\n * The application ID of the lock owner.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "applicationId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "applicationId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse:type",
+          "docComment": "/**\n * Contains response data for the createOrUpdateAtResourceGroupLevel operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockObject",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockObject",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceLevelResponse:type",
+          "docComment": "/**\n * Contains response data for the createOrUpdateAtResourceLevel operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagementLocksCreateOrUpdateAtResourceLevelResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockObject",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockObject",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksCreateOrUpdateAtResourceLevelResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse:type",
+          "docComment": "/**\n * Contains response data for the createOrUpdateAtSubscriptionLevel operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockObject",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockObject",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateByScopeResponse:type",
+          "docComment": "/**\n * Contains response data for the createOrUpdateByScope operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagementLocksCreateOrUpdateByScopeResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockObject",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockObject",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksCreateOrUpdateByScopeResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetAtResourceGroupLevelResponse:type",
+          "docComment": "/**\n * Contains response data for the getAtResourceGroupLevel operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagementLocksGetAtResourceGroupLevelResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockObject",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockObject",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksGetAtResourceGroupLevelResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetAtResourceLevelResponse:type",
+          "docComment": "/**\n * Contains response data for the getAtResourceLevel operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagementLocksGetAtResourceLevelResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockObject",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockObject",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksGetAtResourceLevelResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetAtSubscriptionLevelResponse:type",
+          "docComment": "/**\n * Contains response data for the getAtSubscriptionLevel operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagementLocksGetAtSubscriptionLevelResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockObject",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockObject",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksGetAtSubscriptionLevelResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetByScopeResponse:type",
+          "docComment": "/**\n * Contains response data for the getByScope operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagementLocksGetByScopeResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockObject",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockObject",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksGetByScopeResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ManagementLocksListAtResourceGroupLevelNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksListAtResourceGroupLevelNextOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelNextOptionalParams#filter:member",
+              "docComment": "/**\n * The filter to apply on the operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "filter?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "filter",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listAtResourceGroupLevelNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagementLocksListAtResourceGroupLevelNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockListResult",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockListResult",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksListAtResourceGroupLevelNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ManagementLocksListAtResourceGroupLevelOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksListAtResourceGroupLevelOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelOptionalParams#filter:member",
+              "docComment": "/**\n * The filter to apply on the operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "filter?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "filter",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelResponse:type",
+          "docComment": "/**\n * Contains response data for the listAtResourceGroupLevel operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagementLocksListAtResourceGroupLevelResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockListResult",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockListResult",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksListAtResourceGroupLevelResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceLevelNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ManagementLocksListAtResourceLevelNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksListAtResourceLevelNextOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceLevelNextOptionalParams#filter:member",
+              "docComment": "/**\n * The filter to apply on the operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "filter?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "filter",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceLevelNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listAtResourceLevelNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagementLocksListAtResourceLevelNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockListResult",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockListResult",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksListAtResourceLevelNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceLevelOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ManagementLocksListAtResourceLevelOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksListAtResourceLevelOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceLevelOptionalParams#filter:member",
+              "docComment": "/**\n * The filter to apply on the operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "filter?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "filter",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceLevelResponse:type",
+          "docComment": "/**\n * Contains response data for the listAtResourceLevel operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagementLocksListAtResourceLevelResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockListResult",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockListResult",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksListAtResourceLevelResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ManagementLocksListAtSubscriptionLevelNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksListAtSubscriptionLevelNextOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelNextOptionalParams#filter:member",
+              "docComment": "/**\n * The filter to apply on the operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "filter?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "filter",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listAtSubscriptionLevelNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagementLocksListAtSubscriptionLevelNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockListResult",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockListResult",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksListAtSubscriptionLevelNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ManagementLocksListAtSubscriptionLevelOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksListAtSubscriptionLevelOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelOptionalParams#filter:member",
+              "docComment": "/**\n * The filter to apply on the operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "filter?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "filter",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelResponse:type",
+          "docComment": "/**\n * Contains response data for the listAtSubscriptionLevel operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagementLocksListAtSubscriptionLevelResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockListResult",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockListResult",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksListAtSubscriptionLevelResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListByScopeNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ManagementLocksListByScopeNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksListByScopeNextOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListByScopeNextOptionalParams#filter:member",
+              "docComment": "/**\n * The filter to apply on the operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "filter?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "filter",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListByScopeNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listByScopeNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagementLocksListByScopeNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockListResult",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockListResult",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksListByScopeNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListByScopeOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ManagementLocksListByScopeOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksListByScopeOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListByScopeOptionalParams#filter:member",
+              "docComment": "/**\n * The filter to apply on the operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "filter?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "filter",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListByScopeResponse:type",
+          "docComment": "/**\n * Contains response data for the listByScope operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ManagementLocksListByScopeResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockListResult",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLockListResult",
+              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLocksListByScopeResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-locks-2016-09!Operation:interface",
+          "docComment": "/**\n * Microsoft.Authorization operation\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface Operation "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "Operation",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!Operation#display:member",
+              "docComment": "/**\n * The object that represents the operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "display?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationDisplay",
+                  "canonicalReference": "arm-package-locks-2016-09!OperationDisplay:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "display",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!Operation#name:member",
+              "docComment": "/**\n * Operation name: {provider}/{resource}/{operation}\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "name?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-locks-2016-09!OperationDisplay:interface",
+          "docComment": "/**\n * The object that represents the operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OperationDisplay "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationDisplay",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!OperationDisplay#operation:member",
+              "docComment": "/**\n * Operation type: Read, write, delete, etc.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "operation?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "operation",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!OperationDisplay#provider:member",
+              "docComment": "/**\n * Service provider: Microsoft.Authorization\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "provider?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "provider",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!OperationDisplay#resource:member",
+              "docComment": "/**\n * Resource on which the operation is performed: Profile, endpoint, etc.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "resource?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "resource",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-locks-2016-09!OperationListResult:interface",
+          "docComment": "/**\n * Result of the request to list Microsoft.Authorization operations. It contains a list of operations and a URL link to get the next set of results.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OperationListResult "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationListResult",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!OperationListResult#nextLink:member",
+              "docComment": "/**\n * URL to get the next set of operation list results if there are any.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "nextLink?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "nextLink",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-locks-2016-09!OperationListResult#value:member",
+              "docComment": "/**\n * List of Microsoft.Authorization operations.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "value?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "arm-package-locks-2016-09!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "value",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        }
+      ]
+    }
+  ]
+}

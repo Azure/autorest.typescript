@@ -7,13 +7,11 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import { DeploymentScripts } from "./operations";
 import { DeploymentScriptsClientContext } from "./deploymentScriptsClientContext";
 import { DeploymentScriptsClientOptionalParams } from "./models";
 
-class DeploymentScriptsClient extends DeploymentScriptsClientContext {
+export class DeploymentScriptsClient extends DeploymentScriptsClientContext {
   /**
    * Initializes a new instance of the DeploymentScriptsClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -26,18 +24,8 @@ class DeploymentScriptsClient extends DeploymentScriptsClientContext {
     options?: DeploymentScriptsClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.deploymentScripts = new operations.DeploymentScripts(this);
+    this.deploymentScripts = new DeploymentScripts(this);
   }
 
-  deploymentScripts: operations.DeploymentScripts;
+  deploymentScripts: DeploymentScripts;
 }
-
-// Operation Specifications
-
-export {
-  DeploymentScriptsClient,
-  DeploymentScriptsClientContext,
-  Models as DeploymentScriptsModels,
-  Mappers as DeploymentScriptsMappers
-};
-export * from "./operations";

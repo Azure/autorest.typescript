@@ -40,9 +40,11 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   );
 
   // Check if there are any non client-level operations to import
-  const hasImportedOperations = clientDetails.operationGroups.some(
+  const importedOperations = clientDetails.operationGroups.filter(
     og => !og.isTopLevel
   );
+
+  const hasImportedOperations = importedOperations.length > 0;
 
   const hasCredentials = !!clientDetails.options.addCredentials;
   const hasClientOptionalParams = clientDetails.parameters.some(
@@ -77,7 +79,9 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
 
   if (hasImportedOperations) {
     clientFile.addImportDeclaration({
-      namespaceImport: "operations",
+      namedImports: importedOperations.map(o =>
+        normalizeName(o.name, NameType.OperationGroup, true /* shouldGuard */)
+      ),
       moduleSpecifier: "./operations"
     });
   }
@@ -204,7 +208,7 @@ function getOperationGroupsDeclarationDetails(
   return operationGroups.map(og => {
     return {
       name: normalizeName(og.name, NameType.Property),
-      typeName: `operations.${normalizeName(
+      typeName: `${normalizeName(
         og.name,
         NameType.OperationGroup,
         true /* shouldGuard */

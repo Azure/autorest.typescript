@@ -7,13 +7,42 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import {
+  Operations,
+  AvailabilitySets,
+  ProximityPlacementGroups,
+  DedicatedHostGroups,
+  DedicatedHosts,
+  SshPublicKeys,
+  VirtualMachineExtensionImages,
+  VirtualMachineExtensions,
+  VirtualMachineImages,
+  Usage,
+  VirtualMachines,
+  VirtualMachineSizes,
+  Images,
+  VirtualMachineScaleSets,
+  VirtualMachineScaleSetExtensions,
+  VirtualMachineScaleSetRollingUpgrades,
+  VirtualMachineScaleSetVMExtensions,
+  VirtualMachineScaleSetVMs,
+  LogAnalytics,
+  VirtualMachineRunCommands,
+  ResourceSkus,
+  Disks,
+  Snapshots,
+  DiskEncryptionSets,
+  Galleries,
+  GalleryImages,
+  GalleryImageVersions,
+  GalleryApplications,
+  GalleryApplicationVersions,
+  ContainerServices
+} from "./operations";
 import { ComputeManagementClientContext } from "./computeManagementClientContext";
 import { ComputeManagementClientOptionalParams } from "./models";
 
-class ComputeManagementClient extends ComputeManagementClientContext {
+export class ComputeManagementClient extends ComputeManagementClientContext {
   /**
    * Initializes a new instance of the ComputeManagementClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -27,94 +56,74 @@ class ComputeManagementClient extends ComputeManagementClientContext {
     options?: ComputeManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.operations = new operations.Operations(this);
-    this.availabilitySets = new operations.AvailabilitySets(this);
-    this.proximityPlacementGroups = new operations.ProximityPlacementGroups(
+    this.operations = new Operations(this);
+    this.availabilitySets = new AvailabilitySets(this);
+    this.proximityPlacementGroups = new ProximityPlacementGroups(this);
+    this.dedicatedHostGroups = new DedicatedHostGroups(this);
+    this.dedicatedHosts = new DedicatedHosts(this);
+    this.sshPublicKeys = new SshPublicKeys(this);
+    this.virtualMachineExtensionImages = new VirtualMachineExtensionImages(
       this
     );
-    this.dedicatedHostGroups = new operations.DedicatedHostGroups(this);
-    this.dedicatedHosts = new operations.DedicatedHosts(this);
-    this.sshPublicKeys = new operations.SshPublicKeys(this);
-    this.virtualMachineExtensionImages = new operations.VirtualMachineExtensionImages(
+    this.virtualMachineExtensions = new VirtualMachineExtensions(this);
+    this.virtualMachineImages = new VirtualMachineImages(this);
+    this.usage = new Usage(this);
+    this.virtualMachines = new VirtualMachines(this);
+    this.virtualMachineSizes = new VirtualMachineSizes(this);
+    this.images = new Images(this);
+    this.virtualMachineScaleSets = new VirtualMachineScaleSets(this);
+    this.virtualMachineScaleSetExtensions = new VirtualMachineScaleSetExtensions(
       this
     );
-    this.virtualMachineExtensions = new operations.VirtualMachineExtensions(
+    this.virtualMachineScaleSetRollingUpgrades = new VirtualMachineScaleSetRollingUpgrades(
       this
     );
-    this.virtualMachineImages = new operations.VirtualMachineImages(this);
-    this.usage = new operations.Usage(this);
-    this.virtualMachines = new operations.VirtualMachines(this);
-    this.virtualMachineSizes = new operations.VirtualMachineSizes(this);
-    this.images = new operations.Images(this);
-    this.virtualMachineScaleSets = new operations.VirtualMachineScaleSets(this);
-    this.virtualMachineScaleSetExtensions = new operations.VirtualMachineScaleSetExtensions(
+    this.virtualMachineScaleSetVMExtensions = new VirtualMachineScaleSetVMExtensions(
       this
     );
-    this.virtualMachineScaleSetRollingUpgrades = new operations.VirtualMachineScaleSetRollingUpgrades(
-      this
-    );
-    this.virtualMachineScaleSetVMExtensions = new operations.VirtualMachineScaleSetVMExtensions(
-      this
-    );
-    this.virtualMachineScaleSetVMs = new operations.VirtualMachineScaleSetVMs(
-      this
-    );
-    this.logAnalytics = new operations.LogAnalytics(this);
-    this.virtualMachineRunCommands = new operations.VirtualMachineRunCommands(
-      this
-    );
-    this.resourceSkus = new operations.ResourceSkus(this);
-    this.disks = new operations.Disks(this);
-    this.snapshots = new operations.Snapshots(this);
-    this.diskEncryptionSets = new operations.DiskEncryptionSets(this);
-    this.galleries = new operations.Galleries(this);
-    this.galleryImages = new operations.GalleryImages(this);
-    this.galleryImageVersions = new operations.GalleryImageVersions(this);
-    this.galleryApplications = new operations.GalleryApplications(this);
-    this.galleryApplicationVersions = new operations.GalleryApplicationVersions(
-      this
-    );
-    this.containerServices = new operations.ContainerServices(this);
+    this.virtualMachineScaleSetVMs = new VirtualMachineScaleSetVMs(this);
+    this.logAnalytics = new LogAnalytics(this);
+    this.virtualMachineRunCommands = new VirtualMachineRunCommands(this);
+    this.resourceSkus = new ResourceSkus(this);
+    this.disks = new Disks(this);
+    this.snapshots = new Snapshots(this);
+    this.diskEncryptionSets = new DiskEncryptionSets(this);
+    this.galleries = new Galleries(this);
+    this.galleryImages = new GalleryImages(this);
+    this.galleryImageVersions = new GalleryImageVersions(this);
+    this.galleryApplications = new GalleryApplications(this);
+    this.galleryApplicationVersions = new GalleryApplicationVersions(this);
+    this.containerServices = new ContainerServices(this);
   }
 
-  operations: operations.Operations;
-  availabilitySets: operations.AvailabilitySets;
-  proximityPlacementGroups: operations.ProximityPlacementGroups;
-  dedicatedHostGroups: operations.DedicatedHostGroups;
-  dedicatedHosts: operations.DedicatedHosts;
-  sshPublicKeys: operations.SshPublicKeys;
-  virtualMachineExtensionImages: operations.VirtualMachineExtensionImages;
-  virtualMachineExtensions: operations.VirtualMachineExtensions;
-  virtualMachineImages: operations.VirtualMachineImages;
-  usage: operations.Usage;
-  virtualMachines: operations.VirtualMachines;
-  virtualMachineSizes: operations.VirtualMachineSizes;
-  images: operations.Images;
-  virtualMachineScaleSets: operations.VirtualMachineScaleSets;
-  virtualMachineScaleSetExtensions: operations.VirtualMachineScaleSetExtensions;
-  virtualMachineScaleSetRollingUpgrades: operations.VirtualMachineScaleSetRollingUpgrades;
-  virtualMachineScaleSetVMExtensions: operations.VirtualMachineScaleSetVMExtensions;
-  virtualMachineScaleSetVMs: operations.VirtualMachineScaleSetVMs;
-  logAnalytics: operations.LogAnalytics;
-  virtualMachineRunCommands: operations.VirtualMachineRunCommands;
-  resourceSkus: operations.ResourceSkus;
-  disks: operations.Disks;
-  snapshots: operations.Snapshots;
-  diskEncryptionSets: operations.DiskEncryptionSets;
-  galleries: operations.Galleries;
-  galleryImages: operations.GalleryImages;
-  galleryImageVersions: operations.GalleryImageVersions;
-  galleryApplications: operations.GalleryApplications;
-  galleryApplicationVersions: operations.GalleryApplicationVersions;
-  containerServices: operations.ContainerServices;
+  operations: Operations;
+  availabilitySets: AvailabilitySets;
+  proximityPlacementGroups: ProximityPlacementGroups;
+  dedicatedHostGroups: DedicatedHostGroups;
+  dedicatedHosts: DedicatedHosts;
+  sshPublicKeys: SshPublicKeys;
+  virtualMachineExtensionImages: VirtualMachineExtensionImages;
+  virtualMachineExtensions: VirtualMachineExtensions;
+  virtualMachineImages: VirtualMachineImages;
+  usage: Usage;
+  virtualMachines: VirtualMachines;
+  virtualMachineSizes: VirtualMachineSizes;
+  images: Images;
+  virtualMachineScaleSets: VirtualMachineScaleSets;
+  virtualMachineScaleSetExtensions: VirtualMachineScaleSetExtensions;
+  virtualMachineScaleSetRollingUpgrades: VirtualMachineScaleSetRollingUpgrades;
+  virtualMachineScaleSetVMExtensions: VirtualMachineScaleSetVMExtensions;
+  virtualMachineScaleSetVMs: VirtualMachineScaleSetVMs;
+  logAnalytics: LogAnalytics;
+  virtualMachineRunCommands: VirtualMachineRunCommands;
+  resourceSkus: ResourceSkus;
+  disks: Disks;
+  snapshots: Snapshots;
+  diskEncryptionSets: DiskEncryptionSets;
+  galleries: Galleries;
+  galleryImages: GalleryImages;
+  galleryImageVersions: GalleryImageVersions;
+  galleryApplications: GalleryApplications;
+  galleryApplicationVersions: GalleryApplicationVersions;
+  containerServices: ContainerServices;
 }
-
-// Operation Specifications
-
-export {
-  ComputeManagementClient,
-  ComputeManagementClientContext,
-  Models as ComputeManagementModels,
-  Mappers as ComputeManagementMappers
-};
-export * from "./operations";

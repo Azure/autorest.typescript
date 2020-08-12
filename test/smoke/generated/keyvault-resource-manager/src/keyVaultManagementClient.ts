@@ -7,13 +7,16 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import {
+  Vaults,
+  PrivateEndpointConnections,
+  PrivateLinkResources,
+  Operations
+} from "./operations";
 import { KeyVaultManagementClientContext } from "./keyVaultManagementClientContext";
 import { KeyVaultManagementClientOptionalParams } from "./models";
 
-class KeyVaultManagementClient extends KeyVaultManagementClientContext {
+export class KeyVaultManagementClient extends KeyVaultManagementClientContext {
   /**
    * Initializes a new instance of the KeyVaultManagementClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -27,26 +30,14 @@ class KeyVaultManagementClient extends KeyVaultManagementClientContext {
     options?: KeyVaultManagementClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.vaults = new operations.Vaults(this);
-    this.privateEndpointConnections = new operations.PrivateEndpointConnections(
-      this
-    );
-    this.privateLinkResources = new operations.PrivateLinkResources(this);
-    this.operations = new operations.Operations(this);
+    this.vaults = new Vaults(this);
+    this.privateEndpointConnections = new PrivateEndpointConnections(this);
+    this.privateLinkResources = new PrivateLinkResources(this);
+    this.operations = new Operations(this);
   }
 
-  vaults: operations.Vaults;
-  privateEndpointConnections: operations.PrivateEndpointConnections;
-  privateLinkResources: operations.PrivateLinkResources;
-  operations: operations.Operations;
+  vaults: Vaults;
+  privateEndpointConnections: PrivateEndpointConnections;
+  privateLinkResources: PrivateLinkResources;
+  operations: Operations;
 }
-
-// Operation Specifications
-
-export {
-  KeyVaultManagementClient,
-  KeyVaultManagementClientContext,
-  Models as KeyVaultManagementModels,
-  Mappers as KeyVaultManagementMappers
-};
-export * from "./operations";

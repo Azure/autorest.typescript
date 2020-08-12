@@ -7,13 +7,15 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import * as operations from "./operations";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import {
+  SystemAssignedIdentities,
+  Operations,
+  UserAssignedIdentities
+} from "./operations";
 import { ManagedServiceIdentityClientContext } from "./managedServiceIdentityClientContext";
 import { ManagedServiceIdentityClientOptionalParams } from "./models";
 
-class ManagedServiceIdentityClient extends ManagedServiceIdentityClientContext {
+export class ManagedServiceIdentityClient extends ManagedServiceIdentityClientContext {
   /**
    * Initializes a new instance of the ManagedServiceIdentityClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -26,24 +28,12 @@ class ManagedServiceIdentityClient extends ManagedServiceIdentityClientContext {
     options?: ManagedServiceIdentityClientOptionalParams
   ) {
     super(credentials, subscriptionId, options);
-    this.systemAssignedIdentities = new operations.SystemAssignedIdentities(
-      this
-    );
-    this.operations = new operations.Operations(this);
-    this.userAssignedIdentities = new operations.UserAssignedIdentities(this);
+    this.systemAssignedIdentities = new SystemAssignedIdentities(this);
+    this.operations = new Operations(this);
+    this.userAssignedIdentities = new UserAssignedIdentities(this);
   }
 
-  systemAssignedIdentities: operations.SystemAssignedIdentities;
-  operations: operations.Operations;
-  userAssignedIdentities: operations.UserAssignedIdentities;
+  systemAssignedIdentities: SystemAssignedIdentities;
+  operations: Operations;
+  userAssignedIdentities: UserAssignedIdentities;
 }
-
-// Operation Specifications
-
-export {
-  ManagedServiceIdentityClient,
-  ManagedServiceIdentityClientContext,
-  Models as ManagedServiceIdentityModels,
-  Mappers as ManagedServiceIdentityMappers
-};
-export * from "./operations";

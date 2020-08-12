@@ -1,0 +1,934 @@
+{
+  "metadata": {
+    "toolPackage": "@microsoft/api-extractor",
+    "toolVersion": "7.9.4",
+    "schemaVersion": 1003,
+    "oldestForwardsCompatibleVersion": 1001
+  },
+  "kind": "Package",
+  "canonicalReference": "monitor-data-plane!",
+  "docComment": "",
+  "name": "monitor-data-plane",
+  "members": [
+    {
+      "kind": "EntryPoint",
+      "canonicalReference": "monitor-data-plane!",
+      "name": "",
+      "members": [
+        {
+          "kind": "Interface",
+          "canonicalReference": "monitor-data-plane!ApiError:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApiError "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApiError",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!ApiError#code:member",
+              "docComment": "/**\n * Gets or sets the azure metrics error code\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "code?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "code",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!ApiError#message:member",
+              "docComment": "/**\n * Gets or sets the azure metrics error message\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "message?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "message",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "monitor-data-plane!ApiFailureResponse:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApiFailureResponse "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApiFailureResponse",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!ApiFailureResponse#error:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "error?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApiError",
+                  "canonicalReference": "monitor-data-plane!ApiError:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "error",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "monitor-data-plane!AzureMetricsBaseData:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface AzureMetricsBaseData "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "AzureMetricsBaseData",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!AzureMetricsBaseData#dimNames:member",
+              "docComment": "/**\n * Gets or sets the list of dimension names (optional)\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "dimNames?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "dimNames",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!AzureMetricsBaseData#metric:member",
+              "docComment": "/**\n * Gets or sets the Metric name\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "metric: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "metric",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!AzureMetricsBaseData#namespace:member",
+              "docComment": "/**\n * Gets or sets the Metric namespace\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "namespace: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "namespace",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!AzureMetricsBaseData#series:member",
+              "docComment": "/**\n * Gets or sets the list of time series data for the metric (one per unique dimension combination)\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "series: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AzureTimeSeriesData",
+                  "canonicalReference": "monitor-data-plane!AzureTimeSeriesData:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "series",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "monitor-data-plane!AzureMetricsData:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface AzureMetricsData "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "AzureMetricsData",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!AzureMetricsData#baseData:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "baseData: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AzureMetricsBaseData",
+                  "canonicalReference": "monitor-data-plane!AzureMetricsBaseData:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "baseData",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "monitor-data-plane!AzureMetricsDocument:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface AzureMetricsDocument "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "AzureMetricsDocument",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!AzureMetricsDocument#data:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "data: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AzureMetricsData",
+                  "canonicalReference": "monitor-data-plane!AzureMetricsData:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "data",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!AzureMetricsDocument#time:member",
+              "docComment": "/**\n * Gets or sets Time property (in ISO 8601 format)\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "time: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "time",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "monitor-data-plane!AzureMetricsResult:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface AzureMetricsResult "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "AzureMetricsResult",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!AzureMetricsResult#apiFailureResponse:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "apiFailureResponse?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ApiFailureResponse",
+                  "canonicalReference": "monitor-data-plane!ApiFailureResponse:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "apiFailureResponse",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!AzureMetricsResult#statusCode:member",
+              "docComment": "/**\n * Http status code response\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "statusCode?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "statusCode",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "monitor-data-plane!AzureTimeSeriesData:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface AzureTimeSeriesData "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "AzureTimeSeriesData",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!AzureTimeSeriesData#count:member",
+              "docComment": "/**\n * Gets or sets Count value\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "count: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "count",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!AzureTimeSeriesData#dimValues:member",
+              "docComment": "/**\n * Gets or sets dimension values\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "dimValues?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "dimValues",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!AzureTimeSeriesData#max:member",
+              "docComment": "/**\n * Gets or sets Max value\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "max: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "max",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!AzureTimeSeriesData#min:member",
+              "docComment": "/**\n * Gets or sets Min value\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "min: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "min",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!AzureTimeSeriesData#sum:member",
+              "docComment": "/**\n * Gets or sets Sum value\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "sum: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "sum",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "monitor-data-plane!MetricsCreateResponse:type",
+          "docComment": "/**\n * Contains response data for the create operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type MetricsCreateResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "AzureMetricsResult",
+              "canonicalReference": "monitor-data-plane!AzureMetricsResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AzureMetricsResult",
+              "canonicalReference": "monitor-data-plane!AzureMetricsResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "MetricsCreateResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "monitor-data-plane!MonitorClient:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class MonitorClient extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "MonitorClientContext",
+              "canonicalReference": "monitor-data-plane!MonitorClientContext:class"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "MonitorClient",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "monitor-data-plane!MonitorClient:constructor(1)",
+              "docComment": "/**\n * Initializes a new instance of the MonitorClient class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param options - The parameter options\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(credentials: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TokenCredential",
+                  "canonicalReference": "@azure/core-auth!TokenCredential:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceClientCredentials",
+                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "MonitorClientOptionalParams",
+                  "canonicalReference": "monitor-data-plane!MonitorClientOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "credentials",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 5
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 6,
+                    "endIndex": 7
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "monitor-data-plane!MonitorClient#metrics:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "metrics: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Metrics",
+                  "canonicalReference": "monitor-data-plane!Metrics:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "metrics",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "monitor-data-plane!MonitorClientContext:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class MonitorClientContext extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceClient",
+              "canonicalReference": "@azure/core-http!ServiceClient:class"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "MonitorClientContext",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "monitor-data-plane!MonitorClientContext:constructor(1)",
+              "docComment": "/**\n * Initializes a new instance of the MonitorClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param options - The parameter options\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(credentials: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TokenCredential",
+                  "canonicalReference": "@azure/core-auth!TokenCredential:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceClientCredentials",
+                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "MonitorClientOptionalParams",
+                  "canonicalReference": "monitor-data-plane!MonitorClientOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "credentials",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 5
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 6,
+                    "endIndex": 7
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "monitor-data-plane!MonitorClientContext#$host:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "$host: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "$host",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "monitor-data-plane!MonitorClientOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface MonitorClientOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceClientOptions",
+              "canonicalReference": "@azure/core-http!ServiceClientOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "MonitorClientOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!MonitorClientOptionalParams#$host:member",
+              "docComment": "/**\n * server parameter\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "$host?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "$host",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "monitor-data-plane!MonitorClientOptionalParams#endpoint:member",
+              "docComment": "/**\n * Overrides client endpoint.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "endpoint?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "endpoint",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

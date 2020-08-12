@@ -1,0 +1,1550 @@
+{
+  "metadata": {
+    "toolPackage": "@microsoft/api-extractor",
+    "toolVersion": "7.9.4",
+    "schemaVersion": 1003,
+    "oldestForwardsCompatibleVersion": 1001
+  },
+  "kind": "Package",
+  "canonicalReference": "arm-package-links-2016-09!",
+  "docComment": "",
+  "name": "arm-package-links-2016-09",
+  "members": [
+    {
+      "kind": "EntryPoint",
+      "canonicalReference": "arm-package-links-2016-09!",
+      "name": "",
+      "members": [
+        {
+          "kind": "Class",
+          "canonicalReference": "arm-package-links-2016-09!ManagementLinkClient:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class ManagementLinkClient extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "ManagementLinkClientContext",
+              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientContext:class"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLinkClient",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClient:constructor(1)",
+              "docComment": "/**\n * Initializes a new instance of the ManagementLinkClient class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The parameter options\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(credentials: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TokenCredential",
+                  "canonicalReference": "@azure/core-auth!TokenCredential:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceClientCredentials",
+                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", subscriptionId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ManagementLinkClientOptionalParams",
+                  "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "credentials",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 5
+                  }
+                },
+                {
+                  "parameterName": "subscriptionId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 6,
+                    "endIndex": 7
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 8,
+                    "endIndex": 9
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClient#operations:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "operations: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operations",
+                  "canonicalReference": "arm-package-links-2016-09!Operations:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "operations",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClient#resourceLinks:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "resourceLinks: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourceLinks",
+                  "canonicalReference": "arm-package-links-2016-09!ResourceLinks:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "resourceLinks",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientContext:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class ManagementLinkClientContext extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceClient",
+              "canonicalReference": "@azure/core-http!ServiceClient:class"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLinkClientContext",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientContext:constructor(1)",
+              "docComment": "/**\n * Initializes a new instance of the ManagementLinkClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The parameter options\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(credentials: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TokenCredential",
+                  "canonicalReference": "@azure/core-auth!TokenCredential:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | coreHttp."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceClientCredentials",
+                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", subscriptionId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ManagementLinkClientOptionalParams",
+                  "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "credentials",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 5
+                  }
+                },
+                {
+                  "parameterName": "subscriptionId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 6,
+                    "endIndex": 7
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 8,
+                    "endIndex": 9
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientContext#$host:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "$host: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "$host",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientContext#apiVersion:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "apiVersion: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "apiVersion",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientContext#subscriptionId:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "subscriptionId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "subscriptionId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ManagementLinkClientOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceClientOptions",
+              "canonicalReference": "@azure/core-http!ServiceClientOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ManagementLinkClientOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientOptionalParams#$host:member",
+              "docComment": "/**\n * server parameter\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "$host?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "$host",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientOptionalParams#apiVersion:member",
+              "docComment": "/**\n * Api Version\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "apiVersion?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "apiVersion",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientOptionalParams#endpoint:member",
+              "docComment": "/**\n * Overrides client endpoint.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "endpoint?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "endpoint",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-links-2016-09!Operation:interface",
+          "docComment": "/**\n * Microsoft.Resources operation\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface Operation "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "Operation",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!Operation#display:member",
+              "docComment": "/**\n * The object that represents the operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "display?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OperationDisplay",
+                  "canonicalReference": "arm-package-links-2016-09!OperationDisplay:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "display",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!Operation#name:member",
+              "docComment": "/**\n * Operation name: {provider}/{resource}/{operation}\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "name?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-links-2016-09!OperationDisplay:interface",
+          "docComment": "/**\n * The object that represents the operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OperationDisplay "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationDisplay",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!OperationDisplay#description:member",
+              "docComment": "/**\n * Description of the operation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "description?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "description",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!OperationDisplay#operation:member",
+              "docComment": "/**\n * Operation type: Read, write, delete, etc.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "operation?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "operation",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!OperationDisplay#provider:member",
+              "docComment": "/**\n * Service provider: Microsoft.Resources\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "provider?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "provider",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!OperationDisplay#resource:member",
+              "docComment": "/**\n * Resource on which the operation is performed: Profile, endpoint, etc.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "resource?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "resource",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-links-2016-09!OperationListResult:interface",
+          "docComment": "/**\n * Result of the request to list Microsoft.Resources operations. It contains a list of operations and a URL link to get the next set of results.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OperationListResult "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationListResult",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!OperationListResult#nextLink:member",
+              "docComment": "/**\n * URL to get the next set of operation list results if there are any.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "nextLink?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "nextLink",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!OperationListResult#value:member",
+              "docComment": "/**\n * List of Microsoft.Resources operations.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "value?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Operation",
+                  "canonicalReference": "arm-package-links-2016-09!Operation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "value",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-links-2016-09!OperationsListNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type OperationsListNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "arm-package-links-2016-09!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "arm-package-links-2016-09!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-links-2016-09!OperationsListResponse:type",
+          "docComment": "/**\n * Contains response data for the list operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type OperationsListResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "arm-package-links-2016-09!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "arm-package-links-2016-09!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OperationsListResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-links-2016-09!ResourceLink:interface",
+          "docComment": "/**\n * The resource link.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ResourceLink "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ResourceLink",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLink#id:member",
+              "docComment": "/**\n * The fully qualified ID of the resource link.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly id?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "id",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLink#name:member",
+              "docComment": "/**\n * The name of the resource link.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly name?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLink#properties:member",
+              "docComment": "/**\n * Properties for resource link.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "properties?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourceLinkProperties",
+                  "canonicalReference": "arm-package-links-2016-09!ResourceLinkProperties:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "properties",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLink#type:member",
+              "docComment": "/**\n * The resource link object.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly type?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "any"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "type",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-links-2016-09!ResourceLinkFilter:interface",
+          "docComment": "/**\n * Resource link filter.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ResourceLinkFilter "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ResourceLinkFilter",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLinkFilter#targetId:member",
+              "docComment": "/**\n * The ID of the target resource.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "targetId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "targetId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-links-2016-09!ResourceLinkProperties:interface",
+          "docComment": "/**\n * The resource link properties.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ResourceLinkProperties "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ResourceLinkProperties",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLinkProperties#notes:member",
+              "docComment": "/**\n * Notes about the resource link.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "notes?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "notes",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLinkProperties#sourceId:member",
+              "docComment": "/**\n * The fully qualified ID of the source resource in the link.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly sourceId?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "sourceId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLinkProperties#targetId:member",
+              "docComment": "/**\n * The fully qualified ID of the target resource in the link.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "targetId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "targetId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult:interface",
+          "docComment": "/**\n * List of resource links.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ResourceLinkResult "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ResourceLinkResult",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult#nextLink:member",
+              "docComment": "/**\n * The URL to use for getting the next set of results.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly nextLink?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "nextLink",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult#value:member",
+              "docComment": "/**\n * An array of resource links.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "value: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ResourceLink",
+                  "canonicalReference": "arm-package-links-2016-09!ResourceLink:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "value",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-links-2016-09!ResourceLinksCreateOrUpdateResponse:type",
+          "docComment": "/**\n * Contains response data for the createOrUpdate operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ResourceLinksCreateOrUpdateResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ResourceLink",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLink:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ResourceLink",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLink:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ResourceLinksCreateOrUpdateResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-links-2016-09!ResourceLinksGetResponse:type",
+          "docComment": "/**\n * Contains response data for the get operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ResourceLinksGetResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ResourceLink",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLink:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ResourceLink",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLink:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ResourceLinksGetResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSourceScopeNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listAtSourceScopeNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ResourceLinksListAtSourceScopeNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ResourceLinkResult",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ResourceLinkResult",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ResourceLinksListAtSourceScopeNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSourceScopeResponse:type",
+          "docComment": "/**\n * Contains response data for the listAtSourceScope operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ResourceLinksListAtSourceScopeResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ResourceLinkResult",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ResourceLinkResult",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ResourceLinksListAtSourceScopeResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSubscriptionNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ResourceLinksListAtSubscriptionNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ResourceLinksListAtSubscriptionNextOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSubscriptionNextOptionalParams#filter:member",
+              "docComment": "/**\n * The filter to apply on the list resource links operation. The supported filter for list resource links is targetId. For example, $filter=targetId eq {value}\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "filter?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "filter",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSubscriptionNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listAtSubscriptionNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ResourceLinksListAtSubscriptionNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ResourceLinkResult",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ResourceLinkResult",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ResourceLinksListAtSubscriptionNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSubscriptionOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ResourceLinksListAtSubscriptionOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ResourceLinksListAtSubscriptionOptionalParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSubscriptionOptionalParams#filter:member",
+              "docComment": "/**\n * The filter to apply on the list resource links operation. The supported filter for list resource links is targetId. For example, $filter=targetId eq {value}\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "filter?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "filter",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSubscriptionResponse:type",
+          "docComment": "/**\n * Contains response data for the listAtSubscription operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ResourceLinksListAtSubscriptionResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ResourceLinkResult",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    _response: coreHttp."
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure/core-http!HttpResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ResourceLinkResult",
+              "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ResourceLinksListAtSubscriptionResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        }
+      ]
+    }
+  ]
+}
