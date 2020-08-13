@@ -387,11 +387,16 @@ export interface PolicySetDefinitionListResult {
 /**
  * Defines values for EnforcementMode.
  */
-export type EnforcementMode = "Default" | "DoNotEnforce";
+export type EnforcementMode = "Default" | "DoNotEnforce" | string;
 /**
  * Defines values for PolicyType.
  */
-export type PolicyType = "NotSpecified" | "BuiltIn" | "Custom" | "Static";
+export type PolicyType =
+  | "NotSpecified"
+  | "BuiltIn"
+  | "Custom"
+  | "Static"
+  | string;
 /**
  * Defines values for ParameterType.
  */
@@ -402,7 +407,8 @@ export type ParameterType =
   | "Boolean"
   | "Integer"
   | "Float"
-  | "DateTime";
+  | "DateTime"
+  | string;
 /**
  * Defines values for ResourceIdentityType.
  */

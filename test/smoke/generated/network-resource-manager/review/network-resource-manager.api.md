@@ -20,7 +20,7 @@ export interface AadAuthenticationParameters {
 }
 
 // @public
-export type Access = "Allow" | "Deny";
+export type Access = "Allow" | "Deny" | string;
 
 // @public
 export interface AddressSpace {
@@ -142,7 +142,7 @@ export interface ApplicationGatewayBackendHealthServer {
 }
 
 // @public
-export type ApplicationGatewayBackendHealthServerHealth = "Unknown" | "Up" | "Down" | "Partial" | "Draining";
+export type ApplicationGatewayBackendHealthServerHealth = "Unknown" | "Up" | "Down" | "Partial" | "Draining" | string;
 
 // @public
 export type ApplicationGatewayBackendHttpSettings = SubResource & {
@@ -172,7 +172,7 @@ export interface ApplicationGatewayConnectionDraining {
 }
 
 // @public
-export type ApplicationGatewayCookieBasedAffinity = "Enabled" | "Disabled";
+export type ApplicationGatewayCookieBasedAffinity = "Enabled" | "Disabled" | string;
 
 // @public
 export interface ApplicationGatewayCustomError {
@@ -181,7 +181,7 @@ export interface ApplicationGatewayCustomError {
 }
 
 // @public
-export type ApplicationGatewayCustomErrorStatusCode = "HttpStatus403" | "HttpStatus502";
+export type ApplicationGatewayCustomErrorStatusCode = "HttpStatus403" | "HttpStatus502" | string;
 
 // @public
 export interface ApplicationGatewayFirewallDisabledRuleGroup {
@@ -197,7 +197,7 @@ export interface ApplicationGatewayFirewallExclusion {
 }
 
 // @public
-export type ApplicationGatewayFirewallMode = "Detection" | "Prevention";
+export type ApplicationGatewayFirewallMode = "Detection" | "Prevention" | string;
 
 // @public
 export interface ApplicationGatewayFirewallRule {
@@ -292,7 +292,7 @@ export interface ApplicationGatewayOnDemandProbe {
 }
 
 // @public
-export type ApplicationGatewayOperationalState = "Stopped" | "Starting" | "Running" | "Stopping";
+export type ApplicationGatewayOperationalState = "Stopped" | "Starting" | "Running" | "Stopping" | string;
 
 // @public
 export type ApplicationGatewayPathRule = SubResource & {
@@ -333,7 +333,7 @@ export interface ApplicationGatewayProbeHealthResponseMatch {
 }
 
 // @public
-export type ApplicationGatewayProtocol = "Http" | "Https";
+export type ApplicationGatewayProtocol = "Http" | "Https" | string;
 
 // @public
 export type ApplicationGatewayRedirectConfiguration = SubResource & {
@@ -351,7 +351,7 @@ export type ApplicationGatewayRedirectConfiguration = SubResource & {
 };
 
 // @public
-export type ApplicationGatewayRedirectType = "Permanent" | "Found" | "SeeOther" | "Temporary";
+export type ApplicationGatewayRedirectType = "Permanent" | "Found" | "SeeOther" | "Temporary" | string;
 
 // @public
 export type ApplicationGatewayRequestRoutingRule = SubResource & {
@@ -370,7 +370,7 @@ export type ApplicationGatewayRequestRoutingRule = SubResource & {
 };
 
 // @public
-export type ApplicationGatewayRequestRoutingRuleType = "Basic" | "PathBasedRouting";
+export type ApplicationGatewayRequestRoutingRuleType = "Basic" | "PathBasedRouting" | string;
 
 // @public
 export interface ApplicationGatewayRewriteRule {
@@ -461,7 +461,7 @@ export interface ApplicationGatewaySku {
 }
 
 // @public
-export type ApplicationGatewaySkuName = "Standard_Small" | "Standard_Medium" | "Standard_Large" | "WAF_Medium" | "WAF_Large" | "Standard_v2" | "WAF_v2";
+export type ApplicationGatewaySkuName = "Standard_Small" | "Standard_Medium" | "Standard_Large" | "WAF_Medium" | "WAF_Large" | "Standard_v2" | "WAF_v2" | string;
 
 // @public
 export type ApplicationGatewaysListAllNextResponse = ApplicationGatewayListResult & {
@@ -567,7 +567,7 @@ export type ApplicationGatewaySslCertificate = SubResource & {
 };
 
 // @public
-export type ApplicationGatewaySslCipherSuite = "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384" | "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256" | "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA" | "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA" | "TLS_DHE_RSA_WITH_AES_256_GCM_SHA384" | "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256" | "TLS_DHE_RSA_WITH_AES_256_CBC_SHA" | "TLS_DHE_RSA_WITH_AES_128_CBC_SHA" | "TLS_RSA_WITH_AES_256_GCM_SHA384" | "TLS_RSA_WITH_AES_128_GCM_SHA256" | "TLS_RSA_WITH_AES_256_CBC_SHA256" | "TLS_RSA_WITH_AES_128_CBC_SHA256" | "TLS_RSA_WITH_AES_256_CBC_SHA" | "TLS_RSA_WITH_AES_128_CBC_SHA" | "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384" | "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256" | "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384" | "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256" | "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA" | "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA" | "TLS_DHE_DSS_WITH_AES_256_CBC_SHA256" | "TLS_DHE_DSS_WITH_AES_128_CBC_SHA256" | "TLS_DHE_DSS_WITH_AES_256_CBC_SHA" | "TLS_DHE_DSS_WITH_AES_128_CBC_SHA" | "TLS_RSA_WITH_3DES_EDE_CBC_SHA" | "TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA" | "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256" | "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384";
+export type ApplicationGatewaySslCipherSuite = "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384" | "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256" | "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA" | "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA" | "TLS_DHE_RSA_WITH_AES_256_GCM_SHA384" | "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256" | "TLS_DHE_RSA_WITH_AES_256_CBC_SHA" | "TLS_DHE_RSA_WITH_AES_128_CBC_SHA" | "TLS_RSA_WITH_AES_256_GCM_SHA384" | "TLS_RSA_WITH_AES_128_GCM_SHA256" | "TLS_RSA_WITH_AES_256_CBC_SHA256" | "TLS_RSA_WITH_AES_128_CBC_SHA256" | "TLS_RSA_WITH_AES_256_CBC_SHA" | "TLS_RSA_WITH_AES_128_CBC_SHA" | "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384" | "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256" | "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384" | "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256" | "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA" | "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA" | "TLS_DHE_DSS_WITH_AES_256_CBC_SHA256" | "TLS_DHE_DSS_WITH_AES_128_CBC_SHA256" | "TLS_DHE_DSS_WITH_AES_256_CBC_SHA" | "TLS_DHE_DSS_WITH_AES_128_CBC_SHA" | "TLS_RSA_WITH_3DES_EDE_CBC_SHA" | "TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA" | "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256" | "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384" | string;
 
 // @public
 export interface ApplicationGatewaySslPolicy {
@@ -579,10 +579,10 @@ export interface ApplicationGatewaySslPolicy {
 }
 
 // @public
-export type ApplicationGatewaySslPolicyName = "AppGwSslPolicy20150501" | "AppGwSslPolicy20170401" | "AppGwSslPolicy20170401S";
+export type ApplicationGatewaySslPolicyName = "AppGwSslPolicy20150501" | "AppGwSslPolicy20170401" | "AppGwSslPolicy20170401S" | string;
 
 // @public
-export type ApplicationGatewaySslPolicyType = "Predefined" | "Custom";
+export type ApplicationGatewaySslPolicyType = "Predefined" | "Custom" | string;
 
 // @public
 export type ApplicationGatewaySslPredefinedPolicy = SubResource & {
@@ -592,7 +592,7 @@ export type ApplicationGatewaySslPredefinedPolicy = SubResource & {
 };
 
 // @public
-export type ApplicationGatewaySslProtocol = "TLSv1_0" | "TLSv1_1" | "TLSv1_2";
+export type ApplicationGatewaySslProtocol = "TLSv1_0" | "TLSv1_1" | "TLSv1_2" | string;
 
 // @public
 export type ApplicationGatewaysUpdateTagsResponse = ApplicationGateway & {
@@ -603,7 +603,7 @@ export type ApplicationGatewaysUpdateTagsResponse = ApplicationGateway & {
 };
 
 // @public
-export type ApplicationGatewayTier = "Standard" | "WAF" | "Standard_v2" | "WAF_v2";
+export type ApplicationGatewayTier = "Standard" | "WAF" | "Standard_v2" | "WAF_v2" | string;
 
 // @public
 export type ApplicationGatewayTrustedRootCertificate = SubResource & {
@@ -730,10 +730,10 @@ export type ApplicationSecurityGroupsUpdateTagsResponse = ApplicationSecurityGro
 };
 
 // @public
-export type AssociationType = "Associated" | "Contains";
+export type AssociationType = "Associated" | "Contains" | string;
 
 // @public
-export type AuthenticationMethod = "EAPTLS" | "EAPMSCHAPv2";
+export type AuthenticationMethod = "EAPTLS" | "EAPMSCHAPv2" | string;
 
 // @public
 export interface AuthorizationListResult {
@@ -742,7 +742,7 @@ export interface AuthorizationListResult {
 }
 
 // @public
-export type AuthorizationUseStatus = "Available" | "InUse";
+export type AuthorizationUseStatus = "Available" | "InUse" | string;
 
 // @public
 export interface AutoApprovedPrivateLinkService {
@@ -1005,7 +1005,7 @@ export interface AzureFirewallApplicationRuleProtocol {
 }
 
 // @public
-export type AzureFirewallApplicationRuleProtocolType = "Http" | "Https" | "Mssql";
+export type AzureFirewallApplicationRuleProtocolType = "Http" | "Https" | "Mssql" | string;
 
 // @public
 export type AzureFirewallFqdnTag = Resource & {
@@ -1065,7 +1065,7 @@ export interface AzureFirewallNatRCAction {
 }
 
 // @public
-export type AzureFirewallNatRCActionType = "Snat" | "Dnat";
+export type AzureFirewallNatRCActionType = "Snat" | "Dnat" | string;
 
 // @public
 export interface AzureFirewallNatRule {
@@ -1115,7 +1115,7 @@ export type AzureFirewallNetworkRuleCollection = SubResource & {
 };
 
 // @public
-export type AzureFirewallNetworkRuleProtocol = "TCP" | "UDP" | "Any" | "ICMP";
+export type AzureFirewallNetworkRuleProtocol = "TCP" | "UDP" | "Any" | "ICMP" | string;
 
 // @public
 export interface AzureFirewallPublicIPAddress {
@@ -1128,7 +1128,7 @@ export interface AzureFirewallRCAction {
 }
 
 // @public
-export type AzureFirewallRCActionType = "Allow" | "Deny";
+export type AzureFirewallRCActionType = "Allow" | "Deny" | string;
 
 // @public
 export type AzureFirewallsCreateOrUpdateResponse = AzureFirewall & {
@@ -1153,10 +1153,10 @@ export interface AzureFirewallSku {
 }
 
 // @public
-export type AzureFirewallSkuName = "AZFW_VNet" | "AZFW_Hub";
+export type AzureFirewallSkuName = "AZFW_VNet" | "AZFW_Hub" | string;
 
 // @public
-export type AzureFirewallSkuTier = "Standard" | "Premium";
+export type AzureFirewallSkuTier = "Standard" | "Premium" | string;
 
 // @public
 export type AzureFirewallsListAllNextResponse = AzureFirewallListResult & {
@@ -1199,7 +1199,7 @@ export type AzureFirewallsUpdateTagsResponse = AzureFirewall & {
 };
 
 // @public
-export type AzureFirewallThreatIntelMode = "Alert" | "Deny" | "Off";
+export type AzureFirewallThreatIntelMode = "Alert" | "Deny" | "Off" | string;
 
 // @public
 export interface AzureReachabilityReport {
@@ -1272,7 +1272,7 @@ export interface BastionActiveSessionListResult {
 }
 
 // @public
-export type BastionConnectProtocol = "SSH" | "RDP";
+export type BastionConnectProtocol = "SSH" | "RDP" | string;
 
 // @public
 export type BastionHost = Resource & {
@@ -1390,7 +1390,7 @@ export interface BGPCommunity {
 }
 
 // @public
-export type BgpPeerState = "Unknown" | "Stopped" | "Idle" | "Connecting" | "Connected";
+export type BgpPeerState = "Unknown" | "Stopped" | "Idle" | "Connecting" | "Connected" | string;
 
 // @public
 export interface BgpPeerStatus {
@@ -1451,7 +1451,7 @@ export interface CheckPrivateLinkServiceVisibilityRequest {
 }
 
 // @public
-export type CircuitConnectionStatus = "Connected" | "Connecting" | "Disconnected";
+export type CircuitConnectionStatus = "Connected" | "Connecting" | "Disconnected" | string;
 
 // @public
 export interface CloudError {
@@ -1517,10 +1517,10 @@ export interface ConnectionMonitorEndpointFilterItem {
 }
 
 // @public
-export type ConnectionMonitorEndpointFilterItemType = "AgentAddress";
+export type ConnectionMonitorEndpointFilterItemType = "AgentAddress" | string;
 
 // @public
-export type ConnectionMonitorEndpointFilterType = "Include";
+export type ConnectionMonitorEndpointFilterType = "Include" | string;
 
 // @public
 export interface ConnectionMonitorHttpConfiguration {
@@ -1631,7 +1631,7 @@ export interface ConnectionMonitorSource {
 }
 
 // @public
-export type ConnectionMonitorSourceStatus = "Unknown" | "Active" | "Inactive";
+export type ConnectionMonitorSourceStatus = "Unknown" | "Active" | "Inactive" | string;
 
 // @public
 export type ConnectionMonitorsQueryResponse = ConnectionMonitorQueryResult & {
@@ -1674,7 +1674,7 @@ export interface ConnectionMonitorTestConfiguration {
 }
 
 // @public
-export type ConnectionMonitorTestConfigurationProtocol = "Tcp" | "Http" | "Icmp";
+export type ConnectionMonitorTestConfigurationProtocol = "Tcp" | "Http" | "Icmp" | string;
 
 // @public
 export interface ConnectionMonitorTestGroup {
@@ -1686,7 +1686,7 @@ export interface ConnectionMonitorTestGroup {
 }
 
 // @public
-export type ConnectionMonitorType = "MultiEndpoint" | "SingleSourceDestination";
+export type ConnectionMonitorType = "MultiEndpoint" | "SingleSourceDestination" | string;
 
 // @public
 export interface ConnectionMonitorWorkspaceSettings {
@@ -1704,7 +1704,7 @@ export type ConnectionSharedKey = SubResource & {
 };
 
 // @public
-export type ConnectionState = "Reachable" | "Unreachable" | "Unknown";
+export type ConnectionState = "Reachable" | "Unreachable" | "Unknown" | string;
 
 // @public
 export interface ConnectionStateSnapshot {
@@ -1721,7 +1721,7 @@ export interface ConnectionStateSnapshot {
 }
 
 // @public
-export type ConnectionStatus = "Unknown" | "Connected" | "Disconnected" | "Degraded";
+export type ConnectionStatus = "Unknown" | "Connected" | "Disconnected" | "Degraded" | string;
 
 // @public
 export interface ConnectivityDestination {
@@ -1848,10 +1848,10 @@ export type DdosCustomPolicy = Resource & {
 };
 
 // @public
-export type DdosCustomPolicyProtocol = "Tcp" | "Udp" | "Syn";
+export type DdosCustomPolicyProtocol = "Tcp" | "Udp" | "Syn" | string;
 
 // @public
-export type DdosCustomPolicyTriggerSensitivityOverride = "Relaxed" | "Low" | "Default" | "High";
+export type DdosCustomPolicyTriggerSensitivityOverride = "Relaxed" | "Low" | "Default" | "High" | string;
 
 // @public
 export interface DdosProtectionPlan {
@@ -1938,7 +1938,7 @@ export interface DdosSettings {
 }
 
 // @public
-export type DdosSettingsProtectionCoverage = "Basic" | "Standard";
+export type DdosSettingsProtectionCoverage = "Basic" | "Standard" | string;
 
 // @public
 export type DefaultSecurityRulesGetResponse = SecurityRule & {
@@ -1986,7 +1986,7 @@ export interface DhcpOptions {
 }
 
 // @public
-export type DhGroup = "None" | "DHGroup1" | "DHGroup2" | "DHGroup14" | "DHGroup2048" | "ECP256" | "ECP384" | "DHGroup24";
+export type DhGroup = "None" | "DHGroup1" | "DHGroup2" | "DHGroup14" | "DHGroup2048" | "ECP256" | "ECP384" | "DHGroup24" | string;
 
 // @public
 export interface Dimension {
@@ -1996,7 +1996,7 @@ export interface Dimension {
 }
 
 // @public
-export type Direction = "Inbound" | "Outbound";
+export type Direction = "Inbound" | "Outbound" | string;
 
 // @public
 export interface DnsNameAvailabilityResult {
@@ -2060,13 +2060,13 @@ export interface EffectiveRouteListResult {
 }
 
 // @public
-export type EffectiveRouteSource = "Unknown" | "User" | "VirtualNetworkGateway" | "Default";
+export type EffectiveRouteSource = "Unknown" | "User" | "VirtualNetworkGateway" | "Default" | string;
 
 // @public
-export type EffectiveRouteState = "Active" | "Invalid";
+export type EffectiveRouteState = "Active" | "Invalid" | string;
 
 // @public
-export type EffectiveSecurityRuleProtocol = "Tcp" | "Udp" | "All";
+export type EffectiveSecurityRuleProtocol = "Tcp" | "Udp" | "All" | string;
 
 // @public
 export type EndpointServiceResult = SubResource & {
@@ -2110,7 +2110,7 @@ export interface EvaluatedNetworkSecurityGroup {
 }
 
 // @public
-export type EvaluationState = "NotStarted" | "InProgress" | "Completed";
+export type EvaluationState = "NotStarted" | "InProgress" | "Completed" | string;
 
 // @public
 export type ExpressRouteCircuit = Resource & {
@@ -2268,7 +2268,7 @@ export type ExpressRouteCircuitPeering = SubResource & {
 };
 
 // @public
-export type ExpressRouteCircuitPeeringAdvertisedPublicPrefixState = "NotConfigured" | "Configuring" | "Configured" | "ValidationNeeded";
+export type ExpressRouteCircuitPeeringAdvertisedPublicPrefixState = "NotConfigured" | "Configuring" | "Configured" | "ValidationNeeded" | string;
 
 // @public
 export interface ExpressRouteCircuitPeeringConfig {
@@ -2324,7 +2324,7 @@ export type ExpressRouteCircuitPeeringsListResponse = ExpressRouteCircuitPeering
 };
 
 // @public
-export type ExpressRouteCircuitPeeringState = "Disabled" | "Enabled";
+export type ExpressRouteCircuitPeeringState = "Disabled" | "Enabled" | string;
 
 // @public
 export interface ExpressRouteCircuitReference {
@@ -2402,10 +2402,10 @@ export interface ExpressRouteCircuitSku {
 }
 
 // @public
-export type ExpressRouteCircuitSkuFamily = "UnlimitedData" | "MeteredData";
+export type ExpressRouteCircuitSkuFamily = "UnlimitedData" | "MeteredData" | string;
 
 // @public
-export type ExpressRouteCircuitSkuTier = "Standard" | "Premium" | "Basic" | "Local";
+export type ExpressRouteCircuitSkuTier = "Standard" | "Premium" | "Basic" | "Local" | string;
 
 // @public
 export type ExpressRouteCircuitsListAllNextResponse = ExpressRouteCircuitListResult & {
@@ -2782,10 +2782,10 @@ export type ExpressRouteLink = SubResource & {
 };
 
 // @public
-export type ExpressRouteLinkAdminState = "Enabled" | "Disabled";
+export type ExpressRouteLinkAdminState = "Enabled" | "Disabled" | string;
 
 // @public
-export type ExpressRouteLinkConnectorType = "LC" | "SC";
+export type ExpressRouteLinkConnectorType = "LC" | "SC" | string;
 
 // @public
 export interface ExpressRouteLinkListResult {
@@ -2794,7 +2794,7 @@ export interface ExpressRouteLinkListResult {
 }
 
 // @public
-export type ExpressRouteLinkMacSecCipher = "gcm-aes-128" | "gcm-aes-256";
+export type ExpressRouteLinkMacSecCipher = "gcm-aes-128" | "gcm-aes-256" | string;
 
 // @public
 export interface ExpressRouteLinkMacSecConfig {
@@ -2828,10 +2828,10 @@ export type ExpressRouteLinksListResponse = ExpressRouteLinkListResult & {
 };
 
 // @public
-export type ExpressRoutePeeringState = "Disabled" | "Enabled";
+export type ExpressRoutePeeringState = "Disabled" | "Enabled" | string;
 
 // @public
-export type ExpressRoutePeeringType = "AzurePublicPeering" | "AzurePrivatePeering" | "MicrosoftPeering";
+export type ExpressRoutePeeringType = "AzurePublicPeering" | "AzurePrivatePeering" | "MicrosoftPeering" | string;
 
 // @public
 export type ExpressRoutePort = Resource & {
@@ -2865,7 +2865,7 @@ export type ExpressRoutePortsCreateOrUpdateResponse = ExpressRoutePort & {
 };
 
 // @public
-export type ExpressRoutePortsEncapsulation = "Dot1Q" | "QinQ";
+export type ExpressRoutePortsEncapsulation = "Dot1Q" | "QinQ" | string;
 
 // @public
 export type ExpressRoutePortsGetResponse = ExpressRoutePort & {
@@ -3080,10 +3080,10 @@ export interface FirewallPolicyFilterRuleAction {
 }
 
 // @public
-export type FirewallPolicyFilterRuleActionType = "Allow" | "Deny";
+export type FirewallPolicyFilterRuleActionType = "Allow" | "Deny" | string;
 
 // @public
-export type FirewallPolicyIntrusionSystemMode = "Enabled" | "Disabled";
+export type FirewallPolicyIntrusionSystemMode = "Enabled" | "Disabled" | string;
 
 // @public
 export interface FirewallPolicyListResult {
@@ -3105,7 +3105,7 @@ export interface FirewallPolicyNatRuleAction {
 }
 
 // @public
-export type FirewallPolicyNatRuleActionType = "DNAT";
+export type FirewallPolicyNatRuleActionType = "DNAT" | string;
 
 // @public
 export interface FirewallPolicyRule {
@@ -3128,13 +3128,13 @@ export interface FirewallPolicyRuleConditionApplicationProtocol {
 }
 
 // @public
-export type FirewallPolicyRuleConditionApplicationProtocolType = "Http" | "Https";
+export type FirewallPolicyRuleConditionApplicationProtocolType = "Http" | "Https" | string;
 
 // @public
-export type FirewallPolicyRuleConditionNetworkProtocol = "TCP" | "UDP" | "Any" | "ICMP";
+export type FirewallPolicyRuleConditionNetworkProtocol = "TCP" | "UDP" | "Any" | "ICMP" | string;
 
 // @public
-export type FirewallPolicyRuleConditionType = "ApplicationRuleCondition" | "NetworkRuleCondition" | "NatRuleCondition";
+export type FirewallPolicyRuleConditionType = "ApplicationRuleCondition" | "NetworkRuleCondition" | "NatRuleCondition" | string;
 
 // @public (undocumented)
 export type FirewallPolicyRuleConditionUnion = FirewallPolicyRuleCondition | ApplicationRuleCondition | NatRuleCondition | NetworkRuleCondition;
@@ -3188,7 +3188,7 @@ export type FirewallPolicyRuleGroupsListResponse = FirewallPolicyRuleGroupListRe
 };
 
 // @public
-export type FirewallPolicyRuleType = "FirewallPolicyNatRule" | "FirewallPolicyFilterRule";
+export type FirewallPolicyRuleType = "FirewallPolicyNatRule" | "FirewallPolicyFilterRule" | string;
 
 // @public (undocumented)
 export type FirewallPolicyRuleUnion = FirewallPolicyRule | FirewallPolicyNatRule | FirewallPolicyFilterRule;
@@ -3232,7 +3232,7 @@ export interface FlowLogFormatParameters {
 }
 
 // @public
-export type FlowLogFormatType = "JSON";
+export type FlowLogFormatType = "JSON" | string;
 
 // @public
 export interface FlowLogInformation {
@@ -3336,7 +3336,7 @@ export interface HttpConfiguration {
 }
 
 // @public
-export type HttpConfigurationMethod = "Get" | "Post";
+export type HttpConfigurationMethod = "Get" | "Post" | string;
 
 // @public
 export interface HttpHeader {
@@ -3345,7 +3345,7 @@ export interface HttpHeader {
 }
 
 // @public
-export type HttpMethod = "Get";
+export type HttpMethod = "Get" | string;
 
 // @public
 export interface HubIPAddresses {
@@ -3443,13 +3443,13 @@ export type HubVirtualNetworkConnectionsListResponse = ListHubVirtualNetworkConn
 };
 
 // @public
-export type HubVirtualNetworkConnectionStatus = "Unknown" | "Connecting" | "Connected" | "NotConnected";
+export type HubVirtualNetworkConnectionStatus = "Unknown" | "Connecting" | "Connected" | "NotConnected" | string;
 
 // @public
-export type IkeEncryption = "DES" | "DES3" | "AES128" | "AES192" | "AES256" | "GCMAES256" | "GCMAES128";
+export type IkeEncryption = "DES" | "DES3" | "AES128" | "AES192" | "AES256" | "GCMAES256" | "GCMAES128" | string;
 
 // @public
-export type IkeIntegrity = "MD5" | "SHA1" | "SHA256" | "SHA384" | "GCMAES256" | "GCMAES128";
+export type IkeIntegrity = "MD5" | "SHA1" | "SHA256" | "SHA384" | "GCMAES256" | "GCMAES128" | string;
 
 // @public
 export type InboundNatPool = SubResource & {
@@ -3554,7 +3554,7 @@ export interface IpAllocationListResult {
 }
 
 // @public
-export type IPAllocationMethod = "Static" | "Dynamic";
+export type IPAllocationMethod = "Static" | "Dynamic" | string;
 
 // @public
 export type IpAllocationsCreateOrUpdateResponse = IpAllocation & {
@@ -3618,7 +3618,7 @@ export type IpAllocationsUpdateTagsResponse = IpAllocation & {
 };
 
 // @public
-export type IpAllocationType = "Undefined" | "Hypernet";
+export type IpAllocationType = "Undefined" | "Hypernet" | string;
 
 // @public
 export type IPConfiguration = SubResource & {
@@ -3649,7 +3649,7 @@ export type IPConfigurationProfile = SubResource & {
 };
 
 // @public
-export type IpFlowProtocol = "TCP" | "UDP";
+export type IpFlowProtocol = "TCP" | "UDP" | string;
 
 // @public
 export type IpGroup = Resource & {
@@ -3727,10 +3727,10 @@ export type IpGroupsUpdateGroupsResponse = IpGroup & {
 };
 
 // @public
-export type IpsecEncryption = "None" | "DES" | "DES3" | "AES128" | "AES192" | "AES256" | "GCMAES128" | "GCMAES192" | "GCMAES256";
+export type IpsecEncryption = "None" | "DES" | "DES3" | "AES128" | "AES192" | "AES256" | "GCMAES128" | "GCMAES192" | "GCMAES256" | string;
 
 // @public
-export type IpsecIntegrity = "MD5" | "SHA1" | "SHA256" | "GCMAES128" | "GCMAES192" | "GCMAES256";
+export type IpsecIntegrity = "MD5" | "SHA1" | "SHA256" | "GCMAES128" | "GCMAES192" | "GCMAES256" | string;
 
 // @public
 export interface IpsecPolicy {
@@ -3766,10 +3766,10 @@ export interface Ipv6ExpressRouteCircuitPeeringConfig {
 }
 
 // @public
-export type IPVersion = "IPv4" | "IPv6";
+export type IPVersion = "IPv4" | "IPv6" | string;
 
 // @public
-export type IssueType = "Unknown" | "AgentStopped" | "GuestFirewall" | "DnsResolution" | "SocketBind" | "NetworkSecurityRule" | "UserDefinedRoute" | "PortThrottled" | "Platform";
+export type IssueType = "Unknown" | "AgentStopped" | "GuestFirewall" | "DnsResolution" | "SocketBind" | "NetworkSecurityRule" | "UserDefinedRoute" | "PortThrottled" | "Platform" | string;
 
 // @public
 export interface ListHubRouteTablesResult {
@@ -3993,7 +3993,7 @@ export interface LoadBalancerOutboundRuleListResult {
 }
 
 // @public
-export type LoadBalancerOutboundRuleProtocol = "Tcp" | "Udp" | "All";
+export type LoadBalancerOutboundRuleProtocol = "Tcp" | "Udp" | "All" | string;
 
 // @public
 export type LoadBalancerOutboundRulesGetResponse = OutboundRule & {
@@ -4076,7 +4076,7 @@ export interface LoadBalancerSku {
 }
 
 // @public
-export type LoadBalancerSkuName = "Basic" | "Standard";
+export type LoadBalancerSkuName = "Basic" | "Standard" | string;
 
 // @public
 export type LoadBalancersListAllNextResponse = LoadBalancerListResult & {
@@ -4138,7 +4138,7 @@ export type LoadBalancingRule = SubResource & {
 };
 
 // @public
-export type LoadDistribution = "Default" | "SourceIP" | "SourceIPProtocol";
+export type LoadDistribution = "Default" | "SourceIP" | "SourceIPProtocol" | string;
 
 // @public
 export type LocalNetworkGateway = Resource & {
@@ -4205,7 +4205,7 @@ export interface LogSpecification {
 }
 
 // @public
-export type ManagedRuleEnabledState = "Disabled";
+export type ManagedRuleEnabledState = "Disabled" | string;
 
 // @public
 export interface ManagedRuleGroupOverride {
@@ -4327,7 +4327,7 @@ export interface NatGatewaySku {
 }
 
 // @public
-export type NatGatewaySkuName = "Standard";
+export type NatGatewaySkuName = "Standard" | string;
 
 // @public
 export type NatGatewaysListAllNextResponse = NatGatewayListResult & {
@@ -5240,7 +5240,7 @@ export type NetworkManagementClientSupportedSecurityProvidersResponse = VirtualW
 };
 
 // @public
-export type NetworkOperationStatus = "InProgress" | "Succeeded" | "Failed";
+export type NetworkOperationStatus = "InProgress" | "Succeeded" | "Failed" | string;
 
 // @public
 export type NetworkProfile = Resource & {
@@ -5666,10 +5666,10 @@ export interface NextHopResult {
 }
 
 // @public
-export type NextHopType = "Internet" | "VirtualAppliance" | "VirtualNetworkGateway" | "VnetLocal" | "HyperNetGateway" | "None";
+export type NextHopType = "Internet" | "VirtualAppliance" | "VirtualNetworkGateway" | "VnetLocal" | "HyperNetGateway" | "None" | string;
 
 // @public
-export type OfficeTrafficCategory = "Optimize" | "OptimizeAndAllow" | "All" | "None";
+export type OfficeTrafficCategory = "Optimize" | "OptimizeAndAllow" | "All" | "None" | string;
 
 // @public
 export interface Operation {
@@ -5716,7 +5716,7 @@ export type OperationsListResponse = OperationListResult & {
 };
 
 // @public
-export type Origin = "Local" | "Inbound" | "Outbound";
+export type Origin = "Local" | "Inbound" | "Outbound" | string;
 
 // @public
 export type OutboundRule = SubResource & {
@@ -5733,7 +5733,7 @@ export type OutboundRule = SubResource & {
 };
 
 // @public
-export type OutputType = "Workspace";
+export type OutputType = "Workspace" | string;
 
 // @public
 export interface OwaspCrsExclusionEntry {
@@ -5743,10 +5743,10 @@ export interface OwaspCrsExclusionEntry {
 }
 
 // @public
-export type OwaspCrsExclusionEntryMatchVariable = "RequestHeaderNames" | "RequestCookieNames" | "RequestArgNames";
+export type OwaspCrsExclusionEntryMatchVariable = "RequestHeaderNames" | "RequestCookieNames" | "RequestArgNames" | string;
 
 // @public
-export type OwaspCrsExclusionEntrySelectorMatchOperator = "Equals" | "Contains" | "StartsWith" | "EndsWith" | "EqualsAny";
+export type OwaspCrsExclusionEntrySelectorMatchOperator = "Equals" | "Contains" | "StartsWith" | "EndsWith" | "EqualsAny" | string;
 
 // @public
 export type P2SConnectionConfiguration = SubResource & {
@@ -5996,13 +5996,13 @@ export type PatchRouteFilterRule = SubResource & {
 };
 
 // @public
-export type PcError = "InternalError" | "AgentStopped" | "CaptureFailed" | "LocalFileFailed" | "StorageFailed";
+export type PcError = "InternalError" | "AgentStopped" | "CaptureFailed" | "LocalFileFailed" | "StorageFailed" | string;
 
 // @public
-export type PcProtocol = "TCP" | "UDP" | "Any";
+export type PcProtocol = "TCP" | "UDP" | "Any" | string;
 
 // @public
-export type PcStatus = "NotStarted" | "Running" | "Stopped" | "Error" | "Unknown";
+export type PcStatus = "NotStarted" | "Running" | "Stopped" | "Error" | "Unknown" | string;
 
 // @public
 export type PeerExpressRouteCircuitConnection = SubResource & {
@@ -6049,7 +6049,7 @@ export type PeerExpressRouteCircuitConnectionsListResponse = PeerExpressRouteCir
 };
 
 // @public
-export type PfsGroup = "None" | "PFS1" | "PFS2" | "PFS2048" | "ECP256" | "ECP384" | "PFS24" | "PFS14" | "PFSMM";
+export type PfsGroup = "None" | "PFS1" | "PFS2" | "PFS2048" | "ECP256" | "ECP384" | "PFS24" | "PFS14" | "PFSMM" | string;
 
 // @public
 export interface PolicySettings {
@@ -6061,7 +6061,7 @@ export interface PolicySettings {
 }
 
 // @public
-export type PreferredIPVersion = "IPv4" | "IPv6";
+export type PreferredIPVersion = "IPv4" | "IPv6" | string;
 
 // @public
 export interface PrepareNetworkPoliciesRequest {
@@ -6426,10 +6426,10 @@ export type Probe = SubResource & {
 };
 
 // @public
-export type ProbeProtocol = "Http" | "Tcp" | "Https";
+export type ProbeProtocol = "Http" | "Tcp" | "Https" | string;
 
 // @public
-export type ProcessorArchitecture = "Amd64" | "X86";
+export type ProcessorArchitecture = "Amd64" | "X86" | string;
 
 // @public
 export interface PropagatedRouteTable {
@@ -6438,7 +6438,7 @@ export interface PropagatedRouteTable {
 }
 
 // @public
-export type Protocol = "Tcp" | "Http" | "Https" | "Icmp";
+export type Protocol = "Tcp" | "Http" | "Https" | "Icmp" | string;
 
 // @public
 export interface ProtocolConfiguration {
@@ -6454,7 +6454,7 @@ export interface ProtocolCustomSettingsFormat {
 }
 
 // @public
-export type ProvisioningState = "Succeeded" | "Updating" | "Deleting" | "Failed";
+export type ProvisioningState = "Succeeded" | "Updating" | "Deleting" | "Failed" | string;
 
 // @public
 export type PublicIPAddress = Resource & {
@@ -6599,7 +6599,7 @@ export interface PublicIPAddressSku {
 }
 
 // @public
-export type PublicIPAddressSkuName = "Basic" | "Standard";
+export type PublicIPAddressSkuName = "Basic" | "Standard" | string;
 
 // @public
 export type PublicIPPrefix = Resource & {
@@ -6689,7 +6689,7 @@ export interface PublicIPPrefixSku {
 }
 
 // @public
-export type PublicIPPrefixSkuName = "Standard";
+export type PublicIPPrefixSkuName = "Standard" | string;
 
 // @public
 export interface QueryTroubleshootingParameters {
@@ -6842,7 +6842,7 @@ export type RouteFilterRulesListByRouteFilterResponse = RouteFilterRuleListResul
 };
 
 // @public
-export type RouteFilterRuleType = "Community";
+export type RouteFilterRuleType = "Community" | string;
 
 // @public
 export type RouteFiltersCreateOrUpdateResponse = RouteFilter & {
@@ -6912,7 +6912,7 @@ export interface RouteListResult {
 }
 
 // @public
-export type RouteNextHopType = "VirtualNetworkGateway" | "VnetLocal" | "Internet" | "VirtualAppliance" | "None";
+export type RouteNextHopType = "VirtualNetworkGateway" | "VnetLocal" | "Internet" | "VirtualAppliance" | "None" | string;
 
 // @public
 export type RoutesCreateOrUpdateResponse = Route & {
@@ -7055,7 +7055,7 @@ export type SecurityPartnerProvider = Resource & {
 };
 
 // @public
-export type SecurityPartnerProviderConnectionStatus = "Unknown" | "PartiallyConnected" | "Connected" | "NotConnected";
+export type SecurityPartnerProviderConnectionStatus = "Unknown" | "PartiallyConnected" | "Connected" | "NotConnected" | string;
 
 // @public
 export interface SecurityPartnerProviderListResult {
@@ -7120,7 +7120,7 @@ export type SecurityPartnerProvidersUpdateTagsResponse = SecurityPartnerProvider
 };
 
 // @public
-export type SecurityProviderName = "ZScaler" | "IBoss" | "Checkpoint";
+export type SecurityProviderName = "ZScaler" | "IBoss" | "Checkpoint" | string;
 
 // @public
 export type SecurityRule = SubResource & {
@@ -7145,7 +7145,7 @@ export type SecurityRule = SubResource & {
 };
 
 // @public
-export type SecurityRuleAccess = "Allow" | "Deny";
+export type SecurityRuleAccess = "Allow" | "Deny" | string;
 
 // @public
 export interface SecurityRuleAssociations {
@@ -7156,7 +7156,7 @@ export interface SecurityRuleAssociations {
 }
 
 // @public
-export type SecurityRuleDirection = "Inbound" | "Outbound";
+export type SecurityRuleDirection = "Inbound" | "Outbound" | string;
 
 // @public
 export interface SecurityRuleListResult {
@@ -7165,7 +7165,7 @@ export interface SecurityRuleListResult {
 }
 
 // @public
-export type SecurityRuleProtocol = "Tcp" | "Udp" | "Icmp" | "Esp" | "*" | "Ah";
+export type SecurityRuleProtocol = "Tcp" | "Udp" | "Icmp" | "Esp" | "*" | "Ah" | string;
 
 // @public
 export type SecurityRulesCreateOrUpdateResponse = SecurityRule & {
@@ -7357,7 +7357,7 @@ export interface ServiceEndpointPropertiesFormat {
 }
 
 // @public
-export type ServiceProviderProvisioningState = "NotProvisioned" | "Provisioning" | "Provisioned" | "Deprovisioning";
+export type ServiceProviderProvisioningState = "NotProvisioned" | "Provisioning" | "Provisioned" | "Deprovisioning" | string;
 
 // @public
 export interface ServiceTagInformation {
@@ -7398,7 +7398,7 @@ export interface SessionIds {
 }
 
 // @public
-export type Severity = "Error" | "Warning";
+export type Severity = "Error" | "Warning" | string;
 
 // @public
 export interface StaticRoute {
@@ -7543,7 +7543,7 @@ export interface TrafficSelectorPolicy {
 }
 
 // @public
-export type TransportProtocol = "Udp" | "Tcp" | "All";
+export type TransportProtocol = "Udp" | "Tcp" | "All" | string;
 
 // @public
 export interface TroubleshootingDetails {
@@ -7587,7 +7587,7 @@ export interface TunnelConnectionHealth {
 }
 
 // @public
-export type TunnelConnectionStatus = "Unknown" | "Connecting" | "Connected" | "NotConnected";
+export type TunnelConnectionStatus = "Unknown" | "Connecting" | "Connected" | "NotConnected" | string;
 
 // @public
 export interface UnprepareNetworkPoliciesRequest {
@@ -7632,10 +7632,10 @@ export interface UsagesListResult {
 }
 
 // @public
-export type UsageUnit = "Count";
+export type UsageUnit = "Count" | string;
 
 // @public
-export type VerbosityLevel = "Normal" | "Minimum" | "Full";
+export type VerbosityLevel = "Normal" | "Minimum" | "Full" | string;
 
 // @public
 export interface VerificationIPFlowParameters {
@@ -7915,7 +7915,7 @@ export interface VirtualNetworkGatewayConnectionListResult {
 }
 
 // @public
-export type VirtualNetworkGatewayConnectionProtocol = "IKEv2" | "IKEv1";
+export type VirtualNetworkGatewayConnectionProtocol = "IKEv2" | "IKEv1" | string;
 
 // @public
 export type VirtualNetworkGatewayConnectionsCreateOrUpdateResponse = VirtualNetworkGatewayConnection & {
@@ -7997,7 +7997,7 @@ export type VirtualNetworkGatewayConnectionsStopPacketCaptureResponse = {
 };
 
 // @public
-export type VirtualNetworkGatewayConnectionStatus = "Unknown" | "Connecting" | "Connected" | "NotConnected";
+export type VirtualNetworkGatewayConnectionStatus = "Unknown" | "Connecting" | "Connected" | "NotConnected" | string;
 
 // @public
 export type VirtualNetworkGatewayConnectionsUpdateTagsResponse = VirtualNetworkGatewayConnection & {
@@ -8008,7 +8008,7 @@ export type VirtualNetworkGatewayConnectionsUpdateTagsResponse = VirtualNetworkG
 };
 
 // @public
-export type VirtualNetworkGatewayConnectionType = "IPsec" | "Vnet2Vnet" | "ExpressRoute" | "VPNClient";
+export type VirtualNetworkGatewayConnectionType = "IPsec" | "Vnet2Vnet" | "ExpressRoute" | "VPNClient" | string;
 
 // @public
 export type VirtualNetworkGatewayIPConfiguration = SubResource & {
@@ -8129,10 +8129,10 @@ export interface VirtualNetworkGatewaySku {
 }
 
 // @public
-export type VirtualNetworkGatewaySkuName = "Basic" | "HighPerformance" | "Standard" | "UltraPerformance" | "VpnGw1" | "VpnGw2" | "VpnGw3" | "VpnGw4" | "VpnGw5" | "VpnGw1AZ" | "VpnGw2AZ" | "VpnGw3AZ" | "VpnGw4AZ" | "VpnGw5AZ" | "ErGw1AZ" | "ErGw2AZ" | "ErGw3AZ";
+export type VirtualNetworkGatewaySkuName = "Basic" | "HighPerformance" | "Standard" | "UltraPerformance" | "VpnGw1" | "VpnGw2" | "VpnGw3" | "VpnGw4" | "VpnGw5" | "VpnGw1AZ" | "VpnGw2AZ" | "VpnGw3AZ" | "VpnGw4AZ" | "VpnGw5AZ" | "ErGw1AZ" | "ErGw2AZ" | "ErGw3AZ" | string;
 
 // @public
-export type VirtualNetworkGatewaySkuTier = "Basic" | "HighPerformance" | "Standard" | "UltraPerformance" | "VpnGw1" | "VpnGw2" | "VpnGw3" | "VpnGw4" | "VpnGw5" | "VpnGw1AZ" | "VpnGw2AZ" | "VpnGw3AZ" | "VpnGw4AZ" | "VpnGw5AZ" | "ErGw1AZ" | "ErGw2AZ" | "ErGw3AZ";
+export type VirtualNetworkGatewaySkuTier = "Basic" | "HighPerformance" | "Standard" | "UltraPerformance" | "VpnGw1" | "VpnGw2" | "VpnGw3" | "VpnGw4" | "VpnGw5" | "VpnGw1AZ" | "VpnGw2AZ" | "VpnGw3AZ" | "VpnGw4AZ" | "VpnGw5AZ" | "ErGw1AZ" | "ErGw2AZ" | "ErGw3AZ" | string;
 
 // @public
 export type VirtualNetworkGatewaysListConnectionsNextResponse = VirtualNetworkGatewayListConnectionsResult & {
@@ -8237,7 +8237,7 @@ export type VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse = {
 };
 
 // @public
-export type VirtualNetworkGatewayType = "Vpn" | "ExpressRoute";
+export type VirtualNetworkGatewayType = "Vpn" | "ExpressRoute" | string;
 
 // @public
 export interface VirtualNetworkListResult {
@@ -8304,7 +8304,7 @@ export type VirtualNetworkPeeringsListResponse = VirtualNetworkPeeringListResult
 };
 
 // @public
-export type VirtualNetworkPeeringState = "Initiated" | "Connected" | "Disconnected";
+export type VirtualNetworkPeeringState = "Initiated" | "Connected" | "Disconnected" | string;
 
 // @public
 export type VirtualNetworksCheckIPAddressAvailabilityResponse = IPAddressAvailabilityResult & {
@@ -8631,7 +8631,7 @@ export interface VirtualWanSecurityProviders {
 }
 
 // @public
-export type VirtualWanSecurityProviderType = "External" | "Native";
+export type VirtualWanSecurityProviderType = "External" | "Native" | string;
 
 // @public
 export type VirtualWansGetResponse = VirtualWAN & {
@@ -8696,7 +8696,7 @@ export interface VnetRoute {
 }
 
 // @public
-export type VpnAuthenticationType = "Certificate" | "Radius" | "AAD";
+export type VpnAuthenticationType = "Certificate" | "Radius" | "AAD" | string;
 
 // @public
 export interface VpnClientConfiguration {
@@ -8763,7 +8763,7 @@ export interface VpnClientParameters {
 }
 
 // @public
-export type VpnClientProtocol = "IkeV2" | "SSTP" | "OpenVPN";
+export type VpnClientProtocol = "IkeV2" | "SSTP" | "OpenVPN" | string;
 
 // @public
 export type VpnClientRevokedCertificate = SubResource & {
@@ -8838,7 +8838,7 @@ export type VpnConnectionsListByVpnGatewayResponse = ListVpnConnectionsResult & 
 };
 
 // @public
-export type VpnConnectionStatus = "Unknown" | "Connecting" | "Connected" | "NotConnected";
+export type VpnConnectionStatus = "Unknown" | "Connecting" | "Connected" | "NotConnected" | string;
 
 // @public
 export interface VpnDeviceScriptParameters {
@@ -8858,7 +8858,7 @@ export type VpnGateway = Resource & {
 };
 
 // @public
-export type VpnGatewayGeneration = "None" | "Generation1" | "Generation2";
+export type VpnGatewayGeneration = "None" | "Generation1" | "Generation2" | string;
 
 // @public
 export type VpnGatewaysCreateOrUpdateResponse = VpnGateway & {
@@ -8925,7 +8925,7 @@ export type VpnGatewaysUpdateTagsResponse = VpnGateway & {
 };
 
 // @public
-export type VpnGatewayTunnelingProtocol = "IkeV2" | "OpenVPN";
+export type VpnGatewayTunnelingProtocol = "IkeV2" | "OpenVPN" | string;
 
 // @public
 export interface VpnLinkBgpSettings {
@@ -9224,10 +9224,10 @@ export type VpnSitesUpdateTagsResponse = VpnSite & {
 };
 
 // @public
-export type VpnType = "PolicyBased" | "RouteBased";
+export type VpnType = "PolicyBased" | "RouteBased" | string;
 
 // @public
-export type WebApplicationFirewallAction = "Allow" | "Block" | "Log";
+export type WebApplicationFirewallAction = "Allow" | "Block" | "Log" | string;
 
 // @public
 export interface WebApplicationFirewallCustomRule {
@@ -9240,16 +9240,16 @@ export interface WebApplicationFirewallCustomRule {
 }
 
 // @public
-export type WebApplicationFirewallEnabledState = "Disabled" | "Enabled";
+export type WebApplicationFirewallEnabledState = "Disabled" | "Enabled" | string;
 
 // @public
-export type WebApplicationFirewallMatchVariable = "RemoteAddr" | "RequestMethod" | "QueryString" | "PostArgs" | "RequestUri" | "RequestHeaders" | "RequestBody" | "RequestCookies";
+export type WebApplicationFirewallMatchVariable = "RemoteAddr" | "RequestMethod" | "QueryString" | "PostArgs" | "RequestUri" | "RequestHeaders" | "RequestBody" | "RequestCookies" | string;
 
 // @public
-export type WebApplicationFirewallMode = "Prevention" | "Detection";
+export type WebApplicationFirewallMode = "Prevention" | "Detection" | string;
 
 // @public
-export type WebApplicationFirewallOperator = "IPMatch" | "Equal" | "Contains" | "LessThan" | "GreaterThan" | "LessThanOrEqual" | "GreaterThanOrEqual" | "BeginsWith" | "EndsWith" | "Regex" | "GeoMatch";
+export type WebApplicationFirewallOperator = "IPMatch" | "Equal" | "Contains" | "LessThan" | "GreaterThan" | "LessThanOrEqual" | "GreaterThanOrEqual" | "BeginsWith" | "EndsWith" | "Regex" | "GeoMatch" | string;
 
 // @public
 export type WebApplicationFirewallPoliciesCreateOrUpdateResponse = WebApplicationFirewallPolicy & {
@@ -9319,13 +9319,13 @@ export interface WebApplicationFirewallPolicyListResult {
 }
 
 // @public
-export type WebApplicationFirewallPolicyResourceState = "Creating" | "Enabling" | "Enabled" | "Disabling" | "Disabled" | "Deleting";
+export type WebApplicationFirewallPolicyResourceState = "Creating" | "Enabling" | "Enabled" | "Disabling" | "Disabled" | "Deleting" | string;
 
 // @public
-export type WebApplicationFirewallRuleType = "MatchRule" | "Invalid";
+export type WebApplicationFirewallRuleType = "MatchRule" | "Invalid" | string;
 
 // @public
-export type WebApplicationFirewallTransform = "Lowercase" | "Trim" | "UrlDecode" | "UrlEncode" | "RemoveNulls" | "HtmlEntityDecode";
+export type WebApplicationFirewallTransform = "Lowercase" | "Trim" | "UrlDecode" | "UrlEncode" | "RemoveNulls" | "HtmlEntityDecode" | string;
 
 
 // (No @packageDocumentation comment for this package)

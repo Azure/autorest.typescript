@@ -122,7 +122,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"NotSpecified\" | \"CanNotDelete\" | \"ReadOnly\""
+              "text": "\"NotSpecified\" | \"CanNotDelete\" | \"ReadOnly\" | string"
             },
             {
               "kind": "Content",

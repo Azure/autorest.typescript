@@ -2192,7 +2192,8 @@ export type SkuName =
   | "Premium_LRS"
   | "Premium_ZRS"
   | "Standard_GZRS"
-  | "Standard_RAGZRS";
+  | "Standard_RAGZRS"
+  | string;
 /**
  * Defines values for Kind.
  */
@@ -2201,46 +2202,52 @@ export type Kind =
   | "StorageV2"
   | "BlobStorage"
   | "FileStorage"
-  | "BlockBlobStorage";
+  | "BlockBlobStorage"
+  | string;
 /**
  * Defines values for ReasonCode.
  */
-export type ReasonCode = "QuotaId" | "NotAvailableForSubscription";
+export type ReasonCode = "QuotaId" | "NotAvailableForSubscription" | string;
 /**
  * Defines values for KeyType.
  */
-export type KeyType = "Service" | "Account";
+export type KeyType = "Service" | "Account" | string;
 /**
  * Defines values for KeySource.
  */
-export type KeySource = "Microsoft.Storage" | "Microsoft.Keyvault";
+export type KeySource = "Microsoft.Storage" | "Microsoft.Keyvault" | string;
 /**
  * Defines values for Bypass.
  */
-export type Bypass = "None" | "Logging" | "Metrics" | "AzureServices";
+export type Bypass = "None" | "Logging" | "Metrics" | "AzureServices" | string;
 /**
  * Defines values for DirectoryServiceOptions.
  */
-export type DirectoryServiceOptions = "None" | "AADDS" | "AD";
+export type DirectoryServiceOptions = "None" | "AADDS" | "AD" | string;
 /**
  * Defines values for LargeFileSharesState.
  */
-export type LargeFileSharesState = "Disabled" | "Enabled";
+export type LargeFileSharesState = "Disabled" | "Enabled" | string;
 /**
  * Defines values for RoutingChoice.
  */
-export type RoutingChoice = "MicrosoftRouting" | "InternetRouting";
+export type RoutingChoice = "MicrosoftRouting" | "InternetRouting" | string;
 /**
  * Defines values for GeoReplicationStatus.
  */
-export type GeoReplicationStatus = "Live" | "Bootstrap" | "Unavailable";
+export type GeoReplicationStatus =
+  | "Live"
+  | "Bootstrap"
+  | "Unavailable"
+  | string;
 /**
  * Defines values for PrivateEndpointServiceConnectionStatus.
  */
 export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
-  | "Rejected";
+  | "Rejected"
+  | string;
 /**
  * Defines values for PrivateEndpointConnectionProvisioningState.
  */
@@ -2248,43 +2255,60 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Succeeded"
   | "Creating"
   | "Deleting"
-  | "Failed";
+  | "Failed"
+  | string;
 /**
  * Defines values for BlobRestoreProgressStatus.
  */
-export type BlobRestoreProgressStatus = "InProgress" | "Complete" | "Failed";
+export type BlobRestoreProgressStatus =
+  | "InProgress"
+  | "Complete"
+  | "Failed"
+  | string;
 /**
  * Defines values for Services.
  */
-export type Services = "b" | "q" | "t" | "f";
+export type Services = "b" | "q" | "t" | "f" | string;
 /**
  * Defines values for SignedResourceTypes.
  */
-export type SignedResourceTypes = "s" | "c" | "o";
+export type SignedResourceTypes = "s" | "c" | "o" | string;
 /**
  * Defines values for Permissions.
  */
-export type Permissions = "r" | "d" | "w" | "l" | "a" | "c" | "u" | "p";
+export type Permissions =
+  | "r"
+  | "d"
+  | "w"
+  | "l"
+  | "a"
+  | "c"
+  | "u"
+  | "p"
+  | string;
 /**
  * Defines values for SignedResource.
  */
-export type SignedResource = "b" | "c" | "f" | "s";
+export type SignedResource = "b" | "c" | "f" | "s" | string;
 /**
  * Defines values for ManagementPolicyName.
  */
-export type ManagementPolicyName = "default";
+export type ManagementPolicyName = "default" | string;
 /**
  * Defines values for RuleType.
  */
-export type RuleType = "Lifecycle";
+export type RuleType = "Lifecycle" | string;
 /**
  * Defines values for EncryptionScopeSource.
  */
-export type EncryptionScopeSource = "Microsoft.Storage" | "Microsoft.KeyVault";
+export type EncryptionScopeSource =
+  | "Microsoft.Storage"
+  | "Microsoft.KeyVault"
+  | string;
 /**
  * Defines values for EncryptionScopeState.
  */
-export type EncryptionScopeState = "Enabled" | "Disabled";
+export type EncryptionScopeState = "Enabled" | "Disabled" | string;
 /**
  * Defines values for CorsRuleAllowedMethodsItem.
  */
@@ -2295,11 +2319,12 @@ export type CorsRuleAllowedMethodsItem =
   | "MERGE"
   | "POST"
   | "OPTIONS"
-  | "PUT";
+  | "PUT"
+  | string;
 /**
  * Defines values for LeaseStatus.
  */
-export type LeaseStatus = "Locked" | "Unlocked";
+export type LeaseStatus = "Locked" | "Unlocked" | string;
 /**
  * Defines values for LeaseState.
  */
@@ -2308,19 +2333,20 @@ export type LeaseState =
   | "Leased"
   | "Expired"
   | "Breaking"
-  | "Broken";
+  | "Broken"
+  | string;
 /**
  * Defines values for LeaseDuration.
  */
-export type LeaseDuration = "Infinite" | "Fixed";
+export type LeaseDuration = "Infinite" | "Fixed" | string;
 /**
  * Defines values for ImmutabilityPolicyState.
  */
-export type ImmutabilityPolicyState = "Locked" | "Unlocked";
+export type ImmutabilityPolicyState = "Locked" | "Unlocked" | string;
 /**
  * Defines values for ImmutabilityPolicyUpdateType.
  */
-export type ImmutabilityPolicyUpdateType = "put" | "lock" | "extend";
+export type ImmutabilityPolicyUpdateType = "put" | "lock" | "extend" | string;
 /**
  * Defines values for LeaseContainerRequestAction.
  */
@@ -2329,15 +2355,20 @@ export type LeaseContainerRequestAction =
   | "Renew"
   | "Change"
   | "Release"
-  | "Break";
+  | "Break"
+  | string;
 /**
  * Defines values for EnabledProtocols.
  */
-export type EnabledProtocols = "SMB" | "NFS";
+export type EnabledProtocols = "SMB" | "NFS" | string;
 /**
  * Defines values for RootSquashType.
  */
-export type RootSquashType = "NoRootSquash" | "RootSquash" | "AllSquash";
+export type RootSquashType =
+  | "NoRootSquash"
+  | "RootSquash"
+  | "AllSquash"
+  | string;
 /**
  * Defines values for ShareAccessTier.
  */
@@ -2345,7 +2376,8 @@ export type ShareAccessTier =
   | "TransactionOptimized"
   | "Hot"
   | "Cool"
-  | "Premium";
+  | "Premium"
+  | string;
 /**
  * Defines values for SkuTier.
  */

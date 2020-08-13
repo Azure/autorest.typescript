@@ -1306,15 +1306,19 @@ export type UserUpdateParameters = UserBase & {
 /**
  * Defines values for UserType.
  */
-export type UserType = "Member" | "Guest";
+export type UserType = "Member" | "Guest" | string;
 /**
  * Defines values for GroupMembershipClaimTypes.
  */
-export type GroupMembershipClaimTypes = "None" | "SecurityGroup" | "All";
+export type GroupMembershipClaimTypes =
+  | "None"
+  | "SecurityGroup"
+  | "All"
+  | string;
 /**
  * Defines values for ConsentType.
  */
-export type ConsentType = "AllPrincipals" | "Principal";
+export type ConsentType = "AllPrincipals" | "Principal" | string;
 
 /**
  * Contains response data for the get operation.

@@ -384,7 +384,7 @@ export interface XmlGetHeadersHeaders {
 /**
  * Defines values for PublicAccessType.
  */
-export type PublicAccessType = "container" | "blob";
+export type PublicAccessType = "container" | "blob" | string;
 /**
  * Defines values for AccessTier.
  */
@@ -398,13 +398,15 @@ export type AccessTier =
   | "P50"
   | "Hot"
   | "Cool"
-  | "Archive";
+  | "Archive"
+  | string;
 /**
  * Defines values for ArchiveStatus.
  */
 export type ArchiveStatus =
   | "rehydrate-pending-to-hot"
-  | "rehydrate-pending-to-cool";
+  | "rehydrate-pending-to-cool"
+  | string;
 /**
  * Defines values for LeaseStatusType.
  */

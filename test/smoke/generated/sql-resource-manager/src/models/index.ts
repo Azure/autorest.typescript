@@ -6465,15 +6465,15 @@ export type ManagedDatabase = TrackedResource & {
 /**
  * Defines values for ConnectionPolicyName.
  */
-export type ConnectionPolicyName = "default";
+export type ConnectionPolicyName = "default" | string;
 /**
  * Defines values for SecurityAlertPolicyName.
  */
-export type SecurityAlertPolicyName = "default";
+export type SecurityAlertPolicyName = "default" | string;
 /**
  * Defines values for GeoBackupPolicyName.
  */
-export type GeoBackupPolicyName = "Default";
+export type GeoBackupPolicyName = "Default" | string;
 /**
  * Defines values for DatabaseEdition.
  */
@@ -6491,7 +6491,8 @@ export type DatabaseEdition =
   | "System2"
   | "GeneralPurpose"
   | "BusinessCritical"
-  | "Hyperscale";
+  | "Hyperscale"
+  | string;
 /**
  * Defines values for ServiceObjectiveName.
  */
@@ -6560,11 +6561,12 @@ export type ServiceObjectiveName =
   | "DS1200"
   | "DS1500"
   | "DS2000"
-  | "ElasticPool";
+  | "ElasticPool"
+  | string;
 /**
  * Defines values for ExtensionName.
  */
-export type ExtensionName = "import";
+export type ExtensionName = "import" | string;
 /**
  * Defines values for UnitType.
  */
@@ -6574,7 +6576,8 @@ export type UnitType =
   | "seconds"
   | "percent"
   | "countPerSecond"
-  | "bytesPerSecond";
+  | "bytesPerSecond"
+  | string;
 /**
  * Defines values for PrimaryAggregationType.
  */
@@ -6584,7 +6587,8 @@ export type PrimaryAggregationType =
   | "Count"
   | "Minimum"
   | "Maximum"
-  | "Total";
+  | "Total"
+  | string;
 /**
  * Defines values for UnitDefinitionType.
  */
@@ -6594,7 +6598,8 @@ export type UnitDefinitionType =
   | "Seconds"
   | "Percent"
   | "CountPerSecond"
-  | "BytesPerSecond";
+  | "BytesPerSecond"
+  | string;
 /**
  * Defines values for ElasticPoolEdition.
  */
@@ -6603,65 +6608,75 @@ export type ElasticPoolEdition =
   | "Standard"
   | "Premium"
   | "GeneralPurpose"
-  | "BusinessCritical";
+  | "BusinessCritical"
+  | string;
 /**
  * Defines values for ReplicationState.
  */
-export type ReplicationState = "PENDING" | "SEEDING" | "CATCH_UP" | "SUSPENDED";
+export type ReplicationState =
+  | "PENDING"
+  | "SEEDING"
+  | "CATCH_UP"
+  | "SUSPENDED"
+  | string;
 /**
  * Defines values for TransparentDataEncryptionName.
  */
-export type TransparentDataEncryptionName = "current";
+export type TransparentDataEncryptionName = "current" | string;
 /**
  * Defines values for TransparentDataEncryptionActivityStatus.
  */
 export type TransparentDataEncryptionActivityStatus =
   | "Encrypting"
-  | "Decrypting";
+  | "Decrypting"
+  | string;
 /**
  * Defines values for EncryptionProtectorName.
  */
-export type EncryptionProtectorName = "current";
+export type EncryptionProtectorName = "current" | string;
 /**
  * Defines values for ServerKeyType.
  */
-export type ServerKeyType = "ServiceManaged" | "AzureKeyVault";
+export type ServerKeyType = "ServiceManaged" | "AzureKeyVault" | string;
 /**
  * Defines values for ReadWriteEndpointFailoverPolicy.
  */
-export type ReadWriteEndpointFailoverPolicy = "Manual" | "Automatic";
+export type ReadWriteEndpointFailoverPolicy = "Manual" | "Automatic" | string;
 /**
  * Defines values for ReadOnlyEndpointFailoverPolicy.
  */
-export type ReadOnlyEndpointFailoverPolicy = "Disabled" | "Enabled";
+export type ReadOnlyEndpointFailoverPolicy = "Disabled" | "Enabled" | string;
 /**
  * Defines values for FailoverGroupReplicationRole.
  */
-export type FailoverGroupReplicationRole = "Primary" | "Secondary";
+export type FailoverGroupReplicationRole = "Primary" | "Secondary" | string;
 /**
  * Defines values for OperationOrigin.
  */
-export type OperationOrigin = "user" | "system";
+export type OperationOrigin = "user" | "system" | string;
 /**
  * Defines values for SyncAgentState.
  */
-export type SyncAgentState = "Online" | "Offline" | "NeverConnected";
+export type SyncAgentState = "Online" | "Offline" | "NeverConnected" | string;
 /**
  * Defines values for SyncMemberDbType.
  */
-export type SyncMemberDbType = "AzureSqlDatabase" | "SqlServerDatabase";
+export type SyncMemberDbType =
+  | "AzureSqlDatabase"
+  | "SqlServerDatabase"
+  | string;
 /**
  * Defines values for Enum21.
  */
-export type Enum21 = "All" | "Error" | "Warning" | "Success";
+export type Enum21 = "All" | "Error" | "Warning" | "Success" | string;
 /**
  * Defines values for SyncGroupLogType.
  */
-export type SyncGroupLogType = "All" | "Error" | "Warning" | "Success";
+export type SyncGroupLogType = "All" | "Error" | "Warning" | "Success" | string;
 /**
  * Defines values for SyncConflictResolutionPolicy.
  */
-export type SyncConflictResolutionPolicy = "HubWin" | "MemberWin";
+export type SyncConflictResolutionPolicy = "HubWin" | "MemberWin" | string;
 /**
  * Defines values for SyncGroupState.
  */
@@ -6670,14 +6685,16 @@ export type SyncGroupState =
   | "Error"
   | "Warning"
   | "Progressing"
-  | "Good";
+  | "Good"
+  | string;
 /**
  * Defines values for SyncDirection.
  */
 export type SyncDirection =
   | "Bidirectional"
   | "OneWayMemberToHub"
-  | "OneWayHubToMember";
+  | "OneWayHubToMember"
+  | string;
 /**
  * Defines values for SyncMemberState.
  */
@@ -6699,7 +6716,8 @@ export type SyncMemberState =
   | "DeProvisionFailed"
   | "Reprovisioning"
   | "ReprovisionFailed"
-  | "UnReprovisioned";
+  | "UnReprovisioned"
+  | string;
 /**
  * Defines values for VirtualNetworkRuleState.
  */
@@ -6708,11 +6726,12 @@ export type VirtualNetworkRuleState =
   | "InProgress"
   | "Ready"
   | "Deleting"
-  | "Unknown";
+  | "Unknown"
+  | string;
 /**
  * Defines values for VulnerabilityAssessmentName.
  */
-export type VulnerabilityAssessmentName = "default";
+export type VulnerabilityAssessmentName = "default" | string;
 /**
  * Defines values for JobAgentState.
  */
@@ -6721,7 +6740,8 @@ export type JobAgentState =
   | "Ready"
   | "Updating"
   | "Deleting"
-  | "Disabled";
+  | "Disabled"
+  | string;
 /**
  * Defines values for JobExecutionLifecycle.
  */
@@ -6735,7 +6755,8 @@ export type JobExecutionLifecycle =
   | "Failed"
   | "TimedOut"
   | "Canceled"
-  | "Skipped";
+  | "Skipped"
+  | string;
 /**
  * Defines values for ProvisioningState.
  */
@@ -6744,7 +6765,8 @@ export type ProvisioningState =
   | "InProgress"
   | "Succeeded"
   | "Failed"
-  | "Canceled";
+  | "Canceled"
+  | string;
 /**
  * Defines values for JobTargetType.
  */
@@ -6753,39 +6775,44 @@ export type JobTargetType =
   | "SqlDatabase"
   | "SqlElasticPool"
   | "SqlShardMap"
-  | "SqlServer";
+  | "SqlServer"
+  | string;
 /**
  * Defines values for JobStepActionType.
  */
-export type JobStepActionType = "TSql";
+export type JobStepActionType = "TSql" | string;
 /**
  * Defines values for JobStepActionSource.
  */
-export type JobStepActionSource = "Inline";
+export type JobStepActionSource = "Inline" | string;
 /**
  * Defines values for JobStepOutputType.
  */
-export type JobStepOutputType = "SqlDatabase";
+export type JobStepOutputType = "SqlDatabase" | string;
 /**
  * Defines values for LongTermRetentionDatabaseState.
  */
-export type LongTermRetentionDatabaseState = "All" | "Live" | "Deleted";
+export type LongTermRetentionDatabaseState =
+  | "All"
+  | "Live"
+  | "Deleted"
+  | string;
 /**
  * Defines values for LongTermRetentionPolicyName.
  */
-export type LongTermRetentionPolicyName = "default";
+export type LongTermRetentionPolicyName = "default" | string;
 /**
  * Defines values for ManagedShortTermRetentionPolicyName.
  */
-export type ManagedShortTermRetentionPolicyName = "default";
+export type ManagedShortTermRetentionPolicyName = "default" | string;
 /**
  * Defines values for SecurityAlertPolicyNameAutoGenerated.
  */
-export type SecurityAlertPolicyNameAutoGenerated = "Default";
+export type SecurityAlertPolicyNameAutoGenerated = "Default" | string;
 /**
  * Defines values for ManagedInstanceAdministratorType.
  */
-export type ManagedInstanceAdministratorType = "ActiveDirectory";
+export type ManagedInstanceAdministratorType = "ActiveDirectory" | string;
 /**
  * Defines values for ManagementOperationState.
  */
@@ -6795,7 +6822,8 @@ export type ManagementOperationState =
   | "Succeeded"
   | "Failed"
   | "CancelInProgress"
-  | "Cancelled";
+  | "Cancelled"
+  | string;
 /**
  * Defines values for CreateMode.
  */
@@ -6809,14 +6837,16 @@ export type CreateMode =
   | "RestoreExternalBackup"
   | "RestoreExternalBackupSecondary"
   | "RestoreLongTermRetentionBackup"
-  | "OnlineSecondary";
+  | "OnlineSecondary"
+  | string;
 /**
  * Defines values for SampleName.
  */
 export type SampleName =
   | "AdventureWorksLT"
   | "WideWorldImportersStd"
-  | "WideWorldImportersFull";
+  | "WideWorldImportersFull"
+  | string;
 /**
  * Defines values for DatabaseStatus.
  */
@@ -6841,33 +6871,38 @@ export type DatabaseStatus =
   | "Scaling"
   | "OfflineChangingDwPerformanceTiers"
   | "OnlineChangingDwPerformanceTiers"
-  | "Disabled";
+  | "Disabled"
+  | string;
 /**
  * Defines values for CatalogCollationType.
  */
 export type CatalogCollationType =
   | "DATABASE_DEFAULT"
-  | "SQL_Latin1_General_CP1_CI_AS";
+  | "SQL_Latin1_General_CP1_CI_AS"
+  | string;
 /**
  * Defines values for DatabaseLicenseType.
  */
-export type DatabaseLicenseType = "LicenseIncluded" | "BasePrice";
+export type DatabaseLicenseType = "LicenseIncluded" | "BasePrice" | string;
 /**
  * Defines values for DatabaseReadScale.
  */
-export type DatabaseReadScale = "Enabled" | "Disabled";
+export type DatabaseReadScale = "Enabled" | "Disabled" | string;
 /**
  * Defines values for ElasticPoolState.
  */
-export type ElasticPoolState = "Creating" | "Ready" | "Disabled";
+export type ElasticPoolState = "Creating" | "Ready" | "Disabled" | string;
 /**
  * Defines values for ElasticPoolLicenseType.
  */
-export type ElasticPoolLicenseType = "LicenseIncluded" | "BasePrice";
+export type ElasticPoolLicenseType = "LicenseIncluded" | "BasePrice" | string;
 /**
  * Defines values for VulnerabilityAssessmentScanTriggerType.
  */
-export type VulnerabilityAssessmentScanTriggerType = "OnDemand" | "Recurring";
+export type VulnerabilityAssessmentScanTriggerType =
+  | "OnDemand"
+  | "Recurring"
+  | string;
 /**
  * Defines values for VulnerabilityAssessmentScanState.
  */
@@ -6875,39 +6910,50 @@ export type VulnerabilityAssessmentScanState =
   | "Passed"
   | "Failed"
   | "FailedToRun"
-  | "InProgress";
+  | "InProgress"
+  | string;
 /**
  * Defines values for InstanceFailoverGroupReplicationRole.
  */
-export type InstanceFailoverGroupReplicationRole = "Primary" | "Secondary";
+export type InstanceFailoverGroupReplicationRole =
+  | "Primary"
+  | "Secondary"
+  | string;
 /**
  * Defines values for ShortTermRetentionPolicyName.
  */
-export type ShortTermRetentionPolicyName = "default";
+export type ShortTermRetentionPolicyName = "default" | string;
 /**
  * Defines values for InstancePoolLicenseType.
  */
-export type InstancePoolLicenseType = "LicenseIncluded" | "BasePrice";
+export type InstancePoolLicenseType = "LicenseIncluded" | "BasePrice" | string;
 /**
  * Defines values for IdentityType.
  */
-export type IdentityType = "SystemAssigned";
+export type IdentityType = "SystemAssigned" | string;
 /**
  * Defines values for ManagedServerCreateMode.
  */
-export type ManagedServerCreateMode = "Default" | "PointInTimeRestore";
+export type ManagedServerCreateMode = "Default" | "PointInTimeRestore" | string;
 /**
  * Defines values for ManagedInstanceLicenseType.
  */
-export type ManagedInstanceLicenseType = "LicenseIncluded" | "BasePrice";
+export type ManagedInstanceLicenseType =
+  | "LicenseIncluded"
+  | "BasePrice"
+  | string;
 /**
  * Defines values for ManagedInstanceProxyOverride.
  */
-export type ManagedInstanceProxyOverride = "Proxy" | "Redirect" | "Default";
+export type ManagedInstanceProxyOverride =
+  | "Proxy"
+  | "Redirect"
+  | "Default"
+  | string;
 /**
  * Defines values for ReplicaType.
  */
-export type ReplicaType = "Primary" | "ReadableSecondary";
+export type ReplicaType = "Primary" | "ReadableSecondary" | string;
 /**
  * Defines values for PrivateLinkServiceConnectionStateStatus.
  */
@@ -6915,11 +6961,12 @@ export type PrivateLinkServiceConnectionStateStatus =
   | "Approved"
   | "Pending"
   | "Rejected"
-  | "Disconnected";
+  | "Disconnected"
+  | string;
 /**
  * Defines values for PrivateLinkServiceConnectionStateActionsRequire.
  */
-export type PrivateLinkServiceConnectionStateActionsRequire = "None";
+export type PrivateLinkServiceConnectionStateActionsRequire = "None" | string;
 /**
  * Defines values for PrivateEndpointProvisioningState.
  */
@@ -6928,11 +6975,12 @@ export type PrivateEndpointProvisioningState =
   | "Ready"
   | "Dropping"
   | "Failed"
-  | "Rejecting";
+  | "Rejecting"
+  | string;
 /**
  * Defines values for ServerPublicNetworkAccess.
  */
-export type ServerPublicNetworkAccess = "Enabled" | "Disabled";
+export type ServerPublicNetworkAccess = "Enabled" | "Disabled" | string;
 /**
  * Defines values for CapabilityGroup.
  */
@@ -6941,11 +6989,17 @@ export type CapabilityGroup =
   | "supportedElasticPoolEditions"
   | "supportedManagedInstanceVersions"
   | "supportedInstancePoolEditions"
-  | "supportedManagedInstanceEditions";
+  | "supportedManagedInstanceEditions"
+  | string;
 /**
  * Defines values for MaxSizeUnit.
  */
-export type MaxSizeUnit = "Megabytes" | "Gigabytes" | "Terabytes" | "Petabytes";
+export type MaxSizeUnit =
+  | "Megabytes"
+  | "Gigabytes"
+  | "Terabytes"
+  | "Petabytes"
+  | string;
 /**
  * Defines values for LogSizeUnit.
  */
@@ -6954,31 +7008,36 @@ export type LogSizeUnit =
   | "Gigabytes"
   | "Terabytes"
   | "Petabytes"
-  | "Percent";
+  | "Percent"
+  | string;
 /**
  * Defines values for PerformanceLevelUnit.
  */
-export type PerformanceLevelUnit = "DTU" | "VCores";
+export type PerformanceLevelUnit = "DTU" | "VCores" | string;
 /**
  * Defines values for PauseDelayTimeUnit.
  */
-export type PauseDelayTimeUnit = "Minutes";
+export type PauseDelayTimeUnit = "Minutes" | string;
 /**
  * Defines values for StorageCapabilityStorageAccountType.
  */
-export type StorageCapabilityStorageAccountType = "GRS" | "LRS" | "ZRS";
+export type StorageCapabilityStorageAccountType =
+  | "GRS"
+  | "LRS"
+  | "ZRS"
+  | string;
 /**
  * Defines values for DatabaseState.
  */
-export type DatabaseState = "All" | "Live" | "Deleted";
+export type DatabaseState = "All" | "Live" | "Deleted" | string;
 /**
  * Defines values for ManagedInstanceLongTermRetentionPolicyName.
  */
-export type ManagedInstanceLongTermRetentionPolicyName = "default";
+export type ManagedInstanceLongTermRetentionPolicyName = "default" | string;
 /**
  * Defines values for RestoreDetailsName.
  */
-export type RestoreDetailsName = "Default";
+export type RestoreDetailsName = "Default" | string;
 /**
  * Defines values for ManagedDatabaseStatus.
  */
@@ -6989,7 +7048,8 @@ export type ManagedDatabaseStatus =
   | "Creating"
   | "Inaccessible"
   | "Restoring"
-  | "Updating";
+  | "Updating"
+  | string;
 /**
  * Defines values for ManagedDatabaseCreateMode.
  */
@@ -6998,15 +7058,16 @@ export type ManagedDatabaseCreateMode =
   | "RestoreExternalBackup"
   | "PointInTimeRestore"
   | "Recovery"
-  | "RestoreLongTermRetentionBackup";
+  | "RestoreLongTermRetentionBackup"
+  | string;
 /**
  * Defines values for AdministratorName.
  */
-export type AdministratorName = "ActiveDirectory";
+export type AdministratorName = "ActiveDirectory" | string;
 /**
  * Defines values for AdministratorType.
  */
-export type AdministratorType = "ActiveDirectory";
+export type AdministratorType = "ActiveDirectory" | string;
 /**
  * Defines values for ServerConnectionType.
  */

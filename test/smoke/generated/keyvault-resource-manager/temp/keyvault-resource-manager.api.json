@@ -168,7 +168,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"get\" | \"list\" | \"delete\" | \"create\" | \"import\" | \"update\" | \"managecontacts\" | \"getissuers\" | \"listissuers\" | \"setissuers\" | \"deleteissuers\" | \"manageissuers\" | \"recover\" | \"purge\" | \"backup\" | \"restore\""
+              "text": "\"get\" | \"list\" | \"delete\" | \"create\" | \"import\" | \"update\" | \"managecontacts\" | \"getissuers\" | \"listissuers\" | \"setissuers\" | \"deleteissuers\" | \"manageissuers\" | \"recover\" | \"purge\" | \"backup\" | \"restore\" | string"
             },
             {
               "kind": "Content",
@@ -790,7 +790,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"encrypt\" | \"decrypt\" | \"wrapKey\" | \"unwrapKey\" | \"sign\" | \"verify\" | \"get\" | \"list\" | \"create\" | \"update\" | \"import\" | \"delete\" | \"backup\" | \"restore\" | \"recover\" | \"purge\""
+              "text": "\"encrypt\" | \"decrypt\" | \"wrapKey\" | \"unwrapKey\" | \"sign\" | \"verify\" | \"get\" | \"list\" | \"create\" | \"update\" | \"import\" | \"delete\" | \"backup\" | \"restore\" | \"recover\" | \"purge\" | string"
             },
             {
               "kind": "Content",
@@ -1413,7 +1413,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Allow\" | \"Deny\""
+              "text": "\"Allow\" | \"Deny\" | string"
             },
             {
               "kind": "Content",
@@ -1438,7 +1438,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"AzureServices\" | \"None\""
+              "text": "\"AzureServices\" | \"None\" | string"
             },
             {
               "kind": "Content",
@@ -2320,7 +2320,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Succeeded\" | \"Creating\" | \"Updating\" | \"Deleting\" | \"Failed\" | \"Disconnected\""
+              "text": "\"Succeeded\" | \"Creating\" | \"Updating\" | \"Deleting\" | \"Failed\" | \"Disconnected\" | string"
             },
             {
               "kind": "Content",
@@ -2639,7 +2639,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Pending\" | \"Approved\" | \"Rejected\" | \"Disconnected\""
+              "text": "\"Pending\" | \"Approved\" | \"Rejected\" | \"Disconnected\" | string"
             },
             {
               "kind": "Content",
@@ -3117,7 +3117,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"get\" | \"list\" | \"set\" | \"delete\" | \"backup\" | \"restore\" | \"recover\" | \"purge\""
+              "text": "\"get\" | \"list\" | \"set\" | \"delete\" | \"backup\" | \"restore\" | \"recover\" | \"purge\" | string"
             },
             {
               "kind": "Content",
@@ -3256,7 +3256,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"A\""
+              "text": "\"A\" | string"
             },
             {
               "kind": "Content",
@@ -3306,7 +3306,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"get\" | \"list\" | \"delete\" | \"set\" | \"update\" | \"regeneratekey\" | \"recover\" | \"purge\" | \"backup\" | \"restore\" | \"setsas\" | \"listsas\" | \"getsas\" | \"deletesas\""
+              "text": "\"get\" | \"list\" | \"delete\" | \"set\" | \"update\" | \"regeneratekey\" | \"recover\" | \"purge\" | \"backup\" | \"restore\" | \"setsas\" | \"listsas\" | \"getsas\" | \"deletesas\" | string"
             },
             {
               "kind": "Content",

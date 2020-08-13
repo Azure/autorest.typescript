@@ -275,10 +275,10 @@ export interface CompositePath {
 }
 
 // @public
-export type CompositePathSortOrder = "Ascending" | "Descending";
+export type CompositePathSortOrder = "Ascending" | "Descending" | string;
 
 // @public
-export type ConflictResolutionMode = "LastWriterWins" | "Custom";
+export type ConflictResolutionMode = "LastWriterWins" | "Custom" | string;
 
 // @public
 export interface ConflictResolutionPolicy {
@@ -288,7 +288,7 @@ export interface ConflictResolutionPolicy {
 }
 
 // @public
-export type ConnectorOffer = "Small";
+export type ConnectorOffer = "Small" | string;
 
 // @public
 export interface ConsistencyPolicy {
@@ -465,7 +465,7 @@ export type DatabaseAccountGetResults = ARMResourceProperties & {
 };
 
 // @public
-export type DatabaseAccountKind = "GlobalDocumentDB" | "MongoDB" | "Parse";
+export type DatabaseAccountKind = "GlobalDocumentDB" | "MongoDB" | "Parse" | string;
 
 // @public
 export interface DatabaseAccountListConnectionStringsResult {
@@ -654,7 +654,7 @@ export type DatabaseListUsagesResponse = UsagesResult & {
 };
 
 // @public
-export type DataType = "String" | "Number" | "Point" | "Polygon" | "LineString" | "MultiPolygon";
+export type DataType = "String" | "Number" | "Point" | "Polygon" | "LineString" | "MultiPolygon" | string;
 
 // @public
 export type DefaultConsistencyLevel = "Eventual" | "Session" | "BoundedStaleness" | "Strong" | "ConsistentPrefix";
@@ -844,7 +844,7 @@ export interface Indexes {
 }
 
 // @public
-export type IndexingMode = "Consistent" | "Lazy" | "None";
+export type IndexingMode = "Consistent" | "Lazy" | "None" | string;
 
 // @public
 export interface IndexingPolicy {
@@ -857,10 +857,10 @@ export interface IndexingPolicy {
 }
 
 // @public
-export type IndexKind = "Hash" | "Range" | "Spatial";
+export type IndexKind = "Hash" | "Range" | "Spatial" | string;
 
 // @public
-export type KeyKind = "primary" | "secondary" | "primaryReadonly" | "secondaryReadonly";
+export type KeyKind = "primary" | "secondary" | "primaryReadonly" | "secondaryReadonly" | string;
 
 // @public
 interface Location_2 {
@@ -1103,7 +1103,7 @@ export interface NotebookWorkspaceListResult {
 }
 
 // @public
-export type NotebookWorkspaceName = "default";
+export type NotebookWorkspaceName = "default" | string;
 
 // @public
 export type NotebookWorkspacesCreateOrUpdateResponse = NotebookWorkspace & {
@@ -1195,7 +1195,7 @@ export type PartitionKeyRangeIdRegionListMetricsResponse = PartitionMetricListRe
 };
 
 // @public
-export type PartitionKind = "Hash" | "Range";
+export type PartitionKind = "Hash" | "Range" | string;
 
 // @public
 export type PartitionMetric = Metric & {
@@ -1270,7 +1270,7 @@ export type PercentileTargetListMetricsResponse = PercentileMetricListResult & {
 };
 
 // @public
-export type PrimaryAggregationType = "None" | "Average" | "Total" | "Minimum" | "Maximum" | "Last";
+export type PrimaryAggregationType = "None" | "Average" | "Total" | "Minimum" | "Maximum" | "Last" | string;
 
 // @public
 export type PrivateEndpointConnection = Resource & {
@@ -1372,7 +1372,7 @@ export interface ProvisionedThroughputSettingsResource {
 export type ProxyResource = Resource & {};
 
 // @public
-export type PublicNetworkAccess = "Enabled" | "Disabled";
+export type PublicNetworkAccess = "Enabled" | "Disabled" | string;
 
 // @public
 export interface RegionForOnlineOffline {
@@ -1393,7 +1393,7 @@ export interface SpatialSpec {
 }
 
 // @public
-export type SpatialType = "Point" | "LineString" | "Polygon" | "MultiPolygon";
+export type SpatialType = "Point" | "LineString" | "Polygon" | "MultiPolygon" | string;
 
 // @public
 export type SqlContainerCreateUpdateParameters = ARMResourceProperties & {
@@ -1784,10 +1784,10 @@ export type ThroughputSettingsUpdateParameters = ARMResourceProperties & {
 };
 
 // @public
-export type TriggerOperation = "All" | "Create" | "Update" | "Delete" | "Replace";
+export type TriggerOperation = "All" | "Create" | "Update" | "Delete" | "Replace" | string;
 
 // @public
-export type TriggerType = "Pre" | "Post";
+export type TriggerType = "Pre" | "Post" | string;
 
 // @public
 export interface UniqueKey {
@@ -1800,7 +1800,7 @@ export interface UniqueKeyPolicy {
 }
 
 // @public
-export type UnitType = "Count" | "Bytes" | "Seconds" | "Percent" | "CountPerSecond" | "BytesPerSecond" | "Milliseconds";
+export type UnitType = "Count" | "Bytes" | "Seconds" | "Percent" | "CountPerSecond" | "BytesPerSecond" | "Milliseconds" | string;
 
 // @public
 export interface Usage {

@@ -28,7 +28,11 @@ import {
   OperationGroupDetails
 } from "../models/operationDetails";
 import { ParameterDetails } from "../models/parameterDetails";
-import { ImplementationLocation, Parameter } from "@azure-tools/codemodel";
+import {
+  ImplementationLocation,
+  Parameter,
+  SchemaType
+} from "@azure-tools/codemodel";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { getStringForValue } from "../utils/valueHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
@@ -201,7 +205,8 @@ interface GeneratedResponseDetails {
  * Extracts the necessary data from the response body to generate a response type
  */
 function getBodyProperties({
-  types: { bodyType }, mediaType
+  types: { bodyType },
+  mediaType
 }: OperationResponseDetails): GeneratedResponseDetails | undefined {
   if (!bodyType && mediaType !== KnownMediaType.Binary) {
     return;
@@ -213,7 +218,9 @@ function getBodyProperties({
   // Used when the bodyType is not a primitive, or for binary media types with no defined bodyType.
   const mainProperties: OptionalKind<PropertySignatureStructure>[] = [];
   // These are the additional default properties to add under the _response property in the response type
-  const internalResponseProperties: OptionalKind<PropertySignatureStructure>[] = [];
+  const internalResponseProperties: OptionalKind<
+    PropertySignatureStructure
+  >[] = [];
 
   if (bodyType) {
     if (hasBodyProperty) {
@@ -235,21 +242,27 @@ function getBodyProperties({
         docs: ["The response body as parsed JSON or XML"],
         type: bodyType.typeName,
         leadingTrivia: writer => writer.blankLine()
-      });
+      }
+    );
   } else if (mediaType === KnownMediaType.Binary) {
     mainProperties.push(
       {
         name: "blobBody",
         type: "Promise<Blob>",
-        docs: ["BROWSER ONLY\n\nThe response body as a browser Blob.\nAlways `undefined` in node.js."],
+        docs: [
+          "BROWSER ONLY\n\nThe response body as a browser Blob.\nAlways `undefined` in node.js."
+        ],
         hasQuestionToken: true
       },
       {
         name: "readableStreamBody",
         type: "NodeJS.ReadableStream",
-        docs: ["NODEJS ONLY\n\nThe response body as a node.js Readable stream.\nAlways `undefined` in the browser."],
+        docs: [
+          "NODEJS ONLY\n\nThe response body as a node.js Readable stream.\nAlways `undefined` in the browser."
+        ],
         hasQuestionToken: true
-      });
+      }
+    );
   }
 
   return {
@@ -315,12 +328,14 @@ function buildResponseType(
       {
         name: "_response",
         docs: ["The underlying HTTP response."],
-        type: innerResponseProperties.length ? Writers.intersectionType(
-          "coreHttp.HttpResponse",
-          Writers.objectType({
-            properties: innerResponseProperties
-          })
-        ) : "coreHttp.HttpResponse",
+        type: innerResponseProperties.length
+          ? Writers.intersectionType(
+              "coreHttp.HttpResponse",
+              Writers.objectType({
+                properties: innerResponseProperties
+              })
+            )
+          : "coreHttp.HttpResponse",
         leadingTrivia: writer => writer.blankLine()
       }
     ]
@@ -355,13 +370,13 @@ function buildResponseType(
    */
   return intersectionTypes.length > 1
     ? // Using apply instead of calling the method directly to be able to conditionally pass
-    // parameters, this way we don't have to have a nested if/else tree to decide which parameters
-    // to pass, we will pass any intersectionTypes availabe plus the innerType. When there are no intersection types
-    // we just return innerType
-    Writers.intersectionType.apply(
-      Writers,
-      intersectionTypes as IntersectionTypeParameters
-    )
+      // parameters, this way we don't have to have a nested if/else tree to decide which parameters
+      // to pass, we will pass any intersectionTypes availabe plus the innerType. When there are no intersection types
+      // we just return innerType
+      Writers.intersectionType.apply(
+        Writers,
+        intersectionTypes as IntersectionTypeParameters
+      )
     : innerTypeWriter;
 }
 
@@ -370,11 +385,16 @@ const writeChoices = (
   modelsIndexFile: SourceFile
 ) =>
   clientDetails.unions.forEach(choice => {
+    const values = [...choice.values];
+    if (choice.schemaType === SchemaType.Choice) {
+      values.push("string");
+    }
+
     modelsIndexFile.addTypeAlias({
       name: choice.name,
       docs: [choice.description],
       isExported: true,
-      type: choice.values.join(" | "),
+      type: values.join(" | "),
       trailingTrivia: writer => writer.newLine()
     });
   });

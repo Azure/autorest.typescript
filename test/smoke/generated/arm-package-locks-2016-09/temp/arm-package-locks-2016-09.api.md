@@ -23,7 +23,7 @@ export type AuthorizationOperationsListResponse = OperationListResult & {
 };
 
 // @public
-export type LockLevel = "NotSpecified" | "CanNotDelete" | "ReadOnly";
+export type LockLevel = "NotSpecified" | "CanNotDelete" | "ReadOnly" | string;
 
 // @public (undocumented)
 export class ManagementLockClient extends ManagementLockClientContext {

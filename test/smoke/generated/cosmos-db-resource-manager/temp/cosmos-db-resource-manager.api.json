@@ -2176,7 +2176,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Ascending\" | \"Descending\""
+              "text": "\"Ascending\" | \"Descending\" | string"
             },
             {
               "kind": "Content",
@@ -2201,7 +2201,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"LastWriterWins\" | \"Custom\""
+              "text": "\"LastWriterWins\" | \"Custom\" | string"
             },
             {
               "kind": "Content",
@@ -2318,7 +2318,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Small\""
+              "text": "\"Small\" | string"
             },
             {
               "kind": "Content",
@@ -3813,7 +3813,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"GlobalDocumentDB\" | \"MongoDB\" | \"Parse\""
+              "text": "\"GlobalDocumentDB\" | \"MongoDB\" | \"Parse\" | string"
             },
             {
               "kind": "Content",
@@ -5363,7 +5363,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"String\" | \"Number\" | \"Point\" | \"Polygon\" | \"LineString\" | \"MultiPolygon\""
+              "text": "\"String\" | \"Number\" | \"Point\" | \"Polygon\" | \"LineString\" | \"MultiPolygon\" | string"
             },
             {
               "kind": "Content",
@@ -7025,7 +7025,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Consistent\" | \"Lazy\" | \"None\""
+              "text": "\"Consistent\" | \"Lazy\" | \"None\" | string"
             },
             {
               "kind": "Content",
@@ -7237,7 +7237,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Hash\" | \"Range\" | \"Spatial\""
+              "text": "\"Hash\" | \"Range\" | \"Spatial\" | string"
             },
             {
               "kind": "Content",
@@ -7262,7 +7262,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"primary\" | \"secondary\" | \"primaryReadonly\" | \"secondaryReadonly\""
+              "text": "\"primary\" | \"secondary\" | \"primaryReadonly\" | \"secondaryReadonly\" | string"
             },
             {
               "kind": "Content",
@@ -9554,7 +9554,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"default\""
+              "text": "\"default\" | string"
             },
             {
               "kind": "Content",
@@ -10258,7 +10258,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Hash\" | \"Range\""
+              "text": "\"Hash\" | \"Range\" | string"
             },
             {
               "kind": "Content",
@@ -10830,7 +10830,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"None\" | \"Average\" | \"Total\" | \"Minimum\" | \"Maximum\" | \"Last\""
+              "text": "\"None\" | \"Average\" | \"Total\" | \"Minimum\" | \"Maximum\" | \"Last\" | string"
             },
             {
               "kind": "Content",
@@ -11633,7 +11633,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Enabled\" | \"Disabled\""
+              "text": "\"Enabled\" | \"Disabled\" | string"
             },
             {
               "kind": "Content",
@@ -11861,7 +11861,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Point\" | \"LineString\" | \"Polygon\" | \"MultiPolygon\""
+              "text": "\"Point\" | \"LineString\" | \"Polygon\" | \"MultiPolygon\" | string"
             },
             {
               "kind": "Content",
@@ -14989,7 +14989,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"All\" | \"Create\" | \"Update\" | \"Delete\" | \"Replace\""
+              "text": "\"All\" | \"Create\" | \"Update\" | \"Delete\" | \"Replace\" | string"
             },
             {
               "kind": "Content",
@@ -15014,7 +15014,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Pre\" | \"Post\""
+              "text": "\"Pre\" | \"Post\" | string"
             },
             {
               "kind": "Content",
@@ -15126,7 +15126,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Count\" | \"Bytes\" | \"Seconds\" | \"Percent\" | \"CountPerSecond\" | \"BytesPerSecond\" | \"Milliseconds\""
+              "text": "\"Count\" | \"Bytes\" | \"Seconds\" | \"Percent\" | \"CountPerSecond\" | \"BytesPerSecond\" | \"Milliseconds\" | string"
             },
             {
               "kind": "Content",

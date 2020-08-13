@@ -111,7 +111,7 @@ export interface ManagementLockListResult {
 /**
  * Defines values for LockLevel.
  */
-export type LockLevel = "NotSpecified" | "CanNotDelete" | "ReadOnly";
+export type LockLevel = "NotSpecified" | "CanNotDelete" | "ReadOnly" | string;
 
 /**
  * Contains response data for the list operation.

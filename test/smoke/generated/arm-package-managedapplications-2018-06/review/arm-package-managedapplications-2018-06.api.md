@@ -287,7 +287,7 @@ export interface PlanPatchable {
 }
 
 // @public
-export type ProvisioningState = "Accepted" | "Running" | "Ready" | "Creating" | "Created" | "Deleting" | "Deleted" | "Canceled" | "Failed" | "Succeeded" | "Updating";
+export type ProvisioningState = "Accepted" | "Running" | "Ready" | "Creating" | "Created" | "Deleting" | "Deleted" | "Canceled" | "Failed" | "Succeeded" | "Updating" | string;
 
 // @public
 export interface Resource {

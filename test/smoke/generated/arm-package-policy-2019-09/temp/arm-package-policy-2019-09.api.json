@@ -68,7 +68,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Default\" | \"DoNotEnforce\""
+              "text": "\"Default\" | \"DoNotEnforce\" | string"
             },
             {
               "kind": "Content",
@@ -628,7 +628,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"String\" | \"Array\" | \"Object\" | \"Boolean\" | \"Integer\" | \"Float\" | \"DateTime\""
+              "text": "\"String\" | \"Array\" | \"Object\" | \"Boolean\" | \"Integer\" | \"Float\" | \"DateTime\" | string"
             },
             {
               "kind": "Content",
@@ -4741,7 +4741,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"NotSpecified\" | \"BuiltIn\" | \"Custom\" | \"Static\""
+              "text": "\"NotSpecified\" | \"BuiltIn\" | \"Custom\" | \"Static\" | string"
             },
             {
               "kind": "Content",

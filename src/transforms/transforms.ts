@@ -44,9 +44,11 @@ export function transformChoice(
 ): UnionDetails {
   const metadata = getLanguageMetadata(choice.language);
   let name = normalizeName(metadata.name, NameType.Interface);
+  let schemaType = choice.type;
 
   return {
     name,
+    schemaType,
     description: `Defines values for ${metadata.name}.`,
     serializedName: metadata.name,
     values: choice.choices.map(c =>

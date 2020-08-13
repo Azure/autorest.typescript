@@ -13,7 +13,7 @@ import { PollOperationState } from '@azure/core-lro';
 import { RestResponse } from '@azure/core-http';
 
 // @public
-export type AccessLevel = "None" | "Read" | "Write";
+export type AccessLevel = "None" | "Read" | "Write" | string;
 
 // @public
 export interface AccessUri {
@@ -34,7 +34,7 @@ export interface AdditionalUnattendContent {
 }
 
 // @public
-export type AggregatedReplicationState = "Unknown" | "InProgress" | "Completed" | "Failed";
+export type AggregatedReplicationState = "Unknown" | "InProgress" | "Completed" | "Failed" | string;
 
 // @public
 export interface ApiEntityReference {
@@ -107,7 +107,7 @@ export type AvailabilitySetsGetResponse = AvailabilitySet & {
 };
 
 // @public
-export type AvailabilitySetSkuTypes = "Classic" | "Aligned";
+export type AvailabilitySetSkuTypes = "Classic" | "Aligned" | string;
 
 // @public
 export type AvailabilitySetsListAvailableSizesResponse = VirtualMachineSizeListResult & {
@@ -500,7 +500,7 @@ export interface ContainerServiceVMDiagnostics {
 }
 
 // @public
-export type ContainerServiceVMSizeTypes = "Standard_A0" | "Standard_A1" | "Standard_A2" | "Standard_A3" | "Standard_A4" | "Standard_A5" | "Standard_A6" | "Standard_A7" | "Standard_A8" | "Standard_A9" | "Standard_A10" | "Standard_A11" | "Standard_D1" | "Standard_D2" | "Standard_D3" | "Standard_D4" | "Standard_D11" | "Standard_D12" | "Standard_D13" | "Standard_D14" | "Standard_D1_v2" | "Standard_D2_v2" | "Standard_D3_v2" | "Standard_D4_v2" | "Standard_D5_v2" | "Standard_D11_v2" | "Standard_D12_v2" | "Standard_D13_v2" | "Standard_D14_v2" | "Standard_G1" | "Standard_G2" | "Standard_G3" | "Standard_G4" | "Standard_G5" | "Standard_DS1" | "Standard_DS2" | "Standard_DS3" | "Standard_DS4" | "Standard_DS11" | "Standard_DS12" | "Standard_DS13" | "Standard_DS14" | "Standard_GS1" | "Standard_GS2" | "Standard_GS3" | "Standard_GS4" | "Standard_GS5";
+export type ContainerServiceVMSizeTypes = "Standard_A0" | "Standard_A1" | "Standard_A2" | "Standard_A3" | "Standard_A4" | "Standard_A5" | "Standard_A6" | "Standard_A7" | "Standard_A8" | "Standard_A9" | "Standard_A10" | "Standard_A11" | "Standard_D1" | "Standard_D2" | "Standard_D3" | "Standard_D4" | "Standard_D11" | "Standard_D12" | "Standard_D13" | "Standard_D14" | "Standard_D1_v2" | "Standard_D2_v2" | "Standard_D3_v2" | "Standard_D4_v2" | "Standard_D5_v2" | "Standard_D11_v2" | "Standard_D12_v2" | "Standard_D13_v2" | "Standard_D14_v2" | "Standard_G1" | "Standard_G2" | "Standard_G3" | "Standard_G4" | "Standard_G5" | "Standard_DS1" | "Standard_DS2" | "Standard_DS3" | "Standard_DS4" | "Standard_DS11" | "Standard_DS12" | "Standard_DS13" | "Standard_DS14" | "Standard_GS1" | "Standard_GS2" | "Standard_GS3" | "Standard_GS4" | "Standard_GS5" | string;
 
 // @public
 export interface ContainerServiceWindowsProfile {
@@ -720,10 +720,10 @@ export interface DiagnosticsProfile {
 }
 
 // @public
-export type DiffDiskOptions = "Local";
+export type DiffDiskOptions = "Local" | string;
 
 // @public
-export type DiffDiskPlacement = "CacheDisk" | "ResourceDisk";
+export type DiffDiskPlacement = "CacheDisk" | "ResourceDisk" | string;
 
 // @public
 export interface DiffDiskSettings {
@@ -762,10 +762,10 @@ export type Disk = Resource & {
 };
 
 // @public
-export type DiskCreateOption = "Empty" | "Attach" | "FromImage" | "Import" | "Copy" | "Restore" | "Upload";
+export type DiskCreateOption = "Empty" | "Attach" | "FromImage" | "Import" | "Copy" | "Restore" | "Upload" | string;
 
 // @public
-export type DiskCreateOptionTypes = "FromImage" | "Empty" | "Attach";
+export type DiskCreateOptionTypes = "FromImage" | "Empty" | "Attach" | string;
 
 // @public
 export type DiskEncryptionSet = Resource & {
@@ -776,7 +776,7 @@ export type DiskEncryptionSet = Resource & {
 };
 
 // @public
-export type DiskEncryptionSetIdentityType = "SystemAssigned";
+export type DiskEncryptionSetIdentityType = "SystemAssigned" | string;
 
 // @public
 export interface DiskEncryptionSetList {
@@ -939,10 +939,10 @@ export type DisksListResponse = DiskList & {
 };
 
 // @public
-export type DiskState = "Unattached" | "Attached" | "Reserved" | "ActiveSAS" | "ReadyToUpload" | "ActiveUpload";
+export type DiskState = "Unattached" | "Attached" | "Reserved" | "ActiveSAS" | "ReadyToUpload" | "ActiveUpload" | string;
 
 // @public
-export type DiskStorageAccountTypes = "Standard_LRS" | "Premium_LRS" | "StandardSSD_LRS" | "UltraSSD_LRS";
+export type DiskStorageAccountTypes = "Standard_LRS" | "Premium_LRS" | "StandardSSD_LRS" | "UltraSSD_LRS" | string;
 
 // @public
 export type DisksUpdateResponse = Disk & {
@@ -1002,10 +1002,10 @@ export interface EncryptionSettingsElement {
 }
 
 // @public
-export type EncryptionType = "EncryptionAtRestWithPlatformKey" | "EncryptionAtRestWithCustomerKey";
+export type EncryptionType = "EncryptionAtRestWithPlatformKey" | "EncryptionAtRestWithCustomerKey" | string;
 
 // @public
-export type Enum31 = 1 | 3 | 5;
+export type Enum31 = 1 | 3 | 5 | string;
 
 // @public
 export type GalleriesCreateOrUpdateResponse = Gallery & {
@@ -1150,7 +1150,7 @@ export interface GalleryApplicationVersionList {
 }
 
 // @public
-export type GalleryApplicationVersionPropertiesProvisioningState = "Creating" | "Updating" | "Failed" | "Succeeded" | "Deleting" | "Migrating";
+export type GalleryApplicationVersionPropertiesProvisioningState = "Creating" | "Updating" | "Failed" | "Succeeded" | "Deleting" | "Migrating" | string;
 
 // @public
 export type GalleryApplicationVersionPublishingProfile = GalleryArtifactPublishingProfileBase & {
@@ -1279,7 +1279,7 @@ export interface GalleryImageList {
 }
 
 // @public
-export type GalleryImagePropertiesProvisioningState = "Creating" | "Updating" | "Failed" | "Succeeded" | "Deleting" | "Migrating";
+export type GalleryImagePropertiesProvisioningState = "Creating" | "Updating" | "Failed" | "Succeeded" | "Deleting" | "Migrating" | string;
 
 // @public
 export type GalleryImagesCreateOrUpdateResponse = GalleryImage & {
@@ -1353,7 +1353,7 @@ export interface GalleryImageVersionList {
 }
 
 // @public
-export type GalleryImageVersionPropertiesProvisioningState = "Creating" | "Updating" | "Failed" | "Succeeded" | "Deleting" | "Migrating";
+export type GalleryImageVersionPropertiesProvisioningState = "Creating" | "Updating" | "Failed" | "Succeeded" | "Deleting" | "Migrating" | string;
 
 // @public
 export type GalleryImageVersionPublishingProfile = GalleryArtifactPublishingProfileBase & {};
@@ -1428,7 +1428,7 @@ export interface GalleryList {
 export type GalleryOSDiskImage = GalleryDiskImage & {};
 
 // @public
-export type GalleryPropertiesProvisioningState = "Creating" | "Updating" | "Failed" | "Succeeded" | "Deleting" | "Migrating";
+export type GalleryPropertiesProvisioningState = "Creating" | "Updating" | "Failed" | "Succeeded" | "Deleting" | "Migrating" | string;
 
 // @public
 export type GalleryUpdate = UpdateResourceDefinition & {
@@ -1453,13 +1453,13 @@ export interface HardwareProfile {
 export type HostCaching = "None" | "ReadOnly" | "ReadWrite";
 
 // @public
-export type HyperVGeneration = "V1" | "V2";
+export type HyperVGeneration = "V1" | "V2" | string;
 
 // @public
-export type HyperVGenerationType = "V1" | "V2";
+export type HyperVGenerationType = "V1" | "V2" | string;
 
 // @public
-export type HyperVGenerationTypes = "V1" | "V2";
+export type HyperVGenerationTypes = "V1" | "V2" | string;
 
 // @public
 type Image_2 = Resource & {
@@ -1616,7 +1616,7 @@ export interface InstanceViewStatus {
 export type IntervalInMins = "ThreeMins" | "FiveMins" | "ThirtyMins" | "SixtyMins";
 
 // @public
-export type IPVersion = "IPv4" | "IPv6";
+export type IPVersion = "IPv4" | "IPv6" | string;
 
 // @public
 export interface KeyVaultAndKeyReference {
@@ -1741,13 +1741,13 @@ export type OperationsListResponse = ComputeOperationListResult & {
 };
 
 // @public
-export type OrchestrationServiceNames = "AutomaticRepairs";
+export type OrchestrationServiceNames = "AutomaticRepairs" | string;
 
 // @public
-export type OrchestrationServiceState = "NotRunning" | "Running" | "Suspended";
+export type OrchestrationServiceState = "NotRunning" | "Running" | "Suspended" | string;
 
 // @public
-export type OrchestrationServiceStateAction = "Resume" | "Suspend";
+export type OrchestrationServiceStateAction = "Resume" | "Suspend" | string;
 
 // @public
 export interface OrchestrationServiceStateInput {
@@ -1885,7 +1885,7 @@ export type ProximityPlacementGroupsUpdateResponse = ProximityPlacementGroup & {
 };
 
 // @public
-export type ProximityPlacementGroupType = "Standard" | "Ultra";
+export type ProximityPlacementGroupType = "Standard" | "Ultra" | string;
 
 // @public
 export type ProximityPlacementGroupUpdate = UpdateResource & {};
@@ -1918,7 +1918,7 @@ export interface RegionalReplicationStatus {
 }
 
 // @public
-export type ReplicationState = "Unknown" | "Replicating" | "Completed" | "Failed";
+export type ReplicationState = "Unknown" | "Replicating" | "Completed" | "Failed" | string;
 
 // @public
 export interface ReplicationStatus {
@@ -1927,7 +1927,7 @@ export interface ReplicationStatus {
 }
 
 // @public
-export type ReplicationStatusTypes = "ReplicationStatus";
+export type ReplicationStatusTypes = "ReplicationStatus" | string;
 
 // @public
 export type RequestRateByIntervalInput = LogAnalyticsInputBase & {
@@ -2263,7 +2263,7 @@ export type SnapshotsListResponse = SnapshotList & {
 };
 
 // @public
-export type SnapshotStorageAccountTypes = "Standard_LRS" | "Premium_LRS" | "Standard_ZRS";
+export type SnapshotStorageAccountTypes = "Standard_LRS" | "Premium_LRS" | "Standard_ZRS" | string;
 
 // @public
 export type SnapshotsUpdateResponse = Snapshot & {
@@ -2392,10 +2392,10 @@ export type SshPublicKeyUpdateResource = UpdateResource & {
 export type StatusLevelTypes = "Info" | "Warning" | "Error";
 
 // @public
-export type StorageAccountType = "Standard_LRS" | "Standard_ZRS" | "Premium_LRS";
+export type StorageAccountType = "Standard_LRS" | "Standard_ZRS" | "Premium_LRS" | string;
 
 // @public
-export type StorageAccountTypes = "Standard_LRS" | "Premium_LRS" | "StandardSSD_LRS" | "UltraSSD_LRS";
+export type StorageAccountTypes = "Standard_LRS" | "Premium_LRS" | "StandardSSD_LRS" | "UltraSSD_LRS" | string;
 
 // @public
 export interface StorageProfile {
@@ -2594,7 +2594,7 @@ export type VirtualMachineCaptureResult = SubResource & {
 };
 
 // @public
-export type VirtualMachineEvictionPolicyTypes = "Deallocate" | "Delete";
+export type VirtualMachineEvictionPolicyTypes = "Deallocate" | "Delete" | string;
 
 // @public
 export type VirtualMachineExtension = Resource & {
@@ -2831,7 +2831,7 @@ export interface VirtualMachineListResult {
 }
 
 // @public
-export type VirtualMachinePriorityTypes = "Regular" | "Low" | "Spot";
+export type VirtualMachinePriorityTypes = "Regular" | "Low" | "Spot" | string;
 
 // @public
 export interface VirtualMachineReimageParameters {
@@ -3130,7 +3130,7 @@ export type VirtualMachineScaleSetRollingUpgradesGetLatestResponse = RollingUpgr
 };
 
 // @public
-export type VirtualMachineScaleSetScaleInRules = "Default" | "OldestVM" | "NewestVM";
+export type VirtualMachineScaleSetScaleInRules = "Default" | "OldestVM" | "NewestVM" | string;
 
 // @public
 export type VirtualMachineScaleSetsCreateOrUpdateResponse = VirtualMachineScaleSet & {
@@ -3651,7 +3651,7 @@ export type VirtualMachineSizesListResponse = VirtualMachineSizeListResult & {
 };
 
 // @public
-export type VirtualMachineSizeTypes = "Basic_A0" | "Basic_A1" | "Basic_A2" | "Basic_A3" | "Basic_A4" | "Standard_A0" | "Standard_A1" | "Standard_A2" | "Standard_A3" | "Standard_A4" | "Standard_A5" | "Standard_A6" | "Standard_A7" | "Standard_A8" | "Standard_A9" | "Standard_A10" | "Standard_A11" | "Standard_A1_v2" | "Standard_A2_v2" | "Standard_A4_v2" | "Standard_A8_v2" | "Standard_A2m_v2" | "Standard_A4m_v2" | "Standard_A8m_v2" | "Standard_B1s" | "Standard_B1ms" | "Standard_B2s" | "Standard_B2ms" | "Standard_B4ms" | "Standard_B8ms" | "Standard_D1" | "Standard_D2" | "Standard_D3" | "Standard_D4" | "Standard_D11" | "Standard_D12" | "Standard_D13" | "Standard_D14" | "Standard_D1_v2" | "Standard_D2_v2" | "Standard_D3_v2" | "Standard_D4_v2" | "Standard_D5_v2" | "Standard_D2_v3" | "Standard_D4_v3" | "Standard_D8_v3" | "Standard_D16_v3" | "Standard_D32_v3" | "Standard_D64_v3" | "Standard_D2s_v3" | "Standard_D4s_v3" | "Standard_D8s_v3" | "Standard_D16s_v3" | "Standard_D32s_v3" | "Standard_D64s_v3" | "Standard_D11_v2" | "Standard_D12_v2" | "Standard_D13_v2" | "Standard_D14_v2" | "Standard_D15_v2" | "Standard_DS1" | "Standard_DS2" | "Standard_DS3" | "Standard_DS4" | "Standard_DS11" | "Standard_DS12" | "Standard_DS13" | "Standard_DS14" | "Standard_DS1_v2" | "Standard_DS2_v2" | "Standard_DS3_v2" | "Standard_DS4_v2" | "Standard_DS5_v2" | "Standard_DS11_v2" | "Standard_DS12_v2" | "Standard_DS13_v2" | "Standard_DS14_v2" | "Standard_DS15_v2" | "Standard_DS13-4_v2" | "Standard_DS13-2_v2" | "Standard_DS14-8_v2" | "Standard_DS14-4_v2" | "Standard_E2_v3" | "Standard_E4_v3" | "Standard_E8_v3" | "Standard_E16_v3" | "Standard_E32_v3" | "Standard_E64_v3" | "Standard_E2s_v3" | "Standard_E4s_v3" | "Standard_E8s_v3" | "Standard_E16s_v3" | "Standard_E32s_v3" | "Standard_E64s_v3" | "Standard_E32-16_v3" | "Standard_E32-8s_v3" | "Standard_E64-32s_v3" | "Standard_E64-16s_v3" | "Standard_F1" | "Standard_F2" | "Standard_F4" | "Standard_F8" | "Standard_F16" | "Standard_F1s" | "Standard_F2s" | "Standard_F4s" | "Standard_F8s" | "Standard_F16s" | "Standard_F2s_v2" | "Standard_F4s_v2" | "Standard_F8s_v2" | "Standard_F16s_v2" | "Standard_F32s_v2" | "Standard_F64s_v2" | "Standard_F72s_v2" | "Standard_G1" | "Standard_G2" | "Standard_G3" | "Standard_G4" | "Standard_G5" | "Standard_GS1" | "Standard_GS2" | "Standard_GS3" | "Standard_GS4" | "Standard_GS5" | "Standard_GS4-8" | "Standard_GS4-4" | "Standard_GS5-16" | "Standard_GS5-8" | "Standard_H8" | "Standard_H16" | "Standard_H8m" | "Standard_H16m" | "Standard_H16r" | "Standard_H16mr" | "Standard_L4s" | "Standard_L8s" | "Standard_L16s" | "Standard_L32s" | "Standard_M64s" | "Standard_M64ms" | "Standard_M128s" | "Standard_M128ms" | "Standard_M64-32ms" | "Standard_M64-16ms" | "Standard_M128-64ms" | "Standard_M128-32ms" | "Standard_NC6" | "Standard_NC12" | "Standard_NC24" | "Standard_NC24r" | "Standard_NC6s_v2" | "Standard_NC12s_v2" | "Standard_NC24s_v2" | "Standard_NC24rs_v2" | "Standard_NC6s_v3" | "Standard_NC12s_v3" | "Standard_NC24s_v3" | "Standard_NC24rs_v3" | "Standard_ND6s" | "Standard_ND12s" | "Standard_ND24s" | "Standard_ND24rs" | "Standard_NV6" | "Standard_NV12" | "Standard_NV24";
+export type VirtualMachineSizeTypes = "Basic_A0" | "Basic_A1" | "Basic_A2" | "Basic_A3" | "Basic_A4" | "Standard_A0" | "Standard_A1" | "Standard_A2" | "Standard_A3" | "Standard_A4" | "Standard_A5" | "Standard_A6" | "Standard_A7" | "Standard_A8" | "Standard_A9" | "Standard_A10" | "Standard_A11" | "Standard_A1_v2" | "Standard_A2_v2" | "Standard_A4_v2" | "Standard_A8_v2" | "Standard_A2m_v2" | "Standard_A4m_v2" | "Standard_A8m_v2" | "Standard_B1s" | "Standard_B1ms" | "Standard_B2s" | "Standard_B2ms" | "Standard_B4ms" | "Standard_B8ms" | "Standard_D1" | "Standard_D2" | "Standard_D3" | "Standard_D4" | "Standard_D11" | "Standard_D12" | "Standard_D13" | "Standard_D14" | "Standard_D1_v2" | "Standard_D2_v2" | "Standard_D3_v2" | "Standard_D4_v2" | "Standard_D5_v2" | "Standard_D2_v3" | "Standard_D4_v3" | "Standard_D8_v3" | "Standard_D16_v3" | "Standard_D32_v3" | "Standard_D64_v3" | "Standard_D2s_v3" | "Standard_D4s_v3" | "Standard_D8s_v3" | "Standard_D16s_v3" | "Standard_D32s_v3" | "Standard_D64s_v3" | "Standard_D11_v2" | "Standard_D12_v2" | "Standard_D13_v2" | "Standard_D14_v2" | "Standard_D15_v2" | "Standard_DS1" | "Standard_DS2" | "Standard_DS3" | "Standard_DS4" | "Standard_DS11" | "Standard_DS12" | "Standard_DS13" | "Standard_DS14" | "Standard_DS1_v2" | "Standard_DS2_v2" | "Standard_DS3_v2" | "Standard_DS4_v2" | "Standard_DS5_v2" | "Standard_DS11_v2" | "Standard_DS12_v2" | "Standard_DS13_v2" | "Standard_DS14_v2" | "Standard_DS15_v2" | "Standard_DS13-4_v2" | "Standard_DS13-2_v2" | "Standard_DS14-8_v2" | "Standard_DS14-4_v2" | "Standard_E2_v3" | "Standard_E4_v3" | "Standard_E8_v3" | "Standard_E16_v3" | "Standard_E32_v3" | "Standard_E64_v3" | "Standard_E2s_v3" | "Standard_E4s_v3" | "Standard_E8s_v3" | "Standard_E16s_v3" | "Standard_E32s_v3" | "Standard_E64s_v3" | "Standard_E32-16_v3" | "Standard_E32-8s_v3" | "Standard_E64-32s_v3" | "Standard_E64-16s_v3" | "Standard_F1" | "Standard_F2" | "Standard_F4" | "Standard_F8" | "Standard_F16" | "Standard_F1s" | "Standard_F2s" | "Standard_F4s" | "Standard_F8s" | "Standard_F16s" | "Standard_F2s_v2" | "Standard_F4s_v2" | "Standard_F8s_v2" | "Standard_F16s_v2" | "Standard_F32s_v2" | "Standard_F64s_v2" | "Standard_F72s_v2" | "Standard_G1" | "Standard_G2" | "Standard_G3" | "Standard_G4" | "Standard_G5" | "Standard_GS1" | "Standard_GS2" | "Standard_GS3" | "Standard_GS4" | "Standard_GS5" | "Standard_GS4-8" | "Standard_GS4-4" | "Standard_GS5-16" | "Standard_GS5-8" | "Standard_H8" | "Standard_H16" | "Standard_H8m" | "Standard_H16m" | "Standard_H16r" | "Standard_H16mr" | "Standard_L4s" | "Standard_L8s" | "Standard_L16s" | "Standard_L32s" | "Standard_M64s" | "Standard_M64ms" | "Standard_M128s" | "Standard_M128ms" | "Standard_M64-32ms" | "Standard_M64-16ms" | "Standard_M128-64ms" | "Standard_M128-32ms" | "Standard_NC6" | "Standard_NC12" | "Standard_NC24" | "Standard_NC24r" | "Standard_NC6s_v2" | "Standard_NC12s_v2" | "Standard_NC24s_v2" | "Standard_NC24rs_v2" | "Standard_NC6s_v3" | "Standard_NC12s_v3" | "Standard_NC24s_v3" | "Standard_NC24rs_v3" | "Standard_ND6s" | "Standard_ND12s" | "Standard_ND24s" | "Standard_ND24rs" | "Standard_NV6" | "Standard_NV12" | "Standard_NV24" | string;
 
 // @public
 export interface VirtualMachinesListAllNextOptionalParams extends coreHttp.OperationOptions {

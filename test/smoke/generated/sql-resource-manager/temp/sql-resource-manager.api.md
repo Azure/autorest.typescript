@@ -19,10 +19,10 @@ export interface AdministratorListResult {
 }
 
 // @public
-export type AdministratorName = "ActiveDirectory";
+export type AdministratorName = "ActiveDirectory" | string;
 
 // @public
-export type AdministratorType = "ActiveDirectory";
+export type AdministratorType = "ActiveDirectory" | string;
 
 // @public
 export type AuthenticationType = "SQL" | "ADPassword";
@@ -171,13 +171,13 @@ export type CapabilitiesListByLocationResponse = LocationCapabilities & {
 };
 
 // @public
-export type CapabilityGroup = "supportedEditions" | "supportedElasticPoolEditions" | "supportedManagedInstanceVersions" | "supportedInstancePoolEditions" | "supportedManagedInstanceEditions";
+export type CapabilityGroup = "supportedEditions" | "supportedElasticPoolEditions" | "supportedManagedInstanceVersions" | "supportedInstancePoolEditions" | "supportedManagedInstanceEditions" | string;
 
 // @public
 export type CapabilityStatus = "Visible" | "Available" | "Default" | "Disabled";
 
 // @public
-export type CatalogCollationType = "DATABASE_DEFAULT" | "SQL_Latin1_General_CP1_CI_AS";
+export type CatalogCollationType = "DATABASE_DEFAULT" | "SQL_Latin1_General_CP1_CI_AS" | string;
 
 // @public
 export type CheckNameAvailabilityReason = "Invalid" | "AlreadyExists";
@@ -204,7 +204,7 @@ export interface CompleteDatabaseRestoreDefinition {
 }
 
 // @public
-export type ConnectionPolicyName = "default";
+export type ConnectionPolicyName = "default" | string;
 
 // @public
 export interface CreateDatabaseRestorePointDefinition {
@@ -212,7 +212,7 @@ export interface CreateDatabaseRestorePointDefinition {
 }
 
 // @public
-export type CreateMode = "Default" | "Copy" | "Secondary" | "PointInTimeRestore" | "Restore" | "Recovery" | "RestoreExternalBackup" | "RestoreExternalBackupSecondary" | "RestoreLongTermRetentionBackup" | "OnlineSecondary";
+export type CreateMode = "Default" | "Copy" | "Secondary" | "PointInTimeRestore" | "Restore" | "Recovery" | "RestoreExternalBackup" | "RestoreExternalBackupSecondary" | "RestoreLongTermRetentionBackup" | "OnlineSecondary" | string;
 
 // @public
 export type Database = TrackedResource & {
@@ -330,10 +330,10 @@ export interface DatabaseBlobAuditingPolicyListResult {
 }
 
 // @public
-export type DatabaseEdition = "Web" | "Business" | "Basic" | "Standard" | "Premium" | "PremiumRS" | "Free" | "Stretch" | "DataWarehouse" | "System" | "System2" | "GeneralPurpose" | "BusinessCritical" | "Hyperscale";
+export type DatabaseEdition = "Web" | "Business" | "Basic" | "Standard" | "Premium" | "PremiumRS" | "Free" | "Stretch" | "DataWarehouse" | "System" | "System2" | "GeneralPurpose" | "BusinessCritical" | "Hyperscale" | string;
 
 // @public
-export type DatabaseLicenseType = "LicenseIncluded" | "BasePrice";
+export type DatabaseLicenseType = "LicenseIncluded" | "BasePrice" | string;
 
 // @public
 export interface DatabaseListResult {
@@ -382,7 +382,7 @@ export type DatabaseOperationsListByDatabaseResponse = DatabaseOperationListResu
 };
 
 // @public
-export type DatabaseReadScale = "Enabled" | "Disabled";
+export type DatabaseReadScale = "Enabled" | "Disabled" | string;
 
 // @public
 export type DatabasesCreateImportOperationResponse = ImportExportResponse & {
@@ -508,10 +508,10 @@ export type DatabasesResumeResponse = Database & {
 };
 
 // @public
-export type DatabaseState = "All" | "Live" | "Deleted";
+export type DatabaseState = "All" | "Live" | "Deleted" | string;
 
 // @public
-export type DatabaseStatus = "Online" | "Restoring" | "RecoveryPending" | "Recovering" | "Suspect" | "Offline" | "Standby" | "Shutdown" | "EmergencyMode" | "AutoClosed" | "Copying" | "Creating" | "Inaccessible" | "OfflineSecondary" | "Pausing" | "Paused" | "Resuming" | "Scaling" | "OfflineChangingDwPerformanceTiers" | "OnlineChangingDwPerformanceTiers" | "Disabled";
+export type DatabaseStatus = "Online" | "Restoring" | "RecoveryPending" | "Recovering" | "Suspect" | "Offline" | "Standby" | "Shutdown" | "EmergencyMode" | "AutoClosed" | "Copying" | "Creating" | "Inaccessible" | "OfflineSecondary" | "Pausing" | "Paused" | "Resuming" | "Scaling" | "OfflineChangingDwPerformanceTiers" | "OnlineChangingDwPerformanceTiers" | "Disabled" | string;
 
 // @public
 export type DatabasesUpdateResponse = Database & {
@@ -878,7 +878,7 @@ export interface ElasticPoolDatabaseActivityListResult {
 }
 
 // @public
-export type ElasticPoolEdition = "Basic" | "Standard" | "Premium" | "GeneralPurpose" | "BusinessCritical";
+export type ElasticPoolEdition = "Basic" | "Standard" | "Premium" | "GeneralPurpose" | "BusinessCritical" | string;
 
 // @public
 export interface ElasticPoolEditionCapability {
@@ -890,7 +890,7 @@ export interface ElasticPoolEditionCapability {
 }
 
 // @public
-export type ElasticPoolLicenseType = "LicenseIncluded" | "BasePrice";
+export type ElasticPoolLicenseType = "LicenseIncluded" | "BasePrice" | string;
 
 // @public
 export interface ElasticPoolListResult {
@@ -1035,7 +1035,7 @@ export type ElasticPoolsListMetricsResponse = MetricListResult & {
 };
 
 // @public
-export type ElasticPoolState = "Creating" | "Ready" | "Disabled";
+export type ElasticPoolState = "Creating" | "Ready" | "Disabled" | string;
 
 // @public
 export type ElasticPoolsUpdateResponse = ElasticPool & {
@@ -1075,7 +1075,7 @@ export interface EncryptionProtectorListResult {
 }
 
 // @public
-export type EncryptionProtectorName = "current";
+export type EncryptionProtectorName = "current" | string;
 
 // @public
 export type EncryptionProtectorsCreateOrUpdateResponse = EncryptionProtector & {
@@ -1110,7 +1110,7 @@ export type EncryptionProtectorsListByServerResponse = EncryptionProtectorListRe
 };
 
 // @public
-export type Enum21 = "All" | "Error" | "Warning" | "Success";
+export type Enum21 = "All" | "Error" | "Warning" | "Success" | string;
 
 // @public
 export interface ExportRequest {
@@ -1227,7 +1227,7 @@ export interface ExtendedServerBlobAuditingPolicyListResult {
 }
 
 // @public
-export type ExtensionName = "import";
+export type ExtensionName = "import" | string;
 
 // @public
 export type FailoverGroup = Resource & {
@@ -1261,7 +1261,7 @@ export interface FailoverGroupReadWriteEndpoint {
 }
 
 // @public
-export type FailoverGroupReplicationRole = "Primary" | "Secondary";
+export type FailoverGroupReplicationRole = "Primary" | "Secondary" | string;
 
 // @public
 export type FailoverGroupsCreateOrUpdateResponse = FailoverGroup & {
@@ -1404,13 +1404,13 @@ export interface GeoBackupPolicyListResult {
 }
 
 // @public
-export type GeoBackupPolicyName = "Default";
+export type GeoBackupPolicyName = "Default" | string;
 
 // @public
 export type GeoBackupPolicyState = "Disabled" | "Enabled";
 
 // @public
-export type IdentityType = "SystemAssigned";
+export type IdentityType = "SystemAssigned" | string;
 
 // @public
 export type ImportExportResponse = Resource & {
@@ -1479,7 +1479,7 @@ export interface InstanceFailoverGroupReadWriteEndpoint {
 }
 
 // @public
-export type InstanceFailoverGroupReplicationRole = "Primary" | "Secondary";
+export type InstanceFailoverGroupReplicationRole = "Primary" | "Secondary" | string;
 
 // @public
 export type InstanceFailoverGroupsCreateOrUpdateResponse = InstanceFailoverGroup & {
@@ -1555,7 +1555,7 @@ export interface InstancePoolFamilyCapability {
 }
 
 // @public
-export type InstancePoolLicenseType = "LicenseIncluded" | "BasePrice";
+export type InstancePoolLicenseType = "LicenseIncluded" | "BasePrice" | string;
 
 // @public
 export interface InstancePoolListResult {
@@ -1688,7 +1688,7 @@ export type JobAgentsListByServerResponse = JobAgentListResult & {
 };
 
 // @public
-export type JobAgentState = "Creating" | "Ready" | "Updating" | "Deleting" | "Disabled";
+export type JobAgentState = "Creating" | "Ready" | "Updating" | "Deleting" | "Disabled" | string;
 
 // @public
 export type JobAgentsUpdateResponse = JobAgent & {
@@ -1767,7 +1767,7 @@ export type JobExecution = Resource & {
 };
 
 // @public
-export type JobExecutionLifecycle = "Created" | "InProgress" | "WaitingForChildJobExecutions" | "WaitingForRetry" | "Succeeded" | "SucceededWithSkipped" | "Failed" | "TimedOut" | "Canceled" | "Skipped";
+export type JobExecutionLifecycle = "Created" | "InProgress" | "WaitingForChildJobExecutions" | "WaitingForRetry" | "Succeeded" | "SucceededWithSkipped" | "Failed" | "TimedOut" | "Canceled" | "Skipped" | string;
 
 // @public
 export interface JobExecutionListResult {
@@ -1950,10 +1950,10 @@ export interface JobStepAction {
 }
 
 // @public
-export type JobStepActionSource = "Inline";
+export type JobStepActionSource = "Inline" | string;
 
 // @public
-export type JobStepActionType = "TSql";
+export type JobStepActionType = "TSql" | string;
 
 // @public
 export interface JobStepExecutionOptions {
@@ -2029,7 +2029,7 @@ export interface JobStepOutput {
 }
 
 // @public
-export type JobStepOutputType = "SqlDatabase";
+export type JobStepOutputType = "SqlDatabase" | string;
 
 // @public
 export type JobStepsCreateOrUpdateResponse = JobStep & {
@@ -2229,7 +2229,7 @@ export type JobTargetGroupsListByAgentResponse = JobTargetGroupListResult & {
 };
 
 // @public
-export type JobTargetType = "TargetGroup" | "SqlDatabase" | "SqlElasticPool" | "SqlShardMap" | "SqlServer";
+export type JobTargetType = "TargetGroup" | "SqlDatabase" | "SqlElasticPool" | "SqlShardMap" | "SqlServer" | string;
 
 // @public
 export type JobVersion = Resource & {};
@@ -2293,7 +2293,7 @@ export interface LogSizeCapability {
 }
 
 // @public
-export type LogSizeUnit = "Megabytes" | "Gigabytes" | "Terabytes" | "Petabytes" | "Percent";
+export type LogSizeUnit = "Megabytes" | "Gigabytes" | "Terabytes" | "Petabytes" | "Percent" | string;
 
 // @public
 export type LongTermRetentionBackup = Resource & {
@@ -2496,7 +2496,7 @@ export type LongTermRetentionBackupsListByServerResponse = LongTermRetentionBack
 };
 
 // @public
-export type LongTermRetentionDatabaseState = "All" | "Live" | "Deleted";
+export type LongTermRetentionDatabaseState = "All" | "Live" | "Deleted" | string;
 
 // @public
 export type LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse = ManagedInstanceLongTermRetentionBackup & {
@@ -2683,7 +2683,7 @@ export type LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationRe
 };
 
 // @public
-export type LongTermRetentionPolicyName = "default";
+export type LongTermRetentionPolicyName = "default" | string;
 
 // @public
 export type ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse = ManagedBackupShortTermRetentionPolicy & {
@@ -2756,7 +2756,7 @@ export type ManagedDatabase = TrackedResource & {
 };
 
 // @public
-export type ManagedDatabaseCreateMode = "Default" | "RestoreExternalBackup" | "PointInTimeRestore" | "Recovery" | "RestoreLongTermRetentionBackup";
+export type ManagedDatabaseCreateMode = "Default" | "RestoreExternalBackup" | "PointInTimeRestore" | "Recovery" | "RestoreLongTermRetentionBackup" | string;
 
 // @public
 export interface ManagedDatabaseListResult {
@@ -2959,7 +2959,7 @@ export type ManagedDatabasesListInaccessibleByInstanceResponse = ManagedDatabase
 };
 
 // @public
-export type ManagedDatabaseStatus = "Online" | "Offline" | "Shutdown" | "Creating" | "Inaccessible" | "Restoring" | "Updating";
+export type ManagedDatabaseStatus = "Online" | "Offline" | "Shutdown" | "Creating" | "Inaccessible" | "Restoring" | "Updating" | string;
 
 // @public
 export type ManagedDatabasesUpdateResponse = ManagedDatabase & {
@@ -3143,7 +3143,7 @@ export type ManagedInstanceAdministratorsListByInstanceResponse = ManagedInstanc
 };
 
 // @public
-export type ManagedInstanceAdministratorType = "ActiveDirectory";
+export type ManagedInstanceAdministratorType = "ActiveDirectory" | string;
 
 // @public
 export interface ManagedInstanceEditionCapability {
@@ -3268,7 +3268,7 @@ export type ManagedInstanceKeysListByInstanceResponse = ManagedInstanceKeyListRe
 };
 
 // @public
-export type ManagedInstanceLicenseType = "LicenseIncluded" | "BasePrice";
+export type ManagedInstanceLicenseType = "LicenseIncluded" | "BasePrice" | string;
 
 // @public
 export interface ManagedInstanceListResult {
@@ -3339,7 +3339,7 @@ export interface ManagedInstanceLongTermRetentionPolicyListResult {
 }
 
 // @public
-export type ManagedInstanceLongTermRetentionPolicyName = "default";
+export type ManagedInstanceLongTermRetentionPolicyName = "default" | string;
 
 // @public
 export type ManagedInstanceOperation = Resource & {
@@ -3395,7 +3395,7 @@ export interface ManagedInstancePairInfo {
 }
 
 // @public
-export type ManagedInstanceProxyOverride = "Proxy" | "Redirect" | "Default";
+export type ManagedInstanceProxyOverride = "Proxy" | "Redirect" | "Default" | string;
 
 // @public
 export type ManagedInstancesCreateOrUpdateResponse = ManagedInstance & {
@@ -3604,7 +3604,7 @@ export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpda
 };
 
 // @public
-export type ManagedServerCreateMode = "Default" | "PointInTimeRestore";
+export type ManagedServerCreateMode = "Default" | "PointInTimeRestore" | string;
 
 // @public
 export type ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse = ManagedServerSecurityAlertPolicy & {
@@ -3657,10 +3657,10 @@ export interface ManagedServerSecurityAlertPolicyListResult {
 }
 
 // @public
-export type ManagedShortTermRetentionPolicyName = "default";
+export type ManagedShortTermRetentionPolicyName = "default" | string;
 
 // @public
-export type ManagementOperationState = "Pending" | "InProgress" | "Succeeded" | "Failed" | "CancelInProgress" | "Cancelled";
+export type ManagementOperationState = "Pending" | "InProgress" | "Succeeded" | "Failed" | "CancelInProgress" | "Cancelled" | string;
 
 // @public
 export interface MaxSizeCapability {
@@ -3679,7 +3679,7 @@ export interface MaxSizeRangeCapability {
 }
 
 // @public
-export type MaxSizeUnit = "Megabytes" | "Gigabytes" | "Terabytes" | "Petabytes";
+export type MaxSizeUnit = "Megabytes" | "Gigabytes" | "Terabytes" | "Petabytes" | string;
 
 // @public
 export interface Metric {
@@ -3778,7 +3778,7 @@ export interface OperationListResult {
 }
 
 // @public
-export type OperationOrigin = "user" | "system";
+export type OperationOrigin = "user" | "system" | string;
 
 // @public
 export type OperationsListNextResponse = OperationListResult & {
@@ -3810,7 +3810,7 @@ export interface PartnerRegionInfo {
 }
 
 // @public
-export type PauseDelayTimeUnit = "Minutes";
+export type PauseDelayTimeUnit = "Minutes" | string;
 
 // @public
 export interface PerformanceLevelCapability {
@@ -3819,10 +3819,10 @@ export interface PerformanceLevelCapability {
 }
 
 // @public
-export type PerformanceLevelUnit = "DTU" | "VCores";
+export type PerformanceLevelUnit = "DTU" | "VCores" | string;
 
 // @public
-export type PrimaryAggregationType = "None" | "Average" | "Count" | "Minimum" | "Maximum" | "Total";
+export type PrimaryAggregationType = "None" | "Average" | "Count" | "Minimum" | "Maximum" | "Total" | string;
 
 // @public
 export type PrivateEndpointConnection = Resource & {
@@ -3882,7 +3882,7 @@ export interface PrivateEndpointProperty {
 }
 
 // @public
-export type PrivateEndpointProvisioningState = "Approving" | "Ready" | "Dropping" | "Failed" | "Rejecting";
+export type PrivateEndpointProvisioningState = "Approving" | "Ready" | "Dropping" | "Failed" | "Rejecting" | string;
 
 // @public
 export type PrivateLinkResource = Resource & {
@@ -3926,7 +3926,7 @@ export type PrivateLinkResourcesListByServerResponse = PrivateLinkResourceListRe
 };
 
 // @public
-export type PrivateLinkServiceConnectionStateActionsRequire = "None";
+export type PrivateLinkServiceConnectionStateActionsRequire = "None" | string;
 
 // @public (undocumented)
 export interface PrivateLinkServiceConnectionStateProperty {
@@ -3943,16 +3943,16 @@ export interface PrivateLinkServiceConnectionStatePropertyAutoGenerated {
 }
 
 // @public
-export type PrivateLinkServiceConnectionStateStatus = "Approved" | "Pending" | "Rejected" | "Disconnected";
+export type PrivateLinkServiceConnectionStateStatus = "Approved" | "Pending" | "Rejected" | "Disconnected" | string;
 
 // @public
-export type ProvisioningState = "Created" | "InProgress" | "Succeeded" | "Failed" | "Canceled";
+export type ProvisioningState = "Created" | "InProgress" | "Succeeded" | "Failed" | "Canceled" | string;
 
 // @public
 export type ProxyResource = Resource & {};
 
 // @public
-export type ReadOnlyEndpointFailoverPolicy = "Disabled" | "Enabled";
+export type ReadOnlyEndpointFailoverPolicy = "Disabled" | "Enabled" | string;
 
 // @public
 export interface ReadScaleCapability {
@@ -3962,7 +3962,7 @@ export interface ReadScaleCapability {
 }
 
 // @public
-export type ReadWriteEndpointFailoverPolicy = "Manual" | "Automatic";
+export type ReadWriteEndpointFailoverPolicy = "Manual" | "Automatic" | string;
 
 // @public
 export type RecommendedElasticPool = Resource & {
@@ -4149,10 +4149,10 @@ export type ReplicationLinksListByDatabaseResponse = ReplicationLinkListResult &
 export type ReplicationRole = "Primary" | "Secondary" | "NonReadableSecondary" | "Source" | "Copy";
 
 // @public
-export type ReplicationState = "PENDING" | "SEEDING" | "CATCH_UP" | "SUSPENDED";
+export type ReplicationState = "PENDING" | "SEEDING" | "CATCH_UP" | "SUSPENDED" | string;
 
 // @public
-export type ReplicaType = "Primary" | "ReadableSecondary";
+export type ReplicaType = "Primary" | "ReadableSecondary" | string;
 
 // @public
 export interface Resource {
@@ -4246,7 +4246,7 @@ export type RestorableDroppedManagedDatabasesListByInstanceResponse = Restorable
 };
 
 // @public
-export type RestoreDetailsName = "Default";
+export type RestoreDetailsName = "Default" | string;
 
 // @public
 export type RestorePoint = Resource & {
@@ -4291,16 +4291,16 @@ export type RestorePointsListByDatabaseResponse = RestorePointListResult & {
 export type RestorePointType = "CONTINUOUS" | "DISCRETE";
 
 // @public
-export type SampleName = "AdventureWorksLT" | "WideWorldImportersStd" | "WideWorldImportersFull";
+export type SampleName = "AdventureWorksLT" | "WideWorldImportersStd" | "WideWorldImportersFull" | string;
 
 // @public
 export type SecurityAlertPolicyEmailAccountAdmins = "Enabled" | "Disabled";
 
 // @public
-export type SecurityAlertPolicyName = "default";
+export type SecurityAlertPolicyName = "default" | string;
 
 // @public
-export type SecurityAlertPolicyNameAutoGenerated = "Default";
+export type SecurityAlertPolicyNameAutoGenerated = "Default" | string;
 
 // @public
 export type SecurityAlertPolicyState = "New" | "Enabled" | "Disabled";
@@ -4704,7 +4704,7 @@ export type ServerKeysListByServerResponse = ServerKeyListResult & {
 };
 
 // @public
-export type ServerKeyType = "ServiceManaged" | "AzureKeyVault";
+export type ServerKeyType = "ServiceManaged" | "AzureKeyVault" | string;
 
 // @public
 export interface ServerListResult {
@@ -4719,7 +4719,7 @@ export interface ServerPrivateEndpointConnection {
 }
 
 // @public
-export type ServerPublicNetworkAccess = "Enabled" | "Disabled";
+export type ServerPublicNetworkAccess = "Enabled" | "Disabled" | string;
 
 // @public
 export type ServersCheckNameAvailabilityResponse = CheckNameAvailabilityResponse & {
@@ -4955,7 +4955,7 @@ export interface ServiceObjectiveListResult {
 }
 
 // @public
-export type ServiceObjectiveName = "System" | "System0" | "System1" | "System2" | "System3" | "System4" | "System2L" | "System3L" | "System4L" | "Free" | "Basic" | "S0" | "S1" | "S2" | "S3" | "S4" | "S6" | "S7" | "S9" | "S12" | "P1" | "P2" | "P3" | "P4" | "P6" | "P11" | "P15" | "PRS1" | "PRS2" | "PRS4" | "PRS6" | "DW100" | "DW200" | "DW300" | "DW400" | "DW500" | "DW600" | "DW1000" | "DW1200" | "DW1000c" | "DW1500" | "DW1500c" | "DW2000" | "DW2000c" | "DW3000" | "DW2500c" | "DW3000c" | "DW6000" | "DW5000c" | "DW6000c" | "DW7500c" | "DW10000c" | "DW15000c" | "DW30000c" | "DS100" | "DS200" | "DS300" | "DS400" | "DS500" | "DS600" | "DS1000" | "DS1200" | "DS1500" | "DS2000" | "ElasticPool";
+export type ServiceObjectiveName = "System" | "System0" | "System1" | "System2" | "System3" | "System4" | "System2L" | "System3L" | "System4L" | "Free" | "Basic" | "S0" | "S1" | "S2" | "S3" | "S4" | "S6" | "S7" | "S9" | "S12" | "P1" | "P2" | "P3" | "P4" | "P6" | "P11" | "P15" | "PRS1" | "PRS2" | "PRS4" | "PRS6" | "DW100" | "DW200" | "DW300" | "DW400" | "DW500" | "DW600" | "DW1000" | "DW1200" | "DW1000c" | "DW1500" | "DW1500c" | "DW2000" | "DW2000c" | "DW3000" | "DW2500c" | "DW3000c" | "DW6000" | "DW5000c" | "DW6000c" | "DW7500c" | "DW10000c" | "DW15000c" | "DW30000c" | "DS100" | "DS200" | "DS300" | "DS400" | "DS500" | "DS600" | "DS1000" | "DS1200" | "DS1500" | "DS2000" | "ElasticPool" | string;
 
 // @public
 export type ServiceObjectivesGetResponse = ServiceObjective & {
@@ -5018,7 +5018,7 @@ export type ServiceTierAdvisorsListByDatabaseResponse = ServiceTierAdvisorListRe
 };
 
 // @public
-export type ShortTermRetentionPolicyName = "default";
+export type ShortTermRetentionPolicyName = "default" | string;
 
 // @public
 export interface Sku {
@@ -5428,7 +5428,7 @@ export interface StorageCapability {
 }
 
 // @public
-export type StorageCapabilityStorageAccountType = "GRS" | "LRS" | "ZRS";
+export type StorageCapabilityStorageAccountType = "GRS" | "LRS" | "ZRS" | string;
 
 // @public
 export type StorageKeyType = "StorageAccessKey" | "SharedAccessKey";
@@ -5566,10 +5566,10 @@ export type SyncAgentsListLinkedDatabasesResponse = SyncAgentLinkedDatabaseListR
 };
 
 // @public
-export type SyncAgentState = "Online" | "Offline" | "NeverConnected";
+export type SyncAgentState = "Online" | "Offline" | "NeverConnected" | string;
 
 // @public
-export type SyncConflictResolutionPolicy = "HubWin" | "MemberWin";
+export type SyncConflictResolutionPolicy = "HubWin" | "MemberWin" | string;
 
 // @public
 export interface SyncDatabaseIdListResult {
@@ -5583,7 +5583,7 @@ export interface SyncDatabaseIdProperties {
 }
 
 // @public
-export type SyncDirection = "Bidirectional" | "OneWayMemberToHub" | "OneWayHubToMember";
+export type SyncDirection = "Bidirectional" | "OneWayMemberToHub" | "OneWayHubToMember" | string;
 
 // @public
 export interface SyncFullSchemaProperties {
@@ -5652,7 +5652,7 @@ export interface SyncGroupLogProperties {
 }
 
 // @public
-export type SyncGroupLogType = "All" | "Error" | "Warning" | "Success";
+export type SyncGroupLogType = "All" | "Error" | "Warning" | "Success" | string;
 
 // @public
 export interface SyncGroupSchema {
@@ -5764,7 +5764,7 @@ export type SyncGroupsListSyncDatabaseIdsResponse = SyncDatabaseIdListResult & {
 };
 
 // @public
-export type SyncGroupState = "NotReady" | "Error" | "Warning" | "Progressing" | "Good";
+export type SyncGroupState = "NotReady" | "Error" | "Warning" | "Progressing" | "Good" | string;
 
 // @public
 export type SyncGroupsUpdateResponse = SyncGroup & {
@@ -5788,7 +5788,7 @@ export type SyncMember = Resource & {
 };
 
 // @public
-export type SyncMemberDbType = "AzureSqlDatabase" | "SqlServerDatabase";
+export type SyncMemberDbType = "AzureSqlDatabase" | "SqlServerDatabase" | string;
 
 // @public
 export interface SyncMemberListResult {
@@ -5845,7 +5845,7 @@ export type SyncMembersListMemberSchemasResponse = SyncFullSchemaPropertiesListR
 };
 
 // @public
-export type SyncMemberState = "SyncInProgress" | "SyncSucceeded" | "SyncFailed" | "DisabledTombstoneCleanup" | "DisabledBackupRestore" | "SyncSucceededWithWarnings" | "SyncCancelling" | "SyncCancelled" | "UnProvisioned" | "Provisioning" | "Provisioned" | "ProvisionFailed" | "DeProvisioning" | "DeProvisioned" | "DeProvisionFailed" | "Reprovisioning" | "ReprovisionFailed" | "UnReprovisioned";
+export type SyncMemberState = "SyncInProgress" | "SyncSucceeded" | "SyncFailed" | "DisabledTombstoneCleanup" | "DisabledBackupRestore" | "SyncSucceededWithWarnings" | "SyncCancelling" | "SyncCancelled" | "UnProvisioned" | "Provisioning" | "Provisioned" | "ProvisionFailed" | "DeProvisioning" | "DeProvisioned" | "DeProvisionFailed" | "Reprovisioning" | "ReprovisionFailed" | "UnReprovisioned" | string;
 
 // @public
 export type SyncMembersUpdateResponse = SyncMember & {
@@ -5896,10 +5896,10 @@ export interface TransparentDataEncryptionActivityListResult {
 }
 
 // @public
-export type TransparentDataEncryptionActivityStatus = "Encrypting" | "Decrypting";
+export type TransparentDataEncryptionActivityStatus = "Encrypting" | "Decrypting" | string;
 
 // @public
-export type TransparentDataEncryptionName = "current";
+export type TransparentDataEncryptionName = "current" | string;
 
 // @public
 export type TransparentDataEncryptionsCreateOrUpdateResponse = TransparentDataEncryption & {
@@ -5921,10 +5921,10 @@ export type TransparentDataEncryptionsGetResponse = TransparentDataEncryption & 
 export type TransparentDataEncryptionStatus = "Enabled" | "Disabled";
 
 // @public
-export type UnitDefinitionType = "Count" | "Bytes" | "Seconds" | "Percent" | "CountPerSecond" | "BytesPerSecond";
+export type UnitDefinitionType = "Count" | "Bytes" | "Seconds" | "Percent" | "CountPerSecond" | "BytesPerSecond" | string;
 
 // @public
-export type UnitType = "count" | "bytes" | "seconds" | "percent" | "countPerSecond" | "bytesPerSecond";
+export type UnitType = "count" | "bytes" | "seconds" | "percent" | "countPerSecond" | "bytesPerSecond" | string;
 
 // @public
 export interface UnlinkParameters {
@@ -6091,10 +6091,10 @@ export type VirtualNetworkRulesListByServerResponse = VirtualNetworkRuleListResu
 };
 
 // @public
-export type VirtualNetworkRuleState = "Initializing" | "InProgress" | "Ready" | "Deleting" | "Unknown";
+export type VirtualNetworkRuleState = "Initializing" | "InProgress" | "Ready" | "Deleting" | "Unknown" | string;
 
 // @public
-export type VulnerabilityAssessmentName = "default";
+export type VulnerabilityAssessmentName = "default" | string;
 
 // @public
 export type VulnerabilityAssessmentPolicyBaselineName = "master" | "default";
@@ -6131,10 +6131,10 @@ export interface VulnerabilityAssessmentScanRecordListResult {
 }
 
 // @public
-export type VulnerabilityAssessmentScanState = "Passed" | "Failed" | "FailedToRun" | "InProgress";
+export type VulnerabilityAssessmentScanState = "Passed" | "Failed" | "FailedToRun" | "InProgress" | string;
 
 // @public
-export type VulnerabilityAssessmentScanTriggerType = "OnDemand" | "Recurring";
+export type VulnerabilityAssessmentScanTriggerType = "OnDemand" | "Recurring" | string;
 
 // @public
 export type WorkloadClassifier = Resource & {

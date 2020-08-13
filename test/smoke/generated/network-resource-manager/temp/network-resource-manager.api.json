@@ -117,7 +117,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Allow\" | \"Deny\""
+              "text": "\"Allow\" | \"Deny\" | string"
             },
             {
               "kind": "Content",
@@ -1207,7 +1207,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Unknown\" | \"Up\" | \"Down\" | \"Partial\" | \"Draining\""
+              "text": "\"Unknown\" | \"Up\" | \"Down\" | \"Partial\" | \"Draining\" | string"
             },
             {
               "kind": "Content",
@@ -1391,7 +1391,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Enabled\" | \"Disabled\""
+              "text": "\"Enabled\" | \"Disabled\" | string"
             },
             {
               "kind": "Content",
@@ -1483,7 +1483,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"HttpStatus403\" | \"HttpStatus502\""
+              "text": "\"HttpStatus403\" | \"HttpStatus502\" | string"
             },
             {
               "kind": "Content",
@@ -1665,7 +1665,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Detection\" | \"Prevention\""
+              "text": "\"Detection\" | \"Prevention\" | string"
             },
             {
               "kind": "Content",
@@ -2503,7 +2503,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Stopped\" | \"Starting\" | \"Running\" | \"Stopping\""
+              "text": "\"Stopped\" | \"Starting\" | \"Running\" | \"Stopping\" | string"
             },
             {
               "kind": "Content",
@@ -2735,7 +2735,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Http\" | \"Https\""
+              "text": "\"Http\" | \"Https\" | string"
             },
             {
               "kind": "Content",
@@ -2835,7 +2835,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Permanent\" | \"Found\" | \"SeeOther\" | \"Temporary\""
+              "text": "\"Permanent\" | \"Found\" | \"SeeOther\" | \"Temporary\" | string"
             },
             {
               "kind": "Content",
@@ -2962,7 +2962,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Basic\" | \"PathBasedRouting\""
+              "text": "\"Basic\" | \"PathBasedRouting\" | string"
             },
             {
               "kind": "Content",
@@ -3826,7 +3826,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Standard_Small\" | \"Standard_Medium\" | \"Standard_Large\" | \"WAF_Medium\" | \"WAF_Large\" | \"Standard_v2\" | \"WAF_v2\""
+              "text": "\"Standard_Small\" | \"Standard_Medium\" | \"Standard_Large\" | \"WAF_Medium\" | \"WAF_Large\" | \"Standard_v2\" | \"WAF_v2\" | string"
             },
             {
               "kind": "Content",
@@ -4376,7 +4376,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384\" | \"TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256\" | \"TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA\" | \"TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA\" | \"TLS_DHE_RSA_WITH_AES_256_GCM_SHA384\" | \"TLS_DHE_RSA_WITH_AES_128_GCM_SHA256\" | \"TLS_DHE_RSA_WITH_AES_256_CBC_SHA\" | \"TLS_DHE_RSA_WITH_AES_128_CBC_SHA\" | \"TLS_RSA_WITH_AES_256_GCM_SHA384\" | \"TLS_RSA_WITH_AES_128_GCM_SHA256\" | \"TLS_RSA_WITH_AES_256_CBC_SHA256\" | \"TLS_RSA_WITH_AES_128_CBC_SHA256\" | \"TLS_RSA_WITH_AES_256_CBC_SHA\" | \"TLS_RSA_WITH_AES_128_CBC_SHA\" | \"TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384\" | \"TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256\" | \"TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384\" | \"TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256\" | \"TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA\" | \"TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA\" | \"TLS_DHE_DSS_WITH_AES_256_CBC_SHA256\" | \"TLS_DHE_DSS_WITH_AES_128_CBC_SHA256\" | \"TLS_DHE_DSS_WITH_AES_256_CBC_SHA\" | \"TLS_DHE_DSS_WITH_AES_128_CBC_SHA\" | \"TLS_RSA_WITH_3DES_EDE_CBC_SHA\" | \"TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA\" | \"TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256\" | \"TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384\""
+              "text": "\"TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384\" | \"TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256\" | \"TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA\" | \"TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA\" | \"TLS_DHE_RSA_WITH_AES_256_GCM_SHA384\" | \"TLS_DHE_RSA_WITH_AES_128_GCM_SHA256\" | \"TLS_DHE_RSA_WITH_AES_256_CBC_SHA\" | \"TLS_DHE_RSA_WITH_AES_128_CBC_SHA\" | \"TLS_RSA_WITH_AES_256_GCM_SHA384\" | \"TLS_RSA_WITH_AES_128_GCM_SHA256\" | \"TLS_RSA_WITH_AES_256_CBC_SHA256\" | \"TLS_RSA_WITH_AES_128_CBC_SHA256\" | \"TLS_RSA_WITH_AES_256_CBC_SHA\" | \"TLS_RSA_WITH_AES_128_CBC_SHA\" | \"TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384\" | \"TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256\" | \"TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384\" | \"TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256\" | \"TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA\" | \"TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA\" | \"TLS_DHE_DSS_WITH_AES_256_CBC_SHA256\" | \"TLS_DHE_DSS_WITH_AES_128_CBC_SHA256\" | \"TLS_DHE_DSS_WITH_AES_256_CBC_SHA\" | \"TLS_DHE_DSS_WITH_AES_128_CBC_SHA\" | \"TLS_RSA_WITH_3DES_EDE_CBC_SHA\" | \"TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA\" | \"TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256\" | \"TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384\" | string"
             },
             {
               "kind": "Content",
@@ -4555,7 +4555,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"AppGwSslPolicy20150501\" | \"AppGwSslPolicy20170401\" | \"AppGwSslPolicy20170401S\""
+              "text": "\"AppGwSslPolicy20150501\" | \"AppGwSslPolicy20170401\" | \"AppGwSslPolicy20170401S\" | string"
             },
             {
               "kind": "Content",
@@ -4580,7 +4580,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Predefined\" | \"Custom\""
+              "text": "\"Predefined\" | \"Custom\" | string"
             },
             {
               "kind": "Content",
@@ -4653,7 +4653,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"TLSv1_0\" | \"TLSv1_1\" | \"TLSv1_2\""
+              "text": "\"TLSv1_0\" | \"TLSv1_1\" | \"TLSv1_2\" | string"
             },
             {
               "kind": "Content",
@@ -4726,7 +4726,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Standard\" | \"WAF\" | \"Standard_v2\" | \"WAF_v2\""
+              "text": "\"Standard\" | \"WAF\" | \"Standard_v2\" | \"WAF_v2\" | string"
             },
             {
               "kind": "Content",
@@ -5727,7 +5727,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Associated\" | \"Contains\""
+              "text": "\"Associated\" | \"Contains\" | string"
             },
             {
               "kind": "Content",
@@ -5752,7 +5752,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"EAPTLS\" | \"EAPMSCHAPv2\""
+              "text": "\"EAPTLS\" | \"EAPMSCHAPv2\" | string"
             },
             {
               "kind": "Content",
@@ -5848,7 +5848,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Available\" | \"InUse\""
+              "text": "\"Available\" | \"InUse\" | string"
             },
             {
               "kind": "Content",
@@ -8280,7 +8280,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Http\" | \"Https\" | \"Mssql\""
+              "text": "\"Http\" | \"Https\" | \"Mssql\" | string"
             },
             {
               "kind": "Content",
@@ -8747,7 +8747,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Snat\" | \"Dnat\""
+              "text": "\"Snat\" | \"Dnat\" | string"
             },
             {
               "kind": "Content",
@@ -9403,7 +9403,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"TCP\" | \"UDP\" | \"Any\" | \"ICMP\""
+              "text": "\"TCP\" | \"UDP\" | \"Any\" | \"ICMP\" | string"
             },
             {
               "kind": "Content",
@@ -9511,7 +9511,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Allow\" | \"Deny\""
+              "text": "\"Allow\" | \"Deny\" | string"
             },
             {
               "kind": "Content",
@@ -9700,7 +9700,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"AZFW_VNet\" | \"AZFW_Hub\""
+              "text": "\"AZFW_VNet\" | \"AZFW_Hub\" | string"
             },
             {
               "kind": "Content",
@@ -9725,7 +9725,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Standard\" | \"Premium\""
+              "text": "\"Standard\" | \"Premium\" | string"
             },
             {
               "kind": "Content",
@@ -9990,7 +9990,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Alert\" | \"Deny\" | \"Off\""
+              "text": "\"Alert\" | \"Deny\" | \"Off\" | string"
             },
             {
               "kind": "Content",
@@ -10957,7 +10957,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"SSH\" | \"RDP\""
+              "text": "\"SSH\" | \"RDP\" | string"
             },
             {
               "kind": "Content",
@@ -12017,7 +12017,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Unknown\" | \"Stopped\" | \"Idle\" | \"Connecting\" | \"Connected\""
+              "text": "\"Unknown\" | \"Stopped\" | \"Idle\" | \"Connecting\" | \"Connected\" | string"
             },
             {
               "kind": "Content",
@@ -12673,7 +12673,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Connected\" | \"Connecting\" | \"Disconnected\""
+              "text": "\"Connected\" | \"Connecting\" | \"Disconnected\" | string"
             },
             {
               "kind": "Content",
@@ -13587,7 +13587,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"AgentAddress\""
+              "text": "\"AgentAddress\" | string"
             },
             {
               "kind": "Content",
@@ -13612,7 +13612,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Include\""
+              "text": "\"Include\" | string"
             },
             {
               "kind": "Content",
@@ -15082,7 +15082,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Unknown\" | \"Active\" | \"Inactive\""
+              "text": "\"Unknown\" | \"Active\" | \"Inactive\" | string"
             },
             {
               "kind": "Content",
@@ -15557,7 +15557,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Tcp\" | \"Http\" | \"Icmp\""
+              "text": "\"Tcp\" | \"Http\" | \"Icmp\" | string"
             },
             {
               "kind": "Content",
@@ -15723,7 +15723,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"MultiEndpoint\" | \"SingleSourceDestination\""
+              "text": "\"MultiEndpoint\" | \"SingleSourceDestination\" | string"
             },
             {
               "kind": "Content",
@@ -15860,7 +15860,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Reachable\" | \"Unreachable\" | \"Unknown\""
+              "text": "\"Reachable\" | \"Unreachable\" | \"Unknown\" | string"
             },
             {
               "kind": "Content",
@@ -16160,7 +16160,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Unknown\" | \"Connected\" | \"Disconnected\" | \"Degraded\""
+              "text": "\"Unknown\" | \"Connected\" | \"Disconnected\" | \"Degraded\" | string"
             },
             {
               "kind": "Content",
@@ -17512,7 +17512,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Tcp\" | \"Udp\" | \"Syn\""
+              "text": "\"Tcp\" | \"Udp\" | \"Syn\" | string"
             },
             {
               "kind": "Content",
@@ -17537,7 +17537,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Relaxed\" | \"Low\" | \"Default\" | \"High\""
+              "text": "\"Relaxed\" | \"Low\" | \"Default\" | \"High\" | string"
             },
             {
               "kind": "Content",
@@ -18309,7 +18309,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Basic\" | \"Standard\""
+              "text": "\"Basic\" | \"Standard\" | string"
             },
             {
               "kind": "Content",
@@ -18649,7 +18649,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"None\" | \"DHGroup1\" | \"DHGroup2\" | \"DHGroup14\" | \"DHGroup2048\" | \"ECP256\" | \"ECP384\" | \"DHGroup24\""
+              "text": "\"None\" | \"DHGroup1\" | \"DHGroup2\" | \"DHGroup14\" | \"DHGroup2048\" | \"ECP256\" | \"ECP384\" | \"DHGroup24\" | string"
             },
             {
               "kind": "Content",
@@ -18765,7 +18765,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Inbound\" | \"Outbound\""
+              "text": "\"Inbound\" | \"Outbound\" | string"
             },
             {
               "kind": "Content",
@@ -19752,7 +19752,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Unknown\" | \"User\" | \"VirtualNetworkGateway\" | \"Default\""
+              "text": "\"Unknown\" | \"User\" | \"VirtualNetworkGateway\" | \"Default\" | string"
             },
             {
               "kind": "Content",
@@ -19777,7 +19777,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Active\" | \"Invalid\""
+              "text": "\"Active\" | \"Invalid\" | string"
             },
             {
               "kind": "Content",
@@ -19802,7 +19802,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Tcp\" | \"Udp\" | \"All\""
+              "text": "\"Tcp\" | \"Udp\" | \"All\" | string"
             },
             {
               "kind": "Content",
@@ -20329,7 +20329,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"NotStarted\" | \"InProgress\" | \"Completed\""
+              "text": "\"NotStarted\" | \"InProgress\" | \"Completed\" | string"
             },
             {
               "kind": "Content",
@@ -21332,7 +21332,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"NotConfigured\" | \"Configuring\" | \"Configured\" | \"ValidationNeeded\""
+              "text": "\"NotConfigured\" | \"Configuring\" | \"Configured\" | \"ValidationNeeded\" | string"
             },
             {
               "kind": "Content",
@@ -21828,7 +21828,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Disabled\" | \"Enabled\""
+              "text": "\"Disabled\" | \"Enabled\" | string"
             },
             {
               "kind": "Content",
@@ -22623,7 +22623,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"UnlimitedData\" | \"MeteredData\""
+              "text": "\"UnlimitedData\" | \"MeteredData\" | string"
             },
             {
               "kind": "Content",
@@ -22648,7 +22648,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Standard\" | \"Premium\" | \"Basic\" | \"Local\""
+              "text": "\"Standard\" | \"Premium\" | \"Basic\" | \"Local\" | string"
             },
             {
               "kind": "Content",
@@ -25223,7 +25223,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Enabled\" | \"Disabled\""
+              "text": "\"Enabled\" | \"Disabled\" | string"
             },
             {
               "kind": "Content",
@@ -25248,7 +25248,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"LC\" | \"SC\""
+              "text": "\"LC\" | \"SC\" | string"
             },
             {
               "kind": "Content",
@@ -25344,7 +25344,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"gcm-aes-128\" | \"gcm-aes-256\""
+              "text": "\"gcm-aes-128\" | \"gcm-aes-256\" | string"
             },
             {
               "kind": "Content",
@@ -25605,7 +25605,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Disabled\" | \"Enabled\""
+              "text": "\"Disabled\" | \"Enabled\" | string"
             },
             {
               "kind": "Content",
@@ -25630,7 +25630,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"AzurePublicPeering\" | \"AzurePrivatePeering\" | \"MicrosoftPeering\""
+              "text": "\"AzurePublicPeering\" | \"AzurePrivatePeering\" | \"MicrosoftPeering\" | string"
             },
             {
               "kind": "Content",
@@ -25849,7 +25849,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Dot1Q\" | \"QinQ\""
+              "text": "\"Dot1Q\" | \"QinQ\" | string"
             },
             {
               "kind": "Content",
@@ -27395,7 +27395,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Allow\" | \"Deny\""
+              "text": "\"Allow\" | \"Deny\" | string"
             },
             {
               "kind": "Content",
@@ -27420,7 +27420,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Enabled\" | \"Disabled\""
+              "text": "\"Enabled\" | \"Disabled\" | string"
             },
             {
               "kind": "Content",
@@ -27606,7 +27606,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"DNAT\""
+              "text": "\"DNAT\" | string"
             },
             {
               "kind": "Content",
@@ -27880,7 +27880,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Http\" | \"Https\""
+              "text": "\"Http\" | \"Https\" | string"
             },
             {
               "kind": "Content",
@@ -27905,7 +27905,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"TCP\" | \"UDP\" | \"Any\" | \"ICMP\""
+              "text": "\"TCP\" | \"UDP\" | \"Any\" | \"ICMP\" | string"
             },
             {
               "kind": "Content",
@@ -27930,7 +27930,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"ApplicationRuleCondition\" | \"NetworkRuleCondition\" | \"NatRuleCondition\""
+              "text": "\"ApplicationRuleCondition\" | \"NetworkRuleCondition\" | \"NatRuleCondition\" | string"
             },
             {
               "kind": "Content",
@@ -28319,7 +28319,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"FirewallPolicyNatRule\" | \"FirewallPolicyFilterRule\""
+              "text": "\"FirewallPolicyNatRule\" | \"FirewallPolicyFilterRule\" | string"
             },
             {
               "kind": "Content",
@@ -28750,7 +28750,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"JSON\""
+              "text": "\"JSON\" | string"
             },
             {
               "kind": "Content",
@@ -29768,7 +29768,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Get\" | \"Post\""
+              "text": "\"Get\" | \"Post\" | string"
             },
             {
               "kind": "Content",
@@ -29859,7 +29859,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Get\""
+              "text": "\"Get\" | string"
             },
             {
               "kind": "Content",
@@ -30555,7 +30555,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Unknown\" | \"Connecting\" | \"Connected\" | \"NotConnected\""
+              "text": "\"Unknown\" | \"Connecting\" | \"Connected\" | \"NotConnected\" | string"
             },
             {
               "kind": "Content",
@@ -30580,7 +30580,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"DES\" | \"DES3\" | \"AES128\" | \"AES192\" | \"AES256\" | \"GCMAES256\" | \"GCMAES128\""
+              "text": "\"DES\" | \"DES3\" | \"AES128\" | \"AES192\" | \"AES256\" | \"GCMAES256\" | \"GCMAES128\" | string"
             },
             {
               "kind": "Content",
@@ -30605,7 +30605,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"MD5\" | \"SHA1\" | \"SHA256\" | \"SHA384\" | \"GCMAES256\" | \"GCMAES128\""
+              "text": "\"MD5\" | \"SHA1\" | \"SHA256\" | \"SHA384\" | \"GCMAES256\" | \"GCMAES128\" | string"
             },
             {
               "kind": "Content",
@@ -31278,7 +31278,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Static\" | \"Dynamic\""
+              "text": "\"Static\" | \"Dynamic\" | string"
             },
             {
               "kind": "Content",
@@ -31698,7 +31698,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Undefined\" | \"Hypernet\""
+              "text": "\"Undefined\" | \"Hypernet\" | string"
             },
             {
               "kind": "Content",
@@ -31953,7 +31953,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"TCP\" | \"UDP\""
+              "text": "\"TCP\" | \"UDP\" | string"
             },
             {
               "kind": "Content",
@@ -32492,7 +32492,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"None\" | \"DES\" | \"DES3\" | \"AES128\" | \"AES192\" | \"AES256\" | \"GCMAES128\" | \"GCMAES192\" | \"GCMAES256\""
+              "text": "\"None\" | \"DES\" | \"DES3\" | \"AES128\" | \"AES192\" | \"AES256\" | \"GCMAES128\" | \"GCMAES192\" | \"GCMAES256\" | string"
             },
             {
               "kind": "Content",
@@ -32517,7 +32517,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"MD5\" | \"SHA1\" | \"SHA256\" | \"GCMAES128\" | \"GCMAES192\" | \"GCMAES256\""
+              "text": "\"MD5\" | \"SHA1\" | \"SHA256\" | \"GCMAES128\" | \"GCMAES192\" | \"GCMAES256\" | string"
             },
             {
               "kind": "Content",
@@ -33041,7 +33041,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"IPv4\" | \"IPv6\""
+              "text": "\"IPv4\" | \"IPv6\" | string"
             },
             {
               "kind": "Content",
@@ -33066,7 +33066,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Unknown\" | \"AgentStopped\" | \"GuestFirewall\" | \"DnsResolution\" | \"SocketBind\" | \"NetworkSecurityRule\" | \"UserDefinedRoute\" | \"PortThrottled\" | \"Platform\""
+              "text": "\"Unknown\" | \"AgentStopped\" | \"GuestFirewall\" | \"DnsResolution\" | \"SocketBind\" | \"NetworkSecurityRule\" | \"UserDefinedRoute\" | \"PortThrottled\" | \"Platform\" | string"
             },
             {
               "kind": "Content",
@@ -35103,7 +35103,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Tcp\" | \"Udp\" | \"All\""
+              "text": "\"Tcp\" | \"Udp\" | \"All\" | string"
             },
             {
               "kind": "Content",
@@ -35684,7 +35684,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Basic\" | \"Standard\""
+              "text": "\"Basic\" | \"Standard\" | string"
             },
             {
               "kind": "Content",
@@ -36033,7 +36033,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Default\" | \"SourceIP\" | \"SourceIPProtocol\""
+              "text": "\"Default\" | \"SourceIP\" | \"SourceIPProtocol\" | string"
             },
             {
               "kind": "Content",
@@ -36517,7 +36517,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Disabled\""
+              "text": "\"Disabled\" | string"
             },
             {
               "kind": "Content",
@@ -37982,7 +37982,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Standard\""
+              "text": "\"Standard\" | string"
             },
             {
               "kind": "Content",
@@ -45890,7 +45890,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"InProgress\" | \"Succeeded\" | \"Failed\""
+              "text": "\"InProgress\" | \"Succeeded\" | \"Failed\" | string"
             },
             {
               "kind": "Content",
@@ -48915,7 +48915,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Internet\" | \"VirtualAppliance\" | \"VirtualNetworkGateway\" | \"VnetLocal\" | \"HyperNetGateway\" | \"None\""
+              "text": "\"Internet\" | \"VirtualAppliance\" | \"VirtualNetworkGateway\" | \"VnetLocal\" | \"HyperNetGateway\" | \"None\" | string"
             },
             {
               "kind": "Content",
@@ -48940,7 +48940,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Optimize\" | \"OptimizeAndAllow\" | \"All\" | \"None\""
+              "text": "\"Optimize\" | \"OptimizeAndAllow\" | \"All\" | \"None\" | string"
             },
             {
               "kind": "Content",
@@ -49442,7 +49442,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Local\" | \"Inbound\" | \"Outbound\""
+              "text": "\"Local\" | \"Inbound\" | \"Outbound\" | string"
             },
             {
               "kind": "Content",
@@ -49533,7 +49533,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Workspace\""
+              "text": "\"Workspace\" | string"
             },
             {
               "kind": "Content",
@@ -49651,7 +49651,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"RequestHeaderNames\" | \"RequestCookieNames\" | \"RequestArgNames\""
+              "text": "\"RequestHeaderNames\" | \"RequestCookieNames\" | \"RequestArgNames\" | string"
             },
             {
               "kind": "Content",
@@ -49676,7 +49676,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Equals\" | \"Contains\" | \"StartsWith\" | \"EndsWith\" | \"EqualsAny\""
+              "text": "\"Equals\" | \"Contains\" | \"StartsWith\" | \"EndsWith\" | \"EqualsAny\" | string"
             },
             {
               "kind": "Content",
@@ -51926,7 +51926,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"InternalError\" | \"AgentStopped\" | \"CaptureFailed\" | \"LocalFileFailed\" | \"StorageFailed\""
+              "text": "\"InternalError\" | \"AgentStopped\" | \"CaptureFailed\" | \"LocalFileFailed\" | \"StorageFailed\" | string"
             },
             {
               "kind": "Content",
@@ -51951,7 +51951,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"TCP\" | \"UDP\" | \"Any\""
+              "text": "\"TCP\" | \"UDP\" | \"Any\" | string"
             },
             {
               "kind": "Content",
@@ -51976,7 +51976,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"NotStarted\" | \"Running\" | \"Stopped\" | \"Error\" | \"Unknown\""
+              "text": "\"NotStarted\" | \"Running\" | \"Stopped\" | \"Error\" | \"Unknown\" | string"
             },
             {
               "kind": "Content",
@@ -52282,7 +52282,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"None\" | \"PFS1\" | \"PFS2\" | \"PFS2048\" | \"ECP256\" | \"ECP384\" | \"PFS24\" | \"PFS14\" | \"PFSMM\""
+              "text": "\"None\" | \"PFS1\" | \"PFS2\" | \"PFS2048\" | \"ECP256\" | \"ECP384\" | \"PFS24\" | \"PFS14\" | \"PFSMM\" | string"
             },
             {
               "kind": "Content",
@@ -52450,7 +52450,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"IPv4\" | \"IPv6\""
+              "text": "\"IPv4\" | \"IPv6\" | string"
             },
             {
               "kind": "Content",
@@ -54996,7 +54996,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Http\" | \"Tcp\" | \"Https\""
+              "text": "\"Http\" | \"Tcp\" | \"Https\" | string"
             },
             {
               "kind": "Content",
@@ -55021,7 +55021,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Amd64\" | \"X86\""
+              "text": "\"Amd64\" | \"X86\" | string"
             },
             {
               "kind": "Content",
@@ -55117,7 +55117,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Tcp\" | \"Http\" | \"Https\" | \"Icmp\""
+              "text": "\"Tcp\" | \"Http\" | \"Https\" | \"Icmp\" | string"
             },
             {
               "kind": "Content",
@@ -55302,7 +55302,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Succeeded\" | \"Updating\" | \"Deleting\" | \"Failed\""
+              "text": "\"Succeeded\" | \"Updating\" | \"Deleting\" | \"Failed\" | string"
             },
             {
               "kind": "Content",
@@ -56336,7 +56336,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Basic\" | \"Standard\""
+              "text": "\"Basic\" | \"Standard\" | string"
             },
             {
               "kind": "Content",
@@ -56953,7 +56953,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Standard\""
+              "text": "\"Standard\" | string"
             },
             {
               "kind": "Content",
@@ -58254,7 +58254,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Community\""
+              "text": "\"Community\" | string"
             },
             {
               "kind": "Content",
@@ -58745,7 +58745,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"VirtualNetworkGateway\" | \"VnetLocal\" | \"Internet\" | \"VirtualAppliance\" | \"None\""
+              "text": "\"VirtualNetworkGateway\" | \"VnetLocal\" | \"Internet\" | \"VirtualAppliance\" | \"None\" | string"
             },
             {
               "kind": "Content",
@@ -59799,7 +59799,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Unknown\" | \"PartiallyConnected\" | \"Connected\" | \"NotConnected\""
+              "text": "\"Unknown\" | \"PartiallyConnected\" | \"Connected\" | \"NotConnected\" | string"
             },
             {
               "kind": "Content",
@@ -60231,7 +60231,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"ZScaler\" | \"IBoss\" | \"Checkpoint\""
+              "text": "\"ZScaler\" | \"IBoss\" | \"Checkpoint\" | string"
             },
             {
               "kind": "Content",
@@ -60340,7 +60340,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Allow\" | \"Deny\""
+              "text": "\"Allow\" | \"Deny\" | string"
             },
             {
               "kind": "Content",
@@ -60493,7 +60493,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Inbound\" | \"Outbound\""
+              "text": "\"Inbound\" | \"Outbound\" | string"
             },
             {
               "kind": "Content",
@@ -60589,7 +60589,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Tcp\" | \"Udp\" | \"Icmp\" | \"Esp\" | \"*\" | \"Ah\""
+              "text": "\"Tcp\" | \"Udp\" | \"Icmp\" | \"Esp\" | \"*\" | \"Ah\" | string"
             },
             {
               "kind": "Content",
@@ -61881,7 +61881,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"NotProvisioned\" | \"Provisioning\" | \"Provisioned\" | \"Deprovisioning\""
+              "text": "\"NotProvisioned\" | \"Provisioning\" | \"Provisioned\" | \"Deprovisioning\" | string"
             },
             {
               "kind": "Content",
@@ -62374,7 +62374,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Error\" | \"Warning\""
+              "text": "\"Error\" | \"Warning\" | string"
             },
             {
               "kind": "Content",
@@ -63790,7 +63790,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Udp\" | \"Tcp\" | \"All\""
+              "text": "\"Udp\" | \"Tcp\" | \"All\" | string"
             },
             {
               "kind": "Content",
@@ -64433,7 +64433,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Unknown\" | \"Connecting\" | \"Connected\" | \"NotConnected\""
+              "text": "\"Unknown\" | \"Connecting\" | \"Connected\" | \"NotConnected\" | string"
             },
             {
               "kind": "Content",
@@ -64875,7 +64875,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Count\""
+              "text": "\"Count\" | string"
             },
             {
               "kind": "Content",
@@ -64900,7 +64900,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Normal\" | \"Minimum\" | \"Full\""
+              "text": "\"Normal\" | \"Minimum\" | \"Full\" | string"
             },
             {
               "kind": "Content",
@@ -67015,7 +67015,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"IKEv2\" | \"IKEv1\""
+              "text": "\"IKEv2\" | \"IKEv1\" | string"
             },
             {
               "kind": "Content",
@@ -67504,7 +67504,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Unknown\" | \"Connecting\" | \"Connected\" | \"NotConnected\""
+              "text": "\"Unknown\" | \"Connecting\" | \"Connected\" | \"NotConnected\" | string"
             },
             {
               "kind": "Content",
@@ -67577,7 +67577,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"IPsec\" | \"Vnet2Vnet\" | \"ExpressRoute\" | \"VPNClient\""
+              "text": "\"IPsec\" | \"Vnet2Vnet\" | \"ExpressRoute\" | \"VPNClient\" | string"
             },
             {
               "kind": "Content",
@@ -68400,7 +68400,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Basic\" | \"HighPerformance\" | \"Standard\" | \"UltraPerformance\" | \"VpnGw1\" | \"VpnGw2\" | \"VpnGw3\" | \"VpnGw4\" | \"VpnGw5\" | \"VpnGw1AZ\" | \"VpnGw2AZ\" | \"VpnGw3AZ\" | \"VpnGw4AZ\" | \"VpnGw5AZ\" | \"ErGw1AZ\" | \"ErGw2AZ\" | \"ErGw3AZ\""
+              "text": "\"Basic\" | \"HighPerformance\" | \"Standard\" | \"UltraPerformance\" | \"VpnGw1\" | \"VpnGw2\" | \"VpnGw3\" | \"VpnGw4\" | \"VpnGw5\" | \"VpnGw1AZ\" | \"VpnGw2AZ\" | \"VpnGw3AZ\" | \"VpnGw4AZ\" | \"VpnGw5AZ\" | \"ErGw1AZ\" | \"ErGw2AZ\" | \"ErGw3AZ\" | string"
             },
             {
               "kind": "Content",
@@ -68425,7 +68425,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Basic\" | \"HighPerformance\" | \"Standard\" | \"UltraPerformance\" | \"VpnGw1\" | \"VpnGw2\" | \"VpnGw3\" | \"VpnGw4\" | \"VpnGw5\" | \"VpnGw1AZ\" | \"VpnGw2AZ\" | \"VpnGw3AZ\" | \"VpnGw4AZ\" | \"VpnGw5AZ\" | \"ErGw1AZ\" | \"ErGw2AZ\" | \"ErGw3AZ\""
+              "text": "\"Basic\" | \"HighPerformance\" | \"Standard\" | \"UltraPerformance\" | \"VpnGw1\" | \"VpnGw2\" | \"VpnGw3\" | \"VpnGw4\" | \"VpnGw5\" | \"VpnGw1AZ\" | \"VpnGw2AZ\" | \"VpnGw3AZ\" | \"VpnGw4AZ\" | \"VpnGw5AZ\" | \"ErGw1AZ\" | \"ErGw2AZ\" | \"ErGw3AZ\" | string"
             },
             {
               "kind": "Content",
@@ -69041,7 +69041,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Vpn\" | \"ExpressRoute\""
+              "text": "\"Vpn\" | \"ExpressRoute\" | string"
             },
             {
               "kind": "Content",
@@ -69537,7 +69537,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Initiated\" | \"Connected\" | \"Disconnected\""
+              "text": "\"Initiated\" | \"Connected\" | \"Disconnected\" | string"
             },
             {
               "kind": "Content",
@@ -71820,7 +71820,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"External\" | \"Native\""
+              "text": "\"External\" | \"Native\" | string"
             },
             {
               "kind": "Content",
@@ -72276,7 +72276,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Certificate\" | \"Radius\" | \"AAD\""
+              "text": "\"Certificate\" | \"Radius\" | \"AAD\" | string"
             },
             {
               "kind": "Content",
@@ -73436,7 +73436,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"IkeV2\" | \"SSTP\" | \"OpenVPN\""
+              "text": "\"IkeV2\" | \"SSTP\" | \"OpenVPN\" | string"
             },
             {
               "kind": "Content",
@@ -73824,7 +73824,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Unknown\" | \"Connecting\" | \"Connected\" | \"NotConnected\""
+              "text": "\"Unknown\" | \"Connecting\" | \"Connected\" | \"NotConnected\" | string"
             },
             {
               "kind": "Content",
@@ -74006,7 +74006,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"None\" | \"Generation1\" | \"Generation2\""
+              "text": "\"None\" | \"Generation1\" | \"Generation2\" | string"
             },
             {
               "kind": "Content",
@@ -74415,7 +74415,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"IkeV2\" | \"OpenVPN\""
+              "text": "\"IkeV2\" | \"OpenVPN\" | string"
             },
             {
               "kind": "Content",
@@ -76385,7 +76385,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"PolicyBased\" | \"RouteBased\""
+              "text": "\"PolicyBased\" | \"RouteBased\" | string"
             },
             {
               "kind": "Content",
@@ -76410,7 +76410,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Allow\" | \"Block\" | \"Log\""
+              "text": "\"Allow\" | \"Block\" | \"Log\" | string"
             },
             {
               "kind": "Content",
@@ -76608,7 +76608,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Disabled\" | \"Enabled\""
+              "text": "\"Disabled\" | \"Enabled\" | string"
             },
             {
               "kind": "Content",
@@ -76633,7 +76633,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"RemoteAddr\" | \"RequestMethod\" | \"QueryString\" | \"PostArgs\" | \"RequestUri\" | \"RequestHeaders\" | \"RequestBody\" | \"RequestCookies\""
+              "text": "\"RemoteAddr\" | \"RequestMethod\" | \"QueryString\" | \"PostArgs\" | \"RequestUri\" | \"RequestHeaders\" | \"RequestBody\" | \"RequestCookies\" | string"
             },
             {
               "kind": "Content",
@@ -76658,7 +76658,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Prevention\" | \"Detection\""
+              "text": "\"Prevention\" | \"Detection\" | string"
             },
             {
               "kind": "Content",
@@ -76683,7 +76683,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"IPMatch\" | \"Equal\" | \"Contains\" | \"LessThan\" | \"GreaterThan\" | \"LessThanOrEqual\" | \"GreaterThanOrEqual\" | \"BeginsWith\" | \"EndsWith\" | \"Regex\" | \"GeoMatch\""
+              "text": "\"IPMatch\" | \"Equal\" | \"Contains\" | \"LessThan\" | \"GreaterThan\" | \"LessThanOrEqual\" | \"GreaterThanOrEqual\" | \"BeginsWith\" | \"EndsWith\" | \"Regex\" | \"GeoMatch\" | string"
             },
             {
               "kind": "Content",
@@ -77169,7 +77169,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Creating\" | \"Enabling\" | \"Enabled\" | \"Disabling\" | \"Disabled\" | \"Deleting\""
+              "text": "\"Creating\" | \"Enabling\" | \"Enabled\" | \"Disabling\" | \"Disabled\" | \"Deleting\" | string"
             },
             {
               "kind": "Content",
@@ -77194,7 +77194,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"MatchRule\" | \"Invalid\""
+              "text": "\"MatchRule\" | \"Invalid\" | string"
             },
             {
               "kind": "Content",
@@ -77219,7 +77219,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Lowercase\" | \"Trim\" | \"UrlDecode\" | \"UrlEncode\" | \"RemoveNulls\" | \"HtmlEntityDecode\""
+              "text": "\"Lowercase\" | \"Trim\" | \"UrlDecode\" | \"UrlEncode\" | \"RemoveNulls\" | \"HtmlEntityDecode\" | string"
             },
             {
               "kind": "Content",

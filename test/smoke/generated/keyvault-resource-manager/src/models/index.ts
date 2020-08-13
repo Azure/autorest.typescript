@@ -703,7 +703,7 @@ export interface PrivateEndpointConnectionsDeleteHeaders {
 /**
  * Defines values for SkuFamily.
  */
-export type SkuFamily = "A";
+export type SkuFamily = "A" | string;
 /**
  * Defines values for KeyPermissions.
  */
@@ -723,7 +723,8 @@ export type KeyPermissions =
   | "backup"
   | "restore"
   | "recover"
-  | "purge";
+  | "purge"
+  | string;
 /**
  * Defines values for SecretPermissions.
  */
@@ -735,7 +736,8 @@ export type SecretPermissions =
   | "backup"
   | "restore"
   | "recover"
-  | "purge";
+  | "purge"
+  | string;
 /**
  * Defines values for CertificatePermissions.
  */
@@ -755,7 +757,8 @@ export type CertificatePermissions =
   | "recover"
   | "purge"
   | "backup"
-  | "restore";
+  | "restore"
+  | string;
 /**
  * Defines values for StoragePermissions.
  */
@@ -773,15 +776,16 @@ export type StoragePermissions =
   | "setsas"
   | "listsas"
   | "getsas"
-  | "deletesas";
+  | "deletesas"
+  | string;
 /**
  * Defines values for NetworkRuleBypassOptions.
  */
-export type NetworkRuleBypassOptions = "AzureServices" | "None";
+export type NetworkRuleBypassOptions = "AzureServices" | "None" | string;
 /**
  * Defines values for NetworkRuleAction.
  */
-export type NetworkRuleAction = "Allow" | "Deny";
+export type NetworkRuleAction = "Allow" | "Deny" | string;
 /**
  * Defines values for PrivateEndpointServiceConnectionStatus.
  */
@@ -789,7 +793,8 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected"
-  | "Disconnected";
+  | "Disconnected"
+  | string;
 /**
  * Defines values for PrivateEndpointConnectionProvisioningState.
  */
@@ -799,7 +804,8 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Updating"
   | "Deleting"
   | "Failed"
-  | "Disconnected";
+  | "Disconnected"
+  | string;
 /**
  * Defines values for SkuName.
  */

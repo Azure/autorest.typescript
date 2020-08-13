@@ -363,7 +363,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Always\" | \"OnSuccess\" | \"OnExpiration\""
+              "text": "\"Always\" | \"OnSuccess\" | \"OnExpiration\" | string"
             },
             {
               "kind": "Content",
@@ -429,7 +429,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"User\" | \"Application\" | \"ManagedIdentity\" | \"Key\""
+              "text": "\"User\" | \"Application\" | \"ManagedIdentity\" | \"Key\" | string"
             },
             {
               "kind": "Content",
@@ -2230,7 +2230,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"UserAssigned\""
+              "text": "\"UserAssigned\" | string"
             },
             {
               "kind": "Content",
@@ -2552,7 +2552,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"Creating\" | \"ProvisioningResources\" | \"Running\" | \"Succeeded\" | \"Failed\" | \"Canceled\""
+              "text": "\"Creating\" | \"ProvisioningResources\" | \"Running\" | \"Succeeded\" | \"Failed\" | \"Canceled\" | string"
             },
             {
               "kind": "Content",
@@ -2747,7 +2747,7 @@
             },
             {
               "kind": "Content",
-              "text": "\"AzurePowerShell\" | \"AzureCLI\""
+              "text": "\"AzurePowerShell\" | \"AzureCLI\" | string"
             },
             {
               "kind": "Content",
